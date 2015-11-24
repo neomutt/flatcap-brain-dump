@@ -1,0 +1,28 @@
+ftp://ftp.mutt.org/pub/mutt/mutt-1.5.23.tar.gz
+ftp://ftp.mutt.org/pub/mutt/mutt-1.5.24.tar.gz
+
+http://download.opensuse.org/repositories/openSUSE:/13.2:/Update/standard/src/mutt-1.5.21-44.4.1.src.rpm
+http://download.opensuse.org/repositories/openSUSE:/Leap:/42.1/standard/src/mutt-1.5.24-1.7.src.rpm
+ftp://ftp.mutt.org/pub/mutt/mutt-1.5.23.tar.gz
+
+hg clone https://bitbucket.org/mutt/mutt hg
+git clone https://github.com/karelzak/mutt-kz/ mutt
+
+http://lunar-linux.org/~tchan/mutt/patch-1.5.12.sidebar.20060720.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.12.sidebar.20060804.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.13.sidebar.20060830.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.13.sidebar.20061023.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.14.sidebar.20070223.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.15.sidebar.20070408.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.16.sidebar.20070704.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.17.sidebar.20071102.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.17.sidebar.20080412.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.18.sidebar.20080517.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.18.sidebar.20080611.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.19.sidebar.20090522.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.19.sidebar.20090618.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.20.sidebar.20090619.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.21.sidebar.20120829.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.21.sidebar.20130219.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.24.sidebar.20150917.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.24.sidebar.20151111.txt

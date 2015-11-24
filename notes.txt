@@ -1,0 +1,262 @@
+bffy.c PATH_MAX (4096) vs _POSIX_PATH_MAX (256)
+pager.c status_width = 0; /* comment */
+many // -> /* ... */
+compose.c bad maths: (idxmax += 5 + numfiles) in expr!
+init.c strings "yes", "no", "ask-yes", "ask-no" -- define centrally
+
+Whitespace
+	trailing
+	tabs
+		leading
+		embedded
+		comments
+	align = (
+leading
+	8 spaces : ~5000 lines
+	tab : ~15000 lines
+
+Brackets space(space
+Bang space!spaceVAR
+Brace: kernel cuddle?  always around if/else etc
+#if 0 > 16 y.o.
+comments // -> /* ... */
+	gentoo
+	fix block comments too
+case brace  {} check scopes
+static functions -- all declared?
+mutt error gnu printf checks (all ...)
+if's bracket anything more complex that ARG or !ARG
+	maths too
+#if vs #ifdef VAR
+TRUE/FALSE? 52 times 1/0
+grammar: its dont cant, spelling
+line lengths
+	14K empty
+	94K <= 80 chars
+	5K > 80 chars
+
+sidebar requirements
+	tidy code
+	conditional compilation
+	robust
+	document
+		functions
+		config
+	minimise changes to original code
+	do I *require* fmemopen?
+		should that be a separate patch?
+
+valgrind
+	memory leaks
+	dodginess
+sprintf checks
+vet check_sec.sh
+XXX: 32
+FIXME: 29
+
+--------------------------------------------------------------------------------
+
+ellipsis
+	mutt_error
+	mutt_message
+	mutt_debug
+
+FMT_LEFT, etc 2007
+#defines -> enums?
+make AUTHORS -- which repo did this?
+
+Main sidebar repos
+	Ismail
+	Debian
+	Gentoo 24r1
+	Suse 24 2014/14/12 + sidebar colour
+	Kzak
+	Terry
+
+Ultrix dead '95
+	ask debian devs for list of working arches
+
+draw_sidebar, calcboundaries don't use their args
+BUFFY_SIZE on longer used (9 years)
+#ifdef BUFFY_SIZE -> if (option (OPTCHECKMBOXSIZE))
+retval variable
+	rc: 724
+	rv: 132
+strfcpy multiple defs
+	dotlock.c
+	lib.h
+	rfc8222.c
+init all vars
+lots of static fns -> _fn_name?
+^L in source
+Doxygen comments
+TRUE/FALSE -> BOOL
+	return [01]; 752 occurrences
+Vim-style
+	:set     -> show all modified vars
+	:set all -> all all vars
+	:unset === set novar
+strict compilation flags; c++ compiler?
+unnamed args in function prototypes
+spurious \ line endings (in middle of if!)
+
+--------------------------------------------------------------------------------
+
+Mutt panel manager
+
+start with whole window (80x24)
+Carve off blocks in sequence
+Carve up by rows/cols or %age
+All moves/prints now use opaque handles to the panel
+Moves/prints strictly limited to panel
+functions on panel
+	get_rect
+	clear_to_bol
+	clear_to_eol
+	clear_to_top
+	clear_to_bottom
+	clear_panel
+Panels could wrap/nowrap
+	handle left/right scrolling
+	could be view_panes -- all data passed
+		the panel controls paging
+			too slow?
+	needs to be paged by the panel user
+controls to move between panels
+	invisible cursor -- so left, right returns to where you were, etc
+	mnemonics too?
+	show focus with
+		terminal's cursor?
+		colour?
+	
+Example carving set:
+	Block	Size	Name		X	Y	W	H	Notes
+	top	1 line	Menu		0	0	80	1
+	top	1 line	Help		0	1	80	1
+	bottom	1 line	Entry		0	23	80	1
+	bottom	1 line	Status		0	22	80	1
+	left	20 cols	Sidebar		0	2	20	20	on by default
+	right	0 cols	Reply		80	2	0	20	off by default
+	top	10 line	Pager		20	2	60	10	currently on
+	rest	-	Message		20	12	60	20	currently on
+
+Hide pager ->
+	signal pager (hidden)
+	signal message (resize, rect)
+
+Hide sidebar ->
+	signal sidebar (hidden)
+	signal pager (resize, rect)
+	signal message (resize, rect)
+
+Close message ->
+	signal message (hidden)
+	signal pager (resize, rect)
+
+Carve param: can receive focus
+Where does the help page fit in?
+	which panels does it hide?
+
+--------------------------------------------------------------------------------
+
+Notifications
+
+Window changes
+	hidden	no params
+	visible	rect
+	resize	rect
+	focus	in/out
+colours changes
+keypress	key, no params
+config change	key, value
+		ALL, no params
+mail status change
+	read/unread/flagged/deleted/edited
+	MESSAGE_ID, flags
+mailbox change
+	new/deleted
+	new mail, deleted mail, flagged mail, etc
+connection status
+	connected
+	disconnected
+quitting - any use to anyone?
+selected mail changed
+selected mailbox changed
+
+Panel manager - where does the horizontal divider fit in?
+	status bar between pager and message
+Panels can have vertical and/or horizontal scrollbars
+	1 line/col  |----######-----------|
+wrapping ->
+	extra char at beginning of line "+"
+	extra char at end of line "<-/"
+wrap at:
+	char
+	word (whitespace)
+	clause (punctuation)
+	sentence (.!?)
+No wrap ->
+	extra char at end of line ">"
+carving
+	enum: Top, Bottom, Left, Right, Rest
+	number
+	enum: rows/cols/percentage
+	flags: visible, focus, wrap mode, scollbars
+focus & panels should determine a key's action
+	current panel gets notification
+	if recjected (or uncaught) try other panels
+	try panels in what order?
+panels keep in internal cursor, so user can write many long (wrapped) lines
+	and not worry.  The panel will display (optional) wrap chars
+	or _not_ wrap, etc.  Eventually the user's write will soft-fail
+	-> write beyond panel's size
+
+--------------------------------------------------------------------------------
+
+send escape sequence to clear terminal title when mutt closes
+init.h struct option_t needs enums for types and union for data
+timer notifications, e.g.
+	highlight something for three seconds, then return to normal
+https://github.com/N8Fear/mutt-kz
+	some initialisations improvements
+	some bug fixes
+
+set patch commit dates to patch-date
+set commit dates to author dates
+toggle-sidebar command
+
+widestring folder names
+	highlight broken (wrong width)
+	are truncated because 3 bytes is only 2 spaces
+	wcwidth() / wcswidth()
+<stdbool.h> in sidebar.c
+sidebar_delim
+	change name to sidebar_dividers
+	first (wide) character is vertical divider
+		between sidebar and index/pager
+	second (wide) character is horizontal divider
+		between different mailboxes (within the sidebar)
+sidebar_color
+	background color for entire sidebar region?
+
+need attention
+	draw_sidebar
+	OPTSIDEBARSORT
+		sorts by real path, not visible name
+
+check for unused #include
+sort includes <>, ""
+
+sort init.h, globals.h, etc
+
+kill one-line if's:
+	if (adsfa) command;
+
+make_sidebar_entry leaks as string is passed to printw
+
+~50 lines of commented out source
+	/* ... ; */
+
+possible to fix sidebar sort order to respect hierarchy/indentation?
+
+for LONG list of mailboxes, need vim-style scroll-offset param to control paging

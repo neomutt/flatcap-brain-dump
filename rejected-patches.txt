@@ -1,0 +1,78 @@
+https://bitbucket.org/evgeni/mutt-sidebar
+	v1.5.23 + patch-1.5.21.sidebar.20130219.txt
+
+https://github.com/aur-archive/muttils-hg
+	empty
+
+https://github.com/aur-archive/mutt-gentoo
+	empty
+
+https://github.com/aur-archive/mutt-bskv-hg
+	empty
+
+https://github.com/aur-archive/mutt-bare-hg
+	introduces <stdbool.h>
+
+https://github.com/aur-archive/mutt-stable
+	empty
+
+https://github.com/aur-archive/muttng
+	empty
+
+https://github.com/w4rlock/Mutt
+	just config
+
+https://bitbucket.org/sergtat/mutt.git
+	just config
+
+https://github.com/Venefyxatu/mutt-sidebar-config
+	just config
+
+https://github.com/aur-archive/muttjump
+	empty
+
+https://github.com/aur-archive/notmuch-mutt
+	empty
+
+https://github.com/aur-archive/mutt-notmuch-git
+	empty
+
+https://github.com/aur-archive/mutt-nntp
+	empty
+
+https://github.com/aur-archive/mutt-gssapi-sasl
+	empty
+
+https://github.com/aur-archive/mutt-xlabel
+	empty
+
+https://github.com/nedos/mutt-sidebar-patch
+	patch-1.5.22.sidebar.gentoo-openbsd
+
+https://github.com/aur-archive/mutt-patchy
+	implemented, not sidebar
+
+https://github.com/aur-archive/mutt-xtermtitle
+	implemented, not sidebar
+
+https://github.com/aur-archive/mutt-rfc2047
+	implemented, not sidebar
+
+https://github.com/aur-archive/mutt-sidebar-nntp
+	implemented, not interested
+
+https://github.com/aur-archive/mutt-sendbox
+	not interested
+
+https://github.com/aur-archive/mutt-trash-nntp
+	not interested
+
+https://github.com/aur-archive/mutt-trash-purge
+	dupe trash/purge
+
+https://github.com/ismail/mutt-sidebar
+	dupe of https://bitbucket.org/mirko_iannella/mutt_sidebar.git
+
+jmdana - https://github.com/jmdana/mutt-sidebar-patches
+	implemented
+

@@ -1,0 +1,12 @@
+hg branch
+hg branch -a
+hg checkout mutt-1-5-23-rel
+hg checkout mutt-1-5-24-rel
+hg checkout tip
+hg clean
+hg clone https://bitbucket.org/mutt/mutt hg2
+hg log
+hg pull
+hg purge
+hg status
+hg tags

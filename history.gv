@@ -1,0 +1,64 @@
+digraph history {
+
+	graph [
+		rankdir="TB"
+		bgcolor="black"
+		color="white"
+		nodesep="0.1"
+		ranksep="0.5"
+	];
+ 
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		style="filled"
+		width="1.3"
+		height="0.5"
+		fixedsize="true"
+		penwidth="0.0"
+	];
+ 
+	edge [
+		penwidth="2.0"
+		color="#A0A0A0"
+		arrowsize="0.5"
+	];
+
+	intial         [ label="initial\ne577381"         fillcolor="#80ff80" ];
+	lca            [ label="lca\n9689735"             fillcolor="#80ff80" ];
+	mutt_23        [ label="mutt/1.5.23\n40757d9",    fillcolor="#80ff80" ];
+	mutt_24        [ label="mutt/1.5.24\n5f79392",    fillcolor="#80ff80" ];
+	mutt_master    [ label="mutt/master\n8478494",    fillcolor="#80ff80" ];
+	mutt_merge     [ label="mutt/merge\n13d2478",     fillcolor="#80ff80" ];
+	kz_23          [ label="kz/1.5.23\n3bbcc84",      fillcolor="#8080ff" ];
+	kz_master      [ label="kz/master\nbd5f115",      fillcolor="#8080ff" ];
+	kz_merge       [ label="kz/merge\n9973e89",       fillcolor="#8080ff" ];
+	sidebar_24     [ label="sidebar/1.5.24\ne8bb43a", fillcolor="#ffc0c0" ];
+	sidebar_master [ label="sidebar/master\nc6dcbbd", fillcolor="#ffc0c0" ];
+	sidebar_rich   [ label="sidebar/rich\nae5da9f",   fillcolor="#ffc0c0" ];
+	trash_24       [ label="trash/1.5.24\n11cf4c4",   fillcolor="#ffff80" ];
+	trash_master   [ label="trash/master\n447e01a",   fillcolor="#ffff80" ];
+
+	lca            -> intial;
+
+	mutt_23        -> lca;
+	mutt_24        -> mutt_23;
+	mutt_master    -> mutt_24;
+	mutt_merge     -> mutt_master;
+
+	kz_23          -> lca;
+	kz_master      -> kz_23;
+	kz_merge       -> kz_master;
+
+	sidebar_24     -> mutt_24;
+	sidebar_master -> mutt_master;
+	sidebar_rich   -> sidebar_master;
+
+	trash_24       -> mutt_24;
+	trash_master   -> mutt_master;
+
+	{ rank=same mutt_23     kz_23 }
+	{ rank=same mutt_master kz_master }
+	{ rank=same mutt_merge  kz_merge }
+}
+

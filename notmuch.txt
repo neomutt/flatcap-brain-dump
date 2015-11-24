@@ -1,0 +1,106 @@
+notmuch: bypass data limit when expanding threads
+notmuch: enlarge query buffer
+notmuch: update the header colors after modifying tags
+notmuch: fix DB transaction balancing
+notmuch: call notmuch_query_count_messages() more carefully
+notmuch: use exclude tags for entrie-thread too
+notmuch: get <entire-thread> work from pager context
+notmuch: fix getting count of new messages for non-trivial query
+notmuch: apply NotmuchExcludeTags to count queries
+notmuch: make %N optional for notmuch browser format
+docs: update README.notmuch
+notmuch: search by vfolder name in browser
+notmuch: don't close opened message after <modify-label>
+notmuch: <change-vfolder> default to the next unread folder
+notmuch: extend <change-vfolder> to accept folder name/uri
+notmuch: update DB on save-command
+notmuch: improve entire-thread
+notmuch: add entire-thread command, cleanup progress bar code
+nomtuch: always use notmuch message ID
+Revert "Follow notmuch behavior if Message-ID header does not follow spec"
+notmuch: fix buffer overflow, improve tag_list usage
+notmuch: add nm_exclude_tags
+color: fix compilation without notmuch
+notmuch: clean up tags related code, improve %G
+notmuch: fix corrupt viewing of messages
+Follow notmuch behavior if Message-ID header does not follow spec
+notmuch: add $record support
+notmuch: hide signed and encrypted tags by default
+notmuch: reuse connection in complete_all_nm_tags()
+notmuch: Fix trivial documentation typoes
+notmuch: Add TAB completion of tag names in <modify-labels>*
+notmuch: Add TAB completion of tag: names in <vfolder-from-query>
+notmuch: Add nm_get_all_tags()
+notmuch: Plug a leaked notmuch DB handle in get_count()
+notmuch: Add 'label' pattern modifier '~Y'
+notmuch: Fix auto_tag=yes for modify-labels* and quasi-delete
+notmuch: add %g examples
+notmuch: count messages for mutt progress bar
+docs: add link to notmuch mutttips
+notmuch: fix compiler warning
+notmuch: add notmuch_{query,message}_destroy to DB checker
+notmuch: add nm_query_type config file option
+notmuch: fix typo
+notmuch: add note about nm_db_limit to README
+mutt_notmuch: nm_db_limit option defines a default limit
+notmuch: print read progress of a query
+format: support optional modifier for g (notmuch labels)
+notmuch: sync flags for all duplicate messages
+notmuch: use the Maildir if NotmuchDefaultUri is unset
+notmuch: use notmuch_status_t for DB open
+notmuch: use the new notmuch api if available
+build-sys: test for the latest notmuch API change
+notmuch: fix nm_check_database to count new messages correctly
+notmuch: allow to read whole-threads
+notmuch: don't rename in DB before mx commit
+notmuch: add NOTMUCH in show_version()
+notmuch: typo fixes
+notmuch: make filename changes more robust
+notmuch: fix new->cur maildir move
+notmuch: fix prefixes in README
+notmuch: add nm_open_timeout
+notmuch: don't use uninitialized HEADER in nm_check_database()
+notmuch: fix msg remove code
+notmuch: fix sync
+notmuch: remove extra slashes
+notmuch: search in new/cur subfolders if DB is not up-to-date
+notmuch: use context data if possible rather than directly context
+notmuch: fix example in README
+notmuch: explicitly require notmuch context
+notmuch: cleanup private notmuch structs initialization
+notmuch: fix a bug with processing mailboxes when they are all virtual.
+notmuch: fix a typo in the README
+notmuch: add note about notmuch version requirement
+build-sys: fix compilation without --enable-notmuch
+docs: add note about sidebar to notmuch docs
+notmuch: add ML to README
+notmuch: fix compilation error at get_nm_message()
+notmuch: fix compilation error when using hcache
+notmuch: improve nm_unread_tag setting
+notmuch: improve virtual_mailboxes command, update docs
+notmuch: update README
+notmuch: add debug messages
+notmuch: support default db uri
+notmuch: implement nm_check_database()
+notmuch: small refactoring
+notmuch: add
+notmuch: properly update context numbers
+notmuch: print vfolder description on status bar
+notmuch: add <modify-labels-then-hide>
+notmuch: update README
+notmuch: fix CONTEXT->data->db usage
+notmuch: update README.notmuch
+notmuch: add modify-label
+notmuch: fix typo
+notmuch: change-vfolder, print folder info, etc.
+notmuch: add support to browser
+notmuch: add notmuch calls to mx_* API
+notmuch: don't modify virtual folders' paths
+notmuch: add basic functions
+notmuch: add basic .muttrc variables
+notmuch: add context magic
+notmuch: consolidate msg sync code
+notmuch: add notmuch::// uri
+notmuch: add 'virtual-mailboxes' parser
+notmuch: add change-vfolder and vfolder-from-query constants
+notmuch: add basic files and build-sys stuff
