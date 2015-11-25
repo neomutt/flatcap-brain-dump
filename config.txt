@@ -1,0 +1,13 @@
+
+  { "sidebar_delim",        DT_STR,     R_BOTH, UL &SidebarDelim,       UL "|"                          },
+  { "sidebar_indentstr",    DT_STR,     R_BOTH, UL &SidebarIndentStr,   UL " "                          },
+  { "sidebar_newmail_only", DT_BOOL,    R_BOTH, OPTSIDEBARNEWMAILONLY,  0                               },
+  { "sidebar_visible",      DT_BOOL,    R_BOTH, OPTSIDEBAR,             0                               },
+  { "sidebar_sort",         DT_BOOL,    R_BOTH, OPTSIDEBARSORT,         0                               },
+  { "sidebar_width",        DT_NUM,     R_BOTH, UL &SidebarWidth,       0                               },
+  { "sidebar_shortpath",    DT_BOOL,    R_BOTH, OPTSIDEBARSHORTPATH,    0                               },
+  { "sidebar_format",       DT_STR,     R_NONE, UL &SidebarFormat,      UL "%B%?F? [%F]?%* %?N?%N/?%4S" },
+  { "sidebar_folderindent", DT_BOOL,    R_BOTH, OPTSIDEBARFOLDERINDENT, 0                               },
+
+  { "sidebar_whitelist",    parse_list, UL &SidebarWhitelist },
+

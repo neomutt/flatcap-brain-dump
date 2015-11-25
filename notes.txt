@@ -260,3 +260,29 @@ make_sidebar_entry leaks as string is passed to printw
 possible to fix sidebar sort order to respect hierarchy/indentation?
 
 for LONG list of mailboxes, need vim-style scroll-offset param to control paging
+
+gentoo sidebar_format
+	set sidebar_format="%B %* %S%?N?(%N)?%?F?[%F]?"
+
+RICH
+	123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+	inbox                                 0│ 
+	tree                                  0│
+	    birchbirchbirchbirch       10(7)[1]│   
+	    义勇军义勇军义勇军             4(1)│
+
+
+GENTOO
+	123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+	inbox                               0│     
+	tree                                0│     
+	    birchbirchbirchbirch     10(7)[1]│     
+	    义勇军义勇军义勇军                    4(1)
+
+// What about if screen is narrower than SidebarWidth?
+    COLS = width;
+should be
+    COLS = min (COLS, width);
+
+compile with clang for more warnings
+
