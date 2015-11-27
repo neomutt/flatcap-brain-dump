@@ -286,3 +286,56 @@ should be
 
 compile with clang for more warnings
 
+sidebar_width = auto (size to contents)
+
+sidebar highlight doesn't cover lines consistently
+	covers text only in "%B"
+	covers line total in "%B%* "
+	highlights empty indent spaces
+
+fix? whitelist to use +dir notation?
+	relative to $folder
+	what about multiple folders?
+
+sidebar width : fixed string breaks bounds
+	set sidebar_width=10
+	set sidebar_format="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+:quit / :q command for vi users
+
+sidebar_width defaults to 0!
+
+cleanup:
+	docs - in code and html
+	comments
+	whitespace
+		unfold lines
+		indent
+		rebracket
+		refold
+	sort options in
+		init.h
+		globals.h
+		functions.h
+
+when a two-cell character is truncated by 1 it needs to be space padded to maintain alignment
+
+check all string config vars are NONULL'd
+
+sorting
+	if displaying full paths:
+		sort by display name
+		sort by underlying name
+	if displaying indented paths:
+		sort by top-level names, then children
+
+New only -- include structure (empty dirs) to keep hierarchy
+	mail (0)
+	  fruit (0)
+	    apple (1)
+
+what causes sidebar to page down after a few entries?
+
+if ((!visible) || (size == 0))
+	make sure no work is done
+

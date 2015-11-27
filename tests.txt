@@ -1,0 +1,167 @@
+Tests
+
+Create MailDir folders
+	/home/mutt/Mail/dirs/cars
+	/home/mutt/Mail/dirs/cars/skoda
+	/home/mutt/Mail/dirs/cars/ford
+	/home/mutt/Mail/dirs/cars/fiat
+	/home/mutt/Mail/dirs/birds/owl
+	/home/mutt/Mail/dirs/birds/kingfisher
+	/home/mutt/Mail/dirs/birds/grebe
+	/home/mutt/Mail/dirs/birds/heron
+	/home/mutt/Mail/dirs/fruit/cherry
+	/home/mutt/Mail/dirs/fruit/damson
+	/home/mutt/Mail/dirs/fruit/apple
+	/home/mutt/Mail/dirs/fruit/banana
+
+Populate with mail: new, old, flagged
+
+set folder=/home/mutt/Mail
+
+--------------------------------------------------------------------------------
+
+T: Toggle sidebar visibility
+	set sidebar_width=40
+	set sidebar_visible=no
+	set sidebar_visible=yes
+
+	inbox                                 0|
+	dirs/birds                            0|
+	dirs/birds/grebe                 7/  10|
+	dirs/birds/heron                 4/  10|
+	dirs/birds/kingfisher                10|
+	dirs/birds/owl                   3/  10|
+	dirs/cars                             0|
+	dirs/cars/fiat                   4/  10|
+	dirs/cars/ford [1]               2/  10|
+	dirs/cars/skoda                  7/  10|
+	dirs/fruit                            0|
+	dirs/fruit/apple                 1/  10|
+	dirs/fruit/banana                    10|
+	dirs/fruit/cherry [1]            5/  10|
+	dirs/fruit/damson                4/  10|
+
+T: Test delim char
+	1 byte,  1 character
+	3 bytes, 1 character
+	3 bytes, 2 characters
+
+	set sidebar_delim="|"
+	set sidebar_delim="│"
+	set sidebar_delim="勇"
+
+	inbox                                0勇
+	dirs/birds                           0勇
+	dirs/birds/grebe                7/  10勇
+	dirs/birds/heron                4/  10勇
+	dirs/birds/kingfisher               10勇
+	dirs/birds/owl                  3/  10勇
+	dirs/cars                            0勇
+	dirs/cars/fiat                  4/  10勇
+	dirs/cars/ford [1]              2/  10勇
+	dirs/cars/skoda                 7/  10勇
+	dirs/fruit                           0勇
+	dirs/fruit/apple                1/  10勇
+	dirs/fruit/banana                   10勇
+	dirs/fruit/cherry [1]           5/  10勇
+	dirs/fruit/damson               4/  10勇
+
+T: New mail only
+	set sidebar_newmail_only=yes
+	set sidebar_newmail_only=no
+
+T: Next/prev new mailbox
+	Check next/prev jump correctly
+	Check they stop at bottom/top
+
+	macro index,pager <F5> "<sidebar-prev-new>"
+	macro index,pager <F6> "<sidebar-next-new>"
+
+T: Sidebar width / overflow
+	Check correct truncation
+
+	set sidebar_width=20
+	set sidebar_format="ABCDEFGHIJKLMNOPQRSTUVWXYZ%* 012345679"
+	set sidebar_format="ABCDEFGHIJKLMNOPQRSTUVWXYZ%- 012345679"
+	set sidebar_format="ABCDEFGHIJKLMNOPQRSTUVWXYZ%> 012345679"
+
+T: utf8 - 1
+	set sidebar_shortpath=yes
+	set sidebar_indentstr="勇勇勇"
+
+T: utf8 - 2
+	set sidebar_format="%B%*勇XYZ"
+
+T: full dirs
+	List of dirs relative to $folder
+	set sidebar_shortpath=no
+	set sidebar_indentstr=""
+
+T: short dirs
+	List of dirs relative to $folder
+	set sidebar_shortpath=yes
+	set sidebar_indentstr="  "
+
+T: folder names
+	languages
+
+	mailboxes "+dirs/mixed/Ελληνικά"
+	mailboxes "+dirs/mixed/Українська"
+	mailboxes "+dirs/mixed/ไทย"
+	mailboxes "+dirs/mixed/한국어"
+	mailboxes "+dirs/mixed/हिन्दी"
+	mailboxes "+dirs/mixed/ייִדיש"
+	mailboxes "+dirs/mixed/فارسی"
+	mailboxes "+dirs/mixed/עברית"
+	mailboxes "+dirs/mixed/日本語"
+	mailboxes "+dirs/mixed/中文"
+	mailboxes "+dirs/mixed/العربية"
+	mailboxes "+dirs/mixed/abcdefghij"
+	mailboxes "+dirs/mixed/Русский"
+
+T: dir.dir.dir
+	mailboxes "+dirs.mixed"
+	mailboxes "+dirs.mixed.Ελληνικά"
+	mailboxes "+dirs.mixed.Українська"
+	mailboxes "+dirs.mixed.ไทย"
+	mailboxes "+dirs.mixed.한국어"
+	mailboxes "+dirs.mixed.हिन्दी"
+	mailboxes "+dirs.mixed.ייִדיש"
+	mailboxes "+dirs.mixed.فارسی"
+	mailboxes "+dirs.mixed.עברית"
+	mailboxes "+dirs.mixed.日本語"
+	mailboxes "+dirs.mixed.中文"
+	mailboxes "+dirs.mixed.العربية"
+	mailboxes "+dirs.mixed.abcdefghij"
+	mailboxes "+dirs.mixed.Русский"
+
+T: folder with trailing /
+	Check mailbox names are correct
+
+	set folder="/home/mutt/Mail/"
+
+T: sidebar format padding
+	Check that short format still paints entire line / highlight
+
+	set sidebar_format="ABC%* XYZ"
+	set sidebar_format="ABCXYZ"
+
+T: empty sidebar names
+	mailbox with trailing / disappear due to mutt_basename
+
+	mailboxes "+dirs/fruit/apple"
+	mailboxes "+dirs/fruit/banana/"
+	mailboxes "+dirs/fruit/cherry"
+	set sidebar_indentstr=""
+	set sidebar_shortpath=yes
+
+T: Sorting
+	Needs to happen before mailboxes
+	set sidebar_sort = yes
+
+--------------------------------------------------------------------------------
+
+T: Compose mode bug?
+	can't reproduce; test with
+	HOME=/ LC_ALL=C mutt -e 'unset sidebar_visible' -s test recipient
+
