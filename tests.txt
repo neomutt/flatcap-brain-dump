@@ -165,3 +165,18 @@ T: Compose mode bug?
 	can't reproduce; test with
 	HOME=/ LC_ALL=C mutt -e 'unset sidebar_visible' -s test recipient
 
+index_format_string
+	padded
+	with arrow
+	with and without sidebar
+
+test next/prev new with wraparound
+test new mail, flagged mail, whitelist
+	does/does not
+	inbox
+	last mailbox
+	current mailbox is only
+	inbox is only
+	last mailbox is only
+	no mailboxes contain
+

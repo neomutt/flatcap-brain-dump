@@ -335,7 +335,18 @@ New only -- include structure (empty dirs) to keep hierarchy
 	    apple (1)
 
 what causes sidebar to page down after a few entries?
+	someone manipulating TopBuffy
 
 if ((!visible) || (size == 0))
 	make sure no work is done
+
+commands for show/hide sidebar
+	need command to toggle view
+
+change "tmp" variables to a more meaningful name/initial
+
+group sidebar build stuff in makefiles, etc, cf kzak
+
+trim trailing slash from mailboxes, folder
+	shouldn't be displayed
 
