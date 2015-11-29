@@ -1,4 +1,4 @@
-bffy.c PATH_MAX (4096) vs _POSIX_PATH_MAX (256)
+buffy.c PATH_MAX (4096) vs _POSIX_PATH_MAX (256)
 pager.c status_width = 0; /* comment */
 many // -> /* ... */
 compose.c bad maths: (idxmax += 5 + numfiles) in expr!
@@ -343,10 +343,14 @@ if ((!visible) || (size == 0))
 commands for show/hide sidebar
 	need command to toggle view
 
-change "tmp" variables to a more meaningful name/initial
-
 group sidebar build stuff in makefiles, etc, cf kzak
 
 trim trailing slash from mailboxes, folder
 	shouldn't be displayed
+
+on Terry's update notify authors & list & kz
+
+check all headers #include requisites for compilation
+
+FOREVER, rather than while(1)
 
