@@ -354,3 +354,16 @@ check all headers #include requisites for compilation
 
 FOREVER, rather than while(1)
 
+check ALL pointers
+
+sb_set_curbuffy's while loop should look like sb_set_buffystats's
+
+sb_set_curbuffy
+sb_set_buffystats
+	should probably both return BOOL on success/failure
+
+sb_set_update_time should return the timestamp
+
+sb_draw should return success of drawing
+	possible given all the callbacks, etc?
+

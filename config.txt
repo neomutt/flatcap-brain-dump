@@ -11,3 +11,16 @@
 
   { "sidebar_whitelist",    parse_list, UL &SidebarWhitelist },
 
+sidebar_delim
+sidebar_delim_chars
+sidebar_folderindent
+sidebar_format
+sidebar_indentstr
+sidebar_newmail_only
+sidebar_next_new_wrap
+sidebar_refresh
+sidebar_shortpath
+sidebar_sort
+sidebar_visible
+sidebar_width
+sidebar_whitelist

@@ -22,6 +22,7 @@
 	--enable-imap \
 	--enable-smtp \
 	--enable-hcache \
+	--enable-sidebar \
 	--without-gdbm \
 	--without-qdbm \
 	--with-gnutls \
@@ -35,4 +36,3 @@
 	'LDFLAGS=-Wl,-z,relro' \
 
 	# --enable-debug \
-	# --enable-sidebar \
