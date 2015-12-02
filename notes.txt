@@ -77,7 +77,7 @@ Ultrix dead '95
 	ask debian devs for list of working arches
 
 draw_sidebar, calcboundaries don't use their args
-BUFFY_SIZE on longer used (9 years)
+BUFFY_SIZE no longer used (9 years)
 #ifdef BUFFY_SIZE -> if (option (OPTCHECKMBOXSIZE))
 retval variable
 	rc: 724
@@ -366,4 +366,8 @@ sb_set_update_time should return the timestamp
 
 sb_draw should return success of drawing
 	possible given all the callbacks, etc?
+
+quiet config option -- don't whine about unknown config options
+
+sensible retvals on functions
 
