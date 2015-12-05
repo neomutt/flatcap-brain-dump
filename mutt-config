@@ -1,38 +1,30 @@
 ./configure \
-	--build=x86_64-redhat-linux-gnu \
-	--host=x86_64-redhat-linux-gnu \
-	--program-prefix= \
-	--disable-dependency-tracking \
 	--prefix=/usr \
-	--exec-prefix=/usr \
-	--bindir=/usr/bin \
-	--sbindir=/usr/sbin \
 	--sysconfdir=/etc \
-	--datadir=/usr/share \
-	--includedir=/usr/include \
 	--libdir=/usr/lib64 \
-	--libexecdir=/usr/libexec \
 	--localstatedir=/var \
 	--sharedstatedir=/var/lib \
-	--mandir=/usr/share/man \
-	--infodir=/usr/share/info \
-	SENDMAIL=/usr/sbin/sendmail \
-	ISPELL=/usr/bin/hunspell \
+	--with-docdir=/usr/share/doc/mutt \
+\
 	--enable-pop \
 	--enable-imap \
 	--enable-smtp \
 	--enable-hcache \
+	--enable-gpgme \
+\
 	--enable-sidebar \
+	--enable-notmuch \
+\
+	--disable-debug \
+\
 	--without-gdbm \
 	--without-qdbm \
 	--with-gnutls \
 	--with-sasl \
 	--with-gss \
-	--enable-gpgme \
-	--with-docdir=/usr/share/doc/mutt \
-	build_alias=x86_64-redhat-linux-gnu \
-	host_alias=x86_64-redhat-linux-gnu \
-	'CFLAGS=-O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches  -m64 -mtune=generic' \
-	'LDFLAGS=-Wl,-z,relro' \
+\
+	CFLAGS="-g -pipe -Wall -Werror=format-security -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic" \
+	LDFLAGS="-Wl,-z,relro" \
+	SENDMAIL=/usr/sbin/sendmail \
+	ISPELL=/usr/bin/hunspell \
 
-	# --enable-debug \

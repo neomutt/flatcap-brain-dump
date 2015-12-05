@@ -371,3 +371,13 @@ quiet config option -- don't whine about unknown config options
 
 sensible retvals on functions
 
+command
+	sidebar_toggle_visible
+	sidebar_toggle -> sidebar_toggle_virtual
+
+--------------------------------------------------------------------------------
+missing patches
+	colour divider
+	sort
+	lightweight
+	fmemopen
