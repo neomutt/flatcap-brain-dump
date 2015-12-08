@@ -1,0 +1,42 @@
+diff -urN ~/m/work/rich .
+git filter-branch --env-filter 'export GIT_COMMITTER_DATE="2009-05-22 00:00:00"; export GIT_AUTHOR_DATE="2009-05-22 00:00:00"' 6265a77..sidebar/1.5.19-20090522
+
+git log --branches --graph --pretty=tidy distro/debian
+git log --branches --pretty=fuller --date=iso --parents
+git log --oneline
+
+git mergetool
+
+git push --force gh work/rich-done:master
+
+git remote add gh git@github.com:flatcap/mutt.git
+git remote add origin ~/mutt.git/
+git remote rm origin
+
+git rebase --abort
+git rebase --continue
+git rebase --preserve-merges b68199f --onto 9689735 --merge
+
+git rev-list --all | xargs -I{} git grep --heading -e "AM_C_PROTOTYPES" {} -- configure.ac
+
+hg branches
+hg clone https://bitbucket.org/mutt/mutt hg
+hg log
+hg paths
+hg pull
+hg root
+hg showconfig 
+hg status
+hg update
+hg update null
+./configure --enable-sidebar
+./prepare; . ~/doc/mutt-config; make -sk
+autoreconf --install
+
+filterdiff -x '*/doc/*' 0100-Add-note-to-manual-clarifying-push-exec-and-folder-h.patch | diffstat 
+
+GIT_COMMITTER_DATE="2009-05-22 00:00:00" git filter-branch -f --env-filter '' 6265a77..sidebar/1.5.19-20090522
+
+interdiff formard.patch /dev/null
+
+rmdir -p refs/remotes/*/*

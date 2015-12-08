@@ -381,3 +381,6 @@ missing patches
 	sort
 	lightweight
 	fmemopen
+
+rename BUFFY->msgcount -> BUFFY->msg_count
+

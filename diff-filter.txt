@@ -1,0 +1,13 @@
+*.pl
+*.sh
+*/.hg*
+*/build-release
+*/configure*
+*/contrib/*
+*/doc/*
+*/flymake
+*/intl/*
+*/m4/*
+*/mkinstalldirs
+*/po/*
+*/[A-Z]*
