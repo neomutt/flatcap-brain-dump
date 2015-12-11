@@ -1,6 +1,6 @@
 buffy.c PATH_MAX (4096) vs _POSIX_PATH_MAX (256)
 pager.c status_width = 0; /* comment */
-many // -> /* ... */
+many // → /* ... */
 compose.c bad maths: (idxmax += 5 + numfiles) in expr!
 init.c strings "yes", "no", "ask-yes", "ask-no" -- define centrally
 
@@ -19,7 +19,7 @@ Brackets space(space
 Bang space!spaceVAR
 Brace: kernel cuddle?  always around if/else etc
 #if 0 > 16 y.o.
-comments // -> /* ... */
+comments // → /* ... */
 	gentoo
 	fix block comments too
 case brace  {} check scopes
@@ -54,7 +54,7 @@ vet check_sec.sh
 XXX: 32
 FIXME: 29
 
---------------------------------------------------------------------------------
+────────────────────────────────────────────────────────────────────────────────
 
 ellipsis
 	mutt_error
@@ -62,7 +62,7 @@ ellipsis
 	mutt_debug
 
 FMT_LEFT, etc 2007
-#defines -> enums?
+#defines → enums?
 make AUTHORS -- which repo did this?
 
 Main sidebar repos
@@ -78,7 +78,7 @@ Ultrix dead '95
 
 draw_sidebar, calcboundaries don't use their args
 BUFFY_SIZE no longer used (9 years)
-#ifdef BUFFY_SIZE -> if (option (OPTCHECKMBOXSIZE))
+#ifdef BUFFY_SIZE → if (option (OPTCHECKMBOXSIZE))
 retval variable
 	rc: 724
 	rv: 132
@@ -87,20 +87,20 @@ strfcpy multiple defs
 	lib.h
 	rfc8222.c
 init all vars
-lots of static fns -> _fn_name?
+lots of static fns → _fn_name?
 ^L in source
 Doxygen comments
-TRUE/FALSE -> BOOL
+TRUE/FALSE → BOOL
 	return [01]; 752 occurrences
 Vim-style
-	:set     -> show all modified vars
-	:set all -> all all vars
+	:set     → show all modified vars
+	:set all → all all vars
 	:unset === set novar
 strict compilation flags; c++ compiler?
 unnamed args in function prototypes
 spurious \ line endings (in middle of if!)
 
---------------------------------------------------------------------------------
+────────────────────────────────────────────────────────────────────────────────
 
 Mutt panel manager
 
@@ -128,7 +128,7 @@ controls to move between panels
 	show focus with
 		terminal's cursor?
 		colour?
-	
+
 Example carving set:
 	Block	Size	Name		X	Y	W	H	Notes
 	top	1 line	Menu		0	0	80	1
@@ -140,16 +140,16 @@ Example carving set:
 	top	10 line	Pager		20	2	60	10	currently on
 	rest	-	Message		20	12	60	20	currently on
 
-Hide pager ->
+Hide pager →
 	signal pager (hidden)
 	signal message (resize, rect)
 
-Hide sidebar ->
+Hide sidebar →
 	signal sidebar (hidden)
 	signal pager (resize, rect)
 	signal message (resize, rect)
 
-Close message ->
+Close message →
 	signal message (hidden)
 	signal pager (resize, rect)
 
@@ -157,7 +157,7 @@ Carve param: can receive focus
 Where does the help page fit in?
 	which panels does it hide?
 
---------------------------------------------------------------------------------
+────────────────────────────────────────────────────────────────────────────────
 
 Notifications
 
@@ -186,8 +186,16 @@ selected mailbox changed
 Panel manager - where does the horizontal divider fit in?
 	status bar between pager and message
 Panels can have vertical and/or horizontal scrollbars
-	1 line/col  |----######-----------|
-wrapping ->
+	1 line/col  ├────▒▒▒▒▒▒────────────┤
+	turn sidebar divider into a scrollbar
+	separate colours for line/bar,arrows
+	▲
+	│
+	▒
+	│
+	▼
+
+wrapping →
 	extra char at beginning of line "+"
 	extra char at end of line "<-/"
 wrap at:
@@ -195,7 +203,7 @@ wrap at:
 	word (whitespace)
 	clause (punctuation)
 	sentence (.!?)
-No wrap ->
+No wrap →
 	extra char at end of line ">"
 carving
 	enum: Top, Bottom, Left, Right, Rest
@@ -209,9 +217,9 @@ focus & panels should determine a key's action
 panels keep in internal cursor, so user can write many long (wrapped) lines
 	and not worry.  The panel will display (optional) wrap chars
 	or _not_ wrap, etc.  Eventually the user's write will soft-fail
-	-> write beyond panel's size
+	→ write beyond panel's size
 
---------------------------------------------------------------------------------
+────────────────────────────────────────────────────────────────────────────────
 
 send escape sequence to clear terminal title when mutt closes
 init.h struct option_t needs enums for types and union for data
@@ -266,17 +274,17 @@ gentoo sidebar_format
 
 RICH
 	123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-	inbox                                 0│ 
+	inbox                                 0│
 	tree                                  0│
-	    birchbirchbirchbirch       10(7)[1]│   
+	    birchbirchbirchbirch       10(7)[1]│
 	    义勇军义勇军义勇军             4(1)│
 
 
 GENTOO
 	123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-	inbox                               0│     
-	tree                                0│     
-	    birchbirchbirchbirch     10(7)[1]│     
+	inbox                               0│
+	tree                                0│
+	    birchbirchbirchbirch     10(7)[1]│
 	    义勇军义勇军义勇军                    4(1)
 
 // What about if screen is narrower than SidebarWidth?
@@ -317,6 +325,7 @@ cleanup:
 		init.h
 		globals.h
 		functions.h
+		switches
 
 when a two-cell character is truncated by 1 it needs to be space padded to maintain alignment
 
@@ -373,14 +382,314 @@ sensible retvals on functions
 
 command
 	sidebar_toggle_visible
-	sidebar_toggle -> sidebar_toggle_virtual
+	sidebar_toggle → sidebar_toggle_virtual
 
---------------------------------------------------------------------------------
+────────────────────────────────────────────────────────────────────────────────
 missing patches
 	colour divider
 	sort
 	lightweight
 	fmemopen
 
-rename BUFFY->msgcount -> BUFFY->msg_count
+rename BUFFY->msgcount → BUFFY->msg_count
+
+DBUS plugin -- to do what?
+	notify out
+	take input to do what?
+
+────────────────────────────────────────────────────────────────────────────────
+
+print redraw counter in each window
+
+repaint if:
+	size changes
+	position changes
+
+Box needs old-computed Rect
+if different, notify
+
+Box needs Notify callback
+Flags: changed posn, changed size
+
+Changed posn notification ONLY
+	e.g. sidebar has swapped sides
+could imply that cached data may be OK to reuse
+	e.g. don't need to call calc_boundaries
+
+Notify (Box*, Rect old, Rect new, flags)
+Flags:
+	too small to render
+	changed visibility
+
+Show toggle-key in each window
+	i - index
+	p - pager
+	h - help line
+	? - help page
+	s - status
+	b - sidebar
+	x - sidebar swap sides
+
+option
+	sidebar-show-page-number
+	sidebar-page-number
+	e.g. Right aligned:
+		Page 3 of 6
+		(3/6)
+
+Changelog, etc for sidebar
+
+────────────────────────────────────────────────────────────────────────────────
+
+Sidebar actions (that might precipitate change):
+	line-up
+	line-down
+	page-up
+	page-down
+	set buffy from browser
+	change sort order
+	add mailbox
+	delete mailbox
+	change mailbox's sort criteria (e.g. flag an email, a flagged-sorted mailbox)
+	resize window
+	hide sidebar
+	show sidebar
+	open folder
+
+Sidebar distinguish between a FOCUSSED sidebar entry and the OPEN sidebar entry
+	Need a sidebar cursor (e.g. bg = grey)
+	Sidebar selected (open), (e.g. bg = blue, or '*' suffix, or bold)
+	May need HighlightedBuffy variable
+		Paging of sidebar follows this HighlightedBuffy
+
+────────────────────────────────────────────────────────────────────────────────
+
+Tidying actions
+
+Conditional build
+	Makefile
+	configure.ac
+	OPS.SIDEBAR
+	#ifdef USE_SIDEBAR
+
+Comments on
+	functions
+	block
+	removal of junk comments
+	init.h functions
+
+Indent
+	our source files
+	our functions in mutt source files
+	our code lines in mutt functions
+
+Indent
+	tabs
+	brackets whitespace
+	brackets around complex logic
+	braces, functions, if/while/etc, struct/enum/etc
+	function definitions
+		name parameters
+	align =
+	pointers X *x, !x
+	trailing whitespace
+
+Functions
+	name consistently
+	reorder, static the public
+	name params sensibly
+
+Unused
+	remove structs
+	remove params
+	remove functions
+	#if 0
+	#include
+
+Checks
+	Init vars
+	check pointers/all params
+	retvals BOOL, compare with if (!fn())
+	if ((x = y()) == NULL)
+	logic if (x + y > 6)
+	maths spacing _+_
+	reserved words: new, this, etc
+
+────────────────────────────────────────────────────────────────────────────────
+
+draw sidebar
+	assumes position/size
+	move due to STATUSONTOP, HELP
+	check of show/hidden has changed & refresh numbers if nec
+	if hidden, do nothing
+	sanity check settings
+	draw divider (3 chars!)
+for all buffers
+	set colour
+	move
+	gen displayname (need to cache this)
+		name, bytelen, screenlen
+		what about config changes
+			including sort order
+	make sidebar_entry
+fill remaining lines with blanks
+
+Start; Incoming; Inbox open; current = Incoming; sort → cur is offscreen, boundaries lost
+
+────────────────────────────────────────────────────────────────────────────────
+
+Emails
+
+Tidy
+	clean code
+	18 month dev cycle
+		not even development
+		just a bug fix cycle
+	never a good time
+	very conservative development
+		(quite) understandably
+	object oriented
+	when? 4 releases in 5 years
+
+	1.5.19 7 years ago
+	1.5.20 6 years ago
+	1.5.21 5 years ago
+	1.5.22 2 years, 3 months ago
+	1.5.23 1 year, 8 months ago
+	1.5.24 3 months ago
+
+New dev
+	Imagine...
+
+	New developer comes along
+	Enthusiasm
+	Free time
+	Ideas
+
+Patches / Branches / Community
+
+	2nd class citizens
+	branches against latest release
+	draw in & encourage devs
+
+	sidebar interested
+		maintained for 10 years
+		fix it
+		integrate changes
+	
+	notmuch overlays sidebar
+
+	nntp
+
+	last patch integrated again 1.5.15 (9 years ago)
+
+	downstream patches
+
+	branch against dev if they wish
+
+────────────────────────────────────────────────────────────────────────────────
+
+Panel manager
+	┌────────────────────────┐    ┌────────────────────────┐ 
+	├──────┬─────────────────┤    ├──────┬─────────────────┤ 
+	│side  │index            │    │side  │help             │ 
+	│      │                 │    │      │                 │ 
+	│      ├─────────────────┤    │      │                 │ 
+	│      │pager            │    │      │                 │ 
+	│      │                 │    │      │                 │ 
+	│      │                 │    │      │                 │ 
+	├──────┴─────────────────┤    ├──────┴─────────────────┤ 
+	└────────────────────────┘    └────────────────────────┘ 
+
+min/max dimensions
+min not achieved ⇒ error
+ask what's available
+max specified ⇒ limit
+max = ∞ ⇒ fill screen
+
+Objects
+		MinWid	MaxWid	MinHt	MaxHt	Visible	Resize	AutoResize
+Helpline	1	∞	1	1	opt	no	-
+Sidebar		1	∞	1	∞	opt	yes	no
+Index		1	∞	1	10	opt	yes	no
+Pager		1	∞	1	∞	opt	yes	yes
+Helppage	1	∞	1	∞	opt	yes	yes
+Status		1	∞	1	1	yes	no	-
+
+Panels
+Top (invis, fill space)
+	Helpline
+	Middle (invis, fill space)
+		Sidebar
+		Right (invis, fill space)
+			Index
+			Pager
+			Help
+	StatusLine
+
+Scan children first looking for expanders?
+	multiple expanders ⇒ log; reduce laters ones to min size, or 1
+	single-run loop backwards
+		too messy, too hard
+	single - first pass, calculate size of fixed elements
+		when on expander, lie about Rect dimensions
+
+────────────────────────────────────────────────────────────────────────────────
+
+Pages
+
+ I p1           p2            p3            p4
+ ┌─────────────┬─────────────┬─────────────┬───────┐
+ │abcdefghijklm│nopqrstuvwxyz│ABCDEFGHIJKLM│NOPQRST│
+ └─────────────┴─────────────┴─────────────┴───────┘
+               Top    ^      Bot
+                      Cur
+
+────────────────────────────────────────────────────────────────────────────────
+
+Mouse
+	BUTTON_PRESSED or BUTTON_CLICKED
+
+	Allow events to be captured by the user
+		<index-click>, <sidebar-double-click>, etc
+	Add "buttons"
+		close button, top right [X]
+
+Sidebar
+	click		select & open
+	scroll up	scroll list up   1 line (no highlight)
+	scroll down	scroll list down 1 line (no highlight)
+	double-click	hide sidebar
+
+Sidebar divider
+	click-drag	move divider
+
+Sidebar scrollbar
+	click		page up/down
+	2-click		move to here
+
+Index
+	click		select & open
+	scroll up	scroll list up   1 line (no highlight)
+	scroll down	scroll list down 1 line (no highlight)
+
+Index divider
+	click-drag	move divider
+
+Pager
+	scroll up	scroll page up   1 line
+	scroll down	scroll page down 1 line
+	double-click	close pager
+
+Help
+	click		show menu
+
+Status bar
+	click		???	
+
+────────────────────────────────────────────────────────────────────────────────
+
+History
+	:set sidebar<UP>
+	should match only 'set sidebar.*'
 
