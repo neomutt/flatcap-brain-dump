@@ -187,13 +187,14 @@ Panel manager - where does the horizontal divider fit in?
 	status bar between pager and message
 Panels can have vertical and/or horizontal scrollbars
 	1 line/col  ├────▒▒▒▒▒▒────────────┤
+	1 line/col  ├────━━━━━━────────────┤
 	turn sidebar divider into a scrollbar
 	separate colours for line/bar,arrows
-	▲
-	│
-	▒
-	│
-	▼
+	▲	▲
+	│	│
+	▒	┃
+	│	│
+	▼	▼
 
 wrapping →
 	extra char at beginning of line "+"
@@ -692,4 +693,55 @@ Status bar
 History
 	:set sidebar<UP>
 	should match only 'set sidebar.*'
+
+calc_boundaries -> BOOl = repaint?
+option page_scroll_offset ~ 5 lines => page is 2.5 lines shorter at each end
+option scroll, don't page -> keep cursor on screen by adjusting list
+sidebar_scrollbar: never, always, when-needed
+sidebar_scrollbar-style: ascii, gfx (utf8)
+tree chars for sidebar hierarchy?
+sidebar: how many colours?
+SidebarLastRefresh shouldn't be in globals.h
+CLEARWIN takes a *y* param, not x, likewise sidebar variant
+
+give credit where it's due -- hg author vs committer?
+on release
+	n commits by m users (p new users)
+	list of new
+	list of returnees
+
+need sensible colour scheme, by default, otherwise highlight won't be visible!
+parse_mailboxes -> notify sidebar => know if anything's invalidated TBCH
+can I use realpath(), mutt_expand_path() for anything?
+
+Unmailbox * ⇒  many notifications followed by ONE redraw
+
+If open dir is offscreen and scrollbar is in use, mark the scrollbar
+	◀────▒▒▒▒▒▒─────┼───▶
+	◀────━━━━━━─────┼───▶	is bar visible enough?
+	<----######-----+--->
++ marks location of open dir
+
+Instead of "page x of y", vim-style Top, %age, Bot
+Use "page-of" line as a sidebar status line "X mbx, Y new, Z flagged" "34M,12N,1F" totals
+can the real status bar display any sidebar fields?
+	why not?
+	how can they be integrated?
+Scrollbar object:
+	enum Vertical/Horizontal (or in rendering function?)
+	int Length -- NO, put this in the rendering function
+	enum ASCII/UTF8
+	int Size
+	int Top
+	int Bottom
+	int Marker (of open page)
+scrollbar_paint (SB*, x, y, length)
+scrollbar_new -- reads config options
+
+ambiguity in struct CONTEXT
+	->changed is a BOOL
+	->deleted is a number
+confusing tests like
+	if (!x->deleted)
+	imply deleted is a BOOL
 
