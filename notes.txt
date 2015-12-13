@@ -745,3 +745,16 @@ confusing tests like
 	if (!x->deleted)
 	imply deleted is a BOOL
 
+most options are "short" limited to +/- 32767
+mutt-sidebar.vim (contrib dir?)
+":map <F11>" shows mapping? or bind, or macro
+set/unset/toggle?  invVARNAME
+option - don't sort inbox -- defined how?
+separate modules -- sidebar, index, pager, help? -- each with
+	init()
+	notify()
+	close()
+	config()
+need to distinguish between Bottom and Last
+sidebar_wrap=search,motion (separate bools for simplicity?)
+
