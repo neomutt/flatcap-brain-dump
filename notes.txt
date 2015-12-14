@@ -758,3 +758,40 @@ separate modules -- sidebar, index, pager, help? -- each with
 need to distinguish between Bottom and Last
 sidebar_wrap=search,motion (separate bools for simplicity?)
 
+sidebar_sort is an enum - on set error, it could show the valid values
+error panel -- status line = 1-liner, error panel = detailed help / explanation
+quadopt can give help too -- important since varname gives no clue about type
+BUG: set sidebar_width=0  -- now impossible to *re*show the sidebar
+break up init.h, globals.h, functions.h
+	init.h option DELEGATE, prefix "sidebar_", callback?
+init() on module calls add_options()
+	=> sb_opts refer to sb-private vars in sidebar.c
+option breakup depends on lots of notifications
+Where are OPTSIDEBAR* used outside sidebar.c
+	curs_main.c, buffy.c, mh.c
+any use from calling sb_init(), sb_shutdown() from main()?
+	probably not yet
+TEST: deleting/adding entries on/off-screen
+	are our indexes correctly maintained?
+TEST: refresh limit -- changing vars from another mutt
+TEST: (re-)sorting by changing sort criteria from another mutt
+Distinguish between movement and search wrap?
+	movement - next/prev (1 line), page up/down
+	search - find next/prev new
+Readme.sidebar, Changelog.sidebar?
+rename scroll* to page_up/down
+remove "random" sort
+does imap folder add/rm trigger our sb_notify?
+if sort type changes, Hil = Opn
+Config change notifications
+	fn (name, old_val, new_val)
+how would function delegation work?
+	init() -> add_functions (name, callback)
+	the callbacks would need to be able to manipulate mutt objects
+Register functions & callback
+make sure anything we need is exposed
+if we hide our globals, give then all accessor functions get/set_VAR()
+put notes under git
+how do I generate main docs -- insert sidebar section
+init would need to register new sort methods
+fix odd buffy_{mbox,mh}_update function
