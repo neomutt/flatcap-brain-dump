@@ -1,4 +1,4 @@
-diff -urN ~/m/work/rich .
+
 git filter-branch --env-filter 'export GIT_COMMITTER_DATE="2009-05-22 00:00:00"; export GIT_AUTHOR_DATE="2009-05-22 00:00:00"' 6265a77..sidebar/1.5.19-20090522
 
 git log --branches --graph --pretty=tidy distro/debian
@@ -40,3 +40,6 @@ GIT_COMMITTER_DATE="2009-05-22 00:00:00" git filter-branch -f --env-filter '' 62
 interdiff formard.patch /dev/null
 
 rmdir -p refs/remotes/*/*
+
+diff -urN ~/m/work/rich .
+

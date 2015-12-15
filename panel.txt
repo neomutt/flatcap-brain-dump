@@ -129,4 +129,3 @@ Show toggle-key in each window
 	b - sidebar
 	x - sidebar swap sides
 
-
