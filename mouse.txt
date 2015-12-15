@@ -1,0 +1,40 @@
+Mouse
+	BUTTON_PRESSED or BUTTON_CLICKED
+
+	Allow events to be captured by the user
+		<index-click>, <sidebar-double-click>, etc
+	Add "buttons"
+		close button, top right [X]
+
+Sidebar
+	click		select & open
+	scroll up	scroll list up   1 line (no highlight)
+	scroll down	scroll list down 1 line (no highlight)
+	double-click	hide sidebar
+
+Sidebar divider
+	click-drag	move divider
+
+Sidebar scrollbar
+	click		page up/down
+	2-click		move to here
+
+Index
+	click		select & open
+	scroll up	scroll list up   1 line (no highlight)
+	scroll down	scroll list down 1 line (no highlight)
+
+Index divider
+	click-drag	move divider
+
+Pager
+	scroll up	scroll page up   1 line
+	scroll down	scroll page down 1 line
+	double-click	close pager
+
+Help
+	click		show menu
+
+Status bar
+	click		???	
+

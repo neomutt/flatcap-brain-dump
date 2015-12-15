@@ -1,0 +1,129 @@
+Mutt panel manager
+
+start with whole window (80x24)
+Carve off blocks in sequence
+Carve up by rows/cols or %age
+All moves/prints now use opaque handles to the panel
+Moves/prints strictly limited to panel
+functions on panel
+	get_rect
+	clear_to_bol
+	clear_to_eol
+	clear_to_top
+	clear_to_bottom
+	clear_panel
+Panels could wrap/nowrap
+	handle left/right scrolling
+	could be view_panes -- all data passed
+		the panel controls paging
+			too slow?
+	needs to be paged by the panel user
+controls to move between panels
+	invisible cursor -- so left, right returns to where you were, etc
+	mnemonics too?
+	show focus with
+		terminal's cursor?
+		colour?
+
+Example carving set:
+	Block	Size	Name		X	Y	W	H	Notes
+	top	1 line	Menu		0	0	80	1
+	top	1 line	Help		0	1	80	1
+	bottom	1 line	Entry		0	23	80	1
+	bottom	1 line	Status		0	22	80	1
+	left	20 cols	Sidebar		0	2	20	20	on by default
+	right	0 cols	Reply		80	2	0	20	off by default
+	top	10 line	Pager		20	2	60	10	currently on
+	rest	-	Message		20	12	60	20	currently on
+
+Hide pager →
+	signal pager (hidden)
+	signal message (resize, rect)
+
+Hide sidebar →
+	signal sidebar (hidden)
+	signal pager (resize, rect)
+	signal message (resize, rect)
+
+Close message →
+	signal message (hidden)
+	signal pager (resize, rect)
+
+Carve param: can receive focus
+Where does the help page fit in?
+	which panels does it hide?
+
+Panel manager - where does the horizontal divider fit in?
+	status bar between pager and message
+Panels can have vertical and/or horizontal scrollbars
+	1 line/col  ├────▒▒▒▒▒▒────────────┤
+	1 line/col  ├────━━━━━━────────────┤
+	turn sidebar divider into a scrollbar
+	separate colours for line/bar,arrows
+	▲	▲
+	│	│
+	▒	┃
+	│	│
+	▼	▼
+
+focus & panels should determine a key's action
+	current panel gets notification
+	if rejected (or uncaught) try other panels
+	try panels in what order?
+panels keep in internal cursor, so user can write many long (wrapped) lines
+	and not worry.  The panel will display (optional) wrap chars
+	or _not_ wrap, etc.  Eventually the user's write will soft-fail
+	→ write beyond panel's size
+
+Panel manager
+	┌────────────────────────┐    ┌────────────────────────┐ 
+	├──────┬─────────────────┤    ├──────┬─────────────────┤ 
+	│side  │index            │    │side  │help             │ 
+	│      │                 │    │      │                 │ 
+	│      ├─────────────────┤    │      │                 │ 
+	│      │pager            │    │      │                 │ 
+	│      │                 │    │      │                 │ 
+	│      │                 │    │      │                 │ 
+	├──────┴─────────────────┤    ├──────┴─────────────────┤ 
+	└────────────────────────┘    └────────────────────────┘ 
+
+min/max dimensions
+min not achieved ⇒ error
+ask what's available
+max specified ⇒ limit
+max = ∞ ⇒ fill screen
+
+Objects
+		MinWid	MaxWid	MinHt	MaxHt	Visible	Resize	AutoResize
+Helpline	1	∞	1	1	opt	no	-
+Sidebar		1	∞	1	∞	opt	yes	no
+Index		1	∞	1	10	opt	yes	no
+Pager		1	∞	1	∞	opt	yes	yes
+Helppage	1	∞	1	∞	opt	yes	yes
+Status		1	∞	1	1	yes	no	-
+
+Panels
+Top (invis, fill space)
+	Helpline
+	Middle (invis, fill space)
+		Sidebar
+		Right (invis, fill space)
+			Index
+			Pager
+			Help
+	StatusLine
+
+Scan children first looking for expanders?
+	multiple expanders ⇒ log; reduce laters ones to min size, or 1
+	single-run loop backwards
+		too messy, too hard
+	single - first pass, calculate size of fixed elements
+		when on expander, lie about Rect dimensions
+
+error panel -- status line = 1-liner, error panel = detailed help / explanation
+
+carving
+	enum: Top, Bottom, Left, Right, Rest
+	number
+	enum: rows/cols/percentage
+	flags: visible, focus, wrap mode, scrollbars
