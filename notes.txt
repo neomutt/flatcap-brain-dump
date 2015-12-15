@@ -174,8 +174,6 @@ sort init.h, globals.h, etc
 kill one-line if's:
 	if (adsfa) command;
 
-make_sidebar_entry leaks as string is passed to printw
-
 ~50 lines of commented out source
 	/* ... ; */
 
@@ -204,20 +202,13 @@ GENTOO
 should be
     COLS = min (COLS, width);
 
-compile with clang for more warnings
-
 sidebar_width = auto (size to contents)
-
-sidebar highlight doesn't cover lines consistently
-	covers text only in "%B"
-	covers line total in "%B%* "
-	highlights empty indent spaces
 
 fix? whitelist to use +dir notation?
 	relative to $folder
 	what about multiple folders?
 
-sidebar width : fixed string breaks bounds
+test sidebar width if fixed string breaks bounds
 	set sidebar_width=10
 	set sidebar_format="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -252,9 +243,6 @@ New only -- include structure (empty dirs) to keep hierarchy
 	mail (0)
 	  fruit (0)
 	    apple (1)
-
-what causes sidebar to page down after a few entries?
-	someone manipulating TopBuffy
 
 if ((!visible) || (size == 0))
 	make sure no work is done
