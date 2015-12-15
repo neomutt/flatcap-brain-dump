@@ -147,10 +147,6 @@ https://github.com/N8Fear/mutt-kz
 	some initialisations improvements
 	some bug fixes
 
-set patch commit dates to patch-date
-set commit dates to author dates
-toggle-sidebar command
-
 widestring folder names
 	highlight broken (wrong width)
 	are truncated because 3 bytes is only 2 spaces
@@ -184,8 +180,6 @@ make_sidebar_entry leaks as string is passed to printw
 	/* ... ; */
 
 possible to fix sidebar sort order to respect hierarchy/indentation?
-
-for LONG list of mailboxes, need vim-style scroll-offset param to control paging
 
 gentoo sidebar_format
 	set sidebar_format="%B %* %S%?N?(%N)?%?F?[%F]?"
@@ -229,8 +223,6 @@ sidebar width : fixed string breaks bounds
 
 :quit / :q command for vi users
 
-sidebar_width defaults to 0!
-
 cleanup:
 	docs - in code and html
 	comments
@@ -267,11 +259,6 @@ what causes sidebar to page down after a few entries?
 if ((!visible) || (size == 0))
 	make sure no work is done
 
-commands for show/hide sidebar
-	need command to toggle view
-
-group sidebar build stuff in makefiles, etc, cf kzak
-
 trim trailing slash from mailboxes, folder
 	shouldn't be displayed
 
@@ -282,8 +269,6 @@ check all headers #include requisites for compilation
 FOREVER, rather than while(1)
 
 check ALL pointers
-
-sb_set_curbuffy's while loop should look like sb_set_buffystats's
 
 sb_set_curbuffy
 sb_set_buffystats
@@ -309,25 +294,13 @@ missing patches
 	lightweight
 	fmemopen
 
-rename BUFFY->msgcount → BUFFY->msg_count
-
 DBUS plugin -- to do what?
 	notify out
 	take input to do what?
 
-────────────────────────────────────────────────────────────────────────────────
-
-print redraw counter in each window
-
 repaint if:
 	size changes
 	position changes
-
-Box needs old-computed Rect
-if different, notify
-
-Box needs Notify callback
-Flags: changed posn, changed size
 
 Changed posn notification ONLY
 	e.g. sidebar has swapped sides
@@ -338,22 +311,6 @@ Notify (Box*, Rect old, Rect new, flags)
 Flags:
 	too small to render
 	changed visibility
-
-Show toggle-key in each window
-	i - index
-	p - pager
-	h - help line
-	? - help page
-	s - status
-	b - sidebar
-	x - sidebar swap sides
-
-option
-	sidebar-show-page-number
-	sidebar-page-number
-	e.g. Right aligned:
-		Page 3 of 6
-		(3/6)
 
 Changelog, etc for sidebar
 
@@ -374,21 +331,9 @@ Sidebar actions (that might precipitate change):
 	show sidebar
 	open folder
 
-Sidebar distinguish between a FOCUSSED sidebar entry and the OPEN sidebar entry
-	Need a sidebar cursor (e.g. bg = grey)
-	Sidebar selected (open), (e.g. bg = blue, or '*' suffix, or bold)
-	May need HighlightedBuffy variable
-		Paging of sidebar follows this HighlightedBuffy
-
 ────────────────────────────────────────────────────────────────────────────────
 
 Tidying actions
-
-Conditional build
-	Makefile
-	configure.ac
-	OPS.SIDEBAR
-	#ifdef USE_SIDEBAR
 
 Comments on
 	functions
@@ -507,29 +452,13 @@ Patches / Branches / Community
 
 ────────────────────────────────────────────────────────────────────────────────
 
-Pages
-
- I p1           p2            p3            p4
- ┌─────────────┬─────────────┬─────────────┬───────┐
- │abcdefghijklm│nopqrstuvwxyz│ABCDEFGHIJKLM│NOPQRST│
- └─────────────┴─────────────┴─────────────┴───────┘
-               Top    ^      Bot
-                      Cur
-
-────────────────────────────────────────────────────────────────────────────────
-
 History
 	:set sidebar<UP>
 	should match only 'set sidebar.*'
 
-calc_boundaries -> BOOl = repaint?
-option page_scroll_offset ~ 5 lines => page is 2.5 lines shorter at each end
-option scroll, don't page -> keep cursor on screen by adjusting list
-sidebar_scrollbar: never, always, when-needed
-sidebar_scrollbar-style: ascii, gfx (utf8)
+calc_boundaries -> BOOL = repaint?
 tree chars for sidebar hierarchy?
 sidebar: how many colours?
-SidebarLastRefresh shouldn't be in globals.h
 CLEARWIN takes a *y* param, not x, likewise sidebar variant
 
 give credit where it's due -- hg author vs committer?
@@ -544,28 +473,9 @@ can I use realpath(), mutt_expand_path() for anything?
 
 Unmailbox * ⇒  many notifications followed by ONE redraw
 
-If open dir is offscreen and scrollbar is in use, mark the scrollbar
-	◀────▒▒▒▒▒▒─────┼───▶
-	◀────━━━━━━─────┼───▶	is bar visible enough?
-	<----######-----+--->
-+ marks location of open dir
-
-Instead of "page x of y", vim-style Top, %age, Bot
-Use "page-of" line as a sidebar status line "X mbx, Y new, Z flagged" "34M,12N,1F" totals
 can the real status bar display any sidebar fields?
 	why not?
 	how can they be integrated?
-Scrollbar object:
-	enum Vertical/Horizontal (or in rendering function?)
-	int Length -- NO, put this in the rendering function
-	enum ASCII/UTF8
-	int Size
-	int Top
-	int Bottom
-	int Marker (of open page)
-scrollbar_paint (SB*, x, y, length)
-scrollbar_new -- reads config options
-
 ambiguity in struct CONTEXT
 	->changed is a BOOL
 	->deleted is a number
@@ -583,7 +493,6 @@ separate modules -- sidebar, index, pager, help? -- each with
 	notify()
 	close()
 	config()
-need to distinguish between Bottom and Last
 sidebar_wrap=search,motion (separate bools for simplicity?)
 
 sidebar_sort is an enum - on set error, it could show the valid values
@@ -606,10 +515,7 @@ Distinguish between movement and search wrap?
 	movement - next/prev (1 line), page up/down
 	search - find next/prev new
 Readme.sidebar, Changelog.sidebar?
-rename scroll* to page_up/down
-remove "random" sort
 does imap folder add/rm trigger our sb_notify?
-if sort type changes, Hil = Opn
 Config change notifications
 	fn (name, old_val, new_val)
 how would function delegation work?
@@ -618,7 +524,6 @@ how would function delegation work?
 Register functions & callback
 make sure anything we need is exposed
 if we hide our globals, give then all accessor functions get/set_VAR()
-put notes under git
 how do I generate main docs -- insert sidebar section
 init would need to register new sort methods
 fix odd buffy_{mbox,mh}_update function

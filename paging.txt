@@ -1,0 +1,54 @@
+
+If open dir is offscreen and scrollbar is in use, mark the scrollbar
+	◀────▒▒▒▒▒▒─────┼───▶
+	◀────━━━━━━─────┼───▶	is bar visible enough?
+	<----######-----+--->
++ marks location of open dir
+
+Scrollbar object:
+	enum Vertical/Horizontal (or in rendering function?)
+	int Length -- NO, put this in the rendering function
+	enum ASCII/UTF8
+	int Size
+	int Top
+	int Bottom
+	int Marker (of open page)
+scrollbar_paint (SB*, x, y, length)
+scrollbar_new -- reads config options
+
+for LONG list of mailboxes, need vim-style scroll-offset param to control paging
+
+option page_scroll_offset ~ 5 lines => page is 2.5 lines shorter at each end
+option scroll, don't page -> keep cursor on screen by adjusting list
+sidebar_scrollbar: never, always, when-needed
+sidebar_scrollbar-style: ascii, gfx (utf8)
+Instead of "page x of y", vim-style Top, %age, Bot
+Use "page-of" line as a sidebar status line "X mbx, Y new, Z flagged" "34M,12N,1F" totals
+
+option
+	sidebar-show-page-number
+	sidebar-page-number
+	e.g. Right aligned:
+		Page 3 of 6
+		(3/6)
+
+Pages
+
+ I p1           p2            p3            p4
+ ┌─────────────┬─────────────┬─────────────┬───────┐
+ │abcdefghijklm│nopqrstuvwxyz│ABCDEFGHIJKLM│NOPQRST│
+ └─────────────┴─────────────┴─────────────┴───────┘
+               Top    ^      Bot
+                      Cur
+
+Panels can have vertical and/or horizontal scrollbars
+	1 line/col  ├────▒▒▒▒▒▒────────────┤
+	1 line/col  ├────━━━━━━────────────┤
+	turn sidebar divider into a scrollbar
+	separate colours for line/bar,arrows
+	▲	▲
+	│	│
+	▒	┃
+	│	│
+	▼	▼
+

@@ -55,17 +55,6 @@ Where does the help page fit in?
 
 Panel manager - where does the horizontal divider fit in?
 	status bar between pager and message
-Panels can have vertical and/or horizontal scrollbars
-	1 line/col  ├────▒▒▒▒▒▒────────────┤
-	1 line/col  ├────━━━━━━────────────┤
-	turn sidebar divider into a scrollbar
-	separate colours for line/bar,arrows
-	▲	▲
-	│	│
-	▒	┃
-	│	│
-	▼	▼
-
 focus & panels should determine a key's action
 	current panel gets notification
 	if rejected (or uncaught) try other panels
@@ -127,3 +116,17 @@ carving
 	number
 	enum: rows/cols/percentage
 	flags: visible, focus, wrap mode, scrollbars
+
+panel-demo
+	print redraw counter in each window
+
+Show toggle-key in each window
+	i - index
+	p - pager
+	h - help line
+	? - help page
+	s - status
+	b - sidebar
+	x - sidebar swap sides
+
+
