@@ -1,0 +1,21 @@
+CASE    OV OW   NV NW   OUTCOME SV SW   OV OW
+
+No change
+1.1     1  N    1  N    SHOW    -  -    -  -
+1.2     0  N    0  0    HIDE    -  -    -  -
+
+Set Width
+2.1     0  N    0  P    HIDE    -  -    -  P
+2.2     1  N    1  0    HIDE    0  0    0  -
+2.3     1  N    1  P    SHOW    -  P    -  P
+
+Set Visible
+3.1     0  N    1  N    SHOW    1  -    1  -
+3.4     1  N    0  N    HIDE    0  0    0  -
+
+Set Both
+4.1     0  N    1  0    SHOW    1  N    1  -
+4.2     0  N    1  P    SHOW    1  P    1  P
+4.3     1  N    0  0    HIDE    0  0    0  -
+4.4     1  N    0  P    HIDE    0  0    0  P
+
