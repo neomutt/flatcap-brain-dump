@@ -515,3 +515,6 @@ if we hide our globals, give then all accessor functions get/set_VAR()
 how do I generate main docs -- insert sidebar section
 init would need to register new sort methods
 fix odd buffy_{mbox,mh}_update function
+
+get rid of REDRAW_SIDEBAR, or use it effectively
+

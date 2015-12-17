@@ -25,3 +25,10 @@ syn match muttrcFunction	contained "\<sidebar-page-up\>"
 syn match muttrcFunction	contained "\<sidebar-prev-new\>"
 syn match muttrcFunction	contained "\<sidebar-prev\>"
 syn match muttrcFunction	contained "\<sidebar-toggle-visible\>"
+
+syn keyword muttrcColorField	contained sidebar_divider
+syn keyword muttrcColorField	contained sidebar_flagged
+syn keyword muttrcColorField	contained sidebar_highlight
+syn keyword muttrcColorField	contained sidebar_new
+syn keyword muttrcColorField	contained sidebar_scrollbar
+

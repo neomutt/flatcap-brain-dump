@@ -6,18 +6,23 @@
 		      Cur
 
 If open dir is offscreen and scrollbar is in use, mark the scrollbar
-	◀────▒▒▒▒▒▒─────┼───▶
-	◀────━━━━━━─────┼───▶	is bar visible enough?
-	<----######-----+--->
+	◀────▒▒▒▒?▒▒▒▒─────┼───▶
+	◀────━━━━┿━━━━─────┼───▶	is bar visible enough?
+	<----####+####-----+--->
 + marks location of open dir
 
 turn sidebar divider into a scrollbar
 separate colours for line/bar,arrows
-	▲	▲	^
-	│	│	|
-	▒	┃	#
-	│	│	|
-	▼	▼	V
+	▲ ▲ ^
+	│ │ |
+	│ │ |
+	▒ ┃ #
+	? ╂ +
+	▒ ┃ #
+	│ │ |
+	┼ ┼ +
+	│ │ |
+	▼ ▼ V
 
 Scrollbar object:
 	enum Vertical/Horizontal (or in rendering function?)
