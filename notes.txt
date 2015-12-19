@@ -1,68 +1,10 @@
-buffy.c PATH_MAX (4096) vs _POSIX_PATH_MAX (256)
-pager.c status_width = 0; /* comment */
-many // → /* ... */
-compose.c bad maths: (idxmax += 5 + numfiles) in expr!
-init.c strings "yes", "no", "ask-yes", "ask-no" -- define centrally
-
-Whitespace
-	trailing
-	tabs
-		leading
-		embedded
-		comments
-	align = (
-leading
-	8 spaces : ~5000 lines
-	tab : ~15000 lines
-
-Brackets space(space
-Bang space!spaceVAR
-Brace: kernel cuddle?  always around if/else etc
-#if 0 > 16 y.o.
-comments // → /* ... */
-	gentoo
-	fix block comments too
-case brace  {} check scopes
-static functions -- all declared?
-mutt error gnu printf checks (all ...)
-if's bracket anything more complex that ARG or !ARG
-	maths too
-#if vs #ifdef VAR
-TRUE/FALSE? 52 times 1/0
-grammar: its dont cant, spelling
-line lengths
-	14K empty
-	94K <= 80 chars
-	5K > 80 chars
-
-sidebar requirements
-	tidy code
-	conditional compilation
-	robust
-	document
-		functions
-		config
-	minimise changes to original code
-	do I *require* fmemopen?
-		should that be a separate patch?
-
-valgrind
-	memory leaks
-	dodginess
-sprintf checks
-vet check_sec.sh
-XXX: 32
-FIXME: 29
-
-────────────────────────────────────────────────────────────────────────────────
-
 ellipsis
 	mutt_error
 	mutt_message
 	mutt_debug
 
-FMT_LEFT, etc 2007
 #defines → enums?
+
 make AUTHORS -- which repo did this?
 
 Main sidebar repos
@@ -76,26 +18,16 @@ Main sidebar repos
 Ultrix dead '95
 	ask debian devs for list of working arches
 
-draw_sidebar, calcboundaries don't use their args
-BUFFY_SIZE no longer used (9 years)
-#ifdef BUFFY_SIZE → if (option (OPTCHECKMBOXSIZE))
-retval variable
-	rc: 724
-	rv: 132
-strfcpy multiple defs
-	dotlock.c
-	lib.h
-	rfc8222.c
 init all vars
 lots of static fns → _fn_name?
 ^L in source
 Doxygen comments
-TRUE/FALSE → BOOL
-	return [01]; 752 occurrences
+
 Vim-style
 	:set     → show all modified vars
 	:set all → all all vars
 	:unset === set novar
+
 strict compilation flags; c++ compiler?
 unnamed args in function prototypes
 spurious \ line endings (in middle of if!)
@@ -181,26 +113,6 @@ possible to fix sidebar sort order to respect hierarchy/indentation?
 
 gentoo sidebar_format
 	set sidebar_format="%B %* %S%?N?(%N)?%?F?[%F]?"
-
-RICH
-	123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-	inbox                                 0│
-	tree                                  0│
-	    birchbirchbirchbirch       10(7)[1]│
-	    义勇军义勇军义勇军             4(1)│
-
-
-GENTOO
-	123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-	inbox                               0│
-	tree                                0│
-	    birchbirchbirchbirch     10(7)[1]│
-	    义勇军义勇军义勇军                    4(1)
-
-// What about if screen is narrower than SidebarWidth?
-    COLS = width;
-should be
-    COLS = min (COLS, width);
 
 sidebar_width = auto (size to contents)
 
@@ -321,53 +233,6 @@ Sidebar actions (that might precipitate change):
 
 ────────────────────────────────────────────────────────────────────────────────
 
-Tidying actions
-
-Comments on
-	functions
-	block
-	removal of junk comments
-	init.h functions
-
-Indent
-	our source files
-	our functions in mutt source files
-	our code lines in mutt functions
-
-Indent
-	tabs
-	brackets whitespace
-	brackets around complex logic
-	braces, functions, if/while/etc, struct/enum/etc
-	function definitions
-		name parameters
-	align =
-	pointers X *x, !x
-	trailing whitespace
-
-Functions
-	name consistently
-	reorder, static the public
-	name params sensibly
-
-Unused
-	remove structs
-	remove params
-	remove functions
-	#if 0
-	#include
-
-Checks
-	Init vars
-	check pointers/all params
-	retvals BOOL, compare with if (!fn())
-	if ((x = y()) == NULL)
-	logic if (x + y > 6)
-	maths spacing _+_
-	reserved words: new, this, etc
-
-────────────────────────────────────────────────────────────────────────────────
-
 draw sidebar
 	assumes position/size
 	move due to STATUSONTOP, HELP
@@ -386,57 +251,6 @@ for all buffers
 fill remaining lines with blanks
 
 Start; Incoming; Inbox open; current = Incoming; sort → cur is offscreen, boundaries lost
-
-────────────────────────────────────────────────────────────────────────────────
-
-Emails
-
-Tidy
-	clean code
-	18 month dev cycle
-		not even development
-		just a bug fix cycle
-	never a good time
-	very conservative development
-		(quite) understandably
-	object oriented
-	when? 4 releases in 5 years
-
-	1.5.19 7 years ago
-	1.5.20 6 years ago
-	1.5.21 5 years ago
-	1.5.22 2 years, 3 months ago
-	1.5.23 1 year, 8 months ago
-	1.5.24 3 months ago
-
-New dev
-	Imagine...
-
-	New developer comes along
-	Enthusiasm
-	Free time
-	Ideas
-
-Patches / Branches / Community
-
-	2nd class citizens
-	branches against latest release
-	draw in & encourage devs
-
-	sidebar interested
-		maintained for 10 years
-		fix it
-		integrate changes
-	
-	notmuch overlays sidebar
-
-	nntp
-
-	last patch integrated again 1.5.15 (9 years ago)
-
-	downstream patches
-
-	branch against dev if they wish
 
 ────────────────────────────────────────────────────────────────────────────────
 

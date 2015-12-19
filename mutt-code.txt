@@ -1,0 +1,49 @@
+buffy.c PATH_MAX (4096) vs _POSIX_PATH_MAX (256)
+
+pager.c statuswidth = 0; /* comment */
+
+#if 0 > 16 y.o.
+
+FMT_LEFT, etc 2007
+
+retval variable
+	rc: 724
+	rv: 132
+
+strfcpy multiple defs
+	dotlock.c
+	lib.h
+	rfc8222.c
+
+compose.c bad maths: (idxmax += 5 + numfiles) in expr!
+
+init.c strings "yes", "no", "ask-yes", "ask-no" -- define centrally
+
+#if vs #ifdef VAR
+
+TRUE/FALSE → BOOL
+	return [01]; 752 occurrences
+
+line lengths
+	14K empty
+	94K <= 80 chars
+	5K > 80 chars
+
+leading
+	8 spaces : ~5000 lines
+	tab : ~15000 lines
+
+mutt error gnu printf checks (all ...)
+
+valgrind
+	memory leaks
+	dodginess
+
+sprintf checks
+
+vet check_sec.sh
+
+XXX: 32
+
+FIXME: 29
+

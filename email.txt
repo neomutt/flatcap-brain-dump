@@ -1,0 +1,49 @@
+Emails
+
+Tidy
+	clean code
+	18 month dev cycle
+		not even development
+		just a bug fix cycle
+	never a good time
+	very conservative development
+		(quite) understandably
+	object oriented
+	when? 4 releases in 5 years
+
+	1.5.19 7 years ago
+	1.5.20 6 years ago
+	1.5.21 5 years ago
+	1.5.22 2 years, 3 months ago
+	1.5.23 1 year, 8 months ago
+	1.5.24 3 months ago
+
+New dev
+	Imagine...
+
+	New developer comes along
+	Enthusiasm
+	Free time
+	Ideas
+
+Patches / Branches / Community
+
+	2nd class citizens
+	branches against latest release
+	draw in & encourage devs
+
+	sidebar interested
+		maintained for 10 years
+		fix it
+		integrate changes
+	
+	notmuch overlays sidebar
+
+	nntp
+
+	last patch integrated again 1.5.15 (9 years ago)
+
+	downstream patches
+
+	branch against dev if they wish
+

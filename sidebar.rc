@@ -30,7 +30,7 @@ set sidebar_indentstr = "  "
 set sidebar_newmail_only = no
 
 # Any mailboxes that are whitelisted will always be visible, even if the
-# sidebar_whitelist option is enabled.
+# sidebar_newmail_only option is enabled.
 sidebar_whitelist "/home/user/mailbox1"
 sidebar_whitelist "/home/user/mailbox2"
 
@@ -48,7 +48,7 @@ set sidebar_scrollbar = no
 set sidebar_delim = "|"
 
 # Display the Sidebar mailboxes using this format string.
-set sidebar_format = "%b%?f? [%f]?%* %?n?%n/?%4s"
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%4S"
 
 # Sidebar will not refresh its list of mailboxes any more frequently than
 # this number of seconds.  This will help reduce disk/network traffic.
@@ -97,7 +97,7 @@ bind index,pager B sidebar-toggle-visible
 # COLORS - some unpleasant examples are given
 # --------------------------------------------------------------------------
 # Note: All color operations are of the form:
-#	color ITEM_NAME FOREGROUND BACKGROUND
+#	color OBJECT FOREGROUND BACKGROUND
 
 # Color of the current, open, mailbox
 # Note: This is a general Mutt option which colors all selected items.
@@ -116,7 +116,8 @@ color sidebar_flagged red black
 color sidebar_new green black
 
 # Color of the scrollbar's arrows and indicator bar.
-color sidebar_scrollbar 
+color sidebar_scrollbar cyan black
 
 # --------------------------------------------------------------------------
 
+# vim: syntax=muttrc

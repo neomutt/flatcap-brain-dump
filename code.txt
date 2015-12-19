@@ -1,0 +1,81 @@
+Comments
+	// → /* ... */
+	fix block comments too
+
+Whitespace
+	trailing
+	tabs
+		leading
+		embedded
+		comments
+	align = (
+
+Brackets space(space
+Bang space!spaceVAR
+Brace: kernel cuddle?  always around if/else etc
+
+case brace {} check scopes
+
+static functions -- all declared?
+
+if's bracket anything more complex that ARG or !ARG
+	maths too
+
+grammar: its dont cant, spelling
+
+sidebar requirements
+	tidy code
+	conditional compilation
+	robust
+	document
+		functions
+		config
+	minimise changes to original code
+	do I *require* fmemopen?
+		should that be a separate patch?
+
+Tidying actions
+
+Comments on
+	functions
+	block
+	removal of junk comments
+	init.h functions
+
+Indent
+	our source files
+	our functions in mutt source files
+	our code lines in mutt functions
+
+Indent
+	tabs
+	brackets whitespace
+	brackets around complex logic
+	braces, functions, if/while/etc, struct/enum/etc
+	function definitions
+		name parameters
+	align =
+	pointers X *x, !x
+	trailing whitespace
+
+Functions
+	name consistently
+	reorder, static the public
+	name params sensibly
+
+Unused
+	remove structs
+	remove params
+	remove functions
+	#if 0
+	#include
+
+Checks
+	Init vars
+	check pointers/all params
+	retvals BOOL, compare with if (!fn())
+	if ((x = y()) == NULL)
+	logic if (x + y > 6)
+	maths spacing _+_
+	reserved words: new, this, etc
+
