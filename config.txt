@@ -1,26 +1,36 @@
+functions:
+	sidebar-next
+	sidebar-next-new
+	sidebar-open
+	sidebar-page-down
+	sidebar-page-up
+	sidebar-prev
+	sidebar-prev-new
+	sidebar-toggle-visible
 
-  { "sidebar_delim",        DT_STR,     R_BOTH, UL &SidebarDelim,       UL "|"                          },
-  { "sidebar_indentstr",    DT_STR,     R_BOTH, UL &SidebarIndentStr,   UL " "                          },
-  { "sidebar_newmail_only", DT_BOOL,    R_BOTH, OPTSIDEBARNEWMAILONLY,  0                               },
-  { "sidebar_visible",      DT_BOOL,    R_BOTH, OPTSIDEBAR,             0                               },
-  { "sidebar_sort",         DT_BOOL,    R_BOTH, OPTSIDEBARSORT,         0                               },
-  { "sidebar_width",        DT_NUM,     R_BOTH, UL &SidebarWidth,       0                               },
-  { "sidebar_shortpath",    DT_BOOL,    R_BOTH, OPTSIDEBARSHORTPATH,    0                               },
-  { "sidebar_format",       DT_STR,     R_NONE, UL &SidebarFormat,      UL "%B%?F? [%F]?%* %?N?%N/?%4S" },
-  { "sidebar_folderindent", DT_BOOL,    R_BOTH, OPTSIDEBARFOLDERINDENT, 0                               },
+config:
+	boolean sidebar_folderindent  OPTSIDEBARFOLDERINDENT FALSE
+	boolean sidebar_newmail_only  OPTSIDEBARNEWMAILONLY  FALSE
+	boolean sidebar_next_new_wrap OPTSIDEBARNEXTNEWWRAP  FALSE
+	boolean sidebar_scrollbar     OPTSIDEBARSCROLLBAR    FALSE
+	boolean sidebar_shortpath     OPTSIDEBARSHORTPATH    FALSE
+	boolean sidebar_visible       OPTSIDEBAR             FALSE
 
-  { "sidebar_whitelist",    parse_list, UL &SidebarWhitelist },
+	string  sidebar_delim         SidebarDelim           "|"
+	string  sidebar_delim_chars   SidebarDelimChars      "/."
+	string  sidebar_format        SidebarFormat          "%B%?F? [%F]?%* %?N?%N/?%4S"
+	string  sidebar_indentstr     SidebarIndentStr       "  "
+	number  sidebar_refresh       SidebarRefresh         60
+	enum    sidebar_sort          SidebarSort            SORT_ORDER
+	list    sidebar_whitelist     SidebarWhitelist       <empty>
+	number  sidebar_width         SidebarWidth           20
 
-sidebar_delim
-sidebar_delim_chars
-sidebar_folderindent
-sidebar_format
-sidebar_indentstr
-sidebar_newmail_only
-sidebar_next_new_wrap
-sidebar_refresh
-sidebar_shortpath
-sidebar_sort
-sidebar_visible
-sidebar_width
-sidebar_whitelist
+sort:
+	alpha    SORT_PATH
+	count    SORT_COUNT
+	flagged  SORT_FLAGGED
+	name     SORT_PATH
+	new      SORT_COUNT_NEW
+	path     SORT_PATH
+	unsorted SORT_ORDER
+
