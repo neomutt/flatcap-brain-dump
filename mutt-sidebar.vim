@@ -2,6 +2,7 @@
 syn keyword muttrcVarBool	skipwhite contained sidebar_folderindent  nextgroup=muttrcSetBoolAssignment,muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarStr
 syn keyword muttrcVarBool	skipwhite contained sidebar_newmail_only  nextgroup=muttrcSetBoolAssignment,muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarStr
 syn keyword muttrcVarBool	skipwhite contained sidebar_next_new_wrap nextgroup=muttrcSetBoolAssignment,muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarStr
+syn keyword muttrcVarBool	skipwhite contained sidebar_scrollbar     nextgroup=muttrcSetBoolAssignment,muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarStr
 syn keyword muttrcVarBool	skipwhite contained sidebar_shortpath     nextgroup=muttrcSetBoolAssignment,muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarStr
 syn keyword muttrcVarBool	skipwhite contained sidebar_visible       nextgroup=muttrcSetBoolAssignment,muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarStr
 
@@ -13,7 +14,6 @@ syn keyword muttrcVarStr	contained skipwhite sidebar_delim_chars nextgroup=muttr
 syn keyword muttrcVarStr	contained skipwhite sidebar_format      nextgroup=muttrcVarEqualsIdxFmt
 syn keyword muttrcVarStr	contained skipwhite sidebar_indentstr   nextgroup=muttrcVarEqualsIdxFmt
 syn keyword muttrcVarStr	contained skipwhite sidebar_sort        nextgroup=muttrcVarEqualsIdxFmt
-syn keyword muttrcVarStr	contained skipwhite sidebar_whitelist   nextgroup=muttrcVarEqualsIdxFmt
 
 syn keyword muttrcCommand	sidebar_whitelist
 
