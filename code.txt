@@ -21,7 +21,7 @@ static functions -- all declared?
 if's bracket anything more complex that ARG or !ARG
 	maths too
 
-grammar: its dont cant, spelling
+grammar: its dont cant, spelling 's
 
 sidebar requirements
 	tidy code

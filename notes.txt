@@ -332,3 +332,30 @@ fix odd buffy_{mbox,mh}_update function
 
 get rid of REDRAW_SIDEBAR, or use it effectively
 
+test conditional compilation
+	pop imap sidebar slang gpgme debug
+	smime pgp nls iconv hcache smtp
+	ssl gss idn
+without
+	gdbm qdbm tokyocabinet wc-funcs
+
+can I internalise sb_should_refresh()
+often call:
+	buffy_mbox_update
+	buffy_maildir_update
+	mh_buffy_update
+what if there are multiple top-levels?
+should the LastRefresh var be on the top-level?
+
+demo setup - lots of files in:
+	local mbox
+	local mh dirs
+	IMAP mbox
+	IMAP mh dirs
+	POP mbox
+	POP mh dirs
+
+possible to eliminate sb_get_highlight?
+	only called on OP_SIDEBAR_OPEN
+	in curs_main.c
+
