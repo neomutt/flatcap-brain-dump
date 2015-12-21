@@ -1,5 +1,5 @@
 hg branch
-hg branch -a
+hg branches
 hg checkout mutt-1-5-23-rel
 hg checkout mutt-1-5-24-rel
 hg checkout tip
