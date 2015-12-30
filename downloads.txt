@@ -25,5 +25,6 @@ http://lunar-linux.org/~tchan/mutt/patch-1.5.19.sidebar.20090618.txt
 http://lunar-linux.org/~tchan/mutt/patch-1.5.20.sidebar.20090619.txt
 http://lunar-linux.org/~tchan/mutt/patch-1.5.21.sidebar.20120829.txt
 http://lunar-linux.org/~tchan/mutt/patch-1.5.21.sidebar.20130219.txt
+http://lunar-linux.org/~tchan/mutt/patch-1.5.23.sidebar.20140412.txt
 http://lunar-linux.org/~tchan/mutt/patch-1.5.24.sidebar.20150917.txt
 http://lunar-linux.org/~tchan/mutt/patch-1.5.24.sidebar.20151111.txt

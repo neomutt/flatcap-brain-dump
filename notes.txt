@@ -365,3 +365,7 @@ sidebar_xy -> sidebar_x_y
 move mappings from index/pager -> generic
 	in functions.h
 
+tests:
+	set all config options to: valid, invalid, empty
+	both in muttrc and within mutt
+
