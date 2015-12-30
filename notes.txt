@@ -362,3 +362,6 @@ possible to eliminate sb_get_highlight?
 sidebar_delim -> sidebar_divider_char
 sidebar_xy -> sidebar_x_y
 
+move mappings from index/pager -> generic
+	in functions.h
+
