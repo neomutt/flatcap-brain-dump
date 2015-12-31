@@ -390,3 +390,10 @@ and work from that.  That way SORT_ORDER => unsorted => mailboxes
 in their original config order.
 Implies we need our own Incoming pointer? or just array[0]?
 
+alternative to lightweight patch
+	don't update info ∀ BUFFYs
+	just update the current page
+	only update lists when the user OPENs a folder
+	not when they move the highlight
+	could pre-emptively populate the previous/next pages
+
