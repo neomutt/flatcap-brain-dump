@@ -376,3 +376,6 @@ only draw divider if
 	etc
 	NO too many variables
 
+any use for ACS_VLINE from curses?
+	when do I know it's safe to use?
+
