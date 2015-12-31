@@ -369,3 +369,10 @@ tests:
 	set all config options to: valid, invalid, empty
 	both in muttrc and within mutt
 
+only draw divider if
+	visibility changes
+	width changes
+	char changes
+	etc
+	NO too many variables
+
