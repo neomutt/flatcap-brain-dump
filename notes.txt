@@ -385,3 +385,8 @@ sidebar expandos
 
 add copyright where I've written code
 
+Don't need to actually SORT the BUFFYs, just sort our array
+and work from that.  That way SORT_ORDER => unsorted => mailboxes
+in their original config order.
+Implies we need our own Incoming pointer? or just array[0]?
+
