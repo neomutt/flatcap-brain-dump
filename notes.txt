@@ -379,3 +379,9 @@ only draw divider if
 any use for ACS_VLINE from curses?
 	when do I know it's safe to use?
 
+sidebar expandos
+	%c number of non-deleted emails (total - deleted)
+	%s = %c? (lower case version of %S?)
+
+add copyright where I've written code
+
