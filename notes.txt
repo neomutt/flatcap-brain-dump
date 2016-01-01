@@ -397,3 +397,6 @@ alternative to lightweight patch
 	not when they move the highlight
 	could pre-emptively populate the previous/next pages
 
+simpler way to generate graphs?
+git log --format="h_%h h_%p %D" --branches --simplify-by-decoration
+
