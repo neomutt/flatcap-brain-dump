@@ -400,3 +400,9 @@ alternative to lightweight patch
 simpler way to generate graphs?
 git log --format="h_%h h_%p %D" --branches --simplify-by-decoration
 
+postpone patch doesn't quite work
+	1) The PostContext and menu are private, so sidebar can't tell that
+	   we're looking at the postponed list after navigation.
+	2) After navigating to another folder, you still have to "quit" to
+	   get the display to refresh.
+
