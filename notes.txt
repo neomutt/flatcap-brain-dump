@@ -406,3 +406,16 @@ postpone patch doesn't quite work
 	2) After navigating to another folder, you still have to "quit" to
 	   get the display to refresh.
 
+sb colouring order
+	indicator
+	highlight
+	new
+	flagged
+	other?
+
+sb expandos
+	compare letters to status_format letters
+	deleted?
+	number after limiting
+	unread?
+
