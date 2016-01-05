@@ -422,3 +422,13 @@ sb expandos
 pager.c OP_SIDEBAR_TOGGLE_VISIBLE doesn't toggle anything
 curs_main.c OP_SIDEBAR_TOGGLE_VISIBLE does
 
+notmuch
+	add new virtual folders to sidebar
+		automatically?
+	what name should it be given?
+		automatic?
+			allow user rename?
+		ask user?
+	how can we make them persistant?
+
+
