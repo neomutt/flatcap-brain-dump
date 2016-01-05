@@ -23,3 +23,19 @@ Use 2nd divider character for horizontal separator
 	sb_addressbook_format
 	sb_rss_format
 
+Full office suite -- manage anything texty
+
+SRC: Address book
+	backend: files, db, ldap, google
+	integrated with email: "add to address book", "complete from address book"
+
+SRC: Calendar
+	backend? files, db, ldap, google
+	brief calendar in sidebar
+	expanded work area in main panel
+	integrated with email: e.g. "create event from email (scan for dates)"
+
+SRC: tasks
+	backend: files, db, ldap, google
+	integrated with email: e.g. "turn email into task"
+
