@@ -1,0 +1,25 @@
+Sidebar 2
+
+Need top-level SOURCEs: Mail, Notmuch, NNTP, Address book, RSS?
+
+Either separate modes: one or other SRC
+One open, others listed at bottom (folded)
+Full folder metaphor: user controls what's visible
+	=> could need ability to "limit" folders/entries to manage size
+
+Mail SRC represents each mail source: Local, POP3, IMAP, etc
+	user can have multiple of any SRC
+	inc. multitple email accounts
+	     multitple address books, etc
+
+Use 2nd divider character for horizontal separator
+	or drop completely and use a bool: ASCII vs Unicode
+	and draw the lines properly
+
+=> No more sidebar_format... need:
+	sb_mail_format
+	sb_notmuch_format
+	sb_nntp_format
+	sb_addressbook_format
+	sb_rss_format
+

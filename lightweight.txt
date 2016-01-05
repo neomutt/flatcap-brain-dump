@@ -1,0 +1,19 @@
+Lightweight 2
+
+On page down set BUFFY's last refresh to:
+	(now() - RefreshInterval + 1)
+=> will refresh in 1 second's time (if still visible)
+
+only refresh the folders on the current page
+if you page down repeatedly, and quickly, nothing will get refreshed
+until 1s after you stop moving.
+
+Action open_folder => refresh NOW
+Action !open_folder (e.g. moves within page) => conditional refresh
+
+all without the need for timers!
+
+test with:
+	10^3 folders containing 10^6 messages
+	10^6 folders containing 10^9 messages
+
