@@ -1,0 +1,20 @@
+Random emails
+
+Filename:
+	date: -1 year to present
+	dot
+	random string
+	dot
+	hostname
+	:2,
+
+Header:
+	From: DOUBLE_RANDOM_NAME <DOUBLE_RANDOM_NAME@HOST>
+	To: RANDOM_NAME@HOST
+	Subject: 1-5 RANDOM WORDS
+	Date: matches filename
+
+Contents:
+	Lorem ipsum: 1-100 paragraphs
+	Folded to 76 chars
+
