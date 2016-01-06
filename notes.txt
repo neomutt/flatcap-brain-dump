@@ -431,4 +431,8 @@ notmuch
 		ask user?
 	how can we make them persistant?
 
-
+Where does getchar() get called?  can I centralise them?
+Does getchar() wait or poll?  Need it to poll
+Polling -> Idle -> Event callback that I can use to populate BUFFYs
+sidebar needs NO-selection possibility for toggle-virtual
+need to clear index on Toggle-Virtual
