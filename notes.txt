@@ -436,3 +436,12 @@ Does getchar() wait or poll?  Need it to poll
 Polling -> Idle -> Event callback that I can use to populate BUFFYs
 sidebar needs NO-selection possibility for toggle-virtual
 need to clear index on Toggle-Virtual
+
+sb extra colours for:
+	readonly mailboxes
+	bad (non-existent) mailboxes
+	virtual mailboxes
+	what other attrs?
+	colour by SRC
+	separate colour schemes by SRC?
+
