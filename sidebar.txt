@@ -39,3 +39,43 @@ SRC: tasks
 	backend: files, db, ldap, google
 	integrated with email: e.g. "turn email into task"
 
+fewer sidebar_ variables
+	width
+	divider_chars
+rest are SRC-dependent
+
+∀ SRCn::init() call sb_register_source (name, callbacks)
+sidebar function sb_select_source(name)
+
+SRC provides sb with list of BUFFYs
+	who provides the sorting?
+	different SRCs will have different requirements
+sb displays, paginates, delegates open to SRC
+
+src_mailboxes
+src_addresses
+src_notmuch	or src_searching
+src_calendar
+src_rss
+
+functions: curs_main -> sb -> SRCx, SRCy, SRCz
+
+SRC: Calendar
+	sb displays: day, week, n-week, month, n-month, year
+	functions: page up/down dependent on view
+		next/prev - day, week, etc
+		goto date
+		search event
+	mail panel - grid view, agenda view => panel manager (cal_panel)
+	tie in calendar to addressbook: birthdays, anniversaries, etc
+
+SRC: Addresses
+	sb displays - categories/tags, search results, etc
+	main panel displays full records, or contents of selected category
+	categories/tags can be expanded in sb
+	people can be in multiple/zero categories/tags -- need top-level for unclassified people
+	src_add could need extra panel
+		sb1: tags
+		sb2: list of tagged people
+		sb3: selected person
+
