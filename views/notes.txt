@@ -1,0 +1,51 @@
+Views
+	mail
+	search (notmuch)
+	news (nntp)
+	address
+	calendar
+	tasks
+	rss
+
+objects
+	mutt
+	views
+	src (list)
+	folder (list/tree)
+	items (list)
+		view-dependent
+
+panels
+	sidebar
+	sub-sidebar
+	main
+	help
+	status
+
+
+lists - what does toggle view do?
+who handles sorting?
+where does the context-sensitive help come from?
+function: select-view-X
+search is limited to ONE SRC
+	SRC-search has pointer to mail search
+Addresses, Tasks -- multiple tags on items => nesting doesn't make sense
+	Both could have dynamic folders like notmuch
+	Dynamic grouping / ephemeral new groups
+rss - 1 SRC per feed, 1 folder per SRC
+Some view with multiple SRCs may want a horizontal divider
+	others (e.g. RSS) won't
+Is help-page a top-level VIEW?
+What does each View, SRC, Folder, Item represent for each view type?
+What functions need to be delegated?
+What config needs to be inherited/delegated?
+What does the alternate view show?
+
+Views give me a clear owner
+	=> mouse location obvious
+	=> key handling easier
+
+Change address(es|book) to contact(s)?
+
+Need to rethink rss
+	groups/tags need to be above the feeds (in obj hierarchy)

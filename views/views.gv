@@ -1,0 +1,58 @@
+digraph views
+{
+	graph [
+		rankdir="TB"
+		bgcolor="black"
+		color="white"
+		nodesep="0.5"
+		ranksep="0.3"
+	];
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		style="filled"
+		height="0.2"
+		penwidth="0.0"
+	];
+
+	edge [
+		penwidth="1.0"
+		color="#A0A0A0"
+		arrowsize="0.5"
+	];
+
+
+	m1 [ label=<Mutt>   fillcolor="#ffffff" ];
+
+	v1 [ label=<View>   fillcolor="#ff8080" ];
+	v2 [ label=<View>   fillcolor="#ff8080" ];
+
+	s1 [ label=<Source> fillcolor="#ffff80" ];
+	s2 [ label=<Source> fillcolor="#ffff80" ];
+	s3 [ label=<Source> fillcolor="#ffff80" ];
+	s4 [ label=<Source> fillcolor="#ffff80" ];
+
+	f1 [ label=<Folder> fillcolor="#80ff80" ];
+	f2 [ label=<Folder> fillcolor="#80ff80" ];
+	f3 [ label=<Folder> fillcolor="#80ff80" ];
+	f4 [ label=<Folder> fillcolor="#80ff80" ];
+	f5 [ label=<Folder> fillcolor="#80ff80" ];
+	f6 [ label=<Folder> fillcolor="#80ff80" ];
+	f7 [ label=<Folder> fillcolor="#80ff80" ];
+
+	m1 -> v1 -> v2;
+
+	v1 -> s1 -> s2 -> s3;
+	s1 -> f1 -> f2 -> f3;
+
+	v2 -> s4 -> f4;
+	f4 -> f5;
+	f4 -> f6;
+	f4 -> f7;
+
+	{ rank=same v1 v2 };
+	{ rank=same s1 s2 s3 };
+	{ rank=same f1 f2 f3 };
+}
+

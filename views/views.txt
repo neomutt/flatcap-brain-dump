@@ -1,0 +1,37 @@
+View	Object	Description
+
+mail
+	src	mail server, local directory, local file
+	folder	folder, directory
+	item	an email
+
+search
+	src	notmuch search database
+	folder	search parameters
+	item	an email
+
+address
+	src	address book
+	folder	group, tag
+	item	an address
+
+news (nntp)
+	src	news server
+	folder	newsgroup
+	item	an email
+
+tasks
+	src	todo list
+	folder	group, tag
+	item	a task
+
+news (rss)
+	src	news feed
+	folder	[empty]
+	item	a news item
+
+calendar
+	src	calendar
+	folder	day, week, month, year
+	item	an event
+
