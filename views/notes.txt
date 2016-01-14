@@ -22,7 +22,6 @@ panels
 	help
 	status
 
-
 lists - what does toggle view do?
 who handles sorting?
 where does the context-sensitive help come from?
@@ -56,4 +55,7 @@ config manager
 	stores all values
 	uses CRC on config names for easy comparison
 	config reader delegates to each plugin
+
+need to be able to move items (of the same type) between different sources
+	e.g. between different mail servers
 

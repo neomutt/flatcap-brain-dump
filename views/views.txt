@@ -24,9 +24,9 @@ News        NNTP            Remote server       Newsgroup           An email
 
 News        RSS             Remote server       [nothing]           A news item
 
-Calendar    API (Google)    Remote server       Group, Tag          A event
-            SQL             Local/Remote DB     Group, Tag          A event
-            Sqlite          Local file          Group, Tag          A event
-            JSON/XML        Local file          Group, Tag          A event
-            Flat file       Local file          Group, Tag          A event
+Calendar    API (Google)    Remote server       Group, Tag          An event
+            SQL             Local/Remote DB     Group, Tag          An event
+            Sqlite          Local file          Group, Tag          An event
+            JSON/XML        Local file          Group, Tag          An event
+            Flat file       Local file          Group, Tag          An event
 
