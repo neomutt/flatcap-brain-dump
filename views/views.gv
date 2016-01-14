@@ -23,7 +23,13 @@ digraph views
 	];
 
 
-	m1 [ label=<Mutt>   fillcolor="#ffffff" ];
+	m1 [ label=<Mutt>     fillcolor="#ffffff" ];
+	c1 [ label=<Config>   fillcolor="#ffffff" ];
+	d1 [ label=<Database> fillcolor="#ffffff" ];
+
+	i1 [ label=<Curses>  fillcolor="#ffffff" ];
+	i2 [ label=<Panels>  fillcolor="#ffffff" ];
+	i3 [ label=<Signals> fillcolor="#ffffff" ];
 
 	v1 [ label=<View>   fillcolor="#ff8080" ];
 	v2 [ label=<View>   fillcolor="#ff8080" ];

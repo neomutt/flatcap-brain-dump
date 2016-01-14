@@ -49,3 +49,11 @@ Change address(es|book) to contact(s)?
 
 Need to rethink rss
 	groups/tags need to be above the feeds (in obj hierarchy)
+
+unique ids ∀ objects
+
+config manager
+	stores all values
+	uses CRC on config names for easy comparison
+	config reader delegates to each plugin
+

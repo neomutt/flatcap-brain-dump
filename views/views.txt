@@ -1,37 +1,33 @@
-View	Object	Description
 
-mail
-	src	mail server, local directory, local file
-	folder	folder, directory
-	item	an email
+View        Type            Source              Folder              Item
+--------------------------------------------------------------------------------
 
-search
-	src	notmuch search database
-	folder	search parameters
-	item	an email
+Mail        IMAP            Remote server       Remote folder       An email
+            POP             Remote server       Remote folder       An email
+            Maildir         Local directory     Local directory     An email
+            Mbox            Local file          [nothing]           An email
 
-address
-	src	address book
-	folder	group, tag
-	item	an address
+Search      Notmuch         Local files         Search parameters   An email
 
-news (nntp)
-	src	news server
-	folder	newsgroup
-	item	an email
+Contacts    API (Google)    Remote server       Group, Tag          A contact
+            SQL             Local/Remote DB     Group, Tag          A contact
+            Sqlite          Local file          Group, Tag          A contact
+            JSON/XML        Local file          Group, Tag          A contact
+            Flat file       Local file          Group, Tag          A contact
 
-tasks
-	src	todo list
-	folder	group, tag
-	item	a task
+Tasks       API (Google)    Remote server       Group, Tag          A task
+            SQL             Local/Remote DB     Group, Tag          A task
+            Sqlite          Local file          Group, Tag          A task
+            JSON/XML        Local file          Group, Tag          A task
+            Flat file       Local file          Group, Tag          A task
 
-news (rss)
-	src	news feed
-	folder	[empty]
-	item	a news item
+News        NNTP            Remote server       Newsgroup           An email
 
-calendar
-	src	calendar
-	folder	day, week, month, year
-	item	an event
+News        RSS             Remote server       [nothing]           A news item
+
+Calendar    API (Google)    Remote server       Group, Tag          A event
+            SQL             Local/Remote DB     Group, Tag          A event
+            Sqlite          Local file          Group, Tag          A event
+            JSON/XML        Local file          Group, Tag          A event
+            Flat file       Local file          Group, Tag          A event
 
