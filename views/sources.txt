@@ -1,0 +1,44 @@
+Sources
+
+Remote API      IMAP, POP, SQL, NNTP, RSS, Google
+Local API       Sqlite, JSON, XML    
+Local file      Mbox, flat file
+
+mail/
+    imap
+    pop
+    maildir
+    mh
+    mbox
+
+search/
+    notmuch
+
+contacts/
+    google
+    sql
+    sqlite
+    json
+    xml
+    file
+
+tasks/
+    google
+    sql
+    sqlite
+    json
+    xml
+    file
+
+news/
+    nntp
+    rss
+
+calendar/
+    google
+    sql
+    sqlite
+    json
+    xml
+    file
+

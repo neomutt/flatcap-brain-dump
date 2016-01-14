@@ -2,8 +2,7 @@
 View        Type            Source              Folder              Item
 --------------------------------------------------------------------------------
 
-Mail        IMAP            Remote server       Remote folder       An email
-            POP             Remote server       Remote folder       An email
+Mail        IMAP/POP        Remote server       Remote folder       An email
             Maildir         Local directory     Local directory     An email
             Mbox            Local file          [nothing]           An email
 
