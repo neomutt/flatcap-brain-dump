@@ -59,3 +59,14 @@ config manager
 need to be able to move items (of the same type) between different sources
 	e.g. between different mail servers
 
+Contacts/Tasks/Calendars - Display:
+	tags - each item has zero/one/mulitple tags
+	simulate hierarchy?
+		tag=FRUIT
+			tag=(FRUIT&CAR)
+			tag=(FRUIT&ANIMAL)
+		tag=COUNTRY
+	Contacts/Tasks/Calendars config
+	contacts_tags -- like mailboxes command
+	contacts_hierarchy -- group tags like nested folders
+
