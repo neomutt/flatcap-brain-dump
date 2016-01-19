@@ -28,6 +28,7 @@ where does the context-sensitive help come from?
 function: select-view-X
 search is limited to ONE SRC
 	SRC-search has pointer to mail search
+	how do I link the search results to the existing email objects?
 Addresses, Tasks -- multiple tags on items => nesting doesn't make sense
 	Both could have dynamic folders like notmuch
 	Dynamic grouping / ephemeral new groups
