@@ -68,5 +68,15 @@ Contacts/Tasks/Calendars - Display:
 		tag=COUNTRY
 	Contacts/Tasks/Calendars config
 	contacts_tags -- like mailboxes command
-	contacts_hierarchy -- group tags like nested folders
+	contacts_hierarchy -- group tags like folders
+
+rss
+	metafolders
+		starred/flagged
+		archived
+		recently read
+		all articles
+		fresh articles (<24h)
+	requires backend cache of articles
+	labels/colours
 
