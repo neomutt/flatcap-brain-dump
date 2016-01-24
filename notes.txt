@@ -445,3 +445,14 @@ sb extra colours for:
 	colour by SRC
 	separate colour schemes by SRC?
 
+todo
+	merge kz and new sidebar
+	integrate nntp into sidebar
+	get refresh working
+	find & merge trash-dir patches
+	what does notmuch return?
+		how do i link it to existing objects?
+	kz unmailbox bugfix: needed?
+		mutt_buffy_check(0) at end of parse_virtual_mailboxes
+	gpl, copyright on demos
+
