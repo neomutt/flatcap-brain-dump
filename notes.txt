@@ -456,3 +456,5 @@ todo
 		mutt_buffy_check(0) at end of parse_virtual_mailboxes
 	gpl, copyright on demos
 
+github + travis CI + coverity
+
