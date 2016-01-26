@@ -458,3 +458,34 @@ todo
 
 github + travis CI + coverity
 
+add kz's version suffix to add "-neo"
+floating patches/branches
+	history -> HEAD
+		      \-> neo branch
+		      		\-> min build branch
+neo branch contains
+	version fix
+
+Cedric, VVV, DGC -- check for any utils patches use
+	ifdef, nested if, xlabel_ext, purge
+
+Undo, what's possible?
+	Last action?
+	Many actions?
+persistant undo on email editing?
+undelete?
+unsend?
+tagging?
+
+look through gmail labs, etc, firefox addons for eamil plugin ideas
+
+signature manager
+disposable email address plugin?
+	need external API to send/receive
+
+all patches --
+	PATCHES
+	configure
+	USE_X
+	default configured off
+
