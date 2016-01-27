@@ -489,3 +489,13 @@ all patches --
 	USE_X
 	default configured off
 
+Alternate views in the sidebar
+	need toggle function
+	imap: folders  <--> dir tree
+	local: folders <--> dir browser
+
+	address book? -- different grouping/hierarchy?
+	calendar? -- different timescales?
+	news?  subscribed   <--> all groups
+	rss?   unread feeds <--> all feeds
+
