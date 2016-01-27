@@ -1,0 +1,28 @@
+Neomutt patchsets against
+	1.5.24
+	default
+
+numbered, ordered, series
+
+change mutt: readme, changelog, version number
+	floating branch
+	internal name to neomutt?
+
+All patches:
+	compress, ifdef, indexcolor, keywords, nntp, notmuch, sidebar, trash
+
+mutt
+VERSION = 1.5.24/default
+
+mutt-VERSION-neo-YYYYMMDD.zip
+
+mutt-VERSION-neo-YYYYMMDD/
+	01-ifdef.patch
+	02-sidebar.patch
+	03-notmuch.patch
+
+PATCHES:
+	ifdef-neo-YYYYMMDD
+	sidebar-neo-YYYYMMDD
+	notmuch-neo-YYYYMMDD
+
