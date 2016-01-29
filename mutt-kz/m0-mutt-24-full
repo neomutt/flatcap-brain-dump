@@ -1,0 +1,281 @@
+0001 7d3f51d Updated Japanese translation
+0002 a294341 give user time to read SASL init error message
+0003 a2d1ec6 gnutls: catch gnutls_init failures
+0004 c5f3341 Support passwords of up to 127 characters.
+0005 9c51b19 Remove AM_C_PROTOTYPES from configure.ac (closes #3579)
+0006 4cc4958 Update Italian translation
+0007 3bd1141 Do not use SASL for login unless AUTH=LOGIN is advertised (closes #3556)
+0008 15efae4 check_charset: check for NULL before calling strtok_r (closes #3326)
+0009 02ef88f gnutls:tls_compare_certificates: check strstr for failure (closes #3547)
+0010 1c9bc16 Fix some spelling errors (closes #3493)
+0011 4f20df2 silence some style warnings
+0012 2759076 Set text_flowed after send-hook has been applied (closes #3550)
+0013 216466b Do not use stack-allocated space for BUFFERs
+0014 b5ddec8 Split mutt_buffer_new out of mutt_buffer_init.
+0015 884856a mutt_buffer_init: just memset the buffer (closes #3588)
+0016 f7f687d Add compiler and configure info to mutt -v output (closes #3537)
+0017 df1b241 make ascii_strcasecmp properly handle unequal length strings with the same prefix
+0018 19b6f1b don't perform rfc3676 space stuffing when recalling a postponed message where it has already been done.
+0019 d5ff55f list-reply documentation should mention its behavior wrt the List-Post header field.
+0020 c5cae10 additional documentation for $editor. closes #3602
+0021 6d02645 invoke gpgme_check_version() as required to initialize the library.
+0022 008fc6b Fix VPATH build by running txt2c.sh from ${srcdir} rather than ".".
+0023 3af6810 Make imap_free_header_data type-safe
+0024 b915380 make imap_private.h include message.h for IMAP_HEADER_DATA definition
+0025 cd0830a use new function iswsp() in place of isspace() when testing for whitespace.
+0026 c5605a9 update documentation for $pgp_getkeys_command to note that %r is replaced with the email address, not the public key ID
+0027 63dbd83 Correct typos
+0028 0d8ede5 use SSL_get_version() to display the actual SSL protocol used rather than the fixed string SSL.
+0029 49a3431 use TLSv1.2 if available in the system OpenSSL when using starttls
+0030 2fa300d Fix NULL pointer dereference in notation name
+0031 cafde3b fix segfault in pop driver. when rereading the message header, the ENVELOPE* struct is freed, but ctx->subj_hash retains a pointer to env->real_subj, so the hash table entry must be deleted prior to calling mutt_free_envelope()
+0032 8971272 updated fr.po
+0033 b50fc0d if the peer's x.509 cert is not valid, we need to allow the user to inspect it even if the digital signatures are valid
+0034 b6e832c fix problem where mutt_substrdup() was called with the start pointer > end pointer, as a result of using SKIPWS(). This occurred because the header field had an empty body, so the trailing newline was skipped over. The fix is to just skip over ascii space and htab.
+0035 9e7c5ee rename iswsp() to is_email_wsp()
+0036 213ddd1 add variables for disabling TLSv1.1/1.2 when compiled against OpenSSL 1.0.1
+0037 1f33e0b add support for TLSv1.1/1.2 when using GNUTLS.
+0038 af7d95c disable tls v1.1/1.2 in mutt_ssl_starttls() based on $ssl_use_tlsv1_*
+0039 b61cab8 remove duplicate const keyword
+0040 e313bd1 update ru.po
+0041 dd183aa make configure define _POSIX_C_SOURCE, _XOPEN_SOURCE and _XOPEN_SOURCE_EXTENDED to comply with POSIX.1-2008 and XSI conforming applications.
+0042 ed0933b use WACS_* macros for printing wide versions of the line drawing characters when linking against ncursesw.
+0043 a2df7ac updated cs.po
+0044 a2e269a http://thread.gmane.org/gmane.mail.mutt.devel/15710
+0045 31f7c6e detect newer BDB versions up to 5.2
+0046 eeaec1e support nbsp in the pager.
+0047 abb0ea1 allow for CRLF line endings when comparing for the OpenPGP block identifiers
+0048 a4cada4 backout out changeset 36b0cc717ecc
+0049 a33b940 remove extern decl for Charset_is_utf8 since menu.c includes mbyte.h which has the same decl.
+0050 26b0577 remove redundant #include statements
+0051 f76961d Fix 'make distcheck': missing txt2c* and po/mutt.pot cleanup
+0052 dbee0f9 modernize intialization of configure.ac
+0053 aaf150b change AM_CONFIG_HEADER to AC_CONFIG_HEADERS and move it after the AM_INIT_AUTOMAKE. config.h was not being generated from the dist package.
+0054 7ce41d9 update configure.ac with autoupdate
+0055 79851f1 remove deprecated check for signal() return type
+0056 d3c378e fix forgotten RETSIGTYPE change id [18a724e9eba0]
+0057 bc04cd3 add version.sh and check_sec.sh to EXTRA_DIST so they are including in the "make dist" output.
+0058 73e37a7 Fix VPATH build outside Mercurial repositories.
+0059 cc677e0 Fix VPATH-based generation of non-hg-mq based patchlists.
+0060 b92720c If neither --with-idn nor --without-idn are given, use -I/usr/include/idn when checking for the libidn header files, if present (needed for Solaris 11).
+0061 8bcb49b Uses SSLv23_client_method() in mutt_ssl_starttls() because TLSv1_2_client_method() does not honor the SSL_OP_NO_TLS* flags.
+0062 516e1b5 avoid using m4_esyscmd_s() since it is not available in older versions of autoconf. use m4_esyscmd() and m4_translit() to whack the newline instead.
+0063 7b75043 use [] around body of AC_CHECK_HEADER to avoid problems with older versions of autoconf
+0064 f6169d7 Use the directory where the version.sh script is located as the directory where it is run. Since this will be run in a separate shell anyway, there's no need to worry about changing current directory.
+0065 adbf3ab restore ability for version.sh to cope with a repository directory with a space in it.
+0066 9892e7e remove m4_translit because it generates a warning with newer versions of autoconf when used in AC_INIT. Instead, use tr -d to output the version string without a trailing newline.
+0067 91a2c2e make the SETCOLOR() macro use bkgdset() on systems which have it, and attrset() when we don't.
+0068 9a80181 document the TLS changes since 1.5.21
+0069 6c2511c add __FREE_CHECKED__
+0070 41ef163 update ChangeLog
+0071 fcc6331 Ensure that the in-reply-to header field was actually present before deciding it was removed.
+0072 331d8a7 update regexp to include const keyword. The auto generated documentation of functions was failing due to a change in the source code format.
+0073 fe035ff reset to color normal before clearing to end of line when printing a message/error string
+0074 c146958 Fix accidental var redeclation with --enable-exact-address
+0075 e07178e fix xml validation error in manual.xml in auto-generated content due to missing paragraph mark in the $editor docstring
+0076 36f39ef Drop unneeded variable HEADER_CACHE that causes clang warnings.
+0077 eaaf181 display +/-NCURSES_WIDECHAR when displaying ncurses version to show whether we are linked against -lncurses or -lncursesw
+0078 81a0f5a Backed out changeset bf84f24e512d
+0079 cb9609b Fix memory leak when multiple x-label or supersedes header fields exist in the header.
+0080 8eeaa9a Remove unused variable `matched'.
+0081 2a97685 Fix regression introduced by [10cc06eff52b] where the CLEARLINE() removal was not replaced by a move() to position the cursor at the correct location to draw the status bar.
+0082 10c7c71 When "make install" fails to chgrp or chmod the mutt_dotlock binary, add the reason why we are doing this so the user knows what to look for.
+0083 379a081 avoid debug warning about trailing whitespace in a base64 encoded attachment
+0084 0e25a9b allow use of sync-mailbox when the current limit has no visible messages
+0085 5609a85 detect pipermail-style obscured return path in mbox From lines
+0086 e60fb7c change semantics of mutt_is_autoview() to return 1 if there is a matching mailcap entry and either $implicit_autoview is set or the MIME type matches the user's auto_view list.
+0087 c6347d5 use a separate flag for mutt_hcache_store() to signal that the gettimeofday() value should be substituted, so that a 0 uidvalidity can be used by the imap driver.
+0088 2af1d44 when falling back to viewing an attachment as text in the internal pager, perform charset conversion
+0089 feafa7e backout [392e945dfba7]
+0090 14757fc use pkg-config to look for libidn if available.
+0091 8fcdb32 remove PKG_CHECK_MODULE() check and always use AC_CHECK_HEADERS()
+0092 2306e0e do not explicitly reset the terminal attributes and move the cursor in mutt_endwin(). endwin() itself should handle this.
+0093 def4f30 add support for $mail_check_recent to mh mailbox driver
+0094 8a3b4e6 do not use mutt_message() to display prompt in mutt_yesorno().
+0095 12358af explicitly call mutt_refresh() prior to endwin() to force a screen redraw.
+0096 d2304e0 fix potential buffer overflow in off-by-one bounds checking error
+0097 fae112a increase string size by one byte to accomodate the terminating null character in fscanf() since the maximum field width does not include it
+0098 db38988 use of sscanf() had undefined behavior, replace with simple parsing instead
+0099 41302e3 use mkdtemp() to create temporary directory rather than mktemp() followed by mkdir()
+0100 1a9c3ce fix various compiler warnings; most were due to unchecked return values from system calls.
+0101 8aaad63 use gethostname() to determine the system host name
+0102 fb48334 Backed out changeset 1142ed8974fa
+0103 d935293 backout c1371176ea45
+0104 84493c1 Don't exit pager if quit=ask is answered "no".
+0105 9147f0d Terminal status line support, based on the xterm title patch.
+0106 1b20daf version.sh: step back from $() to ``. closes #3661
+0107 16a0153 UPDATING blurb for terminal status features
+0108 f75edfb Fix postpone/resume to not remove a Mail-Followup-To header (closes #3070)
+0109 1d4899a Allow filename prompt when saving multiple attachments to a directory. (closes #3083)
+0110 4d7d574 version.sh: step back from $() to ``. closes #3661 (grafted from 01cf5814dfe5e79b65b1d950aab1276d19a9f031)
+0111 5115825 Fix postpone/resume to not remove a Mail-Followup-To header (closes #3070)
+0112 d9c1310 fix typos in comments
+0113 8b063bc fix more comment typos
+0114 a5d1716 only terminate the write-half of the TLS connection to avoid hanging if the remote doesn't respond.
+0115 8691e6f return 0 if import of cert failed to match other error conditions.
+0116 73254d2 Display the KeyID when the pubkey is not found in the user's keyring during signature verification.
+0117 a612c12 use LOFF_T as the type for variables used in fseeko()
+0118 df9d36d Ensure that at least one signature was generated to catch the case where $pgp_sign_as is unset and no default key is specified in ~/.gnupg/gpg.conf
+0119 cf240aa When recalling a postponed message that does not have a x-mutt-fcc header field, generate a default FCC just as we do for new messages. If x-mutt-fcc is present but empty, we assume that means the user does not want a copy.
+0120 25fc87a Consistently use mutt_buffer_init function
+0121 aad2066 Ensure that BUFFER variables are initialized to prevent later attempts to traverse an uninitialized pointer.
+0122 b2e8e6e Fix segfault when viewing text attachments in compose menu. (closes #3644)
+0123 9d77c19 include <stdbool.h> for definition 'true'
+0124 81bddb2 Problems with mutt.1:
+0125 d919a86 Problems with muttrc.5:
+0126 5491903 adds some missing options in doc and adds man pages for binaries pgpewrap and pgpring.
+0127 53301d4 add missing files that were supposed to be included with [76f8df0ac80396559aa80e7f145be6f235a6db51]
+0128 a786478 updated Japanese translation
+0129 1bf4a3f updated Ukranian translation
+0130 40e361f updated Catalan translation
+0131 6df61e7 Rework logic to avoid advancing list pointer inside the for loop.
+0132 7ac9eeb automatic post-release commit for mutt-1.5.22
+0133 dca0824 Added tag mutt-1-5-22-rel for changeset 8c5ea668e7e0
+0134 ac50460 mutt-1.5.22 signed
+0135 4c27204 update UPDATING with 1.5.22 release date
+0136 93e3ff8 remove <stdbool.h> and use "1" instead of "true". closes #3657
+0137 90142ff add note about use of ! ~Q in send-hook when paired with reply-hook.
+0138 c074721 create stable branch
+0139 486af38 Move HEAD to default
+0140 5da1481 remove trailing period from documentation for $pgp_list_pubring_command
+0141 49a5c94 remove trailing period from documentation for $pgp_list_secring_command
+0142 d5561b9 Updated Dutch translation
+0143 b28de9f Fix deprecated gnutls_protocol_set_priority. (closes #3515)
+0144 92c2df1 ignore gnu global tags
+0145 9456bea ignore generated pgpewrap/pgpring man pages
+0146 74c7971 add check-syntax target for flymake
+0147 2baf484 hcache tcdb debug logging
+0148 856ec91 Disable SSLv3 by default.
+0149 93bbe35 Remove duplicate SmimeCryptAlg declaration in globals.h
+0150 f974851 Fix variable name in configure.ac.
+0151 1017fbf Remove unused variable t in start_debug().
+0152 237db40 Fix a memory leak in mutt_query_complete.
+0153 ca2c8c4 Clarify PGPPATH usage in manpages.
+0154 b3d4a07 Note correct usage of $edit_headers. (closes #3673)
+0155 bd1af09 Enable %a format string for all pgp command configs. (closes #3699)
+0156 4282ce8 Override draft headers with arguments. (closes #3580)
+0157 1e6a19a Fix parse_pub_line to allow an empty User-ID field for a pub record. (see #3564)
+0158 9e2319a Wrap pgp_uid_t->addr in NONULL(). (closes #3564)
+0159 d740d5b Fix segfault of extract-keys (^K) under gpgme. (closes #3698)
+0160 014dd09 Change bounce to use mutt_parse_adrlist() for address parsing.
+0161 c42fd7d Add gpg signature name. (closes #3478)
+0162 35657b3 Add color type for prompts.
+0163 88f7077 Add option to encrypt postponed messages. (closes #3665)
+0164 dadc67f Fix buffer overrun caused by not updating a string length after address expansion.
+0165 d265dd4 add user visible changes since 1.5.22 release.
+0166 9ef95b5 No more devel
+0167 475df40 mkchangelog: only show log entries on current branch
+0168 4125a2d build-release: make sure version is picked up by autoconf
+0169 b922015 automatic post-release commit for mutt-1.5.23
+0170 0be6546 Added tag mutt-1-5-23-rel for changeset b8a63730c848
+0171 e10648f mutt-1.5.23 signed
+0172 395eebf Updated Czech translation
+0173 ea24558 fix typo in man page.
+0174 2032724 Updated Russian translation.
+0175 eab1558 Updated Ukrainian translation.
+0176 65eab1b Updated Catalan translation.
+0177 2484548 Updated French translation.
+0178 bd98c97 Add a scratch buffer to the history ring. (closes #3082)
+0179 2ad64bb mutt_sasl: whitespace only
+0180 f412988 mutt_sasl: fix double negative in iptostring result check (fixes #3705)
+0181 6b9d622 Fix segv in pgp_getkeybystr(). (closes #3725)
+0182 6dc1634 Revert write_one_header() to skip space and tab. (closes #3716)
+0183 db97870 Remove duplicate SmimeCryptAlg declaration in globals.h
+0184 91d2afb Fix variable name in configure.ac.
+0185 b9b8901 Fix a memory leak in mutt_query_complete.
+0186 1076b42 Fix segfault of extract-keys (^K) under gpgme. (closes #3698)
+0187 c8e68c8 Also colorize the initial mutt_enter_fname prompt.
+0188 2cea210 Fix the hcache type punning warning.
+0189 6118805 Fix some context, data, and key memory leaks in gpgme.
+0190 7efa208 Allow short and long key ID user input in pgp_getkeybystr()
+0191 1c71c8f Allow short and long key ID user input in crypt_getkeybystr()
+0192 8d6ab99 HEAD is dead, remove wrong instruction from doc/devel-notes.txt
+0193 722b050 pgp_getkeybystr: Pull key matching out of the address match loop.
+0194 1ed8109 Implement mail-key, Esc-K, for gpgme. (closes #3488)
+0195 8956a33 Corrected various spelling mistakes (most of them reported by codespell).
+0196 25b491b Updated French translation.
+0197 64e3796 Remove GPG_AGENT_INFO check for GnuPG 2.1 compatibility. (closes #3715)
+0198 014a608 Clean up gnutls warnings.
+0199 8d0c037 Clean up sasl warnings.
+0200 71466e0 Updated French translation.
+0201 3816907 gpgme: guard mail-key on presence of gpgme_op_export_keys
+0202 ee69172 gpgme: typo in previous commit
+0203 10975df Send the IMAP \Draft flag when postponing a message.
+0204 8d00351 Update smime_encrypt_with documentation to list all algorithms.
+0205 b21dc3a Fix mutt_parse_crypt_hdr() sign_as behavior.
+0206 0f2c99b Protect SmimeDefaultKey for postpone/resume.
+0207 4f22398 Change the smime_encrypt_with default to aes256.
+0208 483f443 Fix pgp-gpgme to set revoke/expired/disabled flags.
+0209 0233c8f Cache uid validity in crypt_key_t.
+0210 dbdcdc4 Fix buffer underread for empty header values. (closes #3736)
+0211 0745b59 Protect addr with NONULL in pgp_getkeybyaddr.
+0212 26d9ed5 Convert pgp_key_t fingerprint to a char* (see #3695)
+0213 ffd3efb Add fingerprint record parsing for pgp list keys. (see #3695)
+0214 6f8ca9b Allow fingerprint user input for key selection. (see #3695)
+0215 6068aba Fix pgp_application_pgp_handler to remove all tempfiles.
+0216 a812dbf Clarify hook documentation to specify regexp instead of pattern.
+0217 a7b58b8 Add entries for =B and =h in pattern modifier table.
+0218 f9535fc Document limitation of color index and server-side searches. (see #3723)
+0219 b5cf81d Refactor the address list generation out of the find_keys routines.
+0220 6653486 Introduce an oppenc_mode parameter
+0221 85d0c23 Pull is_numerical_keyid() into crypt.c.
+0222 d062c47 Implement oppenc_mode in the find_keys methods.
+0223 75a15bc Implement crypt_opportunistic_encrypt().
+0224 462e5df Add the crypt_opportunistic_encrypt option and calls.
+0225 c9e240b Add a security bit to the message for oppenc mode.
+0226 42bb00f Add ui elements for oppenc mode.
+0227 276dd73 Fix const errors caused by find_keys() changes.
+0228 24b14a4 Fix smime.rc typos and spacing issues. (closes #3745)
+0229 f440da1 Clarify hook pattern vs regexp in muttrc.man page.
+0230 fc55a3d Allow attachments from unencrypted emails to be deleted.
+0231 d38a982 Use fingerprints instead of keyIDs internally. (see #3695)
+0232 c0b50f0 Fix a few more incorrect documentation lines for hooks.
+0233 cb2dfc2 Allow multiple crypt-hooks with the same regexp. (closes #3727).
+0234 13cf6cc Add $crypt_confirmhook option. (see #3727)
+0235 2ced231 Fix performance regression for ~b/~B searching. (closes #3743)
+0236 33f0048 Provide SSL cipher selection option. (closes #3167)
+0237 8e76cfd Start cleaning up and fixing smime_keys.pl (closes #3324) (see #2456)
+0238 fdf4736 smime_keys: quote filenames. (closes #3575) (see #2456)
+0239 89a00c8 Updated French translation (related to PGP & S/MIME, with corrections).
+0240 438bdd5 smime_keys: Convert openssl execution to use open("-|",...). (see #3575) (see #2456)
+0241 e85bfac smime_keys: Handle certificate chains in add_cert. (closes #3339) (closes #3559)
+0242 7d3c78b smime_keys: Add purpose flag to index.
+0243 54daf3d smime_keys: Add refresh command.
+0244 a9618a9 Rewrite S/MIME key searching. Add purpose checking.
+0245 cd948da Updated French translation.
+0246 80704a1 Add comment about "(f)orget it" choice in pgp/smime send menus.
+0247 0ebf60f Fix IMAP segfault due to NULL capstr.
+0248 83d3fd0 Add note to manual clarifying push/exec and folder-hook order.
+0249 cc4c8b9 Fix build-release to always update automake tools. (closes #3671)
+0250 9f8c33a Convert from using mkinstalldirs to $(MKDIR_P).
+0251 5404800 Remove the automake mkinstalldirs script.
+0252 b709612 Remove 'hit enter' prompt for GPGME initialization errors.
+0253 c3aa20a Use $(VAR) instead of @VAR@ in Makefile.am files. (closes #3664)
+0254 3e956ad Fix batch mode lockup. (closes #3761) (closes #3760)
+0255 71ebe2f Add note about gpg fixed-list-mode. (closes #3763).
+0256 5e0d255 Imap: Fix flag caching after sync.
+0257 80d58c8 Fix a few small compiler warnings. (See #3638)
+0258 726e68e Fix compiler type warnings. (closes #3765)
+0259 31e68ab Update the UPDATING file with changes since 1.5.23.
+0260 80b8772 Set AUTOMAKE_OPTIONS in doc/Makefile.am. (closes #3766)
+0261 1e09ae3 Add support for checking cur/ in Maildir for unread mails in buffy.
+0262 8c279ad Handle malformed ms-exchange pgp-encrypted block. (closes #3742)
+0263 d8a7295 Add "Mailbox Matching in Hooks" section to manual.
+0264 bed17dd Add error handling for ^ and other empty mailbox shortcuts.
+0265 9e3b1f6 Minor documentation fix.
+0266 4c28794 Updated French translation.
+0267 0d0dde1 Fix txt2c.sh sed invocations to use posix syntax.
+0268 bdb128e Compile txt2c using automake rules.
+0269 a9676b0 Enable C99 mode for compiler. (See #3638).
+0270 7022ae3 Change mutt_adv_mktemp to call mutt_mktemp instead of mktemp. (see #3638).
+0271 2a4b0d5 Add idn to MUTTLIBS instead of LIBS (see #3638)
+0272 25d277d Updated Czech translation
+0273 e37302a Updated Russian translation.
+0274 2f6e596 Updated Japanese translation.
+0275 2009297 Minor translation fix.
+0276 c120949 Updated Dutch translation.
+0277 80e539a Updated Catalan translation.
+0278 7a48404 Set release date. Minor fixes to release notes.
+0279 25bfcf2 Minor translation fixes.
+0280 eba6620 Partially updated Esperanto translation.
+0281 971e1b3 automatic post-release commit for mutt-1.5.24

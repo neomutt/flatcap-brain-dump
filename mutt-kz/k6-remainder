@@ -1,0 +1,36 @@
+0019 30690ec header: add HEADER->free_cb() to free driver specific data
+0020 66608ea functions: add <quasi-delete>
+0040 68d480f fix segfault when exiting with 'x' key
+0042 9999fef Grammar and typo fixes.
+0065 6dc6732 buildsys: remove AM_C_PROTOTYPES
+0076 c585663 Update mh.c
+0077 a50f8a0 01-progress-bar.patch for Gentoo
+0202 6e8fff0 Add browser sort by description, message count and new message count
+0210 785619c added support for text transforms of tag names visible with '%g' in the index and pager formats
+0212 d18b4cd ported the old index-color mutt patch to mutt-kz added support for individual tag coloring added "Tags:" header output in pager showing all tags added documentation for index object highlighting
+0213 87e5898 ported nested if-else conditional patch to mutt-kz (credit to David Champion <dgc>) ported date conditional patch to mutt-kz (credit to Aaron Schrab <ats>) changed date conditional comparisons now d = yesterday, w = last week, m = last month, y = last year, H = last hour, etc from current time
+0214 b7af09d added some documentation
+0215 97c226c fixed right alignment on the index line the printed string width computation did not account for special index coloring sequences
+0218 51414a8 color: fix order of index
+0240 6edf217 color: fix uncolor
+0241 b6a9348 init: fix compiler warning
+0242 9910bea init: remove unused variable
+0243 24492f2 keymap: fix compiler warning
+0244 c6c1405 hcache: fix compiler warning [strict-aliasing rules]
+0247 5c366b9 copy: add CH_VIRTUAL to allow to specify when use virtual headers
+0276 0b6b5f4 color status patch: Get a colorized status bar in mutt
+0279 c8b2203 Import TLS Server Name Indication support patch
+0280 bf395dc curs: fix compiler warnings
+0281 aa8f10c Use unlocked libc IO everywhere.
+0282 d355689 Fix displaying non-ASCII characters in status line
+0295 ad582b4 Correct pager status bar position (issue #32)
+0296 9fd00c8 fix nm_query_type=messages + query type=threads
+0297 0bc6711 init: fix compiler warning
+0301 7ed5545 Introduce an auto_mode parameter
+0303 0733000 Implement auto_mode in the find_keys methods.
+0350 eb6b2f3 Sync upstream oppenc to current state in mutt-kz.
+0394 60f8a7a fix spelling typo
+0395 25998b8 Remove TLS version notification
+0398 7efc815 add ID and tags to .gitignore
+0399 51e6d38 More careful file writing for aliases and attachments
+0400 d97d605 Bye srandom() and random()

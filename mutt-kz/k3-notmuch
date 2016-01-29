@@ -1,0 +1,104 @@
+0002 3c32182 notmuch: add basic files and build-sys stuff
+0003 cc5417a notmuch: add change-vfolder and vfolder-from-query constants
+0004 53be330 notmuch: add 'virtual-mailboxes' parser
+0005 4eb6a36 notmuch: add notmuch::// uri
+0006 cc497cf notmuch: consolidate msg sync code
+0007 c1d90d2 notmuch: add context magic
+0008 49e6dee notmuch: add basic .muttrc variables
+0009 658d04b notmuch: add basic functions
+0010 66d964c notmuch: don't modify virtual folders' paths
+0011 88f35b5 notmuch: add notmuch calls to mx_* API
+0012 6504d29 notmuch: add support to browser
+0013 8d1831e notmuch: change-vfolder, print folder info, etc.
+0014 fbab52a notmuch: fix typo
+0015 5187ef4 notmuch: add modify-label
+0016 50bd4a0 notmuch: update README.notmuch
+0017 22d67b0 notmuch: fix CONTEXT->data->db usage
+0018 a332442 notmuch: update README
+0021 63a0419 notmuch: add <modify-labels-then-hide>
+0022 12dfb5d notmuch: print vfolder description on status bar
+0023 1c0d499 notmuch: properly update context numbers
+0024 8b7e0f5 notmuch: add
+0025 2b32ac5 notmuch: small refactoring
+0026 901054f notmuch: implement nm_check_database()
+0027 80a6bfb notmuch: support default db uri
+0028 6ac57a2 notmuch: add debug messages
+0029 1f16a3f notmuch: update README
+0030 00d9ae3 notmuch: improve virtual_mailboxes command, update docs
+0031 2c7f084 notmuch: improve nm_unread_tag setting
+0032 a3b0a3e notmuch: fix compilation error when using hcache
+0033 8050a75 notmuch: fix compilation error at get_nm_message()
+0034 ef1a0c1 notmuch: add ML to README
+0038 d4abb43 docs: add note about sidebar to notmuch docs
+0041 4a066fa build-sys: fix compilation without --enable-notmuch
+0043 46b1665 notmuch: add note about notmuch version requirement
+0044 bfc6fdf notmuch: fix a typo in the README
+0045 669d1f0 notmuch: fix a bug with processing mailboxes when they are all virtual.
+0046 d1163e2 notmuch: cleanup private notmuch structs initialization
+0047 40dd752 notmuch: explicitly require notmuch context
+0048 d14deb6 notmuch: fix example in README
+0049 1d96e01 notmuch: use context data if possible rather than directly context
+0050 f7f0dd1 notmuch: search in new/cur subfolders if DB is not up-to-date
+0051 e9d3fb1 notmuch: remove extra slashes
+0052 cb85608 notmuch: fix sync
+0053 b1e72d4 notmuch: fix msg remove code
+0054 ad75d05 notmuch: don't use uninitialized HEADER in nm_check_database()
+0055 1471271 notmuch: add nm_open_timeout
+0056 8d58e2f notmuch: fix prefixes in README
+0057 6df3384 notmuch: fix new->cur maildir move
+0058 407dd80 notmuch: make filename changes more robust
+0059 d7556a6 notmuch: typo fixes
+0060 feef70d notmuch: add NOTMUCH in show_version()
+0061 6996958 notmuch: don't rename in DB before mx commit
+0066 99f7858 notmuch: allow to read whole-threads
+0068 7eaaa59 notmuch: fix nm_check_database to count new messages correctly
+0071 0c08740 build-sys: test for the latest notmuch API change
+0072 0235430 notmuch: use the new notmuch api if available
+0073 12a7ab4 notmuch: use notmuch_status_t for DB open
+0078 21166cc notmuch: use the Maildir if NotmuchDefaultUri is unset
+0080 3aac54d notmuch: sync flags for all duplicate messages
+0081 d976ee8 format: support optional modifier for g (notmuch labels)
+0082 9d4a715 notmuch: print read progress of a query
+0083 a488686 mutt_notmuch: nm_db_limit option defines a default limit
+0084 51a2873 notmuch: add note about nm_db_limit to README
+0085 0d857f6 notmuch: fix typo
+0086 1e57d5d notmuch: add nm_query_type config file option
+0087 be0d6b9 notmuch: add notmuch_{query,message}_destroy to DB checker
+0178 218aefe docs: add link to notmuch mutttips
+0193 21bcbe5 notmuch: count messages for mutt progress bar
+0194 bc8cc88 notmuch: add %g examples
+0195 a5a5cea notmuch: Fix auto_tag=yes for modify-labels* and quasi-delete
+0196 8d0f046 notmuch: Add 'label' pattern modifier '~Y'
+0197 3a018a3 notmuch: Plug a leaked notmuch DB handle in get_count()
+0198 569bd58 notmuch: Add nm_get_all_tags()
+0199 72869f0 notmuch: Add TAB completion of tag: names in <vfolder-from-query>
+0200 ab2707e notmuch: Add TAB completion of tag names in <modify-labels>*
+0201 e4cdff8 notmuch: Fix trivial documentation typoes
+0204 20026ed notmuch: reuse connection in complete_all_nm_tags()
+0205 f2e1dfd notmuch: hide signed and encrypted tags by default
+0206 b741473 notmuch: add $record support
+0211 6f458bf notmuch: fix corrupt viewing of messages
+0216 b26fbc4 notmuch: clean up tags related code, improve %G
+0217 f269c4c color: fix compilation without notmuch
+0219 98f3083 notmuch: add nm_exclude_tags
+0237 f833e5e notmuch: fix buffer overflow, improve tag_list usage
+0239 3306ffa nomtuch: always use notmuch message ID
+0245 5905546 notmuch: add entire-thread command, cleanup progress bar code
+0246 6b67584 notmuch: improve entire-thread
+0248 9d08203 notmuch: update DB on save-command
+0249 4de0283 notmuch: extend <change-vfolder> to accept folder name/uri
+0250 2e33af9 notmuch: <change-vfolder> default to the next unread folder
+0251 cfe74e5 notmuch: don't close opened message after <modify-label>
+0252 9daf97a notmuch: search by vfolder name in browser
+0253 c0b1363 docs: update README.notmuch
+0268 45bab95 notmuch: make %N optional for notmuch browser format
+0269 9bfbf7f notmuch: apply NotmuchExcludeTags to count queries
+0270 02d0264 notmuch: fix getting count of new messages for non-trivial query
+0271 ba80802 notmuch: get <entire-thread> work from pager context
+0273 2f94781 notmuch: use exclude tags for entrie-thread too
+0274 be19602 notmuch: call notmuch_query_count_messages() more carefully
+0277 51e74b7 notmuch: fix DB transaction balancing
+0283 738df8f notmuch: update the header colors after modifying tags
+0351 1023315 notmuch: enlarge query buffer
+0353 096e4ad notmuch: bypass data limit when expanding threads
+0397 54058b3 mutt, notmuch: Update 'unread' tag for all files mapped to msg

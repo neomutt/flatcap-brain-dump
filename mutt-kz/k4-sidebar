@@ -1,0 +1,18 @@
+0035 2b0f80f sidebar: add sidebar from opensuse/factory
+0036 0280217 sidebar: fix compiler warning
+0037 4f8d1d6 sidebar: add support for virtual folders, add sidebar-toggle command
+0039 577ac08 sidebar: replace strdupa with strdup/free
+0070 1daa60b sidebar: add optional refresh interval
+0075 57d28e5 sidebar: added initial sorting support
+0079 425c9ff Don't consider TopBuffy as someone special, sort it as all the rest Signed-off-by: Rodrigo Javier Tobar Carrizo <rtobar@csrg.inf.utfsm.cl>
+0203 c943e0a sidebar: fix warning: "W" redefined"
+0207 7d6ea42 sidebar: cleanup code, remove unnecessary basename and strdups
+0209 f13c22d sidebar: extend sidebar sort methods, add sort_sidebar=
+0272 2f3e0f7 sidebar: fix %* index_format
+0292 b2bb019 patches written by Steve Kemp, it adds two new functionalities to the sidebar, so only the mailbox with new messages will be shown (and/or) selected See Debian bug http://bugs.debian.org/532510
+0293 bc0d2ac Patch for sidebar iteration functionality
+0294 d9026ea Fix in sidebar-next functionality
+0306 a9d83f2 Add sidebar_whitelist option
+0348 9990257 fixed header wrapping while using sidebar
+0396 ecbdf79 refresh sidebar after timeout
+0401 f13afeb Fix sidebar segfault on "unmailboxes" command
