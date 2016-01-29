@@ -1,0 +1,11 @@
+karel zak - patches
+
+sidebar
+notmuch
+indexcolor
+nested if + conditional dates
+quasi-delete
+gentoo progress bar
+status bar color
+TLS SNI
+
