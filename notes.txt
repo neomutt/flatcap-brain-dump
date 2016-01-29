@@ -499,3 +499,6 @@ Alternate views in the sidebar
 	news?  subscribed   <--> all groups
 	rss?   unread feeds <--> all feeds
 
+some macros use multiple statements separated by comma
+	change to do { X; Y; Z; } while(0)
+
