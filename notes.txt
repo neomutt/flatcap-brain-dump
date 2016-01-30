@@ -515,10 +515,13 @@ unify
 	HAVE_X/USE_X
 
 release criteria
+	credits
+	changelog
 	clean build
 	configure --option (off)
 	basic docs
 	tidy code (whitespace, etc)
+	example config
 
 fix copyright dates in all patches
 
