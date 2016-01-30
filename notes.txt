@@ -502,3 +502,21 @@ Alternate views in the sidebar
 some macros use multiple statements separated by comma
 	change to do { X; Y; Z; } while(0)
 
+split out FMEMOPEN from sidebar patches
+	handler.c
+	pattern.c
+
+mutt .shell copy
+	mnemosyne
+airline themes
+data source LDAP
+unify
+	#if/#ifdef
+	HAVE_X/USE_X
+
+release criteria
+	clean build
+	configure --option (off)
+	basic docs
+	tidy code (whitespace, etc)
+
