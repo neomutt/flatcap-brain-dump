@@ -520,3 +520,5 @@ release criteria
 	basic docs
 	tidy code (whitespace, etc)
 
+fix copyright dates in all patches
+
