@@ -6,6 +6,7 @@ numbered, ordered, series
 
 change mutt: readme, changelog, version number
 	floating branch
+		build fixes, tidies, etc
 	internal name to neomutt?
 
 All patches:
