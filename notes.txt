@@ -527,3 +527,146 @@ release criteria
 
 fix copyright dates in all patches
 
+which config items require frequent and costly interpretation?
+	all format strings -- every line, every refresh
+
+keep revision number for all config items (as a prelude to proper notifications)
+	only increment revision number on change
+	leads to possible A-B-A problem (change blindness)
+	if (ver(format_str) > old_ver) STMT;
+	allows code to make informed decisions about caching
+
+cache for formatted strings?
+	too much can change
+		index: flags, folded-ness
+		sidebar: all numbers => cache invalid
+
+index format -- full directory mode
+	show unix perms like ls
+	user/group/etc
+	too specific?
+	what about other OSs?
+
+refer to and compare config names by hash only?
+	save lots of string compares
+
+cache sdiebar formatted strings on BUFFY object?
+
+what are the objects in the Index?
+	cache the index formatted strings on them
+
+introduce new format strings
+	index_rich_format
+
+command: list all colours
+	color<cr>
+
+command: show object colour
+	color object<cr>
+	color object?<cr>
+	color ?object<cr>
+
+auto-completion on:
+	color obje<tab>
+
+rich format:
+	json?
+	xml?
+
+rich format:
+	index_json_format
+	index_format_json
+	index_xml_format
+	index_format_xml
+
+rich format *DEPENDS* on format tree
+	too costly otherwise
+
+break up and rewrite mutt docs
+	break into smaller sections
+	separate mutt-doc repo
+	translate sections (default to english if missing)
+
+parse format config into a tree?
+	simple: "x y z"
+		root
+			X
+			space
+			Y
+			space
+			Z
+	medium: "x fill y"
+		root
+			X
+			fill space
+			Y
+	complex: "x if(y) y else z a"
+		root
+			X
+			space
+			cond(y)
+				true: y
+				false: z
+			space
+			a
+
+sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%?S?%S?"
+	┌─────────────────────────┐
+	│ VARIABLE                │
+	│ name:      mailbox name │
+	│ min_width: -1           │
+	│ max_width: -1           │
+	│ align:     left         │
+	├─────────────────────────┤
+	│ CONDITIONAL             │
+	│ test:     > 0           │
+	│ variable: flagged       │
+	├─────────────────────────┤
+	│ TRUE                    │
+	└───────┬─────────────────┴───────┐
+		│ FIXED STRING            │
+		│ value: " ["             │
+		├─────────────────────────┤
+		│ VARIABLE                │
+		│ name:      flagged      │
+		│ min_width: -1           │
+		│ max_width: -1           │
+		│ align:     left         │
+		├─────────────────────────┤
+		│ FIXED STRING            │
+		│ value: "]"              │
+	┌───────┴─────────────────┬───────┘
+	│ FALSE - empty           │
+	├─────────────────────────┤
+	│ CONDITIONAL             │
+	│ test:     > 0           │
+	│ variable: new_msg       │
+	├─────────────────────────┤
+	│ TRUE                    │
+	└───────┬─────────────────┴───────┐
+		│ VARIABLE                │
+		│ name:      new_msg      │
+		│ min_width: -1           │
+		│ max_width: -1           │
+		│ align:     left         │
+		├─────────────────────────┤
+		│ FIXED STRING            │
+		│ value: "/"              │
+	┌───────┴─────────────────┬───────┘
+	│ FALSE ─ empty           │
+	├─────────────────────────┤
+	│ CONDITIONAL             │
+	│ test:     > 0           │
+	│ variable: total         │
+	├─────────────────────────┤
+	│ TRUE                    │
+	└───────┬─────────────────┴───────┐
+		│ VARIABLE                │
+		│ name:      total        │
+		│ min_width: -1           │
+		│ max_width: -1           │
+		│ align:     left         │
+	┌───────┴─────────────────┬───────┘
+	│ FALSE - empty           │
+	└─────────────────────────┘
+
