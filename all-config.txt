@@ -1,0 +1,318 @@
+abort_nosubject=ask-yes
+abort_unmodified=yes
+alias_file="/dev/null"
+alias_format="%4n %2f %t %-10a   %r"
+allow_8bit is set
+allow_ansi is unset
+arrow_cursor is unset
+ascii_chars is unset
+askbcc is unset
+askcc is unset
+assumed_charset=""
+attach_charset=""
+attach_format="%u%D%I %t%4n %T%.40d%> [%.7m/%.10M, %.6e%?C?, %C?, %s] "
+attach_sep="\n"
+attach_split is set
+attribution="On %d, %n wrote:"
+auto_tag is unset
+autoedit is unset
+beep is set
+beep_new is unset
+bounce=ask-yes
+bounce_delivered is set
+braille_friendly is unset
+certificate_file="~/.mutt_certificates"
+charset="utf-8"
+check_mbox_size is unset
+check_new is set
+collapse_unread is set
+compose_format="-- Mutt: Compose  [Approx. msg size: %l   Atts: %a]%>-"
+config_charset=""
+confirmappend is set
+confirmcreate is set
+connect_timeout=30
+content_type="text/plain"
+copy=yes
+crypt_autoencrypt is unset
+crypt_autopgp is set
+crypt_autosign is unset
+crypt_autosmime is set
+crypt_confirmhook is set
+crypt_opportunistic_encrypt is unset
+crypt_replyencrypt is set
+crypt_replysign is unset
+crypt_replysignencrypted is unset
+crypt_timestamp is set
+crypt_use_gpgme is unset
+crypt_use_pka is unset
+crypt_verify_sig=yes
+date_format="!%a, %b %d, %Y at %I:%M:%S%p %Z"
+default_hook="~f %s !~P | (~P ~C %s)"
+delete=ask-yes
+delete_untag is set
+digest_collapse is set
+display_filter=""
+dsn_notify=""
+dsn_return=""
+duplicate_threads is set
+edit_headers is unset
+editor="/usr/bin/vim"
+encode_from is unset
+envelope_from_address=""
+escape="~"
+fast_reply is unset
+fcc_attach=yes
+fcc_clear is unset
+folder="~/Mail"
+folder_format="%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f"
+followup_to is set
+force_name is unset
+forward_decode is set
+forward_decrypt is set
+forward_edit=yes
+forward_format="[%a: %s]"
+forward_quote is unset
+from=""
+gecos_mask="^[^,]*"
+hdrs is set
+header is unset
+header_cache=""
+header_cache_compress is set
+help is set
+hidden_host is unset
+hide_limited is unset
+hide_missing is set
+hide_thread_subject is set
+hide_top_limited is unset
+hide_top_missing is set
+history=10
+history_file="~/.mutthistory"
+honor_disposition is unset
+honor_followup_to=yes
+hostname="laptop.flatcap.org"
+ignore_linear_white_space is unset
+ignore_list_reply_to is unset
+imap_authenticators=""
+imap_check_subscribed is unset
+imap_delim_chars="/."
+imap_headers=""
+imap_idle is unset
+imap_keepalive=300
+imap_list_subscribed is unset
+imap_login=""
+imap_pass=""
+imap_passive is set
+imap_peek is set
+imap_pipeline_depth=15
+imap_servernoise is set
+imap_user=""
+implicit_autoview is unset
+include=ask-yes
+include_onlyfirst is unset
+indent_string="> "
+index_format="%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
+ispell="/usr/bin/hunspell"
+keep_flagged is unset
+locale="C"
+mail_check=5
+mail_check_recent is set
+mailcap_path="~/.mailcap:/usr/share/mutt/mailcap:/etc/mailcap:/etc/mailcap:/usr/etc/mailcap:/usr/local/etc/mailcap"
+mailcap_sanitize is set
+maildir_header_cache_verify is set
+maildir_trash is unset
+maildir_check_cur is unset
+mark_old is set
+markers is set
+mask="!^\\.[^.]"
+mbox="~/mbox"
+mbox_type=mbox
+menu_context=0
+menu_move_off is set
+menu_scroll is unset
+message_cache_clean is unset
+message_cachedir=""
+message_format="%s"
+meta_key is unset
+metoo is unset
+mh_purge is unset
+mh_seq_flagged="flagged"
+mh_seq_replied="replied"
+mh_seq_unseen="unseen"
+mime_forward=no
+mime_forward_decode is unset
+mime_forward_rest=yes
+move=no
+narrow_tree is unset
+net_inc=10
+pager="builtin"
+pager_context=0
+pager_format="-%Z- %C/%m: %-20.20n   %s%*  -- (%P)"
+pager_index_lines=0
+pager_stop is unset
+pgp_auto_decode is unset
+pgp_autoinline is unset
+pgp_check_exit is set
+pgp_clearsign_command=""
+pgp_decode_command=""
+pgp_decrypt_command=""
+pgp_encrypt_only_command=""
+pgp_encrypt_sign_command=""
+pgp_entry_format="%4n %t%f %4l/0x%k %-4a %2c %u"
+pgp_export_command=""
+pgp_getkeys_command=""
+pgp_good_sign=""
+pgp_ignore_subkeys is set
+pgp_import_command=""
+pgp_list_pubring_command=""
+pgp_list_secring_command=""
+pgp_long_ids is set
+pgp_mime_auto=ask-yes
+pgp_replyinline is unset
+pgp_retainable_sigs is unset
+pgp_show_unusable is set
+pgp_sign_as=""
+pgp_sign_command=""
+pgp_sort_keys=address
+pgp_strict_enc is set
+pgp_timeout=300
+pgp_use_gpg_agent is unset
+pgp_verify_command=""
+pgp_verify_key_command=""
+pipe_decode is unset
+pipe_sep="\n"
+pipe_split is unset
+pop_auth_try_all is set
+pop_authenticators=""
+pop_checkinterval=60
+pop_delete=ask-no
+pop_host=""
+pop_last is unset
+pop_pass=""
+pop_reconnect=ask-yes
+pop_user=""
+post_indent_string=""
+postpone=ask-yes
+postponed="~/postponed"
+postpone_encrypt is unset
+postpone_encrypt_as=""
+preconnect=""
+print=ask-no
+print_command="lpr"
+print_decode is set
+print_split is unset
+prompt_after is set
+query_command=""
+query_format="%4c %t %-25.25a %-25.25n %?e?(%e)?"
+quit=yes
+quote_regexp="^([ \t]*[|>:}#])+"
+read_inc=10
+read_only is unset
+realname="Mutt User"
+recall=ask-yes
+record="~/sent"
+reflow_text is set
+reflow_wrap=78
+reply_regexp="^(re([\\[0-9\\]+])*|aw):[ \t]*"
+reply_self is unset
+reply_to=ask-yes
+resolve is set
+reverse_alias is unset
+reverse_name is unset
+reverse_realname is set
+rfc2047_parameters is unset
+save_address is unset
+save_empty is set
+save_history=0
+save_name is unset
+score is set
+score_threshold_delete=-1
+score_threshold_flag=9999
+score_threshold_read=-1
+search_context=0
+send_charset="us-ascii:iso-8859-1:utf-8"
+sendmail="/usr/sbin/sendmail -oem -oi"
+sendmail_wait=0
+shell="/bin/bash"
+sig_dashes is set
+sig_on_top is unset
+signature="~/.signature"
+simple_search="~f %s | ~s %s"
+sleep_time=1
+smart_wrap is set
+smileys="(>From )|(:[-^]?[][)(><}{|/DP])"
+smime_ask_cert_label is set
+smime_ca_location=""
+smime_certificates=""
+smime_decrypt_command=""
+smime_decrypt_use_default_key is set
+smime_default_key=""
+smime_encrypt_command=""
+smime_encrypt_with="aes256"
+smime_get_cert_command=""
+smime_get_cert_email_command=""
+smime_get_signer_cert_command=""
+smime_import_cert_command=""
+smime_is_default is unset
+smime_keys=""
+smime_pk7out_command=""
+smime_sign_command=""
+smime_sign_opaque_command=""
+smime_timeout=300
+smime_verify_command=""
+smime_verify_opaque_command=""
+smtp_authenticators=""
+smtp_pass=""
+smtp_url=""
+sort=date
+sort_alias=alias
+sort_aux=date
+sort_browser=alpha
+sort_re is set
+spam_separator=","
+spoolfile="~/mail/inbox"
+ssl_ca_certificates_file="/etc/ssl/certs/ca-bundle.crt"
+ssl_client_cert=""
+ssl_force_tls is unset
+ssl_min_dh_prime_bits=0
+ssl_starttls=yes
+ssl_use_sslv3 is unset
+ssl_use_tlsv1 is set
+ssl_use_tlsv1_1 is set
+ssl_use_tlsv1_2 is set
+ssl_verify_dates is set
+ssl_verify_host is set
+ssl_ciphers="@SYSTEM"
+status_chars="-*%A"
+status_format="-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
+status_on_top is unset
+strict_threads is unset
+suspend is set
+text_flowed is unset
+thorough_search is set
+thread_received is unset
+tilde is unset
+time_inc=0
+timeout=600
+tmpdir="/tmp"
+to_chars=" +TCFL"
+ts_icon_format="M%?n?AIL&ail?"
+ts_enabled is unset
+ts_status_format="Mutt with %?m?%m messages&no messages?%?n? [%n NEW]?"
+tunnel=""
+uncollapse_jump is unset
+use_8bitmime is unset
+use_domain is set
+use_envelope_from is unset
+use_from is set
+use_idn is set
+use_ipv6 is set
+user_agent is set
+visual="/usr/bin/vim"
+wait_key is set
+weed is set
+wrap=0
+wrap_headers=78
+wrap_search is set
+wrapmargin=0
+write_bcc is set
+write_inc=10
