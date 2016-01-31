@@ -522,6 +522,8 @@ release criteria
 	basic docs
 	tidy code (whitespace, etc)
 	example config
+	screenshots of new features
+		text/html screenshots if possible
 
 fix copyright dates in all patches
 
