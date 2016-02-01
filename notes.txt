@@ -638,6 +638,9 @@ sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%?S?%S?"
 	┌───────┴─────────────────┬───────┘
 	│ FALSE - empty           │
 	├─────────────────────────┤
+	│ SOFT FILL STRING        │
+	│ value: " "              │
+	├─────────────────────────┤
 	│ CONDITIONAL             │
 	│ test:     > 0           │
 	│ variable: new_msg       │
@@ -653,7 +656,7 @@ sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%?S?%S?"
 		│ FIXED STRING            │
 		│ value: "/"              │
 	┌───────┴─────────────────┬───────┘
-	│ FALSE ─ empty           │
+	│ FALSE - empty           │
 	├─────────────────────────┤
 	│ CONDITIONAL             │
 	│ test:     > 0           │

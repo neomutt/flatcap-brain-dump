@@ -1,0 +1,62 @@
+{
+	"items": [
+		{
+			"type": "variable",
+			"name": "mailbox",
+			"min_width": -1,
+			"max_width": -1,
+			"align": "left"
+		}, {
+			"type": "conditional",
+			"test": "greater",
+			"value": 0,
+			"variable": "flagged",
+			"true": [ {
+					"type": "fixed-string",
+					"value": " ["
+				}, {
+					"type": "variable",
+					"name": "flagged",
+					"min_width": -1,
+					"max_width": -1,
+					"align": "left"
+				}, {
+					"type": "fixed-string",
+					"value": "]"
+				} ],
+			"false": [ ]
+		}, {
+			"type": "soft-fill-string",
+			"value": " "
+		}, {
+			"type": "conditional",
+			"test": "greater",
+			"value": 0,
+			"variable": "new_msg",
+			"true": [ {
+					"type": "variable",
+					"name": "new_msg",
+					"min_width": -1,
+					"max_width": -1,
+					"align": "left"
+				}, {
+					"type": "fixed-string",
+					"value": "/"
+				} ],
+			"false": [ ]
+		}, {
+			"type": "conditional",
+			"test": "greater",
+			"value": 0,
+			"variable": "total",
+			"true": [ {
+					"type": "variable",
+					"name": "new_msg",
+					"min_width": -1,
+					"max_width": -1,
+					"align": "left"
+				} ],
+			"false": [ ]
+		}
+	]
+}
