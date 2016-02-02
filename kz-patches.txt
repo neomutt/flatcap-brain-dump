@@ -1,11 +1,14 @@
 karel zak - patches
 
-sidebar
-notmuch
-indexcolor
-nested if + conditional dates
-quasi-delete
-gentoo progress bar
-status bar color
-TLS SNI
+kz/pre
+	quasi-delete
+	progress
+	status-color
+	indexcolor
+	nested-if
+	cond-date
+	tls-sni
 
+kz/remainder
+	sidebar
+	notmuch
