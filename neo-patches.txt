@@ -27,3 +27,4 @@ PATCHES:
 	sidebar-neo-YYYYMMDD
 	notmuch-neo-YYYYMMDD
 
+neo add a point release to make ours newer

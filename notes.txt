@@ -263,12 +263,6 @@ tree chars for sidebar hierarchy?
 sidebar: how many colours?
 CLEARWIN takes a *y* param, not x, likewise sidebar variant
 
-give credit where it's due -- hg author vs committer?
-on release
-	n commits by m users (p new users)
-	list of new
-	list of returnees
-
 need sensible colour scheme, by default, otherwise highlight won't be visible!
 parse_mailboxes -> notify sidebar => know if anything's invalidated TBCH
 can I use realpath(), mutt_expand_path() for anything?
@@ -514,17 +508,6 @@ unify
 	#if/#ifdef
 	HAVE_X/USE_X
 
-release criteria
-	credits
-	changelog
-	clean build
-	configure --option (off)
-	basic docs
-	tidy code (whitespace, etc)
-	example config
-	screenshots of new features
-		text/html screenshots if possible
-
 fix copyright dates in all patches
 
 which config items require frequent and costly interpretation?
@@ -575,7 +558,6 @@ break up and rewrite mutt docs
 	translate sections (default to english if missing)
 
 code: switch default must be at end
-neo add a point release to make ours newer
 mutt folder/dir browser
 	".."/open should start with current folder/dir selected
 	display full path at top of screen/statusbar/titlebar

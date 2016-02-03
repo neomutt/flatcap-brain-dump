@@ -1,0 +1,18 @@
+
+give credit where it's due -- hg author vs committer?
+on release
+	n commits by m users (p new users)
+	list of new
+	list of returnees
+
+release criteria
+	credits
+	changelog
+	clean build
+	configure --option (off)
+	basic docs
+	tidy code (whitespace, etc)
+	example config
+	screenshots of new features
+		text/html screenshots if possible
+
