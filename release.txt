@@ -16,3 +16,5 @@ release criteria
 	screenshots of new features
 		text/html screenshots if possible
 
+committer date = author date
+
