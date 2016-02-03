@@ -18,3 +18,5 @@ release criteria
 
 committer date = author date
 
+reference neomutt repo in README
+
