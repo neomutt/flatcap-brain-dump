@@ -569,109 +569,10 @@ command: show object colour
 auto-completion on:
 	color obje<tab>
 
-rich format:
-	json?
-	xml?
-
-rich format:
-	index_json_format
-	index_format_json
-	index_xml_format
-	index_format_xml
-
-rich format *DEPENDS* on format tree
-	too costly otherwise
-
 break up and rewrite mutt docs
 	break into smaller sections
 	separate mutt-doc repo
 	translate sections (default to english if missing)
-
-parse format config into a tree?
-	simple: "x y z"
-		root
-			X
-			space
-			Y
-			space
-			Z
-	medium: "x fill y"
-		root
-			X
-			fill space
-			Y
-	complex: "x if(y) y else z a"
-		root
-			X
-			space
-			cond(y)
-				true: y
-				false: z
-			space
-			a
-
-sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%?S?%S?"
-	┌─────────────────────────┐
-	│ VARIABLE                │
-	│ name:      mailbox name │
-	│ min_width: -1           │
-	│ max_width: -1           │
-	│ align:     left         │
-	├─────────────────────────┤
-	│ CONDITIONAL             │
-	│ test:     > 0           │
-	│ variable: flagged       │
-	├─────────────────────────┤
-	│ TRUE                    │
-	└───────┬─────────────────┴───────┐
-		│ FIXED STRING            │
-		│ value: " ["             │
-		├─────────────────────────┤
-		│ VARIABLE                │
-		│ name:      flagged      │
-		│ min_width: -1           │
-		│ max_width: -1           │
-		│ align:     left         │
-		├─────────────────────────┤
-		│ FIXED STRING            │
-		│ value: "]"              │
-	┌───────┴─────────────────┬───────┘
-	│ FALSE - empty           │
-	├─────────────────────────┤
-	│ SOFT FILL STRING        │
-	│ value: " "              │
-	├─────────────────────────┤
-	│ CONDITIONAL             │
-	│ test:     > 0           │
-	│ variable: new_msg       │
-	├─────────────────────────┤
-	│ TRUE                    │
-	└───────┬─────────────────┴───────┐
-		│ VARIABLE                │
-		│ name:      new_msg      │
-		│ min_width: -1           │
-		│ max_width: -1           │
-		│ align:     left         │
-		├─────────────────────────┤
-		│ FIXED STRING            │
-		│ value: "/"              │
-	┌───────┴─────────────────┬───────┘
-	│ FALSE - empty           │
-	├─────────────────────────┤
-	│ CONDITIONAL             │
-	│ test:     > 0           │
-	│ variable: total         │
-	├─────────────────────────┤
-	│ TRUE                    │
-	└───────┬─────────────────┴───────┐
-		│ VARIABLE                │
-		│ name:      total        │
-		│ min_width: -1           │
-		│ max_width: -1           │
-		│ align:     left         │
-	┌───────┴─────────────────┬───────┘
-	│ FALSE - empty           │
-	└─────────────────────────┘
 
 code: switch default must be at end
 neo add a point release to make ours newer
