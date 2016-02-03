@@ -85,3 +85,15 @@ neomutt patch (last in series), changing:
 	README
 	etc
 
+semantic versioning of neomutt x.y.z
+	x = new version of mutt base
+	y = new feature patch, or
+	    patches reordered
+	z = bugfix existing patches
+start versioning with x=24?
+	24.0.0 = mutt 1.5.24
+what about default branch?
+	dated?
+	no versions
+	just latest patches against dated default branch
+
