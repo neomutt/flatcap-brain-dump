@@ -28,3 +28,60 @@ PATCHES:
 	notmuch-neo-YYYYMMDD
 
 neo add a point release to make ours newer
+
+README.neomutt?
+	neomutt.patch (0 in series)
+		combine first into all sets
+	project details
+
+This patch is part of NeoMutt: Bringing together all the Mutt code
+	https://github.com/neomutt
+
+The latest version of this patch can be found at:
+	https://github.com/neomutt/flatcap/releases/latest
+
+released as a set of patches
+
+--------------------------------------------------------------------------------
+
+devel -> neomutt
+	with orphan "patches" branch
+README.md
+LICENSE.md
+13 basic patches
+	compress
+	cond-date
+	fmemopen
+	ifdef
+	index-color
+	initials
+	keywords
+	nested-if
+	progress
+	quasi-delete
+	status-color
+	tls-sni
+	trash
+3 big patches
+	sidebar
+	nntp
+	notmuch
+obsolete file for each patch
+readme file for each patch
+	same as in main feature branch?
+	customised to patch branch?
+patch X
+	X.patch
+	X.README.md
+	X.obsolete.md
+series for for all patches
+patches rebased to fit together in this order
+branch containing patched code
+matched release for full code
+DEPENDENCIES.md
+	graph for ordering patches
+neomutt patch (last in series), changing:
+	version number
+	README
+	etc
+
