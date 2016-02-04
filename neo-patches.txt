@@ -42,6 +42,8 @@ The latest version of this patch can be found at:
 
 released as a set of patches
 
+check all patches for the introduction of bad whitespace
+
 --------------------------------------------------------------------------------
 
 devel -> neomutt
