@@ -566,3 +566,7 @@ dependency graph of all patches
 BOOL -> enum?  what about the bitfields?
 trim kz commit messages
 
+git commit filter for PATCHES
+	always succeed
+	always tack new line on the end
+
