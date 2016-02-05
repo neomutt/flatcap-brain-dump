@@ -4,7 +4,7 @@ kz/pre
 	quasi-delete
 	progress
 	status-color
-	indexcolor
+	index-color
 	nested-if
 	cond-date
 	tls-sni
