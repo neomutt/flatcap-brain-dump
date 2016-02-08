@@ -565,3 +565,11 @@ dependency graph of all patches
 BOOL -> enum?  what about the bitfields?
 trim kz commit messages
 
+git
+	document git attributes for PATCHES
+	create git diff regex for manual.xml to identify the section where the changes occurred
+		grep "<sect[0-9] " manual.xml.head 
+		need to look for <sect> <chapter> <table> <example>
+	check the default 'c' git diff regex against sidebar.c
+		check C function
+		check C struct/enum
