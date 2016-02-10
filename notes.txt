@@ -573,3 +573,6 @@ git
 	check the default 'c' git diff regex against sidebar.c
 		check C function
 		check C struct/enum
+
+Sentence case for OPS*
+
