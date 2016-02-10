@@ -576,3 +576,14 @@ git
 
 Sentence case for OPS*
 
+Do I want a deve branch of 'fixes' before bug-fixes branch?
+	.gitignore, what else?
+kzak branch - stuff I don't want in neo patch
+	versions stuff, .gitignore, build stuff
+compare conditional builds
+	#ifdef
+	+/- FEATURE
+	configure.ac
+	Makefile.am
+	compress.c always compiled in?
+
