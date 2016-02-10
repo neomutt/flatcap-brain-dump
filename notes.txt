@@ -587,3 +587,12 @@ compare conditional builds
 	Makefile.am
 	compress.c always compiled in?
 
+regex/regexp pick one in code/docs
+
+manual.xml
+	regexp 65
+	regex 7
+*.[ch]
+	regex 25
+	regexp 48
+
