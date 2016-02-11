@@ -606,9 +606,12 @@ Generated muttrc is an encyclopaedia
 Supplied  muttrc is a guide for dummies
 
 Set out notification emails as a nested set:
-	Announcement
-		Feature X
-		Feature Y
-		Feature Z
+	Announcement = neomutt description, list of features, links
+		Feature X - feature desc, credits, list of files changed, links
+		Feature Y - ditto
+		Feature Z - ditto
 	allowing people to criticise each component individually
+
+docs/muttrc/readme/init.h
+	need to document default values for variables
 
