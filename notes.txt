@@ -596,3 +596,9 @@ manual.xml
 	regex 25
 	regexp 48
 
+index panel browser - implement vim-like:
+	highlight-search
+	incremental search
+	visual feedback of search as you type
+	automatic filtering as you type
+
