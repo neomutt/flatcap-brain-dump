@@ -615,3 +615,5 @@ Set out notification emails as a nested set:
 docs/muttrc/readme/init.h
 	need to document default values for variables
 
+sidebar_whitelist ought to have a sidebar_unwhitelist
+
