@@ -60,7 +60,7 @@ Most very old
 
 These patches show up in a lot of repositories
 
-Minor patches:
+Minor patches - "PATCHES"
 	cond-date/
 	fmemopen/
 	ifdef/
@@ -73,7 +73,7 @@ Minor patches:
 	tls-sni/
 	trash/
 
-Major Features:
+Major Features - "mutt -v"
 	compress/
 	keywords/
 	nntp/
