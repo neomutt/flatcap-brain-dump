@@ -605,3 +605,10 @@ index panel browser - implement vim-like:
 Generated muttrc is an encyclopaedia
 Supplied  muttrc is a guide for dummies
 
+Set out notification emails as a nested set:
+	Announcement
+		Feature X
+		Feature Y
+		Feature Z
+	allowing people to criticise each component individually
+
