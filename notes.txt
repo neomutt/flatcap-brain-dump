@@ -602,3 +602,6 @@ index panel browser - implement vim-like:
 	visual feedback of search as you type
 	automatic filtering as you type
 
+Generated muttrc is an encyclopaedia
+Supplied  muttrc is a guide for dummies
+
