@@ -617,3 +617,7 @@ docs/muttrc/readme/init.h
 
 sidebar_whitelist ought to have a sidebar_unwhitelist
 
+trash folder patch -- ideas
+	ability to create dirs by date/subject/sender/etc
+	add tag "X-Original-Folder" to allow undelete
+
