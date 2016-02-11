@@ -61,13 +61,11 @@ Most very old
 These patches show up in a lot of repositories
 
 Minor patches:
-	compress/
 	cond-date/
 	fmemopen/
 	ifdef/
 	index-color/
 	initials/
-	keywords/
 	nested-if/
 	progress/
 	quasi-delete/
@@ -76,6 +74,8 @@ Minor patches:
 	trash/
 
 Major Features:
+	compress/
+	keywords/
 	nntp/
 	notmuch/
 	sidebar/
