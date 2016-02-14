@@ -629,3 +629,12 @@ index_color should apply to status_bar when viewing mail
 status_color should apply to mid-status_bar when (pager_index_lines > 0)
 shouldn't be affected by 'status_on_top' either
 
+cond-date
+	all,dates,are,broken@ 1y -> this year (not 12 months)
+		1w -> this week (not 7 days)
+		if the dates were sensible (7d = 7 days back from now)
+		they'd tie in with ~d, e.g.
+			color index color237 default "~d>30d"         # Over a month old
+		reuse the ~d code
+			pattern.c:eat_date()
+
