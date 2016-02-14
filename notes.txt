@@ -638,3 +638,5 @@ cond-date
 		reuse the ~d code
 			pattern.c:eat_date()
 
+replace " with ' in muttrc
+
