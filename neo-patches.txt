@@ -50,21 +50,21 @@ devel -> neomutt
 	with orphan "patches" branch
 README.md
 LICENSE.md
-13 basic patches
-	compress
+11 basic patches
 	cond-date
 	fmemopen
 	ifdef
 	index-color
 	initials
-	keywords
 	nested-if
 	progress
 	quasi-delete
 	status-color
 	tls-sni
 	trash
-3 big patches
+5 big patches
+	compress
+	keywords
 	sidebar
 	nntp
 	notmuch
@@ -98,4 +98,66 @@ what about default branch?
 	dated?
 	no versions
 	just latest patches against dated default branch
+
+--------------------------------------------------------------------------------
+
+modify patchlist.sh to turn "-neo" -> "-neo-YYYYMMDD"
+	or -neo-UNKNOWN
+	or -neo-git
+	or -neo-devel
+	or -neo-default
+	or -neo-stable
+
+patches -> neo-UNKNOWN
+neomutt mods matchlist.sh -> neo-YYYYMMDD
+
+mutt   -> patches -> neo
+1.5.24    patch-X    .1-neo
+
+On default branch -- set of flat patches
+	rebase often
+	patch name = name-neo-devel
+		still needs to be version numbered/dated
+
+--> mutt-1.5.24 --> patch1 --> V --> V -->
+	V       --> patch2 --> | --> | -->
+	|       --> patch3 --> | --> | -->
+	|       --> neo    --> | --> | -->
+	|                      |     |
+	|                      +--> 20160207 (octopus merge)
+	|                            |
+	|                            +--> 20160210 (octopus merge)
+	|
+	+--> (20160201 + P1 + P2 + P3 + Neo)
+		=> Every release is dupe of all patch histories
+
+--> mutt-1.5.25 --> patch1'	Every mutt release flatten patches & rebase
+		--> patch2'
+		--> patch3'
+		--> neo'
+
+Patches
+	orig + newer + tidy + docs + version (name-neo-version)
+
+neo patch has script to generate patches?
+	just use format-patch (ordered, stackable series)
+octopus merge can't separate out patch series
+release => tag, (patch set, series file), (patched mutt src), (docs, single html)
+
+docs/readme link to *specfic* release on github
+release on github links to *latest* release
+	=> editing many files
+	NO point all refs to latest otherwise => commits on unchanged repos
+	or fuck with the merge commits!
+	sed 's/UNKNOWN/YYYYMMDD/'
+
+neomutt/ branch with YYYYMMDD subbranches
+kz/      branch with YYYYMMDD subbranches
+	
+where do dependent patches live?
+
+--> mutt-1.5.24 --> patch1 -------> p1' -> p1''
+		      |              |      |          
+		      |              V      V          
+		      +--> patch2 ->p2' -->p2''         
 
