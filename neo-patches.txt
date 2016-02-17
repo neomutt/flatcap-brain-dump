@@ -150,6 +150,7 @@ release on github links to *latest* release
 	NO point all refs to latest otherwise => commits on unchanged repos
 	or fuck with the merge commits!
 	sed 's/UNKNOWN/YYYYMMDD/'
+	up-to-date obsoletes.txt
 
 neomutt/ branch with YYYYMMDD subbranches
 kz/      branch with YYYYMMDD subbranches
