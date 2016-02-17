@@ -139,6 +139,7 @@ cleanup:
 		globals.h
 		functions.h
 		switches
+	doc switch drop-throughs
 
 when a two-cell character is truncated by 1 it needs to be space padded to maintain alignment
 
