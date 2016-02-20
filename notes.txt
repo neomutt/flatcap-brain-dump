@@ -657,3 +657,16 @@ git hook variables
 	GIT_PREFIX
 	GITHEAD_XXX
 
+use PATCHES to show bugfixes?
+	bugfixes:
+		bug1
+		bug2
+		...
+	patch-xxx
+	patch-yyy
+or
+	bugfix1
+	bugfix2
+	patch-xxx
+	patch-yyy
+
