@@ -641,3 +641,19 @@ cond-date
 
 replace " with ' in muttrc
 
+check tidiness of newly added sidebar code
+
+save merge commit messages (for features)
+auto-generate merge commit messages
+	modified git log msg
+	script for authors
+	commented out - but accessible?
+
+git hook variables
+	prepare-commit-msg
+	GIT_DIR
+	GIT_WORK_TREE
+	GIT_INDEX_FILE
+	GIT_PREFIX
+	GITHEAD_XXX
+
