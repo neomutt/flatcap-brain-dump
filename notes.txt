@@ -670,3 +670,6 @@ or
 	patch-xxx
 	patch-yyy
 
+sync inputrc and vim-piper
+	nl options have changed
+
