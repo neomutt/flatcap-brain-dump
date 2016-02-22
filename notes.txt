@@ -675,3 +675,18 @@ sync inputrc and vim-piper
 
 check if any of the bug-fixes are already in default
 
+minors - comments for any full functions
+	ifdef, index-color, progree, status-color, trash
+
+notmuch - fix dependencies
+check minors for () -> (void)
+sidebar docs
+	note changes to historic version
+	colours
+	config
+	behaviour
+	separation of highlight vs open
+should static functions be called mutt_*?
+check minor new functions are static
+bugs - sidebar unsorted isn't -- add to docs
+
