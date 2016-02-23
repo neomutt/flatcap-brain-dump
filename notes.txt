@@ -690,3 +690,6 @@ should static functions be called mutt_*?
 check minor new functions are static
 bugs - sidebar unsorted isn't -- add to docs
 
+tidy - check files for leading/trailing whitespace at ends of file
+	check for redundant empty lines
+
