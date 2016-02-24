@@ -703,3 +703,7 @@ community script check for update
 resolve - sort desc, draw status line, open folder
 git jump function -- figure out if diff or merge is needed
 
+sort sidebar sort methods
+	init.c init.h sidebar.c sort.h
+check commits of "signed off" authors
+
