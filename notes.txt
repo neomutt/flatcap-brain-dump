@@ -694,16 +694,10 @@ tidy - check files for leading/trailing whitespace at ends of file
 	check for redundant empty lines
 
 cond-date add docs to index_format in init.h
-notmuch SORT_DESC sort by buffy->desc (description)
-	missing from sort.h, init.h, sidebar.c cb_sort()
 bugs - sidebar - note refresh not really working
 community script check for update
 	date community docs?
 	or just rely on commit date?
 resolve - sort desc, draw status line, open folder
 git jump function -- figure out if diff or merge is needed
-
-sort sidebar sort methods
-	init.c init.h sidebar.c sort.h
-check commits of "signed off" authors
 
