@@ -717,3 +717,5 @@ do format conditional work on binary concepts?
 
 nested-if docs s/bytes/Bytes/ in index_format
 
+docs: sidebar_format expandos aren't defined anywhere
+
