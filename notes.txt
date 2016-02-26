@@ -712,3 +712,8 @@ browser
 		doc as (N)umber of messages, or
 		%c message (C)ount
 
+do format conditional work on binary concepts?
+	meaningful?
+
+nested-if docs s/bytes/Bytes/ in index_format
+
