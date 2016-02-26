@@ -79,11 +79,6 @@ https://github.com/N8Fear/mutt-kz
 	some initialisations improvements
 	some bug fixes
 
-widestring folder names
-	highlight broken (wrong width)
-	are truncated because 3 bytes is only 2 spaces
-	wcwidth() / wcswidth()
-<stdbool.h> in sidebar.c
 sidebar_delim
 	change name to sidebar_dividers
 	first (wide) character is vertical divider
@@ -670,9 +665,6 @@ or
 	patch-xxx
 	patch-yyy
 
-sync inputrc and vim-piper
-	nl options have changed
-
 check if any of the bug-fixes are already in default
 
 minors - comments for any full functions
@@ -700,4 +692,23 @@ community script check for update
 	or just rely on commit date?
 resolve - sort desc, draw status line, open folder
 git jump function -- figure out if diff or merge is needed
+
+docs
+	add tests.txt
+	todo list of ideas
+
+use sort_aux for nested sidebar names?
+	no, sub-folders are same type?
+		no
+	YES: allows to sort by name, then subsort by new-count
+	separate variable otherwise it interferes with index, etc
+
+kz issues -- which apply to me?
+docs refer to alias menu but don't mention how to invoke it
+browser
+	can sort my num new msg, but can't display count itself
+	sort needs docs -> promote to feature?
+	%n isn't representative of "all message count"
+		doc as (N)umber of messages, or
+		%c message (C)ount
 
