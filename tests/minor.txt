@@ -1,0 +1,107 @@
+bug-fixes - various downstream bug fixes
+	add strndup.c strnlen.c
+		build -n
+
+		make clean
+		define HAVE_STRNLEN HAVE_STRNDUP
+		make
+
+		make clean
+		define HAVE_STRNLEN HAVE_STRNDUP -u
+		make
+
+	fix spelling typo
+	More careful file writing for aliases and attachments
+		test failing alias-write-file
+		ln -s /dev/null aliases
+	Bye srandom() and random()
+	Remove TLS version notification
+	Use unlocked libc IO everywhere.
+		test with/without
+			ifdef HAVE_FGETS_UNLOCKED
+			ifdef HAVE_FGETC_UNLOCKED
+	Add browser sort by description, message count and new message count
+		browser sort by ('o')
+			d(e)sc
+			(c)ount
+			count ne(w)
+		check %n (all msgs count) works in browser (folder_format)
+	fix %* index_format
+		???
+		invalid utf-8?
+	build fix for po package name
+	mute build warning
+
+quasi-delete - mark emails to be hidden
+	bind index Q quasi-delete
+	QjQjQj$
+	messages vanish
+	quit and restart and they're back
+
+progress - show a visual progress bar
+	colour and load from big dir
+		50000 files (symlinked from big/)
+	color progress white red
+	bar shown on read and close
+
+status-color - theming the status bar
+	no colour (reverse)
+	base colours
+		color status white color17
+	simple regex
+		color status red white '\([^)]+\)'
+	complex regex with subclause
+		color status brightred default '\([^)]+/([^)]+)\)' 1
+
+index-color - theme the email index
+	no colour (reverse)
+	base colours
+		color index white black '.*'
+		color index default red '~F'
+	colour simple objects
+		color index_date red default
+	colour regex object
+		color index_subject yellow default 'et'
+
+nested-if - allow deeply nested conditions
+	test in index, status bar, browser, sidebar
+	test 1-clause, 2-clause, 3-clause, 4-clause
+
+	index-1 - messages in fold
+		%<M? [%M]>%>
+	index-2 - message lines or characters
+		%<l?%4l&%4c>
+	index-3 - messages (if folded), lines if known, or characters
+		%<M?%M Msgs &%<l?%l Lines&%c Bytes>>
+	index-4
+		%<X?A%<l?%4l&%4c>&%<l?%4l Lines&%4c Bytes>>
+
+	status-1 - old messages
+		%<o?[OLD %o]>
+	status-2 - new/old messages
+		[%<n?%u New&%o Old>]
+	status-3 - new/old/msgs
+		[%<u?%<n?%u New&%o Old>&%m Msgs>]
+	status-4
+		[%<u?%<n?%u New&%o Old>&%<p?%p Post&%m Msgs>>]
+
+	browser-2 - new messages
+		%<N?%3N&   >
+	
+	sidebar-1 - flagged messages
+		%<F? [%F]>
+	sidebar-3 - flagged/new/total
+		%<F?%F!&%<N?%N/>%S>
+
+cond-date - use rules to choose date format
+	date-2 - old format
+	%?[d?%[%H:%M]&%[%m/%y]?
+
+	date-2 - new format
+	%<[d?%[%H:%M]&%[%m/%y]>
+
+	date-4 - m/%y  b %d  a %d  H:%M
+	%<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%y ]>
+
+tls-sni - negotiate for a certificate
+	???
