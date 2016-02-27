@@ -708,6 +708,7 @@ docs refer to alias menu but don't mention how to invoke it
 browser
 	can sort my num new msg, but can't display count itself
 	sort needs docs -> promote to feature?
+		check kz for docs/examples
 	%n isn't representative of "all message count"
 		doc as (N)umber of messages, or
 		%c message (C)ount
