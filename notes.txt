@@ -723,3 +723,12 @@ docs: sidebar_format expandos aren't defined anywhere
 clearly mark empty for loops
 	/* nothing */
 
+each feature needs to add NeoMutt xml & README
+kz/rebase2
+	0103 "added some documentation"
+	contains cond-date and nested-if stuff
+check all xml anchor names
+fold >80 chars md -> README
+	remove escaping
+	indent?
+
