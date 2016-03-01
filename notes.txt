@@ -745,3 +745,7 @@ compress
 compose sidebar changelog
 	abridged
 
+compress -- hooks should be considered first, then default mutt behaviour
+	need test-hook i.e. "is this an xz-compressed" file?
+	mailbox type should be per-hook-set
+
