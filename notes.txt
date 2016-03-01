@@ -732,3 +732,16 @@ fold >80 chars md -> README
 	remove escaping
 	indent?
 
+compress
+	limitations -- filenames
+	document %f %t need to be quoted
+		limit filenames
+		can't contain quotes
+			'' can't contain '
+			"" can't contain "
+		need code to escape filenames
+			would need to be done in an OS-dependent way
+
+compose sidebar changelog
+	abridged
+
