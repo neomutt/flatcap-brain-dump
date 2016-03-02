@@ -753,3 +753,14 @@ change docs to use <example>
 
 cond-date needs some concrete examples
 
+muttrc.vim ∀
+
+ifdef patch => ifndef command
+	need a "return" command
+	"finish" command -- better name
+
+source command -- allow wildcards
+	fits in nicely with ifndef
+
+manual "variables" need description field
+
