@@ -529,7 +529,7 @@ index format -- full directory mode
 refer to and compare config names by hash only?
 	save lots of string compares
 
-cache sdiebar formatted strings on BUFFY object?
+cache sidebar formatted strings on BUFFY object?
 
 what are the objects in the Index?
 	cache the index formatted strings on them
@@ -572,7 +572,7 @@ git
 
 Sentence case for OPS*
 
-Do I want a deve branch of 'fixes' before bug-fixes branch?
+Do I want a dev branch of 'fixes' before bug-fixes branch?
 	.gitignore, what else?
 kzak branch - stuff I don't want in neo patch
 	versions stuff, .gitignore, build stuff
@@ -589,8 +589,8 @@ manual.xml
 	regexp 65
 	regex 7
 *.[ch]
-	regex 25
 	regexp 48
+	regex 25
 
 index panel browser - implement vim-like:
 	highlight-search
@@ -616,6 +616,8 @@ sidebar_whitelist ought to have a sidebar_unwhitelist
 trash folder patch -- ideas
 	ability to create dirs by date/subject/sender/etc
 	add tag "X-Original-Folder" to allow undelete
+		need undelete command
+		remove tag on undeletion
 
 mutt bug - mail isn't from me when it's from
 	jimrich@flatcap.org
