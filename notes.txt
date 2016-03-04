@@ -764,3 +764,36 @@ source command -- allow wildcards
 
 manual "variables" need description field
 
+neopatches
+	individual minors
+	sidebar only
+	notmuch + deps
+	everything
+
+'c' fails if dir has trailing /
+	e.g. when you use <tab> to complete!
+'c' to open fails, test cmdline open too
+	check sidebar displays correct highlight/open
+
+changes to css must set both fg, bg
+	cf <note>
+	reduce colour of <command>s too
+
+version.c
+	{ string, bool },
+	{ "SIDEBAR", USE_SIDEBAR },
+	alpha sort
+	can be queried
+		ifdef/ifndef command
+	optional 3rd arg: configure, e.g.
+		--enable-sidebar
+	print_version() pick a better name?
+		for list-of-options
+		print +/-USE_{X}
+		wrap @ 80 chars
+	options to
+		print +/- USE_X mixed
+		print +/- USE_X separate
+		print only +USE_X
+		print only -USE_X
+
