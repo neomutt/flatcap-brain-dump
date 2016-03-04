@@ -7,14 +7,6 @@ ellipsis
 
 make AUTHORS -- which repo did this?
 
-Main sidebar repos
-	Ismail
-	Debian
-	Gentoo 24r1
-	Suse 24 2014/14/12 + sidebar colour
-	Kzak
-	Terry
-
 Ultrix dead '95
 	ask debian devs for list of working arches
 
@@ -129,8 +121,6 @@ cleanup:
 		switches
 	doc switch drop-throughs
 
-check all string config vars are NONULL'd
-
 sorting
 	if displaying full paths:
 		sort by display name
@@ -155,8 +145,6 @@ check all headers #include requisites for compilation
 
 FOREVER, rather than while(1)
 
-check ALL pointers
-
 sb_set_curbuffy
 sb_set_buffystats
 	should probably both return BOOL on success/failure
@@ -176,10 +164,7 @@ command
 
 ────────────────────────────────────────────────────────────────────────────────
 missing patches
-	colour divider
-	sort
 	lightweight
-	fmemopen
 
 DBUS plugin -- to do what?
 	notify out
@@ -241,7 +226,6 @@ Start; Incoming; Inbox open; current = Incoming; sort → cur is offscreen, boun
 
 ────────────────────────────────────────────────────────────────────────────────
 
-calc_boundaries -> BOOL = repaint?
 tree chars for sidebar hierarchy?
 sidebar: how many colours?
 CLEARWIN takes a *y* param, not x, likewise sidebar variant
@@ -269,7 +253,6 @@ sidebar_wrap=search,motion (separate bools for simplicity?)
 
 sidebar_sort is an enum - on set error, it could show the valid values
 quadopt can give help too -- important since varname gives no clue about type
-BUG: set sidebar_width=0  -- now impossible to *re*show the sidebar
 break up init.h, globals.h, functions.h
 	init.h option DELEGATE, prefix "sidebar_", callback?
 init() on module calls add_options()
@@ -296,9 +279,7 @@ how would function delegation work?
 Register functions & callback
 make sure anything we need is exposed
 if we hide our globals, give then all accessor functions get/set_VAR()
-how do I generate main docs -- insert sidebar section
 init would need to register new sort methods
-fix odd buffy_{mbox,mh}_update function
 
 get rid of REDRAW_SIDEBAR, or use it effectively
 
@@ -328,9 +309,6 @@ demo setup - lots of files in:
 possible to eliminate sb_get_highlight?
 	only called on OP_SIDEBAR_OPEN
 	in curs_main.c
-
-sidebar_delim -> sidebar_divider_char
-sidebar_xy -> sidebar_x_y
 
 move mappings from index/pager -> generic
 	in functions.h
@@ -376,13 +354,6 @@ postpone patch doesn't quite work
 	2) After navigating to another folder, you still have to "quit" to
 	   get the display to refresh.
 
-sb colouring order
-	indicator
-	highlight
-	new
-	flagged
-	other?
-
 sb expandos
 	compare letters to status_format letters
 	deleted?
@@ -423,7 +394,6 @@ todo
 		how do i link it to existing objects?
 	kz unmailbox bugfix: needed?
 		mutt_buffy_check(0) at end of parse_virtual_mailboxes
-	gpl, copyright on demos
 
 add kz's version suffix to add "-neo"
 floating patches/branches
@@ -466,13 +436,6 @@ Alternate views in the sidebar
 	news?  subscribed   <--> all groups
 	rss?   unread feeds <--> all feeds
 
-split out FMEMOPEN from sidebar patches
-	handler.c
-	pattern.c
-
-mutt .shell copy
-	mnemosyne
-airline themes
 data source LDAP
 
 fix copyright dates in all patches
@@ -519,7 +482,6 @@ mutt folder/dir browser
 	display full path at top of screen/statusbar/titlebar
 dependency graph of all patches
 BOOL -> enum?  what about the bitfields?
-trim kz commit messages
 
 git
 	document git attributes for PATCHES
@@ -549,11 +511,6 @@ regex/regexp pick one in code/docs
 	*.[ch]
 		regexp 48
 		regex 25
-index panel browser - implement vim-like:
-	highlight-search
-	incremental search
-	visual feedback of search as you type
-	automatic filtering as you type
 
 Generated muttrc is an encyclopaedia
 Supplied  muttrc is a guide for dummies
@@ -668,8 +625,6 @@ browser
 do format conditional work on strings, etc?  meaningful?
 	empty => false
 
-nested-if docs s/bytes/Bytes/ in index_format
-
 docs: sidebar_format expandos aren't defined anywhere
 
 each feature needs to add NeoMutt xml & README
@@ -701,8 +656,6 @@ compress -- hooks should be considered first, then default mutt behaviour
 change docs to use <example>
 
 cond-date needs some concrete examples
-
-muttrc.vim ∀
 
 source command -- allow wildcards
 	fits in nicely with ifndef
