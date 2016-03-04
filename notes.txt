@@ -799,3 +799,9 @@ version.c
 		print only +USE_X
 		print only -USE_X
 
+separate draw() in sidebar for
+	emails
+	notmuch
+	nntp
+	addressbook?
+
