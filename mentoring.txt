@@ -4,6 +4,12 @@ wiki - mentoring page
 	mutt-newbies cf kernel-newbies
 	make public:
 		all mentoring emails
+	mark tasks as
+		someone's interested
+		someone's working on it
+			needs help
+		new task
+		recently finished
 
 add category to issues
 	closely tied to enhancements/bugfixes
@@ -57,6 +63,12 @@ code tidy
 	unify #if/#ifdef HAVE_X/USE_X
 	clearly mark empty for loops
 		/* nothing */
+	sort definitions
+		vars, functions
+	static functions first
+	check all string config vars are NONULL'd
+	while (1) rather than FOREVER
+	check ALL pointers
 
 testing
 	automatic testing
@@ -111,4 +123,10 @@ trash folder patch -- ideas
 	add tag "X-Original-Folder" to allow undelete
 		need undelete command
 		remove tag on undeletion
+
+index panel browser - implement vim-like:
+	highlight-search
+	incremental search
+	visual feedback of search as you type
+	automatic filtering as you type
 

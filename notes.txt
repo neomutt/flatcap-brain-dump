@@ -108,6 +108,7 @@ gentoo sidebar_format
 	set sidebar_format="%B %* %S%?N?(%N)?%?F?[%F]?"
 
 sidebar_width = auto (size to contents)
+	would need to parse and format all strings ahead of drawing divider
 
 test sidebar width if fixed string breaks bounds
 	set sidebar_width=10
@@ -533,6 +534,7 @@ Do I want a dev branch of 'fixes' before bug-fixes branch?
 	.gitignore, what else?
 kzak branch - stuff I don't want in neo patch
 	versions stuff, .gitignore, build stuff
+
 compare conditional builds
 	#ifdef
 	+/- FEATURE
@@ -541,14 +543,12 @@ compare conditional builds
 	compress.c always compiled in?
 
 regex/regexp pick one in code/docs
-
-manual.xml
-	regexp 65
-	regex 7
-*.[ch]
-	regexp 48
-	regex 25
-
+	manual.xml
+		regexp 65
+		regex 7
+	*.[ch]
+		regexp 48
+		regex 25
 index panel browser - implement vim-like:
 	highlight-search
 	incremental search
@@ -629,6 +629,7 @@ sidebar docs
 	config
 	behaviour
 	separation of highlight vs open
+
 should static functions be called mutt_*?
 check minor new functions are static
 bugs - sidebar unsorted isn't -- add to docs
@@ -705,6 +706,8 @@ muttrc.vim ∀
 
 source command -- allow wildcards
 	fits in nicely with ifndef
+	or 'source_dir' command to read all contents
+	or "source dir" to read all contents
 
 manual "variables" need description field
 
