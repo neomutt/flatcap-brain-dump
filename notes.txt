@@ -85,8 +85,6 @@ sidebar_delim
 		between sidebar and index/pager
 	second (wide) character is horizontal divider
 		between different mailboxes (within the sidebar)
-sidebar_color
-	background color for entire sidebar region?
 
 need attention
 	draw_sidebar
@@ -111,15 +109,9 @@ gentoo sidebar_format
 
 sidebar_width = auto (size to contents)
 
-fix? whitelist to use +dir notation?
-	relative to $folder
-	what about multiple folders?
-
 test sidebar width if fixed string breaks bounds
 	set sidebar_width=10
 	set sidebar_format="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-:quit / :q command for vi users
 
 cleanup:
 	docs - in code and html
@@ -135,8 +127,6 @@ cleanup:
 		functions.h
 		switches
 	doc switch drop-throughs
-
-when a two-cell character is truncated by 1 it needs to be space padded to maintain alignment
 
 check all string config vars are NONULL'd
 
@@ -250,10 +240,6 @@ Start; Incoming; Inbox open; current = Incoming; sort → cur is offscreen, boun
 
 ────────────────────────────────────────────────────────────────────────────────
 
-History
-	:set sidebar<UP>
-	should match only 'set sidebar.*'
-
 calc_boundaries -> BOOL = repaint?
 tree chars for sidebar hierarchy?
 sidebar: how many colours?
@@ -268,16 +254,9 @@ Unmailbox * ⇒  many notifications followed by ONE redraw
 can the real status bar display any sidebar fields?
 	why not?
 	how can they be integrated?
-ambiguity in struct CONTEXT
-	->changed is a BOOL
-	->deleted is a number
-confusing tests like
-	if (!x->deleted)
-	imply deleted is a BOOL
 
 most options are "short" limited to +/- 32767
 mutt-sidebar.vim (contrib dir?)
-":map <F11>" shows mapping? or bind, or macro
 set/unset/toggle?  invVARNAME
 option - don't sort inbox -- defined how?
 separate modules -- sidebar, index, pager, help? -- each with
@@ -438,15 +417,12 @@ sb extra colours for:
 todo
 	merge kz and new sidebar
 	integrate nntp into sidebar
-	get refresh working
 	find & merge trash-dir patches
 	what does notmuch return?
 		how do i link it to existing objects?
 	kz unmailbox bugfix: needed?
 		mutt_buffy_check(0) at end of parse_virtual_mailboxes
 	gpl, copyright on demos
-
-github + travis CI + coverity
 
 add kz's version suffix to add "-neo"
 floating patches/branches
@@ -489,9 +465,6 @@ Alternate views in the sidebar
 	news?  subscribed   <--> all groups
 	rss?   unread feeds <--> all feeds
 
-some macros use multiple statements separated by comma
-	change to do { X; Y; Z; } while(0)
-
 split out FMEMOPEN from sidebar patches
 	handler.c
 	pattern.c
@@ -500,9 +473,6 @@ mutt .shell copy
 	mnemosyne
 airline themes
 data source LDAP
-unify
-	#if/#ifdef
-	HAVE_X/USE_X
 
 fix copyright dates in all patches
 
@@ -537,17 +507,6 @@ what are the objects in the Index?
 introduce new format strings
 	index_rich_format
 
-command: list all colours
-	color<cr>
-
-command: show object colour
-	color object<cr>
-	color object?<cr>
-	color ?object<cr>
-
-auto-completion on:
-	color obje<tab>
-
 break up and rewrite mutt docs
 	break into smaller sections
 	separate mutt-doc repo
@@ -569,8 +528,6 @@ git
 	check the default 'c' git diff regex against sidebar.c
 		check C function
 		check C struct/enum
-
-Sentence case for OPS*
 
 Do I want a dev branch of 'fixes' before bug-fixes branch?
 	.gitignore, what else?
@@ -610,14 +567,6 @@ Set out notification emails as a nested set:
 
 docs/muttrc/readme/init.h
 	need to document default values for variables
-
-sidebar_whitelist ought to have a sidebar_unwhitelist
-
-trash folder patch -- ideas
-	ability to create dirs by date/subject/sender/etc
-	add tag "X-Original-Folder" to allow undelete
-		need undelete command
-		remove tag on undeletion
 
 mutt bug - mail isn't from me when it's from
 	jimrich@flatcap.org
@@ -722,9 +671,6 @@ nested-if docs s/bytes/Bytes/ in index_format
 
 docs: sidebar_format expandos aren't defined anywhere
 
-clearly mark empty for loops
-	/* nothing */
-
 each feature needs to add NeoMutt xml & README
 kz/rebase2
 	0103 "added some documentation"
@@ -757,10 +703,6 @@ cond-date needs some concrete examples
 
 muttrc.vim ∀
 
-ifdef patch => ifndef command
-	need a "return" command
-	"finish" command -- better name
-
 source command -- allow wildcards
 	fits in nicely with ifndef
 
@@ -780,24 +722,6 @@ neopatches
 changes to css must set both fg, bg
 	cf <note>
 	reduce colour of <command>s too
-
-version.c
-	{ string, bool },
-	{ "SIDEBAR", USE_SIDEBAR },
-	alpha sort
-	can be queried
-		ifdef/ifndef command
-	optional 3rd arg: configure, e.g.
-		--enable-sidebar
-	print_version() pick a better name?
-		for list-of-options
-		print +/-USE_{X}
-		wrap @ 80 chars
-	options to
-		print +/- USE_X mixed
-		print +/- USE_X separate
-		print only +USE_X
-		print only -USE_X
 
 separate draw() in sidebar for
 	emails

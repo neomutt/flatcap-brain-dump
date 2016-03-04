@@ -1,0 +1,114 @@
+wiki - mentoring page
+	Get Involved
+	spread the word
+	mutt-newbies cf kernel-newbies
+	make public:
+		all mentoring emails
+
+add category to issues
+	closely tied to enhancements/bugfixes
+
+ifdef patch => ifndef command
+	need a "return" command
+	"finish" command -- better name
+
+version.c
+	{ string, bool },
+	{ "SIDEBAR", USE_SIDEBAR },
+	alpha sort
+	can be queried
+		ifdef/ifndef command
+	optional 3rd arg: configure, e.g.
+		--enable-sidebar
+	print_version() pick a better name?
+		for list-of-options
+		print +/-USE_{X}
+		wrap @ 80 chars
+	options to
+		print +/- USE_X mixed
+		print +/- USE_X separate
+		print only +USE_X
+		print only -USE_X
+
+docs
+	update
+	howto -- make user friendly
+	translate
+		=> split up
+	OPS 
+		tidy into sentence case
+		allow whitespace for alignment
+
+code tidy
+	whitespace
+		indenting, etc
+	commenting
+	introduce BOOL
+	static function
+	variables - unify naming
+		struct CONTEXT
+			->changed is a BOOL
+			->deleted is a number
+	confusing tests like
+		if (!x->deleted)
+		imply deleted is a BOOL
+	some macros use multiple statements separated by comma
+		change to do { X; Y; Z; } while(0)
+	unify #if/#ifdef HAVE_X/USE_X
+	clearly mark empty for loops
+		/* nothing */
+
+testing
+	automatic testing
+		how?
+
+website
+	update mutt.org
+		site
+		wiki
+	blog
+
+port other patches
+
+github
+	CI
+	coverity
+
+sidebar
+	fix refresh
+	background colour - sidebar_color
+	for entire sidebar region?
+		instead of divider?
+		where would scrollbar go?
+	whitelist to use +dir notation?
+		relative to $folder
+		what about multiple folders?
+		add unwhitelist?
+
+:quit / :q command for vi users
+
+bugfix
+	truncated multicolumn chars in index_format
+	take COLS out of format_string
+	when a two-cell character is truncated by 1 it needs to be
+	space padded to maintain alignment
+
+History
+	:set sidebar<UP>
+	should match only 'set sidebar.*'
+	":map <F11>" shows mapping? or bind, or macro
+	command: list all colours
+		color<cr>
+	command: show object colour
+		color object<cr>
+		color object?<cr>
+		color ?object<cr>
+	auto-completion on:
+		color obje<tab>
+
+trash folder patch -- ideas
+	ability to create dirs by date/subject/sender/etc
+	add tag "X-Original-Folder" to allow undelete
+		need undelete command
+		remove tag on undeletion
+
