@@ -685,3 +685,7 @@ separate draw() in sidebar for
 	nntp
 	addressbook?
 
+sidebar indented folders
+	fill in gaps in hierarchy automatically
+	make them non-selectable (unless the user has "mailboxes" them)
+
