@@ -688,4 +688,6 @@ separate draw() in sidebar for
 sidebar indented folders
 	fill in gaps in hierarchy automatically
 	make them non-selectable (unless the user has "mailboxes" them)
+	alternatively, have some way to mark mailboxes as "fake"
+		probably a horrible idea
 
