@@ -164,7 +164,7 @@ where do dependent patches live?
 
 neopatches
 	individual minors
-	sidebar only
+	(bugsfixes? + ) sidebar only
 	notmuch + deps
 	everything
 
