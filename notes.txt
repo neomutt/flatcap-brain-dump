@@ -691,3 +691,7 @@ sidebar indented folders
 	alternatively, have some way to mark mailboxes as "fake"
 		probably a horrible idea
 
+neomutt motto?
+	integrate it first
+	decide whether to keep it later
+
