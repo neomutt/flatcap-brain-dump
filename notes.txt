@@ -664,12 +664,6 @@ source command -- allow wildcards
 
 manual "variables" need description field
 
-neopatches
-	individual minors
-	sidebar only
-	notmuch + deps
-	everything
-
 'c' fails if dir has trailing /
 	e.g. when you use <tab> to complete!
 'c' to open fails, test cmdline open too

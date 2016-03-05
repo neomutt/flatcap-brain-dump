@@ -162,3 +162,9 @@ where do dependent patches live?
 		      |              V      V          
 		      +--> patch2 ->p2' -->p2''         
 
+neopatches
+	individual minors
+	sidebar only
+	notmuch + deps
+	everything
+
