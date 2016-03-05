@@ -695,3 +695,6 @@ neomutt motto?
 	integrate it first
 	decide whether to keep it later
 
+BUG: sidebar gives OPEN highlight even if the opening failed
+	e.g. bad mailbox
+
