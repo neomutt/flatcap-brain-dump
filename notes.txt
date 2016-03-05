@@ -694,6 +694,7 @@ sidebar indented folders
 neomutt motto?
 	integrate it first
 	decide whether to keep it later
+	We accept! (patches)
 
 BUG: sidebar gives OPEN highlight even if the opening failed
 	e.g. bad mailbox
