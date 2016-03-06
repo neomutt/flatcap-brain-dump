@@ -704,3 +704,7 @@ enumerate changes to manual.xml.head
 sidebar intro/howto - mention muttrc sample
 sidebar intro mention howto vs encyclopaedia
 
+move mutt-patches to bug fixes
+
+css NEEDED for sidebar
+
