@@ -693,3 +693,14 @@ neomutt motto?
 BUG: sidebar gives OPEN highlight even if the opening failed
 	e.g. bad mailbox
 
+mutt-patches is mine
+	integrate into all patches
+	css etc?
+
+enumerate changes to manual.xml.head
+	split up?
+	how?
+
+sidebar intro/howto - mention muttrc sample
+sidebar intro mention howto vs encyclopaedia
+
