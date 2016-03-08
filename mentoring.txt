@@ -69,6 +69,8 @@ code tidy
 	check all string config vars are NONULL'd
 	while (1) rather than FOREVER
 	check ALL pointers
+	reorder functions to reduce forward function declarations
+	forward declare structs in headers to reduce includes
 
 testing
 	automatic testing
