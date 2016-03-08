@@ -377,7 +377,9 @@ need to clear index on Toggle-Virtual
 
 sb extra colours for:
 	readonly mailboxes
+		expando?
 	bad (non-existent) mailboxes
+		expando?
 	virtual mailboxes
 	what other attrs?
 	colour by SRC
@@ -644,6 +646,8 @@ source command -- allow wildcards
 	fits in nicely with ifndef
 	or 'source_dir' command to read all contents
 	or "source dir" to read all contents
+	recursive option?
+	recursive by default?
 
 manual "variables" need description field
 
