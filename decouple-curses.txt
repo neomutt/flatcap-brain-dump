@@ -1,0 +1,15 @@
+Decouple first Sidebar, then index panel, etc from curses
+
+Factor out all references to COLS, LINES, what else?
+
+Sidebar
+	1) variables in functions that mirror COLS/LINES
+	2) function arguments for geometry, move out to callers
+	3) list all mutt dependencies of Sidebar
+		e.g.  mutt_format_string
+	4) factor out of dependencies too
+
+Then, theoretically possible to move the sidebar to the right
+
+Maybe start with something simpler: help bar, status bar
+
