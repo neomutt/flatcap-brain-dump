@@ -360,9 +360,6 @@ sb expandos
 	number after limiting
 	unread?
 
-pager.c OP_SIDEBAR_TOGGLE_VISIBLE doesn't toggle anything
-curs_main.c OP_SIDEBAR_TOGGLE_VISIBLE does
-
 notmuch
 	add new virtual folders to sidebar
 		automatically?
@@ -580,12 +577,6 @@ minors - comments for any full functions
 
 notmuch - fix dependencies
 check minors for () -> (void)
-sidebar docs
-	note changes to historic version
-	colours
-	config
-	behaviour
-	separation of highlight vs open
 
 should static functions be called mutt_*?
 check minor new functions are static
@@ -625,16 +616,8 @@ browser
 do format conditional work on strings, etc?  meaningful?
 	empty => false
 
-docs: sidebar_format expandos aren't defined anywhere
-
 each feature needs to add NeoMutt xml & README
-kz/rebase2
-	0103 "added some documentation"
-	contains cond-date and nested-if stuff
 check all xml anchor names
-fold >80 chars md -> README
-	remove escaping
-	indent?
 
 compress
 	limitations -- filenames
@@ -700,9 +683,6 @@ mutt-patches is mine
 enumerate changes to manual.xml.head
 	split up?
 	how?
-
-sidebar intro/howto - mention muttrc sample
-sidebar intro mention howto vs encyclopaedia
 
 move mutt-patches to bug fixes
 
