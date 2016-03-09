@@ -692,3 +692,45 @@ move mutt-patches to bug fixes
 
 css NEEDED for sidebar
 
+attach sets of keybindings to panel hierarchy?
+modify docs generation to process commands' comments
+can some keybindings be set "only active when window is visible"?
+	=> help doesn't (necessarily) hide sidebar
+		should sidebar keys work?  probably not
+	*should* help hide the sidebar?
+		probably yes
+
+CENTERLINE is unused
+PAGELEN is used in ONE place
+
+how should mutt_yesorno() work?
+	Question is asked modally & outside are of asker
+	=> hide command line, show question
+	question panel gets request, shows itself, hides command
+		make command-line panel invisible?
+		make question panel higher in z-order?
+			=> they are coincident
+
+how about modal dialogs?
+	1 dialog could invalidate sidebar, index, pager
+	sibling to sidebar, index, pager but last in list (z-order)
+	sb, index, panel get painted, then "floating" window gets painted over
+	modal => disable key mappings/propagation
+
+what does Sidebar *really* need?
+	Incoming BUFFY -> notifications of BUFFY changes
+	Panel (geometry) -> notifications of WINCH
+	character libraries -> lengths, widths, formatting, etc
+	options (config access)
+	colours
+	curses: clear(panel), clear(line), write (char/string), move(x,y)
+		curses calls are all (0,0)-based
+		curses takes panel object and converts to screen coordinates
+		∀ users
+	callbacks for functions
+	sb is initialised with (Panel pointer), notifications on change
+	can query Panel's size, position (not useful), visibility
+	panel can be visible, but !active, e.g. partially under a modal dialog
+		=> paint if asked, but won't receive keys
+		could still be asked to do stuff by dialog, etc
+
