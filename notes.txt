@@ -734,3 +734,6 @@ what does Sidebar *really* need?
 		=> paint if asked, but won't receive keys
 		could still be asked to do stuff by dialog, etc
 
+XXX in new features
+unnec #if 1 in sidebar
+
