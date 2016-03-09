@@ -737,3 +737,14 @@ what does Sidebar *really* need?
 XXX in new features
 unnec #if 1 in sidebar
 
+lots of preprocessor symbols that use #if on undefined symbols
+	warning: "DEBUG" is not defined [-Wundef]
+	warning: "HAVE_DB4" is not defined [-Wundef]
+	warning: "HAVE_GDBM" is not defined [-Wundef]
+	warning: "HAVE_QDBM" is not defined [-Wundef]
+	warning: "SYS_SIGLIST_DECLARED" is not defined [-Wundef]
+	warning: "USE_UNLOCKED_IO" is not defined [-Wundef]
+	warning: "_STRING_ARCH_unaligned" is not defined [-Wundef]
+	warning: "__alpha" is not defined [-Wundef]
+	warning: "__sun__" is not defined [-Wundef]
+
