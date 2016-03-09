@@ -748,3 +748,6 @@ lots of preprocessor symbols that use #if on undefined symbols
 	warning: "__alpha" is not defined [-Wundef]
 	warning: "__sun__" is not defined [-Wundef]
 
+find untranslated strings, i.e. missing _()
+	mutt -v output is missing some
+
