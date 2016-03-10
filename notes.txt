@@ -751,3 +751,6 @@ lots of preprocessor symbols that use #if on undefined symbols
 find untranslated strings, i.e. missing _()
 	mutt -v output is missing some
 
+kill version.c:rstrip_in_place()
+	fix external build scripts
+
