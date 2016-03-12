@@ -754,3 +754,5 @@ find untranslated strings, i.e. missing _()
 kill version.c:rstrip_in_place()
 	fix external build scripts
 
+compress features
+	example of tar.gz of maildir mailbox?
