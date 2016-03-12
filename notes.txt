@@ -756,3 +756,11 @@ kill version.c:rstrip_in_place()
 
 compress features
 	example of tar.gz of maildir mailbox?
+	compress won't be able to tidy up
+
+compress
+	change hook placeholders to be more descriptive?
+	%t -> (T)emp file
+	%p -> (P)laintext file
+	%c -> (C)ompressed file
+
