@@ -764,3 +764,9 @@ compress
 	%p -> (P)laintext file
 	%c -> (C)ompressed file
 
+vim library of config options(vars)
+	auto-extract from init.h
+
+sensible-browser-position only sensible for sort=alpha or unsorted
+	what else?
+
