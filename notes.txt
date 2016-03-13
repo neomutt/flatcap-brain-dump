@@ -770,3 +770,9 @@ vim library of config options(vars)
 sensible-browser-position only sensible for sort=alpha or unsorted
 	what else?
 
+fix brain-damaged dprint
+	macro redirect
+	dprint(X, (a,b,c))!
+	debugfile tested even if not used
+	move all tests into mutt_debug
+
