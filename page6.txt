@@ -1,0 +1,18 @@
+  ┌─>
+┌─┼─┬───┬───┬───┬───┬───┬───┬───┬───┐
+│ * │ * │ * │ * │ * │ * │ * │ * │ * │
+└───┴───┴───┴───┴───┴───┴───┴───┴───┘
+
+Incoming loop through (realloc x 32)
+	=> unsorted list
+	total count
+
+if (some condition) => sort list
+	if add/del notification
+	if first time
+	if counts have changes => always sort?
+
+sorted list
+	repair next/prev links
+	find indexes for TOHB
+

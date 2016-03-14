@@ -1,0 +1,41 @@
+paging
+
+test
+	top at page boundary
+	current at posn 0
+	current at end
+	current (before, at, after) page boundary
+
+keep tags on 1 page ago & 1 page forward NO
+
+                        Top          Bot
+├───────────┼────────────┼────────────┼────────────┤
+                               ^
+                              Cur
+
+Test:
+	line up
+	line down
+	page up
+	page down
+
+Add mailbox on
+	Prev page
+	current page before cursor
+	current page after cursor
+	next page
+
+Delete mailbox on
+	Prev page
+	current page before cursor
+	current page at cursor
+	current page after cursor
+	next page
+
+can you delete the current buffy?  yes
+Top, Bottom buffy could be deleted from under us -- unmailbox
+
+How many people/Where does incoming/context get set
+I mutt_parse_mailboxes
+C main, curs_main, mutt_index_menu, compose:mutt_compose_menu
+

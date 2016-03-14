@@ -1,0 +1,16 @@
+Incoming        Top         Bot
+┌────────────────┬───────────┬──────────┬───────────────────────┐
+│                │XXXXXXXXXXX│    H     │                       │
+└────────────────┴───────────┴──────────┴───────────────────────┘
+                      ^           ^
+                     Open       Highlight
+                 │           │          │          │
+                 │    P1     │    P2    │    P3    │
+                 │           │          │          │
+
+P1 Current page -- all data loaded
+P2 Highlight page -- names only
+P3 beyond -- nothing for now
+
+how would this be managed?
+

@@ -1,0 +1,33 @@
+                Top         Bot
+┌────────────────┬───────────┬──────────┬───────────────────────┐
+│                │    O      │    H     │                       │
+└────────────────┴───────────┴──────────┴───────────────────────┘
+                      ^           ^
+                     Open       Highlight
+
+calc - first call, all null, need to get open box (spool)
+Open = NULL, Top = Incoming, Highlight = Top, Bottom = Top + (page-1)
+scroll down a few lines then Open
+	T(same), B(same), H(same), O=H
+scroll highlight off screen ~1page
+	H(moved), T(page down), B(page donw), O(same)
+Open a new page
+	O=H, T(same), B(same)
+
+All diff on same page:
+mbox del on prev page: T(+1), B(+1), O(same), H(same) -- appears to mouse up
+mbox ins on prev page: T(-1), B(-1), O(same), H(same) -- appears to mouse down
+As above, but O, or H is on first/last line: O=T or H=T, O=B, H=B
+Hmm O is irrelevant, only H matters
+
+Ugly:
+mbox del: H=T -- T(+1-P), B(+1-P), H(same) -- appeads at *end* of prev page
+mbox add: H=B -- T(-1+p), B(-1+P), H(same) -- appeads at *start* of next page
+delete key mailbox TOHB
+THB, X(+1), just use next mailbox
+O(null), H(+1) (if == O), TB(same) -- what's in the index panel?  pager?
+
+Alternative
+Del half of previous page, but leave view intact -- nice, but calc needs to know
+calc: Valid TOHB -- check B-T+1=Page
+
