@@ -776,3 +776,7 @@ fix brain-damaged dprint
 	debugfile tested even if not used
 	move all tests into mutt_debug
 
+rewrite mutt_wstr_trunc()
+	first, rename variables to be something sensible
+	second, refactor to be legible
+
