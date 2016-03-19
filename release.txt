@@ -22,3 +22,53 @@ reference neomutt repo and neomutt tagline in README
 
 show feature/patch deps in README
 
+fix annotated tag at 12:00 noon
+	GIT_AUTHOR_DATE
+	GIT_COMMITTER_DATE
+
+sed s/UNKNOWN/YYYYMMDD/ in PATCHES
+
+separate patch for neomutt (combined)
+
+next neomutt: compress, kdave (skip-quoted (tidied)), bug-fixes (doc)
+
+diagram:	
+	features straight line back to mutt
+		or put them in a "Key"
+	minor --first-parent => list of merges (combine icons) into cartouche
+	sidebar 1 merge, no icon => just box (no numbers)
+	extra --first-parent -> list of merges (cartouche)
+	neomutt (floating branch?) few commits
+
+branches
+	neomutt -> latest -- release/neomutt/date = specific
+	mutt-kz -> latest -- release/mutt-kz/date = specific
+
+trash folder: forget the directories idea?  who cares about deleted stuff?
+trash needs index panel expando -- Original location
+archive *needs* dirs %Y / %From?  auto-create, auto-delete on empty
+<empty-trash> function
+"empty-trash-confirm" variable quad-type
+expando for status bar -- trash-size (bytes/Mb) trash-count (number of deleted)
+archive needs X-Original-Dir (like del)
+	<unarchive> function
+tie archive to notmuch to auto index
+status bar needs expando for archive contents in (kb,Mb) or (count)
+archive/trash expandos -- unless too heavy to calculate
+	consult indexes for results/numbers
+	does the index store size?
+archive needs rich expando save strategy
+	%Y, %m, %d -- lots of dates
+	%from, %to, etc authors
+	%list, $orig-folder
+	size/count of attachments
+	every conceivable attribute of original mail
+use NNTP server (on flatcap.org) to store mentor conversations
+	mailing list history too
+	topic per mentor idea
+	topic for introductions
+can nntp compress its mail folders?
+	or just compressed disk media underneath
+	can mutt-dev-list maintainer get archive from marc.info?
+my utf-8 fix to bug-fixes (in fact all my fixes)
+
