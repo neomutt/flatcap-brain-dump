@@ -1,0 +1,28 @@
+
+╭────────╮ ╭───────────╮                      ╭────────╮ ╭──────────╮
+│minor[8]├─┤sidebar[45]├─┬────────────────┬───┤extra[4]├─┤neomutt[4]│
+╰────────╯ ╰───────────╯ │                │   ╰────────╯ ╰──────────╯
+                         │ ╭────────────╮ │
+・・・・・・・・・・・・ ╰─┤notmuch[110]├─┴─╮
+                           ╰────────────╯   │
+                                            │
+                                            │     ╭──────────╮
+                                            ╰─────┤mutt-kz[4]│
+                                                  ╰──────────╯
+
+
+
+      1   2   3   4      5   6        7  8
+──────╂───╂───╂───╂──┬───╂───╂───┬────╂──╂───────────────	feature/ifdef
+                     ╰─╮         ╰─╮
+───────╂───────╂───────┴───╂───────┴─────────────────────	neomutt
+       A       B       M1  C       M2
+
+M1: parents B,4
+M2: parents C,6
+
+merge commits don't directly reference the ifdef branch
+
+duplicate icons for later commits?
+unique icons for a simpler view?
+

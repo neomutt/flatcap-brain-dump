@@ -780,3 +780,17 @@ rewrite mutt_wstr_trunc()
 	first, rename variables to be something sensible
 	second, refactor to be legible
 
+diagram
+	git branch for labels
+	git tag for labels
+	git log ∀ commits sorting my hash
+	stop @ m24
+	for each branch/tqag recursively backtrack
+	or recursively delete starting at cutoff (m24)
+	commits may be older, but they won't be in the past history
+	first pass of remainder - first parent only - mark merges
+	neomutt special case: cartouche of uniq icons + yellow neo (non-merges)
+		=> icons for Sidebar and NotMuch (or capital letters: S, N)
+		what about NNTP?  Compress?
+	label merges with [M]?
+
