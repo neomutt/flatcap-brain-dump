@@ -794,3 +794,5 @@ diagram
 		what about NNTP?  Compress?
 	label merges with [M]?
 
+macros() should be MACROS()
+
