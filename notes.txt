@@ -822,3 +822,7 @@ change prototypes for the X_and_NULL macros
 	FREE() shouldn't
 	rule of least surprise
 
+try to reduce the scope of all variables
+	too many variables are declared at the start of a function
+	when they only get used in an if/for/while loop
+
