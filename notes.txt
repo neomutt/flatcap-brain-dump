@@ -817,3 +817,8 @@ rename safe_X(**ptr) to X_null?
 		-> n_free ()
 		-> free_and_null ()
 
+change prototypes for the X_and_NULL macros
+	free() doesn't take a double pointer, so
+	FREE() shouldn't
+	rule of least surprise
+
