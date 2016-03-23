@@ -804,3 +804,16 @@ sidebar intro -> wiki => need images
 
 gitflow for neomutt branches (and devel)
 
+smime.c:
+	variable set to NULL after safe_fclose
+	safe_fclose (&smimeout);
+	smimeout = NULL;
+
+check everyone's using safe_fopen(), safe_fclose(), etc
+
+rename safe_X(**ptr) to X_null?
+	safe_free -> free_null (**ptr)
+		-> free_n ()
+		-> n_free ()
+		-> free_and_null ()
+
