@@ -832,3 +832,31 @@ try to reduce the scope of all variables
 lots of pointers being assiged to 0
 	unsigned char *pending_exact = 0;
         should be NULL
+
+kdave - limit-current-thread
+	alt-l (show limit) should respond "limit thread"
+	is "limit ." the same as "limit all" -- YES
+		fixed internally
+	create unlimit patch and pull-request for kdave?
+	limit doesn't have any context, just a pattern
+	limit-current-thread NEEDS to know current email
+	it'd be nice to change limit to accept another "string" arg
+	currently
+		"all" -> "~A"
+	change limit
+		"thread" -> "~a" (only letter available)
+		let general limit machinery do the work
+	unfortunately they can't see the current email
+
+save email doesn't respect the umask
+vimlocal - check .git dir -- safe from git clean!
+
+merge commits contains: "Closes: #1234" to perform auto-close pull-request/issue
+wiki coding style:
+	indent, {}s, ()s, function defs, examples of correct
+push neomutt to coverity repo -- need to configure everything on
+neomutt -- drop hg-isms
+notmuch -- independent of sidebar
+	#if defined(USE_SIDEBAR) || defined(USE_NOTMUCH)
+	around some blocks of code
+

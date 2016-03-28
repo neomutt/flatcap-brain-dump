@@ -60,7 +60,7 @@ Indent
 
 Functions
 	name consistently
-	reorder, static the public
+	reorder, static then public
 	name params sensibly
 
 Unused
