@@ -860,3 +860,31 @@ notmuch -- independent of sidebar
 	#if defined(USE_SIDEBAR) || defined(USE_NOTMUCH)
 	around some blocks of code
 
+integrate patchlist into new version of ifdef checking
+configure -- enable notmuch => enable sidebar (for now)
+neomutt default notmuch, sidebar to 'on'?
+wiki: doc travis and coverity options
+missing qdbm, slang-dev
+CONTRIBUTING.md (appears when creating an issue)
+GPL -> LICENSE.md
+split source?
+	tools/ - standalone exes
+	library/ - replacement library functions
+	readme/ - obvious
+configure --diable-docs (for speed)
+
+mail, compress, dev build patches, examine coverity build log
+gh-pages for up-to-date manual (in sections)
+	front redirects to wiki
+todo before 1.6.0 release?
+	remaining features -> neo (even if not merged)
+	dev branch if not neomutt-ified (i.e. PATCHES, templated docs)
+	release devel patches separately (but at same time as neomutt release)
+		neomutt-patches-YYYYMMDD.tar.gz
+		neomutt-devel-YYYYMMDD.tar.gz
+	=> sensible-browser -> dev/sensible-browser
+	=> dev branch parallel to neomutt?
+		all dev features merged?
+		too much work for now
+		keep unmerged
+
