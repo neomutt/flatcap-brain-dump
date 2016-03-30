@@ -1,0 +1,41 @@
+features 16 + 4 dev (two different layouts/styles)
+posts: 7
+site: home, about, credits, obsolescence, development, features
+manual pages + intro
+syntax highlighting for muttrc's
+styles: features, dev features, news, releases, site pages
+test images - do I need them for sidebar intro any more?
+features sidebar of features
+site sidebar of "areas" (site overview)
+posts sidebar of posts (page-next, page-previous) & features
+categories for posts: release, news, devel?
+	or tags: news, docs
+collection of features: both published and devel
+footer copyright, gpl, etc
+front pager -- latest version, build: travis, coverity, rss
+post "short" yaml header => 1 paragraph => no "Read more..."
+front page status box : features (16/4) or (16/20)
+	no.  status *PAGE*
+jq concertina on feature pages default to all open
+icons on features: (✓) green, (!) yellow, (X) red
+	good, warning, bad
+	put on top right of page
+	tooltip => safe to use, etc
+status page, list of features, icons against 1.5.24, 1.6.0
+	generate automatically from YAML
+	build: travis, coverity
+post categories have icons {rel, dev, news, docs}
+	colour code too?  NO, to twee
+prev/next floating bottom-right
+sidebars: highlight current page
+tidy css
+posts sidebar: either list subset of posts centred around current
+	or say  <|Prev|3/6|Next|> for context
+links to pages, collection, posts, general manual
+make the manual sections part of a collection for simplicity?
+	easier to theme them, header, footer
+posts YAML: pinned: true => front page display 1 news + pinned!
+	pin latest release -- no need, do it by type
+	if latest is release -- show it, if not show news + latest release
+leave footer with last updated date
+
