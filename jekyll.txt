@@ -38,4 +38,19 @@ posts YAML: pinned: true => front page display 1 news + pinned!
 	pin latest release -- no need, do it by type
 	if latest is release -- show it, if not show news + latest release
 leave footer with last updated date
+enable analytics
+link checker
+travis on website? see jekyll-sitemap/travis.yml
+features: link (at top) to src, diff against m24
+mutt dot, link to home
+reinstate "Buy Rich a Beer?"  allowed on GitHub?
+collection of tasks: coding, docs, etc
+	YAML: title, description, type, difficulty, status, owner
+do I need a mutt-devel branch separate from neomutt?
+	probably not -- they're not independent of each other
+	sub-branches from neomutt for each task [task/bools]
+features: status: stable, warning, devel? (doc this where?)
+help: packager -- debian, fedora
+Goals for neomutt?
+drop jekyll: site.baseurl
 
