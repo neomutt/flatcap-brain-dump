@@ -1,17 +1,6 @@
-features 16 + 4 dev (two different layouts/styles)
-posts: 7
-site: home, about, credits, obsolescence, development, features
-manual pages + intro
-syntax highlighting for muttrc's
 styles: features, dev features, news, releases, site pages
-test images - do I need them for sidebar intro any more?
-features sidebar of features
-site sidebar of "areas" (site overview)
-posts sidebar of posts (page-next, page-previous) & features
 categories for posts: release, news, devel?
 	or tags: news, docs
-collection of features: both published and devel
-footer copyright, gpl, etc
 front pager -- latest version, build: travis, coverity, rss
 post "short" yaml header => 1 paragraph => no "Read more..."
 front page status box : features (16/4) or (16/20)
@@ -31,26 +20,16 @@ sidebars: highlight current page
 tidy css
 posts sidebar: either list subset of posts centred around current
 	or say  <|Prev|3/6|Next|> for context
-links to pages, collection, posts, general manual
 make the manual sections part of a collection for simplicity?
 	easier to theme them, header, footer
 posts YAML: pinned: true => front page display 1 news + pinned!
 	pin latest release -- no need, do it by type
 	if latest is release -- show it, if not show news + latest release
-leave footer with last updated date
-enable analytics
-link checker
 travis on website? see jekyll-sitemap/travis.yml
 features: link (at top) to src, diff against m24
-mutt dot, link to home
 reinstate "Buy Rich a Beer?"  allowed on GitHub?
-collection of tasks: coding, docs, etc
-	YAML: title, description, type, difficulty, status, owner
 do I need a mutt-devel branch separate from neomutt?
 	probably not -- they're not independent of each other
 	sub-branches from neomutt for each task [task/bools]
 features: status: stable, warning, devel? (doc this where?)
-help: packager -- debian, fedora
 Goals for neomutt?
-drop jekyll: site.baseurl
-
