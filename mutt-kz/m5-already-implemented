@@ -1,4 +1,0 @@
-0108 f75edfb Fix postpone/resume to not remove a Mail-Followup-To header (closes #3070)
-0147 2baf484 hcache tcdb debug logging
-0152 237db40 Fix a memory leak in mutt_query_complete.
-0159 d740d5b Fix segfault of extract-keys (^K) under gpgme. (closes #3698)

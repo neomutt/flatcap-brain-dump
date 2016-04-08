@@ -1,9 +1,0 @@
-0001 f3a1c98 build-sys: add gitignore file
-0069 16e3e73 build-sys: add compiler flags enabling debugging symbols
-0184 29d1357 build-sys: rename to mutt-kz to get proper make distchek result
-0186 453aa95 build-sys: add strndup.c strnlen.c
-0254 8c30261 build-sys: add .kz specific stuff
-0275 3081fd5 release++ (v1.5.22.1)
-0298 25df3a1 release++ (v1.5.23.1-rc1)
-0299 fbca882 build-sys: update git ignore
-0352 3bbcc84 release++ (v1.5.23.1)

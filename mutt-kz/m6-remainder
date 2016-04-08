@@ -1,6 +1,0 @@
-0256 5e0d255 Imap: Fix flag caching after sync.
-0258 726e68e Fix compiler type warnings. (closes #3765)
-0261 1e09ae3 Add support for checking cur/ in Maildir for unread mails in buffy.
-0262 8c279ad Handle malformed ms-exchange pgp-encrypted block. (closes #3742)
-0264 bed17dd Add error handling for ^ and other empty mailbox shortcuts.
-0270 7022ae3 Change mutt_adv_mktemp to call mutt_mktemp instead of mktemp. (see #3638).
