@@ -984,3 +984,10 @@ annotated tag -- what sets the date?
 Packages, get RPM spec, deb spec, gentoo, arch
 	put in [contrib] for now
 apply new NNTP
+add my gpg signing key to neo.org, fc.org
+test patches after multiple merge commits, i.e. test if these are equal:
+	c1 + c2 + m1 + m2 + m3
+	c1 + m1 + c2 + m2 + m3
+	c1 + m1 + m2 + c2 + m3
+	c1 + m1 + m2 + m3 + c2
+tweak neomutt.git repo to prevent [flatcap/*] getting pushed to github

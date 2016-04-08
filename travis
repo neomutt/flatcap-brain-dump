@@ -3,6 +3,8 @@ branches? per commit?
 features: all, none, random mix?
 os: linux, osx?
 
+test base, {without each, without all, with each, with all} features
+
 Test configure options
 	""
 	"--disable-fcntl"
