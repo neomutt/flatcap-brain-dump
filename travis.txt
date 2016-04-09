@@ -2,6 +2,11 @@ compilers: gcc, clang
 branches? per commit?
 features: all, none, random mix?
 os: linux, osx?
+travis - tag the latest successful build?
+don't run travis on [issue/*]
+[contrib/*] excluded from travis
+	don't need to merge default (do I?)
+	don't need to rebase
 
 test base, {without each, without all, with each, with all} features
 
