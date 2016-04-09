@@ -1,1 +1,0 @@
---enable-sidebar        Enable Sidebar support

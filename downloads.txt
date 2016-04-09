@@ -1,5 +1,6 @@
 ftp://ftp.mutt.org/pub/mutt/mutt-1.5.23.tar.gz
 ftp://ftp.mutt.org/pub/mutt/mutt-1.5.24.tar.gz
+ftp://ftp.mutt.org/pub/mutt/mutt-1.6.0.tar.gz
 
 http://ftp.uk.debian.org/debian/pool/main/g/gnutls28/libgnutls-deb0-28_3.3.18-1_amd64.deb
 http://security.debian.org/debian-security/pool/updates/main/c/cyrus-sasl2/libsasl2-2_2.1.26.dfsg1-13+deb8u1_amd64.deb
@@ -7,24 +8,6 @@ http://download.opensuse.org/repositories/openSUSE:/13.2:/Update/standard/src/mu
 http://download.opensuse.org/repositories/openSUSE:/Leap:/42.1/standard/src/mutt-1.5.24-1.7.src.rpm
 
 hg clone https://bitbucket.org/mutt/mutt hg
+hg clone https://dev.mutt.org/hg/mutt/ hg
 git clone https://github.com/karelzak/mutt-kz/ mutt
 
-http://lunar-linux.org/~tchan/mutt/patch-1.5.12.sidebar.20060720.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.12.sidebar.20060804.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.13.sidebar.20060830.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.13.sidebar.20061023.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.14.sidebar.20070223.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.15.sidebar.20070408.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.16.sidebar.20070704.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.17.sidebar.20071102.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.17.sidebar.20080412.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.18.sidebar.20080517.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.18.sidebar.20080611.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.19.sidebar.20090522.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.19.sidebar.20090618.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.20.sidebar.20090619.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.21.sidebar.20120829.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.21.sidebar.20130219.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.23.sidebar.20140412.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.24.sidebar.20150917.txt
-http://lunar-linux.org/~tchan/mutt/patch-1.5.24.sidebar.20151111.txt

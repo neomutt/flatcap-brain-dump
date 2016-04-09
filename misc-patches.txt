@@ -9,10 +9,6 @@ ignore - https://github.com/aur-archive/mutt-ignore-thread
 pgp - https://github.com/aur-archive/mutt-pgp-verbose-mime
 	patch-1.5.4.vk.pgp_verbose_mime -- set information for pgp signature attachment
 
-trash - https://github.com/aur-archive/mutt-sidebar-trash
-	purge_message.patch -- purge messages
-	trash_folder.patch  -- delete -> trash folder
-
 dane - https://github.com/aur-archive/mutt-great-dane
 	mutt-attach.patch                   -- check for attachments if user writes "attach"
 	mutt-write_postponed.patch          -- refactor fcc code?

@@ -991,3 +991,7 @@ test patches after multiple merge commits, i.e. test if these are equal:
 	c1 + m1 + m2 + c2 + m3
 	c1 + m1 + m2 + m3 + c2
 tweak neomutt.git repo to prevent [flatcap/*] getting pushed to github
+use links as a model for re-architecting mutt
+	mouse control (inc right-click)
+	safe html rendering
+	pop-up windows
