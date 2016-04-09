@@ -905,8 +905,14 @@ shields.io
 	✓ github release
 	? github commits
 	✓ github stars
+		https://img.shields.io/github/stars/neomutt/neomutt.svg?style=social&label=Star
+		https://img.shields.io/github/stars/neomutt/neomutt.svg
 	✓ github forks
+		https://img.shields.io/github/forks/neomutt/neomutt.svg?style=social&label=Fork
+		https://img.shields.io/github/forks/neomutt/neomutt.svg
 	✗ github watchers
+		https://img.shields.io/github/watchers/neomutt/neomutt.svg?style=social&label=Watch
+		https://img.shields.io/github/watchers/neomutt/neomutt.svg
 	✗ github issues
 	✗ github license
 packaging
