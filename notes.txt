@@ -166,6 +166,7 @@ missing patches
 DBUS plugin -- to do what?
 	notify out
 	take input to do what?
+		accept mailto: links
 
 repaint if:
 	size changes
