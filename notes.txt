@@ -152,6 +152,7 @@ sb_draw should return success of drawing
 	possible given all the callbacks, etc?
 
 quiet config option -- don't whine about unknown config options
+	or quiet command line option
 
 sensible retvals on functions
 
@@ -400,7 +401,7 @@ undelete?
 unsend?
 tagging?
 
-look through gmail labs, etc, firefox addons for eamil plugin ideas
+look through gmail labs, etc, firefox addons for email plugin ideas
 
 signature manager
 disposable email address plugin?
@@ -655,6 +656,7 @@ neomutt motto?
 	integrate it first
 	decide whether to keep it later
 	We accept! (patches)
+	If we take your patch, you are responsible for fixing it
 
 BUG: sidebar gives OPEN highlight even if the opening failed
 	e.g. bad mailbox
