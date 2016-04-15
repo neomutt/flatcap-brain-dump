@@ -80,3 +80,5 @@ make separate commit, fix dates in PATCHES
 only merge at release time (after separate compile tests)
 	reduces churn and notifications
 
+release repo for notes and scripts
+

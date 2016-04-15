@@ -1019,3 +1019,15 @@ test mailboxes with trailing '/' and '.', etc
 sb folder sort: strcoll not strcasecmp?
 sync sidebar divider docs
 
+on hg-update
+	pull hg changes into neo-tmp
+	push to neomutt
+	push to flatcap
+	∀ features merge
+	merge into neo too
+on neo release -- ideas
+	rebase all features onto default
+	including neo?
+	loses all semblance of history / continuity
+	on every n^th release? / x months / new features -- rebase?
+
