@@ -132,3 +132,5 @@ index panel browser - implement vim-like:
 	visual feedback of search as you type
 	automatic filtering as you type
 
+check for #include guards
+

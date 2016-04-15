@@ -962,3 +962,60 @@ use links as a model for re-architecting mutt
 	mouse control (inc right-click)
 	safe html rendering
 	pop-up windows
+
+icons for news:
+	news: newspaper
+	devel: jigsaw, spanner&screwdriver
+	release: present, balloons
+
+emails:
+	workflow
+	tackling the big issues (top down)
+	tackling the small issues (bottom up)
+	mutt patches survey
+	decisions: things are discussed (to death) -- committee
+		no leader, no outcome, no work
+
+new hierarchy: tree => mail's parent is folder or mail
+
+<sidebar-refresh> function to forcibly refresh screen & counts after, e.g.
+	unmailboxes *
+	mailboxes lots...
+
+mutt patches survey -- on website home page and mutt home page
+
+get travis to build RPMs on neomutt and deploy to github release's artifacts automatically
+website front page: do YOU have a mutt patch? -> contact us
+website collection of changes since last release -> relnotes on release
+	note which branches, etc
+USE_SIDEBAR missing from version.c -- merge issue
+website highlight section on toolbar (solid colour?)
+strip .travis.yml from patches
+drop flea and other mutt.org-related scripts
+
+github files
+	ISSUE_TEMPLATE.md
+	PULL_REQUEST_TEMPLATE.md
+	not case sensitive
+	can be hidden in .github dir
+
+homebrew inclusion requires:
+	20 forks + 20 watchers + 50 stars
+credits: Alex, GH(1ace)
+sidebar case-insensitive sorting
+sb docs - explain why unsorted isn't
+LMariachi -- sidebar format
+config changes to README.sidebar
+∀ new bugfixes -- reference trac number in commit message
+test email reply to issues, etc
+	markdown?
+
+website: some bug-fixes have gone away -> success page?
+mutt /tmp to /var/tmp (power safety)
+set/unset sidebar_visible doesn't refresh screen when in pager
+BUG sidebar redraws too often
+sb doesn't match folder (for open) if it has a trailing /
+test mailboxes with trailing '/' and '.', etc
+sb folder sort: strcoll not strcasecmp?
+sync sidebar divider docs
+

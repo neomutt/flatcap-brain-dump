@@ -72,3 +72,11 @@ can nntp compress its mail folders?
 	can mutt-dev-list maintainer get archive from marc.info?
 my utf-8 fix to bug-fixes (in fact all my fixes)
 
+make separate commit, fix dates in PATCHES
+	version numbers in files
+	neo release can't do UNKNOWN -> date
+	else all later commits will have that value
+
+only merge at release time (after separate compile tests)
+	reduces churn and notifications
+
