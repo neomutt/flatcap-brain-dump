@@ -1031,3 +1031,9 @@ on neo release -- ideas
 	loses all semblance of history / continuity
 	on every n^th release? / x months / new features -- rebase?
 
+integrate scripting language
+	lua, perl, python, ruby
+
+notmuch missing entry in PATCHES
+	(add to neomutt? or notmuch?)
+
