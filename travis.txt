@@ -1,12 +1,7 @@
 compilers: gcc, clang
-branches? per commit?
 features: all, none, random mix?
 os: linux, osx?
 travis - tag the latest successful build?
-don't run travis on [issue/*]
-[contrib/*] excluded from travis
-	don't need to merge default (do I?)
-	don't need to rebase
 
 travis:
 	15 x old features - updates only on backported code
@@ -15,56 +10,21 @@ travis:
 	2 x neomutt => full set of config options - updates - old: seldom, new: often
 	pull-requests - seldom -> often
 
-put custom .travis.yml in every branch
-	filter out of patches
+watch
+	feature/*
+	neomutt
+	coverity
+	mutt/{default,stable}
 
-test base, {without each, without all, with each, with all} features
-
-Test configure options
-	""
-	"--disable-fcntl"
-	"--disable-iconv"
-	"--disable-nls"
-	"--with-included-gettext"
-	"--without-idn"
-	"--without-wc-funcs"
-	"--disable-pgp"
-	"--disable-smime"
-	"--disable-fcntl --disable-iconv --disable-nls --with-included-gettext --without-idn --without-wc-funcs --disable-pgp --disable-smime"
-	"--enable-pop"
-	"--enable-imap"
-	"--enable-smtp"
-	"--enable-debug"
-	"--enable-flock"
-	"--enable-nfs-fix"
-	"--enable-mailtool"
-	"--enable-locales-fix"
-	"--enable-exact-address"
-	"--with-homespool"
-	"--with-domain"
-	"--with-regex"
-	"--enable-sidebar"
-	"--enable-notmuch"
-	"--enable-gpgme"
-	"--enable-pop --enable-imap --enable-smtp --enable-debug --enable-flock --enable-nfs-fix --enable-mailtool --enable-locales-fix --enable-exact-address --with-homespool --with-domain --with-regex --enable-sidebar --enable-notmuch --enable-gpgme"
-	"--enable-hcache --without-qdbm --without-gdbm --without-bdb"
-	"--enable-hcache --without-tokyocabinet --without-gdbm --without-bdb"
-	"--enable-hcache --without-tokyocabinet --without-qdbm --without-bdb"
-	"--enable-hcache --without-tokyocabinet --without-qdbm --without-gdbm"
-	"--with-gss --enable-imap"
-	"--with-ssl --enable-pop"
-	"--with-ssl --enable-imap"
-	"--with-ssl --enable-smtp"
-	"--with-gnutls --enable-pop"
-	"--with-gnutls --enable-imap"
-	"--with-gnutls --enable-smtp"
-	"--with-sasl --enable-pop  "
-	"--with-sasl --enable-imap "
-	"--with-slang"
-	"--with-mailpath=/home/mutt/mail"
-	"--with-exec-shell=/bin/bash"
-	"--enable-sidebar --enable-notmuch"
-
+ignore
+	feature5/*
+	neomutt5
+	issue/*
+	mutt/{1.5.24,1.6.0}
+	devel*/*
+	flatcap/*
+	release*/*
+	contrib/*
 
 TRAVIS_BRANCH          For builds not triggered by a pull request this is the name of the branch currently being built; whereas for builds triggered by a pull request this is the name of the branch targeted by the pull request (in many cases this will be master).
 TRAVIS_BUILD_DIR       The absolute path to the directory where the repository being built has been copied on the worker.
