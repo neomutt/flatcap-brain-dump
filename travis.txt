@@ -41,3 +41,49 @@ TRAVIS_SECURE_ENV_VARS Whether or not encrypted environment vars are being used.
 TRAVIS_TEST_RESULT     is set to 0 if the build is successful and 1 if the build is broken.
 TRAVIS_TAG             If the current build for a tag, this includes the tag’s name.
 
+Travis build steps
+
+ 1 before_install
+ 2 install
+ 3 before_script
+ 4 script
+ 5 after_success / after_failure
+ 6 after_script
+ 7 before_deploy
+ 8 deploy
+ 9 after_deploy
+
+caches $HOME/.ccache, and adds /usr/lib/ccache to the front of $PATH.
+
+CI=true
+TRAVIS=true
+CONTINUOUS_INTEGRATION=true
+DEBIAN_FRONTEND=noninteractive
+HAS_JOSH_K_SEAL_OF_APPROVAL=true
+USER=travis (do not depend on this value)
+HOME=/home/travis (do not depend on this value)
+LANG=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+RAILS_ENV=test
+RACK_ENV=test
+MERB_ENV=test
+JRUBY_OPTS="--server -Dcext.enabled=false -Xcompile.invokedynamic=false"
+JAVA_HOME is set to the appropriate value.
+
+
+Disabling the Subsequent Test Run
+
+Due to the way that Travis CI addons operate, your standard script stage (i.e.
+your tests) will run after the Coverity Scan analysis completes. In order to
+avoid this, you can modify your script directive in .travis.yml.
+
+The COVERITY_SCAN_BRANCH environment variable will be set to 1 when the
+Coverity Scan addon is in operation. Therefore, you might change your script
+from
+
+script: make
+
+to
+
+script: if [ "${COVERITY_SCAN_BRANCH}" != 1 ]; then make ; fi
+
