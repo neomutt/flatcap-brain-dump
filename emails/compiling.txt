@@ -1,0 +1,9 @@
+Compiling Mutt
+
+What arches do we support?
+Which compilers
+Guessing game if not doc'd
+Define *supported* arches/compilers
+List unsupported with owner
+Need CI for all arches
+

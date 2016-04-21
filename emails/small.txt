@@ -1,0 +1,33 @@
+Tackling the Little Issues
+
+A Bottom-Up approach
+
+TLDR Mentoring
+
+small jobs, easily verified, in branches
+
+jobs
+	whitespace
+	bool
+	static
+	dprint
+	reduce variable scopes
+	FREE(&)
+
+curator for bugs
+contrib dir curator (Good Idea Manager)
+	go through all github configs
+	separate repo
+	metadata header
+		works with Mutt-x.y.z
+
+website
+	https
+	wiki
+
+docs for beginners
+	translated
+	FAQ
+
+commands comments -> docs
+

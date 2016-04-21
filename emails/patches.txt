@@ -1,0 +1,14 @@
+Patches
+
+New Features go to neomutt first
+
+Distros patches
+	1) obsolete - get them dropped
+	2) useful - get the into mutt
+	3) customisation - change mutt to make them config'able
+	4) ???
+
+Neo is feature curator
+all patches are public or ignored
+Got a patch?  Tell us
+

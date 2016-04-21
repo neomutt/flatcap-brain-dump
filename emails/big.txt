@@ -1,0 +1,29 @@
+Tackling the Big Issues
+
+A Top-Down approach
+
+Clean slate
+modern architecture
+modern methods
+what else does a modern mail client do
+modular
+pluggable
+extensible
+scriptable
+break up carriers
+	imap
+	pop
+	maildir
+	etc
+Register
+	commands
+	functions
+	variables
+	key bindings
+plugins => modular docs
+steal market share from other MUA
+notifications framework
+	WINCH
+	+/- mailbox
+ref-counting
+

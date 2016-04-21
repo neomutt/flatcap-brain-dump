@@ -1,0 +1,25 @@
+Subject: Development, 1.5.24, 1.6.0
+
+Now that 1.6.0 is out, I have some questions about development.
+
+Is 1.5.24 finished?
+
+What's the plan?
+
+Is the 1.5 branch finished?
+Will 1.5.24 get bug-fixes?
+Is the advice: update to 1.6.0?
+
+will mutt-1.5.24 receive any more fixes?
+or is the advice to move to 1.6.0
+
+*REAL* dev branch?  or am *I* the dev branch?
+
+1.5.24 vs 1.6.0
+workflow?
+stable?
+when?
+what?
+
+Rich
+

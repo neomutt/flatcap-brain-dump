@@ -1,0 +1,38 @@
+Decision-Making / Leadership
+
+TLDR Delegate
+
+Sort our trac
+	keep enhancements (move to wiki)
+	ditch older than 1.5.20
+
+define an architecture
+	plan order
+	agree it
+	wiki?
+
+550 dev, 1300 users
+
+surveys: regular
+community driven project
+
+why are some devs using 2010 Mutt?
+CVEs in old mutt
+Dev mailing list
+	suggest everyone uses User Agent
+	check against marc
+	unsub devs! see how many resubscribe
+what other community-making ideas?
+	twitter
+	RSS
+hall of fame for new contributors
+know the team -- rogues' gallery
+	kevin + lieutenants
+who runs the infrastructure?
+	web
+	mailing list
+	etc
+	delegate
+
+more public work => people know what's going on
+	no treading on people's toes
