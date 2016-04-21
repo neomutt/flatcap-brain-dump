@@ -22,7 +22,7 @@ reference neomutt repo and neomutt tagline in README
 
 show feature/patch deps in README
 
-fix annotated tag at 12:00 noon
+fix annotated tag at 09:00 noon
 	GIT_AUTHOR_DATE
 	GIT_COMMITTER_DATE
 
