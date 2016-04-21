@@ -87,3 +87,12 @@ to
 
 script: if [ "${COVERITY_SCAN_BRANCH}" != 1 ]; then make ; fi
 
+only features*/*, neomutt* + pull-requets
++ mutt/* NO, not 1.5.24, 1.6.0 (fixed)
+
+neo, mutt -- full spread
+feautre*/*  (16x2) except sidebar,notmuch
+exceptions for anything with a configure option
+
+fast-finish: true?
+

@@ -1041,3 +1041,27 @@ survey -- autoreply
 
 Mutt web DNSSEC, TLSA
 
+mutt test framework
+	how?
+
+limit hg updates to just before release?
+	no => often, let travis work
+
+list-since script ∀ branches
+	features, neomutt
+	non-merge commits since last tag
+
+config option:
+	--enable-trash?
+	--enable-fmemopen?
+
+dev@neomutt.org -> recipients need auto bcc rule to copy other devs
+dev account on server shared between devs?
+notification email @neo.org shared to devs?
+
+website
+	manual -- expand sidebar optional features
+	put our features in first
+
+<sidebar-next-new> => $sidebar_flagged_are_new ?
+

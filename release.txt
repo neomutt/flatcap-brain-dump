@@ -8,6 +8,8 @@ on release
 release criteria
 	credits
 	changelog
+		changes
+		num commits?
 	clean build
 	configure --option (off)
 	basic docs
@@ -22,7 +24,7 @@ reference neomutt repo and neomutt tagline in README
 
 show feature/patch deps in README
 
-fix annotated tag at 09:00 noon
+fix annotated tag at 09:00
 	GIT_AUTHOR_DATE
 	GIT_COMMITTER_DATE
 
@@ -77,8 +79,26 @@ make separate commit, fix dates in PATCHES
 	neo release can't do UNKNOWN -> date
 	else all later commits will have that value
 
+[ci skip]
+	on all merges into neomutt?
+	on release commit (with changelog)?
+		no NEED that one for reassurance
+
 only merge at release time (after separate compile tests)
 	reduces churn and notifications
+	define merge order?
 
 release repo for notes and scripts
+
+pull request to sync changes to mutt-kz
+	sidebar
+	minors
+	bugs
+
+generate checksum
+
+change naming from YYYYMMDD to YYYY-MM-DD?
+
+release notes:
+	mention RPMs, etc
 
