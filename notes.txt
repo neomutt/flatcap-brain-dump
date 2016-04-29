@@ -449,6 +449,7 @@ index format -- full directory mode
 
 refer to and compare config names by hash only?
 	save lots of string compares
+	gperf to generate perfect hashes
 
 cache sidebar formatted strings on BUFFY object?
 
