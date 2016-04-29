@@ -1065,3 +1065,6 @@ website
 
 <sidebar-next-new> => $sidebar_flagged_are_new ?
 
+sidebar refresh variable
+	sidebar_refresh_when_hidden
+
