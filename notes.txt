@@ -1069,3 +1069,55 @@ website
 sidebar refresh variable
 	sidebar_refresh_when_hidden
 
+travis for mutt/default, mutt/stable both refer to sidebar & notmuch!
+
+changelog of neomutt
+
+mutt-kz check #ifdef patches for notmuch/sidebar separation
+
+readme in copr repo
+
+panels have dividers enum
+	left
+	right
+	top
+	bottom
+	between
+	outside
+who owns the dividers space?
+set_focus (panel)
+	who owns the focus?
+	gfx(curses)?
+	get_char -> gfx_get_char -> consider focus
+on close panel, focus moves to
+	*prev*/next sibling, or parent?
+	due to mutt's UI focus moves to prev sibling
+how can I show focus without moving anything? i.e. borders
+	sacrifice a top line?
+	border highlight?  => always present
+which panels *accept* focus?
+	sidebar
+	index window
+	pager window
+	<tab> to switch?
+	or <left>, <right>?
+
+mirror script, add copr, aur repos
+show focus -- sacrifice help line?
+	no, it's not always visible
+propagation of notifications -- start @focus, work down
+	SB, IW, PW + 'q' mail accepts, hides PW, PS, focus IW
+	SB, IW + 'q' mail notified, rejects, global accepts, closes app
+Help starts @focus, Panel Name + get_keys method
+if sidebar is a separate panel and src file, should IW be?  PW?  AI?
+If focus is on PW and SB, IW, PW are siblings, how can SB get notifications?
+	or does mail Panel catch and iterate through children?
+	SB mappings are (index,pager) => behaviour wanted but not in AW
+
+delegation of keys -> focus() -> parent -> global, e.g. IW, Mail
+	functions => components (e.g. mail)	}- mail_init() register_functions(); register_commands();
+	commands => components			}
+
+slang source + demos
+	http://fossies.org/linux/misc/slang-2.3.0.tar.gz
+
