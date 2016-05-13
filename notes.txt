@@ -1156,3 +1156,50 @@ change repos' default branch to /readme?
 
 muttrc.{distro} ∀ distros
 
+backport sidebar
+	others too?
+
+fix readmes/docs dependency on 1.5.24 to 1.6.1
+
+kdave -> trac mailcap
+
+mutt css to sidebar
+	and remove sidebar bits from neomutt
+
+spread out doc chapters so diff context is vague
+	</sect1> and whitespace
+
+list_pull_requests.sh
+	get_pull_requests.sh
+	reference local neomutt repo
+
+new people => update neo main README.md
+
+travis PR -- env EVERYTHING var
+
+NeoMutt website top tips?
+
+configure --quick-build -> [mutt/*] ?
+	does quick-build -> all features should derive from it
+
+travis libcaca includes libslang ∀ travis
+
+where do debian bug-fixes go?
+	[bug-fixes]?
+	[debian]? => [gentoo], etc
+	=> fixes might exist in multiple bug fix branches
+	[bug/*] ?, e.g. [bug/debian]
+	synchronise naming and commit messages of bugs
+		if updated (externally) revert and new
+		∀ branches
+	msg:
+		issue numbers across distros & mutt
+		orig authors
+		contrib authors
+		orig source
+	=> fixed order -- NOT good
+	=> [bugs/*] mutable! -> lose history
+	store bugs as commits or patches?
+		patches -- easier to reorder & amend with history
+		commits -- easier to manage, rebase
+
