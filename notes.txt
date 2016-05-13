@@ -1121,3 +1121,38 @@ delegation of keys -> focus() -> parent -> global, e.g. IW, Mail
 slang source + demos
 	http://fossies.org/linux/misc/slang-2.3.0.tar.gz
 
+sample mail repo filled with example/problem mailboxes
+
+main.c:mutt_exit()
+	who uses it?
+	where did it come from?
+
+[management]/bin
+	sync.sh 6h cron script to sync mirrors
+	sync needs ssh key
+		external to script
+		(document in header)
+	sync reads data file with header, whitespace & comments
+
+apply patch deltas to patch sets
+	(changes since last sync)
+
+notmuch buffy changes *force* sidebar
+	need separating out
+
+install neomutt in parallel with mutt
+	uses alternatives mechanism
+	=> /usr/bin/neomutt{,-2016MMDD}
+	=> /usr/bin/mutt-1.6.1
+
+COPR drop --debug
+
+OS-specific build instructions / install
+
+M_* -> MUTT_* pre-emptively commit to neomutt?
+
+change repos' default branch to /readme?
+	contains just some notes
+
+muttrc.{distro} ∀ distros
+
