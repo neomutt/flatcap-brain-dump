@@ -1,0 +1,131 @@
+top levels: mail, help, address, calendar, rss, etc
+is help shared or does each plugin need its own?
+
+Top level: mail (vert) (TOP)
+	Helpline?
+	horiz (MIDDLE) -> 	Sidebar
+	status line?		Vert (RIGHT) ->	Index Window
+	command line				Index status
+						Pager window
+						pager status
+						attachment index
+						attachment window
+
+helpline is global, deserves full-width
+index status is local, pager status is local
+
+HELP	or status_on_top	IS
+IS				IW
+IS				PS
+PW				PW
+PS				HELP
+
+toplevel: mail (vert) (TOP)
+	help
+	horiz(MIDDLE) ->	sidebar
+	command			vert (compact) (RIGHT) ->	index window
+								index status
+								pager window
+								pager status
+								attach index
+								attach window
+toplevel: mail (vert) widescreen
+	help
+	horiz ->	sidebar
+	command		vert(I) -> IW, IS
+			vert(P) -> PW, PS
+			vert(A) -> AI, AW
+
+Widescreen
+
+autoflow by %ages? fixed sizes?
+max components on screen = 2 => (SB+IW) -> (IW+PW) -> (PW+AI/AW)
+or 3 comps (SB+IW+PW) -> (IW+PS+AI/AW)
+or 1 comp -> (SB) -> (IW) -> (PW) -> (AI/AW) not-so-wide-screen
+select to go forward, Q to go back (dangerous)
+hide components, or collapse them => clearer indication of location
+	collapse how?
+	vertical label? ugly
+	solid vertical bar on left of screen (1 for each collapsed comp)
+
+sidebar_width
+index_width
+pager_width
+attachment_width
+	(accept %ages or cols)
+missing number => 0, ∞
+one number = fixed
+two numbrs = min, max
+max components is a setting on the vert/horiz box
+it will hide comps as necessary
+
+Address API needs support matrix, e.g. supports Groups Y, Images N, dependent on back end
+need to know all values of "you" - from where?
+AddressBook Init -- search folder for mail from you -> save recipients
+
+set_size()
+set_visibility()
+	=> lots of redraws, or
+	invis, resize, vis?
+		NO, might move other windows)
+	old_vis, old_rect => wasted vars? or
+	notify flags -- send notification clears flag
+	size, posn, vis, orient => repaint
+
+SEE "tree.txt"
+
+set_size (b, min, max)
+set_vis (c, false)
+reflow() -> notify
+	notify = !a, b, c, d  possibly e, f, g, h if b has changed
+reflow (a, rect) sets 'a' flow children and recurse
+
+merge N_POSN and N_SIZE? => both imply repaint
+	NO, N_POSN => client can reuse cached content
+split N_VISCHANGE -> N_VIS, N_HIDDENT
+change orientation notification?
+
+wrap (IW+IS), (PW+PS), (AI+AW) in separate dummy window for ease of visibility?
+
+set_vis (b, false) -> b.vis = false, flag hidden: b, c, d
+relow (a) b is !vis ∴ recursively notify:
+	resize(e), notify(e), resize(f), notify(f), resize(g), notify(g)
+reflow (panel*, rect*, bool force_paint)? or
+BOOL reflow (panel*, rect*) true => something changed or
+bool reflow (panel*, rect*, bool notify) true=>send notifications
+dedicated paint(panel*) => recursive notify N_PAINT nothing more (clearing flags)
+NO  send_notifications(bool force_paint)
+	false=>just changes
+	true=> changes + N_PAINT
+
+set_size (c, 1, 20) -> reflow (c->parent) -> rect* is null -> use computed rect
+
+mail
+	add/remove panels	on N_VISIBLE set focus on IW
+	move/resize/visibility
+	set focus
+
+main:
+	(string) panel_get_key() -> gfx_get_key (focus()) -> ncurses
+	panel_send_key(string) translate to P_keys from ncurses?
+		=> focus() -> notify_key(str)
+
+key/mouse mapping
+
+main->panel_get_char -> gfx_get_char (focus()) -> ncurses
+or get_char on main window and delegate?
+bool panel_handle_keypress() - check focus & recurse
+mail/IW - no handler -> mail/mail catches all
+	loop backwards through siblings
+if mouse event, find most derived container, convert coordinates, send event
+	need mouse callback
+or panel_main_loop() / panel_dispatch() -> auto-forward events
+	returns and *event* of unhandled, e.g. 'q'
+	or NULL if timeout or return a timeout event
+
+move global to a separate file - it handles switching between components
+	it handles top-level exclusivity
+event manager, event object: union of key, mouse, signal
+event also contains variable, command, function?
+result bool handled, split manager out of panel, main calls main_loop
+
