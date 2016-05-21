@@ -1203,3 +1203,41 @@ where do debian bug-fixes go?
 		patches -- easier to reorder & amend with history
 		commits -- easier to manage, rebase
 
+reorder patches
+	[all distros]
+	[some distros]
+	[few distros]
+	etc
+
+git merge attrs to automate merges
+	publish
+
+separate nntp and neo-nntp patches?
+	docs, patches?
+
+ntfs, linux-ntfs, ldm, ntfs/ldm faqs -> GH pages
+
+bug-fixes(common) -> PATCHES
+
+Milestones
+	1 patch tree
+	2 share patches
+	3 rebase
+
+issues
+	patches order
+	bug fixes (common)
+	alternatives
+
+forks of all distro repos
+
+cond-date document date.sh generator
+
+maintainers names to credits page
+
+MORE news
+
+keyword management == web intro
+
+howto build neomutt page
+
