@@ -1240,4 +1240,35 @@ MORE news
 keyword management == web intro
 
 howto build neomutt page
+	simple instructions
+	expert instructions
+	explain all build scripts, etc
+	location of source / repo
+	howto install
+	distro pre-built installs
+
+create empty (red-linked) pages on website, for people to write
+
+bugs - doc in PATCHES
+	=> revert old bug, add new bug
+	to keep them atomic
+
+hg/scripts make dev.mutt.org the upstream
+
+list of to-be-written pages on web
+	icons for level of completion
+
+document quick-build option
+
+mutt ChangeLog -> doc header
+	=> ChangeLog.mutt (old)
+
+Web Page (front) LATEST VERSION + links
+	+ ChangeLog with links to commits?
+
+cond-date script -> contrib
+
+check which doc/contrib files distros install
+	unify?
+
 
