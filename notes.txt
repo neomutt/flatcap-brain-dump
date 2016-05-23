@@ -1271,4 +1271,15 @@ cond-date script -> contrib
 check which doc/contrib files distros install
 	unify?
 
+integration issues -> web devel news
+
+[release/*] or [release] after [coverity] or
+[merge] before [coverity] before [neomutt]
+
+\r vs \n bug-fix isn't nec for slang
+	#ifdef if?
+
+deprecate [issue/*] after 6 months?
+
+neomutt-YYYYMMDD-dev (unstable release)?
 
