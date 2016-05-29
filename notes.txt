@@ -1283,3 +1283,52 @@ deprecate [issue/*] after 6 months?
 
 neomutt-YYYYMMDD-dev (unstable release)?
 
+don't number separates
+
+filter travis out of merges
+
+patches
+	full credits
+	description
+	neo links to:
+		repo
+		proj
+		commits?
+		feature page
+
+check what COPR installs
+	dics/
+	dupes + empty files!
+
+lmdb header caching -> neo
+
+notmuch: mx.c type in #endif IMAP
+
+next hg update, fix travis for full build
+
+readme link neo to web, flatcap to gh
+
+sidebar: sort out new vs unread vs old, etc
+
+compose.c "sign as" + nntp + mbstowcs?
+
+pull-hg-master -> darnir + repo?
+
+group travis builds to cut out vm time
+
+announce pre-release in web news
+
+alter notmuch to use keywords?
+
+notmuch are tags persistant?
+	if so, use keywords
+	YES, but in notmuch db
+
+upload all bin/ add (c) and licence
+
+offlineimap tags -> X-Label, too?
+
+new mail feat -> web
+
+buffy_check tmp == M_NNTP / NOTMUCH
+
