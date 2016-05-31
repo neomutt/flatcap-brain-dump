@@ -1485,3 +1485,10 @@ create tests ∀ issues to prevent regressions
 check makefile dist file list
 	ChangeLog.neomutt, etc
 
+put all the neomutt historic patches into [integration/patches]
+
+bugs
+	<enter> vs <return>
+	backported (done)
+	patchtree (todo)
+
