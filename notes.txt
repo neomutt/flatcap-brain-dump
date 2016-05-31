@@ -1332,3 +1332,28 @@ new mail feat -> web
 
 buffy_check tmp == M_NNTP / NOTMUCH
 
+tie together bug reports for <enter> vs <return>
+	https://dev.mutt.org/trac/ticket/3494
+	http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=547661
+	put metadata in [bugs]
+
+doc rr-cache
+
+list problem files
+	PATCHES
+	doc/manual.xml.head
+
+GIT REPO?
+	.gitattributes
+		merging
+		diff regexes
+	doc my .gitconfig
+	all bin/ to repo + .shell/bin/git
+
+quick buid -> travis
+doc somewhere
+
+travis doc build (one-off)?
+
+patchset branch for COPR (neo + fedora)
+
