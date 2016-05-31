@@ -1492,3 +1492,8 @@ bugs
 	backported (done)
 	patchtree (todo)
 
+test and compare:
+	quilt
+	stg
+	topgit
+
