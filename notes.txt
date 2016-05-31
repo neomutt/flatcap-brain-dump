@@ -382,13 +382,10 @@ todo
 	what does notmuch return?
 		how do i link it to existing objects?
 
-add kz's version suffix to add "-neo"
 floating patches/branches
 	history -> HEAD
 		      \-> neo branch
 		      		\-> min build branch
-neo branch contains
-	version fix
 
 Cedric, VVV, DGC -- check for any utils patches use
 	ifdef, nested if, xlabel_ext, purge
@@ -528,8 +525,6 @@ cond-date
 
 replace " with ' in muttrc
 
-check tidiness of newly added sidebar code
-
 auto-generate merge commit messages
 	modified git log msg
 	script for authors
@@ -599,7 +594,6 @@ browser
 do format conditional work on strings, etc?  meaningful?
 	empty => false
 
-each feature needs to add NeoMutt xml & README
 check all xml anchor names
 
 compress
@@ -662,17 +656,9 @@ neomutt motto?
 BUG: sidebar gives OPEN highlight even if the opening failed
 	e.g. bad mailbox
 
-mutt-patches is mine
-	integrate into all patches
-	css etc?
-
 enumerate changes to manual.xml.head
 	split up?
 	how?
-
-move mutt-patches to bug fixes
-
-css NEEDED for sidebar
 
 attach sets of keybindings to panel hierarchy?
 modify docs generation to process commands' comments
@@ -717,7 +703,6 @@ what does Sidebar *really* need?
 		could still be asked to do stuff by dialog, etc
 
 XXX in new features
-unnec #if 1 in sidebar
 
 lots of preprocessor symbols that use #if on undefined symbols
 	warning: "DEBUG" is not defined [-Wundef]
@@ -843,15 +828,10 @@ neomutt default notmuch, sidebar to 'on'?
 wiki: doc travis and coverity options
 missing qdbm, slang-dev
 CONTRIBUTING.md (appears when creating an issue)
-GPL -> LICENSE.md
 split source?
 	tools/ - standalone exes
 	library/ - replacement library functions
 	readme/ - obvious
-configure (for speed)
-	--disable-docs
-	--disable-translations
-	etc
 
 mail, compress, dev build patches, examine coverity build log
 gh-pages for up-to-date manual (in sections)
@@ -896,7 +876,6 @@ email David Sterba (kdave) -- limit
 	use context, or change prototypes
 update website manual for 1.6.0
 screenshots on website
-apply anarcat's changes to neo README too
 watchers/stars on website home page
 	neomutt version
 shields.io
@@ -958,7 +937,6 @@ test patches after multiple merge commits, i.e. test if these are equal:
 	c1 + m1 + m2 + c2 + m3
 	c1 + m1 + m2 + m3 + c2
 tweak neomutt.git repo to prevent [flatcap/*] getting pushed to github
-use links as a model for re-architecting mutt
 	mouse control (inc right-click)
 	safe html rendering
 	pop-up windows
@@ -988,7 +966,6 @@ get travis to build RPMs on neomutt and deploy to github release's artifacts aut
 website front page: do YOU have a mutt patch? -> contact us
 website collection of changes since last release -> relnotes on release
 	note which branches, etc
-USE_SIDEBAR missing from version.c -- merge issue
 website highlight section on toolbar (solid colour?)
 strip .travis.yml from patches
 drop flea and other mutt.org-related scripts
@@ -1001,8 +978,6 @@ github files
 
 homebrew inclusion requires:
 	20 forks + 20 watchers + 50 stars
-credits: Alex, GH(1ace)
-sidebar case-insensitive sorting
 sb docs - explain why unsorted isn't
 LMariachi -- sidebar format
 config changes to README.sidebar
@@ -1011,7 +986,6 @@ test email reply to issues, etc
 	markdown?
 
 website: some bug-fixes have gone away -> success page?
-mutt /tmp to /var/tmp (power safety)
 set/unset sidebar_visible doesn't refresh screen when in pager
 BUG sidebar redraws too often
 sb doesn't match folder (for open) if it has a trailing /
@@ -1067,8 +1041,6 @@ website
 
 sidebar refresh variable
 	sidebar_refresh_when_hidden
-
-changelog of neomutt
 
 mutt-kz check #ifdef patches for notmuch/sidebar separation
 
@@ -1153,15 +1125,7 @@ change repos' default branch to /readme?
 
 muttrc.{distro} ∀ distros
 
-backport sidebar
-	others too?
-
-fix readmes/docs dependency on 1.5.24 to 1.6.1
-
 kdave -> trac mailcap
-
-mutt css to sidebar
-	and remove sidebar bits from neomutt
 
 spread out doc chapters so diff context is vague
 	</sect1> and whitespace
@@ -1195,12 +1159,6 @@ where do debian bug-fixes go?
 	store bugs as commits or patches?
 		patches -- easier to reorder & amend with history
 		commits -- easier to manage, rebase
-
-reorder patches
-	[all distros]
-	[some distros]
-	[few distros]
-	etc
 
 git merge attrs to automate merges
 	publish
@@ -1253,9 +1211,6 @@ list of to-be-written pages on web
 
 document quick-build option
 
-mutt ChangeLog -> doc header
-	=> ChangeLog.mutt (old)
-
 Web Page (front) LATEST VERSION + links
 	+ ChangeLog with links to commits?
 
@@ -1269,14 +1224,9 @@ integration issues -> web devel news
 [release/*] or [release] after [coverity] or
 [merge] before [coverity] before [neomutt]
 
-\r vs \n bug-fix isn't nec for slang
-	#ifdef if?
-
 deprecate [issue/*] after 6 months?
 
 neomutt-YYYYMMDD-dev (unstable release)?
-
-don't number separates
 
 filter travis out of merges
 
@@ -1458,11 +1408,6 @@ merging doc/manual.xml.head
 	2 * split (awk) by sect id=""
 	source & new
 	remerge alphabetically
-
-fix 1.5.24/wiki refrerences
-	compress
-	keywords
-	nntp
 
 split patches into main + custom
 	e.g.
