@@ -1357,3 +1357,20 @@ travis doc build (one-off)?
 
 patchset branch for COPR (neo + fedora)
 
+COPR split up neo-patch, use integration patches
+
+travis for OSX, catch build issues
+
+fix UNKNOWN in distro patches
+
+sidebar, et al to kz
+
+use issue "release" tag to mean
+	bug         + release => fixed in next release
+	enhancement + release => appears in next release
+	put comment to same effect in issue
+
+move [devel/*] to separate repo
+	mutable repo
+	neomutt should only move forward
+
