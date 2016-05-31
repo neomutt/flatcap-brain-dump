@@ -868,7 +868,6 @@ todo before 1.6.0 release?
 		keep unmerged
 
 typo hdrline.c %g message labes
-test qdbm - when travis whitelists it
 bugfix 8 - hurd -- what happened to it?
 credits -- neomutt specific - add anarcat
 fmemopen - merge into one place in mutt_mktemp()?
@@ -1069,8 +1068,6 @@ website
 sidebar refresh variable
 	sidebar_refresh_when_hidden
 
-travis for mutt/default, mutt/stable both refer to sidebar & notmuch!
-
 changelog of neomutt
 
 mutt-kz check #ifdef patches for notmuch/sidebar separation
@@ -1175,14 +1172,10 @@ list_pull_requests.sh
 
 new people => update neo main README.md
 
-travis PR -- env EVERYTHING var
-
 NeoMutt website top tips?
 
 configure --quick-build -> [mutt/*] ?
 	does quick-build -> all features should derive from it
-
-travis libcaca includes libslang ∀ travis
 
 where do debian bug-fixes go?
 	[bug-fixes]?
@@ -1304,8 +1297,6 @@ lmdb header caching -> neo
 
 notmuch: mx.c type in #endif IMAP
 
-next hg update, fix travis for full build
-
 readme link neo to web, flatcap to gh
 
 sidebar: sort out new vs unread vs old, etc
@@ -1313,8 +1304,6 @@ sidebar: sort out new vs unread vs old, etc
 compose.c "sign as" + nntp + mbstowcs?
 
 pull-hg-master -> darnir + repo?
-
-group travis builds to cut out vm time
 
 announce pre-release in web news
 
@@ -1350,16 +1339,11 @@ GIT REPO?
 	doc my .gitconfig
 	all bin/ to repo + .shell/bin/git
 
-quick buid -> travis
-doc somewhere
-
-travis doc build (one-off)?
+quick buid doc somewhere
 
 patchset branch for COPR (neo + fedora)
 
 COPR split up neo-patch, use integration patches
-
-travis for OSX, catch build issues
 
 fix UNKNOWN in distro patches
 
@@ -1373,4 +1357,5 @@ use issue "release" tag to mean
 move [devel/*] to separate repo
 	mutable repo
 	neomutt should only move forward
+
 

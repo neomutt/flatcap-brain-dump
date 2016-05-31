@@ -96,3 +96,21 @@ exceptions for anything with a configure option
 
 fast-finish: true?
 
+test qdbm - when travis whitelists it
+
+travis for mutt/default, mutt/stable both refer to sidebar & notmuch!
+
+travis PR -- env EVERYTHING var
+
+travis libcaca includes libslang ∀ travis
+
+next hg update, fix travis for full build
+
+group travis builds to cut out vm time
+
+quick buid -> travis
+
+travis doc build (one-off)?
+
+travis for OSX, catch build issues
+
