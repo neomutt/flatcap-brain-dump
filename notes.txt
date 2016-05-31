@@ -724,6 +724,10 @@ kill version.c:rstrip_in_place()
 compress features
 	example of tar.gz of maildir mailbox?
 	compress won't be able to tidy up
+	unless...
+		compress creates a dir
+		extracts to that dir
+		deletes entire dir on close
 
 compress
 	change hook placeholders to be more descriptive?
@@ -855,6 +859,7 @@ fmemopen - merge into one place in mutt_mktemp()?
 sidebar intro missing from features sidebar
 website broken link to flatcap.png
 rebase and refactor [devel/*] before moving to [feature/*]
+	factor this description into new-feature txt
 sidebar, when saving email to a folder use the sidebar as a selector?
 	new indicator colour or prompts "select save folder" + normal highlight
 mass IRC dev chat (invitees can speak) others can watch
@@ -907,6 +912,7 @@ convert config.h to version.c
 	sensible?
 -UNKNOWN -> date in neo branch ONLY
 	merge rules for neo branch
+	arch/homebrew builds from git => always UNKNOWN
 "merged" page/collection on website
 	list of all features that have been accepted into the mainline
 	currently empty
@@ -914,15 +920,14 @@ website gh page: doc [issue/*]
 	temp fixes & wip for issues
 use wiki for ideas -- survey of ideas (next week)
 will I backport *new* features to 1.5.24?
-neo: change "mutt -h" so that issue come our way
-	what else?
-	docs? yes
+	no
 survey of patches -- both lists
 	mutt -v | mutt survey@neomutt.org
 update website gh page: list of branches
 neomutt FAQ -- containing what?
 Which languages *didn't* get updated for 1.6.0?
 [bin] detached branch (or separate repo)
+	separate repo (too much clutter)
 	how much of my ~/bin is useful to others?
 give package maintainers write access to [contrib/{DISTRO}]
 	update as often as they like
@@ -937,6 +942,8 @@ test patches after multiple merge commits, i.e. test if these are equal:
 	c1 + m1 + m2 + c2 + m3
 	c1 + m1 + m2 + m3 + c2
 tweak neomutt.git repo to prevent [flatcap/*] getting pushed to github
+	how?
+use links(1) as a model for re-architecting mutt
 	mouse control (inc right-click)
 	safe html rendering
 	pop-up windows
@@ -1036,6 +1043,7 @@ notification email @neo.org shared to devs?
 website
 	manual -- expand sidebar optional features
 	put our features in first
+	list feature support by distro?
 
 <sidebar-next-new> => $sidebar_flagged_are_new ?
 
@@ -1045,6 +1053,7 @@ sidebar refresh variable
 mutt-kz check #ifdef patches for notmuch/sidebar separation
 
 readme in copr repo
+	put rpm build scripts in repo too
 
 panels have dividers enum
 	left
@@ -1138,7 +1147,7 @@ new people => update neo main README.md
 
 NeoMutt website top tips?
 
-configure --quick-build -> [mutt/*] ?
+travis configure --quick-build -> [mutt/*] ?
 	does quick-build -> all features should derive from it
 
 where do debian bug-fixes go?
@@ -1169,6 +1178,7 @@ separate nntp and neo-nntp patches?
 ntfs, linux-ntfs, ldm, ntfs/ldm faqs -> GH pages
 
 bug-fixes(common) -> PATCHES
+	add empty dir & readme (for now)
 
 Milestones
 	1 patch tree
@@ -1240,7 +1250,7 @@ patches
 		feature page
 
 check what COPR installs
-	dics/
+	docs/
 	dupes + empty files!
 
 lmdb header caching -> neo
@@ -1298,6 +1308,7 @@ COPR split up neo-patch, use integration patches
 fix UNKNOWN in distro patches
 
 sidebar, et al to kz
+	add to "update-feature" txt
 
 use issue "release" tag to mean
 	bug         + release => fixed in next release
@@ -1441,4 +1452,8 @@ test and compare:
 	quilt
 	stg
 	topgit
+
+in [integration/patches] generate directory READMEs
+	automatic build from the patches in the dir
+	autolink README.md to the dir.md's
 
