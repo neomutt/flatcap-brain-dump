@@ -114,3 +114,5 @@ travis doc build (one-off)?
 
 travis for OSX, catch build issues
 
+unstable branch just one BIG travis build
+

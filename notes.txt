@@ -1358,4 +1358,130 @@ move [devel/*] to separate repo
 	mutable repo
 	neomutt should only move forward
 
+Updates:
+	docs -> web
+	web credits
+	web news
+	management / travis
+	patch tree diagram for gentoo
+
+Release:
+	old patches 1.5.24
+	new patches 1.6.1
+	unstable patches 1.6.1+
+	devel patches
+	readme: "patch against..."
+	drop series: misleading
+	readme - news?
+	* 2
+	individual patches
+	rebased patches
+	separate vs series
+	readme ∀ dirs
+	changelog
+
+update feature =>
+	commit
+	backport
+	integration/feature update
+	changelog
+	web pages
+	doc/readme
+	config
+
+still to fix
+	sidebar refresh
+	compress - thorough testing
+
+versions:
+	old: 1.5.24 -- fixed + backports
+	stable: 1.6.1 -- fixes + merges + dev
+	unstable: 1.6.1 -- moving + dev
+
+	v1.5.24/feature/*
+	v1.5.24/neomutt
+	issue/*
+	mutt/*
+	neomutt
+	coverity
+	feature/*
+	devel/*
+
+future version:
+	v1.6.n/feature/*
+	v1.6.n/neomutt
+
+	unstable/feature/*	}- update occasionally
+	unstable/neomutt	}  (after big arch changes)
+
+branches
+	features -> travis -> coverity -> neomutt
+	feature5 -> travis5 -> neomutt5
+
+[unstable/*] => drop [devel/win-sidebar]
+
+new feature => new travis test
+	compress
+	nntp
+
+update readmes
+	wiki
+	project links
+	project contact
+	version
+version.c
+	copyright
+	contact
+	version
+doc.xml
+	wiki
+	project links
+	project contact
+	version
+main readme
+	project links
+	project contact
+	version
+	list latest version?
+		no, will always be out of date
+
+Release issue for
+	comments
+	questions
+	discussion
+about current release
+closed on next release
+bugs as issues as normal
+
+merging doc/manual.xml.head
+	split head/tail
+	2 * split (awk) by sect id=""
+	source & new
+	remerge alphabetically
+
+fix 1.5.24/wiki refrerences
+	compress
+	keywords
+	nntp
+
+split patches into main + custom
+	e.g.
+		index-color
+		status-color
+		status-color (index-color bits)
+
+index_format
+	clash using %g for notmuch and nntp
+	init.h, hdrline.c
+
+sort out notmuch/bugs overlap
+
+integration web page
+	state of play
+
+create tests ∀ issues to prevent regressions
+	HOW?
+
+check makefile dist file list
+	ChangeLog.neomutt, etc
 
