@@ -1457,3 +1457,10 @@ in [integration/patches] generate directory READMEs
 	automatic build from the patches in the dir
 	autolink README.md to the dir.md's
 
+win-sidebar - statusbar length/formatting broken when status_on_top set
+
+labels:
+	mail {red,green}
+	complete works for r<tab> -> red
+	doesn't work for g<tab>
+
