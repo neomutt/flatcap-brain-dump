@@ -1464,3 +1464,5 @@ labels:
 	complete works for r<tab> -> red
 	doesn't work for g<tab>
 
+add lmdb to neomutt-test-configs.sh
+
