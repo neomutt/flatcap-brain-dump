@@ -1466,3 +1466,12 @@ labels:
 
 add lmdb to neomutt-test-configs.sh
 
+'uncolor status' doesn't work
+
+dgc - unbind patch
+
+neo-stats.pl
+	ignore issues tagged 'release'
+	ignore integration issues?
+	or count only 'bugs' and unlabelled
+
