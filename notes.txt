@@ -1501,3 +1501,8 @@ add tutorials (like sidebar intro) to the website
 	redlink some empty ones (or partials)
 	ask for translations?
 
+sb fill empty space -> mutt_paddstr
+	no point, it just does multiple addch(' ')
+	alloc buffer (on stack)
+	memset to ' ', null at width, addstr()
+
