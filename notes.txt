@@ -1497,3 +1497,7 @@ Milestones:
         => lots of smaller issues
         list (next) Milestone (at least) on web front page / devel page
 
+add tutorials (like sidebar intro) to the website
+	redlink some empty ones (or partials)
+	ask for translations?
+
