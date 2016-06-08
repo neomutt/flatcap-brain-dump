@@ -1,0 +1,25 @@
+Test Framework
+
+Test what?
+Test how?
+
+Options:
+        no curses
+        fake curses
+        test harness (no main)
+
+Testing #if DEBUG
+
+Makefile
+        make test
+        make testX
+
+need to control random source(s)
+        message ids need to be predictable
+        what else is random?
+
+fake curses -- list ALL uses of curses
+        reduce / centralise all uses of curses
+        fake COLS, LINES, WINCH
+        => possible REAL gui!
+
