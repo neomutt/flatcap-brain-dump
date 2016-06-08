@@ -1475,3 +1475,25 @@ neo-stats.pl
 	ignore integration issues?
 	or count only 'bugs' and unlabelled
 
+use Gutenberg texts for sample emails
+        use mutt-dev mailing list as a template?
+        alias all names
+        replace all message-ids (but keep links)
+        strip out most headers
+
+[issue/*] wait 2 releases, then drop?
+
+s/1.5.24/1.6.1/g on website
+
+make more patch tree features conditional
+
+[unstable/*] or [devel/*] => broken refs => neo-devel repo?
+
+Sidebar 'N' string for 'new' icon
+        format with %1s for width
+
+Milestones:
+        use for next release
+        => lots of smaller issues
+        list (next) Milestone (at least) on web front page / devel page
+
