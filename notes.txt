@@ -1506,3 +1506,12 @@ sb fill empty space -> mutt_paddstr
 	alloc buffer (on stack)
 	memset to ' ', null at width, addstr()
 
+integrate issues + mutt + ghi -> labels, saved-replies, etc
+
+Mutt config generator app
+	or good (curated) sample config
+	tutorial
+	translations
+
+get opsec (Kurt) to help bapt (Baptiste) with bsd-neomutt
+
