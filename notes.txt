@@ -1515,3 +1515,10 @@ Mutt config generator app
 
 get opsec (Kurt) to help bapt (Baptiste) with bsd-neomutt
 
+document branches
+	mutt/default		only merges + travis
+	mutt/default-clean	direct from upstream
+		maintain this?
+		publish this?
+	unstable/sidebar	sidebar_on_right, WIPs, etc
+
