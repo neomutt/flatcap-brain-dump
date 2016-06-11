@@ -1524,3 +1524,20 @@ document branches
 
 new-commits.sh
 	for i in $(git branch --no-merged | cut -b3- | grep feature/); do echo $i; git log --oneline neomutt..$i | indent; done
+
+use git attributes to mess with [issue/*] travis.yml
+	=> .gitattributes needs to be in repos on travis
+
+backport features
+
+make github neo description longer
+	limited to 347 chars (visible)
+	excluding www
+
+plan gh repo rearrange
+	pre-merge -> travis -> coverity -> neomutt
+	hotfix branch included?
+		where in layout?
+
+mutt-kz rebase urgently needed
+
