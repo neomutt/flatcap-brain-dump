@@ -1522,3 +1522,5 @@ document branches
 		publish this?
 	unstable/sidebar	sidebar_on_right, WIPs, etc
 
+new-commits.sh
+	for i in $(git branch --no-merged | cut -b3- | grep feature/); do echo $i; git log --oneline neomutt..$i | indent; done
