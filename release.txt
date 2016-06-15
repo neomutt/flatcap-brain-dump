@@ -102,3 +102,17 @@ change naming from YYYYMMDD to YYYY-MM-DD?
 release notes:
 	mention RPMs, etc
 
+Git announcement as example
+	The latest feature release Git v2.9.0 is now available at the
+	usual places. It is comprised of 497 non-merge commits since
+	v2.8.0, contributed by 75 people, 28 of which are new faces.
+
+	New contributors whose contributions weren't in v2.8.0 are as follows.
+	Welcome to the Git development community!
+
+	LIST
+
+	Returning contributors who helped this release are as follows.
+	Thanks for your continued support.
+
+	LIST

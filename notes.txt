@@ -1541,3 +1541,29 @@ plan gh repo rearrange
 
 mutt-kz rebase urgently needed
 
+inotify ∀ local mailboxes
+
+script to generate min-build
+	put in contrib?
+	check config is still up-to-date
+
+mailing list?
+	need forum
+	announce tag on issues?
+
+sample IMAP folder (for devs)
+	regenerate daily
+
+neo-build
+	use git config for settings
+		enabled/disabled by default
+		configure settings
+	save config.h, etc in .git/neobuild
+	neobuild --generate
+
+mail sieve issue -- colour code for origin?
+
+sidebar_width in compose.c (gentoo)!
+
+sidebar rename delim_len to div_width
+
