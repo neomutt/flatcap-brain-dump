@@ -1567,3 +1567,26 @@ sidebar_width in compose.c (gentoo)!
 
 sidebar rename delim_len to div_width
 
+PATCHES  -UNKNOWN -> -git?
+
+docs for new sidebar expando %n
+	push to upstream
+
+git tag for issues matching rolling release
+
+git users: priority workaround/fix
+
+teams for @mentions
+	@debian
+	@rolling-release
+	etc
+
+patch-tree
+	build every patch
+	need tree of commit hashes
+
+new travis => complete neo5 build
+
+[neomutt] as temporary rolling release destination
+	accidentally closing issues!
+
