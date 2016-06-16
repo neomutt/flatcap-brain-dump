@@ -1590,3 +1590,7 @@ new travis => complete neo5 build
 [neomutt] as temporary rolling release destination
 	accidentally closing issues!
 
+freebsd
+	warning about mktemp
+	dubious patch Makefile.am.doc
+
