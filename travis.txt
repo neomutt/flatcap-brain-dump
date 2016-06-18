@@ -91,7 +91,7 @@ only features*/*, neomutt* + pull-requets
 + mutt/* NO, not 1.5.24, 1.6.0 (fixed)
 
 neo, mutt -- full spread
-feautre*/*  (16x2) except sidebar,notmuch
+feature*/*  (16x2) except sidebar,notmuch
 exceptions for anything with a configure option
 
 fast-finish: true?
@@ -108,11 +108,29 @@ next hg update, fix travis for full build
 
 group travis builds to cut out vm time
 
-quick buid -> travis
+quick build -> travis
 
 travis doc build (one-off)?
 
 travis for OSX, catch build issues
 
 unstable branch just one BIG travis build
+
+compress missing from coverity OPTS
+
+travis cache configure output for any given option set (it's constant)
+	what files are generated?
+	which are used?
+	Makefile * n + config.h
+	update cache if configure/Makefile are newer
+	how do file timestamps fit in with git & caching?
+1 configure set ∀ 43 builds
+quiet build vs verbose build
+	configured by website global var?
+quiet by default?
+hash configure options string as a filename in cache
+alter prepare to use ./configure or configure-fast
+	dependent on web global var?
+one BIG build => option sets in file?
+	in web env?
 
