@@ -134,3 +134,24 @@ alter prepare to use ./configure or configure-fast
 one BIG build => option sets in file?
 	in web env?
 
+travis build:
+	get latest build-script from github
+	if local .neo-build
+		save to .git/neo-build
+	else if github/X/Y
+		save to .git/neo-build
+	else if github/X
+		save to .git/neo-build
+	else if github default
+		save to .git/neo-build
+	else
+		FAIL
+build-script
+	for each line of .git/neo-build
+		git clean -xdfq
+		autoreconf --install
+		./configure $OPTS
+		make
+		test?
+		separator
+
