@@ -116,3 +116,14 @@ Git announcement as example
 	Thanks for your continued support.
 
 	LIST
+
+
+patch sets before merge?
+easier to ID new commits -- just save the commits pre-merge
+
+step to change PATCH-UNKNOWN
+
+tag patch sets to match neomutt
+
+release todo list: search issues
+

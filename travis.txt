@@ -155,3 +155,8 @@ build-script
 		test?
 		separator
 
+neobuild in dot dir?
+	separate repo?
+	pull in (mycache)?
+
+

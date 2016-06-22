@@ -1607,3 +1607,57 @@ clang all my code + fix warnings
 
 [travis] build script & data external to code branches
 
+think of methods to reduce the churn in [patch-sets]
+
+server script to update from hg
+	get latest id
+	hg id -i --rev stable
+	hg id -i --rev default
+	then update and check ids
+	merge, push and travis
+
+cron (locally) to fetch github into neomutt.git
+
+server
+	mirror all github repos to server
+	cron script on server to sync
+	perl to get list of all repos
+
+fix notmuch Makefile.am
+
+feature lmdb
+	docs -> web
+
+report-neo-bug.sh?
+	show os
+	build options
+	etc
+
+last-release tag?
+current-release tag?
+	useful, but problem NOT pushing them upstream
+
+ __  __  ___ _____ _____ ___  
+|  \/  |/ _ \_   _|_   _/ _ \ 
+| |\/| | | | || |   | || | | |
+| |  | | |_| || |   | || |_| |
+|_|  |_|\___/ |_|   |_| \___/ 
+
+patch -UNKNOWN -> -git
+
+warning mx_is_notmuch undeclared in patch-sets
+
+make a list of commits that are missing in the patch-sets
+	quickbuild
+	del .hg*, etc
+	X, Revert X
+Tag the missing commits [no export] ?
+
+git log neomutt..feature/X
+	new commits
+
+get Karel to migrate to NeoMutt stack -- easier integration
+
+split up neo custom patches (theme)
+	not in Debian, Suse, Gentoo?
+
