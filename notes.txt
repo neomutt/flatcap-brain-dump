@@ -1618,11 +1618,6 @@ server script to update from hg
 
 cron (locally) to fetch github into neomutt.git
 
-server
-	mirror all github repos to server
-	cron script on server to sync
-	perl to get list of all repos
-
 fix notmuch Makefile.am
 
 feature lmdb
