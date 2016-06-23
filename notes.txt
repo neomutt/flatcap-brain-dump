@@ -1656,3 +1656,7 @@ get Karel to migrate to NeoMutt stack -- easier integration
 split up neo custom patches (theme)
 	not in Debian, Suse, Gentoo?
 
+upstream tag for issues
+	=> upstream notified?
+	=> upstream accepted?
+
