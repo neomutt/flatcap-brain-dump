@@ -1355,6 +1355,7 @@ still to fix
 	compress - thorough testing
 
 versions:
+main (...)                 at main.c:1237
 	old: 1.5.24 -- fixed + backports
 	stable: 1.6.1 -- fixes + merges + dev
 	unstable: 1.6.1 -- moving + dev
@@ -1447,6 +1448,7 @@ bugs
 	<enter> vs <return>
 	backported (done)
 	patchtree (todo)
+main (...)                 at main.c:1237
 
 test and compare:
 	quilt
@@ -1659,4 +1661,6 @@ split up neo custom patches (theme)
 upstream tag for issues
 	=> upstream notified?
 	=> upstream accepted?
+
+debian neomutt -- /etc/alternatives?
 
