@@ -1664,3 +1664,5 @@ upstream tag for issues
 
 debian neomutt -- /etc/alternatives?
 
+MOVE gentoo's TINFO patch into bug-fixes (for all distros)
+
