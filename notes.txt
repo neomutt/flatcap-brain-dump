@@ -1666,3 +1666,30 @@ debian neomutt -- /etc/alternatives?
 
 MOVE gentoo's TINFO patch into bug-fixes (for all distros)
 
+24-bit colour => non-curses back-end
+	enumerate all the curses things we do
+	get screen size
+	listen of screen size changes (WINCH?)
+	wait for key presses
+	clear screen
+	clear line
+	write text
+
+doc changes/todo list for limit-current-thread
+
+lua as a testing framework: what would I need to expose?
+	index functions?
+	sidebar functions?
+	variables?
+
+sidebar-refresh command to forcibly update ALL the counts?
+
+sidebar search command to quickly change to a mailbox
+	like vim highlight search?
+	filter after every keystroke
+
+revert sidebar cursor positioning?
+	no longer needed now that sidebar isn't drawn during key-waits
+
+new-mail => dbus as a goal, see dgc
+
