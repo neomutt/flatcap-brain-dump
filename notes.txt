@@ -1693,3 +1693,9 @@ revert sidebar cursor positioning?
 
 new-mail => dbus as a goal, see dgc
 
+'ifdef' improvement
+	ability to check mutt version number
+	ifdef VERSION == X
+	ifdef VERSION > Y
+	like vim
+
