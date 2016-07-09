@@ -1,0 +1,64 @@
+test sidebar width if fixed string breaks bounds
+	set sidebar_width=10
+	set sidebar_format="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+TEST: deleting/adding entries on/off-screen
+	are our indexes correctly maintained?
+TEST: refresh limit -- changing vars from another mutt
+TEST: (re-)sorting by changing sort criteria from another mutt
+
+test mailboxes with trailing '/' and '.', etc
+
+Sidebar -- may require special mailboxes setting up
+	special characters
+		accented
+		foreign
+		multibyte
+		multicolumn
+	divider
+		single ascii
+		multiple ascii
+		single utf-8
+		multiple utf-8
+	width
+		too narrow
+		ok
+		very wide
+	sorting
+	indent characters
+	page up/down
+	next/prev new
+		with wrap
+	toggle visibility
+	test mailboxes with trainling / or .
+	delim char
+	new mail arriving
+		causing resort?
+	colours
+
+Reflow test
+	on/off (needs refresh)
+	width set to:
+		+20, +60, +200, -20, -40, 0
+
+Compressed files
+	working?
+	add to empty box
+	add to "add-only" box
+	set each combination of hooks
+
+Test next new mail
+	<tab> -> <next-new-then-unread>
+	<esc><tab> -> <previous-new-then-unread>
+	mutt -Z
+
+test alignment of all fields in compose =>
+	pgp sign
+	smime sign
+	mixmaster
+
+test <enter> vs <return>
+
+mailcap filter $COLUMNS
+
+

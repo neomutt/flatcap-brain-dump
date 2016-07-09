@@ -23,3 +23,21 @@ fake curses -- list ALL uses of curses
         fake COLS, LINES, WINCH
         => possible REAL gui!
 
+testing
+	create a list of very simple tests
+	simple instructions
+	simple outcome
+	each item, tests ONE thing
+	create large list
+	split list (randomly?) amongst testers
+
+tests:
+	set all config options to: valid, invalid, empty
+	both in muttrc and within mutt
+
+mutt test framework
+	how?
+
+create tests ∀ issues to prevent regressions
+	HOW?
+

@@ -1,0 +1,12 @@
+integrate scripting language
+	lua, perl, python, ruby
+
+lua as a testing framework: what would I need to expose?
+	index functions?
+	sidebar functions?
+	variables?
+	call functions
+	macros
+	send keystrokes
+	get error codes returned from functions
+

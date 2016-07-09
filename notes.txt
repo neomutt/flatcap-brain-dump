@@ -101,10 +101,6 @@ gentoo sidebar_format
 sidebar_width = auto (size to contents)
 	would need to parse and format all strings ahead of drawing divider
 
-test sidebar width if fixed string breaks bounds
-	set sidebar_width=10
-	set sidebar_format="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
 cleanup:
 	docs - in code and html
 	comments
@@ -261,10 +257,6 @@ Where are OPTSIDEBAR* used outside sidebar.c
 	curs_main.c, buffy.c, mh.c
 any use from calling sb_init(), sb_shutdown() from main()?
 	probably not yet
-TEST: deleting/adding entries on/off-screen
-	are our indexes correctly maintained?
-TEST: refresh limit -- changing vars from another mutt
-TEST: (re-)sorting by changing sort criteria from another mutt
 Distinguish between movement and search wrap?
 	movement - next/prev (1 line), page up/down
 	search - find next/prev new
@@ -304,10 +296,6 @@ possible to eliminate sb_get_highlight?
 
 move mappings from index/pager -> generic
 	in functions.h
-
-tests:
-	set all config options to: valid, invalid, empty
-	both in muttrc and within mutt
 
 only draw divider if
 	visibility changes
@@ -996,7 +984,6 @@ website: some bug-fixes have gone away -> success page?
 set/unset sidebar_visible doesn't refresh screen when in pager
 BUG sidebar redraws too often
 sb doesn't match folder (for open) if it has a trailing /
-test mailboxes with trailing '/' and '.', etc
 sb folder sort: strcoll not strcasecmp?
 sync sidebar divider docs
 
@@ -1012,18 +999,12 @@ on neo release -- ideas
 	loses all semblance of history / continuity
 	on every n^th release? / x months / new features -- rebase?
 
-integrate scripting language
-	lua, perl, python, ruby
-
 notmuch missing entry in PATCHES
 	(add to neomutt? or notmuch?)
 
 survey -- autoreply
 
 Mutt web DNSSEC, TLSA
-
-mutt test framework
-	how?
 
 limit hg updates to just before release?
 	no => often, let travis work
@@ -1436,9 +1417,6 @@ sort out notmuch/bugs overlap
 integration web page
 	state of play
 
-create tests ∀ issues to prevent regressions
-	HOW?
-
 check makefile dist file list
 	ChangeLog.neomutt, etc
 
@@ -1465,8 +1443,6 @@ labels:
 	mail {red,green}
 	complete works for r<tab> -> red
 	doesn't work for g<tab>
-
-add lmdb to neomutt-test-configs.sh
 
 'uncolor status' doesn't work
 
@@ -1677,11 +1653,6 @@ MOVE gentoo's TINFO patch into bug-fixes (for all distros)
 
 doc changes/todo list for limit-current-thread
 
-lua as a testing framework: what would I need to expose?
-	index functions?
-	sidebar functions?
-	variables?
-
 sidebar-refresh command to forcibly update ALL the counts?
 
 sidebar search command to quickly change to a mailbox
@@ -1698,4 +1669,17 @@ new-mail => dbus as a goal, see dgc
 	ifdef VERSION == X
 	ifdef VERSION > Y
 	like vim
+
+macro instruction <no-history> like vim's <silent>
+	some macros end up in the log
+
+firstb <REGEX>
+	regex if it contains a '*'
+	anchored at bol?
+	multiple args => not regex
+	one arg => git checkout -- no sense in that
+
+update-from-hg.sh
+	-n option => no push to github
+
 
