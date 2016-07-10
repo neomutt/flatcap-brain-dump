@@ -1692,3 +1692,7 @@ mutt plugin to create neomutt issues
 	or GitHub API directly
 	test in dummy repo
 
+drop mutt-1.5.24 tag from [neomutt/neomutt]
+
+git b(){} needs to disable colour on piping
+
