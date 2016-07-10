@@ -1687,3 +1687,8 @@ git clone
 	(disabled)
 	what other defaults?
 
+mutt plugin to create neomutt issues
+	use ghi?
+	or GitHub API directly
+	test in dummy repo
+
