@@ -1682,4 +1682,8 @@ firstb <REGEX>
 update-from-hg.sh
 	-n option => no push to github
 
+git clone
+	always pull in my prepare-commit-msg hook
+	(disabled)
+	what other defaults?
 
