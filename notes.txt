@@ -1712,3 +1712,5 @@ sidebar
 	option to fold nested mailboxes
 	option to unfold when new mail arrives
 
+"build -n" disable neomutt features
+
