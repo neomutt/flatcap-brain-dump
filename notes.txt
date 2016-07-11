@@ -1708,3 +1708,7 @@ generate integration checkpoints.md using git log:
 		^feature/tls-sni ^feature/trash ^mutt/default ^mutt/stable neomutt
 	etc for all branches
 
+sidebar
+	option to fold nested mailboxes
+	option to unfold when new mail arrives
+
