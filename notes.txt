@@ -1730,4 +1730,5 @@ mutt tips on startup
 		nested emails?  what about multiple inheritance?
 		need hyperlinking "see also" links
 	use labels (from Keywords plugin) to add value
+	use mutt's caching facility to store the metadata
 
