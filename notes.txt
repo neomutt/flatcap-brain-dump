@@ -1711,6 +1711,7 @@ generate integration checkpoints.md using git log:
 sidebar
 	option to fold nested mailboxes
 	option to unfold when new mail arrives
+	folded, they should show the cumulative totals for all the children
 
 "build -n" disable neomutt features
 
