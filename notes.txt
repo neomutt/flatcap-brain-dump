@@ -1732,3 +1732,13 @@ mutt tips on startup
 	use labels (from Keywords plugin) to add value
 	use mutt's caching facility to store the metadata
 
+sidebar
+	have an alternate mailbox like vim's alternate file
+	create an alias for it '#'
+	c# -> change to alternate directory
+		new alternate becomes old dir
+	save files to #
+	set alternate mailbox function
+	colour highlight for alternate mailbox
+	expando %# for alternate displays '#' or ''
+
