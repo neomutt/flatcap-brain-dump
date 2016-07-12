@@ -1714,3 +1714,10 @@ sidebar
 
 "build -n" disable neomutt features
 
+mutt tips on startup
+	distribute a contrib/mutt-tips dir which is a mailbox
+	select a random (email/tip) from the list
+	pick one that's unread (preferably)
+	how can we preserve the "read-ness" of an email after a package update?
+	.mutt.top-tips ? -- save a list of message-ids in there?
+
