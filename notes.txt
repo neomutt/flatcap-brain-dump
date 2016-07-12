@@ -1725,4 +1725,8 @@ mutt tips on startup
 		need to store flags elsewhere
 		flags: read, flagged!, deleted (i.e. don't show me again)
 	intersperse with mailboxes commands
+	tips should be self-contained (to start with)
+		unless they reference old tips
+		nested emails?  what about multiple inheritance?
+		need hyperlinking "see also" links
 
