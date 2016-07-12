@@ -1720,4 +1720,9 @@ mutt tips on startup
 	pick one that's unread (preferably)
 	how can we preserve the "read-ness" of an email after a package update?
 	.mutt.top-tips ? -- save a list of message-ids in there?
+	<top-tips> command creates a new mailbox (from DATA_DIR/DOC_DIR)
+		if in /usr it would be read-only
+		need to store flags elsewhere
+		flags: read, flagged!, deleted (i.e. don't show me again)
+	intersperse with mailboxes commands
 
