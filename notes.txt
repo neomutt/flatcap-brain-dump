@@ -1624,3 +1624,8 @@ sidebar
 	expando %# for alternate displays '#' or ''
 
 [neomutt-old] readme branch
+
+sidebar
+	separate colour for read-only mailbox
+	expando for read-only mailbox
+
