@@ -577,20 +577,6 @@ browser
 do format conditional work on strings, etc?  meaningful?
 	empty => false
 
-compress
-	limitations -- filenames
-	document %f %t need to be quoted
-		limit filenames
-		can't contain quotes
-			'' can't contain '
-			"" can't contain "
-		need code to escape filenames
-			would need to be done in an OS-dependent way
-
-compress -- hooks should be considered first, then default mutt behaviour
-	need test-hook i.e. "is this an xz-compressed" file?
-	mailbox type should be per-hook-set
-
 change docs to use <example>
 
 cond-date needs some concrete examples
@@ -695,20 +681,6 @@ find untranslated strings, i.e. missing _()
 
 kill version.c:rstrip_in_place()
 	fix external build scripts
-
-compress features
-	example of tar.gz of maildir mailbox?
-	compress won't be able to tidy up
-	unless...
-		compress creates a dir
-		extracts to that dir
-		deletes entire dir on close
-
-compress
-	change hook placeholders to be more descriptive?
-	%t -> (T)emp file
-	%p -> (P)laintext file
-	%c -> (C)ompressed file
 
 vim library of config options(vars)
 	auto-extract from init.h
@@ -1273,10 +1245,6 @@ update feature =>
 	web pages
 	doc/readme
 	config
-
-still to fix
-	sidebar refresh
-	compress - thorough testing
 
 versions:
 main (...)                 at main.c:1237

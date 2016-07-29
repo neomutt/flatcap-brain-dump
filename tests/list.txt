@@ -41,12 +41,6 @@ Reflow test
 	width set to:
 		+20, +60, +200, -20, -40, 0
 
-Compressed files
-	working?
-	add to empty box
-	add to "add-only" box
-	set each combination of hooks
-
 Test next new mail
 	<tab> -> <next-new-then-unread>
 	<esc><tab> -> <previous-new-then-unread>
