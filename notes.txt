@@ -152,10 +152,6 @@ quiet config option -- don't whine about unknown config options
 
 sensible retvals on functions
 
-command
-	sidebar_toggle_visible
-	sidebar_toggle → sidebar_toggle_virtual
-
 ────────────────────────────────────────────────────────────────────────────────
 missing patches
 	lightweight
@@ -260,7 +256,6 @@ any use from calling sb_init(), sb_shutdown() from main()?
 Distinguish between movement and search wrap?
 	movement - next/prev (1 line), page up/down
 	search - find next/prev new
-Readme.sidebar, Changelog.sidebar?
 does imap folder add/rm trigger our sb_notify?
 Config change notifications
 	fn (name, old_val, new_val)
@@ -582,8 +577,6 @@ browser
 do format conditional work on strings, etc?  meaningful?
 	empty => false
 
-check all xml anchor names
-
 compress
 	limitations -- filenames
 	document %f %t need to be quoted
@@ -593,9 +586,6 @@ compress
 			"" can't contain "
 		need code to escape filenames
 			would need to be done in an OS-dependent way
-
-compose sidebar changelog
-	abridged
 
 compress -- hooks should be considered first, then default mutt behaviour
 	need test-hook i.e. "is this an xz-compressed" file?
@@ -655,9 +645,6 @@ can some keybindings be set "only active when window is visible"?
 		should sidebar keys work?  probably not
 	*should* help hide the sidebar?
 		probably yes
-
-CENTERLINE is unused
-PAGELEN is used in ONE place
 
 how should mutt_yesorno() work?
 	Question is asked modally & outside are of asker
@@ -755,10 +742,6 @@ diagram
 
 macros() should be MACROS()
 
-need back-porters to maintain 1.5.24 branches
-	need separate branches for 1.5.24/1.6.0
-	how do I name them?
-
 gitflow for neomutt branches (and devel)
 
 smime.c:
@@ -811,12 +794,8 @@ vimlocal - check .git dir -- safe from git clean!
 merge commits contains: "Closes: #1234" to perform auto-close pull-request/issue
 wiki coding style:
 	indent, {}s, ()s, function defs, examples of correct
-notmuch -- independent of sidebar
-	#if defined(USE_SIDEBAR) || defined(USE_NOTMUCH)
-	around some blocks of code
 
 integrate patchlist into new version of ifdef checking
-neomutt default notmuch, sidebar to 'on'?
 wiki: doc travis and coverity options
 missing qdbm, slang-dev
 CONTRIBUTING.md (appears when creating an issue)
@@ -828,24 +807,11 @@ split source?
 mail, compress, dev build patches, examine coverity build log
 gh-pages for up-to-date manual (in sections)
 	front redirects to wiki
-todo before 1.6.0 release?
-	remaining features -> neo (even if not merged)
-	dev branch if not neomutt-ified (i.e. PATCHES, templated docs)
-	release devel patches separately (but at same time as neomutt release)
-		neomutt-patches-YYYYMMDD.tar.gz
-		neomutt-devel-YYYYMMDD.tar.gz
-	=> dev branch parallel to neomutt?
-		all dev features merged?
-		too much work for now
-		keep unmerged
 
 typo hdrline.c %g message labes
 bugfix 8 - hurd -- what happened to it?
-credits -- neomutt specific - add anarcat
 fmemopen - merge into one place in mutt_mktemp()?
 	idea from dgc email
-sidebar intro missing from features sidebar
-website broken link to flatcap.png
 rebase and refactor [devel/*] before moving to [feature/*]
 	factor this description into new-feature txt
 sidebar, when saving email to a folder use the sidebar as a selector?
@@ -867,7 +833,6 @@ mailing lists
 	dev		538
 email David Sterba (kdave) -- limit
 	use context, or change prototypes
-update website manual for 1.6.0
 screenshots on website
 watchers/stars on website home page
 	neomutt version
@@ -907,8 +872,6 @@ convert config.h to version.c
 website gh page: doc [issue/*]
 	temp fixes & wip for issues
 use wiki for ideas -- survey of ideas (next week)
-will I backport *new* features to 1.5.24?
-	no
 survey of patches -- both lists
 	mutt -v | mutt survey@neomutt.org
 update website gh page: list of branches
@@ -973,9 +936,6 @@ github files
 
 homebrew inclusion requires:
 	20 forks + 20 watchers + 50 stars
-sb docs - explain why unsorted isn't
-LMariachi -- sidebar format
-config changes to README.sidebar
 ∀ new bugfixes -- reference trac number in commit message
 test email reply to issues, etc
 	markdown?
@@ -985,7 +945,6 @@ set/unset sidebar_visible doesn't refresh screen when in pager
 BUG sidebar redraws too often
 sb doesn't match folder (for open) if it has a trailing /
 sb folder sort: strcoll not strcasecmp?
-sync sidebar divider docs
 
 on hg-update
 	pull hg changes into neo-tmp
@@ -1014,7 +973,6 @@ list-since script ∀ branches
 	non-merge commits since last tag
 
 config option:
-	--enable-trash?
 	--enable-fmemopen?
 
 dev@neomutt.org -> recipients need auto bcc rule to copy other devs
@@ -1096,9 +1054,6 @@ main.c:mutt_exit()
 apply patch deltas to patch sets
 	(changes since last sync)
 
-notmuch buffy changes *force* sidebar
-	need separating out
-
 install neomutt in parallel with mutt
 	uses alternatives mechanism
 	=> /usr/bin/neomutt{,-2016MMDD}
@@ -1107,8 +1062,6 @@ install neomutt in parallel with mutt
 COPR drop --debug
 
 OS-specific build instructions / install
-
-M_* -> MUTT_* pre-emptively commit to neomutt?
 
 change repos' default branch to /readme?
 	contains just some notes
@@ -1234,15 +1187,9 @@ check what COPR installs
 	docs/
 	dupes + empty files!
 
-lmdb header caching -> neo
-
-notmuch: mx.c type in #endif IMAP
-
 readme link neo to web, flatcap to gh
 
 sidebar: sort out new vs unread vs old, etc
-
-compose.c "sign as" + nntp + mbstowcs?
 
 pull-hg-master -> darnir + repo?
 
@@ -1286,8 +1233,6 @@ patchset branch for COPR (neo + fedora)
 
 COPR split up neo-patch, use integration patches
 
-fix UNKNOWN in distro patches
-
 sidebar, et al to kz
 	add to "update-feature" txt
 
@@ -1308,14 +1253,12 @@ Updates:
 	patch tree diagram for gentoo
 
 Release:
-	old patches 1.5.24
-	new patches 1.6.1
-	unstable patches 1.6.1+
+	new patches 1.6.2
+	unstable patches 1.6.2+
 	devel patches
 	readme: "patch against..."
 	drop series: misleading
 	readme - news?
-	* 2
 	individual patches
 	rebased patches
 	separate vs series
@@ -1337,12 +1280,9 @@ still to fix
 
 versions:
 main (...)                 at main.c:1237
-	old: 1.5.24 -- fixed + backports
-	stable: 1.6.1 -- fixes + merges + dev
-	unstable: 1.6.1 -- moving + dev
+	stable: 1.6.2 -- fixes + merges + dev
+	unstable: 1.6.2 -- moving + dev
 
-	v1.5.24/feature/*
-	v1.5.24/neomutt
 	issue/*
 	mutt/*
 	neomutt
@@ -1461,8 +1401,6 @@ use Gutenberg texts for sample emails
 
 [issue/*] wait 2 releases, then drop?
 
-s/1.5.24/1.6.1/g on website
-
 make more patch tree features conditional
 
 [unstable/*] or [devel/*] => broken refs => neo-devel repo?
@@ -1506,8 +1444,6 @@ new-commits.sh
 use git attributes to mess with [issue/*] travis.yml
 	=> .gitattributes needs to be in repos on travis
 
-backport features
-
 make github neo description longer
 	limited to 347 chars (visible)
 	excluding www
@@ -1516,8 +1452,6 @@ plan gh repo rearrange
 	pre-merge -> travis -> coverity -> neomutt
 	hotfix branch included?
 		where in layout?
-
-mutt-kz rebase urgently needed
 
 inotify ∀ local mailboxes
 
@@ -1541,14 +1475,7 @@ neo-build
 
 mail sieve issue -- colour code for origin?
 
-sidebar_width in compose.c (gentoo)!
-
 sidebar rename delim_len to div_width
-
-PATCHES  -UNKNOWN -> -git?
-
-docs for new sidebar expando %n
-	push to upstream
 
 git tag for issues matching rolling release
 
@@ -1577,10 +1504,6 @@ issue colour for VOTE or coopt QUESTION?
 
 link kz smime issue to neomutt 
 
-adopt mutt-dev trash changes
-
-lmdb => new neobuild travis?
-
 clang all my code + fix warnings
 
 [travis] build script & data external to code branches
@@ -1598,9 +1521,6 @@ cron (locally) to fetch github into neomutt.git
 
 fix notmuch Makefile.am
 
-feature lmdb
-	docs -> web
-
 report-neo-bug.sh?
 	show os
 	build options
@@ -1609,14 +1529,6 @@ report-neo-bug.sh?
 last-release tag?
 current-release tag?
 	useful, but problem NOT pushing them upstream
-
- __  __  ___ _____ _____ ___  
-|  \/  |/ _ \_   _|_   _/ _ \ 
-| |\/| | | | || |   | || | | |
-| |  | | |_| || |   | || |_| |
-|_|  |_|\___/ |_|   |_| \___/ 
-
-patch -UNKNOWN -> -git
 
 warning mx_is_notmuch undeclared in patch-sets
 
@@ -1743,3 +1655,4 @@ sidebar
 	colour highlight for alternate mailbox
 	expando %# for alternate displays '#' or ''
 
+[neomutt-old] readme branch
