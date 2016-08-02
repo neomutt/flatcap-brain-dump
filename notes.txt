@@ -1577,15 +1577,16 @@ drop mutt-1.5.24 tag from [neomutt/neomutt]
 git b(){} needs to disable colour on piping
 
 generate integration checkpoints.md using git log:
-	git log --reverse --no-merges --oneline ^bugs/common ^bugs/neomutt \
-		^feature/compress ^feature/cond-date ^feature/fmemopen \
-		^feature/ifdef ^feature/index-color ^feature/initials \
-		^feature/keywords ^feature/limit-current-thread ^feature/lmdb \
-		^feature/nested-if ^feature/new-mail ^feature/nntp \
-		^feature/notmuch ^feature/progress ^feature/quasi-delete \
-		^feature/sidebar ^feature/skip-quoted \
-		^feature/smime-encrypt-to-self ^feature/status-color \
-		^feature/tls-sni ^feature/trash ^mutt/default ^mutt/stable neomutt
+	git log --reverse --no-merges --oneline \
+		^bugs/common ^bugs/neomutt ^contrib/keybase ^contrib/vim-keybindings \
+		^feature/compress ^feature/cond-date ^feature/fmemopen ^feature/ifdef \
+		^feature/index-color ^feature/initials ^feature/keywords \
+		^feature/limit-current-thread ^feature/lmdb ^feature/nested-if \
+		^feature/new-mail ^feature/nntp ^feature/notmuch ^feature/progress \
+		^feature/quasi-delete ^feature/sidebar ^feature/skip-quoted \
+		^feature/smime-encrypt-self ^feature/status-color ^feature/tls-sni \
+		^feature/trash ^mutt/default ^mutt/stable \
+		neomutt
 	etc for all branches
 
 sidebar
