@@ -1630,3 +1630,9 @@ sidebar
 	separate colour for read-only mailbox
 	expando for read-only mailbox
 
+drop flea, etc from neo install
+
+getopt for neomutt
+	--help
+	--version
+
