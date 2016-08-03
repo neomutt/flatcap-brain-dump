@@ -1636,3 +1636,5 @@ getopt for neomutt
 	--help
 	--version
 
+symlink man pages, etc (for easy of use)
+	neomutt -> mutt
