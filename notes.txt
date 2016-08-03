@@ -1638,3 +1638,8 @@ getopt for neomutt
 
 symlink man pages, etc (for easy of use)
 	neomutt -> mutt
+
+transition guide:
+	man neomutt
+	a guide for users of mutt moving to neomutt
+
