@@ -1,0 +1,79 @@
+mutt-uv
+
+threads
+	main - running loops
+	log file
+	gui
+	ctx1
+	ctx2
+	...
+
+ctx
+	imap
+	pop
+	mh
+	nntp
+	notmuch
+	mbox
+
+keyboard handling
+mouse events
+signal handling
+timers
+filesystem watching
+TCP connections
+event queue?
+locking
+
+plugins
+	log (allow multiple)
+	mailboxes
+		imap
+		pop
+		etc
+	contacts (allow multiple)
+	calendar
+	rss
+	search
+	tasks
+
+threads / spawn for sub-processes
+
+init
+	config
+	register
+		plugin type
+		variables
+		commands
+		functions
+		sort	}- how?
+		colour	}
+
+rendering
+	sidebar	}
+	index	}- register expando for X_format
+	pager	}
+	status	}
+	help?
+
+compress mailbox
+	recursive -- how?
+
+initials
+	register %I or %{init} in index_format
+
+index colours - how?
+	render line, then colour?
+or
+	pass list of typed components to plugin
+		STR "subject" "re: xyz"
+		DATE "sent" "2016..."
+
+events
+	keyboard
+	mouse
+	winsize
+	timeout/clock
+	new mail
+
+
