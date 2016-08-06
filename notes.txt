@@ -1643,3 +1643,9 @@ transition guide:
 	man neomutt
 	a guide for users of mutt moving to neomutt
 
+index-color
+	patterns on date
+	allow unescaped ANSI sequences?
+	add offset based pattern, e.g.
+		color red default cols:14-20 [mutt pattern]
+
