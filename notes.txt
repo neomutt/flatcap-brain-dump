@@ -1649,3 +1649,12 @@ index-color
 	add offset based pattern, e.g.
 		color red default cols:14-20 [mutt pattern]
 
+doc -> contrib ∀ vimrc, muttrc
+	=> will break downstream packaging
+	announce change, make change in next release
+
+like noscript in firefox -- "neomutt newly updated message in inbox"
+	or :neoversion => "fake email giving changelog"
+	or :changelog
+
+
