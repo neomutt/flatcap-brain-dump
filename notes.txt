@@ -1657,9 +1657,86 @@ like noscript in firefox -- "neomutt newly updated message in inbox"
 	or :neoversion => "fake email giving changelog"
 	or :changelog
 
-01:35 <SvenG> but giving a color to "known" addresses (via aliases) would be a killer                                                           |
+2016-08-09
+	01:35 <SvenG> but giving a color to "known" addresses (via aliases) would be a killer
 
-08:31 <flip214> Hi. Another thing I would love to see: an email arrives in INBOX; I answer it,
-	and define the FCC for the sent mail, but the incoming mail is still in INBOX.
-08:31 <flip214> so a "reply-and-move-to-same-folder" would be interesting to me.
+2016-08-12
+	08:31 <flip214> Hi. Another thing I would love to see: an email arrives in INBOX; I answer it,
+		and define the FCC for the sent mail, but the incoming mail is still in INBOX.
+		so a "reply-and-move-to-same-folder" would be interesting to me.
+
+sidebar "live" search of folders
+	key to start searching
+	live filtering at every keystroke
+	enter selects
+	Ctrl-C / Ctrl-G aborts
+	fuzzy matching
+matching applies to multiple areas of mutt
+	sidebar
+	aliases
+	folders
+	files
+	index panel
+	pgp keys
+good feature to sell upstream
+
+alternative to sb search
+	key -> numeric prefix for all folders
+	type number<enter> to select
+	(like index-panel)
+
+web docs for XDG config
+
+new mutt colours
+	none or inherit
+	don't set this component
+
+build
+	--enable-everything
+	which hcache?
+
+docs
+	sidebar_on_right
+
+1.7.0
+	add --quickbuild?
+
+kill "flea", etc in neo install
+
+1.7.0 => deprecate 1.6.0 branches after 1 month
+	move them to neomutt-old
+
+docs/wiki
+	neomutt history/timeline
+
+notmuch+index-color
+	tag patches in *neomutt*
+	"compat: notmuch+index-color" patch/commit
+	=> failed merge!
+
+compat: for docs?
+	too much work
+
+compat:
+	use gitattributes to tie in with commits?
+	how?
+
+remote config -- like browser proxy setup
+	display to user "are you sure?"
+	useful for tips & examples
+	way too dangerous
+
+1.7.0 web features -- add "upstream" category
+	for sidebar, trash
+
+darnir to credits ∀ configure
+
+contrib dir for:
+	muttrc
+	vimrc
+	or merge vimrc
+
+unnamed notmuch queries => create description based on query
+	need rename function for sidebar-notmuch
+	need option to autoadd them to the sidebar
 

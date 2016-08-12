@@ -159,4 +159,11 @@ neobuild in dot dir?
 	separate repo?
 	pull in (mycache)?
 
+what should we build on a new tag being pushed?
+	tags => neomutt release => full spread?
+
+clone depth for [bugs/*] needs to be greater than 3
+	(in case more than 3 bugs are pushed in one go)
+
+sync travis-build scripts to neomutt-old branch names
 
