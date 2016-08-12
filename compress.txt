@@ -31,3 +31,8 @@ change hook placeholders to be more descriptive?
 %p -> (P)laintext file
 %c -> (C)ompressed file
 
+docs: mention screen flicker during updates
+	=> system commands
+
+tidy open() error paths -- need to delete /tmp files
+
