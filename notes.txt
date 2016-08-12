@@ -1740,3 +1740,55 @@ unnamed notmuch queries => create description based on query
 	need rename function for sidebar-notmuch
 	need option to autoadd them to the sidebar
 
+fake/alternate curses -> true colour => separate fg, bg, term attrs like vim
+
+configure option for random patch
+irc to more docs
+
+cache autoconf in .git
+	git config a name for retrieval, "lmdb", "tokyo"
+		build -s <name>, build <name>
+
+nntp warning with no hcache
+notes for progress bar
+	set time_inc = 0 for best results (ref: paravoid)
+	test read_inc, write_inc, net_inc too
+
+sidebar -- imap all folders vs subscribed
+1.7.0 docs for sidebar, trash -- reflect upstream's changes
+dovecot public mailboxes for tips?  one public user?
+nntp tips? ":tips" command to toggle nntp vars and mailboxes
+
+unstable: .gitignore upstream of feature branches, what else?
+	common docs, travis
+
+1.7.0
+	reindent source, split docs => base joiner
+
+wiki link to website
+
+vimrc - each branch maintains its own -- same name, merged in neo
+	same problem as docs?  complicated
+	same problem as patches?  can be auto-merged
+
+separate docs -- only the "optional features" sections
+
+user-agent from Mutt/1.6.2-neo -> NeoMutt-1.6.2 (2016-08-08)
+
+tip - status_format + status-color
+	ctx->readonly => red padlock
+
+compress examples == use full option names
+	--compres, etc
+	add examples of compress levels too
+
+contrib.md -- enhancements have 1 month lifespace -> wiki
+coverity errors in feature patches
+
+is contrib/ installed by any downstreams?
+
+keywords special +label / -label
+	add/remove
+	don't overwrite
+
+
