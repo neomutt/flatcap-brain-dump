@@ -1791,4 +1791,115 @@ keywords special +label / -label
 	add/remove
 	don't overwrite
 
+nntp does it use read_inc / net_inc correctly?
+
+web docs: What *is* neomutt
+	mail client
+	show pictures
+	compare to mutt
+	explain why it's better
+
+sidebar intro
+	is "mail_check_stats" doc'd well enough?
+
+update man page for mutt
+	wrt muttrc location, etc
+
+offer up-to-date vimrc for mutt/neomutt to vim.org
+
+colour-coding good-sig vs bad-sig
+	tricky for mime attached sigs
+
+toggle-quoted : option to remember state
+	or "hide_quoted_text" bool
+	a caps-lock for toggle-quoted
+		don't have to do it for each mail
+	can this be done with "message-hook"?
+
+help text, OPS -- move "NNTP" to front of text to make it easier to spot?
+
+nntp list, can't sort by counts
+muttrc.nntp -- BOGUS ENTRIES
+
+sign all commits?
+	broken by rebases, etc
+	sign only changelog commit?
+	all [neomutt] commits?
+
+maildir + inotify
+
+docs build: more sed filters VERSION, DATE, git hash?
+
+index-color separate colours for "mylocal" and "@domain.com"
+
+notmuch backend: add X-Label in editor, does "right thing" in notmuch?
+unified frontend interface (notmuch/keywords) backend
+one-direction script -- sync nightmare?
+sync notmuch -> X-Label's?  get out of sync
+
+combine all the vimrc's for neomutt
+	or combine with vim's for a full copy (better)
+
+check distrs are installing all docs, contrib, etc
+
+nntp, etc static mx functions
+
+sidebar.h prototype push fix upstream
+
+mvprintw unused?
+
+gmail patches -> devel
+	need testers
+
+unstable: fix commit dates
+
+docs
+	run "make validate" on travis?
+	regular testing
+
+check 1.7.0 notmuch for typos that should be elsewhere
+
+release:
+	list fixes issues (#num) on release notes
+
+jobs:
+	announce forthcoming release
+	list gotchas
+
+jobs
+	create patchsets before announce
+
+
+sidebar
+	add dprints for debugging
+
+git: fetch-all ∀ refs (dangerous)?
+
+upstream sidebar docs credits -> where?
+
+"git" in version number + commit hash?
+
+rdiff-backup on entire mail queue -- hourly?
+
+changelog -- dummy date for git users?
+	implies unnecessary commits
+
+PATCHES bugfix lines reference neo issue #s
+
+transcribe issue#56 vim-keybinding ideas
+	-> docs/vi.txt
+	wiki
+
+mutt use getopt: long options
+
+gitattrs on patchsets to hide "From:" changes, etc
+
+mutt-tips: integrated
+	tips command
+	fake? email or browser spawned
+	neomutt tutorial
+
+notmuch: drop distinction between real and virtual?
+	just maintain 2 lists and swap pointers?
+	should simplify sidebar integration
 

@@ -10,3 +10,10 @@ lua as a testing framework: what would I need to expose?
 	send keystrokes
 	get error codes returned from functions
 
+lua initially debug only (for testing)
+
+lua -> travis? / testing
+	=> public access to test mailboxes
+
+lua-testing => save_results()
+

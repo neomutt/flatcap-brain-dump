@@ -167,3 +167,8 @@ clone depth for [bugs/*] needs to be greater than 3
 
 sync travis-build scripts to neomutt-old branch names
 
+run on patchsets
+	construct & build
+	2 builds (all, nothing)
+	∀ distros
+

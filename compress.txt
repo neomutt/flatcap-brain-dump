@@ -36,3 +36,10 @@ docs: mention screen flicker during updates
 
 tidy open() error paths -- need to delete /tmp files
 
+don't mess with atime of tmp file
+
+compress only opens one file at a time
+	should cache decompressed files?
+	security? create/delete use close?
+		no can't recompress after
+

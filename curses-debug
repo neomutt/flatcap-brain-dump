@@ -6,6 +6,7 @@ after each move,  call getyx to confirm positions }- in case of writing/moving b
 after each write, call getyx to confirm positions }
 
 screenshot command with ANSI escape sequences / HTML+CSS
+	need internal representation of the screen
 	multiple => screen cast
 
 capture at screen or window-level?
