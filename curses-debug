@@ -1,0 +1,13 @@
+
+try to centralise all curses calls
+need to capture WINCH, move cursor, write char/string, set attrs, clear line/end/bottom/screen
+
+after each move,  call getyx to confirm positions }- in case of writing/moving beyond screen
+after each write, call getyx to confirm positions }
+
+screenshot command with ANSI escape sequences / HTML+CSS
+	multiple => screen cast
+
+capture at screen or window-level?
+	windows have no relationships, so screen for now
+
