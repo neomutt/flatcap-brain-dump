@@ -454,7 +454,7 @@ BOOL -> enum?  what about the bitfields?
 git
 	document git attributes for PATCHES
 	create git diff regex for manual.xml to identify the section where the changes occurred
-		grep "<sect[0-9] " manual.xml.head 
+		grep "<sect[0-9] " manual.xml.head
 		need to look for <sect> <chapter> <table> <example>
 	check the default 'c' git diff regex against sidebar.c
 		check C function
@@ -1470,7 +1470,7 @@ freebsd
 issue colour for VOTE or coopt QUESTION?
 	/cc @neomutt
 
-link kz smime issue to neomutt 
+link kz smime issue to neomutt
 
 clang all my code + fix warnings
 
@@ -1657,4 +1657,9 @@ like noscript in firefox -- "neomutt newly updated message in inbox"
 	or :neoversion => "fake email giving changelog"
 	or :changelog
 
+01:35 <SvenG> but giving a color to "known" addresses (via aliases) would be a killer                                                           |
+
+08:31 <flip214> Hi. Another thing I would love to see: an email arrives in INBOX; I answer it,
+	and define the FCC for the sent mail, but the incoming mail is still in INBOX.
+08:31 <flip214> so a "reply-and-move-to-same-folder" would be interesting to me.
 
