@@ -104,8 +104,6 @@ travis PR -- env EVERYTHING var
 
 travis libcaca includes libslang ∀ travis
 
-next hg update, fix travis for full build
-
 group travis builds to cut out vm time
 
 quick build -> travis

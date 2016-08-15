@@ -17,3 +17,28 @@ lua -> travis? / testing
 
 lua-testing => save_results()
 
+---
+
+lua colouring of
+	email in pager
+	index
+
+∀ line
+	call lua script
+	pass copy of entire envelope
+	pass line number
+	returns:
+		success
+		stop now
+		hide line
+	callbacks:
+		set colour (object)
+		set colour (range)
+		change line (new text)
+		insert line (new text)
+		delete line (num lines?)
+
+Create a test rig
+	cat mbox | test-rig config.lua
+	ansi output
+

@@ -1869,7 +1869,6 @@ jobs:
 jobs
 	create patchsets before announce
 
-
 sidebar
 	add dprints for debugging
 
@@ -1902,4 +1901,27 @@ mutt-tips: integrated
 notmuch: drop distinction between real and virtual?
 	just maintain 2 lists and swap pointers?
 	should simplify sidebar integration
+
+mutt connection config wizard
+	special cases for gmail, etc
+		open gmail pages in browser
+	test host for:
+		imap
+		pop
+	test for tls
+	ask for password
+	test connection
+	like evolution's wizard
+	write config to file/screen
+
+fix keybindings to mutt defaults
+	nntp inteferes with <flag-message>
+
+progress bar: jumpy cursor
+	mutt behaviour or neo?
+	don't move the cursor if the colour is default/default
+	better progress indicator
+		a la dnf, wget, etc
+	ETA?
+
 
