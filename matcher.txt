@@ -1,0 +1,71 @@
+matcher / filter
+
+sidebar struct
+	x
+	y
+	z
+	---
+	Name
+	Total
+	New
+	Flagged
+	---
+	filter info
+
+filter on sidebar name
+
+Key: "filter-sidebar-start"
+	Prompt:
+
+passed a list of (filter_info*)
+
+user types 'a'
+	pass (list, string, flags) -> matcher
+	matcher returns 'n' matches
+	callback to display (list, string, flags)
+
+allow display to do highlighting?
+	would need to match algorithm
+	put match info in filter_info
+	=> highlight 
+		fuzzy = chars: 1,3-4,7-12 
+		simple = 3-6
+
+matcher
+	∀ list
+	compare
+	update infos
+	count results
+0 => none
+n => some
+-1 => error
+
+matching algorithm
+	compare string
+	fuzzy
+	index number
+	regex
+
+flags:
+	case sensitive
+
+callback
+	change-became-longer
+	change-became-shorter
+	change-cleared
+	exit
+
+
+filter_info
+	offset to string (filter field)
+	visible?
+	old visible (to help client)
+	or char *rendered_line
+		for whole line matching
+
+options
+	default hide non-matching
+	highlight matching chars
+	algo: text, regex, index, fuzzy
+	flags: case sensitive
+

@@ -1924,4 +1924,53 @@ progress bar: jumpy cursor
 		a la dnf, wget, etc
 	ETA?
 
+error message backlog
+	cf vim :messages
+
+neomutt binary
+	symlink (provide) mutt
+
+make the neomutt branding more obvious
+	make it obvious to the user that this is
+	neomutt, not mutt
+
+distro RFC: what do *they* want from NeoMutt
+
+lots of demo configs for
+	index_format
+	header_order
+	etc
+function to cycle through them?
+	would need some good sample emails
+	various headers
+	various flags
+
+web sidebar -- no contrib
+
+compress flickers, but gpg doesn't
+	imagination, or not?
+
+eliminate "mutt" from everything in the build
+	symlink to mutt in install
+	too "fork-y"?
+
+text xdg config locations
+
+XDG release -> web docs
+
+XDG strtok?
+
+index-color -- index_date pattern?
+	and index_label
+
+wiki vs web docs
+	what goes where?
+	rationale?
+		fixed docs on web (styled, too)
+		contrib/community docs on wiki
+
+issue for code required:
+	fuzzy matcher: [devel] [help] [mentor]
+
+install autoreconf -i output
 

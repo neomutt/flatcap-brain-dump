@@ -42,3 +42,9 @@ Create a test rig
 	cat mbox | test-rig config.lua
 	ansi output
 
+lua colour -- add regex
+devel/lua - basic hooks and callbacks
+devel/lua-index		}
+devel/lua-pager		}-features
+devel/lua-status	}
+
