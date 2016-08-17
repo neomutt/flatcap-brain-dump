@@ -46,6 +46,7 @@ mailbox change
 connection status
 	connected
 	disconnected
+startup
 quitting - any use to anyone?
 selected mail changed
 selected mailbox changed
@@ -1525,7 +1526,7 @@ MOVE gentoo's TINFO patch into bug-fixes (for all distros)
 24-bit colour => non-curses back-end
 	enumerate all the curses things we do
 	get screen size
-	listen of screen size changes (WINCH?)
+	listen for screen size changes (WINCH?)
 	wait for key presses
 	clear screen
 	clear line
@@ -1704,6 +1705,7 @@ docs
 kill "flea", etc in neo install
 
 1.7.0 => deprecate 1.6.0 branches after 1 month
+	one month of backporting bug-fixes
 	move them to neomutt-old
 
 docs/wiki
@@ -1806,6 +1808,7 @@ update man page for mutt
 	wrt muttrc location, etc
 
 offer up-to-date vimrc for mutt/neomutt to vim.org
+	autocmds for neomutt/mutt config locations
 
 colour-coding good-sig vs bad-sig
 	tricky for mime attached sigs
@@ -1926,6 +1929,7 @@ progress bar: jumpy cursor
 
 error message backlog
 	cf vim :messages
+	timestamped
 
 neomutt binary
 	symlink (provide) mutt
@@ -1940,7 +1944,7 @@ lots of demo configs for
 	index_format
 	header_order
 	etc
-function to cycle through them?
+create a function to cycle through them?
 	would need some good sample emails
 	various headers
 	various flags
@@ -1973,4 +1977,35 @@ issue for code required:
 	fuzzy matcher: [devel] [help] [mentor]
 
 install autoreconf -i output
+
+docs
+	create high-level workflow doc with screenshots
+	show beginners *hos* mutt works
+	label areas of mutt window
+
+color command (mentor task)
+	no args: list all colours in a pager
+	object: show object's colours (coloured accordingly)
+
+unify colours and attrs, e.g. underline, reverse
+
+add native compress support
+
+improve "mutt -D"
+	add comments from init.h?
+	show default values/keybindings
+
+invert index option
+	new mail at top of screen
+
+web docs
+	update debian support section
+
+1.7.0 PATCHES drop -git suffix
+
+web/wiki/readme ∀ pages
+	last proofread date
+	last proofread person
+	periodic checks
+	divide and conquer
 

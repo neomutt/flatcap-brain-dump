@@ -10,10 +10,10 @@ Sidebar
 	click		select & open
 	scroll up	scroll list up   1 line (no highlight)
 	scroll down	scroll list down 1 line (no highlight)
-	double-click	hide sidebar
 
 Sidebar divider
 	click-drag	move divider
+	double-click	hide sidebar
 
 Sidebar scrollbar
 	click		page up/down
