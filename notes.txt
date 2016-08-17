@@ -1822,7 +1822,6 @@ toggle-quoted : option to remember state
 help text, OPS -- move "NNTP" to front of text to make it easier to spot?
 
 nntp list, can't sort by counts
-muttrc.nntp -- BOGUS ENTRIES
 
 sign all commits?
 	broken by rebases, etc
@@ -1917,12 +1916,7 @@ mutt connection config wizard
 	like evolution's wizard
 	write config to file/screen
 
-fix keybindings to mutt defaults
-	nntp inteferes with <flag-message>
-
-progress bar: jumpy cursor
-	mutt behaviour or neo?
-	don't move the cursor if the colour is default/default
+progress bar:
 	better progress indicator
 		a la dnf, wget, etc
 	ETA?
@@ -1949,8 +1943,6 @@ create a function to cycle through them?
 	various headers
 	various flags
 
-web sidebar -- no contrib
-
 compress flickers, but gpg doesn't
 	imagination, or not?
 
@@ -1958,9 +1950,7 @@ eliminate "mutt" from everything in the build
 	symlink to mutt in install
 	too "fork-y"?
 
-text xdg config locations
-
-XDG release -> web docs
+test xdg config locations
 
 XDG strtok?
 
