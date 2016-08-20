@@ -127,3 +127,5 @@ tag patch sets to match neomutt
 
 release todo list: search issues
 
+release notes: update irc channel topic
+
