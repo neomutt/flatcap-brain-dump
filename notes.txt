@@ -2145,3 +2145,6 @@ notmuch example rc (and docs)
 	parses badly
 	doesn't warn the user
 
+make config -- like linux kernel
+	for all the neomutt options
+
