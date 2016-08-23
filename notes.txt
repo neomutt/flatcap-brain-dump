@@ -2018,3 +2018,130 @@ a rogues' gallery web page with our PGP keys
 fix the *_format strings
 	Mutt -> NeoMutt
 
+darnir:
+	use gpgme not gpg
+	warn users?
+	educate users
+	can we force config=yes?
+	what if libs are missing?
+
+sveng:
+	neomutt-1.7.0
+	identify in version string
+	NeoMutt-1.7.0 (date)
+
+"mutt -v | head -1" is pain
+	--version ?
+
+symlink mutt to neomutt(-yyyymmdd)
+
+no need to subscribe to mailing lists
+
+sidebar_on_right 1.7.0 docs
+
+version string bug -> devel list
+	reinstate flea?
+
+compress doc warning
+	">" vs ">>" important
+
+web about: "done so far"
+
+1.7 coverity -- use alternate account
+
+contrib + png + diff = trouble
+
+lmdb + nfs = bad
+	document this
+
+travis -- test docs validation
+	test make install
+	compare to known list of installed files
+
+make install broken (contrib)
+
+copr spec:
+	Provides: mutt
+	causes conflict with urlview
+
+copr -- NO CONTRIB!
+
+permanently merge docs into [neomutt]
+	vimrc merge?
+	=> patches don't include docs
+
+lua highlighter
+	∀ languages
+	in the pager, e.g. markdown
+
+lua highlighter use:
+	hideline()
+	amendline()
+	to turn diffs info diff-so-fancy?
+	can this be done with external filter?
+	message-hook?
+	then clever highlighting?
+	maybe
+
+[devel/*] on creation: notify dev-mail
+[devel/*] -> [feature/*]: notify user-mail
+
+web mailing list page with sven's muttrc example
+
+feature: config read source'd files relative to parent
+	shouldn't break anything as every path is currently absolute
+
+have I used the NeoMutt signing key at all?
+
+keybase .muttrc -> muttrc
+
+mutt config source DIR
+	loads all files within
+	recurse?
+
+issue labels
+	devel = in branch
+	git = in trunk
+	release?
+	or git is redundant
+
+change "mutt" refs in /etc/Muttrc?
+
+maildir_trash conflicts trash folder patch
+	our patch, check upstream version
+	document this
+
+1.7 swap date and ver in verstring
+	NeoMutt 2016-MM-DD (1.7.0)
+
+update web docs
+	notmuch
+	keywords
+	limit-current-thread
+	nntp
+
+context-sensitive help?
+	how?
+	sensitive to what?
+	how about:
+		"show-me-this-file" command
+		display in pager
+	if in pager, close & open text file & restore on 'q'
+	if in index: display & return to index after
+
+notmuch vfolder_format isn't used
+	quasi-delete doesn't
+	tag-then-hide tags, but doesn't hide
+
+docs 1.6.2 -> 1.7.0
+
+github issue notifications forward to IRC
+	or dev mailing list
+
+notmuch example rc (and docs)
+	escape ` (backtick)
+
+"bind index ` command"
+	parses badly
+	doesn't warn the user
+
