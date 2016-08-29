@@ -38,3 +38,5 @@ Help
 Status bar
 	click		???	
 
+mouse support, change cursor to pointer, rather than I-beam
+

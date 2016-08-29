@@ -2148,3 +2148,138 @@ notmuch example rc (and docs)
 make config -- like linux kernel
 	for all the neomutt options
 
+sync 1.6.0 -> neo-old after deprecation
+
+c-alpha build deps docs
+
+debian open r/o patch #528233 mutt#3261
+
+debian #771125 CVE, mutt #3716
+
+feature docs to separate <sect1>'s?
+
+jump to previous folder command?
+	"cd -"
+	vim: "ctrl-^"
+	can this be done with a folder hook?
+	set my_olddir = dir
+	is it too late when we get the hook?
+
+notmuch 1.7.0 updated for Karel
+
+debugging curses tutorial
+	two windows
+	either run & attach
+	or gdb tty redirect
+
+need name for less than features
+	nuggets => minor addition
+	minor docs
+
+antonio -- wants way to interrupt send of BIG email
+	e.g. 16MB
+	interrupts blocked
+	#618425 BTS
+
+get rid of "prepare" or neomutt-ify it
+
+dbus - also implies
+	synchronisation of multiple copies of mutt
+	e.g. multiple windows/views
+
+can *all* features & nuggets be configurable?
+	too much work?
+
+copr: neomutt-unstable for devel-features
+	would need to be completely automated
+	sell to users mailing list!
+	or neomutt-nightly
+
+copr API automate
+
+mutt -F muttrc
+	allow -F multiple times
+
+automate github release
+	tag, push, create release, push, assets, checksum
+
+unify code for notmuch/keywords tag handling
+	de-dupe
+	completions, etc
+
+github issue notification
+	emails, check ordering
+	fix mutt sort  HOW?
+	IRC: "tmg" may help
+
+fmemopen -- when fixed, default to off
+
+change sort option
+	thread becomes a prefix
+	e.g. "thread-date"
+
+NeoMu++ logo idea?
+
+colour for tagged emails
+
+mailing list on webpage -- copy from release announcement
+
+distro *pages* on web
+	collection
+
+web update about.html : done so far
+
+maildir_trash conflicts with trash
+	check it's true for 1.7.0
+	document it
+
+NeoMutt signing key on
+	flatcap.org
+	neomutt.org
+	github? where?
+
+test guiniol's gpg encrypt-to-self patch
+
+keybase "make install" breaks BSD make
+
+double configure
+	tied into .version
+	.version needs to be created by make
+	what does configure do with .version?
+		can we eliminate them?
+
+xdg - Fabian -- strtok?
+
+make dist isn't installing vimrc.*
+	it should merge them
+
+sync / push to maintainers
+	keywords
+	nntp
+	notmuch
+
+kill / ignore / mute thread
+	one folder version is simple
+		have a marker on the original email
+		any emails with the thread are marked read
+		check "In-reply-to"
+	multiple folders
+		mute => archive
+		need db of muted reference ids
+		otherwise, read the archive folder
+			too slow?
+			what about the header cache?
+			which fields are in it?
+	one folder
+		combine with a folder-hook
+		close all on entry to folder
+		open on new/flagged
+	use scoring method on threads
+		non-permanent
+			problem?
+		existing methods
+	if email it To: you or CC: you, then unmute
+	combine with folder hook
+		delete > n days (to keep folder manageable)
+
+
