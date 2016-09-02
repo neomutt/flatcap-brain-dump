@@ -2061,19 +2061,6 @@ permanently merge docs into [neomutt]
 	vimrc merge?
 	=> patches don't include docs
 
-lua highlighter
-	∀ languages
-	in the pager, e.g. markdown
-
-lua highlighter use:
-	hideline()
-	amendline()
-	to turn diffs info diff-so-fancy?
-	can this be done with external filter?
-	message-hook?
-	then clever highlighting?
-	maybe
-
 [devel/*] on creation: notify dev-mail
 [devel/*] -> [feature/*]: notify user-mail
 
