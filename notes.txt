@@ -1625,8 +1625,6 @@ sidebar
 	colour highlight for alternate mailbox
 	expando %# for alternate displays '#' or ''
 
-[neomutt-old] readme branch
-
 sidebar
 	separate colour for read-only mailbox
 	expando for read-only mailbox
@@ -1695,9 +1693,6 @@ new mutt colours
 build
 	--enable-everything
 	which hcache?
-
-docs
-	sidebar_on_right
 
 1.7.0
 	add --quickbuild?
@@ -1991,8 +1986,6 @@ invert index option
 web docs
 	update debian support section
 
-1.7.0 PATCHES drop -git suffix
-
 web/wiki/readme ∀ pages
 	last proofread date
 	last proofread person
@@ -2036,8 +2029,6 @@ sveng:
 symlink mutt to neomutt(-yyyymmdd)
 
 no need to subscribe to mailing lists
-
-sidebar_on_right 1.7.0 docs
 
 version string bug -> devel list
 	reinstate flea?
@@ -2091,10 +2082,6 @@ web mailing list page with sven's muttrc example
 feature: config read source'd files relative to parent
 	shouldn't break anything as every path is currently absolute
 
-have I used the NeoMutt signing key at all?
-
-keybase .muttrc -> muttrc
-
 mutt config source DIR
 	loads all files within
 	recurse?
@@ -2132,8 +2119,6 @@ context-sensitive help?
 notmuch vfolder_format isn't used
 	quasi-delete doesn't
 	tag-then-hide tags, but doesn't hide
-
-docs 1.6.2 -> 1.7.0
 
 github issue notifications forward to IRC
 	or dev mailing list
@@ -2237,8 +2222,6 @@ NeoMutt signing key on
 	flatcap.org
 	neomutt.org
 	github? where?
-
-test guiniol's gpg encrypt-to-self patch
 
 keybase "make install" breaks BSD make
 
