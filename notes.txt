@@ -2265,3 +2265,7 @@ mutt_dotlock
 	make properly configurable
 	the chgrp / chmod can't be done by a user install
 
+trash + gmail
+	doesn't work as expected
+	effectively archives them on gmail
+
