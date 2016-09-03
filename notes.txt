@@ -2257,3 +2257,7 @@ do saved emails (that get deleted from current folder) appear in the trash?
 sensible-browser
 	does it apply to nntp?  notmuch?
 
+trash docs
+	add purge-message/purge-thread notes
+	add folder-hook to delete if >30days
+
