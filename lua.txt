@@ -91,3 +91,37 @@ lua highlighter use:
 	then clever highlighting?
 	maybe
 
+C to search for pre-compiled lua first
+
+lua -> masterclass
+1 commit for each
+	add variable
+	add function
+	add autoconf
+
+generic stack poppoer
+	n entries
+	check type
+	get value
+
+commits
+	call from C
+	check retval
+	call C from lua
+	register C function
+	pass data to lua
+	recv data from lua
+
+example lua code in commit messages
+
+get lua working on travis
+
+get darnir to check lua autoconf
+
+call out to lua:
+	send it lots of NeoMutt version info
+	mutt ver
+	date
+	patches
+	etc
+

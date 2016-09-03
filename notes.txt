@@ -2269,3 +2269,43 @@ trash + gmail
 	doesn't work as expected
 	effectively archives them on gmail
 
+copr nightlies - arch/osx
+	=> not [devel/*]
+
+debian doesn't install contrib
+	check other distros
+
+fold/collapse empty sidebar folders
+	unless unread/flagged email etc
+
+mutt message backlog:
+	quake like window
+	promote to pager
+	open in editor
+
+xdg extension
+	look for lower case /etc/muttrc
+	etc
+
+change mutt "source" command:
+	take wildcards
+	multiple args => source `find . -name '*.rc'`
+
+vim: if no tags file, generate it
+
+fork vs non-fork -- animal species reference
+	species: noun
+	a group of living organisms consisting of similar individuals capable
+	of exchanging genes or interbreeding. 
+
+old features, like trash, need to live in [docs] otherwise their links won't
+match the manual
+
+colour-attach reads *all* attachments
+	really?
+	slow?
+	filter by MIME type, then parse/colour?
+
+encrypt to self -- typo in doc title
+	"an"!
+
