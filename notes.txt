@@ -2252,4 +2252,8 @@ kill / ignore / mute thread
 	combine with folder hook
 		delete > n days (to keep folder manageable)
 
+do saved emails (that get deleted from current folder) appear in the trash?
+
+sensible-browser
+	does it apply to nntp?  notmuch?
 
