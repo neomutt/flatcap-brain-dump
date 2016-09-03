@@ -2261,3 +2261,7 @@ trash docs
 	add purge-message/purge-thread notes
 	add folder-hook to delete if >30days
 
+mutt_dotlock
+	make properly configurable
+	the chgrp / chmod can't be done by a user install
+
