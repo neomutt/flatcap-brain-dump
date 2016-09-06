@@ -2309,3 +2309,6 @@ colour-attach reads *all* attachments
 encrypt to self -- typo in doc title
 	"an"!
 
+new sidebar expando
+	count of unread *threads*
+

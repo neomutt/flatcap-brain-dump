@@ -125,3 +125,9 @@ call out to lua:
 	patches
 	etc
 
+lua-index-icon
+	use case: github
+	gh sends notification emails
+	cc: field is coded, e.g.  state-change@gh.com
+	turn that into a coloured icon
+
