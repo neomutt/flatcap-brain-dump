@@ -2312,3 +2312,8 @@ encrypt to self -- typo in doc title
 new sidebar expando
 	count of unread *threads*
 
+new index/sidebar_format expando: icons
+	each email can have a set of icons
+	each icon has a unicode character and a colour
+	sorted in order of definition
+	tie-in to labels / notmuch tags
