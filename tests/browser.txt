@@ -1,0 +1,25 @@
+sensible browser tests
+
+For each of
+	local files
+	IMAP
+	notmuch
+
+"c" -- defaults to next mailbox with new mail
+
+"c?" -- open
+"q" -- close
+
+open, toggle "<tab>>", close
+open -- current mailbox selected
+
+sorting.  for each of: dazecwn
+	set sort order
+	set reverse sort order
+	".." should always be first
+	test with root dir (no ..)
+cursor moves to:
+	first line (no ..)
+	second line (.. is first)
+
+

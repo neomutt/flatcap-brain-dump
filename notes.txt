@@ -2317,3 +2317,27 @@ new index/sidebar_format expando: icons
 	each icon has a unicode character and a colour
 	sorted in order of definition
 	tie-in to labels / notmuch tags
+
+separate folder_format for dirs vs network mailboxes?
+
+upstream bug -- folder_format, sidebar_format %n (has new mail)
+	shouldn't be cleared if "mark_old = no"
+	quit and restart mutt and the flag comes back
+
+check COPR stats 1 week after release, 2 weeks
+
+sensible-browser
+	test with nntp
+	does it make sense to test with POP?
+		don't think so
+
+Passing $VARs to children processes, means
+	tell vim about mail rcpt, subject, etc
+
+rename the Mutt Manual to Mutt Guide
+	for distinction between guide and mutt(1) man page
+
+Deprecation
+	old enhancements
+	neo-1.6 (1.7 looks solid)
+

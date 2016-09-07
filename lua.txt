@@ -131,3 +131,8 @@ lua-index-icon
 	cc: field is coded, e.g.  state-change@gh.com
 	turn that into a coloured icon
 
+lua-sidebar
+	mess with counters, e.g.
+	drafts folder: set new count = total count
+	for visibility
+
