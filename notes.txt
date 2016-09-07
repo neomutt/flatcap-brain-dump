@@ -2341,3 +2341,8 @@ Deprecation
 	old enhancements
 	neo-1.6 (1.7 looks solid)
 
+copying a large mailbox / number of files doesn't trigger the progress bar
+	mbox-100000
+	tag all
+	copy to another mailbox, e.g. maildir
+
