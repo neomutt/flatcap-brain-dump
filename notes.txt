@@ -2376,4 +2376,5 @@ Mutt vs NeoMutt branding
 	version
 	user agent
 
+browser is_dotdot() helper fn
 
