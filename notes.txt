@@ -2378,3 +2378,7 @@ Mutt vs NeoMutt branding
 
 browser is_dotdot() helper fn
 
+$source_dir like folder
+	or like $PATH?
+	looking for files to source
+
