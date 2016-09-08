@@ -136,3 +136,7 @@ lua-sidebar
 	drafts folder: set new count = total count
 	for visibility
 
+lua-config
+	lua-execute
+	allows loops, etc
+
