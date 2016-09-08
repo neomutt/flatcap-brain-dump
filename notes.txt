@@ -2346,3 +2346,34 @@ copying a large mailbox / number of files doesn't trigger the progress bar
 	tag all
 	copy to another mailbox, e.g. maildir
 
+menu -- sensible tracking
+	do we *need* LastDir / OldLastDir
+	what are they used for?
+
+INBOX vs inbox
+	not updating values for browser
+
+migrate maintainers.txt to a separate aliases file
+	with comments
+
+FreeBSD, Suse -> downloads web, wiki
+	OpenBSD too
+
+Reach out to
+	LinuxMint
+	Mageia
+	PCLinuxOS
+	Slackware
+
+browser - add flagged
+	expando
+	sort option
+
+Mutt vs NeoMutt branding
+	config
+	binary
+	install dir
+	version
+	user agent
+
+
