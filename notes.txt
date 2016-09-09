@@ -2410,3 +2410,6 @@ contact distros
 email all 341 of mutt-kz stargazers and tell them about neomutt
 	exclude the neomutt stargazers
 
+forgotten-attachment
+	optimise MUTT_NO path: i.e. don't check the file at all
+
