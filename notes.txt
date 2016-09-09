@@ -2382,3 +2382,23 @@ $source_dir like folder
 	or like $PATH?
 	looking for files to source
 
+contact distros
+	are they up-to-date
+	current list of distro patches
+	list of recent OS versions
+	list of mutt/neomutt versions for each OS version
+	address of issue tracker
+	address of mailing lists
+	contact details for maintainer(s)
+	inform them about
+		mailing lists
+		irc
+		website / news
+		github
+	bcc email?
+		give list of distros
+		bcc => hard for multiple maintainers to coordinate
+			cc better?
+	ask for install instructions for web downloads page
+	offer github invites to all maintainers
+
