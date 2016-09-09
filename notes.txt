@@ -2407,3 +2407,6 @@ contact distros
 19:52 <brendan> mykoserocin, I use the spam marker system for it: spam "Authentication-Results: mymta.com; .*dkim=pass" "✓"
 19:52 <brendan> spam "Authentication-Results: mymta.com; .*dkim=fail" "x"
 
+email all 341 of mutt-kz stargazers and tell them about neomutt
+	exclude the neomutt stargazers
+
