@@ -2404,4 +2404,6 @@ contact distros
 
 19:32 <mykoserocin> is there a way to show condensed DKIM results instead of full "Authentication-Details" header?
 19:32 <mykoserocin> e.g. "DKIM: pass" or "DKIM: fail"
+19:52 <brendan> mykoserocin, I use the spam marker system for it: spam "Authentication-Results: mymta.com; .*dkim=pass" "✓"
+19:52 <brendan> spam "Authentication-Results: mymta.com; .*dkim=fail" "x"
 
