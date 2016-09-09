@@ -2402,3 +2402,6 @@ contact distros
 	ask for install instructions for web downloads page
 	offer github invites to all maintainers
 
+19:32 <mykoserocin> is there a way to show condensed DKIM results instead of full "Authentication-Details" header?
+19:32 <mykoserocin> e.g. "DKIM: pass" or "DKIM: fail"
+
