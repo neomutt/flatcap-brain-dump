@@ -2415,3 +2415,57 @@ forgotten-attachment
 
 adopt upstream mutt sidebar changes
 
+start dropping references to "patches" in docs
+	just refer to features
+
+drop or merge COPR patches?
+	clean neomutt
+	what about ca certs?
+
+change PATCHES display into sorted, wrapped feature list
+
+configure out dotlock fully
+
+proposal num releases
+	lifespan of project
+
+typos etc
+	muttrc attach color
+	muttrc reply with xorig
+	vimrc color attach
+	vimrc reply with xorigi
+
+check all lists of features are up-to-date
+	web, wiki, etc
+
+drop bug-fixes "feature" on web
+
+source tree
+	1 our git w/tags
+	2 deb git no tags
+	3 tar src
+	no #define or -DX
+	only version.c "regen" every make
+	MUTT_VERSION "1.7.0"
+	NEO_VERSION "2016MMDD"
+	NEO_SUBVER "-58-XXXX-dirty"
+	what's in .version (autoconf)?
+	what about config.h
+		PACKAGE_*
+		"neo 2016MMDD" only
+	if topdir/.git
+		git describe
+	if neomutt-*
+		sed
+	else
+		nothing - debian
+	if !.git
+		nothing - tar
+	our git full auto from git tags
+	others .neo-version
+		M=170
+		N=2016
+	put neo version in diff
+	suffixes *only* relevant
+	for devs using .git (ours)
+
