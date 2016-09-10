@@ -1,0 +1,46 @@
+web collection for distros
+
+Fedora
+
+Status:
+	supported yes	}-?
+	maintained yes	}
+	by Richard Russon (contact details)
+
+Releases of Fedora	Avail		Status
+	22 & older	Mutt & Neo	x Obsolete
+	23		Mutt & Neo	✓ Maintained
+	24		Mutt & Neo	✓ Maintained
+	25		--
+	rawhide		Mutt & Neo	✓ Maintained
+
+more columns
+	Version of Mutt
+	Version of NeoMutt
+	Update frequency?
+		too pushy on distros
+	
+Installation instructions
+	include verify step
+	dnf copr
+	dnf installl
+	including uninstall of mutt if nec
+
+Uninstall instructions
+	restore to mutt
+
+
+Sidebar
+	Support / Help
+		IRC
+		GitHub
+		Mailing list
+		Verifying release/downloads
+	News
+		latest 3 *releases*
+	Other OSs
+		x
+		y
+		z
+
+		
