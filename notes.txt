@@ -2469,3 +2469,21 @@ source tree
 	suffixes *only* relevant
 	for devs using .git (ours)
 
+context sensitive popup menus
+	e.g. index - tag some emails, hit <menu>
+	options: copy, save, delete, set flags, reply, etc
+
+source script|
+	pipe -- lookup exact meaning and implications
+
+doc muttrc color attach differs from contrib
+
+test keybase in mutt -> Josh
+
+travis - sort out build control
+	45 builds on [neomutt]
+
+suse -- no neomutt?
+
+test clean fedora install + mutt + dns during startup
+
