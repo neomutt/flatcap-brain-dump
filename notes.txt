@@ -2487,3 +2487,10 @@ suse -- no neomutt?
 
 test clean fedora install + mutt + dns during startup
 
+test website
+	neo vs www.neo
+	http vs https
+	with/without subdirs
+
+link to unloved enhancements in issues
+	rather than the wiki
