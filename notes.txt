@@ -2494,3 +2494,31 @@ test website
 
 link to unloved enhancements in issues
 	rather than the wiki
+
+PATCHES
+	change patch-* to feature-* ?
+
+travis => [travis] -> [coverity]
+
+deprecate 1.6, sync 1.6 to [old]
+
+sync distros to release
+
+update debian patches
+
+announce vim syntax files for mutt
+
+notmuch update for Karel
+
+nntp sync and update for Vsevolod
+
+report: header cache keeps getting deleted/invalidated
+	investigate
+
+nested if docs extra space in x=0 condition
+
+vim-like hls option: persistant across emails
+
+locale compatibility variable
+	announce new var, release, remove, release
+
