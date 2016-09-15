@@ -2522,3 +2522,21 @@ vim-like hls option: persistant across emails
 locale compatibility variable
 	announce new var, release, remove, release
 
+vim leading/trailing spaces
+	,f<space>^
+	,f<space>$
+
+transfer gpg keys from flatcap to mutt
+
+pager -- sidebar gets updated but not status line / term header
+
+pager display bug
+	set pager_index_lines = 10
+	open mail
+	set pager_index_lines = 0
+	1.7.0 works correctly
+
+github follow all in maintainers list
+
+test strfcpy ideas in coverity
+
