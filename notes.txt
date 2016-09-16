@@ -2540,3 +2540,7 @@ github follow all in maintainers list
 
 test strfcpy ideas in coverity
 
+notmuch tag-completion:
+	when using -XYZ<tab>
+	only match tags that exist on the selected mail(s)
+
