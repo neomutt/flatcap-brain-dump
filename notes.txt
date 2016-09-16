@@ -2552,3 +2552,6 @@ add all neo contributors to the maintainers list
 copr install "find . -name '*.neomutt' -delete"
 	deletes some files I want
 
+release: always sent release message to neo mailing lists
+	using new version "User Agent:"
+
