@@ -2544,3 +2544,5 @@ notmuch tag-completion:
 	when using -XYZ<tab>
 	only match tags that exist on the selected mail(s)
 
+"New mail in =trash" isn't useful to know
+
