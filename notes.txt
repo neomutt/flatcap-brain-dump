@@ -2548,3 +2548,7 @@ notmuch tag-completion:
 
 add all neo contributors to the maintainers list
 (and my watch list)
+
+copr install "find . -name '*.neomutt' -delete"
+	deletes some files I want
+
