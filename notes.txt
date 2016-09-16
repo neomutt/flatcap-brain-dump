@@ -2546,3 +2546,5 @@ notmuch tag-completion:
 
 "New mail in =trash" isn't useful to know
 
+add all neo contributors to the maintainers list
+(and my watch list)
