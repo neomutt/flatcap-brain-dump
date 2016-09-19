@@ -140,3 +140,10 @@ lua-config
 	lua-execute
 	allows loops, etc
 
+lua-config like php to embed lua in normal muttrc?
+	<lua> </lua> tagged?
+	how would lua output something to be processed by mutt?
+	special function? (like printf)
+	override the print function?
+		how?
+
