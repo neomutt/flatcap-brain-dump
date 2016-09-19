@@ -150,3 +150,10 @@ lua-config like php to embed lua in normal muttrc?
 lua-new-mail
 	scripts to mark, tag, move mail etc
 
+lua-terminal-title
+	script to generate title
+	given lots of info about
+	- current mailbox
+	- current email
+	- etc
+

@@ -18,3 +18,15 @@ Contents:
 	Lorem ipsum: 1-100 paragraphs
 	Folded to 76 chars
 
+Generate message ID
+	%age probability of being a reply
+	use in-reply to existing message id
+
+generate headers and linking first
+then if happy, add contents
+
+use project gutenberg for
+	authors (from)
+	title (subject)
+	book (body)
+
