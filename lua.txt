@@ -147,3 +147,6 @@ lua-config like php to embed lua in normal muttrc?
 	override the print function?
 		how?
 
+lua-new-mail
+	scripts to mark, tag, move mail etc
+

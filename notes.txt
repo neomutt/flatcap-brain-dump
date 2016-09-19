@@ -2555,3 +2555,33 @@ copr install "find . -name '*.neomutt' -delete"
 release: always sent release message to neo mailing lists
 	using new version "User Agent:"
 
+modularise header caching/dbs
+	=> needn't use same cache type
+	for header / message cache
+
+www.neomutt.org -> neomutt.org
+	CNAME
+
+imap only 'n' messages option
+
+mbsync better offlineimap
+
+hcache what works offline!
+
+imap force body cache on read
+	option for offline working
+
+files/dirs are sorted the same way as network folders
+	may not make sense
+
+need separate folder_format for
+	local dirs
+	net folders
+	virtual folders
+
+alternative -- folder_format add
+	%local expando for use with nested-if
+	conditional display
+
+imap_folder_format defaults to folder_format if empty
+
