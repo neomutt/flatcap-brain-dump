@@ -2587,3 +2587,99 @@ imap_folder_format defaults to folder_format if empty
 
 21:04 <bremner> I too would be interested in a page comparing neomutt's notmuch support with notmuch-mutt (the perl hack that ships with notmuch)
 
+sort variables, etc before auto-completion
+	or properly sort the sources of the strings
+
+rename contrib/vim-keybindings -> contrib/vim-keys
+
+how many more features can be --disabled?
+
+:set -> pager full of settings
+	list name, value, default value
+
+:set VARIABLE=MAGIC_TOKEN => set VARIABLE to its default value
+	save that default value in the history
+
+:messages [clear]
+	all messages, or limit to 100?
+
+:bind / :macro / :???
+	list bindings / macros
+
+:color
+	list all colours
+
+:scriptnames
+	list all config files that were loaded
+	red-flag any with errors
+	add cli option?  to save memory otherwise
+
+for :set, etc how does help work when it overlays the pager?
+	create a sample command
+	then use the rest of the ideas for mentoring
+
+wiki: restrict to members (devel only)?
+
+drop flatcap/neomutt fork (unnec)
+
+dev-ml followup to fork:
+	cf notmuch -- hard to rebase
+	still got branches
+	could be restructured
+
+arch-linux: search for a Trusted User (TU)
+	to adopt neomutt
+
+new diff generating script
+	exclude.txt to filter out stuff
+
+can a git merge be reverted?
+	undo a feature's merge?
+	then re-merged later?
+
+announce vim-syntax, put a public copy up
+	copy all of contrib/ to web
+	create web autopage?
+
+check mutt-tc for project ideas
+
+split neomutt packages?
+	neomutt
+	docs
+	contrib
+split repos to match
+branch by version / language
+
+restore git-version-gen
+
+restore quick-build options
+	or use Suse's patch to put docs last
+
+split out docs/copr.txt
+
+deprecation notice for 1.6
+
+Terry update lunar - point to NeoMutt
+
+github "read" beacon image in emails
+
+ifdef needs an "else" condition
+	how?
+
+ask distros how they'd like to be informed of new releases
+	if at all
+	if web/ml/etc
+	not enough advanced warning
+
+:messages
+	record progress bar info too, e.g.
+	100% 3:45
+	57% 1:24 cancelled
+
+newbie txt
+	watch github project to keep informted
+	public presence in github project
+
+"more info" github issue label
+	+ boilerplate text
+

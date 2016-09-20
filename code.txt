@@ -79,3 +79,9 @@ Checks
 	maths spacing _+_
 	reserved words: new, this, etc
 
+Make all lists derive from
+	LIST *next
+	or
+	DLIST *next, *prev
+
+	
