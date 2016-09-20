@@ -2585,3 +2585,5 @@ alternative -- folder_format add
 
 imap_folder_format defaults to folder_format if empty
 
+21:04 <bremner> I too would be interested in a page comparing neomutt's notmuch support with notmuch-mutt (the perl hack that ships with notmuch)
+
