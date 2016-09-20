@@ -964,9 +964,6 @@ sidebar refresh variable
 
 mutt-kz check #ifdef patches for notmuch/sidebar separation
 
-readme in copr repo
-	put rpm build scripts in repo too
-
 panels have dividers enum
 	left
 	right
@@ -1031,8 +1028,6 @@ install neomutt in parallel with mutt
 	uses alternatives mechanism
 	=> /usr/bin/neomutt{,-2016MMDD}
 	=> /usr/bin/mutt-1.6.1
-
-COPR drop --debug
 
 OS-specific build instructions / install
 
@@ -1156,10 +1151,6 @@ patches
 		commits?
 		feature page
 
-check what COPR installs
-	docs/
-	dupes + empty files!
-
 readme link neo to web, flatcap to gh
 
 sidebar: sort out new vs unread vs old, etc
@@ -1201,10 +1192,6 @@ GIT REPO?
 	all bin/ to repo + .shell/bin/git
 
 quick buid doc somewhere
-
-patchset branch for COPR (neo + fedora)
-
-COPR split up neo-patch, use integration patches
 
 sidebar, et al to kz
 	add to "update-feature" txt
@@ -2051,12 +2038,6 @@ travis -- test docs validation
 
 make install broken (contrib)
 
-copr spec:
-	Provides: mutt
-	causes conflict with urlview
-
-copr -- NO CONTRIB!
-
 permanently merge docs into [neomutt]
 	vimrc merge?
 	=> patches don't include docs
@@ -2162,13 +2143,6 @@ dbus - also implies
 can *all* features & nuggets be configurable?
 	too much work?
 
-copr: neomutt-unstable for devel-features
-	would need to be completely automated
-	sell to users mailing list!
-	or neomutt-nightly
-
-copr API automate
-
 mutt -F muttrc
 	allow -F multiple times
 
@@ -2269,9 +2243,6 @@ trash + gmail
 	doesn't work as expected
 	effectively archives them on gmail
 
-copr nightlies - arch/osx
-	=> not [devel/*]
-
 debian doesn't install contrib
 	check other distros
 
@@ -2323,8 +2294,6 @@ separate folder_format for dirs vs network mailboxes?
 upstream bug -- folder_format, sidebar_format %n (has new mail)
 	shouldn't be cleared if "mark_old = no"
 	quit and restart mutt and the flag comes back
-
-check COPR stats 1 week after release, 2 weeks
 
 sensible-browser
 	test with nntp

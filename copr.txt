@@ -1,0 +1,31 @@
+readme in copr repo
+	put rpm build scripts in repo too
+
+drop --debug
+
+check what COPR installs
+	docs/
+	dupes + empty files!
+
+patchset branch for COPR (neo + fedora)
+
+split up neo-patch, use integration patches
+
+spec:
+	Provides: mutt
+	causes conflict with urlview
+
+NO CONTRIB!
+
+neomutt-unstable for devel-features
+	would need to be completely automated
+	sell to users mailing list!
+	or neomutt-nightly
+
+API automate
+
+nightlies - arch/osx
+	=> not [devel/*]
+
+check stats 1 week after release, 2 weeks
+
