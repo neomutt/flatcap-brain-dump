@@ -2700,3 +2700,9 @@ project: easy bugs
 
 :messages should take ${read,write,net}_inc into account
 
+timeout hook missing from hook docs
+
+vim-like record macros 'qa'
+	save macro
+	play macro
+

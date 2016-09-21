@@ -157,3 +157,19 @@ lua-terminal-title
 	- current email
 	- etc
 
+scripting
+	one state can preserve info between calls
+	=> should NOT be shared between areas for security
+
+prevent scripts from accessing passwords
+	possible?
+
+lua states may not get the same
+	variables set
+	embedded functions
+	(primitive sandboxing)
+
+embed colours in text (from scripts)
+	<#RGBA>
+	<#default>
+
