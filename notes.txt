@@ -2710,3 +2710,7 @@ website/repo for scripts
 	like scripts.irssi.org
 	site generated from the script headers
 
+appease GitHub license checker
+	drop LICENSE.md symlink
+	mv GPL to LICENCE.md
+
