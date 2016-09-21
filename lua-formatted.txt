@@ -1,0 +1,155 @@
+This is a list of everything I could think to script.
+There's a lot of overlap / recurring themes.
+Some of the ideas are sensible, some not :-)
+
+## General
+
+**All scripts would be passed:**
+- neomutt version string
+- current date
+
+**Have access to functions:**
+- patch_supported()
+
+## Config
+
+Allow script to be embedded in normal Mutt config files, e.g. like PHP:
+
+**Pass in:**
+- username
+- user's home dir
+- current config file
+- line number
+
+```lua
+<?lua
+	if (MUTT_VERSION > "20160916") then
+		mutt_config("set sidebar_visible")
+	end
+?>
+```
+
+Lua's print() function could be overridden to call mutt_message()
+
+## Index
+
+A one-pass processing of the mailbox.
+Call the script once for each email.
+
+Add new expandos, %L1, %L2, etc to be filled by the script.
+
+**Pass in:**
+- Copy of all the fields
+- Current account
+- Current mailbox
+- Current email
+
+**Define functions to:**
+- Colour:
+  * All of the line
+  * One field
+  * Regex on field, or line
+- Modify a field (‡)
+- Hide / Delete an email (‡)
+- Set the fold level of thread
+- Set score of email
+- Lookup address -- is_alias()
+- Add/remove icon for email
+  * Flag GitHub notifications
+  * Add coloured stars
+
+Can optionally disable Mutt's colouring
+
+## Pager
+
+A one-pass processing of an email.
+Call the script once for each line.
+
+**Define functions to:**
+- Query the headers
+- Colour all, or part, of the line
+  * Look for markers like "^diff"
+  * Look for a signature: "-- "
+  * Heuristics for languages
+- Modify a line (‡)
+- Hide / Delete a line (‡)
+- Insert a new line (‡)
+- Set the fold level
+
+‡ Actions are non-destructive
+
+## Sidebar
+
+Sidebar mailbox entries
+**Define functions to:**
+- Colour all, or part, of the line
+- Visibility - hide a mailbox
+- Modify a mailbox name (‡)
+- Change Counts of: flagged, read, total emails (‡)
+
+‡ Actions are non-destructive
+
+**e.g.**
+- Hide folders with no new mail
+- Emails in "drafts" are always unread
+
+## Hooks
+
+**These hooks might be useful to override with a script:**
+- account-hook
+- close-hook
+- folder-hook
+- reply-hook
+- send-hook
+- timeout-hook
+
+Most useful, would be a new-mail-hook.
+
+**Pass it:**
+- Account info
+- Mailbox info
+- Email headers
+- Current date
+- Size
+- Number of attachments
+- List of attachments
+
+**Allow it a small set of functions:**
+- set_flag: read, flagged
+- set_score
+- email: move, copy, delete
+- search body
+- search attachment
+- stop processing
+
+## Status Bar
+
+Generate: $status_format, $ts_status_format
+
+**Pass info about current:**
+- account
+- mailbox
+- email
+- max length
+
+## Testing framework
+
+**Need to expose:**
+- index functions
+- sidebar functions
+- variables
+
+**Be able to:**
+- call functions
+- send keystrokes
+- get error codes returned from functions
+- save the results
+
+**Automation:**
+- Run tests on Travis
+- Need public access to test mailboxes
+
+Create a test rig, built from Mutt code, that takes a mailbox and a script.
+- test-rig test.mbox config.lua
+- machine-parseable output
+
