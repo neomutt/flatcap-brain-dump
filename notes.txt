@@ -2706,3 +2706,7 @@ vim-like record macros 'qa'
 	save macro
 	play macro
 
+website/repo for scripts
+	like scripts.irssi.org
+	site generated from the script headers
+
