@@ -2652,3 +2652,51 @@ newbie txt
 "more info" github issue label
 	+ boilerplate text
 
+development bottleneck
+	document more tasks
+	delegate more tasks
+
+script for "build-all-git-tags"
+
+project jobs:
+	release-maker
+	issue triager/splitter
+
+need: code of conduct statement
+	simple
+	translated
+	versioned
+
+should log files be localised?
+	make it an option?
+	debug -> english?
+	hard to debug for other nationalities
+
+if someone else makes a release, it needs to be signed by them
+	need to cross-sign all the neomutt signatures
+	need to be public (web) and signed
+
+are *owners* visible to ordinary users?
+	or just appear as members?
+
+triage:
+	base issue becomes the discussion board
+		create a matching project
+	triaged into tasks
+		notes on the project
+	developer adopts one
+		note -> issue (devel)
+		assigned to them
+		[devel/*]
+	completed
+		issue (release)
+
+mutt_restore_default()
+	what is it?
+	who calls it?
+
+project: easy bugs
+	tie into mentor system
+
+:messages should take ${read,write,net}_inc into account
+
