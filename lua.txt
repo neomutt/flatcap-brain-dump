@@ -173,3 +173,5 @@ embed colours in text (from scripts)
 	<#RGBA>
 	<#default>
 
+export mutt_regex_match
+	for compatibility
