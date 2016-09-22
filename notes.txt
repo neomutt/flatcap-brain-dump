@@ -2714,3 +2714,45 @@ appease GitHub license checker
 	drop LICENSE.md symlink
 	mv GPL to LICENCE.md
 
+index-fold-level
+	0 completely folded
+	1 depth 1
+	2 depth 2
+	-1 no folding
+	overridden by user keys
+key to
+	view current message
+	close other folds
+	etc
+
+what are our killer features?
+	put them on the website writ large
+	scripting
+	matcher?
+
+matcher
+	extend to index, pager, etc
+
+projects triage notes need
+	dependencies info
+	ordering
+	number note sequentially
+	use these numbers
+	update when note becomes and issue
+
+is there a projects GH API to extract/manipulate
+	project notes, etc, outside of GH
+	YES
+
+Use GitHub Assistant as a model for:
+	Debian BTS Assistant
+	Trac Assistant
+
+How many features/nuggets can be replaced by scripts?
+	subjectrx - obvious one
+
+Need strategy for unrepeatable/too-little-info bugs/crashes
+
+new-mail-hook + lua to filter
+	=> need filter manager
+

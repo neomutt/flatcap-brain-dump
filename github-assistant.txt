@@ -1,0 +1,61 @@
+GitHub Assistant
+
+Better integrate NeoMutt with GitHub Issues
+
+Decode coded "cc:" addresses, etc
+read GH "X-*:" headers
+
+Menu:
+	open issue / comment
+	subsubscribe from issue (mute)
+	view all issues
+	mark as read (beacon) on sync-mailbox
+
+special treatment of
+	opened, closed, re-opened issue
+	add / remove label (not by email)
+
+menu links for
+	@mentions
+	#NUM cross references
+	search mailbox for a match
+
+lookup @mention in aliases
+	menu mailto:
+
+How can I access the GH API from within NeoMutt?
+	close issue, label issue
+	=> GH module + JSON
+	=> Lua + JSON
+
+Folded issue thread, fields:
+	subject
+	num replies
+	reactions (count)
+	labels (coloured)
+		or dots (coloured)
+	assignees
+	=> ~5/6 %L expandos
+
+In docs for GTA, get user to enable
+	notifications of own replies
+
+Can't get label info / reactions from email
+
+add/del label from thread (index)
+
+get repo/issue metadata -> db (external)
+	=> done by cron (daily?/hourly?)
+	=> or done by neomutt manually
+	e.g. label colours
+	organisation member info
+	might need to login
+
+Menu:
+	assign yourself to issue
+	assign someone else
+
+list reactions - per comment / per issue
+abbreviate labels to first word?
+abbreviate labels to coloured dot?
+
