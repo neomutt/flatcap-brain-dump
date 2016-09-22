@@ -2756,3 +2756,6 @@ Need strategy for unrepeatable/too-little-info bugs/crashes
 new-mail-hook + lua to filter
 	=> need filter manager
 
+urge all dev-ml users to join users-ml
+	send an email?
+
