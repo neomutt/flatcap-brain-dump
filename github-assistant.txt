@@ -59,3 +59,8 @@ list reactions - per comment / per issue
 abbreviate labels to first word?
 abbreviate labels to coloured dot?
 
+insert fake entries into index for
+	add / del label
+	assign user
+	add reaction
+
