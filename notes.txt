@@ -124,9 +124,6 @@ New only -- include structure (empty dirs) to keep hierarchy
 	  fruit (0)
 	    apple (1)
 
-if ((!visible) || (size == 0))
-	make sure no work is done
-
 trim trailing slash from mailboxes, folder
 	shouldn't be displayed
 
@@ -137,8 +134,6 @@ while(1), rather than FOREVER
 sb_set_curbuffy
 sb_set_buffystats
 	should probably both return BOOL on success/failure
-
-sb_set_update_time should return the timestamp
 
 sb_draw should return success of drawing
 	possible given all the callbacks, etc?
@@ -170,8 +165,6 @@ Notify (Box*, Rect old, Rect new, flags)
 Flags:
 	too small to render
 	changed visibility
-
-Changelog, etc for sidebar
 
 ────────────────────────────────────────────────────────────────────────────────
 
@@ -214,10 +207,8 @@ Start; Incoming; Inbox open; current = Incoming; sort → cur is offscreen, boun
 ────────────────────────────────────────────────────────────────────────────────
 
 tree chars for sidebar hierarchy?
-sidebar: how many colours?
 CLEARWIN takes a *y* param, not x, likewise sidebar variant
 
-need sensible colour scheme, by default, otherwise highlight won't be visible!
 parse_mailboxes -> notify sidebar => know if anything's invalidated TBCH
 can I use realpath(), mutt_expand_path() for anything?
 
@@ -263,8 +254,6 @@ make sure anything we need is exposed
 if we hide our globals, give then all accessor functions get/set_VAR()
 init would need to register new sort methods
 
-get rid of REDRAW_SIDEBAR, or use it effectively
-
 can I internalise sb_should_refresh()
 often call:
 	buffy_mbox_update
@@ -280,13 +269,6 @@ demo setup - lots of files in:
 	IMAP mh dirs
 	POP mbox
 	POP mh dirs
-
-possible to eliminate sb_get_highlight?
-	only called on OP_SIDEBAR_OPEN
-	in curs_main.c
-
-move mappings from index/pager -> generic
-	in functions.h
 
 only draw divider if
 	visibility changes
@@ -356,10 +338,9 @@ sb extra colours for:
 	colour by SRC
 	separate colour schemes by SRC?
 
-todo
-	integrate nntp into sidebar
-	what does notmuch return?
-		how do i link it to existing objects?
+integrate nntp into sidebar
+what does notmuch return?
+	how do i link it to existing objects?
 
 floating patches/branches
 	history -> HEAD
@@ -383,7 +364,7 @@ signature manager
 disposable email address plugin?
 	need external API to send/receive
 
-all patches --
+all patches
 	PATCHES
 	configure
 	USE_X
@@ -759,7 +740,7 @@ kdave - limit-current-thread
 save email doesn't respect the umask
 vimlocal - check .git dir -- safe from git clean!
 
-merge commits contains: "Closes: #1234" to perform auto-close pull-request/issue
+merge commits contains: "Closes #1234" to perform auto-close pull-request/issue
 wiki coding style:
 	indent, {}s, ()s, function defs, examples of correct
 
@@ -831,9 +812,6 @@ packaging
 convert config.h to version.c
 	viable?
 	sensible?
--UNKNOWN -> date in neo branch ONLY
-	merge rules for neo branch
-	arch/homebrew builds from git => always UNKNOWN
 "merged" page/collection on website
 	list of all features that have been accepted into the mainline
 	currently empty
@@ -855,11 +833,6 @@ give package maintainers write access to [contrib/{DISTRO}]
 Packages, get RPM spec, deb spec, gentoo, arch
 	put in [contrib] for now
 add my gpg signing key to neo.org, fc.org
-test patches after multiple merge commits, i.e. test if these are equal:
-	c1 + c2 + m1 + m2 + m3
-	c1 + m1 + c2 + m2 + m3
-	c1 + m1 + m2 + c2 + m3
-	c1 + m1 + m2 + m3 + c2
 tweak neomutt.git repo to prevent [flatcap/*] getting pushed to github
 	how?
 use links(1) as a model for re-architecting mutt
@@ -886,8 +859,6 @@ new hierarchy: tree => mail's parent is folder or mail
 	unmailboxes *
 	mailboxes lots...
 
-mutt patches survey -- on website home page and mutt home page
-
 get travis to build RPMs on neomutt and deploy to github release's artifacts automatically
 website front page: do YOU have a mutt patch? -> contact us
 website collection of changes since last release -> relnotes on release
@@ -902,8 +873,6 @@ github files
 	not case sensitive
 	can be hidden in .github dir
 
-homebrew inclusion requires:
-	20 forks + 20 watchers + 50 stars
 ∀ new bugfixes -- reference trac number in commit message
 test email reply to issues, etc
 	markdown?
@@ -912,7 +881,6 @@ website: some bug-fixes have gone away -> success page?
 set/unset sidebar_visible doesn't refresh screen when in pager
 BUG sidebar redraws too often
 sb doesn't match folder (for open) if it has a trailing /
-sb folder sort: strcoll not strcasecmp?
 
 on hg-update
 	pull hg changes into neo-tmp
@@ -940,13 +908,6 @@ list-since script ∀ branches
 	features, neomutt
 	non-merge commits since last tag
 
-config option:
-	--enable-fmemopen?
-
-dev@neomutt.org -> recipients need auto bcc rule to copy other devs
-dev account on server shared between devs?
-notification email @neo.org shared to devs?
-
 website
 	manual -- expand sidebar optional features
 	put our features in first
@@ -956,8 +917,6 @@ website
 
 sidebar refresh variable
 	sidebar_refresh_when_hidden
-
-mutt-kz check #ifdef patches for notmuch/sidebar separation
 
 panels have dividers enum
 	left
@@ -1077,16 +1036,6 @@ ntfs, linux-ntfs, ldm, ntfs/ldm faqs -> GH pages
 bug-fixes(common) -> PATCHES
 	add empty dir & readme (for now)
 
-Milestones
-	1 patch tree
-	2 share patches
-	3 rebase
-
-issues
-	patches order
-	bug fixes (common)
-	alternatives
-
 forks of all distro repos
 
 cond-date document date.sh generator
@@ -1111,8 +1060,6 @@ bugs - doc in PATCHES
 	=> revert old bug, add new bug
 	to keep them atomic
 
-hg/scripts make dev.mutt.org the upstream
-
 list of to-be-written pages on web
 	icons for level of completion
 
@@ -1131,10 +1078,6 @@ integration issues -> web devel news
 [release/*] or [release] after [coverity] or
 [merge] before [coverity] before [neomutt]
 
-deprecate [issue/*] after 6 months?
-
-neomutt-YYYYMMDD-dev (unstable release)?
-
 filter travis out of merges
 
 patches
@@ -1145,8 +1088,6 @@ patches
 		proj
 		commits?
 		feature page
-
-readme link neo to web, flatcap to gh
 
 sidebar: sort out new vs unread vs old, etc
 
@@ -1163,8 +1104,6 @@ notmuch are tags persistant?
 upload all bin/ add (c) and licence
 
 offlineimap tags -> X-Label, too?
-
-new mail feat -> web
 
 buffy_check tmp == M_NNTP / NOTMUCH
 
@@ -1186,7 +1125,7 @@ GIT REPO?
 	doc my .gitconfig
 	all bin/ to repo + .shell/bin/git
 
-quick buid doc somewhere
+quick build doc somewhere
 
 sidebar, et al to kz
 	add to "update-feature" txt
@@ -1200,60 +1139,6 @@ move [devel/*] to separate repo
 	mutable repo
 	neomutt should only move forward
 
-Updates:
-	docs -> web
-	web credits
-	web news
-	management / travis
-	patch tree diagram for gentoo
-
-Release:
-	new patches 1.6.2
-	unstable patches 1.6.2+
-	devel patches
-	readme: "patch against..."
-	drop series: misleading
-	readme - news?
-	individual patches
-	rebased patches
-	separate vs series
-	readme ∀ dirs
-	changelog
-
-update feature =>
-	commit
-	backport
-	integration/feature update
-	changelog
-	web pages
-	doc/readme
-	config
-
-versions:
-main (...)                 at main.c:1237
-	stable: 1.6.2 -- fixes + merges + dev
-	unstable: 1.6.2 -- moving + dev
-
-	issue/*
-	mutt/*
-	neomutt
-	coverity
-	feature/*
-	devel/*
-
-future version:
-	v1.6.n/feature/*
-	v1.6.n/neomutt
-
-	unstable/feature/*	}- update occasionally
-	unstable/neomutt	}  (after big arch changes)
-
-branches
-	features -> travis -> coverity -> neomutt
-	feature5 -> travis5 -> neomutt5
-
-[unstable/*] => drop [devel/win-sidebar]
-
 new feature => new travis test
 	compress
 	nntp
@@ -1266,11 +1151,6 @@ update readmes
 version.c
 	copyright
 	contact
-	version
-doc.xml
-	wiki
-	project links
-	project contact
 	version
 main readme
 	project links
@@ -1299,12 +1179,6 @@ split patches into main + custom
 		status-color
 		status-color (index-color bits)
 
-index_format
-	clash using %g for notmuch and nntp
-	init.h, hdrline.c
-
-sort out notmuch/bugs overlap
-
 integration web page
 	state of play
 
@@ -1313,22 +1187,9 @@ check makefile dist file list
 
 put all the neomutt historic patches into [integration/patches]
 
-bugs
-	<enter> vs <return>
-	backported (done)
-	patchtree (todo)
-main (...)                 at main.c:1237
-
-test and compare:
-	quilt
-	stg
-	topgit
-
 in [integration/patches] generate directory READMEs
 	automatic build from the patches in the dir
 	autolink README.md to the dir.md's
-
-win-sidebar - statusbar length/formatting broken when status_on_top set
 
 labels:
 	mail {red,green}
@@ -1350,14 +1211,7 @@ use Gutenberg texts for sample emails
         replace all message-ids (but keep links)
         strip out most headers
 
-[issue/*] wait 2 releases, then drop?
-
-make more patch tree features conditional
-
-[unstable/*] or [devel/*] => broken refs => neo-devel repo?
-
-Sidebar 'N' string for 'new' icon
-        format with %1s for width
+make more features conditional
 
 Milestones:
         use for next release
@@ -1380,39 +1234,15 @@ Mutt config generator app
 	tutorial
 	translations
 
-get opsec (Kurt) to help bapt (Baptiste) with bsd-neomutt
-
-document branches
-	mutt/default		only merges + travis
-	mutt/default-clean	direct from upstream
-		maintain this?
-		publish this?
-	unstable/sidebar	sidebar_on_right, WIPs, etc
-
-new-commits.sh
-	for i in $(git branch --no-merged | cut -b3- | grep feature/); do echo $i; git log --oneline neomutt..$i | indent; done
-
-use git attributes to mess with [issue/*] travis.yml
-	=> .gitattributes needs to be in repos on travis
-
 make github neo description longer
 	limited to 347 chars (visible)
 	excluding www
-
-plan gh repo rearrange
-	pre-merge -> travis -> coverity -> neomutt
-	hotfix branch included?
-		where in layout?
 
 inotify ∀ local mailboxes
 
 script to generate min-build
 	put in contrib?
 	check config is still up-to-date
-
-mailing list?
-	need forum
-	announce tag on issues?
 
 sample IMAP folder (for devs)
 	regenerate daily
@@ -1428,23 +1258,12 @@ mail sieve issue -- colour code for origin?
 
 sidebar rename delim_len to div_width
 
-git tag for issues matching rolling release
-
 git users: priority workaround/fix
 
 teams for @mentions
 	@debian
 	@rolling-release
 	etc
-
-patch-tree
-	build every patch
-	need tree of commit hashes
-
-new travis => complete neo5 build
-
-[neomutt] as temporary rolling release destination
-	accidentally closing issues!
 
 freebsd
 	warning about mktemp
@@ -1456,10 +1275,6 @@ issue colour for VOTE or coopt QUESTION?
 link kz smime issue to neomutt
 
 clang all my code + fix warnings
-
-[travis] build script & data external to code branches
-
-think of methods to reduce the churn in [patch-sets]
 
 server script to update from hg
 	get latest id
@@ -1477,33 +1292,19 @@ report-neo-bug.sh?
 	build options
 	etc
 
-last-release tag?
-current-release tag?
-	useful, but problem NOT pushing them upstream
-
-warning mx_is_notmuch undeclared in patch-sets
-
 make a list of commits that are missing in the patch-sets
 	quickbuild
 	del .hg*, etc
 	X, Revert X
 Tag the missing commits [no export] ?
 
-git log neomutt..feature/X
-	new commits
-
 get Karel to migrate to NeoMutt stack -- easier integration
-
-split up neo custom patches (theme)
-	not in Debian, Suse, Gentoo?
 
 upstream tag for issues
 	=> upstream notified?
 	=> upstream accepted?
 
 debian neomutt -- /etc/alternatives?
-
-MOVE gentoo's TINFO patch into bug-fixes (for all distros)
 
 24-bit colour => non-curses back-end
 	enumerate all the curses things we do
@@ -1554,8 +1355,6 @@ mutt plugin to create neomutt issues
 	use ghi?
 	or GitHub API directly
 	test in dummy repo
-
-drop mutt-1.5.24 tag from [neomutt/neomutt]
 
 git b(){} needs to disable colour on piping
 
@@ -1634,10 +1433,6 @@ doc -> contrib ∀ vimrc, muttrc
 	=> will break downstream packaging
 	announce change, make change in next release
 
-like noscript in firefox -- "neomutt newly updated message in inbox"
-	or :neoversion => "fake email giving changelog"
-	or :changelog
-
 2016-08-09
 	01:35 <SvenG> but giving a color to "known" addresses (via aliases) would be a killer
 
@@ -1708,8 +1503,6 @@ remote config -- like browser proxy setup
 1.7.0 web features -- add "upstream" category
 	for sidebar, trash
 
-darnir to credits ∀ configure
-
 contrib dir for:
 	muttrc
 	vimrc
@@ -1721,9 +1514,6 @@ unnamed notmuch queries => create description based on query
 
 fake/alternate curses -> true colour => separate fg, bg, term attrs like vim
 
-configure option for random patch
-irc to more docs
-
 cache autoconf in .git
 	git config a name for retrieval, "lmdb", "tokyo"
 		build -s <name>, build <name>
@@ -1734,7 +1524,6 @@ notes for progress bar
 	test read_inc, write_inc, net_inc too
 
 sidebar -- imap all folders vs subscribed
-1.7.0 docs for sidebar, trash -- reflect upstream's changes
 dovecot public mailboxes for tips?  one public user?
 nntp tips? ":tips" command to toggle nntp vars and mailboxes
 
@@ -1743,8 +1532,6 @@ unstable: .gitignore upstream of feature branches, what else?
 
 1.7.0
 	reindent source, split docs => base joiner
-
-wiki link to website
 
 vimrc - each branch maintains its own -- same name, merged in neo
 	same problem as docs?  complicated
@@ -1758,7 +1545,7 @@ tip - status_format + status-color
 	ctx->readonly => red padlock
 
 compress examples == use full option names
-	--compres, etc
+	--compress, etc
 	add examples of compress levels too
 
 contrib.md -- enhancements have 1 month lifespace -> wiki
@@ -1816,14 +1603,9 @@ unified frontend interface (notmuch/keywords) backend
 one-direction script -- sync nightmare?
 sync notmuch -> X-Label's?  get out of sync
 
-combine all the vimrc's for neomutt
-	or combine with vim's for a full copy (better)
-
 check distrs are installing all docs, contrib, etc
 
 nntp, etc static mx functions
-
-sidebar.h prototype push fix upstream
 
 mvprintw unused?
 
@@ -1835,8 +1617,6 @@ unstable: fix commit dates
 docs
 	run "make validate" on travis?
 	regular testing
-
-check 1.7.0 notmuch for typos that should be elsewhere
 
 release:
 	list fixes issues (#num) on release notes
@@ -1898,10 +1678,6 @@ progress bar:
 		a la dnf, wget, etc
 	ETA?
 
-error message backlog
-	cf vim :messages
-	timestamped
-
 neomutt binary
 	symlink (provide) mutt
 
@@ -1927,10 +1703,6 @@ eliminate "mutt" from everything in the build
 	symlink to mutt in install
 	too "fork-y"?
 
-test xdg config locations
-
-XDG strtok?
-
 index-color -- index_date pattern?
 	and index_label
 
@@ -1947,7 +1719,7 @@ install autoreconf -i output
 
 docs
 	create high-level workflow doc with screenshots
-	show beginners *hos* mutt works
+	show beginners *how* mutt works
 	label areas of mutt window
 
 color command (mentor task)
@@ -2000,11 +1772,6 @@ darnir:
 	can we force config=yes?
 	what if libs are missing?
 
-sveng:
-	neomutt-1.7.0
-	identify in version string
-	NeoMutt-1.7.0 (date)
-
 "mutt -v | head -1" is pain
 	--version ?
 
@@ -2015,17 +1782,11 @@ no need to subscribe to mailing lists
 version string bug -> devel list
 	reinstate flea?
 
-compress doc warning
-	">" vs ">>" important
-
 web about: "done so far"
 
 1.7 coverity -- use alternate account
 
 contrib + png + diff = trouble
-
-lmdb + nfs = bad
-	document this
 
 travis -- test docs validation
 	test make install
@@ -2060,15 +1821,6 @@ change "mutt" refs in /etc/Muttrc?
 maildir_trash conflicts trash folder patch
 	our patch, check upstream version
 	document this
-
-1.7 swap date and ver in verstring
-	NeoMutt 2016-MM-DD (1.7.0)
-
-update web docs
-	notmuch
-	keywords
-	limit-current-thread
-	nntp
 
 context-sensitive help?
 	how?
@@ -2124,11 +1876,6 @@ need name for less than features
 	nuggets => minor addition
 	minor docs
 
-antonio -- wants way to interrupt send of BIG email
-	e.g. 16MB
-	interrupts blocked
-	#618425 BTS
-
 get rid of "prepare" or neomutt-ify it
 
 dbus - also implies
@@ -2179,18 +1926,7 @@ NeoMutt signing key on
 	neomutt.org
 	github? where?
 
-keybase "make install" breaks BSD make
-
-double configure
-	tied into .version
-	.version needs to be created by make
-	what does configure do with .version?
-		can we eliminate them?
-
 xdg - Fabian -- strtok?
-
-make dist isn't installing vimrc.*
-	it should merge them
 
 sync / push to maintainers
 	keywords
@@ -2223,9 +1959,6 @@ kill / ignore / mute thread
 
 do saved emails (that get deleted from current folder) appear in the trash?
 
-sensible-browser
-	does it apply to nntp?  notmuch?
-
 trash docs
 	add purge-message/purge-thread notes
 	add folder-hook to delete if >30days
@@ -2243,11 +1976,6 @@ debian doesn't install contrib
 
 fold/collapse empty sidebar folders
 	unless unread/flagged email etc
-
-mutt message backlog:
-	quake like window
-	promote to pager
-	open in editor
 
 xdg extension
 	look for lower case /etc/muttrc
@@ -2272,9 +2000,6 @@ colour-attach reads *all* attachments
 	slow?
 	filter by MIME type, then parse/colour?
 
-encrypt to self -- typo in doc title
-	"an"!
-
 new sidebar expando
 	count of unread *threads*
 
@@ -2289,11 +2014,6 @@ separate folder_format for dirs vs network mailboxes?
 upstream bug -- folder_format, sidebar_format %n (has new mail)
 	shouldn't be cleared if "mark_old = no"
 	quit and restart mutt and the flag comes back
-
-sensible-browser
-	test with nntp
-	does it make sense to test with POP?
-		don't think so
 
 Passing $VARs to children processes, means
 	tell vim about mail rcpt, subject, etc
@@ -2310,15 +2030,8 @@ copying a large mailbox / number of files doesn't trigger the progress bar
 	tag all
 	copy to another mailbox, e.g. maildir
 
-menu -- sensible tracking
-	do we *need* LastDir / OldLastDir
-	what are they used for?
-
 INBOX vs inbox
 	not updating values for browser
-
-migrate maintainers.txt to a separate aliases file
-	with comments
 
 FreeBSD, Suse -> downloads web, wiki
 	OpenBSD too
@@ -2339,8 +2052,6 @@ Mutt vs NeoMutt branding
 	install dir
 	version
 	user agent
-
-browser is_dotdot() helper fn
 
 $source_dir like folder
 	or like $PATH?
@@ -2392,12 +2103,6 @@ configure out dotlock fully
 
 proposal num releases
 	lifespan of project
-
-typos etc
-	muttrc attach color
-	muttrc reply with xorig
-	vimrc color attach
-	vimrc reply with xorigi
 
 check all lists of features are up-to-date
 	web, wiki, etc
@@ -2494,12 +2199,6 @@ transfer gpg keys from flatcap to mutt
 
 pager -- sidebar gets updated but not status line / term header
 
-pager display bug
-	set pager_index_lines = 10
-	open mail
-	set pager_index_lines = 0
-	1.7.0 works correctly
-
 github follow all in maintainers list
 
 test strfcpy ideas in coverity
@@ -2512,9 +2211,6 @@ notmuch tag-completion:
 
 add all neo contributors to the maintainers list
 (and my watch list)
-
-copr install "find . -name '*.neomutt' -delete"
-	deletes some files I want
 
 release: always sent release message to neo mailing lists
 	using new version "User Agent:"
@@ -2595,8 +2291,6 @@ restore git-version-gen
 restore quick-build options
 	or use Suse's patch to put docs last
 
-split out docs/copr.txt
-
 deprecation notice for 1.6
 
 Terry update lunar - point to NeoMutt
@@ -2641,9 +2335,6 @@ should log files be localised?
 if someone else makes a release, it needs to be signed by them
 	need to cross-sign all the neomutt signatures
 	need to be public (web) and signed
-
-are *owners* visible to ordinary users?
-	or just appear as members?
 
 triage:
 	base issue becomes the discussion board

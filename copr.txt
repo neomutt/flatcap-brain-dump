@@ -29,3 +29,6 @@ nightlies - arch/osx
 
 check stats 1 week after release, 2 weeks
 
+copr install "find . -name '*.neomutt' -delete"
+	deletes some files I want
+

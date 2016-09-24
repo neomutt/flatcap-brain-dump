@@ -38,3 +38,16 @@ for :set, etc how does help work when it overlays the pager?
 	like vim's version
 	or mutt -v command line
 
+like noscript in firefox -- "neomutt newly updated message in inbox"
+	or :neoversion => "fake email giving changelog"
+	or :changelog
+
+error message backlog
+	cf vim :messages
+	timestamped
+
+mutt message backlog:
+	quake like window
+	promote to pager
+	open in editor
+
