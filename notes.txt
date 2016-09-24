@@ -15,11 +15,6 @@ lots of static fns → _fn_name?
 ^L in source
 Doxygen comments
 
-Vim-style
-	:set     → show all modified vars
-	:set all → all all vars
-	:unset === set novar
-
 strict compilation flags; c++ compiler?
 unnamed args in function prototypes
 spurious \ line endings (in middle of if!)
@@ -2563,30 +2558,6 @@ rename contrib/vim-keybindings -> contrib/vim-keys
 
 how many more features can be --disabled?
 
-:set -> pager full of settings
-	list name, value, default value
-
-:set VARIABLE=MAGIC_TOKEN => set VARIABLE to its default value
-	save that default value in the history
-
-:messages [clear]
-	all messages, or limit to 100?
-
-:bind / :macro / :???
-	list bindings / macros
-
-:color
-	list all colours
-
-:scriptnames
-	list all config files that were loaded
-	red-flag any with errors
-	add cli option?  to save memory otherwise
-
-for :set, etc how does help work when it overlays the pager?
-	create a sample command
-	then use the rest of the ideas for mentoring
-
 wiki: restrict to members (devel only)?
 
 drop flatcap/neomutt fork (unnec)
@@ -2640,11 +2611,6 @@ ask distros how they'd like to be informed of new releases
 	if web/ml/etc
 	not enough advanced warning
 
-:messages
-	record progress bar info too, e.g.
-	100% 3:45
-	57% 1:24 cancelled
-
 newbie txt
 	watch github project to keep informted
 	public presence in github project
@@ -2697,8 +2663,6 @@ mutt_restore_default()
 
 project: easy bugs
 	tie into mentor system
-
-:messages should take ${read,write,net}_inc into account
 
 timeout hook missing from hook docs
 
@@ -2810,10 +2774,6 @@ separate packages for neomutt
 	neomutt-dev	- code docs
 
 kyoto cabinet -> travis build
-
-:version in pager
-	like vim's version
-	or mutt -v command line
 
 when generating vim syntax file
 	start with blank line

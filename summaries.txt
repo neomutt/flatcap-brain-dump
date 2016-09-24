@@ -1,0 +1,40 @@
+Vim-style
+	:set     → show all modified vars
+	:set all → all all vars
+	:unset === set novar
+
+:set -> pager full of settings
+	list name, value, default value
+
+:set VARIABLE=MAGIC_TOKEN => set VARIABLE to its default value
+	save that default value in the history
+
+:messages [clear]
+	all messages, or limit to 100?
+
+:bind / :macro / :???
+	list bindings / macros
+
+:color
+	list all colours
+
+:scriptnames
+	list all config files that were loaded
+	red-flag any with errors
+	add cli option?  to save memory otherwise
+
+for :set, etc how does help work when it overlays the pager?
+	create a sample command
+	then use the rest of the ideas for mentoring
+
+:messages
+	record progress bar info too, e.g.
+	100% 3:45
+	57% 1:24 cancelled
+
+:messages should take ${read,write,net}_inc into account
+
+:version in pager
+	like vim's version
+	or mutt -v command line
+
