@@ -1,0 +1,202 @@
+Mailbox Notes:
+    Subdirs have a '..' entry
+    Root dir doesn't have '..' entry
+
+There are only three sort options that make sense to put in your config file:
+    * unsorted (config file order)
+    * alpha/description
+    * reverse new-count (most new emails first)
+
+Sorting by:
+    date, size - not reliable
+    count - not meaningful
+
+============================================================
+
+Use case 1:
+    Fixed sort (sort_browser = alpha, description, unsorted)
+    Simple mailbox (mailbox1)
+
+    Mailbox 1
+    ---------
+    inbox   0/12    <= current mailbox
+    cars     1/9
+    fruit    3/7
+    ocean  10/20
+    trees   2/21
+
+Several mailboxes, with no nesting.
+Sorted in a fixed order (alphabetical)
+
+Behaviour:
+    <change-folder> offers next mailbox with new mail as a default
+    '?' opens the browser
+
+    Browser
+    ---------
+    inbox   0/12    <= highlight
+    cars    1/ 9
+    fruit   3/ 7
+    ocean  10/20
+    trees   2/21
+
+============================================================
+
+Use case 2:
+    Variable sort (sort_browser = reverse-new)
+    Simple mailbox (mailbox1)
+
+    Mailbox 1
+    ---------
+    inbox   0/12    <= current mailbox
+    cars    1/ 9
+    fruit   3/ 7
+    ocean  10/20
+    trees   2/21
+
+Several mailboxes, with no nesting.
+Sorted in a variable order (reverse-new)
+
+Behaviour:
+    <change-folder> offers next mailbox with new mail as a default
+    '?' opens the browser
+
+    Browser
+    ---------
+    ocean  10/20    <= highlight
+    fruit   3/ 7
+    trees   2/21
+    cars    1/ 9
+    inbox   0/12    <= current mailbox
+
+User reads all the new mail, then reopens the browser
+
+    Browser
+    ---------
+    fruit   3/ 7    <= highlight
+    trees   2/21
+    cars    1/ 9
+    inbox   0/12
+    ocean   0/20    <= current mailbox
+
+============================================================
+
+Use case 3:
+    Fixed sort (sort_browser = alpha, description, unsorted)
+    Nested mailbox (mailbox2)
+
+    Mailbox 2
+    ---------
+    cars            0/ 0
+    ├── audi       14/10
+    ├── bentley     6/22    <= current mailbox
+    ├── chrysler    8/ 9
+    └── daimler    10/12
+
+Several mailboxes, with nesting.
+Sorted in a fixed order (alphabetical)
+
+Behaviour:
+    <change-folder> offers next mailbox with new mail as a default
+    '?' opens the browser
+
+    Browser
+    ---------
+    ..
+    audi           14/10
+    bentley         6/22    <= highlight
+    chrysler        8/ 9
+    daimler        10/12
+
+============================================================
+
+Use case 4:
+    Variable sort (sort_browser = reverse-new)
+    Nested mailbox (mailbox2)
+
+    Mailbox 2
+    ---------
+    cars            0/ 0
+    ├── audi       14/10
+    ├── bentley     6/22    <= current mailbox
+    ├── chrysler    8/ 9
+    └── daimler    10/12
+
+Several mailboxes, with nesting.
+Sorted in a variable order (reverse-new)
+
+Behaviour:
+    <change-folder> offers next mailbox with new mail as a default
+    '?' opens the browser
+
+    Browser
+    ---------
+    ..              0/ 0
+    audi           14/10    <= highlight
+    daimler        10/12
+    bentley         6/22    <= current mailbox
+    chrysler        8/ 9
+
+User reads all the new mail, then reopens the browser
+
+    Browser
+    ---------
+    ..              0/ 0
+    daimler        10/12    <= highlight
+    bentley         6/22
+    chrysler        8/ 9
+    audi            0/10    <= current mailbox
+
+============================================================
+
+Use case 5:
+    Variable sort (sort_browser = reverse-new)
+    Nested mailbox (mailbox3)
+
+    Mailbox 3
+    ---------
+    inbox           0/12
+    cars            0/ 0
+    ├── audi       14/10
+    ├── bentley     6/22    <= current mailbox
+    ├── chrysler    8/ 9
+    └── daimler    10/12
+    fruit           0/ 0
+    ├── lemon       4/ 5
+    ├── melon       8/ 8
+    ├── nectarine  14/15
+    └── orange     10/15
+
+Several mailboxes, with nesting.
+Sorted in a variable order (reverse-new)
+
+Behaviour:
+    <change-folder> offers next mailbox with new mail as a default
+    '?' opens the browser
+
+    Browser
+    ---------
+    ..              0/ 0
+    audi           14/10    <= highlight
+    daimler        10/12
+    bentley         6/22    <= current mailbox
+    chrysler        8/ 9
+
+User selects '..'
+
+    Browser
+    ---------
+    inbox           0/12
+    cars            0/ 0    <= highlight
+    fruit           0/ 0
+
+User selects 'fruit'
+
+    Browser
+    ---------
+    ..              0/ 0    <= highlight
+    nectarine      14/15
+    orange         10/15
+    melon           8/ 8
+    lemon           4/ 5
+

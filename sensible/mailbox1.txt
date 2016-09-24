@@ -1,0 +1,13 @@
+Mailbox 1
+
+inbox
+ocean
+fruit
+trees
+cars
+
+inbox   0/12    <= current mailbox
+ocean  10/20
+fruit    3/7
+trees   2/21
+cars     1/9

@@ -1,0 +1,28 @@
+Mailbox 3
+
+inbox
+cars
+├── ..
+├── audi
+├── bentley
+├── chrysler
+└── daimler
+fruit
+├── ..
+├── lemon
+├── melon
+├── nectarine
+└── orange
+ocean
+├── ..
+├── atlantic
+├── indian
+├── pacific
+└── southern
+trees
+├── ..
+├── maple
+├── oak
+├── poplar
+└── rowan
+

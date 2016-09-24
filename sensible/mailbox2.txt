@@ -1,0 +1,16 @@
+Mailbox 2
+
+inbox
+cars
+├── ..
+├── audi
+├── bentley
+├── chrysler
+└── daimler
+fruit
+├── ..
+├── lemon
+├── melon
+├── nectarine
+└── orange
+
