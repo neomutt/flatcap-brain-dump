@@ -2708,10 +2708,6 @@ is there a projects GH API to extract/manipulate
 	project notes, etc, outside of GH
 	YES
 
-Use GitHub Assistant as a model for:
-	Debian BTS Assistant
-	Trac Assistant
-
 How many features/nuggets can be replaced by scripts?
 	subjectrx - obvious one
 
@@ -2719,6 +2715,8 @@ Need strategy for unrepeatable/too-little-info bugs/crashes
 
 new-mail-hook + lua to filter
 	=> need filter manager
+
+(un)new_mail_filter lua [lua...]
 
 urge all dev-ml users to join users-ml
 	send an email?
@@ -2747,8 +2745,6 @@ projects: translation
 
 filter manager
 	time limit option -- on holiday!
-
-(un)new_mail_filter lua [lua...]
 
 guarantee translations, when?
 	at release of new feature?
