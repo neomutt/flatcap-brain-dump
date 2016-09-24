@@ -175,3 +175,11 @@ embed colours in text (from scripts)
 
 export mutt_regex_match
 	for compatibility
+
+inline lua script could allow a if/then conditional, e.g.
+	<?lua if (false): ?>
+		muttrc on true
+	<?lua else: ?>
+		muttrc on false
+	<?lua endif ?>
+

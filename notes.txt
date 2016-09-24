@@ -2759,3 +2759,66 @@ new-mail-hook + lua to filter
 urge all dev-ml users to join users-ml
 	send an email?
 
+startup-hook
+	immediately before displaying the index for the first time
+	useful for testing
+shutdown-hook
+	before closing mailbox connections
+
+turn mutt into a random email generator
+
+forgotten-attachments: German example:
+	"häng an" won't match over a new line
+	strdup regex string, replacing spaces with
+		"[ \t\n]+" ???
+	does it work with \n embedded?
+	could I pre-process the email text?
+	it it utf-8 compliant?
+
+projects: translation
+	which languages?
+	document which are supported
+	status: full, partial, started, none
+	see https://weechat.org/doc/
+
+filter manager
+	time limit option -- on holiday!
+
+(un)new_mail_filter lua [lua...]
+
+guarantee translations, when?
+	at release of new feature?
+	at next release?
+	when?
+
+alt-e resend_message - which hooks are called?
+	add lua hook
+
+linus-like devel strategy
+	1 week merge window
+	1 week bug fixes
+	release
+merge window
+	=> dev branch?
+	=> bug-fixes are rebased in place
+	=> neatly packaged into [neomutt] on release
+
+separate packages for neomutt
+	neomutt		- binary
+	neomutt-docs	- main manual
+	neomutt-contrib - muttrc, vimrc, etc
+	neomutt-dev	- code docs
+
+kyoto cabinet -> travis build
+
+:version in pager
+	like vim's version
+	or mutt -v command line
+
+when generating vim syntax file
+	start with blank line
+	end with modeline
+
+syntax file in local vim syntax dir needs to be called
+	muttrc to match vim modelines in other files
+
