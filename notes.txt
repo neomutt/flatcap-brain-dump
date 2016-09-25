@@ -91,9 +91,6 @@ kill one-line if's:
 
 possible to fix sidebar sort order to respect hierarchy/indentation?
 
-gentoo sidebar_format
-	set sidebar_format="%B %* %S%?N?(%N)?%?F?[%F]?"
-
 sidebar_width = auto (size to contents)
 	would need to parse and format all strings ahead of drawing divider
 
@@ -207,7 +204,6 @@ Start; Incoming; Inbox open; current = Incoming; sort → cur is offscreen, boun
 ────────────────────────────────────────────────────────────────────────────────
 
 tree chars for sidebar hierarchy?
-CLEARWIN takes a *y* param, not x, likewise sidebar variant
 
 parse_mailboxes -> notify sidebar => know if anything's invalidated TBCH
 can I use realpath(), mutt_expand_path() for anything?
@@ -347,9 +343,6 @@ floating patches/branches
 		      \-> neo branch
 		      		\-> min build branch
 
-Cedric, VVV, DGC -- check for any utils patches use
-	ifdef, nested if, xlabel_ext, purge
-
 Undo, what's possible?
 	Last action?
 	Many actions?
@@ -357,8 +350,6 @@ persistant undo on email editing?
 undelete?
 unsend?
 tagging?
-
-look through gmail labs, etc, firefox addons for email plugin ideas
 
 signature manager
 disposable email address plugin?
@@ -381,8 +372,6 @@ Alternate views in the sidebar
 	rss?   unread feeds <--> all feeds
 
 data source LDAP
-
-fix copyright dates in all patches
 
 which config items require frequent and costly interpretation?
 	all format strings -- every line, every refresh
@@ -523,12 +512,9 @@ check minor new functions are static
 tidy - check files for leading/trailing whitespace at ends of file
 	check for redundant empty lines
 
-cond-date add docs to index_format in init.h
-bugs - sidebar - note refresh not really working
 community script check for update
 	date community docs?
 	or just rely on commit date?
-resolve - sort desc, draw status line, open folder
 git jump function -- figure out if diff or merge is needed
 
 docs
@@ -610,7 +596,7 @@ can some keybindings be set "only active when window is visible"?
 		probably yes
 
 how should mutt_yesorno() work?
-	Question is asked modally & outside are of asker
+	Question is asked modally & outside area of asker
 	=> hide command line, show question
 	question panel gets request, shows itself, hides command
 		make command-line panel invisible?
@@ -691,8 +677,6 @@ diagram
 
 macros() should be MACROS()
 
-gitflow for neomutt branches (and devel)
-
 smime.c:
 	variable set to NULL after safe_fclose
 	safe_fclose (&smimeout);
@@ -757,7 +741,6 @@ mail, compress, dev build patches, examine coverity build log
 gh-pages for up-to-date manual (in sections)
 	front redirects to wiki
 
-typo hdrline.c %g message labes
 bugfix 8 - hurd -- what happened to it?
 fmemopen - merge into one place in mutt_mktemp()?
 	idea from dgc email
@@ -817,7 +800,6 @@ convert config.h to version.c
 	currently empty
 website gh page: doc [issue/*]
 	temp fixes & wip for issues
-use wiki for ideas -- survey of ideas (next week)
 survey of patches -- both lists
 	mutt -v | mutt survey@neomutt.org
 update website gh page: list of branches
@@ -879,7 +861,6 @@ test email reply to issues, etc
 
 website: some bug-fixes have gone away -> success page?
 set/unset sidebar_visible doesn't refresh screen when in pager
-BUG sidebar redraws too often
 sb doesn't match folder (for open) if it has a trailing /
 
 on hg-update
@@ -896,10 +877,6 @@ on neo release -- ideas
 
 notmuch missing entry in PATCHES
 	(add to neomutt? or notmuch?)
-
-survey -- autoreply
-
-Mutt web DNSSEC, TLSA
 
 limit hg updates to just before release?
 	no => often, let travis work
@@ -964,19 +941,12 @@ slang source + demos
 
 sample mail repo filled with example/problem mailboxes
 
-main.c:mutt_exit()
-	who uses it?
-	where did it come from?
-
 [management]/bin
 	sync.sh 6h cron script to sync mirrors
 	sync needs ssh key
 		external to script
 		(document in header)
 	sync reads data file with header, whitespace & comments
-
-apply patch deltas to patch sets
-	(changes since last sync)
 
 install neomutt in parallel with mutt
 	uses alternatives mechanism
@@ -989,8 +959,6 @@ change repos' default branch to /readme?
 	contains just some notes
 
 muttrc.{distro} ∀ distros
-
-kdave -> trac mailcap
 
 spread out doc chapters so diff context is vague
 	</sect1> and whitespace
@@ -1030,8 +998,6 @@ git merge attrs to automate merges
 
 separate nntp and neo-nntp patches?
 	docs, patches?
-
-ntfs, linux-ntfs, ldm, ntfs/ldm faqs -> GH pages
 
 bug-fixes(common) -> PATCHES
 	add empty dir & readme (for now)
@@ -1091,8 +1057,6 @@ patches
 
 sidebar: sort out new vs unread vs old, etc
 
-pull-hg-master -> darnir + repo?
-
 announce pre-release in web news
 
 alter notmuch to use keywords?
@@ -1134,10 +1098,6 @@ use issue "release" tag to mean
 	bug         + release => fixed in next release
 	enhancement + release => appears in next release
 	put comment to same effect in issue
-
-move [devel/*] to separate repo
-	mutable repo
-	neomutt should only move forward
 
 new feature => new travis test
 	compress
@@ -1184,8 +1144,6 @@ integration web page
 
 check makefile dist file list
 	ChangeLog.neomutt, etc
-
-put all the neomutt historic patches into [integration/patches]
 
 in [integration/patches] generate directory READMEs
 	automatic build from the patches in the dir
@@ -1410,8 +1368,6 @@ sidebar
 	separate colour for read-only mailbox
 	expando for read-only mailbox
 
-drop flea, etc from neo install
-
 getopt for neomutt
 	--help
 	--version
@@ -1461,8 +1417,6 @@ alternative to sb search
 	type number<enter> to select
 	(like index-panel)
 
-web docs for XDG config
-
 new mutt colours
 	none or inherit
 	don't set this component
@@ -1473,8 +1427,6 @@ build
 
 1.7.0
 	add --quickbuild?
-
-kill "flea", etc in neo install
 
 1.7.0 => deprecate 1.6.0 branches after 1 month
 	one month of backporting bug-fixes
@@ -1533,13 +1485,7 @@ unstable: .gitignore upstream of feature branches, what else?
 1.7.0
 	reindent source, split docs => base joiner
 
-vimrc - each branch maintains its own -- same name, merged in neo
-	same problem as docs?  complicated
-	same problem as patches?  can be auto-merged
-
 separate docs -- only the "optional features" sections
-
-user-agent from Mutt/1.6.2-neo -> NeoMutt-1.6.2 (2016-08-08)
 
 tip - status_format + status-color
 	ctx->readonly => red padlock
@@ -1649,8 +1595,6 @@ transcribe issue#56 vim-keybinding ideas
 	wiki
 
 mutt use getopt: long options
-
-gitattrs on patchsets to hide "From:" changes, etc
 
 mutt-tips: integrated
 	tips command
@@ -1762,9 +1706,6 @@ docs based on use-cases
 
 a rogues' gallery web page with our PGP keys
 
-fix the *_format strings
-	Mutt -> NeoMutt
-
 darnir:
 	use gpgme not gpg
 	warn users?
@@ -1785,8 +1726,6 @@ version string bug -> devel list
 web about: "done so far"
 
 1.7 coverity -- use alternate account
-
-contrib + png + diff = trouble
 
 travis -- test docs validation
 	test make install
@@ -1932,30 +1871,6 @@ sync / push to maintainers
 	keywords
 	nntp
 	notmuch
-
-kill / ignore / mute thread
-	one folder version is simple
-		have a marker on the original email
-		any emails with the thread are marked read
-		check "In-reply-to"
-	multiple folders
-		mute => archive
-		need db of muted reference ids
-		otherwise, read the archive folder
-			too slow?
-			what about the header cache?
-			which fields are in it?
-	one folder
-		combine with a folder-hook
-		close all on entry to folder
-		open on new/flagged
-	use scoring method on threads
-		non-permanent
-			problem?
-		existing methods
-	if email it To: you or CC: you, then unmute
-	combine with folder hook
-		delete > n days (to keep folder manageable)
 
 do saved emails (that get deleted from current folder) appear in the trash?
 
@@ -2181,9 +2096,6 @@ notmuch update for Karel
 
 nntp sync and update for Vsevolod
 
-report: header cache keeps getting deleted/invalidated
-	investigate
-
 nested if docs extra space in x=0 condition
 
 vim-like hls option: persistant across emails
@@ -2191,26 +2103,15 @@ vim-like hls option: persistant across emails
 locale compatibility variable
 	announce new var, release, remove, release
 
-vim leading/trailing spaces
-	,f<space>^
-	,f<space>$
-
 transfer gpg keys from flatcap to mutt
 
 pager -- sidebar gets updated but not status line / term header
-
-github follow all in maintainers list
 
 test strfcpy ideas in coverity
 
 notmuch tag-completion:
 	when using -XYZ<tab>
 	only match tags that exist on the selected mail(s)
-
-"New mail in =trash" isn't useful to know
-
-add all neo contributors to the maintainers list
-(and my watch list)
 
 release: always sent release message to neo mailing lists
 	using new version "User Agent:"
@@ -2279,13 +2180,6 @@ announce vim-syntax, put a public copy up
 
 check mutt-tc for project ideas
 
-split neomutt packages?
-	neomutt
-	docs
-	contrib
-split repos to match
-branch by version / language
-
 restore git-version-gen
 
 restore quick-build options
@@ -2308,9 +2202,6 @@ ask distros how they'd like to be informed of new releases
 newbie txt
 	watch github project to keep informted
 	public presence in github project
-
-"more info" github issue label
-	+ boilerplate text
 
 development bottleneck
 	document more tasks
@@ -2347,10 +2238,6 @@ triage:
 		[devel/*]
 	completed
 		issue (release)
-
-mutt_restore_default()
-	what is it?
-	who calls it?
 
 project: easy bugs
 	tie into mentor system
@@ -2459,6 +2346,8 @@ separate packages for neomutt
 	neomutt-docs	- main manual
 	neomutt-contrib - muttrc, vimrc, etc
 	neomutt-dev	- code docs
+split repos to match
+branch by version / language
 
 kyoto cabinet -> travis build
 
@@ -2468,4 +2357,8 @@ when generating vim syntax file
 
 syntax file in local vim syntax dir needs to be called
 	muttrc to match vim modelines in other files
+
+:set variable=MAGIC_TOKEN
+	=> set to default value
+	history records the default value, not the token
 
