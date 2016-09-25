@@ -9,13 +9,9 @@ check what COPR installs
 
 patchset branch for COPR (neo + fedora)
 
-split up neo-patch, use integration patches
-
 spec:
 	Provides: mutt
 	causes conflict with urlview
-
-NO CONTRIB!
 
 neomutt-unstable for devel-features
 	would need to be completely automated
