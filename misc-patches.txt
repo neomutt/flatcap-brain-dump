@@ -10,29 +10,10 @@ pgp - https://github.com/aur-archive/mutt-pgp-verbose-mime
 	patch-1.5.4.vk.pgp_verbose_mime -- set information for pgp signature attachment
 
 dane - https://github.com/aur-archive/mutt-great-dane
-	mutt-attach.patch                   -- check for attachments if user writes "attach"
 	mutt-write_postponed.patch          -- refactor fcc code?
 	mutt-xterm_title.patch.2            -- set title on exit
 	patch-1.5.21.as.echo.2              -- 'echo' for macros
-	patch-1.5.21.ats.date_conditional.3 -- conditional date formats
-	patch-1.5.21.cd.ifdef.2             -- feature ifdef config
-	patch-1.5.21.cd.purge_message.8     -- purge messages
-	patch-1.5.21.dgc.deepif.2           -- nested conditionals
-	patch-1.5.21.indexcolor-3+cb.diff   -- individually colour header fields
-	patch-1.5.21.vvv.initials           -- expando for author initials
-	trash_folder-1.5.18.patch           -- trash folder on delete
 
 dgc - https://github.com/aur-archive/mutt-kz-dgc-git
-	ats.date_conditional -- variable date formatting
-	dgc.markmsg          -- attach tags to messages
-	dgc.nested_if.2      -- nestable conditionals
 	dgc.uncollapsenew    -- open threads on new
-
-jplenz - https://github.com/raw-bin/mutt-sidebar-patches-jplenz
-	01-applying-debian-patches-mutt-patched-multiple-fcc.patch
-	patchs 02-22 already integrated
-
-uber - https://github.com/aur-archive/uber-mutt
-	mutt-attach.patch    -- check body contains "attach" -> attachment
-	mutt-unmailbox.patch -- already applied
 
