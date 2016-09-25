@@ -28,8 +28,6 @@ fix annotated tag at 09:00
 	GIT_AUTHOR_DATE
 	GIT_COMMITTER_DATE
 
-sed s/UNKNOWN/YYYYMMDD/ in PATCHES
-
 separate patch for neomutt (combined)
 
 next neomutt: compress, kdave (skip-quoted (tidied)), bug-fixes (doc)
@@ -120,8 +118,6 @@ Git announcement as example
 
 patch sets before merge?
 easier to ID new commits -- just save the commits pre-merge
-
-step to change PATCH-UNKNOWN
 
 tag patch sets to match neomutt
 
