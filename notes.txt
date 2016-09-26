@@ -2252,10 +2252,6 @@ website/repo for scripts
 	like scripts.irssi.org
 	site generated from the script headers
 
-appease GitHub license checker
-	drop LICENSE.md symlink
-	mv GPL to LICENCE.md
-
 index-fold-level
 	0 completely folded
 	1 depth 1
@@ -2350,10 +2346,6 @@ split repos to match
 branch by version / language
 
 kyoto cabinet -> travis build
-
-when generating vim syntax file
-	start with blank line
-	end with modeline
 
 syntax file in local vim syntax dir needs to be called
 	muttrc to match vim modelines in other files
