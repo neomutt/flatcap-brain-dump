@@ -282,11 +282,6 @@ sidebar expandos
 
 add copyright where I've written code
 
-Don't need to actually SORT the BUFFYs, just sort our array
-and work from that.  That way SORT_ORDER => unsorted => mailboxes
-in their original config order.
-Implies we need our own Incoming pointer? or just array[0]?
-
 alternative to lightweight patch
 	don't update info ∀ BUFFYs
 	just update the current page
@@ -414,7 +409,6 @@ code: switch default must be at end
 mutt folder/dir browser
 	".."/open should start with current folder/dir selected
 	display full path at top of screen/statusbar/titlebar
-dependency graph of all patches
 BOOL -> enum?  what about the bitfields?
 
 git
@@ -731,7 +725,6 @@ wiki coding style:
 integrate patchlist into new version of ifdef checking
 wiki: doc travis and coverity options
 missing qdbm, slang-dev
-CONTRIBUTING.md (appears when creating an issue)
 split source?
 	tools/ - standalone exes
 	library/ - replacement library functions
@@ -884,11 +877,6 @@ limit hg updates to just before release?
 list-since script ∀ branches
 	features, neomutt
 	non-merge commits since last tag
-
-website
-	manual -- expand sidebar optional features
-	put our features in first
-	list feature support by distro?
 
 <sidebar-next-new> => $sidebar_flagged_are_new ?
 
@@ -1057,8 +1045,6 @@ patches
 
 sidebar: sort out new vs unread vs old, etc
 
-announce pre-release in web news
-
 alter notmuch to use keywords?
 
 notmuch are tags persistant?
@@ -1071,16 +1057,7 @@ offlineimap tags -> X-Label, too?
 
 buffy_check tmp == M_NNTP / NOTMUCH
 
-tie together bug reports for <enter> vs <return>
-	https://dev.mutt.org/trac/ticket/3494
-	http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=547661
-	put metadata in [bugs]
-
 doc rr-cache
-
-list problem files
-	PATCHES
-	doc/manual.xml.head
 
 GIT REPO?
 	.gitattributes
@@ -1215,8 +1192,6 @@ neo-build
 mail sieve issue -- colour code for origin?
 
 sidebar rename delim_len to div_width
-
-git users: priority workaround/fix
 
 teams for @mentions
 	@debian
@@ -1551,8 +1526,6 @@ sync notmuch -> X-Label's?  get out of sync
 
 check distrs are installing all docs, contrib, etc
 
-nntp, etc static mx functions
-
 mvprintw unused?
 
 gmail patches -> devel
@@ -1723,8 +1696,6 @@ no need to subscribe to mailing lists
 version string bug -> devel list
 	reinstate flea?
 
-web about: "done so far"
-
 1.7 coverity -- use alternate account
 
 travis -- test docs validation
@@ -1732,10 +1703,6 @@ travis -- test docs validation
 	compare to known list of installed files
 
 make install broken (contrib)
-
-permanently merge docs into [neomutt]
-	vimrc merge?
-	=> patches don't include docs
 
 [devel/*] on creation: notify dev-mail
 [devel/*] -> [feature/*]: notify user-mail
@@ -2002,8 +1969,6 @@ email all 341 of mutt-kz stargazers and tell them about neomutt
 
 forgotten-attachment
 	optimise MUTT_NO path: i.e. don't check the file at all
-
-adopt upstream mutt sidebar changes
 
 start dropping references to "patches" in docs
 	just refer to features
@@ -2353,4 +2318,4 @@ syntax file in local vim syntax dir needs to be called
 :set variable=MAGIC_TOKEN
 	=> set to default value
 	history records the default value, not the token
-
+	TOKEN=$default ?

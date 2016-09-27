@@ -134,3 +134,6 @@ index panel browser - implement vim-like:
 
 check for #include guards
 
+project: easy bugs
+	tie into mentor system
+

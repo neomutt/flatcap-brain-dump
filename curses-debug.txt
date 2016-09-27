@@ -12,3 +12,8 @@ screenshot command with ANSI escape sequences / HTML+CSS
 capture at screen or window-level?
 	windows have no relationships, so screen for now
 
+debugging curses tutorial
+	two windows
+	either run & attach
+	or gdb tty redirect
+
