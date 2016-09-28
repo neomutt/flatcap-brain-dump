@@ -68,3 +68,4 @@ Use GitHub Assistant as a model for:
 	Debian BTS Assistant
 	Trac Assistant
 
+use GitHub API to create our own "review" marks on commits
