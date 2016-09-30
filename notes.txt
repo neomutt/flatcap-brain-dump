@@ -2319,3 +2319,58 @@ syntax file in local vim syntax dir needs to be called
 	=> set to default value
 	history records the default value, not the token
 	TOKEN=$default ?
+
+release jobs
+	check of HCACHEVER has changed
+	notify if it has
+
+create new "release jobs" list
+
+suse build order
+	docs last
+
+use hcache to store other info?
+	e.g. top tips - which are read
+
+fix notmuch syntax & announce
+
+nested if doc alignment & script
+
+summary pages:
+	:about
+	translatable comments
+	closes any existing summary page / help
+	:tips
+		mbox in contrib/
+		nntp (if available)
+		links to web if not
+
+wiki footer
+	this is for devs, see website
+
+add cursor to pager (on/off)
+	=> can highlight text
+	can click links
+
+perms for members, branches, repos, labels, projects, milestones
+
+keep a min of 5 easy tasks (coding)
+
+config file accept keybindings using
+	C-	Ctrl-	Ctl-
+	A-	Alt-	Meta-
+	W-	Win-	Mac-?
+
+macports, is there something I can update automatically at release time?
+	cf homebrew
+
+generic lists of volatile variables attached to
+	mailbox/context or
+	email
+scripting could save info there, such as
+	num emails in thread
+	num new in thread
+	score
+move score from permanent to volatile
+
+

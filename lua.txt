@@ -183,3 +183,20 @@ inline lua script could allow a if/then conditional, e.g.
 		muttrc on false
 	<?lua endif ?>
 
+lua-mark-old
+	(enter/leave) timestamp
+	can mark read, old, do nothing
+	(nothing if you're just flicking through)
+
+lua-cron
+	queue scripts for later
+
+lua-hooks (for existing mutt hooks)
+	XXX-hook = lua:file.lua
+
+lua-script-manager to control scope/lifespan of lua states
+	lua_open (name) returns
+		opaque pointer or
+		int handle
+	lua_close (handle)
+
