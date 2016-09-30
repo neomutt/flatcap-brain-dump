@@ -2344,6 +2344,7 @@ summary pages:
 		mbox in contrib/
 		nntp (if available)
 		links to web if not
+	:credits
 
 wiki footer
 	this is for devs, see website
@@ -2372,5 +2373,4 @@ scripting could save info there, such as
 	num new in thread
 	score
 move score from permanent to volatile
-
 
