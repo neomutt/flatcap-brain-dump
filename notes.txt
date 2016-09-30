@@ -2345,6 +2345,7 @@ summary pages:
 		nntp (if available)
 		links to web if not
 	:credits
+	status line shows list of summary pages
 
 wiki footer
 	this is for devs, see website
