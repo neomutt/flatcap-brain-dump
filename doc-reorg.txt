@@ -1,0 +1,35 @@
+Docs:
+
+Website
+Wiki
+Issues
+
+mutt(1) manual * 7
+manual (guide) - docbook
+	xml
+	html
+	txt
+	pdf
+muttrc.*
+vimrc.*
+contrib/*
+README.*
+ChangeLog.*
+[A-Z]*
+translations po/*
+init.h
+functions.h
+OPS*
+manual.xml.{head,tail}
+	9000 lines
+	+ 5000 for ~30 features
+unwritten dev docs from code
+DocBook is base for all
+rename manual -> guide
+manual
+	~7000 lines for vars, functions
+	600l functions, 6400l variables (390 vars)
+Muttrc.head (init.h)
+	~100 lines + 5000 generated
+sidebar guide => html for highlighting
+
