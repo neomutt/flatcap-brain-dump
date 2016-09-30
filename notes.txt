@@ -2375,3 +2375,14 @@ scripting could save info there, such as
 	score
 move score from permanent to volatile
 
+pgp key manager/management
+	list, ignore revoked keys
+	sort options
+	filtering
+
+colour manager, see htop
+
+window manager
+	menu mode, like jed/links
+	popup menus
+
