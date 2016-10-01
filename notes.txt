@@ -2410,3 +2410,10 @@ justify every file in the neo build
 	use min-build to start
 	show compilation steps
 
+multi-line index.  options:
+	for all entries
+	for current entry
+	for current thread
+wrap long fields
+sacrifice height to save width
+
