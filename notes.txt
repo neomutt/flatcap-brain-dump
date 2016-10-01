@@ -2386,3 +2386,27 @@ window manager
 	menu mode, like jed/links
 	popup menus
 
+notmuch date adjuster doesn't need $var
+	it can <adjust>read value<enter>
+
+forgotten attachment - warn on empty subject?
+
+mime-typer plugin
+	notify if the mime type doesn't match what *you* think it should be
+	change the type (option)
+
+cmocka -- unit tester
+
+feature docs: change 
+	"dep 1.7.0" to "since 2016-06-11"
+	drop "part of the NeoMutt project" (obvious)
+
+doc travis build system
+	push, pr, txt files, .yml
+	explain why centralised
+	explain why not container build
+
+justify every file in the neo build
+	use min-build to start
+	show compilation steps
+
