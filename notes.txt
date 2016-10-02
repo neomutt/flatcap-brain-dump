@@ -2431,3 +2431,8 @@ easy task
 	ccache
 	neomutt-test-configs.sh
 
+howto: update website
+	ruby, jekyll
+	which gems needed?
+	"jekyll serve" to test
+
