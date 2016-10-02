@@ -1524,7 +1524,7 @@ unified frontend interface (notmuch/keywords) backend
 one-direction script -- sync nightmare?
 sync notmuch -> X-Label's?  get out of sync
 
-check distrs are installing all docs, contrib, etc
+check distros are installing all docs, contrib, etc
 
 mvprintw unused?
 
@@ -2122,7 +2122,8 @@ how many more features can be --disabled?
 
 wiki: restrict to members (devel only)?
 
-drop flatcap/neomutt fork (unnec)
+drop flatcap/neomutt fork?
+	used for coverity testing
 
 dev-ml followup to fork:
 	cf notmuch -- hard to rebase
