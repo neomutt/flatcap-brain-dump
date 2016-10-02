@@ -2418,3 +2418,16 @@ multi-line index.  options:
 wrap long fields
 sacrifice height to save width
 
+is hcache data hashed on fields in db, or all fields?
+	i.e. why does HCACHEVER change so often
+
+fork -> C11 code
+
+easy task
+	"set var = $default"
+
+easy task
+	clean build warnings
+	ccache
+	neomutt-test-configs.sh
+
