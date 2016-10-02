@@ -2436,3 +2436,13 @@ howto: update website
 	which gems needed?
 	"jekyll serve" to test
 
+release link new feature to web page
+
+fix make dist
+
+breakdown
+	source (simple)
+	source (conditional, e.g. feature)
+	source (conditional, e.g. OS libc)
+	build (scripts/Makefiles)
+
