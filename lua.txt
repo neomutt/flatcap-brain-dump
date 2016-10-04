@@ -200,3 +200,22 @@ lua-script-manager to control scope/lifespan of lua states
 		int handle
 	lua_close (handle)
 
+lua-forall-index
+	iterate through every mail
+	order by:
+		index sorting?
+		variable?
+		ask script?
+	Options:
+		shallow (thread head only)
+		width-first
+		depth-first
+		max-depth
+		sort order
+
+lua-variables
+	every script called twice
+	first call with INTERROGATE_VARIABLES=1
+	if script sets vars and returns I_SET_VARS
+	use those vars to control future call(s)
+
