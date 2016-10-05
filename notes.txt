@@ -2454,3 +2454,5 @@ scratch-pad function
 	you can save it
 	could be used by scripts to save output
 
+change from autoconf -> cmake
+
