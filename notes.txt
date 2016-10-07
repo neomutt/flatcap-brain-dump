@@ -1347,7 +1347,7 @@ getopt for neomutt
 	--help
 	--version
 
-symlink man pages, etc (for easy of use)
+symlink man pages, etc (for ease of use)
 	neomutt -> mutt
 
 transition guide:
@@ -1757,10 +1757,6 @@ make config -- like linux kernel
 sync 1.6.0 -> neo-old after deprecation
 
 c-alpha build deps docs
-
-easy: debian open r/o patch #528233 mutt#3261
-
-easy: debian #771125 CVE, mutt #3716
 
 feature docs to separate <sect1>'s?
 
@@ -2207,9 +2203,6 @@ triage:
 	completed
 		issue (release)
 
-project: easy bugs
-	tie into mentor system
-
 timeout hook missing from hook docs
 
 vim-like record macros 'qa'
@@ -2359,8 +2352,6 @@ add cursor to pager (on/off)
 
 perms for members, branches, repos, labels, projects, milestones
 
-keep a min of 5 easy tasks (coding)
-
 config file accept keybindings using
 	C-	Ctrl-	Ctl-
 	A-	Alt-	Meta-
@@ -2424,14 +2415,6 @@ is hcache data hashed on fields in db, or all fields?
 	i.e. why does HCACHEVER change so often
 
 fork -> C11 code
-
-easy task
-	"set var = $default"
-
-easy task
-	clean build warnings
-	ccache
-	neomutt-test-configs.sh
 
 howto: update website
 	ruby, jekyll
@@ -2502,10 +2485,6 @@ new two-letter expandos
 	initial letter picked with no clashes anywhere
 	=> 26 more expandos to use
 
-Easy - ask for:
-	mentors on dev ml
-	coders on user ml
-
 public ml archives
 	announce first?
 
@@ -2513,11 +2492,6 @@ vim has set vs setlocal
 	mutt has accounts as separate entities
 	set      var => global
 	setlocal var => per account
-
-easy - gettext strings
-
-easy - sidebar notmuch indent
-	sort and indent sidebar strings by notmuch desc
 
 $sort = [prefix-][...]order
 	prefix = reverse
