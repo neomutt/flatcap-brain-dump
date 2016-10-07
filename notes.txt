@@ -1758,9 +1758,9 @@ sync 1.6.0 -> neo-old after deprecation
 
 c-alpha build deps docs
 
-debian open r/o patch #528233 mutt#3261
+easy: debian open r/o patch #528233 mutt#3261
 
-debian #771125 CVE, mutt #3716
+easy: debian #771125 CVE, mutt #3716
 
 feature docs to separate <sect1>'s?
 
@@ -2024,6 +2024,7 @@ context sensitive popup menus
 
 source script|
 	pipe -- lookup exact meaning and implications
+	works, but can't tell you where an error occurred
 
 doc muttrc color attach differs from contrib
 
@@ -2069,6 +2070,7 @@ locale compatibility variable
 	announce new var, release, remove, release
 
 transfer gpg keys from flatcap to mutt
+	mutt cron to update them
 
 pager -- sidebar gets updated but not status line / term header
 
@@ -2092,7 +2094,7 @@ imap only 'n' messages option
 
 mbsync better offlineimap
 
-hcache what works offline!
+hcache that works offline!
 
 imap force body cache on read
 	option for offline working
@@ -2281,7 +2283,7 @@ projects: translation
 	which languages?
 	document which are supported
 	status: full, partial, started, none
-	see https://weechat.org/doc/
+	see https://weechat.org/doc/devel/
 
 filter manager
 	time limit option -- on holiday!
@@ -2521,3 +2523,14 @@ $sort = [prefix-][...]order
 	prefix = reverse
 	prefix = thread
 
+index folding (happens above level of emails)
+	fold by option, e.g. day, month
+	Wednesday
+		mail
+		mail
+	July
+		mail
+		mail
+	uses extra lines
+	saves width
+	
