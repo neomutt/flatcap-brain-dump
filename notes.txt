@@ -2519,3 +2519,8 @@ website
 	state of each
 	etc
 
+21:55 svenG "No attachments, cancel sending? ([yes]/no):"  so NOT cancelling the sending.. sends. o_O  double negatives are always so confusing.. :-/
+
+irc webpage
+	mention freenode's web interface
+
