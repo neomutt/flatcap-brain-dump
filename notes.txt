@@ -2456,3 +2456,68 @@ scratch-pad function
 
 change from autoconf -> cmake
 
+distros
+	get gentoo up-to-date
+	debian sync
+		get riesebie to look for deb patches to merge
+	push sthen (openbsd) for action
+	mageia
+		install 
+		test copr
+		contact
+
+branches
+	fix and merge virt-un
+
+vvv
+	nntp fixes/sync
+	list of patches
+	bugs
+	need sync
+	12 distros
+	compress too
+
+docs
+	list large blocks
+	announce docbook repo
+	test branch for docbook
+	need to fix
+		make install
+		make dist
+		copr
+
+docs - nested if
+	better explanation of %<>
+
+eradicate notmuch's use of strndup, strnlen
+
+strfcpy -> fn()
+	darnir's code in list
+
+purge all macros from neomutt?
+
+new two-letter expandos
+	initial letter picked with no clashes anywhere
+	=> 26 more expandos to use
+
+Easy - ask for:
+	mentors on dev ml
+	coders on user ml
+
+public ml archives
+	announce first?
+
+vim has set vs setlocal
+	mutt has accounts as separate entities
+	set      var => global
+	setlocal var => per account
+
+easy - gettext strings
+
+easy - sidebar notmuch indent
+	sort and indent sidebar strings by notmuch desc
+
+$sort = [prefix-][...]order
+	prefix = reverse
+	prefix = thread
+
