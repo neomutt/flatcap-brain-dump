@@ -2533,4 +2533,15 @@ index folding (happens above level of emails)
 		mail
 	uses extra lines
 	saves width
-	
+
+website dirs could be git submodules
+	NO, complicates updates
+
+de "neo" the trash docs & keep in neo repo
+
+website
+	top-level dir: translations
+	list of langs
+	state of each
+	etc
+
