@@ -28,3 +28,4 @@ check stats 1 week after release, 2 weeks
 copr install "find . -name '*.neomutt' -delete"
 	deletes some files I want
 
+move constants out of the spec file into the build script
