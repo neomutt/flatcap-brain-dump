@@ -2563,6 +2563,7 @@ issue labels
 	confirmed
 	need testing
 	waiting for OP testing
+	have patch
 
 on release update po/*
 	reduce number of fuzzy translations?
@@ -2592,4 +2593,3 @@ docs
 	review
 	published
 
-	
