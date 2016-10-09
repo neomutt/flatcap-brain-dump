@@ -20,6 +20,8 @@ translations po/*
 init.h
 functions.h
 OPS*
+*.[ch]
+po/*
 manual.xml.{head,tail}
 	9000 lines
 	+ 5000 for ~30 features

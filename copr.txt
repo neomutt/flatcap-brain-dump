@@ -29,3 +29,6 @@ copr install "find . -name '*.neomutt' -delete"
 	deletes some files I want
 
 move constants out of the spec file into the build script
+
+sync hurricanehrndz's suse spec file
+

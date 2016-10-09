@@ -2524,3 +2524,72 @@ website
 irc webpage
 	mention freenode's web interface
 
+test debugging without source
+	only use debug package
+	min fedora vm
+
+debugging docs:
+	100k lines of code
+	help us find out which
+	bug report blurb
+
+perl script to show projects
+	ordered
+	nested
+
+update morning js()
+
+use startup hook & scripting + offline hcache
+	to locally cache email
+	local cache => strictly readonly
+
+"mutt -D" chokes on status-color color commands
+
+website top-level for scripts
+	git submodule?
+	like irssi scripts
+
+docs - how to transition to neo - list config options
+	mutt-only
+	neo-additions
+
+function fuzzer + scripting
+	x inputs
+	y globals
+	difficult because of too many inter linked structs
+	and poorly designed functions
+
+issue labels
+	confirmed
+	need testing
+	waiting for OP testing
+
+on release update po/*
+	reduce number of fuzzy translations?
+
+projects
+enhancement
+	blue-sky
+	in progress
+	done
+	questions
+	more info
+bugs
+	todo
+	more info
+	in progress
+	done
+	released
+easy tasks
+	todo
+	assigned
+	review
+	done
+	released
+docs
+	to be written
+	in progress
+	review
+	published
+
+	
