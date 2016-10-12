@@ -2593,3 +2593,32 @@ docs
 	review
 	published
 
+newbie notes
+	PR vs branch
+	you can't co-work on a PR
+
+imap/pop ∀ devs
+	no outgoing
+	incoming to user@dev.neomutt.org
+	sample emails refreshed nightly
+	btrfs de-duped -- cron
+	or cp --reflink
+
+function to turn option list from
+	(S)ubject to *S*ubject (highlighted/colour)
+
+new mail hook -- frequency limit
+	if time < 5s since last notification
+
+can we workaround the case of gpgme + self sign / smime?
+	but use it otherwise?
+
+"report issue" notes -- OP needs to be around to:
+	answer questions
+	run tests
+	etc
+
+calcurse -- curses calendar app
+
+sidebar -- disable indent, etc if sorted
+

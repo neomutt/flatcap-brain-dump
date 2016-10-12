@@ -219,3 +219,13 @@ lua-variables
 	if script sets vars and returns I_SET_VARS
 	use those vars to control future call(s)
 
+lua-sort
+	qsort but export logic to script
+
+lua-highlighting
+	need subtle indicator in mail body, e.g.
+	`C
+	code
+	`
+	single backtick to end
+
