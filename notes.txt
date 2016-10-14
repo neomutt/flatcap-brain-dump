@@ -2061,12 +2061,7 @@ notmuch update for Karel
 
 nntp sync and update for Vsevolod
 
-nested if docs extra space in x=0 condition
-
 vim-like hls option: persistant across emails
-
-locale compatibility variable
-	announce new var, release, remove, release
 
 transfer gpg keys from flatcap to mutt
 	mutt cron to update them
@@ -2325,9 +2320,6 @@ release jobs
 	notify if it has
 
 create new "release jobs" list
-
-suse build order
-	docs last
 
 use hcache to store other info?
 	e.g. top tips - which are read
