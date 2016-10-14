@@ -2623,3 +2623,40 @@ sidebar -- disable indent, etc if sorted
 
 update notmuch README to NOT reference mutt-kz
 
+update wiki - mutt releases
+	add to "new mutt" docs
+
+generate (script) tree of all source (by tags)
+	and create squashfs
+
+htop colour palette only works well because there are
+	few object to colour
+
+#179 - Clean neo build
+	create checklist of problem configs
+	ask for volunteers
+	include nntp+no-hcache build warning
+
+Create every doc idea as empty template page in web
+	with notes
+	list of docs in project "docs"
+
+add nntp only, to build test
+
+no "new mail" notification for filtered "READ" mail
+
+distro web pages need install instructions for development, too
+	min/max dev packages to build & debug neomutt
+	all instructions based on min distro install
+	note exact distro instructions were written for
+
+admins need to make a release in 1 week's time -- practice
+	(one of them, or all)
+
+refresh "list of tags" page
+	create workflow
+
+update notmuch readme
+	complete merge into main doc?
+	UPDATING.kz -> ChangeLog.notmuch?
+
