@@ -1469,7 +1469,7 @@ compress examples == use full option names
 	--compress, etc
 	add examples of compress levels too
 
-contrib.md -- enhancements have 1 month lifespace -> wiki
+contrib.md -- enhancements have 2 month lifespace -> blue-sky project
 coverity errors in feature patches
 
 is contrib/ installed by any downstreams?
@@ -1518,6 +1518,7 @@ maildir + inotify
 docs build: more sed filters VERSION, DATE, git hash?
 
 index-color separate colours for "mylocal" and "@domain.com"
+	have a list of "known" domains that are dimmed?
 
 notmuch backend: add X-Label in editor, does "right thing" in notmuch?
 unified frontend interface (notmuch/keywords) backend
@@ -1779,6 +1780,8 @@ need name for less than features
 	minor docs
 
 get rid of "prepare" or neomutt-ify it
+	--all (to enable all options)
+	vs "configure --all"
 
 dbus - also implies
 	synchronisation of multiple copies of mutt
@@ -2172,6 +2175,7 @@ development bottleneck
 	delegate more tasks
 
 script for "build-all-git-tags"
+	publish
 
 project jobs:
 	release-maker
@@ -2330,7 +2334,7 @@ use hcache to store other info?
 
 fix notmuch syntax & announce
 
-nested if doc alignment & script
+nested-if script
 
 summary pages:
 	:about
@@ -2344,11 +2348,12 @@ summary pages:
 	status line shows list of summary pages
 
 wiki footer
-	this is for devs, see website
+	this is for "temp development", see website
 
 add cursor to pager (on/off)
 	=> can highlight text
 	can click links
+	like firefox cursor mode
 
 perms for members, branches, repos, labels, projects, milestones
 
@@ -2556,7 +2561,7 @@ docs - how to transition to neo - list config options
 function fuzzer + scripting
 	x inputs
 	y globals
-	difficult because of too many inter linked structs
+	difficult because of too many inter-linked structs
 	and poorly designed functions
 
 issue labels
@@ -2606,6 +2611,8 @@ imap/pop ∀ devs
 
 function to turn option list from
 	(S)ubject to *S*ubject (highlighted/colour)
+        make them consistant across mutt
+		some are just capital letters
 
 new mail hook -- frequency limit
 	if time < 5s since last notification
@@ -2621,4 +2628,6 @@ can we workaround the case of gpgme + self sign / smime?
 calcurse -- curses calendar app
 
 sidebar -- disable indent, etc if sorted
+
+update notmuch README to NOT reference mutt-kz
 
