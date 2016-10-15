@@ -32,3 +32,7 @@ move constants out of the spec file into the build script
 
 sync hurricanehrndz's suse spec file
 
+change "version" to 2016MMDD
+	=> increase epoch
+	provide mutt = OLDMUTTVER
+
