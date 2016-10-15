@@ -1,0 +1,46 @@
+Release 2016-10-14 (1.7.1)
+
+Check notes, emails, etc for promises
+Update references to version numbers
+merge mutt upstream
+
+new-commit.sh -> changelog, commit
+	relnotes(gh)
+	release (web news)
+tag (signed)
+
+neomutt-test-configs.sh
+	travis
+	coverity
+
+make install
+make dist
+	test dist build
+	test dist install
+
+DON'T use my build script
+
+generate patch vs 1.7.1
+	test patch apply
+	test patch build
+
+generate assets
+	sign assets
+
+create gh release
+	upload assets
+
+homebrew update
+	check travis
+copr
+	update spec, changelog
+	build
+	test install
+
+install it
+notify mailing lists
+	users, devel
+
+post web news
+update irc topic
+
