@@ -2660,3 +2660,5 @@ update notmuch readme
 	complete merge into main doc?
 	UPDATING.kz -> ChangeLog.notmuch?
 
+bot on server to mail dev list on git commits?
+
