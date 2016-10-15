@@ -1,13 +1,11 @@
 readme in copr repo
 	put rpm build scripts in repo too
 
-drop --debug
+drop --debug?
 
 check what COPR installs
 	docs/
 	dupes + empty files!
-
-patchset branch for COPR (neo + fedora)
 
 spec:
 	Provides: mutt
