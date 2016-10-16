@@ -2662,3 +2662,6 @@ update notmuch readme
 
 bot on server to mail dev list on git commits?
 
+https://github.com/coreboot/coreboot
+	uses linux kernel config
+
