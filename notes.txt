@@ -2665,3 +2665,6 @@ bot on server to mail dev list on git commits?
 https://github.com/coreboot/coreboot
 	uses linux kernel config
 
+move separate tools to a separate tools directory
+	adjust ctags to ignore them
+
