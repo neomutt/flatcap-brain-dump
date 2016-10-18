@@ -229,3 +229,5 @@ lua-highlighting
 	`
 	single backtick to end
 
+lua-index needs both label and notmuch callbacks
+

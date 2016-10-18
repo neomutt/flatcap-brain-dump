@@ -2668,3 +2668,34 @@ https://github.com/coreboot/coreboot
 move separate tools to a separate tools directory
 	adjust ctags to ignore them
 
+website overview missing "distro" pages
+
+kyoto missing from README.neomutt
+	anywhere else?
+
+doc all features' functions doxygen style
+
+coverity - tidy junk in .travis.yml
+
+nested-if -- index-format display ? if doesn't match string put in
+	%<> changed to %? !
+
+configure doesn't parse slang option unless ncurses libraries are missing
+	check if this is still true
+	raised by @nevermind
+
+put trash/sidebar back into PATCHES / features
+
+index preview mode - display 'n' lines of the email body
+	when in the index
+
+new feature checklist -- code all configs, doc, readme, web, doc validate
+
+toogley /manual vs /_feature
+
+spurious tabs/whitespace in jekyll pages
+
+issue labels
+	regresssion / still not fixed
+	confirmed
+

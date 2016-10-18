@@ -69,3 +69,6 @@ Use GitHub Assistant as a model for:
 	Trac Assistant
 
 use GitHub API to create our own "review" marks on commits
+
+auto update labels if a new one is encountered
+
