@@ -1,0 +1,63 @@
+1	 open mailbox - view index
+2 		select email (cursor up/down)
+3 		jump to email (numbers)
+4 		sort emails
+	
+5	 recv new email in current mailbox
+6 		before current email
+7 		after current email
+	
+8	 recv old email in current mailbox
+9 		before current email
+10		after current email
+
+11	recv new email in different mailbox
+
+12	recv old email in different mailbox
+
+13-24	repeat 1-12 with a limit in effect
+
+25	open email - view pager (pager_index_lines=0)
+26		select email (cursor up/down)
+27		jump to email (numbers)
+28		sort emails
+29		move up on first email 
+30		move down on last email 
+
+31	recv new email in current mailbox
+32		before current email
+33		after current email
+
+34	recv old email in current mailbox
+35		before current email
+36		after current email
+
+37	recv new email in different mailbox
+
+38	recv old email in different mailbox
+
+39-53	repeat 25-38 with a limit in effect
+
+54	open email - view pager (pager_index_lines=10)
+55		select email (cursor up/down)
+56		jump to email (numbers)
+57		sort emails
+58		move up on first email 
+59		move down on last email 
+
+60	recv new email in current mailbox
+61		before current email
+62		after current email
+
+63	recv old email in current mailbox
+64		before current email
+65		after current email
+
+66	recv new email in different mailbox
+
+67	recv old email in different mailbox
+
+68-82	repeat 54-67 with a limit in effect
+
+83	open pager when viewing an attachment
+
