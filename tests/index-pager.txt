@@ -1,94 +1,104 @@
 --------------------------------------------------
 INDEX
 
-A01	open mailbox - view index
-A02		select email (cursor up/down)
-A03		jump to email (numbers)
-A04		sort emails
+Open mailbox - view index
 
-A05	recv new email in current mailbox
-A06		before current email
-A07		after current email
+  A01) select email (cursor up/down)
+  A02) jump to email (numbers)
+  A03) sort emails
 
-A08	recv old email in current mailbox
-A09		before current email
-A10		after current email
+Recv new email in current mailbox
 
-A11	recv new email in different mailbox
-A12	recv old email in different mailbox
+  A04) before current email
+  A05) after current email
 
-A13	sent email saved to current mailbox
-A14	sent email saved to different mailbox
+Recv old email in current mailbox
+
+  A06) before current email
+  A07) after current email
+
+  A08) recv new email in different mailbox
+  A09) recv old email in different mailbox
+
+  A10) sent email saved to current mailbox
+  A11) sent email saved to different mailbox
 
 --------------------------------------------------
 INDEX (limited)
 
-B01-14	repeat A01-14 with a limit in effect
+  B01-11) repeat A01-11 with a limit in effect
 
 --------------------------------------------------
 PAGER (pager_index_lines = 0)
 
-C01	open email - view pager
-C02		select email (cursor up/down)
-C03		jump to email (numbers)
-C04		sort emails
-C05		move up on first email
-C06		move down on last email
+Open email - view pager
 
-C07	recv new email in current mailbox
-C08		before current email
-C09		after current email
+  C01) select email (cursor up/down)
+  C02) jump to email (numbers)
+  C03) sort emails
+  C04) move up on first email
+  C05) move down on last email
 
-C10	recv old email in current mailbox
-C11		before current email
-C12		after current email
+Recv new email in current mailbox
 
-C13	recv new email in different mailbox
-C14	recv old email in different mailbox
+  C06) before current email
+  C07) after current email
 
-C15	sent email saved to current mailbox
-C16	sent email saved to different mailbox
+Recv old email in current mailbox
+
+  C08) before current email
+  C09) after current email
+
+  C10) recv new email in different mailbox
+  C11) recv old email in different mailbox
+
+  C12) sent email saved to current mailbox
+  C13) sent email saved to different mailbox
 
 --------------------------------------------------
 PAGER (limited, pager_index_lines = 0)
 
-D01-16	repeat C01-16 with a limit in effect
+  D01-13) repeat C01-13 with a limit in effect
 
 --------------------------------------------------
 PAGER (pager_index_lines = 10)
 
-E01	open email - view pager
-E02		select email (cursor up/down)
-E03		jump to email (numbers)
-E04		sort emails
-E05		move up on first email
-E06		move down on last email
+Open email - view pager
 
-E07	recv new email in current mailbox
-E08		before current email
-E09		after current email
+  E01) select email (cursor up/down)
+  E02) jump to email (numbers)
+  E03) sort emails
+  E04) move up on first email
+  E05) move down on last email
 
-E10	recv old email in current mailbox
-E11		before current email
-E12		after current email
+Recv new email in current mailbox
 
-E13	recv new email in different mailbox
-E14	recv old email in different mailbox
+  E06) before current email
+  E07) after current email
 
-E15	sent email saved to current mailbox
-E16	sent email saved to different mailbox
+Recv old email in current mailbox
+
+  E08) before current email
+  E09) after current email
+
+  E10) recv new email in different mailbox
+  E11) recv old email in different mailbox
+
+  E12) sent email saved to current mailbox
+  E13) sent email saved to different mailbox
 
 --------------------------------------------------
 PAGER (limited, pager_index_lines = 10)
 
-F01-16	repeat D01-16 with a limit in effect
+  F01-13) repeat D01-13 with a limit in effect
 
 --------------------------------------------------
 ATTACHMENT
 
-G01	open pager when viewing an attachment
-G02		new mail in this mailbox
-G03		old mail in this mailbox
-G04		new mail in other mailbox
-G05		old mail in other mailbox
+Open pager when viewing an attachment
+
+  G01) new mail in this mailbox
+  G02) old mail in this mailbox
+  G03) new mail in other mailbox
+  G04) old mail in other mailbox
 
