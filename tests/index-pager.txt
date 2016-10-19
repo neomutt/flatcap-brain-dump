@@ -2,24 +2,21 @@
 INDEX
 
 Open mailbox - view index
-
   A01) select email (cursor up/down)
   A02) jump to email (numbers)
   A03) sort emails
 
 Recv new email in current mailbox
-
   A04) before current email
   A05) after current email
 
 Recv old email in current mailbox
-
   A06) before current email
   A07) after current email
 
+Misc
   A08) recv new email in different mailbox
   A09) recv old email in different mailbox
-
   A10) sent email saved to current mailbox
   A11) sent email saved to different mailbox
 
@@ -32,7 +29,6 @@ INDEX (limited)
 PAGER (pager_index_lines = 0)
 
 Open email - view pager
-
   C01) select email (cursor up/down)
   C02) jump to email (numbers)
   C03) sort emails
@@ -40,18 +36,16 @@ Open email - view pager
   C05) move down on last email
 
 Recv new email in current mailbox
-
   C06) before current email
   C07) after current email
 
 Recv old email in current mailbox
-
   C08) before current email
   C09) after current email
 
+Misc
   C10) recv new email in different mailbox
   C11) recv old email in different mailbox
-
   C12) sent email saved to current mailbox
   C13) sent email saved to different mailbox
 
@@ -64,7 +58,6 @@ PAGER (limited, pager_index_lines = 0)
 PAGER (pager_index_lines = 10)
 
 Open email - view pager
-
   E01) select email (cursor up/down)
   E02) jump to email (numbers)
   E03) sort emails
@@ -72,18 +65,16 @@ Open email - view pager
   E05) move down on last email
 
 Recv new email in current mailbox
-
   E06) before current email
   E07) after current email
 
 Recv old email in current mailbox
-
   E08) before current email
   E09) after current email
 
+Misc
   E10) recv new email in different mailbox
   E11) recv old email in different mailbox
-
   E12) sent email saved to current mailbox
   E13) sent email saved to different mailbox
 
@@ -96,7 +87,6 @@ PAGER (limited, pager_index_lines = 10)
 ATTACHMENT
 
 Open pager when viewing an attachment
-
   G01) new mail in this mailbox
   G02) old mail in this mailbox
   G03) new mail in other mailbox
