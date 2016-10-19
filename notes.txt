@@ -2698,4 +2698,35 @@ spurious tabs/whitespace in jekyll pages
 issue labels
 	regresssion / still not fixed
 	confirmed
+	backtrace
+	reproduceable
+	screenshot
+	logs
+	config
+
+does label workflow make sense for PRs?
+	if not, why not
+
+skipquoted -- updated docs
+
+update neo readme, new credits
+
+ask new contributors to fill in 5 function prototypes!
+
+find all non-mail users of pager
+	add to index/pager tests
+
+need way to repeatably test net failure
+
+external testing
+	how many external events can we control?
+	how many can we simulate?
+	via pretend keystrokes
+	key, mouse, winch fs, net
+
+make tags -- ignore standalone tools
+	needs to ignore #ifdef TEST, too
+
+docs - keep reference copy of all relevant RFCs
+	links, obsoletes, etc
 
