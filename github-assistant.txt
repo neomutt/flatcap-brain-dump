@@ -72,3 +72,5 @@ use GitHub API to create our own "review" marks on commits
 
 auto update labels if a new one is encountered
 
+option to turn :+1: into emoji character
+

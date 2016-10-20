@@ -231,3 +231,6 @@ lua-highlighting
 
 lua-index needs both label and notmuch callbacks
 
+lua-highlighting
+	backtrace mode
+
