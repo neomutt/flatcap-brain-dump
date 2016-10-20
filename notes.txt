@@ -2703,6 +2703,7 @@ issue labels
 	screenshot
 	logs
 	config
+	confirmed fix?
 
 does label workflow make sense for PRs?
 	if not, why not
