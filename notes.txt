@@ -2731,3 +2731,6 @@ make tags -- ignore standalone tools
 docs - keep reference copy of all relevant RFCs
 	links, obsoletes, etc
 
+2016-10-21
+13:24 <mgedmin> on ubuntu I think it's best to 'sudo apt-get build-dep mutt' to get all the libraries
+
