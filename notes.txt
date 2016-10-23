@@ -2734,3 +2734,34 @@ docs - keep reference copy of all relevant RFCs
 2016-10-21
 13:24 <mgedmin> on ubuntu I think it's best to 'sudo apt-get build-dep mutt' to get all the libraries
 
+issues -- always assign (for later reference)
+	fixer/mentor only makes sense for bugs/enhancements
+	what about questions?
+
+newbie page -- "Getting Started" ?
+
+de776ea - drop tgetent
+	check with Fabian
+
+new $vartype "letters" == STRING
+	for "set var += X"
+	or  "set var -= Y"
+
++= / -= works for strings, letters, numbers
+	easy task?
+	what about *= /=
+	regexes performed on strings?
+
+gahr tgetent branch
+
+neodev ml function headers - ask for help
+
+would notmuch be able to filter out muted conversations?
+	No, not unless we change headers and notify notmuch
+
+neou -- notmuch 2nd class citizen?
+	since big changes -- what *used* to work?
+	what would improve it?
+
+new users -- [ci skip], #123 docs
+
