@@ -2772,4 +2772,5 @@ need to document "missing" keybindings
 	"stty -ixon" disable Ctrl-Q
 	can this be done programatically by mutt?
 	"stty -a" to show settings
+	cfmakeraw(3)
 
