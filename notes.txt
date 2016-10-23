@@ -2765,3 +2765,7 @@ neou -- notmuch 2nd class citizen?
 
 new users -- [ci skip], #123 docs
 
+need to document "missing" keybindings
+	^Q ^S flow control
+	^O terminal (BSD only)
+
