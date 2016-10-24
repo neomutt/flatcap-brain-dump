@@ -92,3 +92,8 @@ Open pager when viewing an attachment
   G03) new mail in other mailbox
   G04) old mail in other mailbox
 
+--------------------------------------------------
+HELP
+
+Open help
+
