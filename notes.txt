@@ -2730,6 +2730,7 @@ make tags -- ignore standalone tools
 
 docs - keep reference copy of all relevant RFCs
 	links, obsoletes, etc
+	mailcap too
 
 2016-10-21
 13:24 <mgedmin> on ubuntu I think it's best to 'sudo apt-get build-dep mutt' to get all the libraries
@@ -2773,4 +2774,20 @@ need to document "missing" keybindings
 	can this be done programatically by mutt?
 	"stty -a" to show settings
 	cfmakeraw(3)
+
+code school
+	variables
+	functions
+	architecture 101
+	web top-level
+
+pre-cache app?
+workflow:
+	offlineimap
+	notmuch new
+	cache-every-file
+
+update /devel-notes.txt
+	inherited from mutt
+	needs modernising
 
