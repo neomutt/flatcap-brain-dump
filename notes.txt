@@ -2797,3 +2797,13 @@ mutt_launcher
 	dup2() to replace stdout,stderr
 		=> printf to log
 	stdin -> null
+
+2016-10-24
+	20:54 <flip214> it would be very nice if switching to an imap folder could be aborted by ctrl-c
+	20:54 <flip214> having all headers fetched anew and having to wait for 2 mins, knowing that the wrong folder is being loaded, isn't that nice
+	20:56 <flatcap> what happens, currently, when you hit Ctrl-C?
+	20:57 <flip214> nothing
+	20:57 <flip214> the counter for the headers fetched (N of M) counts up
+	20:57 <flip214> Ctrl-C gets ignored
+	20:57 <flip214> thanks for "listening", good night ;)
+
