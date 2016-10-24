@@ -2791,3 +2791,9 @@ update /devel-notes.txt
 	inherited from mutt
 	needs modernising
 
+mutt_launcher
+	use a pipe to channel log messages back to mutt
+	pipe(), fork()
+	dup2() to replace stdout,stderr
+		=> printf to log
+	stdin -> null
