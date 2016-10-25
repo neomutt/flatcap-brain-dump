@@ -2809,3 +2809,7 @@ mutt_launcher
 
 timeout hook is only called from curs_main.c
 	it should probably be called from pager too
+
+2016-10-25
+	11:04 <mgedmin> pet peeve: when I try to open a gigabyte-sized mbox file with 10,000 messages, I cannot abort that
+
