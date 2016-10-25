@@ -2807,3 +2807,5 @@ mutt_launcher
 	20:57 <flip214> Ctrl-C gets ignored
 	20:57 <flip214> thanks for "listening", good night ;)
 
+timeout hook is only called from curs_main.c
+	it should probably be called from pager too
