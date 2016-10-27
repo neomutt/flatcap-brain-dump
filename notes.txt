@@ -2813,3 +2813,99 @@ timeout hook is only called from curs_main.c
 2016-10-25
 	11:04 <mgedmin> pet peeve: when I try to open a gigabyte-sized mbox file with 10,000 messages, I cannot abort that
 
+nested-if
+	stack of nesting chars in char[]
+	$? or $< push only
+	matching char => pop
+	32 deep stack
+
+Karel tidy/cull issues
+
+GH API labels to vim highlights
+	using guicolor
+
+gahr, hcache
+	one formatting string
+	+/- override format strings
+	separate code files
+	autoconf hcache=X
+	separate code dir?
+	hcache/*
+	all via hcache.h
+	.so dyanamic library
+	conflicts autoconf a bit
+	multiple static/dyamic
+	global?
+	per mailbox?
+	break deps on mutt structs
+
+revert help keycode commit - not nec
+
+cache files need to hash their name too
+	to avoid two systems "sharing" a single hash
+	and crashing
+
+neomutt members -- ask preferred method of communication
+	pref name @flatcap, Rich
+
+multiple hcaches => RAID-like write many, read fastest
+	two caches, local and shared?
+
+labels -> vim, ignore [.*:] abbreviate to 4 chars, 3?, 2?, 1?
+
+merge notmuch
+	"named-mailboxes" command
+	can describe sb entry
+	how to nest virtual?
+	sb obtion: display real, virtual, all mailboxes
+	nest -> fake mailboxes
+		named-mailboxes name [NOTHING]
+
+run notmuch new from mutt when new mail arrives
+	necessary? or not?
+
+named-mailboxes use Mailbox Shortcut % ?
+	%tidy-name
+	needs plugging into other code
+	abbrev names to "%name" if possible
+	if configured?
+
+have a NULL cache which is just a copy of the email
+	might *still* need a DB of some info
+	tie into offlineimap
+
+use google translate for rough drafts of neo po files?
+	mark all translations as fuzzy
+	useful starting place?
+
+summary pages -- list of pattern modifiers
+	:patterns
+
+settings for indent, uncrustify, clang-format
+	for current neo code
+	for future  neo code
+
+put features in separate <book>?
+
+docbook build -- kill trailing whitespace
+	broken x html links
+
+easy task:
+	distro helper
+	instructions for
+		install
+		build
+		test
+	check installs
+	test problems
+	one+ person per distro
+
+look through upstream mutt trac for
+	enhancement ideas
+	feature patches to apply
+	bug fixes
+	[easy] ?
+	comment in track "neomutt adopted" when done!
+
+timeout startup shutdown -> feature/hooks
+
