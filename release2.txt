@@ -14,9 +14,11 @@ neomutt-test-configs.sh
 	coverity
 
 make install
+make uninstall
 make dist
 	test dist build
 	test dist install
+make distcheck
 
 DON'T use my build script
 

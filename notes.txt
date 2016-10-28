@@ -2906,3 +2906,15 @@ look through upstream mutt trac for
 
 timeout startup shutdown -> feature/hooks
 
+rfc add line numbers and 'a' links
+	create as a book in main docs (for linking)
+
+enforce real names in git commits?
+
+run/ irc
+	howto privs
+	topic
+	promotes/demote ppl
+
+raise homebrew travis issue
+
