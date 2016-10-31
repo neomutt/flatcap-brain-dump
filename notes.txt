@@ -2918,3 +2918,25 @@ run/ irc
 
 raise homebrew travis issue
 
+website
+	404 is static!
+	manual/guide -- not a collection
+		needs to be ordered
+	src code is not a distro, so list it last
+
+web page issue summary
+	autogen daily, just links
+
+man pages need section number
+.IR error in mutt man page
+
+add author to rss feed
+
+test {% assign %} author in liquid "function"
+	use capture if not global
+
+un-named-mailboxes needs to work against path or description
+
+named-mailboxes eats two params
+	can take multiple pairs of params
+
