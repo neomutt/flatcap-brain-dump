@@ -2940,3 +2940,62 @@ un-named-mailboxes needs to work against path or description
 named-mailboxes eats two params
 	can take multiple pairs of params
 
+imap supports queries
+	"+?query=tab:inbox"
+
+virtual-mailboxes => notmuch
+	=> don't need "notmuch://"
+	or even "?query="
+
+distinguish distros' neomutt
+	{vanilla|patched}
+	{replaces|addition} to mutt pkg
+	{distro|user} maintained
+	{all|limited} features included
+	{hcache type}
+
+distro contact details
+	separate from maintainer
+
+review indent of our code
+
+ccache instructions, ctags for dev?
+
+move sidebar-intro to howto and fix links
+	change id to howto/
+	or split out completely
+
+"edit this page" button
+	doesn't make sense for docbook conversions
+
+slang deps on distro page
+
+distros
+	platform {linux|bsd|macos}
+	where to coredumps go?
+
+are all closed enhancements requests marked as blue-sky?
+
+merge hcache docs?
+
+create file on all neo members
+	who's who
+	who's done what
+
+feature: since
+	could have multiple since
+	with the addition of extra bits
+	or since: last update (fix / feature)
+	or mini changelog
+
+travis disable docs
+
+person pages
+	list "worked on"
+	real name
+	nationality
+	location
+	language?
+	links
+	∀ users
+
