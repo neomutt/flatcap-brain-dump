@@ -250,14 +250,6 @@ make sure anything we need is exposed
 if we hide our globals, give then all accessor functions get/set_VAR()
 init would need to register new sort methods
 
-can I internalise sb_should_refresh()
-often call:
-	buffy_mbox_update
-	buffy_maildir_update
-	mh_buffy_update
-what if there are multiple top-levels?
-should the LastRefresh var be on the top-level?
-
 demo setup - lots of files in:
 	local mbox
 	local mh dirs
@@ -266,21 +258,9 @@ demo setup - lots of files in:
 	POP mbox
 	POP mh dirs
 
-only draw divider if
-	visibility changes
-	width changes
-	char changes
-	etc
-	NO too many variables
-
-any use for ACS_VLINE from curses?
-	when do I know it's safe to use?
-
 sidebar expandos
 	%c number of non-deleted emails (total - deleted)
 	%s = %c? (lower case version of %S?)
-
-add copyright where I've written code
 
 alternative to lightweight patch
 	don't update info ∀ BUFFYs
@@ -332,11 +312,6 @@ sb extra colours for:
 integrate nntp into sidebar
 what does notmuch return?
 	how do i link it to existing objects?
-
-floating patches/branches
-	history -> HEAD
-		      \-> neo branch
-		      		\-> min build branch
 
 Undo, what's possible?
 	Last action?
@@ -734,7 +709,6 @@ mail, compress, dev build patches, examine coverity build log
 gh-pages for up-to-date manual (in sections)
 	front redirects to wiki
 
-bugfix 8 - hurd -- what happened to it?
 fmemopen - merge into one place in mutt_mktemp()?
 	idea from dgc email
 rebase and refactor [devel/*] before moving to [feature/*]
@@ -780,6 +754,7 @@ shields.io
 		https://img.shields.io/github/watchers/neomutt/neomutt.svg
 	✗ github issues
 	✗ github license
+
 packaging
 	credit arch packager
 		contact details
@@ -871,9 +846,6 @@ on neo release -- ideas
 notmuch missing entry in PATCHES
 	(add to neomutt? or notmuch?)
 
-limit hg updates to just before release?
-	no => often, let travis work
-
 list-since script ∀ branches
 	features, neomutt
 	non-merge commits since last tag
@@ -941,21 +913,14 @@ install neomutt in parallel with mutt
 	=> /usr/bin/neomutt{,-2016MMDD}
 	=> /usr/bin/mutt-1.6.1
 
-OS-specific build instructions / install
-
 change repos' default branch to /readme?
 	contains just some notes
 
 muttrc.{distro} ∀ distros
 
-spread out doc chapters so diff context is vague
-	</sect1> and whitespace
-
 list_pull_requests.sh
 	get_pull_requests.sh
 	reference local neomutt repo
-
-new people => update neo main README.md
 
 NeoMutt website top tips?
 
@@ -987,9 +952,6 @@ git merge attrs to automate merges
 separate nntp and neo-nntp patches?
 	docs, patches?
 
-bug-fixes(common) -> PATCHES
-	add empty dir & readme (for now)
-
 forks of all distro repos
 
 cond-date document date.sh generator
@@ -1017,33 +979,10 @@ bugs - doc in PATCHES
 list of to-be-written pages on web
 	icons for level of completion
 
-document quick-build option
-
 Web Page (front) LATEST VERSION + links
 	+ ChangeLog with links to commits?
 
 cond-date script -> contrib
-
-check which doc/contrib files distros install
-	unify?
-
-integration issues -> web devel news
-
-[release/*] or [release] after [coverity] or
-[merge] before [coverity] before [neomutt]
-
-filter travis out of merges
-
-patches
-	full credits
-	description
-	neo links to:
-		repo
-		proj
-		commits?
-		feature page
-
-sidebar: sort out new vs unread vs old, etc
 
 alter notmuch to use keywords?
 
@@ -1065,11 +1004,6 @@ GIT REPO?
 		diff regexes
 	doc my .gitconfig
 	all bin/ to repo + .shell/bin/git
-
-quick build doc somewhere
-
-sidebar, et al to kz
-	add to "update-feature" txt
 
 use issue "release" tag to mean
 	bug         + release => fixed in next release
@@ -1116,15 +1050,8 @@ split patches into main + custom
 		status-color
 		status-color (index-color bits)
 
-integration web page
-	state of play
-
 check makefile dist file list
 	ChangeLog.neomutt, etc
-
-in [integration/patches] generate directory READMEs
-	automatic build from the patches in the dir
-	autolink README.md to the dir.md's
 
 labels:
 	mail {red,green}
@@ -1191,8 +1118,6 @@ neo-build
 
 mail sieve issue -- colour code for origin?
 
-sidebar rename delim_len to div_width
-
 teams for @mentions
 	@debian
 	@rolling-release
@@ -1218,24 +1143,14 @@ server script to update from hg
 
 cron (locally) to fetch github into neomutt.git
 
-fix notmuch Makefile.am
-
 report-neo-bug.sh?
 	show os
 	build options
 	etc
 
-make a list of commits that are missing in the patch-sets
-	quickbuild
-	del .hg*, etc
-	X, Revert X
-Tag the missing commits [no export] ?
-
 upstream tag for issues
 	=> upstream notified?
 	=> upstream accepted?
-
-debian neomutt -- /etc/alternatives?
 
 24-bit colour => non-curses back-end
 	enumerate all the curses things we do
@@ -1398,13 +1313,6 @@ build
 	--enable-everything
 	which hcache?
 
-1.7.0
-	add --quickbuild?
-
-1.7.0 => deprecate 1.6.0 branches after 1 month
-	one month of backporting bug-fixes
-	move them to neomutt-old
-
 docs/wiki
 	neomutt history/timeline
 
@@ -1431,7 +1339,6 @@ remote config -- like browser proxy setup
 contrib dir for:
 	muttrc
 	vimrc
-	or merge vimrc
 
 unnamed notmuch queries => create description based on query
 	need rename function for sidebar-notmuch
@@ -1443,7 +1350,6 @@ cache autoconf in .git
 	git config a name for retrieval, "lmdb", "tokyo"
 		build -s <name>, build <name>
 
-nntp warning with no hcache
 notes for progress bar
 	set time_inc = 0 for best results (ref: paravoid)
 	test read_inc, write_inc, net_inc too
@@ -1530,22 +1436,6 @@ mvprintw unused?
 gmail patches -> devel
 	need testers
 
-unstable: fix commit dates
-
-docs
-	run "make validate" on travis?
-	regular testing
-
-release:
-	list fixes issues (#num) on release notes
-
-jobs:
-	announce forthcoming release
-	list gotchas
-
-jobs
-	create patchsets before announce
-
 sidebar
 	add dprints for debugging
 
@@ -1557,16 +1447,11 @@ upstream sidebar docs credits -> where?
 
 rdiff-backup on entire mail queue -- hourly?
 
-changelog -- dummy date for git users?
-	implies unnecessary commits
-
 PATCHES bugfix lines reference neo issue #s
 
 transcribe issue#56 vim-keybinding ideas
 	-> docs/vi.txt
 	wiki
-
-mutt use getopt: long options
 
 mutt-tips: integrated
 	tips command
@@ -1655,6 +1540,7 @@ web/wiki/readme ∀ pages
 	last proofread person
 	periodic checks
 	divide and conquer
+	auto-footer: last updated, last proofread
 
 script to build mutt ∀ tags
 
@@ -1702,6 +1588,7 @@ web mailing list page with sven's muttrc example
 
 feature: config read source'd files relative to parent
 	shouldn't break anything as every path is currently absolute
+	from where is a file read if it has no path?
 
 mutt config source DIR
 	loads all files within
@@ -1805,10 +1692,6 @@ mailing list on webpage -- copy from release announcement
 
 web update about.html : done so far
 
-maildir_trash conflicts with trash
-	check it's true for 1.7.0
-	document it
-
 NeoMutt signing key on
 	flatcap.org
 	neomutt.org
@@ -1835,7 +1718,9 @@ trash + gmail
 	doesn't work as expected
 	effectively archives them on gmail
 
-debian doesn't install contrib
+check which doc/contrib files distros install
+	unify?
+	debian doesn't install contrib?
 	check other distros
 
 fold/collapse empty sidebar folders
@@ -1881,9 +1766,6 @@ upstream bug -- folder_format, sidebar_format %n (has new mail)
 
 Passing $VARs to children processes, means
 	tell vim about mail rcpt, subject, etc
-
-rename the Mutt Manual to Mutt Guide
-	for distinction between guide and mutt(1) man page
 
 Deprecation
 	old enhancements
@@ -2015,12 +1897,6 @@ link to unloved enhancements in issues
 PATCHES
 	change patch-* to feature-* ?
 
-travis => [travis] -> [coverity]
-
-sync distros to release
-
-update debian patches
-
 announce vim syntax files for mutt
 
 notmuch 1.7.0 updated for Karel
@@ -2080,15 +1956,8 @@ rename contrib/vim-keybindings -> contrib/vim-keys
 
 how many more features can be --disabled?
 
-wiki: restrict to members (devel only)?
-
 drop flatcap/neomutt fork?
 	used for coverity testing
-
-dev-ml followup to fork:
-	cf notmuch -- hard to rebase
-	still got branches
-	could be restructured
 
 arch-linux: search for a Trusted User (TU)
 	to adopt neomutt
@@ -2108,9 +1977,6 @@ check mutt-tc for project ideas
 
 restore git-version-gen
 
-restore quick-build options
-	or use Suse's patch to put docs last
-
 Terry update lunar - point to NeoMutt
 
 ifdef needs an "else" condition
@@ -2120,10 +1986,6 @@ ask distros how they'd like to be informed of new releases
 	if at all
 	if web/ml/etc
 	not enough advanced warning
-
-newbie txt
-	watch github project to keep informted
-	public presence in github project
 
 development bottleneck
 	document more tasks
@@ -2227,10 +2089,6 @@ forgotten-attachments: German example:
 	"häng an" won't match over a new line
 	strdup regex string, replacing spaces with
 		"[ \t\n]+" ???
-newbie txt
-	watch github project to keep informted
-	public presence in github project
-
 	does it work with \n embedded?
 	could I pre-process the email text?
 	it it utf-8 compliant?
@@ -2251,15 +2109,6 @@ guarantee translations, when?
 
 alt-e resend_message - which hooks are called?
 	add lua hook
-
-linus-like devel strategy
-	1 week merge window
-	1 week bug fixes
-	release
-merge window
-	=> dev branch?
-	=> bug-fixes are rebased in place
-	=> neatly packaged into [neomutt] on release
 
 separate packages for neomutt
 	neomutt		- binary
@@ -2415,9 +2264,6 @@ docs - nested if
 
 eradicate notmuch's use of strndup, strnlen
 
-strfcpy -> fn()
-	darnir's code in list
-
 purge all macros from neomutt?
 
 new two-letter expandos
@@ -2556,9 +2402,6 @@ sidebar -- disable indent, etc if sorted
 
 update notmuch README to NOT reference mutt-kz
 
-update wiki - mutt releases
-	add to "new mutt" docs
-
 generate (script) tree of all source (by tags)
 	and create squashfs
 
@@ -2568,7 +2411,6 @@ htop colour palette only works well because there are
 #179 - Clean neo build
 	create checklist of problem configs
 	ask for volunteers
-	include nntp+no-hcache build warning
 
 Create every doc idea as empty template page in web
 	with notes
@@ -2582,9 +2424,6 @@ distro web pages need install instructions for development, too
 admins need to make a release in 1 week's time -- practice
 	(one of them, or all)
 
-refresh "list of tags" page
-	create workflow
-
 update notmuch readme
 	complete merge into main doc?
 	UPDATING.kz -> ChangeLog.notmuch?
@@ -2596,8 +2435,6 @@ https://github.com/coreboot/coreboot
 
 move separate tools to a separate tools directory
 	adjust ctags to ignore them
-
-website overview missing "distro" pages
 
 kyoto missing from README.neomutt
 	anywhere else?
@@ -2631,8 +2468,6 @@ issue labels
 does label workflow make sense for PRs?
 	if not, why not
 
-skipquoted -- updated docs
-
 update neo readme, new credits
 
 ask new contributors to fill in 5 function prototypes!
@@ -2663,9 +2498,6 @@ issues -- always assign (for later reference)
 	fixer/mentor only makes sense for bugs/enhancements
 	what about questions?
 
-de776ea - drop tgetent
-	check with Fabian
-
 new $vartype "letters" == STRING
 	for "set var += X"
 	or  "set var -= Y"
@@ -2674,6 +2506,9 @@ new $vartype "letters" == STRING
 	easy task?
 	what about *= /=
 	regexes performed on strings?
+
+de776ea - drop tgetent
+	check with Fabian
 
 gahr tgetent branch
 
@@ -2739,9 +2574,6 @@ nested-if
 	32 deep stack
 
 Karel tidy/cull issues
-
-GH API labels to vim highlights
-	using guicolor
 
 gahr, hcache
 	one formatting string
@@ -2931,4 +2763,22 @@ web
 	update daily
 	since DATE
 	last update DATE
+
+start de-globalising (pass to functions)
+	Context
+	Incoming
+
+Pre-commit checks
+	formatting
+	authorship (real name on commit)
+	credit
+	translation on strings
+	check_sec.sh
+
+rename downloads link (it goes to distros)
+	or re-instate download page
+
+each web dir, have _source.txt
+	details origin of page data
+	scripts for generating
 

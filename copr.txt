@@ -7,10 +7,6 @@ check what COPR installs
 	docs/
 	dupes + empty files!
 
-spec:
-	Provides: mutt
-	causes conflict with urlview
-
 neomutt-unstable for devel-features
 	would need to be completely automated
 	sell to users mailing list!

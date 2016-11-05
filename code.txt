@@ -23,17 +23,6 @@ if's bracket anything more complex that ARG or !ARG
 
 grammar: its dont cant, spelling 's
 
-sidebar requirements
-	tidy code
-	conditional compilation
-	robust
-	document
-		functions
-		config
-	minimise changes to original code
-	do I *require* fmemopen?
-		should that be a separate patch?
-
 Tidying actions
 
 Comments on

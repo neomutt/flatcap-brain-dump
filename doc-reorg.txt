@@ -27,7 +27,6 @@ manual.xml.{head,tail}
 	+ 5000 for ~30 features
 unwritten dev docs from code
 DocBook is base for all
-rename manual -> guide
 manual
 	~7000 lines for vars, functions
 	600l functions, 6400l variables (390 vars)

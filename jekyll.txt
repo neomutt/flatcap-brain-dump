@@ -16,7 +16,6 @@ status page, list of features, icons against 1.5.24, 1.6.0
 post categories have icons {rel, dev, news, docs}
 	colour code too?  NO, to twee
 prev/next floating bottom-right
-sidebars: highlight current page
 tidy css
 posts sidebar: either list subset of posts centred around current
 	or say  <|Prev|3/6|Next|> for context

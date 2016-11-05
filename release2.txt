@@ -50,3 +50,24 @@ create new "release jobs" list
 
 release link new feature to web page
 
+release:
+	list fixes issues (#num) on release notes
+
+jobs:
+	announce forthcoming release
+	list gotchas
+
+linus-like devel strategy
+	1 week merge window
+	1 week bug fixes
+	release
+merge window
+	=> dev branch?
+	=> bug-fixes are rebased in place
+	=> neatly packaged into [neomutt] on release
+
+on release update po/*
+	reduce number of fuzzy translations?
+
+.mailmap for all contributors
+
