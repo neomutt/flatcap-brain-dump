@@ -46,3 +46,7 @@ notify mailing lists
 post web news
 update irc topic
 
+create new "release jobs" list
+
+release link new feature to web page
+

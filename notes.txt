@@ -1231,8 +1231,6 @@ make a list of commits that are missing in the patch-sets
 	X, Revert X
 Tag the missing commits [no export] ?
 
-get Karel to migrate to NeoMutt stack -- easier integration
-
 upstream tag for issues
 	=> upstream notified?
 	=> upstream accepted?
@@ -1624,12 +1622,6 @@ eliminate "mutt" from everything in the build
 index-color -- index_date pattern?
 	and index_label
 
-wiki vs web docs
-	what goes where?
-	rationale?
-		fixed docs on web (styled, too)
-		contrib/community docs on wiki
-
 issue for code required:
 	fuzzy matcher: [devel] [help] [mentor]
 
@@ -1703,8 +1695,6 @@ travis -- test docs validation
 	test make install
 	compare to known list of installed files
 
-make install broken (contrib)
-
 [devel/*] on creation: notify dev-mail
 [devel/*] -> [feature/*]: notify user-mail
 
@@ -1755,8 +1745,6 @@ notmuch example rc (and docs)
 make config -- like linux kernel
 	for all the neomutt options
 
-sync 1.6.0 -> neo-old after deprecation
-
 c-alpha build deps docs
 
 feature docs to separate <sect1>'s?
@@ -1767,8 +1755,6 @@ jump to previous folder command?
 	can this be done with a folder hook?
 	set my_olddir = dir
 	is it too late when we get the hook?
-
-notmuch 1.7.0 updated for Karel
 
 debugging curses tutorial
 	two windows
@@ -1816,9 +1802,6 @@ NeoMu++ logo idea?
 colour for tagged emails
 
 mailing list on webpage -- copy from release announcement
-
-distro *pages* on web
-	collection
 
 web update about.html : done so far
 
@@ -1904,7 +1887,6 @@ rename the Mutt Manual to Mutt Guide
 
 Deprecation
 	old enhancements
-	neo-1.6 (1.7 looks solid)
 
 copying a large mailbox / number of files doesn't trigger the progress bar
 	mbox-100000
@@ -1966,12 +1948,6 @@ contact distros
 email all 341 of mutt-kz stargazers and tell them about neomutt
 	exclude the neomutt stargazers
 
-forgotten-attachment
-	optimise MUTT_NO path: i.e. don't check the file at all
-
-start dropping references to "patches" in docs
-	just refer to features
-
 drop or merge COPR patches?
 	clean neomutt
 	what about ca certs?
@@ -1980,13 +1956,8 @@ change PATCHES display into sorted, wrapped feature list
 
 configure out dotlock fully
 
-proposal num releases
-	lifespan of project
-
 check all lists of features are up-to-date
 	web, wiki, etc
-
-drop bug-fixes "feature" on web
 
 source tree
 	1 our git w/tags
@@ -2029,9 +2000,6 @@ doc muttrc color attach differs from contrib
 
 test keybase in mutt -> Josh
 
-travis - sort out build control
-	45 builds on [neomutt]
-
 suse -- no neomutt?
 
 test clean fedora install + mutt + dns during startup
@@ -2049,15 +2017,13 @@ PATCHES
 
 travis => [travis] -> [coverity]
 
-deprecate 1.6, sync 1.6 to [old]
-
 sync distros to release
 
 update debian patches
 
 announce vim syntax files for mutt
 
-notmuch update for Karel
+notmuch 1.7.0 updated for Karel
 
 nntp sync and update for Vsevolod
 
@@ -2067,8 +2033,6 @@ transfer gpg keys from flatcap to mutt
 	mutt cron to update them
 
 pager -- sidebar gets updated but not status line / term header
-
-test strfcpy ideas in coverity
 
 notmuch tag-completion:
 	when using -XYZ<tab>
@@ -2147,11 +2111,7 @@ restore git-version-gen
 restore quick-build options
 	or use Suse's patch to put docs last
 
-deprecation notice for 1.6
-
 Terry update lunar - point to NeoMutt
-
-github "read" beacon image in emails
 
 ifdef needs an "else" condition
 	how?
@@ -2267,6 +2227,10 @@ forgotten-attachments: German example:
 	"häng an" won't match over a new line
 	strdup regex string, replacing spaces with
 		"[ \t\n]+" ???
+newbie txt
+	watch github project to keep informted
+	public presence in github project
+
 	does it work with \n embedded?
 	could I pre-process the email text?
 	it it utf-8 compliant?
@@ -2305,8 +2269,6 @@ separate packages for neomutt
 split repos to match
 branch by version / language
 
-kyoto cabinet -> travis build
-
 syntax file in local vim syntax dir needs to be called
 	muttrc to match vim modelines in other files
 
@@ -2314,12 +2276,6 @@ syntax file in local vim syntax dir needs to be called
 	=> set to default value
 	history records the default value, not the token
 	TOKEN=$default ?
-
-release jobs
-	check of HCACHEVER has changed
-	notify if it has
-
-create new "release jobs" list
 
 use hcache to store other info?
 	e.g. top tips - which are read
@@ -2338,9 +2294,6 @@ summary pages:
 		links to web if not
 	:credits
 	status line shows list of summary pages
-
-wiki footer
-	this is for "temp development", see website
 
 add cursor to pager (on/off)
 	=> can highlight text
@@ -2418,10 +2371,6 @@ howto: update website
 	which gems needed?
 	"jekyll serve" to test
 
-release link new feature to web page
-
-fix make dist
-
 breakdown
 	source (simple)
 	source (conditional, e.g. feature)
@@ -2439,7 +2388,6 @@ scratch-pad function
 change from autoconf -> cmake
 
 distros
-	get gentoo up-to-date
 	debian sync
 		get riesebie to look for deb patches to merge
 	push sthen (openbsd) for action
@@ -2461,12 +2409,6 @@ vvv
 
 docs
 	list large blocks
-	announce docbook repo
-	test branch for docbook
-	need to fix
-		make install
-		make dist
-		copr
 
 docs - nested if
 	better explanation of %<>
@@ -2481,9 +2423,6 @@ purge all macros from neomutt?
 new two-letter expandos
 	initial letter picked with no clashes anywhere
 	=> 26 more expandos to use
-
-public ml archives
-	announce first?
 
 vim has set vs setlocal
 	mutt has accounts as separate entities
@@ -2521,10 +2460,6 @@ website
 irc webpage
 	mention freenode's web interface
 
-test debugging without source
-	only use debug package
-	min fedora vm
-
 debugging docs:
 	100k lines of code
 	help us find out which
@@ -2533,8 +2468,6 @@ debugging docs:
 perl script to show projects
 	ordered
 	nested
-
-update morning js()
 
 use startup hook & scripting + offline hcache
 	to locally cache email
@@ -2641,10 +2574,6 @@ Create every doc idea as empty template page in web
 	with notes
 	list of docs in project "docs"
 
-add nntp only, to build test
-
-no "new mail" notification for filtered "READ" mail
-
 distro web pages need install instructions for development, too
 	min/max dev packages to build & debug neomutt
 	all instructions based on min distro install
@@ -2675,8 +2604,6 @@ kyoto missing from README.neomutt
 
 doc all features' functions doxygen style
 
-coverity - tidy junk in .travis.yml
-
 nested-if -- index-format display ? if doesn't match string put in
 	%<> changed to %? !
 
@@ -2690,10 +2617,6 @@ index preview mode - display 'n' lines of the email body
 	when in the index
 
 new feature checklist -- code all configs, doc, readme, web, doc validate
-
-toogley /manual vs /_feature
-
-spurious tabs/whitespace in jekyll pages
 
 issue labels
 	regresssion / still not fixed
@@ -2718,6 +2641,7 @@ find all non-mail users of pager
 	add to index/pager tests
 
 need way to repeatably test net failure
+	tcpkill -- doc in dev web
 
 external testing
 	how many external events can we control?
@@ -2738,8 +2662,6 @@ docs - keep reference copy of all relevant RFCs
 issues -- always assign (for later reference)
 	fixer/mentor only makes sense for bugs/enhancements
 	what about questions?
-
-newbie page -- "Getting Started" ?
 
 de776ea - drop tgetent
 	check with Fabian
@@ -2835,8 +2757,6 @@ gahr, hcache
 	global?
 	per mailbox?
 	break deps on mutt structs
-
-revert help keycode commit - not nec
 
 cache files need to hash their name too
 	to avoid two systems "sharing" a single hash
@@ -2981,6 +2901,7 @@ merge hcache docs?
 create file on all neo members
 	who's who
 	who's done what
+	date of last contribution
 
 feature: since
 	could have multiple since
@@ -2998,4 +2919,16 @@ person pages
 	language?
 	links
 	∀ users
+
+split out upstream features, or yaml tag them
+
+DANE instructions for neomutt gpg key
+
+web
+	auto-generate list of WIPs
+	[devel/*] -> list
+	where does the description come from?
+	update daily
+	since DATE
+	last update DATE
 

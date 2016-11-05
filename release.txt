@@ -125,3 +125,7 @@ release todo list: search issues
 
 release notes: update irc channel topic
 
+release jobs
+	check of HCACHEVER has changed
+	notify if it has
+
