@@ -2782,3 +2782,9 @@ each web dir, have _source.txt
 	details origin of page data
 	scripts for generating
 
+cron task:
+	check mutt vim syntax file for updates
+
+neomutt -> master?
+	now that I'm not maintaining multiple neo branches
+
