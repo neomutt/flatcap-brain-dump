@@ -2788,3 +2788,5 @@ cron task:
 neomutt -> master?
 	now that I'm not maintaining multiple neo branches
 
+code school -> neo branches (regularly rebased)
+
