@@ -2790,3 +2790,5 @@ neomutt -> master?
 
 code school -> neo branches (regularly rebased)
 
+mailmap for all neomutt contributors
+
