@@ -1,0 +1,13 @@
+document all our uses of doxygen comments
+
+- @param   -- a function parameter
+- @struct  -- a C-struct.
+- @union   -- a union.
+- @enum    -- an enumeration type.
+- @var     -- a variable or typedef or enum value.
+- @def     -- a #define.
+- @typedef -- a type definition.
+- @file    -- a file.
+
+use sample code and config to demonstrate
+
