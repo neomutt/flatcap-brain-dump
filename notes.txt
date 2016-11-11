@@ -2795,3 +2795,5 @@ mailmap for all neomutt contributors
 stable branches for LTS releases?
 	Why?  Mutt doesn't
 
+SIGHUP/SIGUSR1 to force an update?
+
