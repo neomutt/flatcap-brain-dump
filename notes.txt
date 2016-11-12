@@ -2797,3 +2797,10 @@ stable branches for LTS releases?
 
 SIGHUP/SIGUSR1 to force an update?
 
+SINWINCH hook
+	resize-hook
+	takes conditions param, e.g.
+		width > 80
+		height < 10
+	needs to be run on startup, too
+
