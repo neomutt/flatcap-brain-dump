@@ -71,3 +71,6 @@ on release update po/*
 
 .mailmap for all contributors
 
+check website for credits
+	add website section?
+

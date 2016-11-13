@@ -1739,7 +1739,7 @@ vim: if no tags file, generate it
 fork vs non-fork -- animal species reference
 	species: noun
 	a group of living organisms consisting of similar individuals capable
-	of exchanging genes or interbreeding. 
+	of exchanging genes or interbreeding.
 
 old features, like trash, need to live in [docs] otherwise their links won't
 match the manual
@@ -2190,7 +2190,7 @@ mime-typer plugin
 
 cmocka -- unit tester
 
-feature docs: change 
+feature docs: change
 	"dep 1.7.0" to "since 2016-06-11"
 	drop "part of the NeoMutt project" (obvious)
 
@@ -2241,7 +2241,7 @@ distros
 		get riesebie to look for deb patches to merge
 	push sthen (openbsd) for action
 	mageia
-		install 
+		install
 		test copr
 		contact
 
@@ -2801,6 +2801,79 @@ SINWINCH hook
 	resize-hook
 	takes conditions param, e.g.
 		width > 80
+		width = 80
 		height < 10
 	needs to be run on startup, too
+	idea from labelette in #mutt
+
+annouce GPLv2 usage for project
+	make it clear on the (devel) website
+
+docs: sidebar intro has two "default" settings
+
+docbook -> html leaves artifacts (missing whitespace)
+
+generate valgrind suppression file
+	contrib?
+	devel page instructions
+
+web: misc page for extra options that aren't in features
+
+web: changes page -- since/relative to mutt
+
+list of ALL vars, fns, cmds
+	link to relevant feature/misc page
+	web home/changes?
+
+tool tips on everything?
+
+dev build all version
+	publish script
+
+website jekyll serve instructions
+
+travis-build
+	allow line comments starting #
+
+travis update neo conf
+
+getting started
+	mention travis notification email
+
+update all doxy templates
+	JAVADOC_AUTOBRIEF on
+	FULL_PATH_NAMES off
+	SORT_MEMBER_DOCS no
+
+news:
+	compress promoted to upstream
+	translators needed
+	stars: have you?
+
+Distro pages:
+	Debian, Gentoo, MacPorts, NetBSD, Void
+	need filling out
+
+add official Mutt source to mutt GH releases
+	sign it
+
+How to Use Mutt doc
+	step 1 - select your source
+		POP, IMAP, local, offlineimap/alternative
+
+issue type:
+    code (implied)
+    scripting
+    build
+    docs
+
+web: features list page
+	add upstream column
+
+docs: highlight parts that are neomutt only!
+
+flag variables (in init.h) that are sensitive
+	"mutt -D" will obscure them
+	"mutt -DD" or "mutt -Dv" will print them
+	or "mutt -DH" will hide them?
 
