@@ -2862,10 +2862,10 @@ How to Use Mutt doc
 		POP, IMAP, local, offlineimap/alternative
 
 issue type:
-    code (implied)
-    scripting
-    build
-    docs
+	code (implied)
+	scripting
+	build
+	docs
 
 web: features list page
 	add upstream column
