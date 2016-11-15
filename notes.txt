@@ -1655,6 +1655,8 @@ need name for less than features
 get rid of "prepare" or neomutt-ify it
 	--all (to enable all options)
 	vs "configure --all"
+	./prepare --all -a => all features
+	./configure --all => drop prepare
 
 dbus - also implies
 	synchronisation of multiple copies of mutt
@@ -2880,4 +2882,12 @@ flag variables (in init.h) that are sensitive
 translate:
 	check git logs for translators' names / dates
 	tidy all headers
+
+translation - coding, scripting, languages
+
+collect useful tools in neomutt org:
+	urlview
+	offlineimap
+	procmail
+	etc
 
