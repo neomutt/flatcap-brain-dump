@@ -74,3 +74,5 @@ on release update po/*
 check website for credits
 	add website section?
 
+check translators for credits
+
