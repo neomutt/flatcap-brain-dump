@@ -2904,3 +2904,11 @@ magic "combined" folder
 	combined into one view
 	need method to "fix" emails i.e. mark them as no-more-changes
 
+offline working
+	mutt hangs whenever the network goes down and is essentially useless
+	what's needed to make mutt useful without a network?
+	"auto-postpone"?
+	"send-on-reconnect?"
+	cache more information about mailboxes?
+	network heartbeat to detect connectivity?
+
