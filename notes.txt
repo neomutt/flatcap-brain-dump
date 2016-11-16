@@ -2897,3 +2897,10 @@ re: inotify idea
 	(it seems to support kqueue, inotify and fsevents)
 	https://github.com/emcrisostomo/fswatch/tree/master/libfswatch
 
+magic "combined" folder
+	mbox part for unchanging, historic stuff
+	mbox part needs hcache for speed
+	maildir part of changeable stuff
+	combined into one view
+	need method to "fix" emails i.e. mark them as no-more-changes
+
