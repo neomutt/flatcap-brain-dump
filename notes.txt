@@ -2912,3 +2912,6 @@ offline working
 	cache more information about mailboxes?
 	network heartbeat to detect connectivity?
 
+hcache
+	when it's done, create an hcache test rig
+	only use hcache API
