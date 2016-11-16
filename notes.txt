@@ -2891,3 +2891,9 @@ collect useful tools in neomutt org:
 	procmail, maildrop, sieve
 	etc
 
+re: inotify idea
+	2016-11-16 12:13 <royger>
+	flatcap: maybe using some abstraction library, like libfswatch
+	(it seems to support kqueue, inotify and fsevents)
+	https://github.com/emcrisostomo/fswatch/tree/master/libfswatch
+
