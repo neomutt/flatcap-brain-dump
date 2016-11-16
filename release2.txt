@@ -76,3 +76,6 @@ check website for credits
 
 check translators for credits
 
+update github projects
+	reset the lists
+

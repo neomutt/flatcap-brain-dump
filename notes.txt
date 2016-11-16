@@ -2887,7 +2887,7 @@ translation - coding, scripting, languages
 
 collect useful tools in neomutt org:
 	urlview
-	offlineimap
-	procmail
+	offlineimap, mbsync
+	procmail, maildrop, sieve
 	etc
 
