@@ -79,3 +79,5 @@ check translators for credits
 update github projects
 	reset the lists
 
+update "since" on new features when making changelog
+
