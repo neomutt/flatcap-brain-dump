@@ -2916,3 +2916,9 @@ hcache
 	when it's done, create an hcache test rig
 	only use hcache API
 
+donate page
+	presents for flatcap?
+	contributions to neomutt.org domain?
+	get-together costs?
+	what?
+
