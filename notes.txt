@@ -2929,3 +2929,10 @@ web
 	return to previous page link
 	light green background
 
+complete review of string handling in mutt
+	string contentation
+	tokenisation
+	matching
+	etc
+	see which, if any, gnu-only string functions are useful
+
