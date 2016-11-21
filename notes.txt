@@ -2922,3 +2922,10 @@ donate page
 	get-together costs?
 	what?
 
+web
+	add screenshot page
+	title
+	description
+	return to previous page link
+	light green background
+
