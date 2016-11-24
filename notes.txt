@@ -2936,3 +2936,7 @@ complete review of string handling in mutt
 	etc
 	see which, if any, gnu-only string functions are useful
 
+web translate
+	have anchors for each language
+	they highlight that line
+

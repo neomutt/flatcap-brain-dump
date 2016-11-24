@@ -1,0 +1,31 @@
+
+Compile all combinations of the 6 backends (test-hcache.sh)
+
+6 config files:
+	set header_cache_backend = bdb
+	set header_cache_backend = gdbm
+	set header_cache_backend = kyotocabinet
+	set header_cache_backend = lmdb
+	set header_cache_backend = qdbm
+	set header_cache_backend = tokyocabinet
+
+Script to run all the combinations
+
+#!/bin/bash
+
+for i in mutt*; do
+	echo "========================================================================="
+	echo $i
+	for j in *.rc; do
+		echo "-----------------"
+		echo $j
+		./$i -n -F $j -v | grep "^hcache"
+		$i -n -F $j -D | grep hcache_backend
+		echo
+	done
+done >& m2
+
+test each with:
+	single file database
+	directory database
+
