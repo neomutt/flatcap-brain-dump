@@ -29,3 +29,7 @@ test each with:
 	single file database
 	directory database
 
+test timings:
+	construction of db (fs cache full)
+	reading of db (fs cache empty)
+
