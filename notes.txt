@@ -2936,7 +2936,141 @@ complete review of string handling in mutt
 	etc
 	see which, if any, gnu-only string functions are useful
 
+cron autogen
+	list of rpms
+	list of branches
+	gh api
+		list creator, date, name
+	#include markdown table
+	link to readme if it exists
+	link to repo, owner, list description
+	put script in /_cron
+	autocommit
+		push lists changes, e.g.
+		+repo X
+		-branch Y
+	combine all cron scripts into 1 push
+
+easy task to rejig list of hcache backends
+highlight current one?
+	X Y (Cur) Z
+	Cur (X Y Z)
+
 web translate
 	have anchors for each language
 	they highlight that line
+
+translation comments
+	aka in lang
+	function names
+	"oppenc" meaning
+	glossary
+		alias
+		thread = x
+	comments ∀ translators
+	mnemonic letters
+	formatting, e.g. "[-- TEXT --]"
+	functions calls, uname(1)
+	L10N dotfill
+		to/from/subject
+		translate?
+	L10N optional?
+	plurals
+	multiple %s
+	don't need .mo
+  
+hcache
+	is it a binary blob based on HEADER?
+	what causes cache invalidation?
+	change of size, order? count of fields?
+	change of endianness
+	does hcache *need* to know about what's in the binary blob?
+	just needs *key* to seed hash of data (data, len)
+	hcache *doesn't* need to know about mutt
+	key needs to be hashed on db name too
+	when done, move to hcache/ dir
+
+shrink version number to YYx
+	2 week releases -> 26/year, 26 letters!
+	week 16 release => 16q or 16Q
+	52 weeks => AaBbCc etc
+	what about stable release?
+	-LTS needs multiple releases but one name
+
+po.vim
+	toggle English vs Foreign
+	options to show/hide
+		whitespace
+		dots
+	set symbols
+
+change issue label from "devel" to "in progress" (clearer)
+
+configure --disable-po (for speed)
+
+release -- push to coverity, review changes
+
+xgettext notes, L10N, _(), N_()
+
+SIGHUP -- re-read config -- need to save command line
+
+HUP => list of cfg files -> summary page
+
+add myself to version.c copyright, mutt -v
+
+mutt.pot --no-wrap
+
+poedit suggest disable wrapping -> web instructions
+
+dewrap strings (script)
+
+web
+	```note
+	css proportional font
+	bold first line using css
+	add icon?
+	```code
+	specifically for code?
+	no interferes with markdown highlighting
+
+L10N split up large version string blocks
+
+issue label: "translation"
+
+forgotten 'f', move to end or numbering doesn't work
+
+links web translate to #229
+
+web translate league table posn #'s -> compete!
+
+hcache files .<backend> suffix?
+
+.po are "#: file.c" needed except at translate time?  drop?
+	simplifies merges, etc
+
+gettext logger to look for most used translations
+	mark the common ones in the code
+
+"confirmed" issue label => neo member has bisected
+	all neo versions
+	and tested mutt 1.7.1 too
+
+travis build install/use chronic
+	esp. for ./configure
+
+should travis main build do docs, po too?
+
+try mosh for irc link
+
+chronic "moreutils" package
+
+coverity to use travis-build script!
+
+coverity - triage all issues to "seen" so new issues are obvious
+
+invite new contributors
+
+after clang-format review, de-tab our code
+
+make clean isn't good enough?
 
