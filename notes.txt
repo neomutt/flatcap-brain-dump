@@ -2978,7 +2978,7 @@ translation comments
 	plurals
 	multiple %s
 	don't need .mo
-  
+
 hcache
 	is it a binary blob based on HEADER?
 	what causes cache invalidation?
@@ -3005,8 +3005,6 @@ po.vim
 	set symbols
 
 change issue label from "devel" to "in progress" (clearer)
-
-configure --disable-po (for speed)
 
 release -- push to coverity, review changes
 
@@ -3075,3 +3073,4 @@ after clang-format review, de-tab our code
 make clean isn't good enough?
 
 release: update vim syntax with new variables, etc
+
