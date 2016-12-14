@@ -2591,6 +2591,7 @@ gahr, hcache
 	global?
 	per mailbox?
 	break deps on mutt structs
+	rename "ctx" -- too confusing
 
 cache files need to hash their name too
 	to avoid two systems "sharing" a single hash
@@ -3072,5 +3073,7 @@ after clang-format review, de-tab our code
 
 make clean isn't good enough?
 
-release: update vim syntax with new variables, etc
+release:
+	update vim syntax with new variables, etc
+	./check_sec.sh
 
