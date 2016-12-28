@@ -3077,3 +3077,5 @@ release:
 	update vim syntax with new variables, etc
 	./check_sec.sh
 
+leave-folder hook?
+
