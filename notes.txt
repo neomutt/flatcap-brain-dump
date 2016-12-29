@@ -3079,3 +3079,7 @@ release:
 
 leave-folder hook?
 
+sizeof(x) vs sizeof x
+
+list Sven's unused letters to the main guide
+
