@@ -1,0 +1,55 @@
+hcache that works offline!
+
+use hcache to store other info?
+	e.g. top tips - which are read
+
+is hcache data hashed on fields in db, or all fields?
+	i.e. why does HCACHEVER change so often
+
+use startup hook & scripting + offline hcache
+	to locally cache email
+	local cache => strictly readonly
+
+gahr, hcache
+	one formatting string
+	+/- override format strings
+	separate code files
+	autoconf hcache=X
+	separate code dir?
+	hcache/*
+	all via hcache.h
+	.so dyanamic library
+	conflicts autoconf a bit
+	multiple static/dyamic
+	global?
+	per mailbox?
+	break deps on mutt structs
+	rename "ctx" -- too confusing
+
+multiple hcaches => RAID-like write many, read fastest
+	two caches, local and shared?
+
+merge hcache docs?
+
+hcache
+	when it's done, create an hcache test rig
+	only use hcache API
+
+easy task to rejig list of hcache backends
+highlight current one?
+	X Y (Cur) Z
+	Cur (X Y Z)
+
+hcache
+	is it a binary blob based on HEADER?
+	what causes cache invalidation?
+	change of size, order? count of fields?
+	change of endianness
+	does hcache *need* to know about what's in the binary blob?
+	just needs *key* to seed hash of data (data, len)
+	hcache *doesn't* need to know about mutt
+	key needs to be hashed on db name too
+	when done, move to hcache/ dir
+
+hcache files .<backend> suffix?
+

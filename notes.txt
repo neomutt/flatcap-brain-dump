@@ -1309,10 +1309,6 @@ new mutt colours
 	none or inherit
 	don't set this component
 
-build
-	--enable-everything
-	which hcache?
-
 docs/wiki
 	neomutt history/timeline
 
@@ -1930,8 +1926,6 @@ imap only 'n' messages option
 
 mbsync better offlineimap
 
-hcache that works offline!
-
 imap force body cache on read
 	option for offline working
 
@@ -2128,9 +2122,6 @@ syntax file in local vim syntax dir needs to be called
 	history records the default value, not the token
 	TOKEN=$default ?
 
-use hcache to store other info?
-	e.g. top tips - which are read
-
 fix notmuch syntax & announce
 
 nested-if script
@@ -2211,9 +2202,6 @@ multi-line index.  options:
 	for current thread
 wrap long fields
 sacrifice height to save width
-
-is hcache data hashed on fields in db, or all fields?
-	i.e. why does HCACHEVER change so often
 
 fork -> C11 code
 
@@ -2316,10 +2304,6 @@ debugging docs:
 perl script to show projects
 	ordered
 	nested
-
-use startup hook & scripting + offline hcache
-	to locally cache email
-	local cache => strictly readonly
 
 "mutt -D" chokes on status-color color commands
 
@@ -2577,31 +2561,12 @@ nested-if
 
 Karel tidy/cull issues
 
-gahr, hcache
-	one formatting string
-	+/- override format strings
-	separate code files
-	autoconf hcache=X
-	separate code dir?
-	hcache/*
-	all via hcache.h
-	.so dyanamic library
-	conflicts autoconf a bit
-	multiple static/dyamic
-	global?
-	per mailbox?
-	break deps on mutt structs
-	rename "ctx" -- too confusing
-
 cache files need to hash their name too
 	to avoid two systems "sharing" a single hash
 	and crashing
 
 neomutt members -- ask preferred method of communication
 	pref name @flatcap, Rich
-
-multiple hcaches => RAID-like write many, read fastest
-	two caches, local and shared?
 
 labels -> vim, ignore [.*:] abbreviate to 4 chars, 3?, 2?, 1?
 
@@ -2730,8 +2695,6 @@ distros
 	where to coredumps go?
 
 are all closed enhancements requests marked as blue-sky?
-
-merge hcache docs?
 
 create file on all neo members
 	who's who
@@ -2913,10 +2876,6 @@ offline working
 	cache more information about mailboxes?
 	network heartbeat to detect connectivity?
 
-hcache
-	when it's done, create an hcache test rig
-	only use hcache API
-
 donate page
 	presents for flatcap?
 	contributions to neomutt.org domain?
@@ -2952,11 +2911,6 @@ cron autogen
 		-branch Y
 	combine all cron scripts into 1 push
 
-easy task to rejig list of hcache backends
-highlight current one?
-	X Y (Cur) Z
-	Cur (X Y Z)
-
 web translate
 	have anchors for each language
 	they highlight that line
@@ -2979,17 +2933,6 @@ translation comments
 	plurals
 	multiple %s
 	don't need .mo
-
-hcache
-	is it a binary blob based on HEADER?
-	what causes cache invalidation?
-	change of size, order? count of fields?
-	change of endianness
-	does hcache *need* to know about what's in the binary blob?
-	just needs *key* to seed hash of data (data, len)
-	hcache *doesn't* need to know about mutt
-	key needs to be hashed on db name too
-	when done, move to hcache/ dir
 
 shrink version number to YYx
 	2 week releases -> 26/year, 26 letters!
@@ -3041,8 +2984,6 @@ forgotten 'f', move to end or numbering doesn't work
 links web translate to #229
 
 web translate league table posn #'s -> compete!
-
-hcache files .<backend> suffix?
 
 .po are "#: file.c" needed except at translate time?  drop?
 	simplifies merges, etc
