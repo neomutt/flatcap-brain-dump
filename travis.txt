@@ -172,3 +172,5 @@ run on patchsets
 
 split "make distcheck" configure options out of build.sh
 
+remove "--prefix" from configure options for "make dist"
+
