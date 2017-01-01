@@ -170,3 +170,5 @@ run on patchsets
 	2 builds (all, nothing)
 	∀ distros
 
+split "make distcheck" configure options out of build.sh
+
