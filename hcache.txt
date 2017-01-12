@@ -53,3 +53,5 @@ hcache
 
 hcache files .<backend> suffix?
 
+config "file" vs "dir/" is ugly and confusing
+
