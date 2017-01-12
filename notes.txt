@@ -3026,3 +3026,12 @@ list Sven's unused letters to the main guide
 
 release branch to queue up changes for the release commit
 
+notmuch changes
+is !e check nec -- safe_strdup can't fail
+	*filename = e ? e == p ? NULL : strndup(p, e - p) : safe_strdup(p);
+	*filename = e ? e == p ? NULL : mutt_substrdup(p, e) : safe_strdup(p);
+	if (!e)
+		return 0;
+
+merge dgc's new label code
+
