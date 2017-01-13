@@ -3038,3 +3038,6 @@ merge dgc's new label code
 translate: hooks in code to log most translated strings
 	help translators prioritise their work
 
+release branch (to save changes to ChangeLog, etc)
+	no .travis.yml (no building)
+
