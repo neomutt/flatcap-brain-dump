@@ -3041,3 +3041,4 @@ translate: hooks in code to log most translated strings
 release branch (to save changes to ChangeLog, etc)
 	no .travis.yml (no building)
 
+release - update my alias list with all contributors
