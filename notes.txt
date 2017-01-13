@@ -3035,3 +3035,6 @@ is !e check nec -- safe_strdup can't fail
 
 merge dgc's new label code
 
+translate: hooks in code to log most translated strings
+	help translators prioritise their work
+
