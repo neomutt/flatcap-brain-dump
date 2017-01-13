@@ -3042,3 +3042,5 @@ release branch (to save changes to ChangeLog, etc)
 	no .travis.yml (no building)
 
 release - update my alias list with all contributors
+
+store translation and coverity travis.yml files in contrib?
