@@ -3044,3 +3044,6 @@ release branch (to save changes to ChangeLog, etc)
 release - update my alias list with all contributors
 
 store translation and coverity travis.yml files in contrib?
+
+git blame all source/build files to see %age authorship
+
