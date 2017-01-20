@@ -3047,3 +3047,5 @@ store translation and coverity travis.yml files in contrib?
 
 git blame all source/build files to see %age authorship
 
+why aren't mutt_message, mutt_error and mutt_perror saved in the debug log?
+
