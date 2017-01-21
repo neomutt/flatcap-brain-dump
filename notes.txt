@@ -3049,3 +3049,7 @@ git blame all source/build files to see %age authorship
 
 why aren't mutt_message, mutt_error and mutt_perror saved in the debug log?
 
+triage:
+	after we add issue/pr templates
+	triager should edit out the dross
+
