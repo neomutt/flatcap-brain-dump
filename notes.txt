@@ -822,6 +822,7 @@ github files
 	PULL_REQUEST_TEMPLATE.md
 	not case sensitive
 	can be hidden in .github dir
+	CONTRIBUTING.md
 
 ∀ new bugfixes -- reference trac number in commit message
 test email reply to issues, etc
