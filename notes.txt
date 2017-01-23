@@ -3057,3 +3057,6 @@ triage:
 
 release -- add:
 	/cc @neomutt/downstream-packagers
+
+#define the mailbox -2 abort, -1 error
+
