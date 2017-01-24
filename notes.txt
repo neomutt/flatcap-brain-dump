@@ -3063,6 +3063,9 @@ release -- add:
 change release cadence?
 	feature release
 	bug-fix release
+only update translations on bug-fix release
+fixes for docs are bug-fixes
+two open milestones (next-feature-release, next-bug-fix-release)
 
 add abort-mailbox to nntp, etc
 	raise issue
