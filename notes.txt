@@ -3069,3 +3069,6 @@ two open milestones (next-feature-release, next-bug-fix-release)
 
 add abort-mailbox to nntp, etc
 	raise issue
+
+puts() and _() missing ()s
+
