@@ -3089,3 +3089,6 @@ magi-sort
 	[PATCH v2 0/7] Add support for triggered buffer mode to STM32 ADC
 
 comment typo 'alterantes'
+
+mutt IPA /mʌt/
+
