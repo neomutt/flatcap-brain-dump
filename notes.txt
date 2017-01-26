@@ -3078,6 +3078,7 @@ summary page for current server settings, e.g.
 
 magi-sort
 	regex matching [patch] part -> sort alphabetically by that part
+	emails from same author
 	[PATCH v2 5/7] iio: adc: stm32: add optional dma support
 	[PATCH v2 6/7] ARM: dts: stm32: Enable dma by default on stm32f4 adc
 	[PATCH v2 4/7] Documentation: dt: iio: stm32-adc: optional dma support
