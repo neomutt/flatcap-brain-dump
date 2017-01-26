@@ -3072,3 +3072,7 @@ add abort-mailbox to nntp, etc
 
 puts() and _() missing ()s
 
+summary page for current server settings, e.g.
+	Host: gmail.com
+	Username: rich
+
