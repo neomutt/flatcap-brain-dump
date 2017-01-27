@@ -3092,3 +3092,5 @@ comment typo 'alterantes'
 
 mutt IPA /mʌt/
 
+newbie - recommend setting 'set user_agent = yes'
+
