@@ -3094,3 +3094,5 @@ mutt IPA /mʌt/
 
 newbie - recommend setting 'set user_agent = yes'
 
+release - check other repos for contributors, e.g
+	gentoo-neomutt
