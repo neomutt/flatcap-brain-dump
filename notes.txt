@@ -3098,3 +3098,30 @@ newbie - recommend setting 'set user_agent = yes'
 
 release - check other repos for contributors, e.g
 	gentoo-neomutt
+
+travis
+	test new (faster) containers
+	reduce push/PR to ONE build
+
+mailmap ∀ contributors
+
+cadence
+	3 weeks features
+	1 week bug-fixing
+
+cron milestone?
+	how would it be populated?
+
+update vim-syntax
+
+copr - why am I using a DIFF?
+
+email reviewers
+email bug-fixes
+email issue-labels / waffle
+
+release - auto
+	copr
+	arch
+	gentoo
+
