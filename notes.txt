@@ -2772,6 +2772,8 @@ SINWINCH hook
 		height < 10
 	needs to be run on startup, too
 	idea from labelette in #mutt
+	combine with ability to rearrange windows, e.g.
+		horizonal layout: sidebar : index : pager
 
 annouce GPLv2 usage for project
 	make it clear on the (devel) website
