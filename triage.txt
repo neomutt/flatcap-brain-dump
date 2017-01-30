@@ -1,0 +1,28 @@
+project jobs:
+	issue triager/splitter
+
+triage:
+	base issue becomes the discussion board
+		create a matching project
+	triaged into tasks
+		notes on the project
+	developer adopts one
+		note -> issue (devel)
+		assigned to them
+		[devel/*]
+	completed
+		issue (release)
+
+projects triage notes need
+	dependencies info
+	ordering
+	number note sequentially
+	use these numbers
+	update when note becomes and issue
+
+triage:
+	after we add issue/pr templates
+	triager should edit out the dross
+	fix links, light formatting?
+
+thank the reporter
