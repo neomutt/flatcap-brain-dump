@@ -1993,7 +1993,6 @@ script for "build-all-git-tags"
 
 project jobs:
 	release-maker
-	issue triager/splitter
 
 need: code of conduct statement
 	simple
@@ -2008,18 +2007,6 @@ should log files be localised?
 if someone else makes a release, it needs to be signed by them
 	need to cross-sign all the neomutt signatures
 	need to be public (web) and signed
-
-triage:
-	base issue becomes the discussion board
-		create a matching project
-	triaged into tasks
-		notes on the project
-	developer adopts one
-		note -> issue (devel)
-		assigned to them
-		[devel/*]
-	completed
-		issue (release)
 
 timeout hook missing from hook docs
 
@@ -2049,13 +2036,6 @@ what are our killer features?
 
 matcher
 	extend to index, pager, etc
-
-projects triage notes need
-	dependencies info
-	ordering
-	number note sequentially
-	use these numbers
-	update when note becomes and issue
 
 is there a projects GH API to extract/manipulate
 	project notes, etc, outside of GH
@@ -3051,11 +3031,6 @@ store translation and coverity travis.yml files in contrib?
 git blame all source/build files to see %age authorship
 
 why aren't mutt_message, mutt_error and mutt_perror saved in the debug log?
-
-triage:
-	after we add issue/pr templates
-	triager should edit out the dross
-	fix links, light formatting?
 
 release -- add:
 	/cc @neomutt/downstream-packagers
