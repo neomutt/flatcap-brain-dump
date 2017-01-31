@@ -3147,3 +3147,6 @@ make sure travis builds ALL docs (and validates)
 
 bugfix week -> web/dev
 
+mutt -D?
+	turn output into valid muttrc
+
