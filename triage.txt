@@ -20,9 +20,17 @@ projects triage notes need
 	use these numbers
 	update when note becomes and issue
 
-triage:
-	after we add issue/pr templates
-	triager should edit out the dross
-	fix links, light formatting?
+after we add issue/pr templates
+triager should edit out the dross
+fix links, light formatting?
 
 thank the reporter
+
+try to repeat the problem
+	sample config
+	steps to reproduce
+	tag: confirm
+	test old versions
+		have bin of each release (inc mutt)
+		tag: regression
+
