@@ -3150,3 +3150,6 @@ bugfix week -> web/dev
 mutt -D?
 	turn output into valid muttrc
 
+mutt -D?
+	validate muttrc without running
+
