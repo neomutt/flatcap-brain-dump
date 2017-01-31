@@ -34,3 +34,5 @@ try to repeat the problem
 		have bin of each release (inc mutt)
 		tag: regression
 
+check old/quiet issues -- still relevant
+
