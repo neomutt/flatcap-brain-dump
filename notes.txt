@@ -3104,3 +3104,6 @@ hcache-bench
 	set read_inc = 0
 	find muttrc relative to script
 
+add to useful list
+	for notmuch sync accross machines, I have found this: http://www.muchsync.org/muchsync.html
+
