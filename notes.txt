@@ -3147,9 +3147,9 @@ make sure travis builds ALL docs (and validates)
 
 bugfix week -> web/dev
 
-mutt -D?
+mutt -D? (extra options)
 	turn output into valid muttrc
-
-mutt -D?
 	validate muttrc without running
+	only display CHANGED values
+	only hide SET values
 
