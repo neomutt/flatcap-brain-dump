@@ -3152,6 +3152,12 @@ mutt -D? (extra options)
 	validate muttrc without running
 	only display CHANGED values
 	only hide SET values
+	SORT the options
 
 can I (neomutt) sign the copr key?
+
+type:investigate ?
+	something that needs research
+	might lead to docs
+	might not lead to code
 
