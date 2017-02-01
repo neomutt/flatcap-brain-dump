@@ -3153,3 +3153,5 @@ mutt -D? (extra options)
 	only display CHANGED values
 	only hide SET values
 
+can I (neomutt) sign the copr key?
+
