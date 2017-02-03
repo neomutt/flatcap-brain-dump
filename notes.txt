@@ -3196,3 +3196,15 @@ lost notes?
 		can mutt-dev-list maintainer get archive from marc.info?
 	my utf-8 fix to bug-fixes (in fact all my fixes)
 
+release criteria for a new feature
+    changelog
+        changes
+        num commits?
+    clean build
+    configure --option (off)
+    basic docs
+    tidy code (whitespace, etc)
+    example config
+    screenshots of new features
+        text/html screenshots if possible
+
