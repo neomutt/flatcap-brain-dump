@@ -3210,3 +3210,6 @@ release criteria for a new feature
 
 drop #if HAVE_CONFIG_H / #endif around #include "config.h"
 	it's a compulsory part of our build
+
+Sync any upstream changes to the hcache (lmdb)
+
