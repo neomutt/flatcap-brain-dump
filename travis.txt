@@ -174,3 +174,41 @@ split "make distcheck" configure options out of build.sh
 
 remove "--prefix" from configure options for "make dist"
 
+travis configure --quick-build -> [mutt/*] ?
+	does quick-build -> all features should derive from it
+
+travis -- test docs validation
+	test make install
+	compare to known list of installed files
+
+doc travis build system
+	push, pr, txt files, .yml
+	explain why centralised
+	explain why not container build
+
+raise homebrew travis issue
+
+travis disable docs
+
+travis-build
+	allow line comments starting #
+
+travis update neo conf
+
+travis build install/use chronic
+	esp. for ./configure
+
+should travis main build do docs, po too?
+
+travis
+	test new (faster) containers
+	reduce push/PR to ONE build
+
+travis check shell/perl scripts
+
+make sure travis builds ALL docs (and validates)
+	not just configured features
+
+need to update travis build scripts
+	neomutt -> master
+

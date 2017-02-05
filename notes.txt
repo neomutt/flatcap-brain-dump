@@ -698,7 +698,7 @@ wiki coding style:
 	indent, {}s, ()s, function defs, examples of correct
 
 integrate patchlist into new version of ifdef checking
-wiki: doc travis and coverity options
+doc travis and coverity options
 missing qdbm, slang-dev
 split source?
 	tools/ - standalone exes
@@ -924,9 +924,6 @@ list_pull_requests.sh
 	reference local neomutt repo
 
 NeoMutt website top tips?
-
-travis configure --quick-build -> [mutt/*] ?
-	does quick-build -> all features should derive from it
 
 where do debian bug-fixes go?
 	[bug-fixes]?
@@ -1574,10 +1571,6 @@ version string bug -> devel list
 
 1.7 coverity -- use alternate account
 
-travis -- test docs validation
-	test make install
-	compare to known list of installed files
-
 [devel/*] on creation: notify dev-mail
 [devel/*] -> [feature/*]: notify user-mail
 
@@ -2168,11 +2161,6 @@ feature docs: change
 	"dep 1.7.0" to "since 2016-06-11"
 	drop "part of the NeoMutt project" (obvious)
 
-doc travis build system
-	push, pr, txt files, .yml
-	explain why centralised
-	explain why not container build
-
 justify every file in the neo build
 	use min-build to start
 	show compilation steps
@@ -2617,8 +2605,6 @@ run/ irc
 	topic
 	promotes/demote ppl
 
-raise homebrew travis issue
-
 website
 	404 is static!
 	manual/guide -- not a collection
@@ -2687,8 +2673,6 @@ feature: since
 	with the addition of extra bits
 	or since: last update (fix / feature)
 	or mini changelog
-
-travis disable docs
 
 person pages
 	list "worked on"
@@ -2780,11 +2764,6 @@ dev build all version
 	publish script
 
 website jekyll serve instructions
-
-travis-build
-	allow line comments starting #
-
-travis update neo conf
 
 getting started
 	mention travis notification email
@@ -2978,11 +2957,6 @@ gettext logger to look for most used translations
 	all neo versions
 	and tested mutt 1.7.1 too
 
-travis build install/use chronic
-	esp. for ./configure
-
-should travis main build do docs, po too?
-
 try mosh for irc link
 
 chronic "moreutils" package
@@ -3074,10 +3048,6 @@ newbie - recommend setting 'set user_agent = yes'
 release - check other repos for contributors, e.g
 	gentoo-neomutt
 
-travis
-	test new (faster) containers
-	reduce push/PR to ONE build
-
 mailmap ∀ contributors
 
 cadence
@@ -3113,8 +3083,6 @@ create list of current scripts shell/perl
 	list -> website -- link to repos
 	#!/bin/bash ->  sh
 
-travis check shell/perl scripts
-
 reweind mutt/neo
 	reformat neo
 	try to replay mutt's changes
@@ -3141,9 +3109,6 @@ limit current thread
 turn off status bar, like vim laststatus
 
 limit-to-tag function?
-
-make sure travis builds ALL docs (and validates)
-	not just configured features
 
 bugfix week -> web/dev
 
