@@ -3178,3 +3178,6 @@ drop #if HAVE_CONFIG_H / #endif around #include "config.h"
 
 Sync any upstream changes to the hcache (lmdb)
 
+create a fake git user to do the mass-reformatting
+	git blame will be messed up, but with an ignorable name
+
