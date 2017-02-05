@@ -3181,3 +3181,5 @@ Sync any upstream changes to the hcache (lmdb)
 create a fake git user to do the mass-reformatting
 	git blame will be messed up, but with an ignorable name
 
+ask dkc for an up-to-date version of his logging changes
+
