@@ -3183,3 +3183,6 @@ create a fake git user to do the mass-reformatting
 
 ask dkc for an up-to-date version of his logging changes
 
+git map
+	read config for default remote
+
