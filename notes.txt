@@ -3190,3 +3190,9 @@ style
 	If the name of a function is an action or an imperative command, the
 	function should return an error-code integer.  If the name is a
 	predicate, the function should return a "succeeded" boolean.
+
+style
+	ERR_PTR return mechanism
+	Typical examples would be functions that return pointers; they use NULL
+	or the ERR_PTR mechanism to report failure
+
