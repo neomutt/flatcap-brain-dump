@@ -3186,3 +3186,7 @@ ask dkc for an up-to-date version of his logging changes
 git map
 	read config for default remote
 
+style
+	If the name of a function is an action or an imperative command, the
+	function should return an error-code integer.  If the name is a
+	predicate, the function should return a "succeeded" boolean.
