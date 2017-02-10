@@ -3196,3 +3196,7 @@ style
 	Typical examples would be functions that return pointers; they use NULL
 	or the ERR_PTR mechanism to report failure
 
+mailbox +/wibble
+mailbox =wibble
+	aren't equivalent, caused problems for squillis on irc 2017-02-10
+
