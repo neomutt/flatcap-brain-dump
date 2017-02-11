@@ -3199,4 +3199,5 @@ style
 mailbox +/wibble
 mailbox =wibble
 	aren't equivalent, caused problems for squillis on irc 2017-02-10
+	# mailboxes =INBOX "+/Drafts" "+/Sent Items" "+/Systems/A" "+/Systems/B" "+/Systems/C"
 
