@@ -3201,3 +3201,6 @@ mailbox =wibble
 	aren't equivalent, caused problems for squillis on irc 2017-02-10
 	# mailboxes =INBOX "+/Drafts" "+/Sent Items" "+/Systems/A" "+/Systems/B" "+/Systems/C"
 
+notmuch:
+	nm_get_all_tags() is called twice (once to count, then once to build the list)
+
