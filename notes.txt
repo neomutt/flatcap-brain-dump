@@ -3206,3 +3206,6 @@ notmuch:
 
 mutt_new_header() -> safe_*
 	because it can't fail?
+
+remove snprintf, etc from the patch to reduce its size?
+
