@@ -3204,3 +3204,5 @@ mailbox =wibble
 notmuch:
 	nm_get_all_tags() is called twice (once to count, then once to build the list)
 
+mutt_new_header() -> safe_*
+	because it can't fail?
