@@ -1,0 +1,45 @@
+Turn travis notification emails into a useful overview
+
+Results:
+    Broken              Red, Inverse
+    Cancelled           Grey
+    Errored             Red
+    Failed              Red
+    Fixed               Green
+    Passed              Green
+    Still Failing       Red
+
+Thread              by user/repo/branch
+Sort within thread  by date / build number
+Sort threads        by most recently notification
+Colour              by result
+
+Optional: tidy subject (now that it's threaded)
+
+When folded, abbreviate the thread to the last N builds, e.g.
+
+Branch      Count       Last build    Hash      Recent -> Historic results
+
+master    | 28 builds | 6 hours ago | 8d482aa | Success Success Failed Success Success
+devel/lua | 10 builds | 2 days ago  | 0c78b23 | Failed  Failed  Failed Success Success
+
+master    | 28 builds | 6 hours ago | 8d482aa | #1180 #1166 #1163 #1162 #1159
+devel/lua | 10 builds | 2 days ago  | 0c78b23 | #1184 #1182 #1165 #1161 #1154
+
+master    | 28 builds | 6 hours | 8d482aa | #1180 #1166 #1163 #1162 #1159
+devel/lua | 10 builds | 2 days  | 0c78b23 | #1184 #1182 #1165 #1161 #1154
+
+master    | 28 builds | 6 hours | #1180 8d482aa | #1166 0c78b23 | #1163 4003553 | #1162 739bfa2 | #1159 c2de191
+devel/lua | 10 builds | 2 days  | #1184 f78e08b | #1182 4d3636d | #1165 9ec3a68 | #1161 66ce978 | #1154 2ee57ff
+
+master    | 28 builds | 6 hours | 8d482aa 0c78b23 4003553 739bfa2 c2de191
+devel/lua | 10 builds | 2 days  | f78e08b 4d3636d 9ec3a68 66ce978 2ee57ff
+
+master(28)    | 6 hours | 8d482aa 0c78b23 4003553 739bfa2 c2de191
+devel/lua(10) | 2 days  | f78e08b 4d3636d 9ec3a68 66ce978 2ee57ff
+
+master(28)    | 6h | 8d482aa 0c78b23 4003553 739bfa2 c2de191
+devel/lua(10) | 2d | f78e08b 4d3636d 9ec3a68 66ce978 2ee57ff
+
+Colour code the statuses in the folded threads
+
