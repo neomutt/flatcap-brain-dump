@@ -3209,3 +3209,6 @@ mutt_new_header() -> safe_*
 
 remove snprintf, etc from the patch to reduce its size?
 
+safe macros enhancement request: https://github.com/neomutt/neomutt/issues/69#issuecomment-230442101
+	zmo suggests: emulate the augroup feature of vim :)
+
