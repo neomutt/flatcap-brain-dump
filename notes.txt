@@ -3162,16 +3162,16 @@ lost notes?
 	my utf-8 fix to bug-fixes (in fact all my fixes)
 
 release criteria for a new feature
-    changelog
-        changes
-        num commits?
-    clean build
-    configure --option (off)
-    basic docs
-    tidy code (whitespace, etc)
-    example config
-    screenshots of new features
-        text/html screenshots if possible
+	changelog
+		changes
+		num commits?
+	clean build
+	configure --option (off)
+	basic docs
+	tidy code (whitespace, etc)
+	example config
+	screenshots of new features
+		text/html screenshots if possible
 
 drop #if HAVE_CONFIG_H / #endif around #include "config.h"
 	it's a compulsory part of our build
@@ -3211,5 +3211,5 @@ remove snprintf, etc from the patch to reduce its size?
 
 safe macros enhancement request: https://github.com/neomutt/neomutt/issues/69#issuecomment-230442101
 	zmo suggests: emulate the augroup feature of vim :)
-        macros specific to a folder, or notmuch, etc
+	macros specific to a folder, or notmuch, etc
 
