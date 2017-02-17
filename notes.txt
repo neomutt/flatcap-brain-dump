@@ -3213,3 +3213,57 @@ safe macros enhancement request: https://github.com/neomutt/neomutt/issues/69#is
 	zmo suggests: emulate the augroup feature of vim :)
 	macros specific to a folder, or notmuch, etc
 
+Old notes:
+	Emails
+		Survey - users which OS/Version, Dev, web
+		devel-users -> sub to users suggest
+		karel cull issues
+		vvv sync nntp
+		mageia contact & copr, suse, munt, pclinuxos, slackward
+		users notmuch - ideas, improvements
+		neomutt map -> data to web, dots? heatmap?
+		341 stargazers tell them about NeoMutt (minus those already starred)
+		1 week + no crashes -> Linux Today
+	Easy
+		sort sb strings by descriptions (notmuch)
+		sample email corpus - gutenberg
+		thread sort prefix
+	Docs
+		trashdocs, purge_*, example folder hook del >30d
+		compare (devel log) all lists of features, people, up-to-date?
+		code-of-conduct (simple)
+		timeout hook missing from hook docs?
+		bugs: new-mail misleading
+		quasi-delete explanation
+		index format !compatible
+		code-style, clang-format, clang-tidy
+		muttrc replace " with ' & test
+		cond-date needs examples
+		ntested if script -> contrib, then announce
+		variables need descriptions in doc tables
+		donate money / beer -- announce
+		function headers
+		issues - more labels + workflow, then announce
+		issues / pr templates
+		web front page LATEST version + links + changelog
+		drop wiki pages, ask toogley about old wiki repo
+		features "upstream" tag partial/completely in mutt
+		web contrib muttrc, vimrc (dated)
+		progress bar docs - *_inc settings
+		sidebar intro is mail_check_stats doc'd well enough?
+		make sidebar docs fully independent intro
+		$maildir_trash conflicts with trash patch - test & doc
+	Housekeeping
+		let's encrypt notes flatcap + dns records
+		xdg, fabian, strtok
+		website drop www. test https(s)://www.neomutt.org
+		gpg keys from flatcap -> mutt + cron to sync?
+		mageia test install
+		configure --slang vs curses, installed vs not, test all combos
+
+script fuzzy / translation checker
+	compare %-count syntax
+	1300*30 ~ 40K compressed!
+
+web misc contrib page <h1> per item
+
