@@ -29,15 +29,15 @@ ignore
 TRAVIS_BRANCH          For builds not triggered by a pull request this is the name of the branch currently being built; whereas for builds triggered by a pull request this is the name of the branch targeted by the pull request (in many cases this will be master).
 TRAVIS_BUILD_DIR       The absolute path to the directory where the repository being built has been copied on the worker.
 TRAVIS_BUILD_ID        The id of the current build that Travis CI uses internally.
-TRAVIS_BUILD_NUMBER    The number of the current build (for example, “4”).
+TRAVIS_BUILD_NUMBER    The number of the current build (for example, "4").
 TRAVIS_COMMIT          The commit that the current build is testing.
 TRAVIS_COMMIT_RANGE    The range of commits that were included in the push or pull request.
 TRAVIS_JOB_ID          The id of the current job that Travis CI uses internally.
-TRAVIS_JOB_NUMBER      The number of the current job (for example, “4.1”).
+TRAVIS_JOB_NUMBER      The number of the current job (for example, "4.1").
 TRAVIS_OS_NAME         On multi-OS builds, this value indicates the platform the job is running on. Values are linux and osx currently, to be extended in the future.
-TRAVIS_PULL_REQUEST    The pull request number if the current job is a pull request, “false” if it’s not a pull request.
-TRAVIS_REPO_SLUG       The slug (in form  owner_name/repo_name) of the repository currently being built. (for example, “travis-ci/travis-build”).
-TRAVIS_SECURE_ENV_VARS Whether or not encrypted environment vars are being used. This value is either “true” or “false”.
+TRAVIS_PULL_REQUEST    The pull request number if the current job is a pull request, "false" if it’s not a pull request.
+TRAVIS_REPO_SLUG       The slug (in form  owner_name/repo_name) of the repository currently being built. (for example, "travis-ci/travis-build").
+TRAVIS_SECURE_ENV_VARS Whether or not encrypted environment vars are being used. This value is either "true" or "false".
 TRAVIS_TEST_RESULT     is set to 0 if the build is successful and 1 if the build is broken.
 TRAVIS_TAG             If the current build for a tag, this includes the tag’s name.
 
@@ -70,7 +70,6 @@ MERB_ENV=test
 JRUBY_OPTS="--server -Dcext.enabled=false -Xcompile.invokedynamic=false"
 JAVA_HOME is set to the appropriate value.
 
-
 Disabling the Subsequent Test Run
 
 Due to the way that Travis CI addons operate, your standard script stage (i.e.
@@ -96,19 +95,15 @@ exceptions for anything with a configure option
 
 fast-finish: true?
 
-test qdbm - when travis whitelists it
-
 travis for mutt/default, mutt/stable both refer to sidebar & notmuch!
 
 travis PR -- env EVERYTHING var
-
-travis libcaca includes libslang ∀ travis
 
 group travis builds to cut out vm time
 
 quick build -> travis
 
-travis doc build (one-off)?
+doc build (one-off)?
 
 travis for OSX, catch build issues
 
@@ -132,7 +127,7 @@ alter prepare to use ./configure or configure-fast
 one BIG build => option sets in file?
 	in web env?
 
-travis build:
+build:
 	get latest build-script from github
 	if local .neo-build
 		save to .git/neo-build
@@ -174,7 +169,7 @@ split "make distcheck" configure options out of build.sh
 
 remove "--prefix" from configure options for "make dist"
 
-travis configure --quick-build -> [mutt/*] ?
+configure --quick-build -> [mutt/*] ?
 	does quick-build -> all features should derive from it
 
 travis -- test docs validation
@@ -188,7 +183,7 @@ doc travis build system
 
 raise homebrew travis issue
 
-travis disable docs
+disable docs
 
 travis-build
 	allow line comments starting #
@@ -206,9 +201,222 @@ travis
 
 travis check shell/perl scripts
 
+validate the build script itself
+
+option for a "null" build, equivalent to no .travis.yml?
+	any need for this?
+
 make sure travis builds ALL docs (and validates)
 	not just configured features
 
 need to update travis build scripts
 	neomutt -> master
+
+--------------------------------------------------------------------------------
+
+At the moment, we use travis to build our code. But travis runs at the moment
+on every commit - even when only documentation stuff was edited.
+
+Of course we can use [ci skip] in the commit message to tell what to ignore -
+but some people (including me) keep forgetting that.
+
+So, i think it would be useful, if we added some check to our build file which
+skips the rest of the build if only certain files were edited.
+
+I guess we could even go so far and ignore every commit in which no *.c or *.h
+file was edited?
+
+--------------------------------------------------------------------------------
+
+There are three things to be built: code, docs, translations.
+
+The docs and translations depend on the code.
+The contrib dir can't be checked, so can be ignored.
+
+Travis tells us what's changed since the last build in $TRAVIS_COMMIT_RANGE.
+This means we have enough information to work out which files have changed.
+With a little light editing of the build script, we should be able to reduce
+the load on travis.
+
+If changes occur in:
+
+	contrib/ -- do nothing at all
+	doc/ -- configure and build docs
+	po/ -- configure and build translations
+
+Otherwise build everything.
+
+Currently, the build script, does two builds (controlled by the txt files in
+the build repo.)
+The build is configured with --disable-doc --disable-po for speed.
+
+If travis is building the neomutt branch, it finishes by doing an extra build
+including the docs (with validation), "make dist" and "make distcheck".
+
+--------------------------------------------------------------------------------
+
+Things we can build/test:
+
+	compile code (make) (build sets defined in travis-build)
+	test packaging (make dist, make distcheck)
+	test install (make install, make uninstall)
+	build/validate docs
+	compile/validate translations
+	validate scripts (shell, perl)
+
+Riskier things we can do:
+
+	Look for whitespace errors
+
+--------------------------------------------------------------------------------
+
+Categories
+
+code:
+	*.[ch]
+
+build:
+	configure.ac
+	intl/*
+	m4/*
+	Makefile*
+	OPS*
+	PATCHES
+	smime_keys.pl
+	stamp-h.in
+	patchlist.sh
+	gen_defs
+	flymake.am
+	hcachever.sh.in
+	txt2c.sh
+	po/POTFILES.in
+
+contrib:
+	contrib/*
+
+doc:
+	doc/chunk.xsl
+	doc/dotlock.man
+	doc/gen-map-doc
+	doc/html.xsl
+	doc/instdoc.sh.in
+	doc/manual.xml.head
+	doc/manual.xml.tail
+	doc/mbox.man
+	doc/mmdf.man
+	doc/mutt.css
+	doc/mutt.man
+	doc/mutt.pwl
+	doc/mutt.xsl
+	doc/pgpewrap.man
+	doc/pgpring.man
+	doc/smime_keys.man
+
+translation:
+	po/*.po
+
+readmes:
+	ABOUT-NLS
+	BEWARE
+	ChangeLog
+	ChangeLog.neomutt
+	ChangeLog.nntp
+	check_sec.sh
+	COPYRIGHT
+	INSTALL
+	LICENSE.md
+	mime.types
+	NEWS
+	prepare
+	README
+	README.md
+	README.neomutt
+	README.notmuch
+	README.SECURITY
+	README.SSL
+	TODO
+	UPDATING
+	UPDATING.kz
+	imap/README
+	imap/TODO
+	doc/muttrc.attach-headers-color
+	doc/muttrc.compose-to-sender
+	doc/muttrc.compress
+	doc/muttrc.cond-date
+	doc/muttrc.encrypt-to-self
+	doc/muttrc.forgotten-attachment
+	doc/Muttrc.head
+	doc/muttrc.ifdef
+	doc/muttrc.index-color
+	doc/muttrc.initials
+	doc/muttrc.keywords
+	doc/muttrc.limit-current-thread
+	doc/muttrc.man.head
+	doc/muttrc.man.tail
+	doc/muttrc.nested-if
+	doc/muttrc.new-mail
+	doc/muttrc.nntp
+	doc/muttrc.notmuch
+	doc/muttrc.progress
+	doc/muttrc.quasi-delete
+	doc/muttrc.reply-with-xorig
+	doc/muttrc.sidebar
+	doc/muttrc.skip-quoted
+	doc/muttrc.status-color
+	doc/muttrc.timeout
+	doc/TODO
+	doc/vimrc.attach-headers-color
+	doc/vimrc.compose-to-sender
+	doc/vimrc.compress
+	doc/vimrc.encrypt-to-self
+	doc/vimrc.forgotten-attachment
+	doc/vimrc.ifdef
+	doc/vimrc.index-color
+	doc/vimrc.keywords
+	doc/vimrc.misc
+	doc/vimrc.new-mail
+	doc/vimrc.nntp
+	doc/vimrc.notmuch
+	doc/vimrc.progress
+	doc/vimrc.quasi-delete
+	doc/vimrc.reply-with-xorig
+	doc/vimrc.sidebar
+	doc/vimrc.timeout
+	doc/applying-patches.txt
+	doc/devel-notes.txt
+	doc/mutt-1.7.0-syntax.vim
+	doc/patch-notes.txt
+	doc/PGP-Notes.txt
+	doc/smime-notes.txt
+
+dot:
+	.*
+
+--------------------------------------------------------------------------------
+
+branches
+	coverity
+	master
+	translate
+	travis
+
+	devel/bg-attach-open
+	devel/clang-format
+	devel/colorschemes
+	devel/coverity-fixes
+	devel/doxygen
+	devel/doxygen-neo
+	devel/fix-codingstyle-clang-format
+	devel/github-templates
+	devel/guyzmo
+	devel/imap-cleanup
+	devel/lua-demo
+	devel/matcher
+	devel/summary
+
+	distro/copr
+	distro/debian
+
+	mutt/default
+	mutt/stable
 
