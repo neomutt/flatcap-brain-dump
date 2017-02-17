@@ -3267,3 +3267,34 @@ script fuzzy / translation checker
 
 web misc contrib page <h1> per item
 
+translations:
+	forgotten (f) & missing (f) break numbering in choices
+
+po multi-fold comment, english, foreign -- why bother?
+
+can't find mailbox ops error mesage -- coder only compress.c
+
+./configure --help what's enabled by default?  *clearer*
+
+debian devs are any platforms NOT using gcc/clang?
+	do they have FILE, LINE, FUNC?
+
+categorise all messages in code
+	info, warning, error, question
+which imply user to do: nothing, be informed, worry, query user
+errors should be clear whose fault
+user: e.g. type something invalid
+config: file invalid / missing
+code: internal error, missing ops
+separate what user cannot do vs MAY not doc
+
+irc set welcome message with URLs
+test iwyi - include what you use
+hcache-lmdb drop fprintf -> mutt_error / dprint
+
+release 1.7.2 just beore next neo release
+gahr exit 1 on missing hcache in configure
+testing hcache speeds
+	use ${read|write}_inc in rc
+functions.h attach-news-messages #ifdef NNTP!
+"source" command relative to $cwd or previous file
