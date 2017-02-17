@@ -212,6 +212,8 @@ make sure travis builds ALL docs (and validates)
 need to update travis build scripts
 	neomutt -> master
 
+for mutt - test docs, po, install, dist too
+
 --------------------------------------------------------------------------------
 
 At the moment, we use travis to build our code. But travis runs at the moment

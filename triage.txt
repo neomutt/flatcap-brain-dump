@@ -36,3 +36,19 @@ try to repeat the problem
 
 check old/quiet issues -- still relevant
 
+assigned person (inactivity)
+	after 2 weeks ask them
+	after 4 weeks un-assign them
+	email
+
+only one assignment at a time, or 2?
+
+use project to keep track?
+
+de-dupe
+add questions to keep things moving
+
+respond in 1 day
+	tags + followup question
+	tidy
+

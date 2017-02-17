@@ -3298,3 +3298,81 @@ testing hcache speeds
 	use ${read|write}_inc in rc
 functions.h attach-news-messages #ifdef NNTP!
 "source" command relative to $cwd or previous file
+
+pre-reply hook -- takes original email and formats it however
+or
+pre-sent hook, filter before send?
+why bother?  should be done in editor?
+
+nntp on MY server - 3 groups
+	user ml
+	devel ml
+	github issues
+what about:
+	mutt user ml
+	mutt dev ml
+
+doc fmemopen bug & update feature page
+find markdown code theme that I like
+
+style guide missing:
+	if (x = fn() == 0)
+
+review describe with pictures the three github merge options
+
+tagged initialisers -> coding standard
+variable length arrays -> are they safe?
+
+rebuild all bin-extra mutt/neomutt without DOTLOCK
+
+add working NO dotlock option to configure options
+check nntp for updates
+release - link to travis/coverity
+muttrc linter corrent, or comment out?
+add all reviewers to coverity
+base64 3 byte work chunks -- bigger?
+
+mutt google map of devs
+	lettered for maintainers
+	dot for others?
+
+merging explain to newbies about squashing
+
+flowchart for sending an email, showing:
+	screens,
+	<functions>
+	hooks
+	include signing
+	postpone
+	screenshots (text)
+
+drop PATCHES or at least abbreviate it greatly
+	alter script to allow missing file
+
+drop regex.c (after reformatting phase?)
+
+style prototypes need arg *names*
+style p = alloc(sizeof (*p), )
+squash or not - consider need to revert 1 piece
+style: x = y = value?
+~Y docs match label missing?
+clang format CPP11 braces option
+
+pager colour filter start/stop regex + lua script?
+what does it insert?  or does it call back to get mutt to highlight?
+script is stateful
+
+style: use mutt_*, safe_*, check_sec.sh
+
+clang format, drop align=
+
+irc notes: assume humour before anger/offence
+
+conceallevel (for pager/index)
+	0 off
+	1 conceal
+	2 conceal and squash
+for index, 1 list "there are 'n' concealed threads
+
+link to OS *guide*
+
