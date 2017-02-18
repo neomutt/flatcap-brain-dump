@@ -1,0 +1,30 @@
+cron.txt -- things to be checked periodically
+
+check tags on all repos
+
+(locally) to fetch github into neomutt.git
+
+mutt cron to update gpg keys on website
+
+check mutt vim syntax file for updates
+
+autogen
+	list of rpms
+	list of branches
+	gh api
+		list creator, date, name
+	#include markdown table
+	link to readme if it exists
+	link to repo, owner, list description
+	put script in /_cron
+	autocommit
+		push lists changes, e.g.
+		+repo X
+		-branch Y
+	combine all cron scripts into 1 push
+
+cron milestone?
+	how would it be populated?
+
+check docs on website
+

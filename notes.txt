@@ -1139,8 +1139,6 @@ server script to update from hg
 	then update and check ids
 	merge, push and travis
 
-cron (locally) to fetch github into neomutt.git
-
 report-neo-bug.sh?
 	show os
 	build options
@@ -1898,7 +1896,6 @@ nntp sync and update for Vsevolod
 vim-like hls option: persistant across emails
 
 transfer gpg keys from flatcap to mutt
-	mutt cron to update them
 
 pager -- sidebar gets updated but not status line / term header
 
@@ -2713,9 +2710,6 @@ each web dir, have _source.txt
 	details origin of page data
 	scripts for generating
 
-cron task:
-	check mutt vim syntax file for updates
-
 neomutt -> master?
 	now that I'm not maintaining multiple neo branches
 
@@ -2857,21 +2851,6 @@ complete review of string handling in mutt
 	matching
 	etc
 	see which, if any, gnu-only string functions are useful
-
-cron autogen
-	list of rpms
-	list of branches
-	gh api
-		list creator, date, name
-	#include markdown table
-	link to readme if it exists
-	link to repo, owner, list description
-	put script in /_cron
-	autocommit
-		push lists changes, e.g.
-		+repo X
-		-branch Y
-	combine all cron scripts into 1 push
 
 web translate
 	have anchors for each language
@@ -3053,9 +3032,6 @@ mailmap ∀ contributors
 cadence
 	3 weeks features
 	1 week bug-fixing
-
-cron milestone?
-	how would it be populated?
 
 update vim-syntax
 
@@ -3443,6 +3419,4 @@ useful list, add:
 
 github peer review bot:
 	https://github.com/felixrieseberg/peer-review-bot
-
-cron: check tags on all repos
 
