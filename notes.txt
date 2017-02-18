@@ -3352,7 +3352,7 @@ drop PATCHES or at least abbreviate it greatly
 drop regex.c (after reformatting phase?)
 
 style prototypes need arg *names*
-style p = alloc(sizeof (*p), )
+style p = alloc(sizeof (*p)) (not sizeof(TYPE))
 squash or not - consider need to revert 1 piece
 style: x = y = value?
 ~Y docs match label missing?
@@ -3372,7 +3372,66 @@ conceallevel (for pager/index)
 	0 off
 	1 conceal
 	2 conceal and squash
-for index, 1 list "there are 'n' concealed threads
+for index, 1 list "there are 'n' concealed threads"
 
 link to OS *guide*
+
+filter to turn :+1: into emoji character
+
+issues: shooting for zero
+	try to get down to zero issues/PRs
+	what about long discussions?
+	what about unlikely enhancement requests
+
+guyzmo's merge/review notes
+
+coverity gahr CID (coverity)
+
+merge lua -- need docs
+
+doc how to become a reviewer
+
+check gahr's imap changes
+
+update travis for new upstream hcache backends
+
+example notes for a PR
+	don't walk away
+	you need to work with us to get it merged
+example notes for an issue
+	need to be around to help us find the problem
+	might need to test the solution
+
+readme shorten to just maintainers?
+	link to full list of authors
+
+imap flags summary
+
+code of conduct -- irc flatcap?
+
+issues:
+	status blue-sky?
+	status (needs) review?
+
+release cadence
+	3 weeks for features?
+	1 week for bugs
+
+comments = docs, translations too - in either release
+
+regression tag => bisect done
+
+all PRs to in-progress?
+
+issues for upstream sync - share the lot
+
+release branch - queue up changes for release, e.g.
+	ChangeLog.neomutt
+	configure.ac
+	README.neomutt
+
+save backlog of messages in a deleted file!
+
+sync mutt/default every release
+ugly, but keeps tree in check & gh status
 
