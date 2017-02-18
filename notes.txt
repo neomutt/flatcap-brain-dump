@@ -3444,3 +3444,5 @@ useful list, add:
 github peer review bot:
 	https://github.com/felixrieseberg/peer-review-bot
 
+cron: check tags on all repos
+
