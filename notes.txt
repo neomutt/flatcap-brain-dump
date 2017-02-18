@@ -3435,3 +3435,5 @@ save backlog of messages in a deleted file!
 sync mutt/default every release
 ugly, but keeps tree in check & gh status
 
+work towards: no commit without an issue
+
