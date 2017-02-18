@@ -3437,3 +3437,5 @@ ugly, but keeps tree in check & gh status
 
 work towards: no commit without an issue
 
+useful list, add: https://pypi.python.org/pypi/mutt-addressbook
+
