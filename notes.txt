@@ -3420,3 +3420,8 @@ useful list, add:
 github peer review bot:
 	https://github.com/felixrieseberg/peer-review-bot
 
+maintain a "delayed branch"
+	merge now
+	close issue
+	save time?
+
