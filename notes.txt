@@ -3435,3 +3435,6 @@ reorganise docs
 	strip init.h of its docs
 	get default values from "mutt -D" instead
 
+crypt-gpgme.c
+	drop hexdigitp, digitp
+
