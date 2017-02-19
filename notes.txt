@@ -3425,3 +3425,13 @@ maintain a "delayed branch"
 	close issue
 	save time?
 
+reorganise docs
+	migrate them all to docbook (or markdown?)
+		if markdown, how good will the html look?
+		what about conditional docs?
+			how do we only include that which we compile?
+			too hard?
+	generate man pages from these sources
+	strip init.h of its docs
+	get default values from "mutt -D" instead
+
