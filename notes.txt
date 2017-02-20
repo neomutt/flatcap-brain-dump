@@ -3431,14 +3431,7 @@ reorganise docs
 	strip init.h of its docs
 	get default values from "mutt -D" instead
 
-crypt-gpgme.c
-	drop hexdigitp, digitp
-
 github/irc bot.  notify on:
 	@neomutt/reviewers Please Review -> "guyzmo asked for review of #298 (Desc)"
 	"flatcap approved #298 (Desc)"
-
-notmuch example
-# set index_format='4C %S %[%y.%m.%d] %-18.18n %?GU?%GU& ? %?GR?%GR& ? %?GI?%GI& ? %s'
-	missing % before 4C
 
