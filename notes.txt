@@ -3439,3 +3439,5 @@ style labels at column 0
 
 when I reformat the source, run tidy on manual.xml too
 
+test all the sample muttrc files -- check there aren't any old commands/variables
+
