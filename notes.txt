@@ -3441,3 +3441,5 @@ when I reformat the source, run tidy on manual.xml too
 
 test all the sample muttrc files -- check there aren't any old commands/variables
 
+Alok missing from README.neomutt
+
