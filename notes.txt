@@ -3437,3 +3437,5 @@ github/irc bot.  notify on:
 
 style labels at column 0
 
+when I reformat the source, run tidy on manual.xml too
+
