@@ -73,4 +73,3 @@ Make all lists derive from
 	or
 	DLIST *next, *prev
 
-	

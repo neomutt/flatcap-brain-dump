@@ -1422,6 +1422,7 @@ one-direction script -- sync nightmare?
 sync notmuch -> X-Label's?  get out of sync
 
 check distros are installing all docs, contrib, etc
+	i.e. is "make install" correct
 
 mvprintw unused?
 
@@ -1980,6 +1981,7 @@ development bottleneck
 
 script for "build-all-git-tags"
 	publish
+	need to kill dotlock
 
 project jobs:
 	release-maker
@@ -3059,7 +3061,7 @@ create list of current scripts shell/perl
 	list -> website -- link to repos
 	#!/bin/bash ->  sh
 
-reweind mutt/neo
+rewind mutt/neo
 	reformat neo
 	try to replay mutt's changes
 	or just one big commit?
@@ -3188,6 +3190,8 @@ remove snprintf, etc from the patch to reduce its size?
 safe macros enhancement request: https://github.com/neomutt/neomutt/issues/69#issuecomment-230442101
 	zmo suggests: emulate the augroup feature of vim :)
 	macros specific to a folder, or notmuch, etc
+	have an "account" function that limits to one account
+	account "imap://..." set sidebar_visible = yes
 
 Old notes:
 	Emails
@@ -3357,7 +3361,12 @@ filter to turn :+1: into emoji character
 issues: shooting for zero
 	try to get down to zero issues/PRs
 	what about long discussions?
+		close them
+			two weeks after last comment
+			four?
 	what about unlikely enhancement requests
+		doc on website (with links)
+		close them
 
 guyzmo's merge/review notes
 
@@ -3412,6 +3421,10 @@ sync mutt/default every release
 ugly, but keeps tree in check & gh status
 
 work towards: no commit without an issue
+	A reviewer's "OK" for an idea can come from:
+		issue
+		IRC
+		mailing list
 
 github peer review bot:
 	https://github.com/felixrieseberg/peer-review-bot
@@ -3427,6 +3440,7 @@ reorganise docs
 		what about conditional docs?
 			how do we only include that which we compile?
 			too hard?
+			WHICH sections are currently conditional?
 	generate man pages from these sources
 	strip init.h of its docs
 	get default values from "mutt -D" instead
@@ -3442,4 +3456,58 @@ when I reformat the source, run tidy on manual.xml too
 test all the sample muttrc files -- check there aren't any old commands/variables
 
 Alok missing from README.neomutt
+
+account object that lives above BUFFYs
+	emails
+		maildir
+		mbox
+		imap
+		pop
+	notmuch
+	nntp
+can be visible or hidden
+
+investigate:
+	global config
+	list all the IMAP variables
+	list all their uses
+
+lua styling/colour callback
+	c functions: hprintf(), push_attr(), pop_attr()
+	shared definitions: C_FG_RED, C_FG_BLUE, A_UNDERLINE, A_REVERSE, etc
+
+	c	lua_style_line(HANDLE, DATA[])
+	lua	hprintf(HANDLE, "hello ")
+		push_attr(HANDLE, C_FG_RED)
+		push_attr(HANDLE, A_REVERSE)
+		hprintf(HANDLE, "world")
+		pop_attr(HANDLE)
+		pop_attr(HANDLE)
+
+useful: swaks
+	smtp tester
+
+distro:
+	adopt update of aur-neomutt
+	ask shioyama about feature/bug-fix options
+
+move the guide to readthedocs.org?
+
+.gitattributes
+	ignore changes to .travis.yml
+	from merging branches
+	hmm... but it'll be in all branches
+	does this make sense?
+
+irc notes - star us on Github
+
+bot command
+	/notice botty doc $folder
+		privately messages botty
+	botty replies in-channel
+
+email devs
+	collect your list of trivial fixes
+	e.g. regex vs regexp
+	generate list of things to investigate
 

@@ -25,6 +25,8 @@ triager should edit out the dross
 fix links, light formatting?
 
 thank the reporter
+	can you help us by answering...
+	point them to list of questions / actions
 
 try to repeat the problem
 	sample config
@@ -51,4 +53,28 @@ add questions to keep things moving
 respond in 1 day
 	tags + followup question
 	tidy
+
+when moved to in-progress is must be assigned to someone
+
+triage bot to auto-close after x days of inactivity
+
+categories:
+	new		 - unread/no labels (column doesn't need to exist)
+	waiting + op	 - need info from original poster
+	discussion	 - needs discussing (time limited)
+		+ decide - needs decision from reviewers
+	blue-sky	 - far-fetched (column might not exist)
+	backlog		 - waiting for action (ordered by reviewers)
+	in-progess	 - being worked on
+	ready		 - needs review
+	done		 - waiting for release
+plan all routes for questions, bugs, enhancements
+
+triage scripts that look for
+	issues with no comments for X weeks
+
+what lingers?
+	bugs we can't reproduce
+	discusssions that won't end
+	enhancements we won't implement
 
