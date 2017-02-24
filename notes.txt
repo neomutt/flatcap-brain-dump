@@ -3511,3 +3511,5 @@ email devs
 	e.g. regex vs regexp
 	generate list of things to investigate
 
+script to follow all the projects members
+
