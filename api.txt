@@ -1,0 +1,34 @@
+mutt
+	string get_version()
+	string get_config_option()
+	list   get_account_list()
+
+account (maildir, imap, notmuch, nntp, etc)
+	string get_host()
+	string get_user()
+	string get_password()
+	list   get_folder_list()
+
+folder (maildir=directory, imap=folder, notmuch=vfolder)
+	string get_path()
+	folder get_parent()
+	list   get_children_list()
+
+email
+	string get_from()
+	string get_to()
+	string get_subject()
+	block  get_header()
+	block  get_body()
+	list   get_mime_list()
+
+mime
+	string get_type()
+	string get_name()
+	block  get_body()
+
+block
+	string get_raw_block()
+	num    get_num_lines()
+	string get_line()
+
