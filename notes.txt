@@ -3520,3 +3520,5 @@ check my tidying updates to po/*.po in guiniol's updates
 
 sync lua-demo to latest lua configure.ac, etc
 
+release templates -> github
+
