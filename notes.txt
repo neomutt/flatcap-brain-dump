@@ -3518,3 +3518,5 @@ release: tag website (for ref purposes)
 check my tidying updates to po/*.po in guiniol's updates
 	e.g. headers, utf-8
 
+sync lua-demo to latest lua configure.ac, etc
+
