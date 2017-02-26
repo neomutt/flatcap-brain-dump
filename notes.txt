@@ -10,15 +10,6 @@ make AUTHORS -- which repo did this?
 Ultrix dead '95
 	ask debian devs for list of working arches
 
-init all vars
-lots of static fns → _fn_name?
-^L in source
-Doxygen comments
-
-strict compilation flags; c++ compiler?
-unnamed args in function prototypes
-spurious \ line endings (in middle of if!)
-
 ────────────────────────────────────────────────────────────────────────────────
 
 Notifications
@@ -78,36 +69,10 @@ need attention
 	OPTSIDEBARSORT
 		sorts by real path, not visible name
 
-check for unused #include
-sort includes <>, ""
-
-sort init.h, globals.h, etc
-
-kill one-line if's:
-	if (adsfa) command;
-
-~50 lines of commented out source
-	/* ... ; */
-
 possible to fix sidebar sort order to respect hierarchy/indentation?
 
 sidebar_width = auto (size to contents)
 	would need to parse and format all strings ahead of drawing divider
-
-cleanup:
-	docs - in code and html
-	comments
-	whitespace
-		unfold lines
-		indent
-		rebracket
-		refold
-	sort options in
-		init.h
-		globals.h
-		functions.h
-		switches
-	doc switch drop-throughs
 
 sorting
 	if displaying full paths:
@@ -124,10 +89,6 @@ New only -- include structure (empty dirs) to keep hierarchy
 trim trailing slash from mailboxes, folder
 	shouldn't be displayed
 
-check all headers #include requisites for compilation
-
-while(1), rather than FOREVER
-
 sb_set_curbuffy
 sb_set_buffystats
 	should probably both return BOOL on success/failure
@@ -138,9 +99,8 @@ sb_draw should return success of drawing
 quiet config option -- don't whine about unknown config options
 	or quiet command line option
 
-sensible retvals on functions
-
 ────────────────────────────────────────────────────────────────────────────────
+
 missing patches
 	lightweight
 
@@ -380,11 +340,9 @@ break up and rewrite mutt docs
 	separate mutt-doc repo
 	translate sections (default to english if missing)
 
-code: switch default must be at end
 mutt folder/dir browser
 	".."/open should start with current folder/dir selected
 	display full path at top of screen/statusbar/titlebar
-BOOL -> enum?  what about the bitfields?
 
 git
 	document git attributes for PATCHES
@@ -402,14 +360,6 @@ compare conditional builds
 	Makefile.am
 	compress.c always compiled in?
 	nntp.c always compiled in?
-
-regex/regexp pick one in code/docs
-	manual.xml
-		regexp 65
-		regex 7
-	*.[ch]
-		regexp 48
-		regex 25
 
 Generated muttrc is an encyclopaedia
 Supplied  muttrc is a guide for dummies
@@ -474,12 +424,6 @@ minors - comments for any full functions
 
 notmuch - fix dependencies
 check minors for () -> (void)
-
-should static functions be called mutt_*?
-check minor new functions are static
-
-tidy - check files for leading/trailing whitespace at ends of file
-	check for redundant empty lines
 
 community script check for update
 	date community docs?
@@ -597,17 +541,6 @@ what does Sidebar *really* need?
 
 XXX in new features
 
-lots of preprocessor symbols that use #if on undefined symbols
-	warning: "DEBUG" is not defined [-Wundef]
-	warning: "HAVE_DB4" is not defined [-Wundef]
-	warning: "HAVE_GDBM" is not defined [-Wundef]
-	warning: "HAVE_QDBM" is not defined [-Wundef]
-	warning: "SYS_SIGLIST_DECLARED" is not defined [-Wundef]
-	warning: "USE_UNLOCKED_IO" is not defined [-Wundef]
-	warning: "_STRING_ARCH_unaligned" is not defined [-Wundef]
-	warning: "__alpha" is not defined [-Wundef]
-	warning: "__sun__" is not defined [-Wundef]
-
 find untranslated strings, i.e. missing _()
 	mutt -v output is missing some
 
@@ -644,37 +577,6 @@ diagram
 		what about NNTP?  Compress?
 	label merges with [M]?
 
-macros() should be MACROS()
-
-smime.c:
-	variable set to NULL after safe_fclose
-	safe_fclose (&smimeout);
-	smimeout = NULL;
-
-check everyone's using safe_fopen(), safe_fclose(), etc
-
-rename safe_X(**ptr) to X_null?
-	safe_free -> free_null (**ptr)
-		-> free_n ()
-		-> n_free ()
-		-> free_and_null ()
-
-change prototypes for the X_and_NULL macros
-	free() doesn't take a double pointer, so
-	FREE() shouldn't
-	rule of least surprise
-
-try to reduce the scope of all variables
-	too many variables are declared at the start of a function
-	when they only get used in an if/for/while loop
-
-#define mutt_new_header() safe_calloc (1, sizeof (HEADER))
-	et al ought to cast their returns to the correct type
-
-lots of pointers being assiged to 0
-	unsigned char *pending_exact = 0;
-        should be NULL
-
 kdave - limit-current-thread
 	alt-l (show limit) should respond "limit thread"
 	is "limit ." the same as "limit all" -- YES
@@ -694,8 +596,6 @@ save email doesn't respect the umask
 vimlocal - check .git dir -- safe from git clean!
 
 merge commits contains: "Closes #1234" to perform auto-close pull-request/issue
-wiki coding style:
-	indent, {}s, ()s, function defs, examples of correct
 
 integrate patchlist into new version of ifdef checking
 doc travis and coverity options
@@ -1130,8 +1030,6 @@ issue colour for VOTE or coopt QUESTION?
 
 link kz smime issue to neomutt
 
-clang all my code + fix warnings
-
 server script to update from hg
 	get latest id
 	hg id -i --rev stable
@@ -1423,8 +1321,6 @@ sync notmuch -> X-Label's?  get out of sync
 
 check distros are installing all docs, contrib, etc
 	i.e. is "make install" correct
-
-mvprintw unused?
 
 gmail patches -> devel
 	need testers
@@ -2222,8 +2118,6 @@ docs - nested if
 
 eradicate notmuch's use of strndup, strnlen
 
-purge all macros from neomutt?
-
 new two-letter expandos
 	initial letter picked with no clashes anywhere
 	=> 26 more expandos to use
@@ -2958,8 +2852,6 @@ release:
 
 leave-folder hook?
 
-sizeof(x) vs sizeof x
-
 list Sven's unused letters to the main guide
 
 release branch to queue up changes for the release commit
@@ -3001,8 +2893,6 @@ two open milestones (next-feature-release, next-bug-fix-release)
 
 add abort-mailbox to nntp, etc
 	raise issue
-
-puts() and _() missing ()s
 
 summary page for current server settings, e.g.
 	Host: gmail.com
@@ -3151,9 +3041,6 @@ release criteria for a new feature
 	screenshots of new features
 		text/html screenshots if possible
 
-drop #if HAVE_CONFIG_H / #endif around #include "config.h"
-	it's a compulsory part of our build
-
 Sync any upstream changes to the hcache (lmdb)
 
 create a fake git user to do the mass-reformatting
@@ -3181,9 +3068,6 @@ mailbox =wibble
 
 notmuch:
 	nm_get_all_tags() is called twice (once to count, then once to build the list)
-
-mutt_new_header() -> safe_*
-	because it can't fail?
 
 remove snprintf, etc from the patch to reduce its size?
 
@@ -3272,7 +3156,7 @@ irc set welcome message with URLs
 test iwyi - include what you use
 hcache-lmdb drop fprintf -> mutt_error / dprint
 
-release 1.7.2 just beore next neo release
+release 1.7.2 just before next neo release
 gahr exit 1 on missing hcache in configure
 testing hcache speeds
 	use ${read|write}_inc in rc
@@ -3328,8 +3212,6 @@ flowchart for sending an email, showing:
 
 drop PATCHES or at least abbreviate it greatly
 	alter script to allow missing file
-
-drop regex.c (after reformatting phase?)
 
 style prototypes need arg *names*
 style p = alloc(sizeof (*p)) (not sizeof(TYPE))
@@ -3519,6 +3401,4 @@ check my tidying updates to po/*.po in guiniol's updates
 	e.g. headers, utf-8
 
 sync lua-demo to latest lua configure.ac, etc
-
-release templates -> github
 

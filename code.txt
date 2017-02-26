@@ -73,3 +73,125 @@ Make all lists derive from
 	or
 	DLIST *next, *prev
 
+init all vars
+lots of static fns → _fn_name?
+^L in source
+Doxygen comments
+
+strict compilation flags; c++ compiler?
+unnamed args in function prototypes
+spurious \ line endings (in middle of if!)
+
+check for unused #include
+sort includes <>, ""
+
+sort init.h, globals.h, etc
+
+kill one-line if's:
+	if (adsfa) command;
+
+~50 lines of commented out source
+	/* ... ; */
+
+cleanup:
+	docs - in code and html
+	comments
+	whitespace
+		unfold lines
+		indent
+		rebracket
+		refold
+	sort options in
+		init.h
+		globals.h
+		functions.h
+		switches
+	doc switch drop-throughs
+
+while(1), rather than FOREVER
+
+check all headers #include requisites for compilation
+
+sensible retvals on functions
+
+code: switch default must be at end
+
+BOOL -> enum?  what about the bitfields?
+
+regex/regexp pick one in code/docs
+	manual.xml
+		regexp 65
+		regex 7
+	*.[ch]
+		regexp 48
+		regex 25
+
+should static functions be called mutt_*?
+check minor new functions are static
+
+tidy - check files for leading/trailing whitespace at ends of file
+	check for redundant empty lines
+
+lots of preprocessor symbols that use #if on undefined symbols
+	warning: "DEBUG" is not defined [-Wundef]
+	warning: "HAVE_DB4" is not defined [-Wundef]
+	warning: "HAVE_GDBM" is not defined [-Wundef]
+	warning: "HAVE_QDBM" is not defined [-Wundef]
+	warning: "SYS_SIGLIST_DECLARED" is not defined [-Wundef]
+	warning: "USE_UNLOCKED_IO" is not defined [-Wundef]
+	warning: "_STRING_ARCH_unaligned" is not defined [-Wundef]
+	warning: "__alpha" is not defined [-Wundef]
+	warning: "__sun__" is not defined [-Wundef]
+
+macros() should be MACROS()
+
+smime.c:
+	variable set to NULL after safe_fclose
+	safe_fclose (&smimeout);
+	smimeout = NULL;
+
+check everyone's using safe_fopen(), safe_fclose(), etc
+
+rename safe_X(**ptr) to X_null?
+	safe_free -> free_null (**ptr)
+		-> free_n ()
+		-> n_free ()
+		-> free_and_null ()
+
+change prototypes for the X_and_NULL macros
+	free() doesn't take a double pointer, so
+	FREE() shouldn't
+	rule of least surprise
+
+try to reduce the scope of all variables
+	too many variables are declared at the start of a function
+	when they only get used in an if/for/while loop
+
+#define mutt_new_header() safe_calloc (1, sizeof (HEADER))
+	et al ought to cast their returns to the correct type
+
+lots of pointers being assiged to 0
+	unsigned char *pending_exact = 0;
+        should be NULL
+
+wiki coding style:
+	indent, {}s, ()s, function defs, examples of correct
+
+clang all my code + fix warnings
+
+mvprintw unused?
+
+purge all macros from neomutt?
+
+sizeof(x) vs sizeof x
+
+puts() and _() missing ()s
+
+drop #if HAVE_CONFIG_H / #endif around #include "config.h"
+	it's a compulsory part of our build
+
+mutt_new_header() -> safe_*
+	because it can't fail?
+
+drop regex.c (after reformatting phase?)
+
