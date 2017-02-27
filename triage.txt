@@ -78,3 +78,5 @@ what lingers?
 	discusssions that won't end
 	enhancements we won't implement
 
+integrate issues + mutt + ghi -> labels, saved-replies, etc
+

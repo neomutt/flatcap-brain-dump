@@ -195,3 +195,16 @@ mutt_new_header() -> safe_*
 
 drop regex.c (after reformatting phase?)
 
+#defines → enums?
+
+check minors for () -> (void)
+
+find untranslated strings, i.e. missing _()
+	mutt -v output is missing some
+
+rename variables to be sensible
+
+buf vs buff
+
+test iwyi - include what you use
+
