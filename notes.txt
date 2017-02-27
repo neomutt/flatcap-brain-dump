@@ -2703,3 +2703,13 @@ sync lua-demo to latest lua configure.ac, etc
 
 add template email for newbies getting credit
 
+api
+	functions to query aliases
+
+webpage: new status
+	wip-help -- "Work in progress - Please help (instructions)
+
+po
+	don't need line numbers for git
+	might need them for poeditor
+
