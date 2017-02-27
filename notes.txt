@@ -1561,17 +1561,6 @@ fix notmuch syntax & announce
 
 nested-if script
 
-summary pages:
-	:about
-	translatable comments
-	closes any existing summary page / help
-	:tips
-		mbox in contrib/
-		nntp (if available)
-		links to web if not
-	:credits
-	status line shows list of summary pages
-
 add cursor to pager (on/off)
 	=> can highlight text
 	can click links
@@ -1917,9 +1906,6 @@ use google translate for rough drafts of neo po files?
 	mark all translations as fuzzy
 	useful starting place?
 
-summary pages -- list of pattern modifiers
-	:patterns
-
 settings for indent, uncrustify, clang-format
 	for current neo code
 	for future  neo code
@@ -2050,19 +2036,6 @@ mailmap for all neomutt contributors
 stable branches for LTS releases?
 	Why?  Mutt doesn't
 
-SIGHUP/SIGUSR1 to force an update?
-
-SINWINCH hook
-	resize-hook
-	takes conditions param, e.g.
-		width > 80
-		width = 80
-		height < 10
-	needs to be run on startup, too
-	idea from labelette in #mutt
-	combine with ability to rearrange windows, e.g.
-		horizonal layout: sidebar : index : pager
-
 annouce GPLv2 usage for project
 	make it clear on the (devel) website
 
@@ -2122,6 +2095,8 @@ collect useful tools in neomutt org:
 	offlineimap, mbsync
 	procmail, maildrop, sieve
 	etc
+	for notmuch sync accross machines, I have found this: http://www.muchsync.org/muchsync.html
+	swaks: smtp tester
 
 inotify ∀ local mailboxes
 	2016-11-16 12:13 <royger>
@@ -2202,10 +2177,6 @@ po.vim
 	set symbols
 
 xgettext notes, L10N, _(), N_()
-
-SIGHUP -- re-read config -- need to save command line
-
-HUP => list of cfg files -> summary page
 
 add myself to version.c copyright, mutt -v
 
@@ -2291,10 +2262,6 @@ two open milestones (next-feature-release, next-bug-fix-release)
 add abort-mailbox to nntp, etc
 	raise issue
 
-summary page for current server settings, e.g.
-	Host: gmail.com
-	Username: rich
-
 magi-sort
 	regex matching [patch] part -> sort alphabetically by that part
 	emails from same author
@@ -2312,9 +2279,6 @@ mutt IPA /mʌt/
 newbie - recommend setting 'set user_agent = yes'
 
 update vim-syntax
-
-add to useful list
-	for notmuch sync accross machines, I have found this: http://www.muchsync.org/muchsync.html
 
 create list of current scripts shell/perl
 	build processors
@@ -2646,9 +2610,6 @@ lua styling/colour callback
 		hprintf(HANDLE, "world")
 		pop_attr(HANDLE)
 		pop_attr(HANDLE)
-
-useful: swaks
-	smtp tester
 
 move the guide to readthedocs.org?
 

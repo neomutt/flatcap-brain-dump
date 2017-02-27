@@ -1,0 +1,17 @@
+:about
+translatable comments
+closes any existing summary page / help
+:tips
+	mbox in contrib/
+	nntp (if available)
+	links to web if not
+:credits
+status line shows list of summary pages
+
+list of pattern modifiers
+	:patterns
+
+current server settings, e.g.
+	Host: gmail.com
+	Username: rich
+
