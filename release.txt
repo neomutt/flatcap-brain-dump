@@ -1,0 +1,23 @@
+
+always send release message to neo mailing lists
+	using new version "User Agent:"
+
+on release update po/*
+	reduce number of fuzzy translations?
+
+push to coverity, review changes
+
+update vim syntax with new variables, etc
+./check_sec.sh
+
+update my alias list with all contributors
+
+add: /cc @neomutt/downstream-packagers
+
+link to travis/coverity
+
+sync mutt/default every release
+ugly, but keeps tree in check & gh status
+
+tag website (for ref purposes)
+

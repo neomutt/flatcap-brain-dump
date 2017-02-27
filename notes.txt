@@ -789,11 +789,6 @@ use Gutenberg texts for sample emails
         replace all message-ids (but keep links)
         strip out most headers
 
-Milestones:
-        use for next release
-        => lots of smaller issues
-        list (next) Milestone (at least) on web front page / devel page
-
 add tutorials (like sidebar intro) to the website
 	redlink some empty ones (or partials)
 	ask for translations?
@@ -1413,9 +1408,6 @@ notmuch tag-completion:
 	when using -XYZ<tab>
 	only match tags that exist on the selected mail(s)
 
-release: always sent release message to neo mailing lists
-	using new version "User Agent:"
-
 modularise header caching/dbs
 	=> needn't use same cache type
 	for header / message cache
@@ -1709,9 +1701,6 @@ issue labels
 	need testing
 	waiting for OP testing
 	have patch
-
-on release update po/*
-	reduce number of fuzzy translations?
 
 newbie notes
 	PR vs branch
@@ -2212,8 +2201,6 @@ po.vim
 		dots
 	set symbols
 
-release -- push to coverity, review changes
-
 xgettext notes, L10N, _(), N_()
 
 SIGHUP -- re-read config -- need to save command line
@@ -2268,15 +2255,15 @@ coverity - triage all issues to "seen" so new issues are obvious
 
 make clean isn't good enough?
 
-release:
-	update vim syntax with new variables, etc
-	./check_sec.sh
-
 leave-folder hook?
 
 list Sven's unused letters to the main guide
 
-release branch to queue up changes for the release commit
+release branch
+	no .travis.yml (no building)
+	ChangeLog.neomutt
+	configure.ac
+	README.neomutt
 
 notmuch changes
 is !e check nec -- safe_strdup can't fail
@@ -2288,17 +2275,9 @@ is !e check nec -- safe_strdup can't fail
 translate: hooks in code to log most translated strings
 	help translators prioritise their work
 
-release branch (to save changes to ChangeLog, etc)
-	no .travis.yml (no building)
-
-release - update my alias list with all contributors
-
 store translation and coverity travis.yml files in contrib?
 
 git blame all source/build files to see %age authorship
-
-release -- add:
-	/cc @neomutt/downstream-packagers
 
 #define the mailbox -2 abort, -1 error
 
@@ -2517,7 +2496,6 @@ rebuild all bin-extra mutt/neomutt without DOTLOCK
 
 add working NO dotlock option to configure options
 check nntp for updates
-release - link to travis/coverity
 muttrc linter corrent, or comment out?
 add all reviewers to coverity
 base64 3 byte work chunks -- bigger?
@@ -2610,15 +2588,7 @@ all PRs to in-progress?
 
 issues for upstream sync - share the lot
 
-release branch - queue up changes for release, e.g.
-	ChangeLog.neomutt
-	configure.ac
-	README.neomutt
-
 save backlog of messages in a deleted file!
-
-sync mutt/default every release
-ugly, but keeps tree in check & gh status
 
 work towards: no commit without an issue
 	A reviewer's "OK" for an idea can come from:
@@ -2696,8 +2666,6 @@ bot command
 	botty replies in-channel
 
 script to follow all the projects members
-
-release: tag website (for ref purposes)
 
 sync lua-demo to latest lua configure.ac, etc
 
