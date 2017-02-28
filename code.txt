@@ -1,3 +1,39 @@
+delete trailing whitespace
+squash redundant vertical whitespace
+delete ^L in source
+delete spurious \ in middle of lines
+tabs in strings (none)
+clang-format
+	kill one-line if's
+// -> /* */
+regexp -> regex
+declare all local functions "static"
+	standard name for statics?
+	drop mutt_ prefix
+bracket logic
+functions - name all parameters
+functions - move static before public
+	reduce / remove need for forward declarations
+initialise all pointers
+remove #if 0 (older than 1 year)
+remove commented source (older than 1 year)
+iwyu on all source files
+split if (x = y() == z)
+variables rename reserved words (new, this, etc)
+sort options in: init.h, globals.h, functions.h, switches
+doc switch drop-throughs
+while(1), rather than FOREVER
+use #ifdef for all symbols
+assigned / test pointers to NULL (not 0)
+#include with "" not <> for mutt headers
+drop #if HAVE_CONFIG_H
+drop regex.[ch]
+any functions() -> (void)
+rename buff to buf
+update intl
+
+--------------------------------------------------------------------------------
+
 Comments
 	// → /* ... */
 	fix block comments too
@@ -118,7 +154,7 @@ code: switch default must be at end
 
 BOOL -> enum?  what about the bitfields?
 
-regex/regexp pick one in code/docs
+regex/regexp pick one in code/docs (gnu has dropped the 'p')
 	manual.xml
 		regexp 65
 		regex 7
@@ -187,6 +223,8 @@ sizeof(x) vs sizeof x
 
 puts() and _() missing ()s
 
+#include <hcache.h> should be ""
+
 drop #if HAVE_CONFIG_H / #endif around #include "config.h"
 	it's a compulsory part of our build
 
@@ -204,7 +242,7 @@ find untranslated strings, i.e. missing _()
 
 rename variables to be sensible
 
-buf vs buff
+buf (3092) vs buff (231)
 
 test iwyi - include what you use
 
