@@ -2642,3 +2642,5 @@ po
 	don't need line numbers for git
 	might need them for poeditor
 
+rhel7 neomutt doesn't install -- missing lmdb
+
