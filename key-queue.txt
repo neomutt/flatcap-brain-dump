@@ -1,0 +1,15 @@
+queue for keystrokes
+
+ring buffer
+
+add to buffer
+	keystrokes
+	push command
+	macros
+	bindings
+
+need vim-like no-remap option
+
+when should "<command>" be interpreted as a command
+rather than a bunch of chars?
+
