@@ -2378,16 +2378,6 @@ create a fake git user to do the mass-reformatting
 git map
 	read config for default remote
 
-style
-	If the name of a function is an action or an imperative command, the
-	function should return an error-code integer.  If the name is a
-	predicate, the function should return a "succeeded" boolean.
-
-style
-	ERR_PTR return mechanism
-	Typical examples would be functions that return pointers; they use NULL
-	or the ERR_PTR mechanism to report failure
-
 mailbox +/wibble
 mailbox =wibble
 	aren't equivalent, caused problems for squillis on irc 2017-02-10
@@ -2448,9 +2438,6 @@ what about:
 
 find markdown code theme that I like
 
-style guide missing:
-	if (x = fn() == 0)
-
 review describe with pictures the three github merge options
 
 tagged initialisers -> coding standard
@@ -2481,18 +2468,13 @@ flowchart for sending an email, showing:
 drop PATCHES or at least abbreviate it greatly
 	alter script to allow missing file
 
-style prototypes need arg *names*
-style p = alloc(sizeof (*p)) (not sizeof(TYPE))
 squash or not - consider need to revert 1 piece
-style: x = y = value?
 ~Y docs match label missing?
 clang format CPP11 braces option
 
 pager colour filter start/stop regex + lua script?
 what does it insert?  or does it call back to get mutt to highlight?
 script is stateful
-
-style: use mutt_*, safe_*, check_sec.sh
 
 clang format, drop align=
 
@@ -2577,8 +2559,6 @@ reorganise docs
 github/irc bot.  notify on:
 	@neomutt/reviewers Please Review -> "guyzmo asked for review of #298 (Desc)"
 	"flatcap approved #298 (Desc)"
-
-style labels at column 0
 
 when I reformat the source, run tidy on manual.xml too
 

@@ -248,3 +248,21 @@ buf (3092) vs buff (231)
 
 test iwyi - include what you use
 
+If the name of a function is an action or an imperative command, the
+function should return an error-code integer.  If the name is a
+predicate, the function should return a "succeeded" boolean.
+
+ERR_PTR return mechanism
+Typical examples would be functions that return pointers; they use NULL
+or the ERR_PTR mechanism to report failure
+
+guide missing:
+if (x = fn() == 0)
+
+prototypes need arg *names*
+p = alloc(sizeof (*p)) (not sizeof(TYPE))
+x = y = value?
+use mutt_*, safe_*, check_sec.sh
+
+labels at column 0
+
