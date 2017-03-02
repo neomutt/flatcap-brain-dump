@@ -4,7 +4,6 @@ delete ^L in source
 delete spurious \ in middle of lines
 tabs in strings (none)
 clang-format
-	kill one-line if's
 // -> /* */
 regexp -> regex
 declare all local functions "static"
@@ -30,8 +29,10 @@ drop #if HAVE_CONFIG_H
 drop regex.[ch]
 any functions() -> (void)
 rename buff to buf
+retval variable rc: 724 vs rv: 132
 update intl
 gcc printf function checks
+TRUE/FALSE → BOOL return [01]; 752 occurrences
 
 --------------------------------------------------------------------------------
 
