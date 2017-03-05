@@ -2626,3 +2626,5 @@ rhel7 neomutt doesn't install -- missing lmdb
 
 create muttrc that undoes everything that might be in /etc/Muttrc
 
+useful: extract_url.pl
+
