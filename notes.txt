@@ -2628,3 +2628,7 @@ create muttrc that undoes everything that might be in /etc/Muttrc
 
 useful: extract_url.pl
 
+when saving a file (being asked for input),
+	add a mechanism to expand a mutt variable
+	like vim's ^R
+
