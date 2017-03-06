@@ -2635,3 +2635,6 @@ when saving a file (being asked for input),
 release
 	post comment to aur package
 
+2017-03-06 #mutt
+	17:40 <parosen> "set -o vi" functionality in mutt?
+
