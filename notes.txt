@@ -2632,3 +2632,6 @@ when saving a file (being asked for input),
 	add a mechanism to expand a mutt variable
 	like vim's ^R
 
+release
+	post comment to aur package
+
