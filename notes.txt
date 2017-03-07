@@ -2638,3 +2638,6 @@ release
 2017-03-06 #mutt
 	17:40 <parosen> "set -o vi" functionality in mutt?
 
+sidebar intro
+	priority of colours may be wrong after upstream changes
+	https://www.neomutt.org/feature/sidebar-intro#intro-sidebar-colors
