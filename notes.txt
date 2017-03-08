@@ -2648,3 +2648,6 @@ botty
 	https://github.com/neomutt/neomutt/commit/a7b0fb8
 	<p class="commit-title">Clear out extraneous errors before SSL_connect() (see #3916)</p>
 
+convert the bug-fixes section of the travis build.sh to work on the upstream branch
+	(test all commits, with a small spread of configs)
+
