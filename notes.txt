@@ -2661,3 +2661,6 @@ mutt marks -- are they mailbox-local?
 		is it safe to change mailboxes without warning?
 		I suppose macros do this
 
+why is PATCHES a text file, not code?
+	to make it part of the docs?
+
