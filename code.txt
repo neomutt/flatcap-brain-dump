@@ -1,39 +1,58 @@
-delete trailing whitespace
-squash redundant vertical whitespace
+LOW IMPACT / LOW EFFORT / NOT CONTENTIOUS
+-----------------------------------------
+
+fix spelling/grammar
 delete ^L in source
 delete spurious \ in middle of lines
-tabs in strings (none)
-clang-format
-// -> /* */
-regexp -> regex
+delete trailing whitespace
+squash redundant vertical whitespace
+kill tabs in strings
+reindent manual.xml
+drop vim modelines
+
 declare all local functions "static"
 	standard name for statics?
 	drop mutt_ prefix
-bracket logic
-functions - name all parameters
-functions - move static before public
-	reduce / remove need for forward declarations
-initialise all pointers
-remove #if 0 (older than 1 year)
-remove commented source (older than 1 year)
+
+while(true), rather than FOREVER (33 occurrences)
 iwyu on all source files
-split if (x = y() == z)
-variables rename reserved words (new, this, etc)
-sort options in: init.h, globals.h, functions.h, switches
-doc switch drop-throughs
-while(true), rather than FOREVER
-use #ifdef for all symbols
-assigned / test pointers to NULL (not 0)
 #include with "" not <> for mutt headers
 drop #if HAVE_CONFIG_H
-drop regex.[ch]
 any functions() -> (void)
+use #ifdef for all symbols
+Remove #ifdef around header includes
+functions - name all parameters
+variables rename reserved words (new, this, etc)
+gcc printf function checks
+
+remove #if 0 (older than 1 year)
+remove commented source (older than 1 year)
+// -> /* */
+
+split if (x = y() == z)
+assigned / test pointers to NULL (not 0)
+initialise all pointers
+TRUE/FALSE → BOOL return [01]; 752 occurrences
+bracket logic
+
+doc switch drop-throughs
+sort options in: init.h, globals.h, functions.h, switches
+
+functions - move static before public
+	reduce / remove need for forward declarations
+
+regexp -> regex
 rename buff to buf
 retval variable rc: 724 vs rv: 132
+
+drop regex.[ch]
 update intl
-gcc printf function checks
-TRUE/FALSE → BOOL return [01]; 752 occurrences
-fix spelling/grammar
+drop intl
+
+clang-format
+
+---------------------------------------
+HIGH IMPACT / HIGH EFFORT / CONTENTIOUS
 
 --------------------------------------------------------------------------------
 
