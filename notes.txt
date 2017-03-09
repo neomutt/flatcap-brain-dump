@@ -2651,3 +2651,6 @@ botty
 convert the bug-fixes section of the travis build.sh to work on the upstream branch
 	(test all commits, with a small spread of configs)
 
+change "L10N" comments to "TRANSLATORS:"
+	(as that's the default)
+
