@@ -2654,3 +2654,10 @@ convert the bug-fixes section of the travis build.sh to work on the upstream bra
 change "L10N" comments to "TRANSLATORS:"
 	(as that's the default)
 
+mutt marks -- are they mailbox-local?
+	can we distinguish (like vim) betweeen
+	`a  mark in this index
+	`A  global mark (potentially in another mailbox)
+		is it safe to change mailboxes without warning?
+		I suppose macros do this
+
