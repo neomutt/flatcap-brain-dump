@@ -2664,3 +2664,13 @@ mutt marks -- are they mailbox-local?
 why is PATCHES a text file, not code?
 	to make it part of the docs?
 
+sort makefile lists (but not all)
+drop pointless make targets
+test manual.tex, manual.pdf
+
+(mutt_)dotlock.c why both?
+smime_keys(.pl) why both?
+
+web guide update docs for toogley
+
+move muttrc* vimrc* to contrib/

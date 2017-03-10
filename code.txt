@@ -9,6 +9,8 @@ squash redundant vertical whitespace
 kill tabs in strings
 reindent manual.xml
 drop vim modelines
+check for 404 links
+check for mutt-dev@ email addreses
 
 declare all local functions "static"
 	standard name for statics?
@@ -24,6 +26,8 @@ Remove #ifdef around header includes
 functions - name all parameters
 variables rename reserved words (new, this, etc)
 gcc printf function checks
+sort makefile lists (but not all)
+drop pointless make targets
 
 remove #if 0 (older than 1 year)
 remove commented source (older than 1 year)
@@ -48,6 +52,7 @@ retval variable rc: 724 vs rv: 132
 drop regex.[ch]
 update intl
 drop intl
+tidy copyright messages
 
 clang-format
 
