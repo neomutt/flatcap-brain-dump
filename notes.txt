@@ -2676,3 +2676,63 @@ web guide update docs for toogley
 move muttrc* vimrc* to contrib/
 
 style: distinguish between 0 (zero) and NUL '\0' ?
+
+sync web & contrib versions of hcache benchmarks
+	how?
+
+topics for my github repos, icons?
+
+curs_main
+	OLD_HDR unused
+
+code: reserved words: new, this, etc
+
+dotlock disable by default
+	option to enable
+
+maintainers code of conduct
+	agree, ACK, no trolling, public shaming
+
+jekyll page type "hidden" -- don't list
+
+coding standard: two copies
+	part 1:
+		full descriptions
+		examples
+		anchors <a name="">
+	part 2:
+		auto-generated (script or jekyll)
+		concise list + links to full examples
+alternative, have coding standard in _std dir
+	pieced together by jekyll for both versions
+
+docs todo
+	contribution
+	first feature
+	release
+		scripts etc
+	style (code)
+	irc welcome text
+
+neomutt LTS version
+	for debian, etc
+	who'd work on it?
+
+debian freeze, then what?
+	bugfixes only?
+
+enable debug from within mutt
+	set debuglevel
+	set debugfile
+	rotate files?
+
+configure.ac broken for conditional features
+	--enable-lua
+	no libraries
+	shows "lua: yes"
+	compiles with "-USE_LUA"
+same problem for all the options that are conditional-but-need-libraries
+test options
+	enable-lua/disable-lua/enable-everything/unspecified
+	lua libs/no lua libs
+
