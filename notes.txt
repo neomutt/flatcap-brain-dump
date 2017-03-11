@@ -2674,3 +2674,5 @@ smime_keys(.pl) why both?
 web guide update docs for toogley
 
 move muttrc* vimrc* to contrib/
+
+style: distinguish between 0 (zero) and NUL '\0' ?
