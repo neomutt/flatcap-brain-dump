@@ -2736,3 +2736,8 @@ test options
 	enable-lua/disable-lua/enable-everything/unspecified
 	lua libs/no lua libs
 
+keymap_defs.h keymap_alldefs.h
+	both define constants
+	the compiler/linker will optimise out the unneeded ones
+	so don't need both files
+
