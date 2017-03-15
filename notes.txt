@@ -2741,3 +2741,6 @@ keymap_defs.h keymap_alldefs.h
 	the compiler/linker will optimise out the unneeded ones
 	so don't need both files
 
+"approved" tag? when an idea under discussion gets the go-ahead?
+	or just remove the "discussion" tag?
+
