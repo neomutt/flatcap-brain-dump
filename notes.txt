@@ -2744,3 +2744,7 @@ keymap_defs.h keymap_alldefs.h
 "approved" tag? when an idea under discussion gets the go-ahead?
 	or just remove the "discussion" tag?
 
+configure summary?
+	--disable-docs -> docs:         no
+	--disable-po   -> translations: no
+
