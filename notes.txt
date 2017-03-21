@@ -2748,3 +2748,8 @@ configure summary?
 	--disable-docs -> docs:         no
 	--disable-po   -> translations: no
 
+web toplevel dir
+	/muttrc
+	move all samples from the guide
+	link guide to samples
+
