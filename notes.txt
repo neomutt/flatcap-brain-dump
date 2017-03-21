@@ -2753,3 +2753,8 @@ web toplevel dir
 	move all samples from the guide
 	link guide to samples
 
+configure summary
+  Libs:              -lanl -lncursesw -lnotmuch 
+  Mutt libs:          -lncursesw -ltokyocabinet -lkyotocabinet -lgdbm -lqdbm -ldb-5.3 -llmdb -lidn 
+what's the distinction?  notmuch and lmdb are both user-specified external deps
+
