@@ -2758,3 +2758,5 @@ configure summary
   Mutt libs:          -lncursesw -ltokyocabinet -lkyotocabinet -lgdbm -lqdbm -ldb-5.3 -llmdb -lidn 
 what's the distinction?  notmuch and lmdb are both user-specified external deps
 
+fail configure if *wide* curses is missing?
+
