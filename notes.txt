@@ -2760,3 +2760,7 @@ what's the distinction?  notmuch and lmdb are both user-specified external deps
 
 fail configure if *wide* curses is missing?
 
+2017-03-22 #mutt
+	14:43 <wayne47> is there a way to specify a unique SMTP server per mail box?
+	14:44 <wayne47> so that when I read mail via imap from foo.com, outgoing mail uses foo.com and when I read from bar.com, outgoing mail uses bar.com (etc)?
+
