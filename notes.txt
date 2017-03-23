@@ -2768,3 +2768,9 @@ all example muttrcs
 	bring them up-to-date (valid options)
 	or delete them
 
+warn on option synonym usage
+	{ "pgp_autoencrypt",		DT_SYN,  R_NONE, UL "crypt_autoencrypt", 0 },
+	{ "crypt_autoencrypt",	DT_BOOL, R_NONE, OPTCRYPTAUTOENCRYPT, 0 },
+	crypt_autoencrypt is the visible option
+	warn if pgp_autoencrypt is used
+
