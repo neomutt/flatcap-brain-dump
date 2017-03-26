@@ -2774,3 +2774,7 @@ warn on option synonym usage
 	crypt_autoencrypt is the visible option
 	warn if pgp_autoencrypt is used
 
+code: return statement should be simple
+	return token
+	return (token > 42);
+
