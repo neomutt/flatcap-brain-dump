@@ -2787,3 +2787,7 @@ code: review #165, #224 - check nothing's been missed in coding std
 
 doc build requirement on DocBook DTDs
 
+Sidebar docs / init.h wrong
+	sidebar_divider_char
+	Only the first character of this string is used.
+
