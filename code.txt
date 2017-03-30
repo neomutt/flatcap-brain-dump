@@ -291,3 +291,14 @@ use mutt_*, safe_*, check_sec.sh
 
 labels at column 0
 
+return statement should be simple
+	return token
+	return (token > 42);
+
+meaning of: (account.c)
+	return a1->flags & MUTT_ACCT_USER && a1->user[0] ? 0 : 1;
+
+eliminate 1-letter function args?
+
+review #165, #224 - check nothing's been missed in coding std
+

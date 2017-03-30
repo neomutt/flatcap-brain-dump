@@ -2774,17 +2774,6 @@ warn on option synonym usage
 	crypt_autoencrypt is the visible option
 	warn if pgp_autoencrypt is used
 
-code: return statement should be simple
-	return token
-	return (token > 42);
-
-code: meaning of: (account.c)
-	return a1->flags & MUTT_ACCT_USER && a1->user[0] ? 0 : 1;
-
-code: eliminate 1-letter function args?
-
-code: review #165, #224 - check nothing's been missed in coding std
-
 doc build requirement on DocBook DTDs
 
 Sidebar docs / init.h wrong
