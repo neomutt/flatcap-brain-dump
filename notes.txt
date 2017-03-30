@@ -2780,3 +2780,4 @@ Sidebar docs / init.h wrong
 	sidebar_divider_char
 	Only the first character of this string is used.
 
+ask people how often they'd like to be chased up
