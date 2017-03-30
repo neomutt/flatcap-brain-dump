@@ -2785,3 +2785,5 @@ code: eliminate 1-letter function args?
 
 code: review #165, #224 - check nothing's been missed in coding std
 
+doc build requirement on DocBook DTDs
+
