@@ -3,8 +3,6 @@ debian open r/o patch #528233 mutt#3261
 
 debian #771125 CVE, mutt #3716
 
-"set var = $default"
-
 clean build warnings
 	ccache
 	neomutt-test-configs.sh
