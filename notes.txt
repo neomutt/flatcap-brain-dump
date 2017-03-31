@@ -2784,3 +2784,8 @@ ask people how often they'd like to be chased up
 
 debug log doesn't contain mutt's complete version
 	git suffix is missing
+
+merge muttrc.feature* into one file
+	leave markers in that are converted to <a name> anchors
+	so we can easily link to sections
+
