@@ -2781,3 +2781,6 @@ Sidebar docs / init.h wrong
 	Only the first character of this string is used.
 
 ask people how often they'd like to be chased up
+
+debug log doesn't contain mutt's complete version
+	git suffix is missing
