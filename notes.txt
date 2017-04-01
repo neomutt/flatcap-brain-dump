@@ -2789,3 +2789,6 @@ merge muttrc.feature* into one file
 	leave markers in that are converted to <a name> anchors
 	so we can easily link to sections
 
+fsetpos, fgetpos in pgppubring.c are in C99
+	no need for #ifdef
+
