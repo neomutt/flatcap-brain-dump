@@ -2792,3 +2792,5 @@ merge muttrc.feature* into one file
 fsetpos, fgetpos in pgppubring.c are in C99
 	no need for #ifdef
 
+macro REGEXEC is only used once
+
