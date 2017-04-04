@@ -302,3 +302,7 @@ eliminate 1-letter function args?
 
 review #165, #224 - check nothing's been missed in coding std
 
+don't use variable
+	'l' looks like 1
+	'O' looks like 0
+
