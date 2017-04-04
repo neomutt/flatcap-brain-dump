@@ -306,3 +306,7 @@ don't use variable
 	'l' looks like 1
 	'O' looks like 0
 
+set outparams before function call
+	x = 0;
+	function(&x);
+
