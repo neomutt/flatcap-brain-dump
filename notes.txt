@@ -2794,3 +2794,7 @@ fsetpos, fgetpos in pgppubring.c are in C99
 
 macro REGEXEC is only used once
 
+create doc repo
+	have neomutt repo as a "fixed" git submodule
+	or a submodule of a doc-gen repo
+
