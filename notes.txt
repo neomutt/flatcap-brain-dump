@@ -2798,3 +2798,6 @@ create doc repo
 	have neomutt repo as a "fixed" git submodule
 	or a submodule of a doc-gen repo
 
+branches in neomutt repo may be eligible for a free rebase
+	develop in your own repo, and they may not
+
