@@ -1,0 +1,18 @@
+global -- version, screen width, height
+mutt-level vars, (read-only)
+account, no password
+folder, full path, canonical
+index info: size, current pos, last update, dirty
+email: fold level, parent, num children, siblings
+email headers: is-body-cached?
+flags, attachments (if known), pgp signature
+function fails, default to mutt's normal view
+To, From, etc lists
+Address: is_alias?
+State preserved between calls
+Pre/Post index lua call?
+Option to hide (limit) the email
+fixed expandos, e.g. %+L3, or let lua do it?
+	fixed => coordination needed between config and lua
+how to colour the output?
+how to format the fields?
