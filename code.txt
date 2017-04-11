@@ -310,3 +310,6 @@ set outparams before function call
 	x = 0;
 	function(&x);
 
+subst __func__ into mutt_debug calls
+subst __FILE__, __LINE__ into ALL mutt_debug calls
+
