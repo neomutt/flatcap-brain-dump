@@ -21,3 +21,5 @@ ugly, but keeps tree in check & gh status
 
 tag website (for ref purposes)
 
+strip (#mutt-trac) from upstream commits?
+
