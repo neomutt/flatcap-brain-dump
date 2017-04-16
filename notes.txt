@@ -2528,8 +2528,6 @@ Releases
 	comments = docs
 	translations too - in either release
 
-regression tag => bisect done
-
 all PRs to in-progress?
 
 issues for upstream sync - share the lot
@@ -2599,8 +2597,6 @@ move the guide to readthedocs.org?
 	hmm... but it'll be in all branches
 	does this make sense?
 
-irc notes - star us on Github
-
 bot command
 	/notice botty doc $folder
 		privately messages botty
@@ -2621,8 +2617,6 @@ webpage: new status
 po
 	don't need line numbers for git
 	might need them for poeditor
-
-rhel7 neomutt doesn't install -- missing lmdb
 
 create muttrc that undoes everything that might be in /etc/Muttrc
 
@@ -2776,10 +2770,6 @@ warn on option synonym usage
 
 doc build requirement on DocBook DTDs
 
-Sidebar docs / init.h wrong
-	sidebar_divider_char
-	Only the first character of this string is used.
-
 ask people how often they'd like to be chased up
 
 debug log doesn't contain mutt's complete version
@@ -2800,7 +2790,4 @@ create doc repo
 
 branches in neomutt repo may be eligible for a free rebase
 	develop in your own repo, and they may not
-
-email dev-ml explain
-	confirmed and regression tags
 
