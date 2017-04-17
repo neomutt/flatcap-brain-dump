@@ -2796,3 +2796,5 @@ use *mutt* to generate sample mailboxes
 	create emails
 	etc
 
+still some trailing whitespace in the docs
+
