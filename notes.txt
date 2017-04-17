@@ -2798,3 +2798,5 @@ use *mutt* to generate sample mailboxes
 
 still some trailing whitespace in the docs
 
+regenerate all neomutt-* binaries (no dotlock)
+
