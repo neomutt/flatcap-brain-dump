@@ -2800,3 +2800,5 @@ still some trailing whitespace in the docs
 
 regenerate all neomutt-* binaries (no dotlock)
 
+update mutt releases web page
+
