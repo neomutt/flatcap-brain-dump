@@ -16,3 +16,8 @@ SINWINCH hook
 	combine with ability to rearrange windows, e.g.
 		horizonal layout: sidebar : index : pager
 
+how does mutt behave on SIGTERM?
+	shutdown cleanly
+	ignore
+	crash
+
