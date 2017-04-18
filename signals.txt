@@ -20,4 +20,5 @@ how does mutt behave on SIGTERM?
 	shutdown cleanly
 	ignore
 	crash
+catches and exit(1)
 
