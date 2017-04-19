@@ -1,9 +1,0 @@
-Workflow
-
-default
-stable
-
-who decides what's stable?
-when?
-where does the *real* dev go?
-

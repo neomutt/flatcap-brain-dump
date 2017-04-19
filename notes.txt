@@ -170,7 +170,6 @@ can the real status bar display any sidebar fields?
 	how can they be integrated?
 
 most options are "short" limited to +/- 32767
-mutt-sidebar.vim (contrib dir?)
 set/unset/toggle?  invVARNAME
 option - don't sort inbox -- defined how?
 separate modules -- sidebar, index, pager, help? -- each with
@@ -189,8 +188,6 @@ init() on module calls add_options()
 option breakup depends on lots of notifications
 Where are OPTSIDEBAR* used outside sidebar.c
 	curs_main.c, buffy.c, mh.c
-any use from calling sb_init(), sb_shutdown() from main()?
-	probably not yet
 Distinguish between movement and search wrap?
 	movement - next/prev (1 line), page up/down
 	search - find next/prev new
@@ -330,7 +327,6 @@ mutt folder/dir browser
 	display full path at top of screen/statusbar/titlebar
 
 git
-	document git attributes for PATCHES
 	create git diff regex for manual.xml to identify the section where the changes occurred
 		grep "<sect[0-9] " manual.xml.head
 		need to look for <sect> <chapter> <table> <example>
@@ -372,19 +368,6 @@ git hook variables
 	GIT_PREFIX
 	GITHEAD_XXX
 
-use PATCHES to show bugfixes?
-	bugfixes:
-		bug1
-		bug2
-		...
-	patch-xxx
-	patch-yyy
-or
-	bugfix1
-	bugfix2
-	patch-xxx
-	patch-yyy
-
 community script check for update
 	date community docs?
 	or just rely on commit date?
@@ -394,9 +377,6 @@ use sort_aux for nested sidebar names?
 		no
 	YES: allows to sort by name, then subsort by new-count
 	separate variable otherwise it interferes with index, etc
-
-kz issues -- which apply to me?
-link kz smime issue to neomutt
 
 docs refer to alias menu but don't mention how to invoke it
 browser
@@ -444,9 +424,6 @@ sidebar indented folders
 	alternatively, have some way to mark mailboxes as "fake"
 		probably a horrible idea
 
-neomutt motto?
-	If we take your patch, you are responsible for fixing it
-
 attach sets of keybindings to panel hierarchy?
 modify docs generation to process commands' comments
 can some keybindings be set "only active when window is visible"?
@@ -486,16 +463,11 @@ what does Sidebar *really* need?
 		=> paint if asked, but won't receive keys
 		could still be asked to do stuff by dialog, etc
 
-XXX in new features
-
 kill version.c:rstrip_in_place()
 	fix external build scripts
 
 vim library of config options(vars)
 	auto-extract from init.h
-
-sensible-browser-position only sensible for sort=alpha or unsorted
-	what else?
 
 rewrite mutt_wstr_trunc()
 	first, rename variables to be something sensible
@@ -526,18 +498,12 @@ split source?
 	library/ - replacement library functions
 	readme/ - obvious
 
-mail, compress, dev build patches, examine coverity build log
-gh-pages for up-to-date manual (in sections)
-	front redirects to wiki
-
 fmemopen - merge into one place in mutt_mktemp()?
 	idea from dgc email
 rebase and refactor [devel/*] before moving to [feature/*]
 	factor this description into new-feature txt
 sidebar, when saving email to a folder use the sidebar as a selector?
 	new indicator colour or prompts "select save folder" + normal highlight
-mass IRC dev chat (invitees can speak) others can watch
-	need agenda to keep to topic
 join mutt-users and ask both lists what patches/version they're using
 	send me your "mutt -v"
 	any security risk to this information?
@@ -550,8 +516,7 @@ Do drafts *need* to be stored in a separate folder?
 email David Sterba (kdave) -- limit
 	use context, or change prototypes
 screenshots on website
-watchers/stars on website home page
-	neomutt version
+neomutt version on website home page
 
 convert config.h to version.c
 	viable?
@@ -561,7 +526,6 @@ convert config.h to version.c
 	currently empty
 update website gh page: list of branches
 neomutt FAQ -- containing what?
-Which languages *didn't* get updated for 1.8.0?
 add my gpg signing key to neo.org, fc.org
 
 use links(1) as a model for re-architecting mutt
@@ -573,14 +537,6 @@ icons for news:
 	news: newspaper
 	devel: jigsaw, spanner&screwdriver
 	release: present, balloons
-
-emails:
-	workflow
-	tackling the big issues (top down)
-	tackling the small issues (bottom up)
-	mutt patches survey
-	decisions: things are discussed (to death) -- committee
-		no leader, no outcome, no work
 
 new hierarchy: tree => mail's parent is folder or mail
 
@@ -594,13 +550,6 @@ website collection of changes since last release -> relnotes on release
 	note which branches, etc
 website highlight section on toolbar (solid colour?)
 
-github files
-	ISSUE_TEMPLATE.md
-	PULL_REQUEST_TEMPLATE.md
-	not case sensitive
-	can be hidden in .github dir
-	CONTRIBUTING.md
-
 ∀ new bugfixes -- reference trac number in commit message
 test email reply to issues, etc
 	markdown?
@@ -609,29 +558,7 @@ website: some bug-fixes have gone away -> success page?
 set/unset sidebar_visible doesn't refresh screen when in pager
 sb doesn't match folder (for open) if it has a trailing /
 
-on hg-update
-	pull hg changes into neo-tmp
-	push to neomutt
-	push to flatcap
-	∀ features merge
-	merge into neo too
-on neo release -- ideas
-	rebase all features onto default
-	including neo?
-	loses all semblance of history / continuity
-	on every n^th release? / x months / new features -- rebase?
-
-notmuch missing entry in PATCHES
-	(add to neomutt? or notmuch?)
-
-list-since script ∀ branches
-	features, neomutt
-	non-merge commits since last tag
-
 <sidebar-next-new> => $sidebar_flagged_are_new ?
-
-sidebar refresh variable
-	sidebar_refresh_when_hidden
 
 panels have dividers enum
 	left
@@ -699,33 +626,10 @@ list_pull_requests.sh
 
 NeoMutt website top tips?
 
-where do debian bug-fixes go?
-	[bug-fixes]?
-	[debian]? => [gentoo], etc
-	=> fixes might exist in multiple bug fix branches
-	[bug/*] ?, e.g. [bug/debian]
-	synchronise naming and commit messages of bugs
-		if updated (externally) revert and new
-		∀ branches
-	msg:
-		issue numbers across distros & mutt
-		orig authors
-		contrib authors
-		orig source
-	=> fixed order -- NOT good
-	=> [bugs/*] mutable! -> lose history
-	store bugs as commits or patches?
-		patches -- easier to reorder & amend with history
-		commits -- easier to manage, rebase
-
 forks of all distro repos
 	clone https://github.com/macports/macports-ports
 
 cond-date document date.sh generator
-
-maintainers names to credits page
-
-MORE news
 
 howto build neomutt page
 	simple instructions
@@ -746,8 +650,6 @@ Web Page (front) LATEST VERSION + links
 cond-date script -> contrib
 
 upload all bin/ add (c) and licence
-
-buffy_check tmp == M_NNTP / NOTMUCH
 
 GIT REPO?
 	.gitattributes
@@ -890,8 +792,6 @@ sidebar
 	option to unfold when new mail arrives
 	folded, they should show the cumulative totals for all the children
 
-"build -n" disable neomutt features
-
 mutt tips on startup
 	distribute a contrib/mutt-tips dir which is a mailbox
 	select a random (email/tip) from the list
@@ -966,7 +866,6 @@ matching applies to multiple areas of mutt
 	files
 	index panel
 	pgp keys
-good feature to sell upstream
 
 alternative to sb search
 	key -> numeric prefix for all folders
@@ -976,9 +875,6 @@ alternative to sb search
 new mutt colours
 	none or inherit
 	don't set this component
-
-docs/wiki
-	neomutt history/timeline
 
 notmuch+index-color
 	tag patches in *neomutt*
@@ -1011,17 +907,8 @@ nntp tips? ":tips" command to toggle nntp vars and mailboxes
 unstable: .gitignore upstream of feature branches, what else?
 	common docs, travis
 
-separate docs -- only the "optional features" sections
-
 tip - status_format + status-color
 	ctx->readonly => red padlock
-
-compress examples == use full option names
-	--compress, etc
-	add examples of compress levels too
-
-contrib.md -- enhancements have 2 month lifespace -> blue-sky project
-coverity errors in feature patches
 
 is contrib/ installed by any downstreams?
 
@@ -1064,9 +951,6 @@ check distros are installing all docs, contrib, etc
 gmail patches -> devel
 	need testers
 
-sidebar
-	add dprints for debugging
-
 transcribe issue#56 vim-keybinding ideas
 	-> docs/vi.txt
 	wiki
@@ -1104,8 +988,6 @@ make the neomutt branding more obvious
 	make it obvious to the user that this is
 	neomutt, not mutt
 
-distro RFC: what do *they* want from NeoMutt
-
 lots of demo configs for
 	index_format
 	header_order
@@ -1118,17 +1000,11 @@ create a function to cycle through them?
 compress flickers, but gpg doesn't
 	imagination, or not?
 
-eliminate "mutt" from everything in the build
-	symlink to mutt in install
-	too "fork-y"?
-
 index-color -- index_date pattern?
 	and index_label
 
 issue for code required:
 	fuzzy matcher: [devel] [help] [mentor]
-
-install autoreconf -i output
 
 docs
 	create high-level workflow doc with screenshots
@@ -1149,14 +1025,19 @@ invert index option
 web docs
 	update debian support section
 
-web/wiki/readme ∀ pages
+web/readme ∀ pages
 	last proofread date
 	last proofread person
 	periodic checks
 	divide and conquer
 	auto-footer: last updated, last proofread
 
-script to build mutt ∀ tags
+script for "build-all-git-tags"
+	publish
+	need to kill dotlock
+
+generate (script) tree of all source (by tags)
+	and create squashfs
 
 investigate & bundle? mutt_bgrun
 
@@ -1181,8 +1062,6 @@ darnir:
 
 "mutt -v | head -1" is pain
 	--version ?
-
-symlink mutt to neomutt(-yyyymmdd)
 
 no need to subscribe to mailing lists
 
@@ -1221,6 +1100,7 @@ notmuch example rc (and docs)
 	doesn't warn the user
 
 feature docs to separate <sect1>'s?
+	separate <book>?
 
 jump to previous folder command?
 	"cd -"
@@ -1292,8 +1172,6 @@ xdg extension
 change mutt "source" command:
 	take wildcards
 	multiple args => source `find . -name '*.rc'`
-
-vim: if no tags file, generate it
 
 fork vs non-fork -- animal species reference
 	species: noun
@@ -1375,10 +1253,16 @@ contact distros
 email all 341 of mutt-kz stargazers and tell them about neomutt
 	exclude the neomutt stargazers
 
-change PATCHES display into sorted, wrapped feature list
+PATCHES
+	change display into sorted, wrapped feature list
+	why is it a text file, not code?
+	to make it part of the docs?
+	change patch-* to feature-* ?
+	drop it or at least abbreviate it greatly
+	alter script to allow missing file
 
 check all lists of features are up-to-date
-	web, wiki, etc
+	web, etc
 
 context sensitive popup menus
 	e.g. index - tag some emails, hit <menu>
@@ -1396,12 +1280,7 @@ test website
 link to unloved enhancements in issues
 	rather than the wiki
 
-PATCHES
-	change patch-* to feature-* ?
-
 vim-like hls option: persistant across emails
-
-transfer gpg keys from flatcap to mutt
 
 pager -- sidebar gets updated but not status line / term header
 
@@ -1442,14 +1321,8 @@ imap_folder_format defaults to folder_format if empty
 sort variables, etc before auto-completion
 	or properly sort the sources of the strings
 
-drop flatcap/neomutt fork?
-	used for coverity testing
-
 arch-linux: search for a Trusted User (TU)
 	to adopt neomutt
-
-new diff generating script
-	exclude.txt to filter out stuff
 
 announce vim-syntax, put a public copy up
 	copy all of contrib/ to web
@@ -1464,16 +1337,10 @@ development bottleneck
 	document more tasks
 	delegate more tasks
 
-script for "build-all-git-tags"
-	publish
-	need to kill dotlock
-
 should log files be localised?
 	make it an option?
 	debug -> english?
 	hard to debug for other nationalities
-
-timeout hook missing from hook docs
 
 vim-like record macros 'qa'
 	save macro
@@ -1557,8 +1424,6 @@ syntax file in local vim syntax dir needs to be called
 	=> set to default value
 	history records the default value, not the token
 	TOKEN=$default ?
-
-fix notmuch syntax & announce
 
 nested-if script
 
@@ -1664,9 +1529,6 @@ de "neo" the trash docs & keep in neo repo
 
 21:55 svenG "No attachments, cancel sending? ([yes]/no):"  so NOT cancelling the sending.. sends. o_O  double negatives are always so confusing.. :-/
 
-irc webpage
-	mention freenode's web interface
-
 debugging docs:
 	100k lines of code
 	help us find out which
@@ -1723,15 +1585,8 @@ calcurse -- curses calendar app
 
 sidebar -- disable indent, etc if sorted
 
-generate (script) tree of all source (by tags)
-	and create squashfs
-
 htop colour palette only works well because there are
 	few object to colour
-
-#179 - Clean neo build
-	create checklist of problem configs
-	ask for volunteers
 
 Create every doc idea as empty template page in web
 	with notes
@@ -1751,9 +1606,6 @@ update notmuch readme
 
 bot on server to mail dev list on git commits?
 
-https://github.com/coreboot/coreboot
-	uses linux kernel config
-
 move separate tools to a separate tools directory
 	adjust ctags to ignore them
 
@@ -1770,16 +1622,6 @@ index preview mode - display 'n' lines of the email body
 	when in the index
 
 new feature checklist -- code all configs, doc, readme, web, doc validate
-
-issue labels
-	regresssion / still not fixed
-	confirmed
-	backtrace
-	reproduceable
-	screenshot
-	logs
-	config
-	confirmed fix?
 
 does label workflow make sense for PRs?
 	if not, why not
@@ -1847,10 +1689,6 @@ workflow:
 	notmuch new
 	cache-every-file
 
-update /devel-notes.txt
-	inherited from mutt
-	needs modernising
-
 mutt_launcher
 	use a pipe to channel log messages back to mutt
 	pipe(), fork()
@@ -1872,8 +1710,6 @@ nested-if
 	$? or $< push only
 	matching char => pop
 	32 deep stack
-
-Karel tidy/cull issues
 
 cache files need to hash their name too
 	to avoid two systems "sharing" a single hash
@@ -1907,14 +1743,9 @@ use google translate for rough drafts of neo po files?
 	mark all translations as fuzzy
 	useful starting place?
 
-settings for indent, uncrustify, clang-format
+settings for uncrustify, clang-format
 	for current neo code
 	for future  neo code
-
-put features in separate <book>?
-
-docbook build -- kill trailing whitespace
-	broken x html links
 
 easy task:
 	distro helper
@@ -1945,7 +1776,6 @@ website
 	src code is not a distro, so list it last
 
 man pages need section number
-.IR error in mutt man page
 
 un-named-mailboxes needs to work against path or description
 
@@ -1984,8 +1814,6 @@ distros
 	platform {linux|bsd|macos}
 	where to coredumps go?
 
-are all closed enhancements requests marked as blue-sky?
-
 create file on all neo members
 	who's who
 	who's done what
@@ -2016,23 +1844,11 @@ start de-globalising (pass to functions)
 	Context
 	Incoming
 
-Pre-commit checks
-	formatting
-	authorship (real name on commit)
-	credit
-	translation on strings
-	check_sec.sh
-
-rename downloads link (it goes to distros)
-	or re-instate download page
-
 each web dir, have _source.txt
 	details origin of page data
 	scripts for generating
 
 code school -> neo branches (regularly rebased)
-
-mailmap for all neomutt contributors
 
 stable branches for LTS releases?
 	Why?  Mutt doesn't
@@ -2054,11 +1870,6 @@ list of ALL vars, fns, cmds
 	link to relevant feature/misc page
 	web home/changes?
 
-tool tips on everything?
-
-dev build all version
-	publish script
-
 website jekyll serve instructions
 
 getting started
@@ -2072,9 +1883,6 @@ update all doxy templates
 Distro pages:
 	Debian, Gentoo, MacPorts, NetBSD, Void
 	need filling out
-
-add official Mutt source to mutt GH releases
-	sign it
 
 How to Use Mutt doc
 	step 1 - select your source
@@ -2125,13 +1933,6 @@ donate page
 	contributions to neomutt.org domain?
 	get-together costs?
 	what?
-
-web
-	add screenshot page
-	title
-	description
-	return to previous page link
-	light green background
 
 complete review of string handling in mutt
 	string contentation
@@ -2185,8 +1986,6 @@ mutt.pot --no-wrap
 
 poedit suggest disable wrapping -> web instructions
 
-dewrap strings (script)
-
 web
 	```note
 	css proportional font
@@ -2203,8 +2002,6 @@ issue label: "translation"
 translations
 	forgotten 'f', move to end or numbering doesn't work
 
-links web translate to #229
-
 web translate league table posn #'s -> compete!
 
 .po are "#: file.c" needed except at translate time?  drop?
@@ -2213,17 +2010,9 @@ web translate league table posn #'s -> compete!
 gettext logger to look for most used translations
 	mark the common ones in the code
 
-"confirmed" issue label => neo member has bisected
-	all neo versions
-	and tested mutt 1.7.1 too
-
-try mosh for irc link
-
 chronic "moreutils" package
 
 coverity to use travis-build script!
-
-coverity - triage all issues to "seen" so new issues are obvious
 
 make clean isn't good enough?
 
@@ -2237,20 +2026,10 @@ release branch
 	configure.ac
 	README.neomutt
 
-notmuch changes
-is !e check nec -- safe_strdup can't fail
-	*filename = e ? e == p ? NULL : strndup(p, e - p) : safe_strdup(p);
-	*filename = e ? e == p ? NULL : mutt_substrdup(p, e) : safe_strdup(p);
-	if (!e)
-		return 0;
-
 translate: hooks in code to log most translated strings
 	help translators prioritise their work
 
-store translation and coverity travis.yml files in contrib?
-	or management
-
-git blame all source/build files to see %age authorship
+store translation and coverity travis.yml files in management repo
 
 #define the mailbox -2 abort, -1 error
 
@@ -2291,9 +2070,6 @@ create list of current scripts shell/perl
 branch 123-desc auto work-in-progress
 
 issue - auto screenshots - sample mailbox
-
-topic:speed?
-topic:investigate?
 
 commands
 	rename all those containing _ (underscore) to - (hyphen)
@@ -2380,8 +2156,6 @@ mailbox =wibble
 notmuch:
 	nm_get_all_tags() is called twice (once to count, then once to build the list)
 
-remove snprintf, etc from the patch to reduce its size?
-
 safe macros enhancement request: https://github.com/neomutt/neomutt/issues/69#issuecomment-230442101
 	zmo suggests: emulate the augroup feature of vim :)
 	macros specific to a folder, or notmuch, etc
@@ -2437,7 +2211,6 @@ variable length arrays -> are they safe?
 
 check nntp for updates
 muttrc linter corrent, or comment out?
-add all reviewers to coverity
 base64 3 byte work chunks -- bigger?
 
 mutt google map of devs
@@ -2453,9 +2226,6 @@ flowchart for sending an email, showing:
 	include signing
 	postpone
 	screenshots (text)
-
-drop PATCHES or at least abbreviate it greatly
-	alter script to allow missing file
 
 squash or not - consider need to revert 1 piece
 ~Y docs match label missing?
@@ -2490,8 +2260,6 @@ guyzmo's merge/review notes
 
 doc how to become a reviewer
 
-check gahr's imap changes
-
 example notes for a PR
 	don't walk away
 	you need to work with us to get it merged
@@ -2503,12 +2271,6 @@ readme shorten to just maintainers?
 	link to full list of authors
 
 imap flags summary
-
-code of conduct -- irc flatcap?
-
-issues:
-	status blue-sky?
-	status (needs) review?
 
 Releases
 	comments = docs
@@ -2543,8 +2305,6 @@ reorganise docs
 github/irc bot.  notify on:
 	@neomutt/reviewers Please Review -> "guyzmo asked for review of #298 (Desc)"
 	"flatcap approved #298 (Desc)"
-
-when I reformat the source, run tidy on manual.xml too
 
 test all the sample muttrc files -- check there aren't any old commands/variables
 
@@ -2639,13 +2399,6 @@ mutt marks -- are they mailbox-local?
 		is it safe to change mailboxes without warning?
 		I suppose macros do this
 
-why is PATCHES a text file, not code?
-	to make it part of the docs?
-
-sort makefile lists (but not all)
-drop pointless make targets
-test manual.tex, manual.pdf
-
 (mutt_)dotlock.c why both?
 smime_keys(.pl) why both?
 
@@ -2658,13 +2411,7 @@ sync web & contrib versions of hcache benchmarks
 
 topics for my github repos, icons?
 
-curs_main
-	OLD_HDR unused
-
 code: reserved words: new, this, etc
-
-maintainers code of conduct
-	agree, ACK, no trolling, public shaming
 
 jekyll page type "hidden" -- don't list
 
@@ -2686,13 +2433,6 @@ docs todo
 		scripts etc
 	style (code)
 	irc welcome text
-
-neomutt LTS version
-	for debian, etc
-	who'd work on it?
-
-debian freeze, then what?
-	bugfixes only?
 
 enable debug from within mutt
 	set debuglevel
@@ -2746,15 +2486,9 @@ doc build requirement on DocBook DTDs
 
 ask people how often they'd like to be chased up
 
-debug log doesn't contain mutt's complete version
-	git suffix is missing
-
 merge muttrc.feature* into one file
 	leave markers in that are converted to <a name> anchors
 	so we can easily link to sections
-
-fsetpos, fgetpos in pgppubring.c are in C99
-	no need for #ifdef
 
 macro REGEXEC is only used once
 
@@ -2774,4 +2508,7 @@ update mutt releases web page
 
 coverity -- some code untested due to config options, e.g. openssl
 	need coverage test
+
+double-width index (continuation of first for wide screens)
+	| side | index1 | index2 |
 
