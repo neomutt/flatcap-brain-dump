@@ -1269,6 +1269,9 @@ trash docs
 mutt_dotlock
 	make properly configurable
 	the chgrp / chmod can't be done by a user install
+add working NO dotlock option to configure options
+dotlock disable by default
+	option to enable
 
 trash + gmail
 	doesn't work as expected
@@ -1373,8 +1376,6 @@ email all 341 of mutt-kz stargazers and tell them about neomutt
 	exclude the neomutt stargazers
 
 change PATCHES display into sorted, wrapped feature list
-
-configure out dotlock fully
 
 check all lists of features are up-to-date
 	web, wiki, etc
@@ -2287,11 +2288,6 @@ create list of current scripts shell/perl
 	list -> website -- link to repos
 	#!/bin/bash ->  sh
 
-rewind mutt/neo
-	reformat neo
-	try to replay mutt's changes
-	or just one big commit?
-
 branch 123-desc auto work-in-progress
 
 issue - auto screenshots - sample mailbox
@@ -2373,9 +2369,6 @@ release criteria for a new feature
 	screenshots of new features
 		text/html screenshots if possible
 
-create a fake git user to do the mass-reformatting
-	git blame will be messed up, but with an ignorable name
-
 git map
 	read config for default remote
 
@@ -2419,8 +2412,6 @@ config: file invalid / missing
 code: internal error, missing ops
 separate what user cannot do vs MAY not doc
 
-irc set welcome message with URLs
-
 functions.h attach-news-messages #ifdef NNTP!
 "source" command relative to $cwd or previous file
 
@@ -2444,9 +2435,6 @@ review describe with pictures the three github merge options
 tagged initialisers -> coding standard
 variable length arrays -> are they safe?
 
-rebuild all bin-extra mutt/neomutt without DOTLOCK
-
-add working NO dotlock option to configure options
 check nntp for updates
 muttrc linter corrent, or comment out?
 add all reviewers to coverity
@@ -2675,9 +2663,6 @@ curs_main
 
 code: reserved words: new, this, etc
 
-dotlock disable by default
-	option to enable
-
 maintainers code of conduct
 	agree, ACK, no trolling, public shaming
 
@@ -2784,8 +2769,6 @@ use *mutt* to generate sample mailboxes
 	create folders
 	create emails
 	etc
-
-regenerate all neomutt-* binaries (no dotlock)
 
 update mutt releases web page
 
