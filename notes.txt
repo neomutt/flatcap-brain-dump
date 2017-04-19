@@ -2247,6 +2247,7 @@ translate: hooks in code to log most translated strings
 	help translators prioritise their work
 
 store translation and coverity travis.yml files in contrib?
+	or management
 
 git blame all source/build files to see %age authorship
 
@@ -2470,13 +2471,10 @@ drop PATCHES or at least abbreviate it greatly
 
 squash or not - consider need to revert 1 piece
 ~Y docs match label missing?
-clang format CPP11 braces option
 
 pager colour filter start/stop regex + lua script?
 what does it insert?  or does it call back to get mutt to highlight?
 script is stateful
-
-clang format, drop align=
 
 irc notes: assume humour before anger/offence
 
@@ -2604,8 +2602,6 @@ bot command
 
 script to follow all the projects members
 
-sync lua-demo to latest lua configure.ac, etc
-
 add template email for newbies getting credit
 
 api
@@ -2669,8 +2665,6 @@ web guide update docs for toogley
 
 move muttrc* vimrc* to contrib/
 
-style: distinguish between 0 (zero) and NUL '\0' ?
-
 sync web & contrib versions of hcache benchmarks
 	how?
 
@@ -2729,11 +2723,6 @@ same problem for all the options that are conditional-but-need-libraries
 test options
 	enable-lua/disable-lua/enable-everything/unspecified
 	lua libs/no lua libs
-
-keymap_defs.h keymap_alldefs.h
-	both define constants
-	the compiler/linker will optimise out the unneeded ones
-	so don't need both files
 
 "approved" tag? when an idea under discussion gets the go-ahead?
 	or just remove the "discussion" tag?
