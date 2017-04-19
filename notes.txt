@@ -2772,3 +2772,6 @@ use *mutt* to generate sample mailboxes
 
 update mutt releases web page
 
+coverity -- some code untested due to config options, e.g. openssl
+	need coverage test
+
