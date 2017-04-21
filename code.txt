@@ -315,3 +315,6 @@ subst __FILE__, __LINE__ into ALL mutt_debug calls
 
 distinguish between 0 (zero) and NUL '\0' ?
 
+/*<space>comment<space>*/
+	tidy and more greppable
+
