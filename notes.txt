@@ -2512,3 +2512,5 @@ coverity -- some code untested due to config options, e.g. openssl
 double-width index (continuation of first for wide screens)
 	| side | index1 | index2 |
 
+drop notmuch checks -- assume newer version?
+
