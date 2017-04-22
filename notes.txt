@@ -2514,3 +2514,9 @@ double-width index (continuation of first for wide screens)
 
 drop notmuch checks -- assume newer version?
 
+write REQUIREMENTS doc
+	C99
+	SUS (Single Unix Specification)
+	NotMuch >= 4.3.0
+	etc
+
