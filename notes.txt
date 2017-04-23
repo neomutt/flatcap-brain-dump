@@ -2520,3 +2520,9 @@ write REQUIREMENTS doc
 	NotMuch >= 4.3.0
 	etc
 
+change #ifndef's to #warning too
+	#ifndef SYMBOL
+	#define SYMBOL
+	#warning "Please tell neomutt devs about this
+	#endif
+
