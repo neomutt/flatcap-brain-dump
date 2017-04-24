@@ -2526,3 +2526,7 @@ change #ifndef's to #warning too
 	#warning "Please tell neomutt devs about this
 	#endif
 
+eab2482d Thomas Roessler  2000-06-13 20:36:33
+	sendlib.c:627
+	#define BUGGY_ICONV 1
+
