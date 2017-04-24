@@ -2530,3 +2530,34 @@ eab2482d Thomas Roessler  2000-06-13 20:36:33
 	sendlib.c:627
 	#define BUGGY_ICONV 1
 
+Project management:
+	contact distros
+	organise web updates
+	search for patches
+
+use signal to interrupt IMAP connect
+	at time of resume (after suspend)
+	systemd service?
+
+put neomutt-centric mailmaps in management repo
+
+vim-neomutt plugin
+	syntax for muttrc
+	folding for c
+
+misc easy
+	travis build scripts
+	" -> ' in muttrc
+	autogen vim syntax file
+	translations to web page
+	doxygen -> web /code dir
+	mutt debug FILE, LINE, FUNC #macro
+	wrap PATCHES
+
+PATCHES file considered harmful
+	suggests people should fork
+
+deprecate ChangeLog*
+	they're in the git history
+	or abbreviate with extreme prejudice
+
