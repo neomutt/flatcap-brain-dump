@@ -2561,3 +2561,7 @@ deprecate ChangeLog*
 	they're in the git history
 	or abbreviate with extreme prejudice
 
+MacOS iTerm
+	Ctrl-O doesn't work
+	"stty discard undef" fixes it
+
