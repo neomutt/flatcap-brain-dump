@@ -2565,3 +2565,5 @@ MacOS iTerm
 	Ctrl-O doesn't work
 	"stty discard undef" fixes it
 
+cmdline --about links etc
+
