@@ -2567,3 +2567,5 @@ MacOS iTerm
 
 cmdline --about links etc
 
+drop support for old SSL versions
+
