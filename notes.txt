@@ -2569,3 +2569,7 @@ cmdline --about links etc
 
 drop support for old SSL versions
 
+mutt --authors
+	list of all neomutt contributors
+	matches {README,AUTHORS}.md
+
