@@ -2573,3 +2573,8 @@ mutt --authors
 	list of all neomutt contributors
 	matches {README,AUTHORS}.md
 
+neomutt-test-config.sh
+	--save dir
+	put mutt's in an output dir
+	log each numeric name with the compile options
+
