@@ -2578,3 +2578,6 @@ neomutt-test-config.sh
 	put mutt's in an output dir
 	log each numeric name with the compile options
 
+kill ./confgure --disable-warnings
+	leave them on
+
