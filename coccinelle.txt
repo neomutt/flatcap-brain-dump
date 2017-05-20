@@ -1,0 +1,26 @@
+initialise pointers to NULL
+	avoid static
+	avoid extern
+	avoid WHERE
+	cope with multiple definitions
+
+remove mutt-isms (use sed?)
+	FOREVER
+	__FREE_CHECKED__
+
+check arguments in prototypes have names
+
+refactor assigment-test in conditional
+	if (x = fn(y) == NULL)
+
+check coding standard for ideas
+
+add params for neo functions
+
+test pointers against NULL, not 0
+test char against '\0' not 0?
+sizeof X -> sizeof(x)
+
+mass rename of lots of structs in one cocci file?
+	identifier x ~= "\(BUFFER\|ENVELOPE\)"
+
