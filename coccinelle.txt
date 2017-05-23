@@ -24,3 +24,8 @@ sizeof X -> sizeof(x)
 mass rename of lots of structs in one cocci file?
 	identifier x ~= "\(BUFFER\|ENVELOPE\)"
 
+add to travis, non-failing error
+
+transform upstream dprint -> mutt_debug
+	arg rearrange
+
