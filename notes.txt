@@ -2581,3 +2581,10 @@ neomutt-test-config.sh
 kill ./confgure --disable-warnings
 	leave them on
 
+2017-05-24
+	00:00 <cybrNaut> why is "fcc_clear" suggested as a work-around to those without "smime_encrypt_self = yes" in https://www.neomutt.org/feature/encrypt-to-self, when fcc_clear is said to be
+			"PGP only" here: https://www.neomutt.org/guide/reference.html#fcc-clear ?
+	00:01 <cybrNaut> one of those articles must be wrong
+	00:07 <cybrNaut> fcc_clear actually does work for s/mime messages
+	00:07 <cybrNaut> so https://www.neomutt.org/guide/reference.html#fcc-clear is wrong
+

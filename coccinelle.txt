@@ -29,3 +29,7 @@ add to travis, non-failing error
 transform upstream dprint -> mutt_debug
 	arg rearrange
 
+if (return) else something();
+	drop else, unindent clause
+	check for: return, break, continue, goto
+
