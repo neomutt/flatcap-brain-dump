@@ -2599,3 +2599,5 @@ SmimeSignOpaqueCommand isn't used!
 	globals.h
 	init.h
 
+add mutt.svg to release
+
