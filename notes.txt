@@ -2572,6 +2572,9 @@ drop support for old SSL versions
 mutt --authors
 	list of all neomutt contributors
 	matches {README,AUTHORS}.md
+	doesn't have to be in-code!
+		could be distributed file
+		display in pager
 
 neomutt-test-config.sh
 	--save dir
