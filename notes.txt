@@ -2591,3 +2591,7 @@ kill ./confgure --disable-warnings
 	00:07 <cybrNaut> fcc_clear actually does work for s/mime messages
 	00:07 <cybrNaut> so https://www.neomutt.org/guide/reference.html#fcc-clear is wrong
 
+init.h
+	UL 0 vs UL NULL vs UL ""
+	unify
+
