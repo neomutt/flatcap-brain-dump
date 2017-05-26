@@ -2595,3 +2595,7 @@ init.h
 	UL 0 vs UL NULL vs UL ""
 	unify
 
+SmimeSignOpaqueCommand isn't used!
+	globals.h
+	init.h
+
