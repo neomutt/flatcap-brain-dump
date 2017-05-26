@@ -33,3 +33,17 @@ if (return) else something();
 	drop else, unindent clause
 	check for: return, break, continue, goto
 
+github override:
+	// vim: set filetype=diff:
+	// -*- diff -*-
+
+functions: imap_sync_mailbox imap_check_mailbox
+	index_hint isn't used (in default)
+
+remove cast before calloc, etc
+	tmp = (struct Alias *) safe_calloc(1, sizeof(struct Alias));
+
+sizeof exp -> sizeof(exp)
+
+sizeof(*var) instead of sizeof(type)
+	tmp = safe_calloc(1, sizeof(struct QClass));

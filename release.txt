@@ -23,3 +23,11 @@ tag website (for ref purposes)
 
 strip (#mutt-trac) from upstream commits?
 
+clang-format, then update-po
+
+put rel commits in side-branch
+	update ver, authors, trans, cocci, clang
+	merge commit == release?
+
+update mailmap
+
