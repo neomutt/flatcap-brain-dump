@@ -2210,7 +2210,7 @@ tagged initialisers -> coding standard
 variable length arrays -> are they safe?
 
 check nntp for updates
-muttrc linter corrent, or comment out?
+muttrc linter correct, or comment out?
 base64 3 byte work chunks -- bigger?
 
 mutt google map of devs
@@ -2600,4 +2600,6 @@ SmimeSignOpaqueCommand isn't used!
 	init.h
 
 add mutt.svg to release
+
+summary :changelog read from file
 

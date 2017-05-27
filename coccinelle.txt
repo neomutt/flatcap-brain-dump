@@ -43,7 +43,5 @@ functions: imap_sync_mailbox imap_check_mailbox
 remove cast before calloc, etc
 	tmp = (struct Alias *) safe_calloc(1, sizeof(struct Alias));
 
-sizeof exp -> sizeof(exp)
-
 sizeof(*var) instead of sizeof(type)
 	tmp = safe_calloc(1, sizeof(struct QClass));
