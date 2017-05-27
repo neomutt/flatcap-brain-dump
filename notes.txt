@@ -2370,9 +2370,6 @@ when saving a file (being asked for input),
 	add a mechanism to expand a mutt variable
 	like vim's ^R
 
-release
-	post comment to aur package
-
 2017-03-06 #mutt
 	17:40 <parosen> "set -o vi" functionality in mutt?
 
@@ -2504,8 +2501,6 @@ use *mutt* to generate sample mailboxes
 	create emails
 	etc
 
-update mutt releases web page
-
 coverity -- some code untested due to config options, e.g. openssl
 	need coverage test
 
@@ -2599,10 +2594,13 @@ SmimeSignOpaqueCommand isn't used!
 	globals.h
 	init.h
 
-add mutt.svg to release
+add mutt.svg to contrib release
 
 summary :changelog read from file
 
 docs:
 	http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+doc sample branches
+	web page with list
 

@@ -31,3 +31,7 @@ put rel commits in side-branch
 
 update mailmap
 
+post comment to aur package
+
+update mutt releases web page
+

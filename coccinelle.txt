@@ -45,3 +45,18 @@ remove cast before calloc, etc
 
 sizeof(*var) instead of sizeof(type)
 	tmp = safe_calloc(1, sizeof(struct QClass));
+
+any
+	TYPE *x = (TYPE*) SOME_VOID_THING
+
+if return *else* or swap
+	or break, continue, goto
+
+dprint -> mutt_debug + argfix
+
+copyright headers, license file
+
+mutt_error _() et al, break scripts
+clang with 9999, then sed first?
+
+test --include option
