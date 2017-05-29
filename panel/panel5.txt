@@ -1,0 +1,153 @@
+┌──────────────────────────────────────┐
+│Help line                             │
+├──────┬───────────────────────────────┤
+│Side  │Index                          │
+│      │...                            │
+│      ├───────────────────────────────┤
+│      │Index Status                   │
+│      ├───────────────────────────────┤
+│      │Pager                          │
+│      │                               │
+├──────┴───────────────────────────────┤
+│Pager status                          │
+├──────────────────────────────────────┤
+│Command line                          │
+└──────────────────────────────────────┘
+
+who has focus?
+
+using highlight colour => no need for {PAGER,INDEX,SIDEBAR}-{UP,DOWN}
+	=> FOCUS-LEFT, DOWN, ENTER => close pager & index, reopen index
+	focus on index, DOWN, ENTER => open pager, focus pager
+	keep view-specific functions? YES
+
+Views: need a layout manager?
+	who controls view-visibility?
+	mutt, mutt-sidebar, mutt-sidebar-right, widescreen
+
+view has attr: visible?, min, max size
+
+nested windows
+	horizontal/vertical splits
+	attach view to window
+	view sets its requirements
+
+HWindow (Top)
+	Window (HelpLine) 1 line
+	VWindow (Main)
+		Window (Sidebar)
+		VWindow (Work)
+			Window (Index)
+			Window (Pager)
+	Window (HelpPage) hidden
+	Window (Summaries) hidden
+	Window (Status) 1 line
+
+Who owns the windows? views? sources?
+	Mutt does
+
+
+Startup
+	∀ source -> source_init()
+		register name, type
+		config: vars, funcs, cmds, colors
+		keybindings
+	read all config -- look for source-specific config?
+		.muttrc-imap?
+		.muttrc-sidebar?
+		XDG only?
+	config validate syntax only
+		check connections later
+	select layout (config / hard-coded)
+
+Layout engine
+
+	needs notifications about cfg change
+	e.g. sidebar_width, sidebar_on_right
+	=> layout knows about source internals!
+	NO.  other way around.  sidebar view knows how to
+	manipulate layouts / windows.
+	sidebar_on_right => get_window(sb), get_window(work)
+	remove_window(sb), append_window(work, sb)
+	insert, append, insert_after, insert_before
+	new_win, attach_view
+
+focus_highlight
+	helpline/menu, status, sidebar, index
+	nothing to highlight in pager, so DIM it (grey text)
+	up to each view how to highlight/unhighlight
+
+focus / keyboard handling
+	focus pager: test pager, index siblings, sidebar in parent
+	menu (parent), main (leftover mutt)
+	focus index: ignore pager, work up
+	focus sideabr: ignore index, pager, work up
+	focus menu: ignore sb, index, pager
+
+combine helppage and summaries?
+mutually exclusive anyway
+
+focus - try me, try siblings (if visible)
+	recurse.  might some inivisible views want to add actions?
+	YES.  e.g. top=mutt, or addrbook (OP_OPEN_ADDRBOOK)
+	pass to view, let them decide
+
+Views
+	ask mutt for sources
+		get_all_sources()
+		get_current_source()
+		add_source()
+		remove_source()
+		set_current_source()
+	done by mutt on src[0] at init
+
+sidebar view
+	get_all_sources() type mail, only
+	display tree
+	top-level = source
+	nested folders within
+	select, open => call to set_current_source()
+		if nec, set_current_source() will notify all views
+	set_current_folder() -> notify all views
+
+pager
+	change source notification -- drop everything
+	change folder -- drop everything
+	drop everything => free resources & close (non-visible)
+
+index
+	change source -- drop everything
+	change folder -> redraw
+
+index/pager - next unread : index calls set_current_item()
+	index updates highlight
+	pager displays item
+	sidebar changes highlight (if nec)
+
+what about non-compatible views, sources, etc
+	addrbook, view/source
+	change_view -> focus change to new window
+	change_folder -> ignore by non-mail views
+	change_item -> ignore by non-mail views
+
+changing views (visible/focus)
+	move focus {up,down,left,right} => change_view
+	old view de-highlighted
+	new view highlighted
+	keys handled by (top/mutt)
+
+change views -- non-visible
+	help, summary-X, addrbook
+	need some way to get back
+	are these views
+		"on top" of mail => 'q' to return
+		"beside" it '<alt-tab>' to return
+	if above, do they persist after closing?
+	if beside, who remembers where we were?
+	can both possibilities exist?
+	the help/summary is on top, the others beside?
+
+Other full-screen views will have partitions
+	each needs a wrapper -- catchall for keys
+	and to turn on/off entire view
+
