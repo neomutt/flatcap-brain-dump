@@ -2609,3 +2609,6 @@ plugin fs-layer
 	adv: file, inotify
 	others: fmemopen, mmap, libuv
 
+special reader for alias file, that parses comments, e.g.
+	# tags:red,blue,green phone:'1234'
+
