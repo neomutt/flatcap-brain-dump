@@ -2604,3 +2604,8 @@ docs:
 doc sample branches
 	web page with list
 
+plugin fs-layer
+	basic: files + stat, etc
+	adv: file, inotify
+	others: fmemopen, mmap, libuv
+
