@@ -2624,3 +2624,8 @@ simplify y/n questions.  no more "Are you sure?", just
 
 colour highlight/underline _Q_uestion, _O_ptions 'q', 'o'
 
+docs:
+	Typo: To use this expandos
+	docs refer to "+USE_SIDEBAR" etc
+	and if sidebar is enabled
+
