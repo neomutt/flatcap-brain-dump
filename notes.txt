@@ -2632,3 +2632,5 @@ docs:
 compose bug
 	E (edit headers) fails if $editor isn't set
 
+safe_calloc -- some args wrong way around
+
