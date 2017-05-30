@@ -151,3 +151,32 @@ Other full-screen views will have partitions
 	each needs a wrapper -- catchall for keys
 	and to turn on/off entire view
 
+what about compose screen, etc
+	attachments, pgp keys, query, aliases
+
+floating dialogs?
+	questions
+	help
+	auto-completion (live, filtered)
+	progress bar
+		scrolling list of completed actions
+	messages/warnings (coloured)
+
+can mutt cache whole screen and attributes to do the repaint itself
+
+floating -- attached to which window?
+allow multiple floating?
+	can't think of a use, yet
+	nested questions, perhaps?
+	NOT YET -- leads to difficult repainting problems
+	if top dialog is large then bottom dialog
+	need to repaint base, then bottom dialog
+
+if limited to 1 floating dialog, then give window a single
+floating pointer.  when repainting after close, tell the view
+both the full region and the min repaint area.  optionally,
+clip any writes outside teh invalidated area for speed and
+flicker-free-ness
+
+turn options questions into multiline floating windows?
+

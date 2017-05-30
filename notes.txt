@@ -2612,3 +2612,15 @@ plugin fs-layer
 special reader for alias file, that parses comments, e.g.
 	# tags:red,blue,green phone:'1234'
 
+create screens overview of all areas of mutt.  provide:
+	sample data/emails
+	sample muttrc
+	instructions to repeat
+
+renew s/mime cert & test & desc steps
+
+simplify y/n questions.  no more "Are you sure?", just
+"Quit? Y/n" -- all ask-yes, ask-no
+
+colour highlight/underline _Q_uestion, _O_ptions 'q', 'o'
+
