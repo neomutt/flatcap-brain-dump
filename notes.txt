@@ -2629,3 +2629,6 @@ docs:
 	docs refer to "+USE_SIDEBAR" etc
 	and if sidebar is enabled
 
+compose bug
+	E (edit headers) fails if $editor isn't set
+
