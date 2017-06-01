@@ -2636,3 +2636,7 @@ safe_calloc -- some args wrong way around
 
 alter merge script to just clang-format a set of commits
 
+with options split into sources, mutt -D could omit entire sections
+	if nothing has been set, e.g.
+	all of pop_* have default value
+
