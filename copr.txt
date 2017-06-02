@@ -30,3 +30,5 @@ change "version" to 2016MMDD
 	=> increase epoch
 	provide mutt = OLDMUTTVER
 
+remove dotlock references
+
