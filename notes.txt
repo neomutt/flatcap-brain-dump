@@ -1147,11 +1147,7 @@ trash docs
 	add folder-hook to delete if >30days
 
 mutt_dotlock
-	make properly configurable
 	the chgrp / chmod can't be done by a user install
-add working NO dotlock option to configure options
-dotlock disable by default
-	option to enable
 
 trash + gmail
 	doesn't work as expected
@@ -1252,14 +1248,6 @@ contact distros
 
 email all 341 of mutt-kz stargazers and tell them about neomutt
 	exclude the neomutt stargazers
-
-PATCHES
-	change display into sorted, wrapped feature list
-	why is it a text file, not code?
-	to make it part of the docs?
-	change patch-* to feature-* ?
-	drop it or at least abbreviate it greatly
-	alter script to allow missing file
 
 check all lists of features are up-to-date
 	web, etc
@@ -1419,11 +1407,6 @@ branch by version / language
 
 syntax file in local vim syntax dir needs to be called
 	muttrc to match vim modelines in other files
-
-:set variable=MAGIC_TOKEN
-	=> set to default value
-	history records the default value, not the token
-	TOKEN=$default ?
 
 nested-if script
 
@@ -1999,9 +1982,6 @@ L10N split up large version string blocks
 
 issue label: "translation"
 
-translations
-	forgotten 'f', move to end or numbering doesn't work
-
 web translate league table posn #'s -> compete!
 
 .po are "#: file.c" needed except at translate time?  drop?
@@ -2521,10 +2501,6 @@ change #ifndef's to #warning too
 	#warning "Please tell neomutt devs about this
 	#endif
 
-eab2482d Thomas Roessler  2000-06-13 20:36:33
-	sendlib.c:627
-	#define BUGGY_ICONV 1
-
 Project management:
 	contact distros
 	organise web updates
@@ -2547,10 +2523,6 @@ misc easy
 	translations to web page
 	doxygen -> web /code dir
 	mutt debug FILE, LINE, FUNC #macro
-	wrap PATCHES
-
-PATCHES file considered harmful
-	suggests people should fork
 
 deprecate ChangeLog*
 	they're in the git history
@@ -2590,10 +2562,6 @@ init.h
 	UL 0 vs UL NULL vs UL ""
 	unify
 
-SmimeSignOpaqueCommand isn't used!
-	globals.h
-	init.h
-
 add mutt.svg to contrib release
 
 summary :changelog read from file
@@ -2624,15 +2592,8 @@ simplify y/n questions.  no more "Are you sure?", just
 
 colour highlight/underline _Q_uestion, _O_ptions 'q', 'o'
 
-docs:
-	Typo: To use this expandos
-	docs refer to "+USE_SIDEBAR" etc
-	and if sidebar is enabled
-
 compose bug
 	E (edit headers) fails if $editor isn't set
-
-safe_calloc -- some args wrong way around
 
 alter merge script to just clang-format a set of commits
 
