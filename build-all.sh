@@ -35,5 +35,5 @@ else
 	OPTIONS="--enable-hcache"
 fi
 
-echo "$VERSION $OPTIONS"
+echo "$VERSION $COMMON $OPTIONS"
 
