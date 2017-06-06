@@ -2785,3 +2785,5 @@ merge upstream.sh remove #if 0
 
 --disable-warnings      Turn off compiler warnings (not recommended)
 
+move smime.types to contrib
+
