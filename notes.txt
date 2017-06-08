@@ -2787,3 +2787,8 @@ merge upstream.sh remove #if 0
 
 move smime.types to contrib
 
+pgp_invoke_decode
+	This is historic and may be removed at some point.
+	lots of simliar functions being redirected
+	strip out?
+
