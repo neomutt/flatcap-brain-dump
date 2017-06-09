@@ -2809,4 +2809,6 @@ find while (1)
 	16 occurrences
 
 create an address interface for lookups / completion
+	basic plugin uses aliases
+	notmuch can supply its own plugin
 
