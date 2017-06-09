@@ -2798,3 +2798,6 @@ mh.c DO_SORT macro defined and used ONCE
 
 Rfc2231Parameter parameter encoded
 	bool?
+
+mutt_search_attach_keyword is static
+	s/mutt_//
