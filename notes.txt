@@ -2794,3 +2794,5 @@ pgp_invoke_decode
 pgp_application_pgp_handler
 	needpass (bool) starts as -1!
 
+mh.c DO_SORT macro defined and used ONCE
+
