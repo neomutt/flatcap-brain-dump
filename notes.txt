@@ -2804,3 +2804,9 @@ mutt_search_attach_keyword is static
 
 struct ContentState
 	lots of bools?
+
+find while (1)
+	16 occurrences
+
+create an address interface for lookups / completion
+
