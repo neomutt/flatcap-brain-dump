@@ -2801,3 +2801,6 @@ Rfc2231Parameter parameter encoded
 
 mutt_search_attach_keyword is static
 	s/mutt_//
+
+struct ContentState
+	lots of bools?
