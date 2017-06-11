@@ -234,3 +234,7 @@ lua-index needs both label and notmuch callbacks
 lua-highlighting
 	backtrace mode
 
+script to delete duplicate emails on the mailing list
+	save outgoing email in mailing list
+	when "public" copy arrives, delete the "sent" copy
+
