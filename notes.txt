@@ -2548,9 +2548,6 @@ neomutt-test-config.sh
 	put mutt's in an output dir
 	log each numeric name with the compile options
 
-kill ./confgure --disable-warnings
-	leave them on
-
 2017-05-24
 	00:00 <cybrNaut> why is "fcc_clear" suggested as a work-around to those without "smime_encrypt_self = yes" in https://www.neomutt.org/feature/encrypt-to-self, when fcc_clear is said to be
 			"PGP only" here: https://www.neomutt.org/guide/reference.html#fcc-clear ?
@@ -2602,7 +2599,6 @@ with options split into sources, mutt -D could omit entire sections
 	all of pop_* have default value
 
 travis/neomutt-test-configs configs & build tags
-merge-upstream.sh
 init.h -> options.[ch]
 eliminate WHERE
 mutt -D options
@@ -2667,7 +2663,6 @@ update gpg keys website/dns
 newbie page Twitter toogley
 getside allowed, not checked #ifdef'd
 setgid 2001
-devel-notes.txt still exist
 are both fcntl and flock nec?
 fcntl always present - remove #ifdef
 
@@ -2681,9 +2676,6 @@ notmuch / lua should be --with, not --enable
 	what about ax_lua.m4?
 
 doc sample branches
-toogley patches
-toogley cron
-debian 2^32 IMAP
 
 linux kernel
 	IS_ERR, PTR_ERR
@@ -2703,8 +2695,6 @@ devel ml favourite git config
 
 debug fill 0xDD on FREE()?
 
-merge-upstream.sh -> management
-
 warning on muttrc synonyms
 	this will be removed in x months
 	this will be removed after DATE (better)
@@ -2718,72 +2708,6 @@ char * needs strlen
 travis special build for upstream?
 
 merge upstream.sh remove #if 0
-
-
---enable-locales-fix    The result of isprint() is unreliable
-	LOCALES_HACK
-./init.c:4088:#ifndef LOCALES_HACK
-./protos.h:416:#ifdef LOCALES_HACK
-./version.c:212:#ifdef LOCALES_HACK
-
---enable-exact-address  Enable regeneration of email addresses
-	EXACT_ADDRESS
-./alias.c:97:#ifdef EXACT_ADDRESS
-./hcache/hcache.c:223:#ifdef EXACT_ADDRESS
-./hcache/hcache.c:247:#ifdef EXACT_ADDRESS
-./query.c:172:#ifdef EXACT_ADDRESS
-./rfc2047.c:590:#ifdef EXACT_ADDRESS
-./rfc2047.c:886:#ifdef EXACT_ADDRESS
-./rfc822.c:92:#ifdef EXACT_ADDRESS
-./rfc822.c:136:#ifdef EXACT_ADDRESS
-./rfc822.c:371:#ifdef EXACT_ADDRESS
-./rfc822.c:390:#ifdef EXACT_ADDRESS
-./rfc822.c:408:#ifdef EXACT_ADDRESS
-./rfc822.c:415:#ifdef EXACT_ADDRESS
-./rfc822.c:456:#ifdef EXACT_ADDRESS
-./rfc822.c:463:#ifdef EXACT_ADDRESS
-./rfc822.c:479:#ifdef EXACT_ADDRESS
-./rfc822.c:495:#ifdef EXACT_ADDRESS
-./rfc822.c:550:#ifdef EXACT_ADDRESS
-./rfc822.c:609:#ifdef EXACT_ADDRESS
-./rfc822.c:795:#ifdef EXACT_ADDRESS
-./rfc822.h:37:#ifdef EXACT_ADDRESS
-./version.c:147:#ifdef EXACT_ADDRESS
-
---enable-nfs-fix        Work around an NFS with broken attributes caching
-	NFS_ATTRIBUTE_HACK
-./mbox.c:88:#ifdef NFS_ATTRIBUTE_HACK
-./mbox.c:103:#ifdef NFS_ATTRIBUTE_HACK
-./mbox.c:251:#ifdef NFS_ATTRIBUTE_HACK
-./mbox.c:268:#ifdef NFS_ATTRIBUTE_HACK
-
---enable-mailtool       Enable Sun mailtool attachments support
-	SUN_ATTACHMENT
-./parse.c:127:#ifdef SUN_ATTACHMENT
-./parse.c:265:#ifdef SUN_ATTACHMENT
-./parse.c:312:#ifdef SUN_ATTACHMENT
-./parse.c:332:#ifdef SUN_ATTACHMENT
-./parse.c:453:#ifdef SUN_ATTACHMENT
-./parse.c:488:#ifdef SUN_ATTACHMENT
-./parse.c:571:#ifdef SUN_ATTACHMENT
-./parse.c:620:#ifdef SUN_ATTACHMENT
-./version.c:281:#ifdef SUN_ATTACHMENT
-
---with-exec-shell=SHELL Specify alternate shell (ONLY if /bin/sh is broken)
-	EXECSHELL
-./filter.c:124:    execle(EXECSHELL, "sh", "-c", cmd, NULL, mutt_envlist());
-./mutt_tunnel.c:86:    execle(EXECSHELL, "sh", "-c", Tunnel, NULL, mutt_envlist());
-./system.c:114:    execle(EXECSHELL, "sh", "-c", cmd, NULL, mutt_envlist());
-./version.c:430:  printf("EXECSHELL=\"%s\"\n", EXECSHELL);
-
---disable-full-doc      Omit disabled variables
-	MAKEDOC_FULL
-./doc/makedoc_defs.h:21:#ifdef MAKEDOC_FULL
-	what's left that's conditional?
-
---without-wc-funcs      Do not use the system's wchar_t functions
-
---disable-warnings      Turn off compiler warnings (not recommended)
 
 move smime.types to contrib
 
