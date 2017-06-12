@@ -1839,8 +1839,6 @@ stable branches for LTS releases?
 annouce GPLv2 usage for project
 	make it clear on the (devel) website
 
-docbook -> html leaves artifacts (missing whitespace)
-
 generate valgrind suppression file
 	contrib?
 	devel page instructions
@@ -2080,12 +2078,6 @@ type:investigate ?
 	might lead to docs
 	might not lead to code
 
-investigate
-	EXACT_ADDRESS
-	where did it come from?
-	why is it there?
-	do we still need it?
-
 trash folder: forget the directories idea?	who cares about deleted stuff?
 trash needs index panel expando -- Original location
 archive *needs* dirs %Y / %From?  auto-create, auto-delete on empty
@@ -2151,8 +2143,6 @@ web misc contrib page <h1> per item
 po multi-fold comment, english, foreign -- why bother?
 
 can't find mailbox ops error mesage -- coder only compress.c
-
-./configure --help what's enabled by default?  *clearer*
 
 debian devs are any platforms NOT using gcc/clang?
 	do they have FILE, LINE, FUNC?
@@ -2443,8 +2433,6 @@ configure summary
 	Mutt libs:          -lncursesw -ltokyocabinet -lkyotocabinet -lgdbm -lqdbm -ldb-5.3 -llmdb -lidn 
 what's the distinction?  notmuch and lmdb are both user-specified external deps
 
-fail configure if *wide* curses is missing?
-
 2017-03-22 #mutt
 	14:43 <wayne47> is there a way to specify a unique SMTP server per mail box?
 	14:44 <wayne47> so that when I read mail via imap from foo.com, outgoing mail uses foo.com and when I read from bar.com, outgoing mail uses bar.com (etc)?
@@ -2718,19 +2706,11 @@ pgp_invoke_decode
 pgp_application_pgp_handler
 	needpass (bool) starts as -1!
 
-mh.c DO_SORT macro defined and used ONCE
-
 Rfc2231Parameter parameter encoded
 	bool?
 
-mutt_search_attach_keyword is static
-	s/mutt_//
-
 struct ContentState
 	lots of bools?
-
-find while (1)
-	16 occurrences
 
 create an address interface for lookups / completion
 	basic plugin uses aliases
