@@ -2726,5 +2726,7 @@ mutt
 	pgp_self_encrypt
 	pgp_self_encrypt_as
 
-ICONV_NONTRANS isn't used anywhere
+config.h constants that aren't used:
+	ICONV_NONTRANS
+	HAVE_START_COLOR
 
