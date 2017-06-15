@@ -2730,3 +2730,5 @@ config.h constants that aren't used:
 	ICONV_NONTRANS
 	HAVE_START_COLOR
 
+aur remove regex configure option
+
