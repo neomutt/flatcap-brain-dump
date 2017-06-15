@@ -2726,3 +2726,5 @@ mutt
 	pgp_self_encrypt
 	pgp_self_encrypt_as
 
+ICONV_NONTRANS isn't used anywhere
+
