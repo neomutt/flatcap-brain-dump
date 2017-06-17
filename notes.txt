@@ -2738,3 +2738,7 @@ config.h constants that aren't used:
 
 aur remove regex configure option
 
+browser.c, buffy.c have a lot of
+	struct Buffy *tmp;
+	tmp's a bad name for a vaiable
+
