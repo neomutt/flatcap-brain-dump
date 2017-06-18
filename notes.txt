@@ -2742,3 +2742,4 @@ browser.c, buffy.c have a lot of
 	struct Buffy *tmp;
 	tmp's a bad name for a vaiable
 
+relative 'source'ing of files doesn't work if the base is a symlink
