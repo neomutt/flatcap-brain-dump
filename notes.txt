@@ -2747,3 +2747,39 @@ relative 'source'ing of files doesn't work if the base is a symlink
 each variable type in init.h should have its own validator
 (null for free form strings, or unranged numbers)
 
+compose: flexible layout => multiple lines for To: CC: etc
+(when necessary)  Hide lines that aren't set, e.g. BCC: Mix chain (optionally)
+Limit number of lines to 2 or 3 in case of degenerate lists
+abbreviate with "(+6 more)"
+
+ask for quick poll on issue: +1 :-| -1
+dotlock, synonyms, configure options, others?
+
+devel list - favourite vim plugins -- promote mine?
+
+modular mutt: imap & nntp share some functions
+"subscribe" -- both should declare and mutt notifies both?
+or can it tell whose command it is?
+
+init.h 435 options
+110 in #ifdefs (more *should* be)
+
+changelog -> markdown?
+
+notmuch dep on gpgme in future (via gmime)
+
+options accelerator '&' double up to escape
+static buffer parse translations on first run
+needs to cope with missing options or
+options reordered -- still need "letters" internally
+NO, need letters in po file
+
+account [[name] mailbox]
+	mailboxes
+account
+
+Account
+	Buffy children[];
+	char *name;
+	Account *next;
+

@@ -35,3 +35,22 @@ post comment to aur package
 
 update mutt releases web page
 
+Release commits:
+	version number (configure.ac)
+	changelog
+	mailmap/readme credits
+	run cocci, etc
+	clang-format
+	docs
+		check indent
+		update docs dates / versions
+		make validate
+		make spellcheck
+		make sortcheck
+	translations
+		merge
+		update project date
+	sync to mutt/default-clean
+
+Release: thanks Floyd (@floand)
+
