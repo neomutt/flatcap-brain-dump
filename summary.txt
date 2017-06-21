@@ -15,3 +15,6 @@ current server settings, e.g.
 	Host: gmail.com
 	Username: rich
 
+:help <variable|command|function>
+:help -> list of ways to use the help
+
