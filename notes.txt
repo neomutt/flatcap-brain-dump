@@ -2744,3 +2744,6 @@ browser.c, buffy.c have a lot of
 
 relative 'source'ing of files doesn't work if the base is a symlink
 
+each variable type in init.h should have its own validator
+(null for free form strings, or unranged numbers)
+
