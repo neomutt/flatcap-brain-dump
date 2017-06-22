@@ -24,7 +24,7 @@ any functions() -> (void)
 use #ifdef for all symbols
 Remove #ifdef around header includes
 functions - name all parameters
-variables rename reserved words (new, this, etc)
+variables rename reserved words (new, this, virtual, template, etc)
 gcc printf function checks
 sort makefile lists (but not all)
 drop pointless make targets
