@@ -17,3 +17,9 @@ keep a min of 5 easy tasks (coding)
 project: easy bugs
 	tie into mentor system
 
+travis build scripts
+" -> ' in muttrc
+autogen vim syntax file
+translations to web page
+doxygen -> web /code dir
+mutt debug FILE, LINE, FUNC #macro

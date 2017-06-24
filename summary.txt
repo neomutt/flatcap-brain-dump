@@ -18,3 +18,5 @@ current server settings, e.g.
 :help <variable|command|function>
 :help -> list of ways to use the help
 
+:changelog read from file
+

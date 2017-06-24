@@ -1034,7 +1034,6 @@ web/readme ∀ pages
 
 script for "build-all-git-tags"
 	publish
-	need to kill dotlock
 
 generate (script) tree of all source (by tags)
 	and create squashfs
@@ -1145,9 +1144,6 @@ do saved emails (that get deleted from current folder) appear in the trash?
 trash docs
 	add purge-message/purge-thread notes
 	add folder-hook to delete if >30days
-
-mutt_dotlock
-	the chgrp / chmod can't be done by a user install
 
 trash + gmail
 	doesn't work as expected
@@ -1583,10 +1579,6 @@ distro web pages need install instructions for development, too
 admins need to make a release in 1 week's time -- practice
 	(one of them, or all)
 
-update notmuch readme
-	complete merge into main doc?
-	UPDATING.kz -> ChangeLog.notmuch?
-
 bot on server to mail dev list on git commits?
 
 move separate tools to a separate tools directory
@@ -1637,7 +1629,7 @@ issues -- always assign (for later reference)
 	fixer/mentor only makes sense for bugs/enhancements
 	what about questions?
 
-jew $vartype "letters" == STRING (or letter-list or string-list)
+new $vartype "letters" == STRING (or letter-list or string-list)
 can any other vars be promoted to string-lists? (or letter-lists?)
 	for "set var += X"  add X
 	or  "set var -= Y"  delete Y
@@ -1650,7 +1642,7 @@ multiple letters/strings?
 += / -= works for strings, letters, numbers
 	easy task?
 	what about *= /=
-	regexes performed on strings?
+	~= regexes performed on strings?
 
 would notmuch be able to filter out muted conversations?
 	No, not unless we change headers and notify notmuch
@@ -1838,6 +1830,9 @@ each web dir, have _source.txt
 	scripts for generating
 
 code school -> neo branches (regularly rebased)
+	[school/new-variable]
+	[school/new-function]
+	etc
 
 stable branches for LTS releases?
 	Why?  Mutt doesn't
@@ -2006,9 +2001,9 @@ list Sven's unused letters to the main guide
 
 release branch
 	no .travis.yml (no building)
-	ChangeLog.neomutt
+	ChangeLog
 	configure.ac
-	README.neomutt
+	README
 
 translate: hooks in code to log most translated strings
 	help translators prioritise their work
@@ -2372,7 +2367,6 @@ mutt marks -- are they mailbox-local?
 		is it safe to change mailboxes without warning?
 		I suppose macros do this
 
-(mutt_)dotlock.c why both?
 smime_keys(.pl) why both?
 
 web guide update docs for toogley
@@ -2383,8 +2377,6 @@ sync web & contrib versions of hcache benchmarks
 	how?
 
 topics for my github repos, icons?
-
-code: reserved words: new, this, etc
 
 jekyll page type "hidden" -- don't list
 
@@ -2510,14 +2502,6 @@ vim-neomutt plugin
 	syntax for muttrc
 	folding for c
 
-misc easy
-	travis build scripts
-	" -> ' in muttrc
-	autogen vim syntax file
-	translations to web page
-	doxygen -> web /code dir
-	mutt debug FILE, LINE, FUNC #macro
-
 deprecate ChangeLog*
 	they're in the git history
 	or abbreviate with extreme prejudice
@@ -2554,8 +2538,6 @@ init.h
 	unify
 
 add mutt.svg to contrib release
-
-summary :changelog read from file
 
 docs:
 	http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
@@ -2753,7 +2735,7 @@ Limit number of lines to 2 or 3 in case of degenerate lists
 abbreviate with "(+6 more)"
 
 ask for quick poll on issue: +1 :-| -1
-dotlock, synonyms, configure options, others?
+synonyms, configure options, others?
 
 devel list - favourite vim plugins -- promote mine?
 
@@ -2763,8 +2745,6 @@ or can it tell whose command it is?
 
 init.h 435 options
 110 in #ifdefs (more *should* be)
-
-changelog -> markdown?
 
 notmuch dep on gpgme in future (via gmime)
 
@@ -2797,4 +2777,7 @@ account: use $spoolfile to merge an inbox into the account line
 		banana 3/8
 
 sidebar_account colour?
+
+hcache swapping crashes
+	encode type into hash
 
