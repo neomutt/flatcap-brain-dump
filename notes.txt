@@ -2781,3 +2781,5 @@ sidebar_account colour?
 hcache swapping crashes
 	encode type into hash
 
+add RFC1522
+
