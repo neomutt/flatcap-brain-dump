@@ -5,9 +5,6 @@ ellipsis
 
 make AUTHORS -- which repo did this?
 
-Ultrix dead '95
-	ask debian devs for list of working arches
-
 ────────────────────────────────────────────────────────────────────────────────
 
 Notifications
@@ -86,10 +83,6 @@ New only -- include structure (empty dirs) to keep hierarchy
 
 trim trailing slash from mailboxes, folder
 	shouldn't be displayed
-
-sb_set_curbuffy
-sb_set_buffystats
-	should probably both return BOOL on success/failure
 
 sb_draw should return success of drawing
 	possible given all the callbacks, etc?
@@ -490,9 +483,7 @@ kdave - limit-current-thread
 
 save email doesn't respect the umask
 
-integrate patchlist into new version of ifdef checking
 doc travis and coverity options
-missing qdbm, slang-dev
 split source?
 	tools/ - standalone exes
 	library/ - replacement library functions
@@ -500,8 +491,6 @@ split source?
 
 fmemopen - merge into one place in mutt_mktemp()?
 	idea from dgc email
-rebase and refactor [devel/*] before moving to [feature/*]
-	factor this description into new-feature txt
 sidebar, when saving email to a folder use the sidebar as a selector?
 	new indicator colour or prompts "select save folder" + normal highlight
 join mutt-users and ask both lists what patches/version they're using
@@ -518,9 +507,6 @@ email David Sterba (kdave) -- limit
 screenshots on website
 neomutt version on website home page
 
-convert config.h to version.c
-	viable?
-	sensible?
 "merged" page/collection on website
 	list of all features that have been accepted into the mainline
 	currently empty
@@ -960,10 +946,6 @@ mutt-tips: integrated
 	fake? email or browser spawned
 	neomutt tutorial
 
-notmuch: drop distinction between real and virtual?
-	just maintain 2 lists and swap pointers?
-	should simplify sidebar integration
-
 mutt connection config wizard
 	special cases for gmail, etc
 		open gmail pages in browser
@@ -1091,9 +1073,6 @@ context-sensitive help?
 github issue notifications forward to IRC
 	or dev mailing list
 
-notmuch example rc (and docs)
-	escape ` (backtick)
-
 "bind index ` command"
 	parses badly
 	doesn't warn the user
@@ -1160,10 +1139,6 @@ fold/collapse empty sidebar folders
 xdg extension
 	look for lower case /etc/muttrc
 	etc
-
-change mutt "source" command:
-	take wildcards
-	multiple args => source `find . -name '*.rc'`
 
 fork vs non-fork -- animal species reference
 	species: noun
@@ -1376,12 +1351,6 @@ forgotten-attachments: German example:
 	could I pre-process the email text?
 	it it utf-8 compliant?
 
-projects: translation
-	which languages?
-	document which are supported
-	status: full, partial, started, none
-	see https://weechat.org/doc/devel/
-
 filter manager
 	time limit option -- on holiday!
 
@@ -1474,8 +1443,6 @@ scratch-pad function
 	could be used by scripts to save output
 
 change from autoconf -> cmake
-
-nntp fixes/sync
 
 docs - nested if
 	better explanation of %<>
@@ -1848,10 +1815,6 @@ web: misc page for extra options that aren't in features
 
 web: changes page -- since/relative to mutt
 
-list of ALL vars, fns, cmds
-	link to relevant feature/misc page
-	web home/changes?
-
 website jekyll serve instructions
 
 getting started
@@ -1981,8 +1944,6 @@ L10N split up large version string blocks
 
 issue label: "translation"
 
-web translate league table posn #'s -> compete!
-
 .po are "#: file.c" needed except at translate time?  drop?
 	simplifies merges, etc
 
@@ -2007,8 +1968,6 @@ release branch
 
 translate: hooks in code to log most translated strings
 	help translators prioritise their work
-
-store translation and coverity travis.yml files in management repo
 
 #define the mailbox -2 abort, -1 error
 
@@ -2155,9 +2114,8 @@ errors should be clear whose fault
 user: e.g. type something invalid
 config: file invalid / missing
 code: internal error, missing ops
-separate what user cannot do vs MAY not doc
+separate what user cannot do vs MAY not do
 
-functions.h attach-news-messages #ifdef NNTP!
 "source" command relative to $cwd or previous file
 
 pre-reply hook -- takes original email and formats it however
@@ -2276,8 +2234,6 @@ reorganise docs
 github/irc bot.  notify on:
 	@neomutt/reviewers Please Review -> "guyzmo asked for review of #298 (Desc)"
 	"flatcap approved #298 (Desc)"
-
-test all the sample muttrc files -- check there aren't any old commands/variables
 
 account object that lives above BUFFYs
 	emails
@@ -2590,8 +2546,6 @@ index folding cf vim
 vim plugin - cino options etc
 
 #243 set +/-
-#221 colours passed to index filter
-#179 clean neomutt build
 abbr README
 fold comments
 conceal IMAP password
@@ -2638,7 +2592,6 @@ CRON
 update gpg keys website/dns
 newbie page Twitter toogley
 getside allowed, not checked #ifdef'd
-setgid 2001
 are both fcntl and flock nec?
 fcntl always present - remove #ifdef
 
@@ -2646,7 +2599,6 @@ move hcache configure logic into m4?
 vim-like scrolloff option for pager/index
 use travis env / website to control build verbosity
 sort format string switches
-gahr bsd distro page, I look at lua
 notmuch / lua should be --with, not --enable
 	they have libs/path to
 	what about ax_lua.m4?
@@ -2683,8 +2635,6 @@ char * needs strlen
 
 travis special build for upstream?
 
-merge upstream.sh remove #if 0
-
 move smime.types to contrib
 
 pgp_invoke_decode
@@ -2713,10 +2663,6 @@ mutt
 	smime_self_encrypt_as
 	pgp_self_encrypt
 	pgp_self_encrypt_as
-
-config.h constants that aren't used:
-	ICONV_NONTRANS
-	HAVE_START_COLOR
 
 aur remove regex configure option
 
@@ -2763,8 +2709,6 @@ Account
 	char *name;
 	Account *next;
 
-OPTSPAMSEP isn't used
-
 account: use $spoolfile to merge an inbox into the account line
 	spoolfile not set
 	AC_NAME
@@ -2782,4 +2726,6 @@ hcache swapping crashes
 	encode type into hash
 
 add RFC1522
+
+add release count to changes doc on web
 
