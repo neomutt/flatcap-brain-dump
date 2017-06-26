@@ -2654,16 +2654,6 @@ create an address interface for lookups / completion
 	basic plugin uses aliases
 	notmuch can supply its own plugin
 
-need to sync encrypt-to-self to upstream
-neomutt
-	smime_encrypt_self
-	pgp_encrypt_self
-mutt
-	smime_self_encrypt
-	smime_self_encrypt_as
-	pgp_self_encrypt
-	pgp_self_encrypt_as
-
 aur remove regex configure option
 
 browser.c, buffy.c have a lot of
