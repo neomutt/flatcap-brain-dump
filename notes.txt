@@ -2719,3 +2719,129 @@ add RFC1522
 
 add release count to changes doc on web
 
+Translation
+	10m, clone, trans, PR (poeditor.com)
+	German, Spanish, Slovak, Chinese: email
+	French email
+	Others, users ml
+
+Searches
+	list all GH matches
+	10m - classify
+		old, config, new, different
+
+Offered
+	gahr INITVAL
+	dkc MUTTLIB
+	ta docs
+	boyu trans/code
+	aur @hobarrera
+	toogley themes
+	sileht labels
+
+TODO - me
+	define summary for chrissl
+	define +/- for nobrowser
+	cocci email kdave
+	define release scripts
+
+Doxy - commit config
+	add to build
+	scripts to gen/code on web
+	10m doc a function
+	(sort functions by usage)
+	(generate template ∀)
+
+Distro pages update
+	fedora
+	centos
+	as for help with AUR, Gentoo, Homebrew => vm
+
+Decide
+	#ifdef DEBUG
+	move some web/discuss to "hard"
+		the ones we really want
+	new variable type MAILBOX
+		could be a "/path" or "+mailbox"
+
+Debug levels
+	1,2 user logging
+	3+ full file:line:function:message
+	(debug only)
+
+	mutt_log -> level 1 ==
+		mutt_message
+		mutt_error
+		or == level 0
+	mutt_debug -> level 2+
+	need audit
+	263 mutt_message
+	728 mutt_error
+	704 mutt_debug (total ~1700)
+
+RFC
+	mutt_debug __FILE__, __LINE__ via macro
+	account command user ml, devel ml
+
+Docs
+	branched from where?
+	manual vs guide
+	list of doc committers
+	routes md -> html -- scripts
+	instructions
+	tags on repo + icon
+
+Misc
+	where are the "source" relative docs?
+	alias_file, certificate_file, etc aren't relative
+	relative to what?
+	all *_files relative to user's muttrc
+	$XDG_CACHE_HOME
+	657 tmp
+	656 verify signed
+	644 gmail
+	609 browser tweak
+	coverity travis update ./configure yml
+	release notes - mention "ifdef" changes
+
+Coverity false positives
+	171380
+	171378
+
+FS layer
+	211 fopen, 346 fclose, 285 unlink, 70 rename,
+	mkdir, mktemp, stat, exists, (read|write)_(string|char)
+	85 seek, flush
+	tie in with mmap
+	tie in with memstream/buffer/tmp
+	distinguish tmpfile, generated help page, partial email
+	memstream -> better buffer interface
+	canonicalise path
+
+Variables
+	struct {type, hash, name, union {vars}}
+	OPT_INT(Var)
+	get_int_opt(name|id)
+	type includes "my_"-ness
+	who holds the vars?
+	get(NULL, name) => default?
+	hash inside or out, or both. BOTH
+	HASH *vars
+	get_name (id)
+	get_hash(name)
+	get_var(name|id)
+	set_var(name|id, var)
+	some vars need a validator
+	variable sets know their parent
+	set variables via a function() -> notifications
+	get variables direct from their Var
+	variables don't know about refreshing
+
+parse_set: unset DT_RX doesn't work
+
+log before regex ops & other risky functions
+
+debug_level > n => fflush every line
+
+use install-sh $(INSTALL) instead of cp
+
