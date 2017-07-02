@@ -2836,6 +2836,9 @@ Variables
 	set variables via a function() -> notifications
 	get variables direct from their Var
 	variables don't know about refreshing
+	where are validators / notifications stored?
+		globally (on default config-set)
+		per-config-set (allow overrides)
 
 parse_set: unset DT_RX doesn't work
 
