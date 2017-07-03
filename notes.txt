@@ -2797,10 +2797,7 @@ Misc
 	relative to what?
 	all *_files relative to user's muttrc
 	$XDG_CACHE_HOME
-	657 tmp
 	656 verify signed
-	644 gmail
-	609 browser tweak
 	coverity travis update ./configure yml
 	release notes - mention "ifdef" changes
 
