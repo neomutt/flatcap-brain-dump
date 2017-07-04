@@ -2670,9 +2670,6 @@ compose: flexible layout => multiple lines for To: CC: etc
 Limit number of lines to 2 or 3 in case of degenerate lists
 abbreviate with "(+6 more)"
 
-ask for quick poll on issue: +1 :-| -1
-synonyms, configure options, others?
-
 devel list - favourite vim plugins -- promote mine?
 
 modular mutt: imap & nntp share some functions
@@ -2782,14 +2779,6 @@ Debug levels
 RFC
 	mutt_debug __FILE__, __LINE__ via macro
 	account command user ml, devel ml
-
-Docs
-	branched from where?
-	manual vs guide
-	list of doc committers
-	routes md -> html -- scripts
-	instructions
-	tags on repo + icon
 
 Misc
 	where are the "source" relative docs?
