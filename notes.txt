@@ -2729,11 +2729,8 @@ Searches
 
 Offered
 	gahr INITVAL
-	dkc MUTTLIB
-	ta docs
 	boyu trans/code
 	aur @hobarrera
-	toogley themes
 	sileht labels
 
 TODO - me
