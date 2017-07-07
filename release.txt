@@ -54,3 +54,11 @@ Release commits:
 
 Release: thanks Floyd (@floand)
 
+version
+credits
+mailmap
+changelog
+clang-format
+whitespace
+translations
+sync git
