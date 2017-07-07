@@ -62,3 +62,6 @@ clang-format
 whitespace
 translations
 sync git
+
+sync mutt/{stable,default} with clean
+
