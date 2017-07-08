@@ -34,3 +34,10 @@ Muttrc.head (init.h)
 	~100 lines + 5000 generated
 sidebar guide => html for highlighting
 
+after committing a markdown file
+perform substitutions
+        [SAMPLE_DIR]   -> [USERS_DIR]
+        /etc/Muttrc    -> /usr/local/etc/Muttrc        
+        [VERSION]      -> YYYYMMDD
+        [VERSION_LONG] -> YYYY-MM-DD
+

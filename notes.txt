@@ -2831,3 +2831,36 @@ debug_level > n => fflush every line
 
 use install-sh $(INSTALL) instead of cp
 
+ask neou for logo suggestions
+        hold competition for art?
+
+two stage index update?
+        hide, refresh
+        update
+        NO, index vars would still be wrong
+
+check distro installs
+        provide list of all installed files/types, etc
+        cf each distro
+
+update newbie/hard list from discussions -> focus
+
+check management README (missing)
+
+now that IMAP, et al, are compiled-in, what's in the docs
+        that might be excluded (makedoc conditional)
+
+--authors reads file /docs/AUTHORS
+--license reads file /docs/LICENSE
+if missing, print placeholder URL / GPLv2 respectively
+        => getopt long
+
+drop (1.2.3) from version?
+what about debian?
+
+change "Mutt" -> "NeoMutt" ∀ code/docs
+
+are imap vars used outside of imap code?
+what about sidebar, browser, etc?
+keep their own var lists?  register at startup?
+

@@ -60,8 +60,17 @@ mailmap
 changelog
 clang-format
 whitespace
-translations
+translations, dates and hi-scores
 sync git
 
 sync mutt/{stable,default} with clean
+
+on dev release
+        user-ml: coming soon email
+
+add management repo to credit list
+consider other repos for rel notes?
+perform NULL sync to mutt/default-clean
+
+update website from docs (after version number)
 
