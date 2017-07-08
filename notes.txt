@@ -2864,3 +2864,6 @@ are imap vars used outside of imap code?
 what about sidebar, browser, etc?
 keep their own var lists?  register at startup?
 
+document meaning of "distros" pages
+        min vm install -> build -> debug
+
