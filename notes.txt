@@ -2867,3 +2867,22 @@ keep their own var lists?  register at startup?
 document meaning of "distros" pages
         min vm install -> build -> debug
 
+predefined buffer macros (static)
+        => addstr could fail (out of space)
+        easier memory management
+        BUFFER256, 1024, etc
+        allocate buffer for you & memset it
+
+turn STRING, LONGSTRING into numbered consts
+        STR1024, etc
+        clearer
+
+buffer code solaris9(2005!) check
+
+hcache: x [y] z
+        y = default
+
+magic -- set *string*, save *int*
+        retrieve which?
+        or both?
+
