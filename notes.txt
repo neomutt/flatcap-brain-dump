@@ -2912,3 +2912,12 @@ stable
         short
         features
         user-visible fixes
+
+in pager, which objects are precious/vunerable
+        which might be changes outside of the pager
+
+rename OPTAPPLEBANANACHERRY -> OPT_APPLE_BANANA_CHERRY
+
+hcache crash backtrace
+which backend to which other?
+
