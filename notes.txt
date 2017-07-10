@@ -2832,6 +2832,13 @@ Variables
         internal getters: string, int, bool, void*
         overridden getter returns "Var"?
         then coerced to type?
+        hc_init()
+                register_type(DT_HCACHE, ops)
+        parse_set()
+                -> hc_set(string)
+                -> hc_validator(string)
+        validator per type
+        REQUIRE get_str ∀ types
 
 parse_set: unset DT_RX doesn't work
 
