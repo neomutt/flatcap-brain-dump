@@ -2886,3 +2886,12 @@ magic -- set *string*, save *int*
         retrieve which?
         or both?
 
+split release notes into dev & stable
+dev
+        full details
+        long and technical
+        include issues
+stable
+        short
+        features
+        user-visible fixes
