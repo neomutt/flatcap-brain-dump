@@ -41,3 +41,29 @@ perform substitutions
         [VERSION]      -> YYYYMMDD
         [VERSION_LONG] -> YYYY-MM-DD
 
+Required for Release 1.0
+which scripts?
+        converting from what to what?
+which outputs?
+        html
+        txt
+        webpage
+sync to source
+notify distros about changes
+        separate package
+        list distros to notify
+rules for syncing
+        list sync items
+
+Post release
+        drop docs from source
+
+Future list
+        convert man pager
+        restructure docs
+        add howtos
+        pictorial guides
+        translate docs
+        FAQ?
+        what else?
+
