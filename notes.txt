@@ -2822,6 +2822,16 @@ Variables
 	where are validators / notifications stored?
 		globally (on default config-set)
 		per-config-set (allow overrides)
+        key my_vars in separate set?
+        functions per set, per type
+                setter
+                getter
+                validator
+        set by string (from config)
+        get by type of user's choice
+        internal getters: string, int, bool, void*
+        overridden getter returns "Var"?
+        then coerced to type?
 
 parse_set: unset DT_RX doesn't work
 
