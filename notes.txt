@@ -2936,3 +2936,4 @@ each struct calls the children it needs
 put in some version numbers, or
 field type and length bytes before each field
 
+rename CryptKeyinfo to CryptKeyInfo
