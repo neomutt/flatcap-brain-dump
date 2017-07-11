@@ -2928,3 +2928,11 @@ hcache pruner
                 unless we trawl through EVERY email
                 might as well cache them too
 
+split the hcache serialisation by struct
+        address_serialise
+        buffer_serialise
+        etc
+each struct calls the children it needs
+put in some version numbers, or
+field type and length bytes before each field
+
