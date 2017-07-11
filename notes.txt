@@ -2921,3 +2921,10 @@ rename OPTAPPLEBANANACHERRY -> OPT_APPLE_BANANA_CHERRY
 hcache crash backtrace
 which backend to which other?
 
+hcache pruner
+        use list of mailboxes
+        use list of backends (you want)
+        won't work for caching files, only folders
+                unless we trawl through EVERY email
+                might as well cache them too
+
