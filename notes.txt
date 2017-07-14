@@ -2939,3 +2939,5 @@ field type and length bytes before each field
 rename
         CryptKeyinfo to CryptKeyInfo
         Capability_Alias to CapabilityAlias
+
+add make tags (to exclude junk)
