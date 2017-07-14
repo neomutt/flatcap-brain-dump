@@ -37,6 +37,7 @@ update mutt releases web page
 
 Release commits:
 	version number (configure.ac)
+                doxygen config
 	changelog
 	mailmap/readme credits
 	run cocci, etc
@@ -51,8 +52,6 @@ Release commits:
 		merge
 		update project date
 	sync to mutt/default-clean
-
-Release: thanks Floyd (@floand)
 
 version
 credits
