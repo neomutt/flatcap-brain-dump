@@ -2941,3 +2941,6 @@ rename
         Capability_Alias to CapabilityAlias
 
 add make tags (to exclude junk)
+
+listen for tags -- list somewhere public
+https://github.com/neomutt/neomutt/tags.atom
