@@ -2944,3 +2944,9 @@ add make tags (to exclude junk)
 
 listen for tags -- list somewhere public
 https://github.com/neomutt/neomutt/tags.atom
+
+tokenize_unget_string isn't used
+tokenize_push_macro_string is used just twice -- expand
+imap_new_idata allocs can't fail, simply error paths
+
+add rfc1847 gpg
