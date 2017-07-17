@@ -2950,3 +2950,6 @@ tokenize_push_macro_string is used just twice -- expand
 imap_new_idata allocs can't fail, simply error paths
 
 add rfc1847 gpg
+
+ask lists about slang usage
+        drop slang
