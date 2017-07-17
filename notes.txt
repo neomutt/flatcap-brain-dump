@@ -2953,3 +2953,6 @@ add rfc1847 gpg
 
 ask lists about slang usage
         drop slang
+
+tweak doxygen to #define more things for better coverage
+
