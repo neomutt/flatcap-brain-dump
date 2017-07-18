@@ -2942,3 +2942,5 @@ ask lists about slang usage
 
 tweak doxygen to #define more things for better coverage
 
+what does AC_EXEEXT do?
+
