@@ -2903,16 +2903,6 @@ magic -- set *string*, save *int*
         retrieve which?
         or both?
 
-split release notes into dev & stable
-dev
-        full details
-        long and technical
-        include issues
-stable
-        short
-        features
-        user-visible fixes
-
 in pager, which objects are precious/vunerable
         which might be changes outside of the pager
 
@@ -2935,10 +2925,6 @@ split the hcache serialisation by struct
 each struct calls the children it needs
 put in some version numbers, or
 field type and length bytes before each field
-
-rename
-        CryptKeyinfo to CryptKeyInfo
-        Capability_Alias to CapabilityAlias
 
 add make tags (to exclude junk)
 

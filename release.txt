@@ -74,3 +74,13 @@ perform NULL sync to mutt/default-clean
 
 update website from docs (after version number)
 
+split release notes into dev & stable
+dev
+        full details
+        long and technical
+        include issues
+stable
+        short
+        features
+        user-visible fixes
+
