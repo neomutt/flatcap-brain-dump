@@ -2465,6 +2465,8 @@ deprecate ChangeLog*
 MacOS iTerm
 	Ctrl-O doesn't work
 	"stty discard undef" fixes it
+some other terms too
+	"stty flush undef" needed
 
 cmdline --about links etc
 
