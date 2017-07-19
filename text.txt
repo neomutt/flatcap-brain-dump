@@ -1,0 +1,53 @@
+Text
+	The quick brown fox
+	jumps over a lazy dog
+
+Drawing options
+	enough width, enough height -> two full lines
+	normal wrap @char
+	normal wrap @work
+	flowed wrap @char } - optional end marker
+	flowed wrap @work }            start marker/indent
+	truncate option
+
+store text as a continuous blob
+rope initially split at lines
+give rope attributes - header, body, attach?
+apply user highlighting (nested)
+apply system highlighting -- search, spelling
+conceal is a colour, cf vim
+each highlighting/end is a metadata insertion
+	meta -> static list of attrs
+
+at end of line need to clear all attrs (some will be line-limited)
+at start of line need to restart necessary attrs
+can we have overlapping (but non-nested) attrs?
+	=> break stack model
+
+e.g.
+pos     α     β    γ      δ
+	apple banana cherry
+        |          |      |
+        +-----+----+      |
+          user colour     |
+              |           |
+              +-----+-----+
+                search colour
+α +user colour 6
+β +sys colour 4
+γ -user colour 6
+δ -sys colour 4
+
+need to know how to combine and subtract them
+split attrs into component parts: fg, bg, style, alpha?
+then decide what to display
+some colours will be line-limited, so pop them at EOL
+
+if split mid-banana
++U6 apple
++S4 ba EOL
+RESET
++U6 +S4 nana
+-U6 cherry
+-S4
+
