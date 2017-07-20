@@ -1596,21 +1596,6 @@ issues -- always assign (for later reference)
 	fixer/mentor only makes sense for bugs/enhancements
 	what about questions?
 
-new $vartype "letters" == STRING (or letter-list or string-list)
-can any other vars be promoted to string-lists? (or letter-lists?)
-	for "set var += X"  add X
-	or  "set var -= Y"  delete Y
-	or  "set var != Z"  toggle Z
-multiple letters/strings?
-	set var += XY (or X,Y)   for letters
-	set var -= apple,banana  for strings
-	set var != cherry,damson for strings
-
-+= / -= works for strings, letters, numbers
-	easy task?
-	what about *= /=
-	~= regexes performed on strings?
-
 would notmuch be able to filter out muted conversations?
 	No, not unless we change headers and notify notmuch
 
@@ -2547,7 +2532,6 @@ READMEs tidy review
 index folding cf vim
 vim plugin - cino options etc
 
-#243 set +/-
 abbr README
 fold comments
 conceal IMAP password
@@ -2737,7 +2721,6 @@ Offered
 
 TODO - me
 	define summary for chrissl
-	define +/- for nobrowser
 	cocci email kdave
 	define release scripts
 

@@ -1,0 +1,22 @@
+#243 set plus-equals, minus-equals
+https://github.com/neomutt/neomutt/issues/243
+easy task
+
+new $vartype "letters" == STRING (or letter-list or string-list)
+can any other vars be promoted to string-lists? (or letter-lists?)
+	for "set var += X"  add X
+	or  "set var -= Y"  delete Y
+	or  "set var != Z"  toggle Z
+
+multiple letters/strings?
+	set var += XY (or X,Y)   for letters
+	set var -= apple,banana  for strings
+	set var != cherry,damson for strings
+
++= / -= works for strings, letters, numbers
+	what about *= /=
+	~= regexes performed on strings?
+
+all numeric fields
+set nm_hidden_tags = "unread,draft,flagged,passed,replied,attachment,signed,encrypted"
+
