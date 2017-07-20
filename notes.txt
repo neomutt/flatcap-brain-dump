@@ -1,2790 +1,104 @@
-ellipsis
-	mutt_error
-	mutt_message
-	mutt_debug
+tweak doxygen to #define more things for better coverage
 
-make AUTHORS -- which repo did this?
+ask lists about slang usage
+        drop slang
 
-────────────────────────────────────────────────────────────────────────────────
+add rfc1847 gpg
 
-Notifications
+tokenize_unget_string isn't used
+tokenize_push_macro_string is used just twice -- expand
+imap_new_idata allocs can't fail, simply error paths
 
-Window changes
-	hidden	no params
-	visible	rect
-	resize	rect
-	focus	in/out
-colours changes
-keypress	key, no params
-config change	key, value
-		ALL, no params
-mail status change
-	read/unread/flagged/deleted/edited
-	MESSAGE_ID, flags
-mailbox change
-	new/deleted
-	new mail, deleted mail, flagged mail, etc
-connection status
-	connected
-	disconnected
-startup
-quitting - any use to anyone?
-selected mail changed
-selected mailbox changed
+listen for tags -- list somewhere public
+https://github.com/neomutt/neomutt/tags.atom
 
-wrapping →
-	extra char at beginning of line "+"
-	extra char at end of line "<-/"
-wrap at:
-	char
-	word (whitespace)
-	clause (punctuation)
-	sentence (.!?)
-No wrap →
-	extra char at end of line ">"
+add make tags (to exclude junk)
 
-────────────────────────────────────────────────────────────────────────────────
+split the hcache serialisation by struct
+        address_serialise
+        buffer_serialise
+        etc
+each struct calls the children it needs
+put in some version numbers, or
+field type and length bytes before each field
 
-send escape sequence to clear terminal title when mutt closes
-init.h struct option_t needs enums for types and union for data
-timer notifications, e.g.
-	highlight something for three seconds, then return to normal
-https://github.com/N8Fear/mutt-kz
-	some initialisations improvements
-	some bug fixes
+hcache pruner
+        use list of mailboxes
+        use list of backends (you want)
+        won't work for caching files, only folders
+                unless we trawl through EVERY email
+                might as well cache them too
 
-sidebar_dividers
-	first (wide) character is vertical divider
-		between sidebar and index/pager
-	second (wide) character is horizontal divider
-		between different mailboxes (within the sidebar)
+hcache crash backtrace
+which backend to which other?
 
-need attention
-	draw_sidebar
-	OPTSIDEBARSORT
-		sorts by real path, not visible name
+rename OPTAPPLEBANANACHERRY -> OPT_APPLE_BANANA_CHERRY
 
-possible to fix sidebar sort order to respect hierarchy/indentation?
+in pager, which objects are precious/vunerable
+        which might be changes outside of the pager
 
-sidebar_width = auto (size to contents)
-	would need to parse and format all strings ahead of drawing divider
+magic -- set *string*, save *int*
+        retrieve which?
+        or both?
 
-sorting
-	if displaying full paths:
-		sort by display name
-		sort by underlying name
-	if displaying indented paths:
-		sort by top-level names, then children
+hcache: x [y] z
+        y = default
 
-New only -- include structure (empty dirs) to keep hierarchy
-	mail (0)
-	  fruit (0)
-	    apple (1)
+buffer code solaris9(2005!) check
 
-trim trailing slash from mailboxes, folder
-	shouldn't be displayed
+turn STRING, LONGSTRING into numbered consts
+        STR1024, etc
+        clearer
 
-sb_draw should return success of drawing
-	possible given all the callbacks, etc?
+predefined buffer macros (static)
+        => addstr could fail (out of space)
+        easier memory management
+        BUFFER256, 1024, etc
+        allocate buffer for you & memset it
 
-quiet config option -- don't whine about unknown config options
-	or quiet command line option
+document meaning of "distros" pages
+        min vm install -> build -> debug
 
-────────────────────────────────────────────────────────────────────────────────
+are imap vars used outside of imap code?
+what about sidebar, browser, etc?
+keep their own var lists?  register at startup?
 
-DBUS plugin -- to do what?
-	notify out
-	take input to do what?
-		accept mailto: links
+change "Mutt" -> "NeoMutt" ∀ code/docs
 
-repaint if:
-	size changes
-	position changes
+drop (1.2.3) from version?
+what about debian?
 
-Changed posn notification ONLY
-	e.g. sidebar has swapped sides
-could imply that cached data may be OK to reuse
-	e.g. don't need to call calc_boundaries
+--authors reads file /docs/AUTHORS
+--license reads file /docs/LICENSE
+if missing, print placeholder URL / GPLv2 respectively
+        => getopt long
 
-Notify (Box*, Rect old, Rect new, flags)
-Flags:
-	too small to render
-	changed visibility
+now that IMAP, et al, are compiled-in, what's in the docs
+        that might be excluded (makedoc conditional)
 
-────────────────────────────────────────────────────────────────────────────────
+check management README (missing)
 
-Sidebar actions (that might precipitate change):
-	line-up
-	line-down
-	page-up
-	page-down
-	set buffy from browser
-	change sort order
-	add mailbox
-	delete mailbox
-	change mailbox's sort criteria (e.g. flag an email, a flagged-sorted mailbox)
-	resize window
-	hide sidebar
-	show sidebar
-	open folder
+update newbie/hard list from discussions -> focus
 
-────────────────────────────────────────────────────────────────────────────────
+check distro installs
+        provide list of all installed files/types, etc
+        cf each distro
 
-draw sidebar
-	assumes position/size
-	move due to STATUSONTOP, HELP
-	check of show/hidden has changed & refresh numbers if nec
-	if hidden, do nothing
-	sanity check settings
-	draw divider (3 chars!)
-for all buffers
-	set colour
-	move
-	gen displayname (need to cache this)
-		name, bytelen, screenlen
-		what about config changes
-			including sort order
-	make sidebar_entry
-fill remaining lines with blanks
+two stage index update?
+        hide, refresh
+        update
+        NO, index vars would still be wrong
 
-Start; Incoming; Inbox open; current = Incoming; sort → cur is offscreen, boundaries lost
+ask neou for logo suggestions
+        hold competition for art?
 
-────────────────────────────────────────────────────────────────────────────────
+use install-sh $(INSTALL) instead of cp
 
-tree chars for sidebar hierarchy?
+debug_level > n => fflush every line
 
-parse_mailboxes -> notify sidebar => know if anything's invalidated TBCH
-can I use realpath(), mutt_expand_path() for anything?
+log before regex ops & other risky functions
 
-Unmailbox * ⇒  many notifications followed by ONE redraw
-
-can the real status bar display any sidebar fields?
-	why not?
-	how can they be integrated?
-
-most options are "short" limited to +/- 32767
-set/unset/toggle?  invVARNAME
-option - don't sort inbox -- defined how?
-separate modules -- sidebar, index, pager, help? -- each with
-	init()
-	notify()
-	close()
-	config()
-sidebar_wrap=search,motion (separate bools for simplicity?)
-
-sidebar_sort is an enum - on set error, it could show the valid values
-quadopt can give help too -- important since varname gives no clue about type
-break up init.h, globals.h, functions.h
-	init.h option DELEGATE, prefix "sidebar_", callback?
-init() on module calls add_options()
-	=> sb_opts refer to sb-private vars in sidebar.c
-option breakup depends on lots of notifications
-Where are OPTSIDEBAR* used outside sidebar.c
-	curs_main.c, buffy.c, mh.c
-Distinguish between movement and search wrap?
-	movement - next/prev (1 line), page up/down
-	search - find next/prev new
-Config change notifications
-	fn (name, old_val, new_val)
-how would function delegation work?
-	init() -> add_functions (name, callback)
-	the callbacks would need to be able to manipulate mutt objects
-Register functions & callback
-make sure anything we need is exposed
-if we hide our globals, give then all accessor functions get/set_VAR()
-init would need to register new sort methods
-
-demo setup - lots of files in:
-	local mbox
-	local mh dirs
-	IMAP mbox
-	IMAP mh dirs
-	POP mbox
-	POP mh dirs
-
-sidebar expandos
-	%c number of non-deleted emails (total - deleted)
-	%s = %c? (lower case version of %S?)
-
-alternative to lightweight patch
-	don't update info ∀ BUFFYs
-	just update the current page
-	only update lists when the user OPENs a folder
-	not when they move the highlight
-	could pre-emptively populate the previous/next pages
-
-postpone patch doesn't quite work
-	1) The PostContext and menu are private, so sidebar can't tell that
-	   we're looking at the postponed list after navigation.
-	2) After navigating to another folder, you still have to "quit" to
-	   get the display to refresh.
-
-sb expandos
-	compare letters to status_format letters
-	deleted?
-	number after limiting
-	unread?
-
-notmuch
-	add new virtual folders to sidebar
-		automatically?
-	what name should it be given?
-		automatic?
-			allow user rename?
-		ask user?
-	how can we make them persistant?
-
-Where does getchar() get called?  can I centralise them?
-Does getchar() wait or poll?  Need it to poll
-Polling -> Idle -> Event callback that I can use to populate BUFFYs
-sidebar needs NO-selection possibility for toggle-virtual
-need to clear index on Toggle-Virtual
-
-sb extra colours for:
-	readonly mailboxes
-		expando?
-	bad (non-existent) mailboxes
-		expando?
-	virtual mailboxes
-	what other attrs?
-	colour by SRC
-	separate colour schemes by SRC?
-
-integrate nntp into sidebar
-what does notmuch return?
-	how do i link it to existing objects?
-
-Undo, what's possible?
-	Last action?
-	Many actions?
-persistant undo on email editing?
-undelete?
-unsend?
-tagging?
-
-signature manager
-disposable email address plugin?
-	need external API to send/receive
-
-Alternate views in the sidebar
-	need toggle function
-	imap: folders  <--> dir tree
-	local: folders <--> dir browser
-
-	address book? -- different grouping/hierarchy?
-	calendar? -- different timescales?
-	news?  subscribed   <--> all groups
-	rss?   unread feeds <--> all feeds
-
-data source LDAP
-
-which config items require frequent and costly interpretation?
-	all format strings -- every line, every refresh
-
-keep revision number for all config items (as a prelude to proper notifications)
-	only increment revision number on change
-	leads to possible A-B-A problem (change blindness)
-	if (ver(format_str) > old_ver) STMT;
-	allows code to make informed decisions about caching
-
-cache for formatted strings?
-	too much can change
-		index: flags, folded-ness
-		sidebar: all numbers => cache invalid
-
-index format -- full directory mode
-	show unix perms like ls
-	user/group/etc
-	too specific?
-	what about other OSs?
-
-refer to and compare config names by hash only?
-	save lots of string compares
-	gperf to generate perfect hashes
-
-cache sidebar formatted strings on BUFFY object?
-
-what are the objects in the Index?
-	cache the index formatted strings on them
-
-introduce new format strings
-	index_rich_format
-
-break up and rewrite mutt docs
-	break into smaller sections
-	separate mutt-doc repo
-	translate sections (default to english if missing)
-
-mutt folder/dir browser
-	".."/open should start with current folder/dir selected
-	display full path at top of screen/statusbar/titlebar
-
-git
-	create git diff regex for manual.xml to identify the section where the changes occurred
-		grep "<sect[0-9] " manual.xml.head
-		need to look for <sect> <chapter> <table> <example>
-	check the default 'c' git diff regex against sidebar.c
-		check C function
-		check C struct/enum
-
-Generated muttrc is an encyclopaedia
-Supplied  muttrc is a guide for dummies
-
-docs/muttrc/readme/init.h
-	need to document default values for variables
-
-index_color should apply to status_bar when viewing mail
-status_color should apply to mid-status_bar when (pager_index_lines > 0)
-shouldn't be affected by 'status_on_top' either
-
-cond-date
-	all,dates,are,broken@ 1y -> this year (not 12 months)
-		1w -> this week (not 7 days)
-		if the dates were sensible (7d = 7 days back from now)
-		they'd tie in with ~d, e.g.
-			color index color237 default "~d>30d"         # Over a month old
-		reuse the ~d code
-			pattern.c:eat_date()
-
-replace " with ' in muttrc
-
-auto-generate merge commit messages
-	modified git log msg
-	script for authors
-	commented out - but accessible?
-
-git hook variables
-	prepare-commit-msg
-	GIT_DIR
-	GIT_WORK_TREE
-	GIT_INDEX_FILE
-	GIT_PREFIX
-	GITHEAD_XXX
-
-community script check for update
-	date community docs?
-	or just rely on commit date?
-
-use sort_aux for nested sidebar names?
-	no, sub-folders are same type?
-		no
-	YES: allows to sort by name, then subsort by new-count
-	separate variable otherwise it interferes with index, etc
-
-docs refer to alias menu but don't mention how to invoke it
-browser
-	can sort my num new msg, but can't display count itself
-	sort needs docs -> promote to feature?
-		check kz for docs/examples
-	%n isn't representative of "all message count"
-		doc as (N)umber of messages, or
-		%c message (C)ount
-
-do format conditional work on strings, etc?  meaningful?
-	empty => false
-
-change docs to use <example>
-
-cond-date needs some concrete examples
-
-source command -- allow wildcards
-	fits in nicely with ifndef
-	or 'source_dir' command to read all contents
-	or "source dir" to read all contents
-	recursive option?
-	recursive by default?
-
-manual "variables" need description field
-
-'c' fails if dir has trailing /
-	e.g. when you use <tab> to complete!
-'c' to open fails, test cmdline open too
-	check sidebar displays correct highlight/open
-
-changes to css must set both fg, bg
-	cf <note>
-	reduce colour of <command>s too
-
-separate draw() in sidebar for
-	emails
-	notmuch
-	nntp
-	addressbook?
-
-sidebar indented folders
-	fill in gaps in hierarchy automatically
-	make them non-selectable (unless the user has "mailboxes" them)
-	alternatively, have some way to mark mailboxes as "fake"
-		probably a horrible idea
-
-attach sets of keybindings to panel hierarchy?
-modify docs generation to process commands' comments
-can some keybindings be set "only active when window is visible"?
-	=> help doesn't (necessarily) hide sidebar
-		should sidebar keys work?  probably not
-	*should* help hide the sidebar?
-		probably yes
-
-how should mutt_yesorno() work?
-	Question is asked modally & outside area of asker
-	=> hide command line, show question
-	question panel gets request, shows itself, hides command
-		make command-line panel invisible?
-		make question panel higher in z-order?
-			=> they are coincident
-
-how about modal dialogs?
-	1 dialog could invalidate sidebar, index, pager
-	sibling to sidebar, index, pager but last in list (z-order)
-	sb, index, panel get painted, then "floating" window gets painted over
-	modal => disable key mappings/propagation
-
-what does Sidebar *really* need?
-	Incoming BUFFY -> notifications of BUFFY changes
-	Panel (geometry) -> notifications of WINCH
-	character libraries -> lengths, widths, formatting, etc
-	options (config access)
-	colours
-	curses: clear(panel), clear(line), write (char/string), move(x,y)
-		curses calls are all (0,0)-based
-		curses takes panel object and converts to screen coordinates
-		∀ users
-	callbacks for functions
-	sb is initialised with (Panel pointer), notifications on change
-	can query Panel's size, position (not useful), visibility
-	panel can be visible, but !active, e.g. partially under a modal dialog
-		=> paint if asked, but won't receive keys
-		could still be asked to do stuff by dialog, etc
-
-kill version.c:rstrip_in_place()
-	fix external build scripts
-
-vim library of config options(vars)
-	auto-extract from init.h
-
-rewrite mutt_wstr_trunc()
-	first, rename variables to be something sensible
-	second, refactor to be legible
-
-kdave - limit-current-thread
-	alt-l (show limit) should respond "limit thread"
-	is "limit ." the same as "limit all" -- YES
-		fixed internally
-	create unlimit patch and pull-request for kdave?
-	limit doesn't have any context, just a pattern
-	limit-current-thread NEEDS to know current email
-	it'd be nice to change limit to accept another "string" arg
-	currently
-		"all" -> "~A"
-	change limit
-		"thread" -> "~a" (only letter available)
-		let general limit machinery do the work
-	unfortunately they can't see the current email
-
-save email doesn't respect the umask
-
-doc travis and coverity options
-split source?
-	tools/ - standalone exes
-	library/ - replacement library functions
-	readme/ - obvious
-
-fmemopen - merge into one place in mutt_mktemp()?
-	idea from dgc email
-sidebar, when saving email to a folder use the sidebar as a selector?
-	new indicator colour or prompts "select save folder" + normal highlight
-join mutt-users and ask both lists what patches/version they're using
-	send me your "mutt -v"
-	any security risk to this information?
-	OS info useful too
-Do drafts *need* to be stored in a separate folder?
-	why not inline?
-	in threaded order
-	just tagged or coloured
-	status flag to denote draft
-email David Sterba (kdave) -- limit
-	use context, or change prototypes
-screenshots on website
-neomutt version on website home page
-
-"merged" page/collection on website
-	list of all features that have been accepted into the mainline
-	currently empty
-update website gh page: list of branches
-neomutt FAQ -- containing what?
-add my gpg signing key to neo.org, fc.org
-
-use links(1) as a model for re-architecting mutt
-	mouse control (inc right-click)
-	safe html rendering
-	pop-up windows
-
-icons for news:
-	news: newspaper
-	devel: jigsaw, spanner&screwdriver
-	release: present, balloons
-
-new hierarchy: tree => mail's parent is folder or mail
-
-<sidebar-refresh> function to forcibly refresh screen & counts after, e.g.
-	unmailboxes *
-	mailboxes lots...
-
-get travis to build RPMs on neomutt and deploy to github release's artifacts automatically
-website front page: do YOU have a mutt patch? -> contact us
-website collection of changes since last release -> relnotes on release
-	note which branches, etc
-website highlight section on toolbar (solid colour?)
-
-∀ new bugfixes -- reference trac number in commit message
-test email reply to issues, etc
-	markdown?
-
-website: some bug-fixes have gone away -> success page?
-set/unset sidebar_visible doesn't refresh screen when in pager
-sb doesn't match folder (for open) if it has a trailing /
-
-<sidebar-next-new> => $sidebar_flagged_are_new ?
-
-panels have dividers enum
-	left
-	right
-	top
-	bottom
-	between
-	outside
-who owns the dividers space?
-set_focus (panel)
-	who owns the focus?
-	gfx(curses)?
-	get_char -> gfx_get_char -> consider focus
-on close panel, focus moves to
-	*prev*/next sibling, or parent?
-	due to mutt's UI focus moves to prev sibling
-how can I show focus without moving anything? i.e. borders
-	sacrifice a top line?
-	border highlight?  => always present
-which panels *accept* focus?
-	sidebar
-	index window
-	pager window
-	<tab> to switch?
-	or <left>, <right>?
-
-mirror script, add copr, aur repos
-show focus -- sacrifice help line?
-	no, it's not always visible
-propagation of notifications -- start @focus, work down
-	SB, IW, PW + 'q' mail accepts, hides PW, PS, focus IW
-	SB, IW + 'q' mail notified, rejects, global accepts, closes app
-Help starts @focus, Panel Name + get_keys method
-if sidebar is a separate panel and src file, should IW be?  PW?  AI?
-If focus is on PW and SB, IW, PW are siblings, how can SB get notifications?
-	or does mail Panel catch and iterate through children?
-	SB mappings are (index,pager) => behaviour wanted but not in AW
-
-delegation of keys -> focus() -> parent -> global, e.g. IW, Mail
-	functions => components (e.g. mail)	}- mail_init() register_functions(); register_commands();
-	commands => components			}
-
-slang source + demos
-	http://fossies.org/linux/misc/slang-2.3.0.tar.gz
-
-sample mail repo filled with example/problem mailboxes
-
-[management]/bin
-	sync.sh 6h cron script to sync mirrors
-	sync needs ssh key
-		external to script
-		(document in header)
-	sync reads data file with header, whitespace & comments
-
-install neomutt in parallel with mutt
-	uses alternatives mechanism
-	=> /usr/bin/neomutt{,-2016MMDD}
-	=> /usr/bin/mutt-1.6.1
-
-muttrc.{distro} ∀ distros
-
-list_pull_requests.sh
-	get_pull_requests.sh
-	reference local neomutt repo
-
-NeoMutt website top tips?
-
-forks of all distro repos
-	clone https://github.com/macports/macports-ports
-
-cond-date document date.sh generator
-
-howto build neomutt page
-	simple instructions
-	expert instructions
-	explain all build scripts, etc
-	location of source / repo
-	howto install
-	distro pre-built installs
-
-create empty (red-linked) pages on website, for people to write
-
-list of to-be-written pages on web
-	icons for level of completion
-
-Web Page (front) LATEST VERSION + links
-	+ ChangeLog with links to commits?
-
-cond-date script -> contrib
-
-upload all bin/ add (c) and licence
-
-GIT REPO?
-	.gitattributes
-		merging
-		diff regexes
-	doc my .gitconfig
-	all bin/ to repo + .shell/bin/git
-
-update readmes
-	project links
-	project contact
-	version
-version.c
-	copyright
-	contact
-	version
-main readme
-	project links
-	project contact
-	version
-	list latest version?
-		no, will always be out of date
-
-check makefile dist file list
-	ChangeLog.neomutt, etc
-
-'uncolor status' doesn't work
-
-dgc - unbind patch
-
-neo-stats.pl
-	ignore issues tagged 'release'
-	ignore integration issues?
-	or count only 'bugs' and unlabelled
-
-use Gutenberg texts for sample emails
-        use mutt-dev mailing list as a template?
-        alias all names
-        replace all message-ids (but keep links)
-        strip out most headers
-
-add tutorials (like sidebar intro) to the website
-	redlink some empty ones (or partials)
-	ask for translations?
-
-sb fill empty space -> mutt_paddstr
-	no point, it just does multiple addch(' ')
-	alloc buffer (on stack)
-	memset to ' ', null at width, addstr()
-
-Mutt config generator app
-	or good (curated) sample config
-	tutorial
-	translations
-
-script to generate min-build
-	put in contrib?
-	check config is still up-to-date
-
-sample IMAP folder (for devs)
-	regenerate daily
-
-neo-build
-	use git config for settings
-		enabled/disabled by default
-		configure settings
-	save config.h, etc in .git/neobuild
-	neobuild --generate
-
-mail sieve issue -- colour code for origin?
-
-server script to update from hg
-	get latest id
-	hg id -i --rev stable
-	hg id -i --rev default
-	then update and check ids
-	merge, push and travis
-
-report-neo-bug.sh?
-	show os
-	build options
-	etc
-	put in contrib
-	install for everyone
-
-24-bit colour => non-curses back-end
-	enumerate all the curses things we do
-	get screen size
-	listen for screen size changes (WINCH?)
-	wait for key presses
-	clear screen
-	clear line
-	write text
-
-doc changes/todo list for limit-current-thread
-
-sidebar-refresh command to forcibly update ALL the counts?
-
-sidebar search command to quickly change to a mailbox
-	like vim highlight search?
-	filter after every keystroke
-
-revert sidebar cursor positioning?
-	no longer needed now that sidebar isn't drawn during key-waits
-
-new-mail => dbus as a goal, see dgc
-
-'ifdef' improvement
-	ability to check mutt version number
-	ifdef VERSION == X
-	ifdef VERSION > Y
-	like vim
-
-macro instruction <no-history> like vim's <silent>
-	some macros end up in the log
-
-firstb <REGEX>
-	regex if it contains a '*'
-	anchored at bol?
-	multiple args => not regex
-	one arg => git checkout -- no sense in that
-
-update-from-hg.sh
-	-n option => no push to github
-
-git clone
-	always pull in my prepare-commit-msg hook
-	(disabled)
-	what other defaults?
-
-mutt plugin to create neomutt issues
-	use ghi?
-	or GitHub API directly
-	test in dummy repo
-
-git b(){} needs to disable colour on piping
-
-sidebar
-	option to fold nested mailboxes
-	option to unfold when new mail arrives
-	folded, they should show the cumulative totals for all the children
-
-mutt tips on startup
-	distribute a contrib/mutt-tips dir which is a mailbox
-	select a random (email/tip) from the list
-	pick one that's unread (preferably)
-	how can we preserve the "read-ness" of an email after a package update?
-	.mutt.top-tips ? -- save a list of message-ids in there?
-	<top-tips> command creates a new mailbox (from DATA_DIR/DOC_DIR)
-		if in /usr it would be read-only
-		need to store flags elsewhere
-		flags: read, flagged!, deleted (i.e. don't show me again)
-	intersperse with mailboxes commands
-	tips should be self-contained (to start with)
-		unless they reference old tips
-		nested emails?  what about multiple inheritance?
-		need hyperlinking "see also" links
-	use labels (from Keywords plugin) to add value
-	use mutt's caching facility to store the metadata
-
-sidebar
-	have an alternate mailbox like vim's alternate file
-	create an alias for it '#'
-	c# -> change to alternate directory
-		new alternate becomes old dir
-	save files to #
-	set alternate mailbox function
-	colour highlight for alternate mailbox
-	expando %# for alternate displays '#' or ''
-
-sidebar
-	separate colour for read-only mailbox
-	expando for read-only mailbox
-
-getopt for neomutt
-	--help
-	--version
-
-symlink man pages, etc (for ease of use)
-	neomutt -> mutt
-
-transition guide:
-	man neomutt
-	a guide for users of mutt moving to neomutt
-
-index-color
-	patterns on date
-	allow unescaped ANSI sequences?
-	add offset based pattern, e.g.
-		color red default cols:14-20 [mutt pattern]
-
-doc -> contrib ∀ vimrc, muttrc
-	=> will break downstream packaging
-	announce change, make change in next release
-
-2016-08-09
-	01:35 <SvenG> but giving a color to "known" addresses (via aliases) would be a killer
-
-2016-08-12
-	08:31 <flip214> Hi. Another thing I would love to see: an email arrives in INBOX; I answer it,
-		and define the FCC for the sent mail, but the incoming mail is still in INBOX.
-		so a "reply-and-move-to-same-folder" would be interesting to me.
-
-sidebar "live" search of folders
-	key to start searching
-	live filtering at every keystroke
-	enter selects
-	Ctrl-C / Ctrl-G aborts
-	fuzzy matching
-matching applies to multiple areas of mutt
-	sidebar
-	aliases
-	folders
-	files
-	index panel
-	pgp keys
-
-alternative to sb search
-	key -> numeric prefix for all folders
-	type number<enter> to select
-	(like index-panel)
-
-new mutt colours
-	none or inherit
-	don't set this component
-
-notmuch+index-color
-	tag patches in *neomutt*
-	"compat: notmuch+index-color" patch/commit
-	=> failed merge!
-
-remote config -- like browser proxy setup
-	display to user "are you sure?"
-	useful for tips & examples
-	way too dangerous
-
-unnamed notmuch queries => create description based on query
-	need rename function for sidebar-notmuch
-	need option to autoadd them to the sidebar
-
-fake/alternate curses -> true colour => separate fg, bg, term attrs like vim
-
-cache autoconf in .git
-	git config a name for retrieval, "lmdb", "tokyo"
-		build -s <name>, build <name>
-
-notes for progress bar
-	set time_inc = 0 for best results (ref: paravoid)
-	test read_inc, write_inc, net_inc too
-
-sidebar -- imap all folders vs subscribed
-dovecot public mailboxes for tips?  one public user?
-nntp tips? ":tips" command to toggle nntp vars and mailboxes
-
-unstable: .gitignore upstream of feature branches, what else?
-	common docs, travis
-
-tip - status_format + status-color
-	ctx->readonly => red padlock
-
-is contrib/ installed by any downstreams?
-
-web docs: What *is* neomutt
-	mail client
-	show pictures
-	compare to mutt
-	explain why it's better
-
-update man page for mutt
-	wrt muttrc location, etc
-
-offer up-to-date vimrc for mutt/neomutt to vim.org
-	autocmds for neomutt/mutt config locations
-
-colour-coding good-sig vs bad-sig
-	tricky for mime attached sigs
-
-toggle-quoted : option to remember state
-	or "hide_quoted_text" bool
-	a caps-lock for toggle-quoted
-		don't have to do it for each mail
-	can this be done with "message-hook"?
-
-nntp list, can't sort by counts
-
-docs build: more sed filters VERSION, DATE, git hash?
-
-index-color separate colours for "mylocal" and "@domain.com"
-	have a list of "known" domains that are dimmed?
-
-notmuch backend: add X-Label in editor, does "right thing" in notmuch?
-unified frontend interface (notmuch/keywords) backend
-one-direction script -- sync nightmare?
-sync notmuch -> X-Label's?  get out of sync
-
-check distros are installing all docs, contrib, etc
-	i.e. is "make install" correct
-
-gmail patches -> devel
-	need testers
-
-transcribe issue#56 vim-keybinding ideas
-	-> docs/vi.txt
-	wiki
-
-mutt-tips: integrated
-	tips command
-	fake? email or browser spawned
-	neomutt tutorial
-
-mutt connection config wizard
-	special cases for gmail, etc
-		open gmail pages in browser
-	test host for:
-		imap
-		pop
-	test for tls
-	ask for password
-	test connection
-	like evolution's wizard
-	write config to file/screen
-
-progress bar:
-	better progress indicator
-		a la dnf, wget, etc
-	ETA?
-
-neomutt binary
-	symlink (provide) mutt
-
-make the neomutt branding more obvious
-	make it obvious to the user that this is
-	neomutt, not mutt
-
-lots of demo configs for
-	index_format
-	header_order
-	etc
-create a function to cycle through them?
-	would need some good sample emails
-	various headers
-	various flags
-
-compress flickers, but gpg doesn't
-	imagination, or not?
-
-index-color -- index_date pattern?
-	and index_label
-
-issue for code required:
-	fuzzy matcher: [devel] [help] [mentor]
-
-docs
-	create high-level workflow doc with screenshots
-	show beginners *how* mutt works
-	label areas of mutt window
-
-color command (mentor task)
-	no args: list all colours in a pager
-	object: show object's colours (coloured accordingly)
-
-unify colours and attrs, e.g. underline, reverse
-
-add native compress support
-
-invert index option
-	new mail at top of screen
-
-web docs
-	update debian support section
-
-web/readme ∀ pages
-	last proofread date
-	last proofread person
-	periodic checks
-	divide and conquer
-	auto-footer: last updated, last proofread
-
-script for "build-all-git-tags"
-	publish
-
-generate (script) tree of all source (by tags)
-	and create squashfs
-
-investigate & bundle? mutt_bgrun
-
-mutt doesn't close file handles on fork/exec
-	need more close_on_exec in fopen
-	open pdf attach -- look in /proc for evince
-	security issue
-
-docs based on use-cases
-	need list of cases to start
-	put in repo
-	request pull-requests to improve
-
-a rogues' gallery web page with our PGP keys
-
-darnir:
-	use gpgme not gpg
-	warn users?
-	educate users
-	can we force config=yes?
-	what if libs are missing?
-
-"mutt -v | head -1" is pain
-	--version ?
-
-no need to subscribe to mailing lists
-
-version string bug -> devel list
-	reinstate flea?
-
-web mailing list page with sven's muttrc example
-
-mutt config source DIR
-	loads all files within
-	recurse?
-
-change "mutt" refs in /etc/Muttrc?
-
-maildir_trash conflicts trash folder patch
-	our patch, check upstream version
-	document this
-
-context-sensitive help?
-	how?
-	sensitive to what?
-	how about:
-		"show-me-this-file" command
-		display in pager
-	if in pager, close & open text file & restore on 'q'
-	if in index: display & return to index after
-
-github issue notifications forward to IRC
-	or dev mailing list
-
-"bind index ` command"
-	parses badly
-	doesn't warn the user
-
-feature docs to separate <sect1>'s?
-	separate <book>?
-
-jump to previous folder command?
-	"cd -"
-	vim: "ctrl-^"
-	can this be done with a folder hook?
-	set my_olddir = dir
-	is it too late when we get the hook?
-
-debugging curses tutorial
-	two windows
-	either run & attach
-	or gdb tty redirect
-
-get rid of "prepare" or neomutt-ify it
-	--all (to enable all options)
-	vs "configure --all"
-	./prepare --all -a => all features
-	./configure --all => drop prepare
-
-dbus - also implies
-	synchronisation of multiple copies of mutt
-	e.g. multiple windows/views
-
-automate github release
-	tag, push, create release, push, assets, checksum
-
-fmemopen -- when fixed, default to off
-
-change sort option
-	thread becomes a prefix
-	e.g. "thread-date"
-
-web update about.html : done so far
-
-NeoMutt signing key on
-	flatcap.org
-	neomutt.org
-	github? where?
-
-do saved emails (that get deleted from current folder) appear in the trash?
-
-trash docs
-	add purge-message/purge-thread notes
-	add folder-hook to delete if >30days
-
-trash + gmail
-	doesn't work as expected
-	effectively archives them on gmail
-
-check which doc/contrib files distros install
-	unify?
-	debian doesn't install contrib?
-	check other distros
-
-fold/collapse empty sidebar folders
-	unless unread/flagged email etc
-
-xdg extension
-	look for lower case /etc/muttrc
-	etc
-
-fork vs non-fork -- animal species reference
-	species: noun
-	a group of living organisms consisting of similar individuals capable
-	of exchanging genes or interbreeding.
-
-new sidebar expando
-	count of unread *threads*
-
-new index/sidebar_format expando: icons
-	each email can have a set of icons
-	each icon has a unicode character and a colour
-	sorted in order of definition
-	tie-in to labels / notmuch tags
-
-separate folder_format for dirs vs network mailboxes?
-
-upstream bug -- folder_format, sidebar_format %n (has new mail)
-	shouldn't be cleared if "mark_old = no"
-	quit and restart mutt and the flag comes back
-
-Passing $VARs to children processes, means
-	tell vim about mail rcpt, subject, etc
-
-copying a large mailbox / number of files doesn't trigger the progress bar
-	mbox-100000
-	tag all
-	copy to another mailbox, e.g. maildir
-
-INBOX vs inbox
-	not updating values for browser
-
-Reach out to
-	LinuxMint
-	Mageia
-	PCLinuxOS
-	Slackware
-
-browser - add flagged
-	expando
-	sort option
-
-Mutt vs NeoMutt branding
-	config
-	binary
-	install dir
-	version
-	user agent
-
-$source_dir like folder
-	or like $PATH?
-	looking for files to source
-
-contact distros
-	are they up-to-date
-	current list of distro patches
-	list of recent OS versions
-	list of mutt/neomutt versions for each OS version
-	address of issue tracker
-	address of mailing lists
-	contact details for maintainer(s)
-	inform them about
-		mailing lists
-		irc
-		website / news
-		github
-	bcc email?
-		give list of distros
-		bcc => hard for multiple maintainers to coordinate
-			cc better?
-	ask for install instructions for web downloads page
-	offer github invites to all maintainers
-
-19:32 <mykoserocin> is there a way to show condensed DKIM results instead of full "Authentication-Details" header?
-19:32 <mykoserocin> e.g. "DKIM: pass" or "DKIM: fail"
-19:52 <brendan> mykoserocin, I use the spam marker system for it: spam "Authentication-Results: mymta.com; .*dkim=pass" "✓"
-19:52 <brendan> spam "Authentication-Results: mymta.com; .*dkim=fail" "x"
-
-email all 341 of mutt-kz stargazers and tell them about neomutt
-	exclude the neomutt stargazers
-
-check all lists of features are up-to-date
-	web, etc
-
-context sensitive popup menus
-	e.g. index - tag some emails, hit <menu>
-	options: copy, save, delete, set flags, reply, etc
-
-source script|
-	pipe -- lookup exact meaning and implications
-	works, but can't tell you where an error occurred
-
-test website
-	neo vs www.neo
-	http vs https
-	with/without subdirs
-
-link to unloved enhancements in issues
-	rather than the wiki
-
-vim-like hls option: persistant across emails
-
-pager -- sidebar gets updated but not status line / term header
-
-notmuch tag-completion:
-	when using -XYZ<tab>
-	only match tags that exist on the selected mail(s)
-
-modularise header caching/dbs
-	=> needn't use same cache type
-	for header / message cache
-
-www.neomutt.org -> neomutt.org
-	CNAME
-
-imap only 'n' messages option
-
-mbsync better than offlineimap?
-
-imap force body cache on read
-	option for offline working
-
-files/dirs are sorted the same way as network folders
-	may not make sense
-
-need separate folder_format for
-	local dirs
-	net folders
-	virtual folders
-
-alternative -- folder_format add
-	%local expando for use with nested-if
-	conditional display
-
-imap_folder_format defaults to folder_format if empty
-
-21:04 <bremner> I too would be interested in a page comparing neomutt's notmuch support with notmuch-mutt (the perl hack that ships with notmuch)
-
-sort variables, etc before auto-completion
-	or properly sort the sources of the strings
-
-arch-linux: search for a Trusted User (TU)
-	to adopt neomutt
-
-announce vim-syntax, put a public copy up
-	copy all of contrib/ to web
-	create web autopage?
-
-check mutt-tc for project ideas
-
-ifdef needs an "else" condition
-	how?
-
-development bottleneck
-	document more tasks
-	delegate more tasks
-
-should log files be localised?
-	make it an option?
-	debug -> english?
-	hard to debug for other nationalities
-
-vim-like record macros 'qa'
-	save macro
-	play macro
-
-website/repo for scripts
-	like scripts.irssi.org
-	site generated from the script headers
-
-index-fold-level
-	0 completely folded
-	1 depth 1
-	2 depth 2
-	-1 no folding
-	overridden by user keys
-key to
-	view current message
-	close other folds
-	etc
-
-what are our killer features?
-	put them on the website writ large
-	scripting
-	matcher?
-
-matcher
-	extend to index, pager, etc
-
-Need strategy for unrepeatable/too-little-info bugs/crashes
-
-new-mail-hook + lua to filter
-	=> need filter manager
-
-(un)new_mail_filter lua [lua...]
-
-startup-hook
-	immediately before displaying the index for the first time
-	useful for testing
-shutdown-hook
-	before closing mailbox connections
-
-turn mutt into a random email generator
-
-forgotten-attachments: German example:
-	"häng an" won't match over a new line
-	strdup regex string, replacing spaces with
-		"[ \t\n]+" ???
-	does it work with \n embedded?
-	could I pre-process the email text?
-	it it utf-8 compliant?
-
-filter manager
-	time limit option -- on holiday!
-
-guarantee translations, when?
-	at release of new feature?
-	at next release?
-	when?
-
-alt-e resend_message - which hooks are called?
-	add lua hook
-
-separate packages for neomutt
-	neomutt		- binary
-	neomutt-docs	- main manual
-	neomutt-contrib - muttrc, vimrc, etc
-	neomutt-dev	- code docs
-split repos to match
-branch by version / language
-
-syntax file in local vim syntax dir needs to be called
-	muttrc to match vim modelines in other files
-
-nested-if script
-
-add cursor to pager (on/off)
-	=> can highlight text
-	can click links
-	like firefox cursor mode
-
-config file accept keybindings using
-	C-	Ctrl-	Ctl-
-	A-	Alt-	Meta-
-	W-	Win-	Mac-?
-
-macports, is there something I can update automatically at release time?
-	cf homebrew
-
-generic lists of volatile variables attached to
-	mailbox/context or
-	email
-scripting could save info there, such as
-	num emails in thread
-	num new in thread
-	score
-move score from permanent to volatile
-
-pgp key manager/management
-	list, ignore revoked keys
-	sort options
-	filtering
-
-colour manager, see htop
-
-window manager
-	menu mode, like jed/links
-	popup menus
-
-mime-typer plugin
-	notify if the mime type doesn't match what *you* think it should be
-	change the type (option)
-
-justify every file in the neo build
-	use min-build to start
-	show compilation steps
-
-multi-line index.  options:
-	for all entries
-	for current entry
-	for current thread
-wrap long fields
-sacrifice height to save width
-
-howto: update website
-	ruby, jekyll
-	which gems needed?
-	"jekyll serve" to test
-
-breakdown
-	source (simple)
-	source (conditional, e.g. feature)
-	source (conditional, e.g. OS libc)
-	build (scripts/Makefiles)
-
-scratch-pad function
-	creates a tmp file
-	functions can put text in it
-	you can view it in the pager
-	you can edit it
-	you can save it
-	could be used by scripts to save output
-
-change from autoconf -> cmake
-
-docs - nested if
-	better explanation of %<>
-
-new two-letter expandos
-	initial letter picked with no clashes anywhere
-	=> 26 more expandos to use
-
-vim has set vs setlocal
-	mutt has accounts as separate entities
-	set      var => global
-	setlocal var => per account
-
-$sort = [prefix-][...]order
-	prefix = reverse
-	prefix = thread
-
-index folding (happens above level of emails)
-	fold by option, e.g. day, month
-	Wednesday
-		mail
-		mail
-	July
-		mail
-		mail
-	uses extra lines
-	saves width
-
-de "neo" the trash docs & keep in neo repo
-
-21:55 svenG "No attachments, cancel sending? ([yes]/no):"  so NOT cancelling the sending.. sends. o_O  double negatives are always so confusing.. :-/
-
-debugging docs:
-	100k lines of code
-	help us find out which
-	bug report blurb
-
-website top-level for scripts
-	git submodule?
-	like irssi scripts
-
-docs - how to transition to neo - list config options
-	mutt-only
-	neo-additions
-
-function fuzzer + scripting
-	x inputs
-	y globals
-	difficult because of too many inter-linked structs
-	and poorly designed functions
-
-issue labels
-	confirmed
-	need testing
-	waiting for OP testing
-	have patch
-
-newbie notes
-	PR vs branch
-	you can't co-work on a PR
-
-imap/pop ∀ devs
-	no outgoing
-	incoming to user@dev.neomutt.org
-	sample emails refreshed nightly
-	btrfs de-duped -- cron
-	or cp --reflink
-
-function to turn option list from
-	(S)ubject to *S*ubject (highlighted/colour)
-        make them consistant across mutt
-		some are just capital letters
-
-new mail hook -- frequency limit
-	if time < 5s since last notification
-
-can we workaround the case of gpgme + self sign / smime?
-	but use it otherwise?
-
-"report issue" notes -- OP needs to be around to:
-	answer questions
-	run tests
-	etc
-
-calcurse -- curses calendar app
-
-sidebar -- disable indent, etc if sorted
-
-htop colour palette only works well because there are
-	few object to colour
-
-Create every doc idea as empty template page in web
-	with notes
-	list of docs in project "docs"
-
-distro web pages need install instructions for development, too
-	min/max dev packages to build & debug neomutt
-	all instructions based on min distro install
-	note exact distro instructions were written for
-
-admins need to make a release in 1 week's time -- practice
-	(one of them, or all)
-
-bot on server to mail dev list on git commits?
-
-move separate tools to a separate tools directory
-	adjust ctags to ignore them
-
-doc all features' functions doxygen style
-
-nested-if -- index-format display ? if doesn't match string put in
-	%<> changed to %? !
-
-configure doesn't parse slang option unless ncurses libraries are missing
-	check if this is still true
-	raised by @nevermind
-
-index preview mode - display 'n' lines of the email body
-	when in the index
-
-new feature checklist -- code all configs, doc, readme, web, doc validate
-
-does label workflow make sense for PRs?
-	if not, why not
-
-ask new contributors to fill in 5 function prototypes!
-
-find all non-mail users of pager
-	add to index/pager tests
-
-need way to repeatably test net failure
-	tcpkill -- doc in dev web
-
-external testing
-	how many external events can we control?
-	how many can we simulate?
-	via pretend keystrokes
-	key, mouse, winch fs, net
-
-make tags -- ignore standalone tools
-	needs to ignore #ifdef TEST, too
-
-docs - keep reference copy of all relevant RFCs
-	links, obsoletes, etc
-	mailcap too
-
-2016-10-21
-13:24 <mgedmin> on ubuntu I think it's best to 'sudo apt-get build-dep mutt' to get all the libraries
-
-issues -- always assign (for later reference)
-	fixer/mentor only makes sense for bugs/enhancements
-	what about questions?
-
-would notmuch be able to filter out muted conversations?
-	No, not unless we change headers and notify notmuch
-
-new users -- [ci skip], #123 docs
-
-need to document "missing" keybindings
-	^Q ^S flow control
-	^O terminal (BSD only)
-	2016-10-23 22:16 <Riviera> stty discard undef; mutt
-	"stty -ixon" disable Ctrl-Q
-	can this be done programatically by mutt?
-	"stty -a" to show settings
-	cfmakeraw(3)
-
-code school
-	variables
-	functions
-	architecture 101
-	web top-level
-
-pre-cache app?
-workflow:
-	offlineimap
-	notmuch new
-	cache-every-file
-
-mutt_launcher
-	use a pipe to channel log messages back to mutt
-	pipe(), fork()
-	dup2() to replace stdout,stderr
-		=> printf to log
-	stdin -> null
-
-2016-10-24 20:54 <flip214>
-	it would be very nice if switching to an imap folder could be aborted by ctrl-c
-	having all headers fetched anew and having to wait for 2 mins, knowing that the wrong folder is being loaded, isn't that nice
-	the counter for the headers fetched (N of M) counts up
-	Ctrl-C gets ignored
-
-2016-10-25 11:04 <mgedmin>
-	pet peeve: when I try to open a gigabyte-sized mbox file with 10,000 messages, I cannot abort that
-
-nested-if
-	stack of nesting chars in char[]
-	$? or $< push only
-	matching char => pop
-	32 deep stack
-
-cache files need to hash their name too
-	to avoid two systems "sharing" a single hash
-	and crashing
-
-neomutt members -- ask preferred method of communication
-	pref name @flatcap, Rich
-
-merge notmuch
-	"named-mailboxes" command
-	can describe sb entry
-	how to nest virtual?
-	sb obtion: display real, virtual, all mailboxes
-	nest -> fake mailboxes
-		named-mailboxes name [NOTHING]
-
-run notmuch new from mutt when new mail arrives
-	necessary? or not?
-
-named-mailboxes use Mailbox Shortcut % ?
-	%tidy-name
-	needs plugging into other code
-	abbrev names to "%name" if possible
-	if configured?
-
-have a NULL cache which is just a copy of the email
-	might *still* need a DB of some info
-	tie into offlineimap
-
-use google translate for rough drafts of neo po files?
-	mark all translations as fuzzy
-	useful starting place?
-
-settings for uncrustify, clang-format
-	for current neo code
-	for future  neo code
-
-easy task:
-	distro helper
-	instructions for
-		install
-		build
-		test
-	check installs
-	test problems
-	one+ person per distro
-
-look through upstream mutt trac for
-	enhancement ideas
-	feature patches to apply
-	bug fixes
-	[easy] ?
-	comment in trac "neomutt adopted" when done!
-
-rfc add line numbers and 'a' links
-	create as a book in main docs (for linking)
-
-enforce real names in git commits?
-
-website
-	404 is static!
-	manual/guide -- not a collection
-		needs to be ordered
-	src code is not a distro, so list it last
-
-man pages need section number
-
-un-named-mailboxes needs to work against path or description
-
-named-mailboxes eats two params
-	can take multiple pairs of params
-
-imap supports queries
-	"+?query=tab:inbox"
-
-virtual-mailboxes => notmuch
-	=> don't need "notmuch://"
-	or even "?query="
-
-distinguish distros' neomutt
-	{vanilla|patched}
-	{replaces|addition} to mutt pkg
-	{distro|user} maintained
-	{all|limited} features included
-	{hcache type}
-
-distro contact details
-	separate from maintainer
-
-ccache instructions, ctags for dev?
-
-move sidebar-intro to howto and fix links
-	change id to howto/
-	or split out completely
-
-"edit this page" button
-	doesn't make sense for docbook conversions
-
-slang deps on distro page
-
-distros
-	platform {linux|bsd|macos}
-	where to coredumps go?
-
-create file on all neo members
-	who's who
-	who's done what
-	date of last contribution
-
-person pages
-	list "worked on"
-	real name
-	nationality
-	location
-	language?
-	links
-	∀ users
-
-split out upstream features, or yaml tag them
-
-DANE instructions for neomutt gpg key
-
-web
-	auto-generate list of WIPs
-	[devel/*] -> list
-	where does the description come from?
-	update daily
-	since DATE
-	last update DATE
-
-start de-globalising (pass to functions)
-	Context
-	Incoming
-
-each web dir, have _source.txt
-	details origin of page data
-	scripts for generating
-
-code school -> neo branches (regularly rebased)
-	[school/new-variable]
-	[school/new-function]
-	etc
-
-stable branches for LTS releases?
-	Why?  Mutt doesn't
-
-annouce GPLv2 usage for project
-	make it clear on the (devel) website
-
-generate valgrind suppression file
-	contrib?
-	devel page instructions
-
-web: misc page for extra options that aren't in features
-
-web: changes page -- since/relative to mutt
-
-website jekyll serve instructions
-
-getting started
-	mention travis notification email
-
-update all doxy templates
-	JAVADOC_AUTOBRIEF on
-	FULL_PATH_NAMES off
-	SORT_MEMBER_DOCS no
-
-Distro pages:
-	Debian, Gentoo, MacPorts, NetBSD, Void
-	need filling out
-
-How to Use Mutt doc
-	step 1 - select your source
-		POP, IMAP, local, offlineimap/alternative
-
-web: features list page
-	add upstream column
-
-docs: highlight parts that are neomutt only!
-
-translate:
-	check git logs for translators' names / dates
-	tidy all headers
-
-translation - coding, scripting, languages
-
-collect useful tools in neomutt org:
-	urlview
-	offlineimap, mbsync
-	procmail, maildrop, sieve
-	etc
-	for notmuch sync accross machines, I have found this: http://www.muchsync.org/muchsync.html
-	swaks: smtp tester
-
-inotify ∀ local mailboxes
-	2016-11-16 12:13 <royger>
-	flatcap: maybe using some abstraction library, like libfswatch
-	(it seems to support kqueue, inotify and fsevents)
-	https://github.com/emcrisostomo/fswatch/tree/master/libfswatch
-
-magic "combined" folder
-	mbox part for unchanging, historic stuff
-	mbox part needs hcache for speed
-	maildir part of changeable stuff
-	combined into one view
-	need method to "fix" emails i.e. mark them as no-more-changes
-
-offline working
-	mutt hangs whenever the network goes down and is essentially useless
-	what's needed to make mutt useful without a network?
-	"auto-postpone"?
-	"send-on-reconnect?"
-	cache more information about mailboxes?
-	network heartbeat to detect connectivity?
-
-donate page
-	presents for flatcap?
-	contributions to neomutt.org domain?
-	get-together costs?
-	what?
-
-complete review of string handling in mutt
-	string contentation
-	tokenisation
-	matching
-	etc
-	see which, if any, gnu-only string functions are useful
-
-web translate
-	have anchors for each language
-	they highlight that line
-
-translation comments
-	aka in lang
-	function names
-	"oppenc" meaning
-	glossary
-		alias
-		thread = x
-	comments ∀ translators
-	mnemonic letters
-	formatting, e.g. "[-- TEXT --]"
-	functions calls, uname(1)
-	L10N dotfill
-		to/from/subject
-		translate?
-	L10N optional?
-	plurals
-	multiple %s
-	don't need .mo
-
-shrink version number to YYx
-	2 week releases -> 26/year, 26 letters!
-	week 16 release => 16q or 16Q
-	52 weeks => AaBbCc etc
-	what about stable release?
-	-LTS needs multiple releases but one name
-
-po.vim
-	toggle English vs Foreign
-	options to show/hide
-		whitespace
-		dots
-	set symbols
-
-xgettext notes, L10N, _(), N_()
-
-add myself to version.c copyright, mutt -v
-
-mutt.pot --no-wrap
-
-poedit suggest disable wrapping -> web instructions
-
-web
-	```note
-	css proportional font
-	bold first line using css
-	add icon?
-	```code
-	specifically for code?
-	no interferes with markdown highlighting
-
-L10N split up large version string blocks
-
-issue label: "translation"
-
-.po are "#: file.c" needed except at translate time?  drop?
-	simplifies merges, etc
-
-gettext logger to look for most used translations
-	mark the common ones in the code
-
-chronic "moreutils" package
-
-coverity to use travis-build script!
-
-make clean isn't good enough?
-
-leave-folder hook?
-
-list Sven's unused letters to the main guide
-
-release branch
-	no .travis.yml (no building)
-	ChangeLog
-	configure.ac
-	README
-
-translate: hooks in code to log most translated strings
-	help translators prioritise their work
-
-#define the mailbox -2 abort, -1 error
-
-change release cadence?
-	feature release
-	bug-fix release
-only update translations on bug-fix release
-fixes for docs are bug-fixes
-two open milestones (next-feature-release, next-bug-fix-release)
-
-add abort-mailbox to nntp, etc
-	raise issue
-
-magi-sort
-	regex matching [patch] part -> sort alphabetically by that part
-	emails from same author
-	[PATCH v2 5/7] iio: adc: stm32: add optional dma support
-	[PATCH v2 6/7] ARM: dts: stm32: Enable dma by default on stm32f4 adc
-	[PATCH v2 4/7] Documentation: dt: iio: stm32-adc: optional dma support
-	[PATCH v2 1/7] iio: adc: stm32: add support for triggered buffer mode
-	[PATCH v2 3/7] iio: adc: stm32: add trigger polarity extended attribute
-	[PATCH v2 2/7] iio: adc: stm32: Enable use of stm32 timer triggers
-	[PATCH v2 7/7] ARM: dts: stm32: Enable pwm1 and pwm3 on stm32f429i-eval
-	[PATCH v2 0/7] Add support for triggered buffer mode to STM32 ADC
-
-mutt IPA /mʌt/
-
-newbie - recommend setting 'set user_agent = yes'
-
-update vim-syntax
-
-create list of current scripts shell/perl
-	build processors
-	automators
-	list -> website -- link to repos
-	#!/bin/bash ->  sh
-
-branch 123-desc auto work-in-progress
-
-issue - auto screenshots - sample mailbox
-
-commands
-	rename all those containing _ (underscore) to - (hyphen)
-	accept either
-	autocomplete to hyphen
-	linter for muttrc -- with warnings
-
-limit current thread
-	new mail shows up even when not in thread
-
-turn off status bar, like vim laststatus
-
-limit-to-tag function?
-
-mutt -D? (extra options)
-	turn output into valid muttrc
-	validate muttrc without running
-	only display CHANGED values
-	only hide SET values
-	SORT the options
-	add comments from init.h?
-	show default values/keybindings
-
-can I (neomutt) sign the copr key?
-
-type:investigate ?
-	something that needs research
-	might lead to docs
-	might not lead to code
-
-trash folder: forget the directories idea?	who cares about deleted stuff?
-trash needs index panel expando -- Original location
-archive *needs* dirs %Y / %From?  auto-create, auto-delete on empty
-<empty-trash> function
-"empty-trash-confirm" variable quad-type
-expando for status bar -- trash-size (bytes/Mb) trash-count (number of deleted)
-archive needs X-Original-Dir (like del)
-	<unarchive> function
-tie archive to notmuch to auto index
-status bar needs expando for archive contents in (kb,Mb) or (count)
-archive/trash expandos -- unless too heavy to calculate
-	consult indexes for results/numbers
-	does the index store size?
-archive needs rich expando save strategy
-	%Y, %m, %d -- lots of dates
-	%from, %to, etc authors
-	%list, $orig-folder
-	size/count of attachments
-	every conceivable attribute of original mail
-use NNTP server (on flatcap.org) to store mentor conversations
-	mailing list history too
-	topic per mentor idea
-	topic for introductions
-can nntp compress its mail folders?
-	or just compressed disk media underneath
-	can mutt-dev-list maintainer get archive from marc.info?
-
-release criteria for a new feature
-	changelog
-		changes
-		num commits?
-	clean build
-	configure --option (off)
-	basic docs
-	tidy code (whitespace, etc)
-	example config
-	screenshots of new features
-		text/html screenshots if possible
-
-git map
-	read config for default remote
-
-mailbox +/wibble
-mailbox =wibble
-	aren't equivalent, caused problems for squillis on irc 2017-02-10
-	# mailboxes =INBOX "+/Drafts" "+/Sent Items" "+/Systems/A" "+/Systems/B" "+/Systems/C"
-
-notmuch:
-	nm_get_all_tags() is called twice (once to count, then once to build the list)
-
-safe macros enhancement request: https://github.com/neomutt/neomutt/issues/69#issuecomment-230442101
-	zmo suggests: emulate the augroup feature of vim :)
-	macros specific to a folder, or notmuch, etc
-	have an "account" function that limits to one account
-	account "imap://..." set sidebar_visible = yes
-
-script fuzzy / translation checker
-	compare %-count syntax
-	1300*30 ~ 40K compressed!
-
-web misc contrib page <h1> per item
-
-po multi-fold comment, english, foreign -- why bother?
-
-can't find mailbox ops error mesage -- coder only compress.c
-
-debian devs are any platforms NOT using gcc/clang?
-	do they have FILE, LINE, FUNC?
-
-categorise all messages in code
-	info, warning, error, question
-which imply user to do: nothing, be informed, worry, query user
-errors should be clear whose fault
-user: e.g. type something invalid
-config: file invalid / missing
-code: internal error, missing ops
-separate what user cannot do vs MAY not do
-
-"source" command relative to $cwd or previous file
-
-pre-reply hook -- takes original email and formats it however
-or
-pre-sent hook, filter before send?
-why bother?  should be done in editor?
-
-nntp on MY server - 3 groups
-	user ml
-	devel ml
-	github issues
-what about:
-	mutt user ml
-	mutt dev ml
-
-find markdown code theme that I like
-
-review describe with pictures the three github merge options
-
-tagged initialisers -> coding standard
-variable length arrays -> are they safe?
-
-check nntp for updates
-muttrc linter correct, or comment out?
-base64 3 byte work chunks -- bigger?
-
-mutt google map of devs
-	lettered for maintainers
-	dot for others?
-
-merging explain to newbies about squashing
-
-flowchart for sending an email, showing:
-	screens,
-	<functions>
-	hooks
-	include signing
-	postpone
-	screenshots (text)
-
-squash or not - consider need to revert 1 piece
-~Y docs match label missing?
-
-pager colour filter start/stop regex + lua script?
-what does it insert?  or does it call back to get mutt to highlight?
-script is stateful
-
-irc notes: assume humour before anger/offence
-
-conceallevel (for pager/index)
-	0 off
-	1 conceal
-	2 conceal and squash
-for index, 1 list "there are 'n' concealed threads"
-
-link to OS *guide*
-
-filter to turn :+1: into emoji character
-
-issues: shooting for zero
-	try to get down to zero issues/PRs
-	what about long discussions?
-		close them
-			two weeks after last comment
-			four?
-	what about unlikely enhancement requests
-		doc on website (with links)
-		close them
-
-guyzmo's merge/review notes
-
-doc how to become a reviewer
-
-example notes for a PR
-	don't walk away
-	you need to work with us to get it merged
-example notes for an issue
-	need to be around to help us find the problem
-	might need to test the solution
-
-readme shorten to just maintainers?
-	link to full list of authors
-
-imap flags summary
-
-Releases
-	comments = docs
-	translations too - in either release
-
-all PRs to in-progress?
-
-issues for upstream sync - share the lot
-
-save backlog of messages in a deleted file!
-
-work towards: no commit without an issue
-	A reviewer's "OK" for an idea can come from:
-		issue
-		IRC
-		mailing list
-
-github peer review bot:
-	https://github.com/felixrieseberg/peer-review-bot
-
-reorganise docs
-	migrate them all to docbook (or markdown?)
-		if markdown, how good will the html look?
-		what about conditional docs?
-			how do we only include that which we compile?
-			too hard?
-			WHICH sections are currently conditional?
-	generate man pages from these sources
-	strip init.h of its docs
-	get default values from "mutt -D" instead
-
-github/irc bot.  notify on:
-	@neomutt/reviewers Please Review -> "guyzmo asked for review of #298 (Desc)"
-	"flatcap approved #298 (Desc)"
-
-account object that lives above BUFFYs
-	emails
-		maildir
-		mbox
-		imap
-		pop
-	notmuch
-	nntp
-can be visible or hidden
-
-investigate:
-	global config
-	list all the IMAP variables
-	list all their uses
-
-lua styling/colour callback
-	c functions: hprintf(), push_attr(), pop_attr()
-	shared definitions: C_FG_RED, C_FG_BLUE, A_UNDERLINE, A_REVERSE, etc
-
-	c	lua_style_line(HANDLE, DATA[])
-	lua	hprintf(HANDLE, "hello ")
-		push_attr(HANDLE, C_FG_RED)
-		push_attr(HANDLE, A_REVERSE)
-		hprintf(HANDLE, "world")
-		pop_attr(HANDLE)
-		pop_attr(HANDLE)
-
-move the guide to readthedocs.org?
-
-.gitattributes
-	ignore changes to .travis.yml
-	from merging branches
-	hmm... but it'll be in all branches
-	does this make sense?
-
-bot command
-	/notice botty doc $folder
-		privately messages botty
-	botty replies in-channel
-
-script to follow all the projects members
-
-add template email for newbies getting credit
-
-api
-	functions to query aliases
-
-webpage: new status
-	wip-help -- "Work in progress - Please help (instructions)
-
-po
-	don't need line numbers for git
-	might need them for poeditor
-
-create muttrc that undoes everything that might be in /etc/Muttrc
-
-useful: extract_url.pl
-
-when saving a file (being asked for input),
-	add a mechanism to expand a mutt variable
-	like vim's ^R
-
-2017-03-06 #mutt
-	17:40 <parosen> "set -o vi" functionality in mutt?
-
-sidebar intro
-	priority of colours may be wrong after upstream changes
-	https://www.neomutt.org/feature/sidebar-intro#intro-sidebar-colors
-
-botty
-	look for commits?
-	a7b0fb8
-	https://github.com/neomutt/neomutt/commit/a7b0fb8
-	<p class="commit-title">Clear out extraneous errors before SSL_connect() (see #3916)</p>
-
-convert the bug-fixes section of the travis build.sh to work on the upstream branch
-	(test all commits, with a small spread of configs)
-
-change "L10N" comments to "TRANSLATORS:"
-	(as that's the default)
-
-mutt marks -- are they mailbox-local?
-	can we distinguish (like vim) betweeen
-	`a  mark in this index
-	`A  global mark (potentially in another mailbox)
-		is it safe to change mailboxes without warning?
-		I suppose macros do this
-
-smime_keys(.pl) why both?
-
-web guide update docs for toogley
-
-move muttrc* vimrc* to contrib/
-
-sync web & contrib versions of hcache benchmarks
-	how?
-
-topics for my github repos, icons?
-
-jekyll page type "hidden" -- don't list
-
-coding standard: two copies
-	part 1:
-		full descriptions
-		examples
-		anchors <a name="">
-	part 2:
-		auto-generated (script or jekyll)
-		concise list + links to full examples
-alternative, have coding standard in _std dir
-	pieced together by jekyll for both versions
-
-docs todo
-	contribution
-	first feature
-	release
-		scripts etc
-	style (code)
-	irc welcome text
-
-enable debug from within mutt
-	set debuglevel
-	set debugfile
-	rotate files?
-
-configure.ac broken for conditional features
-	--enable-lua
-	no libraries
-	shows "lua: yes"
-	compiles with "-USE_LUA"
-same problem for all the options that are conditional-but-need-libraries
-test options
-	enable-lua/disable-lua/enable-everything/unspecified
-	lua libs/no lua libs
-
-"approved" tag? when an idea under discussion gets the go-ahead?
-	or just remove the "discussion" tag?
-
-configure summary?
-	--disable-docs -> docs:         no
-	--disable-po   -> translations: no
-
-web toplevel dir
-	/muttrc
-	move all samples from the guide
-	link guide to samples
-
-configure summary
-	Libs:              -lanl -lncursesw -lnotmuch 
-	Mutt libs:          -lncursesw -ltokyocabinet -lkyotocabinet -lgdbm -lqdbm -ldb-5.3 -llmdb -lidn 
-what's the distinction?  notmuch and lmdb are both user-specified external deps
-
-2017-03-22 #mutt
-	14:43 <wayne47> is there a way to specify a unique SMTP server per mail box?
-	14:44 <wayne47> so that when I read mail via imap from foo.com, outgoing mail uses foo.com and when I read from bar.com, outgoing mail uses bar.com (etc)?
-
-all example muttrcs
-	bring them up-to-date (valid options)
-	or delete them
-
-warn on option synonym usage
-	{ "pgp_autoencrypt",		DT_SYN,  R_NONE, UL "crypt_autoencrypt", 0 },
-	{ "crypt_autoencrypt",	DT_BOOL, R_NONE, OPTCRYPTAUTOENCRYPT, 0 },
-	crypt_autoencrypt is the visible option
-	warn if pgp_autoencrypt is used
-
-doc build requirement on DocBook DTDs
-
-ask people how often they'd like to be chased up
-
-merge muttrc.feature* into one file
-	leave markers in that are converted to <a name> anchors
-	so we can easily link to sections
-
-macro REGEXEC is only used once
-
-create doc repo
-	have neomutt repo as a "fixed" git submodule
-	or a submodule of a doc-gen repo
-
-branches in neomutt repo may be eligible for a free rebase
-	develop in your own repo, and they may not
-
-use *mutt* to generate sample mailboxes
-	create folders
-	create emails
-	etc
-
-coverity -- some code untested due to config options, e.g. openssl
-	need coverage test
-
-double-width index (continuation of first for wide screens)
-	| side | index1 | index2 |
-
-drop notmuch checks -- assume newer version?
-
-write REQUIREMENTS doc
-	C99
-	SUS (Single Unix Specification)
-	NotMuch >= 4.3.0
-	etc
-
-change #ifndef's to #warning too
-	#ifndef SYMBOL
-	#define SYMBOL
-	#warning "Please tell neomutt devs about this
-	#endif
-
-Project management:
-	contact distros
-	organise web updates
-	search for patches
-
-use signal to interrupt IMAP connect
-	at time of resume (after suspend)
-	systemd service?
-
-put neomutt-centric mailmaps in management repo
-
-vim-neomutt plugin
-	syntax for muttrc
-	folding for c
-
-deprecate ChangeLog*
-	they're in the git history
-	or abbreviate with extreme prejudice
-
-MacOS iTerm
-	Ctrl-O doesn't work
-	"stty discard undef" fixes it
-some other terms too
-	"stty flush undef" needed
-
-cmdline --about links etc
-
-drop support for old SSL versions
-
-mutt --authors
-	list of all neomutt contributors
-	matches {README,AUTHORS}.md
-	doesn't have to be in-code!
-		could be distributed file
-		display in pager
-
-neomutt-test-config.sh
-	--save dir
-	put mutt's in an output dir
-	log each numeric name with the compile options
-
-2017-05-24
-	00:00 <cybrNaut> why is "fcc_clear" suggested as a work-around to those without "smime_encrypt_self = yes" in https://www.neomutt.org/feature/encrypt-to-self, when fcc_clear is said to be
-			"PGP only" here: https://www.neomutt.org/guide/reference.html#fcc-clear ?
-	00:01 <cybrNaut> one of those articles must be wrong
-	00:07 <cybrNaut> fcc_clear actually does work for s/mime messages
-	00:07 <cybrNaut> so https://www.neomutt.org/guide/reference.html#fcc-clear is wrong
-
-init.h
-	UL 0 vs UL NULL vs UL ""
-	unify
-
-add mutt.svg to contrib release
-
-docs:
-	http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-
-doc sample branches
-	web page with list
-
-plugin fs-layer
-	basic: files + stat, etc
-	adv: file, inotify
-	others: fmemopen, mmap, libuv
-
-special reader for alias file, that parses comments, e.g.
-	# tags:red,blue,green phone:'1234'
-
-create screens overview of all areas of mutt.  provide:
-	sample data/emails
-	sample muttrc
-	instructions to repeat
-
-renew s/mime cert & test & desc steps
-
-simplify y/n questions.  no more "Are you sure?", just
-"Quit? Y/n" -- all ask-yes, ask-no
-
-colour highlight/underline _Q_uestion, _O_ptions 'q', 'o'
-
-compose bug
-	E (edit headers) fails if $editor isn't set
-
-alter merge script to just clang-format a set of commits
-
-with options split into sources, mutt -D could omit entire sections
-	if nothing has been set, e.g.
-	all of pop_* have default value
-
-travis/neomutt-test-configs configs & build tags
-init.h -> options.[ch]
-eliminate WHERE
-mutt -D options
-shrink authors (split out)
-travis warnings
-
-configure LIBS vs MUTTLIBS
-hcache auto magic everything
-gcc check for clang
-READMEs tidy review
-#374 lists, queues, etc
-index folding cf vim
-vim plugin - cino options etc
-
-abbr README
-fold comments
-conceal IMAP password
-#ifdef entire file in smime.h
-	pgp.h pgplib.h remailer.h smime.h
-debian 2^32 imap patch
-
-PM
-
-other distros, slack, ubuntu
-search for patches & list and adopt
-find maintainers for distro pages
-
-Decide
-
-gettext -> non-optional?
-promote logging to default -- too useful
-	set max level?
-
-email
-	folding the index
-	gettext -> non-optional?
-	wide ncurses mandatory?
-
-drop testing main()s?
-
-reformat OPS
-	allow whitespace (formatting)
-	allow #comments
-	combine to 1 file
-	conditional?
-
-git repo
-	real names (unless anon)
-
-PR requirement all commits build
-	make dist/clean on merge
-	not nec of each commit
-
-CRON
-	2017-11-01 gpgme version
-	2017-11-01 sun mailtool, nec?
-
-update gpg keys website/dns
-newbie page Twitter toogley
-getside allowed, not checked #ifdef'd
-are both fcntl and flock nec?
-fcntl always present - remove #ifdef
-
-move hcache configure logic into m4?
-vim-like scrolloff option for pager/index
-use travis env / website to control build verbosity
-sort format string switches
-notmuch / lua should be --with, not --enable
-	they have libs/path to
-	what about ax_lua.m4?
-
-doc sample branches
-
-linux kernel
-	IS_ERR, PTR_ERR
-	container_of
-	LIST, list_for_each, etc
-	ARRAY_SIZE
-	BIT
-	min, max, typeof
-	swap
-	round_up/down
-
-off_t used in browser.h
-	don't need OFF_T
-	ftell long vs off_t
-
-devel ml favourite git config
-
-debug fill 0xDD on FREE()?
-
-warning on muttrc synonyms
-	this will be removed in x months
-	this will be removed after DATE (better)
-	suggest correct command
-
-safe_free() wrapped by macro FREE()
-if debug take sizeof arg & memset to 0xDD
-what about void*? need type info
-char * needs strlen
-
-travis special build for upstream?
-
-move smime.types to contrib
-
-pgp_invoke_decode
-	This is historic and may be removed at some point.
-	lots of simliar functions being redirected
-	strip out?
-pgp_application_pgp_handler
-	needpass (bool) starts as -1!
-
-Rfc2231Parameter parameter encoded
-	bool?
-
-struct ContentState
-	lots of bools?
-
-create an address interface for lookups / completion
-	basic plugin uses aliases
-	notmuch can supply its own plugin
-
-aur remove regex configure option
-
-browser.c, buffy.c have a lot of
-	struct Buffy *tmp;
-	tmp's a bad name for a vaiable
-
-relative 'source'ing of files doesn't work if the base is a symlink
-
-each variable type in init.h should have its own validator
-(null for free form strings, or unranged numbers)
-
-compose: flexible layout => multiple lines for To: CC: etc
-(when necessary)  Hide lines that aren't set, e.g. BCC: Mix chain (optionally)
-Limit number of lines to 2 or 3 in case of degenerate lists
-abbreviate with "(+6 more)"
-
-devel list - favourite vim plugins -- promote mine?
-
-modular mutt: imap & nntp share some functions
-"subscribe" -- both should declare and mutt notifies both?
-or can it tell whose command it is?
-
-init.h 435 options
-110 in #ifdefs (more *should* be)
-
-notmuch dep on gpgme in future (via gmime)
-
-options accelerator '&' double up to escape
-static buffer parse translations on first run
-needs to cope with missing options or
-options reordered -- still need "letters" internally
-NO, need letters in po file
-
-account [[name] mailbox]
-	mailboxes
-account
-
-Account
-	Buffy children[];
-	char *name;
-	Account *next;
-
-account: use $spoolfile to merge an inbox into the account line
-	spoolfile not set
-	AC_NAME
-		inbox  1/6
-		apple  2/7
-		banana 3/8
-	spoofile=inbox
-	AC_NAME        1/6
-		apple  2/7
-		banana 3/8
-
-sidebar_account colour?
-
-hcache swapping crashes
-	encode type into hash
-
-add RFC1522
-
-add release count to changes doc on web
-
-Translation
-	10m, clone, trans, PR (poeditor.com)
-	German, Spanish, Slovak, Chinese: email
-	French email
-	Others, users ml
-
-Searches
-	list all GH matches
-	10m - classify
-		old, config, new, different
-
-Offered
-	gahr INITVAL
-	boyu trans/code
-	aur @hobarrera
-	sileht labels
-
-TODO - me
-	define summary for chrissl
-	cocci email kdave
-	define release scripts
-
-Doxy - commit config
-	add to build
-	scripts to gen/code on web
-	10m doc a function
-	(sort functions by usage)
-	(generate template ∀)
-
-Distro pages update
-	fedora
-	centos
-	as for help with AUR, Gentoo, Homebrew => vm
-
-Decide
-	#ifdef DEBUG
-	move some web/discuss to "hard"
-		the ones we really want
-	new variable type MAILBOX
-		could be a "/path" or "+mailbox"
-
-Debug levels
-	1,2 user logging
-	3+ full file:line:function:message
-	(debug only)
-
-	mutt_log -> level 1 ==
-		mutt_message
-		mutt_error
-		or == level 0
-	mutt_debug -> level 2+
-	need audit
-	263 mutt_message
-	728 mutt_error
-	704 mutt_debug (total ~1700)
-
-RFC
-	mutt_debug __FILE__, __LINE__ via macro
-	account command user ml, devel ml
-
-Misc
-	where are the "source" relative docs?
-	alias_file, certificate_file, etc aren't relative
-	relative to what?
-	all *_files relative to user's muttrc
-	$XDG_CACHE_HOME
-	656 verify signed
-	coverity travis update ./configure yml
-	release notes - mention "ifdef" changes
-
-Coverity false positives
-	171380
-	171378
-
-FS layer
-	211 fopen, 346 fclose, 285 unlink, 70 rename,
-	mkdir, mktemp, stat, exists, (read|write)_(string|char)
-	85 seek, flush
-	tie in with mmap
-	tie in with memstream/buffer/tmp
-	distinguish tmpfile, generated help page, partial email
-	memstream -> better buffer interface
-	canonicalise path
+parse_set: unset DT_RX doesn't work
 
 Variables
 	struct {type, hash, name, union {vars}}
@@ -2825,107 +139,2791 @@ Variables
         validator per type
         REQUIRE get_str ∀ types
 
-parse_set: unset DT_RX doesn't work
+FS layer
+	211 fopen, 346 fclose, 285 unlink, 70 rename,
+	mkdir, mktemp, stat, exists, (read|write)_(string|char)
+	85 seek, flush
+	tie in with mmap
+	tie in with memstream/buffer/tmp
+	distinguish tmpfile, generated help page, partial email
+	memstream -> better buffer interface
+	canonicalise path
 
-log before regex ops & other risky functions
+Coverity false positives
+	171380
+	171378
 
-debug_level > n => fflush every line
+Misc
+	where are the "source" relative docs?
+	alias_file, certificate_file, etc aren't relative
+	relative to what?
+	all *_files relative to user's muttrc
+	$XDG_CACHE_HOME
+	656 verify signed
+	coverity travis update ./configure yml
+	release notes - mention "ifdef" changes
 
-use install-sh $(INSTALL) instead of cp
+RFC
+	mutt_debug __FILE__, __LINE__ via macro
+	account command user ml, devel ml
 
-ask neou for logo suggestions
-        hold competition for art?
+	mutt_log -> level 1 ==
+		mutt_message
+		mutt_error
+		or == level 0
+	mutt_debug -> level 2+
+	need audit
+	263 mutt_message
+	728 mutt_error
+	704 mutt_debug (total ~1700)
 
-two stage index update?
-        hide, refresh
-        update
-        NO, index vars would still be wrong
+Debug levels
+	1,2 user logging
+	3+ full file:line:function:message
+	(debug only)
 
-check distro installs
-        provide list of all installed files/types, etc
-        cf each distro
+Decide
+	#ifdef DEBUG
+	move some web/discuss to "hard"
+		the ones we really want
+	new variable type MAILBOX
+		could be a "/path" or "+mailbox"
 
-update newbie/hard list from discussions -> focus
+Distro pages update
+	fedora
+	centos
+	as for help with AUR, Gentoo, Homebrew => vm
 
-check management README (missing)
+Doxy - commit config
+	add to build
+	scripts to gen/code on web
+	10m doc a function
+	(sort functions by usage)
+	(generate template ∀)
 
-now that IMAP, et al, are compiled-in, what's in the docs
-        that might be excluded (makedoc conditional)
+TODO - me
+	define summary for chrissl
+	cocci email kdave
+	define release scripts
 
---authors reads file /docs/AUTHORS
---license reads file /docs/LICENSE
-if missing, print placeholder URL / GPLv2 respectively
-        => getopt long
+Offered
+	gahr INITVAL
+	boyu trans/code
+	aur @hobarrera
+	sileht labels
 
-drop (1.2.3) from version?
-what about debian?
+Searches
+	list all GH matches
+	10m - classify
+		old, config, new, different
 
-change "Mutt" -> "NeoMutt" ∀ code/docs
+Translation
+	10m, clone, trans, PR (poeditor.com)
+	German, Spanish, Slovak, Chinese: email
+	French email
+	Others, users ml
 
-are imap vars used outside of imap code?
-what about sidebar, browser, etc?
-keep their own var lists?  register at startup?
+add release count to changes doc on web
 
-document meaning of "distros" pages
-        min vm install -> build -> debug
+add RFC1522
 
-predefined buffer macros (static)
-        => addstr could fail (out of space)
-        easier memory management
-        BUFFER256, 1024, etc
-        allocate buffer for you & memset it
+hcache swapping crashes
+	encode type into hash
 
-turn STRING, LONGSTRING into numbered consts
-        STR1024, etc
-        clearer
+sidebar_account colour?
 
-buffer code solaris9(2005!) check
+account: use $spoolfile to merge an inbox into the account line
+	spoolfile not set
+	AC_NAME
+		inbox  1/6
+		apple  2/7
+		banana 3/8
+	spoofile=inbox
+	AC_NAME        1/6
+		apple  2/7
+		banana 3/8
 
-hcache: x [y] z
-        y = default
+Account
+	Buffy children[];
+	char *name;
+	Account *next;
 
-magic -- set *string*, save *int*
-        retrieve which?
-        or both?
+account [[name] mailbox]
+	mailboxes
+account
 
-in pager, which objects are precious/vunerable
-        which might be changes outside of the pager
+options accelerator '&' double up to escape
+static buffer parse translations on first run
+needs to cope with missing options or
+options reordered -- still need "letters" internally
+NO, need letters in po file
 
-rename OPTAPPLEBANANACHERRY -> OPT_APPLE_BANANA_CHERRY
+notmuch dep on gpgme in future (via gmime)
 
-hcache crash backtrace
-which backend to which other?
+init.h 435 options
+110 in #ifdefs (more *should* be)
 
-hcache pruner
-        use list of mailboxes
-        use list of backends (you want)
-        won't work for caching files, only folders
-                unless we trawl through EVERY email
-                might as well cache them too
+modular mutt: imap & nntp share some functions
+"subscribe" -- both should declare and mutt notifies both?
+or can it tell whose command it is?
 
-split the hcache serialisation by struct
-        address_serialise
-        buffer_serialise
-        etc
-each struct calls the children it needs
-put in some version numbers, or
-field type and length bytes before each field
+devel list - favourite vim plugins -- promote mine?
 
-add make tags (to exclude junk)
+compose: flexible layout => multiple lines for To: CC: etc
+(when necessary)  Hide lines that aren't set, e.g. BCC: Mix chain (optionally)
+Limit number of lines to 2 or 3 in case of degenerate lists
+abbreviate with "(+6 more)"
 
-listen for tags -- list somewhere public
-https://github.com/neomutt/neomutt/tags.atom
+each variable type in init.h should have its own validator
+(null for free form strings, or unranged numbers)
 
-tokenize_unget_string isn't used
-tokenize_push_macro_string is used just twice -- expand
-imap_new_idata allocs can't fail, simply error paths
+relative 'source'ing of files doesn't work if the base is a symlink
 
-add rfc1847 gpg
+browser.c, buffy.c have a lot of
+	struct Buffy *tmp;
+	tmp's a bad name for a vaiable
 
-ask lists about slang usage
-        drop slang
+aur remove regex configure option
 
-tweak doxygen to #define more things for better coverage
+create an address interface for lookups / completion
+	basic plugin uses aliases
+	notmuch can supply its own plugin
 
-what does AC_EXEEXT do?
+struct ContentState
+	lots of bools?
+
+Rfc2231Parameter parameter encoded
+	bool?
+
+pgp_invoke_decode
+	This is historic and may be removed at some point.
+	lots of simliar functions being redirected
+	strip out?
+pgp_application_pgp_handler
+	needpass (bool) starts as -1!
+
+move smime.types to contrib
+
+travis special build for upstream?
+
+safe_free() wrapped by macro FREE()
+if debug take sizeof arg & memset to 0xDD
+what about void*? need type info
+char * needs strlen
+
+warning on muttrc synonyms
+	this will be removed in x months
+	this will be removed after DATE (better)
+	suggest correct command
+
+debug fill 0xDD on FREE()?
+
+devel ml favourite git config
+
+off_t used in browser.h
+	don't need OFF_T
+	ftell long vs off_t
+
+linux kernel
+	IS_ERR, PTR_ERR
+	container_of
+	LIST, list_for_each, etc
+	ARRAY_SIZE
+	BIT
+	min, max, typeof
+	swap
+	round_up/down
+
+doc sample branches
+
+move hcache configure logic into m4?
+vim-like scrolloff option for pager/index
+use travis env / website to control build verbosity
+sort format string switches
+notmuch / lua should be --with, not --enable
+	they have libs/path to
+	what about ax_lua.m4?
+
+update gpg keys website/dns
+newbie page Twitter toogley
+getside allowed, not checked #ifdef'd
+are both fcntl and flock nec?
+fcntl always present - remove #ifdef
+
+CRON
+	2017-11-01 gpgme version
+	2017-11-01 sun mailtool, nec?
+
+PR requirement all commits build
+	make dist/clean on merge
+	not nec of each commit
+
+git repo
+	real names (unless anon)
+
+reformat OPS
+	allow whitespace (formatting)
+	allow #comments
+	combine to 1 file
+	conditional?
+
+drop testing main()s?
+
+email
+	folding the index
+	gettext -> non-optional?
+	wide ncurses mandatory?
+
+gettext -> non-optional?
+promote logging to default -- too useful
+	set max level?
+
+Decide
+
+other distros, slack, ubuntu
+search for patches & list and adopt
+find maintainers for distro pages
+
+PM
+
+abbr README
+fold comments
+conceal IMAP password
+#ifdef entire file in smime.h
+	pgp.h pgplib.h remailer.h smime.h
+debian 2^32 imap patch
+
+configure LIBS vs MUTTLIBS
+hcache auto magic everything
+gcc check for clang
+READMEs tidy review
+#374 lists, queues, etc
+index folding cf vim
+vim plugin - cino options etc
+
+travis/neomutt-test-configs configs & build tags
+init.h -> options.[ch]
+eliminate WHERE
+mutt -D options
+shrink authors (split out)
+travis warnings
+
+with options split into sources, mutt -D could omit entire sections
+	if nothing has been set, e.g.
+	all of pop_* have default value
+
+alter merge script to just clang-format a set of commits
+
+compose bug
+	E (edit headers) fails if $editor isn't set
+
+colour highlight/underline _Q_uestion, _O_ptions 'q', 'o'
+
+simplify y/n questions.  no more "Are you sure?", just
+"Quit? Y/n" -- all ask-yes, ask-no
+
+renew s/mime cert & test & desc steps
+
+create screens overview of all areas of mutt.  provide:
+	sample data/emails
+	sample muttrc
+	instructions to repeat
+
+special reader for alias file, that parses comments, e.g.
+	# tags:red,blue,green phone:'1234'
+
+plugin fs-layer
+	basic: files + stat, etc
+	adv: file, inotify
+	others: fmemopen, mmap, libuv
+
+doc sample branches
+	web page with list
+
+docs:
+	http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+add mutt.svg to contrib release
+
+init.h
+	UL 0 vs UL NULL vs UL ""
+	unify
+
+2017-05-24
+	00:00 <cybrNaut> why is "fcc_clear" suggested as a work-around to those without "smime_encrypt_self = yes" in https://www.neomutt.org/feature/encrypt-to-self, when fcc_clear is said to be
+			"PGP only" here: https://www.neomutt.org/guide/reference.html#fcc-clear ?
+	00:01 <cybrNaut> one of those articles must be wrong
+	00:07 <cybrNaut> fcc_clear actually does work for s/mime messages
+	00:07 <cybrNaut> so https://www.neomutt.org/guide/reference.html#fcc-clear is wrong
+
+neomutt-test-config.sh
+	--save dir
+	put mutt's in an output dir
+	log each numeric name with the compile options
+
+mutt --authors
+	list of all neomutt contributors
+	matches {README,AUTHORS}.md
+	doesn't have to be in-code!
+		could be distributed file
+		display in pager
+
+drop support for old SSL versions
+
+cmdline --about links etc
+
+MacOS iTerm
+	Ctrl-O doesn't work
+	"stty discard undef" fixes it
+some other terms too
+	"stty flush undef" needed
+
+deprecate ChangeLog*
+	they're in the git history
+	or abbreviate with extreme prejudice
+
+vim-neomutt plugin
+	syntax for muttrc
+	folding for c
+
+put neomutt-centric mailmaps in management repo
+
+use signal to interrupt IMAP connect
+	at time of resume (after suspend)
+	systemd service?
+
+Project management:
+	contact distros
+	organise web updates
+	search for patches
+
+change #ifndef's to #warning too
+	#ifndef SYMBOL
+	#define SYMBOL
+	#warning "Please tell neomutt devs about this
+	#endif
+
+write REQUIREMENTS doc
+	C99
+	SUS (Single Unix Specification)
+	NotMuch >= 4.3.0
+	etc
+
+drop notmuch checks -- assume newer version?
+
+double-width index (continuation of first for wide screens)
+	| side | index1 | index2 |
+
+coverity -- some code untested due to config options, e.g. openssl
+	need coverage test
+
+use *mutt* to generate sample mailboxes
+	create folders
+	create emails
+	etc
+
+branches in neomutt repo may be eligible for a free rebase
+	develop in your own repo, and they may not
+
+create doc repo
+	have neomutt repo as a "fixed" git submodule
+	or a submodule of a doc-gen repo
+
+macro REGEXEC is only used once
+
+merge muttrc.feature* into one file
+	leave markers in that are converted to <a name> anchors
+	so we can easily link to sections
+
+ask people how often they'd like to be chased up
+
+doc build requirement on DocBook DTDs
+
+warn on option synonym usage
+	{ "pgp_autoencrypt",		DT_SYN,  R_NONE, UL "crypt_autoencrypt", 0 },
+	{ "crypt_autoencrypt",	DT_BOOL, R_NONE, OPTCRYPTAUTOENCRYPT, 0 },
+	crypt_autoencrypt is the visible option
+	warn if pgp_autoencrypt is used
+
+all example muttrcs
+	bring them up-to-date (valid options)
+	or delete them
+
+2017-03-22 #mutt
+	14:43 <wayne47> is there a way to specify a unique SMTP server per mail box?
+	14:44 <wayne47> so that when I read mail via imap from foo.com, outgoing mail uses foo.com and when I read from bar.com, outgoing mail uses bar.com (etc)?
+
+configure summary
+	Libs:              -lanl -lncursesw -lnotmuch 
+	Mutt libs:          -lncursesw -ltokyocabinet -lkyotocabinet -lgdbm -lqdbm -ldb-5.3 -llmdb -lidn 
+what's the distinction?  notmuch and lmdb are both user-specified external deps
+
+web toplevel dir
+	/muttrc
+	move all samples from the guide
+	link guide to samples
+
+configure summary?
+	--disable-docs -> docs:         no
+	--disable-po   -> translations: no
+
+"approved" tag? when an idea under discussion gets the go-ahead?
+	or just remove the "discussion" tag?
+
+configure.ac broken for conditional features
+	--enable-lua
+	no libraries
+	shows "lua: yes"
+	compiles with "-USE_LUA"
+same problem for all the options that are conditional-but-need-libraries
+test options
+	enable-lua/disable-lua/enable-everything/unspecified
+	lua libs/no lua libs
+
+enable debug from within mutt
+	set debuglevel
+	set debugfile
+	rotate files?
+
+docs todo
+	contribution
+	first feature
+	release
+		scripts etc
+	style (code)
+	irc welcome text
+
+coding standard: two copies
+	part 1:
+		full descriptions
+		examples
+		anchors <a name="">
+	part 2:
+		auto-generated (script or jekyll)
+		concise list + links to full examples
+alternative, have coding standard in _std dir
+	pieced together by jekyll for both versions
+
+jekyll page type "hidden" -- don't list
+
+topics for my github repos, icons?
+
+sync web & contrib versions of hcache benchmarks
+	how?
+
+move muttrc* vimrc* to contrib/
+
+web guide update docs for toogley
+
+smime_keys(.pl) why both?
+
+mutt marks -- are they mailbox-local?
+	can we distinguish (like vim) betweeen
+	`a  mark in this index
+	`A  global mark (potentially in another mailbox)
+		is it safe to change mailboxes without warning?
+		I suppose macros do this
+
+change "L10N" comments to "TRANSLATORS:"
+	(as that's the default)
+
+convert the bug-fixes section of the travis build.sh to work on the upstream branch
+	(test all commits, with a small spread of configs)
+
+botty
+	look for commits?
+	a7b0fb8
+	https://github.com/neomutt/neomutt/commit/a7b0fb8
+	<p class="commit-title">Clear out extraneous errors before SSL_connect() (see #3916)</p>
+
+sidebar intro
+	priority of colours may be wrong after upstream changes
+	https://www.neomutt.org/feature/sidebar-intro#intro-sidebar-colors
+
+2017-03-06 #mutt
+	17:40 <parosen> "set -o vi" functionality in mutt?
+
+when saving a file (being asked for input),
+	add a mechanism to expand a mutt variable
+	like vim's ^R
+
+useful: extract_url.pl
+
+create muttrc that undoes everything that might be in /etc/Muttrc
+
+po
+	don't need line numbers for git
+	might need them for poeditor
+
+webpage: new status
+	wip-help -- "Work in progress - Please help (instructions)
+
+api
+	functions to query aliases
+
+add template email for newbies getting credit
+
+script to follow all the projects members
+
+bot command
+	/notice botty doc $folder
+		privately messages botty
+	botty replies in-channel
+
+.gitattributes
+	ignore changes to .travis.yml
+	from merging branches
+	hmm... but it'll be in all branches
+	does this make sense?
+
+move the guide to readthedocs.org?
+
+	c	lua_style_line(HANDLE, DATA[])
+	lua	hprintf(HANDLE, "hello ")
+		push_attr(HANDLE, C_FG_RED)
+		push_attr(HANDLE, A_REVERSE)
+		hprintf(HANDLE, "world")
+		pop_attr(HANDLE)
+		pop_attr(HANDLE)
+
+lua styling/colour callback
+	c functions: hprintf(), push_attr(), pop_attr()
+	shared definitions: C_FG_RED, C_FG_BLUE, A_UNDERLINE, A_REVERSE, etc
+
+investigate:
+	global config
+	list all the IMAP variables
+	list all their uses
+
+account object that lives above BUFFYs
+	emails
+		maildir
+		mbox
+		imap
+		pop
+	notmuch
+	nntp
+can be visible or hidden
+
+github/irc bot.  notify on:
+	@neomutt/reviewers Please Review -> "guyzmo asked for review of #298 (Desc)"
+	"flatcap approved #298 (Desc)"
+
+reorganise docs
+	migrate them all to docbook (or markdown?)
+		if markdown, how good will the html look?
+		what about conditional docs?
+			how do we only include that which we compile?
+			too hard?
+			WHICH sections are currently conditional?
+	generate man pages from these sources
+	strip init.h of its docs
+	get default values from "mutt -D" instead
+
+github peer review bot:
+	https://github.com/felixrieseberg/peer-review-bot
+
+work towards: no commit without an issue
+	A reviewer's "OK" for an idea can come from:
+		issue
+		IRC
+		mailing list
+
+save backlog of messages in a deleted file!
+
+issues for upstream sync - share the lot
+
+all PRs to in-progress?
+
+Releases
+	comments = docs
+	translations too - in either release
+
+imap flags summary
+
+readme shorten to just maintainers?
+	link to full list of authors
+
+example notes for a PR
+	don't walk away
+	you need to work with us to get it merged
+example notes for an issue
+	need to be around to help us find the problem
+	might need to test the solution
+
+doc how to become a reviewer
+
+guyzmo's merge/review notes
+
+issues: shooting for zero
+	try to get down to zero issues/PRs
+	what about long discussions?
+		close them
+			two weeks after last comment
+			four?
+	what about unlikely enhancement requests
+		doc on website (with links)
+		close them
+
+filter to turn :+1: into emoji character
+
+link to OS *guide*
+
+conceallevel (for pager/index)
+	0 off
+	1 conceal
+	2 conceal and squash
+for index, 1 list "there are 'n' concealed threads"
+
+irc notes: assume humour before anger/offence
+
+pager colour filter start/stop regex + lua script?
+what does it insert?  or does it call back to get mutt to highlight?
+script is stateful
+
+squash or not - consider need to revert 1 piece
+~Y docs match label missing?
+
+flowchart for sending an email, showing:
+	screens,
+	<functions>
+	hooks
+	include signing
+	postpone
+	screenshots (text)
+
+merging explain to newbies about squashing
+
+mutt google map of devs
+	lettered for maintainers
+	dot for others?
+
+check nntp for updates
+muttrc linter correct, or comment out?
+base64 3 byte work chunks -- bigger?
+
+tagged initialisers -> coding standard
+variable length arrays -> are they safe?
+
+review describe with pictures the three github merge options
+
+find markdown code theme that I like
+
+nntp on MY server - 3 groups
+	user ml
+	devel ml
+	github issues
+what about:
+	mutt user ml
+	mutt dev ml
+
+pre-reply hook -- takes original email and formats it however
+or
+pre-sent hook, filter before send?
+why bother?  should be done in editor?
+
+"source" command relative to $cwd or previous file
+
+categorise all messages in code
+	info, warning, error, question
+which imply user to do: nothing, be informed, worry, query user
+errors should be clear whose fault
+user: e.g. type something invalid
+config: file invalid / missing
+code: internal error, missing ops
+separate what user cannot do vs MAY not do
+
+debian devs are any platforms NOT using gcc/clang?
+	do they have FILE, LINE, FUNC?
+
+can't find mailbox ops error mesage -- coder only compress.c
+
+po multi-fold comment, english, foreign -- why bother?
+
+web misc contrib page <h1> per item
+
+script fuzzy / translation checker
+	compare %-count syntax
+	1300*30 ~ 40K compressed!
+
+safe macros enhancement request: https://github.com/neomutt/neomutt/issues/69#issuecomment-230442101
+	zmo suggests: emulate the augroup feature of vim :)
+	macros specific to a folder, or notmuch, etc
+	have an "account" function that limits to one account
+	account "imap://..." set sidebar_visible = yes
+
+notmuch:
+	nm_get_all_tags() is called twice (once to count, then once to build the list)
+
+mailbox +/wibble
+mailbox =wibble
+	aren't equivalent, caused problems for squillis on irc 2017-02-10
+	# mailboxes =INBOX "+/Drafts" "+/Sent Items" "+/Systems/A" "+/Systems/B" "+/Systems/C"
+
+git map
+	read config for default remote
+
+release criteria for a new feature
+	changelog
+		changes
+		num commits?
+	clean build
+	configure --option (off)
+	basic docs
+	tidy code (whitespace, etc)
+	example config
+	screenshots of new features
+		text/html screenshots if possible
+
+trash folder: forget the directories idea?	who cares about deleted stuff?
+trash needs index panel expando -- Original location
+archive *needs* dirs %Y / %From?  auto-create, auto-delete on empty
+<empty-trash> function
+"empty-trash-confirm" variable quad-type
+expando for status bar -- trash-size (bytes/Mb) trash-count (number of deleted)
+archive needs X-Original-Dir (like del)
+	<unarchive> function
+tie archive to notmuch to auto index
+status bar needs expando for archive contents in (kb,Mb) or (count)
+archive/trash expandos -- unless too heavy to calculate
+	consult indexes for results/numbers
+	does the index store size?
+archive needs rich expando save strategy
+	%Y, %m, %d -- lots of dates
+	%from, %to, etc authors
+	%list, $orig-folder
+	size/count of attachments
+	every conceivable attribute of original mail
+use NNTP server (on flatcap.org) to store mentor conversations
+	mailing list history too
+	topic per mentor idea
+	topic for introductions
+can nntp compress its mail folders?
+	or just compressed disk media underneath
+	can mutt-dev-list maintainer get archive from marc.info?
+
+type:investigate ?
+	something that needs research
+	might lead to docs
+	might not lead to code
+
+can I (neomutt) sign the copr key?
+
+mutt -D? (extra options)
+	turn output into valid muttrc
+	validate muttrc without running
+	only display CHANGED values
+	only hide SET values
+	SORT the options
+	add comments from init.h?
+	show default values/keybindings
+
+limit-to-tag function?
+
+turn off status bar, like vim laststatus
+
+limit current thread
+	new mail shows up even when not in thread
+
+commands
+	rename all those containing _ (underscore) to - (hyphen)
+	accept either
+	autocomplete to hyphen
+	linter for muttrc -- with warnings
+
+issue - auto screenshots - sample mailbox
+
+branch 123-desc auto work-in-progress
+
+create list of current scripts shell/perl
+	build processors
+	automators
+	list -> website -- link to repos
+	#!/bin/bash ->  sh
+
+update vim-syntax
+
+newbie - recommend setting 'set user_agent = yes'
+
+mutt IPA /mʌt/
+
+magi-sort
+	regex matching [patch] part -> sort alphabetically by that part
+	emails from same author
+	[PATCH v2 5/7] iio: adc: stm32: add optional dma support
+	[PATCH v2 6/7] ARM: dts: stm32: Enable dma by default on stm32f4 adc
+	[PATCH v2 4/7] Documentation: dt: iio: stm32-adc: optional dma support
+	[PATCH v2 1/7] iio: adc: stm32: add support for triggered buffer mode
+	[PATCH v2 3/7] iio: adc: stm32: add trigger polarity extended attribute
+	[PATCH v2 2/7] iio: adc: stm32: Enable use of stm32 timer triggers
+	[PATCH v2 7/7] ARM: dts: stm32: Enable pwm1 and pwm3 on stm32f429i-eval
+	[PATCH v2 0/7] Add support for triggered buffer mode to STM32 ADC
+
+add abort-mailbox to nntp, etc
+	raise issue
+
+change release cadence?
+	feature release
+	bug-fix release
+only update translations on bug-fix release
+fixes for docs are bug-fixes
+two open milestones (next-feature-release, next-bug-fix-release)
+
+#define the mailbox -2 abort, -1 error
+
+translate: hooks in code to log most translated strings
+	help translators prioritise their work
+
+release branch
+	no .travis.yml (no building)
+	ChangeLog
+	configure.ac
+	README
+
+list Sven's unused letters to the main guide
+
+leave-folder hook?
+
+make clean isn't good enough?
+
+coverity to use travis-build script!
+
+chronic "moreutils" package
+
+gettext logger to look for most used translations
+	mark the common ones in the code
+
+.po are "#: file.c" needed except at translate time?  drop?
+	simplifies merges, etc
+
+issue label: "translation"
+
+L10N split up large version string blocks
+
+web
+	```note
+	css proportional font
+	bold first line using css
+	add icon?
+	```code
+	specifically for code?
+	no interferes with markdown highlighting
+
+poedit suggest disable wrapping -> web instructions
+
+mutt.pot --no-wrap
+
+add myself to version.c copyright, mutt -v
+
+xgettext notes, L10N, _(), N_()
+
+po.vim
+	toggle English vs Foreign
+	options to show/hide
+		whitespace
+		dots
+	set symbols
+
+shrink version number to YYx
+	2 week releases -> 26/year, 26 letters!
+	week 16 release => 16q or 16Q
+	52 weeks => AaBbCc etc
+	what about stable release?
+	-LTS needs multiple releases but one name
+
+translation comments
+	aka in lang
+	function names
+	"oppenc" meaning
+	glossary
+		alias
+		thread = x
+	comments ∀ translators
+	mnemonic letters
+	formatting, e.g. "[-- TEXT --]"
+	functions calls, uname(1)
+	L10N dotfill
+		to/from/subject
+		translate?
+	L10N optional?
+	plurals
+	multiple %s
+	don't need .mo
+
+web translate
+	have anchors for each language
+	they highlight that line
+
+complete review of string handling in mutt
+	string contentation
+	tokenisation
+	matching
+	etc
+	see which, if any, gnu-only string functions are useful
+
+donate page
+	presents for flatcap?
+	contributions to neomutt.org domain?
+	get-together costs?
+	what?
+
+offline working
+	mutt hangs whenever the network goes down and is essentially useless
+	what's needed to make mutt useful without a network?
+	"auto-postpone"?
+	"send-on-reconnect?"
+	cache more information about mailboxes?
+	network heartbeat to detect connectivity?
+
+magic "combined" folder
+	mbox part for unchanging, historic stuff
+	mbox part needs hcache for speed
+	maildir part of changeable stuff
+	combined into one view
+	need method to "fix" emails i.e. mark them as no-more-changes
+
+inotify ∀ local mailboxes
+	2016-11-16 12:13 <royger>
+	flatcap: maybe using some abstraction library, like libfswatch
+	(it seems to support kqueue, inotify and fsevents)
+	https://github.com/emcrisostomo/fswatch/tree/master/libfswatch
+
+collect useful tools in neomutt org:
+	urlview
+	offlineimap, mbsync
+	procmail, maildrop, sieve
+	etc
+	for notmuch sync accross machines, I have found this: http://www.muchsync.org/muchsync.html
+	swaks: smtp tester
+
+translation - coding, scripting, languages
+
+translate:
+	check git logs for translators' names / dates
+	tidy all headers
+
+docs: highlight parts that are neomutt only!
+
+web: features list page
+	add upstream column
+
+How to Use Mutt doc
+	step 1 - select your source
+		POP, IMAP, local, offlineimap/alternative
+
+Distro pages:
+	Debian, Gentoo, MacPorts, NetBSD, Void
+	need filling out
+
+update all doxy templates
+	JAVADOC_AUTOBRIEF on
+	FULL_PATH_NAMES off
+	SORT_MEMBER_DOCS no
+
+getting started
+	mention travis notification email
+
+website jekyll serve instructions
+
+web: changes page -- since/relative to mutt
+
+web: misc page for extra options that aren't in features
+
+generate valgrind suppression file
+	contrib?
+	devel page instructions
+
+annouce GPLv2 usage for project
+	make it clear on the (devel) website
+
+stable branches for LTS releases?
+	Why?  Mutt doesn't
+
+code school -> neo branches (regularly rebased)
+	[school/new-variable]
+	[school/new-function]
+	etc
+
+each web dir, have _source.txt
+	details origin of page data
+	scripts for generating
+
+start de-globalising (pass to functions)
+	Context
+	Incoming
+
+web
+	auto-generate list of WIPs
+	[devel/*] -> list
+	where does the description come from?
+	update daily
+	since DATE
+	last update DATE
+
+DANE instructions for neomutt gpg key
+
+split out upstream features, or yaml tag them
+
+person pages
+	list "worked on"
+	real name
+	nationality
+	location
+	language?
+	links
+	∀ users
+
+create file on all neo members
+	who's who
+	who's done what
+	date of last contribution
+
+distros
+	platform {linux|bsd|macos}
+	where to coredumps go?
+
+slang deps on distro page
+
+"edit this page" button
+	doesn't make sense for docbook conversions
+
+move sidebar-intro to howto and fix links
+	change id to howto/
+	or split out completely
+
+ccache instructions, ctags for dev?
+
+distro contact details
+	separate from maintainer
+
+distinguish distros' neomutt
+	{vanilla|patched}
+	{replaces|addition} to mutt pkg
+	{distro|user} maintained
+	{all|limited} features included
+	{hcache type}
+
+virtual-mailboxes => notmuch
+	=> don't need "notmuch://"
+	or even "?query="
+
+imap supports queries
+	"+?query=tab:inbox"
+
+named-mailboxes eats two params
+	can take multiple pairs of params
+
+un-named-mailboxes needs to work against path or description
+
+man pages need section number
+
+website
+	404 is static!
+	manual/guide -- not a collection
+		needs to be ordered
+	src code is not a distro, so list it last
+
+enforce real names in git commits?
+
+rfc add line numbers and 'a' links
+	create as a book in main docs (for linking)
+
+look through upstream mutt trac for
+	enhancement ideas
+	feature patches to apply
+	bug fixes
+	[easy] ?
+	comment in trac "neomutt adopted" when done!
+
+easy task:
+	distro helper
+	instructions for
+		install
+		build
+		test
+	check installs
+	test problems
+	one+ person per distro
+
+settings for uncrustify, clang-format
+	for current neo code
+	for future  neo code
+
+use google translate for rough drafts of neo po files?
+	mark all translations as fuzzy
+	useful starting place?
+
+have a NULL cache which is just a copy of the email
+	might *still* need a DB of some info
+	tie into offlineimap
+
+named-mailboxes use Mailbox Shortcut % ?
+	%tidy-name
+	needs plugging into other code
+	abbrev names to "%name" if possible
+	if configured?
+
+run notmuch new from mutt when new mail arrives
+	necessary? or not?
+
+merge notmuch
+	"named-mailboxes" command
+	can describe sb entry
+	how to nest virtual?
+	sb obtion: display real, virtual, all mailboxes
+	nest -> fake mailboxes
+		named-mailboxes name [NOTHING]
+
+neomutt members -- ask preferred method of communication
+	pref name @flatcap, Rich
+
+cache files need to hash their name too
+	to avoid two systems "sharing" a single hash
+	and crashing
+
+nested-if
+	stack of nesting chars in char[]
+	$? or $< push only
+	matching char => pop
+	32 deep stack
+
+2016-10-25 11:04 <mgedmin>
+	pet peeve: when I try to open a gigabyte-sized mbox file with 10,000 messages, I cannot abort that
+
+2016-10-24 20:54 <flip214>
+	it would be very nice if switching to an imap folder could be aborted by ctrl-c
+	having all headers fetched anew and having to wait for 2 mins, knowing that the wrong folder is being loaded, isn't that nice
+	the counter for the headers fetched (N of M) counts up
+	Ctrl-C gets ignored
+
+mutt_launcher
+	use a pipe to channel log messages back to mutt
+	pipe(), fork()
+	dup2() to replace stdout,stderr
+		=> printf to log
+	stdin -> null
+
+pre-cache app?
+workflow:
+	offlineimap
+	notmuch new
+	cache-every-file
+
+code school
+	variables
+	functions
+	architecture 101
+	web top-level
+
+need to document "missing" keybindings
+	^Q ^S flow control
+	^O terminal (BSD only)
+	2016-10-23 22:16 <Riviera> stty discard undef; mutt
+	"stty -ixon" disable Ctrl-Q
+	can this be done programatically by mutt?
+	"stty -a" to show settings
+	cfmakeraw(3)
+
+new users -- [ci skip], #123 docs
+
+would notmuch be able to filter out muted conversations?
+	No, not unless we change headers and notify notmuch
+
+issues -- always assign (for later reference)
+	fixer/mentor only makes sense for bugs/enhancements
+	what about questions?
+
+2016-10-21
+13:24 <mgedmin> on ubuntu I think it's best to 'sudo apt-get build-dep mutt' to get all the libraries
+
+docs - keep reference copy of all relevant RFCs
+	links, obsoletes, etc
+	mailcap too
+
+make tags -- ignore standalone tools
+	needs to ignore #ifdef TEST, too
+
+external testing
+	how many external events can we control?
+	how many can we simulate?
+	via pretend keystrokes
+	key, mouse, winch fs, net
+
+need way to repeatably test net failure
+	tcpkill -- doc in dev web
+
+find all non-mail users of pager
+	add to index/pager tests
+
+ask new contributors to fill in 5 function prototypes!
+
+does label workflow make sense for PRs?
+	if not, why not
+
+new feature checklist -- code all configs, doc, readme, web, doc validate
+
+index preview mode - display 'n' lines of the email body
+	when in the index
+
+configure doesn't parse slang option unless ncurses libraries are missing
+	check if this is still true
+	raised by @nevermind
+
+nested-if -- index-format display ? if doesn't match string put in
+	%<> changed to %? !
+
+doc all features' functions doxygen style
+
+move separate tools to a separate tools directory
+	adjust ctags to ignore them
+
+bot on server to mail dev list on git commits?
+
+admins need to make a release in 1 week's time -- practice
+	(one of them, or all)
+
+distro web pages need install instructions for development, too
+	min/max dev packages to build & debug neomutt
+	all instructions based on min distro install
+	note exact distro instructions were written for
+
+Create every doc idea as empty template page in web
+	with notes
+	list of docs in project "docs"
+
+htop colour palette only works well because there are
+	few object to colour
+
+sidebar -- disable indent, etc if sorted
+
+calcurse -- curses calendar app
+
+"report issue" notes -- OP needs to be around to:
+	answer questions
+	run tests
+	etc
+
+can we workaround the case of gpgme + self sign / smime?
+	but use it otherwise?
+
+new mail hook -- frequency limit
+	if time < 5s since last notification
+
+function to turn option list from
+	(S)ubject to *S*ubject (highlighted/colour)
+        make them consistant across mutt
+		some are just capital letters
+
+imap/pop ∀ devs
+	no outgoing
+	incoming to user@dev.neomutt.org
+	sample emails refreshed nightly
+	btrfs de-duped -- cron
+	or cp --reflink
+
+newbie notes
+	PR vs branch
+	you can't co-work on a PR
+
+issue labels
+	confirmed
+	need testing
+	waiting for OP testing
+	have patch
+
+function fuzzer + scripting
+	x inputs
+	y globals
+	difficult because of too many inter-linked structs
+	and poorly designed functions
+
+docs - how to transition to neo - list config options
+	mutt-only
+	neo-additions
+
+website top-level for scripts
+	git submodule?
+	like irssi scripts
+
+debugging docs:
+	100k lines of code
+	help us find out which
+	bug report blurb
+
+21:55 svenG "No attachments, cancel sending? ([yes]/no):"  so NOT cancelling the sending.. sends. o_O  double negatives are always so confusing.. :-/
+
+de "neo" the trash docs & keep in neo repo
+
+index folding (happens above level of emails)
+	fold by option, e.g. day, month
+	Wednesday
+		mail
+		mail
+	July
+		mail
+		mail
+	uses extra lines
+	saves width
+
+$sort = [prefix-][...]order
+	prefix = reverse
+	prefix = thread
+
+vim has set vs setlocal
+	mutt has accounts as separate entities
+	set      var => global
+	setlocal var => per account
+
+new two-letter expandos
+	initial letter picked with no clashes anywhere
+	=> 26 more expandos to use
+
+docs - nested if
+	better explanation of %<>
+
+change from autoconf -> cmake
+
+scratch-pad function
+	creates a tmp file
+	functions can put text in it
+	you can view it in the pager
+	you can edit it
+	you can save it
+	could be used by scripts to save output
+
+breakdown
+	source (simple)
+	source (conditional, e.g. feature)
+	source (conditional, e.g. OS libc)
+	build (scripts/Makefiles)
+
+howto: update website
+	ruby, jekyll
+	which gems needed?
+	"jekyll serve" to test
+
+multi-line index.  options:
+	for all entries
+	for current entry
+	for current thread
+wrap long fields
+sacrifice height to save width
+
+justify every file in the neo build
+	use min-build to start
+	show compilation steps
+
+mime-typer plugin
+	notify if the mime type doesn't match what *you* think it should be
+	change the type (option)
+
+window manager
+	menu mode, like jed/links
+	popup menus
+
+colour manager, see htop
+
+pgp key manager/management
+	list, ignore revoked keys
+	sort options
+	filtering
+
+generic lists of volatile variables attached to
+	mailbox/context or
+	email
+scripting could save info there, such as
+	num emails in thread
+	num new in thread
+	score
+move score from permanent to volatile
+
+macports, is there something I can update automatically at release time?
+	cf homebrew
+
+config file accept keybindings using
+	C-	Ctrl-	Ctl-
+	A-	Alt-	Meta-
+	W-	Win-	Mac-?
+
+add cursor to pager (on/off)
+	=> can highlight text
+	can click links
+	like firefox cursor mode
+
+nested-if script
+
+syntax file in local vim syntax dir needs to be called
+	muttrc to match vim modelines in other files
+
+separate packages for neomutt
+	neomutt		- binary
+	neomutt-docs	- main manual
+	neomutt-contrib - muttrc, vimrc, etc
+	neomutt-dev	- code docs
+split repos to match
+branch by version / language
+
+alt-e resend_message - which hooks are called?
+	add lua hook
+
+guarantee translations, when?
+	at release of new feature?
+	at next release?
+	when?
+
+filter manager
+	time limit option -- on holiday!
+
+forgotten-attachments: German example:
+	"häng an" won't match over a new line
+	strdup regex string, replacing spaces with
+		"[ \t\n]+" ???
+	does it work with \n embedded?
+	could I pre-process the email text?
+	it it utf-8 compliant?
+
+turn mutt into a random email generator
+
+startup-hook
+	immediately before displaying the index for the first time
+	useful for testing
+shutdown-hook
+	before closing mailbox connections
+
+(un)new_mail_filter lua [lua...]
+
+new-mail-hook + lua to filter
+	=> need filter manager
+
+Need strategy for unrepeatable/too-little-info bugs/crashes
+
+matcher
+	extend to index, pager, etc
+
+what are our killer features?
+	put them on the website writ large
+	scripting
+	matcher?
+
+index-fold-level
+	0 completely folded
+	1 depth 1
+	2 depth 2
+	-1 no folding
+	overridden by user keys
+key to
+	view current message
+	close other folds
+	etc
+
+website/repo for scripts
+	like scripts.irssi.org
+	site generated from the script headers
+
+vim-like record macros 'qa'
+	save macro
+	play macro
+
+should log files be localised?
+	make it an option?
+	debug -> english?
+	hard to debug for other nationalities
+
+development bottleneck
+	document more tasks
+	delegate more tasks
+
+ifdef needs an "else" condition
+	how?
+
+check mutt-tc for project ideas
+
+announce vim-syntax, put a public copy up
+	copy all of contrib/ to web
+	create web autopage?
+
+arch-linux: search for a Trusted User (TU)
+	to adopt neomutt
+
+sort variables, etc before auto-completion
+	or properly sort the sources of the strings
+
+21:04 <bremner> I too would be interested in a page comparing neomutt's notmuch support with notmuch-mutt (the perl hack that ships with notmuch)
+
+imap_folder_format defaults to folder_format if empty
+
+alternative -- folder_format add
+	%local expando for use with nested-if
+	conditional display
+
+need separate folder_format for
+	local dirs
+	net folders
+	virtual folders
+
+files/dirs are sorted the same way as network folders
+	may not make sense
+
+imap force body cache on read
+	option for offline working
+
+mbsync better than offlineimap?
+
+imap only 'n' messages option
+
+www.neomutt.org -> neomutt.org
+	CNAME
+
+modularise header caching/dbs
+	=> needn't use same cache type
+	for header / message cache
+
+notmuch tag-completion:
+	when using -XYZ<tab>
+	only match tags that exist on the selected mail(s)
+
+pager -- sidebar gets updated but not status line / term header
+
+vim-like hls option: persistant across emails
+
+link to unloved enhancements in issues
+	rather than the wiki
+
+test website
+	neo vs www.neo
+	http vs https
+	with/without subdirs
+
+source script|
+	pipe -- lookup exact meaning and implications
+	works, but can't tell you where an error occurred
+
+context sensitive popup menus
+	e.g. index - tag some emails, hit <menu>
+	options: copy, save, delete, set flags, reply, etc
+
+check all lists of features are up-to-date
+	web, etc
+
+email all 341 of mutt-kz stargazers and tell them about neomutt
+	exclude the neomutt stargazers
+
+19:32 <mykoserocin> is there a way to show condensed DKIM results instead of full "Authentication-Details" header?
+19:32 <mykoserocin> e.g. "DKIM: pass" or "DKIM: fail"
+19:52 <brendan> mykoserocin, I use the spam marker system for it: spam "Authentication-Results: mymta.com; .*dkim=pass" "✓"
+19:52 <brendan> spam "Authentication-Results: mymta.com; .*dkim=fail" "x"
+
+contact distros
+	are they up-to-date
+	current list of distro patches
+	list of recent OS versions
+	list of mutt/neomutt versions for each OS version
+	address of issue tracker
+	address of mailing lists
+	contact details for maintainer(s)
+	inform them about
+		mailing lists
+		irc
+		website / news
+		github
+	bcc email?
+		give list of distros
+		bcc => hard for multiple maintainers to coordinate
+			cc better?
+	ask for install instructions for web downloads page
+	offer github invites to all maintainers
+
+$source_dir like folder
+	or like $PATH?
+	looking for files to source
+
+Mutt vs NeoMutt branding
+	config
+	binary
+	install dir
+	version
+	user agent
+
+browser - add flagged
+	expando
+	sort option
+
+Reach out to
+	LinuxMint
+	Mageia
+	PCLinuxOS
+	Slackware
+
+INBOX vs inbox
+	not updating values for browser
+
+copying a large mailbox / number of files doesn't trigger the progress bar
+	mbox-100000
+	tag all
+	copy to another mailbox, e.g. maildir
+
+Passing $VARs to children processes, means
+	tell vim about mail rcpt, subject, etc
+
+upstream bug -- folder_format, sidebar_format %n (has new mail)
+	shouldn't be cleared if "mark_old = no"
+	quit and restart mutt and the flag comes back
+
+separate folder_format for dirs vs network mailboxes?
+
+new index/sidebar_format expando: icons
+	each email can have a set of icons
+	each icon has a unicode character and a colour
+	sorted in order of definition
+	tie-in to labels / notmuch tags
+
+new sidebar expando
+	count of unread *threads*
+
+fork vs non-fork -- animal species reference
+	species: noun
+	a group of living organisms consisting of similar individuals capable
+	of exchanging genes or interbreeding.
+
+xdg extension
+	look for lower case /etc/muttrc
+	etc
+
+fold/collapse empty sidebar folders
+	unless unread/flagged email etc
+
+check which doc/contrib files distros install
+	unify?
+	debian doesn't install contrib?
+	check other distros
+
+trash + gmail
+	doesn't work as expected
+	effectively archives them on gmail
+
+trash docs
+	add purge-message/purge-thread notes
+	add folder-hook to delete if >30days
+
+do saved emails (that get deleted from current folder) appear in the trash?
+
+NeoMutt signing key on
+	flatcap.org
+	neomutt.org
+	github? where?
+
+web update about.html : done so far
+
+change sort option
+	thread becomes a prefix
+	e.g. "thread-date"
+
+fmemopen -- when fixed, default to off
+
+automate github release
+	tag, push, create release, push, assets, checksum
+
+dbus - also implies
+	synchronisation of multiple copies of mutt
+	e.g. multiple windows/views
+
+get rid of "prepare" or neomutt-ify it
+	--all (to enable all options)
+	vs "configure --all"
+	./prepare --all -a => all features
+	./configure --all => drop prepare
+
+debugging curses tutorial
+	two windows
+	either run & attach
+	or gdb tty redirect
+
+jump to previous folder command?
+	"cd -"
+	vim: "ctrl-^"
+	can this be done with a folder hook?
+	set my_olddir = dir
+	is it too late when we get the hook?
+
+feature docs to separate <sect1>'s?
+	separate <book>?
+
+"bind index ` command"
+	parses badly
+	doesn't warn the user
+
+github issue notifications forward to IRC
+	or dev mailing list
+
+context-sensitive help?
+	how?
+	sensitive to what?
+	how about:
+		"show-me-this-file" command
+		display in pager
+	if in pager, close & open text file & restore on 'q'
+	if in index: display & return to index after
+
+maildir_trash conflicts trash folder patch
+	our patch, check upstream version
+	document this
+
+change "mutt" refs in /etc/Muttrc?
+
+mutt config source DIR
+	loads all files within
+	recurse?
+
+web mailing list page with sven's muttrc example
+
+version string bug -> devel list
+	reinstate flea?
+
+no need to subscribe to mailing lists
+
+"mutt -v | head -1" is pain
+	--version ?
+
+darnir:
+	use gpgme not gpg
+	warn users?
+	educate users
+	can we force config=yes?
+	what if libs are missing?
+
+a rogues' gallery web page with our PGP keys
+
+docs based on use-cases
+	need list of cases to start
+	put in repo
+	request pull-requests to improve
+
+mutt doesn't close file handles on fork/exec
+	need more close_on_exec in fopen
+	open pdf attach -- look in /proc for evince
+	security issue
+
+investigate & bundle? mutt_bgrun
+
+generate (script) tree of all source (by tags)
+	and create squashfs
+
+script for "build-all-git-tags"
+	publish
+
+web/readme ∀ pages
+	last proofread date
+	last proofread person
+	periodic checks
+	divide and conquer
+	auto-footer: last updated, last proofread
+
+web docs
+	update debian support section
+
+invert index option
+	new mail at top of screen
+
+add native compress support
+
+unify colours and attrs, e.g. underline, reverse
+
+color command (mentor task)
+	no args: list all colours in a pager
+	object: show object's colours (coloured accordingly)
+
+docs
+	create high-level workflow doc with screenshots
+	show beginners *how* mutt works
+	label areas of mutt window
+
+issue for code required:
+	fuzzy matcher: [devel] [help] [mentor]
+
+index-color -- index_date pattern?
+	and index_label
+
+compress flickers, but gpg doesn't
+	imagination, or not?
+
+lots of demo configs for
+	index_format
+	header_order
+	etc
+create a function to cycle through them?
+	would need some good sample emails
+	various headers
+	various flags
+
+make the neomutt branding more obvious
+	make it obvious to the user that this is
+	neomutt, not mutt
+
+neomutt binary
+	symlink (provide) mutt
+
+progress bar:
+	better progress indicator
+		a la dnf, wget, etc
+	ETA?
+
+mutt connection config wizard
+	special cases for gmail, etc
+		open gmail pages in browser
+	test host for:
+		imap
+		pop
+	test for tls
+	ask for password
+	test connection
+	like evolution's wizard
+	write config to file/screen
+
+mutt-tips: integrated
+	tips command
+	fake? email or browser spawned
+	neomutt tutorial
+
+transcribe issue#56 vim-keybinding ideas
+	-> docs/vi.txt
+	wiki
+
+gmail patches -> devel
+	need testers
+
+check distros are installing all docs, contrib, etc
+	i.e. is "make install" correct
+
+notmuch backend: add X-Label in editor, does "right thing" in notmuch?
+unified frontend interface (notmuch/keywords) backend
+one-direction script -- sync nightmare?
+sync notmuch -> X-Label's?  get out of sync
+
+index-color separate colours for "mylocal" and "@domain.com"
+	have a list of "known" domains that are dimmed?
+
+docs build: more sed filters VERSION, DATE, git hash?
+
+nntp list, can't sort by counts
+
+toggle-quoted : option to remember state
+	or "hide_quoted_text" bool
+	a caps-lock for toggle-quoted
+		don't have to do it for each mail
+	can this be done with "message-hook"?
+
+colour-coding good-sig vs bad-sig
+	tricky for mime attached sigs
+
+offer up-to-date vimrc for mutt/neomutt to vim.org
+	autocmds for neomutt/mutt config locations
+
+update man page for mutt
+	wrt muttrc location, etc
+
+web docs: What *is* neomutt
+	mail client
+	show pictures
+	compare to mutt
+	explain why it's better
+
+is contrib/ installed by any downstreams?
+
+tip - status_format + status-color
+	ctx->readonly => red padlock
+
+unstable: .gitignore upstream of feature branches, what else?
+	common docs, travis
+
+sidebar -- imap all folders vs subscribed
+dovecot public mailboxes for tips?  one public user?
+nntp tips? ":tips" command to toggle nntp vars and mailboxes
+
+notes for progress bar
+	set time_inc = 0 for best results (ref: paravoid)
+	test read_inc, write_inc, net_inc too
+
+cache autoconf in .git
+	git config a name for retrieval, "lmdb", "tokyo"
+		build -s <name>, build <name>
+
+fake/alternate curses -> true colour => separate fg, bg, term attrs like vim
+
+unnamed notmuch queries => create description based on query
+	need rename function for sidebar-notmuch
+	need option to autoadd them to the sidebar
+
+remote config -- like browser proxy setup
+	display to user "are you sure?"
+	useful for tips & examples
+	way too dangerous
+
+notmuch+index-color
+	tag patches in *neomutt*
+	"compat: notmuch+index-color" patch/commit
+	=> failed merge!
+
+new mutt colours
+	none or inherit
+	don't set this component
+
+alternative to sb search
+	key -> numeric prefix for all folders
+	type number<enter> to select
+	(like index-panel)
+
+sidebar "live" search of folders
+	key to start searching
+	live filtering at every keystroke
+	enter selects
+	Ctrl-C / Ctrl-G aborts
+	fuzzy matching
+matching applies to multiple areas of mutt
+	sidebar
+	aliases
+	folders
+	files
+	index panel
+	pgp keys
+
+2016-08-12
+	08:31 <flip214> Hi. Another thing I would love to see: an email arrives in INBOX; I answer it,
+		and define the FCC for the sent mail, but the incoming mail is still in INBOX.
+		so a "reply-and-move-to-same-folder" would be interesting to me.
+
+2016-08-09
+	01:35 <SvenG> but giving a color to "known" addresses (via aliases) would be a killer
+
+doc -> contrib ∀ vimrc, muttrc
+	=> will break downstream packaging
+	announce change, make change in next release
+
+index-color
+	patterns on date
+	allow unescaped ANSI sequences?
+	add offset based pattern, e.g.
+		color red default cols:14-20 [mutt pattern]
+
+transition guide:
+	man neomutt
+	a guide for users of mutt moving to neomutt
+
+symlink man pages, etc (for ease of use)
+	neomutt -> mutt
+
+getopt for neomutt
+	--help
+	--version
+
+sidebar
+	separate colour for read-only mailbox
+	expando for read-only mailbox
+
+sidebar
+	have an alternate mailbox like vim's alternate file
+	create an alias for it '#'
+	c# -> change to alternate directory
+		new alternate becomes old dir
+	save files to #
+	set alternate mailbox function
+	colour highlight for alternate mailbox
+	expando %# for alternate displays '#' or ''
+
+mutt tips on startup
+	distribute a contrib/mutt-tips dir which is a mailbox
+	select a random (email/tip) from the list
+	pick one that's unread (preferably)
+	how can we preserve the "read-ness" of an email after a package update?
+	.mutt.top-tips ? -- save a list of message-ids in there?
+	<top-tips> command creates a new mailbox (from DATA_DIR/DOC_DIR)
+		if in /usr it would be read-only
+		need to store flags elsewhere
+		flags: read, flagged!, deleted (i.e. don't show me again)
+	intersperse with mailboxes commands
+	tips should be self-contained (to start with)
+		unless they reference old tips
+		nested emails?  what about multiple inheritance?
+		need hyperlinking "see also" links
+	use labels (from Keywords plugin) to add value
+	use mutt's caching facility to store the metadata
+
+sidebar
+	option to fold nested mailboxes
+	option to unfold when new mail arrives
+	folded, they should show the cumulative totals for all the children
+
+git b(){} needs to disable colour on piping
+
+mutt plugin to create neomutt issues
+	use ghi?
+	or GitHub API directly
+	test in dummy repo
+
+git clone
+	always pull in my prepare-commit-msg hook
+	(disabled)
+	what other defaults?
+
+update-from-hg.sh
+	-n option => no push to github
+
+firstb <REGEX>
+	regex if it contains a '*'
+	anchored at bol?
+	multiple args => not regex
+	one arg => git checkout -- no sense in that
+
+macro instruction <no-history> like vim's <silent>
+	some macros end up in the log
+
+'ifdef' improvement
+	ability to check mutt version number
+	ifdef VERSION == X
+	ifdef VERSION > Y
+	like vim
+
+new-mail => dbus as a goal, see dgc
+
+revert sidebar cursor positioning?
+	no longer needed now that sidebar isn't drawn during key-waits
+
+sidebar search command to quickly change to a mailbox
+	like vim highlight search?
+	filter after every keystroke
+
+sidebar-refresh command to forcibly update ALL the counts?
+
+doc changes/todo list for limit-current-thread
+
+24-bit colour => non-curses back-end
+	enumerate all the curses things we do
+	get screen size
+	listen for screen size changes (WINCH?)
+	wait for key presses
+	clear screen
+	clear line
+	write text
+
+report-neo-bug.sh?
+	show os
+	build options
+	etc
+	put in contrib
+	install for everyone
+
+server script to update from hg
+	get latest id
+	hg id -i --rev stable
+	hg id -i --rev default
+	then update and check ids
+	merge, push and travis
+
+mail sieve issue -- colour code for origin?
+
+neo-build
+	use git config for settings
+		enabled/disabled by default
+		configure settings
+	save config.h, etc in .git/neobuild
+	neobuild --generate
+
+sample IMAP folder (for devs)
+	regenerate daily
+
+script to generate min-build
+	put in contrib?
+	check config is still up-to-date
+
+Mutt config generator app
+	or good (curated) sample config
+	tutorial
+	translations
+
+sb fill empty space -> mutt_paddstr
+	no point, it just does multiple addch(' ')
+	alloc buffer (on stack)
+	memset to ' ', null at width, addstr()
+
+add tutorials (like sidebar intro) to the website
+	redlink some empty ones (or partials)
+	ask for translations?
+
+use Gutenberg texts for sample emails
+        use mutt-dev mailing list as a template?
+        alias all names
+        replace all message-ids (but keep links)
+        strip out most headers
+
+neo-stats.pl
+	ignore issues tagged 'release'
+	ignore integration issues?
+	or count only 'bugs' and unlabelled
+
+dgc - unbind patch
+
+'uncolor status' doesn't work
+
+check makefile dist file list
+	ChangeLog.neomutt, etc
+
+update readmes
+	project links
+	project contact
+	version
+version.c
+	copyright
+	contact
+	version
+main readme
+	project links
+	project contact
+	version
+	list latest version?
+		no, will always be out of date
+
+GIT REPO?
+	.gitattributes
+		merging
+		diff regexes
+	doc my .gitconfig
+	all bin/ to repo + .shell/bin/git
+
+upload all bin/ add (c) and licence
+
+cond-date script -> contrib
+
+Web Page (front) LATEST VERSION + links
+	+ ChangeLog with links to commits?
+
+list of to-be-written pages on web
+	icons for level of completion
+
+create empty (red-linked) pages on website, for people to write
+
+howto build neomutt page
+	simple instructions
+	expert instructions
+	explain all build scripts, etc
+	location of source / repo
+	howto install
+	distro pre-built installs
+
+cond-date document date.sh generator
+
+forks of all distro repos
+	clone https://github.com/macports/macports-ports
+
+NeoMutt website top tips?
+
+list_pull_requests.sh
+	get_pull_requests.sh
+	reference local neomutt repo
+
+muttrc.{distro} ∀ distros
+
+install neomutt in parallel with mutt
+	uses alternatives mechanism
+	=> /usr/bin/neomutt{,-2016MMDD}
+	=> /usr/bin/mutt-1.6.1
+
+[management]/bin
+	sync.sh 6h cron script to sync mirrors
+	sync needs ssh key
+		external to script
+		(document in header)
+	sync reads data file with header, whitespace & comments
+
+sample mail repo filled with example/problem mailboxes
+
+slang source + demos
+	http://fossies.org/linux/misc/slang-2.3.0.tar.gz
+
+delegation of keys -> focus() -> parent -> global, e.g. IW, Mail
+	functions => components (e.g. mail)	}- mail_init() register_functions(); register_commands();
+	commands => components			}
+
+mirror script, add copr, aur repos
+show focus -- sacrifice help line?
+	no, it's not always visible
+propagation of notifications -- start @focus, work down
+	SB, IW, PW + 'q' mail accepts, hides PW, PS, focus IW
+	SB, IW + 'q' mail notified, rejects, global accepts, closes app
+Help starts @focus, Panel Name + get_keys method
+if sidebar is a separate panel and src file, should IW be?  PW?  AI?
+If focus is on PW and SB, IW, PW are siblings, how can SB get notifications?
+	or does mail Panel catch and iterate through children?
+	SB mappings are (index,pager) => behaviour wanted but not in AW
+
+panels have dividers enum
+	left
+	right
+	top
+	bottom
+	between
+	outside
+who owns the dividers space?
+set_focus (panel)
+	who owns the focus?
+	gfx(curses)?
+	get_char -> gfx_get_char -> consider focus
+on close panel, focus moves to
+	*prev*/next sibling, or parent?
+	due to mutt's UI focus moves to prev sibling
+how can I show focus without moving anything? i.e. borders
+	sacrifice a top line?
+	border highlight?  => always present
+which panels *accept* focus?
+	sidebar
+	index window
+	pager window
+	<tab> to switch?
+	or <left>, <right>?
+
+<sidebar-next-new> => $sidebar_flagged_are_new ?
+
+website: some bug-fixes have gone away -> success page?
+set/unset sidebar_visible doesn't refresh screen when in pager
+sb doesn't match folder (for open) if it has a trailing /
+
+∀ new bugfixes -- reference trac number in commit message
+test email reply to issues, etc
+	markdown?
+
+get travis to build RPMs on neomutt and deploy to github release's artifacts automatically
+website front page: do YOU have a mutt patch? -> contact us
+website collection of changes since last release -> relnotes on release
+	note which branches, etc
+website highlight section on toolbar (solid colour?)
+
+<sidebar-refresh> function to forcibly refresh screen & counts after, e.g.
+	unmailboxes *
+	mailboxes lots...
+
+new hierarchy: tree => mail's parent is folder or mail
+
+icons for news:
+	news: newspaper
+	devel: jigsaw, spanner&screwdriver
+	release: present, balloons
+
+use links(1) as a model for re-architecting mutt
+	mouse control (inc right-click)
+	safe html rendering
+	pop-up windows
+
+"merged" page/collection on website
+	list of all features that have been accepted into the mainline
+	currently empty
+update website gh page: list of branches
+neomutt FAQ -- containing what?
+add my gpg signing key to neo.org, fc.org
+
+fmemopen - merge into one place in mutt_mktemp()?
+	idea from dgc email
+sidebar, when saving email to a folder use the sidebar as a selector?
+	new indicator colour or prompts "select save folder" + normal highlight
+join mutt-users and ask both lists what patches/version they're using
+	send me your "mutt -v"
+	any security risk to this information?
+	OS info useful too
+Do drafts *need* to be stored in a separate folder?
+	why not inline?
+	in threaded order
+	just tagged or coloured
+	status flag to denote draft
+email David Sterba (kdave) -- limit
+	use context, or change prototypes
+screenshots on website
+neomutt version on website home page
+
+doc travis and coverity options
+split source?
+	tools/ - standalone exes
+	library/ - replacement library functions
+	readme/ - obvious
+
+save email doesn't respect the umask
+
+kdave - limit-current-thread
+	alt-l (show limit) should respond "limit thread"
+	is "limit ." the same as "limit all" -- YES
+		fixed internally
+	create unlimit patch and pull-request for kdave?
+	limit doesn't have any context, just a pattern
+	limit-current-thread NEEDS to know current email
+	it'd be nice to change limit to accept another "string" arg
+	currently
+		"all" -> "~A"
+	change limit
+		"thread" -> "~a" (only letter available)
+		let general limit machinery do the work
+	unfortunately they can't see the current email
+
+rewrite mutt_wstr_trunc()
+	first, rename variables to be something sensible
+	second, refactor to be legible
+
+vim library of config options(vars)
+	auto-extract from init.h
+
+kill version.c:rstrip_in_place()
+	fix external build scripts
+
+what does Sidebar *really* need?
+	Incoming BUFFY -> notifications of BUFFY changes
+	Panel (geometry) -> notifications of WINCH
+	character libraries -> lengths, widths, formatting, etc
+	options (config access)
+	colours
+	curses: clear(panel), clear(line), write (char/string), move(x,y)
+		curses calls are all (0,0)-based
+		curses takes panel object and converts to screen coordinates
+		∀ users
+	callbacks for functions
+	sb is initialised with (Panel pointer), notifications on change
+	can query Panel's size, position (not useful), visibility
+	panel can be visible, but !active, e.g. partially under a modal dialog
+		=> paint if asked, but won't receive keys
+		could still be asked to do stuff by dialog, etc
+
+how about modal dialogs?
+	1 dialog could invalidate sidebar, index, pager
+	sibling to sidebar, index, pager but last in list (z-order)
+	sb, index, panel get painted, then "floating" window gets painted over
+	modal => disable key mappings/propagation
+
+how should mutt_yesorno() work?
+	Question is asked modally & outside area of asker
+	=> hide command line, show question
+	question panel gets request, shows itself, hides command
+		make command-line panel invisible?
+		make question panel higher in z-order?
+			=> they are coincident
+
+attach sets of keybindings to panel hierarchy?
+modify docs generation to process commands' comments
+can some keybindings be set "only active when window is visible"?
+	=> help doesn't (necessarily) hide sidebar
+		should sidebar keys work?  probably not
+	*should* help hide the sidebar?
+		probably yes
+
+sidebar indented folders
+	fill in gaps in hierarchy automatically
+	make them non-selectable (unless the user has "mailboxes" them)
+	alternatively, have some way to mark mailboxes as "fake"
+		probably a horrible idea
+
+separate draw() in sidebar for
+	emails
+	notmuch
+	nntp
+	addressbook?
+
+changes to css must set both fg, bg
+	cf <note>
+	reduce colour of <command>s too
+
+'c' fails if dir has trailing /
+	e.g. when you use <tab> to complete!
+'c' to open fails, test cmdline open too
+	check sidebar displays correct highlight/open
+
+manual "variables" need description field
+
+source command -- allow wildcards
+	fits in nicely with ifndef
+	or 'source_dir' command to read all contents
+	or "source dir" to read all contents
+	recursive option?
+	recursive by default?
+
+cond-date needs some concrete examples
+
+change docs to use <example>
+
+do format conditional work on strings, etc?  meaningful?
+	empty => false
+
+docs refer to alias menu but don't mention how to invoke it
+browser
+	can sort my num new msg, but can't display count itself
+	sort needs docs -> promote to feature?
+		check kz for docs/examples
+	%n isn't representative of "all message count"
+		doc as (N)umber of messages, or
+		%c message (C)ount
+
+use sort_aux for nested sidebar names?
+	no, sub-folders are same type?
+		no
+	YES: allows to sort by name, then subsort by new-count
+	separate variable otherwise it interferes with index, etc
+
+community script check for update
+	date community docs?
+	or just rely on commit date?
+
+git hook variables
+	prepare-commit-msg
+	GIT_DIR
+	GIT_WORK_TREE
+	GIT_INDEX_FILE
+	GIT_PREFIX
+	GITHEAD_XXX
+
+auto-generate merge commit messages
+	modified git log msg
+	script for authors
+	commented out - but accessible?
+
+replace " with ' in muttrc
+
+cond-date
+	all,dates,are,broken@ 1y -> this year (not 12 months)
+		1w -> this week (not 7 days)
+		if the dates were sensible (7d = 7 days back from now)
+		they'd tie in with ~d, e.g.
+			color index color237 default "~d>30d"         # Over a month old
+		reuse the ~d code
+			pattern.c:eat_date()
+
+index_color should apply to status_bar when viewing mail
+status_color should apply to mid-status_bar when (pager_index_lines > 0)
+shouldn't be affected by 'status_on_top' either
+
+docs/muttrc/readme/init.h
+	need to document default values for variables
+
+Generated muttrc is an encyclopaedia
+Supplied  muttrc is a guide for dummies
+
+git
+	create git diff regex for manual.xml to identify the section where the changes occurred
+		grep "<sect[0-9] " manual.xml.head
+		need to look for <sect> <chapter> <table> <example>
+	check the default 'c' git diff regex against sidebar.c
+		check C function
+		check C struct/enum
+
+mutt folder/dir browser
+	".."/open should start with current folder/dir selected
+	display full path at top of screen/statusbar/titlebar
+
+break up and rewrite mutt docs
+	break into smaller sections
+	separate mutt-doc repo
+	translate sections (default to english if missing)
+
+introduce new format strings
+	index_rich_format
+
+what are the objects in the Index?
+	cache the index formatted strings on them
+
+cache sidebar formatted strings on BUFFY object?
+
+refer to and compare config names by hash only?
+	save lots of string compares
+	gperf to generate perfect hashes
+
+index format -- full directory mode
+	show unix perms like ls
+	user/group/etc
+	too specific?
+	what about other OSs?
+
+cache for formatted strings?
+	too much can change
+		index: flags, folded-ness
+		sidebar: all numbers => cache invalid
+
+keep revision number for all config items (as a prelude to proper notifications)
+	only increment revision number on change
+	leads to possible A-B-A problem (change blindness)
+	if (ver(format_str) > old_ver) STMT;
+	allows code to make informed decisions about caching
+
+which config items require frequent and costly interpretation?
+	all format strings -- every line, every refresh
+
+data source LDAP
+
+	address book? -- different grouping/hierarchy?
+	calendar? -- different timescales?
+	news?  subscribed   <--> all groups
+	rss?   unread feeds <--> all feeds
+
+Alternate views in the sidebar
+	need toggle function
+	imap: folders  <--> dir tree
+	local: folders <--> dir browser
+
+signature manager
+disposable email address plugin?
+	need external API to send/receive
+
+Undo, what's possible?
+	Last action?
+	Many actions?
+persistant undo on email editing?
+undelete?
+unsend?
+tagging?
+
+integrate nntp into sidebar
+what does notmuch return?
+	how do i link it to existing objects?
+
+sb extra colours for:
+	readonly mailboxes
+		expando?
+	bad (non-existent) mailboxes
+		expando?
+	virtual mailboxes
+	what other attrs?
+	colour by SRC
+	separate colour schemes by SRC?
+
+Where does getchar() get called?  can I centralise them?
+Does getchar() wait or poll?  Need it to poll
+Polling -> Idle -> Event callback that I can use to populate BUFFYs
+sidebar needs NO-selection possibility for toggle-virtual
+need to clear index on Toggle-Virtual
+
+notmuch
+	add new virtual folders to sidebar
+		automatically?
+	what name should it be given?
+		automatic?
+			allow user rename?
+		ask user?
+	how can we make them persistant?
+
+sb expandos
+	compare letters to status_format letters
+	deleted?
+	number after limiting
+	unread?
+
+postpone patch doesn't quite work
+	1) The PostContext and menu are private, so sidebar can't tell that
+	   we're looking at the postponed list after navigation.
+	2) After navigating to another folder, you still have to "quit" to
+	   get the display to refresh.
+
+alternative to lightweight patch
+	don't update info ∀ BUFFYs
+	just update the current page
+	only update lists when the user OPENs a folder
+	not when they move the highlight
+	could pre-emptively populate the previous/next pages
+
+sidebar expandos
+	%c number of non-deleted emails (total - deleted)
+	%s = %c? (lower case version of %S?)
+
+demo setup - lots of files in:
+	local mbox
+	local mh dirs
+	IMAP mbox
+	IMAP mh dirs
+	POP mbox
+	POP mh dirs
+
+sidebar_sort is an enum - on set error, it could show the valid values
+quadopt can give help too -- important since varname gives no clue about type
+break up init.h, globals.h, functions.h
+	init.h option DELEGATE, prefix "sidebar_", callback?
+init() on module calls add_options()
+	=> sb_opts refer to sb-private vars in sidebar.c
+option breakup depends on lots of notifications
+Where are OPTSIDEBAR* used outside sidebar.c
+	curs_main.c, buffy.c, mh.c
+Distinguish between movement and search wrap?
+	movement - next/prev (1 line), page up/down
+	search - find next/prev new
+Config change notifications
+	fn (name, old_val, new_val)
+how would function delegation work?
+	init() -> add_functions (name, callback)
+	the callbacks would need to be able to manipulate mutt objects
+Register functions & callback
+make sure anything we need is exposed
+if we hide our globals, give then all accessor functions get/set_VAR()
+init would need to register new sort methods
+
+most options are "short" limited to +/- 32767
+set/unset/toggle?  invVARNAME
+option - don't sort inbox -- defined how?
+separate modules -- sidebar, index, pager, help? -- each with
+	init()
+	notify()
+	close()
+	config()
+sidebar_wrap=search,motion (separate bools for simplicity?)
+
+can the real status bar display any sidebar fields?
+	why not?
+	how can they be integrated?
+
+Unmailbox * ⇒  many notifications followed by ONE redraw
+
+parse_mailboxes -> notify sidebar => know if anything's invalidated TBCH
+can I use realpath(), mutt_expand_path() for anything?
+
+tree chars for sidebar hierarchy?
+
+────────────────────────────────────────────────────────────────────────────────
+
+Start; Incoming; Inbox open; current = Incoming; sort → cur is offscreen, boundaries lost
+
+draw sidebar
+	assumes position/size
+	move due to STATUSONTOP, HELP
+	check of show/hidden has changed & refresh numbers if nec
+	if hidden, do nothing
+	sanity check settings
+	draw divider (3 chars!)
+for all buffers
+	set colour
+	move
+	gen displayname (need to cache this)
+		name, bytelen, screenlen
+		what about config changes
+			including sort order
+	make sidebar_entry
+fill remaining lines with blanks
+
+────────────────────────────────────────────────────────────────────────────────
+
+Sidebar actions (that might precipitate change):
+	line-up
+	line-down
+	page-up
+	page-down
+	set buffy from browser
+	change sort order
+	add mailbox
+	delete mailbox
+	change mailbox's sort criteria (e.g. flag an email, a flagged-sorted mailbox)
+	resize window
+	hide sidebar
+	show sidebar
+	open folder
+
+────────────────────────────────────────────────────────────────────────────────
+
+Notify (Box*, Rect old, Rect new, flags)
+Flags:
+	too small to render
+	changed visibility
+
+Changed posn notification ONLY
+	e.g. sidebar has swapped sides
+could imply that cached data may be OK to reuse
+	e.g. don't need to call calc_boundaries
+
+repaint if:
+	size changes
+	position changes
+
+DBUS plugin -- to do what?
+	notify out
+	take input to do what?
+		accept mailto: links
+
+────────────────────────────────────────────────────────────────────────────────
+
+quiet config option -- don't whine about unknown config options
+	or quiet command line option
+
+sb_draw should return success of drawing
+	possible given all the callbacks, etc?
+
+trim trailing slash from mailboxes, folder
+	shouldn't be displayed
+
+New only -- include structure (empty dirs) to keep hierarchy
+	mail (0)
+	  fruit (0)
+	    apple (1)
+
+sorting
+	if displaying full paths:
+		sort by display name
+		sort by underlying name
+	if displaying indented paths:
+		sort by top-level names, then children
+
+sidebar_width = auto (size to contents)
+	would need to parse and format all strings ahead of drawing divider
+
+possible to fix sidebar sort order to respect hierarchy/indentation?
+
+need attention
+	draw_sidebar
+	OPTSIDEBARSORT
+		sorts by real path, not visible name
+
+sidebar_dividers
+	first (wide) character is vertical divider
+		between sidebar and index/pager
+	second (wide) character is horizontal divider
+		between different mailboxes (within the sidebar)
+
+send escape sequence to clear terminal title when mutt closes
+init.h struct option_t needs enums for types and union for data
+timer notifications, e.g.
+	highlight something for three seconds, then return to normal
+https://github.com/N8Fear/mutt-kz
+	some initialisations improvements
+	some bug fixes
+
+────────────────────────────────────────────────────────────────────────────────
+
+wrapping →
+	extra char at beginning of line "+"
+	extra char at end of line "<-/"
+wrap at:
+	char
+	word (whitespace)
+	clause (punctuation)
+	sentence (.!?)
+No wrap →
+	extra char at end of line ">"
+
+Window changes
+	hidden	no params
+	visible	rect
+	resize	rect
+	focus	in/out
+colours changes
+keypress	key, no params
+config change	key, value
+		ALL, no params
+mail status change
+	read/unread/flagged/deleted/edited
+	MESSAGE_ID, flags
+mailbox change
+	new/deleted
+	new mail, deleted mail, flagged mail, etc
+connection status
+	connected
+	disconnected
+startup
+quitting - any use to anyone?
+selected mail changed
+selected mailbox changed
+
+Notifications
+
+────────────────────────────────────────────────────────────────────────────────
+
+make AUTHORS -- which repo did this?
+
+ellipsis
+	mutt_error
+	mutt_message
+	mutt_debug
 
