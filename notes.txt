@@ -1,3 +1,28 @@
+imap keywords
+	work out limitations
+	test postpone delete
+	expandos with nested threads
+	test cases and instructions
+
+need neomutt glossary (search first)
+
+contrib files: drop iconv junk
+
+upstream
+	more renames
+	more deleted files (pgp?)
+
+sort expando switches, comments
+
+doxygen:
+	@return -> @retval
+	field: (colon elided), "field - "
+	all whitespace elided
+
+aur distro page neo gpg key
+
+comment: imap_sync_mailbox missing '*'
+
 tweak doxygen to #define more things for better coverage
 
 ask lists about slang usage
