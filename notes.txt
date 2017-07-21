@@ -14,14 +14,7 @@ upstream
 
 sort expando switches, comments
 
-doxygen:
-	@return -> @retval
-	field: (colon elided), "field - "
-	all whitespace elided
-
 aur distro page neo gpg key
-
-comment: imap_sync_mailbox missing '*'
 
 tweak doxygen to #define more things for better coverage
 
@@ -227,7 +220,6 @@ Doxy - commit config
 	(generate template ∀)
 
 TODO - me
-	define summary for chrissl
 	cocci email kdave
 	define release scripts
 
