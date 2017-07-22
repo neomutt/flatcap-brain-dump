@@ -1,3 +1,9 @@
+get rid of
+	/* deprecated types compatibility */
+	#ifndef HAVE_GNUTLS_CERTIFICATE_CREDENTIALS_T
+	typedef gnutls_certificate_credentials gnutls_certificate_credentials_t;
+	#endif
+
 imap keywords
 	work out limitations
 	test postpone delete
