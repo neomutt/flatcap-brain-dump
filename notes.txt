@@ -1,3 +1,7 @@
+:set (list all vars) should depend on the context
+(which account/mailbox you have open)
+:setlocal (just the account vars)
+
 get rid of
 	/* deprecated types compatibility */
 	#ifndef HAVE_GNUTLS_CERTIFICATE_CREDENTIALS_T
