@@ -20,3 +20,10 @@ multiple letters/strings?
 all numeric fields
 set nm_hidden_tags = "unread,draft,flagged,passed,replied,attachment,signed,encrypted"
 
+vim-style
+	set += val
+		add number
+		append string
+	set ^= val
+		multiply numbers
+		prepend string

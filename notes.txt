@@ -28,6 +28,7 @@ ask lists about slang usage
         drop slang
 
 add rfc1847 gpg
+add RFC1522
 
 tokenize_unget_string isn't used
 tokenize_push_macro_string is used just twice -- expand
@@ -247,8 +248,6 @@ Translation
 	Others, users ml
 
 add release count to changes doc on web
-
-add RFC1522
 
 hcache swapping crashes
 	encode type into hash
