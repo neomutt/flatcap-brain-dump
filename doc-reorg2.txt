@@ -1,0 +1,80 @@
+Hi Thomas,
+
+Sorry for not replying sooner.
+
+> * Move the manual from Docbook/XML to Markdown
+
+That's a great start.
+
+On the website, I refer to the main docs as the "NeoMutt Guide".
+It helped to distinguish between it and the manual pages.
+
+> generated a one-shot approach that rendered the manual from XML to Markdown
+
+What command(s) did you use to generate the markdown?
+What post-processing was needed?
+
+> ... play catch-up as/when things are added to the documentation.
+
+Which [neomutt] commit are your docs branched from?
+You could add a tag to [neomutt] to keep track.
+
+> * Cleave the embedded documentation out of the code and into a standalone
+>   section (again; just another Markdown section)
+
+This is where the Mutt docs really fail the reader.
+
+There are a few vague introductions at the beginning of the guide, but
+most of the options (that the users need) are listed in the
+encyclopaedic index.
+
+For all the feature docs, I made sure they were self-contained.
+
+> * Start splitting out the manual from one huge .md file into sections.
+
+I think the obvious starting points are the "sources" of email:
+
+* imap
+* pop
+* maildir
+
+Cut'n'paste all the options into relevant chapters.
+The sidebar would be another good candidate -- simple, self-contained.
+
+Try to reduce the dictionary of options to just an index.
+
+As for the features... It *was* important in the beginning to
+distinguish them as selling points for NeoMutt.  Now, they can be folded
+into other sections as appropriate.
+
+> The generated result of these markdown files will be .html for the
+> manual, and a .man file for the relevant man pages.
+
+We need to identify all the routes that documentation might take.
+Once your docs become the *definitive* source (and I'd like that to be
+soon)...
+
+* What other formats are needed?
+  - How do we convert between them?
+* Where are strings duplicated?
+  - OPS files
+  - Embedded help
+* What can we do to keep things in sync?
+  - Code won't be accepted without a corresponding doc commit?
+  - Scripts to extract strings from the code?
+  - Scripts to insert strings into the code?
+* Automation
+  - Changes to the docs repo should be immediately mirrored on the website
+
+> * A list of ideas about what they want to see from the documentation;
+
+Longer term, I'd like to see a "Pictorial Guide to Using NeoMutt".
+As programs go, Mutt is very complicated.  I recently tried to draw the
+relationships between all the GUI areas.
+
+    This is not suitable for public viewing!
+    https://flatcap.org/mutt/screens.jpg
+
+One minor thing.  Would you like to add some "topics" to the repo
+settings (and maybe an icon :-) https://github.com/neomutt/neomutt-docs
+
