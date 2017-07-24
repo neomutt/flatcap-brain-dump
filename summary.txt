@@ -20,3 +20,5 @@ current server settings, e.g.
 
 :changelog read from file
 
+have ability to save the summary page data
+
