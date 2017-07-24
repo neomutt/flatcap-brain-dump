@@ -1,3 +1,6 @@
+print descriptive line before each build in [-+]feature form?
+	why list the -feature?
+
 Personal: --prefix=/home/mutt/install
 Common:   --enable-debug --enable-flock --enable-gpgme --enable-imap --enable-pop --enable-smtp --with-gnutls --with-gss --with-sasl --with-ssl --with-tokyocabinet
 
