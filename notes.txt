@@ -32,7 +32,7 @@ aur distro page neo gpg key
 tweak doxygen to #define more things for better coverage
 
 ask lists about slang usage
-        drop slang
+	drop slang
 
 add rfc1847 gpg
 add RFC1522
@@ -47,19 +47,19 @@ https://github.com/neomutt/neomutt/tags.atom
 add make tags (to exclude junk)
 
 split the hcache serialisation by struct
-        address_serialise
-        buffer_serialise
-        etc
+	address_serialise
+	buffer_serialise
+	etc
 each struct calls the children it needs
 put in some version numbers, or
 field type and length bytes before each field
 
 hcache pruner
-        use list of mailboxes
-        use list of backends (you want)
-        won't work for caching files, only folders
-                unless we trawl through EVERY email
-                might as well cache them too
+	use list of mailboxes
+	use list of backends (you want)
+	won't work for caching files, only folders
+		unless we trawl through EVERY email
+		might as well cache them too
 
 hcache crash backtrace
 which backend to which other?
@@ -67,29 +67,29 @@ which backend to which other?
 rename OPTAPPLEBANANACHERRY -> OPT_APPLE_BANANA_CHERRY
 
 in pager, which objects are precious/vunerable
-        which might be changes outside of the pager
+	which might be changes outside of the pager
 
 magic -- set *string*, save *int*
-        retrieve which?
-        or both?
+	retrieve which?
+	or both?
 
 hcache: x [y] z
-        y = default
+	y = default
 
 buffer code solaris9(2005!) check
 
 turn STRING, LONGSTRING into numbered consts
-        STR1024, etc
-        clearer
+	STR1024, etc
+	clearer
 
 predefined buffer macros (static)
-        => addstr could fail (out of space)
-        easier memory management
-        BUFFER256, 1024, etc
-        allocate buffer for you & memset it
+	=> addstr could fail (out of space)
+	easier memory management
+	BUFFER256, 1024, etc
+	allocate buffer for you & memset it
 
 document meaning of "distros" pages
-        min vm install -> build -> debug
+	min vm install -> build -> debug
 
 are imap vars used outside of imap code?
 what about sidebar, browser, etc?
@@ -103,26 +103,26 @@ what about debian?
 --authors reads file /docs/AUTHORS
 --license reads file /docs/LICENSE
 if missing, print placeholder URL / GPLv2 respectively
-        => getopt long
+	=> getopt long
 
 now that IMAP, et al, are compiled-in, what's in the docs
-        that might be excluded (makedoc conditional)
+	that might be excluded (makedoc conditional)
 
 check management README (missing)
 
 update newbie/hard list from discussions -> focus
 
 check distro installs
-        provide list of all installed files/types, etc
-        cf each distro
+	provide list of all installed files/types, etc
+	cf each distro
 
 two stage index update?
-        hide, refresh
-        update
-        NO, index vars would still be wrong
+	hide, refresh
+	update
+	NO, index vars would still be wrong
 
 ask neou for logo suggestions
-        hold competition for art?
+	hold competition for art?
 
 use install-sh $(INSTALL) instead of cp
 
@@ -153,23 +153,99 @@ Variables
 	where are validators / notifications stored?
 		globally (on default config-set)
 		per-config-set (allow overrides)
-        key my_vars in separate set?
-        functions per set, per type
-                setter
-                getter
-                validator
-        set by string (from config)
-        get by type of user's choice
-        internal getters: string, int, bool, void*
-        overridden getter returns "Var"?
-        then coerced to type?
-        hc_init()
-                register_type(DT_HCACHE, ops)
-        parse_set()
-                -> hc_set(string)
-                -> hc_validator(string)
-        validator per type
-        REQUIRE get_str ∀ types
+	key my_vars in separate set?
+
+	functions per set, per type
+		setter
+		getter
+		validator
+	set by string (from config)
+	get by type of user's choice
+	internal getters: string, int, bool, void*
+	overridden getter returns "Var"?
+	then coerced to type?
+
+	hc_init()
+		register_type(DT_HCACHE, ops)
+	parse_set()
+		-> hc_set(string)
+		-> hc_validator(string)
+	validator per type
+	REQUIRE get_str ∀ types
+
+	have separate int/uint variable types?
+		which variables need negative values?
+
+	have a 'time' variable type
+		allows setting: x=30m (minutes), etc
+		may not be worth it, most times are sub-1minute
+
+	strdup? or does the config_set take ownership?
+
+	use high bits of 'type' to save free()/don't free() of a string
+
+	how does 'reset' work?	where is the original value stored?
+	do we keep it in the hash elem?
+	a "parent" config set of original values?
+	how many config values are changed?
+	too much overhead?
+	hashelems won't be constant
+		init var  == address1
+		set var	  == address2
+		set var	  == address2
+		reset var == address1
+	too much overhead?
+
+	how are variables read?
+	macro doesn't work if things might be overridden/reset
+		can't cache address of HashElem
+		unless we have a RESET flag
+	hash id may not be unique
+	need to work with string representation
+	get_bool("sidebar_visible")
+	horrendous duplication of strings?
+
+	reset means:
+		keep the old value
+		or remember who owns the variable
+
+	get/set
+		hash = overhead looking up string when USING the variable
+		vars = overhead looking up string when setting variables
+
+	notifications to invalidate HashElems?
+		too complicated
+
+	caching options could be account-local
+		header cache for local mboxes
+		body cache too for remote mboxes
+
+	parse_set
+		get hashelem
+		get id from he
+		lookup str_set
+		set_set(he, value)
+
+	base types
+		bool, num, str, quad
+		mutt -D ∀ dump specific
+		else str_get
+
+	coercion hc_get_int(he)
+
+	dropping hash means losing the trapping of set-value
+		we lose the ability to trigger notifications
+
+	how many variables are going to be account-specific?
+
+	how will +=, -=, *=, /=, ^= work?
+
+	path variable type?  subtype of string?
+		flags: FILE, DIR (or both)
+		does the setting engine need to know
+	mailbox variable type?	subtype of string?
+	command variable type?	subtype of string?
+		more scrutiny for setting?
 
 FS layer
 	211 fopen, 346 fclose, 285 unlink, 70 rename,
@@ -268,7 +344,7 @@ account: use $spoolfile to merge an inbox into the account line
 		apple  2/7
 		banana 3/8
 	spoofile=inbox
-	AC_NAME        1/6
+	AC_NAME	       1/6
 		apple  2/7
 		banana 3/8
 
@@ -448,7 +524,7 @@ compose bug
 
 colour highlight/underline _Q_uestion, _O_ptions 'q', 'o'
 
-simplify y/n questions.  no more "Are you sure?", just
+simplify y/n questions.	 no more "Are you sure?", just
 "Quit? Y/n" -- all ask-yes, ask-no
 
 renew s/mime cert & test & desc steps
@@ -569,7 +645,7 @@ ask people how often they'd like to be chased up
 doc build requirement on DocBook DTDs
 
 warn on option synonym usage
-	{ "pgp_autoencrypt",		DT_SYN,  R_NONE, UL "crypt_autoencrypt", 0 },
+	{ "pgp_autoencrypt",		DT_SYN,	 R_NONE, UL "crypt_autoencrypt", 0 },
 	{ "crypt_autoencrypt",	DT_BOOL, R_NONE, OPTCRYPTAUTOENCRYPT, 0 },
 	crypt_autoencrypt is the visible option
 	warn if pgp_autoencrypt is used
@@ -583,9 +659,9 @@ all example muttrcs
 	14:44 <wayne47> so that when I read mail via imap from foo.com, outgoing mail uses foo.com and when I read from bar.com, outgoing mail uses bar.com (etc)?
 
 configure summary
-	Libs:              -lanl -lncursesw -lnotmuch 
-	Mutt libs:          -lncursesw -ltokyocabinet -lkyotocabinet -lgdbm -lqdbm -ldb-5.3 -llmdb -lidn 
-what's the distinction?  notmuch and lmdb are both user-specified external deps
+	Libs:		   -lanl -lncursesw -lnotmuch 
+	Mutt libs:	    -lncursesw -ltokyocabinet -lkyotocabinet -lgdbm -lqdbm -ldb-5.3 -llmdb -lidn 
+what's the distinction?	 notmuch and lmdb are both user-specified external deps
 
 web toplevel dir
 	/muttrc
@@ -593,7 +669,7 @@ web toplevel dir
 	link guide to samples
 
 configure summary?
-	--disable-docs -> docs:         no
+	--disable-docs -> docs:		no
 	--disable-po   -> translations: no
 
 "approved" tag? when an idea under discussion gets the go-ahead?
@@ -734,7 +810,7 @@ account object that lives above BUFFYs
 	nntp
 can be visible or hidden
 
-github/irc bot.  notify on:
+github/irc bot.	 notify on:
 	@neomutt/reviewers Please Review -> "guyzmo asked for review of #298 (Desc)"
 	"flatcap approved #298 (Desc)"
 
@@ -968,7 +1044,7 @@ create list of current scripts shell/perl
 	build processors
 	automators
 	list -> website -- link to repos
-	#!/bin/bash ->  sh
+	#!/bin/bash ->	sh
 
 update vim-syntax
 
@@ -1440,7 +1516,7 @@ new mail hook -- frequency limit
 
 function to turn option list from
 	(S)ubject to *S*ubject (highlighted/colour)
-        make them consistant across mutt
+	make them consistant across mutt
 		some are just capital letters
 
 imap/pop ∀ devs
@@ -1500,7 +1576,7 @@ $sort = [prefix-][...]order
 
 vim has set vs setlocal
 	mutt has accounts as separate entities
-	set      var => global
+	set	 var => global
 	setlocal var => per account
 
 new two-letter expandos
@@ -2171,7 +2247,7 @@ mutt tips on startup
 	intersperse with mailboxes commands
 	tips should be self-contained (to start with)
 		unless they reference old tips
-		nested emails?  what about multiple inheritance?
+		nested emails?	what about multiple inheritance?
 		need hyperlinking "see also" links
 	use labels (from Keywords plugin) to add value
 	use mutt's caching facility to store the metadata
@@ -2278,10 +2354,10 @@ add tutorials (like sidebar intro) to the website
 	ask for translations?
 
 use Gutenberg texts for sample emails
-        use mutt-dev mailing list as a template?
-        alias all names
-        replace all message-ids (but keep links)
-        strip out most headers
+	use mutt-dev mailing list as a template?
+	alias all names
+	replace all message-ids (but keep links)
+	strip out most headers
 
 neo-stats.pl
 	ignore issues tagged 'release'
@@ -2378,7 +2454,7 @@ propagation of notifications -- start @focus, work down
 	SB, IW, PW + 'q' mail accepts, hides PW, PS, focus IW
 	SB, IW + 'q' mail notified, rejects, global accepts, closes app
 Help starts @focus, Panel Name + get_keys method
-if sidebar is a separate panel and src file, should IW be?  PW?  AI?
+if sidebar is a separate panel and src file, should IW be?  PW?	 AI?
 If focus is on PW and SB, IW, PW are siblings, how can SB get notifications?
 	or does mail Panel catch and iterate through children?
 	SB mappings are (index,pager) => behaviour wanted but not in AW
@@ -2613,7 +2689,7 @@ cond-date
 		1w -> this week (not 7 days)
 		if the dates were sensible (7d = 7 days back from now)
 		they'd tie in with ~d, e.g.
-			color index color237 default "~d>30d"         # Over a month old
+			color index color237 default "~d>30d"	      # Over a month old
 		reuse the ~d code
 			pattern.c:eat_date()
 
