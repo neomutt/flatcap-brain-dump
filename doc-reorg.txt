@@ -67,4 +67,5 @@ Future list
         translate docs
         FAQ?
         what else?
+	glossary
 
