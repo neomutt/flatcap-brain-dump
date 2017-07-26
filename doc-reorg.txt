@@ -67,5 +67,11 @@ Future list
         translate docs
         FAQ?
         what else?
-	glossary
+
+glossary
+	reply
+	reply to group
+	list reply
+	bounce
+	forward
 
