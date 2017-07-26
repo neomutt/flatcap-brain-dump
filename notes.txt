@@ -1,3 +1,6 @@
+3 * init.c:  switch (p->type & DT_MASK)
+replace with DTYPE(x)
+
 trivial code: --x -> x--
 	except for loops
 
