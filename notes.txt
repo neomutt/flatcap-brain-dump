@@ -1,25 +1,9 @@
 change build to install to ./install
 alter my .gitignore to ignore ./install
 
-drop all INITVAL
-	either static -> NULL
-	or var, overridden by init.h
-
-3 * init.c:  switch (p->type & DT_MASK)
-replace with DTYPE(x)
-
-trivial code: --x -> x--
-	except for loops
-
 :set (list all vars) should depend on the context
 (which account/mailbox you have open)
 :setlocal (just the account vars)
-
-get rid of
-	/* deprecated types compatibility */
-	#ifndef HAVE_GNUTLS_CERTIFICATE_CREDENTIALS_T
-	typedef gnutls_certificate_credentials gnutls_certificate_credentials_t;
-	#endif
 
 imap keywords
 	work out limitations
@@ -46,10 +30,6 @@ ask lists about slang usage
 
 add rfc1847 gpg
 add RFC1522
-
-tokenize_unget_string isn't used
-tokenize_push_macro_string is used just twice -- expand
-imap_new_idata allocs can't fail, simply error paths
 
 listen for tags -- list somewhere public
 https://github.com/neomutt/neomutt/tags.atom
