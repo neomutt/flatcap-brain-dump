@@ -1,3 +1,6 @@
+change build to install to ./install
+alter my .gitignore to ignore ./install
+
 drop all INITVAL
 	either static -> NULL
 	or var, overridden by init.h
