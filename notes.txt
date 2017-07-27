@@ -1,7 +1,5 @@
 trivial
 	move mime.types
-	rfc dupe proto
-	capitalisation in global vars
 
 change build to install to ./install
 alter my .gitignore to ignore ./install
@@ -58,8 +56,6 @@ hcache pruner
 
 hcache crash backtrace
 which backend to which other?
-
-rename OPTAPPLEBANANACHERRY -> OPT_APPLE_BANANA_CHERRY
 
 in pager, which objects are precious/vunerable
 	which might be changes outside of the pager
