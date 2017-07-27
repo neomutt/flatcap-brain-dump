@@ -1,3 +1,8 @@
+trivial
+	move mime.types
+	rfc dupe proto
+	capitalisation in global vars
+
 change build to install to ./install
 alter my .gitignore to ignore ./install
 
