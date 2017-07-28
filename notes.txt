@@ -1,3 +1,8 @@
+pgpinvoke doesn't escape the filename of the email to encrypt (last param)
+therefore
+	set tmpdir = "~/.cache/mutt three"
+makes it impossible to send encrypted mail
+
 lib.c
 	split simple string functions
 	into another strlib.c
