@@ -1,3 +1,7 @@
+lib.c
+	split simple string functions
+	into another strlib.c
+
 trivial
 	move mime.types
 
