@@ -1195,6 +1195,8 @@ collect useful tools in neomutt org:
 	etc
 	for notmuch sync accross machines, I have found this: http://www.muchsync.org/muchsync.html
 	swaks: smtp tester
+	khal
+	calcurse
 
 translation - coding, scripting, languages
 
