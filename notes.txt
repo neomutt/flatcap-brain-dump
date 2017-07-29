@@ -1,3 +1,17 @@
+remote config option
+	user logs in - host, user, password
+	first email in inbox (artificially old) contains config
+	email is encrypted to yourself (optional)
+		need local private key
+	ask user: "Apply (verified) remote config?" (optional)
+	separate files?
+		have an entire folder for config
+			magic name - neomutt-config
+		alias files
+		mailcap
+		certificates
+		anything but caching files
+
 pgpinvoke doesn't escape the filename of the email to encrypt (last param)
 therefore
 	set tmpdir = "~/.cache/mutt three"
