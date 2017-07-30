@@ -19,7 +19,10 @@ makes it impossible to send encrypted mail
 
 lib.c
 	split simple string functions
-	into another strlib.c
+	into another str_lib.c
+	and file_lib.
+	and leftover-lib.
+	what's muttlib.c for?
 
 trivial
 	move mime.types
