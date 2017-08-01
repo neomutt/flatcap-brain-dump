@@ -59,6 +59,7 @@ ask lists about slang usage
 
 add rfc1847 gpg
 add RFC1522
+utf-7 -- RFC 1642, superseded by RFC 2152
 
 listen for tags -- list somewhere public
 https://github.com/neomutt/neomutt/tags.atom
