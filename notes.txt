@@ -3,6 +3,8 @@ if we delete mutt_md5 from the build, what about windows?
 	2) MD5 hash of file ping.txt:
 	3) 4f 75 c2 2c 20 b4 81 54 72 2c a5 7c 95 7a 66 88
 	4) CertUtil: -hashfile command completed successfully.
+we're running a shell script, so we shouldn't worry
+if windows, then it must be cygwin
 
 library
 	make them all robust -- check all pointers
