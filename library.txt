@@ -1,0 +1,100 @@
+
+make them all robust -- check all pointers
+
+mx_lock_file
+mx_unlock_file
+mx_unlink_empty
+mutt_decrease_mtime
+mutt_set_mtime
+mutt_touch_atime
+	have nothing mx-related in them
+	move to lib_file.c?
+
+promote lib_file.c to libfile.a
+	unify all the tmp-file functions, two sorts:
+		care if file is lost (e.g. compose)
+		don't care if file is lost (e.g. cached email)
+
+need iconv library for conversion
+*isolate* and library-fy maildir/mh
+	split into many files
+
+need to centralise the wide-character routines
+	many are tainted by curses
+
+mutt_make_date -> lib_date?
+	find out the name for that particular date standard
+
+split up big files even if it means making static functions non-static
+
+sha1 is only used by pgppubring (soon to be obsolete)
+move tools to /tools
+
+try to de-prefix lib functions
+	mutt_buffer_X -> buffer_X
+
+rfc1524.c
+	rename to mailcap.c
+	strnfcpy -> lib/string
+	mutt_rename_file -> lib/file
+
+rfc2047.c
+	lwslen -> lib/string
+	lwsrlen -> lib/string
+
+rfc822.c
+	terminate_string -> lib/string?
+	terminate_buffer -> lib/string?
+	rfc822_dequote_comment -> lib/string?
+	meaning?
+	rfc822_cpy_adr_real - this should be rfc822_cpy_adr
+	rfc822_cpy_adr - this should be rfc822_cpy_adrlist
+
+sendlib.c
+	all the b64 stuff
+	find_word
+	my_width
+
+find_first_file from a list, e.g.
+	/etc/muttrc locations
+	/etc/mime.types locations
+	~/.muttrc locations
+
+fork() - 6 separate calls
+
+hdrline.c
+	get_nth_wchar -> mbyte_table.c
+
+enter.c
+	my_wcwidth -> lib/wchar
+	my_wcswidth
+	width_ceiling
+	my_wcstombs
+	my_mbstowcs
+	is_shell_char -> lib/file
+
+url.c
+	all the ciss url parsing
+	find meaning, or drop 'ciss'
+
+send.c
+	addrcmp -> address.c
+	addrsrc -> address.c
+	remove_user -> address.c
+	has_recips -> address.c
+
+parse.c
+	struct Tz
+	TimeZones -> lib/date
+	mutt_parse_date -> lib/date
+
+mbox.c
+	strict_addrcmp -> address.c
+	strict_cmp_lists -> list.c
+	strict_cmp_envelopes -> envelope.c
+	strict_cmp_parameters -> parameter.c
+	strict_cmp_bodies -> body.c
+	mbox_strict_cmp_headers -> header.c
+	mbox_reset_atime refactor over lib/file
+	m${DIRS// //}box_check_empty -> lib/file
+

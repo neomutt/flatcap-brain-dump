@@ -8,41 +8,6 @@ if we delete mutt_md5 from the build, what about windows?
 we're running a shell script, so we shouldn't worry
 if windows, then it must be cygwin
 
-library
-	make them all robust -- check all pointers
-
-	mx_lock_file
-	mx_unlock_file
-	mx_unlink_empty
-	mutt_decrease_mtime
-	mutt_set_mtime
-	mutt_touch_atime
-		have nothing mx-related in them
-		move to lib_file.c?
-
-	promote lib_file.c to libfile.a
-		unify all the tmp-file functions, two sorts:
-			care if file is lost (e.g. compose)
-			don't care if file is lost (e.g. cached email)
-
-	need iconv library for conversion
-	*isolate* and library-fy maildir/mh
-		split into many files
-
-	need to centralise the wide-character routines
-		many are tainted by curses
-
-	mutt_make_date -> lib_date?
-		find out the name for that particular date standard
-
-	split up big files even if it means making static functions non-static
-
-	sha1 is only used by pgppubring (soon to be obsolete)
-	move tools to /tools
-
-	try to de-prefix lib functions
-		mutt_buffer_X -> buffer_X
-
 test fcntl and flock on /var/spool/mail/mutt file
 
 remote config option
