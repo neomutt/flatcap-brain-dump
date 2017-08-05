@@ -1,3 +1,5 @@
+merge and drop "scripts" top-level repo
+
 if we delete mutt_md5 from the build, what about windows?
 	1) C:\Users\admin>CertUtil -hashfile ping.txt MD5
 	2) MD5 hash of file ping.txt:
