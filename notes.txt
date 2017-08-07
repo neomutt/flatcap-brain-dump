@@ -1,3 +1,5 @@
+use bsearch to search commands list
+
 merge and drop "scripts" top-level repo
 
 if we delete mutt_md5 from the build, what about windows?
@@ -65,6 +67,7 @@ ask lists about slang usage
 add rfc1847 gpg
 add RFC1522
 utf-7 -- RFC 1642, superseded by RFC 2152
+rfc3986 - URI
 
 listen for tags -- list somewhere public
 https://github.com/neomutt/neomutt/tags.atom
