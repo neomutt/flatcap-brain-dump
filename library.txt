@@ -1,15 +1,6 @@
 
 make them all robust -- check all pointers
 
-mx_lock_file
-mx_unlock_file
-mx_unlink_empty
-mutt_decrease_mtime
-mutt_set_mtime
-mutt_touch_atime
-	have nothing mx-related in them
-	move to lib_file.c?
-
 promote lib_file.c to libfile.a
 	unify all the tmp-file functions, two sorts:
 		care if file is lost (e.g. compose)
@@ -21,9 +12,6 @@ need iconv library for conversion
 
 need to centralise the wide-character routines
 	many are tainted by curses
-
-mutt_make_date -> lib_date?
-	find out the name for that particular date standard
 
 split up big files even if it means making static functions non-static
 
@@ -73,10 +61,6 @@ enter.c
 	my_mbstowcs
 	is_shell_char -> lib/file
 
-url.c
-	all the ciss url parsing
-	find meaning, or drop 'ciss'
-
 send.c
 	addrcmp -> address.c
 	addrsrc -> address.c
@@ -96,5 +80,5 @@ mbox.c
 	strict_cmp_bodies -> body.c
 	mbox_strict_cmp_headers -> header.c
 	mbox_reset_atime refactor over lib/file
-	m${DIRS// //}box_check_empty -> lib/file
+	mbox_check_empty -> lib/file
 
