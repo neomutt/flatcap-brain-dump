@@ -1,3 +1,24 @@
+upstream
+	s/ascii_str/mutt_str/
+
+lib/file
+	separate fcntl and flock into two functions?
+
+travis, relax build errors for upstream
+or rename upstream to mutt/upstream
+
+change mutt_unlink to simplify build (O_NOFOLLOW is 2008)
+	#ifndef O_NOFOLLOW
+	#define O_NOFOLLOW 0
+	#endif
+safe_fopen too
+
+change safe_rename
+	ENOTSUP
+	EOPNOTSUPP
+
+sidebar intro -- mention "mailboxes" command
+
 use bsearch to search commands list
 
 merge and drop "scripts" top-level repo

@@ -23,17 +23,9 @@ try to de-prefix lib functions
 
 rfc1524.c
 	rename to mailcap.c
-	strnfcpy -> lib/string
 	mutt_rename_file -> lib/file
 
-rfc2047.c
-	lwslen -> lib/string
-	lwsrlen -> lib/string
-
 rfc822.c
-	terminate_string -> lib/string?
-	terminate_buffer -> lib/string?
-	rfc822_dequote_comment -> lib/string?
 	meaning?
 	rfc822_cpy_adr_real - this should be rfc822_cpy_adr
 	rfc822_cpy_adr - this should be rfc822_cpy_adrlist
@@ -41,7 +33,7 @@ rfc822.c
 sendlib.c
 	all the b64 stuff
 	find_word
-	my_width
+	my_width -> lib/wchar
 
 find_first_file from a list, e.g.
 	/etc/muttrc locations
@@ -55,10 +47,10 @@ hdrline.c
 
 enter.c
 	my_wcwidth -> lib/wchar
-	my_wcswidth
-	width_ceiling
-	my_wcstombs
-	my_mbstowcs
+	my_wcswidth -> lib/wchar
+	width_ceiling -> lib/wchar
+	my_wcstombs -> lib/wchar
+	my_mbstowcs -> lib/wchar
 	is_shell_char -> lib/file
 
 send.c
@@ -66,11 +58,6 @@ send.c
 	addrsrc -> address.c
 	remove_user -> address.c
 	has_recips -> address.c
-
-parse.c
-	struct Tz
-	TimeZones -> lib/date
-	mutt_parse_date -> lib/date
 
 mbox.c
 	strict_addrcmp -> address.c
@@ -81,4 +68,7 @@ mbox.c
 	mbox_strict_cmp_headers -> header.c
 	mbox_reset_atime refactor over lib/file
 	mbox_check_empty -> lib/file
+
+from.c
+	next_word -> lib/string
 
