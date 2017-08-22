@@ -1,3 +1,5 @@
+trailing whitespace in init.h!
+
 notifications happen when something happens, e.g. new mail
 consider a "no longer any more new mail" notification
 negative acknowledgements
