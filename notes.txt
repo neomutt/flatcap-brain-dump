@@ -639,6 +639,7 @@ MacOS iTerm
 	Ctrl-O doesn't work
 	"stty discard undef" fixes it
 some other terms too
+	rxvt-unicode, openbsd 6.1 - verified
 	"stty flush undef" needed
 
 deprecate ChangeLog*
