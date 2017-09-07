@@ -1,3 +1,5 @@
+"wrapmargin" config option needs deprecating like the synonyms
+
 sync naming of mbytechartable
 
 trailing whitespace in init.h!
