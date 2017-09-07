@@ -84,3 +84,25 @@ stable
         features
         user-visible fixes
 
+VERSION
+	ChangeLog.md
+	configure.ac
+	doc/manual.xml.head
+	doxygen/doxygen.conf
+	po/mutt.pot
+
+TRANSLATIONS
+	update translations
+	update en_GB.po
+
+CREDIT
+	update mailmap (and management copy)
+	update README credits (and website copy)
+
+SOURCE
+	tidy whitespace
+	clang-format
+
+DOCS/WEB
+	update guide
+	update readme/credits
