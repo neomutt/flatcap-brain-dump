@@ -60,6 +60,7 @@ remote config option
 		mailcap
 		certificates
 		anything but caching files
+	have email signed -- easily verified
 
 pgpinvoke doesn't escape the filename of the email to encrypt (last param)
 therefore
