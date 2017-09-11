@@ -1,3 +1,5 @@
+add colour to the browser
+
 "wrapmargin" config option needs deprecating like the synonyms
 
 sync naming of mbytechartable
