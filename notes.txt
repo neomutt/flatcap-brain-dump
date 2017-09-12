@@ -1,3 +1,6 @@
+debug config options
+	-O0 -g what else?
+
 add docs for teams on website, add to newbie intro
 
 add colour to the browser
