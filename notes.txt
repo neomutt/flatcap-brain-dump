@@ -1,3 +1,6 @@
+logging
+	print date, then just time for log lines
+
 debug config options
 	-O0 -g what else?
 
