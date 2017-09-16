@@ -1,0 +1,56 @@
+show messages to user like:
+	ChangeLog
+	new features
+	warnings
+	deprecations
+
+Read once, then hidden, but accessible
+
+need persistent variables:
+	changelog-2017-09-07-read
+	warning-dotlock-read
+
+store them where?
+dedicated config file?
+	~/.neomutt-messages
+	~/.cache/neomutt/messages.rc
+	~/.cache/neomutt/binary.db
+
+config that isn't recognised is:
+	ignored?
+	deleted?
+
+should the config items all be dated?
+
+config that isn't recognised that's
+	newer than x months is ignored
+	older than x months is delete
+
+where are the messages displayed?
+	'magic' virtual mailbox, e.g. "[Messages]"
+	others? [Logs] - save mutt_message()
+		and read historic files
+	[ChangeLog]
+	virtual emails have birth and expiry date
+
+source of the files?
+	~/.muttdebug*
+	/usr/share/doc/neomutt/messages.mbox
+		can't mark things as read!
+		could save message ids as config var
+		msgid_1234ABCD = read
+		mimic newsrc (or reuse it)
+		implies sequential numbers for all messages
+
+mechanisms for display
+	mail -> pager
+	summary pages
+		implies lots of static files
+
+general user config
+	set show_fake_mailbox = yes (default)
+	or have a button/binding to change to magic mode
+		like virtual mailbox mode
+	set visible_mailboxes = local,network,notmuch,info
+		+= -= !=
+
