@@ -1,3 +1,14 @@
+missing from autosetup for gcc
+	-fno-delete-null-pointer-checks
+
+deprecate muttrc in favour of neomuttrc
+	1 Restore all the mutt search dirs
+	2 Drop the dated/versioned configs (nobody used them)
+	3 Make a release
+	4 Start deprecating muttrc (with warnings)
+	5 Wait a few releases
+	6 Drop muttrc
+
 logging
 	print date, then just time for log lines
 
