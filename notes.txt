@@ -1,3 +1,7 @@
+script to build all mutt/neomutt binaries
+	one for mutt
+	one for neomutt
+
 missing from autosetup for gcc
 	-fno-delete-null-pointer-checks
 
