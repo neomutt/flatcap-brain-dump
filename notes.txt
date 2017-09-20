@@ -1,3 +1,5 @@
+change feature neomuttrc examples to be useful working versions
+
 rebuild all of mutt-*, neomutt-* binaries
 	make sure they all use /etc /usr
 	symlink, or put config so that mutt has good defaults
