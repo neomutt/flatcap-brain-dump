@@ -1,3 +1,11 @@
+change travis build to check for whitespace errors
+	tabs, trailing whitespace
+	fail before starting build
+which branches?
+	master, travis, devel/* issue/*, coverity
+	everything except pull-requests (some leniency)
+		WARN though
+
 change feature neomuttrc examples to be useful working versions
 
 rebuild all of mutt-*, neomutt-* binaries
