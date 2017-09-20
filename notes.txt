@@ -1,3 +1,30 @@
+rebuild all of mutt-*, neomutt-* binaries
+	make sure they all use /etc /usr
+	symlink, or put config so that mutt has good defaults
+
+Create LTS release branched from 2017-09-12
+	until all big features are done
+Change all version strings to YYYY-MM-DD rather than YYYYMMDD?
+
+Proof-read newbie page
+add Teams description
+
+Easy task
+	refactor parse_hooks to use (new) flags in init.h
+	e.g. TAKES_PATTERN, TAKES_REGEX
+
+install: do we need *.dist any more
+	packages keep track if things have changed
+
+mutt -DX read config and display deprecated options
+	and their replacements
+
+distro:
+	update fedora, copr pages
+	rewrite copr page
+		news
+		links to features
+
 notmuch: what do users do externally?
 	can these actions be done using NM API?
 	before neomutt -> startup-hook
