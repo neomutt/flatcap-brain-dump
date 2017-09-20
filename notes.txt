@@ -1,3 +1,28 @@
+notmuch: what do users do externally?
+	can these actions be done using NM API?
+	before neomutt -> startup-hook
+	periodic -> timeout-hook
+	after neomutt -> shutdown-hook
+	what do we need to do?
+	where would the code fit in?
+
+docs - General build
+	config options
+	make targets
+	install/uninstall
+
+docs - General debug
+	2 windows
+	cgdb examples
+
+docs - Valgrind debug
+	2 windows
+	install valgrind
+	examples
+
+mutt cmdline option to show config search paths?
+	probably not worth it
+
 script to build all mutt/neomutt binaries
 	one for mutt
 	one for neomutt
