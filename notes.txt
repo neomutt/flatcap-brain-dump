@@ -5,6 +5,8 @@ which branches?
 	master, travis, devel/* issue/*, coverity
 	everything except pull-requests (some leniency)
 		WARN though
+push to branches, test BEFORE & FAIL
+pull request test AFTER and WARN
 
 change feature neomuttrc examples to be useful working versions
 
