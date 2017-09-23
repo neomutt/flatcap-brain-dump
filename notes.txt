@@ -18,9 +18,6 @@ Create LTS release branched from 2017-09-12
 	until all big features are done
 Change all version strings to YYYY-MM-DD rather than YYYYMMDD?
 
-Proof-read newbie page
-add Teams description
-
 Easy task
 	refactor parse_hooks to use (new) flags in init.h
 	e.g. TAKES_PATTERN, TAKES_REGEX
@@ -66,9 +63,6 @@ script to build all mutt/neomutt binaries
 	one for mutt
 	one for neomutt
 
-missing from autosetup for gcc
-	-fno-delete-null-pointer-checks
-
 deprecate muttrc in favour of neomuttrc
 	1 Restore all the mutt search dirs
 	2 Drop the dated/versioned configs (nobody used them)
@@ -83,15 +77,9 @@ logging
 debug config options
 	-O0 -g what else?
 
-add docs for teams on website, add to newbie intro
-
 add colour to the browser
 
 "wrapmargin" config option needs deprecating like the synonyms
-
-sync naming of mbytechartable
-
-trailing whitespace in init.h!
 
 notifications happen when something happens, e.g. new mail
 consider a "no longer any more new mail" notification
@@ -155,9 +143,6 @@ pgpinvoke doesn't escape the filename of the email to encrypt (last param)
 therefore
 	set tmpdir = "~/.cache/mutt three"
 makes it impossible to send encrypted mail
-
-trivial
-	move mime.types
 
 change build to install to ./install
 alter my .gitignore to ignore ./install
