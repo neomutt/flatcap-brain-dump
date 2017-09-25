@@ -1,3 +1,5 @@
+variables: buf vs buff vs buffer (distinct from Buffer)
+
 mutt-1.9.1 on versins page
 
 merge upstream changes
