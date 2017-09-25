@@ -1,8 +1,18 @@
+mutt-1.9.1 on versins page
+
+merge upstream changes
+
+pgp-hook is synonym of crypt-hook
+	needs deprecating, too
+
+find "sprintf(x->data" for buffers -> buffer_printf
+
 update _dev/signing.md
 	wget https://github.com/neomutt/neomutt/archive/neomutt-20170912.tar.gz
 	wget https://github.com/neomutt/neomutt/releases/download/neomutt-20170912/neomutt-20170912-CHECKSUM
 	gpg2 --verify neomutt-20170912-CHECKSUM
 	sha256sum -c neomutt-20170912-CHECKSUM
+	test using build user
 
 change travis build to check for whitespace errors
 	tabs, trailing whitespace
