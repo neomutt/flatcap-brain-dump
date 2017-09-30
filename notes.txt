@@ -1,3 +1,5 @@
+tests on lib should also be run on 32-bit arch
+
 2017-09-27 #mutt
 <fire2199> by the way... why is there not a pre-defined variable for setting the config folder?
 
