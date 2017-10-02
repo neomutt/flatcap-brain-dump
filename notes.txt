@@ -5,10 +5,6 @@ tests on lib should also be run on 32-bit arch
 
 variables: buf vs buff vs buffer (distinct from Buffer)
 
-mutt-1.9.1 on versins page
-
-merge upstream changes
-
 pgp-hook is synonym of crypt-hook
 	needs deprecating, too
 
@@ -182,8 +178,6 @@ imap keywords
 
 need neomutt glossary (search first)
 
-contrib files: drop iconv junk
-
 upstream
 	more renames
 	more deleted files (pgp?)
@@ -254,11 +248,6 @@ are imap vars used outside of imap code?
 what about sidebar, browser, etc?
 keep their own var lists?  register at startup?
 
-change "Mutt" -> "NeoMutt" ∀ code/docs
-
-drop (1.2.3) from version?
-what about debian?
-
 --authors reads file /docs/AUTHORS
 --license reads file /docs/LICENSE
 if missing, print placeholder URL / GPLv2 respectively
@@ -286,6 +275,7 @@ ask neou for logo suggestions
 use install-sh $(INSTALL) instead of cp
 
 debug_level > n => fflush every line
+	or after every 'n' seconds
 
 log before regex ops & other risky functions
 
