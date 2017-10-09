@@ -1,3 +1,8 @@
+move lib doxygen notes to header file?
+
+TYPO
+ * imap_get_qualifier - Get the qualifier from a tagged reponse
+
 tests on lib should also be run on 32-bit arch
 
 2017-09-27 #mutt
