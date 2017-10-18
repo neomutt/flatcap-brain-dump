@@ -1,3 +1,6 @@
+xdg/neomutt/CONFIG
+	config is standard, rather than (or as well as) neomuttrc
+
 mutt_account_tourl Account arg should be const
 
 move lib doxygen notes to header file?
