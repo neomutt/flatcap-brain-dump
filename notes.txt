@@ -1,3 +1,5 @@
+find all doxy comments with "note" in them -> @note
+
 Abolish capability aliases in IMAP by duplicating strings/enums
 	imap/command.c
 	enum FRUIT
