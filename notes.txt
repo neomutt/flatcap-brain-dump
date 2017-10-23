@@ -1,5 +1,8 @@
+kill ISSPACE macro -- no benefit to having it
+
 imap_code should return bool
 imap_subscribe should have bool param
+imap_mboxcache_get should have bool param
 
 find all doxy comments with "note" in them -> @note
 
