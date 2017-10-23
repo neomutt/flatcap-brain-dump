@@ -54,3 +54,72 @@ general user config
 	set visible_mailboxes = local,network,notmuch,info
 		+= -= !=
 
+--------------------------------------------------------------------------------
+
+type
+	error
+	warning
+	debug
+	changelog
+	deprecation
+	new features
+	warnings
+
+how
+	message bar (single line) - non-modal
+	beep (opt)
+	pause (opt) - modal
+	pop-up window (modal)
+
+external
+	web
+	user ml
+	dev ml
+	twitter
+	github
+	installed
+		docs
+		guide
+		man pages
+	.neomuttdebug?
+
+how
+	fake page like help
+	fake folder,emails (multiple)
+	nntp folders,emails
+	installed maildir
+
+problem
+	many messages lots/overwritten
+		need backlog
+	persistence for old external messages
+		nntp newsrc, or
+		fake hcache entry
+
+how can general users respond to these news items?
+
+ 189 mutt_perror
+ 204 mutt_message
+ 539 mutt_error
+ 706 mutt_debug
+1638 total
+
+mutt_message
+	informative message for the user
+	warning message for the user
+mutt_error
+	error message for the user
+mutt_debug
+	informative message for the developer
+
+message types:
+
+* informative - Things that are useful for the user to know
+  Feedback on a successful action
+
+* warning - A problem occurred that the user can fix
+  Invalid filename
+  Directory doesn't exist
+
+* error - A problem occurred that the user cannot fix
+  Not supported (not compiled-in)
