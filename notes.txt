@@ -1,3 +1,5 @@
+imap_subscribe should have bool param
+
 find all doxy comments with "note" in them -> @note
 
 Abolish capability aliases in IMAP by duplicating strings/enums
