@@ -1,3 +1,7 @@
+shadow param warnings in crypt.c!
+	check build options
+	build script and travis
+
 pager locks up with
 	set markers
 	set wrap=1
