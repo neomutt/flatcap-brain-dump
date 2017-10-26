@@ -1,3 +1,6 @@
+init.c move
+	to_absolute_path() to lib/file.c
+
 shadow param warnings in crypt.c!
 	check build options
 	build script and travis
@@ -9,6 +12,7 @@ pager locks up with
 infinite list of '+' chars
 
 kill ISSPACE macro -- no benefit to having it
+	what about the (unsigned char*) cast in it?
 
 imap_code should return bool
 imap_subscribe should have bool param
