@@ -17,12 +17,6 @@ infinite list of '+' chars
 kill ISSPACE macro -- no benefit to having it
 	what about the (unsigned char*) cast in it?
 
-imap_code should return bool
-imap_subscribe should have bool param
-imap_mboxcache_get should have bool param
-utf7_to_utf8, utf8_to_utf7 return 0 should be NULL
-imap_wait_keepalive imap_passive should be bool
-
 find all doxy comments with "note" in them -> @note
 
 Abolish capability aliases in IMAP by duplicating strings/enums
@@ -41,9 +35,6 @@ xdg/neomutt/CONFIG
 mutt_account_tourl Account arg should be const
 
 move lib doxygen notes to header file?
-
-TYPO
- * imap_get_qualifier - Get the qualifier from a tagged reponse
 
 tests on lib should also be run on 32-bit arch
 
