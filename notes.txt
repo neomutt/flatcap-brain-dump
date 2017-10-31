@@ -1,8 +1,15 @@
+create a literal string marker:
+	set x = /Don't "shoot"?/
+or something like vim's unmagic \V
+
+docs, etc: drop "All mail clients suck..." quote from m.e.
+
 iptostring
 	unsigned param, no int!
 
 init.c move
 	to_absolute_path() to lib/file.c
+	nntp code to read /etc/nntpserver into new function in lib/file.c
 
 shadow param warnings in crypt.c!
 	check build options
