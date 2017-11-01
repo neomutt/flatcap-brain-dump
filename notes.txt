@@ -1,3 +1,5 @@
+move lib/memory NLS stuff to lib/message.[ch]
+
 create a literal string marker:
 	set x = /Don't "shoot"?/
 or something like vim's unmagic \V
