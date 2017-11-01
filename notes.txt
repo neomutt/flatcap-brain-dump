@@ -1,3 +1,9 @@
+up-to-date list of functions/data for each library, split into:
+	public functions/data
+	static functions/data
+one (background?) colour for each library
+one shared colour for ALL static functions
+
 kill protos.h - mutt_wctoutf8()
 	unused
 
