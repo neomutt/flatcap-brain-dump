@@ -1,6 +1,16 @@
+get_initials() could move to lib/string.c
+
+move some address functions to lib
+	only dependent on struct Address
+	parse string
+	maintain address LIST
+	check membership of a list
+	functions in hdrline.c
+
 ./mbyte.c fix copyright info
 
 move lib/memory NLS stuff to lib/message.[ch]
+	and update libmutt-deps.gv
 
 create a literal string marker:
 	set x = /Don't "shoot"?/
@@ -382,15 +392,15 @@ Variables
 
 	use high bits of 'type' to save free()/don't free() of a string
 
-	how does 'reset' work?	where is the original value stored?
+	how does 'reset' work?  where is the original value stored?
 	do we keep it in the hash elem?
 	a "parent" config set of original values?
 	how many config values are changed?
 	too much overhead?
 	hashelems won't be constant
 		init var  == address1
-		set var	  == address2
-		set var	  == address2
+		set var   == address2
+		set var   == address2
 		reset var == address1
 	too much overhead?
 
@@ -441,8 +451,8 @@ Variables
 	path variable type?  subtype of string?
 		flags: FILE, DIR (or both)
 		does the setting engine need to know
-	mailbox variable type?	subtype of string?
-	command variable type?	subtype of string?
+	mailbox variable type?  subtype of string?
+	command variable type?  subtype of string?
 		more scrutiny for setting?
 
 FS layer
@@ -541,7 +551,7 @@ account: use $spoolfile to merge an inbox into the account line
 		apple  2/7
 		banana 3/8
 	spoofile=inbox
-	AC_NAME	       1/6
+	AC_NAME        1/6
 		apple  2/7
 		banana 3/8
 
@@ -721,7 +731,7 @@ compose bug
 
 colour highlight/underline _Q_uestion, _O_ptions 'q', 'o'
 
-simplify y/n questions.	 no more "Are you sure?", just
+simplify y/n questions.  no more "Are you sure?", just
 "Quit? Y/n" -- all ask-yes, ask-no
 
 renew s/mime cert & test & desc steps
@@ -843,8 +853,8 @@ ask people how often they'd like to be chased up
 doc build requirement on DocBook DTDs
 
 warn on option synonym usage
-	{ "pgp_autoencrypt",		DT_SYN,	 R_NONE, UL "crypt_autoencrypt", 0 },
-	{ "crypt_autoencrypt",	DT_BOOL, R_NONE, OPTCRYPTAUTOENCRYPT, 0 },
+	{ "pgp_autoencrypt",            DT_SYN,  R_NONE, UL "crypt_autoencrypt", 0 },
+	{ "crypt_autoencrypt",  DT_BOOL, R_NONE, OPTCRYPTAUTOENCRYPT, 0 },
 	crypt_autoencrypt is the visible option
 	warn if pgp_autoencrypt is used
 
@@ -857,9 +867,9 @@ all example muttrcs
 	14:44 <wayne47> so that when I read mail via imap from foo.com, outgoing mail uses foo.com and when I read from bar.com, outgoing mail uses bar.com (etc)?
 
 configure summary
-	Libs:		   -lanl -lncursesw -lnotmuch 
-	Mutt libs:	    -lncursesw -ltokyocabinet -lkyotocabinet -lgdbm -lqdbm -ldb-5.3 -llmdb -lidn 
-what's the distinction?	 notmuch and lmdb are both user-specified external deps
+	Libs:              -lanl -lncursesw -lnotmuch
+	Mutt libs:          -lncursesw -ltokyocabinet -lkyotocabinet -lgdbm -lqdbm -ldb-5.3 -llmdb -lidn
+what's the distinction?  notmuch and lmdb are both user-specified external deps
 
 web toplevel dir
 	/muttrc
@@ -867,7 +877,7 @@ web toplevel dir
 	link guide to samples
 
 configure summary?
-	--disable-docs -> docs:		no
+	--disable-docs -> docs:         no
 	--disable-po   -> translations: no
 
 "approved" tag? when an idea under discussion gets the go-ahead?
@@ -981,8 +991,8 @@ bot command
 
 move the guide to readthedocs.org?
 
-	c	lua_style_line(HANDLE, DATA[])
-	lua	hprintf(HANDLE, "hello ")
+	c       lua_style_line(HANDLE, DATA[])
+	lua     hprintf(HANDLE, "hello ")
 		push_attr(HANDLE, C_FG_RED)
 		push_attr(HANDLE, A_REVERSE)
 		hprintf(HANDLE, "world")
@@ -1008,7 +1018,7 @@ account object that lives above BUFFYs
 	nntp
 can be visible or hidden
 
-github/irc bot.	 notify on:
+github/irc bot.  notify on:
 	@neomutt/reviewers Please Review -> "guyzmo asked for review of #298 (Desc)"
 	"flatcap approved #298 (Desc)"
 
@@ -1178,7 +1188,7 @@ release criteria for a new feature
 	screenshots of new features
 		text/html screenshots if possible
 
-trash folder: forget the directories idea?	who cares about deleted stuff?
+trash folder: forget the directories idea?      who cares about deleted stuff?
 trash needs index panel expando -- Original location
 archive *needs* dirs %Y / %From?  auto-create, auto-delete on empty
 <empty-trash> function
@@ -1242,7 +1252,7 @@ create list of current scripts shell/perl
 	build processors
 	automators
 	list -> website -- link to repos
-	#!/bin/bash ->	sh
+	#!/bin/bash ->  sh
 
 update vim-syntax
 
@@ -1776,7 +1786,7 @@ $sort = [prefix-][...]order
 
 vim has set vs setlocal
 	mutt has accounts as separate entities
-	set	 var => global
+	set      var => global
 	setlocal var => per account
 
 new two-letter expandos
@@ -1846,9 +1856,9 @@ macports, is there something I can update automatically at release time?
 	cf homebrew
 
 config file accept keybindings using
-	C-	Ctrl-	Ctl-
-	A-	Alt-	Meta-
-	W-	Win-	Mac-?
+	C-      Ctrl-   Ctl-
+	A-      Alt-    Meta-
+	W-      Win-    Mac-?
 
 add cursor to pager (on/off)
 	=> can highlight text
@@ -1861,10 +1871,10 @@ syntax file in local vim syntax dir needs to be called
 	muttrc to match vim modelines in other files
 
 separate packages for neomutt
-	neomutt		- binary
-	neomutt-docs	- main manual
+	neomutt         - binary
+	neomutt-docs    - main manual
 	neomutt-contrib - muttrc, vimrc, etc
-	neomutt-dev	- code docs
+	neomutt-dev     - code docs
 split repos to match
 branch by version / language
 
@@ -2447,7 +2457,7 @@ mutt tips on startup
 	intersperse with mailboxes commands
 	tips should be self-contained (to start with)
 		unless they reference old tips
-		nested emails?	what about multiple inheritance?
+		nested emails?  what about multiple inheritance?
 		need hyperlinking "see also" links
 	use labels (from Keywords plugin) to add value
 	use mutt's caching facility to store the metadata
@@ -2644,8 +2654,8 @@ slang source + demos
 	http://fossies.org/linux/misc/slang-2.3.0.tar.gz
 
 delegation of keys -> focus() -> parent -> global, e.g. IW, Mail
-	functions => components (e.g. mail)	}- mail_init() register_functions(); register_commands();
-	commands => components			}
+	functions => components (e.g. mail)     }- mail_init() register_functions(); register_commands();
+	commands => components                  }
 
 mirror script, add copr, aur repos
 show focus -- sacrifice help line?
@@ -2654,7 +2664,7 @@ propagation of notifications -- start @focus, work down
 	SB, IW, PW + 'q' mail accepts, hides PW, PS, focus IW
 	SB, IW + 'q' mail notified, rejects, global accepts, closes app
 Help starts @focus, Panel Name + get_keys method
-if sidebar is a separate panel and src file, should IW be?  PW?	 AI?
+if sidebar is a separate panel and src file, should IW be?  PW?  AI?
 If focus is on PW and SB, IW, PW are siblings, how can SB get notifications?
 	or does mail Panel catch and iterate through children?
 	SB mappings are (index,pager) => behaviour wanted but not in AW
@@ -2889,7 +2899,7 @@ cond-date
 		1w -> this week (not 7 days)
 		if the dates were sensible (7d = 7 days back from now)
 		they'd tie in with ~d, e.g.
-			color index color237 default "~d>30d"	      # Over a month old
+			color index color237 default "~d>30d"         # Over a month old
 		reuse the ~d code
 			pattern.c:eat_date()
 
@@ -3199,13 +3209,13 @@ No wrap →
 	extra char at end of line ">"
 
 Window changes
-	hidden	no params
-	visible	rect
-	resize	rect
-	focus	in/out
+	hidden  no params
+	visible rect
+	resize  rect
+	focus   in/out
 colours changes
-keypress	key, no params
-config change	key, value
+keypress        key, no params
+config change   key, value
 		ALL, no params
 mail status change
 	read/unread/flagged/deleted/edited
