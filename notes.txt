@@ -3,6 +3,7 @@ how do we test the static functions in the libraries?
 	#ifndef TESTING
 	#define STATIC static
 	#endif
+if not, they must be completely robust
 
 up-to-date list of functions/data for each library, split into:
 	public functions/data
