@@ -1,3 +1,6 @@
+eliminate all static variables in functions
+	starting with the libraries
+
 how do we test the static functions in the libraries?
 	make *everything* public?
 	#ifndef TESTING
