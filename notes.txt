@@ -1,3 +1,5 @@
+./mbyte.c fix copyright info
+
 move lib/memory NLS stuff to lib/message.[ch]
 
 create a literal string marker:
