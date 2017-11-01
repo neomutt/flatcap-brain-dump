@@ -1,3 +1,6 @@
+research all RFCs relating to email, etc
+	graph of dependencies / obsoletes
+
 eliminate all static variables in functions
 	starting with the libraries
 
@@ -13,6 +16,7 @@ up-to-date list of functions/data for each library, split into:
 	static functions/data
 one (background?) colour for each library
 one shared colour for ALL static functions
+use ctags to generate lists
 
 kill protos.h - mutt_wctoutf8()
 	unused
