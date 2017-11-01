@@ -1,3 +1,9 @@
+kill protos.h - mutt_wctoutf8()
+	unused
+
+use alarm(2) to stop DNS from taking too long?
+
+move hcache:is_ascii() to lib/string.c
 get_initials() could move to lib/string.c
 
 move some address functions to lib
