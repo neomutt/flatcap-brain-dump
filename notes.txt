@@ -1,3 +1,16 @@
+lib/address.c and rfc822.c
+	NOBODY is using error codes:
+		ERR_BAD_ADDR_SPEC
+		ERR_BAD_ROUTE
+		ERR_BAD_ROUTE_ADDR
+		ERR_MEMORY
+		ERR_MISMATCH_PAREN
+		ERR_MISMATCH_QUOTE
+	or globals:
+		RFC822Error
+		rfc822_error()
+drop them?
+
 research all RFCs relating to email, etc
 	graph of dependencies / obsoletes
 
