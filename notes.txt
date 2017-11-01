@@ -1,3 +1,9 @@
+how do we test the static functions in the libraries?
+	make *everything* public?
+	#ifndef TESTING
+	#define STATIC static
+	#endif
+
 up-to-date list of functions/data for each library, split into:
 	public functions/data
 	static functions/data
