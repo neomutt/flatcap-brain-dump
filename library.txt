@@ -42,30 +42,10 @@ fork() - 6 separate calls
 hdrline.c
 	get_nth_wchar -> mbyte_table.c
 
-enter.c
-	my_wcwidth -> lib/wchar
-	my_wcswidth -> lib/wchar
-	width_ceiling -> lib/wchar
-	my_wcstombs -> lib/wchar
-	my_mbstowcs -> lib/wchar
-	is_shell_char -> lib/file
-
 send.c
-	addrcmp -> address.c
-	addrsrc -> address.c
 	remove_user -> address.c
-	has_recips -> address.c
 
 mbox.c
-	strict_addrcmp -> address.c
-	strict_cmp_lists -> list.c
-	strict_cmp_envelopes -> envelope.c
-	strict_cmp_parameters -> parameter.c
-	strict_cmp_bodies -> body.c
-	mbox_strict_cmp_headers -> header.c
 	mbox_reset_atime refactor over lib/file
-	mbox_check_empty -> lib/file
 
-from.c
-	next_word -> lib/string
 
