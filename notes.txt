@@ -35,6 +35,9 @@ kill protos.h - mutt_wctoutf8()
 	unused
 
 use alarm(2) to stop DNS from taking too long?
+	see sigaction(), alarm() in send_msg() in sendlib.c
+	extract to a function in signal.c
+	user message, or just debug message?
 
 move hcache:is_ascii() to lib/string.c
 get_initials() could move to lib/string.c

@@ -1,7 +1,7 @@
 
 make them all robust -- check all pointers
 
-promote lib_file.c to libfile.a
+promote lib/file.c to libfile.a
 	unify all the tmp-file functions, two sorts:
 		care if file is lost (e.g. compose)
 		don't care if file is lost (e.g. cached email)
@@ -23,12 +23,9 @@ try to de-prefix lib functions
 
 rfc1524.c
 	rename to mailcap.c
-	mutt_rename_file -> lib/file
 
 rfc822.c
 	meaning?
-	rfc822_cpy_adr_real - this should be rfc822_cpy_adr
-	rfc822_cpy_adr - this should be rfc822_cpy_adrlist
 
 sendlib.c
 	all the b64 stuff
