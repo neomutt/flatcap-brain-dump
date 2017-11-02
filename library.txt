@@ -29,8 +29,6 @@ rfc822.c
 
 sendlib.c
 	all the b64 stuff
-	find_word
-	my_width -> lib/wchar
 
 find_first_file from a list, e.g.
 	/etc/muttrc locations
