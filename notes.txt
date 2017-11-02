@@ -1,3 +1,9 @@
+all global variables should be set using the config mechanism
+	therefore changes to globals would trigger notifications
+	this means we need fake "config" items
+	(tagged to be invisible to the user)
+	like all the "pseudo" bool values
+
 kill refs to RfC
 
 replace mbtowc() with mbrtowc() in my_width()
