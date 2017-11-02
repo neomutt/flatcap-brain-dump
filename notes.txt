@@ -1,3 +1,7 @@
+static functions with leading _
+
+reformat queue.h
+
 add dependency info to library doxy pages
 	either a text list, or
 	a dot diagram
