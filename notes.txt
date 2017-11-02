@@ -1,3 +1,5 @@
+kill refs to RfC
+
 replace mbtowc() with mbrtowc() in my_width()
 	only used in one place
 	man page says: "The function mbrtowc(3) provides a better interface to the same functionality"
