@@ -2,6 +2,7 @@ turn some config vars into (string) lists
 	hidden_tags (separator = ',')
 	mailcap_path (separator = ':')
 	send_charset (separator = ':')
+	split at config level, then call the validator on each list item
 
 all global variables should be set using the config mechanism
 	therefore changes to globals would trigger notifications
