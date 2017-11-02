@@ -1,3 +1,7 @@
+add dependency info to library doxy pages
+	either a text list, or
+	a dot diagram
+
 turn some config vars into (string) lists
 	hidden_tags (separator = ',')
 	mailcap_path (separator = ':')
