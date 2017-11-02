@@ -1,3 +1,7 @@
+easy: split mutt_lock_file() and unlock
+	into flock() and fcntl() versions
+	only allow/build one
+
 static functions with leading _
 
 reformat queue.h
