@@ -1,8 +1,11 @@
+rfc822 needs renaming.  that rfc was obsolete long ago
+
 easy: split mutt_lock_file() and unlock
 	into flock() and fcntl() versions
 	only allow/build one
 
 static functions with leading _
+	add to style guide
 
 reformat queue.h
 
@@ -24,7 +27,7 @@ all global variables should be set using the config mechanism
 
 kill refs to RfC
 
-replace mbtowc() with mbrtowc() in my_width()
+easy: replace mbtowc() with mbrtowc() in my_width()
 	only used in one place
 	man page says: "The function mbrtowc(3) provides a better interface to the same functionality"
 
@@ -39,6 +42,7 @@ lib/address.c and rfc822.c
 	or globals:
 		RFC822Error
 		rfc822_error()
+	functions aren't resetting error code on success
 drop them?
 
 research all RFCs relating to email, etc
