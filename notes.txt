@@ -1,3 +1,7 @@
+easy task: merge:
+	mutt_concat_path 14 uses
+	mutt_concatn_path 1 use
+
 rfc822 needs renaming.  that rfc was obsolete long ago
 
 easy: split mutt_lock_file() and unlock
