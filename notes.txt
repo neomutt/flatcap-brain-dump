@@ -12,8 +12,6 @@ easy: split mutt_lock_file() and unlock
 static functions with leading _
 	add to style guide
 
-reformat queue.h
-
 add dependency info to library doxy pages
 	either a text list, or
 	a dot diagram
@@ -29,8 +27,6 @@ all global variables should be set using the config mechanism
 	this means we need fake "config" items
 	(tagged to be invisible to the user)
 	like all the "pseudo" bool values
-
-kill refs to RfC
 
 easy: replace mbtowc() with mbrtowc() in my_width()
 	only used in one place
@@ -120,16 +116,6 @@ kill ISSPACE macro -- no benefit to having it
 	what about the (unsigned char*) cast in it?
 
 find all doxy comments with "note" in them -> @note
-
-Abolish capability aliases in IMAP by duplicating strings/enums
-	imap/command.c
-	enum FRUIT
-	{
-		APPLE,
-		BANANA,
-		CHERRY = BANANA,
-		DAMSON
-	};
 
 xdg/neomutt/CONFIG
 	config is standard, rather than (or as well as) neomuttrc
