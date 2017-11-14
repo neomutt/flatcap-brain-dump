@@ -7,6 +7,7 @@ rfc822 needs renaming.  that rfc was obsolete long ago
 easy: split mutt_lock_file() and unlock
 	into flock() and fcntl() versions
 	only allow/build one
+	configure option --locking=[flock|fcntl] ?
 
 static functions with leading _
 	add to style guide
