@@ -1,3 +1,12 @@
+libfile
+	chmod(actual)
+	chmod_add(extra)
+	chmod_rm(remove)
+
+libfile
+	append_file("name", buffer)
+	for functions that don't need to do anything else
+
 easy task: merge:
 	mutt_concat_path 14 uses
 	mutt_concatn_path 1 use
