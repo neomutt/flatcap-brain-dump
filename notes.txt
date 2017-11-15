@@ -1,4 +1,16 @@
 libfile
+	rc = read_into_buffer(filename, buf, len, *fp)
+	if fp is given the file will be opened, read, closed
+	if fp is given the file will be opened, read, not closed
+	rc
+		OK (file fits into buffer)
+		OK_MORE (filled the buffer, need more space)
+			perhaps stat the file and return how much
+		ERROR (see errno)
+			or have a simplified error
+			with msg lookup
+
+libfile
 	chmod(actual)
 	chmod_add(extra)
 	chmod_rm(remove)
