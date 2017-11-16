@@ -1,3 +1,6 @@
+dupe prototype mutt_str_dequote_comment
+	rfc822.h
+
 add -Wshadow to build
 
 libfile
