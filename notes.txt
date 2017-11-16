@@ -2,9 +2,6 @@ travis build warning
 	"2: No such file or directory"
 	may be caused by hcache ver gen
 
-dupe prototype mutt_str_dequote_comment
-	rfc822.h
-
 add -Wshadow to build
 
 libfile
@@ -96,9 +93,6 @@ one (background?) colour for each library
 one shared colour for ALL static functions
 use ctags to generate lists
 
-kill protos.h - mutt_wctoutf8()
-	unused
-
 use alarm(2) to stop DNS from taking too long?
 	see sigaction(), alarm() in send_msg() in sendlib.c
 	extract to a function in signal.c
@@ -114,8 +108,6 @@ move some address functions to lib
 	check membership of a list
 	functions in hdrline.c
 
-./mbyte.c fix copyright info
-
 move lib/memory NLS stuff to lib/message.[ch]
 	and update libmutt-deps.gv
 
@@ -127,10 +119,6 @@ docs, etc: drop "All mail clients suck..." quote from m.e.
 
 iptostring
 	unsigned param, no int!
-
-init.c move
-	to_absolute_path() to lib/file.c
-	nntp code to read /etc/nntpserver into new function in lib/file.c
 
 shadow param warnings in crypt.c!
 	check build options
@@ -371,9 +359,6 @@ hcache pruner
 	won't work for caching files, only folders
 		unless we trawl through EVERY email
 		might as well cache them too
-
-hcache crash backtrace
-which backend to which other?
 
 in pager, which objects are precious/vunerable
 	which might be changes outside of the pager
@@ -618,11 +603,6 @@ TODO - me
 	cocci email kdave
 	define release scripts
 
-Offered
-	boyu trans/code
-	aur @hobarrera
-	sileht labels
-
 Searches
 	list all GH matches
 	10m - classify
@@ -769,12 +749,6 @@ PR requirement all commits build
 
 git repo
 	real names (unless anon)
-
-reformat OPS
-	allow whitespace (formatting)
-	allow #comments
-	combine to 1 file
-	conditional?
 
 drop testing main()s?
 
