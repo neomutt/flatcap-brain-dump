@@ -1,3 +1,7 @@
+travis build warning
+	"2: No such file or directory"
+	may be caused by hcache ver gen
+
 dupe prototype mutt_str_dequote_comment
 	rfc822.h
 
