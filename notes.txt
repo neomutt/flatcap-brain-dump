@@ -1,3 +1,5 @@
+add -Wshadow to build
+
 libfile
 	rc = read_into_buffer(filename, buf, len, *fp)
 	if fp is given the file will be opened, read, closed
