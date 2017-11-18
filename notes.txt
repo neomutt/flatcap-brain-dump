@@ -20,11 +20,6 @@ libfile
 			with msg lookup
 
 libfile
-	chmod(actual)
-	chmod_add(extra)
-	chmod_rm(remove)
-
-libfile
 	append_file("name", buffer)
 	for functions that don't need to do anything else
 
@@ -101,9 +96,6 @@ use alarm(2) to stop DNS from taking too long?
 	extract to a function in signal.c
 	user message, or just debug message?
 
-move hcache:is_ascii() to lib/string.c
-get_initials() could move to lib/string.c
-
 move some address functions to lib
 	only dependent on struct Address
 	parse string
@@ -126,12 +118,6 @@ iptostring
 shadow param warnings in crypt.c!
 	check build options
 	build script and travis
-
-pager locks up with
-	set markers
-	set wrap=1
-	<end>
-infinite list of '+' chars
 
 kill ISSPACE macro -- no benefit to having it
 	what about the (unsigned char*) cast in it?
@@ -779,11 +765,9 @@ conceal IMAP password
 	pgp.h pgplib.h remailer.h smime.h
 debian 2^32 imap patch
 
-configure LIBS vs MUTTLIBS
 hcache auto magic everything
 gcc check for clang
 READMEs tidy review
-#374 lists, queues, etc
 index folding cf vim
 vim plugin - cino options etc
 
@@ -997,12 +981,6 @@ topics for my github repos, icons?
 
 sync web & contrib versions of hcache benchmarks
 	how?
-
-move muttrc* vimrc* to contrib/
-
-web guide update docs for toogley
-
-smime_keys(.pl) why both?
 
 mutt marks -- are they mailbox-local?
 	can we distinguish (like vim) betweeen
