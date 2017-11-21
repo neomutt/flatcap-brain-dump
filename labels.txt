@@ -1,0 +1,40 @@
+
+Types
+	X - X-Label
+	I - IMAP
+	N - Notmuch
+	Q - other
+
+POP	X
+IMAP	XI
+maildir	XN
+mbox	XN
+nntp	X
+
+display X, I|N
+diff inherited X, I|N
+
+Moving
+	mutt
+	offlineimap +labels
+	mbsync -labels
+	fetchmail -labels
+
+Convert
+	X->I
+	I->X
+	X->N
+	N->X
+
+charsets option
+
+Terms
+	Label
+	Tag
+	Keyword
+	Flag
+
+Completion
+	X, I, N
+	+, -, !
+
