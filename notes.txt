@@ -1,3 +1,11 @@
+run gpg signature testing asynchronously (when opening email)
+	would need placeholder in the email
+	would need to redraw/render the email after
+	thread safety
+
+if a struct has a X_free() it must have a X_alloc()
+	check all allocs are *C*alloc
+
 travis
 	doc fold markers
 
