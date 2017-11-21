@@ -1,3 +1,31 @@
+"set ?imap_pass" show sensitive data
+	what could we do about it?
+
+docs
+	which sections are conditional?
+	"neomutt -v" output, check docs
+
+build docs
+	include out-of-tree example
+	and cross-compile example
+
+doxygen
+	add ncrypt
+	add imap
+	add lib dependencies
+
+libconn
+	conn/getdomain.c -> conn/dns.c
+	refactor init.c dns functions to conn/dns.c
+
+neomutt user maintenance
+Log person's last:
+	commit
+	comment
+	issue
+	team
+	private member!
+
 doc all refs to "mutt -v" output
 	-v make the enabled hcache more visible
 
