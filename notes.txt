@@ -37,6 +37,7 @@ neo-vim repo
 	announce to users ml
 	docs -> web/dev, pathogen, vundle, etc, see other plugins
 	vim "team"?
+		limit neomutt.vim access to them
 	merge vim keys?
 
 release
