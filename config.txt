@@ -1,0 +1,73 @@
+Config Integration
+
+Docs: encapsulated types
+
+cs_create(n), register_types()
+cs_register_variables()
+cs_add_listener()
+
+parse_set -> new config
+dump config -D
+complete <tab>
+
+split init.h (comments -> docs)
+check initial of -1 works
+move SYN to syn.c
+
+create List type flags for separation
+SEP_COMMA|SEP_SPACE
+sort flag?  ALPHA, NUMERIC
+
+how do I deal with set noX, invX
+should config deal with it?
+perhaps the type should know whether it can be
+negated/toggled?  set &X too (reset)
+
+set X		bool=1	quad=yes
+reset X		bool=0	quad=no
+unset X	or noX
+toggle X or invX (bools and quads only)
+
+toggle X Y Z -> set invX invY invZ
+unset X Y Z -> set noX noY noZ
+
+set ?var -> display value
+set &var -> reset var
+
+"all" -> every config
+
+unset/reset my_VAR -> delete
+set X=$Y -> expansion
+(documented where?) NOT
+support set VAR? (postfix '?')
+
+how to handle notification for "reset all"?
+
+flag types:
+	can be "set"  set X valid    
+	can be "inv"  set invX valid 
+	can be "no"   set noX valid  
+
+validaor for "charset"
+could the validator have a side-effect?
+*do* the actual char-setting required?
+
+validators for:
+	show_multipart_alternative
+	debug_file
+	debug_level
+
+validator != listener
+validator before, listener after change
+
+set up some "default" validators
+	val_not_null
+	val_not_empty_string
+	val_numeric
+	val_no_spaces
+
+relative paths
+	relative to what?  (muttrc?)
+	who calculates?
+	does config store name of base variable?
+
