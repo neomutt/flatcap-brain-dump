@@ -1,3 +1,97 @@
+autosetup
+	tags target?
+	distclean rm tags
+	delete *.Tpo?`
+
+all functions that return int
+	`if (!fn())` should be `if (fn() == X)`
+
+REGEXEC() macro only used once
+
+autosetup
+	make V=0
+	create min-build
+		keep dirs
+
+DEIFNE library
+	no mutt deps
+	fully doc'd (doxygen)
+	no _() text?
+	no deps
+		no external headers
+		no global vars / structs
+	unit testable
+	coverage (not yet)
+	no #ifdef's?
+
+url -> lib?
+	not independent enough
+	#ifdef's etc
+
+neo-vim repo
+	project description
+		tags
+		topics
+		icon
+	fillout insights (communities) .github
+	announce to users ml
+	docs -> web/dev, pathogen, vundle, etc, see other plugins
+	vim "team"?
+	merge vim keys?
+
+release
+	add vim repo to release notes "to check" list
+docs/web
+	fork -> yes!
+	when autosetup is default?
+
+easy: tidy code:
+	_alternates_clean()
+	clear_subject_mods()
+	_attachments_clean()
+	safe_malloc()
+
+find 'for' without {}
+
+autosetup
+	.deps
+	.objs
+	from min-build
+
+docs: note which config files have a leading '.'
+	it's hard to see in text
+
+easy: find and fix imbalanced #ifdefs
+	write out code in full
+	easier to understand/parse
+
+muttrc ifdef
+	/file absolute
+	./file relative source
+
+docs
+	rename manual.{txt,etc} to guide
+
+logo competition
+	cartoon dog
+	head
+	letter in mouth
+	need to look good in b/w
+	and in line drawing
+
+audit/testing/coverage
+	trace one function at a time, check all
+	vars defined ∀ inputs, doc'd coverage
+	test code
+
+BIG tasks
+	config/account
+	oauth2 - save to file imap, smtp (libcurl, libjson)
+	summary pages
+	aliases
+	debug log
+	split docs
+
 "set ?imap_pass" show sensitive data
 	what could we do about it?
 
