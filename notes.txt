@@ -1,3 +1,57 @@
+connections
+	raw - fd - host, port
+	ssl - encryption - certs
+	imap - login - user, pass
+	tunnel?
+	who negotiates ssl, sasl?
+	how does opportunistic ssl work?
+
+create mechanism for *literal* set variable
+	set pass = literal< ... >
+	how do you know where it ends?
+	perhaps literal must be the last thing on the line?
+	would the variable need to know?
+
+kill all function names with plural objects
+	new_body() OK
+	delete_bodies() BAD
+	hard to search for similar functions
+
+use summary log for informational info
+	Sent email "Subject" to
+		ppl-list
+	Received 4 new emails in 2 folders
+
+hide IDNA compat that's in mutt_idna.h (header)
+	move to .c wrap and eradicate #ifdef LIBIDN
+
+releases
+	update releases page
+	update en_GB to 100%
+
+rfc822_cat -> mutt/string.c
+mutt_atol -> non-static
+
+mutt-1.9.1
+	attach mac text file (CR) OK
+	neomutt eats all CRs
+
+easy: change all "int buflen" to "size_t buflen"
+
+change aliases from list to hash
+	how big?
+	100s?
+
+where is punycode encoded/decoded?
+	extract to lib and test
+
+keep and display different address parts
+	raw (from header)
+	canonical (parsed)
+	comments
+	display (de-punycode)
+	comment string includes "()"
+
 run gpg signature testing asynchronously (when opening email)
 	would need placeholder in the email
 	would need to redraw/render the email after
