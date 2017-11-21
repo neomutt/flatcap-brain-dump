@@ -71,3 +71,13 @@ relative paths
 	who calculates?
 	does config store name of base variable?
 
+new assignment operator?
+	:=  (expand at time of use)
+	expand recursively?
+	use for passwords?
+	so that they're not cached in neomutt
+	or $= ?
+	@=
+	workaround is to escape $
+	set x = \$y
+

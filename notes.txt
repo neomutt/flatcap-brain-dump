@@ -1,3 +1,17 @@
+doc all refs to "mutt -v" output
+	-v make the enabled hcache more visible
+
+bug: can't copy/save email without decrypting it
+
+rhel needs libidn-devel
+
+have a different index_format for indicator line?
+
+easy: split mutt_lock_file (and unlock)
+	or drop flock()
+	almost no overlap of code
+	fix configure fcntl or flock, not both
+
 connections
 	raw - fd - host, port
 	ssl - encryption - certs
