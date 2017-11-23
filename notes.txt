@@ -1,3 +1,6 @@
+debug logging
+	use millisecond timestamps?
+
 autosetup
 	tags target?
 	distclean rm tags
