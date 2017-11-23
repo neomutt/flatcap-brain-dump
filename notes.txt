@@ -1,3 +1,5 @@
+move getaddrinfo, getaddrinfo_a into conn/dns.c
+
 debug logging
 	use millisecond timestamps?
 
@@ -16,7 +18,7 @@ autosetup
 	create min-build
 		keep dirs
 
-DEIFNE library
+DEFINE library
 	no mutt deps
 	fully doc'd (doxygen)
 	no _() text?
