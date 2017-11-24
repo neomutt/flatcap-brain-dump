@@ -16,7 +16,7 @@ declare all local functions "static"
 	standard name for statics?
 	drop mutt_ prefix
 
-while(true), rather than FOREVER (33 occurrences)
+while(true), rather than FOREVER (33 occurrences) or for (;;)
 iwyu on all source files
 #include with "" not <> for mutt headers
 drop #if HAVE_CONFIG_H
@@ -46,14 +46,8 @@ functions - move static before public
 	reduce / remove need for forward declarations
 
 regexp -> regex
-rename buff to buf
-retval variable rc: 724 vs rv: 132
 
 drop regex.[ch]
-update intl
-drop intl
-tidy copyright messages
-
 clang-format
 
 ---------------------------------------
@@ -208,11 +202,6 @@ lots of preprocessor symbols that use #if on undefined symbols
 
 macros() should be MACROS()
 
-smime.c:
-	variable set to NULL after safe_fclose
-	safe_fclose (&smimeout);
-	smimeout = NULL;
-
 check everyone's using safe_fopen(), safe_fclose(), etc
 
 rename safe_X(**ptr) to X_null?
@@ -289,8 +278,6 @@ p = alloc(sizeof (*p)) (not sizeof(TYPE))
 x = y = value?
 use mutt_*, safe_*, check_sec.sh
 
-labels at column 0
-
 return statement should be simple
 	return token
 	return (token > 42);
@@ -318,3 +305,7 @@ distinguish between 0 (zero) and NUL '\0' ?
 /*<space>comment<space>*/
 	tidy and more greppable
 
+XXX: 32
+FIXME: 11
+
+init.c strings "yes", "no", "ask-yes", "ask-no" -- define centrally
