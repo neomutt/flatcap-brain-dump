@@ -1,3 +1,7 @@
+config push/pop or save/restore
+	save_config; set var=x; function; restore_config
+	no more need for my_var use
+
 move getaddrinfo, getaddrinfo_a into conn/dns.c
 
 debug logging
