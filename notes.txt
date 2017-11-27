@@ -1,3 +1,8 @@
+logging ideas
+	audit the levels
+	add sensitive logging option
+	remove logging levels completely
+
 config push/pop or save/restore
 	save_config; set var=x; function; restore_config
 	no more need for my_var use
