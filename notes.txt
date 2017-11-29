@@ -1,3 +1,7 @@
+refactor:
+	if (123 < x)
+	while (NULL == fn())
+
 logging ideas
 	audit the levels
 	add sensitive logging option
