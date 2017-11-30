@@ -1,3 +1,7 @@
+move ncrypt/crypt.c disable_coredumps() to init
+	there we could disable coredumps UNLESS
+	the user enables debug logging
+
 do something about assert
 	one file has it disabled
 	one file has it enabled
