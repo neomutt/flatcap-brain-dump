@@ -258,8 +258,6 @@ find untranslated strings, i.e. missing _()
 
 rename variables to be sensible
 
-buf (3092) vs buff (231)
-
 test iwyi - include what you use
 
 If the name of a function is an action or an imperative command, the

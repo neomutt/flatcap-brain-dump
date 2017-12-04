@@ -152,8 +152,6 @@ doc all refs to "mutt -v" output
 
 bug: can't copy/save email without decrypting it
 
-rhel needs libidn-devel
-
 have a different index_format for indicator line?
 
 easy: split mutt_lock_file (and unlock)
@@ -192,8 +190,7 @@ releases
 	update releases page
 	update en_GB to 100%
 
-rfc822_cat -> mutt/string.c
-mutt_atol -> non-static
+mutt_addr_cat -> mutt/string.c
 
 mutt-1.9.1
 	attach mac text file (CR) OK
@@ -251,8 +248,6 @@ libfile
 easy task: merge:
 	mutt_concat_path 14 uses
 	mutt_concatn_path 1 use
-
-rfc822 needs renaming.  that rfc was obsolete long ago
 
 easy: split mutt_lock_file() and unlock
 	into flock() and fcntl() versions
@@ -360,8 +355,6 @@ tests on lib should also be run on 32-bit arch
 
 2017-09-27 #mutt
 <fire2199> by the way... why is there not a pre-defined variable for setting the config folder?
-
-variables: buf vs buff vs buffer (distinct from Buffer)
 
 pgp-hook is synonym of crypt-hook
 	needs deprecating, too
@@ -776,7 +769,6 @@ Misc
 	release notes - mention "ifdef" changes
 
 RFC
-	mutt_debug __FILE__, __LINE__ via macro
 	account command user ml, devel ml
 
 	mutt_log -> level 1 ==
@@ -788,11 +780,6 @@ RFC
 	263 mutt_message
 	728 mutt_error
 	704 mutt_debug (total ~1700)
-
-Debug levels
-	1,2 user logging
-	3+ full file:line:function:message
-	(debug only)
 
 Decide
 	#ifdef DEBUG
@@ -904,10 +891,6 @@ pgp_invoke_decode
 	strip out?
 pgp_application_pgp_handler
 	needpass (bool) starts as -1!
-
-move smime.types to contrib
-
-travis special build for upstream?
 
 safe_free() wrapped by macro FREE()
 if debug take sizeof arg & memset to 0xDD
