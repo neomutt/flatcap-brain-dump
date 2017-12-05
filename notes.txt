@@ -72,12 +72,6 @@ docs/web
 	fork -> yes!
 	when autosetup is default?
 
-easy: tidy code:
-	_alternates_clean()
-	clear_subject_mods()
-	_attachments_clean()
-	safe_malloc()
-
 find 'for' without {}
 
 autosetup
@@ -332,13 +326,6 @@ or something like vim's unmagic \V
 
 docs, etc: drop "All mail clients suck..." quote from m.e.
 
-iptostring
-	unsigned param, no int!
-
-shadow param warnings in crypt.c!
-	check build options
-	build script and travis
-
 kill ISSPACE macro -- no benefit to having it
 	what about the (unsigned char*) cast in it?
 
@@ -391,9 +378,6 @@ Change all version strings to YYYY-MM-DD rather than YYYYMMDD?
 Easy task
 	refactor parse_hooks to use (new) flags in init.h
 	e.g. TAKES_PATTERN, TAKES_REGEX
-
-install: do we need *.dist any more
-	packages keep track if things have changed
 
 mutt -DX read config and display deprecated options
 	and their replacements
@@ -947,8 +931,6 @@ PR requirement all commits build
 git repo
 	real names (unless anon)
 
-drop testing main()s?
-
 email
 	folding the index
 	gettext -> non-optional?
@@ -1306,8 +1288,6 @@ save backlog of messages in a deleted file!
 
 issues for upstream sync - share the lot
 
-all PRs to in-progress?
-
 Releases
 	comments = docs
 	translations too - in either release
@@ -1405,9 +1385,6 @@ user: e.g. type something invalid
 config: file invalid / missing
 code: internal error, missing ops
 separate what user cannot do vs MAY not do
-
-debian devs are any platforms NOT using gcc/clang?
-	do they have FILE, LINE, FUNC?
 
 can't find mailbox ops error mesage -- coder only compress.c
 
@@ -1556,8 +1533,6 @@ release branch
 list Sven's unused letters to the main guide
 
 leave-folder hook?
-
-make clean isn't good enough?
 
 coverity to use travis-build script!
 
@@ -2280,9 +2255,6 @@ context sensitive popup menus
 check all lists of features are up-to-date
 	web, etc
 
-email all 341 of mutt-kz stargazers and tell them about neomutt
-	exclude the neomutt stargazers
-
 19:32 <mykoserocin> is there a way to show condensed DKIM results instead of full "Authentication-Details" header?
 19:32 <mykoserocin> e.g. "DKIM: pass" or "DKIM: fail"
 19:52 <brendan> mykoserocin, I use the spam marker system for it: spam "Authentication-Results: mymta.com; .*dkim=pass" "✓"
@@ -2311,13 +2283,6 @@ contact distros
 $source_dir like folder
 	or like $PATH?
 	looking for files to source
-
-Mutt vs NeoMutt branding
-	config
-	binary
-	install dir
-	version
-	user agent
 
 browser - add flagged
 	expando
@@ -2443,8 +2408,6 @@ maildir_trash conflicts trash folder patch
 	our patch, check upstream version
 	document this
 
-change "mutt" refs in /etc/Muttrc?
-
 mutt config source DIR
 	loads all files within
 	recurse?
@@ -2465,8 +2428,6 @@ darnir:
 	educate users
 	can we force config=yes?
 	what if libs are missing?
-
-a rogues' gallery web page with our PGP keys
 
 docs based on use-cases
 	need list of cases to start
@@ -2533,9 +2494,6 @@ create a function to cycle through them?
 make the neomutt branding more obvious
 	make it obvious to the user that this is
 	neomutt, not mutt
-
-neomutt binary
-	symlink (provide) mutt
 
 progress bar:
 	better progress indicator
@@ -2895,11 +2853,6 @@ list_pull_requests.sh
 	reference local neomutt repo
 
 muttrc.{distro} ∀ distros
-
-install neomutt in parallel with mutt
-	uses alternatives mechanism
-	=> /usr/bin/neomutt{,-2016MMDD}
-	=> /usr/bin/mutt-1.6.1
 
 [management]/bin
 	sync.sh 6h cron script to sync mirrors
