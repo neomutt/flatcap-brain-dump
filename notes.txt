@@ -1,3 +1,20 @@
+url.c!
+	len -= (l = strlen(dest));
+
+kill camelCase variables
+	rename all to snake_case
+
+init.c restore_default()
+	factor out p->initial
+	used in most paths
+
+init.c main()
+	Is this still true?
+	seems to work ok
+	/* Always create the mutt_windows because batch mode has some shared code
+	* paths that end up referencing them. */
+	mutt_init_windows();
+
 move ncrypt/crypt.c disable_coredumps() to init
 	there we could disable coredumps UNLESS
 	the user enables debug logging
