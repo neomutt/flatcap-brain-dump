@@ -1,3 +1,14 @@
+refactor regex calls, e.g.
+	if (Mask && !((regexec(Mask->regex, nntp_data->group, 0, NULL, 0) == 0) ^ Mask->not))
+	if (regex_match(Mask, str)
+	it checks pointers, etc
+
+muttlib.c
+	mutt_open_read()
+	potential buffer underrun / size_t overflow
+	size_t len = mutt_str_strlen(path);
+	if (path[len - 1] == '|')
+
 url.c!
 	len -= (l = strlen(dest));
 
