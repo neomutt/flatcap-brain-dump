@@ -1,7 +1,13 @@
+config
+	put other globals into hash
+	CFG_PRIVATE
+	don't show up in neomutt -D
+
 refactor regex calls, e.g.
 	if (Mask && !((regexec(Mask->regex, nntp_data->group, 0, NULL, 0) == 0) ^ Mask->not))
-	if (regex_match(Mask, str)
+	if (regex_match(Mask, str, flags)
 	it checks pointers, etc
+	takes 'not' into account
 
 muttlib.c
 	mutt_open_read()
