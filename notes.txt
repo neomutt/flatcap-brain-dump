@@ -1,3 +1,53 @@
+config time type that accepts
+	10	seconds
+	10s	seconds
+	10m	minutes
+	etc
+	display as what?
+		seconds?
+		shortest abbreviation?
+	depends on flags?
+
+teams
+	distro/X  X=debian,homebrew,etc
+	code/X    X=notmuch,reviewers,etc
+
+config
+	after config split up commands and functions too
+	into their separate components
+
+history -1 => infinite
+
+config non-null flags (may not be unset)
+	most regexes (those without initial string)
+	shell
+	all format strings
+
+deprecate AUR repo & notify
+
+drop mailmap, use management one
+
+Config dump
+	flags: active vs disabled
+	register flags - disabled =>
+		no var ptr
+		no validator
+		no listeners
+	dump MUTT = X|Y|Z flags
+	dump NEO  = P|Q|R flags
+	parse config silently accept disabled
+	flags for warn on synonym/deprecated
+	flags for warn on disabled (in this version)
+
+tag closed discussions as
+	wontfix or postpone or bluesky?
+
+travis
+	test out-of-tree buil
+	install, uninstall
+		work ok
+		no files left behind
+
 Add warnings to doxygen headers, for
 	@warning This function uses global variables: LIST, ...
 	@warning This function uses static variables: LIST, ...
