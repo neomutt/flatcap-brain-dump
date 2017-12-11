@@ -1,3 +1,5 @@
+all flag fields ought to be unsigned
+
 config time type that accepts
 	10	seconds
 	10s	seconds
