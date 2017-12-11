@@ -1,3 +1,5 @@
+.mutthistory should be .neomutthistory
+
 config
 	put other globals into hash
 	CFG_PRIVATE
