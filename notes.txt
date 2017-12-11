@@ -1,3 +1,6 @@
+Add warnings to doxygen headers for globals
+	@warning This function uses global variables: LIST, ...
+
 .mutthistory should be .neomutthistory
 
 config
