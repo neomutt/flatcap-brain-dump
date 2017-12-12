@@ -1,3 +1,7 @@
+if config (init.h) is de-centralised and docs are sectioned
+	/u/s/d/neomutt/section-N.md
+	how do we link ":help [OPTION]" to the right file?
+
 all flag fields ought to be unsigned
 
 config time type that accepts
