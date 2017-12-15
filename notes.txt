@@ -1,3 +1,5 @@
+update readme drop waffle shield for "backlog"
+
 if config (init.h) is de-centralised and docs are sectioned
 	/u/s/d/neomutt/section-N.md
 	how do we link ":help [OPTION]" to the right file?
