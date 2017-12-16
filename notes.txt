@@ -1,3 +1,6 @@
+create neomutt account on docker.io
+	advertise to dev list
+
 update readme drop waffle shield for "backlog"
 
 if config (init.h) is de-centralised and docs are sectioned
