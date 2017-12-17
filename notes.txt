@@ -1,3 +1,6 @@
+document the 'hidden' uses of folder-hook
+	when saving emails to $record
+
 create neomutt account on docker.io
 	advertise to dev list
 
