@@ -1,3 +1,5 @@
+#include's move all conditional sections to the end
+
 configure devel options (for beta features)
 	./configure --devel-FEATURE
 	after time they become --FEATURE or built-in
