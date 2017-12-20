@@ -3,6 +3,10 @@ be able to reproduce the entire setup
 	colours?
 	aliases?
 	hooks?
+even if the CLI can't, the UI might need to be able to, for commands:
+	:colors
+	:aliases
+	:hooks
 
 make the shutdown cleanup (freeing memory, etc)
 	#ifdef DEBUG
