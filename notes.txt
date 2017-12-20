@@ -1,3 +1,9 @@
+should dump_config be able to dump ALL config
+be able to reproduce the entire setup
+	colours?
+	aliases?
+	hooks?
+
 make the shutdown cleanup (freeing memory, etc)
 	#ifdef DEBUG
 	nice to check, but not required for general users
