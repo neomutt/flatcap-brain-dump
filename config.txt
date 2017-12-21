@@ -94,6 +94,10 @@ config non-null flags (may not be unset)
 	shell
 	all format strings
 
+validator for each format string
+	checks if the %x expandos are valid
+	run a test parse of some data?
+
 config time type that accepts
 	10	seconds
 	10s	seconds
