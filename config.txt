@@ -49,7 +49,7 @@ flag types:
 	can be "inv"  set invX valid 
 	can be "no"   set noX valid  
 
-validaor for "charset"
+validator for "charset"
 could the validator have a side-effect?
 *do* the actual char-setting required?
 
@@ -88,4 +88,50 @@ function/known data
 	parse_set		!FILE, !LINE, SYMBOL
 	mutt_option_index	!FILE, !LINE, SYMBOL
 how do we pass out a meaningful error message?
+
+config non-null flags (may not be unset)
+	most regexes (those without initial string)
+	shell
+	all format strings
+
+config time type that accepts
+	10	seconds
+	10s	seconds
+	10m	minutes
+	etc
+	display as what?
+		seconds?
+		shortest abbreviation?
+	depends on flags?
+
+Config dump
+	flags: active vs disabled
+	register flags - disabled =>
+		no var ptr
+		no validator
+		no listeners
+	dump MUTT = X|Y|Z flags
+	dump NEO  = P|Q|R flags
+	parse config silently accept disabled
+	flags for warn on synonym/deprecated
+	flags for warn on disabled (in this version)
+
+should dump_config be able to dump ALL config
+be able to reproduce the entire setup
+	colours?
+	aliases?
+	hooks?
+even if the CLI can't, the UI might need to be able to, for commands:
+	:colors
+	:aliases
+	:hooks
+
+config
+	put other globals into hash
+	CFG_PRIVATE
+	don't show up in neomutt -D
+
+config push/pop or save/restore
+	save_config; set var=x; function; restore_config
+	no more need for my_var use
 

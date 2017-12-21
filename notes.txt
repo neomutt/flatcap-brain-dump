@@ -1,13 +1,3 @@
-should dump_config be able to dump ALL config
-be able to reproduce the entire setup
-	colours?
-	aliases?
-	hooks?
-even if the CLI can't, the UI might need to be able to, for commands:
-	:colors
-	:aliases
-	:hooks
-
 make the shutdown cleanup (freeing memory, etc)
 	#ifdef DEBUG
 	nice to check, but not required for general users
@@ -32,16 +22,6 @@ if config (init.h) is de-centralised and docs are sectioned
 
 all flag fields ought to be unsigned
 
-config time type that accepts
-	10	seconds
-	10s	seconds
-	10m	minutes
-	etc
-	display as what?
-		seconds?
-		shortest abbreviation?
-	depends on flags?
-
 teams
 	distro/X  X=debian,homebrew,etc
 	code/X    X=notmuch,reviewers,etc
@@ -52,26 +32,9 @@ config
 
 history -1 => infinite
 
-config non-null flags (may not be unset)
-	most regexes (those without initial string)
-	shell
-	all format strings
-
 deprecate AUR repo & notify
 
 drop mailmap, use management one
-
-Config dump
-	flags: active vs disabled
-	register flags - disabled =>
-		no var ptr
-		no validator
-		no listeners
-	dump MUTT = X|Y|Z flags
-	dump NEO  = P|Q|R flags
-	parse config silently accept disabled
-	flags for warn on synonym/deprecated
-	flags for warn on disabled (in this version)
 
 tag closed discussions as
 	wontfix or postpone or bluesky?
@@ -87,11 +50,6 @@ Add warnings to doxygen headers, for
 	@warning This function uses static variables: LIST, ...
 
 .mutthistory should be .neomutthistory
-
-config
-	put other globals into hash
-	CFG_PRIVATE
-	don't show up in neomutt -D
 
 refactor regex calls, e.g.
 	if (Mask && !((regexec(Mask->regex, nntp_data->group, 0, NULL, 0) == 0) ^ Mask->not))
@@ -138,10 +96,6 @@ logging ideas
 	audit the levels
 	add sensitive logging option
 	remove logging levels completely
-
-config push/pop or save/restore
-	save_config; set var=x; function; restore_config
-	no more need for my_var use
 
 move getaddrinfo, getaddrinfo_a into conn/dns.c
 
