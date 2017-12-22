@@ -1,3 +1,6 @@
+string_hook
+	move !match test out of loop
+
 make the shutdown cleanup (freeing memory, etc)
 	#ifdef DEBUG
 	nice to check, but not required for general users
