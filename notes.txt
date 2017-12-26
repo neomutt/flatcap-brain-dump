@@ -1,3 +1,5 @@
+drop remaining inline functions
+
 string_hook
 	move !match test out of loop
 
@@ -24,6 +26,7 @@ if config (init.h) is de-centralised and docs are sectioned
 	how do we link ":help [OPTION]" to the right file?
 
 all flag fields ought to be unsigned
+	and fixed width, e.g. uint32_t
 
 teams
 	distro/X  X=debian,homebrew,etc
@@ -78,7 +81,7 @@ init.c restore_default()
 
 init.c main()
 	Is this still true?
-	seems to work ok
+	seems to work ok without it
 	/* Always create the mutt_windows because batch mode has some shared code
 	* paths that end up referencing them. */
 	mutt_init_windows();
