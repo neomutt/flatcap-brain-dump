@@ -1,0 +1,178 @@
+Docs (web)
+sections are subdirs
+all links are relative
+concatenate -> bigman.txt?
+which order are files cat'd?
+jekyll to html
+if cat works don't need html
+in-neo-ihelp load 1 big file?
+syntax highlight markdown?
+:help sidebar_width does what?
+open, search?
+help would need to hide links
+(unless mouse or cursor support)
+Default values "neomutt -D!"
+OK for neomuttrc.5
+what about main guide?
+how to substitute in values?
+special format : in backticks
+`set variable = "..."`
+hmm... easily confused with examples
+need .css marker!
+guide needs separate repo
+=> submodule of website
+=> update script => unnecessary
+	extra commits (special user)
+strip /etc/neomuttrc
+where does the web index come from?
+how does it link to disparate places?
+generate from grepping .css
+tags from rest of docs?
+TOCs autogenerate - how?
+hidden _order files for cat-ing?
+Debian restriction on generated markdown file too?
+neomuttrc - put fully doc'd sample in doc dir?
+init.h comments -> md
+strings in code -> :help?
+
+docs: LOTS of small files - .md
+<6 links at bottom of page - "see also"
+turn them into "help menu" (navigation)
+mutt help parses md and links
+colours syntax
+have a help x-ref index to lookup all vars,cmds,fns?
+and other major topics
+autojump on 'num' press
+navigation - keep list of breadcrumbs (on screen?)
+underline links or summarise at end of page?
+once md help is ok-looking drop .txt version?
+allow bookmarks for later access
+
+docs - display docs(md) as mailbox
+threaded, searchable
+help mx using API
+thread needs index, or "magic header"
+web pages need YML anyway, repurpose
+remember position between calls
+	:help, search, open, quit, :help
+CLI help mode?  only help?
+	display help on stdout and stop?
+need to be able to print out help page
+display search matches as fake folder too
+grouped by importance
+	1) title
+	2) body match
+
+Docs mailbox type
+hide sidebar, more space
+or display TOC in wide sidebar
+auto-hide?  auto-sync with pager
+index needs help_format string
+%n - section number, 1.2.3
+%N - min section number, .3
+	unless parent isn't visible
+	&thread notation?
+%t title of page
+%l number of lines
+%w number of words
+%c number of chars / bytes
+use header cache?
+save having to parse the length/title/inheritance
+	of ALL the pages
+cache the date of the file?
+YML title, section number|parent
+if no section num, sort alpha
+thread by parent
+YML lines could be calc'd at install time
+last update calc'd from git (or by release date)
+when in docs $folder = /usr/share/doc/neomutt
+mailbox=+reference.md keep names simple
+in docs $default_search includes ~b body
+$index_pager_lines is more useful than sidebar (wider)
+limit uses ~b too, to narrow search
+search needs to ignore markdown & YML
+pager parses markdown, bold, underline
+headings, tables, notes - "color"s for each
+:help [topic] search for topic
+multiple args => AND
+X|Y => OR
+index colour for search match
+option to show non-matching docs
+'/' => search
+alt-'/' => search-add
+	add more terms to search filter
+'/' again shows search for editing
+if showing non-search matches,
+	<tab> selects next, like new mail in index
+does mark_old have any effect?
+=> "use up" newness of search results
+<sync-mailbox> would hide 'read' searches
+in index/pager
+	'/'<del> empties search
+	'/'text overwrites search
+	'/'<space>text adds to search
+:help help
+	shows instructions on how to use help system
+:help<enter>
+	just shows index of help
+<number><enter>
+	selects link 'n'
+prefix all links or have list at bottom of page
+	prefix is better for long pages
+colour for links/numbers
+for $vars reference page, link nums will get quite large
+	problem?
+history for help searches
+autocomplete: variables, commands, functions, *glossary*!
+colour for search match within page
+'n', 'N' skip to next/prev matches
+when opening search match, autoskip to first match
+	centre vertically?
+	or have a few lines of context above?
+'/' in index searches and filters all docs
+'/' in pager finds within the page
+:help - close pager; new search/filter
+functions <help-*?
+	<-search-docs>
+	<-search-docs-add>
+	<-search-page>
+progress bad whilst searching
+	might be slow in future with LOTS of small files
+scan dir and count files *once* and assume Ok for progress bar counts
+status bar expandos for
+	dirs, files, lines, bytes
+sidebar expandos for num-matches, etc
+use sidebar "help" top-level folder
+	subfolders are help queries
+'q' in a help window closes it
+or 'd' delete all search matches then <sync? will close the folder
+multiple searches can be kept open
+can 'c' change folder between them
+mailboxes help:search-string
+could be a help bookmark! overkill?
+in pager-navigation
+	next/prev page
+	next/prev section
+	up - go to parent
+	home - go to index/TOC
+	next/prev search match
+<help-quit> ? to close
+is help app-modal, or just another mailbox?
+improve this page command
+<help-improve> edit the page and go to compose
+	edited page is attached
+	To: help@n.org
+	Subject: Page/path
+encourage ALL users to improve docs!
+
+help index/references at end
+sub-sections - brief description of section type
+	then pure list of links
+	1-liner desc of sections on top of page
+	commands, functions, variables, colours, hooks
+	glossary, features (fold into glossary?)
+put glossary first
+
+use hcache for search results?
+	instant re-searching
+
