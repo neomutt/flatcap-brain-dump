@@ -1,3 +1,44 @@
+push mnemosyne
+
+vim-airline test po fix on old non-sync vim
+(rhel6/7) create PR
+
+vim-interesting-words
+define 24/25 levels
+colourscheme 1: ROYGBIV
+2: RROOYY...
+3: RRROOOYYY...
+0th: RRRRRR...
+,v'n'
+
+travis trusty - try more compiler flags
+list autosetup release/commit hash visibly
+	(for downstream packagers)
+Update AUTOSETUP/INSTALL (or merge)
+
+buffer *alloc* - make some space
+_peek_ - get next token (save ptr), don't move dptr
+break up extract token - don't lookup '&var'
+don't process `cmd`
+what str cmds are used to put data in a buf,buflen array?
+have mirror set of buffer_strfcpy, etc
+strfcpy the only one needed
+sprintf -> buffer_sprintf
+(re)alloc as nec
+79 buf,buflen + ~190 possibles
+buffer_dupe()?
+
+who frees the charset hook regex lists?
+hook.c?
+
+change folder bug
+startup
+sidebar
+c<enter> (index)
+c<enter> (pager)
+c? (index)
+c? (pager)
+
 drop remaining inline functions
 
 string_hook

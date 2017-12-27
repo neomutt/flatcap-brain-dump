@@ -139,3 +139,9 @@ config push/pop or save/restore
 	save_config; set var=x; function; restore_config
 	no more need for my_var use
 
+config - accept disabled
+configure flag? or CLI
+CLI warn option
+
+typedef numeric/enum config types?
+
