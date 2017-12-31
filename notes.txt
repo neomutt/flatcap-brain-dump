@@ -1,3 +1,5 @@
+use idna.h IDNA_ACE_PREFIX "xn--"
+
 push mnemosyne
 
 vim-airline test po fix on old non-sync vim
@@ -27,6 +29,7 @@ sprintf -> buffer_sprintf
 (re)alloc as nec
 79 buf,buflen + ~190 possibles
 buffer_dupe()?
+buffer_swap()?
 
 who frees the charset hook regex lists?
 hook.c?
