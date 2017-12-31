@@ -23,3 +23,34 @@ autogen vim syntax file
 translations to web page
 doxygen -> web /code dir
 mutt debug FILE, LINE, FUNC #macro
+
+split mutt_lock_file (and unlock)
+	or drop flock()
+	almost no overlap of code
+	fix configure fcntl or flock, not both
+
+split mutt_lock_file() and unlock
+	into flock() and fcntl() versions
+	only allow/build one
+	configure option --locking=[flock|fcntl] ?
+
+find and fix imbalanced #ifdefs
+	write out code in full
+	easier to understand/parse
+
+change all "int buflen" to "size_t buflen"
+
+merge:
+	mutt_concat_path 14 uses
+	mutt_concatn_path 1 use
+
+replace mbtowc() with mbrtowc() in my_width()
+	only used in one place
+	man page says: "The function mbrtowc(3) provides a better interface to the same functionality"
+
+refactor parse_hooks to use (new) flags in init.h
+	e.g. TAKES_PATTERN, TAKES_REGEX
+
+eliminate all static variables in functions
+	starting with the libraries
+

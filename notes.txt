@@ -1,3 +1,10 @@
+default (system) config
+	ifdef VERSION > 20180101 set ignore_disabled_config
+
+refactor idna code to make the entire file build-conditional
+
+NEW notmuch version: rebuild copr
+
 use idna.h IDNA_ACE_PREFIX "xn--"
 
 push mnemosyne
@@ -51,8 +58,6 @@ make the shutdown cleanup (freeing memory, etc)
 	#ifdef DEBUG
 	nice to check, but not required for general users
 
-#include's move all conditional sections to the end
-
 configure devel options (for beta features)
 	./configure --devel-FEATURE
 	after time they become --FEATURE or built-in
@@ -62,8 +67,6 @@ document the 'hidden' uses of folder-hook
 
 create neomutt account on docker.io
 	advertise to dev list
-
-update readme drop waffle shield for "backlog"
 
 if config (init.h) is de-centralised and docs are sectioned
 	/u/s/d/neomutt/section-N.md
@@ -112,12 +115,6 @@ muttlib.c
 	potential buffer underrun / size_t overflow
 	size_t len = mutt_str_strlen(path);
 	if (path[len - 1] == '|')
-
-url.c!
-	len -= (l = strlen(dest));
-
-kill camelCase variables
-	rename all to snake_case
 
 init.c restore_default()
 	factor out p->initial
@@ -196,9 +193,6 @@ neo-vim repo
 
 release
 	add vim repo to release notes "to check" list
-docs/web
-	fork -> yes!
-	when autosetup is default?
 
 find 'for' without {}
 
@@ -209,10 +203,6 @@ autosetup
 
 docs: note which config files have a leading '.'
 	it's hard to see in text
-
-easy: find and fix imbalanced #ifdefs
-	write out code in full
-	easier to understand/parse
 
 muttrc ifdef
 	/file absolute
@@ -276,11 +266,6 @@ bug: can't copy/save email without decrypting it
 
 have a different index_format for indicator line?
 
-easy: split mutt_lock_file (and unlock)
-	or drop flock()
-	almost no overlap of code
-	fix configure fcntl or flock, not both
-
 connections
 	raw - fd - host, port
 	ssl - encryption - certs
@@ -305,20 +290,13 @@ use summary log for informational info
 		ppl-list
 	Received 4 new emails in 2 folders
 
-hide IDNA compat that's in mutt_idna.h (header)
-	move to .c wrap and eradicate #ifdef LIBIDN
-
 releases
 	update releases page
 	update en_GB to 100%
 
-mutt_addr_cat -> mutt/string.c
-
 mutt-1.9.1
 	attach mac text file (CR) OK
 	neomutt eats all CRs
-
-easy: change all "int buflen" to "size_t buflen"
 
 change aliases from list to hash
 	how big?
@@ -367,15 +345,6 @@ libfile
 	append_file("name", buffer)
 	for functions that don't need to do anything else
 
-easy task: merge:
-	mutt_concat_path 14 uses
-	mutt_concatn_path 1 use
-
-easy: split mutt_lock_file() and unlock
-	into flock() and fcntl() versions
-	only allow/build one
-	configure option --locking=[flock|fcntl] ?
-
 static functions with leading _
 	add to style guide
 
@@ -395,10 +364,6 @@ all global variables should be set using the config mechanism
 	(tagged to be invisible to the user)
 	like all the "pseudo" bool values
 
-easy: replace mbtowc() with mbrtowc() in my_width()
-	only used in one place
-	man page says: "The function mbrtowc(3) provides a better interface to the same functionality"
-
 lib/address.c and rfc822.c
 	NOBODY is using error codes:
 		ERR_BAD_ADDR_SPEC
@@ -415,9 +380,6 @@ drop them?
 
 research all RFCs relating to email, etc
 	graph of dependencies / obsoletes
-
-eliminate all static variables in functions
-	starting with the libraries
 
 how do we test the static functions in the libraries?
 	make *everything* public?
@@ -503,10 +465,6 @@ Create LTS release branched from 2017-09-12
 	until all big features are done
 Change all version strings to YYYY-MM-DD rather than YYYYMMDD?
 
-Easy task
-	refactor parse_hooks to use (new) flags in init.h
-	e.g. TAKES_PATTERN, TAKES_REGEX
-
 mutt -DX read config and display deprecated options
 	and their replacements
 
@@ -573,9 +531,6 @@ user is notified when a notificiation status *changes*
 
 upstream
 	s/ascii_str/mutt_str/
-
-lib/file
-	separate fcntl and flock into two functions?
 
 travis, relax build errors for upstream
 or rename upstream to mutt/upstream
@@ -903,7 +858,7 @@ Decide
 Distro pages update
 	fedora
 	centos
-	as for help with AUR, Gentoo, Homebrew => vm
+	ask for help with AUR, Gentoo, Homebrew => vm
 
 Doxy - commit config
 	add to build
@@ -911,10 +866,6 @@ Doxy - commit config
 	10m doc a function
 	(sort functions by usage)
 	(generate template ∀)
-
-TODO - me
-	cocci email kdave
-	define release scripts
 
 Searches
 	list all GH matches
@@ -1034,7 +985,6 @@ linux kernel
 
 doc sample branches
 
-move hcache configure logic into m4?
 vim-like scrolloff option for pager/index
 use travis env / website to control build verbosity
 sort format string switches
@@ -1258,16 +1208,6 @@ configure summary?
 
 "approved" tag? when an idea under discussion gets the go-ahead?
 	or just remove the "discussion" tag?
-
-configure.ac broken for conditional features
-	--enable-lua
-	no libraries
-	shows "lua: yes"
-	compiles with "-USE_LUA"
-same problem for all the options that are conditional-but-need-libraries
-test options
-	enable-lua/disable-lua/enable-everything/unspecified
-	lua libs/no lua libs
 
 enable debug from within mutt
 	set debuglevel
@@ -1781,6 +1721,7 @@ translate:
 	tidy all headers
 
 docs: highlight parts that are neomutt only!
+	put in yml header (when docs are split up)
 
 web: features list page
 	add upstream column
@@ -2320,9 +2261,6 @@ announce vim-syntax, put a public copy up
 	copy all of contrib/ to web
 	create web autopage?
 
-arch-linux: search for a Trusted User (TU)
-	to adopt neomutt
-
 sort variables, etc before auto-completion
 	or properly sort the sources of the strings
 
@@ -2363,9 +2301,6 @@ notmuch tag-completion:
 pager -- sidebar gets updated but not status line / term header
 
 vim-like hls option: persistant across emails
-
-link to unloved enhancements in issues
-	rather than the wiki
 
 test website
 	neo vs www.neo
@@ -2495,12 +2430,6 @@ dbus - also implies
 	synchronisation of multiple copies of mutt
 	e.g. multiple windows/views
 
-get rid of "prepare" or neomutt-ify it
-	--all (to enable all options)
-	vs "configure --all"
-	./prepare --all -a => all features
-	./configure --all => drop prepare
-
 debugging curses tutorial
 	two windows
 	either run & attach
@@ -2618,10 +2547,6 @@ create a function to cycle through them?
 	would need some good sample emails
 	various headers
 	various flags
-
-make the neomutt branding more obvious
-	make it obvious to the user that this is
-	neomutt, not mutt
 
 progress bar:
 	better progress indicator
@@ -2825,9 +2750,6 @@ git clone
 	(disabled)
 	what other defaults?
 
-update-from-hg.sh
-	-n option => no push to github
-
 firstb <REGEX>
 	regex if it contains a '*'
 	anchored at bol?
@@ -2871,13 +2793,6 @@ report-neo-bug.sh?
 	etc
 	put in contrib
 	install for everyone
-
-server script to update from hg
-	get latest id
-	hg id -i --rev stable
-	hg id -i --rev default
-	then update and check ids
-	merge, push and travis
 
 mail sieve issue -- colour code for origin?
 
@@ -3304,7 +3219,6 @@ which config items require frequent and costly interpretation?
 	all format strings -- every line, every refresh
 
 data source LDAP
-
 	address book? -- different grouping/hierarchy?
 	calendar? -- different timescales?
 	news?  subscribed   <--> all groups
