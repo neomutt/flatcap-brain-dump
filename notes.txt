@@ -1,3 +1,17 @@
+isolating libmbox means we can test lots of address code, etc
+
+libemail? for structs etc?
+
+quick votes on
+	global variables (for config), prefix with 'G' or 'C'?
+	mailbox dirs - one dir per mailbox
+
+rename *idna* -> *idn*
+	A == applications!
+	but all the underlying functions are called idna
+
+more 'rc' : 'r', 'rv', 'ret'
+
 distinguish between
 	DT_PATH => filesystem path
 	DT_MAILBOX => could be virtual
@@ -12,6 +26,8 @@ NEW notmuch version: rebuild copr
 use idna.h IDNA_ACE_PREFIX "xn--"
 
 push mnemosyne
+	add function to quick recording
+	without altering any registers
 
 vim-airline test po fix on old non-sync vim
 (rhel6/7) create PR
