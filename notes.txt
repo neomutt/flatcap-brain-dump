@@ -1,3 +1,16 @@
+notmuch code: buf, bufsz!
+
+introduce warning colour/color
+	cyan - message
+	yellow - warning
+	red - error
+	use for setting config
+
+DT_ENUM for magic, etc
+	some DT_* will need extra data field
+	e.g. those validating expandos
+	sort could be split into separate sets
+
 isolating libmbox means we can test lots of address code, etc
 
 libemail? for structs etc?
