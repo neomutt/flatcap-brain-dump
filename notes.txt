@@ -126,7 +126,7 @@ tag closed discussions as
 	wontfix or postpone or bluesky?
 
 travis
-	test out-of-tree buil
+	test out-of-tree build
 	install, uninstall
 		work ok
 		no files left behind
