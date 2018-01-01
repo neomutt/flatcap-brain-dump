@@ -1,3 +1,7 @@
+distinguish between
+	DT_PATH => filesystem path
+	DT_MAILBOX => could be virtual
+
 default (system) config
 	ifdef VERSION > 20180101 set ignore_disabled_config
 
