@@ -18,6 +18,7 @@ libemail? for structs etc?
 quick votes on
 	global variables (for config), prefix with 'G' or 'C'?
 	mailbox dirs - one dir per mailbox
+	unused parameters gcc/clang attribute
 
 rename *idna* -> *idn*
 	A == applications!
