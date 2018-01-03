@@ -1,3 +1,5 @@
+move mutt_pretty_size() to lib/string
+
 notmuch code: buf, bufsz!
 
 introduce warning colour/color
