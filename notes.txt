@@ -1,3 +1,6 @@
+change two mapping functions to take the map first
+	mutt_OBJECT_VERB(object, params)
+
 move mutt_pretty_size() to lib/string
 
 notmuch code: buf, bufsz!
