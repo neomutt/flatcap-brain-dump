@@ -1,3 +1,5 @@
+replace "for (int" -> size_t in libmutt
+
 change two mapping functions to take the map first
 	mutt_OBJECT_VERB(object, params)
 
