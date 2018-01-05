@@ -1,3 +1,10 @@
+move "random" code into random.c
+	random/entropy code in conn/ssl.c
+	muttlib.c mutt_rand{32,64} mutt_rand_base32
+	possibly mutt_mktemp_full and mutt_adv_mktemp
+	or abstract random code, and simplify mktemp fns
+	move random.c to muttlib?
+
 replace "for (int" -> size_t in libmutt
 
 change two mapping functions to take the map first
@@ -975,7 +982,7 @@ relative 'source'ing of files doesn't work if the base is a symlink
 
 browser.c, buffy.c have a lot of
 	struct Buffy *tmp;
-	tmp's a bad name for a vaiable
+	tmp's a bad name for a variable
 
 aur remove regex configure option
 
