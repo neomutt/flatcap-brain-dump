@@ -1,3 +1,7 @@
+fix default /etc/neomuttrc so that neomuttrc.vim doesn't show errors
+	color header brightred default ^(From|Subject):
+	last field isn't quoted and shows as an error
+	
 move "random" code into random.c
 	random/entropy code in conn/ssl.c
 	muttlib.c mutt_rand{32,64} mutt_rand_base32
