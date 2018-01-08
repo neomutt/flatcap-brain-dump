@@ -1,3 +1,8 @@
+turn $sort into a string-list of methods
+	set sort=threads,last-date-received,...
+	allow more depth
+	if sort is a list, ignore sort_aux?
+
 fix default /etc/neomuttrc so that neomuttrc.vim doesn't show errors
 	color header brightred default ^(From|Subject):
 	last field isn't quoted and shows as an error
