@@ -1,3 +1,7 @@
+may need to rename one of:
+	mutt/message.h
+	imap/message.h
+
 when you force an imap update: <imap-fetch-mail>
 	a notification: X new mails would be nice
 
