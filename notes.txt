@@ -1,3 +1,6 @@
+code docs
+	include diagram of deps utils-trans2.svg
+
 may need to rename one of:
 	mutt/message.h
 	imap/message.h
