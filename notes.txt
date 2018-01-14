@@ -1,3 +1,12 @@
+python coder needed to update botty
+	use github api
+	commits
+	issues/PRs
+
+split up all multiline translated strings
+	especially the copyright messages
+	for easier translation and updating
+
 archive old repos on github
 
 code docs
@@ -75,7 +84,7 @@ NEW notmuch version: rebuild copr
 use idna.h IDNA_ACE_PREFIX "xn--"
 
 push mnemosyne
-	add function to quick recording
+	add function to quit recording
 	without altering any registers
 
 vim-airline test po fix on old non-sync vim
@@ -96,6 +105,7 @@ Update AUTOSETUP/INSTALL (or merge)
 
 buffer *alloc* - make some space
 _peek_ - get next token (save ptr), don't move dptr
+	skip/drop_next_token
 break up extract token - don't lookup '&var'
 don't process `cmd`
 what str cmds are used to put data in a buf,buflen array?
@@ -214,6 +224,7 @@ logging ideas
 	remove logging levels completely
 
 move getaddrinfo, getaddrinfo_a into conn/dns.c
+	check deps
 
 debug logging
 	use millisecond timestamps?
@@ -400,8 +411,8 @@ add -Wshadow to build
 
 libfile
 	rc = read_into_buffer(filename, buf, len, *fp)
-	if fp is given the file will be opened, read, closed
-	if fp is given the file will be opened, read, not closed
+	if fp is not given the file will be opened, read, closed
+	if fp is given the file will be read, not closed
 	rc
 		OK (file fits into buffer)
 		OK_MORE (filled the buffer, need more space)
@@ -709,6 +720,7 @@ in pager, which objects are precious/vunerable
 magic -- set *string*, save *int*
 	retrieve which?
 	or both?
+	retrieve string from Mapping[value]
 
 hcache: x [y] z
 	y = default
@@ -1057,9 +1069,6 @@ doc sample branches
 vim-like scrolloff option for pager/index
 use travis env / website to control build verbosity
 sort format string switches
-notmuch / lua should be --with, not --enable
-	they have libs/path to
-	what about ax_lua.m4?
 
 update gpg keys website/dns
 newbie page Twitter toogley
@@ -1151,10 +1160,6 @@ docs:
 	http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 
 add mutt.svg to contrib release
-
-init.h
-	UL 0 vs UL NULL vs UL ""
-	unify
 
 2017-05-24
 	00:00 <cybrNaut> why is "fcc_clear" suggested as a work-around to those without "smime_encrypt_self = yes" in https://www.neomutt.org/feature/encrypt-to-self, when fcc_clear is said to be
@@ -1852,15 +1857,6 @@ DANE instructions for neomutt gpg key
 
 split out upstream features, or yaml tag them
 
-person pages
-	list "worked on"
-	real name
-	nationality
-	location
-	language?
-	links
-	∀ users
-
 create file on all neo members
 	who's who
 	who's done what
@@ -1922,16 +1918,6 @@ look through upstream mutt trac for
 	bug fixes
 	[easy] ?
 	comment in trac "neomutt adopted" when done!
-
-easy task:
-	distro helper
-	instructions for
-		install
-		build
-		test
-	check installs
-	test problems
-	one+ person per distro
 
 settings for uncrustify, clang-format
 	for current neo code
@@ -2168,8 +2154,6 @@ new two-letter expandos
 
 docs - nested if
 	better explanation of %<>
-
-change from autoconf -> cmake
 
 scratch-pad function
 	creates a tmp file
@@ -2698,10 +2682,6 @@ notes for progress bar
 	set time_inc = 0 for best results (ref: paravoid)
 	test read_inc, write_inc, net_inc too
 
-cache autoconf in .git
-	git config a name for retrieval, "lmdb", "tokyo"
-		build -s <name>, build <name>
-
 fake/alternate curses -> true colour => separate fg, bg, term attrs like vim
 
 unnamed notmuch queries => create description based on query
@@ -3050,6 +3030,7 @@ use links(1) as a model for re-architecting mutt
 	mouse control (inc right-click)
 	safe html rendering
 	pop-up windows
+or mc (midnight commander)
 
 "merged" page/collection on website
 	list of all features that have been accepted into the mainline

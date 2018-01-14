@@ -25,12 +25,10 @@ doxygen -> web /code dir
 mutt debug FILE, LINE, FUNC #macro
 
 split mutt_lock_file (and unlock)
+	into flock() and fcntl() versions
 	or drop flock()
 	almost no overlap of code
 	fix configure fcntl or flock, not both
-
-split mutt_lock_file() and unlock
-	into flock() and fcntl() versions
 	only allow/build one
 	configure option --locking=[flock|fcntl] ?
 
@@ -53,4 +51,14 @@ refactor parse_hooks to use (new) flags in init.h
 
 eliminate all static variables in functions
 	starting with the libraries
+
+easy task:
+	distro helper
+	instructions for
+		install
+		build
+		test
+	check installs
+	test problems
+	one+ person per distro
 
