@@ -1,3 +1,13 @@
+debug in curses_message() gives misleading function name
+
+define MIN/MAX debug levels and test against these
+
+update docs
+	split readme authors
+	more shields
+	donate in more places
+	credit all reference
+
 python coder needed to update botty
 	use github api
 	commits

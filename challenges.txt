@@ -1,0 +1,40 @@
+Challenges
+
+translate 10 strings (or limit to 10 minutes)
+`	instructions: fork, clone, edit, push, PR
+
+doxygen comment a function
+	create templates for all functions
+	XXX, DESC, @param, @retval
+
+kill a static var ~70
+	fix/check callers
+
+robustifying a lib function ~168
+	fix/check callers
+
+comment template - sort by function length
+
+list all challenge targets on Dev page
+	bar graph
+	x done, y remaining, z done this month
+
+helper of the month
+
+Doc challenges
+	need list of useful websites
+	cut'n'paste to our docs
+	add entry to faq (need list of questions)
+
+more "points" for high-value challenges
+	e.g. doc gmail howto
+
+use paypal money as beer tokens
+
+list "to-be-written" webpages [X points]
+
+Add test for function in libmutt (168(
+	+43 address
+	+126 config
+	coverage testing too
+
