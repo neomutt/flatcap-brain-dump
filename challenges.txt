@@ -40,3 +40,6 @@ Add test for function in libmutt (168(
 
 config challenges?
 
+reduce global variable usage
+	need list of targets to eliminate
+
