@@ -176,3 +176,10 @@ put glossary first
 use hcache for search results?
 	instant re-searching
 
+highlight links (underline/colour)
+move "cursor" like links(1)
+	UP/DOWN = scroll page
+	LEFT/RIGHT = prev/next link
+	two colours (un)focussed
+	integrate mouse clicks
+

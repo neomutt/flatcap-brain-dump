@@ -1,3 +1,14 @@
+hibernate-hook - would one be useful to anyone?
+	after hibernate
+		how does mutt know?
+		does mutt know?
+	do we need a hook?
+	where's mutt waiting? key loop?
+	notice jump in time?
+	what about ctrl-Z suspend/resume?  same?
+	does hibernate need a time option
+	if (Δt > n) then fire hook
+
 change mac logo for a homebrew logo on homebrew page
 
 debug in curses_message() gives misleading function name
