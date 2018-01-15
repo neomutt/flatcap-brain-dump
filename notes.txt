@@ -1,3 +1,5 @@
+change mac logo for a homebrew logo on homebrew page
+
 debug in curses_message() gives misleading function name
 
 define MIN/MAX debug levels and test against these
