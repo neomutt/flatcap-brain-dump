@@ -63,10 +63,6 @@ replace "for (int" -> size_t in libmutt
 change two mapping functions to take the map first
 	mutt_OBJECT_VERB(object, params)
 
-move mutt_pretty_size() to lib/string
-
-notmuch code: buf, bufsz!
-
 introduce warning colour/color
 	cyan - message
 	yellow - warning
