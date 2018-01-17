@@ -233,10 +233,6 @@ do something about assert
 	one file has it disabled
 	one file has it enabled
 
-refactor:
-	if (123 < x)
-	while (NULL == fn())
-
 logging ideas
 	audit the levels
 	add sensitive logging option
