@@ -307,3 +307,9 @@ XXX: 32
 FIXME: 11
 
 init.c strings "yes", "no", "ask-yes", "ask-no" -- define centrally
+
+look for complex if/for/while/do loops without {}s
+^\(\s\+\)if (.*\n\(\1  \+[^{]\+\)\+\n\1  \S/
+^\(\s\+\)\(else \)*if (.*\n\(\1  \+[^{]\+\)\+\n\1  \S/
+^\(\s\+\)\(while\|for\|do\|if\) (.*\n\(\1  \+[^{;]\+\)\+\n\1  \S/
+
