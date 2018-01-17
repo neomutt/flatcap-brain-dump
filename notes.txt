@@ -2012,6 +2012,7 @@ need to document "missing" keybindings
 	can this be done programatically by mutt?
 	"stty -a" to show settings
 	cfmakeraw(3)
+	zsh is able to reset terminal configuration after each command with ttyctl -f
 
 new users -- [ci skip], #123 docs
 
