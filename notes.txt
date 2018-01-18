@@ -1,3 +1,8 @@
+MAILCAP / mailcap_path
+	docs imply you can specify a PATH to files
+	check RFC for clues
+	update docs
+
 hibernate-hook - would one be useful to anyone?
 	after hibernate
 		how does mutt know?
