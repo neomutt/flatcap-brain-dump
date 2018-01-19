@@ -183,3 +183,7 @@ move "cursor" like links(1)
 	two colours (un)focussed
 	integrate mouse clicks
 
+use status bar on help pages to display
+	"how to improve this help"
+	help-help keybinding to edit page & post it
+
