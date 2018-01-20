@@ -1,3 +1,6 @@
+do we really need: "set rfc2047_parameters = yes"
+	why not always display a human-readable string?
+
 browser doesn't have a binding for <go-to-parent>
 	macro X c..<enter>
 	doesn't work, path ends up with lots of ../ embedded
