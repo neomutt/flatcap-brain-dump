@@ -936,7 +936,7 @@ FS layer
 	tie in with memstream/buffer/tmp
 	distinguish tmpfile, generated help page, partial email
 	memstream -> better buffer interface
-	canonicalise path
+	canonicalise path (realpath)
 
 Coverity false positives
 	171380
