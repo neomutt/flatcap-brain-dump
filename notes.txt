@@ -1,3 +1,7 @@
+challenges
+	update news item - https://www.neomutt.org/2016/10/07/news
+	update https://www.neomutt.org/dev/newbie-tutorial#coding
+
 reply_regexp looks dodgy: '+' isn't escaped
 	try ^(re(\[[0-9]+\])*|aw|sv):[ \t]*
 	from rawtaz (includes swedish sv)
