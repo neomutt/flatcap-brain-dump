@@ -1,3 +1,7 @@
+reply_regexp looks dodgy: '+' isn't escaped
+	try ^(re(\[[0-9]+\])*|aw|sv):[ \t]*
+	from rawtaz (includes swedish sv)
+
 do we really need: "set rfc2047_parameters = yes"
 	why not always display a human-readable string?
 
