@@ -1,3 +1,12 @@
+translations:
+	german (existing translators)
+	french (half the devs)
+	spanish (Ruben)
+	esperanto (rawtaz)
+	swedish (rawtaz)
+	lithuanian (marius)
+	slovak (frank)
+
 challenges
 	update news item - https://www.neomutt.org/2016/10/07/news
 	update https://www.neomutt.org/dev/newbie-tutorial#coding
