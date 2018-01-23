@@ -1,3 +1,6 @@
+might wanna add a "Other comments" heading at the end of the PR template
+	rawtaz (irc)
+
 translations:
 	german (existing translators)
 	french (half the devs)
@@ -6,6 +9,7 @@ translations:
 	swedish (rawtaz)
 	lithuanian (marius)
 	slovak (frank)
+	chinese (bo yu)
 
 challenges
 	update news item - https://www.neomutt.org/2016/10/07/news
