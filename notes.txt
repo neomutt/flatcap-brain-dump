@@ -1,3 +1,6 @@
+create synonym for remaining regex*P* config
+	fix up docs to drop the 'p'
+
 might wanna add a "Other comments" heading at the end of the PR template
 	rawtaz (irc)
 
