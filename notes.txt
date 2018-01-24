@@ -1,3 +1,7 @@
+logging
+	mutt_index_menu() [1119]: Got op 151
+	can we lookup the name of 151?
+
 history needs a refurb
 	doesn't quite save the right number of items
 	lots of void fn(void)!
