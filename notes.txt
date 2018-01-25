@@ -13,9 +13,6 @@ history needs a refurb
 	doesn't quite save the right number of items
 	lots of void fn(void)!
 
-create synonym for remaining regex*P* config
-	fix up docs to drop the 'p'
-
 might wanna add a "Other comments" heading at the end of the PR template
 	rawtaz (irc)
 
@@ -65,7 +62,7 @@ update docs
 	split readme authors
 	more shields
 	donate in more places
-	credit all reference
+	cneomutt/releaseredit all reference
 
 python coder needed to update botty
 	use github api
@@ -105,9 +102,6 @@ move "random" code into random.c
 	move random.c to muttlib?
 
 replace "for (int" -> size_t in libmutt
-
-change two mapping functions to take the map first
-	mutt_OBJECT_VERB(object, params)
 
 introduce warning colour/color
 	cyan - message
