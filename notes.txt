@@ -1,3 +1,8 @@
+update coding style
+	separate assignment from conditionals (== in 'if')
+	drop "inserting whitespace for clarity"
+		superseded by clang-format
+
 add website "passing" shield to docs?
 
 logging
