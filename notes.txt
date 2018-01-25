@@ -33,10 +33,6 @@ challenges
 	update news item - https://www.neomutt.org/2016/10/07/news
 	update https://www.neomutt.org/dev/newbie-tutorial#coding
 
-reply_regexp looks dodgy: '+' isn't escaped
-	try ^(re(\[[0-9]+\])*|aw|sv):[ \t]*
-	from rawtaz (includes swedish sv)
-
 do we really need: "set rfc2047_parameters = yes"
 	why not always display a human-readable string?
 
@@ -60,8 +56,6 @@ hibernate-hook - would one be useful to anyone?
 	what about ctrl-Z suspend/resume?  same?
 	does hibernate need a time option
 	if (Δt > n) then fire hook
-
-change mac logo for a homebrew logo on homebrew page
 
 debug in curses_message() gives misleading function name
 
@@ -160,7 +154,7 @@ push mnemosyne
 
 vim-airline test po fix on old non-sync vim
 (rhel6/7) create PR
-
+neomutt/release
 vim-interesting-words
 define 24/25 levels
 colourscheme 1: ROYGBIV
