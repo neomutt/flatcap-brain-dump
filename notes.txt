@@ -1,3 +1,9 @@
+notmuch folder-hook's don't work fully:
+	virtual-mailboxes "a" "notmuch://?tag:dnssec"
+	doesn't match tag:dnssec
+	tag%3Adnssec does match
+	need to make the URI cleartext
+	
 update coding style
 	separate assignment from conditionals (== in 'if')
 	drop "inserting whitespace for clarity"
