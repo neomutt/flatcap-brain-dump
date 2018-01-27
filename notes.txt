@@ -1,3 +1,5 @@
+change "neomutt -v" strings from `' to `` or ''
+
 notmuch folder-hook's don't work fully:
 	virtual-mailboxes "a" "notmuch://?tag:dnssec"
 	doesn't match tag:dnssec
