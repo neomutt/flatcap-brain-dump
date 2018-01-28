@@ -1,0 +1,98 @@
+Config Requirements
+
+Address type needs:
+mutt_address.c
+	rfc822_write_address() to format addresses for display
+	rfc822_write_address_single()
+	mutt_addr_for_display()
+
+mutt_idna.c
+	mutt_addr_for_display()
+	loops through addresses calling:
+		addr_is_local() -- move to address.c
+		mbox_to_udomain() -- move to address.c
+		mutt_idna_intl_to_local() and idna functions
+
+mutt_charset.c
+	mutt_convert_string() calls
+	mutt_iconv_open() and iconv functions
+
+mutt_charset.c (others)
+	fgetconv_open() calls mutt_iconv_open()
+	mutt_check_charset() calls mutt_iconv_open()
+
+mutt_charset.c
+	mutt_iconv_open() call mutt_charset_hook()
+
+hook.c
+	maintains list of "regex -> string" mappings
+	mutt_charset_hook() regex matches a string
+
+todo
+	find meaning of all the idna functions
+		give examples of each
+
+--------------------------------------------------------------------------------
+
+mutt/regex.c (to create)
+	create regex
+	parse string
+	match regex against string
+	free regex
+
+mutt_idna_intl_to_local()
+	uses global variable IdnDecode -- turn into flag
+	calls mutt_convert_string() and idna functions
+mutt_idna_local_to_intl()
+	uses global variable IdnEncode -- turn into flag
+	calls mutt_convert_string() and idna functions
+
+split mutt_idna.c
+	address functions -> address.c
+	envelope functions -> envelope.c
+
+create private "regex -> string" lookup in mutt_charset.c
+	refactor mutt_parse_hook() to use it
+move mutt_charset.c -> mutt/charset.c
+move mutt_idna.c -> mutt/idna.c
+
+
+--------------------------------------------------------------------------------
+
+Enabled config
+	definition -> var
+	notify on change
+	accept in config file
+	list in `neomutt -D`
+	complete on <tab>
+	verbosely accept in config file
+		list canonicalised config line
+
+Disabled config
+	definition -> var
+	don't notify on change
+	don't list in `neomutt -D`
+	don't complete on <tab>
+	quietly accept in config file
+	verbosely accept in config file
+		suggest build options
+
+Obsolete config
+	definition -> NULL
+	don't notify on change
+	don't list in `neomutt -D`
+	don't complete on <tab>
+	quietly accept in config file
+	verbosely accept in config file
+		suggest removal
+
+Synonym config
+	definition -> ALTERNATIVE
+	notify ALTERNATIVE on change
+	don't list in `neomutt -D`
+	complete on <tab>
+		mutt does
+	quietly accept in config file
+	verbosely accept in config file
+		suggest ALTERNATIVE
+

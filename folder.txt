@@ -1,0 +1,94 @@
+Folder interface - struct Folder
+
+bool is_mine(char *name)
+	identify a URL as belonging to given mx
+
+F* parse_uri(char *name)
+	uri -> opaque object
+
+struct Folder
+{
+	int type;
+	char *canonical;
+	[PRIVATE]
+}
+
+should the type be visible?
+or a list of function pointers?
+
+Does an mx support more/less that 1 Folder type?
+	NO.  == 1
+
+char* F_to_string(F*, flags)
+	render to a string
+	flags: canonical, abbreviated
+
+void free_F(F*)
+	release a folder
+
+F* get_parent(F*)
+F** get_children(F*)
+F* get_root(F*)
+F* get_prev_sibling(F*)
+F* get next_sibling(F*)
+	navigate folder hierarchy
+	if applicable
+
+bool match_regex(F*, regex, flags)
+
+Folder owners/types
+	mbox - File
+	maildir - Folder set (nested)
+	nntp - URI (nested)
+	imap - URI (nested)
+	notmuch - URI
+	compressed - File
+
+Navigation functions belong on mx
+
+In a heterogeneous env, which type of browser do we launch?
+imap folder/account => imap browser
+compressed file => what?
+	just dirs & matching '*.xz'?
+	anything matching 'open-hook'?
+
+need browser menu to be able to search other known mx
+can only search imap if we have the account details
+browser might list multiple imap accounts
+
+Menu
+	imap host[:port] user
+	imap other[:port] user
+	compressed }
+	maildir    }- do we distinguish between these?
+	mbox       }    => "local fs"
+	nntp server[:port] [user]
+
+In a generic file browser can we highlight matching folders?
+	compressed: YES
+	maildir: YES
+	mbox: NO (would need to read file)
+
+imap, nntp have subscriptions whose view can be toggled
+turn nntp long list into folder hierarchy
+
+notmuch browser
+	subscribed => all virtual mailboxes
+	not subscribed => tags/  what else?
+		tags/ fake dir of all tags
+		people/ fake dir of all people (too many?)
+
+subscribe/unsubscribe => mailboxes/unmailboxes on folder
+	=> will appear/disappear from sidebar
+what about named mailboxes?
+function to save subscribed mailboxes?
+
+local file/dir browser
+subscribed => all "mailboxes" known (and dirs)
+not subscribed => normal files/dirs
+
+browser - no advantage to the sidebar being visible?
+	should be hidden
+	unless visible to show the user their subscribed folders?
+		or just highlight them in the browser
+
