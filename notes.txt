@@ -141,8 +141,6 @@ default (system) config
 
 refactor idna code to make the entire file build-conditional
 
-NEW notmuch version: rebuild copr
-
 use idna.h IDNA_ACE_PREFIX "xn--"
 
 mnemosyne
@@ -537,16 +535,6 @@ use alarm(2) to stop DNS from taking too long?
 	see sigaction(), alarm() in send_msg() in sendlib.c
 	extract to a function in signal.c
 	user message, or just debug message?
-
-move some address functions to lib
-	only dependent on struct Address
-	parse string
-	maintain address LIST
-	check membership of a list
-	functions in hdrline.c
-
-move lib/memory NLS stuff to lib/message.[ch]
-	and update libmutt-deps.gv
 
 create a literal string marker:
 	set x = /Don't "shoot"?/
@@ -994,13 +982,7 @@ Decide
 	new variable type MAILBOX
 		could be a "/path" or "+mailbox"
 
-Distro pages update
-	fedora
-	centos
-	ask for help with AUR, Gentoo, Homebrew => vm
-
 Doxy - commit config
-	add to build
 	scripts to gen/code on web
 	10m doc a function
 	(sort functions by usage)
@@ -1084,9 +1066,6 @@ create an address interface for lookups / completion
 struct ContentState
 	lots of bools?
 
-Rfc2231Parameter parameter encoded
-	bool?
-
 pgp_invoke_decode
 	This is historic and may be removed at some point.
 	lots of simliar functions being redirected
@@ -1160,14 +1139,11 @@ other distros, slack, ubuntu
 search for patches & list and adopt
 find maintainers for distro pages
 
-PM
-
 abbr README
 fold comments
 conceal IMAP password
 #ifdef entire file in smime.h
 	pgp.h pgplib.h remailer.h smime.h
-debian 2^32 imap patch
 
 hcache auto magic everything
 gcc check for clang
@@ -1180,7 +1156,6 @@ init.h -> options.[ch]
 eliminate WHERE
 mutt -D options
 shrink authors (split out)
-travis warnings
 
 with options split into sources, mutt -D could omit entire sections
 	if nothing has been set, e.g.

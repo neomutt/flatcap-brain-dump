@@ -145,3 +145,5 @@ CLI warn option
 
 typedef numeric/enum config types?
 
+flag on HE var-def to show "SET_BY_USER"
+
