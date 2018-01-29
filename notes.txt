@@ -5,11 +5,6 @@ notmuch folder-hook's don't work fully:
 	doesn't match tag:dnssec
 	tag%3Adnssec does match
 	need to make the URI cleartext
-	
-update coding style
-	separate assignment from conditionals (== in 'if')
-	drop "inserting whitespace for clarity"
-		superseded by clang-format
 
 add website "passing" shield to docs?
 
@@ -150,7 +145,7 @@ NEW notmuch version: rebuild copr
 
 use idna.h IDNA_ACE_PREFIX "xn--"
 
-push mnemosyne
+mnemosyne
 	add function to quit recording
 	without altering any registers
 
