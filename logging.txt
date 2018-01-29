@@ -1,0 +1,75 @@
+Logging
+
+Levels: E, W, M, 1 2 3 4 5
+	Error, Warning, Message (Info)
+	plus 5 debugging levels
+
+Output:
+	stderr
+	curses
+	queued
+	file
+
+Attrs:
+	timestamp
+	file
+	line
+	function
+	level
+	format
+	args...
+
+error(fmt, args...)
+	message()
+	warning()
+	debug()
+all #defines to log_dispatcher (a function variable)
+log_dispatcher -> dispatcher_curses()
+
+dispatcher_curses()
+	error -> file, screen
+	message -> file, screen
+	debug -> file
+
+dispatcher_file() if enabled
+	write to file
+	optionally flush after every
+		error
+		n messages
+		n seconds
+
+where does the timestamp originate?
+where does the debug level filtering occur?
+	probably in dispatcher_file()
+
+multiple dispatchers
+	if logging is disabled, then keep a small ring of messages
+
+dispatch_curses -> screen
+dispatch_file -> disk
+dispatch_queue -> memory
+dispatch_stderr -> stderr
+
+all dispatch functions to take all params
+flush_queue(dispatch_function)
+
+rename .neomuttdebug -> .neomutt_log?
+
+easier to display backlog if messages are *always* written to disk
+neomutt -d0 (or absent) => only write M, W, E to disk
+
+:messages show file verbatim
+could colour code according to error/info colours
+	need to save in a parsable way, e.g. <E>, <3>
+
+macros pass 0 for time
+	disp_queue saves now()
+	flushq passes saved time
+
+debug macro passes file, line, func
+	others pass NULL
+
+M,W,E and D macros pass level, fmt, args
+
+if no log file, create tmp, populate from ring and display in pager
+
