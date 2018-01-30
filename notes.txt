@@ -1,3 +1,33 @@
+find remaining snake_case globals and replace them
+
+connecting to gmail with options:
+	-gnutls and -ssl causes a crash in mutt_conn_find()
+	check
+
+eliminate fprintf for errors
+	put everything through the mutt_{debug,message,error}
+	mechanism
+
+prep 1-liner descriptions of all var,cmd,fn etc for botty
+
+restart POP after connection is broken/lost (like IMAP)
+
+when redoing colour/attrs, consider a new file format
+	for just them -- colour-scheme files
+	see mc or vim format
+
+option to make buffer auto-NUL-terminate
+	after every add*()
+
+check header and msg cache for dirs containing whitespace
+	e.g. "Bulk Mail"
+
+check for !*var
+	some string vars -> (str[0] == '\0')
+	some int vars -> (*num == 0)
+	LOTS of them
+	worth doing?
+
 change OPT_NO_CURSES to OPT_USE_CURSES
 	and reverse the logic
 	uses: 14 OPT_USE_CURSES, 33 !OPT_USE_CURSES
@@ -19,6 +49,7 @@ logging
 history needs a refurb
 	doesn't quite save the right number of items
 	lots of void fn(void)!
+	when mkstemp() is in library, move history to library
 
 might wanna add a "Other comments" heading at the end of the PR template
 	rawtaz (irc)

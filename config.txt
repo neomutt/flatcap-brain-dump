@@ -53,6 +53,10 @@ validator for "charset"
 could the validator have a side-effect?
 *do* the actual char-setting required?
 
+custom type for charset
+	encapsulate x_is_utf8
+	and replacement char?
+
 validators for:
 	show_multipart_alternative
 	debug_file

@@ -187,3 +187,13 @@ use status bar on help pages to display
 	"how to improve this help"
 	help-help keybinding to edit page & post it
 
+when people are contributing to help, it might end up
+	being packaged and release separately (more frequently
+	than neomutt)
+	sub-version for docs, dependent on neomutt
+		to keep things in sync
+
+recently-updated page?
+	'N'ew flag?
+	how recently?
+
