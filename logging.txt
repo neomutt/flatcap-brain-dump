@@ -73,3 +73,53 @@ M,W,E and D macros pass level, fmt, args
 
 if no log file, create tmp, populate from ring and display in pager
 
+migrate debugging -> logging
+LogLevel 0..5
+LogFile  file (template) or % expandos
+LogKeep  5?
+
+once started we can't know the log's filename
+(could be renamed by other instances)
+
+expandos for template
+	%p pid
+	%t time (HH:MM) :SS?
+	%d date (YYYY-MM-DD)
+expand other stuff too?
+	$config vars?
+	$ENV vars?
+variable is only expanded and checked when set
+	=> no new logfile at midnight
+
+what's preventing LOTS of logfiles?
+
+if there are zero expandos (or variables)
+	then rotate up to 5 files
+otherwise
+	!exists - create
+	exists - append
+accumulate lots of files, up to user to clear them
+
+default to ~/.neomutt/logs/log
+default location means we could syntax highlight
+	error,warning,message,debug (grey for levels 3,4,5)
+
+variable/config ownership
+lib
+	DebugFile, set_file()
+	DebugLevel, set_level()
+	FILE*
+	actual filename/level aren't needed
+mutt
+	Initial file
+	Initial level
+	for reset
+
+Logging bug
+	Leave mutt running, then
+	start/close mutt 5 times
+	log file of running mutt has been deleted
+
+use file locking on logs to prevent overwriting
+	or premature deletion
+
