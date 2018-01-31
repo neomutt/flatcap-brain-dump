@@ -31,6 +31,7 @@ check for !*var
 change OPT_NO_CURSES to OPT_USE_CURSES
 	and reverse the logic
 	uses: 14 OPT_USE_CURSES, 33 !OPT_USE_CURSES
+	this means defaulting a global bool to true
 
 change "neomutt -v" strings from `' to `` or ''
 
@@ -55,14 +56,15 @@ might wanna add a "Other comments" heading at the end of the PR template
 	rawtaz (irc)
 
 translations:
-	german (existing translators)
-	french (half the devs)
-	spanish (Ruben)
+	chinese (bo yu)
+	czech (jan knizek)
 	esperanto (rawtaz)
-	swedish (rawtaz)
+	french (half the devs)
+	german (existing translators)
 	lithuanian (marius)
 	slovak (frank)
-	chinese (bo yu)
+	spanish (Ruben)
+	swedish (rawtaz)
 
 challenges
 	update news item - https://www.neomutt.org/2016/10/07/news
