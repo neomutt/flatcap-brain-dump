@@ -123,3 +123,102 @@ Logging bug
 use file locking on logs to prevent overwriting
 	or premature deletion
 
+------------------------------------------------------------
+
+main()
+	logq
+	getopt
+	if 'v'
+		flush(stderr)
+		exit
+	read_config
+	if 'D'
+		flush(stderr)
+		exit
+	
+	** DebugFile
+	** DebugLevel
+
+	start_debug(file,level)
+	flush(curses)
+	main_loop()
+	stop_debug()
+	exit
+
+------------------------------------------------------------
+
+start_debug(file,level)
+	expand_file(file)
+	rotate_files()
+	log_level(level)
+	log_open(file0)
+
+------------------------------------------------------------
+
+log_level(level)
+	static level = 9
+	if (level changes) & (level != 9)
+		set level
+		debug("logging at level %d")
+
+------------------------------------------------------------
+
+log_open(file)
+	static file = ""
+	if file changed
+	empty -> empty
+		do nothing
+	empty -> name
+		create file / append
+		log "starting"
+			is this my job?
+			don't know the version
+	name -> empty
+		log "closing"
+		close file
+	name -> name (same)
+		do nothing
+	name -> name (diff)
+		log "closing"
+		close old
+		open new
+		log "opening"
+
+------------------------------------------------------------
+
+stop_debug()
+	log_stderr
+	log_close
+
+------------------------------------------------------------
+
+log_close
+	log "closing"
+	close file
+	file=""
+
+------------------------------------------------------------
+
+FILE debug/error()
+	if (lev <= dlev) && (file open)
+		write to file
+
+------------------------------------------------------------
+
+CURSES debug/error()
+	FILE_debug() duplicate
+	normal screen stuff
+
+------------------------------------------------------------
+
+STDERR debug/error()
+	if (lev <= dlev) && (file open)
+		write to stderr
+
+------------------------------------------------------------
+
+QUEUE debug/error()
+	save to Q
+
+------------------------------------------------------------
+

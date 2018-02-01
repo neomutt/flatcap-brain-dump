@@ -1,3 +1,31 @@
+shrink hcache doxygen lines to fit on code lib page
+
+INSTALL/AUTOSETUP fix/merge
+
+rename & move history to ~/.neomutt/history
+	use config syntext to highlight?
+
+attachment viewing -- keep a list of tempfiles, either 
+	delete after x mins (configurable?)
+	delete all on exit
+	they're tmpfiles so should be in /tmp?
+		rather than ~/.mutt/tmp
+		=> system can clean them in worst case (crash)
+
+republish "help us" news with new easy list
+
+do we need a config URI object?
+	store raw after relevant encoding
+	split into fields for code
+
+2018-01-25 22:07 bazzy
+	On that note I recently got xoauth2 working on neomutt for gmail.
+	I'm documenting it locally atm
+
+twitter news to web news
+
+releases - check for co-author commits
+
 find remaining snake_case globals and replace them
 
 connecting to gmail with options:
