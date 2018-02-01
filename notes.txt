@@ -1,5 +1,3 @@
-shrink hcache doxygen lines to fit on code lib page
-
 INSTALL/AUTOSETUP fix/merge
 
 rename & move history to ~/.neomutt/history
@@ -21,8 +19,6 @@ do we need a config URI object?
 2018-01-25 22:07 bazzy
 	On that note I recently got xoauth2 working on neomutt for gmail.
 	I'm documenting it locally atm
-
-twitter news to web news
 
 releases - check for co-author commits
 
