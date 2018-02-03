@@ -9,6 +9,7 @@ attachment viewing -- keep a list of tempfiles, either
 	they're tmpfiles so should be in /tmp?
 		rather than ~/.mutt/tmp
 		=> system can clean them in worst case (crash)
+	or keep the last 'n' files, e.g. 10
 
 republish "help us" news with new easy list
 
