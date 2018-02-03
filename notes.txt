@@ -1,3 +1,7 @@
+use the configured error/warning/message colours for the stderr logging
+
+embed an asciinema demo of neomutt into our website
+
 should logfile be CRLF on windows/cygwin?
 
 INSTALL/AUTOSETUP fix/merge
