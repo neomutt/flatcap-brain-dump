@@ -1,3 +1,5 @@
+should logfile be CRLF on windows/cygwin?
+
 INSTALL/AUTOSETUP fix/merge
 
 rename & move history to ~/.neomutt/history
