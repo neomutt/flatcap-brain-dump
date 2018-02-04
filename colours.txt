@@ -1,0 +1,91 @@
+Curses:
+	256 colours
+	32767 colour pairs allowed
+
+Colour lists:
+	attach_headers MT_COLOR_ATTACH_HEADERS ColorAttachList
+	body           MT_COLOR_BODY           ColorBodyList
+	index          MT_COLOR_INDEX          ColorIndexList
+	index_author   MT_COLOR_INDEX_AUTHOR   ColorIndexAuthorList
+	index_flags    MT_COLOR_INDEX_FLAGS    ColorIndexFlagsList
+	index_subject  MT_COLOR_INDEX_SUBJECT  ColorIndexSubjectList
+	index_tag      MT_COLOR_INDEX_TAG      ColorIndexTagList
+	status         MT_COLOR_STATUS         ColorStatusList
+
+General colours:
+	attachment        MT_COLOR_ATTACHMENT
+	bold              MT_COLOR_BOLD
+	error             MT_COLOR_ERROR
+	hdrdefault        MT_COLOR_HDEFAULT
+	index_collapsed   MT_COLOR_INDEX_COLLAPSED
+	index_date        MT_COLOR_INDEX_DATE
+	index_label       MT_COLOR_INDEX_LABEL
+	index_number      MT_COLOR_INDEX_NUMBER
+	index_size        MT_COLOR_INDEX_SIZE
+	index_tags        MT_COLOR_INDEX_TAGS
+	indicator         MT_COLOR_INDICATOR
+	markers           MT_COLOR_MARKERS
+	message           MT_COLOR_MESSAGE
+	normal            MT_COLOR_NORMAL
+	progress          MT_COLOR_PROGRESS
+	prompt            MT_COLOR_PROMPT
+	quoted            MT_COLOR_QUOTED
+	search            MT_COLOR_SEARCH
+	sidebar_divider   MT_COLOR_DIVIDER
+	sidebar_flagged   MT_COLOR_FLAGGED
+	sidebar_highlight MT_COLOR_HIGHLIGHT
+	sidebar_indicator MT_COLOR_SB_INDICATOR
+	sidebar_new       MT_COLOR_NEW
+	sidebar_ordinary  MT_COLOR_ORDINARY
+	sidebar_spoolfile MT_COLOR_SB_SPOOLFILE
+	signature         MT_COLOR_SIGNATURE
+	tilde             MT_COLOR_TILDE
+	tree              MT_COLOR_TREE
+	underline         MT_COLOR_UNDERLINE
+
+Compose colours:
+	header           MT_COLOR_COMPOSE_HEADER
+	security_encrypt MT_COLOR_COMPOSE_SECURITY_ENCRYPT
+	security_sign    MT_COLOR_COMPOSE_SECURITY_SIGN
+	security_both    MT_COLOR_COMPOSE_SECURITY_BOTH
+	security_none    MT_COLOR_COMPOSE_SECURITY_NONE
+
+Colours:
+	black blue brown cyan default green lightgray magenta red white yellow
+	plus prefix: bright
+	color{0..255}
+
+Attributes:
+	bold none normal reverse standout underline
+
+Missing attrs:
+	faint italic conceal strikethrough uri
+
+Proposed Syntax:
+	Simple objects:
+		SIMPLE_COLOUR=[black|blue|...]
+		PALETTE_COLOUR=color{0..255}
+		HEX3=#[0-9a-fA-F]{3}
+		HEX6=#[0-9a-fA-F]{6}
+		RGB_COLOUR=[HEX3|HEX6]
+		COLOUR=[SIMPLE_COLOUR|PALETTE_COLOUR|RGB_COLOUR]
+		ATTR=[underline|bold|...]
+		ATTR_LIST=ATTR{,ATTR}
+		highlight OBJECT [fg=COLOUR] [bg=COLOUR] [term=ATTR_LIST]
+	Lists:
+		highlight OBJECT regex=REGEX [fg=COLOUR] [bg=COLOUR] [term=ATTR_LIST]
+
+Colour sequences
+	38 Set foreground
+		palette 38;5;n
+		rgb     38;2;r;g;b
+	48 Set background
+		palette 48;5;n
+		rgb     48;2;r;g;b
+
+Other misc sequences
+	set terminal title
+	set terminal icon
+	highlight uri
+	bracketed paste
+
