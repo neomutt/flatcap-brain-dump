@@ -1,3 +1,17 @@
+setcolor, print, move
+	setcolor is persistant, even after a move
+	it applies colour
+	unlike ansi printf which applies colour to one location
+
+curses could be replaced from the outsite in
+	1) add 3rd config option
+		[curses|slang|tinfo]
+		tinfo still links with curses (for now)
+	2) replace initscr() & endwin()
+		viable?
+	3) replace cursor movement/lookups
+	may not work if initscr does some curses setup too
+
 use the configured error/warning/message colours for the stderr logging
 
 embed an asciinema demo of neomutt into our website

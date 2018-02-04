@@ -1,0 +1,104 @@
+librender
+
+how to markup a line of text?
+what about wrapped lines?
+
+sidebar - lots of short lines
+all applicable colours applied
+lowest priority first
+	NORMAL, ORDINARY, ... FLAGGED, OPEN, HIGHLIGHT
+
+ColourText object accumulating stuff
+/colour or /render library independent of neomutt
+curses can render a CT object
+CT knows how to merge colours/attrs
+	fg overwrites fg
+	bg overwrites bg
+	attrs accumulate
+
+e.g.
+	"  ", Colour*, "boxname"
+	CT 1 string, "  boxname"
+	   1 ColourOffset { Colour, size_t, size_t }
+	
+Pager text - reading from file
+	encoded, e.g. quoted printable
+	"~~~~~<Cr>~~~~~"
+How much text is cached as we process?
+Where are the regexes anchored?
+	Beginning of line?
+	Start of body?
+Is entire body in memory?  Probably
+Parse into list of Segment pointers
+Seg { startptr, len, colour }
+Special Segs for <CR> (might not match screen)
+Array of Line's
+Recalc on SIGWINCH
+Line is a collection of Segs or
+Line is { num, seg idx, seg idx }
+Easy to page up/down
+
+When matching colour regex against line
+match earliest, then greediest? OR
+match 1 by 1 ∀ matches, even if they overlap
+
+create regex shortcut '\s'
+expand to [ \t\f\r\n]
+see if it can match across line boundaries
+
+Does mutt have a vim-like breakat option?
+Which options should we mirror?
+
+Raw text contains very long link
+Quoted printable email
+when email is rendered, curent page only shows end of link
+
+Decoded into memory
+contains hard CRs
+Regex whitespace munged
+One Seg created ∀ text
+∀ regex match against decoded
+∀ match split Seg insert Colour
+
+Apply line splitting according to wrapping rules
+Insert <CR> or "+" etc as necessary
+
+∀ Line call DisplayLine()
+
+One regex has URI attr
+Even though split each Seg knows complete URI
+
+DisplayLine knows colours, attrs, text
+
+Which layers do which splitting?
+Is pager given encoded or decoded text?
+	decoded
+
+How much rendering is Neo-independent?
+temp file is *decoded*
+weeding is done before
+toggle weeding -> recreate tmp file close/open pager
+
+email headers - who does the foldeing to fit on screen?
+How many Segs will be needed for 1 char wide screen?
+are headers wrapped independently of text?
+have min width of 10, or 20, chars?
+to match regexes, headers need unwrapping
+rendering header, respect "ignore" & hide some
+
+librender - store colours/attrs/highlighting
+parse colourscheme file
+create markup objs using text, regexes, colours, attrs flags, width
+not flags, config
+	wrap width, smartwrap, breakat, linebreak, showbreak
+
+too complicated?  break up
+
+text + regex + colour -- apply_regex_colour()
+	creates lots of Segs
+line_split(text, options) -> more Segs
+What about headers?
+
+line breaks need finding, but not printing
+resizing window doesn't regenerate tmp file
+
