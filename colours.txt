@@ -63,23 +63,30 @@ Missing attrs:
 
 Proposed Syntax:
 	Simple objects:
-		SIMPLE_COLOUR=[black|blue|...]
-		PALETTE_COLOUR=color{0..255}
-		HEX3=#[0-9a-fA-F]{3}
-		HEX6=#[0-9a-fA-F]{6}
+		SIMPLE_COLOUR=[black|blue|...] -- store as ANSI value 0-7 (+bright)
+		PALETTE_COLOUR=color{0..255} -- store as palette value
+		HEX3=#[0-9a-fA-F]{3} -- convert to RRGGBB
+		HEX6=#[0-9a-fA-F]{6} -- store as RRGGBB
 		RGB_COLOUR=[HEX3|HEX6]
 		COLOUR=[SIMPLE_COLOUR|PALETTE_COLOUR|RGB_COLOUR]
 		ATTR=[underline|bold|...]
 		ATTR_LIST=ATTR{,ATTR}
-		highlight OBJECT [fg=COLOUR] [bg=COLOUR] [term=ATTR_LIST]
+		highlight OBJECT [fg=COLOUR] [bg=COLOUR] [attr=ATTR_LIST]
 	Lists:
-		highlight OBJECT regex=REGEX [fg=COLOUR] [bg=COLOUR] [term=ATTR_LIST]
+		highlight OBJECT regex=REGEX [fg=COLOUR] [bg=COLOUR] [attr=ATTR_LIST]
+	Or in combination
+		highlight OBJECT [regex=REGEX] [fg=SIMPLECOLOUR] [bg=SIMPLECOLOUR] [palfg=PALETTE_COLOUR] [palbg=PALETTE_COLOUR] [rgbfg=RGB_COLOUR] [rgbbg=RGB_COLOUR] [attr=ATTR_LIST]
+		which would allow one colourscheme for all possibilities
+		would need to store all three colour sets for every object
+		
 
 Colour sequences
 	38 Set foreground
+		ansi    3n
 		palette 38;5;n
 		rgb     38;2;r;g;b
 	48 Set background
+		ansi    4n
 		palette 48;5;n
 		rgb     48;2;r;g;b
 
