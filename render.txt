@@ -102,3 +102,27 @@ What about headers?
 line breaks need finding, but not printing
 resizing window doesn't regenerate tmp file
 
+weeded headers could be present but not shown
+same mechanism could be used for folding and <toggle-quoted>?
+	hide signature?
+
+flag the nature of each line:
+	text, header, signature, quote, quote1,2,3.., PGP header
+	search match, mime headers, weed header
+
+after initial parsing call out to plugin parsers, e.g.
+	.signature identifier
+	markdown highlighter
+	diff highlighter
+implement as .so's with a simple API
+
+plugins might want to define new highlight names, e.g.
+	markdown_header1
+we should accept some unknown names, or let plugin define them
+
+if plugin defines colour items, then colour scheme would *have*
+to be loaded after the plugin.  after config.  tricky
+or give the plugins a class of names for colour items
+	P_*
+	P_MarkdownHeader1
+

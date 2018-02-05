@@ -1,3 +1,5 @@
+put donate link in GH template in comments?
+
 setcolor, print, move
 	setcolor is persistant, even after a move
 	it applies colour
