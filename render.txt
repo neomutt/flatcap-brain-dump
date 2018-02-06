@@ -51,7 +51,7 @@ Which options should we mirror?
 
 Raw text contains very long link
 Quoted printable email
-when email is rendered, curent page only shows end of link
+when email is rendered, current page only shows end of link
 
 Decoded into memory
 contains hard CRs
@@ -125,4 +125,6 @@ to be loaded after the plugin.  after config.  tricky
 or give the plugins a class of names for colour items
 	P_*
 	P_MarkdownHeader1
+
+plugin might suggest that a line shouldn't be wrapped (e.g. diff)
 

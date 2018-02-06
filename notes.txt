@@ -1,3 +1,10 @@
+web/readme bigger deal about starring/donation
+
+mutt_bgrun - periodically run waitpid()
+	keep list of file <--> pid mapping
+	viewer goes away; delete file
+	close files on neomutt close?
+
 put donate link in GH template in comments?
 
 setcolor, print, move
