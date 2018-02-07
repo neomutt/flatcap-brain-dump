@@ -201,3 +201,8 @@ unignore* - headers unwrapped
 decode email to file, unwrap all headers (however long)
 	de-mime it.
 
+header plugin could make collective decides
+if header X is *present*, then highlight all Y
+
+lua binding for render plugins
+
