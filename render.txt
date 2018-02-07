@@ -128,3 +128,76 @@ or give the plugins a class of names for colour items
 
 plugin might suggest that a line shouldn't be wrapped (e.g. diff)
 
+permanent markup
+	hard CR
+	header/pgp/mime
+	syntax: diff, markdown, urls addresses, quoting, .sig, strings?
+
+temporary markup
+	soft Cr
+	search matches
+
+how to separate permanent from temporary?
+
+resize doesn't happen often
+	=> complete rebuild when necessary
+search changes often
+	=> keep separate
+
+search could have *multiple* matches *spanning* lines
+(only when search regex improved)
+
+address plugin can ref address book to highlight accordingly
+
+do we want a *semantic* parsing of the headers?
+so others can process more easily?
+
+plugins could have read-only access to config
+	except sensitive
+
+header plugin - read until '^$'
+	match addresses against addrbook
+	dates (any format)
+	IP(v6)
+	weed (vs not)
+	mailing list
+use config for head matches?
+
+ignore/unignore should trigger a redisplay of headers
+(if visible).  This will affect the line numbers and
+position of the view in the pager
+
+header plugin could zebra-stripe the fields odd/even
+continuation lines are grouped with parent (and have link
+to parent?  costly, space-wasting, not really needed
+
+plugins could add/remove lines
+	squash empty, delete .sig
+	add whitelines for clarity
+
+markdown plugin - hide #'s for headers?
+	convert lists to unicode ●, ○, etc
+	use bold, italic, url, etc
+	use line-drawing chars to render tables
+
+smiley plugin :-) -> 😄
+	config lookup table
+
+continuation headers. don't include leading space
+	just flag them, let display choose what to do
+
+toggling weed causes pgp sig to be rechecked!
+
+weed and unignore aren't consistent
+
+!weed => headers as in original email
+	hard wrapped @ ~80 chars, indent 8
+	soft wrapped (on narrow screen), no indent
+
+unignore* - headers unwrapped
+	hard wrapped to *screen* width
+	soft wrapped (on narrow screen), no indent
+
+decode email to file, unwrap all headers (however long)
+	de-mime it.
+
