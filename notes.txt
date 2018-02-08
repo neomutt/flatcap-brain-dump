@@ -1,3 +1,9 @@
+put dns code in a separate thread (if we keep it)
+	need test thread code
+
+sort out / standardise
+	strsep, strtok, strtok_r
+
 web/readme bigger deal about starring/donation
 
 mutt_bgrun - periodically run waitpid()
