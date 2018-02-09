@@ -197,3 +197,18 @@ recently-updated page?
 	'N'ew flag?
 	how recently?
 
+when a user "edit this page" from within neomutt
+	send it to the users' ml?
+
+repo updates trigger traivs
+	do some checks.  of what?  how?
+	then deploy script
+	push to repo
+	clone main web repo
+	update submodule
+	push that
+	need creds
+
+internal docs linking need 404 page
+	jump point & "let us know" instructions
+
