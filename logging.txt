@@ -123,6 +123,8 @@ Logging bug
 use file locking on logs to prevent overwriting
 	or premature deletion
 
+option in :messages page to save the text
+
 ------------------------------------------------------------
 
 main()
