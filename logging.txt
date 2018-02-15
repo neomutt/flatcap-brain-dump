@@ -125,6 +125,70 @@ use file locking on logs to prevent overwriting
 
 option in :messages page to save the text
 
+default log level to -1
+	level 0 logs msg/error
+
+progress messages
+	log only if previous message != progress
+	log last progress message too
+	need to cache them
+
+stderr ignores progress message (or same magic filtering)
+
+abstract progress into separate file
+
+progress - [%d messages omitted]
+	need to keep count
+
+mutt_logging:
+	start,stop,file,level,rotate,disp_curses
+mutt/logging:
+	open,close,ver,file,level
+
+states: disabled, enabled, level m, level n
+
+startup
+	startup -> queue
+	parse command line -> logging
+	quick stuff -v, -D, etc flush and exit
+	mutt_init -> config -> logging, flush, exit OR
+	start_logging(ver, file, level)
+
+options
+	{cmdline,config,none} . {-d,-l}
+	6 possibilities just to get to start_logging()
+	plus test -v, -D routes
+
+while running file,level0, leveln, file2
+
+level-n -> level-n+1 (Now @ level n+1)
+level-n -> level0 (keep file open, but not output?)
+	no close file
+level0 -> level-n (Now @ level n) (for open file)
+level0 -> level-n (no file) open file, Now @ level n
+
+setting file, cmdline or config occur before start_logging()
+	therefore log is enabled or disabled
+disabled -> enabled : rotate, openfile
+enabled -> disabled : close (only on exit)
+enabled -> enabled (new file) : close, rotate, open
+
+new levels: progress (bar), text (preceded by msg/error?)
+	PEWMBT12345, perror, error, warning, message, bar, text, d1, d2, d3, d4, d5
+
+progress rules -> log contains mix of M and B (progress)
+	M B0 {B1-21 elided} B22 M B23 {B24-98 elided} B99 M
+text rules => M T T T T
+	file might <tab> indent lines
+indent prevents confusion with other lines
+
+perror, print errno(int) too?
+
+progress: curses: YES, stderr, file: MAGIC filter
+text: curses: NO, stderr, file: dependent on previous line
+
+move {read,write,net,time}_inc into curses_message?
+
 ------------------------------------------------------------
 
 main()

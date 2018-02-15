@@ -1,3 +1,11 @@
+gdb ignore mutt/*.[ch]
+	-> dev ml?
+
+gmane number of groups overflows progress bar
+
+easy task?
+	split mutt_resize()?
+
 put dns code in a separate thread (if we keep it)
 	need test thread code
 
