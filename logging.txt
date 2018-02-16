@@ -92,6 +92,10 @@ variable is only expanded and checked when set
 	=> no new logfile at midnight
 
 what's preventing LOTS of logfiles?
+	check for locks (actively used)
+	check for date (stat) > 1 week?, 1 month?
+	means we need a dedicated log *DIR*
+	need to scan dir for files
 
 if there are zero expandos (or variables)
 	then rotate up to 5 files
