@@ -64,8 +64,6 @@ do we need a config URI object?
 	On that note I recently got xoauth2 working on neomutt for gmail.
 	I'm documenting it locally atm
 
-releases - check for co-author commits
-
 find remaining snake_case globals and replace them
 
 connecting to gmail with options:
@@ -170,7 +168,7 @@ update docs
 	split readme authors
 	more shields
 	donate in more places
-	cneomutt/releaseredit all reference
+	credit all reference
 
 python coder needed to update botty
 	use github api
@@ -432,9 +430,6 @@ neo-vim repo
 		limit neomutt.vim access to them
 	merge vim keys?
 
-release
-	add vim repo to release notes "to check" list
-
 find 'for' without {}
 
 autosetup
@@ -530,10 +525,6 @@ use summary log for informational info
 	Sent email "Subject" to
 		ppl-list
 	Received 4 new emails in 2 folders
-
-releases
-	update releases page
-	update en_GB to 100%
 
 mutt-1.9.1
 	attach mac text file (CR) OK
@@ -1065,7 +1056,6 @@ Misc
 	$XDG_CACHE_HOME
 	656 verify signed
 	coverity travis update ./configure yml
-	release notes - mention "ifdef" changes
 
 RFC
 	account command user ml, devel ml
@@ -1296,8 +1286,6 @@ doc sample branches
 
 docs:
 	http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-
-add mutt.svg to contrib release
 
 2017-05-24
 	00:00 <cybrNaut> why is "fcc_clear" suggested as a work-around to those without "smime_encrypt_self = yes" in https://www.neomutt.org/feature/encrypt-to-self, when fcc_clear is said to be
@@ -1803,12 +1791,6 @@ two open milestones (next-feature-release, next-bug-fix-release)
 
 translate: hooks in code to log most translated strings
 	help translators prioritise their work
-
-release branch
-	no .travis.yml (no building)
-	ChangeLog
-	configure.ac
-	README
 
 list Sven's unused letters to the main guide
 

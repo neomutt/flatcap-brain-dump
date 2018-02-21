@@ -1,3 +1,15 @@
+release branch
+	no .travis.yml (no building)
+	ChangeLog
+	configure.ac
+	README
+
+update releases page
+update en_GB to 100%
+
+add vim repo to release notes "to check" list
+
+check for co-author commits
 
 always send release message to neo mailing lists
 	using new version "User Agent:"
