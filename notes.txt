@@ -1,3 +1,9 @@
+scripts
+	make-coverity.sh
+	make-translate.sh
+	copy in .travis.yml
+	create commit
+
 gdb ignore mutt/*.[ch]
 	-> dev ml?
 
