@@ -1,3 +1,4 @@
+split mutt_resize_screen()?
 
 debian open r/o patch #528233 mutt#3261
 
