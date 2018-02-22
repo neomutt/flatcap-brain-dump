@@ -1,0 +1,23 @@
+path_tidy()
+
+absolute paths only
+relative paths are complicated
+	esp. if they start ../
+
+1) filter out simple stuff
+	`(/.)+/` -> `/`
+	`//+` -> '/'
+
+1st pass through, use 2 ptrs
+	(r)ead
+	(w)rite
+need to check for both `/.$` and `/$` -- trim
+
+2nd pass - /aaa/../ccc
+
+while (strstr(..))
+	insert NUL, then strrchr(/)
+	memmove(x,y) move end of string back
+
+1st pass could use strchr(/) to skip quickly
+
