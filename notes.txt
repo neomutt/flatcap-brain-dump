@@ -1,3 +1,14 @@
+unify fd vs FILE*?
+	might need FILE* for fprintf formatting
+	also it's buffered
+	does that matter?
+
+startup: doc all routes to exits
+	call graphs?
+	coverage?
+	from call graph work out which variables are ref'd
+		NO: all globals could be
+
 scripts
 	make-coverity.sh
 	make-translate.sh

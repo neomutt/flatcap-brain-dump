@@ -193,6 +193,30 @@ text: curses: NO, stderr, file: dependent on previous line
 
 move {read,write,net,time}_inc into curses_message?
 
+Q:
+	colours or no colours?
+		for curses
+		for terminal
+	default binding?
+
+problem:
+	files are rotated even if logging isn't enabled
+
+on startup main() calls mutt_write_address_list() -> stdout
+	separate address from output
+
+use level 0 for info messages -- always logged?
+
+does curses_message() still show up in the logs?
+
+special level for progess messages
+	hard when they're interleaved with other debugging messages
+
+turn message log into fake mailbox
+	set pager_index_lines = 10
+index shows lines (short)
+pager shows full text, laid out
+
 ------------------------------------------------------------
 
 main()

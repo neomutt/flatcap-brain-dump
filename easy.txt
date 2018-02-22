@@ -62,3 +62,9 @@ easy task:
 	test problems
 	one+ person per distro
 
+do_color() & callers
+	&do_cache -> bool
+
+move idna version string -> fn in lib
+	reduce external deps
+
