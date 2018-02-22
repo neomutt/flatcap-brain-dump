@@ -1,3 +1,11 @@
+make notes default branch 'public'
+
+add descriptions to all labels
+
+add "help wanted" and "good first issue" to all repos
+
+shorten changelog and link end to historic version on github
+
 unify fd vs FILE*?
 	might need FILE* for fprintf formatting
 	also it's buffered
