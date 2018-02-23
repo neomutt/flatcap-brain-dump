@@ -1,3 +1,6 @@
+put "latest version = X" on distro pages
+	too much work to keep up-to-date?
+
 make notes default branch 'public'
 
 add descriptions to all labels
