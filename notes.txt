@@ -6,6 +6,7 @@ make notes default branch 'public'
 add descriptions to all labels
 
 add "help wanted" and "good first issue" to all repos
+	same colours
 
 shorten changelog and link end to historic version on github
 
