@@ -217,6 +217,30 @@ turn message log into fake mailbox
 index shows lines (short)
 pager shows full text, laid out
 
+log file rotation is happening when logging isn't enabled
+
+mutt_exit -> atexit -> endwin
+	ErrorBuf?
+	log_file_close
+	no sleep
+	no "press any key to continue"
+	log_close(quiet)
+
+mutt_query_exit() !! from SIGINT
+
+all perror -> mutt_perror()
+
+atexit -> lots of unique retvals
+	document current use of retvals
+	document all exits from neomutt
+
+can we uses curses keywait without refresh? NO
+	e.g. create ~/Mail
+
+mutt_query_exit -> call mutt_exit
+mutt_exit -> macro need to know *where* it died
+if logq, flush it, dump to screen, backtrace if available
+
 ------------------------------------------------------------
 
 main()

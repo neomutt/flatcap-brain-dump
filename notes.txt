@@ -1,3 +1,55 @@
+tmpfile name neomutt-*DRAFT*-XXXXXX?
+	possible?
+	useful?
+	or set env to pass info to editor
+
+need (non-)curses ask_question() and select_option()
+virtual functions.  select ties into curses menu
+
+auto-sidebar bool option -- hide until needed on
+	<sidebar-show>
+	<sidebar-up>/<sidebar-down>
+	hide until needed
+	hide on <sidebar-open>
+	or after 1 second if possible
+
+easy refactor envlist -> env.c (lib?) use STAILQ
+
+easy refactor -> random.c (lib?)
+	lib mem routines -> could exit(1)
+	need close_random() function
+	refactor -> init_random()
+
+$editor = ENV(VISUAL), ENV(EDITOR), "vi", system, user
+
+∀ $ENV, code default, init.h, system config, user config
+	doc and list priority order -- in $config docs!
+
+update COPYRIGHT
+
+invite new members
+
+update neomutt.vim
+
+nntp loading description
+	123/∞! overflow
+
+trivial - check all src against vim folding
+
+assert - does it call atexit
+	no - abort() (SIGABRT)
+using assert means trapping SIGABRT for endwin
+
+mutt_randbuf has 1MB limit
+	assert
+	we only call with a max of 16
+
+stop offering to create ~/Mail?
+
+notes on prompts that require ctrl-g
+OR pgpkey selection should quit on <enter> (empty)
+	is empty valid?
+
 put "latest version = X" on distro pages
 	too much work to keep up-to-date?
 
