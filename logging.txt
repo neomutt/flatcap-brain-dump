@@ -270,6 +270,9 @@ enable debug from within mutt
 	set debugfile
 	rotate files?
 
+mutt_exit() -> (retval, msg)
+	e.g. function name
+
 ------------------------------------------------------------
 
 main()

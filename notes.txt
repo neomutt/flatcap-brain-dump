@@ -1,3 +1,7 @@
+style guide
+	STAILQ_FOREACH
+	always use {}
+
 mutt tips
 	create http-reading mailbox type
 	needs to be able to scan host (or read an index)
