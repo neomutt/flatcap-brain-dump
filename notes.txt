@@ -13,13 +13,6 @@ auto-sidebar bool option -- hide until needed on
 	hide on <sidebar-open>
 	or after 1 second if possible
 
-easy refactor envlist -> env.c (lib?) use STAILQ
-
-easy refactor -> random.c (lib?)
-	lib mem routines -> could exit(1)
-	need close_random() function
-	refactor -> init_random()
-
 $editor = ENV(VISUAL), ENV(EDITOR), "vi", system, user
 
 ∀ $ENV, code default, init.h, system config, user config
@@ -148,10 +141,6 @@ connecting to gmail with options:
 	-gnutls and -ssl causes a crash in mutt_conn_find()
 	check
 
-eliminate fprintf for errors
-	put everything through the mutt_{debug,message,error}
-	mechanism
-
 prep 1-liner descriptions of all var,cmd,fn etc for botty
 
 restart POP after connection is broken/lost (like IMAP)
@@ -238,10 +227,6 @@ hibernate-hook - would one be useful to anyone?
 	does hibernate need a time option
 	if (Δt > n) then fire hook
 
-debug in curses_message() gives misleading function name
-
-define MIN/MAX debug levels and test against these
-
 update docs
 	split readme authors
 	more shields
@@ -278,13 +263,6 @@ fix default /etc/neomuttrc so that neomuttrc.vim doesn't show errors
 	color header brightred default ^(From|Subject):
 	last field isn't quoted and shows as an error
 	
-move "random" code into random.c
-	random/entropy code in conn/ssl.c
-	muttlib.c mutt_rand{32,64} mutt_rand_base32
-	possibly mutt_mktemp_full and mutt_adv_mktemp
-	or abstract random code, and simplify mktemp fns
-	move random.c to muttlib?
-
 replace "for (int" -> size_t in libmutt
 
 introduce warning colour/color
@@ -811,9 +789,6 @@ deprecate muttrc in favour of neomuttrc
 	5 Wait a few releases
 	6 Drop muttrc
 
-logging
-	print date, then just time for log lines
-
 debug config options
 	-O0 -g what else?
 
@@ -835,12 +810,6 @@ upstream
 travis, relax build errors for upstream
 or rename upstream to mutt/upstream
 
-change mutt_unlink to simplify build (O_NOFOLLOW is 2008)
-	#ifndef O_NOFOLLOW
-	#define O_NOFOLLOW 0
-	#endif
-safe_fopen too
-
 change safe_rename
 	ENOTSUP
 	EOPNOTSUPP
@@ -850,14 +819,6 @@ sidebar intro -- mention "mailboxes" command
 use bsearch to search commands list
 
 merge and drop "scripts" top-level repo
-
-if we delete mutt_md5 from the build, what about windows?
-	1) C:\Users\admin>CertUtil -hashfile ping.txt MD5
-	2) MD5 hash of file ping.txt:
-	3) 4f 75 c2 2c 20 b4 81 54 72 2c a5 7c 95 7a 66 88
-	4) CertUtil: -hashfile command completed successfully.
-we're running a shell script, so we shouldn't worry
-if windows, then it must be cygwin
 
 test fcntl and flock on /var/spool/mail/mutt file
 
@@ -990,9 +951,6 @@ ask neou for logo suggestions
 
 use install-sh $(INSTALL) instead of cp
 
-debug_level > n => fflush every line
-	or after every 'n' seconds
-
 log before regex ops & other risky functions
 
 parse_set: unset DT_RX doesn't work
@@ -1122,31 +1080,15 @@ FS layer
 	memstream -> better buffer interface
 	canonicalise path (realpath)
 
-Coverity false positives
-	171380
-	171378
-
 Misc
 	where are the "source" relative docs?
 	alias_file, certificate_file, etc aren't relative
 	relative to what?
 	all *_files relative to user's muttrc
 	$XDG_CACHE_HOME
-	656 verify signed
-	coverity travis update ./configure yml
 
 RFC
 	account command user ml, devel ml
-
-	mutt_log -> level 1 ==
-		mutt_message
-		mutt_error
-		or == level 0
-	mutt_debug -> level 2+
-	need audit
-	263 mutt_message
-	728 mutt_error
-	704 mutt_debug (total ~1700)
 
 Decide
 	#ifdef DEBUG
@@ -1230,14 +1172,9 @@ browser.c, buffy.c have a lot of
 	struct Buffy *tmp;
 	tmp's a bad name for a variable
 
-aur remove regex configure option
-
 create an address interface for lookups / completion
 	basic plugin uses aliases
 	notmuch can supply its own plugin
-
-struct ContentState
-	lots of bools?
 
 pgp_invoke_decode
 	This is historic and may be removed at some point.
@@ -1448,13 +1385,7 @@ create doc repo
 
 macro REGEXEC is only used once
 
-merge muttrc.feature* into one file
-	leave markers in that are converted to <a name> anchors
-	so we can easily link to sections
-
 ask people how often they'd like to be chased up
-
-doc build requirement on DocBook DTDs
 
 warn on option synonym usage
 	{ "pgp_autoencrypt",            DT_SYN,  R_NONE, UL "crypt_autoencrypt", 0 },
@@ -1470,11 +1401,6 @@ all example muttrcs
 	14:43 <wayne47> is there a way to specify a unique SMTP server per mail box?
 	14:44 <wayne47> so that when I read mail via imap from foo.com, outgoing mail uses foo.com and when I read from bar.com, outgoing mail uses bar.com (etc)?
 
-configure summary
-	Libs:              -lanl -lncursesw -lnotmuch
-	Mutt libs:          -lncursesw -ltokyocabinet -lkyotocabinet -lgdbm -lqdbm -ldb-5.3 -llmdb -lidn
-what's the distinction?  notmuch and lmdb are both user-specified external deps
-
 web toplevel dir
 	/muttrc
 	move all samples from the guide
@@ -1486,11 +1412,6 @@ configure summary?
 
 "approved" tag? when an idea under discussion gets the go-ahead?
 	or just remove the "discussion" tag?
-
-enable debug from within mutt
-	set debuglevel
-	set debugfile
-	rotate files?
 
 docs todo
 	contribution
@@ -2237,10 +2158,6 @@ new feature checklist -- code all configs, doc, readme, web, doc validate
 
 index preview mode - display 'n' lines of the email body
 	when in the index
-
-configure doesn't parse slang option unless ncurses libraries are missing
-	check if this is still true
-	raised by @nevermind
 
 nested-if -- index-format display ? if doesn't match string put in
 	%<> changed to %? !

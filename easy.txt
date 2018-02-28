@@ -1,3 +1,17 @@
+refactor envlist -> env.c (lib?) use STAILQ
+
+refactor -> random.c (lib?)
+	lib mem routines -> could exit(1)
+	need close_random() function
+	refactor -> init_random()
+
+move "random" code into random.c
+	random/entropy code in conn/ssl.c
+	muttlib.c mutt_rand{32,64} mutt_rand_base32
+	possibly mutt_mktemp_full and mutt_adv_mktemp
+	or abstract random code, and simplify mktemp fns
+	move random.c to muttlib?
+
 split mutt_resize_screen()?
 
 debian open r/o patch #528233 mutt#3261
@@ -68,4 +82,7 @@ do_color() & callers
 
 move idna version string -> fn in lib
 	reduce external deps
+
+struct ContentState
+	lots of bools?
 

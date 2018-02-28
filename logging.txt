@@ -241,6 +241,35 @@ mutt_query_exit -> call mutt_exit
 mutt_exit -> macro need to know *where* it died
 if logq, flush it, dump to screen, backtrace if available
 
+eliminate fprintf for errors
+	put everything through the mutt_{debug,message,error}
+	mechanism
+
+debug in curses_message() gives misleading function name
+
+define MIN/MAX debug levels and test against these
+
+logging
+	print date, then just time for log lines
+
+debug_level > n => fflush every line
+	or after every 'n' seconds
+
+mutt_log -> level 1 ==
+	mutt_message
+	mutt_error
+	or == level 0
+mutt_debug -> level 2+
+need audit
+263 mutt_message
+728 mutt_error
+704 mutt_debug (total ~1700)
+
+enable debug from within mutt
+	set debuglevel
+	set debugfile
+	rotate files?
+
 ------------------------------------------------------------
 
 main()
