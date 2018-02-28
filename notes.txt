@@ -1,3 +1,23 @@
+mutt tips
+	create http-reading mailbox type
+	needs to be able to scan host (or read an index)
+	served as html by CDN
+
+mutt tips
+	RSS feed?
+	we can control the length of the history
+	or deprecate tips
+	keep a large backlog
+	rotate through useful beginner tips
+	still need local storage for new vs old message
+	tips *IN* rss feed, or is the feed just an index
+	actual articles are html urls
+
+Use vim-like Ennn error messages
+	give every message a unique number
+	every one documented in docs
+	internal errors too -- "Please report this bug"
+
 tmpfile name neomutt-*DRAFT*-XXXXXX?
 	possible?
 	useful?
