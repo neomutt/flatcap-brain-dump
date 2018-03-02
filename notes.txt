@@ -1,3 +1,7 @@
+add style RULE for pointer variables
+	C vs C++
+	`FILE *ptr` vs `FILE* ptr`
+
 pgpewrap -- %(...) -> repeat group for recipients
 	`%(-r %R)` becomes `-r 1 -r 2` etc
 
