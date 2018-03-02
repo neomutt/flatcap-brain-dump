@@ -1,6 +1,7 @@
 add style RULE for pointer variables
 	C vs C++
 	`FILE *ptr` vs `FILE* ptr`
+add style GUIDELINE to add const where possible
 
 pgpewrap -- %(...) -> repeat group for recipients
 	`%(-r %R)` becomes `-r 1 -r 2` etc
