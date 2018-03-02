@@ -1,3 +1,25 @@
+pgpewrap -- %(...) -> repeat group for recipients
+	`%(-r %R)` becomes `-r 1 -r 2` etc
+
+bug in nntp cache
+	where's the header cache?
+	why aren't the body cache files in the nntp dir?
+	why is the file called ".active" hidden file?
+		or is the host missing?
+
+config validator for format strings
+	if they're all simple 1 letter, then have a parser(fmt, "abfq")
+	only *warn* if bad -- notify devs if wrong
+
+add neomutt.vim to COPR
+
+translation
+	fix marcin email, update copyright
+
+add steve (autosetup) to credits, invite
+
+add "Add profile picture" to welcome letter
+
 style guide
 	STAILQ_FOREACH
 	always use {}

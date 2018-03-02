@@ -54,8 +54,8 @@ find and fix imbalanced #ifdefs
 change all "int buflen" to "size_t buflen"
 
 merge:
-	mutt_concat_path 14 uses
-	mutt_concatn_path 1 use
+	mutt_file_concat_path 14 uses
+	mutt_file_concatn_path 1 use
 
 replace mbtowc() with mbrtowc() in my_width()
 	only used in one place
