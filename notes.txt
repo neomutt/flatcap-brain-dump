@@ -1,3 +1,12 @@
+translation
+	add notes about how to download the latest
+	file from the translation branch
+	(and how to make a PR?)
+
+create exploded diagram of Index/Pager/Sidebar screen
+	label all parts
+	use svg so it can be translatable
+
 style:
 	F9 unused parameters should be unnamed
 	Enum.5: Don't use ALL_CAPS for enumerators
