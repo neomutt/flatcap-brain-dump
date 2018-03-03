@@ -1,3 +1,8 @@
+parse_set()
+	r -> rc
+
+check_alias_name() bad,dry -> bool
+
 refactor envlist -> env.c (lib?) use STAILQ
 
 refactor -> random.c (lib?)

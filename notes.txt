@@ -1,3 +1,6 @@
+code/translation
+	string "notmuch" -> "Notmuch"
+
 translation
 	add notes about how to download the latest
 	file from the translation branch
