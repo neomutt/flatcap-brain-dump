@@ -1,3 +1,8 @@
+style:
+	F9 unused parameters should be unnamed
+	Enum.5: Don't use ALL_CAPS for enumerators
+	Enum.6: Avoid unnamed enumerations
+
 add style RULE for pointer variables
 	C vs C++
 	`FILE *ptr` vs `FILE* ptr`
