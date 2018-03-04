@@ -206,3 +206,6 @@ if header X is *present*, then highlight all Y
 
 lua binding for render plugins
 
+vim has "nocombine" attr
+	it means use these attrs ignoring any base attrs
+

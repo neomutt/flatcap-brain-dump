@@ -1,3 +1,10 @@
+vim syntax
+	create match for deprecated config
+	link to error?
+
+make plan to deprecate list of "Features"
+	need something better
+
 code/translation
 	string "notmuch" -> "Notmuch"
 
