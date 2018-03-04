@@ -41,6 +41,7 @@ config validator for format strings
 	only *warn* if bad -- notify devs if wrong
 
 add neomutt.vim to COPR
+	need to tag repo to match release
 
 translation
 	fix marcin email, update copyright
