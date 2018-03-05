@@ -478,3 +478,13 @@ status bar expando for dialog breadcrumbs
 
 have special function for option messages (title, msg, options list)
 
+object:
+	who are the *viewers*
+	who are the *writers*
+	where does the locking occur: Account? Folder? Email?
+
+keypress 'ab' within interval
+	search for 'ab' first
+	failing that, search for 'a', then finally for 'b'
+	event manager knows which classes of events can be combined
+
