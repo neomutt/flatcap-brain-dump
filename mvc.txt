@@ -483,7 +483,12 @@ object:
 	who are the *writers*
 	where does the locking occur: Account? Folder? Email?
 
+event queue passed to event handler, not much keypress etc?
+event handler needs to turn
+	[15~ -> <f5> still
+
 keypress 'ab' within interval
+	how can we preferentially match 'ab' rather than 'a', 'b'?
 	search for 'ab' first
 	failing that, search for 'a', then finally for 'b'
 	event manager knows which classes of events can be combined
