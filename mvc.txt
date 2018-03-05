@@ -1,0 +1,480 @@
+main loop
+	reads keyboard
+	manages timers
+	manages signals
+	holds Accounts (set)
+	holds Windows (set)
+		current
+		focus
+
+Account
+	MX type
+		or a set of fn pointers
+	Set of Folders
+	credentials
+
+Folder
+	Name
+	description
+	Set of Emails
+	Attrs, e.g. Visible
+
+Window
+	Attrs
+	Set of Children windows
+	Render function
+	Private data
+
+WindowAttrs
+	Min/Max size
+	Borders
+	Colour default
+	Expansion vert/horizontal
+	Z-order
+	Modal?
+
+Keys to move focus <focus-up>,<focus-down>,<focus-left>,<focus-right>
+plus absolute <move-to-X>
+	where X=Sidebar,Index,Pager,etc
+
+keys to enlarge/reduce window
+each window is only constrained in one direction
+
+changing size of sidebar or index changes associated variable
+	$sidebar_width
+	$pager_index_lines
+
+with focus on pager or sidebar, user can <pgup>,<pgdown> for speed
+
+sidebar, index_lines have min/max size
+	$sidebar_visible toggles Window's visibility
+	=> triggers repaint
+
+to move focus down from index, take coords of SW corder and add 1 row
+	descend tree looking for deepest visible Window
+	+Z-order
+
+
+V..................................................................
+:                                                                 :
+: S-------+  R..................................................  :
+: |       |  :                                                 :  :
+: |       |  : I--------------------------------------------+  :  :
+: |       |  : |                                            |  :  :
+: |       |  : +--------------------------------------------+  :  :
+: |       |  :                                                 :  :
+: |       |  : P--------------------------------------------+  :  :
+: |       |  : |                                            |  :  :
+: |       |  : |                                            |  :  :
+: |       |  : |                                            |  :  :
+: |       |  : |                                            |  :  :
+: |       |  : |                                            |  :  :
+: |       |  : |                                            |  :  :
+: |       |  : +--------------------------------------------+  :  :
+: |       |  :                                                 :  :
+: +-------+  :.................................................:  :
+:                                                                 :
+:.................................................................:
+
+V View horizontal (transparent)
+S Sidebar vertical
+R Right area vertical (transparent)
+I Index horizontal
+P Pager horizontal
+
+Move check cell
+	Left	NW
+	Right	NE
+	Up	NW
+	Down	SW
+Add 1 cell to avoid borders
+
+Window *WinList;
+Window *WinFocus;
+
+WinList+--> V--> S
+       |    +--> R--> I
+       V         +--> P
+       Compose
+       |
+       V
+       Help
+
+Focus on sidebar, press 'q' -> quit
+	=> sidebar_visible=no
+	=> repaint
+Focus on index, press 'q' -> quit
+	=> pager_index_lines=0
+	=> repaint
+Focus on pager, press 'q' -> quit
+	=> kill pager, return to index
+	How?
+
+On hide/kill window consider NW corner
+	(+1 cell for borders)
+	Who *now* owns this cell
+	-> focus
+
+Kill pager => hide and make index visible
+	with no pager the index will fill the space vertically
+
+Events:
+	key, mouse, timer, fs, net, signal
+
+Rendering.  Object tree
+
+	ACList
+	|   +-->F1 -> F11 -> EmailList
+	V  /      \-> F12 -> EmailList
+	A1 ---->F2 -> EmailList
+	|  \
+	V   +-->F3 -> EmailList
+	A2
+	|
+	V
+	...
+
+
+Who listens to what?
+	Focus is on one email
+Sidebar: All Account, Folder (selection)
+	shows Active Folder in all Accounts
+Index: One Folder, One Email (selection)
+	show email's parent Folder
+Pager: One Email
+	shows one email
+
+Each window has a render function
+	fn takes focus-object
+	=> need common base for all objects
+
+<sidebar-open>, <select-next>
+simply change focus and cause repaint
+
+Account list is ALL accounts
+There can be multiple Views
+Each view can have 1 or more accounts
+V1: A1, A2, A3
+V2: A1, A3
+need keys to switch between views
+Default to 1 view
+
+Window holds private state data for its type, e.g.  SB data
+Sidebar private data shows which Accounts are visible
+	user's position in list
+	position of highlight
+	etc
+
+With multiple views, $sidebar_visible isn't global any more
+	set v:sidebar_visible # This view
+	set  :sidebar_visible # All Views
+
+Render functions take View
+	for the list of Accounts
+
+Name views - Tabs for each?
+Can we open multiple emails?
+Tabs for emails?  How?
+How does UI work to make the emails visible?  navigable?
+
+View commands
+	new view
+	close view
+	clone view
+
++------+-------+-------+
+| Tab1 | Tab2  | Tab3  |
++------+       +-------+---------
+|
+
+Alt-V1 (within timeout)
+Could put one Account per view
+Tabs really complicate the window model
+
+multiple email view is equivalent to limit in the index
+<up>, <down> only useful in a side-by-side comparison
+change layout to:
+
+	+----------+----------+----------+
+	| Email1   | Email2   | Email3   |
+	|          |          |          |
+	|          |          |          |
+	|          |          |          |
+	|          |          |          |
+	+----------+----------+----------+
+
+can move focus left/right
+q closes an email
+Q closes all and returns to index
+email view is new Window which is higher in z-order
+have *min* width -> limit number of comparisons
+
+email-comp-view would need split status bar -- one per email
+
+status bar isn't user alterable, so probably doesn't need any private data
+
+tabs with compose in a separate one, would mean that
+	you could go back to an email
+	or compose several emails at once
+	how do we manage multiple editors?
+	gvim -> possible - wait for child
+
+use breadcrumbs for navigation help
+	Index -> Compose -> Attach?
+	only visible when needed
+
+how does the event loop delegate?
+	one accounts have been defined and named,
+	they are added to the view (a list)
+	set view += notmuch
+	set view -= nntp
+
+event loop
+	Window list
+	Window focus
+	Account list
+	Object focus (Account, Folder or Email)
+	Config, AccountConfig
+	Finite State Machine
+	Set initial focus to A1-F1
+	Start initial state (ObjFocus)
+		-> create windows
+	Render windows (View, ObjFocus)
+
+each account is independent
+	=> separate thread
+	+ gui thread (main event loop)
+	each account has separate instance of IMAP
+
+Transitions - Simple Index <--> Help
+	user presses 'h'
+	getch() returns 'h'
+	Index.event('h')
+		-> push_state(help, data)
+	Help.start(data)
+		-> create_window(text)
+	back to event loop getch()
+	user presses 'q'
+	getch() returns 'q'
+	help.event('q') -> pop_state()
+		-> help.finish()
+		-> delete window
+
+create/delete window causes *repaint* event
+new window is fullscreen & inserted at front of window list
+only paint first window (for now)
+
+all states should be visually distinct
+
+render screen by recursively descending Windows
+paint parents (if visible), then children
+
+updating
+	each window is listening for events:
+	new obj focus, resize, etc
+	just repaint as necessary
+	<next-unread> causes update for Index, pager, status
+		but not for sidebar
+	ctrl-l repaint all
+
+state: start(), event(), finish()
+	index.start() - create windows
+		start can fail -> pop()
+	index.event() - handle event
+	index.finish() - free windows
+
+stack of states
+startup pushes index onto StateStack
+
+popup window could be smaller than fullscreen
+would have to be drawn after parent
+unless we handle window clipping
+
+that's good for large transitions
+what about single line entry, e.g. "Set subject:"?
+new state?
+separate state means partial screen views
+need complete abstractions of:
+	auto-completion
+	history
+	validation?
+start by using message window (bottom line)
+Goal?  popup window
+	border
+	title
+	message
+	entry area
+wrapping, limits?
+
+compose screen
+	allow move focus
+	move to field (e.g. bcc), hit enter to edit in place
+	what about very long lists?
+	dynamic size of field?
+	abbreviate?
+when focus is on header, show all fields
+	make all large enough to display all their data
+	squash bottom of screen?
+	bottom of screen is wasted
+	make top bigger as necessary
+
+text entry validation could
+	syntax highlight as you type:
+		set sidebar_visibl
+	set => command => cyan
+	sidebar_visibl => incomplete/unknown => yellow
+	sidebar_visible => magenta (say)
+	or only highlight on complete words
+		or "closed" strings!
+	less visually scary
+
+States
+	Index/Pager (home)
+	Help
+	Browser
+	PGP Key selection
+
+Sidebar, Index, Pager
+	All one state?
+
+When focus is moveable:
+	does an sb mouse click leave the focus on the sidebar?
+	it would in a normal gui app
+
+Compose - set subject
+	new state is pushed "Enter field"
+	it is given / defaults to: the message window
+	could be a popup in future
+	on success / failure the state is popped
+
+On the sidebar/index/pager home screen
+	user can toggle the various panels
+	3 separate states?
+
+start in index state, pager hidden
+	user presses '<enter>'
+	index.event(enter)
+		-> push pager state
+	pager.start()
+		-> make pager window visible
+		(index will be resized on next repaint)
+		-> draw()
+		-> set focus to pager
+	index sets obj focus to email
+		(probably already there from menu)
+	objfocus: email
+	winfocus: pager
+	state: pager
+
+Pager state
+	user presses 'q'
+	pager.event()
+		-> pop pager state
+	pager.finish()
+		-> hide pager window
+		(index will be resized on next repaint)
+	objfocus: email
+	winfocus: index
+	state: index
+
+Pager state
+	user presses '<next-email>'
+	pager.event()
+		-> rejected -- unknown
+	event loop recurses through siblings, then parents
+	Index.event() succeeds
+		-> index select email
+	objfocus: email2
+	winfocus: pager
+	state: pager
+	on repaint:
+		index updates highlight
+		pager draws new message
+		sidebar updates counts (if nec)
+
+which keys are valid in which windows?
+translation table on Window?  State?
+	<up> -> <prev-email>   Index
+	<up> -> <sidebar-prev> Sidebar
+	<up> -> <line-up>      Pager
+
+Common events
+	moving focus (by keyboard or mouse)
+	resizing panels
+	handles by event manager? NO
+
+init state pushed by main()
+	does init stuff
+		cmdline
+		config
+		signals
+		etc
+	creates base windows sidebar,index,pager
+	init.finish() does clean up
+	init.event() handles final 'q' ?
+		Are you sure?
+
+OR init state pushes Window state
+	win state creates windows
+	handles events for:
+		move focus
+		resize
+		etc
+	windows have ACCEPT_FOCUS flag
+
+who pushes index state?
+Init or Windows?  *Init*
+
+state.push() controls which transitions are valid???
+
+do windows have a state attached?
+	message window might have several different states!
+
+syntax highlighting message area emans defining more colours
+	default to match vim-syntax colours
+
+state.event() keypress on index, result:
+	OK handled
+	OK ignored (failed)
+	BAD not recognised
+index state has kbd lookup <up> -> <prev-email>
+either perform action, or warn "First message", return OK
+
+Index has:
+	config
+	functions
+	colours
+	commands?
+	all defined at init
+
+How does the message window work?
+who owns it?
+any keybindings?
+which state associated? if any
+or register a transparent window of 1 line high (unfilled)
+	whenever it's needed BAD
+	=> will be created/destroyed a LOT
+
+2 scenarios for the message window
+	1) mutt_message() * n -> e.g. progress
+	2) keypress ':' -> enter command
+
+When happens to error messages when ':' is active?
+queued up?  where?
+or create a tmp message window above the command line?
+complicated - need solution for multi-threaded code
+
+can we handle multi-line error messages or questions?
+most long questions will be multiple choice like 'sort'
+better suited to popup window
+numbered and _U_nderlined options
+
+using <tab> and <s-tab>
+	what's the algorithm for finding the next/prev window?
+	*next* is the recursive descent of all the windows
+	that's also visible and selectable?
+
+status bar expando for dialog breadcrumbs
+
+have special function for option messages (title, msg, options list)
+
