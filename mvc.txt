@@ -493,3 +493,7 @@ keypress 'ab' within interval
 	failing that, search for 'a', then finally for 'b'
 	event manager knows which classes of events can be combined
 
+state has keybindings which can be local or global
+	local -> only when Window is focused
+	global -> any time, any caller
+
