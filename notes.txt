@@ -1,3 +1,14 @@
+document + instructions for all the code helpers:
+	gcc/clang warnings
+	scan-build
+	coverity
+	cppcheck
+	iwyu
+	valgrind
+	travis
+	clang-format
+	lcov/coveralls
+
 if spanning entire function
 	maildir_open_mailbox_append
 	mh_open_mailbox_append
