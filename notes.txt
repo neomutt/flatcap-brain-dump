@@ -1,3 +1,22 @@
+if spanning entire function
+	maildir_open_mailbox_append
+	mh_open_mailbox_append
+	mutt_file_unlink
+
+find and split?
+	}
+	if (cond)
+	{
+
+search for empty line before }
+	  code;
+
+	}
+search for empty line after {
+	{
+
+	  code;
+
 vim syntax
 	create match for deprecated config
 	link to error?
