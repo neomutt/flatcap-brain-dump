@@ -1,3 +1,10 @@
+translate
+	add "Last updated" field to web page
+		version too? NO
+	fix gen-webpage.sh for
+		TFU, TU TU, FU, T, F, U combos
+	move scripts to management repo
+
 dewrap *.po in translate branch
 
 incorporate valgrind into unit-tests
