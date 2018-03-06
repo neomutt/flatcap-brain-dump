@@ -1,0 +1,54 @@
+use travis to deploy things
+
+https://docs.travis-ci.com/user/deployment/custom/#Git
+https://docs.travis-ci.com/user/encrypting-files/
+
+need to set up credentials on github to allow pushing
+
+dupe deploy scripts to management/deploy
+
+--------------------------------------------------------------------------------
+
+Doxygen Code docs
+
+Auto-generate the TOC with function | description
+multiple files with @page X are concatenated
+need sed to find #data for each file too
+what about global variables?
+
+- Global variables /**< Desc */
+- Config /** MixedCase - Desc
+- Function /** snake_case - Desc
+
+script the steps
+document the scripts
+
+auto-deploy on commit to [doxygen] (or rebase)
+[ci skip] (since code/ isn't checked)
+
+build docs
+validate result
+pull website
+pull doxygen html
+	del files
+	replace files
+	commit Version X
+	push
+move doxygen into website
+	commit Version X
+	push to web
+
+--------------------------------------------------------------------------------
+
+deploy translations
+on commit to [translate] or rebase
+test po files (stats)
+generate webpage
+pull website
+replace translate page
+commit [trans] HASH author, lang
+push to web
+[ci skip]
+
+--------------------------------------------------------------------------------
+

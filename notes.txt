@@ -1,3 +1,7 @@
+dewrap *.po in translate branch
+
+incorporate valgrind into unit-tests
+
 document + instructions for all the code helpers:
 	gcc/clang warnings
 	scan-build
@@ -13,20 +17,6 @@ if spanning entire function
 	maildir_open_mailbox_append
 	mh_open_mailbox_append
 	mutt_file_unlink
-
-find and split?
-	}
-	if (cond)
-	{
-
-search for empty line before }
-	  code;
-
-	}
-search for empty line after {
-	{
-
-	  code;
 
 vim syntax
 	create match for deprecated config
@@ -52,9 +42,6 @@ style:
 	Enum.5: Don't use ALL_CAPS for enumerators
 	Enum.6: Avoid unnamed enumerations
 
-add style RULE for pointer variables
-	C vs C++
-	`FILE *ptr` vs `FILE* ptr`
 add style GUIDELINE to add const where possible
 
 pgpewrap -- %(...) -> repeat group for recipients
