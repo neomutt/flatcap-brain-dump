@@ -1,0 +1,57 @@
+## `mutt_file_tidy_path()`
+
+Problems:
+- Doesn't eliminate repeated cases `///` or `/././`
+- Uses large buffers
+- Needs large array of pointers
+
+The output string will always be the same size or shorter than the original.
+So we can work in-place, or better still duplicate the string and work on the copy.
+
+--
+
+## Stage 1 - Filter out `//+` and `(/.)+`
+
+- Two buffers: (R)ead, (W)rite
+- `!` means `NUL`
+- `$` means end of string
+
+```
+(R)     /apple//banana!
+(W)     !
+```
+
+Loop through R, writing to W
+        Copy each char from R to W
+        If you find `//` skip ahead of all the `/`s
+        If you find `/./` or `/.$` skip ahead
+
+Note: Make sure the string doesn't end in `/` or `/.`
+
+--
+
+## Stage 2
+
+Duplicate the string and work with the copy.
+
+```
+(W)     /apple/banana/../cherry!
+```
+
+Loop while there are matches for `/..` (strstr)
+        1) Check the match ends with `/` or NUL
+        2) Where the match starts, write a NUL
+        3) Find the previous `/` in W (strrchr)
+        4) Copy the remaining string back (memmove)
+
+```
+                        1
+(W)     /apple/banana/../cherry!
+                     2   
+(W)     /apple/banana!../cherry!
+              3          
+(W)     /apple/banana!../cherry!
+              4          
+(W)     /apple/cherry!../cherry!
+```
+
