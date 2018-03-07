@@ -1,0 +1,38 @@
+digraph mvc
+{
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+	]
+
+	node [
+		shape="box"
+		fontsize="14"
+		style="solid"
+		height="0.25"
+		penwidth="1.5"
+		color=black
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	winlist -> v1 -> compose -> help_page
+
+	v1 -> help_line
+	v1 -> h1
+	v1 -> status_bar
+	v1 -> command_line
+
+	h1 -> sidebar
+	h1 -> v2
+
+	v2 -> index
+	v2 -> pager
+
+	{ rank=same winlist v1 compose help_page }
+}
+

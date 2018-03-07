@@ -1,0 +1,42 @@
+digraph mvc
+{
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+	]
+
+	node [
+		shape="box"
+		fontsize="14"
+		style="solid"
+		height="0.25"
+		penwidth="1.5"
+		color=black
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+
+	aclist -> a1
+	a1 -> a2
+	a2 -> a3
+
+	a1 -> f1
+	a1 -> f2
+	a1 -> f3
+
+	f1 -> f11
+	f11 -> el11
+	f1 -> f12
+	f12 -> el12
+
+	f2 -> el2
+	f3 -> el3
+
+	{ rank=same aclist a1 a2 a3 }
+}
+
