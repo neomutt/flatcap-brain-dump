@@ -1,3 +1,5 @@
+web -- make news page a dupe of the twitter feed
+
 translate
 	add "Last updated" field to web page
 		version too? NO

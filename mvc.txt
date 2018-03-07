@@ -497,3 +497,30 @@ state has keybindings which can be local or global
 	local -> only when Window is focused
 	global -> any time, any caller
 
+HelpLine Window (optionally visible)
+	render function
+	API to populate it (singleton)
+	populated by whoever has focus
+
+Future for HelpLine
+	menu Alt-X to open
+	show F_ile, W_indow in window
+	create z-order windows for the dropdown parts
+	save and restore window focus
+	navigating focus to HL shows menu
+
+Having a menu means calling other panels to repaint themselves as necessary
+	API & config to configure layout of contents of menu bar
+
+Status Bar used by Index or Pager (whichever has focus)
+	Need diagram for Status-on-top option
+	API to populate?  (singleton)
+	Got to be simple, it can't know about objects
+	caller queries its size, formats the text
+	status bar just displays it
+
+Help, StatusBar -- who calls whom?
+	Event tells help to paint -- just uses cached data
+	until updated by client (e.g. pager)
+		-> repaint
+
