@@ -524,3 +524,13 @@ Help, StatusBar -- who calls whom?
 	until updated by client (e.g. pager)
 		-> repaint
 
+Command Line/Message Window
+	2 modes
+	passive (no focus)
+		display message
+		caller needs to know its width
+	active (has focus)
+		e.g. ":command" mode
+		needs completion
+		needs syntax higlightling?
+		save and restore focus
