@@ -534,3 +534,25 @@ Command Line/Message Window
 		needs completion
 		needs syntax higlightling?
 		save and restore focus
+
+SIP window layout
+	objfocus email
+	winfocus pager
+	state pager
+keypress <Ctrl-O>
+event loop tries
+	Pager.event() -> BAD
+	...
+	Sidebar.event() -> ACCEPT
+Sidebar
+	set objfocus(folder2)
+event loop
+	notify all windows of objfocus
+	Pager: pop self
+	Index: clear cache
+	Help: clear
+	Status: clear
+event loop
+	reflow windows
+	repaint all windows (->render)
+
