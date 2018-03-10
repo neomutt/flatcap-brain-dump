@@ -1,13 +1,8 @@
+send.c sendlib.c
+	lots of char buffer[]
+	rename to buf
+
 web -- make news page a dupe of the twitter feed
-
-translate
-	add "Last updated" field to web page
-		version too? NO
-	fix gen-webpage.sh for
-		TFU, TU TU, FU, T, F, U combos
-	move scripts to management repo
-
-dewrap *.po in translate branch
 
 incorporate valgrind into unit-tests
 
@@ -26,6 +21,10 @@ if spanning entire function
 	maildir_open_mailbox_append
 	mh_open_mailbox_append
 	mutt_file_unlink
+	mutt_forward_intro
+	mutt_forward_trailer
+	mutt_make_attribution
+	mutt_make_post_indent
 
 vim syntax
 	create match for deprecated config
@@ -33,14 +32,6 @@ vim syntax
 
 make plan to deprecate list of "Features"
 	need something better
-
-code/translation
-	string "notmuch" -> "Notmuch"
-
-translation
-	add notes about how to download the latest
-	file from the translation branch
-	(and how to make a PR?)
 
 create exploded diagram of Index/Pager/Sidebar screen
 	label all parts
@@ -68,9 +59,6 @@ config validator for format strings
 
 add neomutt.vim to COPR
 	need to tag repo to match release
-
-translation
-	fix marcin email, update copyright
 
 add steve (autosetup) to credits, invite
 
@@ -290,17 +278,6 @@ history needs a refurb
 might wanna add a "Other comments" heading at the end of the PR template
 	rawtaz (irc)
 
-translations:
-	chinese (bo yu)
-	czech (jan knizek)
-	esperanto (rawtaz)
-	french (half the devs)
-	german (existing translators)
-	lithuanian (marius)
-	slovak (frank)
-	spanish (Ruben)
-	swedish (rawtaz)
-
 challenges
 	update news item - https://www.neomutt.org/2016/10/07/news
 	update https://www.neomutt.org/dev/newbie-tutorial#coding
@@ -339,10 +316,6 @@ python coder needed to update botty
 	use github api
 	commits
 	issues/PRs
-
-split up all multiline translated strings
-	especially the copyright messages
-	for easier translation and updating
 
 archive old repos on github
 
@@ -1210,12 +1183,6 @@ Searches
 	10m - classify
 		old, config, new, different
 
-Translation
-	10m, clone, trans, PR (poeditor.com)
-	German, Spanish, Slovak, Chinese: email
-	French email
-	Others, users ml
-
 add release count to changes doc on web
 
 hcache swapping crashes
@@ -1548,9 +1515,6 @@ mutt marks -- are they mailbox-local?
 		is it safe to change mailboxes without warning?
 		I suppose macros do this
 
-change "L10N" comments to "TRANSLATORS:"
-	(as that's the default)
-
 convert the bug-fixes section of the travis build.sh to work on the upstream branch
 	(test all commits, with a small spread of configs)
 
@@ -1761,10 +1725,6 @@ po multi-fold comment, english, foreign -- why bother?
 
 web misc contrib page <h1> per item
 
-script fuzzy / translation checker
-	compare %-count syntax
-	1300*30 ~ 40K compressed!
-
 safe macros enhancement request: https://github.com/neomutt/neomutt/issues/69#issuecomment-230442101
 	zmo suggests: emulate the augroup feature of vim :)
 	macros specific to a folder, or notmuch, etc
@@ -1890,9 +1850,6 @@ two open milestones (next-feature-release, next-bug-fix-release)
 
 #define the mailbox -2 abort, -1 error
 
-translate: hooks in code to log most translated strings
-	help translators prioritise their work
-
 list Sven's unused letters to the main guide
 
 leave-folder hook?
@@ -1900,16 +1857,6 @@ leave-folder hook?
 coverity to use travis-build script!
 
 chronic "moreutils" package
-
-gettext logger to look for most used translations
-	mark the common ones in the code
-
-.po are "#: file.c" needed except at translate time?  drop?
-	simplifies merges, etc
-
-issue label: "translation"
-
-L10N split up large version string blocks
 
 web
 	```note
@@ -1941,29 +1888,6 @@ shrink version number to YYx
 	52 weeks => AaBbCc etc
 	what about stable release?
 	-LTS needs multiple releases but one name
-
-translation comments
-	aka in lang
-	function names
-	"oppenc" meaning
-	glossary
-		alias
-		thread = x
-	comments ∀ translators
-	mnemonic letters
-	formatting, e.g. "[-- TEXT --]"
-	functions calls, uname(1)
-	L10N dotfill
-		to/from/subject
-		translate?
-	L10N optional?
-	plurals
-	multiple %s
-	don't need .mo
-
-web translate
-	have anchors for each language
-	they highlight that line
 
 complete review of string handling in mutt
 	string contentation
@@ -2010,10 +1934,6 @@ collect useful tools in neomutt org:
 	calcurse
 
 translation - coding, scripting, languages
-
-translate:
-	check git logs for translators' names / dates
-	tidy all headers
 
 docs: highlight parts that are neomutt only!
 	put in yml header (when docs are split up)
@@ -2143,10 +2063,6 @@ look through upstream mutt trac for
 settings for uncrustify, clang-format
 	for current neo code
 	for future  neo code
-
-use google translate for rough drafts of neo po files?
-	mark all translations as fuzzy
-	useful starting place?
 
 have a NULL cache which is just a copy of the email
 	might *still* need a DB of some info
@@ -2329,10 +2245,6 @@ function fuzzer + scripting
 	difficult because of too many inter-linked structs
 	and poorly designed functions
 
-docs - how to transition to neo - list config options
-	mutt-only
-	neo-additions
-
 website top-level for scripts
 	git submodule?
 	like irssi scripts
@@ -2455,11 +2367,6 @@ branch by version / language
 
 alt-e resend_message - which hooks are called?
 	add lua hook
-
-guarantee translations, when?
-	at release of new feature?
-	at next release?
-	when?
 
 filter manager
 	time limit option -- on holiday!

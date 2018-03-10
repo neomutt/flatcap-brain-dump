@@ -1,0 +1,93 @@
+
+move scripts to management repo
+add star by recently updated translations
+	need to filter out commits that affect *.po
+	e.g. sync translations to source
+
+dewrap *.po in translate branch
+
+code/translation
+	string "notmuch" -> "Notmuch"
+
+add notes about how to download the latest
+file from the translation branch
+(and how to make a PR?)
+
+fix marcin email, update copyright
+
+chinese (bo yu)
+czech (jan knizek)
+esperanto (rawtaz)
+french (half the devs)
+german (existing translators)
+lithuanian (marius)
+slovak (frank)
+spanish (Ruben)
+swedish (rawtaz)
+
+split up all multiline translated strings
+	especially the copyright messages
+	for easier translation and updating
+
+10m, clone, trans, PR (poeditor.com)
+
+change "L10N" comments to "TRANSLATORS:"
+	(as that's the default)
+
+script fuzzy / translation checker
+	compare %-count syntax
+	1300*30 ~ 40K compressed!
+
+hooks in code to log most translated strings
+	help translators prioritise their work
+
+gettext logger to look for most used translations
+	mark the common ones in the code
+
+.po are "#: file.c" needed except at translate time?  drop?
+	simplifies merges, etc
+	line numbers are used by poedit app
+
+issue label: "translation"
+
+L10N split up large version string blocks
+
+translation comments
+	aka in lang
+	function names
+	"oppenc" meaning
+	glossary
+		alias
+		thread = x
+	comments ∀ translators
+	mnemonic letters
+	formatting, e.g. "[-- TEXT --]"
+	functions calls, uname(1)
+	L10N dotfill
+		to/from/subject
+		translate?
+	L10N optional?
+	plurals
+	multiple %s
+	don't need .mo
+
+web translate
+	have anchors for each language
+	they highlight that line
+
+check git logs for translators' names / dates
+tidy all headers
+
+use google translate for rough drafts of neo po files?
+	mark all translations as fuzzy
+	useful starting place?
+
+docs - how to transition to neo - list config options
+	mutt-only
+	neo-additions
+
+guarantee translations, when?
+	at release of new feature?
+	at next release?
+	when?
+
