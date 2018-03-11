@@ -20,6 +20,10 @@ what about global variables?
 - Config /** MixedCase - Desc
 - Function /** snake_case - Desc
 
+- Global variables /** MixedCase - Desc
+- Config /**< Config: Desc */
+- Function /** snake_case - Desc
+
 script the steps
 document the scripts
 
