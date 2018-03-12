@@ -1,5 +1,6 @@
 MIME is an acronym.  fix the case in function/variable names?
 	PreferredMIMENames -> PreferredMimeNames
+	only one and this is it
 
 send.c sendlib.c
 	lots of char buffer[]
