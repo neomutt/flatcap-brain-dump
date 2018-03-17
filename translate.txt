@@ -15,15 +15,18 @@ file from the translation branch
 
 fix marcin email, update copyright
 
-chinese (bo yu)
-czech (jan knizek)
+chinese (yuzibo)
+czech (kdave, jindraj)
 esperanto (rawtaz)
 french (half the devs)
-german (existing translators)
-lithuanian (marius)
-slovak (frank)
-spanish (Ruben)
+german (hvkls, spiegl)
+lithuanian (mgedmin)
+polish (mrajner)
+portuguese (tecepe)
+slovak (ferkohajik)
+spanish (Ruben, leoperbo)
 swedish (rawtaz)
+turkish (rypervenche)
 
 split up all multiline translated strings
 	especially the copyright messages
