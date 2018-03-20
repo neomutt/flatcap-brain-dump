@@ -93,3 +93,6 @@ manage github recipient hints
 	"you were mentioned" -> flag 'M' or '@' !
 	"you subscribed to" -> flag 'S' or '✓' !
 
+Mention <mention@noreply.github.com>
+Your activity <your_activity@noreply.github.com>
+Author <author@noreply.github.com>
