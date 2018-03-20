@@ -1,3 +1,20 @@
+coverity
+	git clone depth
+	move tokens to travis
+	regenerate tokens
+
+investigate FUSE imap fs
+
+enhancement
+	<tab>-completion for ! (shell) commands
+	expand executables on $PATH, or dirs
+	expand files/dirs thereafter
+
+replace realpath
+status of mktemp?
+
+welcome - desc public/private membership
+
 reorder "neomutt -h" output
 	underline certain lines to highlight 'sections'
 	underline -> no wasted vertical space

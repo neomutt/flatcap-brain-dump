@@ -1,3 +1,10 @@
+only auto-push from branch 'translate'
+
+document $1 cformat notation
+	does this require code changes?
+
+doc translate branch
+	rebase & update ~1w before release
 
 move scripts to management repo
 add star by recently updated translations

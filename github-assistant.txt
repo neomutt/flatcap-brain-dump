@@ -77,3 +77,19 @@ option to turn :+1: into emoji character
 
 integrate approvals (email notifications)
 
+create fake headers
+	link to post
+	link for muting
+	mock up using message_filter?
+
+fake header links for mute, mark-as-read
+
+enable functions:
+	mark-as-read
+	mute
+	etc
+
+manage github recipient hints
+	"you were mentioned" -> flag 'M' or '@' !
+	"you subscribed to" -> flag 'S' or '✓' !
+

@@ -1,3 +1,6 @@
+release VERSION in *.man *.[15]
+	script ∀ files
+
 update doxygen docs
 
 release branch
