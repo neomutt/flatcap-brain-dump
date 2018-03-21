@@ -1,3 +1,8 @@
+translation webpage: sharing
+	team notify and git
+
+docs: ask to become a "contributor"
+
 The cycle might look like:
 - Commit to `translate` branch...
 - Release date is announced
