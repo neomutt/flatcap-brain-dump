@@ -1,3 +1,12 @@
+"key is not bound" error doesn't say which key
+
+use inotifywait to find all the build tmp files and .gitignore them
+
+bool dupe -> const
+
+don't log (to file) UI messages like "you are on last messsage"
+	need new log level
+
 mutt/parameter.c include mutt/mutt.h
 
 deprecation -- offer list of old names
