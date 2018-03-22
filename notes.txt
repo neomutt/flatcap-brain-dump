@@ -2761,11 +2761,6 @@ create a function to cycle through them?
 	various headers
 	various flags
 
-progress bar:
-	better progress indicator
-		a la dnf, wget, etc
-	ETA?
-
 mutt connection config wizard
 	special cases for gmail, etc
 		open gmail pages in browser
@@ -2837,10 +2832,6 @@ unstable: .gitignore upstream of feature branches, what else?
 sidebar -- imap all folders vs subscribed
 dovecot public mailboxes for tips?  one public user?
 nntp tips? ":tips" command to toggle nntp vars and mailboxes
-
-notes for progress bar
-	set time_inc = 0 for best results (ref: paravoid)
-	test read_inc, write_inc, net_inc too
 
 fake/alternate curses -> true colour => separate fg, bg, term attrs like vim
 
