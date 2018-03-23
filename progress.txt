@@ -1,0 +1,39 @@
+
+better progress indicator
+	a la dnf, wget, etc
+ETA?
+
+docs
+	set time_inc = 0 for best results (ref: paravoid)
+	test read_inc, write_inc, net_inc too
+
+create()
+update()
+destroy()
+
+LL_PROGRESS for displaying
+
+call update every loop of the action
+
+limit by
+	time (ms)
+	count (n'th)
+	%age (n)
+
+do we need open-ended bar?
+block just moves back and forth?
+
+set range on start (1234)
+update (x) on the same scale
+
+store start time in P
+	user can show elapsed time
+	calcalate ETA (if > n secs)
+
+callback function (P, data)
+	run when needed
+	include screen width
+
+colour bar optional
+callback generates text
+
