@@ -123,3 +123,15 @@ SOURCE
 DOCS/WEB
 	update guide
 	update readme/credits
+
+invite new members
+follow new members
+
+update docs
+	doxygen
+	guide / features
+
+translations
+	rebase [translate]
+	notify translators
+

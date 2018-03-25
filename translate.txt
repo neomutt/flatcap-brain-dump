@@ -119,3 +119,7 @@ guarantee translations, when?
 	at next release?
 	when?
 
+branch - pull, work, push
+	even if WIP
+	NO, that would break updates for all others
+

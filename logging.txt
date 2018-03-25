@@ -376,3 +376,6 @@ QUEUE debug/error()
 
 ------------------------------------------------------------
 
+*Were* messages saved to ErrorBuf, before or just errors?
+	YES messages were
+

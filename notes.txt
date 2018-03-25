@@ -1,3 +1,28 @@
+notmuch feature docs need updating
+	as notmuch team for help
+
+move mutt cron to server
+
+all contributors -> list
+	script to gen readme
+
+update neomutt.vim
+	new cmds etc
+	synonyms
+
+script to keep neo mirrors up-to-date
+
+trivial
+	mutt_new_body() -> mutt_body_new()
+	check for others
+
+trivial
+	encoder_t is a PTR
+	initialise to NULL
+	check for other typedefs
+
+scan-build travis?
+
 "key is not bound" error doesn't say which key
 
 use inotifywait to find all the build tmp files and .gitignore them

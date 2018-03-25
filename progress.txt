@@ -37,3 +37,14 @@ callback function (P, data)
 colour bar optional
 callback generates text
 
+disposable messages
+	progress - displayed but not saved to ErrorBuf!
+
+convert other lists of msgs to *real* progress bar
+	Reading message 1..1000, etc
+
+progress could mutt_debug(1) for:
+	start, interrupted, stop
+for reference purposes
+log already has time stamps
+
