@@ -9,7 +9,7 @@ digraph views
 	];
 
 	node [
-		shape="Mrecord"
+		// shape="Mrecord"
 		fontsize="12"
 		style="filled"
 		height="0.2"

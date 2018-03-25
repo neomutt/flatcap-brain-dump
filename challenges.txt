@@ -33,7 +33,7 @@ use paypal money as beer tokens
 
 list "to-be-written" webpages [X points]
 
-Add test for function in libmutt (168(
+Add test for function in libmutt (168)
 	+43 address
 	+126 config
 	coverage testing too
