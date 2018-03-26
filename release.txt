@@ -135,3 +135,8 @@ translations
 	rebase [translate]
 	notify translators
 
+note config changes
+	+/- cmd/fn/cfg etc
+	update neomutt.vim
+	format strings too
+
