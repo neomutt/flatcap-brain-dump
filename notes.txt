@@ -10,10 +10,6 @@ move mutt cron to server
 all contributors -> list
 	script to gen readme
 
-update neomutt.vim
-	new cmds etc
-	synonyms
-
 script to keep neo mirrors up-to-date
 
 trivial
@@ -36,8 +32,6 @@ bool dupe -> const
 don't log (to file) UI messages like "you are on last messsage"
 	need new log level
 
-mutt/parameter.c include mutt/mutt.h
-
 deprecation -- offer list of old names
 	so users can grep -f
 
@@ -45,11 +39,6 @@ index_format -- init.h out of date
 
 user ml --- any visually impaired?
 	what can we do to help?
-
-coverity
-	git clone depth
-	move tokens to travis
-	regenerate tokens
 
 investigate FUSE imap fs
 
@@ -59,7 +48,6 @@ enhancement
 	expand files/dirs thereafter
 
 replace realpath
-status of mktemp?
 
 welcome - desc public/private membership
 
