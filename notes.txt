@@ -1,3 +1,14 @@
+convert struct Command to use intptr_t
+
+TEST for log file failing to start
+
+how many ways can conn/ connect?
+	plain socket
+	starttls
+	tls
+any others?
+* all the encryption methods
+
 copy startup tests 1-37 on dev/ webpage
 
 mutt-wizard: contact, adopt?
