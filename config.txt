@@ -154,3 +154,5 @@ flag on HE var-def to show "SET_BY_USER"
 add locking to set functions
 	-> thread safe updates
 
+debug log all processes
+	change to debug(5) before merge

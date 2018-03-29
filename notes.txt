@@ -1,3 +1,25 @@
+neomutt-test-configs.sh
+	do each build in a separate out-of-tree dir
+	run all in parallel
+	what about logs?
+	mktemp for log files, then cat?
+
+travis:
+	don't run "make test" every build?
+	run after 1st build
+	make 1st build and all-inclusive one
+
+split out envlist functions -> library?
+	find callers
+
+startup:
+	if $hostname is set, skip dns etc
+		generate shorthostname too?
+	nntp cmdline is trampled by env or config file
+		decide and doc precedence
+	doxygen comments for all functions (except gui bits)
+		separate page for all startup functions
+
 convert struct Command to use intptr_t
 
 TEST for log file failing to start
