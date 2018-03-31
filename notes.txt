@@ -9,9 +9,6 @@ travis:
 	run after 1st build
 	make 1st build and all-inclusive one
 
-split out envlist functions -> library?
-	find callers
-
 startup:
 	if $hostname is set, skip dns etc
 		generate shorthostname too?
@@ -197,19 +194,12 @@ auto-sidebar bool option -- hide until needed on
 	hide on <sidebar-open>
 	or after 1 second if possible
 
-$editor = ENV(VISUAL), ENV(EDITOR), "vi", system, user
-
 ∀ $ENV, code default, init.h, system config, user config
 	doc and list priority order -- in $config docs!
 
 update COPYRIGHT
 
 invite new members
-
-update neomutt.vim
-
-nntp loading description
-	123/∞! overflow
 
 trivial - check all src against vim folding
 
@@ -258,8 +248,6 @@ scripts
 
 gdb ignore mutt/*.[ch]
 	-> dev ml?
-
-gmane number of groups overflows progress bar
 
 put dns code in a separate thread (if we keep it)
 	need test thread code
