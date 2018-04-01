@@ -1,3 +1,30 @@
+update iwyu neomutt.imp for curses -> mutt_curses.h
+
+add doxy pages for terminal and window
+
+precedence: which should set the default value?
+	cli, env, cfg, sysfile, code?
+
+bug "set charset" doesn't trigger .mo selection
+	should call in mutt_ch_set_charset()
+
+pkg-config which platforms supported
+	requirement on those platforms
+	which not supported?
+	cygwin? macports? homebrew?
+	do we keep the machinery?
+	bitrot in rarely used configure checks?
+	are we guaranteed the same names for packages?
+	will any platforms have partial support?
+	two separate auto.def?
+
+doc all environment variables, link to config variable references
+
+ifdef /abs/file
+	if file exists
+	would need to be absolute to make it easy to spot
+	or at least contain a /, e.g. ./local-file
+
 syn match mw "\<Mutt\ze\(Window\|Thread\)\>" conceal
 
 neomutt-test-configs.sh
