@@ -1,3 +1,5 @@
+syn match mw "\<Mutt\ze\(Window\|Thread\)\>" conceal
+
 neomutt-test-configs.sh
 	do each build in a separate out-of-tree dir
 	run all in parallel
@@ -41,10 +43,6 @@ all contributors -> list
 	script to gen readme
 
 script to keep neo mirrors up-to-date
-
-trivial
-	mutt_new_body() -> mutt_body_new()
-	check for others
 
 trivial
 	encoder_t is a PTR
