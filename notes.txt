@@ -1,3 +1,19 @@
+doc valgrind suppressions
+	how to create
+	how to use
+
+use ANSI URL to abbreviate compose fields
+	NO, relies on hover showing something useful
+	_John_Smith_ with hover of "John Smith <john@example.com>"
+	modes on, off, when necessary to fit
+
+compose option to display alias (with hover link?)
+
+cppcheck docs
+	cmdline
+	config.h needed
+	-D needed
+	
 update iwyu neomutt.imp for curses -> mutt_curses.h
 
 add doxy pages for terminal and window
