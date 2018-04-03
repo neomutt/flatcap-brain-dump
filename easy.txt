@@ -91,3 +91,6 @@ move idna version string -> fn in lib
 struct ContentState
 	lots of bools?
 
+convert strncpy -> strfcpy (guaranteed NUL termination)
+	* 33
+
