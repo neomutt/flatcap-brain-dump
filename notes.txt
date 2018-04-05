@@ -106,8 +106,6 @@ don't log (to file) UI messages like "you are on last messsage"
 deprecation -- offer list of old names
 	so users can grep -f
 
-index_format -- init.h out of date
-
 user ml --- any visually impaired?
 	what can we do to help?
 
