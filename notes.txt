@@ -1,3 +1,31 @@
+define a NEO_PATH 1024 vs _POSIX_PATH_MAX
+	as a prelude to all-dynamic strings
+
+translations: update copyrights etc
+
+update list of all globals/configs
+	free everything on exit
+
+rename OPT_* bools
+
+config vars are isolated, how do we isolate all colours?
+	(and attrs) from ncurses?
+	-> testable
+
+easy: tidy aliases
+	STAILQ, doxy, testing
+
+post-send hook?
+	entering-the-index-hook?
+
+STAILQ Hooks doesn't show up as global
+
+separate keybindings from curses & IMAP!
+
+user prompting?
+	easy task
+	:ask VARIABLE|MY_VAR "prompt message"
+
 doc valgrind suppressions
 	how to create
 	how to use
