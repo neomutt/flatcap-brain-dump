@@ -6,14 +6,9 @@ translations: update copyrights etc
 update list of all globals/configs
 	free everything on exit
 
-rename OPT_* bools
-
 config vars are isolated, how do we isolate all colours?
 	(and attrs) from ncurses?
 	-> testable
-
-easy: tidy aliases
-	STAILQ, doxy, testing
 
 post-send hook?
 	entering-the-index-hook?

@@ -94,3 +94,6 @@ struct ContentState
 convert strncpy -> strfcpy (guaranteed NUL termination)
 	* 33
 
+tidy aliases
+	STAILQ, doxy, testing
+
