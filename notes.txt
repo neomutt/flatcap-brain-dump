@@ -1,3 +1,7 @@
+non-easy
+	find all OUT-params fn(&val)
+	and ensure the variable is set before
+
 define a NEO_PATH 1024 vs _POSIX_PATH_MAX
 	as a prelude to all-dynamic strings
 
