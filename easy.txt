@@ -1,3 +1,20 @@
+1 issue / easy task
+	open to all
+
+monthly email to devel ml?
+
+easy notes:
+	simple
+	non-contentious
+	quick to merge
+
+test a distro -- give feedback
+	update last checked date
+
+easy web page
+	description links to GH
+	mention translations too
+
 parse_set()
 	r -> rc
 

@@ -1,9 +1,47 @@
+web home page
+	What is it?
+		brief desc + link to screenshots, etc
+	Who are we
+		brief desc
+	Whare are we going?
+		link to roadmap
+	How can I help
+		link to easy page
+
+test bodystruct:
+	imap folder full of BIG emails to test %X
+	(with varying numbers of attachments)
+
+web create some skeleton pagers
+	lists of notes
+	link to GH easy issue
+
+web need: how to make your first PR page
+	cut'n'paste from other guides
+
+browser sort order of =abbr mailboxes
+	not consistent?
+sort=thread?  AC toplevel then abbr mailboxes
+if !thread, don't abbr
+
+users ml
+	set "ask" config example
+
+backers:
+	$1/month name
+	$5/month photo/link
+	webpage
+	release notes?
+
+web about: not a fork
+
 non-easy
 	find all OUT-params fn(&val)
 	and ensure the variable is set before
 
 define a NEO_PATH 1024 vs _POSIX_PATH_MAX
 	as a prelude to all-dynamic strings
+	test in >4096 char dir
 
 translations: update copyrights etc
 
@@ -401,11 +439,11 @@ notmuch folder-hook's don't work fully:
 	tag%3Adnssec does match
 	need to make the URI cleartext
 
-add website "passing" shield to docs?
-
 logging
 	mutt_index_menu() [1119]: Got op 151
 	can we lookup the name of 151?
+	no.  we can only lookup the description
+	could add "OP_XYZ" to struct #ifdef DEBUG
 
 history needs a refurb
 	doesn't quite save the right number of items
@@ -421,11 +459,6 @@ challenges
 
 do we really need: "set rfc2047_parameters = yes"
 	why not always display a human-readable string?
-
-browser doesn't have a binding for <go-to-parent>
-	macro X c..<enter>
-	doesn't work, path ends up with lots of ../ embedded
-	need to realpath() the dir
 
 MAILCAP / mailcap_path
 	docs imply you can specify a PATH to files
