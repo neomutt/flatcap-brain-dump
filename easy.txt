@@ -57,9 +57,7 @@ project: easy bugs
 travis build scripts
 " -> ' in muttrc
 autogen vim syntax file
-translations to web page
-doxygen -> web /code dir
-mutt debug FILE, LINE, FUNC #macro
+automate travis doxygen deployment
 
 split mutt_lock_file (and unlock)
 	into flock() and fcntl() versions
@@ -113,4 +111,5 @@ convert strncpy -> strfcpy (guaranteed NUL termination)
 
 tidy aliases
 	STAILQ, doxy, testing
+
 
