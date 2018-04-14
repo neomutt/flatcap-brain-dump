@@ -189,10 +189,6 @@ reorder "neomutt -h" output
 	underline certain lines to highlight 'sections'
 	underline -> no wasted vertical space
 
-MIME is an acronym.  fix the case in function/variable names?
-	PreferredMIMENames -> PreferredMimeNames
-	only one and this is it
-
 send.c sendlib.c
 	lots of char buffer[]
 	rename to buf
