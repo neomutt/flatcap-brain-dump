@@ -79,13 +79,6 @@ cppcheck docs
 	config.h needed
 	-D needed
 	
-update iwyu neomutt.imp for curses -> mutt_curses.h
-
-add doxy pages for terminal and window
-
-precedence: which should set the default value?
-	cli, env, cfg, sysfile, code?
-
 bug "set charset" doesn't trigger .mo selection
 	should call in mutt_ch_set_charset()
 
@@ -101,11 +94,6 @@ pkg-config which platforms supported
 
 doc all environment variables, link to config variable references
 
-ifdef /abs/file
-	if file exists
-	would need to be absolute to make it easy to spot
-	or at least contain a /, e.g. ./local-file
-
 syn match mw "\<Mutt\ze\(Window\|Thread\)\>" conceal
 
 neomutt-test-configs.sh
@@ -118,14 +106,6 @@ travis:
 	don't run "make test" every build?
 	run after 1st build
 	make 1st build and all-inclusive one
-
-startup:
-	if $hostname is set, skip dns etc
-		generate shorthostname too?
-	nntp cmdline is trampled by env or config file
-		decide and doc precedence
-	doxygen comments for all functions (except gui bits)
-		separate page for all startup functions
 
 convert struct Command to use intptr_t
 
@@ -590,9 +570,6 @@ c? (pager)
 
 drop remaining inline functions
 
-string_hook
-	move !match test out of loop
-
 make the shutdown cleanup (freeing memory, etc)
 	#ifdef DEBUG
 	nice to check, but not required for general users
@@ -648,16 +625,6 @@ refactor regex calls, e.g.
 	if (regex_match(Mask, str, flags)
 	it checks pointers, etc
 	takes 'not' into account
-
-muttlib.c
-	mutt_open_read()
-	potential buffer underrun / size_t overflow
-	size_t len = mutt_str_strlen(path);
-	if (path[len - 1] == '|')
-
-init.c restore_default()
-	factor out p->initial
-	used in most paths
 
 init.c main()
 	Is this still true?
@@ -734,9 +701,6 @@ autosetup
 	.objs
 	from min-build
 
-docs: note which config files have a leading '.'
-	it's hard to see in text
-
 muttrc ifdef
 	/file absolute
 	./file relative source
@@ -755,14 +719,6 @@ audit/testing/coverage
 	trace one function at a time, check all
 	vars defined ∀ inputs, doc'd coverage
 	test code
-
-BIG tasks
-	config/account
-	oauth2 - save to file imap, smtp (libcurl, libjson)
-	summary pages
-	aliases
-	debug log
-	split docs
 
 "set ?imap_pass" show sensitive data
 	what could we do about it?
@@ -855,8 +811,6 @@ travis
 travis build warning
 	"2: No such file or directory"
 	may be caused by hcache ver gen
-
-add -Wshadow to build
 
 libfile
 	rc = read_into_buffer(filename, buf, len, *fp)
@@ -1097,12 +1051,6 @@ imap keywords
 	test cases and instructions
 
 need neomutt glossary (search first)
-
-upstream
-	more renames
-	more deleted files (pgp?)
-
-sort expando switches, comments
 
 aur distro page neo gpg key
 
@@ -1474,7 +1422,6 @@ email
 	gettext -> non-optional?
 	wide ncurses mandatory?
 
-gettext -> non-optional?
 promote logging to default -- too useful
 	set max level?
 
@@ -1484,8 +1431,6 @@ other distros, slack, ubuntu
 search for patches & list and adopt
 find maintainers for distro pages
 
-abbr README
-fold comments
 conceal IMAP password
 #ifdef entire file in smime.h
 	pgp.h pgplib.h remailer.h smime.h
@@ -1536,13 +1481,6 @@ doc sample branches
 
 docs:
 	http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-
-2017-05-24
-	00:00 <cybrNaut> why is "fcc_clear" suggested as a work-around to those without "smime_encrypt_self = yes" in https://www.neomutt.org/feature/encrypt-to-self, when fcc_clear is said to be
-			"PGP only" here: https://www.neomutt.org/guide/reference.html#fcc-clear ?
-	00:01 <cybrNaut> one of those articles must be wrong
-	00:07 <cybrNaut> fcc_clear actually does work for s/mime messages
-	00:07 <cybrNaut> so https://www.neomutt.org/guide/reference.html#fcc-clear is wrong
 
 neomutt-test-config.sh
 	--save dir
@@ -1985,8 +1923,6 @@ create list of current scripts shell/perl
 	automators
 	list -> website -- link to repos
 	#!/bin/bash ->  sh
-
-update vim-syntax
 
 newbie - recommend setting 'set user_agent = yes'
 
@@ -2600,10 +2536,6 @@ ifdef needs an "else" condition
 	how?
 
 check mutt-tc for project ideas
-
-announce vim-syntax, put a public copy up
-	copy all of contrib/ to web
-	create web autopage?
 
 sort variables, etc before auto-completion
 	or properly sort the sources of the strings
@@ -3236,9 +3168,6 @@ muttrc.{distro} ∀ distros
 	sync reads data file with header, whitespace & comments
 
 sample mail repo filled with example/problem mailboxes
-
-slang source + demos
-	http://fossies.org/linux/misc/slang-2.3.0.tar.gz
 
 delegation of keys -> focus() -> parent -> global, e.g. IW, Mail
 	functions => components (e.g. mail)     }- mail_init() register_functions(); register_commands();
