@@ -78,7 +78,7 @@ cppcheck docs
 	cmdline
 	config.h needed
 	-D needed
-	
+
 bug "set charset" doesn't trigger .mo selection
 	should call in mutt_ch_set_charset()
 
@@ -165,10 +165,6 @@ replace realpath
 
 welcome - desc public/private membership
 
-reorder "neomutt -h" output
-	underline certain lines to highlight 'sections'
-	underline -> no wasted vertical space
-
 send.c sendlib.c
 	lots of char buffer[]
 	rename to buf
@@ -187,10 +183,6 @@ document + instructions for all the code helpers:
 	travis
 	clang-format
 	lcov/coveralls
-
-vim syntax
-	create match for deprecated config
-	link to error?
 
 make plan to deprecate list of "Features"
 	need something better
@@ -293,11 +285,6 @@ put "latest version = X" on distro pages
 
 make notes default branch 'public'
 
-add descriptions to all labels
-
-add "help wanted" and "good first issue" to all repos
-	same colours
-
 shorten changelog and link end to historic version on github
 
 unify fd vs FILE*?
@@ -359,8 +346,9 @@ INSTALL/AUTOSETUP fix/merge
 
 rename & move history to ~/.neomutt/history
 	use config syntext to highlight?
+	default to relative to user's neomuttrc
 
-attachment viewing -- keep a list of tempfiles, either 
+attachment viewing -- keep a list of tempfiles, either
 	delete after x mins (configurable?)
 	delete all on exit
 	they're tmpfiles so should be in /tmp?
@@ -483,7 +471,7 @@ turn $sort into a string-list of methods
 fix default /etc/neomuttrc so that neomuttrc.vim doesn't show errors
 	color header brightred default ^(From|Subject):
 	last field isn't quoted and shows as an error
-	
+
 replace "for (int" -> size_t in libmutt
 
 introduce warning colour/color
@@ -2334,12 +2322,6 @@ imap/pop ∀ devs
 newbie notes
 	PR vs branch
 	you can't co-work on a PR
-
-issue labels
-	confirmed
-	need testing
-	waiting for OP testing
-	have patch
 
 function fuzzer + scripting
 	x inputs
