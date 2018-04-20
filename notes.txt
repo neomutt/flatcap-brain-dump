@@ -1,3 +1,31 @@
+add to mx API
+	mutt_pretty_mailbox
+	mutt_canonicalise_mailbox
+
+completion has a static var
+	encapsulate & refactor
+
+init.c
+	getsid() and getpid() are POSIX2001
+	no need for #ifdef?
+	check with cygwin
+
+split up complex actions like <next-entry>, it becomes
+	<next-message>
+	<open-message>
+	<filter-message>
+	<color-message>
+	<display-message>
+	<mark-message-as-read>
+this gives the user more control over actions
+allows the user to add/remove steps
+the default binding keeps the normal behaviour
+
+travis add idn2 build test
+
+move more /etc defaults -> init.h
+	minimised the default config
+
 web home page
 	What is it?
 		brief desc + link to screenshots, etc

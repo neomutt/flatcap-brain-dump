@@ -212,3 +212,12 @@ repo updates trigger traivs
 internal docs linking need 404 page
 	jump point & "let us know" instructions
 
+help links
+	help:// is a bit generic
+	neomutt:// better?
+
+help urls, use style of C++ standard
+	normal numeric: 1.4
+	and symbolic: [intro.config]
+
+show url in status bar

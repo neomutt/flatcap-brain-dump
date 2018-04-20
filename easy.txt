@@ -20,8 +20,6 @@ parse_set()
 
 check_alias_name() bad,dry -> bool
 
-refactor envlist -> env.c (lib?) use STAILQ
-
 refactor -> random.c (lib?)
 	lib mem routines -> could exit(1)
 	need close_random() function
@@ -33,8 +31,6 @@ move "random" code into random.c
 	possibly mutt_mktemp_full and mutt_adv_mktemp
 	or abstract random code, and simplify mktemp fns
 	move random.c to muttlib?
-
-split mutt_resize_screen()?
 
 debian open r/o patch #528233 mutt#3261
 
@@ -58,14 +54,6 @@ travis build scripts
 " -> ' in muttrc
 autogen vim syntax file
 automate travis doxygen deployment
-
-split mutt_lock_file (and unlock)
-	into flock() and fcntl() versions
-	or drop flock()
-	almost no overlap of code
-	fix configure fcntl or flock, not both
-	only allow/build one
-	configure option --locking=[flock|fcntl] ?
 
 find and fix imbalanced #ifdefs
 	write out code in full
@@ -100,16 +88,36 @@ easy task:
 do_color() & callers
 	&do_cache -> bool
 
-move idna version string -> fn in lib
-	reduce external deps
-
 struct ContentState
 	lots of bools?
 
 convert strncpy -> strfcpy (guaranteed NUL termination)
 	* 33
 
-tidy aliases
+tidy aliases, myvar
 	STAILQ, doxy, testing
 
+hcache: x [y] z
+	y = default
+only make sense after reading config?
+
+python:
+	botty improvements
+
+task (n+1) (for extra points)
+	find more examples to fix
+	(if applicable)
+
+move tmpfp outside of nntp_parse_overview_line
+1 file, ftruncate(?) & reused rather than 1000!
+msg_search, pgp_read_header too
+
+flatten if() in nntp_data_find()
+
+link new easy tasks to old ones (in the future)
+	to save repeated questions
+
+extra task (for extra points)
+	find more examples to fix
+	where applicable (e.g. function-spanning if())
 
