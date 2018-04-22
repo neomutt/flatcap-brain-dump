@@ -1,3 +1,22 @@
+travis build
+	override.txt in .travis/
+
+new users team?
+	to say what?
+
+SIGUSR1 link to #2
+	mark hard, close
+
+neomutt -DD (defaults)
+	all config with the default values are #'d out!
+
+distro pages
+	how to find/use a coredump
+
+neo admins -> all public org members
+
+kill status "new-bug"?
+
 add to mx API
 	mutt_pretty_mailbox
 	mutt_canonicalise_mailbox

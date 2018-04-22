@@ -47,13 +47,11 @@ sidebar notmuch indent
 
 keep a min of 5 easy tasks (coding)
 
-project: easy bugs
-	tie into mentor system
-
 travis build scripts
 " -> ' in muttrc
 autogen vim syntax file
-automate travis doxygen deployment
+translations to web page
+doxygen -> web /code dir
 
 find and fix imbalanced #ifdefs
 	write out code in full
@@ -90,6 +88,7 @@ do_color() & callers
 
 struct ContentState
 	lots of bools?
+	doc members
 
 convert strncpy -> strfcpy (guaranteed NUL termination)
 	* 33
@@ -112,7 +111,43 @@ move tmpfp outside of nntp_parse_overview_line
 1 file, ftruncate(?) & reused rather than 1000!
 msg_search, pgp_read_header too
 
-flatten if() in nntp_data_find()
+flatten if() in
+	nntp_data_find
+	mutt_shell_escape
+	socket_preconnect
+	check_certificate_expiration
+	ssl_get_client_cert
+	ci_first_message
+	mutt_group_match?
+	mutt_default_save
+	set_changed_flag?
+	imap_free_header_data
+	imap_utf_encode
+	imap_utf_decode
+	matches_ensure_morespace
+	candidate
+	menu_redraw_prompt
+	menu_top_page
+	mhs_alloc
+	maildir_parse_message
+	is_leap_year_feb
+	mutt_file_fsync_close
+	lua_init
+	get_db
+	release_db
+	db_trans_begin
+	db_trans_end
+	count_query
+	mutt_is_multipart_encrypted
+	mutt_is_application_smime
+	init_common
+	nntp_data_find
+	recvattach_edit_content_type
+	mutt_fqdn
+	mutt_block_signals
+	mutt_unblock_signals
+	mutt_block_signals_system
+	mutt_unblock_signals_system
 
 link new easy tasks to old ones (in the future)
 	to save repeated questions
@@ -120,4 +155,6 @@ link new easy tasks to old ones (in the future)
 extra task (for extra points)
 	find more examples to fix
 	where applicable (e.g. function-spanning if())
+
+screenshots
 
