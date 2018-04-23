@@ -1,3 +1,41 @@
+travis build
+	override.txt in .travis/
+
+travis, relax build errors for upstream
+or rename upstream to mutt/upstream
+
+change travis build to check for whitespace errors
+	tabs, trailing whitespace
+	fail before starting build
+which branches?
+	master, travis, devel/* issue/*, coverity
+	everything except pull-requests (some leniency)
+		WARN though
+push to branches, test BEFORE & FAIL
+pull request test AFTER and WARN
+
+travis build warning
+	"2: No such file or directory"
+	may be caused by hcache ver gen
+
+travis
+	doc fold markers
+
+travis
+	test out-of-tree build
+	install, uninstall
+		work ok
+		no files left behind
+
+scan-build travis?
+
+travis:
+	don't run "make test" every build?
+	run after 1st build
+	make 1st build and all-inclusive one
+
+travis add idn2 build test
+
 compilers: gcc, clang
 features: all, none, random mix?
 os: linux, osx?

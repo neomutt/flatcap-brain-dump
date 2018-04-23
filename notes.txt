@@ -1,5 +1,11 @@
-travis build
-	override.txt in .travis/
+travis fcntl/flock
+
+should default keys be concealed (n -DS)
+	pgp_defaut_key
+
+open(2) O_TMPFILE
+	mktemp
+	fmemopen
 
 new users team?
 	to say what?
@@ -40,8 +46,6 @@ this gives the user more control over actions
 allows the user to add/remove steps
 the default binding keeps the normal behaviour
 
-travis add idn2 build test
-
 move more /etc defaults -> init.h
 	minimised the default config
 
@@ -59,7 +63,7 @@ test bodystruct:
 	imap folder full of BIG emails to test %X
 	(with varying numbers of attachments)
 
-web create some skeleton pagers
+web create some skeleton pages
 	lists of notes
 	link to GH easy issue
 
@@ -149,11 +153,6 @@ neomutt-test-configs.sh
 	what about logs?
 	mktemp for log files, then cat?
 
-travis:
-	don't run "make test" every build?
-	run after 1st build
-	make 1st build and all-inclusive one
-
 convert struct Command to use intptr_t
 
 TEST for log file failing to start
@@ -183,8 +182,6 @@ trivial
 	encoder_t is a PTR
 	initialise to NULL
 	check for other typedefs
-
-scan-build travis?
 
 "key is not bound" error doesn't say which key
 
@@ -268,6 +265,7 @@ add "Add profile picture" to welcome letter
 style guide
 	STAILQ_FOREACH
 	always use {}
+	otherwise clang-format gets upset
 
 mutt tips
 	create http-reading mailbox type
@@ -403,8 +401,6 @@ attachment viewing -- keep a list of tempfiles, either
 		=> system can clean them in worst case (crash)
 	or keep the last 'n' files, e.g. 10
 
-republish "help us" news with new easy list
-
 do we need a config URI object?
 	store raw after relevant encoding
 	split into fields for code
@@ -463,10 +459,6 @@ history needs a refurb
 
 might wanna add a "Other comments" heading at the end of the PR template
 	rawtaz (irc)
-
-challenges
-	update news item - https://www.neomutt.org/2016/10/07/news
-	update https://www.neomutt.org/dev/newbie-tutorial#coding
 
 do we really need: "set rfc2047_parameters = yes"
 	why not always display a human-readable string?
@@ -642,12 +634,6 @@ drop mailmap, use management one
 
 tag closed discussions as
 	wontfix or postpone or bluesky?
-
-travis
-	test out-of-tree build
-	install, uninstall
-		work ok
-		no files left behind
 
 Add warnings to doxygen headers, for
 	@warning This function uses global variables: LIST, ...
@@ -840,13 +826,6 @@ run gpg signature testing asynchronously (when opening email)
 if a struct has a X_free() it must have a X_alloc()
 	check all allocs are *C*alloc
 
-travis
-	doc fold markers
-
-travis build warning
-	"2: No such file or directory"
-	may be caused by hcache ver gen
-
 libfile
 	rc = read_into_buffer(filename, buf, len, *fp)
 	if fp is not given the file will be opened, read, closed
@@ -953,16 +932,6 @@ update _dev/signing.md
 	sha256sum -c neomutt-20170912-CHECKSUM
 	test using build user
 
-change travis build to check for whitespace errors
-	tabs, trailing whitespace
-	fail before starting build
-which branches?
-	master, travis, devel/* issue/*, coverity
-	everything except pull-requests (some leniency)
-		WARN though
-push to branches, test BEFORE & FAIL
-pull request test AFTER and WARN
-
 change feature neomuttrc examples to be useful working versions
 
 rebuild all of mutt-*, neomutt-* binaries
@@ -1036,9 +1005,6 @@ user is notified when a notificiation status *changes*
 
 upstream
 	s/ascii_str/mutt_str/
-
-travis, relax build errors for upstream
-or rename upstream to mutt/upstream
 
 change safe_rename
 	ENOTSUP
@@ -1307,9 +1273,17 @@ FS layer
 Misc
 	where are the "source" relative docs?
 	alias_file, certificate_file, etc aren't relative
+		alias_file
+		certificate_file
+		debug_file
+		history_file
+		ssl_ca_certificates_file
 	relative to what?
-	all *_files relative to user's muttrc
-	$XDG_CACHE_HOME
+	all *_files relative to:
+	1) the source file they're read from
+	2) current working directory
+	3) User's muttrc? NO
+	4) $XDG_CACHE_HOME? NO
 
 RFC
 	account command user ml, devel ml
@@ -3634,8 +3608,6 @@ can I use realpath(), mutt_expand_path() for anything?
 
 tree chars for sidebar hierarchy?
 
-────────────────────────────────────────────────────────────────────────────────
-
 Start; Incoming; Inbox open; current = Incoming; sort → cur is offscreen, boundaries lost
 
 draw sidebar
@@ -3655,8 +3627,6 @@ for all buffers
 	make sidebar_entry
 fill remaining lines with blanks
 
-────────────────────────────────────────────────────────────────────────────────
-
 Sidebar actions (that might precipitate change):
 	line-up
 	line-down
@@ -3671,8 +3641,6 @@ Sidebar actions (that might precipitate change):
 	hide sidebar
 	show sidebar
 	open folder
-
-────────────────────────────────────────────────────────────────────────────────
 
 Notify (Box*, Rect old, Rect new, flags)
 Flags:
@@ -3692,8 +3660,6 @@ DBUS plugin -- to do what?
 	notify out
 	take input to do what?
 		accept mailto: links
-
-────────────────────────────────────────────────────────────────────────────────
 
 quiet config option -- don't whine about unknown config options
 	or quiet command line option
@@ -3740,8 +3706,6 @@ https://github.com/N8Fear/mutt-kz
 	some initialisations improvements
 	some bug fixes
 
-────────────────────────────────────────────────────────────────────────────────
-
 wrapping →
 	extra char at beginning of line "+"
 	extra char at end of line "<-/"
@@ -3777,8 +3741,6 @@ selected mail changed
 selected mailbox changed
 
 Notifications
-
-────────────────────────────────────────────────────────────────────────────────
 
 make AUTHORS -- which repo did this?
 
