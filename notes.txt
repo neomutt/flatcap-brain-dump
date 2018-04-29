@@ -1,3 +1,44 @@
+move mkstemp, fmemopen, O_TMPFILE to mutt/temp.c?
+
+file locking - could log the caller
+
+cofig PATH flag relative to *what*?
+
+sidebar/account option - toggle-subscribed (folders)
+view:
+	just <mailboxes>
+	subscribed
+	all
+
+upstream synonyms
+upstream implement message Q size
+upstream add synonym sort method
+
+update bash complete for configure
+	push to management
+	dev ml
+
+add "medium" section to "easy" webpage
+
+mutt_warning => instructions to avoid in future
+
+option to open message window on *verbose* errors
+e.g
+	sb_sort is an enum, valid values are
+		a
+		b
+		c
+
+account-specific aliases
+	where do they get saved?
+	ac-spec file, if not, then global file
+
+librarify alias code -- only dep on addr code and idna
+
+usage() - autowrap at $COLUMNS?
+
+~b search shows % complete for *each* email, not for the 1000s in the folder
+
 when running child processes
 	capture all their output stdout/stderr
 	display on summary page?
