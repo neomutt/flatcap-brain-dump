@@ -1,7 +1,7 @@
 Challenges
 
 translate 10 strings (or limit to 10 minutes)
-`	instructions: fork, clone, edit, push, PR
+	instructions: fork, clone, edit, push, PR
 
 doxygen comment a function
 	create templates for all functions

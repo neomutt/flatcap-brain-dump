@@ -25,6 +25,8 @@ guide needs separate repo
 	extra commits (special user)
 strip /etc/neomuttrc
 where does the web index come from?
+	created at install time
+	sqlite? csv?
 how does it link to disparate places?
 generate from grepping .css
 tags from rest of docs?

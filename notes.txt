@@ -1,3 +1,9 @@
+when running child processes
+	capture all their output stdout/stderr
+	display on summary page?
+	dump to real stdout?
+	makes async easier
+
 travis fcntl/flock
 
 should default keys be concealed (n -DS)
@@ -307,8 +313,6 @@ auto-sidebar bool option -- hide until needed on
 
 update COPYRIGHT
 
-invite new members
-
 trivial - check all src against vim folding
 
 assert - does it call atexit
@@ -327,8 +331,6 @@ OR pgpkey selection should quit on <enter> (empty)
 
 put "latest version = X" on distro pages
 	too much work to keep up-to-date?
-
-make notes default branch 'public'
 
 shorten changelog and link end to historic version on github
 
@@ -406,7 +408,7 @@ do we need a config URI object?
 	split into fields for code
 
 2018-01-25 22:07 bazzy
-	On that note I recently got xoauth2 working on neomutt for gmail.
+	On that note I recently got oauth2 working on neomutt for gmail.
 	I'm documenting it locally atm
 
 find remaining snake_case globals and replace them
@@ -542,6 +544,7 @@ more 'rc' : 'r', 'rv', 'ret'
 distinguish between
 	DT_PATH => filesystem path
 	DT_MAILBOX => could be virtual
+	DT_COMMAND?
 
 default (system) config
 	ifdef VERSION > 20180101 set ignore_disabled_config
@@ -799,6 +802,8 @@ use summary log for informational info
 	Sent email "Subject" to
 		ppl-list
 	Received 4 new emails in 2 folders
+	this is level 1 info
+	need much more of this
 
 mutt-1.9.1
 	attach mac text file (CR) OK
@@ -1052,6 +1057,7 @@ imap keywords
 	test cases and instructions
 
 need neomutt glossary (search first)
+	add to guide
 
 aur distro page neo gpg key
 
@@ -1412,8 +1418,6 @@ sort format string switches
 update gpg keys website/dns
 newbie page Twitter toogley
 getside allowed, not checked #ifdef'd
-are both fcntl and flock nec?
-fcntl always present - remove #ifdef
 
 CRON
 	2017-11-01 gpgme version
@@ -2087,6 +2091,7 @@ stable branches for LTS releases?
 code school -> neo branches (regularly rebased)
 	[school/new-variable]
 	[school/new-function]
+	[school/new-color]
 	etc
 
 each web dir, have _source.txt

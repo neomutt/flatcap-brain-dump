@@ -16,7 +16,7 @@ struct Folder
 should the type be visible?
 or a list of function pointers?
 
-Does an mx support more/less that 1 Folder type?
+Does an mx support more/less than 1 Folder type?
 	NO.  == 1
 
 char* F_to_string(F*, flags)

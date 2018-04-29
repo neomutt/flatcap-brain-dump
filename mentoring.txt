@@ -59,7 +59,7 @@ code tidy
 		if (!x->deleted)
 		imply deleted is a BOOL
 	some macros use multiple statements separated by comma
-		change to do { X; Y; Z; } while(0)
+		change to { X; Y; Z; } while(0)
 	unify #if/#ifdef HAVE_X/USE_X
 	clearly mark empty for loops
 		/* nothing */
