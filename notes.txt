@@ -1,3 +1,11 @@
+summary page
+	account details
+	host, login details
+	connection info: IP addr, TLS?, login method, etc
+
+pluralise message
+	source: %d warnings in %s
+
 move mkstemp, fmemopen, O_TMPFILE to mutt/temp.c?
 
 file locking - could log the caller
