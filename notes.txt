@@ -2,6 +2,10 @@ init.c
 	"not enough arguments" -> "too few arguments"
 	at least 3
 
+init.c
+	"too few arguments", etc
+	change retval to -2 => mutt_warning()
+
 summary page
 	account details
 	host, login details
