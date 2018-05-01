@@ -1,3 +1,7 @@
+travis add idn2 build test
+
+travis fcntl/flock
+
 travis build
 	override.txt in .travis/
 
@@ -33,8 +37,6 @@ travis:
 	don't run "make test" every build?
 	run after 1st build
 	make 1st build and all-inclusive one
-
-travis add idn2 build test
 
 compilers: gcc, clang
 features: all, none, random mix?

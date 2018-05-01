@@ -6,10 +6,6 @@ combine function.h and opcode.h, triple of:
 	simplifies doc generation too
 
 init.c
-	"not enough arguments" -> "too few arguments"
-	at least 3
-
-init.c
 	"too few arguments", etc
 	change retval to -2 => mutt_warning()
 
@@ -18,14 +14,11 @@ summary page
 	host, login details
 	connection info: IP addr, TLS?, login method, etc
 
-pluralise message
-	source: %d warnings in %s
-
 move mkstemp, fmemopen, O_TMPFILE to mutt/temp.c?
 
 file locking - could log the caller
 
-cofig PATH flag relative to *what*?
+config PATH flag relative to *what*?
 
 sidebar/account option - toggle-subscribed (folders)
 view:
@@ -40,8 +33,6 @@ upstream add synonym sort method
 update bash complete for configure
 	push to management
 	dev ml
-
-add "medium" section to "easy" webpage
 
 mutt_warning => instructions to avoid in future
 
@@ -67,8 +58,6 @@ when running child processes
 	display on summary page?
 	dump to real stdout?
 	makes async easier
-
-travis fcntl/flock
 
 should default keys be concealed (n -DS)
 	pgp_defaut_key
