@@ -1,69 +1,65 @@
-Subject: The Trouble with the Docs
+where do the lists go?
+where do we want them to go?
 
-## Introduction
+how to link ":help X" to the right page?
+sqlite index: Title, metadata, body, links?
+ignore common English and markdown -- tool
 
-A user's reading the NeoMutt guide on our website.
-They spot a mistake in, say, $compose_format.
+functions.h, opcodes.h, init.h ->
+    reference section
+    neomuttrc.5
+reference list has negative score so that
+    :help X
+never goes there unless no alternative
+Score for Title, H1, H2, ...
 
-They helpfully decide to try to fix the problem, so they:
-- Create a Pull-Request for the website -- WRONG
-- They find the DocBook source in the code repo -- WRONG, it's not there
-- Are told that they need to edit `init.h` -- Source code!
+index needs list of every (key)word in neomutt
+list of all errors, E123, too
+folders
+    ref/var
+    ref/cmd
+    ref/func ... color, error
+    intro/xyz
+    howto/xyz
+    panel/xyz
+:help <tab> completion
 
-This isn't good enough.
+functions.h, opcodes.h, init.h -> md?
+NO LINK?
+    seldom changing
+    new config -> update: index, section, rc.5
 
-A while back I created a diagram[1] to show the complexity of generating the
-documentation.  Add to that the manual steps and evil build script[2] required
-to split up the guide for viewing on the website.
+no help index => web search URI?
+slash separators for URIs / paths
 
-[1] https://neomutt.org/images/make-docs.png
-[2] https://github.com/neomutt/docbook/blob/master/build
+seldom changing
+functions.h - functions
+opcodes.h - ops
+init.h - cfg
+    mutt -D -> csv, json?
 
-It's too much work (and can't be automated)
-Few people understand it.
-The effort required to update the docs discourages people.
+functions.h
+    "group-reply", OP_GROUP_REPLY, "x" (default key)
+OpPager, OpAttach, ... (13)
 
-## Goals
+opcodes.h
+    OP_GROUP_REPLY, "desc help" (247)
 
-* Guide Re-write
+init.h
+    "alias_format", DT_STR, defval, comment (447/-23)
 
-NeoMutt's Guide covers everything, somewhere.  The trouble is finding what you
-need.  The Guide needs some serious editing.  It needs splitting into
-task-oriented sections.
+sort (6 sets)
+    "alpha", SORT_ALPHA
 
-* Availability
+yml header
+    section: intro/panels
+    tite
+    keywords (equiv to title) for search
 
-There are three places a user should be able to read the NeoMutt Guide:
-
-- Website : integrated and themed
-- Locally : Local files installed with NeoMutt (text or html)
-- NeoMutt : Context-sensitive help within the program
-
-* Updatability
-
-If the reader finds a mistake, or would like to offer some improvements, then
-it should be immediately obvious how they would do that.
-
-- Website : "Improve this page" button on every page
-- Local files : Introduction gives email of Users mailing list
-- NeoMutt : "Improve this page" function (emails User mailing list)
-
-## Solution?
-
-* Convert Guide to markdown
-
-Initially, this will just be a few very large markdown files.
-Later, editing will split them up.
-
-* Strip `init.h` of comments
-
-They're non-functional
-
---------------------------------------------------------------------------------
-
-The are lots of sources for NeoMutt's documentation:
-    DocBook xml files
-    Text files (and markdown)
-    Manual pages
-    Comments in the code (init.h)
+intro.md
+    website: jekyll -> intro.html
+        improve button -> github edit
+    help: copy -> /usr/share/doc/neomutt
+        improve function -> email edit
+    help: cat -> single file?
 
