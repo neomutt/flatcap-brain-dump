@@ -267,8 +267,6 @@ enhancement
 
 replace realpath
 
-welcome - desc public/private membership
-
 send.c sendlib.c
 	lots of char buffer[]
 	rename to buf
@@ -276,17 +274,6 @@ send.c sendlib.c
 web -- make news page a dupe of the twitter feed
 
 incorporate valgrind into unit-tests
-
-document + instructions for all the code helpers:
-	gcc/clang warnings
-	scan-build
-	coverity
-	cppcheck
-	iwyu
-	valgrind
-	travis
-	clang-format
-	lcov/coveralls
 
 make plan to deprecate list of "Features"
 	need something better
@@ -804,6 +791,7 @@ audit/testing/coverage
 docs
 	which sections are conditional?
 	"neomutt -v" output, check docs
+	icon on help/web page
 
 build docs
 	include out-of-tree example
@@ -951,11 +939,6 @@ one (background?) colour for each library
 one shared colour for ALL static functions
 use ctags to generate lists
 
-use alarm(2) to stop DNS from taking too long?
-	see sigaction(), alarm() in send_msg() in sendlib.c
-	extract to a function in signal.c
-	user message, or just debug message?
-
 create a literal string marker:
 	set x = /Don't "shoot"?/
 or something like vim's unmagic \V
@@ -964,8 +947,6 @@ docs, etc: drop "All mail clients suck..." quote from m.e.
 
 kill ISSPACE macro -- no benefit to having it
 	what about the (unsigned char*) cast in it?
-
-find all doxy comments with "note" in them -> @note
 
 xdg/neomutt/CONFIG
 	config is standard, rather than (or as well as) neomuttrc
@@ -1023,21 +1004,8 @@ docs - General build
 	make targets
 	install/uninstall
 
-docs - General debug
-	2 windows
-	cgdb examples
-
-docs - Valgrind debug
-	2 windows
-	install valgrind
-	examples
-
 mutt cmdline option to show config search paths?
 	probably not worth it
-
-script to build all mutt/neomutt binaries
-	one for mutt
-	one for neomutt
 
 deprecate muttrc in favour of neomuttrc
 	1 Restore all the mutt search dirs
@@ -1399,11 +1367,6 @@ needs to cope with missing options or
 options reordered -- still need "letters" internally
 NO, need letters in po file
 
-notmuch dep on gpgme in future (via gmime)
-
-init.h 435 options
-110 in #ifdefs (more *should* be)
-
 modular mutt: imap & nntp share some functions
 "subscribe" -- both should declare and mutt notifies both?
 or can it tell whose command it is?
@@ -1444,8 +1407,6 @@ warning on muttrc synonyms
 	this will be removed in x months
 	this will be removed after DATE (better)
 	suggest correct command
-
-debug fill 0xDD on FREE()?
 
 devel ml favourite git config
 
@@ -1492,8 +1453,6 @@ email
 promote logging to default -- too useful
 	set max level?
 
-Decide
-
 other distros, slack, ubuntu
 search for patches & list and adopt
 find maintainers for distro pages
@@ -1503,7 +1462,6 @@ conceal IMAP password
 	pgp.h pgplib.h remailer.h smime.h
 
 hcache auto magic everything
-gcc check for clang
 READMEs tidy review
 index folding cf vim
 vim plugin - cino options etc
@@ -1517,8 +1475,6 @@ shrink authors (split out)
 with options split into sources, mutt -D could omit entire sections
 	if nothing has been set, e.g.
 	all of pop_* have default value
-
-alter merge script to just clang-format a set of commits
 
 compose bug
 	E (edit headers) fails if $editor isn't set
@@ -1577,10 +1533,7 @@ deprecate ChangeLog*
 	or abbreviate with extreme prejudice
 
 vim-neomutt plugin
-	syntax for muttrc
 	folding for c
-
-put neomutt-centric mailmaps in management repo
 
 use signal to interrupt IMAP connect
 	at time of resume (after suspend)
@@ -1653,14 +1606,6 @@ configure summary?
 "approved" tag? when an idea under discussion gets the go-ahead?
 	or just remove the "discussion" tag?
 
-docs todo
-	contribution
-	first feature
-	release
-		scripts etc
-	style (code)
-	irc welcome text
-
 coding standard: two copies
 	part 1:
 		full descriptions
@@ -1706,8 +1651,6 @@ when saving a file (being asked for input),
 	add a mechanism to expand a mutt variable
 	like vim's ^R
 
-useful: extract_url.pl
-
 create muttrc that undoes everything that might be in /etc/Muttrc
 
 po
@@ -1737,6 +1680,9 @@ bot command
 
 move the guide to readthedocs.org?
 
+lua styling/colour callback
+	c functions: hprintf(), push_attr(), pop_attr()
+	shared definitions: C_FG_RED, C_FG_BLUE, A_UNDERLINE, A_REVERSE, etc
 	c       lua_style_line(HANDLE, DATA[])
 	lua     hprintf(HANDLE, "hello ")
 		push_attr(HANDLE, C_FG_RED)
@@ -1744,10 +1690,6 @@ move the guide to readthedocs.org?
 		hprintf(HANDLE, "world")
 		pop_attr(HANDLE)
 		pop_attr(HANDLE)
-
-lua styling/colour callback
-	c functions: hprintf(), push_attr(), pop_attr()
-	shared definitions: C_FG_RED, C_FG_BLUE, A_UNDERLINE, A_REVERSE, etc
 
 investigate:
 	global config
@@ -1798,9 +1740,6 @@ Releases
 
 imap flags summary
 
-readme shorten to just maintainers?
-	link to full list of authors
-
 example notes for a PR
 	don't walk away
 	you need to work with us to get it merged
@@ -1850,10 +1789,6 @@ flowchart for sending an email, showing:
 	screenshots (text)
 
 merging explain to newbies about squashing
-
-mutt google map of devs
-	lettered for maintainers
-	dot for others?
 
 check nntp for updates
 muttrc linter correct, or comment out?
@@ -2186,8 +2121,6 @@ move sidebar-intro to howto and fix links
 	change id to howto/
 	or split out completely
 
-ccache instructions, ctags for dev?
-
 distro contact details
 	separate from maintainer
 
@@ -2209,8 +2142,6 @@ named-mailboxes eats two params
 	can take multiple pairs of params
 
 un-named-mailboxes needs to work against path or description
-
-man pages need section number
 
 website
 	404 is static!
@@ -2625,9 +2556,6 @@ mbsync better than offlineimap?
 
 imap only 'n' messages option
 
-www.neomutt.org -> neomutt.org
-	CNAME
-
 modularise header caching/dbs
 	=> needn't use same cache type
 	for header / message cache
@@ -2639,11 +2567,6 @@ notmuch tag-completion:
 pager -- sidebar gets updated but not status line / term header
 
 vim-like hls option: persistant across emails
-
-test website
-	neo vs www.neo
-	http vs https
-	with/without subdirs
 
 source script|
 	pipe -- lookup exact meaning and implications
@@ -2768,11 +2691,6 @@ dbus - also implies
 	synchronisation of multiple copies of mutt
 	e.g. multiple windows/views
 
-debugging curses tutorial
-	two windows
-	either run & attach
-	or gdb tty redirect
-
 jump to previous folder command?
 	"cd -"
 	vim: "ctrl-^"
@@ -2876,6 +2794,7 @@ index-color -- index_date pattern?
 
 compress flickers, but gpg doesn't
 	imagination, or not?
+	option to NOT leave alt-screen mode
 
 lots of demo configs for
 	index_format
@@ -3032,6 +2951,7 @@ sidebar
 
 sidebar
 	have an alternate mailbox like vim's alternate file
+	(isn't this the '-' mailbox?)
 	create an alias for it '#'
 	c# -> change to alternate directory
 		new alternate becomes old dir
@@ -3064,11 +2984,6 @@ sidebar
 	folded, they should show the cumulative totals for all the children
 
 git b(){} needs to disable colour on piping
-
-mutt plugin to create neomutt issues
-	use ghi?
-	or GitHub API directly
-	test in dummy repo
 
 git clone
 	always pull in my prepare-commit-msg hook
@@ -3305,9 +3220,6 @@ use links(1) as a model for re-architecting mutt
 	pop-up windows
 or mc (midnight commander)
 
-"merged" page/collection on website
-	list of all features that have been accepted into the mainline
-	currently empty
 update website gh page: list of branches
 neomutt FAQ -- containing what?
 add my gpg signing key to neo.org, fc.org
@@ -3316,10 +3228,6 @@ fmemopen - merge into one place in mutt_mktemp()?
 	idea from dgc email
 sidebar, when saving email to a folder use the sidebar as a selector?
 	new indicator colour or prompts "select save folder" + normal highlight
-join mutt-users and ask both lists what patches/version they're using
-	send me your "mutt -v"
-	any security risk to this information?
-	OS info useful too
 Do drafts *need* to be stored in a separate folder?
 	why not inline?
 	in threaded order
