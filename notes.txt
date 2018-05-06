@@ -8,6 +8,7 @@ combine function.h and opcode.h, triple of:
 init.c
 	"too few arguments", etc
 	change retval to -2 => mutt_warning()
+	#define/enum the return codes
 
 summary page
 	account details
