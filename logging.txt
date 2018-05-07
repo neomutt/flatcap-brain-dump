@@ -277,6 +277,25 @@ all message handlers
 	save and restore errno
 	doxy doc this
 
+categorise all messages in code
+        info, warning, error, question
+which imply user to do: nothing, be informed, worry, query user
+errors should be clear whose fault
+user: e.g. type something invalid
+config: file invalid / missing
+code: internal error, missing ops
+separate what user cannot do vs MAY not do
+
+------------------------------------------------------------
+
+idea for Level 1 debugging: **User actions log**
+
+Every action the user makes, "Compose Email", "Send email", "Open mailbox" should be logged at level 1.
+This should include any hooks that they've set up.
+If the user was in the pager, we wouldn't log the keypress, <kbd>j</kbd>, but we would log "Open message".
+
+This level should always be saved to the internal message log.
+
 ------------------------------------------------------------
 
 main()
