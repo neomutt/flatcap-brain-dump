@@ -1,0 +1,41 @@
+magi-sort
+	regex matching [patch] part -> sort alphabetically by that part
+	emails from same author
+	[PATCH v2 5/7] iio: adc: stm32: add optional dma support
+	[PATCH v2 6/7] ARM: dts: stm32: Enable dma by default on stm32f4 adc
+	[PATCH v2 4/7] Documentation: dt: iio: stm32-adc: optional dma support
+	[PATCH v2 1/7] iio: adc: stm32: add support for triggered buffer mode
+	[PATCH v2 3/7] iio: adc: stm32: add trigger polarity extended attribute
+	[PATCH v2 2/7] iio: adc: stm32: Enable use of stm32 timer triggers
+	[PATCH v2 7/7] ARM: dts: stm32: Enable pwm1 and pwm3 on stm32f429i-eval
+	[PATCH v2 0/7] Add support for triggered buffer mode to STM32 ADC
+
+sort
+sort_aux
+
+thread
+date
+alpha
+
+ignore "re:" etc
+regex for [PATCH nn]
+search kernel ml for example
+
+same parent
+same author
+
+what happens when the auther replies to themself?
+
+(Depth == 1)
+	cover letter + sub emails
+
+(depth == 0) flat messages
+	separate emails
+
+what does "git sendemail" do by default
+	(indented version)
+
+sort by [] regex part only
+
+git sendemail fixes dates at 1sec intervals
+
