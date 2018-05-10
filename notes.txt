@@ -1,3 +1,7 @@
+star
+	autosetup
+	acutest
+
 macos Ctrl-O -> FAQ?
 
 config variables list type
