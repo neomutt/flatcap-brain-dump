@@ -1,3 +1,19 @@
+macos Ctrl-O -> FAQ?
+
+config variables list type
+	COMMA | ACCEPT_SPACE
+	space is optional, but not printed
+
+don't translate *code* error messages
+
+doc translation plan
+	start in sync
+	code and translate diverge
+	sync after big changes
+	sync 1 week before release
+
+create minimal jekyll template to support separate code doc repo
+
 trivial
 	rename var siz to size
 
