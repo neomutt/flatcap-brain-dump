@@ -25,6 +25,7 @@ logging file -- does it expand "~" mutt_expand_path
 mention translation team on translate page
 
 X-Labels lost of "unignore X-Label" isn't used!
+	suggest in labels docs
 
 Fix grammar of multi-part/-lingual messages
 
@@ -184,8 +185,6 @@ define a NEO_PATH 1024 vs _POSIX_PATH_MAX
 	as a prelude to all-dynamic strings
 	test in >4096 char dir
 
-translations: update copyrights etc
-
 update list of all globals/configs
 	free everything on exit
 
@@ -335,7 +334,7 @@ config validator for format strings
 add neomutt.vim to COPR
 	need to tag repo to match release
 
-add steve (autosetup) to credits, invite
+invite steve (autosetup)
 
 add "Add profile picture" to welcome letter
 
