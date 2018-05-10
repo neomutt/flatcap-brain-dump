@@ -1,3 +1,33 @@
+trivial
+	rename var siz to size
+
+[somehow] build in URL shortening, OR
+build in urlview, tag urls[1] or abbreviate them
+menu showing full options and open button
+summary ability - move urls to the end
+
+ISSUE templates
+
+toggle-mapping / multi-mapping
+bind/macro key FN1 FN2 FN2
+that'll break if they get out of sync!
+
+analysis
+	add clang-tidy
+	add uncrustify
+
+vim de-comment fn to remove #if0
+
+logging file -- does it expand "~" mutt_expand_path
+	a) cmdline options
+	b) config options
+
+mention translation team on translate page
+
+X-Labels lost of "unignore X-Label" isn't used!
+
+Fix grammar of multi-part/-lingual messages
+
 combine function.h and opcode.h, triple of:
 	"function-name", OPCODE, "help description"
 	enum of OPCODEs
