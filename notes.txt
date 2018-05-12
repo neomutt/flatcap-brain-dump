@@ -1,8 +1,8 @@
+61% of all functions are documented
+
 star
 	autosetup
 	acutest
-
-macos Ctrl-O -> FAQ?
 
 config variables list type
 	COMMA | ACCEPT_SPACE
@@ -25,8 +25,6 @@ trivial
 build in urlview, tag urls[1] or abbreviate them
 menu showing full options and open button
 summary ability - move urls to the end
-
-ISSUE templates
 
 toggle-mapping / multi-mapping
 bind/macro key FN1 FN2 FN2
@@ -223,10 +221,6 @@ user prompting?
 	easy task
 	:ask VARIABLE|MY_VAR "prompt message"
 
-doc valgrind suppressions
-	how to create
-	how to use
-
 use ANSI URL to abbreviate compose fields
 	NO, relies on hover showing something useful
 	_John_Smith_ with hover of "John Smith <john@example.com>"
@@ -367,7 +361,7 @@ mutt tips
 	create http-reading mailbox type
 	needs to be able to scan host (or read an index)
 	served as html by CDN
-
+tls_set_priority - 
 mutt tips
 	RSS feed?
 	we can control the length of the history
@@ -400,8 +394,6 @@ auto-sidebar bool option -- hide until needed on
 
 ∀ $ENV, code default, init.h, system config, user config
 	doc and list priority order -- in $config docs!
-
-update COPYRIGHT
 
 trivial - check all src against vim folding
 
@@ -478,8 +470,6 @@ use the configured error/warning/message colours for the stderr logging
 embed an asciinema demo of neomutt into our website
 
 should logfile be CRLF on windows/cygwin?
-
-INSTALL/AUTOSETUP fix/merge
 
 rename & move history to ~/.neomutt/history
 	use config syntext to highlight?
@@ -581,11 +571,6 @@ python coder needed to update botty
 	use github api
 	commits
 	issues/PRs
-
-archive old repos on github
-
-code docs
-	include diagram of deps utils-trans2.svg
 
 may need to rename one of:
 	mutt/message.h
@@ -725,9 +710,6 @@ deprecate AUR repo & notify
 
 drop mailmap, use management one
 
-tag closed discussions as
-	wontfix or postpone or bluesky?
-
 Add warnings to doxygen headers, for
 	@warning This function uses global variables: LIST, ...
 	@warning This function uses static variables: LIST, ...
@@ -845,11 +827,6 @@ docs
 build docs
 	include out-of-tree example
 	and cross-compile example
-
-doxygen
-	add ncrypt
-	add imap
-	add lib dependencies
 
 libconn
 	conn/getdomain.c -> conn/dns.c
@@ -1385,9 +1362,6 @@ Searches
 
 add release count to changes doc on web
 
-hcache swapping crashes
-	encode type into hash
-
 sidebar_account colour?
 
 account: use $spoolfile to merge an inbox into the account line
@@ -1576,6 +1550,7 @@ MacOS iTerm
 some other terms too
 	rxvt-unicode, openbsd 6.1 - verified
 	"stty flush undef" needed
+FAQ?
 
 deprecate ChangeLog*
 	they're in the git history
