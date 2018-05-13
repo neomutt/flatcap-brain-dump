@@ -1,3 +1,5 @@
+mailbox explanation -> web page / dev ml
+
 61% of all functions are documented
 
 star
@@ -823,6 +825,8 @@ docs
 	which sections are conditional?
 	"neomutt -v" output, check docs
 	icon on help/web page
+	add "conditional:" yaml header
+		render with an icon on the page?
 
 build docs
 	include out-of-tree example
@@ -1140,7 +1144,7 @@ hcache pruner
 		might as well cache them too
 
 in pager, which objects are precious/vunerable
-	which might be changes outside of the pager
+	which might be changed outside of the pager
 
 magic -- set *string*, save *int*
 	retrieve which?
@@ -1481,6 +1485,7 @@ search for patches & list and adopt
 find maintainers for distro pages
 
 conceal IMAP password
+
 #ifdef entire file in smime.h
 	pgp.h pgplib.h remailer.h smime.h
 
@@ -1516,6 +1521,7 @@ create screens overview of all areas of mutt.  provide:
 
 special reader for alias file, that parses comments, e.g.
 	# tags:red,blue,green phone:'1234'
+	or json (one-line)
 
 plugin fs-layer
 	basic: files + stat, etc
@@ -1550,7 +1556,6 @@ MacOS iTerm
 some other terms too
 	rxvt-unicode, openbsd 6.1 - verified
 	"stty flush undef" needed
-FAQ?
 
 deprecate ChangeLog*
 	they're in the git history
