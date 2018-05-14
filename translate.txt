@@ -29,16 +29,12 @@ add star by recently updated translations
 	need to filter out commits that affect *.po
 	e.g. sync translations to source
 
-dewrap *.po in translate branch
-
 code/translation
 	string "notmuch" -> "Notmuch"
 
 add notes about how to download the latest
 file from the translation branch
 (and how to make a PR?)
-
-fix marcin email, update copyright
 
 chinese (yuzibo)
 czech (kdave, jindraj)

@@ -298,7 +298,7 @@ This level should always be saved to the internal message log.
 
 ------------------------------------------------------------
 
-main()
+main()top
 	logq
 	getopt
 	if 'v'

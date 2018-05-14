@@ -94,7 +94,7 @@ convert strncpy -> strfcpy (guaranteed NUL termination)
 	* 33
 
 tidy aliases
-	STAILQ, doxy, testing
+	STAILQ, dcoxy, testing
 
 hcache: x [y] z
 	y = default
