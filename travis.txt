@@ -44,13 +44,6 @@ features: all, none, random mix?
 os: linux, osx?
 travis - tag the latest successful build?
 
-travis:
-	15 x old features - updates only on backported code
-	15 x new features - updates seldom (existing features)
-	2 x mutt (default, stable) => full set of config options (updates often)
-	2 x neomutt => full set of config options - updates - old: seldom, new: often
-	pull-requests - seldom -> often
-
 watch
 	feature/*
 	neomutt

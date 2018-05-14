@@ -1,3 +1,27 @@
+cron 12/06/2018 drop web changes dir
+
+install seems to return 0, even if missing files
+
+make "lua" a medium task
+
+change build script to use travis() functions
+
+much/any need for TAILQ_COUNT()?
+
+not all mutt_message() mutt_error() use gettext _()
+
+make E123 a parameter for mutt_error()?
+	selective display?
+
+":help error" look up last error message
+":help" look up context-sensitive page
+
+[release] branch for *extensive* testing of build
+	make install, uninstall
+	make update-po
+	check POTFILES.in
+	out-of-tree build
+
 mailbox explanation -> web page / dev ml
 
 61% of all functions are documented
