@@ -1,3 +1,7 @@
+Merge these two messages:
+	msgid "SSL Certificate check (certificate %zu of %zu in chain)"
+	msgid "SSL Certificate check (certificate %d of %d in chain)"
+
 cron 12/06/2018 drop web changes dir
 
 install seems to return 0, even if missing files
