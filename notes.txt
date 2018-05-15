@@ -1,3 +1,14 @@
+Merge these messages (where possible):
+	"%sgroup: warning: bad IDN '%s'."
+	"Bad IDN %s while preparing resent-from."
+	"Bad IDN in %s: '%s'"
+	"Bad IDN in \"%s\": '%s'"
+	"Bad IDN \"%s\"."
+	"Bad IDN: '%s'"
+	"Error: '%s' is a bad IDN."
+	"Warning: '%s' is a bad IDN."
+	"Warning: Bad IDN '%s' in alias '%s'."
+
 Merge these two messages:
 	msgid "SSL Certificate check (certificate %zu of %zu in chain)"
 	msgid "SSL Certificate check (certificate %d of %d in chain)"
