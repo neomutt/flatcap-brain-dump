@@ -1,3 +1,37 @@
+autocrypt layered support
+	strip off/add wrappings
+
+tests for 'list'
+	8 items in list
+	∀ del first
+	∀ del last
+	∀ del middle (n/2)
+insert tests too
+	first only
+	last only
+	middle
+acutest ∀ independent types (move to library)
+
+tidy *.c so can use doxygen prep script on every one
+
+translate, if only 1 po file changed, log author, lang an %age to web repo
+
+announce protonmail config
+
+mbox has 8KiB buffer.  test overflow with HUGE headers
+	test other mailbox types
+
+padlock icon for protected (encrypted, autocrypt) headers
+
+docs for config with user vars
+	source `hostname`.rc
+	source `$USER`.rc
+
+FOREACH should we always use _SAFE if we REMOVE (just for future safety)
+
+translate messages/layout of neo
+	∀ languages
+
 Merge these messages (where possible):
 	"%sgroup: warning: bad IDN '%s'."
 	"Bad IDN %s while preparing resent-from."

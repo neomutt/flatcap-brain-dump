@@ -1,12 +1,8 @@
 travis add idn2 build test
-
 travis fcntl/flock
 
 travis build
 	override.txt in .travis/
-
-travis, relax build errors for upstream
-or rename upstream to mutt/upstream
 
 change travis build to check for whitespace errors
 	tabs, trailing whitespace
@@ -18,13 +14,8 @@ which branches?
 push to branches, test BEFORE & FAIL
 pull request test AFTER and WARN
 
-travis build warning
-	"2: No such file or directory"
-	may be caused by hcache ver gen
-
-travis
-	doc fold markers
-	use travis's fold functions
+use travis's fold functions
+	document their use
 
 travis
 	test out-of-tree build
@@ -43,22 +34,6 @@ compilers: gcc, clang
 features: all, none, random mix?
 os: linux, osx?
 travis - tag the latest successful build?
-
-watch
-	feature/*
-	neomutt
-	coverity
-	mutt/{default,stable}
-
-ignore
-	feature5/*
-	neomutt5
-	issue/*
-	mutt/{1.5.24,1.6.0}
-	devel*/*
-	flatcap/*
-	release*/*
-	contrib/*
 
 TRAVIS_BRANCH          For builds not triggered by a pull request this is the name of the branch currently being built; whereas for builds triggered by a pull request this is the name of the branch targeted by the pull request (in many cases this will be master).
 TRAVIS_BUILD_DIR       The absolute path to the directory where the repository being built has been copied on the worker.
@@ -120,16 +95,7 @@ to
 
 script: if [ "${COVERITY_SCAN_BRANCH}" != 1 ]; then make ; fi
 
-only features*/*, neomutt* + pull-requets
-+ mutt/* NO, not 1.5.24, 1.6.0 (fixed)
-
-neo, mutt -- full spread
-feature*/*  (16x2) except sidebar,notmuch
-exceptions for anything with a configure option
-
 fast-finish: true?
-
-travis for mutt/default, mutt/stable both refer to sidebar & notmuch!
 
 travis PR -- env EVERYTHING var
 
@@ -140,10 +106,6 @@ quick build -> travis
 doc build (one-off)?
 
 travis for OSX, catch build issues
-
-unstable branch just one BIG travis build
-
-compress missing from coverity OPTS
 
 travis cache configure output for any given option set (it's constant)
 	what files are generated?
@@ -189,23 +151,6 @@ neobuild in dot dir?
 what should we build on a new tag being pushed?
 	tags => neomutt release => full spread?
 
-clone depth for [bugs/*] needs to be greater than 3
-	(in case more than 3 bugs are pushed in one go)
-
-sync travis-build scripts to neomutt-old branch names
-
-run on patchsets
-	construct & build
-	2 builds (all, nothing)
-	∀ distros
-
-split "make distcheck" configure options out of build.sh
-
-remove "--prefix" from configure options for "make dist"
-
-configure --quick-build -> [mutt/*] ?
-	does quick-build -> all features should derive from it
-
 travis -- test docs validation
 	test make install
 	compare to known list of installed files
@@ -215,14 +160,10 @@ doc travis build system
 	explain why centralised
 	explain why not container build
 
-raise homebrew travis issue
-
 disable docs
 
 travis-build
 	allow line comments starting #
-
-travis update neo conf
 
 travis build install/use chronic
 	esp. for ./configure
@@ -237,16 +178,8 @@ travis check shell/perl scripts
 
 validate the build script itself
 
-option for a "null" build, equivalent to no .travis.yml?
-	any need for this?
-
 make sure travis builds ALL docs (and validates)
 	not just configured features
-
-need to update travis build scripts
-	neomutt -> master
-
-for mutt - test docs, po, install, dist too
 
 --------------------------------------------------------------------------------
 
@@ -286,15 +219,11 @@ Currently, the build script, does two builds (controlled by the txt files in
 the build repo.)
 The build is configured with --disable-doc --disable-po for speed.
 
-If travis is building the neomutt branch, it finishes by doing an extra build
-including the docs (with validation), "make dist" and "make distcheck".
-
 --------------------------------------------------------------------------------
 
 Things we can build/test:
 
 	compile code (make) (build sets defined in travis-build)
-	test packaging (make dist, make distcheck)
 	test install (make install, make uninstall)
 	build/validate docs
 	compile/validate translations
@@ -303,156 +232,4 @@ Things we can build/test:
 Riskier things we can do:
 
 	Look for whitespace errors
-
---------------------------------------------------------------------------------
-
-Categories
-
-code:
-	*.[ch]
-
-build:
-	configure.ac
-	intl/*
-	m4/*
-	Makefile*
-	OPS*
-	PATCHES
-	smime_keys.pl
-	stamp-h.in
-	patchlist.sh
-	gen_defs
-	flymake.am
-	hcachever.sh.in
-	txt2c.sh
-	po/POTFILES.in
-
-contrib:
-	contrib/*
-
-doc:
-	doc/chunk.xsl
-	doc/dotlock.man
-	doc/gen-map-doc
-	doc/html.xsl
-	doc/instdoc.sh.in
-	doc/manual.xml.head
-	doc/manual.xml.tail
-	doc/mbox.man
-	doc/mmdf.man
-	doc/mutt.css
-	doc/mutt.man
-	doc/mutt.pwl
-	doc/mutt.xsl
-	doc/pgpewrap.man
-	doc/pgpring.man
-	doc/smime_keys.man
-
-translation:
-	po/*.po
-
-readmes:
-	ABOUT-NLS
-	BEWARE
-	ChangeLog
-	ChangeLog.neomutt
-	ChangeLog.nntp
-	check_sec.sh
-	COPYRIGHT
-	INSTALL
-	LICENSE.md
-	mime.types
-	NEWS
-	prepare
-	README
-	README.md
-	README.neomutt
-	README.notmuch
-	README.SECURITY
-	README.SSL
-	TODO
-	UPDATING
-	UPDATING.kz
-	imap/README
-	imap/TODO
-	doc/muttrc.attach-headers-color
-	doc/muttrc.compose-to-sender
-	doc/muttrc.compress
-	doc/muttrc.cond-date
-	doc/muttrc.encrypt-to-self
-	doc/muttrc.forgotten-attachment
-	doc/Muttrc.head
-	doc/muttrc.ifdef
-	doc/muttrc.index-color
-	doc/muttrc.initials
-	doc/muttrc.keywords
-	doc/muttrc.limit-current-thread
-	doc/muttrc.man.head
-	doc/muttrc.man.tail
-	doc/muttrc.nested-if
-	doc/muttrc.new-mail
-	doc/muttrc.nntp
-	doc/muttrc.notmuch
-	doc/muttrc.progress
-	doc/muttrc.quasi-delete
-	doc/muttrc.reply-with-xorig
-	doc/muttrc.sidebar
-	doc/muttrc.skip-quoted
-	doc/muttrc.status-color
-	doc/muttrc.timeout
-	doc/TODO
-	doc/vimrc.attach-headers-color
-	doc/vimrc.compose-to-sender
-	doc/vimrc.compress
-	doc/vimrc.encrypt-to-self
-	doc/vimrc.forgotten-attachment
-	doc/vimrc.ifdef
-	doc/vimrc.index-color
-	doc/vimrc.keywords
-	doc/vimrc.misc
-	doc/vimrc.new-mail
-	doc/vimrc.nntp
-	doc/vimrc.notmuch
-	doc/vimrc.progress
-	doc/vimrc.quasi-delete
-	doc/vimrc.reply-with-xorig
-	doc/vimrc.sidebar
-	doc/vimrc.timeout
-	doc/applying-patches.txt
-	doc/devel-notes.txt
-	doc/mutt-1.7.0-syntax.vim
-	doc/patch-notes.txt
-	doc/PGP-Notes.txt
-	doc/smime-notes.txt
-
-dot:
-	.*
-
---------------------------------------------------------------------------------
-
-branches
-	coverity
-	master
-	translate
-	travis
-
-	devel/bg-attach-open
-	devel/clang-format
-	devel/colorschemes
-	devel/coverity-fixes
-	devel/doxygen
-	devel/doxygen-neo
-	devel/fix-codingstyle-clang-format
-	devel/github-templates
-	devel/guyzmo
-	devel/imap-cleanup
-	devel/lua-demo
-	devel/matcher
-	devel/summary
-
-	distro/copr
-	distro/debian
-
-	mutt/default
-	mutt/stable
 
