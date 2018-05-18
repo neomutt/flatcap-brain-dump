@@ -1,3 +1,7 @@
+add lua test to release
+	neomutt -d2 -F contrib/lua/test_lua-api_runner.neomuttrc
+	need to fix output, it should output text
+
 autocrypt layered support
 	strip off/add wrappings
 
