@@ -1,3 +1,5 @@
+change deploy script to commit *AS* the translator
+
 translation webpage: sharing
 	team notify and git
 
