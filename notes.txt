@@ -1,3 +1,24 @@
+debug log
+	use file locking
+	find first missing file, or oldest unlocked
+
+all buflen -> size_t
+
+ask config system for type completions?
+	make sense for enums, what else?
+
+[release] branch, use travis cron
+	run daily
+	run tests after 10 commits or 7 days
+	do thorough test of builds / install etc
+	automatically rebase branch
+	afterwards, reduce the other travis builds
+	(except [travis])
+	rename [travis]?
+
+put docs for [travis], [release], [translate] into original commit message
+	add README.md to [management] for each
+
 add lua test to release
 	neomutt -B -F contrib/lua/test_lua-api_runner.neomuttrc
 
