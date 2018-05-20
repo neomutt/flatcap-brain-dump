@@ -49,4 +49,5 @@ add function <add-metadata> -- free-form text field in editor
 turn into an "alias" module (.so)
 create an ldap alias module
 	initially read-only
+sql/sqlite backend
 
