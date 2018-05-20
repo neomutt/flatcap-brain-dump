@@ -1,0 +1,52 @@
+Ideas for Aliases
+
+account-specific aliases
+	where do they get saved?
+	ac-spec file, if not, then global file
+
+librarify alias code -- only dep on addr code and idna
+
+change aliases from list to hash
+	how big?
+	100s?
+
+remote config option
+	alias files
+
+special reader for alias file, that parses comments, e.g.
+	# labels:red,blue,green phone:'1234'
+	or json (one-line)
+
+api
+	functions to query aliases
+
+2016-08-09
+	01:35 <SvenG> but giving a color to "known" addresses (via aliases) would be a killer
+
+when parsing aliases, store which file they came from
+when displaying aliases:
+	if one file, just display a list
+	if multiple files, use the sidebar
+		All alises
+		- File1
+		- File2
+	if labels exist, use the sidebar
+		Unlabelled
+		Labelled
+		- Label1
+		- Label2
+	Allow the use to add to label-combination list
+
+add expandos for "file" and "label"
+add function <display-alias> to show a persons complete details
+allow <modify-label> function
+add function <add-metadata> -- free-form text field in editor
+	Alias: flatcap
+	Real Name: Richard Russon
+	Labels: self, neomutt
+	free form text
+
+turn into an "alias" module (.so)
+create an ldap alias module
+	initially read-only
+

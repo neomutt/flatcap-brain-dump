@@ -169,12 +169,6 @@ e.g
 		b
 		c
 
-account-specific aliases
-	where do they get saved?
-	ac-spec file, if not, then global file
-
-librarify alias code -- only dep on addr code and idna
-
 usage() - autowrap at $COLUMNS?
 
 ~b search shows % complete for *each* email, not for the 1000s in the folder
@@ -955,10 +949,6 @@ mutt-1.9.1
 	attach mac text file (CR) OK
 	neomutt eats all CRs
 
-change aliases from list to hash
-	how big?
-	100s?
-
 where is punycode encoded/decoded?
 	extract to lib and test
 
@@ -1593,10 +1583,6 @@ create screens overview of all areas of mutt.  provide:
 	sample muttrc
 	instructions to repeat
 
-special reader for alias file, that parses comments, e.g.
-	# tags:red,blue,green phone:'1234'
-	or json (one-line)
-
 plugin fs-layer
 	basic: files + stat, etc
 	adv: file, inotify
@@ -1762,9 +1748,6 @@ po
 
 webpage: new status
 	wip-help -- "Work in progress - Please help (instructions)
-
-api
-	functions to query aliases
 
 add template email for newbies getting credit
 
@@ -3011,9 +2994,6 @@ matching applies to multiple areas of mutt
 	08:31 <flip214> Hi. Another thing I would love to see: an email arrives in INBOX; I answer it,
 		and define the FCC for the sent mail, but the incoming mail is still in INBOX.
 		so a "reply-and-move-to-same-folder" would be interesting to me.
-
-2016-08-09
-	01:35 <SvenG> but giving a color to "known" addresses (via aliases) would be a killer
 
 doc -> contrib ∀ vimrc, muttrc
 	=> will break downstream packaging
