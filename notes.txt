@@ -1,3 +1,18 @@
+config
+	need tests for sort
+		reverse-
+		last-
+
+config type flag for quoting
+	always
+	as-necessary
+	never
+
+custom arrow cursor using expando
+	colour as usual
+
+add command usage to doxy parse functions
+
 debug log
 	use file locking
 	find first missing file, or oldest unlocked
