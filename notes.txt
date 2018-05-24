@@ -1,3 +1,23 @@
+trivial
+	main.c move #defines to top
+
+config flags
+	CLAMP, NON_NEGATIVE
+
+config gettext messages
+	dedupe %s vs %ld values!
+
+config allow validator to change value?
+	e.g. for clamping a range?
+
+config validator can't return warning
+	rc overwritten by caller
+	add tests
+
+are any config strings required to be MixedCase?
+	Maildir?
+	can we just lower-case them?
+
 config
 	need tests for sort
 		reverse-
