@@ -1,3 +1,5 @@
+test imap server: openssl s_client -connect 10.8.0.1:imaps
+
 relative time option for the index_format
 	3h (ago), 2d, etc
 
@@ -75,6 +77,7 @@ insert tests too
 acutest ∀ independent types (move to library)
 
 tidy *.c so can use doxygen prep script on every one
+	grep for @page ?
 
 announce protonmail config
 
