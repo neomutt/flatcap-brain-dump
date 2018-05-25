@@ -1,3 +1,6 @@
+relative time option for the index_format
+	3h (ago), 2d, etc
+
 trivial
 	main.c move #defines to top
 
