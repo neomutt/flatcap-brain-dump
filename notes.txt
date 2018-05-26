@@ -1,3 +1,33 @@
+New/updated primitives:
+	Path
+		filesystem
+		could contain
+			~/
+			~user
+			$HOME etc
+		symlinks / realpath
+		relative/absolute
+		stat
+		file/dir
+		tmp path?
+		deleted?
+	Command
+		contains a Path to executable
+		list of args
+		function to serialise
+		last retval
+		FILE/fd	or in/out/err
+		bool fork?
+		bool alt-screen?
+	Url
+		scheme
+		host
+		path
+		user
+		pass
+		list of params
+		function to serialise
+
 log level ∀ file operations
 	create/del/link/lock/etc
 	caller's id?
