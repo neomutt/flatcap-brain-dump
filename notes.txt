@@ -1,3 +1,16 @@
+log level ∀ file operations
+	create/del/link/lock/etc
+	caller's id?
+
+log the FD of open/close and other file ops
+
+homebrew
+	new build options
+	team
+	formula
+	our copy
+	travis
+
 test imap server: openssl s_client -connect 10.8.0.1:imaps
 
 relative time option for the index_format
