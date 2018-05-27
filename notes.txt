@@ -1,15 +1,3 @@
-bools
-	file_sanitize_filename
-		param slash
-	param_cmp_strict
-		retval bool
-		other strict cmps?
-
-parameterisation of strings, e.g. command strings (%s)
-	should make expandos easier to work with
-	what about format strings?
-		how do we control the spacing of the elements?
-
 New/updated primitives:
 	Path
 		filesystem

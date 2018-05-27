@@ -90,6 +90,13 @@ struct ContentState
 	lots of bools?
 	doc members
 
+bools
+	file_sanitize_filename
+		param slash
+	param_cmp_strict
+		retval bool
+		other strict cmps?
+
 convert strncpy -> strfcpy (guaranteed NUL termination)
 	* 33
 
