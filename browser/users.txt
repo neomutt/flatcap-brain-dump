@@ -1,0 +1,10 @@
+Users of the browser
+
+files/dirs, hidden, nested folders, single/multiple
+mailboxes
+pgp keys
+aliases
+addresses (query)
+messages (attach/index/news)
+attachments
+

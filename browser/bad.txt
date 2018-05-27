@@ -1,0 +1,6 @@
+IMHO, the browser is:
+
+* badly written
+* inconsistent
+* poorly documented
+

@@ -1,0 +1,12 @@
+BrowserItem needs to store raw text.
+The coloured text may not be regex searchable, e.g. Wea*the*r *=colour
+after event CHANGED flag on relevant items
+WINCH event, send (old,new) sizes *might*not* invalidate all
+it item raw data is strdup'd, then br_destroy can clean it up
+mutt's sorting quirks : INBOX first, or '..' first
+
+have area for multiline help
+	current directory/folder
+	valid keys for navigation
+	shortcut letters / history shortcuts
+
