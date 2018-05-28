@@ -1,3 +1,24 @@
+tidy/doxy handler.c
+	rearrange consts and structs
+
+relpage on web
+	doc release notifications
+	web/twitter/etc
+	https://github.com/neomutt/neomutt/releases.atom
+
+when we have Account objects and all imap connections are live
+	how often are accounts updated?
+	lower frequence for the non-current account?
+	options for equal-freq, half-freq, off?
+	just update the spooldir?
+	keepalive option?
+	disconnect completely?
+
+bool param
+	char *mutt_expand_path_regex(char *s, size_t slen, int regex)
+
+bcache doxy
+
 New/updated primitives:
 	Path
 		filesystem
