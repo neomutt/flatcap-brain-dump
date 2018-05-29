@@ -1,3 +1,13 @@
+uniq history ∀ *.po msgid for both (neo)mutt
+
+translate cut'n'paste notes
+	grep, cat
+
+translate poedit settings
+
+<compose-to-list> medium task
+	copy of <compose-to-sender>
+
 tidy/doxy handler.c
 	rearrange consts and structs
 
