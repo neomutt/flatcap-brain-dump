@@ -1,3 +1,29 @@
+time to reformat the source?
+	nestled {}s -> 8500 fewer lines (8%)
+
+translate tips to web
+	new section?
+
+setup function to make aliases
+
+rename mxops to
+	mailbox_X
+	msg_Y
+	msg_tag_Z
+	path_Q
+
+translate merge
+	check POFILES.ino
+
+trivial mutt/file  int x -> int fd
+
+log level ∀ config changes?
+
+could some log levels share level numbers
+	NO, can't distinguish them later for labels
+
+web: title "code" -> "code docs" keep /code dir
+
 uniq history ∀ *.po msgid for both (neo)mutt
 
 translate cut'n'paste notes
