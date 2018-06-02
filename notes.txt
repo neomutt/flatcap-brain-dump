@@ -28,6 +28,7 @@ translate cut'n'paste notes
 	grep, cat
 
 translate poedit settings
+	suggest disable wrapping -> web instructions
 
 <compose-to-list> medium task
 	copy of <compose-to-sender>
@@ -189,6 +190,12 @@ make "lua" a medium task
 much/any need for TAILQ_COUNT()?
 
 not all mutt_message() mutt_error() use gettext _()
+	alias.c: mutt_message("Trouble adding alias: %s.", strerror(errno));
+	copy.c: mutt_error("The length calculation was wrong by %ld bytes", fail);
+	init.c: mutt_error("Error: impossible to build path of '%s'.", rcfile_path);
+	init.c: mutt_error("Error: Cyclic sourcing of configuration file '%s'.", rcfile);
+	init.c: mutt_error("Error: %s", err->data);
+	main.c: mutt_error("%s: I don't want to run with privileges!", argv[0]);
 
 make E123 a parameter for mutt_error()?
 	selective display?
@@ -258,7 +265,6 @@ combine function.h and opcode.h, triple of:
 	simplifies doc generation too
 
 init.c
-	"too few arguments", etc
 	change retval to -2 => mutt_warning()
 	#define/enum the return codes
 
@@ -312,9 +318,6 @@ should default keys be concealed (n -DS)
 open(2) O_TMPFILE
 	mktemp
 	fmemopen
-
-new users team?
-	to say what?
 
 SIGUSR1 link to #2
 	mark hard, close
@@ -778,6 +781,7 @@ fix default /etc/neomuttrc so that neomuttrc.vim doesn't show errors
 	last field isn't quoted and shows as an error
 
 replace "for (int" -> size_t in libmutt
+	177 occurrences
 
 introduce warning colour/color
 	cyan - message
@@ -862,8 +866,6 @@ c<enter> (pager)
 c? (index)
 c? (pager)
 
-drop remaining inline functions
-
 make the shutdown cleanup (freeing memory, etc)
 	#ifdef DEBUG
 	nice to check, but not required for general users
@@ -945,8 +947,6 @@ autosetup
 all functions that return int
 	`if (!fn())` should be `if (fn() == X)`
 
-REGEXEC() macro only used once
-
 autosetup
 	make V=0
 	create min-build
@@ -978,8 +978,6 @@ neo-vim repo
 	vim "team"?
 		limit neomutt.vim access to them
 	merge vim keys?
-
-find 'for' without {}
 
 autosetup
 	.deps
@@ -1114,6 +1112,7 @@ turn some config vars into (string) lists
 	mailcap_path (separator = ':')
 	send_charset (separator = ':')
 	split at config level, then call the validator on each list item
+		no, call validator on parsed list
 
 all global variables should be set using the config mechanism
 	therefore changes to globals would trigger notifications
@@ -1784,8 +1783,6 @@ create doc repo
 	have neomutt repo as a "fixed" git submodule
 	or a submodule of a doc-gen repo
 
-macro REGEXEC is only used once
-
 ask people how often they'd like to be chased up
 
 warn on option synonym usage
@@ -2097,8 +2094,6 @@ type:investigate ?
 	might lead to docs
 	might not lead to code
 
-can I (neomutt) sign the copr key?
-
 mutt -D? (extra options)
 	turn output into valid muttrc
 	validate muttrc without running
@@ -2163,12 +2158,6 @@ web
 	```code
 	specifically for code?
 	no interferes with markdown highlighting
-
-poedit suggest disable wrapping -> web instructions
-
-mutt.pot --no-wrap
-
-add myself to version.c copyright, mutt -v
 
 xgettext notes, L10N, _(), N_()
 
@@ -2259,10 +2248,6 @@ website jekyll serve instructions
 web: changes page -- since/relative to mutt
 
 web: misc page for extra options that aren't in features
-
-generate valgrind suppression file
-	contrib?
-	devel page instructions
 
 annouce GPLv2 usage for project
 	make it clear on the (devel) website
