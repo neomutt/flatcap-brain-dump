@@ -13,9 +13,7 @@ rename mxops to
 	path_Q
 
 translate merge
-	check POFILES.ino
-
-trivial mutt/file  int x -> int fd
+	check POFILES.in
 
 log level ∀ config changes?
 
@@ -34,9 +32,6 @@ translate poedit settings
 <compose-to-list> medium task
 	copy of <compose-to-sender>
 
-tidy/doxy handler.c
-	rearrange consts and structs
-
 relpage on web
 	doc release notifications
 	web/twitter/etc
@@ -49,9 +44,6 @@ when we have Account objects and all imap connections are live
 	just update the spooldir?
 	keepalive option?
 	disconnect completely?
-
-bool param
-	char *mutt_expand_path_regex(char *s, size_t slen, int regex)
 
 bcache doxy
 
@@ -103,9 +95,6 @@ test imap server: openssl s_client -connect 10.8.0.1:imaps
 relative time option for the index_format
 	3h (ago), 2d, etc
 
-trivial
-	main.c move #defines to top
-
 config flags
 	CLAMP, NON_NEGATIVE
 
@@ -141,8 +130,6 @@ add command usage to doxy parse functions
 debug log
 	use file locking
 	find first missing file, or oldest unlocked
-
-all buflen -> size_t
 
 ask config system for type completions?
 	make sense for enums, what else?
@@ -195,28 +182,9 @@ FOREACH should we always use _SAFE if we REMOVE (just for future safety)
 translate messages/layout of neo
 	∀ languages
 
-Merge these messages (where possible):
-	"%sgroup: warning: bad IDN '%s'."
-	"Bad IDN %s while preparing resent-from."
-	"Bad IDN in %s: '%s'"
-	"Bad IDN in \"%s\": '%s'"
-	"Bad IDN \"%s\"."
-	"Bad IDN: '%s'"
-	"Error: '%s' is a bad IDN."
-	"Warning: '%s' is a bad IDN."
-	"Warning: Bad IDN '%s' in alias '%s'."
-
-Merge these two messages:
-	msgid "SSL Certificate check (certificate %zu of %zu in chain)"
-	msgid "SSL Certificate check (certificate %d of %d in chain)"
-
 cron 12/06/2018 drop web changes dir
 
-install seems to return 0, even if missing files
-
 make "lua" a medium task
-
-change build script to use travis() functions
 
 much/any need for TAILQ_COUNT()?
 
@@ -255,9 +223,6 @@ doc translation plan
 	sync 1 week before release
 
 create minimal jekyll template to support separate code doc repo
-
-trivial
-	rename var siz to size
 
 [somehow] build in URL shortening, OR
 build in urlview, tag urls[1] or abbreviate them
@@ -431,10 +396,6 @@ non-easy
 	find all OUT-params fn(&val)
 	and ensure the variable is set before
 
-define a NEO_PATH 1024 vs _POSIX_PATH_MAX
-	as a prelude to all-dynamic strings
-	test in >4096 char dir
-
 update list of all globals/configs
 	free everything on exit
 
@@ -488,8 +449,6 @@ neomutt-test-configs.sh
 	what about logs?
 	mktemp for log files, then cat?
 
-convert struct Command to use intptr_t
-
 TEST for log file failing to start
 
 how many ways can conn/ connect?
@@ -513,16 +472,9 @@ all contributors -> list
 
 script to keep neo mirrors up-to-date
 
-trivial
-	encoder_t is a PTR
-	initialise to NULL
-	check for other typedefs
-
 "key is not bound" error doesn't say which key
 
 use inotifywait to find all the build tmp files and .gitignore them
-
-bool dupe -> const
 
 don't log (to file) UI messages like "you are on last messsage"
 	need new log level
@@ -798,6 +750,11 @@ update docs
 	more shields
 	donate in more places
 	credit all reference
+mime.crivial
+	encoder_t is a PTR
+	initialise to NULL
+	check for other typedefs
+
 
 python coder needed to update botty
 	use github api
