@@ -1,3 +1,9 @@
+need (vim-like) foldopen option for search matches
+	what else should open a fold?
+	jump?
+
+post conceal vim to dev/prog-tips page
+
 time to reformat the source?
 	nestled {}s -> 8500 fewer lines (8%)
 
