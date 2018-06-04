@@ -1,3 +1,5 @@
+bug: buffy_get() probably truncates path when expanding "~/xyz"
+
 use tagged emails + edit to view multiple
 	set editor="vim -o"
 	<tag><tag> <tag-prefix><edit>
