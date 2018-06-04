@@ -1,3 +1,7 @@
+use tagged emails + edit to view multiple
+	set editor="vim -o"
+	<tag><tag> <tag-prefix><edit>
+
 need (vim-like) foldopen option for search matches
 	what else should open a fold?
 	jump?
