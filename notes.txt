@@ -1,3 +1,42 @@
+State object -> library
+	excluding AttachmentMarker
+
+anaysis page for AddressSanitizer build
+
+user packagers' team to announce build changes
+
+add $smtp_user  missing!
+
+trivial
+	FILE *x -> fp
+
+shield for doxygen coverage
+	add to doxy deploy
+
+repo: daily, weekly, monthly updates
+	-> server
+
+58 mutt_mktemp in ncrypt/
+
+gpg --no-verbose -> def config & contrib
+
+148 memset -> = { 0 }?
+
+distclean doesn't remove html/
+
+neotest parallel -p, out-of-tree builds
+
+shield for freenode/irc --- silver searcher
+
+mentor team?  probably not yet
+
+bool retval
+	int mutt_is_application_smime(struct Body *m)
+	int crypt_has_module_backend(int type)
+
+mbox.c -- crazy source:
+	rc = ((ctx->magic == MUTT_MBOX) ? mbox_parse_mailbox : mmdf_parse_mailbox)(ctx);
+
 bug: buffy_get() probably truncates path when expanding "~/xyz"
 
 use tagged emails + edit to view multiple
