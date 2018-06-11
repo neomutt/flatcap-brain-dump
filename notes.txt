@@ -1,3 +1,27 @@
+build script
+	if clang else gcc
+	optional compiler flags
+
+rename ncrypt functions to match API
+
+unused param in ncrypt
+	crypt_pgp_make_key_attachment(NULL)
+	tag: void pgp_extract_keys_from_attachment_list(FILE *fp, int tag, struct Body *top)
+	mailbox: void         (*smime_invoke_import)(char *infile, char *mailbox);
+
+bool retval
+	int mutt_is_application_pgp(struct Body *m)
+	int mutt_is_application_smime(struct Body *m)
+	int crypt_has_module_backend(int type)
+	int pgp_check_traditional(FILE *fp, struct Body *b, int just_one)
+
+bool params
+	sign?     struct Body *(*pgp_encrypt_message)(struct Body *a, char *keylist, int sign);
+	just_one? int          (*pgp_check_traditional)(FILE *fp, struct Body *b, int just_one);
+
+glossary
+	Cryptographic Message Syntax (CMS)
+
 State object -> library
 	excluding AttachmentMarker
 
@@ -29,10 +53,6 @@ neotest parallel -p, out-of-tree builds
 shield for freenode/irc --- silver searcher
 
 mentor team?  probably not yet
-
-bool retval
-	int mutt_is_application_smime(struct Body *m)
-	int crypt_has_module_backend(int type)
 
 mbox.c -- crazy source:
 	rc = ((ctx->magic == MUTT_MBOX) ? mbox_parse_mailbox : mmdf_parse_mailbox)(ctx);
