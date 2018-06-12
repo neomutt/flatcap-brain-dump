@@ -2,9 +2,6 @@ build script
 	if clang else gcc
 	optional compiler flags
 
-glossary
-	Cryptographic Message Syntax (CMS)
-
 State object -> library
 	excluding AttachmentMarker
 
@@ -59,12 +56,6 @@ translate tips to web
 	new section?
 
 setup function to make aliases
-
-rename mxops to
-	mailbox_X
-	msg_Y
-	msg_tag_Z
-	path_Q
 
 translate merge
 	check POFILES.in
@@ -265,7 +256,7 @@ make E123 a parameter for mutt_error()?
 
 mailbox explanation -> web page / dev ml
 
-61% of all functions are documented
+75% of all functions are documented
 
 star
 	autosetup
