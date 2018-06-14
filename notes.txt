@@ -145,6 +145,7 @@ when we have Account objects and all imap connections are live
 	disconnect completely?
 
 bcache doxy
+hcache doxy
 
 New/updated primitives:
 	Path
@@ -309,7 +310,7 @@ make E123 a parameter for mutt_error()?
 
 mailbox explanation -> web page / dev ml
 
-75% of all functions are documented
+79% of all functions are documented
 
 star
 	autosetup
