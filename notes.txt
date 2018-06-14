@@ -1,3 +1,7 @@
+kill ! in mutt_message and mutt_error
+	6 msg
+	73 err
+
 option for insertable horizontal divider line in the index
 	(simply underline one line of text)
 	configurable positions, e.g
