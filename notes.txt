@@ -1,3 +1,31 @@
+option for insertable horizontal divider line in the index
+	(simply underline one line of text)
+	configurable positions, e.g
+	this week | this month | old stuff
+	config: 1w:1m -> three sections
+
+COPR update notmuch
+
+doxy main page, add %age completion
+
+history
+	few deps (excluding three menu functions)
+	move to libhist?
+	history API
+	separate out three menu functions
+
+(neo)mutt can't read maildir emails
+	it'd be useful to:
+	neomutt -f maildir/cur/email:2,S
+
+use neomutt as a viewer/pager for emails
+	like less(1)
+	would require a crazy amount of code changes
+
+config validator
+	if CSR_ERR is returned, but err is empty
+	generate a default error message
+
 remove umask code from mh.c
 	redundant due to `umask(077)` in main.c
 
