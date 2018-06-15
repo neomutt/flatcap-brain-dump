@@ -1,3 +1,25 @@
+release test
+	soft fail for whitespace, etc
+	send email? requires internet and smtp!
+
+config: do we check for value *not* changing?
+	should we?
+
+mailing lists
+	a general command for lists
+	"Current list: (s)ubscribe, (u)nsubscribe, (p)ost"
+
+release testing
+	check output of `neomutt -D` (against a file)
+	with sample data (variety of settings)
+
+sidebar intro mentions 'mutt'
+	it hasn't been sync'd to doc/ in ages
+
+release notes
+	add commit count?
+	to show our busyness
+
 kill ! in mutt_message and mutt_error
 	6 msg
 	73 err
