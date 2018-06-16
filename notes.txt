@@ -380,6 +380,7 @@ make E123 a parameter for mutt_error()?
 mailbox explanation -> web page / dev ml
 
 79% of all functions are documented
+	https://img.shields.io/badge/doxygen-79%25-brightgreen.svg
 
 star
 	autosetup
