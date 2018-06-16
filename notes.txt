@@ -1,3 +1,5 @@
+notes: drop private/public distinction
+
 release test
 	soft fail for whitespace, etc
 	send email? requires internet and smtp!
