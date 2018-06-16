@@ -1,8 +1,20 @@
-notes: drop private/public distinction
+put docs for [travis], [release], [translate] into original commit message
+	add README.md to [management] for each
 
-release test
-	soft fail for whitespace, etc
-	send email? requires internet and smtp!
+add lua test to release
+	neomutt -B -F contrib/lua/test_lua-api_runner.neomuttrc
+
+create specific README.md in each top-level neomutt branch
+
+review bookmarks -> stars
+
+update acutest and name upstream commit in our commit message
+
+pre-release: sync acutest and autosetup?
+
+move doxygen docs to 'code' repo and export via git-pages
+
+notes: drop private/public distinction
 
 config: do we check for value *not* changing?
 	should we?
@@ -10,10 +22,6 @@ config: do we check for value *not* changing?
 mailing lists
 	a general command for lists
 	"Current list: (s)ubscribe, (u)nsubscribe, (p)ost"
-
-release testing
-	check output of `neomutt -D` (against a file)
-	with sample data (variety of settings)
 
 sidebar intro mentions 'mutt'
 	it hasn't been sync'd to doc/ in ages
@@ -314,12 +322,6 @@ ask config system for type completions?
 	(except [travis])
 	rename [travis]?
 
-put docs for [travis], [release], [translate] into original commit message
-	add README.md to [management] for each
-
-add lua test to release
-	neomutt -B -F contrib/lua/test_lua-api_runner.neomuttrc
-
 autocrypt layered support
 	strip off/add wrappings
 
@@ -372,12 +374,6 @@ make E123 a parameter for mutt_error()?
 
 ":help error" look up last error message
 ":help" look up context-sensitive page
-
-[release] branch for *extensive* testing of build
-	make install, uninstall
-	make update-po
-	check POTFILES.in
-	out-of-tree build
 
 mailbox explanation -> web page / dev ml
 
