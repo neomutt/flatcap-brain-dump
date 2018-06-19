@@ -1,3 +1,25 @@
+frequently merge master INTO translate?
+	would encourage frequent "make update-po"!
+
+translate: eliminate "\n" from strings where possible?
+
+expand reviewers to all frequent committers?
+
+change all bool/quads in init.h from 0/1 to MUTT_YES, etc?
+
+config def combine type with flags to save space?
+	would break new-config enum setup
+
+config: does native_set on sort manage flags correctly?
+	reverse-
+	last-
+
+config: don't notify on reset if there's no change
+
+config: DT_NUM - most (29/40) have NOT_NEGATIVE, so reverse flag to
+	ALLOW_NEGATIVE
+	add MINUS_ONE option
+
 put docs for [travis], [release], [translate] into original commit message
 	add README.md to [management] for each
 
