@@ -5,16 +5,8 @@ translate: eliminate "\n" from strings where possible?
 
 expand reviewers to all frequent committers?
 
-change all bool/quads in init.h from 0/1 to MUTT_YES, etc?
-
 config def combine type with flags to save space?
 	would break new-config enum setup
-
-config: does native_set on sort manage flags correctly?
-	reverse-
-	last-
-
-config: don't notify on reset if there's no change
 
 config: DT_NUM - most (29/40) have NOT_NEGATIVE, so reverse flag to
 	ALLOW_NEGATIVE
@@ -37,9 +29,6 @@ pre-release: sync acutest and autosetup?
 move doxygen docs to 'code' repo and export via git-pages
 
 notes: drop private/public distinction
-
-config: do we check for value *not* changing?
-	should we?
 
 mailing lists
 	a general command for lists
@@ -305,18 +294,9 @@ config gettext messages
 config allow validator to change value?
 	e.g. for clamping a range?
 
-config validator can't return warning
-	rc overwritten by caller
-	add tests
-
 are any config strings required to be MixedCase?
 	Maildir?
 	can we just lower-case them?
-
-config
-	need tests for sort
-		reverse-
-		last-
 
 config type flag for quoting
 	always
