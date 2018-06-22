@@ -1,3 +1,13 @@
+fix makedoc.c doesn't understand true/false for bools
+
+check docs & sb intro for 'mutt'
+
+add compare scripts for travis branches
+
+buffer_init() vs = { 0 }?
+
+easy tasks cleanup & new tasks for new dev cycle
+
 bug?
 	attach a file
 	<get-attach> but mailcap doesn't have matching entry for (text/plain)
@@ -31,6 +41,7 @@ bool param
 	istext:		static void encode_quoted(struct FgetConv *fc, FILE *fout, int istext)
 	match_personal:	static int match_addrlist(struct Pattern *pat, int match_personal, int n, ...)
 	have_min:	static const char *parse_date_range(const char *pc, struct tm *min, struct tm *max, int have_min, struct tm *base_min, struct Buffer *err)
+	init:		static void mutt_update_recvattach_menu(struct AttachCtx *actx, struct Menu *menu, int init)
 
 doxy how many (%age) are doc'd?
 	global vars/config
