@@ -1,3 +1,13 @@
+config LONG types & vars
+
+more a perror to mutt_mkstemp()?
+	logging in libmutt -> gettext() etc
+
+$tmpdir validator -> try to create sample temp file!
+
+test link() / linkat() on a deleted FILE*
+	limited to the current device
+
 check docs & sb intro for 'mutt'
 
 add compare scripts for travis branches
