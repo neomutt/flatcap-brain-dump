@@ -1,0 +1,29 @@
+
+Message prefixes
+
+Looking through the messages, I see 86 containing the word "error" and 29 containing "warning".
+
+I'd like to suggest a standard prefix for these messages.
+They would be translated separately and added by the logging code.
+
+Prefixes:
+
+    "Error: "
+    "Warning: "
+
+The prefixes would be optional (defaulting to on).
+The message colours (which default to off) would be independent of the prefixes.
+
+Users could then enable colours and disable the prefixes.
+
+Does this sound useful?
+Would this cause problems with translation?
+
+---
+
+Offer the translators a formatting string:
+	snprintf(_("%s%s: %s"), ERROR_CODE, ERROR_STRING, MESSAGE);
+	ERROR_CODE   = "E123"
+	ERROR_STRING = "Error"
+	MESSAGE      = "Cannot read file 'x'
+the error string and message are independently translated
