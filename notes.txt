@@ -1,5 +1,3 @@
-fix makedoc.c doesn't understand true/false for bools
-
 check docs & sb intro for 'mutt'
 
 add compare scripts for travis branches
@@ -25,24 +23,6 @@ create a reply flowchart
 
 find and convert #define num ranges -> enum
 
-buf, buflen
-	char *mutt_get_body_charset(char *d, size_t dlen, struct Body *b)
-	static void quote_simple(char *tmp, size_t len, const char *p)
-	static void make_from(struct Envelope *env, char *buf, size_t len, int do_lists)
-	static void update_content_info(struct Content *info, struct ContentState *s, char *d, size_t dlen)
-	static void prepend_curdir(char *dst, size_t dstlen)
-bool param
-	attach_msg:	struct Body *mutt_make_message_attach(struct Context *ctx, struct Header *hdr, int attach_msg)
-	privacy:	int mutt_rfc822_write_header(FILE *fp, struct Envelope *env, struct Body *attach, int mode, int privacy)
-	may_hide_host:	const char *mutt_fqdn(short may_hide_host)
-	alladdr:	int mutt_is_list_recipient(int alladdr, struct Address *a1, struct Address *a2)
-	retval:		static int recvattach_pgp_check_traditional(struct AttachCtx *actx, struct Menu *menu)
-	final:		void mutt_prepare_envelope(struct Envelope *env, int final)
-	istext:		static void encode_quoted(struct FgetConv *fc, FILE *fout, int istext)
-	match_personal:	static int match_addrlist(struct Pattern *pat, int match_personal, int n, ...)
-	have_min:	static const char *parse_date_range(const char *pc, struct tm *min, struct tm *max, int have_min, struct tm *base_min, struct Buffer *err)
-	init:		static void mutt_update_recvattach_menu(struct AttachCtx *actx, struct Menu *menu, int init)
-
 doxy how many (%age) are doc'd?
 	global vars/config
 	struct/union
@@ -54,11 +34,9 @@ create shield for each
 calc libmut test coverage as %age
 	use coveralls?
 
-init.h kill IP "" -> 0
-
 frequently merge master INTO translate?
 	would encourage frequent "make update-po"!
-
+macromacro
 translate: eliminate "\n" from strings where possible?
 
 expand reviewers to all frequent committers?
@@ -80,20 +58,13 @@ create specific README.md in each top-level neomutt branch
 
 review bookmarks -> stars
 
-update acutest and name upstream commit in our commit message
-
 pre-release: sync acutest and autosetup?
 
 move doxygen docs to 'code' repo and export via git-pages
 
-notes: drop private/public distinction
-
 mailing lists
 	a general command for lists
 	"Current list: (s)ubscribe, (u)nsubscribe, (p)ost"
-
-sidebar intro mentions 'mutt'
-	it hasn't been sync'd to doc/ in ages
 
 release notes
 	add commit count?
@@ -108,8 +79,6 @@ option for insertable horizontal divider line in the index
 	configurable positions, e.g
 	this week | this month | old stuff
 	config: 1w:1m -> three sections
-
-COPR update notmuch
 
 doxy main page, add %age completion
 
@@ -225,8 +194,6 @@ repo: daily, weekly, monthly updates
 
 gpg --no-verbose -> def config & contrib
 
-148 memset -> = { 0 }?
-
 distclean doesn't remove html/
 
 neotest parallel -p, out-of-tree builds
@@ -258,15 +225,10 @@ translate tips to web
 
 setup function to make aliases
 
-translate merge
-	check POFILES.in
-
 log level ∀ config changes?
 
 could some log levels share level numbers
 	NO, can't distinguish them later for labels
-
-web: title "code" -> "code docs" keep /code dir
 
 uniq history ∀ *.po msgid for both (neo)mutt
 
@@ -437,8 +399,8 @@ make E123 a parameter for mutt_error()?
 
 mailbox explanation -> web page / dev ml
 
-79% of all functions are documented
-	https://img.shields.io/badge/doxygen-79%25-brightgreen.svg
+82% of all functions are documented
+	https://img.shields.io/badge/doxygen-82%25-brightgreen.svg
 
 star
 	autosetup
