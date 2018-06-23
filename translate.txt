@@ -1,6 +1,6 @@
 change deploy script to commit *AS* the translator
 
-translation webpage: sharing
+webpage: sharing
 	team notify and git
 
 docs: ask to become a "contributor"
@@ -78,7 +78,7 @@ issue label: "translation"
 
 L10N split up large version string blocks
 
-translation comments
+comments
 	aka in lang
 	function names
 	"oppenc" meaning
@@ -120,4 +120,87 @@ guarantee translations, when?
 branch - pull, work, push
 	even if WIP
 	NO, that would break updates for all others
+
+kill ! in mutt_message and mutt_error
+	6 msg
+	73 err
+
+dupes?
+	"Can't create %s"
+	"Can't create %s."
+
+	"Can't create %s: %s."
+	"Can't create file %s"
+
+	"Compressing %s"
+	"Compressing %s..."
+
+	"mismatched brackets: %s"
+	"mismatched parenthesis: %s"
+
+	"Connecting to %s..."
+	"Connecting with \"%s\"..."
+
+	%s is not a mailbox!
+	%s is not a mailbox.
+
+	%s: invalid value
+	%s: invalid value (%s)
+
+	%s: no such color
+	%s: no such function
+	%s: no such menu
+	%s: no such object
+
+	%s: unknown type
+	%s: Unknown type.
+
+	Article %d not found on the server.
+	Article %s not found on the server.
+
+	Authenticating (%s)...
+	Authenticating (anonymous)...
+	Authenticating (APOP)...
+	Authenticating (CRAM-MD5)...
+	Authenticating (GSSAPI)...
+	Authenticating (SASL)...
+
+	Can't create %s %s
+	Can't create %s: %s.
+
+	Command TOP is not supported by server.
+	Command UIDL is not supported by server.
+	Command USER is not supported by server.
+
+	Decryption failed
+	Decryption failed.
+
+	Integer overflow -- can't allocate memory!
+	Integer overflow -- can't allocate memory.
+
+	SASL authentication failed
+	SASL authentication failed.
+
+	Write message to mailbox
+	write the message to a folder
+
+tips to web
+	new section?
+
+cut'n'paste notes
+	grep, cat
+
+poedit settings
+	suggest disable wrapping -> web instructions
+
+messages/layout of neo
+	∀ languages
+
+don't translate *code* error messages
+
+doc translation plan
+	start in sync
+	code and translate diverge
+	sync after big changes
+	sync 1 week before release
 

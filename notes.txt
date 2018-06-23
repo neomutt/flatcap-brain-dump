@@ -1,6 +1,4 @@
-config LONG types & vars
-
-more a perror to mutt_mkstemp()?
+move a perror to mutt_mkstemp()?
 	logging in libmutt -> gettext() etc
 
 $tmpdir validator -> try to create sample temp file!
@@ -51,13 +49,6 @@ translate: eliminate "\n" from strings where possible?
 
 expand reviewers to all frequent committers?
 
-config def combine type with flags to save space?
-	would break new-config enum setup
-
-config: DT_NUM - most (29/40) have NOT_NEGATIVE, so reverse flag to
-	ALLOW_NEGATIVE
-	add MINUS_ONE option
-
 put docs for [travis], [release], [translate] into original commit message
 	add README.md to [management] for each
 
@@ -79,10 +70,6 @@ mailing lists
 release notes
 	add commit count?
 	to show our busyness
-
-kill ! in mutt_message and mutt_error
-	6 msg
-	73 err
 
 option for insertable horizontal divider line in the index
 	(simply underline one line of text)
@@ -106,71 +93,8 @@ use neomutt as a viewer/pager for emails
 	like less(1)
 	would require a crazy amount of code changes
 
-config validator
-	if CSR_ERR is returned, but err is empty
-	generate a default error message
-
 remove umask code from mh.c
 	redundant due to `umask(077)` in main.c
-
-translate dupes?
-	"Can't create %s"
-	"Can't create %s."
-
-	"Can't create %s: %s."
-	"Can't create file %s"
-
-	"Compressing %s"
-	"Compressing %s..."
-
-	"mismatched brackets: %s"
-	"mismatched parenthesis: %s"
-
-	"Connecting to %s..."
-	"Connecting with \"%s\"..."
-
-	%s is not a mailbox!
-	%s is not a mailbox.
-
-	%s: invalid value
-	%s: invalid value (%s)
-
-	%s: no such color
-	%s: no such function
-	%s: no such menu
-	%s: no such object
-
-	%s: unknown type
-	%s: Unknown type.
-
-	Article %d not found on the server.
-	Article %s not found on the server.
-
-	Authenticating (%s)...
-	Authenticating (anonymous)...
-	Authenticating (APOP)...
-	Authenticating (CRAM-MD5)...
-	Authenticating (GSSAPI)...
-	Authenticating (SASL)...
-
-	Can't create %s %s
-	Can't create %s: %s.
-
-	Command TOP is not supported by server.
-	Command UIDL is not supported by server.
-	Command USER is not supported by server.
-
-	Decryption failed
-	Decryption failed.
-
-	Integer overflow -- can't allocate memory!
-	Integer overflow -- can't allocate memory.
-
-	SASL authentication failed
-	SASL authentication failed.
-
-	Write message to mailbox
-	write the message to a folder
 
 history - fix this:
 	docs "The buffer is cleared each time the variable is set."
@@ -230,9 +154,6 @@ post conceal vim to dev/prog-tips page
 time to reformat the source?
 	nestled {}s -> 8500 fewer lines (8%)
 
-translate tips to web
-	new section?
-
 setup function to make aliases
 
 log level ∀ config changes?
@@ -241,12 +162,6 @@ could some log levels share level numbers
 	NO, can't distinguish them later for labels
 
 uniq history ∀ *.po msgid for both (neo)mutt
-
-translate cut'n'paste notes
-	grep, cat
-
-translate poedit settings
-	suggest disable wrapping -> web instructions
 
 <compose-to-list> medium task
 	copy of <compose-to-sender>
@@ -315,23 +230,9 @@ test imap server: openssl s_client -connect 10.8.0.1:imaps
 relative time option for the index_format
 	3h (ago), 2d, etc
 
-config flags
-	CLAMP, NON_NEGATIVE
-
-config gettext messages
-	dedupe %s vs %ld values!
-
-config allow validator to change value?
-	e.g. for clamping a range?
-
 are any config strings required to be MixedCase?
 	Maildir?
 	can we just lower-case them?
-
-config type flag for quoting
-	always
-	as-necessary
-	never
 
 custom arrow cursor using expando
 	colour as usual
@@ -384,9 +285,6 @@ docs for config with user vars
 
 FOREACH should we always use _SAFE if we REMOVE (just for future safety)
 
-translate messages/layout of neo
-	∀ languages
-
 cron 12/06/2018 drop web changes dir
 
 make "lua" a medium task
@@ -415,18 +313,6 @@ mailbox explanation -> web page / dev ml
 star
 	autosetup
 	acutest
-
-config variables list type
-	COMMA | ACCEPT_SPACE
-	space is optional, but not printed
-
-don't translate *code* error messages
-
-doc translation plan
-	start in sync
-	code and translate diverge
-	sync after big changes
-	sync 1 week before release
 
 create minimal jekyll template to support separate code doc repo
 
@@ -475,8 +361,6 @@ summary page
 move mkstemp, fmemopen, O_TMPFILE to mutt/temp.c?
 
 file locking - could log the caller
-
-config PATH flag relative to *what*?
 
 sidebar/account option - toggle-subscribed (folders)
 view:
@@ -726,10 +610,6 @@ bug in nntp cache
 	why aren't the body cache files in the nntp dir?
 	why is the file called ".active" hidden file?
 		or is the host missing?
-
-config validator for format strings
-	if they're all simple 1 letter, then have a parser(fmt, "abfq")
-	only *warn* if bad -- notify devs if wrong
 
 add neomutt.vim to COPR
 	need to tag repo to match release
@@ -988,11 +868,6 @@ introduce warning colour/color
 	red - error
 	use for setting config
 
-DT_ENUM for magic, etc
-	some DT_* will need extra data field
-	e.g. those validating expandos
-	sort could be split into separate sets
-
 isolating libmbox means we can test lots of address code, etc
 
 libemail? for structs etc?
@@ -1007,11 +882,6 @@ rename *idna* -> *idn*
 	but all the underlying functions are called idna
 
 more 'rc' : 'r', 'rv', 'ret'
-
-distinguish between
-	DT_PATH => filesystem path
-	DT_MAILBOX => could be virtual
-	DT_COMMAND?
 
 default (system) config
 	ifdef VERSION > 20180101 set ignore_disabled_config
@@ -1089,10 +959,6 @@ all flag fields ought to be unsigned
 teams
 	distro/X  X=debian,homebrew,etc
 	code/X    X=notmuch,reviewers,etc
-
-config
-	after config split up commands and functions too
-	into their separate components
 
 history -1 => infinite
 
@@ -1583,121 +1449,6 @@ use install-sh $(INSTALL) instead of cp
 log before regex ops & other risky functions
 
 parse_set: unset DT_RX doesn't work
-
-Variables
-	struct {type, hash, name, union {vars}}
-	OPT_INT(Var)
-	get_int_opt(name|id)
-	type includes "my_"-ness
-	who holds the vars?
-	get(NULL, name) => default?
-	hash inside or out, or both. BOTH
-	HASH *vars
-	get_name (id)
-	get_hash(name)
-	get_var(name|id)
-	set_var(name|id, var)
-	some vars need a validator
-	variable sets know their parent
-	set variables via a function() -> notifications
-	get variables direct from their Var
-	variables don't know about refreshing
-	where are validators / notifications stored?
-		globally (on default config-set)
-		per-config-set (allow overrides)
-	key my_vars in separate set?
-
-	functions per set, per type
-		setter
-		getter
-		validator
-	set by string (from config)
-	get by type of user's choice
-	internal getters: string, int, bool, void*
-	overridden getter returns "Var"?
-	then coerced to type?
-
-	hc_init()
-		register_type(DT_HCACHE, ops)
-	parse_set()
-		-> hc_set(string)
-		-> hc_validator(string)
-	validator per type
-	REQUIRE get_str ∀ types
-
-	have separate int/uint variable types?
-		which variables need negative values?
-
-	have a 'time' variable type
-		allows setting: x=30m (minutes), etc
-		may not be worth it, most times are sub-1minute
-
-	strdup? or does the config_set take ownership?
-
-	use high bits of 'type' to save free()/don't free() of a string
-
-	how does 'reset' work?  where is the original value stored?
-	do we keep it in the hash elem?
-	a "parent" config set of original values?
-	how many config values are changed?
-	too much overhead?
-	hashelems won't be constant
-		init var  == address1
-		set var   == address2
-		set var   == address2
-		reset var == address1
-	too much overhead?
-
-	how are variables read?
-	macro doesn't work if things might be overridden/reset
-		can't cache address of HashElem
-		unless we have a RESET flag
-	hash id may not be unique
-	need to work with string representation
-	get_bool("sidebar_visible")
-	horrendous duplication of strings?
-
-	reset means:
-		keep the old value
-		or remember who owns the variable
-
-	get/set
-		hash = overhead looking up string when USING the variable
-		vars = overhead looking up string when setting variables
-
-	notifications to invalidate HashElems?
-		too complicated
-
-	caching options could be account-local
-		header cache for local mboxes
-		body cache too for remote mboxes
-
-	parse_set
-		get hashelem
-		get id from he
-		lookup str_set
-		set_set(he, value)
-
-	base types
-		bool, num, str, quad
-		mutt -D ∀ dump specific
-		else str_get
-
-	coercion hc_get_int(he)
-
-	dropping hash means losing the trapping of set-value
-		we lose the ability to trigger notifications
-
-	how many variables are going to be account-specific?
-
-	how will +=, -=, *=, /=, ^= work?
-
-	path variable type?  subtype of string?
-		flags: FILE, DIR (or both)
-		does the setting engine need to know
-	mailbox variable type?  subtype of string?
-	command variable type?  subtype of string?
-		more scrutiny for setting?
 
 FS layer
 	211 fopen, 346 fclose, 285 unlink, 70 rename,

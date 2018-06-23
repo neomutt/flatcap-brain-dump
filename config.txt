@@ -93,7 +93,7 @@ function/known data
 	mutt_option_index	!FILE, !LINE, SYMBOL
 how do we pass out a meaningful error message?
 
-config non-null flags (may not be unset)
+non-null flags (may not be unset)
 	most regexes (those without initial string)
 	shell
 	all format strings
@@ -102,7 +102,7 @@ validator for each format string
 	checks if the %x expandos are valid
 	run a test parse of some data?
 
-config time type that accepts
+time type that accepts
 	10	seconds
 	10s	seconds
 	10m	minutes
@@ -112,7 +112,7 @@ config time type that accepts
 		shortest abbreviation?
 	depends on flags?
 
-Config dump
+dump
 	flags: active vs disabled
 	register flags - disabled =>
 		no var ptr
@@ -134,18 +134,17 @@ even if the CLI can't, the UI might need to be able to, for commands:
 	:aliases
 	:hooks
 
-config
-	put other globals into hash
-	CFG_PRIVATE
-	don't show up in neomutt -D
+put other globals into hash
+CFG_PRIVATE
+don't show up in neomutt -D
 
-config push/pop or save/restore
+push/pop or save/restore
 	save_config; set var=x; function; restore_config
 	no more need for my_var use
 
-config - accept disabled
-configure flag? or CLI
-CLI warn option
+accept disabled
+	configure flag? or CLI
+	CLI warn option
 
 typedef numeric/enum config types?
 
@@ -156,3 +155,273 @@ add locking to set functions
 
 debug log all processes
 	change to debug(5) before merge
+
+Config Requirements
+
+Address type needs:
+mutt_address.c
+	rfc822_write_address() to format addresses for display
+	rfc822_write_address_single()
+	mutt_addr_for_display()
+
+mutt_idna.c
+	mutt_addr_for_display()
+	loops through addresses calling:
+		addr_is_local() -- move to address.c
+		mbox_to_udomain() -- move to address.c
+		mutt_idna_intl_to_local() and idna functions
+
+mutt_charset.c
+	mutt_convert_string() calls
+	mutt_iconv_open() and iconv functions
+
+mutt_charset.c (others)
+	fgetconv_open() calls mutt_iconv_open()
+	mutt_check_charset() calls mutt_iconv_open()
+
+mutt_charset.c
+	mutt_iconv_open() call mutt_charset_hook()
+
+hook.c
+	maintains list of "regex -> string" mappings
+	mutt_charset_hook() regex matches a string
+
+todo
+	find meaning of all the idna functions
+		give examples of each
+
+--------------------------------------------------------------------------------
+
+mutt/regex.c (to create)
+	create regex
+	parse string
+	match regex against string
+	free regex
+
+mutt_idna_intl_to_local()
+	uses global variable IdnDecode -- turn into flag
+	calls mutt_convert_string() and idna functions
+mutt_idna_local_to_intl()
+	uses global variable IdnEncode -- turn into flag
+	calls mutt_convert_string() and idna functions
+
+split mutt_idna.c
+	address functions -> address.c
+	envelope functions -> envelope.c
+
+create private "regex -> string" lookup in mutt_charset.c
+	refactor mutt_parse_hook() to use it
+move mutt_charset.c -> mutt/charset.c
+move mutt_idna.c -> mutt/idna.c
+
+
+--------------------------------------------------------------------------------
+
+Enabled config
+	definition -> var
+	notify on change
+	accept in config file
+	list in `neomutt -D`
+	complete on <tab>
+	verbosely accept in config file
+		list canonicalised config line
+
+Disabled config
+	definition -> var
+	don't notify on change
+	don't list in `neomutt -D`
+	don't complete on <tab>
+	quietly accept in config file
+	verbosely accept in config file
+		suggest build options
+
+Obsolete config
+	definition -> NULL
+	don't notify on change
+	don't list in `neomutt -D`
+	don't complete on <tab>
+	quietly accept in config file
+	verbosely accept in config file
+		suggest removal
+
+Synonym config
+	definition -> ALTERNATIVE
+	notify ALTERNATIVE on change
+	don't list in `neomutt -D`
+	complete on <tab>
+		mutt does
+	quietly accept in config file
+	verbosely accept in config file
+		suggest ALTERNATIVE
+
+--------------------------------------------------------------------------------
+
+enum
+	option to dump all valid inputs
+
+LONG types & vars
+
+def combine type with flags to save space?
+	would break new-config enum setup
+
+DT_NUM - most (29/40) have NOT_NEGATIVE, so reverse flag to
+	ALLOW_NEGATIVE
+	add MINUS_ONE option
+
+validator
+	if CSR_ERR is returned, but err is empty
+	generate a default error message
+
+flags
+	CLAMP, NON_NEGATIVE
+
+gettext messages
+	dedupe %s vs %ld values!
+
+allow validator to change value?
+	e.g. for clamping a range?
+
+type flag for quoting
+	always
+	as-necessary
+	never
+
+variables list type
+	COMMA | ACCEPT_SPACE
+	space is optional, but not printed
+
+PATH flag relative to *what*?
+
+validator for format strings
+	if they're all simple 1 letter, then have a parser(fmt, "abfq")
+	only *warn* if bad -- notify devs if wrong
+
+after config split up commands and functions too
+into their separate components
+
+DT_ENUM for magic, etc
+	some DT_* will need extra data field
+	e.g. those validating expandos
+	sort could be split into separate sets
+
+distinguish between
+	DT_PATH => filesystem path
+	DT_MAILBOX => could be virtual
+	DT_COMMAND?
+
+Variables
+
+struct {type, hash, name, union {vars}}
+OPT_INT(Var)
+get_int_opt(name|id)
+type includes "my_"-ness
+who holds the vars?
+get(NULL, name) => default?
+hash inside or out, or both. BOTH
+HASH *vars
+get_name (id)
+get_hash(name)
+get_var(name|id)
+set_var(name|id, var)
+some vars need a validator
+variable sets know their parent
+set variables via a function() -> notifications
+get variables direct from their Var
+variables don't know about refreshing
+where are validators / notifications stored?
+	globally (on default config-set)
+	per-config-set (allow overrides)
+key my_vars in separate set?
+
+functions per set, per type
+	setter
+	getter
+	validator
+set by string (from config)
+get by type of user's choice
+internal getters: string, int, bool, void*
+overridden getter returns "Var"?
+then coerced to type?
+
+hc_init()
+	register_type(DT_HCACHE, ops)
+parse_set()
+	-> hc_set(string)
+	-> hc_validator(string)
+validator per type
+REQUIRE get_str ∀ types
+
+have separate int/uint variable types?
+	which variables need negative values?
+
+have a 'time' variable type
+	allows setting: x=30m (minutes), etc
+	may not be worth it, most times are sub-1minute
+
+strdup? or does the config_set take ownership?
+
+use high bits of 'type' to save free()/don't free() of a string
+
+how does 'reset' work?  where is the original value stored?
+do we keep it in the hash elem?
+a "parent" config set of original values?
+how many config values are changed?
+too much overhead?
+hashelems won't be constant
+	init var  == address1
+	set var   == address2
+	set var   == address2
+	reset var == address1
+too much overhead?
+
+how are variables read?
+macro doesn't work if things might be overridden/reset
+	can't cache address of HashElem
+	unless we have a RESET flag
+hash id may not be unique
+need to work with string representation
+get_bool("sidebar_visible")
+horrendous duplication of strings?
+
+reset means:
+	keep the old value
+	or remember who owns the variable
+
+get/set
+	hash = overhead looking up string when USING the variable
+	vars = overhead looking up string when setting variables
+
+notifications to invalidate HashElems?
+	too complicated
+
+caching options could be account-local
+	header cache for local mboxes
+	body cache too for remote mboxes
+
+parse_set
+	get hashelem
+	get id from he
+	lookup str_set
+	set_set(he, value)
+
+base types
+	bool, num, str, quad
+	mutt -D ∀ dump specific
+	else str_get
+
+coercion hc_get_int(he)
+
+dropping hash means losing the trapping of set-value
+	we lose the ability to trigger notifications
+
+how many variables are going to be account-specific?
+
+how will +=, -=, *=, /=, ^= work?
+
+path variable type?  subtype of string?
+	flags: FILE, DIR (or both)
+	does the setting engine need to know
+mailbox variable type?  subtype of string?
+command variable type?  subtype of string?
+	more scrutiny for setting?
+
