@@ -425,3 +425,21 @@ mailbox variable type?  subtype of string?
 command variable type?  subtype of string?
 	more scrutiny for setting?
 
+merge string and path types (and command)
+
+does mbtable belong in config/ ?
+
+slist type ':' needs to handle escaping
+
+regex add more tests covering flags and '!' prefix
+
+string_get initial value doesn't set EMPTY flag
+
+slist
+	functions: compare(), add_item(), remove_item(), is_member()
+	flags: allow dupes, case sensitive
+	add count (length) value
+	handle different separator types
+	tests ∀
+	sorting methods
+

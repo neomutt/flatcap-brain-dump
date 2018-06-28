@@ -1,3 +1,6 @@
+create updated contrib/{gpg1,gpg2,smime}.rc
+	separate example config for gpgme
+
 move a perror to mutt_mkstemp()?
 	logging in libmutt -> gettext() etc
 
