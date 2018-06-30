@@ -1,3 +1,15 @@
+separate parsing from pre-processing step
+	standard library routines to parse
+		list the quoting characters
+		flags for escaping, etc
+	custom bits to perform shell stuff?
+
+have a system for 'tainting' variables
+	the sensitive variables are tainted
+	if I 'set my_var = $imap_pass' then my_var is tainted too
+	tainted variables will not
+		be displayed on screen
+		exported/expanded for extenal programs (including lua)
 move index_format to mx API?
 	needed by notmuch and help
 	have default?
@@ -342,6 +354,7 @@ that'll break if they get out of sync!
 analysis
 	add clang-tidy
 	add uncrustify
+	add lcov / coveralls
 
 vim de-comment fn to remove #if0
 

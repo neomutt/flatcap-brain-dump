@@ -1,3 +1,7 @@
+number types
+	set errno first?
+	check carefully for range errors
+
 scoped variables?
 	help:index_format
 	notmuch:index_format
