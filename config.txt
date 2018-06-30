@@ -1,3 +1,9 @@
+scoped variables?
+	help:index_format
+	notmuch:index_format
+
+update and move config design docs to web dev/
+
 Config Integration
 
 Docs: encapsulated types
@@ -13,11 +19,6 @@ complete <tab>
 split init.h (comments -> docs)
 check initial of -1 works
 move SYN to syn.c
-
-create List type flags for separation
-SEP_COMMA|SEP_SPACE
-SEP_COLON
-sort flag?  ALPHA, NUMERIC
 
 how do I deal with set noX, invX
 should config deal with it?
@@ -286,10 +287,6 @@ type flag for quoting
 	as-necessary
 	never
 
-variables list type
-	COMMA | ACCEPT_SPACE
-	space is optional, but not printed
-
 PATH flag relative to *what*?
 
 validator for format strings
@@ -307,6 +304,7 @@ DT_ENUM for magic, etc
 distinguish between
 	DT_PATH => filesystem path
 	DT_MAILBOX => could be virtual
+		folder, record, spoolfile, trash
 	DT_COMMAND?
 
 Variables
@@ -429,17 +427,23 @@ merge string and path types (and command)
 
 does mbtable belong in config/ ?
 
-slist type ':' needs to handle escaping
-
 regex add more tests covering flags and '!' prefix
 
 string_get initial value doesn't set EMPTY flag
 
-slist
-	functions: compare(), add_item(), remove_item(), is_member()
-	flags: allow dupes, case sensitive
-	add count (length) value
-	handle different separator types
-	tests ∀
-	sorting methods
+--------------------------------------------------------------------------------
+
+slist - String list
+
+':' needs to handle escaping
+
+functions: compare(), add_item(), remove_item(), is_member()
+flags: allow dupes, case sensitive
+add count (length) value
+handle different separator types
+tests ∀
+sorting methods
+
+COMMA | ACCEPT_SPACE
+space is optional, but not printed
 

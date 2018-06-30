@@ -1,3 +1,14 @@
+move index_format to mx API?
+	needed by notmuch and help
+	have default?
+	how are notifications handled?
+
+'printf' in mutt/file.c!
+
+rename members
+	bools to is_x, has_x, etc
+	amounts to num_x, nr_x, etc
+
 create updated contrib/{gpg1,gpg2,smime}.rc
 	separate example config for gpgme
 
