@@ -1,3 +1,11 @@
+neomutt -d5 should loga big warning
+	WARNING logging at this level may reveal sensitive information
+
+man neomutt should tell a beginner everything they need to know
+	or where to look for more
+
+flags variables/members -> unsigned
+
 separate parsing from pre-processing step
 	standard library routines to parse
 		list the quoting characters
@@ -10,6 +18,7 @@ have a system for 'tainting' variables
 	tainted variables will not
 		be displayed on screen
 		exported/expanded for extenal programs (including lua)
+
 move index_format to mx API?
 	needed by notmuch and help
 	have default?

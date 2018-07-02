@@ -451,3 +451,27 @@ sorting methods
 COMMA | ACCEPT_SPACE
 space is optional, but not printed
 
+errors
+  !allow_dupes -> quiet or fail?
+  !allow_empty -> quiet or fail?
+
+validators
+reset (+validator)
+getting
+native get/set
+
+  space separator works differently: "apple banana" == "apple   banana"
+  flag: TRIM_WHITESPACE
+
+LISTS
+	assumed_charset
+	attach_charset
+	hidden_tags
+	mailcap_path
+	send_charset
+
+NOT
+	charset
+	config_charset
+	newsgroups_charset
+
