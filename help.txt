@@ -1,0 +1,124 @@
+md5 -> strcmp
+attach files list in header?
+
+help default to correct dir
+	Alt-H macro'd to <help><enter>
+	<help>random<enter>
+		random page?  magic!
+
+read once and cache?
+	worth it?
+
+need cleanup at neo finish
+
+readdir() -> nftw()
+
+how big is entire HelpDir?
+how big is entire Header/Thread/Envelope?
+
+env from -> user ml
+
+cli neo --guide
+	help mailbox
+	no sidebar
+	pager_index_lines = 10
+
+help_format string
+
+dir is self-contained?
+	what about links
+	siblings are level
+	showing index apple/ is actually apple/index.md
+		NO
+
+help_parse_dir()
+	recurse dirs
+	*.md
+	*.index
+
+HelpTree
+	index
+	other stuff
+	HelpDir
+
+helpdir.c
+	link to libmutt.a
+	testable
+
+HelpDir
+	subdirs[]
+	docs[]
+
+sort lists?
+	or do in post-process?
+
+HelpDir
+	header, envelope, thread
+	1 header (top) == index (magic)
+	siblings == sections
+	children = pages
+ 
+----------------------------------------
+
+apple/
+	banana.md
+	cherry.md
+	index.md
+	jaffa-cake.md
+
+----------------------------------------
+
+apple.md
+apple/
+	banana.md
+	cherry.md
+	jaffa-cake.md
+
+----------------------------------------
+
+apple.md == index
+apple/*.md etc
+index -> banana = apple/banana
+
+
+dir parse - don't distinguish index
+apple/ + apple.md
+	leave to later
+
+Headers
+
+layout -> ignore
+title -> subject
+description -> subject2?
+	where, cat?
+keywords(for search) -> custom
+last updated -> date
+last updated by -> bcc
+others -> custom
+label -> tags (header)
+
+Header
+	offset - skip yaml
+	date sent - updated
+	date recv - release date?
+	score - search score?
+	path - file
+
+Envelope
+	subject
+	real_subject
+	disp_subject
+Thread - interlinked
+Body offset, length
+
+Help format
+	title
+	description
+	keywords
+	last updated
+	path
+	labels
+	index number
+	size/lines
+	section
+
