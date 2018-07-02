@@ -1,5 +1,6 @@
 md5 -> strcmp
 attach files list in header?
+	e.g. images -> mailcap
 
 help default to correct dir
 	Alt-H macro'd to <help><enter>
@@ -93,6 +94,7 @@ description -> subject2?
 	where, cat?
 keywords(for search) -> custom
 last updated -> date
+	generate from git (@ install?)
 last updated by -> bcc
 others -> custom
 label -> tags (header)
@@ -122,3 +124,18 @@ Help format
 	size/lines
 	section
 
+https://pastebin.com/QQjsvudg
+
+author field in yaml
+	when editing this page, notify (cc/bcc) this person
+	only makes sense for emailing
+	travis notifications for authors?
+
+Sections:
+     39 </chapter>
+    282 </sect1>
+    511 </sect2>
+     24 </sect3>
+      4 </sect4>
+      2 </sect5>
+    862
