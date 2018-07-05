@@ -1,7 +1,46 @@
+bug
+	notmuch + mail_check_stats leads to many expensive queries
+
+docs
+	convert from utf-8 to local $charset
+	header for 404 page - do-no-display?
+	accept web addresses http:// and do the right thing
+		cli too?
+	yaml authors: could get long (envelope->from)
+	improve this page, use {{ page.path }}
+
+issue template
+	vunerability : email owner directly
+
+web key directory for gpg keys for neomutt
+
+nntp all message ranges should be checked against the context
+
+move:
+	doxy headers, rebase, doxy web, travis build
+	check hcache magic is generated correctly
+	only mutt.h move/eliminate
+
+drop POP/NNTP #ifdefs in Header
+	for libemail
+	rename members
+
+register "senstive" regexes in the logger
+	e.g. AUTHENTICATE
+
+web
+	is layout: header nec?
+	they all use the same one
+
 trivial
 	mapping.c is missing config.h
 	make bool: unsigned int decrypted : 1; /**< not part of message as stored in the hdr->content. */
 	bool retval: int is_descendant(struct MuttThread *a, struct MuttThread *b)
+	body_copy() : move foreach param -> param_dup()
+	pop mx api naming?  others?
+
+hcache namer
+	split (root, dir, name) triplet?
 
 html email
 	I use this: text/html; elinks -dump 1 -config-dir ~/.mutt/ %s; nametemplate=%s.html; copiousoutput

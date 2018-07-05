@@ -1,3 +1,6 @@
+split up multiple assignments
+	grep " = [^,;]* = "
+
 investigate:
 	convert mutt_traverse_thread -> function with callback?
 
