@@ -1,3 +1,13 @@
+trivial
+	mapping.c is missing config.h
+	make bool: unsigned int decrypted : 1; /**< not part of message as stored in the hdr->content. */
+	bool retval: int is_descendant(struct MuttThread *a, struct MuttThread *b)
+
+html email
+	I use this: text/html; elinks -dump 1 -config-dir ~/.mutt/ %s; nametemplate=%s.html; copiousoutput
+	with this elinks.conf http://thorsten-wissmann.de/p/6207785e4784977712fc213a687ad033
+	with this, the urls are footnotes at the end and so the rarely wrap
+
 neomutt -d5 should loga big warning
 	WARNING logging at this level may reveal sensitive information
 

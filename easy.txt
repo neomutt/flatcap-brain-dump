@@ -1,3 +1,6 @@
+investigate:
+	convert mutt_traverse_thread -> function with callback?
+
 1 issue / easy task
 	open to all
 
