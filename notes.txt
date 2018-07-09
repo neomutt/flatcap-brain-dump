@@ -1,3 +1,13 @@
+int url_pct_decode(char *s)
+void url_pct_encode(char *dst, size_t l, const char *src)
+	move to library
+	might be useful in ncrypt/crypt_gpgme.c
+
+move mutt_bit_{set,unset,toggle,isset) to library
+
+dupe func
+	mutt_signal_init()
+
 bug
 	notmuch + mail_check_stats leads to many expensive queries
 
