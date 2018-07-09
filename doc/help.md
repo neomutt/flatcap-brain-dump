@@ -42,11 +42,11 @@ struct HelpTree
 ## YAML Headers
 
 Every help file will have a YAML header, with a selection of fields.
-Some mandatory(*) fields, the others optional
+Some mandatory\* fields, the others optional
 
-- layout(*)       - Used by website
-- title(*)        - Short name used by chapter or section
-- description(*)  - Longer descriptive sentence
+- layout\*        - Used by website
+- title\*         - Short name used by chapter or section
+- description\*   - Longer descriptive sentence
 - keywords        - Words that don't appear in the text, but should match in searches
 - last updated    - Timestamp of last change
 - last updated by - Person who made the last change

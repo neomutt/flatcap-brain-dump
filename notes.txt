@@ -25,7 +25,7 @@ drop POP/NNTP #ifdefs in Header
 	for libemail
 	rename members
 
-register "senstive" regexes in the logger
+register "sensitive" regexes in the logger
 	e.g. AUTHENTICATE
 
 web
@@ -38,6 +38,8 @@ trivial
 	bool retval: int is_descendant(struct MuttThread *a, struct MuttThread *b)
 	body_copy() : move foreach param -> param_dup()
 	pop mx api naming?  others?
+	mutt_notmuch.c: replace usleep() (obsolete) with nanosleep()
+	protos.h mutt_parse_virtual_mailboxes doesn't exist
 
 hcache namer
 	split (root, dir, name) triplet?
@@ -47,13 +49,14 @@ html email
 	with this elinks.conf http://thorsten-wissmann.de/p/6207785e4784977712fc213a687ad033
 	with this, the urls are footnotes at the end and so the rarely wrap
 
-neomutt -d5 should loga big warning
+neomutt -d5 should log a big warning
 	WARNING logging at this level may reveal sensitive information
 
 man neomutt should tell a beginner everything they need to know
 	or where to look for more
 
 flags variables/members -> unsigned
+	every member commented with sample flag name
 
 separate parsing from pre-processing step
 	standard library routines to parse
@@ -123,7 +126,7 @@ doxy how many (%age) are doc'd?
 create shield for each
 	colour coded according to %age
 
-calc libmut test coverage as %age
+calc libmutt test coverage as %age
 	use coveralls?
 
 frequently merge master INTO translate?
@@ -184,16 +187,12 @@ history - fix this:
 	docs "The buffer is cleared each time the variable is set."
 
 rename to match other functions
-	void  mutt_history_complete(char *buf, size_t buflen, enum HistoryClass hclass);
-
 build script
 	if clang else gcc
 	optional compiler flags
 
 State object -> library
 	excluding AttachmentMarker
-
-anaysis page for AddressSanitizer build
 
 user packagers' team to announce build changes
 
@@ -413,6 +412,7 @@ analysis
 	add clang-tidy
 	add uncrustify
 	add lcov / coveralls
+	AddressSanitizer build
 
 vim de-comment fn to remove #if0
 
