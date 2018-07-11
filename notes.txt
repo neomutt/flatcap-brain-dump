@@ -1,3 +1,8 @@
+struct Header has private data
+	used by imap, nntp and notmuch
+	only notmuch uses free_cb callback
+	others leaking?
+
 separate logging from libmutt?
 
 create hcache/serialise.c?
