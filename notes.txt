@@ -1,3 +1,25 @@
+separate logging from libmutt?
+
+create hcache/serialise.c?
+	make it the only file dependent on libemail
+
+hcache lazy_malloc/realloc
+	who else uses similar scheme, Buffer?
+	move to library
+	investigate the 129 reallocs in neomutt
+
+all hc dump functions should be const
+
+move CharsetIsUtf8 out of hcache (param)
+
+rename hooks from MUTT_DESCHOOK to:
+	MUTT_DESC_HOOK
+	or
+	MUTT_HOOK_DESC
+
+struct Message
+	where does this fit into the email?
+
 int url_pct_decode(char *s)
 void url_pct_encode(char *dst, size_t l, const char *src)
 	move to library
@@ -13,7 +35,7 @@ bug
 
 docs
 	convert from utf-8 to local $charset
-	header for 404 page - do-no-display?
+	header for 404 page - do-not-display?
 	accept web addresses http:// and do the right thing
 		cli too?
 	yaml authors: could get long (envelope->from)
@@ -31,9 +53,9 @@ move:
 	check hcache magic is generated correctly
 	only mutt.h move/eliminate
 
-drop POP/NNTP #ifdefs in Header
-	for libemail
-	rename members
+Header data #ifdefs
+	drop POP/NNTP #ifdefs for libemail
+	use data for maildir instead of maildir_flags
 
 register "sensitive" regexes in the logger
 	e.g. AUTHENTICATE

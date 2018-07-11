@@ -475,3 +475,5 @@ NOT
 	config_charset
 	newsgroups_charset
 
+account-specific => no more $IMAP_user, just $user
+
