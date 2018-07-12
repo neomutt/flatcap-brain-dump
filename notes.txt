@@ -1,5 +1,21 @@
+bug
+	can't encrypt-to-self if original email isn't encrypted
+
+copr use idn2 & gpgme
+
+packagers gpgme dep?
+	enable by default
+
+code
+	what the last enum called?
+	LAST, MAX? unify
+
+do all free() functions take **?
+
+add free_cb to Context like Header
+
 struct Header has private data
-	used by imap, nntp and notmuch
+	used by imap, nntp, pop and notmuch
 	only notmuch uses free_cb callback
 	others leaking?
 
