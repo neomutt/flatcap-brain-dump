@@ -1,3 +1,58 @@
+start changing one-liner comments to //, choice of
+	//!< comment
+	///< comment
+
+Create a page from all the Config: comments
+	link back to code page
+
+doxy all the menu callback functions, e.g. tag
+	ALL callbacks?  68 definitions
+
+doxy how many (%age) are doc'd?
+	global vars/config
+	struct/union
+	enum
+	#defines
+create shield for each
+	colour coded according to %age
+
+move doxygen docs to 'code' repo and export via git-pages
+
+doxy main page, add %age completion
+
+shield for doxygen coverage
+	add to doxy deploy
+
+bcache doxy
+hcache doxy
+
+add command usage to doxy parse functions
+
+tidy *.c so can use doxygen prep script on every one
+	grep for @page ?
+
+82% of all functions are documented
+	https://img.shields.io/badge/doxygen-82%25-brightgreen.svg
+
+Add warnings to doxygen headers, for
+	@warning This function uses global variables: LIST, ...
+	@warning This function uses static variables: LIST, ...
+
+add dependency info to library doxy pages
+	either a text list, or
+	a dot diagram
+
+move lib doxygen notes to header file?
+
+tweak doxygen to #define more things for better coverage
+
+update all doxy templates
+	JAVADOC_AUTOBRIEF on
+	FULL_PATH_NAMES off
+	SORT_MEMBER_DOCS no
+
+doc all features' functions doxygen style
+
 document all our uses of doxygen comments
 
 - @param   -- a function parameter

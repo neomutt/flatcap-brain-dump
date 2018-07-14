@@ -10,8 +10,6 @@ code
 	what the last enum called?
 	LAST, MAX? unify
 
-do all free() functions take **?
-
 add free_cb to Context like Header
 
 struct Header has private data
@@ -30,13 +28,9 @@ hcache lazy_malloc/realloc
 	investigate the 129 reallocs in neomutt
 
 all hc dump functions should be const
+	need to disentagle dump_char_size first
 
 move CharsetIsUtf8 out of hcache (param)
-
-rename hooks from MUTT_DESCHOOK to:
-	MUTT_DESC_HOOK
-	or
-	MUTT_HOOK_DESC
 
 struct Message
 	where does this fit into the email?
@@ -44,9 +38,7 @@ struct Message
 int url_pct_decode(char *s)
 void url_pct_encode(char *dst, size_t l, const char *src)
 	move to library
-	might be useful in ncrypt/crypt_gpgme.c
-
-move mutt_bit_{set,unset,toggle,isset) to library
+	list_to_pattern() in ncrypt/crypt_gpgme.c is similar
 
 dupe func
 	mutt_signal_init()
@@ -69,11 +61,6 @@ web key directory for gpg keys for neomutt
 
 nntp all message ranges should be checked against the context
 
-move:
-	doxy headers, rebase, doxy web, travis build
-	check hcache magic is generated correctly
-	only mutt.h move/eliminate
-
 Header data #ifdefs
 	drop POP/NNTP #ifdefs for libemail
 	use data for maildir instead of maildir_flags
@@ -93,6 +80,8 @@ trivial
 	pop mx api naming?  others?
 	mutt_notmuch.c: replace usleep() (obsolete) with nanosleep()
 	protos.h mutt_parse_virtual_mailboxes doesn't exist
+	typo: msg->commited_path
+	indent: struct listnode
 
 hcache namer
 	split (root, dir, name) triplet?
@@ -146,10 +135,6 @@ $tmpdir validator -> try to create sample temp file!
 test link() / linkat() on a deleted FILE*
 	limited to the current device
 
-check docs & sb intro for 'mutt'
-
-add compare scripts for travis branches
-
 buffer_init() vs = { 0 }?
 
 easy tasks cleanup & new tasks for new dev cycle
@@ -159,9 +144,6 @@ bug?
 	<get-attach> but mailcap doesn't have matching entry for (text/plain)
 	atatchment doesn't get deleted after the email is sent
 
-doxy all the menu callback functions, e.g. tag
-	ALL callbacks?  68 definitions
-
 how do you send encrypted/signed email from the command line?
 
 create a reply flowchart
@@ -170,14 +152,6 @@ create a reply flowchart
 	etc
 
 find and convert #define num ranges -> enum
-
-doxy how many (%age) are doc'd?
-	global vars/config
-	struct/union
-	enum
-	#defines
-create shield for each
-	colour coded according to %age
 
 calc libmutt test coverage as %age
 	use coveralls?
@@ -201,8 +175,6 @@ review bookmarks -> stars
 
 pre-release: sync acutest and autosetup?
 
-move doxygen docs to 'code' repo and export via git-pages
-
 mailing lists
 	a general command for lists
 	"Current list: (s)ubscribe, (u)nsubscribe, (p)ost"
@@ -216,14 +188,6 @@ option for insertable horizontal divider line in the index
 	configurable positions, e.g
 	this week | this month | old stuff
 	config: 1w:1m -> three sections
-
-doxy main page, add %age completion
-
-history
-	few deps (excluding three menu functions)
-	move to libhist?
-	history API
-	separate out three menu functions
 
 (neo)mutt can't read maildir emails
 	it'd be useful to:
@@ -239,7 +203,6 @@ remove umask code from mh.c
 history - fix this:
 	docs "The buffer is cleared each time the variable is set."
 
-rename to match other functions
 build script
 	if clang else gcc
 	optional compiler flags
@@ -249,13 +212,10 @@ State object -> library
 
 user packagers' team to announce build changes
 
-add $smtp_user  missing!
+add $smtp_user missing!
 
 trivial
 	FILE *x -> fp
-
-shield for doxygen coverage
-	add to doxy deploy
 
 repo: daily, weekly, monthly updates
 	-> server
@@ -315,9 +275,6 @@ when we have Account objects and all imap connections are live
 	keepalive option?
 	disconnect completely?
 
-bcache doxy
-hcache doxy
-
 New/updated primitives:
 	Path
 		filesystem
@@ -373,23 +330,12 @@ are any config strings required to be MixedCase?
 custom arrow cursor using expando
 	colour as usual
 
-add command usage to doxy parse functions
-
 debug log
 	use file locking
 	find first missing file, or oldest unlocked
 
 ask config system for type completions?
 	make sense for enums, what else?
-
-[release] branch, use travis cron
-	run daily
-	run tests after 10 commits or 7 days
-	do thorough test of builds / install etc
-	automatically rebase branch
-	afterwards, reduce the other travis builds
-	(except [travis])
-	rename [travis]?
 
 autocrypt layered support
 	strip off/add wrappings
@@ -404,9 +350,6 @@ insert tests too
 	last only
 	middle
 acutest ∀ independent types (move to library)
-
-tidy *.c so can use doxygen prep script on every one
-	grep for @page ?
 
 announce protonmail config
 
@@ -425,7 +368,16 @@ cron 12/06/2018 drop web changes dir
 
 make "lua" a medium task
 
-much/any need for TAILQ_COUNT()?
+much/anyse] branch, use travis cron
+	run daily
+	run tests after 10 commits or 7 days
+	do thorough test of builds / install etc
+	automatically rebase branch
+	afterwards, reduce the other travis builds
+	(except [travis])
+	rename [travis]?
+
+ need for TAILQ_COUNT()?
 
 not all mutt_message() mutt_error() use gettext _()
 	alias.c: mutt_message("Trouble adding alias: %s.", strerror(errno));
@@ -442,9 +394,6 @@ make E123 a parameter for mutt_error()?
 ":help" look up context-sensitive page
 
 mailbox explanation -> web page / dev ml
-
-82% of all functions are documented
-	https://img.shields.io/badge/doxygen-82%25-brightgreen.svg
 
 star
 	autosetup
@@ -1104,10 +1053,6 @@ deprecate AUR repo & notify
 
 drop mailmap, use management one
 
-Add warnings to doxygen headers, for
-	@warning This function uses global variables: LIST, ...
-	@warning This function uses static variables: LIST, ...
-
 .mutthistory should be .neomutthistory
 
 refactor regex calls, e.g.
@@ -1306,10 +1251,6 @@ libfile
 static functions with leading _
 	add to style guide
 
-add dependency info to library doxy pages
-	either a text list, or
-	a dot diagram
-
 turn some config vars into (string) lists
 	hidden_tags (separator = ',')
 	mailcap_path (separator = ':')
@@ -1367,8 +1308,6 @@ xdg/neomutt/CONFIG
 	config is standard, rather than (or as well as) neomuttrc
 
 mutt_account_tourl Account arg should be const
-
-move lib doxygen notes to header file?
 
 tests on lib should also be run on 32-bit arch
 
@@ -1497,8 +1436,6 @@ need neomutt glossary (search first)
 	add to guide
 
 aur distro page neo gpg key
-
-tweak doxygen to #define more things for better coverage
 
 ask lists about slang usage
 	drop slang
@@ -2323,11 +2260,6 @@ Distro pages:
 	Debian, Gentoo, MacPorts, NetBSD, Void
 	need filling out
 
-update all doxy templates
-	JAVADOC_AUTOBRIEF on
-	FULL_PATH_NAMES off
-	SORT_MEMBER_DOCS no
-
 getting started
 	mention travis notification email
 
@@ -2546,8 +2478,6 @@ index preview mode - display 'n' lines of the email body
 
 nested-if -- index-format display ? if doesn't match string put in
 	%<> changed to %? !
-
-doc all features' functions doxygen style
 
 move separate tools to a separate tools directory
 	adjust ctags to ignore them
