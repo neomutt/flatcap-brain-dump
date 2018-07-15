@@ -19,9 +19,6 @@ struct Header has private data
 
 separate logging from libmutt?
 
-create hcache/serialise.c?
-	make it the only file dependent on libemail
-
 hcache lazy_malloc/realloc
 	who else uses similar scheme, Buffer?
 	move to library
@@ -368,7 +365,7 @@ cron 12/06/2018 drop web changes dir
 
 make "lua" a medium task
 
-much/anyse] branch, use travis cron
+[release] branch, use travis cron
 	run daily
 	run tests after 10 commits or 7 days
 	do thorough test of builds / install etc
@@ -377,7 +374,7 @@ much/anyse] branch, use travis cron
 	(except [travis])
 	rename [travis]?
 
- need for TAILQ_COUNT()?
+need for TAILQ_COUNT()?
 
 not all mutt_message() mutt_error() use gettext _()
 	alias.c: mutt_message("Trouble adding alias: %s.", strerror(errno));
