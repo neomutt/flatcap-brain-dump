@@ -1,3 +1,6 @@
+key bindings
+	rename 'descr' locals/members
+
 bug
 	can't encrypt-to-self if original email isn't encrypted
 
@@ -79,6 +82,8 @@ trivial
 	protos.h mutt_parse_virtual_mailboxes doesn't exist
 	typo: msg->commited_path
 	indent: struct listnode
+	3 bool params: int mutt_save_message(struct Header *h, int delete, int decode, int decrypt)
+	rename funct: int pop_fetch_data(struct PopData *pop_data, char *query, struct Progress *progressbar, int (*funct)(char *, void *), void *data)
 
 hcache namer
 	split (root, dir, name) triplet?
