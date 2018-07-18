@@ -11,6 +11,8 @@ boolify params
 	pipe_message(decode, print, split)
 	copy_problematic_attachments(force)
 	mutt_write_fcc(post)
+	mutt_encode_descriptions(recurse)
+	mutt_save_message(delete, decode, decrypt)
 
 param order differs from other functions
 	make_reference_headers()
@@ -18,9 +20,13 @@ param order differs from other functions
 boolify retval
 	int print_dn_part(FILE *fp, struct DnArray *dn, const char *key)
 	int need_display_subject(struct Context *ctx, struct Header *hdr)
+	mutt_ch_is_utf8()
+	mutt_ch_chscmp()
+	mutt_ch_is_us_ascii()
 
 buf, buflen
 	int trim_incomplete_mbyte(unsigned char *buf, size_t len)
+	void mutt_adv_mktemp(char *s, size_t l)
 
 key bindings
 	rename 'descr' locals/members
