@@ -1,3 +1,27 @@
+what's the difference between
+	bool address_uses_unicode(const char *a)
+	bool addresses_use_unicode(const struct Address *a)
+
+boolify params
+	smime_ask_for_key    (public)
+	smime_get_candidates (public)
+	smime_get_key_by_addr(public, may_ask)
+	smime_get_key_by_hash(public)
+	smime_get_key_by_str (public)
+	pipe_message(decode, print, split)
+	copy_problematic_attachments(force)
+	mutt_write_fcc(post)
+
+param order differs from other functions
+	make_reference_headers()
+
+boolify retval
+	int print_dn_part(FILE *fp, struct DnArray *dn, const char *key)
+	int need_display_subject(struct Context *ctx, struct Header *hdr)
+
+buf, buflen
+	int trim_incomplete_mbyte(unsigned char *buf, size_t len)
+
 key bindings
 	rename 'descr' locals/members
 
