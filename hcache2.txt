@@ -1,0 +1,163 @@
+Server emails
+
+    |   ID | Subject    | Labels   | Body [Structure]                | Bytes | Lines |
+    |-----:+:-----------+:---------+:--------------------------------+------:+------:|
+    | 1001 | Apple      | red      | [platea nullam magna]           |  1295 |    37 |
+    | 1002 | Banana     | blue     | [class risus] [metus turpis]    | 25124 |   425 |
+    | 1003 | Cherry     | red,blue | [mollis elit iaculis amet]      | 32749 |  1056 |
+    | 1004 | Damson     | blue     | [mollis [torquent] proin]       | 15357 |   239 |
+    | 1005 | Elderberry | red,blue | [nibh suscipit iaculis]         | 19732 |   313 |
+    | 1006 | Fig        |          | [urna cras] [viverra]           | 13888 |   175 |
+    | 1007 | Guava      | red,blue | [massa quisque senectus]        | 18067 |   669 |
+    | 1008 | Hawthorn   | red      | [fames] [orci] [lacinia] [urna] | 22480 |   702 |
+    | 1009 | Ilama      | blue     | [sagittis nunc elit]            | 25634 |   346 |
+    | 1010 | Jackfruit  | red,blue | [inceptos platea rhoncus]       |  2473 |    43 |
+
+Cache
+    [EMPTY]
+
+================================================================================
+
+UI list_folder(ID|SUBJ, []) -> MxAPI
+MxAPI -> imap.list(ID|SUBJ, [])
+imap returns email list to MxAPI
+
+Objects
+    |   ID | Subject    |
+    |-----:+:-----------|
+    | 1001 | Apple      |
+    | 1002 | Banana     |
+    | 1003 | Cherry     |
+    | 1004 | Damson     |
+    | 1005 | Elderberry |
+    | 1006 | Fig        |
+    | 1007 | Guava      |
+    | 1008 | Hawthorn   |
+    | 1009 | Ilama      |
+    | 1010 | Jackfruit  |
+
+MxAPI saves to cache
+
+Cache
+    |   ID | Subject    | Labels | Body [Structure] | Bytes | Lines |
+    |-----:+:-----------+:-------+:-----------------+------:+------:|
+    | 1001 | Apple      | -      | -                |     - |     - |
+    | 1002 | Banana     | -      | -                |     - |     - |
+    | 1003 | Cherry     | -      | -                |     - |     - |
+    | 1004 | Damson     | -      | -                |     - |     - |
+    | 1005 | Elderberry | -      | -                |     - |     - |
+    | 1006 | Fig        | -      | -                |     - |     - |
+    | 1007 | Guava      | -      | -                |     - |     - |
+    | 1008 | Hawthorn   | -      | -                |     - |     - |
+    | 1009 | Ilama      | -      | -                |     - |     - |
+    | 1010 | Jackfruit  | -      | -                |     - |     - |
+
+UI displays index [ABCDEFGHIJ]
+
+================================================================================
+
+UI limits to "~s ^[A-E].*"
+UI wants (ID|SUBJ) and all the emails already match
+UI displays index [ABCDE]
+
+================================================================================
+
+UI opens email 1003
+UI wants (ID|SUBJ|BODY), but email doesn't have it
+UI list_folder(ID|SUBJ, [1003]) -> MxAPI
+MxAPI -> imap.list(ID|SUBJ, [1003])
+imap returns email list to MxAPI (plus more unbidden info)
+
+Objects
+    | ID   | Subject | Body [Structure]           | Bytes | Lines |
+    |------+---------+----------------------------|------:+------:|
+    | 1003 | Cherry  | [mollis elit iaculis amet] | 32749 |  1056 |
+
+MxAPI saves email to cache
+
+Cache
+    |   ID | Subject    | Labels | Body [Structure]           | Bytes | Lines |
+    |-----:+:-----------+:-------+:---------------------------+------:+------:|
+    | 1001 | Apple      | -      | -                          |     - |     - |
+    | 1002 | Banana     | -      | -                          |     - |     - |
+    | 1003 | Cherry     | -      | [mollis elit iaculis amet] | 32749 |  1056 |
+    | 1004 | Damson     | -      | -                          |     - |     - |
+    | 1005 | Elderberry | -      | -                          |     - |     - |
+    | 1006 | Fig        | -      | -                          |     - |     - |
+    | 1007 | Guava      | -      | -                          |     - |     - |
+    | 1008 | Hawthorn   | -      | -                          |     - |     - |
+    | 1009 | Ilama      | -      | -                          |     - |     - |
+    | 1010 | Jackfruit  | -      | -                          |     - |     - |
+
+UI displays email [C]
+
+================================================================================
+
+UI sets index_format=%X (attachment count) => STRUCT
+UI already has the info for one email
+UI list_folder(ID|SUBJ|STRUCT, [ABDE])
+MxAPI -> imap.list(ID|SUBJ, [ABDE])
+imap returns email list to MxAPI
+
+Objects
+    |   ID | Subject    | [Structure] |
+    |-----:+:-----------+-------------+
+    | 1001 | Apple      | []          |
+    | 1002 | Banana     | [] []       |
+    | 1004 | Damson     | [[]]        |
+    | 1005 | Elderberry | []          |
+
+MxAPI saves emails to cache
+
+Cache
+    |   ID | Subject    | Labels | Body [Structure]           | Bytes | Lines |
+    |-----:+:-----------+:-------+:---------------------------+------:+------:|
+    | 1001 | Apple      | -      | []                         |     - |     - |
+    | 1002 | Banana     | -      | [] []                      |     - |     - |
+    | 1003 | Cherry     | -      | [mollis elit iaculis amet] | 32749 |  1056 |
+    | 1004 | Damson     | -      | [[]]                       |     - |     - |
+    | 1005 | Elderberry | -      | []                         |     - |     - |
+    | 1006 | Fig        | -      | -                          |     - |     - |
+    | 1007 | Guava      | -      | -                          |     - |     - |
+    | 1008 | Hawthorn   | -      | -                          |     - |     - |
+    | 1009 | Ilama      | -      | -                          |     - |     - |
+    | 1010 | Jackfruit  | -      | -                          |     - |     - |
+
+UI displays attachment count
+
+================================================================================
+
+UI limits to "all"
+UI wants (ID|SUBJ|STRUCT) and five emails already match
+UI list_folder(ID|SUBJ|STRUCT, [FGHIJ]) -> MxAPI
+MxAPI -> imap.list(ID|SUBJ|STRUCT, [FGHIJ])
+imap returns email list to MxAPI
+
+Objects
+    |   ID | Subject   | [Structure] |
+    |-----:+:----------+-------------|
+    | 1006 | Fig       | [][]        |
+    | 1007 | Guava     | []          |
+    | 1008 | Hawthorn  | [][][][]    |
+    | 1009 | Ilama     | []          |
+    | 1010 | Jackfruit | []          |
+
+MxAPI saves emails to cache
+
+Cache
+    |   ID | Subject    | Labels | Body [Structure]           | Bytes | Lines |
+    |-----:+:-----------+:-------+:---------------------------+------:+------:|
+    | 1001 | Apple      | -      | []                         |     - |     - |
+    | 1002 | Banana     | -      | [] []                      |     - |     - |
+    | 1003 | Cherry     | -      | [mollis elit iaculis amet] | 32749 |  1056 |
+    | 1004 | Damson     | -      | [[]]                       |     - |     - |
+    | 1005 | Elderberry | -      | []                         |     - |     - |
+    | 1006 | Fig        | -      | [][]                       |     - |     - |
+    | 1007 | Guava      | -      | []                         |     - |     - |
+    | 1008 | Hawthorn   | -      | [][][][]                   |     - |     - |
+    | 1009 | Ilama      | -      | []                         |     - |     - |
+    | 1010 | Jackfruit  | -      | []                         |     - |     - |
+
+UI displays index [ABCDEFGHIJ] with attachment count
+
+================================================================================
