@@ -2,34 +2,8 @@ what's the difference between
 	bool address_uses_unicode(const char *a)
 	bool addresses_use_unicode(const struct Address *a)
 
-boolify params
-	smime_ask_for_key    (public)
-	smime_get_candidates (public)
-	smime_get_key_by_addr(public, may_ask)
-	smime_get_key_by_hash(public)
-	smime_get_key_by_str (public)
-	pipe_message(decode, print, split)
-	copy_problematic_attachments(force)
-	mutt_write_fcc(post)
-	mutt_encode_descriptions(recurse)
-	mutt_save_message(delete, decode, decrypt)
-
 param order differs from other functions
 	make_reference_headers()
-
-boolify retval
-	int print_dn_part(FILE *fp, struct DnArray *dn, const char *key)
-	int need_display_subject(struct Context *ctx, struct Header *hdr)
-	mutt_ch_is_utf8()
-	mutt_ch_chscmp()
-	mutt_ch_is_us_ascii()
-
-buf, buflen
-	int trim_incomplete_mbyte(unsigned char *buf, size_t len)
-	void mutt_adv_mktemp(char *s, size_t l)
-
-key bindings
-	rename 'descr' locals/members
 
 bug
 	can't encrypt-to-self if original email isn't encrypted
@@ -103,17 +77,7 @@ web
 	they all use the same one
 
 trivial
-	mapping.c is missing config.h
-	make bool: unsigned int decrypted : 1; /**< not part of message as stored in the hdr->content. */
-	bool retval: int is_descendant(struct MuttThread *a, struct MuttThread *b)
 	body_copy() : move foreach param -> param_dup()
-	pop mx api naming?  others?
-	mutt_notmuch.c: replace usleep() (obsolete) with nanosleep()
-	protos.h mutt_parse_virtual_mailboxes doesn't exist
-	typo: msg->commited_path
-	indent: struct listnode
-	3 bool params: int mutt_save_message(struct Header *h, int delete, int decode, int decrypt)
-	rename funct: int pop_fetch_data(struct PopData *pop_data, char *query, struct Progress *progressbar, int (*funct)(char *, void *), void *data)
 
 hcache namer
 	split (root, dir, name) triplet?
@@ -149,8 +113,6 @@ move index_format to mx API?
 	needed by notmuch and help
 	have default?
 	how are notifications handled?
-
-'printf' in mutt/file.c!
 
 rename members
 	bools to is_x, has_x, etc
