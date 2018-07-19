@@ -1,3 +1,49 @@
+email
+	move 'ignore' code to regex? (replacelist)
+
+timestamp hcache entries for garbage collection
+
+neomutt -D with annotations
+	set timeout = 3 # seconds
+
+trivial
+	tidy makefile lists
+	de-dupe hcache doxy
+	de-dupe global externs
+
+have cache settings per account (or per folder), with flags
+	PREFETCH_ALL
+
+create menu API
+	different selection domains: Y/N -> multi-selection lists
+
+create progress API
+	encapsulate read_inc, write_inc, net_inc
+
+neolog vimrc, 'set wrap linebreak showbreak=\ \ \ '
+
+create custom error functions, that do the domain-specfic lookup, e.g.
+	mutt_regex_error
+	mutt_imap_error (exists)
+
+mutt_perror_debug makes two message calls
+	is the debug one needed?
+
+remove #ifdef for #defines and enums
+	replace #ifdef with a comment
+
+code folding - create an exception for <<<< ==== >>>> diff markers?
+	how do you continue?
+
+add "I'm a developer" issue template
+	make them work harder
+
+devel guide: "how to bisect"
+
+create 'backport' branch
+
+merge upstream
+
 what's the difference between
 	bool address_uses_unicode(const char *a)
 	bool addresses_use_unicode(const struct Address *a)

@@ -1,3 +1,10 @@
+have concept of 'default' value?
+	use if not valid?
+	use initial val?
+
+eliminate code tests for if (Var and *Var) ?
+	no empty strings
+
 number types
 	set errno first?
 	check carefully for range errors
