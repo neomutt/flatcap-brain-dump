@@ -1,39 +1,3 @@
-trivial
-	tidy makefile lists
-	de-dupe hcache doxy
-	de-dupe global externs
-	kill n/crypt_gpgme fn: static void strlower(char *s)
-	addstr((char *) field); /* cast to get around bad prototypes */
-	also 'gcc' and 'compiler' warning comments
-	dump_menu swap if (!map->desc)
-	rename ncrypt.h constants
-
-boolify param
-	mutt_sig_unblock_system(catch)
-	smime_invoke_verify(opaque)
-	pgp_gpgme_extract_keys(dryrun)
-	smime_handle_cert_email(copy)
-	mutt_enter_fname_full(buffy)
-	mutt_sort_subthreads(init)
-	check_subjects(init)
-	mutt_sort_threads(init)
-
-boolify retval
-	verify_sender(struct Header *h)
-
-buf,buflen
-	mutt_encode_path
-	mutt_enter_fname_full
-	mutt_expand_path
-	mutt_expand_path_regex
-	mutt_get_parent_path
-	mutt_mktemp_full
-	mutt_randbuf
-	mutt_rand_base32
-	mutt_safe_path
-	mutt_save_path
-	mutt_make_help
-
 convert mutt_expando_format() and family to use intptr_t
 
 email
