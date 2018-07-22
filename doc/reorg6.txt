@@ -1,0 +1,55 @@
+help2
+
+force config
+	status_on_top=no
+	help=yes
+
+help_simple_search?
+	~f feature?
+
+label all features
+
+help topbar:
+	? help
+	p prev page
+	n next page (interferes with nN next/prev search match)
+	< prev chapter
+	> next chapter
+	^ top of chapter
+	/ search page
+	s search help
+	q quit
+	e edit page
+flag some of them as "If the space is available on screen)
+	=> narrow screen, just the essentials
+
+'edit page' command -> editor
+	add comments
+	# 8< (auto-deleted)
+explain
+	thank the user
+	what's happening
+	what to do
+	where the email goes
+
+send entire page, not diffs
+	ensure user's neomutt version is in email/header
+	cc user on reply (since they're probably off-list)
+
+help page for help
+	don't display generic menu options? KISS
+	or display custom help - simplified
+
+arrow keys navigate
+	<- back
+	-> follow link
+	<up> prev link
+	<down> next link
+
+<enter> down
+<backspace> up
+<pgdown>/<pgup> page down/up
+<home>/<end> home/end
+
+use status bar to show full link under cursor
+
