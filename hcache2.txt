@@ -161,3 +161,21 @@ Cache
 UI displays index [ABCDEFGHIJ] with attachment count
 
 ================================================================================
+
+Notes:
+
+inline hcache?  or T-junction?
+	mx -> cache -> mailbox
+or
+	mx -> cache
+	   -> mailbox
+inline => cache uses MX api
+
+flags for every feature that's get-able
+
+some mailbox featues
+	list mboxes
+	get subscriptions
+	mbox has new
+	mbox list emails
+

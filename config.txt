@@ -1,3 +1,16 @@
+struct ConfigSetType
+	flag for quoting
+	flag/size for numeric types 1 bit, 1 byte, 2 bytes, 4, 8 (range-checking becomes hard)
+
+flags
+	#define CS_REG_DISABLED (1 << 0)
+	configure flag for disabled
+	success flag for disabled settings
+
+bool dump_config(struct ConfigSet *cs, int style, int flags)
+	QWQ "neomutt -n -F /dev/null" doesn't give empty output with:
+	flags |= CS_DUMP_ONLY_CHANGED;
+
 have concept of 'default' value?
 	use if not valid?
 	use initial val?
