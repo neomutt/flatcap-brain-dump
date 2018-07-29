@@ -1,3 +1,11 @@
+sidebar commands <next-sibling>, <prev-sibling>, <parent-folder>
+
+do we log questions? (and their answers?)
+
+neomutt log add startup timings
+	use log's timestamp
+	or measure our own millisecond timings
+
 git {continue,abort,skip} for git {am,rebase,cherry-pick,bisect}
 
 convert mutt_expando_format() and family to use intptr_t

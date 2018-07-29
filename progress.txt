@@ -1,3 +1,4 @@
+option to use terminal title esc seqs
 
 better progress indicator
 	a la dnf, wget, etc

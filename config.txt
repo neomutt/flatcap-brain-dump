@@ -1,5 +1,8 @@
+need regex_dup() function
+
 struct ConfigSetType
 	flag for quoting
+	'unset' allowed flag
 	flag/size for numeric types 1 bit, 1 byte, 2 bytes, 4, 8 (range-checking becomes hard)
 
 flags
