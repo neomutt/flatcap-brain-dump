@@ -1,3 +1,31 @@
+jekyll setup from minimal install
+root:
+	dnf update
+	dnf install -y git rubygems ruby-devel make gcc redhat-rpm-config g++-devel gcc-c++ zlib-devel
+user:
+	gem install github-pages bundler jekyll-{gist,sitemap,algolia,mentions}
+	git clone https://github.com/neomutt/neomutt.github.io
+	jekyll serve
+
+typedef for init parse functions?
+
+buf,buflen
+	mutt_str_strcat
+
+trivial - conditional constants - reduce to a comment
+	Hmm... non-functional enum entries might cause problems
+	MENU_KEY_SELECT_PGP
+	MENU_MIX
+	MT_COLOR_DIVIDER
+	MUTT_NEWSGROUPS
+	MUTT_NEW_SSL_SOCKET
+	MUTT_NM_QUERY
+	MUTT_OPEN_HOOK
+	REDRAW_SIDEBAR
+
+79 references to (*fn)() function pointers
+	typedef and doc all APIs
+
 sidebar commands <next-sibling>, <prev-sibling>, <parent-folder>
 
 do we log questions? (and their answers?)
@@ -63,8 +91,9 @@ bug
 
 copr use idn2 & gpgme
 
-packagers gpgme dep?
-	enable by default
+packagers
+	gpgme dep?  enable by default
+	deprecate old ssl/tls versions
 
 code
 	what the last enum called?
