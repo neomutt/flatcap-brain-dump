@@ -1,3 +1,9 @@
+trivial turn two bool parms into one flag
+	int mutt_aside_thread(struct Header *hdr, short dir, short subthreads);
+
+trivial
+	imap/imap.c if (!np->b->magic)
+
 jekyll setup from minimal install
 root:
 	dnf update
@@ -11,6 +17,10 @@ typedef for init parse functions?
 
 buf,buflen
 	mutt_str_strcat
+
+boolify param
+	mutt_sb_notify_mailbox(created)
+	mutt_aside_thread(dir, subthreads)
 
 trivial - conditional constants - reduce to a comment
 	Hmm... non-functional enum entries might cause problems
