@@ -1,0 +1,111 @@
+add_folder                     USE_IMAP USE_NNTP
+attach_reply_envelope_defaults USE_NNTP
+browser_sort                   USE_NNTP
+buffy_check                    USE_NNTP USE_NOTMUCH USE_POP USE_SIDEBAR
+ci_send_message                USE_IMAP USE_NNTP USE_NOTMUCH
+ci_start_color                 USE_SIDEBAR
+cmd_parse_status               USE_SIDEBAR
+compare_order                  USE_NNTP
+destroy_state                  USE_IMAP
+draw_envelope                  USE_NNTP
+draw_sidebar                   USE_NOTMUCH
+dump_envelope                  USE_NNTP
+edit_envelope                  USE_NNTP
+envelope_defaults              USE_NNTP
+examine_mailboxes              USE_IMAP USE_NNTP USE_POP
+folder_entry                   USE_NNTP
+folder_format_str              USE_IMAP USE_NOTMUCH
+get_color                      USE_NOTMUCH
+get_incoming                   USE_NOTMUCH
+hdr_format_str                 USE_NNTP USE_NOTMUCH
+imap_expunge_mailbox           USE_HCACHE
+imap_mboxcache_get             USE_HCACHE
+imap_read_headers              USE_HCACHE
+imap_sync_mailbox              USE_HCACHE
+init_menu                      USE_IMAP USE_NNTP
+init_state                     USE_IMAP
+km_dokey                       USE_IMAP
+maildir_delayed_parsing        USE_HCACHE
+main                           USE_IMAP USE_NNTP USE_SIDEBAR
+main_change_folder             USE_NNTP
+menu_redraw                    USE_SIDEBAR
+mh_sync_mailbox                USE_HCACHE
+msg_cache_check                USE_HCACHE
+mutt_account_getlogin          USE_IMAP
+mutt_account_getpass           USE_IMAP USE_NNTP USE_POP USE_SMTP
+mutt_account_getuser           USE_IMAP USE_NNTP USE_POP
+mutt_account_match             USE_IMAP USE_NNTP USE_POP
+mutt_account_tourl             USE_IMAP USE_NNTP USE_POP USE_SMTP
+mutt_add_to_reference_headers  USE_NNTP
+mutt_attach_reply              USE_NNTP
+mutt_bounce_message            USE_NNTP
+mutt_buffy_check               USE_IMAP USE_NNTP USE_NOTMUCH
+mutt_complete                  USE_IMAP USE_NNTP
+mutt_copy_header               USE_NOTMUCH
+mutt_display_message           USE_NOTMUCH
+mutt_edit_headers              USE_NNTP
+mutt_free_envelope             USE_NNTP
+mutt_free_windows              USE_SIDEBAR
+mutt_index_menu                USE_IMAP USE_NNTP USE_NOTMUCH USE_POP USE_SIDEBAR
+mutt_init                      USE_NNTP USE_NOTMUCH
+mutt_init_windows              USE_SIDEBAR
+mutt_invoke_sendmail           USE_NNTP
+mutt_num_postponed             USE_IMAP USE_NNTP
+mutt_pager                     USE_NNTP USE_SIDEBAR
+mutt_parse_hook                USE_COMPRESSED
+mutt_parse_mailboxes           USE_SIDEBAR
+mutt_parse_rfc822_line         USE_NNTP
+mutt_parse_unvirtual_mailboxes USE_SIDEBAR
+mutt_parse_virtual_mailboxes   USE_SIDEBAR
+mutt_pattern_exec              USE_IMAP USE_NNTP USE_NOTMUCH
+mutt_pattern_func              USE_IMAP
+mutt_prepare_envelope          USE_NNTP
+mutt_pretty_mailbox            USE_IMAP USE_NOTMUCH
+mutt_reflow_windows            USE_SIDEBAR
+mutt_restore_default           USE_SIDEBAR
+mutt_sasl_client_new           USE_NNTP
+mutt_save_confirm              USE_NNTP USE_POP
+mutt_save_message              USE_COMPRESSED USE_IMAP USE_NOTMUCH
+mutt_sb_toggle_virtual         USE_NOTMUCH
+mutt_search_command            USE_IMAP
+mutt_set_followup_to           USE_NNTP
+mutt_view_attachments          USE_NNTP USE_POP
+mutt_write_rfc822_header       USE_NNTP
+mx_close_mailbox               USE_IMAP USE_NNTP USE_SIDEBAR
+mx_fastclose_mailbox           USE_COMPRESSED
+mx_get_magic                   USE_COMPRESSED USE_IMAP USE_NNTP USE_NOTMUCH USE_POP
+mx_get_ops                     USE_COMPRESSED USE_IMAP USE_NNTP USE_NOTMUCH USE_POP
+mx_open_mailbox_append         USE_COMPRESSED
+mx_sync_mailbox                USE_IMAP
+nm_sync_mailbox                USE_HCACHE
+nntp_check_children            USE_HCACHE
+nntp_check_mailbox             USE_HCACHE
+nntp_clear_cache               USE_HCACHE
+nntp_delete_group_cache        USE_HCACHE
+nntp_fetch_headers             USE_HCACHE
+nntp_open_mailbox              USE_HCACHE
+nntp_select_server             USE_HCACHE
+nntp_sync_mailbox              USE_HCACHE
+parse_overview_line            USE_HCACHE
+parse_set                      USE_HCACHE USE_IMAP USE_SIDEBAR
+pop_fetch_headers              USE_HCACHE
+pop_open_mailbox               USE_HCACHE
+pop_sync_mailbox               USE_HCACHE
+print_version                  USE_HCACHE
+process_user_header            USE_NNTP
+process_user_recips            USE_NNTP
+restore_envelope               USE_NNTP
+select_file_search             USE_NNTP
+send_message                   USE_NNTP USE_SMTP
+status_format_str              USE_COMPRESSED USE_NOTMUCH
+trash_append                   USE_IMAP
+_maildir_commit_message        USE_NOTMUCH
+_mutt_append_message           USE_NOTMUCH
+_mutt_bounce_message           USE_SMTP
+_mutt_enter_fname              USE_NOTMUCH
+_mutt_enter_string             USE_NOTMUCH
+_mutt_expand_path              USE_IMAP USE_NOTMUCH
+_mutt_parse_color              USE_NOTMUCH
+_mutt_parse_uncolor            USE_NOTMUCH
+_mutt_select_file              USE_IMAP USE_NNTP USE_NOTMUCH
+_mutt_set_flag                 USE_IMAP USE_SIDEBAR
