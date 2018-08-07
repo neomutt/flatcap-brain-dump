@@ -1,3 +1,20 @@
+deployment
+	better logging
+	timestamps
+	folding
+	script to generate shields
+
+shields script
+	read from flat file
+		functions 100
+		structs   100
+		members   31
+		enums     14
+		globals   11
+		config    3
+	download svg from shields.io
+	colour code by %age
+
 start changing one-liner comments to //, choice of
 	//!< comment
 	///< comment
