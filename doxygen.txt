@@ -1,3 +1,8 @@
+FIX parsing of lines with two " - "
+	number_string_set - Set a Number by string - Implements ::cst_string_set
+
+update shield percentages
+
 deployment
 	better logging
 	timestamps
