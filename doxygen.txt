@@ -1,3 +1,12 @@
+Add extra 'notes' column to function tables
+	Used for 'Implements' or 'Wrapper for'
+	Could we get at any actual @note or @warning fields?
+	| Function             | Description    | Notes                     |
+	| address_native_set() | Set an Address | Implements cst_native_set |
+hard to add it conditionally, unless we have lots of temp files
+
+parse ///< Config: into a single page
+
 FIX parsing of lines with two " - "
 	number_string_set - Set a Number by string - Implements ::cst_string_set
 

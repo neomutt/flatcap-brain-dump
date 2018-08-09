@@ -114,6 +114,8 @@ string: `$help_format`.
 | %W      | size (words) |
 | %s      | section      |
 
+Last updated timestamp could be relative: "4 days ago"
+
 ## Ideas / Questions / Notes
 
 Ideas and questions in no particular order:

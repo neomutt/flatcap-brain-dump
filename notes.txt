@@ -17,6 +17,7 @@ typedef for init parse functions?
 
 buf,buflen
 	mutt_str_strcat
+	mutt_pretty_mailbox
 
 boolify param
 	mutt_sb_notify_mailbox(created)
