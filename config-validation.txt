@@ -1,0 +1,466 @@
+DT_BOOL * 181
+DT_HCACHE
+DT_MAGIC
+DT_QUAD * 26
+DT_SORT * 6
+	validated against list of strings
+
+DT_ADDRESS * 2
+	not validated (may be empty)
+
+DT_MBTABLE * 4
+	not validated (should limit to 16 chars, shouldn't be empty)
+
+DT_STRING * 18 X_format
+	not validated, may not be empty, should be tested against list of expandos
+
+DT_NUMBER  debug_level, history, pager_index_lines, imap_pipeline_depth
+	clamped to 0+
+
+DT_NUMBER  connect_timeout
+	-1 or 0+ (seconds), -1 = wait indefinitely
+DT_NUMBER  imap_poll_timeout
+	0+ (seconds), 0 disables
+DT_NUMBER  nm_open_timeout
+	0+ (seconds), 0 disables
+DT_NUMBER  pgp_timeout
+	0+ (seconds), 0 disables
+DT_NUMBER  smime_timeout
+	0+ (seconds), 0 disables
+DT_NUMBER  timeout
+	0+ (seconds), 0 = never timeout
+DT_NUMBER  imap_keepalive
+	0+ (seconds)
+DT_NUMBER  mail_check
+DT_NUMBER  mail_check_stats_interval
+DT_NUMBER  pop_checkinterval
+DT_NUMBER  sleep_time
+	0+ (seconds)
+
+DT_NUMBER  menu_context
+DT_NUMBER  pager_context
+	0+
+
+DT_NUMBER  net_inc
+	0+ (KB net traffic)
+DT_NUMBER  read_inc
+DT_NUMBER  write_inc
+	0+ (messages)
+DT_NUMBER  time_inc
+	0+ (milliseconds)
+
+DT_NUMBER  sendmail_wait
+	-1, 0+ (seconds) -1 = background, 0 = wait, >0 = seconds to wait
+
+DT_NUMBER  nntp_poll
+	0+ (seconds) 0 = check every index op
+
+DT_NUMBER  sidebar_width
+	1+ (warning on zero)
+
+DT_NUMBER  skip_quoted_offset
+	0+
+
+DT_NUMBER  nm_query_window_duration
+	0+ (time: hour, day, week, month, year)
+
+DT_NUMBER  nm_db_limit
+	0+ (0 disables)
+
+DT_NUMBER  nntp_context
+DT_NUMBER  search_context
+	0+ (0 disables)
+
+DT_NUMBER  sidebar_component_depth
+	no limit (0 disables)
+
+DT_NUMBER  save_history
+	0+ (0 disables) (-1 in future)
+
+DT_NUMBER  nm_query_window_current_position
+	no limit
+
+DT_NUMBER  reflow_wrap
+DT_NUMBER  wrap
+	no limit
+
+DT_NUMBER  score_threshold_delete
+DT_NUMBER  score_threshold_read
+	-1, 0+ (-1 disables)
+
+DT_NUMBER  score_threshold_flag
+	no limit
+
+DT_NUMBER  ssl_min_dh_prime_bits
+	0+ (0 disables)
+
+DT_NUMBER  wrap_headers
+	78..998 (by RFC)
+
+DT_PATH    alias_file
+DT_PATH    certificate_file
+DT_PATH    debug_file
+DT_PATH    entropy_file
+DT_PATH    header_cache
+DT_PATH    history_file
+DT_PATH    signature
+DT_PATH    message_cachedir
+DT_PATH    news_cache_dir
+DT_PATH    smime_ca_location
+DT_PATH    smime_certificates
+DT_PATH    smime_keys
+DT_PATH    ssl_ca_certificates_file
+DT_PATH    ssl_client_cert
+DT_PATH    tmpdir
+	filesystem path
+
+DT_PATH    display_filter
+DT_PATH    editor (%s)
+DT_PATH    new_mail_command
+DT_PATH    print_command
+DT_PATH    query_command (%s)
+DT_PATH    inews (%a %p %P %s %S %u)
+DT_PATH    newsrc (%a %p %P %s %S %u)
+DT_PATH    ispell
+DT_PATH    shell
+DT_PATH    mixmaster
+DT_PATH    pager
+DT_PATH    sendmail
+DT_PATH    visual
+	command (with args)
+
+DT_PATH    folder
+DT_PATH    mbox
+DT_PATH    postponed
+DT_PATH    record
+DT_PATH    spoolfile
+DT_PATH    trash
+	mailbox
+
+DT_REGEX   attach_keyword
+DT_REGEX   gecos_mask
+DT_REGEX   mask
+DT_REGEX   pgp_decryption_okay
+DT_REGEX   pgp_good_sign
+DT_REGEX   quote_regexp
+DT_REGEX   reply_regexp
+DT_REGEX   smileys
+	valid regex or empty
+
+DT_STRING  mime_type_query_command
+DT_STRING  pgp_clearsign_command
+DT_STRING  pgp_decode_command
+DT_STRING  pgp_decrypt_command
+DT_STRING  pgp_encrypt_only_command
+DT_STRING  pgp_encrypt_sign_command
+DT_STRING  pgp_export_command
+DT_STRING  pgp_getkeys_command
+DT_STRING  pgp_import_command
+DT_STRING  pgp_list_pubring_command
+DT_STRING  pgp_list_secring_command
+DT_STRING  pgp_sign_command
+DT_STRING  pgp_verify_command
+DT_STRING  pgp_verify_key_command
+DT_STRING  smime_decrypt_command
+DT_STRING  smime_encrypt_command
+DT_STRING  smime_get_cert_command
+DT_STRING  smime_get_cert_email_command
+DT_STRING  smime_get_signer_cert_command
+DT_STRING  smime_import_cert_command
+DT_STRING  smime_pk7out_command
+DT_STRING  smime_sign_command
+DT_STRING  smime_verify_command
+DT_STRING  smime_verify_opaque_command
+	no validations DT_COMMAND?
+
+DT_STRING  imap_login
+DT_STRING  imap_pass
+DT_STRING  imap_user
+DT_STRING  nntp_pass
+DT_STRING  nntp_user
+DT_STRING  pop_pass
+DT_STRING  pop_user
+DT_STRING  smtp_pass
+DT_STRING  smtp_url
+	sensitive
+
+DT_STRING  newsgroups_charset
+DT_STRING  send_charset (list, colon)
+DT_STRING  assumed_charset (list, colon)
+DT_STRING  attach_charset (list, colon)
+DT_STRING  charset
+DT_STRING  config_charset
+	can these be validated?
+
+DT_STRING  attach_sep
+DT_STRING  attribution (expandos)
+DT_STRING  attribution_locale
+DT_STRING  content_type
+DT_STRING  default_hook (patterns, expandos)
+DT_STRING  dsn_notify (list, comma)
+DT_STRING  dsn_return
+DT_STRING  empty_subject
+DT_STRING  escape
+DT_STRING  forward_attribution_intro (expandos)
+DT_STRING  forward_attribution_trailer (expandos)
+DT_STRING  hidden_tags (list, comma)
+DT_STRING  hostname
+DT_STRING  imap_authenticators (list, colon)
+DT_STRING  imap_delim_chars
+DT_STRING  imap_headers (list, space)
+DT_STRING  indent_string
+DT_STRING  mailcap_path (filesystem path)
+DT_STRING  mark_macro_prefix
+DT_STRING  mh_seq_flagged
+DT_STRING  mh_seq_replied
+DT_STRING  mh_seq_unseen
+DT_STRING  news_server
+DT_STRING  nm_default_uri
+DT_STRING  nm_exclude_tags (list, space)
+DT_STRING  nm_query_type
+DT_STRING  nm_query_window_current_search
+DT_STRING  nm_query_window_timebase (day, week, month, etc)
+DT_STRING  nm_record_tags (list, space)
+DT_STRING  nm_unread_tag
+DT_STRING  nntp_authenticators (list, colon)
+DT_STRING  show_multipart_alternative
+DT_STRING  pgp_self_encrypt_as
+DT_STRING  pgp_sign_as
+DT_STRING  pipe_sep
+DT_STRING  pop_authenticators (list, colon)
+DT_STRING  pop_host
+DT_STRING  post_indent_string
+DT_STRING  postpone_encrypt_as
+DT_STRING  preconnect (command)
+DT_STRING  realname
+DT_STRING  sidebar_delim_chars
+DT_STRING  sidebar_divider_char
+DT_STRING  sidebar_indent_string
+DT_STRING  simple_search (patterns, expandos)
+DT_STRING  smime_default_key
+DT_STRING  smime_encrypt_with
+DT_STRING  smime_self_encrypt_as
+DT_STRING  smime_sign_digest_alg
+DT_STRING  smtp_authenticators (list, colon)
+DT_STRING  spam_separator
+DT_STRING  ssl_ciphers (list, colon)
+DT_STRING  tunnel (command)
+DT_STRING  header_cache_pagesize (number!, >512, power of 2)
+
+--------------------------------------------------------------------------------
+
+debug_file
+debug_level
+	special validation and reset rules
+	restart_debug()
+
+charset
+	check_charset()
+
+show_multipart_alternative
+	valid_show_multipart_alternative()
+
+/* $reply_regexp and $alternates require special treatment */
+	why?
+	how?
+
+wrapmargin
+	compatibility
+
+history
+debug_level
+pager_index_lines
+wrapmargin
+imap_pipeline_depth
+	clamped values
+
+header_cache
+      mutt_hcache_is_valid_backend()
+
+mboxtype
+    mx_set_magic()
+
+--------------------------------------------------------------------------------
+Setting of default values
+--------------------------------------------------------------------------------
+
+editor       DT_PATH Editor
+	default NULL
+	startup default set to first of:
+		$VISUAL
+		$EDITOR
+		"vi"
+
+visual       DT_PATH Visual
+	default NULL
+	set to editor
+
+shell        DT_PATH Shell
+	default NULL
+	startup default set to first of:
+		shell from /etc/passwd
+		$SHELL
+		/bin/sh
+
+spoolfile    DT_PATH SpoolFile
+	default NULL
+	startup default set to first of:
+		$MAIL
+		$MAILDIR
+		if HOMESPOOL
+			HomeDir/MAILPATH (config/define)
+		else
+			Username/MAILPATH (config/define)
+	---- VALUE
+	if VirtualSpoolfile
+		set to first Notmuch folder
+
+tmpdir       DT_PATH Tmpdir
+	default NULL
+	startup default set to first of:
+		$TMPDIR
+		/tmp
+
+from         DT_ADDRESS From
+	default NULL
+	$EMAIL
+
+charset      DT_STRING  Charset
+	default NULL
+	startup default set to first of:
+		nl_langinfo(CODESET) -- canonicalised
+		"iso-8859-1"
+
+mailcap_path DT_STRING  MailcapPath
+	default NULL
+	startup default set to first of:
+		$MAILCAPS
+		RFC1524 default (list):
+			~/.mailcap
+			PKGDATADIR /mailcap
+			SYSCONFDIR /mailcap
+			/etc/mailcap
+			/usr/etc/mailcap
+			/usr/local/etc/mailcap
+
+news_server  DT_STRING  NewsServer
+	default NULL
+	startup default set to first of:
+		$NNTPSERVER
+		SYSCONFDIR "/nntpserver"
+
+realname     DT_STRING  RealName
+	default NULL
+	name from /etc/passwd
+
+hostname     DT_STRING  Hostname
+	default NULL
+	startup default set to first of:
+	if DOMAIN
+		uname.nodename . DOMAIN
+	else
+		"/etc/mailname"
+		"/etc/mail/mailname"
+	else
+		uname.nodename . getdnsdomainname()
+	else
+		uname.nodename
+
+--------------------------------------------------------------------------------
+Values set in mutt_init(), but not the default
+--------------------------------------------------------------------------------
+
+alias_file   DT_PATH AliasFile
+	default "~/.neomuttrc"
+	set VALUE to location of muttrc
+
+debug_file   DT_PATH DebugFile
+	default "~/.neomuttdebug"
+	[cmdline option]
+
+--------------------------------------------------------------------------------
+parse_set() - validation
+--------------------------------------------------------------------------------
+
+reset all
+	OPT_SORT_SUBTHREADS = true
+	OPT_NEED_RESORT = true
+	OPT_RESORT_INIT = true
+	OPT_REDRAW_TREE = true
+
+query wrapmargin
+	value is displayed:
+		+ve if (<0)
+		0 if (>=0)
+
+query DT_SORT
+	may be prefixed (in this order) with:
+		reverse-
+		last-
+
+set DT_MAGIC
+	delegates to mx_set_magic()
+
+set DT_NUMBER
+	"history" clamp to 0+, call mutt_init_history()
+	"debug_level" clamp to 0+, call restart_debug()
+	"pager_index_lines" clamp to 0+
+	"wrapmargin"
+		<0 set to 0
+		>0 set to -value
+	"imap_pipeline_depth" clamp to 0+
+
+set DT_SORT
+	delegate to parse_sort() which manages prefixes:
+		reverse-
+		last-
+
+set DT_HCACHE
+	validate with mutt_hcache_is_valid_backend()
+
+set DT_NUMBER
+	"debug_level" can't be set if set on command line
+	(this is wrong)
+
+set DT_REGEX
+	delegated to parse_regex()
+
+set DT_REGEX
+	"reply_regexp" can't be set if OPT_ATTACH_MSG is set
+	recalculate e->real_subj for all Context->msgcount
+
+set DT_ADDRESS
+	delegate to mutt_addr_parse_list()
+
+set DT_MBTABLE
+	delegate to parse_mbtable()
+
+set DT_PATH
+	"debug_file" can't be set if debugfile_cmdline is set
+	(this is wrong)
+	call restart_debug()
+
+set DT_PATH
+	call mutt_expand_path()
+
+set DT_STRING
+	"charset" validate with check_charset()
+	call mutt_set_charset()
+
+set DT_STRING
+	"show_multipart_alternative" validate with valid_show_multipart_alternative()
+
+set with flags
+	R_INDEX       mutt_set_menu_redraw_full(MENU_MAIN)
+	R_PAGER       mutt_set_menu_redraw_full(MENU_PAGER)
+	R_RESORT_SUB  OPT_SORT_SUBTHREADS = true
+	R_RESORT      OPT_NEED_RESORT     = true
+	R_RESORT_INIT OPT_RESORT_INIT     = true
+	R_TREE        OPT_REDRAW_TREE     = true
+	R_REFLOW      mutt_reflow_windows()
+	R_SIDEBAR     mutt_set_current_menu_redraw(REDRAW_SIDEBAR)
+	R_MENU        mutt_set_current_menu_redraw_full()
+	R_PAGER_FLOW
+		mutt_set_menu_redraw_full(MENU_PAGER)
+		mutt_set_menu_redraw(MENU_PAGER, REDRAW_FLOW)
+
