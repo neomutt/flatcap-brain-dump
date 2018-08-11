@@ -179,3 +179,72 @@ some mailbox featues
 	mbox has new
 	mbox list emails
 
+--------------------------------------------------------------------------------
+
+inline hcache or T-junction?
+	mx -> hc -> mbox
+or
+	mx -> hc
+	|
+	V
+	mbox
+
+flags for every feature that's get-table
+some mailbox features
+	list mailboxes
+	get subscriptions
+	mailbox has new
+	mailbox list emails
+timestamp hcache entries - update entries as nec
+index features: size, subject, structure/attach/body
+
+----------------------------------------
+1 = mbox
+2 = maildir
+3 = imap
+4 = pop
+5 = nntp
+
+get header
+	1) parse header
+	2) parse headr
+	3) get header
+	4) get whole
+	5) get header
+
+get struct
+	1,2,4,5) get whole
+	3) body struct
+
+----------------------------------------
+
+index -> header, %X attach -> bodystruct, ~b full
+expr in body
+	~b EXPR
+	=b STR (server)
+expr in whole message
+	~B EXPR
+	=B STR (server)
+expr in header
+	~h EXPR
+	=h STR (server)
+gmail
+	=/ STR
+
+might need to merge header and body cache
+	but still store them separately
+
+demand loading of emails?  what about neo's sorting?
+	load pages: 0,1,2,3,$ and around cursor
+	what about searching?
+
+mxapi: merge(Hdr *old, Hdr *new)
+timestamp hc entries, mx-specific timeout?
+mbox *notifies* as each request is fulfilled -- ui updates
+flag on objects "cached" unset on change -> mx can update cache
+separate flags:
+	*have* ID|SUBJECT
+	*updated* LABEL
+if UI updates, mx can't cache *until* mailbox returns OK
+mailbox can notify on commit, too, UI knows which are safe
+
