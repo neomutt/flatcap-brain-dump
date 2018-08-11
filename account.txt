@@ -1,0 +1,22 @@
+Context - paths, counts
+Header[] list -> Env, Body, etc
+Incoming -> Buffy[] (paths, counts)
+Buffy 1/mailbox
+no concept of account
+Incoming becomes Account list
+Account: imap server, maildir, notmuch, nntp?
+account list: imap1, imap2, notmuch
+Account named
+who owns the context?
+where is the config attached?
+
+Account1
+	mailbox[] (nested?)
+Account2
+	mailboxes
+Account3
+	mailboxes
+
+62 functions use the context
+22 functions use incoming
+

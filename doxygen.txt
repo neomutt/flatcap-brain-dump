@@ -1,3 +1,7 @@
+per file regex for function matching
+
+generate @page file/@subpage?
+
 Add extra 'notes' column to function tables
 	Used for 'Implements' or 'Wrapper for'
 	Could we get at any actual @note or @warning fields?
