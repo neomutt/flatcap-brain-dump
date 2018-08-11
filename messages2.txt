@@ -1,0 +1,21 @@
+type of info being communicated
+urgency of info
+whether the user needs to take action
+notifications == not triggered by users's immediate actions
+	announce event significant to user
+error specific to user's task
+error
+	1) what the problem was
+	2) why it happened
+	3) what the user can do
+		about it
+		to prevent it happening again
+error - consequences, mitigation
+error codes
+errors - no use if they don't say how to solve the problem
+defensive design - validate earlier to prevent errors
+preserve work, reduce the effort of correcting the error
+don't blame the user -> "You forgot to..." NO, "Please enter a..." YES
+Error actionable - user should fix the problem or
+	change their behaviour as a result
+
