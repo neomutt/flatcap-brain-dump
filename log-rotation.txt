@@ -1,0 +1,27 @@
+
+| CLI          | Config       | Logging        | Rotation? |
+|--------------+--------------+----------------+-----------|
+| [NONE]       | [NONE]       | no             | no        |
+| level1       | [NONE]       | level1,DEFAULT | yes       |
+| file1        | [NONE]       | no             | no        |
+| level1,file1 | [NONE]       | level1,file1   | yes       |
+| [NONE]       | level2       | level2,DEFAULT | yes       |
+| level1       | level2       | level1,DEFAULT | yes       |
+| file1        | level2       | level2,file1   | yes       |
+| level1,file1 | level2       | level1,file1   | yes       |
+| [NONE]       | file2        | no             | no        |
+| level1       | file2        | level1,file2   | yes       |
+| file1        | file2        | no             | no        |
+| level1,file1 | file2        | level1,file1   | yes       |
+| [NONE]       | level2,file2 | level2,file2   | yes       |
+| level1       | level2,file2 | level1,file2   | yes       |
+| file1        | level2,file2 | level2,file1   | yes       |
+| level1,file1 | level2,file2 | level1,file1   | yes       |
+
+| Initial      | User Set | Logging        | Rotation? |
+|--------------+----------+----------------+-----------|
+| 0,NULL       | level2   | level2,DEFAULT | yes       |
+| 0,NULL       | file2    | no             | no        |
+| level1,file1 | level2   | level2,file1   | no        |
+| level1,file1 | file2    | level1,file2   | yes       |
+
