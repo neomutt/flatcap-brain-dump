@@ -1,0 +1,49 @@
+
+distinguish between
+	DT_PATH => filesystem path
+	DT_MAILBOX => could be virtual
+		folder, record, spoolfile, trash
+	DT_COMMAND?
+
+types to sort out
+	DT_PATH, DT_MAILBOX, DT_COMMAND
+
+flags for expanding:
+	1) ~ ($HOME) or ~X (user X's home)
+	2) $X (env var)
+	3) $x (config var)
+	4) relative path
+	5) X| (shell expansion)
+	6) %x (expando)
+	7) `x` (external command)
+
+PATH
+	filesystem only
+	need to resolve ~/, ~X, $X, $x, relative path
+		evaluated when?
+		or at all? DON'T PROCESS
+	set path var, expand path before use - processes ~
+	expand env does $X
+	expand config does $x
+	expand expando does %x
+	what about "xyz|" ?
+	one function, 5 flags & sub functions
+
+COMMAND
+	similar, don't expand relative, leave it to the shell
+	turn args into array/list?
+	what's most convenient to:
+		a) process args
+		b) pass to exec
+
+MAILBOX
+	opaque folder name - may be delegated by mailbox to file functions
+	mxapi: probe, canon, pretty, equal?, exists?, parent, children
+	NEED expansion functions for ^, =/+, etc
+	handled by mailbox
+	all expanded just-in-time
+
+35 PATH/STRING -> COMMAND
+6 MAILBOX folder, record, spoolfile, trash, postponed, mbox
+	all account-specific?
+
