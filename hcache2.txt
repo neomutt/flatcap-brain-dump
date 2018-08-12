@@ -248,3 +248,67 @@ separate flags:
 if UI updates, mx can't cache *until* mailbox returns OK
 mailbox can notify on commit, too, UI knows which are safe
 
+---
+
+missing from diagram
+	ncrypt
+	complete
+	progress
+	charsets
+	keybindings
+	attrs
+	compress
+	menu api
+
+separate in diagram
+	cachces
+	mailboxes
+	neo UI
+	mx,msg,tags
+
+MXAPI
+	mailbox - open, close...
+	message - open, close...
+	browser - list, parent
+	completion - list matches
+	addrbook - alias, query
+
+header cache
+	identify saved fields, move others to the end
+	drop #ifdef, assume present
+
+context data
+	nntp, imap, mh, pop
+
+browser applies to
+	mailboxes, contacts, keys
+
+mx
+	login api: user, pass, domain, path
+	discovery api: folder tree
+	skeleton/header } download
+	body/full       } flags for which we already have
+
+compress
+	use hdr *data* for *child* header?
+	kill compress info
+	no *context*, not *header*
+	nested contexts?
+	same with notmuch+maildir
+
+hcache users (off by default)
+	imap
+	nntp
+	pop
+	notmuch
+	maildir
+
+hcache
+	is it affected by changes to config.h?
+	elimininate #ifdefs, *fix* sizes
+	what the largest possible hc code object size?
+
+need to touch up objects after cache retrieval! (POP)
+
+notmuch is stacked (like compress)
+
