@@ -398,3 +398,18 @@ QUEUE debug/error()
 *Were* messages saved to ErrorBuf, before or just errors?
 	YES messages were
 
+
+----
+
+Testing
+	set version
+	rotate logs
+	set filename
+	set level
+
+CLI	Config
+-	-
+-d	-d
+-l	-l
+-d,-l	-d,-l
+

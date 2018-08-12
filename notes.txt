@@ -1,3 +1,7 @@
+update roadmap page
+my first PR page
+README donate
+
 docs for query_command
 	sveng: the description to query_command in theneomuttrc contains "see 'query'".. but i dont see a "query" option at all
 

@@ -496,3 +496,80 @@ account-specific => no more $IMAP_user, just $user
 
 rename statics to MixedCase
 
+test
+	debug_file
+	debug_level
+	charset != null
+	charset null ok
+	show_multipart_alternative
+	reply_regex / OptAttachMsg
+	mbox_type? no?
+	wrapmargin SYNONYM
+	history clamp 0+
+	pager_index_lines clamp 0+
+	imap_pipeline_depth clamp 0+
+	header_cache_backend
+	sidebar_width clamp 0+
+	40 numbers, most clamp 0+
+	test all R_ flags on vars(~75)
+	pager prechecks
+	changing history file (noop on mutt)
+
+set all values 1 - check against -D
+set all values 2 - check against -D
+check command line sets and default
+query *all* vars
+dump vars
+check logging
+check header cache var
+check regexes working
+test completion
+test lua
+test default setting
+test logging
+exceptions
+	wrapmargin
+test bare sets of bool, quad
+set/reset on 'all'
+check regexes with ! prefix
+
+part 1.5
+	all vars set in code using CS
+
+part 2 validation
+part 3 notifications
+part 4 list type, enum type?
+
+2)
+	empty strings
+	num - negative
+	regex regcomp
+	address parse
+	format strings
+
+3)
+	all index,pager,sidebar flags
+	logging changes
+
+4)
+	list type, several vars
+	refactor code
+	enum type -> data column
+	format string valid -> data column
+	split PATH & MAILBOX types
+
+5)
+	list => +=, -=
+	Globals => config system -> cleanup
+	acutest of config
+	allow disabled config
+
+----
+
+neomutt -D
+	wrap options (wrap to $COLUMNS ?)
+	[no]var for bools, many are too wide
+
+dump -D, -Q, :set?
+num, quad, bool, as quoted
+
