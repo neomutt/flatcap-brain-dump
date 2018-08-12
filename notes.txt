@@ -1,3 +1,67 @@
+UI
+	In messages/errors rather than quoting filenames
+	bright/bold them -- how?
+
+Most translation messages that are questions (to prompt the user)
+	have trailing whitespace -- nuisance for the translator
+	kill them, adjust code
+
+browser
+	need clearer feedback *what* we're looking at
+	IMAP mailboxes, IMAP directory, local directory
+	and clearer ways to swap between the choices
+
+megabuild
+	combine "git build" and parallel
+	use git commit range + clist
+	nested build dirs
+
+docs:
+	update description for "unvirtualmailboxes"
+	to say: the same as unmailboxes!
+
+dump_config => RC 0 always
+
+kill plural enums, e.g. MaiboxType*s*
+
+smime_timeout missing LNUM
+
+magic "alias" mailbox stored on server
+	multiple emails
+
+DOGFOOD
+
+BUG: (new config)
+	$record ends up as ~/^
+
+sidebar
+	colours using patterns? ~N ~F
+	colours for spool, trash, postpone?
+
+intptr_t vs long in config
+	shrink DT_LONG
+
+if user's sendmail fails, notify the user
+
+jekyll/github pages howto
+	clone website
+	gem install
+	jekyll + jekyll-X plugins
+	bundler
+	or disable plugins in _config.yml
+	j-mentions?
+	gem install github-pages
+	(all deps needed)
+	put in a docker (search first)
+
+pgpring still mentioned in Makefile.autosetup
+
+difference between Body and Attachment
+	which members are used for which?
+
+reindent body.h comments
+need unaccount [name|*]
+regex acutest change '\1' to '[a-b'
 update roadmap page
 my first PR page
 README donate

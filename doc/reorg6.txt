@@ -53,3 +53,20 @@ arrow keys navigate
 
 use status bar to show full link under cursor
 
+attach config source files that can be sourced
+	e.g. colour scheme
+	signed with NeoMutt's key for safety
+
+neomutt-tutor cf vimtutor
+	start with hardcoded config, layout, colour schemes
+	sample mailboxes
+	pager_index_lines=5
+	help=y
+	status-on-top=no
+	sidebar-visible=no
+	quit=ask-yes
+
+help/news
+	new items section?
+	and/or pinned items
+

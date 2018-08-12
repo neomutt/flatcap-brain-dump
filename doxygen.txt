@@ -1,3 +1,7 @@
+link doxy shields to pages!
+	add shield for 'files with @page'
+
+cache pages need more than a one-liner description
 per file regex for function matching
 
 generate @page file/@subpage?
