@@ -20,3 +20,128 @@ Account3
 62 functions use the context
 22 functions use incoming
 
+Context
+Connection
+Account
+Mailbox
+ConfigSet
+
+Each host needs private data
+
+NeoMutt - Config/globals
+	Account (default)
+	Account (specific)
+		imap, pop, maildir, notmuch, etc
+		Mailboxes (ref counted)
+			Emails (ref counted) (Header, env, body, etc)
+
+Account data private
+	mxops
+
+Where do patterns, limits, tagging live?
+	On context (a mailbox *view*?)
+
+Who uses Context, when a Account/Mailbox would do?
+
+Context is a *view* of a mailbox
+	who owns the views?
+
+Mailbox should own headers, etc
+	(id|subj|label) hashes
+
+View has thread, tree/sorting data
+Who owns Accounts?
+	global to start with
+	AccIncoming
+
+Account
+	IMAP 1 server/port/user combo
+	POP 1 server/port/user combo
+	Maildir user configurable set of folders (mailboxes)
+	NNTP 1 server/port/user combo
+	Notmuch 1 notmuch database
+
+data, free_cb() + some fields common to all, name
+Where do unsubscribed folders live?
+not all Account's mailboxes are visible (subscribed/in sidebar)
+Acc needs inherited config info -> separate object?
+Config/Account -> Local Config
+unaccount - closes connection, mailboxes, etc
+
+Auto Accounts - Imap, pop, notmuch, nntp
+how does 'account' command fit in?
+mailboxes -> current 'account' NO -> default, YES use it
+none -> 1 Account  incoming underneath
+full auto -> find_ac(folder) -> folder not enough
+	need user, host, port
+account-ish config have user -> imap_user, what if they set A:imap_user?
+account/set folder spoolfile, postponed, trash, record
+use status bar to show their values, NO, not dynamic
+need changed-account notification (account-hook) -> redraw
+examples in 4 languages to highlight folder names (1 CJK)
+
+NeoMutt object
+	Config
+	Connections
+	Context
+		Threads
+	AccountList
+		Account
+			MailboxList
+				EmailList
+					Env, Body...
+
+Mailboxes M
+ask MXAPI for type of M
+search As for owner?
+or use A from config (if compatible)
+or create new A (uniq name)
+Add M to A
+
+How does A test for M's membership?
+*same* type (magic), $folder [user,host,port]
+	login_cmp()
+or mx_cmp() -- let *it* canonicalise $folder and compare login
+
+Compare needs canon mailbox: have $folder, mailbox
+path_canon($folder, mailbox) -> canon_mailbox
+	NO needs login
+pretty_path(A, ...) what's needed?
+URL syntax:
+	account://NAME/rel-path
+or
+	mailbox://ANAME/rel-path
+or canon
+	imaps://user@host:port/rel-path
+abbreviate to:
+	a:// or m://
+
+Account NAME
+set folder, imap user (pass)
+mailboxes
+
+folder could be '/', or empty or full path
+X_{user,pass,login} -> {user,pass,login}
+config name clash?
+NO folder needs to be full else don't know which type the mailbox is
+
+API mx_check_empty(path) -> bool - local use only
+	or just open it?
+API has_new_mail(path) - need to identify it first
+
+∀ mailboxes - find by path, is notmuch, realpath, complex
+	test empty, insert, remove, free
+
+A is typed if all children are the same type, e.g. Notmuch
+
+change functions to take a MailboxList (rather than a mailbox)
+	UI creates list of one (for single selections)
+	or a multiple for tagged
+	thus centrlising tagging logic
+	MailboxList or HeaderList
+
+Header*View* is_tagged, etc can't be List
+	needs to be sortable
+	can we have *both*, Incoming and AccountList?
+	How do I move Context inners to Mailbox?
+
