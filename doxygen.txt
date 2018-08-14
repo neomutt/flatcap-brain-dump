@@ -1,3 +1,6 @@
+check all structs are " *struct* X - desc"
+check all typedefs are " *typedef* X - desc"
+
 link doxy shields to pages!
 	add shield for 'files with @page'
 
@@ -14,9 +17,6 @@ Add extra 'notes' column to function tables
 hard to add it conditionally, unless we have lots of temp files
 
 parse ///< Config: into a single page
-
-FIX parsing of lines with two " - "
-	number_string_set - Set a Number by string - Implements ::cst_string_set
 
 update shield percentages
 
@@ -55,8 +55,6 @@ doxy how many (%age) are doc'd?
 create shield for each
 	colour coded according to %age
 
-move doxygen docs to 'code' repo and export via git-pages
-
 doxy main page, add %age completion
 
 shield for doxygen coverage
@@ -69,9 +67,6 @@ add command usage to doxy parse functions
 
 tidy *.c so can use doxygen prep script on every one
 	grep for @page ?
-
-82% of all functions are documented
-	https://img.shields.io/badge/doxygen-82%25-brightgreen.svg
 
 Add warnings to doxygen headers, for
 	@warning This function uses global variables: LIST, ...
@@ -105,3 +100,28 @@ document all our uses of doxygen comments
 
 use sample code and config to demonstrate
 
+f 2321 2321 100% function
+u    2    2 100% union
+s  136  136 100% structure
+g   49   47  96% enumeration
+m  966  299  31% members
+e  395   56  14% enumerators
+d  787  114  14% #define
+v  718   77  11% global-variable
+t   14    0   0% typedefs
+
+-  419  279  67% config-variable
+-  307  126  41% files with an "@page"
+
+c classes
+l local
+n namespaces
+p prototypes
+x external
+
+https://img.shields.io/badge/functions-100%-green.svg
+https://img.shields.io/badge/structs-100%-green.svg
+https://img.shields.io/badge/members-31%-yellow.svg
+https://img.shields.io/badge/enums-14%-red.svg
+https://img.shields.io/badge/globals-11%-red.svg
+https://img.shields.io/badge/config-3%-red.svg
