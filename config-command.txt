@@ -10,12 +10,32 @@ types to sort out
 
 flags for expanding:
 	1) ~ ($HOME) or ~X (user X's home)
+		path only
+		done by mailbox
 	2) $X (env var)
+		done by neomutt
 	3) $x (config var)
+		done by neomutt
 	4) relative path
+		path only
+		done by mailbox
 	5) X| (shell expansion)
+		done by neomutt
 	6) %x (expando)
+		done by neomutt
 	7) `x` (external command)
+		done by neomutt
+	8) +X ([-+=@<>!^])
+		done by neomutt
+		- LastFolder
+		+ $folder
+		= $folder
+		!! LastFolder
+		! $spoolfile
+		< $record
+		> $mbox
+		@user Expand alias to user name
+		^ CurrentFolder
 
 PATH
 	filesystem only
@@ -43,7 +63,69 @@ MAILBOX
 	handled by mailbox
 	all expanded just-in-time
 
-35 PATH/STRING -> COMMAND
 6 MAILBOX folder, record, spoolfile, trash, postponed, mbox
 	all account-specific?
 
+DT_PATH
+	alias_file               AliasFile             ~/.neomuttrc
+	certificate_file         CertificateFile       ~/.mutt_certificates
+	debug_file               DebugFile             ~/.neomuttdebug
+	entropy_file             EntropyFile           0
+	header_cache             HeaderCache           0
+	history_file             HistoryFile           ~/.mutthistory
+	message_cachedir         MessageCachedir       0
+	newsrc                   Newsrc                ~/.newsrc
+	news_cache_dir           NewsCacheDir          ~/.neomutt
+	signature                Signature             ~/.signature
+	smime_ca_location        SmimeCaLocation       0
+	smime_certificates       SmimeCertificates     0
+	smime_keys               SmimeKeys             0
+	ssl_ca_certificates_file SslCaCertificatesFile 0
+	ssl_client_cert          SslClientCert         0
+	tmpdir                   Tmpdir                /tmp
+
+DT_MAILBOX
+	folder                   Folder                ~/Mail
+	record                   Record                ~/sent
+	spoolfile                Spoolfile             0
+	trash                    Trash                 0
+	postponed                Postponed             ~/postponed
+	mbox                     Mbox                  ~/mbox
+
+DT_COMMAND
+	display_filter                DisplayFilter             0              
+	editor                        Editor                    vi             
+	inews                         Inews                     0              
+	ispell                        Ispell                    ISPELL         
+	mime_type_query_command       MimeTypeQueryCommand      0              
+	mixmaster                     Mixmaster                 MIXMASTER      
+	new_mail_command              NewMailCommand            0              
+	pager                         Pager                     builtin        
+	pgp_clearsign_command         PgpClearsignCommand       0              
+	pgp_decode_command            PgpDecodeCommand          0              
+	pgp_decrypt_command           PgpDecryptCommand         0              
+	pgp_encrypt_only_command      PgpEncryptOnlyCommand     0              
+	pgp_encrypt_sign_command      PgpEncryptSignCommand     0              
+	pgp_export_command            PgpExportCommand          0              
+	pgp_getkeys_command           PgpGetkeysCommand         0              
+	pgp_import_command            PgpImportCommand          0              
+	pgp_list_pubring_command      PgpListPubringCommand     0              
+	pgp_list_secring_command      PgpListSecringCommand     0              
+	pgp_sign_command              PgpSignCommand            0              
+	pgp_verify_command            PgpVerifyCommand          0              
+	pgp_verify_key_command        PgpVerifyKeyCommand       0              
+	print_command                 PrintCommand              lpr            
+	query_command                 QueryCommand              0              
+	sendmail                      Sendmail                  SENDMAIL -oem -oi
+	shell                         Shell                     /bin/sh        
+	smime_decrypt_command         SmimeDecryptCommand       0              
+	smime_encrypt_command         SmimeEncryptCommand       0              
+	smime_get_cert_command        SmimeGetCertCommand       0              
+	smime_get_cert_email_command  SmimeGetCertEmailCommand  0              
+	smime_get_signer_cert_command SmimeGetSignerCertCommand 0              
+	smime_import_cert_command     SmimeImportCertCommand    0              
+	smime_pk7out_command          SmimePk7outCommand        0              
+	smime_sign_command            SmimeSignCommand          0              
+	smime_verify_command          SmimeVerifyCommand        0              
+	smime_verify_opaque_command   SmimeVerifyOpaqueCommand  0              
+	visual                        Visual                    vi             
