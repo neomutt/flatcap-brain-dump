@@ -20,8 +20,6 @@ docs:
 	update description for "unvirtualmailboxes"
 	to say: the same as unmailboxes!
 
-dump_config => RC 0 always
-
 kill plural enums, e.g. MaiboxType*s*
 
 smime_timeout missing LNUM
@@ -30,9 +28,6 @@ magic "alias" mailbox stored on server
 	multiple emails
 
 DOGFOOD
-
-BUG: (new config)
-	$record ends up as ~/^
 
 sidebar
 	colours using patterns? ~N ~F
@@ -61,7 +56,6 @@ difference between Body and Attachment
 
 reindent body.h comments
 need unaccount [name|*]
-regex acutest change '\1' to '[a-b'
 update roadmap page
 my first PR page
 README donate
@@ -105,9 +99,6 @@ trivial - conditional constants - reduce to a comment
 	MUTT_OPEN_HOOK
 	REDRAW_SIDEBAR
 
-79 references to (*fn)() function pointers
-	typedef and doc all APIs
-
 sidebar commands <next-sibling>, <prev-sibling>, <parent-folder>
 
 do we log questions? (and their answers?)
@@ -133,9 +124,6 @@ have cache settings per account (or per folder), with flags
 
 create menu API
 	different selection domains: Y/N -> multi-selection lists
-
-create progress API
-	encapsulate read_inc, write_inc, net_inc
 
 neolog vimrc, 'set wrap linebreak showbreak=\ \ \ '
 

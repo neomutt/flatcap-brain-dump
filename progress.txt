@@ -8,6 +8,9 @@ docs
 	set time_inc = 0 for best results (ref: paravoid)
 	test read_inc, write_inc, net_inc too
 
+create progress API
+	encapsulate read_inc, write_inc, net_inc
+
 create()
 update()
 destroy()
