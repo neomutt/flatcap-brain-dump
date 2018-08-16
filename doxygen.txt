@@ -18,10 +18,6 @@ Add extra 'notes' column to function tables
 	| address_native_set() | Set an Address | Implements cst_native_set |
 hard to add it conditionally, unless we have lots of temp files
 
-parse ///< Config: into a single page
-
-update shield percentages
-
 deployment
 	better logging
 	timestamps
@@ -43,12 +39,6 @@ start changing one-liner comments to //, choice of
 	//!< comment
 	///< comment
 
-Create a page from all the Config: comments
-	link back to code page
-
-doxy all the menu callback functions, e.g. tag
-	ALL callbacks?  68 definitions
-
 doxy how many (%age) are doc'd?
 	global vars/config
 	struct/union
@@ -56,11 +46,6 @@ doxy how many (%age) are doc'd?
 	#defines
 create shield for each
 	colour coded according to %age
-
-doxy main page, add %age completion
-
-shield for doxygen coverage
-	add to doxy deploy
 
 bcache doxy
 hcache doxy
@@ -79,8 +64,6 @@ add dependency info to library doxy pages
 	a dot diagram
 
 move lib doxygen notes to header file?
-
-tweak doxygen to #define more things for better coverage
 
 update all doxy templates
 	JAVADOC_AUTOBRIEF on
@@ -122,8 +105,5 @@ p prototypes
 x external
 
 https://img.shields.io/badge/functions-100%-green.svg
-https://img.shields.io/badge/structs-100%-green.svg
 https://img.shields.io/badge/members-31%-yellow.svg
 https://img.shields.io/badge/enums-14%-red.svg
-https://img.shields.io/badge/globals-11%-red.svg
-https://img.shields.io/badge/config-3%-red.svg
