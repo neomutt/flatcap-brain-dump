@@ -1,6 +1,9 @@
 UI
 	In messages/errors rather than quoting filenames
 	bright/bold them -- how?
+	custom printf-specifier?
+	mutt_message("can't read %Fs");
+	mutt_message inserts the colour codes if required
 
 Most translation messages that are questions (to prompt the user)
 	have trailing whitespace -- nuisance for the translator
@@ -64,8 +67,6 @@ user:
 	gem install github-pages bundler jekyll-{gist,sitemap,algolia,mentions}
 	git clone https://github.com/neomutt/neomutt.github.io
 	jekyll serve
-
-typedef for init parse functions?
 
 trivial - conditional constants - reduce to a comment
 	Hmm... non-functional enum entries might cause problems
@@ -599,8 +600,6 @@ distro pages
 	how to find/use a coredump
 
 neo admins -> all public org members
-
-kill status "new-bug"?
 
 completion has a static var
 	encapsulate & refactor

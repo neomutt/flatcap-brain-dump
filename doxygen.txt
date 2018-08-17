@@ -1,8 +1,3 @@
-browser.c add_folder() missing comment block
-
-check all structs are " *struct* X - desc"
-check all typedefs are " *typedef* X - desc"
-
 link doxy shields to pages!
 	add shield for 'files with @page'
 
