@@ -16,10 +16,6 @@ megabuild
 	use git commit range + clist
 	nested build dirs
 
-docs:
-	update description for "unvirtualmailboxes"
-	to say: the same as unmailboxes!
-
 kill plural enums, e.g. MaiboxType*s*
 
 smime_timeout missing LNUM
@@ -49,12 +45,9 @@ jekyll/github pages howto
 	(all deps needed)
 	put in a docker (search first)
 
-pgpring still mentioned in Makefile.autosetup
-
 difference between Body and Attachment
 	which members are used for which?
 
-reindent body.h comments
 need unaccount [name|*]
 update roadmap page
 my first PR page
@@ -62,12 +55,6 @@ README donate
 
 docs for query_command
 	sveng: the description to query_command in the neomuttrc contains "see 'query'".. but i dont see a "query" option at all
-
-trivial turn two bool parms into one flag
-	int mutt_aside_thread(struct Header *hdr, short dir, short subthreads);
-
-trivial
-	imap/imap.c if (!np->b->magic)
 
 jekyll setup from minimal install
 root:
@@ -79,14 +66,6 @@ user:
 	jekyll serve
 
 typedef for init parse functions?
-
-buf,buflen
-	mutt_str_strcat
-	mutt_pretty_mailbox
-
-boolify param
-	mutt_sb_notify_mailbox(created)
-	mutt_aside_thread(dir, subthreads)
 
 trivial - conditional constants - reduce to a comment
 	Hmm... non-functional enum entries might cause problems
@@ -195,9 +174,6 @@ int url_pct_decode(char *s)
 void url_pct_encode(char *dst, size_t l, const char *src)
 	move to library
 	list_to_pattern() in ncrypt/crypt_gpgme.c is similar
-
-dupe func
-	mutt_signal_init()
 
 bug
 	notmuch + mail_check_stats leads to many expensive queries
@@ -370,10 +346,6 @@ repo: daily, weekly, monthly updates
 
 gpg --no-verbose -> def config & contrib
 
-distclean doesn't remove html/
-
-neotest parallel -p, out-of-tree builds
-
 shield for freenode/irc --- silver searcher
 
 mentor team?  probably not yet
@@ -392,9 +364,6 @@ need (vim-like) foldopen option for search matches
 	jump?
 
 post conceal vim to dev/prog-tips page
-
-time to reformat the source?
-	nestled {}s -> 8500 fewer lines (8%)
 
 setup function to make aliases
 
@@ -457,13 +426,6 @@ log level ∀ file operations
 
 log the FD of open/close and other file ops
 
-homebrew
-	new build options
-	team
-	formula
-	our copy
-	travis
-
 test imap server: openssl s_client -connect 10.8.0.1:imaps
 
 relative time option for the index_format
@@ -524,14 +486,6 @@ make "lua" a medium task
 	rename [travis]?
 
 need for TAILQ_COUNT()?
-
-not all mutt_message() mutt_error() use gettext _()
-	alias.c: mutt_message("Trouble adding alias: %s.", strerror(errno));
-	copy.c: mutt_error("The length calculation was wrong by %ld bytes", fail);
-	init.c: mutt_error("Error: impossible to build path of '%s'.", rcfile_path);
-	init.c: mutt_error("Error: Cyclic sourcing of configuration file '%s'.", rcfile);
-	init.c: mutt_error("Error: %s", err->data);
-	main.c: mutt_error("%s: I don't want to run with privileges!", argv[0]);
 
 make E123 a parameter for mutt_error()?
 	selective display?
@@ -647,10 +601,6 @@ distro pages
 neo admins -> all public org members
 
 kill status "new-bug"?
-
-add to mx API
-	mutt_pretty_mailbox
-	mutt_canonicalise_mailbox
 
 completion has a static var
 	encapsulate & refactor
@@ -1065,11 +1015,6 @@ update docs
 	more shields
 	donate in more places
 	credit all reference
-mime.crivial
-	encoder_t is a PTR
-	initialise to NULL
-	check for other typedefs
-
 
 python coder needed to update botty
 	use github api
@@ -1525,10 +1470,10 @@ add colour to the browser
 notifications happen when something happens, e.g. new mail
 consider a "no longer any more new mail" notification
 negative acknowledgements
-each notificiation
+each notification
 	would be independent
 	could be on or off
-user is notified when a notificiation status *changes*
+user is notified when a notification status *changes*
 
 upstream
 	s/ascii_str/mutt_str/
@@ -1821,9 +1766,6 @@ CRON
 PR requirement all commits build
 	make dist/clean on merge
 	not nec of each commit
-
-git repo
-	real names (unless anon)
 
 email
 	folding the index
@@ -2612,8 +2554,6 @@ need way to repeatably test net failure
 find all non-mail users of pager
 	add to index/pager tests
 
-ask new contributors to fill in 5 function prototypes!
-
 does label workflow make sense for PRs?
 	if not, why not
 
@@ -3068,9 +3008,6 @@ mutt config source DIR
 	recurse?
 
 web mailing list page with sven's muttrc example
-
-version string bug -> devel list
-	reinstate flea?
 
 no need to subscribe to mailing lists
 
