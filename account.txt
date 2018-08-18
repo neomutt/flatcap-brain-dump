@@ -145,3 +145,10 @@ Header*View* is_tagged, etc can't be List
 	can we have *both*, Incoming and AccountList?
 	How do I move Context inners to Mailbox?
 
+Mailbox set, find -> obj + type
+set trash = "x://path"
+later resolve_mailbox($trash) -> lookup
+find it, update ptr.  !found -> get type
+Account -> Mailbox -> Email
+path, (type?), Mailbox?
+

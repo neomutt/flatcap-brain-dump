@@ -1,3 +1,38 @@
+option to mailcap-view objects from the browser (on attach)
+
+do we need an Email object?
+	wraps Hdr, Body, Env, etc
+
+Display help mailbox is no others are 'mailboxes'd
+
+Dovecot docker (easy task)
+
+new_mail_command on maildir has dependency on $check_new
+	document on feature page
+
+trivial
+	mutt/history.h has proto for listener!
+
+Easy: postpone question to three-way
+	(S)ave, (D)elete, (C)ancel
+
+Disable some default keybindings?
+	e.g. <print>, mailing list functions
+	or have sample config rc snippets
+	or change to more key-chords
+		tag-X, tag-Y, tag-Z
+	become
+		tx, ty, tz
+	snippets in /etc/neomutt/*.rc?
+	/usr/share/neomutt/snippets/
+
+have a 'theme' command for use in restricted situations, like
+	neomutt-tutor
+
+BUG: message says 'purge' but actually deletes (to trash)
+	$trash set, 'd' Delete, vs 'D' purge
+	then leave folder to commit
+
 UI
 	In messages/errors rather than quoting filenames
 	bright/bold them -- how?
