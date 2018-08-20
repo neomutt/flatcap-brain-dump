@@ -1,3 +1,5 @@
+dynamically create the "extra files2 list for all the gfx
+
 link doxy shields to pages!
 	add shield for 'files with @page'
 

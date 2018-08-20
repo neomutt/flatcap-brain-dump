@@ -1,3 +1,15 @@
+split out myvar
+
+status/pager format
+	if empty don't display?
+	will need a dividing line between index and pager
+	collapse the status bar and command line?
+	what about error messages?  timed?
+
+trivial
+	hdrline '%g' doc'd as NNTP but it's now '%q'
+	check %q works correctly
+
 option to mailcap-view objects from the browser (on attach)
 
 do we need an Email object?
@@ -1814,9 +1826,6 @@ search for patches & list and adopt
 find maintainers for distro pages
 
 conceal IMAP password
-
-#ifdef entire file in smime.h
-	pgp.h pgplib.h remailer.h smime.h
 
 hcache auto magic everything
 READMEs tidy review
