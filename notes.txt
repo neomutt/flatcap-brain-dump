@@ -1,3 +1,14 @@
+mutt/regex.c:140 uses STAILQ_FOREACH_FROM
+	when STAILQ_FOREACH would do
+
+mutt_bits_* functions use array of unsigned char
+	unnecessary, nobody uses more that 16 bits
+	just use unsigned int and simplify the macros
+
+release branch
+	update for myvar.c
+	update to test doxygen? check all @params
+
 split out myvar
 
 status/pager format
