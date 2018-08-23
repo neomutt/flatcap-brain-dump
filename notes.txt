@@ -1,4 +1,30 @@
-mutt/regex.c:140 uses STAILQ_FOREACH_FROM
+easy: locale.c
+	needs to be free of <intl.h>
+	4 places: setlocale to C and call strftime()
+	4 places: setlocale to C and call mutt_make_string() which has date/time components
+	main.c has setlocale(LC_ALL, "");
+	Some strange code in ncrypt/crypt_gpgme.c
+	wrap up all but gpgme
+
+easy
+	strncpy -> strfcpy
+	docker for dovecot
+	stailq smimekey
+	stailq pgpkey
+	muttindexwindow workaround
+	refactor mbox_path_probe (does fgetc, then fread)
+
+change path_probe to return enum
+	inc ERROR codes
+	check callers check for error
+
+list of upstream commits waiting
+	add to todo txt in [upstream]
+	merge the simple ones?
+
+rename maildir/mh.c maildir/maildir.c
+
+trivial mutt/regex.c:140 uses STAILQ_FOREACH_FROM
 	when STAILQ_FOREACH would do
 
 mutt_bits_* functions use array of unsigned char
