@@ -24,9 +24,6 @@ list of upstream commits waiting
 
 rename maildir/mh.c maildir/maildir.c
 
-trivial mutt/regex.c:140 uses STAILQ_FOREACH_FROM
-	when STAILQ_FOREACH would do
-
 mutt_bits_* functions use array of unsigned char
 	unnecessary, nobody uses more that 16 bits
 	just use unsigned int and simplify the macros
@@ -35,17 +32,11 @@ release branch
 	update for myvar.c
 	update to test doxygen? check all @params
 
-split out myvar
-
 status/pager format
 	if empty don't display?
 	will need a dividing line between index and pager
 	collapse the status bar and command line?
 	what about error messages?  timed?
-
-trivial
-	hdrline '%g' doc'd as NNTP but it's now '%q'
-	check %q works correctly
 
 option to mailcap-view objects from the browser (on attach)
 
@@ -54,13 +45,8 @@ do we need an Email object?
 
 Display help mailbox is no others are 'mailboxes'd
 
-Dovecot docker (easy task)
-
-new_mail_command on maildir has dependency on $check_new
+new_mail_command on m
 	document on feature page
-
-trivial
-	mutt/history.h has proto for listener!
 
 Easy: postpone question to three-way
 	(S)ave, (D)elete, (C)ancel

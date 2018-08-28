@@ -18,8 +18,6 @@ The cycle might look like:
 may merge into master sooner if there are lots of commits to [translate]
 or lots of changes to strings in master
 
-only auto-push from branch 'translate'
-
 document $1 cformat notation
 	does this require code changes?
 
@@ -30,9 +28,6 @@ move scripts to management repo
 add star by recently updated translations
 	need to filter out commits that affect *.po
 	e.g. sync translations to source
-
-code/translation
-	string "notmuch" -> "Notmuch"
 
 add notes about how to download the latest
 file from the translation branch
@@ -121,10 +116,6 @@ branch - pull, work, push
 	even if WIP
 	NO, that would break updates for all others
 
-kill ! in mutt_message and mutt_error
-	6 msg
-	73 err
-
 dupes?
 	"Can't create %s"
 	"Can't create %s."
@@ -195,8 +186,6 @@ poedit settings
 
 messages/layout of neo
 	∀ languages
-
-don't translate *code* error messages
 
 doc translation plan
 	start in sync
