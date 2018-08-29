@@ -1,3 +1,13 @@
+regex refactor
+slist
+investigate addr functions
+mb functions
+strtok fns
+error prefix
+parse warnings
+concat
+my first pr
+
 split up multiple assignments
 	grep " = [^,;]* = "
 

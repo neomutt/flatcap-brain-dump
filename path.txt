@@ -1,0 +1,121 @@
+path_pretty()
+	order for evaluation?
+	run path_canon() first
+
+consider
+	folder for +
+	home for ~
+
+tidy paths for ???
+
+mailbox backends don't know about $folder
+shorten by +, ~, what else?
+
+canon. expand prefix ∀?
+
+separate path from mbox?  YES
+	where? when?
+
+canon
+	expand
+	local path vs canon mailbox
+
+path:
+	expand ~ (need $HOME)
+	tidy dots
+
+mbox:
+	expand leading 'magic' chars
+	get type
+	need $folder
+	delegate to mxapi
+
+folder expansion *needs* to be done my mbox backend
+	need to identify magic of $folder first
+
+if [^-!<>@] subst, LOOP
+if [+=] identify $folder, delegate to mxapi, END
+if [~] subst $HOME, END
+else relative?
+
+tidy
+	~/ or ~X/
+	/ or other
+
+check: are mutt_path_dirname() and mutt_path_parent() identical?
+
+[☥] all the neomutt magic folder abbreviations
+	[^-!<>@+=~]
+
+canon(X) full path
+	~/path
+	relpath
+	untidy path
+	full mbox
+	+mbox
+	untidy mbox
+	[☥] -> expand tidy
+
+pretty(x)
+	full path
+	~/path
+	relpath
+	untidy
+	full mbox
+	+mbox
+	untidy mbox
+	[☥]?
+
+1) canon
+2) $folder
+3) ~/
+
+path_abbrev_folder
+path_parent
+str_inline_replace
+mx_path_{probe,canon,pretty,parent}
+
+when do M->path, M->realpath differ?
+	M->realpath is realpat()d (symlinks followed)
+
+replace realpath() with mutt_realpath()
+
+add realpath param to mailbox_new()
+	since we already know it
+
+fs.path = absolute
+fs.realpath = real path (no symlinks)
+
+rename realpath to canon?
+
+imap.path = full imap://...
+imap.realpath = imap://user:port/...
+
+notmuch.path = full notmuch://?query
+notmuch.realpath = notmuch://path/to/db?query
+
+when is $folder removed?
+what if $folder includes user:port or db path?
+
+canon: Leading magic chars
+	+          Folder
+	^          CurrentFolder
+	-          LastFolder
+	!!         LastFolder
+	<          Record
+	>          Mbox
+	!          Spoolfile
+	@user      save-hook path for user
+	=          Folder
+	~/         HomeDir
+	~user/     user's Home dir
+	/full/path Absolute path
+	rel/path   Relative path
+
+mx_pretty(path, folder)
+	probe(path) -> type
+	if mxapi.pretty delegte
+		maildir, etc, tidy path (tilde)
+		imap tidy *sub*path
+		notmuch -> NULL?
+

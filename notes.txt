@@ -1,3 +1,49 @@
+killing context
+	pass M to index as extra param
+	start on imap (58) fake mxapi
+	config to A-tree, then mx_mbox_open on Imap
+	rename existing Account out of the way
+
+fix travis build
+
+
+should the current folder show up in the sidebar
+	even if it's not mailboxes'd?
+	nice!
+	then disappear when de-selected?
+
+trivial
+	nntp_expand_path doxy outparam is wrong
+	unify names of all parse_X functions for init.h
+	boolify mutt_select_file locals multiple, folder, mailbox
+
+trivial
+	doxy docs for imap config, what's the difference?
+	ImapCheckSubscribed
+	ImapListSubscribed
+
+mxapi add?
+	mbox_new() is there new mail?
+	mbox_empty() is there any mail?
+
+add flags to DT_PATH for
+	FILE_ONLY
+	DIR_ONLY
+	NO_SYMLINK
+	MUST_EXIST
+	NOT_EMPTY
+	validator check for readable/reachable
+
+trivial
+	change doxy comments for all MxOps to include link to struct MxOps
+
+trivial
+	doxygen drop description from docs with Implements?
+	NO, often meaningful
+	compare_to - Compare the 'to' fields of two emails - Implements ::sort_t
+
+easy: merge Finnish translation
+
 easy: locale.c
 	needs to be free of <intl.h>
 	4 places: setlocale to C and call strftime()
@@ -29,8 +75,15 @@ mutt_bits_* functions use array of unsigned char
 	just use unsigned int and simplify the macros
 
 release branch
-	update for myvar.c
-	update to test doxygen? check all @params
+	Warning: ignoring unsupported tag `ALLOW_UNICODE_NAMES    =' at line 66, file -
+	Warning: ignoring unsupported tag `TOC_INCLUDE_HEADINGS   =' at line 277, file -
+	Warning: ignoring unsupported tag `GROUP_NESTED_COMPOUNDS =' at line 334, file -
+	Warning: ignoring unsupported tag `HIDE_COMPOUND_REFERENCE=' at line 505, file -
+	Warning: ignoring unsupported tag `WARN_AS_ERROR          =' at line 729, file -
+	Warning: ignoring unsupported tag `PLANTUML_JAR_PATH      =' at line 1755, file -
+	Warning: ignoring unsupported tag `PLANTUML_CFG_FILE      =' at line 1760, file -
+	Warning: ignoring unsupported tag `PLANTUML_INCLUDE_PATH  =' at line 1765, file -
+	Warning: ignoring unsupported tag `WARN_AS_ERROR=' at line 1826, file -
 
 status/pager format
 	if empty don't display?

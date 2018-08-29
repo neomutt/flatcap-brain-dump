@@ -152,3 +152,159 @@ find it, update ptr.  !found -> get type
 Account -> Mailbox -> Email
 path, (type?), Mailbox?
 
+allow utf-8 account names?
+	only forbid ':' scope separator
+	store as punycode?
+	store as b64-encoded?
+	something to allow all characters
+
+ac_get_str(A, IC_X) -> ptr to var
+	what if someone changes it? crash!
+
+have a magic Account for temporary mbox files?
+
+when opening a folder from, what path string do we get?
+	sidebar - full path
+	browser - full path
+	typed in - relative to current folder/account
+
+C)ontext, A)ccount, M)ailbox, H)eader, T)hread
+
+Move headers from C to M
+	H array, ref-counted
+
+C has Thread hashes (belong on M?)
+
+Move C hdrs, but not v2r (that's *our* array)
+
+First separate H from T?
+	could we leave T in H to start?
+
+Does the H need to know:
+	a) it's in a T?
+	b) which T it's in
+	H Header no, UH User-Header YES
+
+Does the UI wnat to work with UH which has T info, tagging, etc?
+
+HV HeaderView
+	C has HV[]
+T is tree of HV (ptrs to H)
+C needs to become MV (MailboxView)
+
+Index, Pager wrt H
+Who owns C, pass it down through functions
+
+29 uses of Incoming
+734 uses (82 functions using) Context
+
+N -> AL -> NL -> EL (HEB, etc)
+
+V)iew
+L)ist
+
+Index (MV), Pager (EV), Sidebar(AV) - viewers
+
+MV has M, EL (subset of M's)
+EL node (tagged, deleted, etc), sort
+EV has E, cahced text, colour info, view info
+AV has AL (subset of N's) current A, M, sort info
+
+base object for all has
+	type
+	refcount
+	bool deleted (or similar)
+
+sidebar
+	AV - $acc_view, $sb_sort
+	MV new-only, sort
+	SB maintains: highlight/selection, window view
+
+index
+	MV one mailbox
+	EV tagging, limit, sort, threading, current selection
+
+Pager
+	EV one email - local (per email settings)
+
+Index fmt uses I's MV, EV?
+Status bar uses I's MV info
+Pager bar needs I's MV info for (email x of y)
+	needs P's EV for subject, %age through email
+
+mx_open() open and attach to (create if nec.) account
+	NO already done
+config -> account tree
+open M, not ready, open A, open M
+Open A notify, e.g. sidebar A(red) -> A(green)
+Open M notify sb -> active M, Index clears
+Get Es notify -> Index populates
+	that's probably the index doing the work
+Open E notify whom?
+
+Can the status bar *not* exist - just run on notifications. NO!
+
+A name
+mailboxes x y z
+set folder
+set imap_user
+set imap_pass
+set spoolfile
+set postponed
+set trash
+set imap_list_subscribed
+
+need default A type unknown, unnamed
+
+'account' named A, type unknown [CREATE-A] (to AL)
+set folder -> local config (imap_user, pass, etc, too)
+mailboxes x y z relative to local $folder [ADD-M] to (to A)
+	=> type -> IMAP
+if mailboxes other:// type add to default (one type / A)
+
+M has ptr to A (needed for cfg, etc)
+chdir to PATH -> as As for a match
+	A.match against local $folder NO match -> fail
+	search through existing M [ABCDE] subscribed
+or
+	create new M [G]
+or
+	browser open / sidebar open
+
+M: last update: never
+A: state closed
+
+mx_mbox_open(M) -> imap_acc_open (M -> A)
+imap_acc_open(A) -> socket, conn stuff
+	get mailboxes? if so, update statuses of Ms
+	M: UNPOP, POPULATED, NOT_EXIST - notify
+open(M) -> imap_mbox_open(M)
+	if (!exist) error
+	if (POPULATED) done
+UNPOPULATED
+	get email IDs; notify (may be in hcache)
+
+"open" is too wide: need
+	list new
+	list all
+	get headers (list)
+	get struct (list)
+	get body (list)
+
+get headers -> EL
+	each with state
+	HEADER -> notify
+	get in reverse order (newest first)?
+
+notifications on ...?
+	N, A, M, E with recursive flag
+
+Index watches M+ (recursive)
+Pager watches E
+Sidebar N+
+
+Events NEW, CHANGED, DELETED
+
+Do objects need an IWatchable interface?
+	tough for the N object (not refcounted)
+
