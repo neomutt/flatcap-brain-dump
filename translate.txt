@@ -1,3 +1,5 @@
+news: fi, nl
+
 change deploy script to commit *AS* the translator
 
 webpage: sharing

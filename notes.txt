@@ -1,3 +1,37 @@
+mxapi
+	add padding fn to all
+
+help://
+	add doxy pages
+
+rename Header -> Email?
+
+twitter "Re:" -> default config?
+
+#include guards #1328
+
+imap
+	cmd_parse_X functions
+	typedef? / Implements?
+
+users
+	set flp=^\\(Cc\\\|To\\\|From\\\|Bcc\\\|Subject\\\|Reply-To\\):
+	extend to all common headers
+	include vim's default settings
+	need to set 'ai'
+	formatoptions needs 'n'
+
+trivial
+	void mx_fastclose_mailbox(struct Context *ctx)
+	merge #ifdef blocks
+
+trivial
+	pattern.c:        tmp->stringmatch = (*ps.dptr == '=') ? true : false;
+	pattern.c:        tmp->groupmatch = (*ps.dptr == '%') ? true : false;
+
+trivial
+	grep " = [^,;]* [!=]= "
+
 create a coding 'charter'
 	what's expected
 		from you
