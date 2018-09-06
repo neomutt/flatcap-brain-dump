@@ -1,5 +1,9 @@
-mxapi
-	add padding fn to all
+boolify
+	be_edit_header(force)
+
+check [release]
+	config check
+	one of regexes is missing '\' before a '+'
 
 help://
 	add doxy pages
@@ -7,8 +11,6 @@ help://
 rename Header -> Email?
 
 twitter "Re:" -> default config?
-
-#include guards #1328
 
 imap
 	cmd_parse_X functions
@@ -20,14 +22,6 @@ users
 	include vim's default settings
 	need to set 'ai'
 	formatoptions needs 'n'
-
-trivial
-	void mx_fastclose_mailbox(struct Context *ctx)
-	merge #ifdef blocks
-
-trivial
-	pattern.c:        tmp->stringmatch = (*ps.dptr == '=') ? true : false;
-	pattern.c:        tmp->groupmatch = (*ps.dptr == '%') ? true : false;
 
 trivial
 	grep " = [^,;]* [!=]= "
@@ -156,6 +150,8 @@ smime_timeout missing LNUM
 
 magic "alias" mailbox stored on server
 	multiple emails
+	subject determines how it's processed
+	signed for safety
 
 DOGFOOD
 
