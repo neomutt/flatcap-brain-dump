@@ -1,5 +1,36 @@
+trivial add () to fns
+	Implements ::cst_destroy
+	Implements ::cst_native_get
+	Implements ::cst_native_set
+	Implements ::cst_reset
+	Implements ::cst_string_get
+	Implements ::cst_string_set
+	Implements ::cs_listener
+	Implements ::cs_validator
+	Implements MxOps::msg_padding_size
+	Implements MxOps::path_canon
+	Implements MxOps::path_parent
+	Implements MxOps::path_pretty
+	Implements MxOps::path_probe
+	Implements MxOps::tags_commit
+	Implements MxOps::tags_edit
+
+bug
+	mh_read_dir() calls maildir_parse_dir()
+	but doesn't check for -2 (abort)
+
+maildir:
+	readdir()
+	set errno to 0 first
+	check after and perror if nec
+
+move get_size from compressed to mutt/file
+
 boolify
 	be_edit_header(force)
+	mutt_file_lock(excl)
+	SigInt = 0;
+	maildir_delayed_parsing: local sort
 
 check [release]
 	config check
@@ -8,7 +39,9 @@ check [release]
 help://
 	add doxy pages
 
-rename Header -> Email?
+do we need an Email object?
+	wraps Hdr, Body, Env, etc
+	rename Header -> Email?
 
 twitter "Re:" -> default config?
 
@@ -45,6 +78,15 @@ should the current folder show up in the sidebar
 	even if it's not mailboxes'd?
 	nice!
 	then disappear when de-selected?
+	allow the user to 'subscribe' to it to keep it
+	allow the user to 'unsubscribe' from any folder
+		temporarily gone (till end of the session)
+	should this be:
+		<sidebar-subscribe>
+		<sidebar-unsubscribe>
+	or
+		<subscribe-folder>
+		<unsubscribe-folder>
 
 mxapi add?
 	mbox_new() is there new mail?
@@ -57,6 +99,8 @@ add flags to DT_PATH for
 	MUST_EXIST
 	NOT_EMPTY
 	validator check for readable/reachable
+	when validating the file/dir, preservve the stat info?
+		where? in the large 'File' object?
 
 easy: merge Finnish translation
 
@@ -85,6 +129,7 @@ list of upstream commits waiting
 	merge the simple ones?
 
 rename maildir/mh.c maildir/maildir.c
+	really need to split it up
 
 mutt_bits_* functions use array of unsigned char
 	unnecessary, nobody uses more that 16 bits
@@ -97,9 +142,6 @@ status/pager format
 	what about error messages?  timed?
 
 option to mailcap-view objects from the browser (on attach)
-
-do we need an Email object?
-	wraps Hdr, Body, Env, etc
 
 Display help mailbox is no others are 'mailboxes'd
 
