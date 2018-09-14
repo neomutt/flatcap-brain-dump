@@ -1,3 +1,41 @@
+create 'let' command for maths?
+	like set for numeric
+	confusing?  probably?
+
+index_sort = date,thread:rev-date?
+
+compress
+	does it really need: `bool locked`
+	or is the `FILE*` enough?
+
+use @extends for private data members
+
+new notmuch command
+	<goto-folder> -- open the maildir of the message
+	and magically select the correct email in the index
+
+notmuch should use maildir machinery to open msgs, etc
+	path -> Account -> Mailbox -> ops
+
+<thread-SCOPE>ACTION like ;d (tag-delete)
+	<thread-latest><display-message>
+	<thread-first-new><display-message>
+	only for threaded & collapsed
+
+convert compress to use ACL ... can DELETE?
+
+fake typedef for qsort functions?
+	already have sort_t -- qsort compatible?
+
+what would be needed to have an 'offline' mode?
+	how much extra folder info would we need?
+	just keep one copy of the 'last state'
+	how much code would need rearranging?
+
+trivial
+	header_cache_t *hc
+	check all vars of this type are called hc
+
 maildir:
 	readdir()
 	set errno to 0 first
@@ -11,10 +49,6 @@ check [release]
 
 help://
 	add doxy pages
-
-do we need an Email object?
-	wraps Hdr, Body, Env, etc
-	rename Header -> Email?
 
 twitter "Re:" -> default config?
 

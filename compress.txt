@@ -43,3 +43,18 @@ compress only opens one file at a time
 	security? create/delete use close?
 		no can't recompress after
 
+CTX ->	COMPRESS ->	REAL
+	size		size
+	hdrs		hdrs
+	ops		ops
+	data ->		data ->
+	hooks		(fp)
+	msg_count	msg_count
+	msg_unread	msg_unread
+	msg_flagged	msg_flagged
+
+which 'size' is relevant?  INSIDE
+	ptrs could redirects
+	nums can't
+
+

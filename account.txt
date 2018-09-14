@@ -308,3 +308,166 @@ Events NEW, CHANGED, DELETED
 Do objects need an IWatchable interface?
 	tough for the N object (not refcounted)
 
+backends:
+	imap, pop, maildir(mh), mbox(mmdf), nntp, notmuch, compressed
+
+ctx->data: pop, nntp, imap, mh, nm,
+hdr->data: nntp, nm, imap, pop (idstr)
+
+1 empty A per M if no <account>
+
+struct naming?
+	VMailbox (view)
+	LAccount (list)
+
+abstract the mailbox?
+	add/remove()
+	find_by_id()
+	find_by_path()
+	keep count
+	mbox -> array for views?
+
+slab allocator / factory ∀ myriad small objects?
+
+unify all private data {new,free,init,get}_X
+
+multiple notifications: let the receivers know what's coming
+	start(uniq id, expected count)
+	count * notify()
+	end(uniq id)
+	receivers can ignore some as long as they listen for `end`
+
+drop mailbox_free()?
+	use mbox_close
+
+create header_free() ∀ mailboxes
+
+should we steal account-hook <set> commands NO
+∀ backend, mailboxes - no info existing M, existing A?
+
+imap <mailboxes> imaps://apple.com/aardvark -> M
+     <mailboxes> imaps://apple.com/beaver
+
+empty new M, open -> new A done
+$folder + <mb> - path -> dummy A, no name, no type
+match -> attach, not -> create & attach
+A has no config for backwards compat
+<a><mb> apple banana -> 2*M -> A
+A is incomplete, but has config
+	set user,pass -> A
+adding to A -> need sibling test?
+how would that work for maildir?  can't NO
+open M, have A has type,config, still run A-hook
+
+open A
+
+how do we list all of M?
+0 named A -> iterate through ML as <mb>'d
+1+ named A -> <a> used -> assume always
+	iterate through AL, then ML
+
+sb_sort = A:alpha,M:new,M:alpha
+if A: missing, don't display -> only M? complicated
+if A: missing, don't sort A at all
+sb_display_account [LIST] of A
+
+maildir: <mb> a b c (no A specified) use dummy?
+open 'b' don't need A, so continue using dummy
+dummy means *AL*, ML, always
+
+maildir <a><mb> a b c  named A, grouped config
+only create dummy when needed?
+	simple case only 1 A
+sb_display = A1,A2,A3
+	empty => all
+	+=, -=
+	!= (toggle?)
+no advantage to displaying nothing!
+	turn off sidebar
+
+nm A matched by db path - contents of A just <mb>
+nntp A matched by user,pass,host -- all subscribed groups
+nm - param to name query? -> desc or
+	<sb-subscribe>
+	<sb-desc-folder> / <sb-name-folder>
+		to make it session-permanent
+
+mailbox_free -> separation between close and free?
+	needed?
+close -> maybe a reopen
+free -> DEAD forever
+
+open on Imap A -> LSUB & <mb>
+
+A types:
+	MboxA - name, config, data (->conn)
+	ConnA - user, pass, port, host, etc
+	(cfg)A - config
+
+Imap -> Connection (stacked), Mbox, Nntp too
+maildir -> NULL, compresse too
+notmuch -> db info
+
+how much M->data can become A->data?
+	A-data
+	M-data
+	E-data
+data-free will close connections if nec
+
+hcache is opened at parse time -- how long is it kept open?
+keep as A-data, keep open? YES
+
+change mh_data() to get_mh_data() -- so it isn't mistaken as a cast
+
+E-data
+	pop: uid
+	nntp: article num
+	imap: flags, uid
+	nm: uid
+	md: none (flags?)
+	mbox: none
+	comp: none
+
+mxapi: create compare function which uses backend-specific id
+
+check POP uid in hcache, refno too (meaning?)
+
+mx_open(imap://) (no folder info)
+find A -> need backends to do matching
+take host, user, port ito account (net backends)
+take dir into account (maildir)
+	no A for md -> base dir of '/'
+
+split up mxops into A, M, E versions
+A:
+	path*
+	mbox_open*
+	msg_padding
+M:
+	msg_open*
+	mbox_check/sync/close
+E:
+	tags*? or M?
+	msg_commit
+	msg_close
+
+do all X ops really want to happen on parent(X)?
+	so that... what?
+	notifications?
+	client shouldn't know/care
+
+M might cache tags on E
+	but that knowledge should be private to backend
+E has ptr to M
+	*it* should do *that* work
+close() on X, open on parent(X)?
+	is this the exception?
+
+who probes the first path?
+	we don't have an A
+have NULL A ∀ backends?
+	A(NULL)->probe(path)
+if probe isn't in mxapi, who has list of probes?
+	does probe return an A?
+		no, not enough info
+
