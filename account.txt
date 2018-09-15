@@ -343,6 +343,9 @@ drop mailbox_free()?
 create header_free() ∀ mailboxes
 
 should we steal account-hook <set> commands NO
+	POSSIBLY -- if we have a *named* account
+	and a matching hook
+
 ∀ backend, mailboxes - no info existing M, existing A?
 
 imap <mailboxes> imaps://apple.com/aardvark -> M
@@ -470,4 +473,82 @@ have NULL A ∀ backends?
 if probe isn't in mxapi, who has list of probes?
 	does probe return an A?
 		no, not enough info
+
+how do the backends get access to Config?
+	don't want to use a global
+	need main Config ptr to create A-specific Config
+
+------------------------------------------------------------
+
+who owns AL?
+
+int mx_mbox_open(M, flags);
+	M partially filled Mailbox, requirements are backend-specific
+
+int mx_mbox_open(AL, M, flags);
+	backend doesn't need to keep any objects
+	or need access to any globals (except its own)
+
+------------------------------------------------------------
+
+mailboxes a b c
+	a,b siblings, c different
+	create dummy A0
+	create one M per path
+		probe path to get TYPE
+		attach to dummy A0
+
+open M(b)
+	run A-hook (only set global config)
+		needs to be run by mx.c
+	has real A? NO
+	find matching A: FAILED
+	open A
+		create A1 (unnamed, no config)
+		connect to server
+		populate A1
+	populate M (using A1)
+
+open M(a)
+	run A-hook (only set global config)
+		needs to be run by mx.c
+	has real A? NO
+	find matching A: MATCHED - A1
+		using user,pass,host,port
+	populate M (using A1)
+
+open M(c)
+	run A-hook (only set global config)
+		needs to be run by mx.c
+	has real A? NO
+	find matching A: FAILED
+	open A
+		create A2 (unnamed, no config)
+		connect to server
+		populate A2
+	populate M (using A2)
+
+------------------------------------------------------------
+
+account apple
+mailboxes a1 a2 a3
+	create ML with A=apple
+
+open M(a1)
+	run A-hook (only set global config)
+		needs to be run by mx.c
+	has real A? YES
+	is open? NO
+	open A
+		create A1 (unnamed, no config)
+		connect to server
+		populate A1
+	populate M (using A1)
+
+open M(a2)
+	run A-hook (only set global config)
+		needs to be run by mx.c
+	has real A? YES
+	is open? YES
+	populate M (using A1)
 
