@@ -1,3 +1,28 @@
+boolify retval
+	mutt_account_match
+
+unify naming of conn_*() sock_*() functions
+
+nm queries
+	?name=XYZ
+	?desc=XYZ
+		for a named query
+	?subscribe[=yes]
+	?persistent[=yes]
+		for session-permanence?
+	equivalent to "mailboxes ^"
+	are options needed?  useful?
+
+typedef & docs ∀ free_data()
+
+nntp allow bare host urls
+	nntp://news.host.com  (no trailing slash)
+
+M - messages menu
+	show name of debug file in status bar
+
+unique name ∀ private 'data' members?
+
 create 'let' command for maths?
 	like set for numeric
 	confusing?  probably?
@@ -13,6 +38,7 @@ use @extends for private data members
 new notmuch command
 	<goto-folder> -- open the maildir of the message
 	and magically select the correct email in the index
+	query syntax? ?mid=[MESSAGE-ID]
 
 notmuch should use maildir machinery to open msgs, etc
 	path -> Account -> Mailbox -> ops
