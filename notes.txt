@@ -1,5 +1,17 @@
-boolify retval
-	mutt_account_match
+rename curs_main.c to index.c?
+
+custom-tags example
+	bind index,pager tt "<modify-labels>!todo\n" "Toggle the 'todo' tag"
+	should use macro
+
+new repos:
+	disable issues
+	protect master
+	add readme
+	add license
+	archive
+
+vim plugin? mhinz/vim-rfc
 
 unify naming of conn_*() sock_*() functions
 
@@ -58,16 +70,10 @@ what would be needed to have an 'offline' mode?
 	just keep one copy of the 'last state'
 	how much code would need rearranging?
 
-trivial
-	header_cache_t *hc
-	check all vars of this type are called hc
-
 maildir:
 	readdir()
 	set errno to 0 first
 	check after and perror if nec
-
-move get_size from compressed to mutt/file
 
 check [release]
 	config check
@@ -396,6 +402,7 @@ register "sensitive" regexes in the logger
 web
 	is layout: header nec?
 	they all use the same one
+		except post
 
 trivial
 	body_copy() : move foreach param -> param_dup()
@@ -470,7 +477,7 @@ calc libmutt test coverage as %age
 
 frequently merge master INTO translate?
 	would encourage frequent "make update-po"!
-macromacro
+
 translate: eliminate "\n" from strings where possible?
 
 expand reviewers to all frequent committers?
@@ -725,6 +732,8 @@ combine function.h and opcode.h, triple of:
 	Mapping of "function-name", "help description"
 	alpha order -> binary search
 	simplifies doc generation too
+	separate duplicate/overlapping names
+		separate OP_DELETE for each object worked on
 
 init.c
 	change retval to -2 => mutt_warning()
