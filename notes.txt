@@ -1,3 +1,24 @@
+#define names for 0, -1
+	SUCCESS, ERROR
+	∀ functions?
+	or enum to distinguish from "int"
+	start with just mxapi functions
+
+custom help bar text, like vim's tab bar, status bar -> lua?
+
+use flatcap/neomutt repo rather than ~/neomutt.git
+	(make *it* a mirror)
+
+who uses mxops outside mx.c and backend*.c
+
+option for folder auto-discovery
+	<mailboxes> everything server has
+	or all dirs and subdirs
+	make that the default behaviour?
+	unless <mailboxes> performed or check_subscribed set
+
+change 'g camp' to use 'pm'
+
 rename curs_main.c to index.c?
 
 custom-tags example

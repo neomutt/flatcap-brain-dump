@@ -552,3 +552,155 @@ open M(a2)
 	is open? YES
 	populate M (using A1)
 
+mbox check_all should happen at A-level (for efficiency)
+
+config: use synonyms and inheritance for A:user -> imap_user mapping?
+
+--------------------------------------------------------------------------------
+
+parse_mailboxes
+
+nm_path_probe, nm_normalize_uri
+mutt_expand_path(_regex)
+imap_path_probe
+	imap_expand_path
+	imap_parse_path
+	imap_conn_find
+	mutt_conn_find
+	mutt_account_hook
+mx_path_canon (^-expansion)
+	mx_path_probe -> path_canon
+nm_path_probe
+mx_path_probe
+mx_path_probe
+
+--------------------------------------------------------------------------------
+
+mailboxes + folder -> Mailbox
+	expand using $folder, $HOME
+	if expansion fails, mailbox is errored and dropped
+	backend may use "user", "login", "pass"
+DON'T search for A, or attach an A
+=> Mailbox (partial)
+NO user, login, pass info lost => NEED A
+=> find_A with partial info
+reason for Username, ImapUser checks (account_match)
+
+imap://user:pass@host:port/path
+
+when matching mailboxes should search in reverse order
+(most recently defined matching mailbox wins)
+
+store login, user, pass on A, give ptr to Connection (shorter-lived)
+
+auto A mailboxes:
+	imap: LSUB subscribed
+	nntp: newsrc
+	maildir: how? flat search, or recursive option?
+	notmuch: how? saved/pre-defined queries - how to we get them?
+
+--------------------------------------------------------------------------------
+
+mailboxes +name
+
+expand using $folder, $HOME (or die) => Mailbox (partial)
+find_A(M) or mx_find_A(M) -> mx_new_A(M?)
+	flag for new?  when else will we need a new A?
+new_A creates A and adata - need new for *name* of A
+backends might have different Config overrides
+
+--------------------------------------------------------------------------------
+
+Mailboxes - new uses for path, realpath
+	rename realpath to canon_path - contents BE-specific
+if !A then path = canon_path, except for compressed
+if A, then canon_path is canonical and path is pretty
+	relaive to A-$folder (except compressed)
+Internally convert =folder to +folder?
+A_find_M(path) uses global AL (for now)
+
+Does imap canon path contain user,pass,login,port?
+	if there's a specific imap_find(), then no (only if A)
+	what do we display to the user?
+	what if two M differ only by user?
+
+Account syntax?  A-name +folder - apple:+folder
+	should *this* be shared in path?  ON
+	if folder is in root of A-apple, then apple:folder is ok
+	":+folder" relative to current M/A, equiv to "+folder"
+
+canon path - "user" always, "pass" never, "login" if set, "port" if non-standard
+	A-$folder set to /a/b or imap://a/b - stored as what?
+	login info stored in A->data.conn
+	$folder stored in A->config
+		accept /a/b store as imap://a/b
+
+expandos for canon_path, pretty_path, A-name too
+	short_canon too? no (user,login,port) or make canon expando smart?
+	when creating a new A, check others to determine which attributes
+		make a path canonical (user,login,port) -- NO confusing
+	
+Mailbox/mbox path = user entered path, tidied up
+	canon_path = realpath() of path
+
+pop/nntp like imap
+notmuch - path nm://query
+	realpath include db path
+
+WON'T be a !A (it'll always be present) only an UNNAMED A
+
+--------------------------------------------------------------------------------
+
+mailboxes X
+	(relative|canon)
+	A(exists|missing)
+	account cmd?
+
+1)
+	canon(X)
+	probe(X) => magic, ops
+
+2)
+	if (A.cmd) use A
+	if (BE->find_A(X)) use A
+	else BE->create_A(NULL)
+
+3)
+	BE->find(A,X) -> M
+		error exists
+	else BE->create_M(X) -> success
+	ac_add(A,M)
+
+mx functions?
+	account_find(path)
+	mbox_create(path)
+	ac_add(A,M)
+	ac_remove(A,M)
+
+ac_function - names clash with Config
+ac functions above mbox functions in API
+
+"account apple" - don't know typ until "mailboxes"
+if current A, close existing?  NO
+or have mx_ac_free(A)? NO
+
+account_create(name) -> A(empty)
+
+--------------------------------------------------------------------------------
+
+mbox_create(path, canon, magic)
+	set magic, path, realpath
+
+ac_create(name) set name, init config (no name => set neither)
+ac_create(path) NO, ac_add(M) instead
+
+ac_add(A,M) -> A check/set type, add M, link objs
+ac_remove(A,M) -> unlink, remove M
+ac_find(A, path) ∀ M do BE-specific M-compare(M, path)
+
+who add A to BE list?  when?
+	ac_add(A,M)?
+
+does BE need a private list?
+	not to start with
+
