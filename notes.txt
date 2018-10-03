@@ -1,3 +1,16 @@
+odd code:
+	using strfcpy to write to a struct Buffer
+	over 20 occurrences in color.c, config/dump.c, curs_main.c, hook.c, init.c, keymap.c, mailbox.c, mutt_lua.c, pattern.c, score.c
+	mutt_str_strfcpy(err->data, _("current mailbox shortcut '^' is unset"), err->dsize);
+	grep "strfcpy.*->data"
+	might require buffer_reset() first
+
+unify naming of magic,type
+
+unify naming of X_create() vs X_new() ∀ objs
+
+unify data_free function names - typedefs ∀?
+
 #define names for 0, -1
 	SUCCESS, ERROR
 	∀ functions?
@@ -9,15 +22,11 @@ custom help bar text, like vim's tab bar, status bar -> lua?
 use flatcap/neomutt repo rather than ~/neomutt.git
 	(make *it* a mirror)
 
-who uses mxops outside mx.c and backend*.c
-
 option for folder auto-discovery
 	<mailboxes> everything server has
 	or all dirs and subdirs
 	make that the default behaviour?
 	unless <mailboxes> performed or check_subscribed set
-
-change 'g camp' to use 'pm'
 
 rename curs_main.c to index.c?
 
@@ -31,8 +40,6 @@ new repos:
 	add readme
 	add license
 	archive
-
-vim plugin? mhinz/vim-rfc
 
 unify naming of conn_*() sock_*() functions
 
