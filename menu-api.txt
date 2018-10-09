@@ -1,0 +1,55 @@
+
+create menu API
+	different selection domains: Y/N -> multi-selection lists
+
+need (non-)curses ask_question() and select_option()
+virtual functions.  select ties into curses menu
+
+<flatcap> I'd like to create a Menu API...
+<flatcap> there are too many deep parts of the code that ask the user questions...
+<flatcap> which means calling UI functions with curses deps
+<flatcap> at a quick glance, there are three types of question
+<flatcap> a) mutt_yes_no
+<flatcap> b) select option a)pple b)anana...
+<flatcap> c) full-blown menu (e.g. key selection)
+<flatcap> c) requires replacing the browser -- we'll leave that for another day
+<flatcap> factoring out a) and b) would remove deps from most of the deep code
+<flatcap> so, the task is: investigate the uses; create an API; refactor some code
+<gahr> so would this be about moving mutt_multi_choice to mutt/ ?
+<gahr> and mutt_yesno and mutt_quadoption
+<flatcap> mutt/X.c would have a dummy text-only version and mutt_X.c would have a curses version
+<flatcap> (I think)
+<gahr> what would you use the text-only versions for?
+<flatcap> testing
+<flatcap> like the dummy logging (which just printf's)
+<flatcap> or... a dummy version could read responses from a file to simulate the user (again for testing)
+<flatcap> sound reasonable?  or another crazy flatcap idea?
+<gahr> no, that sounds reasonable
+<gahr> mocking the prompt API would be nice
+<flatcap> yeah
+<flatcap> if you have time to investigate, that'd be great (and dump all you thoughts in an issue)
+<gahr> might be worth a deepthought :)
+<flatcap> :-)
+<gahr> I like what you did for the logger, so yes.. something in that direction
+<flatcap> thanks. yes, something like that
+<gahr> could be pointer to functions for the different types of questions (yes/no, quad, options)
+<flatcap> yep
+<gahr> that are initialized to their text-only mode, and can be set to curses versions  once curses is up
+<flatcap> yes.  it's probabaly going to be quite a small API
+
+<flatcap> example... deep in the connection library, the code asks the user some questions
+<flatcap> e.g. key selection, whether to allow a certificate, etc
+<flatcap> the functions that get called mutt_yes_no(), mutt_multi_choice() etc are full of curses stuff
+<flatcap> that means we could never have a separate connection library, or imap library without needing curses
+<flatcap> I suggest a multiplexor, like the logging -- a struct with several function prototypes in it
+<flatcap> at startup, that struct has a set of *text* question functions
+<flatcap> onces curses is initialised, it would be replaced with the pretty curses versions
+<flatcap> (for testing, we could have functions that answer the questions from a file)
+
+until c) full-blown menu is created, then #ifndef CURSES assume the answer 'y' (or first option) to all questions
+
+full menu: need a context:
+	create_menu()
+	add_to_menu()
+	perform_menu()
+

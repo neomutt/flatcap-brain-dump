@@ -1,3 +1,13 @@
+trivial
+	static void mailbox_check(struct Mailbox *tmp, struct stat *contex_sb, bool check_stats)
+	change tmp to m
+	merge #ifdef blocks
+
+trivial
+	ffch grep "@\(param\|retval\).*\.$"
+		mutt/charset.c: * @param[in]     flags Flags, e.g.
+		postpone.c: * @param resend  Set if resending (as opposed to recalling a postponed msg).
+
 odd code:
 	using strfcpy to write to a struct Buffer
 	over 20 occurrences in color.c, config/dump.c, curs_main.c, hook.c, init.c, keymap.c, mailbox.c, mutt_lua.c, pattern.c, score.c
@@ -331,9 +341,6 @@ neomutt -D with annotations
 
 have cache settings per account (or per folder), with flags
 	PREFETCH_ALL
-
-create menu API
-	different selection domains: Y/N -> multi-selection lists
 
 neolog vimrc, 'set wrap linebreak showbreak=\ \ \ '
 
@@ -1055,9 +1062,6 @@ tmpfile name neomutt-*DRAFT*-XXXXXX?
 	possible?
 	useful?
 	or set env to pass info to editor
-
-need (non-)curses ask_question() and select_option()
-virtual functions.  select ties into curses menu
 
 auto-sidebar bool option -- hide until needed on
 	<sidebar-show>
