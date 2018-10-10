@@ -1,0 +1,89 @@
+
+Take Control of your Email with Mutt, OfflineIMAP and Notmuch | hobo.house,
+https://hobo.house/2015/09/09/take-control-of-your-email-with-mutt-offlineimap-notmuch/
+
+aperezdc/notmuch-addrlookup-c: Address lookup tool for Notmuch in C using GLib and libnotmuch,
+https://github.com/aperezdc/notmuch-addrlookup-c
+
+gauteh/gmailieer: Fast fetch and two-way tag synchronization between notmuch and GMail,
+https://github.com/gauteh/gmailieer
+
+Bidirectional synchronization of notmuch tags with IMAP folders and Gmail Labels,
+http://deferred.io/2016/01/18/notmuch-tags-gmail-labels-bidirectional-sync.html
+
+for notmuch sync accross machines:
+http://www.muchsync.org/muchsync.html
+
+new notmuch command
+	<goto-folder> -- open the maildir of the message
+	and magically select the correct email in the index
+	query syntax? ?mid=[MESSAGE-ID]
+
+notmuch should use maildir machinery to open msgs, etc
+	path -> Account -> Mailbox -> ops
+
+bug
+	notmuch + mail_check_stats leads to many expensive queries
+
+notmuch feature docs need updating
+	ask notmuch team for help
+
+notmuch folder-hook's don't work fully:
+	virtual-mailboxes "a" "notmuch://?tag:dnssec"
+	doesn't match tag:dnssec
+	tag%3Adnssec does match
+	need to make the URI cleartext
+
+notmuch: what do users do externally?
+	can these actions be done using NM API?
+	before neomutt -> startup-hook
+	periodic -> timeout-hook
+	after neomutt -> shutdown-hook
+	what do we need to do?
+	where would the code fit in?
+
+requirements?
+	NotMuch >= 4.3.0
+
+drop notmuch checks -- assume newer version?
+
+notmuch:
+	nm_get_all_tags() is called twice (once to count, then once to build the list)
+
+virtual-mailboxes => notmuch
+	=> don't need "notmuch://"
+	or even "?query="
+
+run notmuch new from mutt when new mail arrives
+	necessary? or not?
+
+merge notmuch
+	"named-mailboxes" command
+	can describe sb entry
+	how to nest virtual?
+	sb obtion: display real, virtual, all mailboxes
+	nest -> fake mailboxes
+		named-mailboxes name [NOTHING]
+
+21:04 <bremner> I too would be interested in a page comparing neomutt's notmuch support with notmuch-mutt (the perl hack that ships with notmuch)
+
+notmuch tag-completion:
+	when using -XYZ<tab>
+	only match tags that exist on the selected mail(s)
+
+unnamed notmuch queries => create description based on query
+	need rename function for sidebar-notmuch
+	need option to autoadd them to the sidebar
+
+notmuch
+	add new virtual folders to sidebar
+		automatically?
+	what name should it be given?
+		automatic?
+			allow user rename?
+		ask user?
+	how can we make them persistant?
+
+notmuch.path = full notmuch://?query
+notmuch.realpath = notmuch://path/to/db?query
+

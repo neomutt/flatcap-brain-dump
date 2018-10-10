@@ -1,4 +1,3 @@
-
 create menu API
 	different selection domains: Y/N -> multi-selection lists
 
@@ -52,4 +51,8 @@ full menu: need a context:
 	create_menu()
 	add_to_menu()
 	perform_menu()
+
+need password entry, too
+
+for 'fake' menu (for testing), pass the function name to the answer function
 

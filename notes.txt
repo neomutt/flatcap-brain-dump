@@ -1,13 +1,3 @@
-trivial
-	static void mailbox_check(struct Mailbox *tmp, struct stat *contex_sb, bool check_stats)
-	change tmp to m
-	merge #ifdef blocks
-
-trivial
-	ffch grep "@\(param\|retval\).*\.$"
-		mutt/charset.c: * @param[in]     flags Flags, e.g.
-		postpone.c: * @param resend  Set if resending (as opposed to recalling a postponed msg).
-
 odd code:
 	using strfcpy to write to a struct Buffer
 	over 20 occurrences in color.c, config/dump.c, curs_main.c, hook.c, init.c, keymap.c, mailbox.c, mutt_lua.c, pattern.c, score.c
@@ -84,14 +74,6 @@ compress
 	or is the `FILE*` enough?
 
 use @extends for private data members
-
-new notmuch command
-	<goto-folder> -- open the maildir of the message
-	and magically select the correct email in the index
-	query syntax? ?mid=[MESSAGE-ID]
-
-notmuch should use maildir machinery to open msgs, etc
-	path -> Account -> Mailbox -> ops
 
 <thread-SCOPE>ACTION like ;d (tag-delete)
 	<thread-latest><display-message>
@@ -408,9 +390,6 @@ int url_pct_decode(char *s)
 void url_pct_encode(char *dst, size_t l, const char *src)
 	move to library
 	list_to_pattern() in ncrypt/crypt_gpgme.c is similar
-
-bug
-	notmuch + mail_check_stats leads to many expensive queries
 
 docs
 	convert from utf-8 to local $charset
@@ -963,9 +942,6 @@ copy startup tests 1-37 on dev/ webpage
 
 mutt-wizard: contact, adopt?
 
-notmuch feature docs need updating
-	as notmuch team for help
-
 move mutt cron to server
 
 all contributors -> list
@@ -1199,12 +1175,6 @@ change OPT_NO_CURSES to OPT_USE_CURSES
 	and reverse the logic
 	uses: 14 OPT_USE_CURSES, 33 !OPT_USE_CURSES
 	this means defaulting a global bool to true
-
-notmuch folder-hook's don't work fully:
-	virtual-mailboxes "a" "notmuch://?tag:dnssec"
-	doesn't match tag:dnssec
-	tag%3Adnssec does match
-	need to make the URI cleartext
 
 logging
 	mutt_index_menu() [1119]: Got op 151
@@ -1665,14 +1635,6 @@ distro:
 		news
 		links to features
 
-notmuch: what do users do externally?
-	can these actions be done using NM API?
-	before neomutt -> startup-hook
-	periodic -> timeout-hook
-	after neomutt -> shutdown-hook
-	what do we need to do?
-	where would the code fit in?
-
 docs - General build
 	config options
 	make targets
@@ -2102,8 +2064,6 @@ write REQUIREMENTS doc
 	NotMuch >= 4.3.0
 	etc
 
-drop notmuch checks -- assume newer version?
-
 double-width index (continuation of first for wide screens)
 	| side | index1 | index2 |
 
@@ -2378,9 +2338,6 @@ safe macros enhancement request: https://github.com/neomutt/neomutt/issues/69#is
 	have an "account" function that limits to one account
 	account "imap://..." set sidebar_visible = yes
 
-notmuch:
-	nm_get_all_tags() is called twice (once to count, then once to build the list)
-
 mailbox +/wibble
 mailbox =wibble
 	aren't equivalent, caused problems for squillis on irc 2017-02-10
@@ -2553,7 +2510,6 @@ collect useful tools in neomutt org:
 	offlineimap, mbsync
 	procmail, maildrop, sieve
 	etc
-	for notmuch sync accross machines, I have found this: http://www.muchsync.org/muchsync.html
 	swaks: smtp tester
 	khal
 	calcurse
@@ -2643,10 +2599,6 @@ distinguish distros' neomutt
 	{all|limited} features included
 	{hcache type}
 
-virtual-mailboxes => notmuch
-	=> don't need "notmuch://"
-	or even "?query="
-
 imap supports queries
 	"+?query=tab:inbox"
 
@@ -2686,17 +2638,6 @@ named-mailboxes use Mailbox Shortcut % ?
 	needs plugging into other code
 	abbrev names to "%name" if possible
 	if configured?
-
-run notmuch new from mutt when new mail arrives
-	necessary? or not?
-
-merge notmuch
-	"named-mailboxes" command
-	can describe sb entry
-	how to nest virtual?
-	sb obtion: display real, virtual, all mailboxes
-	nest -> fake mailboxes
-		named-mailboxes name [NOTHING]
 
 neomutt members -- ask preferred method of communication
 	pref name @flatcap, Rich
@@ -3041,8 +2982,6 @@ check mutt-tc for project ideas
 sort variables, etc before auto-completion
 	or properly sort the sources of the strings
 
-21:04 <bremner> I too would be interested in a page comparing neomutt's notmuch support with notmuch-mutt (the perl hack that ships with notmuch)
-
 imap_folder_format defaults to folder_format if empty
 
 alternative -- folder_format add
@@ -3067,10 +3006,6 @@ imap only 'n' messages option
 modularise header caching/dbs
 	=> needn't use same cache type
 	for header / message cache
-
-notmuch tag-completion:
-	when using -XYZ<tab>
-	only match tags that exist on the selected mail(s)
 
 pager -- sidebar gets updated but not status line / term header
 
@@ -3383,10 +3318,6 @@ dovecot public mailboxes for tips?  one public user?
 nntp tips? ":tips" command to toggle nntp vars and mailboxes
 
 fake/alternate curses -> true colour => separate fg, bg, term attrs like vim
-
-unnamed notmuch queries => create description based on query
-	need rename function for sidebar-notmuch
-	need option to autoadd them to the sidebar
 
 remote config -- like browser proxy setup
 	display to user "are you sure?"
@@ -3993,15 +3924,6 @@ Does getchar() wait or poll?  Need it to poll
 Polling -> Idle -> Event callback that I can use to populate BUFFYs
 sidebar needs NO-selection possibility for toggle-virtual
 need to clear index on Toggle-Virtual
-
-notmuch
-	add new virtual folders to sidebar
-		automatically?
-	what name should it be given?
-		automatic?
-			allow user rename?
-		ask user?
-	how can we make them persistant?
 
 sb expandos
 	compare letters to status_format letters
