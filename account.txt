@@ -704,3 +704,57 @@ who add A to BE list?  when?
 does BE need a private list?
 	not to start with
 
+do we need Connections?  they're not shared between BEs
+have a 1s timer call to all BEs
+	let them implement keepalive, etc
+save escaped (munged) imap mboxname in Mailbox->data (priv)
+
+mx_mbox_find(path, flags)
+uses Folder to expand // probe to identify(delegated to BE)
+or A_find_mbox(path, flags, **M, **A)
+returns M or new M or NULL
+should it create M?
+should it create A?
+should it *open* A?
+
+how many functions can be called 'cold' with just a path?
+	few?  1  change_folder()
+create_mailbox(have A)
+2 routes
+	notmuch
+		entire-thread -- new mbox
+		vf-from-query -- possible new mbox
+		window-back -- alter existing mbox and refresh
+		window-forward -- same
+	other folder
+		change-folder
+nntp -> existing mbox, or not
+	what if A doesn't exist?
+
+mbox_open ->
+	first find and refresh
+	else find A and open
+	else open A, open M
+
+do we need *A* check for new mail?  we'll already
+	or by A then M.  if A_check succeeds, next A, else ∀ M
+imap sends separate STATUS.  any advantage to A_check?
+(over n*M_check)?  sorting?
+
+maildir A - unnamed => root is /
+	named - who sets root? when?
+account apple [ARGS] -- passed to ac_create?
+	interferes with one-liner account NAME commands
+set folder = /x/y - trap this?  and set root?  how?
+
+when we A_add_M(M) select root?
+	if named, what do we select?
+what's the root of each BE?  (named vs unnamed)?
+pop,imap,nntp - (host,user,port) (named or unnamed)
+mbox,compressed - fixed, so irrelevant -- 1 M per A
+notmuch - db - fixed
+maildir
+	unnamed -> root is /
+	named but no A-$folder -> root is /
+	named and A-$folder -> root is A-$folder
+

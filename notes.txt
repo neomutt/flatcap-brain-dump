@@ -1,3 +1,44 @@
+imap A has Config:
+	"user" inherited from "imap_user"
+	"imap_user" synonym for "A:user"
+∀ imap config, setup synonyms without "imap_" ?
+	what does dump display?  tidy version or canonical?
+
+validators interfere with doc gen (manual.xml)
+
+revamp format string expandos (2018-10-12)
+	<darnir> But on a more serious note, how about printf style format strings, with modifiers?
+	<flatcap> they already accept %4.4s type modifiers, so it's a bit tricky to fit anything else in
+	<flatcap> the alternative is to steal back %{} and have %{name} -- it gets a bit verbose, but it's much clearer
+	<darnir> I like that
+	<darnir> It's a config file. I never mind things that are verbose in there
+	<flatcap> it might be possible to transition without causing trouble...
+	<flatcap> %{} is a date specifier, but if we check the contents for our magic words first
+	<darnir> With the verbose %{} ones. Yeah, that should be doable.
+	<darnir> I have a suggestion, but it depends on how willing you are to deprecate old syntax
+	<darnir> %{option-name:optional fmt string}
+	<darnir> And in a year or so, make the %{fmt} syntax disappear
+	<flatcap> so %{desc:.40} description limited to 40 chars
+	<flatcap> I like the self-contained-ness of it
+	<darnir> I like that as well
+
+deprecated config - default value is help string
+	what about synonyms that will be deprecated?  same?  yes (ish)
+
+restricted "source" command - after reading/applying colours
+	have a "keep these colours" qutestion
+	default to "No", with a *timeout*
+
+index_format expandos for "Waiting for info"? hourglass?
+IMAP use different TAG (a0001) ∀ A, a0, b0, etc
+libmx - no curses - what would be in it?
+config: set tests missing \ -- am *I* mistaked about need?  unnec?
+
+define config *functions* - named config scripts
+	perhaps named f-USERSPEC -> bind <f-userspec>
+
+logging - take a Buffer param
+
 odd code:
 	using strfcpy to write to a struct Buffer
 	over 20 occurrences in color.c, config/dump.c, curs_main.c, hook.c, init.c, keymap.c, mailbox.c, mutt_lua.c, pattern.c, score.c
@@ -1131,6 +1172,8 @@ rename & move history to ~/.neomutt/history
 
 attachment viewing -- keep a list of tempfiles, either
 	delete after x mins (configurable?)
+		some programs *watch* the file, so they'll get upset after x mins
+		need to keep until exit
 	delete all on exit
 	they're tmpfiles so should be in /tmp?
 		rather than ~/.mutt/tmp

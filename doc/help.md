@@ -56,21 +56,21 @@ Some mandatory\* fields, the others optional
 ## Mapping NeoMutt Structures
 
 Next we take the HelpTree and map it to NeoMutt structures:
-- Header
+- Email
 - Envelope
 - MuttThread
 
 As a 'fake' mailbox, many fields won't get used, and some will get abused.
 
-- `struct Header` - Each markdown file
-- `struct MuttThread` - Each directory, linking the `Header`s
+- `struct Email` - Each markdown file
+- `struct MuttThread` - Each directory, linking the `Email`s
 - `struct Envelope` - YAML headers
 
 Recurse through our HelpTree, reading the YAML header for each file.
 
 ### NeoMutt
 
-**struct Header**:
+**struct Email**:
 - offset - File offset of first line after YAML header
 - date_sent - Timestamp of last update
 - score - Search score (a measure of search relevance).
@@ -91,7 +91,7 @@ Recurse through our HelpTree, reading the YAML header for each file.
 - keywords - Envelope->userhdrs
 - last updated - Envelope->date_sent, Envelope->received
 - last updated by - Envelope->cc
-- label - Header->tags
+- label - Email->tags
 
 Some of these header fields might be generated from the git repo at install time.
 
