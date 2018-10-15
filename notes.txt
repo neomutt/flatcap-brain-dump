@@ -1,3 +1,14 @@
+sidebar abbreviation option
+	/apple/banana/cherry/folder becomes
+	/a/b/c/folder
+
+announce <named-mailboxes> on dev ml
+
+mailbox->[real]path -> ptr !array
+
+typedef for flags: unsigned tyep
+	u{8,16,32}, FLAGS{8,16,32}
+
 imap A has Config:
 	"user" inherited from "imap_user"
 	"imap_user" synonym for "A:user"

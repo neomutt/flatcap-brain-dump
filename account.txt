@@ -758,3 +758,13 @@ maildir
 	named but no A-$folder -> root is /
 	named and A-$folder -> root is A-$folder
 
+sidebar_account=X,Y,Z
+	missing accounts not hidden, just collapsed?
+or sidebar_collapsed=X,Y,Z
+
+dropping "imap_" means $folder MUST come first
+	else we don't know the BE type
+
+when we 'c'hange folder and <tab> complete
+	can we preserve M (as we know it)
+
