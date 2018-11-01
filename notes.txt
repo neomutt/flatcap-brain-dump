@@ -1,3 +1,7 @@
+browser - why are delete, rename and create folder limited to IMAP?
+	maildir, mbox should work too
+	mxapi?
+
 trap more signals?
 	cleanup files (not the partial emails) on exit
 	e.g. attachments

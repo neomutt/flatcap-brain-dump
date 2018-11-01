@@ -894,3 +894,8 @@ pop_fetch_mail doesn't use Context - assumes 1 host
 only BE can set/change realpath(canon)
 if path is undecorated, is path == realpath + strlen(imap://) ?
 browser - store paths as Mailbox - need refcounting first
+
+orphan M ∀ $paths like WeakPtr - resolve as needed
+$folder, ^, etc resolved, then M is canon'd, has magic too
+gets M ptr when ref-counted, A-ptr useful too (ref-counted)
+
