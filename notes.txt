@@ -1,3 +1,39 @@
+trap more signals?
+	cleanup files (not the partial emails) on exit
+	e.g. attachments
+
+Quoting
+	list of special items: $var, $VAR, \n, etc
+	have flags for each
+	literal backslash \\
+	behaviour of each unquoted, and each single quote type
+	then all pairs: '"X"' or "'X'", etc
+	single, double, backtick
+		'X', "X", `X`
+		'"X"', '`X`', "'X'", "`X`", `'X'`, `"X"`
+	triple?  a lot of processing
+	what about unicode curly quotes?
+
+flags typedef - call it BitField16?
+hcache move conditionals to end of struct?
+no pattern to search by label (or regex)
+doc pattern ~Y missing
+address sanitiser - lots of leaks
+rename notmuch files to nm_, lose mutt_ too
+when checking for new mail, distinguish local from remote (cheap from costly)?
+attach style sheet to email - mutt color commands - email-specific
+
+trivial
+	while (0) -> (false) 9 occurrences
+	or convert to using goto?
+
+trivial
+	pop.c - lots of sleep(2) on error paths
+
+on segfault, log backtrace to logfile too
+
+move close_attachments BEFORE log close
+
 sidebar abbreviation option
 	/apple/banana/cherry/folder becomes
 	/a/b/c/folder

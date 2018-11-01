@@ -768,3 +768,129 @@ dropping "imap_" means $folder MUST come first
 when we 'c'hange folder and <tab> complete
 	can we preserve M (as we know it)
 
+--------------------------------------------------------------------------------
+
+MAILDIR
+	set folder=/x
+	mailboxes =y
+
+1) no A, no M
+2) A, diff M
+3) A, same M
+
+1) (canon, probe), wrap in M, find A, create A, add M to A
+2) (canon, probe), find A, find M, wrap in M, add M to A
+3) (canon, probe), find A, find M
+
+Need to canon? NO just expand $folder NO
+then probe for magic
+∀ A call A_match_path(P) -> need canon
+
+16 calls to mx_mbox_open - most know M (or can find it)
+int mx_mbox_open(M*, flags) NO parse_mailboxes
+
+if (!canon) canon(M), sets magic }
+if (!magic) probe(M), sets magic }- move it inside functions
+mx_find_A(M) 1) NULL, 2,3) A
+
+1) create A(magic), set A's magic
+2,3) A_find_M(M)  2) NULL  3) M
+2) A_add_M(M)
+
+mx_find_A(M)  use magic, call BE->A_path_match(M->canon)
+M = A_find_M(A, M)  ∀ A.ML use BE cmp, do what on match?
+A_add_M(A, M) add M to A.ML, set links
+
+A_find_M(A,M*) -> error, no match make replaces M
+
+--------------------------------------------------------------------------------
+
+move mxops to A?
+most ops need M, not ctx.  ctx is a view for UI only
+
+canon includes decorations: imap://user@
+	path is just server-local path
+
+move all dot_dump nec headers to BE_private.h
+
+change backing for config vars:
+	$mbox, $postponed, $record, $spoolfile, $trash
+	to type Mailbox
+	need new config type
+	find/create M, attach to A
+	how do M's build deps fit in with Config?
+
+attach smtp Connection to NeoMutt object -> smtp_init(), smtp_shutdown()
+	or does smtp belong at A level -- one per A, or global?
+	$smtp_ur, pass, authenticaors - A-specific
+
+--------------------------------------------------------------------------------
+
+path is user specified - what if they specify decorations?
+real/canon doesn't exist M-specific (possibly split up)
+M comparisons done by BE
+path completely undecorated -> use "named" mailboxes if not suitable
+with IMAP delim of '.' should the path be '/' delimited? for ease of other code
+path is tidied and undecorated
+what about full path for status bar -- need realpath + decorations
+path relative to root
+canon - fully qualified & real, fully decorated (excluding default ports, etc)
+
+--------------------------------------------------------------------------------
+
+standard functions ∀ BE
+	vars: adata, mdata, edata
+	fns: BE_DATA_{free,new,get} (in this order)
+	vars: a Account, m Mailbox, e Email, ctx Context (will be mv)
+	@extends ∀ Xdata
+
+create an A-check ∀ notmuch M => one db open, close
+view obj automatically watches data obj
+struct Mailbox *m ∀ src
+adata and mdata should be private!
+BE_separate msg, hcache srcfile?  what else?
+	CurrentNewsSrv (kill this)
+check all ac_find() work, multiple A ∀ BE
+Connection's account info ptr *const*
+Add Buffer ptr ∀ mxapi - aim to remove all mutt_error!
+"INBOX" string 15 * in IMAP
+revert '=' to '+' conversion?  option?
+account-hooks not fired
+eliminate "ImapMbox" - what's its use?
+change conn_close to ** free
+*imap* complete_hosts is effectively complete_A() ∀ BE?
+
+--------------------------------------------------------------------------------
+
+A-hook - when is it called?
+	only on first M open - keep credentials
+	just before adata_new()
+folder-hook on every M
+match against
+	realpath
+	path
+	description
+change A hook to take (M)
+what does F-hook need?  same?
+what about after M-close? or reconnect after conn loss?
+so ∀ M open -> A-hook, F-hook  NO
+only if actually need to reconnect - when?
+BE_something() -> first check conn
+	get_adata() -> (re-)open conn -> A-hook first
+
+--------------------------------------------------------------------------------
+
+option $dont_close - don't mbox_close on leaving
+for check_all, do we need to run A-hook each time?
+	only for lost connections
+
+∀ BE_parse_path -> path -> ConnAcct - where?  add tests
+
+pop_fetch_mail doesn't use Context - assumes 1 host
+	if ctx, use it
+	if !ctx fetch all pop hosts?
+	if !PopHost - fetch all pop BE
+
+only BE can set/change realpath(canon)
+if path is undecorated, is path == realpath + strlen(imap://) ?
+browser - store paths as Mailbox - need refcounting first
