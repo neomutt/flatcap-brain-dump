@@ -822,7 +822,7 @@ change backing for config vars:
 
 attach smtp Connection to NeoMutt object -> smtp_init(), smtp_shutdown()
 	or does smtp belong at A level -- one per A, or global?
-	$smtp_ur, pass, authenticaors - A-specific
+	$smtp_url, pass, authenticaors - A-specific
 
 --------------------------------------------------------------------------------
 
@@ -893,11 +893,7 @@ pop_fetch_mail doesn't use Context - assumes 1 host
 
 only BE can set/change realpath(canon)
 if path is undecorated, is path == realpath + strlen(imap://) ?
-browser - store paths as Mailbox - need refcounting first
-
-orphan M ∀ $paths like WeakPtr - resolve as needed
-$folder, ^, etc resolved, then M is canon'd, has magic too
-gets M ptr when ref-counted, A-ptr useful too (ref-counted)
+	not always - compressed BE will differ
 
 A-config browser folder_format - per A?
 	sort_browser too
@@ -905,4 +901,30 @@ A-config browser folder_format - per A?
 A-config sidebar_format - per A?
 	sb blocks?
 	sorting?
+
+--------------------------------------------------------------------------------
+
+Mailbox Orphans
+
+browser - store paths as Mailbox - need refcounting first
+
+orphan M ∀ $paths like WeakPtr - resolve as needed
+$folder, ^, etc resolved, then M is canon'd, has magic too
+gets M ptr when ref-counted, A-ptr useful too (ref-counted)
+
+orphans need listener (cs, he, name, ev)
+	he is ConfigDef
+orphans will rely on M->path being char* (not an array)
+point orphan config vars to &M.path
+	listener triggers probe, tidy, canon
+	=> config doesn't need to know about M
+listener needs to convert &M.path to &M where path may not be first member
+	offsetof macro?
+is orphan an M or a struct { path, M* }?
+	can't be M, because it needs to be able to be NULL
+	M*?  makes config setting awkward
+	M is OK, because M.path can be NULL
+flags = ORPHAN
+all mxapi fns do
+	M = orphan_resolve(M)
 
