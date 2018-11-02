@@ -899,3 +899,10 @@ orphan M ∀ $paths like WeakPtr - resolve as needed
 $folder, ^, etc resolved, then M is canon'd, has magic too
 gets M ptr when ref-counted, A-ptr useful too (ref-counted)
 
+A-config browser folder_format - per A?
+	sort_browser too
+
+A-config sidebar_format - per A?
+	sb blocks?
+	sorting?
+

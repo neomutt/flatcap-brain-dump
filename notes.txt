@@ -1,3 +1,6 @@
+browser
+	changing sort doesn't force redraw
+
 browser - why are delete, rename and create folder limited to IMAP?
 	maildir, mbox should work too
 	mxapi?

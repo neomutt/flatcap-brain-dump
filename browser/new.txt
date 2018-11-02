@@ -10,3 +10,17 @@ have area for multiline help
 	valid keys for navigation
 	shortcut letters / history shortcuts
 
+use conditional for local-fs-ness
+	enable drwx stuff
+	one for virtual mailboxes
+	one for net mailboxes
+
+I've had an idea about customising the folder_format...  zero-width conditionals!
+(this may be too complicated, but...)
+the local-fs mailboxes want to have drwxr--r-- type stuff
+if we created three extra expandos that don't display anything, but are bools
+which could be used for conditional display %?zf?drwx stuff?
+local fs %zf, virtual %zv, network %zn
+
+browser <tab> toggle between all A and current A? (drill down)
+

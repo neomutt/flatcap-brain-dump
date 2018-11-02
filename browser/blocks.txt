@@ -1,0 +1,30 @@
+ Unnamed accounts:
+ - display type
+ - $folder?  (only relevant to one block)
+
+Maildir
+  1 -rw-r--r--. 1 mutt mutt  86523 Nov  1 18:34 sendlib.c
+  2 -rw-r--r--. 1 mutt mutt   3627 Oct 27 14:47 sendlib.h
+  3 -rw-r--r--. 1 mutt mutt  32329 Nov  1 18:34 sidebar.c
+  4 -rw-r--r--. 1 mutt mutt   1668 Nov  1 18:34 sidebar.h
+
+Imap - imaps://apple@banana.com/all-mail
+  5 +apple.mbox
+  6 +banana.mbox
+  7 +cherry.mbox
+  8 +damson.mbox
+
+ If the account is named, then:
+ - use the name
+ - show $folder for that account
+ - abbreviate all mailboxes (option?)
+
+Name - imap://apple@banana.com/all-mail
+  9 +apple.mbox
+ 10 +banana.mbox
+ 11 +cherry.mbox
+ 12 +damson.mbox
+
+ syntax match underline "^\S.*"
+ highlight underline gui=underline guifg=cyan
+
