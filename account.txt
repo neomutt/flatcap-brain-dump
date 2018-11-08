@@ -815,6 +815,7 @@ move all dot_dump nec headers to BE_private.h
 
 change backing for config vars:
 	$mbox, $postponed, $record, $spoolfile, $trash
+	what about $folder?
 	to type Mailbox
 	need new config type
 	find/create M, attach to A

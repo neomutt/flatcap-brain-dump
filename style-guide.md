@@ -22,18 +22,19 @@ Style Guide
 ## Variable naming
 
 - `struct Context *ctx`
+- `FILE *fp`
 
 - `struct Account *a` may have:
   - private data: `struct XyzAccountData *adata`
-  - helper functions: `xyz_adata_free`, `xyz_adata_get`, `xyz_adata_new`
+  - helper functions: `xyz_adata_free()`, `xyz_adata_get()`, `xyz_adata_new()`
 
 - `struct Email *e` may have:
-  - private data: `struct XyzMailboxData *mdata`
-  - helper functions: `xyz_edata_free`, `xyz_edata_get`, `xyz_edata_new`
+  - private data: `struct XyzEmailData *edata`
+  - helper functions: `xyz_edata_free()`, `xyz_edata_get()`, `xyz_edata_new()`
 
 - `struct Mailbox *m` may have:
-  - private data: `struct XyzEmailData *edata`
-  - helper functions: `xyz_mdata_free`, `xyz_mdata_get`, `xyz_mdata_new`
+  - private data: `struct XyzMailboxData *mdata`
+  - helper functions: `xyz_mdata_free()`, `xyz_mdata_get()`, `xyz_mdata_new()`
 
 ## Function naming - APIs
 
@@ -46,8 +47,8 @@ Style Guide
 ## Variable Use
 
 - Define variables as late as possible (to reduce scope)
-- e.g. `for (int i = 0; ...)`
-- All pointers must be initialise (to `NULL`)
+- e.g. `for (size_t i = 0; ...)`
+- All pointers must be initialised (to `NULL`)
 - Out-params to functions must be initialised before the call
   ```c
   int i = 0;
