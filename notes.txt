@@ -25,17 +25,9 @@ flags typedef - call it BitField16?
 hcache move conditionals to end of struct?
 no pattern to search by label (or regex)
 doc pattern ~Y missing
-address sanitiser - lots of leaks
 rename notmuch files to nm_, lose mutt_ too
 when checking for new mail, distinguish local from remote (cheap from costly)?
 attach style sheet to email - mutt color commands - email-specific
-
-trivial
-	while (0) -> (false) 9 occurrences
-	or convert to using goto?
-
-trivial
-	pop.c - lots of sleep(2) on error paths
 
 on segfault, log backtrace to logfile too
 
@@ -123,9 +115,6 @@ vs 47 X_new()
 
 custom help bar text, like vim's tab bar, status bar -> lua?
 
-use flatcap/neomutt repo rather than ~/neomutt.git
-	(make *it* a mirror)
-
 option for folder auto-discovery
 	<mailboxes> everything server has
 	or all dirs and subdirs
@@ -156,8 +145,6 @@ nm queries
 		for session-permanence?
 	equivalent to "mailboxes ^"
 	are options needed?  useful?
-
-typedef & docs ∀ free_data()
 
 nntp allow bare host urls
 	nntp://news.host.com  (no trailing slash)
@@ -349,8 +336,6 @@ magic "alias" mailbox stored on server
 	multiple emails
 	subject determines how it's processed
 	signed for safety
-
-DOGFOOD
 
 sidebar
 	colours using patterns? ~N ~F
@@ -1073,10 +1058,6 @@ enhancement
 
 replace realpath
 
-send.c sendlib.c
-	lots of char buffer[]
-	rename to buf
-
 web -- make news page a dupe of the twitter feed
 
 incorporate valgrind into unit-tests
@@ -1106,8 +1087,6 @@ bug in nntp cache
 
 add neomutt.vim to COPR
 	need to tag repo to match release
-
-invite steve (autosetup)
 
 add "Add profile picture" to welcome letter
 
@@ -1183,12 +1162,6 @@ startup: doc all routes to exits
 	from call graph work out which variables are ref'd
 		NO: all globals could be
 
-scripts
-	make-coverity.sh
-	make-translate.sh
-	copy in .travis.yml
-	create commit
-
 gdb ignore mutt/*.[ch]
 	-> dev ml?
 
@@ -1244,10 +1217,6 @@ attachment viewing -- keep a list of tempfiles, either
 do we need a config URI object?
 	store raw after relevant encoding
 	split into fields for code
-
-2018-01-25 22:07 bazzy
-	On that note I recently got oauth2 working on neomutt for gmail.
-	I'm documenting it locally atm
 
 find remaining snake_case globals and replace them
 
@@ -1350,8 +1319,6 @@ introduce warning colour/color
 	use for setting config
 
 isolating libmbox means we can test lots of address code, etc
-
-libemail? for structs etc?
 
 quick votes on
 	global variables (for config), prefix with 'G' or 'C'?
@@ -1504,10 +1471,6 @@ DEFINE library
 	unit testable
 	coverage (not yet)
 	no #ifdef's?
-
-url -> lib?
-	not independent enough
-	#ifdef's etc
 
 neo-vim repo
 	project description
