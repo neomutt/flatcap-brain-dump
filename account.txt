@@ -929,3 +929,49 @@ flags = ORPHAN
 all mxapi fns do
 	M = orphan_resolve(M)
 
+have
+	M* (orphan) resolve
+	M* (real) No A*
+
+MV has WeakPtr (Orphan) to last used E
+path_pretty -> path_tidy?
+	just the path section of (real)path
+	if imap:// then /, otherwise IMBOX?
+parse_mailboxes -> path & realpath
+folder-, account-hook -> realpath
+
+M* path_wrap(P) p->path, canon(P), probe first, tidy(path)
+account-hook canon, since matche to realpath (start)
+	is canon needed?  OR BE-A-match?
+	so that imap://host matches imap://user@host?
+	NO, it's a regex
+
+A for possibly non-existant M
+	A* ac_find_account(P)
+	that's mostly probe()
+
+find specific M (e.g. resolve orphan)
+	ac_find_mailbox(A, M) -> M2
+
+should Orphan have A*?  YES, lifespan of A is large enough
+
+path_match(M,P) or (P,P)
+	which path?  realpath
+
+mx_resolve_path(P) -> M(P, R, magic, A), orphan flag
+	ac_add -> !orphan
+
+how do orphans work with inherited config?
+
+any M is final - don't canon/pretty/deconstruct it
+
+mx_mbox_open_path() wrapper?
+
+mx_mbox_open_path()
+	Trash, Spoolfile or mbox-hook, user, Postponed, save path, tmpmbox, mainfolder
+mx_mbox_open() 5 calls using Mailbox
+
+store M as trees
+BE knows how, frontend doesn't need to know
+	get_M(A, flags) -> flat, tree, filtered, etc for MV
+

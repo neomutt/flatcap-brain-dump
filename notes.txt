@@ -1,3 +1,28 @@
+sidebar option to toggle subscribed folders
+	=> keep all unsub'd folders
+	what about nntp -> 32K on gmane
+
+"subscribe-to" command for imap undoc'd (and "unsubscribe-to")
+
+trivial
+	(un)munge doesn't need adata
+
+trivial
+	remove 'entries' from Connection
+
+fedora build docs
+	missing for `--everything` build
+	lua-devel, db-devel, gdbm-devel, qdbm-devel, make, libidn2-devel
+	ctags, w3m, doxygen, ccache
+
+l - limit by notmuch or have notmuch pattern
+
+sidebar intro 'support +sidebar'!
+
+tet alternate imap folder separators, e.g. | :
+sizeof(Mailbox) = 8392
+	2*4K (paths) + 200 bytes
+
 browser
 	changing sort doesn't force redraw
 
