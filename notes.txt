@@ -1,3 +1,16 @@
+eliminate #ifdef USE_HCACHE for
+	int mh_sync_mailbox_message(struct Context *ctx, int msgno, header_cache_t *hc);
+	void * typedef if not def'd
+
+some MxOps are compulsory, some are always implemented
+	drop checks for these?
+	what about if (adata) assume free_adata() exists?
+
+eliminate AllMailboxes
+	start with fn  ML = get_mailboxes(FLAT|TREE);
+
+eliminate struct ImapMbox
+
 sidebar option to toggle subscribed folders
 	=> keep all unsub'd folders
 	what about nntp -> 32K on gmane
@@ -19,7 +32,7 @@ l - limit by notmuch or have notmuch pattern
 
 sidebar intro 'support +sidebar'!
 
-tet alternate imap folder separators, e.g. | :
+try alternate imap folder separators, e.g. | :
 sizeof(Mailbox) = 8392
 	2*4K (paths) + 200 bytes
 
