@@ -975,3 +975,46 @@ store M as trees
 BE knows how, frontend doesn't need to know
 	get_M(A, flags) -> flat, tree, filtered, etc for MV
 
+check all mxapi params are used, e.g. folder
+
+user path - copy to M->realpath
+	expand +
+	canon(M) -> M->path ?
+
+mxapi GUARANTEE
+	check M->A is set ∀ M in AllMailboxes
+	VALID(M) macro?
+	∀ M
+		M->A exists
+		M->magic
+		M->mxops
+		M->path set and tidy
+		M->realpath set (canon)
+	ensure correct magic to match backend
+	ensure ctx->M is valie
+
+fine for $trash, $record, etc backed by M
+	(only safe whtn A is ref-counted)
+	what about hook paths?
+	folder-hook regex against M->path
+	account-hook regex against M->realpath (canon)
+
+does M* resolve(P) find the *real* M, or create an orphan?
+	might not exist, so orphan, but with A*
+
+perhaps not "resolve", use that for Orphan -> M
+
+M* identify(P), mx_identify(P)
+
+mailbox.c
+	eliminate AllMailboxes
+	get_all_mailboxes(FLAT|TREE) -> ML
+
+new M, P -> M -> r canon(M->r), or pass all to BE
+M* BE_identify(P), path, canon, magic, A* (orphan, hidden)
+identify is distinct from M* BE_resolve(M) (real M)
+error conditions for identify()
+	probe failed
+	canon failed
+	pretty failed (likely?)
+

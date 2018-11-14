@@ -1,3 +1,32 @@
+mxapi standard error codes?
+	MXAPI_SUCCESS 0
+	MXAPI_ERROR   -1
+	MXAPI_CODE    -99
+
+git pr improvements
+	config item for upstream (github)
+	'refresh' command, if possible to fast-forward
+		--force hard reset
+	'clean' command if unchanged
+		--force lose changes
+	stop it pulling tags
+	config item for name template, e.g. "pr/%s"
+		or --name X (or --name pr%s)
+
+imap.c - refactor
+	5*imap_edata_get() in loop
+
+trivial
+	@param e Email Header
+	drop 'header'
+
+trivial boolify
+	maildir_mh_open_message(is_maildir)
+
+trivial bool retval
+	int mutt_list_compare
+	int mutt_link_threads
+
 eliminate #ifdef USE_HCACHE for
 	int mh_sync_mailbox_message(struct Context *ctx, int msgno, header_cache_t *hc);
 	void * typedef if not def'd
