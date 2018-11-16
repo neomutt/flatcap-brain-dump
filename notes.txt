@@ -13,20 +13,6 @@ git pr improvements
 	config item for name template, e.g. "pr/%s"
 		or --name X (or --name pr%s)
 
-imap.c - refactor
-	5*imap_edata_get() in loop
-
-trivial
-	@param e Email Header
-	drop 'header'
-
-trivial boolify
-	maildir_mh_open_message(is_maildir)
-
-trivial bool retval
-	int mutt_list_compare
-	int mutt_link_threads
-
 eliminate #ifdef USE_HCACHE for
 	int mh_sync_mailbox_message(struct Context *ctx, int msgno, header_cache_t *hc);
 	void * typedef if not def'd
@@ -38,19 +24,11 @@ some MxOps are compulsory, some are always implemented
 eliminate AllMailboxes
 	start with fn  ML = get_mailboxes(FLAT|TREE);
 
-eliminate struct ImapMbox
-
 sidebar option to toggle subscribed folders
 	=> keep all unsub'd folders
 	what about nntp -> 32K on gmane
 
 "subscribe-to" command for imap undoc'd (and "unsubscribe-to")
-
-trivial
-	(un)munge doesn't need adata
-
-trivial
-	remove 'entries' from Connection
 
 fedora build docs
 	missing for `--everything` build
@@ -159,20 +137,6 @@ odd code:
 	grep "strfcpy.*->data"
 	might require buffer_reset() first
 
-unify naming of X_create() vs X_new() ∀ objs
-	ac_create()
-	account_create()
-	address_create()
-	cs_create()
-	imap_mailbox_create()
-	monitor_create()
-	mutt_alias_create()
-	mutt_hash_create()
-	mutt_hash_int_create()
-	mutt_regex_create()
-	regex_create()
-vs 47 X_new()
-
 #define names for 0, -1
 	SUCCESS, ERROR
 	∀ functions?
@@ -187,8 +151,6 @@ option for folder auto-discovery
 	or all dirs and subdirs
 	make that the default behaviour?
 	unless <mailboxes> performed or check_subscribed set
-
-rename curs_main.c to index.c?
 
 custom-tags example
 	bind index,pager tt "<modify-labels>!todo\n" "Toggle the 'todo' tag"
@@ -228,8 +190,6 @@ index_sort = date,thread:rev-date?
 compress
 	does it really need: `bool locked`
 	or is the `FILE*` enough?
-
-use @extends for private data members
 
 <thread-SCOPE>ACTION like ;d (tag-delete)
 	<thread-latest><display-message>
