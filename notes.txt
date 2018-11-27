@@ -1,3 +1,17 @@
+trivial
+	eliminate enum AccountType
+	use enum MailboxType
+
+trivial
+	mutt_set_flag - last param is bool
+
+prevent too-long regexes causing 100% cpu
+	- color body magenta default "(ftp|http|https)://[^ ]+"
+	+ color body magenta default "(ftp|http|https)://[^ ]{,1024}"
+	also
+	- color body magenta default [-a-z_0-9.\+]+@[-a-z_0-9.]+
+	+ color body magenta default [-a-z_0-9.\+]{,128}@[-a-z_0-9.]{,128}
+
 mxapi standard error codes?
 	MXAPI_SUCCESS 0
 	MXAPI_ERROR   -1
@@ -12,6 +26,7 @@ git pr improvements
 	stop it pulling tags
 	config item for name template, e.g. "pr/%s"
 		or --name X (or --name pr%s)
+	pr list -- can't tell if they're open
 
 eliminate #ifdef USE_HCACHE for
 	int mh_sync_mailbox_message(struct Context *ctx, int msgno, header_cache_t *hc);
@@ -75,8 +90,6 @@ when checking for new mail, distinguish local from remote (cheap from costly)?
 attach style sheet to email - mutt color commands - email-specific
 
 on segfault, log backtrace to logfile too
-
-move close_attachments BEFORE log close
 
 sidebar abbreviation option
 	/apple/banana/cherry/folder becomes
@@ -220,10 +233,6 @@ help://
 
 twitter "Re:" -> default config?
 
-imap
-	cmd_parse_X functions
-	typedef? / Implements?
-
 users
 	set flp=^\\(Cc\\\|To\\\|From\\\|Bcc\\\|Subject\\\|Reply-To\\):
 	extend to all common headers
@@ -240,12 +249,6 @@ create a coding 'charter'
 		from us
 
 c++ build fix reserved names
-
-killing context
-	pass M to index as extra param
-	start on imap (58) fake mxapi
-	config to A-tree, then mx_mbox_open on Imap
-	rename existing Account out of the way
 
 fix travis build
 
@@ -478,13 +481,6 @@ code
 	what the last enum called?
 	LAST, MAX? unify
 
-add free_cb to Context like Header
-
-struct Header has private data
-	used by imap, nntp, pop and notmuch
-	only notmuch uses free_cb callback
-	others leaking?
-
 separate logging from libmutt?
 
 hcache lazy_malloc/realloc
@@ -677,8 +673,6 @@ mentor team?  probably not yet
 
 mbox.c -- crazy source:
 	rc = ((ctx->magic == MUTT_MBOX) ? mbox_parse_mailbox : mmdf_parse_mailbox)(ctx);
-
-bug: buffy_get() probably truncates path when expanding "~/xyz"
 
 use tagged emails + edit to view multiple
 	set editor="vim -o"
