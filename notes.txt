@@ -1,6 +1,45 @@
+maintain stable numbering in the index
+	(mailx does this)
+	each email is given a sequential number
+	new emails get a higher number
+	deleted emails' numbers aren't reused
+	what happens if the list is resorted?
+	what about patterns for message numbers
+		ignore missing?
+		what about -5,.
+		find 5 messages, regardless of number?
+
+docs:
+	generate gv for build of website
+	which files are generated, how, src
+	which files are imported: code, etc
+	which files are canonical
+
+docs:
+	update code build gv
+	extra libraries
+	git_ver.c
+
+connect to server using openssl
+	openssl s_client -connect 10.8.0.1:993
+	the use imap commands
+	a1 login USERNAME PASSWORD
+
+login problems: help
+	try imap://username@imap.provider.com
+	try imap://username@provider.com@imap.provider.com
+
+trivial invert logic of?
+	if (!(a && b))
+	if (!(a || b))
+
+doxygen: kill ``xxx'' quoting?
+
 trivial
-	eliminate enum AccountType
+	eliminate enum AccountType?
 	use enum MailboxType
+		what about smtp?
+		add entry?
 
 trivial
 	mutt_set_flag - last param is bool
@@ -38,6 +77,7 @@ some MxOps are compulsory, some are always implemented
 
 eliminate AllMailboxes
 	start with fn  ML = get_mailboxes(FLAT|TREE);
+	HIDDEN|VISIBLE
 
 sidebar option to toggle subscribed folders
 	=> keep all unsub'd folders
@@ -299,9 +339,6 @@ easy
 change path_probe to return enum
 	inc ERROR codes
 	check callers check for error
-
-rename maildir/mh.c maildir/maildir.c
-	really need to split it up
 
 mutt_bits_* functions use array of unsigned char
 	unnecessary, nobody uses more that 16 bits
