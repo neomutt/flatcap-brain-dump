@@ -1,0 +1,120 @@
+nntp/imap multiple servers
+nntp mutt -> multiple .newsrc's => A-cfg or A-hook
+newsrc = N1; mailboxes gmane/ =>
+	A(N1), M(closed) - path = host?
+
+open => connect & mailboxes `cat .newsrc` NO $newsrc
+	unmailbox M(closed)?
+
+newsrc fixes @ time of open
+
+alternative mailbox U1, U2, U3 (all on one server)
+U1->A(N1), U2, U3, M(1), M(2), M(3) all closed
+
+open -> connect
+does open U1 -> fetch all siblings?  costly?
+
+NntpMboxData eliminate *adata?
+	tricky because of master list in NntpAccountData
+
+each server open => 16Mb more mem used
+
+NNTP DATE command send YYYY not YY
+
+mailboxes news://host.com => M AllM visible
+
+ac_find() -> none, new A NntpA(empty)
+no path so don't put in NntpA
+
+3 cases
+	1) no mailboxes + $check
+	2) mailboxes + no $check
+	3) mailboxes + $check
+
+1) start with A->ML->M0
+	open M, connect to server, read newsrc
+	list groups -> A(groups), ∀ subscribed add to A->ML
+		& notify SB, etc
+	hide M - hidden -> not owned by A
+
+2) A->ML->M0,M1,M2 - subscribed -> owned by A?
+	open M2, connect to server, read newsrc
+	does "mailboxes" => subscription? NO
+		have <subscribe>, <unsubscribe> commands
+	list groups -> A(groups)
+	3 cases
+		i) M + subscription -> r/w (owned by A)
+		ii) M + no subscription -> r/o (owned by A)
+		iii) M + no group -> deleted (NOT owned by A)
+
+
+Actions
+	1) unmailboxes
+	2) mailboxes
+	3) unsubscribe
+	4) subscribe
+	5) refresh group list (from server)
+
+Applied to
+	a) subscribed group
+		in A list, dupe in M (if mailboxes'd)
+			a1 mailboxes
+			a2 !mailboxes
+	b) unsubscribed group
+		in A list, dupe in M (if mailboxes'd)
+			b1 mailboxes
+			b2 !mailboxes
+	c) deleted group
+		not in A list, in M (if mailboxes'd)
+			c1 mailboxes
+			c2 !mailboxes
+
+1) unmailboxes
+	a1) A list n/a, drop M from AML - normal close of M
+	a2) A list n/a, M n/a - filtered out by mxapi
+
+	b1) A list n/a, drop M from AML - normal close of M
+	b2) A list n/a, M n/a - filtered out by mxapi
+
+	c1) A list n/a, drop M from AML - normal close of M
+	c2) A list n/a, M n/a - filtered out by mxapi
+
+2) mailboxes
+	a1) A list n/a, M n/a
+	a2) A list n/a, M dupe to AML
+
+	b1) A list n/a, M n/a
+	b2) A list n/a, M dupe to AML
+
+	c1) A list n/a, M n/a
+	c2) A list n/a, M new to AML (deleted)
+
+3) unsubscribe
+	a1) A list changed, M->r/o
+	a2) A list changed, M n/a
+
+	b1) A list n/a, M n/a
+	b2) A list changed, M n/a
+
+	c1) A list n/a, M n/a
+	c2) A list n/a, M n/a
+
+4) subscribe
+	a1) A list n/a, M n/a
+	a2) A list n/a, M n/a
+
+	b1) A list changed, M -> r/w
+	b2) A list changed, M n/a
+
+	c1) A list n/a, M n/a
+	c2) A list n/a, M n/a
+
+5)
+				after
+			sub	unsub	del
+		sub	n/a	M->r/o	M->r/o
+	before	unsub	M->r/w	n/a	M->del
+		del	M->r/w	n/a	n/a
+
+updates might be n^2!
+

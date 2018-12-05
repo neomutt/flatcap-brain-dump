@@ -1,0 +1,13 @@
+Towards NeoMutt 1.0
+
+Finish devel, 1 or 2 devel releases, the prod release
+poll subsystem maintainers
+paths - lookup once
+	2) $trash etc M-backed (NO)
+rules for what lives in each path ∀ BE
+ctx elimination min requirement?
+	2) full separation
+BE find_conn separation
+merge upstream to at least 1.11.1
+realpath -> canon
+eliminate AllMailboxes (or 2)

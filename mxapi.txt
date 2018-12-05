@@ -1,0 +1,39 @@
+ac_find ac_add
+mbox_open mbox_open_append mbox_check mbox_sync mbox_close
+msg_open msg_open_new msg_commit msg_close msg_padding_size
+tags_edit tags_commit
+path_probe path_canon path_pretty path_parent
+
+kill path_pretty?
+
+contract depends on function
+msg_* needs everything, tags_* too
+
+mxapi guarantee includes
+	m->hdrs
+	m->v2r
+
+path $trash, resolve -> M(magic, path, real, ops)
+	flag as minimal?
+how to get from M(min) to M(full)
+	only with an open()
+
+open_* take M(min)
+check,sync take M(min) -> trigger open()
+	msg_* too?  ∀ BE?  tags?
+probe is one-off fn, seldom used
+canon(M, path) path is optional?
+path_parent may need A for separator
+
+how does pretty() deal with decoration?
+	it can't work on canon - might differ from user-visible path
+	does BE remove decoration from folder?
+
+if fn requires M(min) - no checks required
+if fn requires M(full) check flag, check connection
+
+what does pretty need?  M, A for delim!
+can we change the definition/usage of $folder -- kill decoration
+	then let mxapi strip path?
+if path is just relative path, then we need to manipulate $folder after it's set
+

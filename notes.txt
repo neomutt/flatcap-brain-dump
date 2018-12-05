@@ -1,9 +1,85 @@
+mxapi add
+	mbox_create()
+	mbox_delete()
+create needs a parent M or an A
+	how?
+	have *root* M?
+delete takes M
+API asks for name, not BE
+future need api completion for
+	COMP_CREATE
+	COMP_DELETE
+	etc
+
+does tree layout of M -> a dummy root M? ∀ BE? probably
+	is "/" the root?
+	is "INBOX" the root?
+	where does "INBOX" live?
+users won't want M under INBOX
+
+sileht/imap LONGSTRING -> PATH_MAX * 7
+	comments for MData
+
+use travis on [master] to update/deploy to gitlab?
+
+rule for BE only new M iff A and MData AND AData full set
+
+Broken?
+	FCC + $record = ^
+
+simple:
+	:<del> should close command prompt
+
+deprecate imap_logout_all
+	create <logout>, tie into mxapi
+	or <close-mailbox> for imap/nntp
+	forcibly break connection
+	free resources?
+
+get 'build' script to log commit hash
+	simplify "git build"
+
+kill ``quotes'' in (doxygen) comments
+
+pop: add "neomutt -z" support?
+
+histignore M and other uppers
+
+timeout hook ∀ BE?
+
+ctrl-C ∀ BE ∀ mxapi functions
+
+mutt_log(Buffer) -> split at \n
+	multiple logs
+	what level (all at same?)
+
+bcache
+	why isn't it in maildir format?
+	touch files, utime(2), to SENT_DATE
+		doc crontab for cleanup
+
+pattern ~w (newsgroup) not doc'd
+
+how does reply_regex fit into index and replying?
+
+mxapi
+	should path_probe match based on M->desc?
+
+trivial-ish
+	split up MuttMisc into separate enums
+
+trans: typo (fi)
+	msgid "Subject: "
+	msgstr "Subjet: "
+	missing c
+
 maintain stable numbering in the index
 	(mailx does this)
 	each email is given a sequential number
 	new emails get a higher number
 	deleted emails' numbers aren't reused
 	what happens if the list is resorted?
+		numbers end up randomised!
 	what about patterns for message numbers
 		ignore missing?
 		what about -5,.
@@ -43,6 +119,8 @@ trivial
 
 trivial
 	mutt_set_flag - last param is bool
+		tricky, intersects with other functions
+	nntp_group_poll(update_stat)
 
 prevent too-long regexes causing 100% cpu
 	- color body magenta default "(ftp|http|https)://[^ ]+"
@@ -2154,7 +2232,7 @@ drop support for old SSL versions
 
 cmdline --about links etc
 
-MacOS iTerm
+MacOS iTerm (and OpenBSD's xst terminal)
 	Ctrl-O doesn't work
 	"stty discard undef" fixes it
 some other terms too
@@ -2726,9 +2804,6 @@ distinguish distros' neomutt
 
 imap supports queries
 	"+?query=tab:inbox"
-
-named-mailboxes eats two params
-	can take multiple pairs of params
 
 un-named-mailboxes needs to work against path or description
 

@@ -1,0 +1,25 @@
+RSS Backend
+
+needs/useful to parse HTTP
+	fairly simple requirements
+	libwww?
+needs/useful to parse XML
+	fairly simple requirements
+	libxml2?
+	need to decode &lt; etc
+
+need dirs in mailbox layout for grouping
+	how to do that in neomutt's config?
+	abuse named-mailboxes?
+
+need separate timer - normal check_mail many be too frequent
+
+build-in urlview?
+
+basic rendering of html
+	bold... what's needed?
+
+would benefit from index displaying excerpts
+	or have expando for 1st line (or as much as poss)
+hmm... but there'll always be a title, so possibly no room for excerpts
+
