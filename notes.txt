@@ -1,3 +1,33 @@
+is smtp a BE?
+	write-only mailbox
+	auth, connection
+	definitely need an smtp *dir* and tidier API for sending
+	encapsulate vars in dir
+
+multiple notifications
+	one on each M that's changed
+	plus, one on A -> STATS_CHANGED
+	one on N, too?  ACTIVITY?
+
+help mailbox
+	option to autoopen all images?
+	or cursor right on link
+	when composing help update, add header with filename, commit hash if poss
+
+reddit mailbox backend?
+	see rtv project (python, curses)
+
+rename storage globals to match the neomutt commands, e.g.
+	UserHeader -> MyHdr
+	or GlobalListMyHdr?
+
+combine messages?
+	mutt_buffer_strcpy(err, _("spam: no matching pattern"));
+	mutt_buffer_strcpy(err, _("nospam: no matching pattern"));
+
+trivial - static
+	bool need_display_subject(struct Context *ctx, struct Email *e)
+
 mxapi add
 	mbox_create()
 	mbox_delete()
@@ -57,6 +87,7 @@ bcache
 	why isn't it in maildir format?
 	touch files, utime(2), to SENT_DATE
 		doc crontab for cleanup
+	plan to integrate offlineimap as bcache
 
 pattern ~w (newsgroup) not doc'd
 
@@ -90,11 +121,6 @@ docs:
 	which files are generated, how, src
 	which files are imported: code, etc
 	which files are canonical
-
-docs:
-	update code build gv
-	extra libraries
-	git_ver.c
 
 connect to server using openssl
 	openssl s_client -connect 10.8.0.1:993
