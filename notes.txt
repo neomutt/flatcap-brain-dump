@@ -21,13 +21,6 @@ rename storage globals to match the neomutt commands, e.g.
 	UserHeader -> MyHdr
 	or GlobalListMyHdr?
 
-combine messages?
-	mutt_buffer_strcpy(err, _("spam: no matching pattern"));
-	mutt_buffer_strcpy(err, _("nospam: no matching pattern"));
-
-trivial - static
-	bool need_display_subject(struct Context *ctx, struct Email *e)
-
 mxapi add
 	mbox_create()
 	mbox_delete()
@@ -69,8 +62,6 @@ deprecate imap_logout_all
 get 'build' script to log commit hash
 	simplify "git build"
 
-kill ``quotes'' in (doxygen) comments
-
 pop: add "neomutt -z" support?
 
 histignore M and other uppers
@@ -98,11 +89,6 @@ mxapi
 
 trivial-ish
 	split up MuttMisc into separate enums
-
-trans: typo (fi)
-	msgid "Subject: "
-	msgstr "Subjet: "
-	missing c
 
 maintain stable numbering in the index
 	(mailx does this)
@@ -135,8 +121,6 @@ trivial invert logic of?
 	if (!(a && b))
 	if (!(a || b))
 
-doxygen: kill ``xxx'' quoting?
-
 trivial
 	eliminate enum AccountType?
 	use enum MailboxType
@@ -146,7 +130,6 @@ trivial
 trivial
 	mutt_set_flag - last param is bool
 		tricky, intersects with other functions
-	nntp_group_poll(update_stat)
 
 prevent too-long regexes causing 100% cpu
 	- color body magenta default "(ftp|http|https)://[^ ]+"
@@ -617,10 +600,6 @@ copr use idn2 & gpgme
 packagers
 	gpgme dep?  enable by default
 	deprecate old ssl/tls versions
-
-code
-	what the last enum called?
-	LAST, MAX? unify
 
 separate logging from libmutt?
 
@@ -1118,8 +1097,6 @@ backers:
 	$5/month photo/link
 	webpage
 	release notes?
-
-web about: not a fork
 
 non-easy
 	find all OUT-params fn(&val)
@@ -1895,9 +1872,6 @@ each notification
 	could be on or off
 user is notified when a notification status *changes*
 
-upstream
-	s/ascii_str/mutt_str/
-
 change safe_rename
 	ENOTSUP
 	EOPNOTSUPP
@@ -2143,11 +2117,6 @@ pgp_invoke_decode
 pgp_application_pgp_handler
 	needpass (bool) starts as -1!
 
-safe_free() wrapped by macro FREE()
-if debug take sizeof arg & memset to 0xDD
-what about void*? need type info
-char * needs strlen
-
 warning on muttrc synonyms
 	this will be removed in x months
 	this will be removed after DATE (better)
@@ -2174,10 +2143,6 @@ doc sample branches
 vim-like scrolloff option for pager/index
 use travis env / website to control build verbosity
 sort format string switches
-
-update gpg keys website/dns
-newbie page Twitter toogley
-getside allowed, not checked #ifdef'd
 
 CRON
 	2017-11-01 gpgme version
@@ -2335,9 +2300,6 @@ web toplevel dir
 configure summary?
 	--disable-docs -> docs:         no
 	--disable-po   -> translations: no
-
-"approved" tag? when an idea under discussion gets the go-ahead?
-	or just remove the "discussion" tag?
 
 coding standard: two copies
 	part 1:
