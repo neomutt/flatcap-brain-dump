@@ -70,3 +70,5 @@ help/news
 	new items section?
 	and/or pinned items
 
+neomutt command to show website url (or open it)
+

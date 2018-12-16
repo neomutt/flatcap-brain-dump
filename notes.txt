@@ -1,3 +1,5 @@
+create synonym <move-message> for <save-message>?
+
 is smtp a BE?
 	write-only mailbox
 	auth, connection

@@ -118,3 +118,40 @@ Applied to
 
 updates might be n^2!
 
+
+mailboxes news://host.com
+	AllMailboxes (MB_ACCOUNT)
+mailboxes news://host.com/group.subgroup (subscribed)
+	AllMaiboxes (MB_NORMAL)
+	Account->mailboxes
+	NntpAccountData->groups_list
+mailboxes news://host.com/group.subgroup (not subscribed)
+	AllMaiboxes (MB_NORMAL)
+	Account->mailboxes
+	NntpAccountData->groups_list
+
+<change-folder> news://host.com
+	AllMailboxes (MB_ACCOUNT)
+<change-folder> news://host.com/group.subgroup (subscribed)     
+<change-folder> news://host.com/group.subgroup (not subscribed) 
+
+Action:
+- mailboxes
+- <change-folder> or <change-newsgroup> (deprecate)
+- <subscribe>, <subscribe-pattern>
+- <unsubscribe>, <unsubscribe-pattern>
+- <catchup>, <uncatchup>
+- <reload-active>
+
+URI
+- news://host.com
+- news://host.com/group.subgroup
+
+newsrc
+- newsrc
+- no newsrc
+
+Subscription
+- Subscribed
+- Not subscribed
+
