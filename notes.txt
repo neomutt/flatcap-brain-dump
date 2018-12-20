@@ -1,3 +1,39 @@
+we have A-specific config
+	A-specific commands and hooks too?
+
+command to switch account - multi-selection list?  menu?
+
+vim doxy syntax not working for header files
+
+change pager for <show-log-messages> to start at end of file
+
+docs: printing, 3 examples
+	off: bind p to nop
+	ldr: normal printing setup
+	pdf: 'print' to pdf file
+
+trivial
+	void mutt_pattern_free(struct Pattern **pat);
+	move check: if (pat) inside function
+	remove from callers
+
+nntp
+	nntp:// or news:// ?
+
+.desktop for nntp:// -> neomutt
+
+factor out the code for command "mailboxes"
+	so that imap/nntp don't have to create a string
+	"mailboxes QUOTED-NAME" just to have it parsed and de-quoted
+
+define?
+	STR_MAILBOX (PATH_MAX sized)
+	STR_COMMAND (BIG)
+
+check the contents of NONULL for expensive calls
+	#define NONULL(x) (x ? x : "")
+	'x' evaluated twice
+
 create synonym <move-message> for <save-message>?
 
 is smtp a BE?

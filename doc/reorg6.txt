@@ -72,3 +72,21 @@ help/news
 
 neomutt command to show website url (or open it)
 
+crowdsourcing
+	send out topic to user mailing list
+	ask for ideas/sections/config/keywords/metadata
+	flesh out on ml, then push WIP to repo
+	need <update-docs> command to `git pull` in the right dir
+	need way to link email to docs page
+	have a 'drafts' folder in docs/ for WIPs
+
+h - toggle weeding will show headers including keywords/metadata
+
+metadata - include minimum version - neomutt compare to current version
+	warn if !impl
+
+"attached" files can be "source"d or "mailcap"d - need safety check?
+	or link to contrib dir (need to update too)
+	contrib:// ?
+	neo determines type/use from contrib dir, e.g. /color/ -> colour scheme, etc
+

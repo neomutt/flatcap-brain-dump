@@ -37,3 +37,7 @@ can we change the definition/usage of $folder -- kill decoration
 	then let mxapi strip path?
 if path is just relative path, then we need to manipulate $folder after it's set
 
+need mxapi trash function - two variants
+	sibling mailboxes - fast_trash()
+	non-sibling mailboxes - copy_trash()
+
