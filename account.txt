@@ -1018,3 +1018,10 @@ error conditions for identify()
 	canon failed
 	pretty failed (likely?)
 
+updates from BE -- several emails deleted
+	each sends a notification to EV (gui)
+	EV NULLs ptr
+	on next refresh, GUI is recalculated wrt missing emails
+		open folds stay open
+		closed folds stay closed
+

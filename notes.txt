@@ -1,9 +1,44 @@
+trivial
+	hash_destroy() -> hash_free()
+
+trivial
+	simplify all our:  if (X) free(X)
+	add doxy param doc: (NULL safe) ?
+
+∀ oldx = x; fn(); x = oldx;
+	parameterise (x) (e.g. Sort)
+	i.e. find functions using global/config variables
+
+objects must have X_new()/X_free() pair, or neither
+	check existing
+	51 X_new()
+	55 X_free()
+	148 struct
+	292 [cm]alloc
+	find/distinguish between
+		struct - simple, data
+		object - complex, actions
+	data still needs free for ptrs
+	too simplistic?
+
+repo for colour schemes
+	min requirements?
+	light/dark versions?
+	cf vim set background=light
+
+mbox_type can only be a *local* mailbox type
+	need a validator
+
+reduce contributors to 6 months?
+split authors at 6 months? and 'others'
+	split at 3 months?
+	call recent *active* developers
+	change at release time
+
 we have A-specific config
 	A-specific commands and hooks too?
 
 command to switch account - multi-selection list?  menu?
-
-vim doxy syntax not working for header files
 
 change pager for <show-log-messages> to start at end of file
 

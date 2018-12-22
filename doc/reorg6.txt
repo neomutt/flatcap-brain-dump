@@ -90,3 +90,10 @@ metadata - include minimum version - neomutt compare to current version
 	contrib:// ?
 	neo determines type/use from contrib dir, e.g. /color/ -> colour scheme, etc
 
+two docs packages
+	neomutt-docs-version
+		markdown files for current version
+	neomutt-docs-git (with git dependency)
+		git repo, updated by neomutt
+both 'provide' same doc dir
+
