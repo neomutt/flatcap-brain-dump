@@ -456,6 +456,9 @@ string_get initial value doesn't set EMPTY flag
 
 slist - String list
 
+Configurable separator ':' or ','
+
+
 ':' needs to handle escaping
 
 functions: compare(), add_item(), remove_item(), is_member()
@@ -481,11 +484,11 @@ native get/set
   flag: TRIM_WHITESPACE
 
 LISTS
-	assumed_charset
-	attach_charset
-	hidden_tags
-	mailcap_path
-	send_charset
+	: assumed_charset
+	: attach_charset
+	, hidden_tags
+	: mailcap_path
+	: send_charset
 
 NOT
 	charset

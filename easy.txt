@@ -1,18 +1,13 @@
 Easy
-	init: warning level
-		demote errors to warnings
-	eliminate top/bottom of list warnings
 	one summary page, each
 	neo -DD defaults
-	imap tag a0001
-	config List type?  medium?
 	--authors, --license
 		read from /usr/share/doc/neomutt/
 		getopt?
 		what else?
 	:<del>  close prompt
-	mbox_type can only be a *local* mailbox type
-		need a validator
+Medium
+	config List type?
 	browser - why are delete, rename and create folder limited to IMAP?
 		maildir, mbox should work too
 		mxapi?

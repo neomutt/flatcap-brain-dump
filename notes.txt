@@ -1,5 +1,38 @@
 trivial
-	hash_destroy() -> hash_free()
+	refactor mutt_folder_hook()
+	make shallower
+	break out of loop, drop dupe FREEs
+
+use help bar for menu breadcrumbs
+	compose, attach email, view attachment
+	stacked menus
+
+trivial
+	what are deps of url_parse_mailto()
+	can it be promoted to library?
+
+have lambda function to add Emails to an EmailList
+	bool is_tagged(Email);
+
+help log level
+	for each mutt_error/warning
+	also log a link to the relevant help page
+	maybe not visible on screen (one line)
+	and not logged, but visible in <show-log-messages> window
+
+trivial
+	MailboxNode member should be mailbox, not m, to match other structs
+
+trivial
+	move data to top of index.c
+		IndexHelp[]
+		IndexNewsHelp[]
+
+context
+	maildir_update_tables no longer used
+
+trivial
+	reopen_mailbox() local index_hint_set is waste of time
 
 trivial
 	simplify all our:  if (X) free(X)
@@ -25,6 +58,8 @@ repo for colour schemes
 	min requirements?
 	light/dark versions?
 	cf vim set background=light
+	installed scheme directory
+	'colorscheme' command to activate
 
 mbox_type can only be a *local* mailbox type
 	need a validator
@@ -183,7 +218,7 @@ docs:
 
 connect to server using openssl
 	openssl s_client -connect 10.8.0.1:993
-	the use imap commands
+	then use imap commands
 	a1 login USERNAME PASSWORD
 
 login problems: help
@@ -330,7 +365,7 @@ deprecated config - default value is help string
 	what about synonyms that will be deprecated?  same?  yes (ish)
 
 restricted "source" command - after reading/applying colours
-	have a "keep these colours" qutestion
+	have a "keep these colours" question
 	default to "No", with a *timeout*
 
 index_format expandos for "Waiting for info"? hourglass?
