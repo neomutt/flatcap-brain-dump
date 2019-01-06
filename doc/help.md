@@ -1,5 +1,4 @@
-## Help files
-
+## Help files 
 All in markdown with YAML headers
 Chapters/sections stored in directories
 Each directory has a directory.md as a title page

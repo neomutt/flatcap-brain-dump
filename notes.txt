@@ -1,3 +1,25 @@
+:hooks icommand
+	list hooks (numbered)
+	list all folders & hook numbers that match
+	hook numbers suffixed by (p)ath, or (d)esc?
+
+extend icommand to ALL :commands?
+	wrong way around
+	icommand is simpler, doesn't expand variables, etc
+
+logging - extend 2 second rule by logging level
+	l2 message overwrites a l3 message
+	l3 message is blocked a l2 message
+
+icommand swap back (err -> -2)
+	MUTT_CMD_ERROR   = -1,
+	MUTT_CMD_WARNING = -2,
+	need to check/fix all callers
+
+trivial
+      demote to warnings
+      mutt_error(_("Warning: XXX"));
+
 trivial
 	refactor mutt_folder_hook()
 	make shallower
