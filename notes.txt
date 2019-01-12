@@ -1,3 +1,29 @@
+trivial
+	actx bdy -> body
+	check all structs for eponymous members
+
+trivial
+	iwyu run over all source
+
+format strings
+	valid when set
+	easy task?
+
+format strings: compose_format, pager_format, status_format
+	when empty DON'T display the bar at all
+	easy task?
+
+format strings have a list of
+	[ callback_fn, data ]
+	use this to split up deps
+	GUI could have [ X, ctx ]
+	reducing deps of mutt_expando_format()
+
+trivial
+	struct B64Context *ctx
+	rename vars to bctx for distinction
+	check all other XContext structs
+
 :hooks icommand
 	list hooks (numbered)
 	list all folders & hook numbers that match
@@ -179,9 +205,6 @@ rule for BE only new M iff A and MData AND AData full set
 
 Broken?
 	FCC + $record = ^
-
-simple:
-	:<del> should close command prompt
 
 deprecate imap_logout_all
 	create <logout>, tie into mxapi
