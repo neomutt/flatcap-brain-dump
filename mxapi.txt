@@ -41,3 +41,40 @@ need mxapi trash function - two variants
 	sibling mailboxes - fast_trash()
 	non-sibling mailboxes - copy_trash()
 
+mxapi add
+	mbox_create()
+	mbox_delete()
+create needs a parent M or an A
+	how?
+	have *root* M?
+delete takes M
+API asks for name, not BE
+future need api completion for
+	COMP_CREATE
+	COMP_DELETE
+	etc
+
+mxapi
+	should path_probe match based on M->desc?
+
+mxapi standard error codes?
+	MXAPI_SUCCESS 0
+	MXAPI_ERROR   -1
+	MXAPI_CODE    -99
+
+#define names for 0, -1
+	SUCCESS, ERROR
+	∀ functions?
+	or enum to distinguish from "int"
+	start with just mxapi functions
+		MX_SUCCESS, MX_WARNING, MX_ERROR
+
+mxapi add?
+	mbox_new() is there new mail?
+	mbox_empty() is there any mail?
+
+move index_format to mx API?
+	needed by notmuch and help
+	have default?
+	how are notifications handled?
+

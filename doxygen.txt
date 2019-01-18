@@ -1,3 +1,6 @@
+add href to each @page link to website
+filter out of actual docs
+
 dynamically create the "extra files2 list for all the gfx
 
 link doxy shields to pages!
@@ -104,3 +107,4 @@ x external
 https://img.shields.io/badge/functions-100%-green.svg
 https://img.shields.io/badge/members-31%-yellow.svg
 https://img.shields.io/badge/enums-14%-red.svg
+

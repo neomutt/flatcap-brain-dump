@@ -18,18 +18,16 @@ what about ALL int members?
 struct B64Context *ctx
 rename vars to bctx for distinction
 check all other XContext structs
-ComposeRedrawData struct Email *msg; -> email
-struct FgetConv FILE *file; -> fp?
-struct FgetConvNot FILE *file; -> fp?
-struct GroupNode struct Group *g; -> group
-struct HdrFormatInfo struct Mailbox *m; -> mailbox
-struct ImapHeader struct ImapEmailData *data; -> edata
-struct MailboxNode struct Mailbox *m; -> mailbox
-struct Pattern union struct Group *g; -> group
-struct SslSockData SSL_CTX *ctx; -> sctx
-
-actx bdy -> body
-check all structs for eponymous members
+ComposeRedrawData struct Email *msg;   -> email
+FgetConv FILE *file;                   -> fp?
+FgetConvNot FILE *file;                -> fp?
+GroupNode struct Group *g;             -> group
+HdrFormatInfo struct Mailbox *m;       -> mailbox
+ImapHeader struct ImapEmailData *data; -> edata
+MailboxNode struct Mailbox *m;         -> mailbox
+Pattern union struct Group *g;         -> group
+SslSockData SSL_CTX *ctx;              -> sctx
+Pager struct Body *bdy;                -> body
 
 iwyu run over all source
 
@@ -42,8 +40,6 @@ break out of loop, drop dupe FREEs
 
 what are deps of url_parse_mailto()
 can it be promoted to library?
-
-MailboxNode member should be mailbox, not m, to match other structs
 
 move data to top of index.c
 	IndexHelp[]
@@ -89,4 +85,13 @@ body_copy() : move foreach param -> param_dup()
 FILE *x -> fp
 
 check all src against vim folding
+
+return statements that might be converted to "return rc;"
+     27 return r;
+     21 return ret;
+      5 return result;
+      4 return retval;
+      2 return res;
+
+kill plural enums, e.g. MaiboxType*s*
 

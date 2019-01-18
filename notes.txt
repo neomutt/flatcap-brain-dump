@@ -1,3 +1,9 @@
+go through all large switch statements
+	localise all variables
+
+:verbose set/color/etc
+	show when/who last set that variable/color/etc
+
 doxy: calc number of #defines undocumented
 
 RE-opening mailbox
@@ -44,15 +50,6 @@ format strings have a list of
 	use this to split up deps
 	GUI could have [ X, ctx ]
 	reducing deps of mutt_expando_format()
-
-:hooks icommand
-	list hooks (numbered)
-	list all folders & hook numbers that match
-	hook numbers suffixed by (p)ath, or (d)esc?
-
-extend icommand to ALL :commands?
-	wrong way around
-	icommand is simpler, doesn't expand variables, etc
 
 logging - extend 2 second rule by logging level
 	l2 message overwrites a l3 message
@@ -165,19 +162,6 @@ rename storage globals to match the neomutt commands, e.g.
 	UserHeader -> MyHdr
 	or GlobalListMyHdr?
 
-mxapi add
-	mbox_create()
-	mbox_delete()
-create needs a parent M or an A
-	how?
-	have *root* M?
-delete takes M
-API asks for name, not BE
-future need api completion for
-	COMP_CREATE
-	COMP_DELETE
-	etc
-
 does tree layout of M -> a dummy root M? ∀ BE? probably
 	is "/" the root?
 	is "INBOX" the root?
@@ -225,9 +209,6 @@ pattern ~w (newsgroup) not doc'd
 
 how does reply_regex fit into index and replying?
 
-mxapi
-	should path_probe match based on M->desc?
-
 maintain stable numbering in the index
 	(mailx does this)
 	each email is given a sequential number
@@ -261,11 +242,6 @@ prevent too-long regexes causing 100% cpu
 	also
 	- color body magenta default [-a-z_0-9.\+]+@[-a-z_0-9.]+
 	+ color body magenta default [-a-z_0-9.\+]{,128}@[-a-z_0-9.]{,128}
-
-mxapi standard error codes?
-	MXAPI_SUCCESS 0
-	MXAPI_ERROR   -1
-	MXAPI_CODE    -99
 
 git pr improvements
 	config item for upstream (github)
@@ -401,13 +377,6 @@ odd code:
 	grep "strfcpy.*->data"
 	might require buffer_reset() first
 
-#define names for 0, -1
-	SUCCESS, ERROR
-	∀ functions?
-	or enum to distinguish from "int"
-	start with just mxapi functions
-		MX_SUCCESS, MX_WARNING, MX_ERROR
-
 custom help bar text, like vim's tab bar, status bar -> lua?
 
 option for folder auto-discovery
@@ -514,20 +483,6 @@ should the current folder show up in the sidebar
 		<subscribe-folder>
 		<unsubscribe-folder>
 
-mxapi add?
-	mbox_new() is there new mail?
-	mbox_empty() is there any mail?
-
-add flags to DT_PATH for
-	FILE_ONLY
-	DIR_ONLY
-	NO_SYMLINK
-	MUST_EXIST
-	NOT_EMPTY
-	validator check for readable/reachable
-	when validating the file/dir, preservve the stat info?
-		where? in the large 'File' object?
-
 easy: locale.c
 	needs to be free of <intl.h>
 	4 places: setlocale to C and call strftime()
@@ -602,8 +557,6 @@ megabuild
 	combine "git build" and parallel
 	use git commit range + clist
 	nested build dirs
-
-kill plural enums, e.g. MaiboxType*s*
 
 smime_timeout missing LNUM
 
@@ -785,11 +738,6 @@ have a system for 'tainting' variables
 		be displayed on screen
 		exported/expanded for extenal programs (including lua)
 
-move index_format to mx API?
-	needed by notmuch and help
-	have default?
-	how are notifications handled?
-
 rename members
 	bools to is_x, has_x, etc
 	amounts to num_x, nr_x, etc
@@ -914,6 +862,7 @@ log level ∀ config changes?
 
 could some log levels share level numbers
 	NO, can't distinguish them later for labels
+	unless 400, 401, 402 are all level 4
 
 uniq history ∀ *.po msgid for both (neo)mutt
 
@@ -1084,11 +1033,6 @@ combine function.h and opcode.h, triple of:
 init.c
 	change retval to -2 => mutt_warning()
 	#define/enum the return codes
-
-summary page
-	account details
-	host, login details
-	connection info: IP addr, TLS?, login method, etc
 
 move mkstemp, fmemopen, O_TMPFILE to mutt/temp.c?
 
@@ -1421,11 +1365,6 @@ mutt_bgrun - periodically run waitpid()
 
 put donate link in GH template in comments?
 
-setcolor, print, move
-	setcolor is persistant, even after a move
-	it applies colour
-	unlike ansi printf which applies colour to one location
-
 curses could be replaced from the outsite in
 	1) add 3rd config option
 		[curses|slang|tinfo]
@@ -1468,10 +1407,6 @@ connecting to gmail with options:
 prep 1-liner descriptions of all var,cmd,fn etc for botty
 
 restart POP after connection is broken/lost (like IMAP)
-
-when redoing colour/attrs, consider a new file format
-	for just them -- colour-scheme files
-	see mc or vim format
 
 option to make buffer auto-NUL-terminate
 	after every add*()
@@ -1586,13 +1521,6 @@ mnemosyne
 vim-airline test po fix on old non-sync vim
 (rhel6/7) create PR
 neomutt/release
-vim-interesting-words
-define 24/25 levels
-colourscheme 1: ROYGBIV
-2: RROOYY...
-3: RRROOOYYY...
-0th: RRRRRR...
-,v'n'
 
 travis trusty - try more compiler flags
 list autosetup release/commit hash visibly
@@ -2008,10 +1936,6 @@ makes it impossible to send encrypted mail
 
 change build to install to ./install
 alter my .gitignore to ignore ./install
-
-:set (list all vars) should depend on the context
-(which account/mailbox you have open)
-:setlocal (just the account vars)
 
 imap keywords
 	work out limitations
@@ -3505,8 +3429,6 @@ invert index option
 
 add native compress support
 
-unify colours and attrs, e.g. underline, reverse
-
 color command (mentor task)
 	no args: list all colours in a pager
 	object: show object's colours (coloured accordingly)
@@ -3607,8 +3529,6 @@ sidebar -- imap all folders vs subscribed
 dovecot public mailboxes for tips?  one public user?
 nntp tips? ":tips" command to toggle nntp vars and mailboxes
 
-fake/alternate curses -> true colour => separate fg, bg, term attrs like vim
-
 remote config -- like browser proxy setup
 	display to user "are you sure?"
 	useful for tips & examples
@@ -3618,10 +3538,6 @@ notmuch+index-color
 	tag patches in *neomutt*
 	"compat: notmuch+index-color" patch/commit
 	=> failed merge!
-
-new mutt colours
-	none or inherit
-	don't set this component
 
 alternative to sb search
 	key -> numeric prefix for all folders

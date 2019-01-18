@@ -134,3 +134,21 @@ commands.
 - Opening a summary page, would close an existing page / help
 - Status bar shows a list of other pages, when on a summary page
 
+:hooks icommand
+	list hooks (numbered)
+	list all folders & hook numbers that match
+	hook numbers suffixed by (p)ath, or (d)esc?
+
+extend icommand to ALL :commands?
+	wrong way around
+	icommand is simpler, doesn't expand variables, etc
+
+summary page
+	account details
+	host, login details
+	connection info: IP addr, TLS?, login method, etc
+
+:set (list all vars) should depend on the context
+(which account/mailbox you have open)
+:setlocal (just the account vars)
+

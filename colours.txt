@@ -56,10 +56,11 @@ Colours:
 	color{0..255}
 
 Attributes:
-	bold none normal reverse standout underline
+	bold NONE normal reverse standout underline
 
 Missing attrs:
 	faint italic conceal strikethrough uri
+	blink overline doubleunderline curlyunderline
 
 Proposed Syntax:
 	Simple objects:
@@ -71,11 +72,11 @@ Proposed Syntax:
 		COLOUR=[SIMPLE_COLOUR|PALETTE_COLOUR|RGB_COLOUR]
 		ATTR=[underline|bold|...]
 		ATTR_LIST=ATTR{,ATTR}
-		highlight OBJECT [fg=COLOUR] [bg=COLOUR] [attr=ATTR_LIST]
+		highlight OBJECT [fg=COLOUR] [bg=COLOUR] [sp=COLOUR] [attr=ATTR_LIST]
 	Lists:
-		highlight OBJECT regex=REGEX [fg=COLOUR] [bg=COLOUR] [attr=ATTR_LIST]
+		highlight OBJECT regex=REGEX [fg=COLOUR] [bg=COLOUR] [sp=COLOUR] [attr=ATTR_LIST]
 	Or in combination
-		highlight OBJECT [regex=REGEX] [fg=SIMPLECOLOUR] [bg=SIMPLECOLOUR] [palfg=PALETTE_COLOUR] [palbg=PALETTE_COLOUR] [rgbfg=RGB_COLOUR] [rgbbg=RGB_COLOUR] [attr=ATTR_LIST]
+		highlight OBJECT [regex=REGEX] [fg=SIMPLECOLOUR] [bg=SIMPLECOLOUR] [sp=SIMPLECOLOUR] [palfg=PALETTE_COLOUR] [palbg=PALETTE_COLOUR] [rgbfg=RGB_COLOUR] [rgbbg=RGB_COLOUR] [attr=ATTR_LIST]
 		which would allow one colourscheme for all possibilities
 		would need to store all three colour sets for every object
 		
@@ -89,6 +90,8 @@ Colour sequences
 		ansi    4n
 		palette 48;5;n
 		rgb     48;2;r;g;b
+	58 Set special colour
+		rgb     58:2::r:g:b
 
 Other misc sequences
 	set terminal title
@@ -101,4 +104,21 @@ moving the cursor down a few lines, curses will emit CR's
 moving the cursor right a few places, curses will emit spaces/tabs
 tabs don't draw the colour (the terminal must be moving the cursor directly)
 emitting spaces will draw the colour
+
+setcolor, print, move
+	setcolor is persistant, even after a move
+	it applies colour
+	unlike ansi printf which applies colour to one location
+
+when redoing colour/attrs, consider a new file format
+	for just them -- colour-scheme files
+	see mc or vim format
+
+unify colours and attrs, e.g. underline, reverse
+
+new mutt colours
+	none or inherit
+	don't set this component
+
+fake/alternate curses -> true colour => separate fg, bg, term attrs like vim
 

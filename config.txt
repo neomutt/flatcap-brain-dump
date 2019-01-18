@@ -1,30 +1,4 @@
 need regex_dup() function
-ntext = mx_mbox_open(m, buf, flags);
-  if (Context)
-    {
-    @@ -2090,6 +2097,7 @@ int mutt_index_menu(void)
-
-    #ifdef USE_NOTMUCH
-          case OP_MAIN_VFOLDER_FROM_QUERY:
-	        case OP_MAIN_VFOLDER_FROM_QUERY_READONLY:
-		        buf[0] = '\0';
-			        if (mutt_get_field("Query: ", buf, sizeof(buf), MUTT_NM_QUERY) != 0 || !buf[0])
-				        {
-					1 opcodes.h
-
-  Context = mx_mbox_open(m, buf, flags);
-  if (Context)
-  {
-@@ -2090,6 +2097,7 @@ int mutt_index_menu(void)
-
-#ifdef USE_NOTMUCH
-      case OP_MAIN_VFOLDER_FROM_QUERY:
-      case OP_MAIN_VFOLDER_FROM_QUERY_READONLY:
-        buf[0] = '\0';
-        if (mutt_get_field("Query: ", buf, sizeof(buf), MUTT_NM_QUERY) != 0 || !buf[0])
-        {
-1 opcodes.h
-
 
 struct ConfigSetType
 	flag for quoting
@@ -611,4 +585,14 @@ have account-only variables?  no global version
 	user (rather than multiple X_user vars)
 
 account object and custom config stored as AccountList
+
+add flags to DT_PATH for
+	FILE_ONLY
+	DIR_ONLY
+	NO_SYMLINK
+	MUST_EXIST
+	NOT_EMPTY
+	validator check for readable/reachable
+	when validating the file/dir, preservve the stat info?
+		where? in the large 'File' object?
 
