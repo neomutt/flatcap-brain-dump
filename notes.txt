@@ -1,9 +1,35 @@
-trivial
-	actx bdy -> body
-	check all structs for eponymous members
+doxy: calc number of #defines undocumented
 
-trivial
-	iwyu run over all source
+RE-opening mailbox
+	postpone, trash, edit msg, send message (fcc ^)
+	all suffer from dead mailbox ptr
+
+BUG: tag-prefix doesn't work with # (break-thread)
+
+Issue template for DEV release
+	version (commit hash)
+	backtrace
+	actions
+
+data type INTERVAL, numeric
+	accepts 1s (sec), 1h (hour), etc
+	displayed as?:
+		1h
+		3600
+		3600 # 1 hour
+
+mx_mbox_open -- force type?
+	arg 0 => probe
+	'n' == MBOX, etc
+
+split up opcodes by action and detail (sub-action)
+	18:03 <adray> You know how we define virtual-mailboxes as "MUTT_VIRTUAL | MUTT_NAMED". Would it be possible to do the same for opcodes? So instead 
+		of OP_MAIN_VFOLDER_FROM_QUERY_READONLY, it could be OP_MAIN_VFOLDER_FROM_QUERY | OP_READONLY?
+	18:04 <adray> (this also ties into your OP_DELETE code, possible to do OP_ATTACHMENT | OP_DELETE)
+	18:06 <flatcap> currently, they're an enumeration
+	18:07 <flatcap> I wonder how many combinations would make sense.  how many we'd need to make it pay off
+	18:10 <flatcap> hmm... quite a few
+	18:10 <flatcap> all the SEARCH_X could become SEARCH | X
 
 format strings
 	valid when set
@@ -18,11 +44,6 @@ format strings have a list of
 	use this to split up deps
 	GUI could have [ X, ctx ]
 	reducing deps of mutt_expando_format()
-
-trivial
-	struct B64Context *ctx
-	rename vars to bctx for distinction
-	check all other XContext structs
 
 :hooks icommand
 	list hooks (numbered)
@@ -42,22 +63,9 @@ icommand swap back (err -> -2)
 	MUTT_CMD_WARNING = -2,
 	need to check/fix all callers
 
-trivial
-      demote to warnings
-      mutt_error(_("Warning: XXX"));
-
-trivial
-	refactor mutt_folder_hook()
-	make shallower
-	break out of loop, drop dupe FREEs
-
 use help bar for menu breadcrumbs
 	compose, attach email, view attachment
 	stacked menus
-
-trivial
-	what are deps of url_parse_mailto()
-	can it be promoted to library?
 
 have lambda function to add Emails to an EmailList
 	bool is_tagged(Email);
@@ -68,23 +76,8 @@ help log level
 	maybe not visible on screen (one line)
 	and not logged, but visible in <show-log-messages> window
 
-trivial
-	MailboxNode member should be mailbox, not m, to match other structs
-
-trivial
-	move data to top of index.c
-		IndexHelp[]
-		IndexNewsHelp[]
-
 context
 	maildir_update_tables no longer used
-
-trivial
-	reopen_mailbox() local index_hint_set is waste of time
-
-trivial
-	simplify all our:  if (X) free(X)
-	add doxy param doc: (NULL safe) ?
 
 ∀ oldx = x; fn(); x = oldx;
 	parameterise (x) (e.g. Sort)
@@ -129,11 +122,6 @@ docs: printing, 3 examples
 	off: bind p to nop
 	ldr: normal printing setup
 	pdf: 'print' to pdf file
-
-trivial
-	void mutt_pattern_free(struct Pattern **pat);
-	move check: if (pat) inside function
-	remove from callers
 
 nntp
 	nntp:// or news:// ?
@@ -240,9 +228,6 @@ how does reply_regex fit into index and replying?
 mxapi
 	should path_probe match based on M->desc?
 
-trivial-ish
-	split up MuttMisc into separate enums
-
 maintain stable numbering in the index
 	(mailx does this)
 	each email is given a sequential number
@@ -269,20 +254,6 @@ connect to server using openssl
 login problems: help
 	try imap://username@imap.provider.com
 	try imap://username@provider.com@imap.provider.com
-
-trivial invert logic of?
-	if (!(a && b))
-	if (!(a || b))
-
-trivial
-	eliminate enum AccountType?
-	use enum MailboxType
-		what about smtp?
-		add entry?
-
-trivial
-	mutt_set_flag - last param is bool
-		tricky, intersects with other functions
 
 prevent too-long regexes causing 100% cpu
 	- color body magenta default "(ftp|http|https)://[^ ]+"
@@ -520,9 +491,6 @@ users
 	need to set 'ai'
 	formatoptions needs 'n'
 
-trivial
-	grep " = [^,;]* [!=]= "
-
 create a coding 'charter'
 	what's expected
 		from you
@@ -684,17 +652,6 @@ user:
 	git clone https://github.com/neomutt/neomutt.github.io
 	jekyll serve
 
-trivial - conditional constants - reduce to a comment
-	Hmm... non-functional enum entries might cause problems
-	MENU_KEY_SELECT_PGP
-	MENU_MIX
-	MT_COLOR_DIVIDER
-	MUTT_NEWSGROUPS
-	MUTT_NEW_SSL_SOCKET
-	MUTT_NM_QUERY
-	MUTT_OPEN_HOOK
-	REDRAW_SIDEBAR
-
 sidebar commands <next-sibling>, <prev-sibling>, <parent-folder>
 
 do we log questions? (and their answers?)
@@ -800,9 +757,6 @@ web
 	is layout: header nec?
 	they all use the same one
 		except post
-
-trivial
-	body_copy() : move foreach param -> param_dup()
 
 hcache namer
 	split (root, dir, name) triplet?
@@ -929,9 +883,6 @@ State object -> library
 user packagers' team to announce build changes
 
 add $smtp_user missing!
-
-trivial
-	FILE *x -> fp
 
 repo: daily, weekly, monthly updates
 	-> server
@@ -1421,8 +1372,6 @@ auto-sidebar bool option -- hide until needed on
 
 ∀ $ENV, code default, init.h, system config, user config
 	doc and list priority order -- in $config docs!
-
-trivial - check all src against vim folding
 
 assert - does it call atexit
 	no - abort() (SIGABRT)

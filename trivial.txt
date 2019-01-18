@@ -1,0 +1,92 @@
+free functions to take (**ptr)
+then deref to Type *type = *ptr;
+
+change to return enum
+change callers to use enum
+int query_quadoption(int opt, const char *prompt)
+
+add printf format checkers to mutt_message, mutt_debug, etc
+
+msg_count
+msg_unread
+msg_flagged
+msg_new
+msg_deleted
+msg_tagged
+what about ALL int members?
+
+struct B64Context *ctx
+rename vars to bctx for distinction
+check all other XContext structs
+ComposeRedrawData struct Email *msg; -> email
+struct FgetConv FILE *file; -> fp?
+struct FgetConvNot FILE *file; -> fp?
+struct GroupNode struct Group *g; -> group
+struct HdrFormatInfo struct Mailbox *m; -> mailbox
+struct ImapHeader struct ImapEmailData *data; -> edata
+struct MailboxNode struct Mailbox *m; -> mailbox
+struct Pattern union struct Group *g; -> group
+struct SslSockData SSL_CTX *ctx; -> sctx
+
+actx bdy -> body
+check all structs for eponymous members
+
+iwyu run over all source
+
+demote to warnings
+mutt_error(_("Warning: XXX"));
+
+refactor mutt_folder_hook()
+make shallower
+break out of loop, drop dupe FREEs
+
+what are deps of url_parse_mailto()
+can it be promoted to library?
+
+MailboxNode member should be mailbox, not m, to match other structs
+
+move data to top of index.c
+	IndexHelp[]
+	IndexNewsHelp[]
+
+reopen_mailbox() local index_hint_set is waste of time
+
+simplify all our:  if (X) free(X)
+add doxy param doc: (NULL safe) ?
+
+void mutt_pattern_free(struct Pattern **pat);
+move check: if (pat) inside function
+remove from callers
+
+split up MuttMisc into separate enums
+
+if (!(a && b))
+if (!(a || b))
+
+eliminate enum AccountType?
+use enum MailboxType
+	what about smtp?
+	add entry?
+
+mutt_set_flag - last param is bool
+	tricky, intersects with other functions
+
+grep " = [^,;]* [!=]= "
+
+conditional constants - reduce to a comment
+	Hmm... non-functional enum entries might cause problems
+	MENU_KEY_SELECT_PGP
+	MENU_MIX
+	MT_COLOR_DIVIDER
+	MUTT_NEWSGROUPS
+	MUTT_NEW_SSL_SOCKET
+	MUTT_NM_QUERY
+	MUTT_OPEN_HOOK
+	REDRAW_SIDEBAR
+
+body_copy() : move foreach param -> param_dup()
+
+FILE *x -> fp
+
+check all src against vim folding
+

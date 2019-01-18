@@ -1,4 +1,30 @@
 need regex_dup() function
+ntext = mx_mbox_open(m, buf, flags);
+  if (Context)
+    {
+    @@ -2090,6 +2097,7 @@ int mutt_index_menu(void)
+
+    #ifdef USE_NOTMUCH
+          case OP_MAIN_VFOLDER_FROM_QUERY:
+	        case OP_MAIN_VFOLDER_FROM_QUERY_READONLY:
+		        buf[0] = '\0';
+			        if (mutt_get_field("Query: ", buf, sizeof(buf), MUTT_NM_QUERY) != 0 || !buf[0])
+				        {
+					1 opcodes.h
+
+  Context = mx_mbox_open(m, buf, flags);
+  if (Context)
+  {
+@@ -2090,6 +2097,7 @@ int mutt_index_menu(void)
+
+#ifdef USE_NOTMUCH
+      case OP_MAIN_VFOLDER_FROM_QUERY:
+      case OP_MAIN_VFOLDER_FROM_QUERY_READONLY:
+        buf[0] = '\0';
+        if (mutt_get_field("Query: ", buf, sizeof(buf), MUTT_NM_QUERY) != 0 || !buf[0])
+        {
+1 opcodes.h
+
 
 struct ConfigSetType
 	flag for quoting
@@ -461,7 +487,7 @@ Configurable separator ':' or ','
 
 ':' needs to handle escaping
 
-functions: compare(), add_item(), remove_item(), is_member()
+functions: compare(), add_item(), remove_item(), is_member(), count_members()
 flags: allow dupes, case sensitive
 add count (length) value
 handle different separator types
@@ -489,6 +515,7 @@ LISTS
 	, hidden_tags
 	: mailcap_path
 	: send_charset
+
 
 NOT
 	charset
