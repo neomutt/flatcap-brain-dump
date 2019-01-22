@@ -1,3 +1,10 @@
+bcache
+	why isn't it in maildir format?
+	touch files, utime(2), to SENT_DATE
+		doc crontab for cleanup
+	plan to integrate offlineimap as bcache
+	might need folder-name translation to match offlineimap
+
 hcache that works offline!
 
 use hcache to store other info?

@@ -1,3 +1,5 @@
+drop #1234 refs to trac or gitlab
+
 free functions to take (**ptr)
 then deref to Type *type = *ptr;
 
@@ -95,3 +97,10 @@ return statements that might be converted to "return rc;"
 
 kill plural enums, e.g. MaiboxType*s*
 
+go through all large switch statements
+	localise all variables
+	except big buffers?
+
+rename mx_save_hcache to use 'msg' for consistency
+
+find all vars called ctx, Md5Ctx

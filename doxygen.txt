@@ -1,7 +1,9 @@
+calc number of #defines undocumented
+
 add href to each @page link to website
 filter out of actual docs
 
-dynamically create the "extra files2 list for all the gfx
+dynamically create the "extra files" list for all the gfx
 
 link doxy shields to pages!
 	add shield for 'files with @page'

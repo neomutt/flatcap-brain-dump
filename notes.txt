@@ -1,10 +1,28 @@
-go through all large switch statements
-	localise all variables
+on completion of H,M tasks praise on dev-ml
+
+fix mnemosyne 0-index bug
+
+private repo for mail-aliases and dot-mutt repo
+
+'Folder' limits the independence of mailbox.c
+	limited to parse_mailboxes()?
+
+after release
+	priority to bug-fixes, tidying
+	after that, help2, contrib (e.g. colourschemes)
+	so that others can help us
+
+path_canon
+	check that Folder, LastFolder, etc exist before using them
+
+merge mailbox.c and mx.c?
+	now that there aren't any deps
+	may need to move parse_(un)mailboxes out
+
+update wiki for new hard/medium/easy, update roadmap
 
 :verbose set/color/etc
 	show when/who last set that variable/color/etc
-
-doxy: calc number of #defines undocumented
 
 RE-opening mailbox
 	postpone, trash, edit msg, send message (fcc ^)
@@ -198,12 +216,6 @@ ctrl-C ∀ BE ∀ mxapi functions
 mutt_log(Buffer) -> split at \n
 	multiple logs
 	what level (all at same?)
-
-bcache
-	why isn't it in maildir format?
-	touch files, utime(2), to SENT_DATE
-		doc crontab for cleanup
-	plan to integrate offlineimap as bcache
 
 pattern ~w (newsgroup) not doc'd
 
@@ -2070,12 +2082,6 @@ Decide
 		the ones we really want
 	new variable type MAILBOX
 		could be a "/path" or "+mailbox"
-
-Doxy - commit config
-	scripts to gen/code on web
-	10m doc a function
-	(sort functions by usage)
-	(generate template ∀)
 
 Searches
 	list all GH matches
