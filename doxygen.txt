@@ -49,13 +49,7 @@ doxy how many (%age) are doc'd?
 create shield for each
 	colour coded according to %age
 
-bcache doxy
-hcache doxy
-
 add command usage to doxy parse functions
-
-tidy *.c so can use doxygen prep script on every one
-	grep for @page ?
 
 Add warnings to doxygen headers, for
 	@warning This function uses global variables: LIST, ...
@@ -109,4 +103,50 @@ x external
 https://img.shields.io/badge/functions-100%-green.svg
 https://img.shields.io/badge/members-31%-yellow.svg
 https://img.shields.io/badge/enums-14%-red.svg
+
+
+/*! \mainpage My Personal Index Page
+ *
+ * \section intro_sec Introduction
+ *
+ * This is the introduction.
+ *
+ * \section install_sec Installation
+ *
+ * \subsection step1 Step 1: Opening the box
+ *
+ * etc...
+ */
+
+ChangeLog?
+
+/*! \page page1 A documentation page
+  \tableofcontents
+  Leading text.
+  \section sec An example section
+  This page contains the subsections \ref subsection1 and \ref subsection2.
+  For more info see page \ref page2.
+  \subsection subsection1 The first subsection
+  Text.
+  \subsection subsection2 The second subsection
+  More text.
+*/
+/*! \page page2 Another page
+  Even more info.
+*/
+
+\struct
+\enum
+\typedef
+\def		#define
+\union
+
+\note { text }
+\par [(paragraph title)] { paragraph }
+\param [(dir)] <parameter-name> { parameter description }
+\return { description of the return value }
+\retval <return value> { description }
+\sa { references }
+\todo { paragraph describing what is to be done }
+\warning { warning message }
 

@@ -1,3 +1,7 @@
+mbox_mbox_sync()
+	struct Mailbox *tmp = NULL;
+	reduce scope, rename?
+
 drop #1234 refs to trac or gitlab
 
 free functions to take (**ptr)
@@ -104,3 +108,8 @@ go through all large switch statements
 rename mx_save_hcache to use 'msg' for consistency
 
 find all vars called ctx, Md5Ctx
+
+rename pop_get_adata()
+	any others misnamed?
+	all used?
+

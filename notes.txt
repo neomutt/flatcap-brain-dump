@@ -1,3 +1,18 @@
+does 'colorscheme' command need anything else besides 'color'
+	e.g. set sidebar_width, layout (future), etc
+	if so, need to allow more commands / config on "colorscheme X"
+
+all mx_X() functions to mailbox_X()? mx_X() for mxapi only?
+	what about wrappers - i.e. most of them?
+
+notifications
+	Config attached to N
+	what about A-specific changes?
+	CfgAccount needs A ptr - changes notify A, not N
+	BE_init() -> listen to N
+	notify(new A)
+	BE listen_to(A, recurse)
+
 on completion of H,M tasks praise on dev-ml
 
 fix mnemosyne 0-index bug
@@ -18,6 +33,7 @@ path_canon
 merge mailbox.c and mx.c?
 	now that there aren't any deps
 	may need to move parse_(un)mailboxes out
+	no? mailbox.c for Mailbox-y things, mx.c for mxapi stuff
 
 update wiki for new hard/medium/easy, update roadmap
 
@@ -116,6 +132,10 @@ repo for colour schemes
 	cf vim set background=light
 	installed scheme directory
 	'colorscheme' command to activate
+		colorscheme name -- for standard install path
+		colorscheme [next|prev] -- iterate through list?
+		colorscheme /path -- path to colour scheme file
+	command limited to color commands
 
 mbox_type can only be a *local* mailbox type
 	need a validator

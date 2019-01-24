@@ -22,7 +22,7 @@ Would this cause problems with translation?
 ---
 
 Offer the translators a formatting string:
-	snprintf(_("%s%s: %s"), ERROR_CODE, ERROR_STRING, MESSAGE);
+	snprintf(_("[%s]%s: %s"), ERROR_CODE, ERROR_STRING, MESSAGE);
 	ERROR_CODE   = "E123"
 	ERROR_STRING = "Error"
 	MESSAGE      = "Cannot read file 'x'

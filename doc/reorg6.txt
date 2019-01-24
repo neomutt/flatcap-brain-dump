@@ -95,5 +95,6 @@ two docs packages
 		markdown files for current version
 	neomutt-docs-git (with git dependency)
 		git repo, updated by neomutt
+		or have /etc/cron.weekly script (or daily?)
 both 'provide' same doc dir
 
