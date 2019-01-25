@@ -79,3 +79,222 @@ SRC: Addresses
 		sb2: list of tagged people
 		sb3: selected person
 
+sidebar option to toggle subscribed folders
+	=> keep all unsub'd folders
+	what about nntp -> 32K on gmane
+
+sidebar intro 'support +sidebar'!
+
+sidebar abbreviation option
+	/apple/banana/cherry/folder becomes
+	/a/b/c/folder
+
+should the current folder show up in the sidebar
+	even if it's not mailboxes'd?
+	nice!
+	then disappear when de-selected?
+	allow the user to 'subscribe' to it to keep it
+	allow the user to 'unsubscribe' from any folder
+		temporarily gone (till end of the session)
+	should this be:
+		<sidebar-subscribe>
+		<sidebar-unsubscribe>
+	or
+		<subscribe-folder>
+		<unsubscribe-folder>
+
+sidebar
+	colours using patterns? ~N ~F
+	colours for spool, trash, postpone?
+
+sidebar commands <next-sibling>, <prev-sibling>, <parent-folder>
+
+sidebar/account option - toggle-subscribed (folders)
+view:
+	just <mailboxes>
+	subscribed
+	all
+
+auto-sidebar bool option -- hide until needed on
+	<sidebar-show>
+	<sidebar-up>/<sidebar-down>
+	hide until needed
+	hide on <sidebar-open>
+	or after 1 second if possible
+
+sidebar intro -- mention "mailboxes" command
+
+sidebar_account colour?
+
+sidebar intro
+	priority of colours may be wrong after upstream changes
+	https://www.neomutt.org/feature/sidebar-intro#intro-sidebar-colors
+
+move sidebar-intro to howto and fix links
+	change id to howto/
+	or split out completely
+
+sidebar -- disable indent, etc if sorted
+
+new sidebar expando
+	count of unread *threads*
+
+fold/collapse empty sidebar folders
+	unless unread/flagged email etc
+
+sidebar
+	separate colour for read-only mailbox
+	expando for read-only mailbox
+
+sidebar
+	option to fold nested mailboxes
+	option to unfold when new mail arrives
+	folded, they should show the cumulative totals for all the children
+
+revert sidebar cursor positioning?
+	no longer needed now that sidebar isn't drawn during key-waits
+
+sidebar search command to quickly change to a mailbox
+	like vim highlight search?
+	filter after every keystroke
+
+sidebar-refresh command to forcibly update ALL the counts?
+
+sb fill empty space -> mutt_paddstr
+	no point, it just does multiple addch(' ')
+	alloc buffer (on stack)
+	memset to ' ', null at width, addstr()
+
+<sidebar-next-new> => $sidebar_flagged_are_new ?
+
+set/unset sidebar_visible doesn't refresh screen when in pager
+sb doesn't match folder (for open) if it has a trailing /
+
+<sidebar-refresh> function to forcibly refresh screen & counts after, e.g.
+	unmailboxes *
+	mailboxes lots...
+
+sidebar, when saving email to a folder use the sidebar as a selector?
+	new indicator colour or prompts "select save folder" + normal highlight
+
+what does Sidebar *really* need?
+	Incoming BUFFY -> notifications of BUFFY changes
+	Panel (geometry) -> notifications of WINCH
+	character libraries -> lengths, widths, formatting, etc
+	options (config access)
+	colours
+	curses: clear(panel), clear(line), write (char/string), move(x,y)
+		curses calls are all (0,0)-based
+		curses takes panel object and converts to screen coordinates
+		∀ users
+	callbacks for functions
+	sb is initialised with (Panel pointer), notifications on change
+	can query Panel's size, position (not useful), visibility
+	panel can be visible, but !active, e.g. partially under a modal dialog
+		=> paint if asked, but won't receive keys
+		could still be asked to do stuff by dialog, etc
+
+sidebar indented folders
+	fill in gaps in hierarchy automatically
+	make them non-selectable (unless the user has "mailboxes" them)
+	alternatively, have some way to mark mailboxes as "fake"
+		probably a horrible idea
+
+separate draw() in sidebar for
+	emails
+	notmuch
+	nntp
+	addressbook?
+
+use sort_aux for nested sidebar names?
+	no, sub-folders are same type?
+		no
+	YES: allows to sort by name, then subsort by new-count
+	separate variable otherwise it interferes with index, etc
+
+cache sidebar formatted strings on Mailbox object?
+
+Alternate views in the sidebar
+	need toggle function
+	imap: folders  <--> dir tree
+	local: folders <--> dir browser
+
+sb extra colours for:
+	readonly mailboxes
+		expando?
+	bad (non-existent) mailboxes
+		expando?
+	virtual mailboxes
+	what other attrs?
+	colour by SRC
+	separate colour schemes by SRC?
+
+sidebar needs NO-selection possibility for toggle-virtual
+
+sb expandos
+	compare letters to status_format letters
+	deleted?
+	number after limiting
+	unread?
+
+sidebar expandos
+	%c number of non-deleted emails (total - deleted)
+	%s = %c? (lower case version of %S?)
+
+can the real status bar display any sidebar fields?
+	why not?
+	how can they be integrated?
+
+tree chars for sidebar hierarchy?
+
+draw sidebar
+	assumes position/size
+	move due to STATUSONTOP, HELP
+	check of show/hidden has changed & refresh numbers if nec
+	if hidden, do nothing
+	sanity check settings
+	draw divider (3 chars!)
+for all buffers
+	set colour
+	move
+	gen displayname (need to cache this)
+		name, bytelen, screenlen
+		what about config changes
+			including sort order
+	make sidebar_entry
+fill remaining lines with blanks
+
+Sidebar actions (that might precipitate change):
+	line-up
+	line-down
+	page-up
+	page-down
+	set buffy from browser
+	change sort order
+	add mailbox
+	delete mailbox
+	change mailbox's sort criteria (e.g. flag an email, a flagged-sorted mailbox)
+	resize window
+	hide sidebar
+	show sidebar
+	open folder
+
+sb_draw should return success of drawing
+	possible given all the callbacks, etc?
+
+sidebar_width = auto (size to contents)
+	would need to parse and format all strings ahead of drawing divider
+
+possible to fix sidebar sort order to respect hierarchy/indentation?
+
+need attention
+	draw_sidebar
+	OPTSIDEBARSORT
+		sorts by real path, not visible name
+
+sidebar_dividers
+	first (wide) character is vertical divider
+		between sidebar and index/pager
+	second (wide) character is horizontal divider
+		between different mailboxes (within the sidebar)
+

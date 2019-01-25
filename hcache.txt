@@ -62,3 +62,56 @@ hcache files .<backend> suffix?
 
 config "file" vs "dir/" is ugly and confusing
 
+eliminate #ifdef USE_HCACHE for
+	int mh_sync_mailbox_message(struct Context *ctx, int msgno, header_cache_t *hc);
+	void * typedef if not def'd
+
+hcache move conditionals to end of struct?
+
+timestamp hcache entries for garbage collection
+
+have cache settings per account (or per folder), with flags
+	PREFETCH_ALL
+
+all hc dump functions should be const
+	need to disentagle dump_char_size first
+
+move CharsetIsUtf8 out of hcache (param)
+
+hcache namer
+	split (root, dir, name) triplet?
+
+check header and msg cache for dirs containing whitespace
+	e.g. "Bulk Mail"
+
+split the hcache serialisation by struct
+	address_serialise
+	buffer_serialise
+	etc
+each struct calls the children it needs
+put in some version numbers, or
+field type and length bytes before each field
+
+hcache pruner
+	use list of mailboxes
+	use list of backends (you want)
+	won't work for caching files, only folders
+		unless we trawl through EVERY email
+		might as well cache them too
+
+hcache: x [y] z
+	y = default
+
+hcache auto magic everything
+
+sync web & contrib versions of hcache benchmarks
+	how?
+
+have a NULL cache which is just a copy of the email
+	might *still* need a DB of some info
+	tie into offlineimap
+
+cache files need to hash their name too
+	to avoid two systems "sharing" a single hash
+	and crashing
+

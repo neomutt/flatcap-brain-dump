@@ -1,0 +1,83 @@
+
+fix mnemosyne 0-index bug
+
+mnemosyne
+	add function to quit recording
+	without altering any registers
+
+private repo for mail-aliases and dot-mutt repo
+
+git {continue,abort,skip} for git {am,rebase,cherry-pick,bisect}
+
+code folding - create an exception for <<<< ==== >>>> diff markers?
+	how do you continue?
+
+review bookmarks -> stars
+
+repo: daily, weekly, monthly updates
+	-> server
+
+vim de-comment fn to remove #if0
+
+move mutt cron to server
+
+vim-neomutt plugin
+	folding for c
+
+script to follow all the projects members
+
+git b(){} needs to disable colour on piping
+
+neo-stats.pl
+	ignore issues tagged 'release'
+	ignore integration issues?
+	or count only 'bugs' and unlabelled
+
+git pr improvements
+	config item for upstream (github)
+	'refresh' command, if possible to fast-forward
+		--force hard reset
+	'clean' command if unchanged
+		--force lose changes
+	stop it pulling tags
+	config item for name template, e.g. "pr/%s"
+		or --name X (or --name pr%s)
+	pr list -- can't tell if they're open
+
+syn match mw "\<Mutt\ze\(Window\|Thread\)\>" conceal
+
+script to keep neo mirrors up-to-date
+
+po multi-fold comment, english, foreign -- why bother?
+
+git map
+	read config for default remote
+
+git clone
+	always pull in my prepare-commit-msg hook
+	(disabled)
+	what other defaults?
+
+firstb <REGEX>
+	regex if it contains a '*'
+	anchored at bol?
+	multiple args => not regex
+	one arg => git checkout -- no sense in that
+
+list_pull_requests.sh
+	get_pull_requests.sh
+	reference local neomutt repo
+
+git hook variables
+	prepare-commit-msg
+	GIT_DIR
+	GIT_WORK_TREE
+	GIT_INDEX_FILE
+	GIT_PREFIX
+	GITHEAD_XXX
+
+auto-generate merge commit messages
+	modified git log msg
+	script for authors
+	commented out - but accessible?
+

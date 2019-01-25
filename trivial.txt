@@ -113,3 +113,13 @@ rename pop_get_adata()
 	any others misnamed?
 	all used?
 
+init.c
+	getsid() and getpid() are POSIX2001
+	no need for #ifdef?
+	check with cygwin
+
+replace "for (int" -> size_t in libmutt
+	177 occurrences
+
+more 'rc' : 'r', 'rv', 'ret'
+

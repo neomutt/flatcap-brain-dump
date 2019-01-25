@@ -87,3 +87,25 @@ notmuch
 notmuch.path = full notmuch://?query
 notmuch.realpath = notmuch://path/to/db?query
 
+l - limit by notmuch or have notmuch pattern
+
+rename notmuch files to nm_, lose mutt_ too
+
+nm queries
+	?name=XYZ
+	?desc=XYZ
+		for a named query
+	?subscribe[=yes]
+	?persistent[=yes]
+		for session-permanence?
+	equivalent to "mailboxes ^"
+	are options needed?  useful?
+
+would notmuch be able to filter out muted conversations?
+	No, not unless we change headers and notify notmuch
+
+notmuch backend: add X-Label in editor, does "right thing" in notmuch?
+unified frontend interface (notmuch/keywords) backend
+one-direction script -- sync nightmare?
+sync notmuch -> X-Label's?  get out of sync
+

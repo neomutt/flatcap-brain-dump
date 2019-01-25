@@ -15,10 +15,6 @@ notifications
 
 on completion of H,M tasks praise on dev-ml
 
-fix mnemosyne 0-index bug
-
-private repo for mail-aliases and dot-mutt repo
-
 'Folder' limits the independence of mailbox.c
 	limited to parse_mailboxes()?
 
@@ -136,9 +132,6 @@ repo for colour schemes
 		colorscheme [next|prev] -- iterate through list?
 		colorscheme /path -- path to colour scheme file
 	command limited to color commands
-
-mbox_type can only be a *local* mailbox type
-	need a validator
 
 reduce contributors to 6 months?
 split authors at 6 months? and 'others'
@@ -275,21 +268,6 @@ prevent too-long regexes causing 100% cpu
 	- color body magenta default [-a-z_0-9.\+]+@[-a-z_0-9.]+
 	+ color body magenta default [-a-z_0-9.\+]{,128}@[-a-z_0-9.]{,128}
 
-git pr improvements
-	config item for upstream (github)
-	'refresh' command, if possible to fast-forward
-		--force hard reset
-	'clean' command if unchanged
-		--force lose changes
-	stop it pulling tags
-	config item for name template, e.g. "pr/%s"
-		or --name X (or --name pr%s)
-	pr list -- can't tell if they're open
-
-eliminate #ifdef USE_HCACHE for
-	int mh_sync_mailbox_message(struct Context *ctx, int msgno, header_cache_t *hc);
-	void * typedef if not def'd
-
 some MxOps are compulsory, some are always implemented
 	drop checks for these?
 	what about if (adata) assume free_adata() exists?
@@ -298,20 +276,12 @@ eliminate AllMailboxes
 	start with fn  ML = get_mailboxes(FLAT|TREE);
 	HIDDEN|VISIBLE
 
-sidebar option to toggle subscribed folders
-	=> keep all unsub'd folders
-	what about nntp -> 32K on gmane
-
 "subscribe-to" command for imap undoc'd (and "unsubscribe-to")
 
 fedora build docs
 	missing for `--everything` build
 	lua-devel, db-devel, gdbm-devel, qdbm-devel, make, libidn2-devel
 	ctags, w3m, doxygen, ccache
-
-l - limit by notmuch or have notmuch pattern
-
-sidebar intro 'support +sidebar'!
 
 try alternate imap folder separators, e.g. | :
 sizeof(Mailbox) = 8392
@@ -341,18 +311,12 @@ Quoting
 	what about unicode curly quotes?
 
 flags typedef - call it BitField16?
-hcache move conditionals to end of struct?
 no pattern to search by label (or regex)
 doc pattern ~Y missing
-rename notmuch files to nm_, lose mutt_ too
 when checking for new mail, distinguish local from remote (cheap from costly)?
 attach style sheet to email - mutt color commands - email-specific
 
 on segfault, log backtrace to logfile too
-
-sidebar abbreviation option
-	/apple/banana/cherry/folder becomes
-	/a/b/c/folder
 
 announce <named-mailboxes> on dev ml
 
@@ -430,16 +394,6 @@ new repos:
 
 unify naming of conn_*() sock_*() functions
 
-nm queries
-	?name=XYZ
-	?desc=XYZ
-		for a named query
-	?subscribe[=yes]
-	?persistent[=yes]
-		for session-permanence?
-	equivalent to "mailboxes ^"
-	are options needed?  useful?
-
 nntp allow bare host urls
 	nntp://news.host.com  (no trailing slash)
 
@@ -452,16 +406,10 @@ create 'let' command for maths?
 
 index_sort = date,thread:rev-date?
 
-compress
-	does it really need: `bool locked`
-	or is the `FILE*` enough?
-
 <thread-SCOPE>ACTION like ;d (tag-delete)
 	<thread-latest><display-message>
 	<thread-first-new><display-message>
 	only for threaded & collapsed
-
-convert compress to use ACL ... can DELETE?
 
 fake typedef for qsort functions?
 	already have sort_t -- qsort compatible?
@@ -498,22 +446,6 @@ create a coding 'charter'
 		from us
 
 c++ build fix reserved names
-
-fix travis build
-
-should the current folder show up in the sidebar
-	even if it's not mailboxes'd?
-	nice!
-	then disappear when de-selected?
-	allow the user to 'subscribe' to it to keep it
-	allow the user to 'unsubscribe' from any folder
-		temporarily gone (till end of the session)
-	should this be:
-		<sidebar-subscribe>
-		<sidebar-unsubscribe>
-	or
-		<subscribe-folder>
-		<unsubscribe-folder>
 
 easy: locale.c
 	needs to be free of <intl.h>
@@ -597,10 +529,6 @@ magic "alias" mailbox stored on server
 	subject determines how it's processed
 	signed for safety
 
-sidebar
-	colours using patterns? ~N ~F
-	colours for spool, trash, postpone?
-
 intptr_t vs long in config
 	shrink DT_LONG
 
@@ -637,28 +565,19 @@ user:
 	git clone https://github.com/neomutt/neomutt.github.io
 	jekyll serve
 
-sidebar commands <next-sibling>, <prev-sibling>, <parent-folder>
-
 do we log questions? (and their answers?)
 
 neomutt log add startup timings
 	use log's timestamp
 	or measure our own millisecond timings
 
-git {continue,abort,skip} for git {am,rebase,cherry-pick,bisect}
-
 convert mutt_expando_format() and family to use intptr_t
 
 email
 	move 'ignore' code to regex? (replacelist)
 
-timestamp hcache entries for garbage collection
-
 neomutt -D with annotations
 	set timeout = 3 # seconds
-
-have cache settings per account (or per folder), with flags
-	PREFETCH_ALL
 
 neolog vimrc, 'set wrap linebreak showbreak=\ \ \ '
 
@@ -671,9 +590,6 @@ mutt_perror_debug makes two message calls
 
 remove #ifdef for #defines and enums
 	replace #ifdef with a comment
-
-code folding - create an exception for <<<< ==== >>>> diff markers?
-	how do you continue?
 
 add "I'm a developer" issue template
 	make them work harder
@@ -702,11 +618,6 @@ hcache lazy_malloc/realloc
 	who else uses similar scheme, Buffer?
 	move to library
 	investigate the 129 reallocs in neomutt
-
-all hc dump functions should be const
-	need to disentagle dump_char_size first
-
-move CharsetIsUtf8 out of hcache (param)
 
 struct Message
 	where does this fit into the email?
@@ -742,9 +653,6 @@ web
 	is layout: header nec?
 	they all use the same one
 		except post
-
-hcache namer
-	split (root, dir, name) triplet?
 
 html email
 	I use this: text/html; elinks -dump 1 -config-dir ~/.mutt/ %s; nametemplate=%s.html; copiousoutput
@@ -821,8 +729,6 @@ add lua test to release
 
 create specific README.md in each top-level neomutt branch
 
-review bookmarks -> stars
-
 pre-release: sync acutest and autosetup?
 
 mailing lists
@@ -864,9 +770,6 @@ user packagers' team to announce build changes
 
 add $smtp_user missing!
 
-repo: daily, weekly, monthly updates
-	-> server
-
 58 mutt_mktemp in ncrypt/
 
 gpg --no-verbose -> def config & contrib
@@ -874,9 +777,6 @@ gpg --no-verbose -> def config & contrib
 shield for freenode/irc --- silver searcher
 
 mentor team?  probably not yet
-
-mbox.c -- crazy source:
-	rc = ((ctx->magic == MUTT_MBOX) ? mbox_parse_mailbox : mmdf_parse_mailbox)(ctx);
 
 use tagged emails + edit to view multiple
 	set editor="vim -o"
@@ -908,7 +808,7 @@ relpage on web
 
 when we have Account objects and all imap connections are live
 	how often are accounts updated?
-	lower frequence for the non-current account?
+	lower frequency for the non-current account?
 	options for equal-freq, half-freq, off?
 	just update the spooldir?
 	keepalive option?
@@ -998,8 +898,6 @@ FOREACH should we always use _SAFE if we REMOVE (just for future safety)
 
 cron 12/06/2018 drop web changes dir
 
-make "lua" a medium task
-
 [release] branch, use travis cron
 	run daily
 	run tests after 10 commits or 7 days
@@ -1040,8 +938,6 @@ analysis
 	add lcov / coveralls
 	AddressSanitizer build
 
-vim de-comment fn to remove #if0
-
 logging file -- does it expand "~" mutt_expand_path
 	a) cmdline options
 	b) config options
@@ -1069,12 +965,6 @@ init.c
 move mkstemp, fmemopen, O_TMPFILE to mutt/temp.c?
 
 file locking - could log the caller
-
-sidebar/account option - toggle-subscribed (folders)
-view:
-	just <mailboxes>
-	subscribed
-	all
 
 upstream synonyms
 upstream implement message Q size
@@ -1124,11 +1014,6 @@ neo admins -> all public org members
 completion has a static var
 	encapsulate & refactor
 
-init.c
-	getsid() and getpid() are POSIX2001
-	no need for #ifdef?
-	check with cygwin
-
 split up complex actions like <next-entry>, it becomes
 	<next-message>
 	<open-message>
@@ -1171,12 +1056,6 @@ if !thread, don't abbr
 
 users ml
 	set "ask" config example
-
-backers:
-	$1/month name
-	$5/month photo/link
-	webpage
-	release notes?
 
 non-easy
 	find all OUT-params fn(&val)
@@ -1227,8 +1106,6 @@ pkg-config which platforms supported
 
 doc all environment variables, link to config variable references
 
-syn match mw "\<Mutt\ze\(Window\|Thread\)\>" conceal
-
 neomutt-test-configs.sh
 	do each build in a separate out-of-tree dir
 	run all in parallel
@@ -1248,12 +1125,8 @@ copy startup tests 1-37 on dev/ webpage
 
 mutt-wizard: contact, adopt?
 
-move mutt cron to server
-
 all contributors -> list
 	script to gen readme
-
-script to keep neo mirrors up-to-date
 
 "key is not bound" error doesn't say which key
 
@@ -1338,13 +1211,6 @@ tmpfile name neomutt-*DRAFT*-XXXXXX?
 	possible?
 	useful?
 	or set env to pass info to editor
-
-auto-sidebar bool option -- hide until needed on
-	<sidebar-show>
-	<sidebar-up>/<sidebar-down>
-	hide until needed
-	hide on <sidebar-open>
-	or after 1 second if possible
 
 ∀ $ENV, code default, init.h, system config, user config
 	doc and list priority order -- in $config docs!
@@ -1443,9 +1309,6 @@ restart POP after connection is broken/lost (like IMAP)
 option to make buffer auto-NUL-terminate
 	after every add*()
 
-check header and msg cache for dirs containing whitespace
-	e.g. "Bulk Mail"
-
 check for !*var
 	some string vars -> (str[0] == '\0')
 	some int vars -> (*num == 0)
@@ -1517,9 +1380,6 @@ fix default /etc/neomuttrc so that neomuttrc.vim doesn't show errors
 	color header brightred default ^(From|Subject):
 	last field isn't quoted and shows as an error
 
-replace "for (int" -> size_t in libmutt
-	177 occurrences
-
 introduce warning colour/color
 	cyan - message
 	yellow - warning
@@ -1537,18 +1397,12 @@ rename *idna* -> *idn*
 	A == applications!
 	but all the underlying functions are called idna
 
-more 'rc' : 'r', 'rv', 'ret'
-
 default (system) config
 	ifdef VERSION > 20180101 set ignore_disabled_config
 
 refactor idna code to make the entire file build-conditional
 
 use idna.h IDNA_ACE_PREFIX "xn--"
-
-mnemosyne
-	add function to quit recording
-	without altering any registers
 
 vim-airline test po fix on old non-sync vim
 (rhel6/7) create PR
@@ -1575,14 +1429,6 @@ buffer_swap()?
 
 who frees the charset hook regex lists?
 hook.c?
-
-change folder bug
-startup
-sidebar
-c<enter> (index)
-c<enter> (pager)
-c? (index)
-c? (pager)
 
 make the shutdown cleanup (freeing memory, etc)
 	#ifdef DEBUG
@@ -1938,8 +1784,6 @@ change safe_rename
 	ENOTSUP
 	EOPNOTSUPP
 
-sidebar intro -- mention "mailboxes" command
-
 use bsearch to search commands list
 
 merge and drop "scripts" top-level repo
@@ -1978,8 +1822,6 @@ imap keywords
 need neomutt glossary (search first)
 	add to guide
 
-aur distro page neo gpg key
-
 ask lists about slang usage
 	drop slang
 
@@ -1993,21 +1835,6 @@ https://github.com/neomutt/neomutt/tags.atom
 
 add make tags (to exclude junk)
 
-split the hcache serialisation by struct
-	address_serialise
-	buffer_serialise
-	etc
-each struct calls the children it needs
-put in some version numbers, or
-field type and length bytes before each field
-
-hcache pruner
-	use list of mailboxes
-	use list of backends (you want)
-	won't work for caching files, only folders
-		unless we trawl through EVERY email
-		might as well cache them too
-
 in pager, which objects are precious/vunerable
 	which might be changed outside of the pager
 
@@ -2015,9 +1842,6 @@ magic -- set *string*, save *int*
 	retrieve which?
 	or both?
 	retrieve string from Mapping[value]
-
-hcache: x [y] z
-	y = default
 
 buffer code solaris9(2005!) check
 
@@ -2110,8 +1934,6 @@ Searches
 
 add release count to changes doc on web
 
-sidebar_account colour?
-
 account: use $spoolfile to merge an inbox into the account line
 	spoolfile not set
 	AC_NAME
@@ -2124,7 +1946,7 @@ account: use $spoolfile to merge an inbox into the account line
 		banana 3/8
 
 Account
-	Buffy children[];
+	Email children[];
 	char *name;
 	Account *next;
 
@@ -2154,8 +1976,8 @@ each variable type in init.h should have its own validator
 
 relative 'source'ing of files doesn't work if the base is a symlink
 
-browser.c, buffy.c have a lot of
-	struct Buffy *tmp;
+browser.c, email.c have a lot of
+	struct Email *tmp;
 	tmp's a bad name for a variable
 
 create an address interface for lookups / completion
@@ -2190,15 +2012,9 @@ linux kernel
 	swap
 	round_up/down
 
-doc sample branches
-
 vim-like scrolloff option for pager/index
 use travis env / website to control build verbosity
 sort format string switches
-
-CRON
-	2017-11-01 gpgme version
-	2017-11-01 sun mailtool, nec?
 
 PR requirement all commits build
 	make dist/clean on merge
@@ -2218,7 +2034,6 @@ find maintainers for distro pages
 
 conceal IMAP password
 
-hcache auto magic everything
 READMEs tidy review
 index folding cf vim
 vim plugin - cino options etc
@@ -2285,9 +2100,6 @@ some other terms too
 deprecate ChangeLog*
 	they're in the git history
 	or abbreviate with extreme prejudice
-
-vim-neomutt plugin
-	folding for c
 
 use signal to interrupt IMAP connect
 	at time of resume (after suspend)
@@ -2368,9 +2180,6 @@ jekyll page type "hidden" -- don't list
 
 topics for my github repos, icons?
 
-sync web & contrib versions of hcache benchmarks
-	how?
-
 mutt marks -- are they mailbox-local?
 	can we distinguish (like vim) betweeen
 	`a  mark in this index
@@ -2386,10 +2195,6 @@ botty
 	a7b0fb8
 	https://github.com/neomutt/neomutt/commit/a7b0fb8
 	<p class="commit-title">Clear out extraneous errors before SSL_connect() (see #3916)</p>
-
-sidebar intro
-	priority of colours may be wrong after upstream changes
-	https://www.neomutt.org/feature/sidebar-intro#intro-sidebar-colors
 
 2017-03-06 #mutt
 	17:40 <parosen> "set -o vi" functionality in mutt?
@@ -2409,8 +2214,6 @@ webpage: new status
 
 add template email for newbies getting credit
 
-script to follow all the projects members
-
 bot command
 	/notice botty doc $folder
 		privately messages botty
@@ -2424,31 +2227,10 @@ bot command
 
 move the guide to readthedocs.org?
 
-lua styling/colour callback
-	c functions: hprintf(), push_attr(), pop_attr()
-	shared definitions: C_FG_RED, C_FG_BLUE, A_UNDERLINE, A_REVERSE, etc
-	c       lua_style_line(HANDLE, DATA[])
-	lua     hprintf(HANDLE, "hello ")
-		push_attr(HANDLE, C_FG_RED)
-		push_attr(HANDLE, A_REVERSE)
-		hprintf(HANDLE, "world")
-		pop_attr(HANDLE)
-		pop_attr(HANDLE)
-
 investigate:
 	global config
 	list all the IMAP variables
 	list all their uses
-
-account object that lives above BUFFYs
-	emails
-		maildir
-		mbox
-		imap
-		pop
-	notmuch
-	nntp
-can be visible or hidden
 
 github/irc bot.  notify on:
 	@neomutt/reviewers Please Review -> "guyzmo asked for review of #298 (Desc)"
@@ -2492,8 +2274,6 @@ example notes for an issue
 	might need to test the solution
 
 doc how to become a reviewer
-
-guyzmo's merge/review notes
 
 issues: shooting for zero
 	try to get down to zero issues/PRs
@@ -2569,10 +2349,6 @@ config: file invalid / missing
 code: internal error, missing ops
 separate what user cannot do vs MAY not do
 
-can't find mailbox ops error mesage -- coder only compress.c
-
-po multi-fold comment, english, foreign -- why bother?
-
 web misc contrib page <h1> per item
 
 safe macros enhancement request: https://github.com/neomutt/neomutt/issues/69#issuecomment-230442101
@@ -2585,9 +2361,6 @@ mailbox +/wibble
 mailbox =wibble
 	aren't equivalent, caused problems for squillis on irc 2017-02-10
 	# mailboxes =INBOX "+/Drafts" "+/Sent Items" "+/Systems/A" "+/Systems/B" "+/Systems/C"
-
-git map
-	read config for default remote
 
 release criteria for a new feature
 	changelog
@@ -2828,10 +2601,6 @@ slang deps on distro page
 "edit this page" button
 	doesn't make sense for docbook conversions
 
-move sidebar-intro to howto and fix links
-	change id to howto/
-	or split out completely
-
 distro contact details
 	separate from maintainer
 
@@ -2869,10 +2638,6 @@ settings for uncrustify, clang-format
 	for current neo code
 	for future  neo code
 
-have a NULL cache which is just a copy of the email
-	might *still* need a DB of some info
-	tie into offlineimap
-
 named-mailboxes use Mailbox Shortcut % ?
 	%tidy-name
 	needs plugging into other code
@@ -2881,10 +2646,6 @@ named-mailboxes use Mailbox Shortcut % ?
 
 neomutt members -- ask preferred method of communication
 	pref name @flatcap, Rich
-
-cache files need to hash their name too
-	to avoid two systems "sharing" a single hash
-	and crashing
 
 nested-if
 	stack of nesting chars in char[]
@@ -2931,9 +2692,6 @@ need to document "missing" keybindings
 	zsh is able to reset terminal configuration after each command with ttyctl -f
 
 new users -- [ci skip], #123 docs
-
-would notmuch be able to filter out muted conversations?
-	No, not unless we change headers and notify notmuch
 
 issues -- always assign (for later reference)
 	fixer/mentor only makes sense for bugs/enhancements
@@ -2991,8 +2749,6 @@ Create every doc idea as empty template page in web
 
 htop colour palette only works well because there are
 	few object to colour
-
-sidebar -- disable indent, etc if sorted
 
 calcurse -- curses calendar app
 
@@ -3171,11 +2927,6 @@ startup-hook
 shutdown-hook
 	before closing mailbox connections
 
-(un)new_mail_filter lua [lua...]
-
-new-mail-hook + lua to filter
-	=> need filter manager
-
 Need strategy for unrepeatable/too-little-info bugs/crashes
 
 matcher
@@ -3216,8 +2967,6 @@ development bottleneck
 
 ifdef needs an "else" condition
 	how?
-
-check mutt-tc for project ideas
 
 sort variables, etc before auto-completion
 	or properly sort the sources of the strings
@@ -3324,20 +3073,10 @@ new index/sidebar_format expando: icons
 	sorted in order of definition
 	tie-in to labels / notmuch tags
 
-new sidebar expando
-	count of unread *threads*
-
 fork vs non-fork -- animal species reference
 	species: noun
 	a group of living organisms consisting of similar individuals capable
 	of exchanging genes or interbreeding.
-
-xdg extension
-	look for lower case /etc/muttrc
-	etc
-
-fold/collapse empty sidebar folders
-	unless unread/flagged email etc
 
 check which doc/contrib files distros install
 	unify?
@@ -3432,8 +3171,6 @@ mutt doesn't close file handles on fork/exec
 	open pdf attach -- look in /proc for evince
 	security issue
 
-investigate & bundle? mutt_bgrun
-
 generate (script) tree of all source (by tags)
 	and create squashfs
 
@@ -3452,8 +3189,6 @@ web docs
 
 invert index option
 	new mail at top of screen
-
-add native compress support
 
 color command (mentor task)
 	no args: list all colours in a pager
@@ -3510,11 +3245,6 @@ gmail patches -> devel
 check distros are installing all docs, contrib, etc
 	i.e. is "make install" correct
 
-notmuch backend: add X-Label in editor, does "right thing" in notmuch?
-unified frontend interface (notmuch/keywords) backend
-one-direction script -- sync nightmare?
-sync notmuch -> X-Label's?  get out of sync
-
 index-color separate colours for "mylocal" and "@domain.com"
 	have a list of "known" domains that are dimmed?
 
@@ -3543,8 +3273,6 @@ web docs: What *is* neomutt
 	compare to mutt
 	explain why it's better
 
-is contrib/ installed by any downstreams?
-
 tip - status_format + status-color
 	ctx->readonly => red padlock
 
@@ -3559,11 +3287,6 @@ remote config -- like browser proxy setup
 	display to user "are you sure?"
 	useful for tips & examples
 	way too dangerous
-
-notmuch+index-color
-	tag patches in *neomutt*
-	"compat: notmuch+index-color" patch/commit
-	=> failed merge!
 
 alternative to sb search
 	key -> numeric prefix for all folders
@@ -3611,10 +3334,6 @@ getopt for neomutt
 	--version
 
 sidebar
-	separate colour for read-only mailbox
-	expando for read-only mailbox
-
-sidebar
 	have an alternate mailbox like vim's alternate file
 	(isn't this the '-' mailbox?)
 	create an alias for it '#'
@@ -3643,24 +3362,6 @@ mutt tips on startup
 	use labels (from Keywords plugin) to add value
 	use mutt's caching facility to store the metadata
 
-sidebar
-	option to fold nested mailboxes
-	option to unfold when new mail arrives
-	folded, they should show the cumulative totals for all the children
-
-git b(){} needs to disable colour on piping
-
-git clone
-	always pull in my prepare-commit-msg hook
-	(disabled)
-	what other defaults?
-
-firstb <REGEX>
-	regex if it contains a '*'
-	anchored at bol?
-	multiple args => not regex
-	one arg => git checkout -- no sense in that
-
 macro instruction <no-history> like vim's <silent>
 	some macros end up in the log
 
@@ -3671,15 +3372,6 @@ macro instruction <no-history> like vim's <silent>
 	like vim
 
 new-mail => dbus as a goal, see dgc
-
-revert sidebar cursor positioning?
-	no longer needed now that sidebar isn't drawn during key-waits
-
-sidebar search command to quickly change to a mailbox
-	like vim highlight search?
-	filter after every keystroke
-
-sidebar-refresh command to forcibly update ALL the counts?
 
 doc changes/todo list for limit-current-thread
 
@@ -3720,11 +3412,6 @@ Mutt config generator app
 	tutorial
 	translations
 
-sb fill empty space -> mutt_paddstr
-	no point, it just does multiple addch(' ')
-	alloc buffer (on stack)
-	memset to ' ', null at width, addstr()
-
 add tutorials (like sidebar intro) to the website
 	redlink some empty ones (or partials)
 	ask for translations?
@@ -3734,11 +3421,6 @@ use Gutenberg texts for sample emails
 	alias all names
 	replace all message-ids (but keep links)
 	strip out most headers
-
-neo-stats.pl
-	ignore issues tagged 'release'
-	ignore integration issues?
-	or count only 'bugs' and unlabelled
 
 dgc - unbind patch
 
@@ -3796,10 +3478,6 @@ forks of all distro repos
 
 NeoMutt website top tips?
 
-list_pull_requests.sh
-	get_pull_requests.sh
-	reference local neomutt repo
-
 muttrc.{distro} ∀ distros
 
 [management]/bin
@@ -3815,7 +3493,6 @@ delegation of keys -> focus() -> parent -> global, e.g. IW, Mail
 	functions => components (e.g. mail)     }- mail_init() register_functions(); register_commands();
 	commands => components                  }
 
-mirror script, add copr, aur repos
 show focus -- sacrifice help line?
 	no, it's not always visible
 propagation of notifications -- start @focus, work down
@@ -3852,11 +3529,7 @@ which panels *accept* focus?
 	<tab> to switch?
 	or <left>, <right>?
 
-<sidebar-next-new> => $sidebar_flagged_are_new ?
-
 website: some bug-fixes have gone away -> success page?
-set/unset sidebar_visible doesn't refresh screen when in pager
-sb doesn't match folder (for open) if it has a trailing /
 
 ∀ new bugfixes -- reference trac number in commit message
 test email reply to issues, etc
@@ -3867,10 +3540,6 @@ website front page: do YOU have a mutt patch? -> contact us
 website collection of changes since last release -> relnotes on release
 	note which branches, etc
 website highlight section on toolbar (solid colour?)
-
-<sidebar-refresh> function to forcibly refresh screen & counts after, e.g.
-	unmailboxes *
-	mailboxes lots...
 
 new hierarchy: tree => mail's parent is folder or mail
 
@@ -3891,8 +3560,6 @@ add my gpg signing key to neo.org, fc.org
 
 fmemopen - merge into one place in mutt_mktemp()?
 	idea from dgc email
-sidebar, when saving email to a folder use the sidebar as a selector?
-	new indicator colour or prompts "select save folder" + normal highlight
 Do drafts *need* to be stored in a separate folder?
 	why not inline?
 	in threaded order
@@ -3936,23 +3603,6 @@ vim library of config options(vars)
 kill version.c:rstrip_in_place()
 	fix external build scripts
 
-what does Sidebar *really* need?
-	Incoming BUFFY -> notifications of BUFFY changes
-	Panel (geometry) -> notifications of WINCH
-	character libraries -> lengths, widths, formatting, etc
-	options (config access)
-	colours
-	curses: clear(panel), clear(line), write (char/string), move(x,y)
-		curses calls are all (0,0)-based
-		curses takes panel object and converts to screen coordinates
-		∀ users
-	callbacks for functions
-	sb is initialised with (Panel pointer), notifications on change
-	can query Panel's size, position (not useful), visibility
-	panel can be visible, but !active, e.g. partially under a modal dialog
-		=> paint if asked, but won't receive keys
-		could still be asked to do stuff by dialog, etc
-
 how about modal dialogs?
 	1 dialog could invalidate sidebar, index, pager
 	sibling to sidebar, index, pager but last in list (z-order)
@@ -3974,18 +3624,6 @@ can some keybindings be set "only active when window is visible"?
 		should sidebar keys work?  probably not
 	*should* help hide the sidebar?
 		probably yes
-
-sidebar indented folders
-	fill in gaps in hierarchy automatically
-	make them non-selectable (unless the user has "mailboxes" them)
-	alternatively, have some way to mark mailboxes as "fake"
-		probably a horrible idea
-
-separate draw() in sidebar for
-	emails
-	notmuch
-	nntp
-	addressbook?
 
 changes to css must set both fg, bg
 	cf <note>
@@ -4021,28 +3659,9 @@ browser
 		doc as (N)umber of messages, or
 		%c message (C)ount
 
-use sort_aux for nested sidebar names?
-	no, sub-folders are same type?
-		no
-	YES: allows to sort by name, then subsort by new-count
-	separate variable otherwise it interferes with index, etc
-
 community script check for update
 	date community docs?
 	or just rely on commit date?
-
-git hook variables
-	prepare-commit-msg
-	GIT_DIR
-	GIT_WORK_TREE
-	GIT_INDEX_FILE
-	GIT_PREFIX
-	GITHEAD_XXX
-
-auto-generate merge commit messages
-	modified git log msg
-	script for authors
-	commented out - but accessible?
 
 replace " with ' in muttrc
 
@@ -4088,8 +3707,6 @@ introduce new format strings
 what are the objects in the Index?
 	cache the index formatted strings on them
 
-cache sidebar formatted strings on BUFFY object?
-
 refer to and compare config names by hash only?
 	save lots of string compares
 	gperf to generate perfect hashes
@@ -4120,11 +3737,6 @@ data source LDAP
 	news?  subscribed   <--> all groups
 	rss?   unread feeds <--> all feeds
 
-Alternate views in the sidebar
-	need toggle function
-	imap: folders  <--> dir tree
-	local: folders <--> dir browser
-
 signature manager
 disposable email address plugin?
 	need external API to send/receive
@@ -4141,27 +3753,10 @@ integrate nntp into sidebar
 what does notmuch return?
 	how do i link it to existing objects?
 
-sb extra colours for:
-	readonly mailboxes
-		expando?
-	bad (non-existent) mailboxes
-		expando?
-	virtual mailboxes
-	what other attrs?
-	colour by SRC
-	separate colour schemes by SRC?
-
 Where does getchar() get called?  can I centralise them?
 Does getchar() wait or poll?  Need it to poll
-Polling -> Idle -> Event callback that I can use to populate BUFFYs
-sidebar needs NO-selection possibility for toggle-virtual
+Polling -> Idle -> Event callback that I can use to populate EMAILs
 need to clear index on Toggle-Virtual
-
-sb expandos
-	compare letters to status_format letters
-	deleted?
-	number after limiting
-	unread?
 
 postpone patch doesn't quite work
 	1) The PostContext and menu are private, so sidebar can't tell that
@@ -4170,15 +3765,11 @@ postpone patch doesn't quite work
 	   get the display to refresh.
 
 alternative to lightweight patch
-	don't update info ∀ BUFFYs
+	don't update info ∀ EMAILs
 	just update the current page
 	only update lists when the user OPENs a folder
 	not when they move the highlight
 	could pre-emptively populate the previous/next pages
-
-sidebar expandos
-	%c number of non-deleted emails (total - deleted)
-	%s = %c? (lower case version of %S?)
 
 demo setup - lots of files in:
 	local mbox
@@ -4196,7 +3787,7 @@ init() on module calls add_options()
 	=> sb_opts refer to sb-private vars in sidebar.c
 option breakup depends on lots of notifications
 Where are OPTSIDEBAR* used outside sidebar.c
-	curs_main.c, buffy.c, mh.c
+	curs_main.c, email.c, mh.c
 Distinguish between movement and search wrap?
 	movement - next/prev (1 line), page up/down
 	search - find next/prev new
@@ -4220,50 +3811,12 @@ separate modules -- sidebar, index, pager, help? -- each with
 	config()
 sidebar_wrap=search,motion (separate bools for simplicity?)
 
-can the real status bar display any sidebar fields?
-	why not?
-	how can they be integrated?
-
 Unmailbox * ⇒  many notifications followed by ONE redraw
 
 parse_mailboxes -> notify sidebar => know if anything's invalidated TBCH
 can I use realpath(), mutt_expand_path() for anything?
 
-tree chars for sidebar hierarchy?
-
 Start; Incoming; Inbox open; current = Incoming; sort → cur is offscreen, boundaries lost
-
-draw sidebar
-	assumes position/size
-	move due to STATUSONTOP, HELP
-	check of show/hidden has changed & refresh numbers if nec
-	if hidden, do nothing
-	sanity check settings
-	draw divider (3 chars!)
-for all buffers
-	set colour
-	move
-	gen displayname (need to cache this)
-		name, bytelen, screenlen
-		what about config changes
-			including sort order
-	make sidebar_entry
-fill remaining lines with blanks
-
-Sidebar actions (that might precipitate change):
-	line-up
-	line-down
-	page-up
-	page-down
-	set buffy from browser
-	change sort order
-	add mailbox
-	delete mailbox
-	change mailbox's sort criteria (e.g. flag an email, a flagged-sorted mailbox)
-	resize window
-	hide sidebar
-	show sidebar
-	open folder
 
 Notify (Box*, Rect old, Rect new, flags)
 Flags:
@@ -4287,9 +3840,6 @@ DBUS plugin -- to do what?
 quiet config option -- don't whine about unknown config options
 	or quiet command line option
 
-sb_draw should return success of drawing
-	possible given all the callbacks, etc?
-
 trim trailing slash from mailboxes, folder
 	shouldn't be displayed
 
@@ -4305,29 +3855,10 @@ sorting
 	if displaying indented paths:
 		sort by top-level names, then children
 
-sidebar_width = auto (size to contents)
-	would need to parse and format all strings ahead of drawing divider
-
-possible to fix sidebar sort order to respect hierarchy/indentation?
-
-need attention
-	draw_sidebar
-	OPTSIDEBARSORT
-		sorts by real path, not visible name
-
-sidebar_dividers
-	first (wide) character is vertical divider
-		between sidebar and index/pager
-	second (wide) character is horizontal divider
-		between different mailboxes (within the sidebar)
-
 send escape sequence to clear terminal title when mutt closes
 init.h struct option_t needs enums for types and union for data
 timer notifications, e.g.
 	highlight something for three seconds, then return to normal
-https://github.com/N8Fear/mutt-kz
-	some initialisations improvements
-	some bug fixes
 
 wrapping →
 	extra char at beginning of line "+"

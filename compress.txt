@@ -57,4 +57,11 @@ which 'size' is relevant?  INSIDE
 	ptrs could redirects
 	nums can't
 
+compress
+	does it really need: `bool locked`
+	or is the `FILE*` enough?
+
+convert compress to use ACL ... can DELETE?
+
+add native compress support
 

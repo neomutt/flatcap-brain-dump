@@ -238,3 +238,21 @@ script to delete duplicate emails on the mailing list
 	save outgoing email in mailing list
 	when "public" copy arrives, delete the "sent" copy
 
+make "lua" a medium task
+
+lua styling/colour callback
+	c functions: hprintf(), push_attr(), pop_attr()
+	shared definitions: C_FG_RED, C_FG_BLUE, A_UNDERLINE, A_REVERSE, etc
+	c       lua_style_line(HANDLE, DATA[])
+	lua     hprintf(HANDLE, "hello ")
+		push_attr(HANDLE, C_FG_RED)
+		push_attr(HANDLE, A_REVERSE)
+		hprintf(HANDLE, "world")
+		pop_attr(HANDLE)
+		pop_attr(HANDLE)
+
+(un)new_mail_filter lua [lua...]
+
+new-mail-hook + lua to filter
+	=> need filter manager
+
