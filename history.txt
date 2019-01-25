@@ -1,0 +1,17 @@
+
+history - fix this:
+	docs "The buffer is cleared each time the variable is set."
+
+rename & move history to ~/.neomutt/history
+	use config syntext to highlight?
+	default to relative to user's neomuttrc
+
+history needs a refurb
+	doesn't quite save the right number of items
+	lots of void fn(void)!
+	when mkstemp() is in library, move history to library
+
+history -1 => infinite
+
+.mutthistory should be .neomutthistory
+

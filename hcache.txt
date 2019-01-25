@@ -101,6 +101,7 @@ hcache pruner
 
 hcache: x [y] z
 	y = default
+	only make sense after reading config?
 
 hcache auto magic everything
 

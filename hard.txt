@@ -1,0 +1,25 @@
+split up/remove BE-specific code in ci_send_message()
+Move email API:
+	locate all email-moving code
+	fastmove, slowmove
+colours/attrs
+	parse config
+	summary
+	implement colour primatives
+nntp refactor auto subscription (like imap)
+config +=, -=, etc API
+nested windows - refactor gui, reflow
+browser rewrite
+Account-specific config
+libconn independent
+new help system, $help_format_string
+sidebar A-aware
+hcache/bcache -> maildir!
+lua objects for Account, Mailbox, Email, etc
+inline hcache, offline
+general notify API
+change M->path from [] to *
+eliminate AllMailboxes (dep on A-aware sidebar)
+
+--------------------------------------------------------------------------------
+

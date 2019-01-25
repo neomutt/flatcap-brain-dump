@@ -1,3 +1,11 @@
+eliminate context from MXAPI, mx.c -> context.c
+	wrappers ctx_open(), etc
+	move {mx,mailbox,account}.{c,h} to mx/
+	deps mutt, email
+fix postpone, trash, etc
+
+Roadmap (web)
+
 does 'colorscheme' command need anything else besides 'color'
 	e.g. set sidebar_width, layout (future), etc
 	if so, need to allow more commands / config on "colorscheme X"
@@ -80,10 +88,6 @@ format strings have a list of
 	use this to split up deps
 	GUI could have [ X, ctx ]
 	reducing deps of mutt_expando_format()
-
-logging - extend 2 second rule by logging level
-	l2 message overwrites a l3 message
-	l3 message is blocked a l2 message
 
 icommand swap back (err -> -2)
 	MUTT_CMD_ERROR   = -1,
@@ -226,10 +230,6 @@ timeout hook ∀ BE?
 
 ctrl-C ∀ BE ∀ mxapi functions
 
-mutt_log(Buffer) -> split at \n
-	multiple logs
-	what level (all at same?)
-
 pattern ~w (newsgroup) not doc'd
 
 how does reply_regex fit into index and replying?
@@ -316,8 +316,6 @@ doc pattern ~Y missing
 when checking for new mail, distinguish local from remote (cheap from costly)?
 attach style sheet to email - mutt color commands - email-specific
 
-on segfault, log backtrace to logfile too
-
 announce <named-mailboxes> on dev ml
 
 mailbox->[real]path -> ptr !array
@@ -363,8 +361,6 @@ config: set tests missing \ -- am *I* mistaken about need?  unnec?
 
 define config *functions* - named config scripts
 	perhaps named f-USERSPEC -> bind <f-userspec>
-
-logging - take a Buffer param
 
 odd code:
 	using strfcpy to write to a struct Buffer
@@ -456,16 +452,10 @@ easy: locale.c
 	wrap up all but gpgme
 
 easy
-	strncpy -> strfcpy
-	docker for dovecot
 	stailq smimekey
 	stailq pgpkey
 	muttindexwindow workaround
 	refactor mbox_path_probe (does fgetc, then fread)
-
-change path_probe to return enum
-	inc ERROR codes
-	check callers check for error
 
 mutt_bits_* functions use array of unsigned char
 	unnecessary, nobody uses more that 16 bits
@@ -507,10 +497,6 @@ UI
 	custom printf-specifier?
 	mutt_message("can't read %Fs");
 	mutt_message inserts the colour codes if required
-
-Most translation messages that are questions (to prompt the user)
-	have trailing whitespace -- nuisance for the translator
-	kill them, adjust code
 
 browser
 	need clearer feedback *what* we're looking at
@@ -565,12 +551,6 @@ user:
 	git clone https://github.com/neomutt/neomutt.github.io
 	jekyll serve
 
-do we log questions? (and their answers?)
-
-neomutt log add startup timings
-	use log's timestamp
-	or measure our own millisecond timings
-
 convert mutt_expando_format() and family to use intptr_t
 
 email
@@ -612,8 +592,6 @@ packagers
 	gpgme dep?  enable by default
 	deprecate old ssl/tls versions
 
-separate logging from libmutt?
-
 hcache lazy_malloc/realloc
 	who else uses similar scheme, Buffer?
 	move to library
@@ -645,9 +623,6 @@ nntp all message ranges should be checked against the context
 Header data #ifdefs
 	drop POP/NNTP #ifdefs for libemail
 	use data for maildir instead of maildir_flags
-
-register "sensitive" regexes in the logger
-	e.g. AUTHENTICATE
 
 web
 	is layout: header nec?
@@ -714,11 +689,6 @@ find and convert #define num ranges -> enum
 calc libmutt test coverage as %age
 	use coveralls?
 
-frequently merge master INTO translate?
-	would encourage frequent "make update-po"!
-
-translate: eliminate "\n" from strings where possible?
-
 expand reviewers to all frequent committers?
 
 put docs for [travis], [release], [translate] into original commit message
@@ -756,9 +726,6 @@ use neomutt as a viewer/pager for emails
 remove umask code from mh.c
 	redundant due to `umask(077)` in main.c
 
-history - fix this:
-	docs "The buffer is cleared each time the variable is set."
-
 build script
 	if clang else gcc
 	optional compiler flags
@@ -767,8 +734,6 @@ State object -> library
 	excluding AttachmentMarker
 
 user packagers' team to announce build changes
-
-add $smtp_user missing!
 
 58 mutt_mktemp in ncrypt/
 
@@ -789,12 +754,6 @@ need (vim-like) foldopen option for search matches
 post conceal vim to dev/prog-tips page
 
 setup function to make aliases
-
-log level ∀ config changes?
-
-could some log levels share level numbers
-	NO, can't distinguish them later for labels
-	unless 400, 401, 402 are all level 4
 
 uniq history ∀ *.po msgid for both (neo)mutt
 
@@ -844,12 +803,6 @@ New/updated primitives:
 		list of params
 		function to serialise
 
-log level ∀ file operations
-	create/del/link/lock/etc
-	caller's id?
-
-log the FD of open/close and other file ops
-
 test imap server: openssl s_client -connect 10.8.0.1:imaps
 
 relative time option for the index_format
@@ -861,10 +814,6 @@ are any config strings required to be MixedCase?
 
 custom arrow cursor using expando
 	colour as usual
-
-debug log
-	use file locking
-	find first missing file, or oldest unlocked
 
 ask config system for type completions?
 	make sense for enums, what else?
@@ -938,25 +887,10 @@ analysis
 	add lcov / coveralls
 	AddressSanitizer build
 
-logging file -- does it expand "~" mutt_expand_path
-	a) cmdline options
-	b) config options
-
-mention translation team on translate page
-
 X-Labels lost if "unignore X-Label" isn't used!
 	suggest in labels docs
 
 Fix grammar of multi-part/-lingual messages
-
-combine function.h and opcode.h, triple of:
-	"function-name", OPCODE, "help description"
-	enum of OPCODEs
-	Mapping of "function-name", "help description"
-	alpha order -> binary search
-	simplifies doc generation too
-	separate duplicate/overlapping names
-		separate OP_DELETE for each object worked on
 
 init.c
 	change retval to -2 => mutt_warning()
@@ -1003,16 +937,10 @@ open(2) O_TMPFILE
 SIGUSR1 link to #2
 	mark hard, close
 
-neomutt -DD (defaults)
-	all config with the default values are #'d out!
-
 distro pages
 	how to find/use a coredump
 
 neo admins -> all public org members
-
-completion has a static var
-	encapsulate & refactor
 
 split up complex actions like <next-entry>, it becomes
 	<next-message>
@@ -1060,6 +988,7 @@ users ml
 non-easy
 	find all OUT-params fn(&val)
 	and ensure the variable is set before
+	flag them all in doxy header
 
 update list of all globals/configs
 	free everything on exit
@@ -1131,9 +1060,6 @@ all contributors -> list
 "key is not bound" error doesn't say which key
 
 use inotifywait to find all the build tmp files and .gitignore them
-
-don't log (to file) UI messages like "you are on last messsage"
-	need new log level
 
 deprecation -- offer list of old names
 	so users can grep -f
@@ -1278,10 +1204,6 @@ embed an asciinema demo of neomutt into our website
 
 should logfile be CRLF on windows/cygwin?
 
-rename & move history to ~/.neomutt/history
-	use config syntext to highlight?
-	default to relative to user's neomuttrc
-
 attachment viewing -- keep a list of tempfiles, either
 	delete after x mins (configurable?)
 		some programs *watch* the file, so they'll get upset after x mins
@@ -1325,11 +1247,6 @@ logging
 	can we lookup the name of 151?
 	no.  we can only lookup the description
 	could add "OP_XYZ" to struct #ifdef DEBUG
-
-history needs a refurb
-	doesn't quite save the right number of items
-	lots of void fn(void)!
-	when mkstemp() is in library, move history to library
 
 might wanna add a "Other comments" heading at the end of the PR template
 	rawtaz (irc)
@@ -1455,19 +1372,9 @@ teams
 	distro/X  X=debian,homebrew,etc
 	code/X    X=notmuch,reviewers,etc
 
-history -1 => infinite
-
 deprecate AUR repo & notify
 
 drop mailmap, use management one
-
-.mutthistory should be .neomutthistory
-
-refactor regex calls, e.g.
-	if (Mask && !((regexec(Mask->regex, nntp_data->group, 0, NULL, 0) == 0) ^ Mask->not))
-	if (regex_match(Mask, str, flags)
-	it checks pointers, etc
-	takes 'not' into account
 
 init.c main()
 	Is this still true?
@@ -1484,16 +1391,8 @@ do something about assert
 	one file has it disabled
 	one file has it enabled
 
-logging ideas
-	audit the levels
-	add sensitive logging option
-	remove logging levels completely
-
 move getaddrinfo, getaddrinfo_a into conn/dns.c
 	check deps
-
-debug logging
-	use millisecond timestamps?
 
 autosetup
 	tags target?
@@ -1888,8 +1787,6 @@ ask neou for logo suggestions
 
 use install-sh $(INSTALL) instead of cp
 
-log before regex ops & other risky functions
-
 parse_set: unset DT_RX doesn't work
 
 FS layer
@@ -2024,9 +1921,6 @@ email
 	folding the index
 	gettext -> non-optional?
 	wide ncurses mandatory?
-
-promote logging to default -- too useful
-	set max level?
 
 other distros, slack, ubuntu
 search for patches & list and adopt
@@ -2530,8 +2424,6 @@ collect useful tools in neomutt org:
 	khal
 	calcurse
 
-translation - coding, scripting, languages
-
 docs: highlight parts that are neomutt only!
 	put in yml header (when docs are split up)
 
@@ -2762,11 +2654,6 @@ can we workaround the case of gpgme + self sign / smime?
 
 new mail hook -- frequency limit
 	if time < 5s since last notification
-
-function to turn option list from
-	(S)ubject to *S*ubject (highlighted/colour)
-	make them consistant across mutt
-		some are just capital letters
 
 imap/pop ∀ devs
 	no outgoing

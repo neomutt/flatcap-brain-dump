@@ -195,3 +195,16 @@ doc translation plan
 	sync after big changes
 	sync 1 week before release
 
+Most translation messages that are questions (to prompt the user)
+	have trailing whitespace -- nuisance for the translator
+	kill them, adjust code
+
+frequently merge master INTO translate?
+	would encourage frequent "make update-po"!
+
+translate: eliminate "\n" from strings where possible?
+
+mention translation team on translate page
+
+translation - coding, scripting, languages
+

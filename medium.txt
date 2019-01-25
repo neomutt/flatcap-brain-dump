@@ -1,0 +1,39 @@
+regex encapsulation
+	if (Mask && !((regexec(Mask->regex, nntp_data->group, 0, NULL, 0) == 0) ^ Mask->not))
+	if (regex_match(Mask, str, flags)
+	it checks pointers, etc
+	takes 'not' into account
+simple Menu API
+completion API
+	has a static var
+	encapsulate & refactor
+history API
+alias API (labels, description)
+strncpy -> strfcpy NUL-terminated
+"func", OPCODE, "desc" triple
+	combine function.h and opcode.h, triple of:
+		"function-name", OPCODE, "help description"
+		enum of OPCODEs
+		Mapping of "function-name", "help description"
+		alpha order -> binary search
+		simplifies doc generation too
+		separate duplicate/overlapping names
+			separate OP_DELETE for each object worked on
+mxapi create/delete folder
+progress API
+strtok, strtok_r, strsep
+(H)ighlight
+	function to turn option list from
+		(S)ubject to *S*ubject (highlighted/colour)
+		make them consistant across mutt
+			some are just capital letters
+config list type
+mutt_error() "Error: " prefix, E123 too
+mxapi std error codes SUCCESS, WARNING, ERROR, CODE
+create create flowchart to/from/etc
+add $smtp_user
+sort out log levels, explain how useful this would be
+bool params to enums (find them all first) can any be shared?  confusing?
+
+--------------------------------------------------------------------------------
+

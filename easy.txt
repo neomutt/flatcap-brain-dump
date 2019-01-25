@@ -1,23 +1,28 @@
+summary :bind, :color, :account, :hooks
+--authors, --licence
+neomutt -DD # defaults
+	all config with the default values are #'d out!
+hide status/pager bar when empty
+trans: eliminate \n
+limit-to-tag function
+unbind command (dgc patch)
+$net_folder_format
+
+--------------------------------------------------------------------------------
+
 Easy
 	one summary page, each
-	neo -DD defaults
-	--authors, --license
 		read from /usr/share/doc/neomutt/
 		getopt?
 		what else?
-	:<del>  close prompt
 Medium
-	config List type?
 	browser - why are delete, rename and create folder limited to IMAP?
 		maildir, mbox should work too
 		mxapi?
 
-regex refactor
 slist
 investigate addr functions
 mb functions
-strtok fns
-error prefix
 parse warnings
 concat
 my first pr
@@ -44,11 +49,6 @@ test a distro -- give feedback
 easy web page
 	description links to GH
 	mention translations too
-
-parse_set()
-	r -> rc
-
-check_alias_name() bad,dry -> bool
 
 refactor -> random.c (lib?)
 	lib mem routines -> could exit(1)
@@ -113,21 +113,8 @@ easy task:
 	test problems
 	one+ person per distro
 
-do_color() & callers
-	&do_cache -> bool
-
-convert strncpy -> strfcpy (guaranteed NUL termination)
-	* 33
-
 tidy aliases
 	STAILQ, doxy, testing
-
-hcache: x [y] z
-	y = default
-only make sense after reading config?
-
-python:
-	botty improvements
 
 task (n+1) (for extra points)
 	find more examples to fix

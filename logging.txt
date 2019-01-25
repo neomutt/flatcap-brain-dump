@@ -413,3 +413,62 @@ CLI	Config
 -l	-l
 -d,-l	-d,-l
 
+log level ∀ config changes?
+
+logging - extend 2 second rule by logging level
+	l2 message overwrites a l3 message
+	l3 message is blocked a l2 message
+
+mutt_log(Buffer) -> split at \n
+	multiple logs
+	what level (all at same?)
+
+on segfault, log backtrace to logfile too
+
+logging - take a Buffer param
+
+do we log questions? (and their answers?)
+
+neomutt log add startup timings
+	use log's timestamp
+	or measure our own millisecond timings
+
+separate logging from libmutt?
+
+register "sensitive" regexes in the logger
+	e.g. AUTHENTICATE
+
+could some log levels share level numbers
+	NO, can't distinguish them later for labels
+	unless 400, 401, 402 are all level 4
+
+log level ∀ file operations
+	create/del/link/lock/etc
+	caller's id?
+
+log the FD of open/close and other file ops
+
+debug log
+	use file locking
+	find first missing file, or oldest unlocked
+
+logging file -- does it expand "~" mutt_expand_path
+	a) cmdline options
+	b) config options
+
+don't log (to file) UI messages like "you are on last messsage"
+	need new log level
+
+logging ideas
+	audit the levels
+	add sensitive logging option
+	remove logging levels completely
+
+debug logging
+	use millisecond timestamps?
+
+log before regex ops & other risky functions
+
+promote logging to default -- too useful
+	set max level?
+

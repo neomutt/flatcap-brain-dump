@@ -123,3 +123,5 @@ replace "for (int" -> size_t in libmutt
 
 more 'rc' : 'r', 'rv', 'ret'
 
+check_alias_name() bad,dry -> bool
+
