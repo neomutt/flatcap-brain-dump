@@ -1025,3 +1025,23 @@ updates from BE -- several emails deleted
 		open folds stay open
 		closed folds stay closed
 
+account: use $spoolfile to merge an inbox into the account line
+	spoolfile not set
+	AC_NAME
+		inbox  1/6
+		apple  2/7
+		banana 3/8
+	spoofile=inbox
+	AC_NAME        1/6
+		apple  2/7
+		banana 3/8
+
+Account
+	Email children[];
+	char *name;
+	Account *next;
+
+account [[name] mailbox]
+	mailboxes
+account
+

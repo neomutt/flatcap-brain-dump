@@ -125,3 +125,10 @@ more 'rc' : 'r', 'rv', 'ret'
 
 check_alias_name() bad,dry -> bool
 
+buffer_init() vs = { 0 }?
+
+change OPT_NO_CURSES to OPT_USE_CURSES
+	and reverse the logic
+	uses: 14 OPT_USE_CURSES, 33 !OPT_USE_CURSES
+	this means defaulting a global bool to true
+

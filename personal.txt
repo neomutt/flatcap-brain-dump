@@ -81,3 +81,5 @@ auto-generate merge commit messages
 	script for authors
 	commented out - but accessible?
 
+histignore M and other uppers
+

@@ -21,12 +21,15 @@ strncpy -> strfcpy NUL-terminated
 			separate OP_DELETE for each object worked on
 mxapi create/delete folder
 progress API
-strtok, strtok_r, strsep
+sort out / standardise
+	strsep, strtok, strtok_r
 (H)ighlight
 	function to turn option list from
 		(S)ubject to *S*ubject (highlighted/colour)
 		make them consistant across mutt
 			some are just capital letters
+	colour highlight/underline _Q_uestion, _O_ptions 'q', 'o'
+
 config list type
 mutt_error() "Error: " prefix, E123 too
 mxapi std error codes SUCCESS, WARNING, ERROR, CODE

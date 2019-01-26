@@ -1,0 +1,164 @@
+
+docs: highlight parts that are neomutt only!
+	put in yml header (when docs are split up)
+
+docs: printing, 3 examples
+	off: bind p to nop
+	ldr: normal printing setup
+	pdf: 'print' to pdf file
+
+docs:
+	generate gv for build of website
+	which files are generated, how, src
+	which files are imported: code, etc
+	which files are canonical
+
+docs for query_command
+	sveng: the description to query_command in the neomuttrc
+	contains "see 'query'".. but i dont see a "query" option at all
+
+docs for config with user vars
+	source `hostname`.rc
+	source `$USER`.rc
+
+update docs
+	split readme authors
+	more shields
+	donate in more places
+	credit all reference
+
+docs
+	rename manual.{txt,etc} to guide
+
+docs
+	which sections are conditional?
+	"neomutt -v" output, check docs
+	icon on help/web page
+	add "conditional:" yaml header
+		render with an icon on the page?
+
+build docs
+	include out-of-tree example
+	and cross-compile example
+
+docs, etc: drop "All mail clients suck..." quote from m.e.
+
+docs - General build
+	config options
+	make targets
+	install/uninstall
+
+docs:
+	http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+move the guide to readthedocs.org?
+
+reorganise docs
+	migrate them all to docbook (or markdown?)
+		if markdown, how good will the html look?
+		what about conditional docs?
+			how do we only include that which we compile?
+			too hard?
+			WHICH sections are currently conditional?
+	generate man pages from these sources
+	strip init.h of its docs
+	get default values from "mutt -D" instead
+
+~Y docs match label missing?
+
+docs - keep reference copy of all relevant RFCs
+	links, obsoletes, etc
+	mailcap too
+
+Create every doc idea as empty template page in web
+	with notes
+	list of docs in project "docs"
+
+de "neo" the trash docs & keep in neo repo
+
+docs - nested if
+	better explanation of %<>
+
+trash docs
+	add purge-message/purge-thread notes
+	add folder-hook to delete if >30days
+
+feature docs to separate <sect1>'s?
+	separate <book>?
+
+docs based on use-cases
+	need list of cases to start
+	put in repo
+	request pull-requests to improve
+
+web docs
+	update debian support section
+
+docs
+	create high-level workflow doc with screenshots
+	show beginners *how* mutt works
+	label areas of mutt window
+
+docs build: more sed filters VERSION, DATE, git hash?
+
+web docs: What *is* neomutt
+	mail client
+	show pictures
+	compare to mutt
+	explain why it's better
+
+modify docs generation to process commands' comments
+
+change docs to use <example>
+
+docs refer to alias menu but don't mention how to invoke it
+
+break up and rewrite mutt docs
+	break into smaller sections
+	separate mutt-doc repo
+	translate sections (default to english if missing)
+
+rfc add line numbers and 'a' links
+	create as a book in main docs (for linking)
+
+howto: update website
+	ruby, jekyll
+	which gems needed?
+	"jekyll serve" to test
+
+manual "variables" need description field
+
+pattern ~w (newsgroup) not doc'd
+
+"subscribe-to" command for imap undoc'd (and "unsubscribe-to")
+
+doc pattern ~Y missing
+
+custom-tags example
+	bind index,pager tt "<modify-labels>!todo\n" "Toggle the 'todo' tag"
+	should use macro
+
+web home page
+	What is it?
+		brief desc + link to screenshots, etc
+	Who are we
+		brief desc
+	Whare are we going?
+		link to roadmap
+	How can I help
+		link to easy page
+
+web create some skeleton pages
+	lists of notes
+	link to GH easy issue
+
+web need: how to make your first PR page
+	cut'n'paste from other guides
+
+doc all environment variables, link to config variable references
+
+split out upstream features, or yaml tag them
+
+"edit this page" button
+	doesn't make sense for docbook conversions
+

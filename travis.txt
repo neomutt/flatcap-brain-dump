@@ -235,3 +235,5 @@ Riskier things we can do:
 
 	Look for whitespace errors
 
+travis xenial - try more compiler flags
+

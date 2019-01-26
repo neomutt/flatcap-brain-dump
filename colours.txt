@@ -122,3 +122,58 @@ new mutt colours
 
 fake/alternate curses -> true colour => separate fg, bg, term attrs like vim
 
+does 'colorscheme' command need anything else besides 'color'
+	e.g. set sidebar_width, layout (future), etc
+	if so, need to allow more commands / config on "colorscheme X"
+
+repo for colour schemes
+	min requirements?
+	light/dark versions?
+	cf vim set background=light
+	installed scheme directory
+	'colorscheme' command to activate
+		colorscheme name -- for standard install path
+		colorscheme [next|prev] -- iterate through list?
+		colorscheme /path -- path to colour scheme file
+	command limited to color commands
+
+prevent too-long regexes causing 100% cpu
+	- color body magenta default "(ftp|http|https)://[^ ]+"
+	+ color body magenta default "(ftp|http|https)://[^ ]{,1024}"
+	also
+	- color body magenta default [-a-z_0-9.\+]+@[-a-z_0-9.]+
+	+ color body magenta default [-a-z_0-9.\+]{,128}@[-a-z_0-9.]{,128}
+
+restricted "source" command - after reading/applying colours
+	have a "keep these colours" question
+	default to "No", with a *timeout*
+
+use the configured error/warning/message colours for the stderr logging
+
+introduce warning colour/color
+	cyan - message
+	yellow - warning
+	red - error
+	use for setting config
+
+add colour to the browser
+
+htop colour palette only works well because there are
+	few object to colour
+
+colour manager, see htop
+
+index-color separate colours for "mylocal" and "@domain.com"
+	have a list of "known" domains that are dimmed?
+
+colour-coding good-sig vs bad-sig
+	tricky for mime attached sigs
+
+index-color
+	patterns on date
+	allow unescaped ANSI sequences?
+	add offset based pattern, e.g.
+		color red default cols:14-20 [mutt pattern]
+
+'uncolor status' doesn't work
+

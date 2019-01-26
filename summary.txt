@@ -152,3 +152,7 @@ summary page
 (which account/mailbox you have open)
 :setlocal (just the account vars)
 
+color command (mentor task)
+	no args: list all colours in a pager
+	object: show object's colours (coloured accordingly)
+

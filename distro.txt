@@ -10,7 +10,7 @@ more columns
 	Version of NeoMutt
 	Update frequency?
 		too pushy on distros
-	
+
 Sidebar
 	Support / Help
 		IRC
@@ -24,4 +24,84 @@ Sidebar
 		y
 		z
 
-		
+distro pages
+	how to find/use a coredump
+
+put "latest version = X" on distro pages
+	too much work to keep up-to-date?
+
+distro:
+	update fedora, copr pages
+	rewrite copr page
+		news
+		links to features
+
+document meaning of "distros" pages
+	min vm install -> build -> debug
+
+check distro installs
+	provide list of all installed files/types, etc
+	cf each distro
+
+other distros, slack, ubuntu
+search for patches & list and adopt
+find maintainers for distro pages
+
+Distro pages:
+	Debian, Gentoo, MacPorts, NetBSD, Void
+	need filling out
+
+distros
+	platform {linux|bsd|macos}
+	where to coredumps go?
+
+slang deps on distro page
+
+distro contact details
+	separate from maintainer
+
+distinguish distros' neomutt
+	{vanilla|patched}
+	{replaces|addition} to mutt pkg
+	{distro|user} maintained
+	{all|limited} features included
+	{hcache type}
+
+distro web pages need install instructions for development, too
+	min/max dev packages to build & debug neomutt
+	all instructions based on min distro install
+	note exact distro instructions were written for
+
+contact distros
+	are they up-to-date
+	current list of distro patches
+	list of recent OS versions
+	list of mutt/neomutt versions for each OS version
+	address of issue tracker
+	address of mailing lists
+	contact details for maintainer(s)
+	inform them about
+		mailing lists
+		irc
+		website / news
+		github
+	bcc email?
+		give list of distros
+		bcc => hard for multiple maintainers to coordinate
+			cc better?
+	ask for install instructions for web downloads page
+	offer github invites to all maintainers
+
+check which doc/contrib files distros install
+	unify?
+	debian doesn't install contrib?
+	check other distros
+
+check distros are installing all docs, contrib, etc
+	i.e. is "make install" correct
+
+forks of all distro repos
+	clone https://github.com/macports/macports-ports
+
+muttrc.{distro} ∀ distros
+

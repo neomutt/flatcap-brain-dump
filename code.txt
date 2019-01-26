@@ -313,3 +313,57 @@ look for complex if/for/while/do loops without {}s
 ^\(\s\+\)\(else \)*if (.*\n\(\1  \+[^{]\+\)\+\n\1  \S/
 ^\(\s\+\)\(while\|for\|do\|if\) (.*\n\(\1  \+[^{;]\+\)\+\n\1  \S/
 
+style guide
+	STAILQ_FOREACH
+	always use {}
+	otherwise clang-format gets upset
+
+add style GUIDELINE to add const where possible
+
+style:
+	F9 unused parameters should be unnamed
+	Enum.5: Don't use ALL_CAPS for enumerators
+	Enum.6: Avoid unnamed enumerations
+
+static functions with leading _
+	add to style guide
+
+write REQUIREMENTS doc
+	C99
+	SUS (Single Unix Specification)
+	NotMuch >= 4.3.0
+	etc
+
+coding standard: two copies
+	part 1:
+		full descriptions
+		examples
+		anchors <a name="">
+	part 2:
+		auto-generated (script or jekyll)
+		concise list + links to full examples
+alternative, have coding standard in _std dir
+	pieced together by jekyll for both versions
+
+find remaining snake_case globals and replace them
+
+kill all function names with plural objects
+	new_body() OK
+	delete_bodies() BAD
+	hard to search for similar functions
+
+if a struct has a X_free() it must have a X_alloc()
+	check all allocs are *C*alloc
+
+tagged initialisers -> coding standard
+variable length arrays -> are they safe?
+
+check the contents of NONULL for expensive calls
+	#define NONULL(x) (x ? x : "")
+	'x' evaluated twice
+
+FOREACH should we always use _SAFE if we REMOVE (just for future safety)
+
+all functions that return int
+	`if (!fn())` should be `if (fn() == X)`
+
