@@ -1,0 +1,19 @@
+
+prep 1-liner descriptions of all var,cmd,fn etc for botty
+
+python coder needed to update botty
+	use github api
+	commits
+	issues/PRs
+
+botty
+	look for commits?
+	a7b0fb8
+	https://github.com/neomutt/neomutt/commit/a7b0fb8
+	<p class="commit-title">Clear out extraneous errors before SSL_connect() (see #3916)</p>
+
+bot command
+	/notice botty doc $folder
+		privately messages botty
+	botty replies in-channel
+

@@ -6,7 +6,7 @@ eliminate context from MXAPI, mx.c -> context.c
 	deps mutt, email
 fix postpone, trash, etc
 
-Roadmap (web)
+update wiki for new hard/medium/easy, update roadmap
 
 all mx_X() functions to mailbox_X()? mx_X() for mxapi only?
 	what about wrappers - i.e. most of them?
@@ -36,8 +36,6 @@ merge mailbox.c and mx.c?
 	now that there aren't any deps
 	may need to move parse_(un)mailboxes out
 	no? mailbox.c for Mailbox-y things, mx.c for mxapi stuff
-
-update wiki for new hard/medium/easy, update roadmap
 
 :verbose set/color/etc
 	show when/who last set that variable/color/etc
@@ -263,8 +261,6 @@ attach style sheet to email - mutt color commands - email-specific
 
 announce <named-mailboxes> on dev ml
 
-mailbox->[real]path -> ptr !array
-
 imap A has Config:
 	"user" inherited from "imap_user"
 	"imap_user" synonym for "A:user"
@@ -379,8 +375,6 @@ mutt_bits_* functions use array of unsigned char
 	just use unsigned int and simplify the macros
 
 status/pager format
-	if empty don't display?
-	will need a dividing line between index and pager
 	collapse the status bar and command line?
 	what about error messages?  timed?
 
@@ -562,9 +556,6 @@ rename members
 	bools to is_x, has_x, etc
 	amounts to num_x, nr_x, etc
 
-create updated contrib/{gpg1,gpg2,smime}.rc
-	separate example config for gpgme
-
 move a perror to mutt_mkstemp()?
 	logging in libmutt -> gettext() etc
 
@@ -607,7 +598,7 @@ release notes
 	to show our busyness
 
 option for insertable horizontal divider line in the index
-	(simply underline one line of text)
+	(simply underline (or overline) one line of text)
 	configurable positions, e.g
 	this week | this month | old stuff
 	config: 1w:1m -> three sections
@@ -633,8 +624,6 @@ State object -> library
 user packagers' team to announce build changes
 
 58 mutt_mktemp in ncrypt/
-
-gpg --no-verbose -> def config & contrib
 
 shield for freenode/irc --- silver searcher
 
@@ -783,10 +772,6 @@ X-Labels lost if "unignore X-Label" isn't used!
 
 Fix grammar of multi-part/-lingual messages
 
-init.c
-	change retval to -2 => mutt_warning()
-	#define/enum the return codes
-
 move mkstemp, fmemopen, O_TMPFILE to mutt/temp.c?
 
 file locking - could log the caller
@@ -911,8 +896,6 @@ mutt-wizard: contact, adopt?
 
 all contributors -> list
 	script to gen readme
-
-"key is not bound" error doesn't say which key
 
 use inotifywait to find all the build tmp files and .gitignore them
 
@@ -1062,8 +1045,6 @@ connecting to gmail with options:
 	-gnutls and -ssl causes a crash in mutt_conn_find()
 	check
 
-prep 1-liner descriptions of all var,cmd,fn etc for botty
-
 restart POP after connection is broken/lost (like IMAP)
 
 option to make buffer auto-NUL-terminate
@@ -1080,6 +1061,7 @@ logging
 	can we lookup the name of 151?
 	no.  we can only lookup the description
 	could add "OP_XYZ" to struct #ifdef DEBUG
+	"key is not bound" error doesn't say which key
 
 might wanna add a "Other comments" heading at the end of the PR template
 	rawtaz (irc)
@@ -1102,11 +1084,6 @@ hibernate-hook - would one be useful to anyone?
 	what about ctrl-Z suspend/resume?  same?
 	does hibernate need a time option
 	if (Δt > n) then fire hook
-
-python coder needed to update botty
-	use github api
-	commits
-	issues/PRs
 
 may need to rename one of:
 	mutt/message.h
@@ -1519,8 +1496,6 @@ now that IMAP, et al, are compiled-in, what's in the docs
 
 check management README (missing)
 
-update newbie/hard list from discussions -> focus
-
 two stage index update?
 	hide, refresh
 	update
@@ -1693,7 +1668,7 @@ some other terms too
 	"stty flush undef" needed
 
 deprecate ChangeLog*
-	they're in the git history
+	hey're in the git history
 	or abbreviate with extreme prejudice
 
 use signal to interrupt IMAP connect
@@ -1768,12 +1743,6 @@ mutt marks -- are they mailbox-local?
 convert the bug-fixes section of the travis build.sh to work on the upstream branch
 	(test all commits, with a small spread of configs)
 
-botty
-	look for commits?
-	a7b0fb8
-	https://github.com/neomutt/neomutt/commit/a7b0fb8
-	<p class="commit-title">Clear out extraneous errors before SSL_connect() (see #3916)</p>
-
 2017-03-06 #mutt
 	17:40 <parosen> "set -o vi" functionality in mutt?
 
@@ -1782,6 +1751,8 @@ when saving a file (being asked for input),
 	like vim's ^R
 
 create muttrc that undoes everything that might be in /etc/Muttrc
+	:reset all
+	:uncolor *
 
 po
 	don't need line numbers for git
@@ -1791,11 +1762,6 @@ webpage: new status
 	wip-help -- "Work in progress - Please help (instructions)
 
 add template email for newbies getting credit
-
-bot command
-	/notice botty doc $folder
-		privately messages botty
-	botty replies in-channel
 
 .gitattributes
 	ignore changes to .travis.yml
@@ -1910,8 +1876,6 @@ config: file invalid / missing
 code: internal error, missing ops
 separate what user cannot do vs MAY not do
 
-web misc contrib page <h1> per item
-
 safe macros enhancement request: https://github.com/neomutt/neomutt/issues/69#issuecomment-230442101
 	zmo suggests: emulate the augroup feature of vim :)
 	macros specific to a folder, or notmuch, etc
@@ -1922,6 +1886,8 @@ mailbox +/wibble
 mailbox =wibble
 	aren't equivalent, caused problems for squillis on irc 2017-02-10
 	# mailboxes =INBOX "+/Drafts" "+/Sent Items" "+/Systems/A" "+/Systems/B" "+/Systems/C"
+
+new feature checklist -- code all configs, doc, readme, web, doc validate
 
 release criteria for a new feature
 	changelog
@@ -2000,8 +1966,6 @@ only update translations on bug-fix release
 fixes for docs are bug-fixes
 two open milestones (next-feature-release, next-bug-fix-release)
 
-#define the mailbox -2 abort, -1 error
-
 list Sven's unused letters to the main guide
 
 leave-folder hook?
@@ -2062,6 +2026,8 @@ magic "combined" folder
 	maildir part of changeable stuff
 	combined into one view
 	need method to "fix" emails i.e. mark them as no-more-changes
+	cf unionfs - what happens to writes?
+	cf compressed mailbox - delegate to multiple backend open mailboxes
 
 inotify ∀ local mailboxes
 	2016-11-16 12:13 <royger>
@@ -2233,8 +2199,6 @@ find all non-mail users of pager
 does label workflow make sense for PRs?
 	if not, why not
 
-new feature checklist -- code all configs, doc, readme, web, doc validate
-
 index preview mode - display 'n' lines of the email body
 	when in the index
 
@@ -2243,6 +2207,7 @@ nested-if -- index-format display ? if doesn't match string put in
 
 move separate tools to a separate tools directory
 	adjust ctags to ignore them
+	or, if no deps, move to contrib
 
 bot on server to mail dev list on git commits?
 
@@ -2453,17 +2418,6 @@ ifdef needs an "else" condition
 sort variables, etc before auto-completion
 	or properly sort the sources of the strings
 
-imap_folder_format defaults to folder_format if empty
-
-alternative -- folder_format add
-	%local expando for use with nested-if
-	conditional display
-
-need separate folder_format for
-	local dirs
-	net folders
-	virtual folders
-
 files/dirs are sorted the same way as network folders
 	may not make sense
 
@@ -2505,12 +2459,6 @@ $source_dir like folder
 browser - add flagged
 	expando
 	sort option
-
-Reach out to
-	LinuxMint
-	Mageia
-	PCLinuxOS
-	Slackware
 
 INBOX vs inbox
 	not updating values for browser
@@ -2598,9 +2546,6 @@ mutt config source DIR
 web mailing list page with sven's muttrc example
 
 no need to subscribe to mailing lists
-
-"mutt -v | head -1" is pain
-	--version ?
 
 darnir:
 	use gpgme not gpg
@@ -2740,6 +2685,7 @@ symlink man pages, etc (for ease of use)
 getopt for neomutt
 	--help
 	--version
+		"mutt -v | head -1" is pain
 
 sidebar
 	have an alternate mailbox like vim's alternate file
@@ -2791,13 +2737,6 @@ doc changes/todo list for limit-current-thread
 	clear screen
 	clear line
 	write text
-
-report-neo-bug.sh?
-	show os
-	build options
-	etc
-	put in contrib
-	install for everyone
 
 mail sieve issue -- colour code for origin?
 
@@ -2857,8 +2796,6 @@ GIT REPO?
 
 upload all bin/ add (c) and licence
 
-cond-date script -> contrib
-
 Web Page (front) LATEST VERSION + links
 	+ ChangeLog with links to commits?
 
@@ -2874,8 +2811,6 @@ howto build neomutt page
 	location of source / repo
 	howto install
 	distro pre-built installs
-
-cond-date document date.sh generator
 
 NeoMutt website top tips?
 
@@ -3040,6 +2975,16 @@ source command -- allow wildcards
 
 cond-date needs some concrete examples
 
+cond-date
+	all,dates,are,broken@ 1y -> this year (not 12 months)
+		1w -> this week (not 7 days)
+		if the dates were sensible (7d = 7 days back from now)
+		they'd tie in with ~d, e.g.
+			color index color237 default "~d>30d"         # Over a month old
+		reuse the ~d code
+			pattern.c:eat_date()
+
+
 do format conditional work on strings, etc?  meaningful?
 	empty => false
 
@@ -3056,15 +3001,6 @@ community script check for update
 	or just rely on commit date?
 
 replace " with ' in muttrc
-
-cond-date
-	all,dates,are,broken@ 1y -> this year (not 12 months)
-		1w -> this week (not 7 days)
-		if the dates were sensible (7d = 7 days back from now)
-		they'd tie in with ~d, e.g.
-			color index color237 default "~d>30d"         # Over a month old
-		reuse the ~d code
-			pattern.c:eat_date()
 
 index_color should apply to status_bar when viewing mail
 status_color should apply to mid-status_bar when (pager_index_lines > 0)

@@ -19,6 +19,7 @@ lua objects for Account, Mailbox, Email, etc
 inline hcache, offline
 general notify API
 change M->path from [] to *
+	mailbox->[real]path -> ptr !array
 eliminate AllMailboxes (dep on A-aware sidebar)
 
 --------------------------------------------------------------------------------

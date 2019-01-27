@@ -59,7 +59,9 @@ mxapi
 
 mxapi standard error codes?
 	MXAPI_SUCCESS 0
-	MXAPI_ERROR   -1
+	MXAPI_WARNING -1
+	MXAPI_ERROR   -2
+	MXAPI_FATAL   -3
 	MXAPI_CODE    -99
 
 #define names for 0, -1

@@ -105,3 +105,9 @@ forks of all distro repos
 
 muttrc.{distro} ∀ distros
 
+Reach out to
+	LinuxMint
+	Mageia
+	PCLinuxOS
+	Slackware
+

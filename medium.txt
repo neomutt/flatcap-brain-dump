@@ -33,6 +33,7 @@ sort out / standardise
 config list type
 mutt_error() "Error: " prefix, E123 too
 mxapi std error codes SUCCESS, WARNING, ERROR, CODE
+	see mxapi.txt
 create create flowchart to/from/etc
 add $smtp_user
 sort out log levels, explain how useful this would be

@@ -1,0 +1,19 @@
+
+create updated contrib/{gpg1,gpg2,smime}.rc
+	separate example config for gpgme
+
+gpg --no-verbose -> def config & contrib
+
+web misc contrib page <h1> per item
+
+report-neo-bug.sh?
+	show os
+	build options
+	etc
+	put in contrib
+	install for everyone
+
+cond-date script -> contrib
+
+move separate tools, pgpewrap, to contrib?
+
