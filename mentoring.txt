@@ -137,3 +137,10 @@ check for #include guards
 project: easy bugs
 	tie into mentor system
 
+ask people how often they'd like to be chased up
+
+neomutt members -- ask preferred method of communication
+	pref name @flatcap, Rich
+
+mentor team?  probably not yet
+

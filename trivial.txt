@@ -32,7 +32,7 @@ HdrFormatInfo struct Mailbox *m;       -> mailbox
 ImapHeader struct ImapEmailData *data; -> edata
 MailboxNode struct Mailbox *m;         -> mailbox
 Pattern union struct Group *g;         -> group
-SslSockData SSL_CTX *ctx;              -> sctx
+SslSockData SSL_CTX *ctx;              -> sctxQQ
 Pager struct Body *bdy;                -> body
 
 iwyu run over all source
@@ -131,4 +131,22 @@ change OPT_NO_CURSES to OPT_USE_CURSES
 	and reverse the logic
 	uses: 14 OPT_USE_CURSES, 33 !OPT_USE_CURSES
 	this means defaulting a global bool to true
+
+fix param names -- see prototype
+check others in api
+	int crypt_pgp_decrypt_mime(FILE *a, FILE **b, struct Body *c, struct Body **d)
+
+param names differ
+	hcache_bdb_close
+	hcache_gdbm_close
+	hcache_kyotocabinet_close
+	hcache_lmdb_close
+	hcache_qdbm_close
+	hcache_tokyocabinet_close
+
+lack doxy params
+	imap_adata_get
+	imap_adata_find
+
+drop pointless bitfield macros: mailbox/imap
 

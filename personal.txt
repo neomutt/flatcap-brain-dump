@@ -5,7 +5,7 @@ mnemosyne
 	add function to quit recording
 	without altering any registers
 
-private repo for mail-aliases and dot-mutt repo
+private repo for dot-mutt repo
 
 git {continue,abort,skip} for git {am,rebase,cherry-pick,bisect}
 

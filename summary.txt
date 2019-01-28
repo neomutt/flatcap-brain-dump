@@ -156,3 +156,7 @@ color command (mentor task)
 	no args: list all colours in a pager
 	object: show object's colours (coloured accordingly)
 
+summary - save page command (strip colours)
+summary - syntax highlighting - HOW?
+summary # comment out default bindings, colours, etc
+

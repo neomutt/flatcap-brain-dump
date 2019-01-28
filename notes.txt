@@ -1,3 +1,19 @@
+open() on open M does what?  sync()
+	can't tear down M, might be other users (views)
+	want to force an update, though
+all updates - if they fail, try not to change M, just return -1
+if conn lost, then fail, errmsg, then ??? reconnect after (timeout) or stop?
+	next check_stats_interval, will try to reconnect. YES
+	-1 failed => try again
+	-99 fatal => stop, user must re-open -> flag?
+	no fatal, for now?  make r/o if nec, ret -1
+ctx_open() vs ctx_wrap() - keeps +1 refcount on M
+	-1 on ctx_free()
+	kill open, mbox_open() then wrap
+
+mxapi retval -99 fatal => close and reopen
+eliminate mxapi calls in BEs?  helpers?  wrappers?
+
 issue label have:bisect
 
 eliminate context from MXAPI, mx.c -> context.c
@@ -39,6 +55,7 @@ merge mailbox.c and mx.c?
 
 :verbose set/color/etc
 	show when/who last set that variable/color/etc
+	debug/devel only?
 
 RE-opening mailbox
 	postpone, trash, edit msg, send message (fcc ^)
@@ -626,8 +643,6 @@ user packagers' team to announce build changes
 58 mutt_mktemp in ncrypt/
 
 shield for freenode/irc --- silver searcher
-
-mentor team?  probably not yet
 
 use tagged emails + edit to view multiple
 	set editor="vim -o"
@@ -1704,8 +1719,6 @@ create doc repo
 	have neomutt repo as a "fixed" git submodule
 	or a submodule of a doc-gen repo
 
-ask people how often they'd like to be chased up
-
 warn on option synonym usage
 	{ "pgp_autoencrypt",            DT_SYN,  R_NONE, UL "crypt_autoencrypt", 0 },
 	{ "crypt_autoencrypt",  DT_BOOL, R_NONE, OPTCRYPTAUTOENCRYPT, 0 },
@@ -2124,9 +2137,6 @@ named-mailboxes use Mailbox Shortcut % ?
 	needs plugging into other code
 	abbrev names to "%name" if possible
 	if configured?
-
-neomutt members -- ask preferred method of communication
-	pref name @flatcap, Rich
 
 nested-if
 	stack of nesting chars in char[]
