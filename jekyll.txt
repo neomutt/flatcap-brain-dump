@@ -32,3 +32,30 @@ do I need a mutt-devel branch separate from neomutt?
 	sub-branches from neomutt for each task [task/bools]
 features: status: stable, warning, devel? (doc this where?)
 Goals for neomutt?
+
+jekyll/github pages howto
+	clone website
+	gem install
+	jekyll + jekyll-X plugins
+	bundler
+	or disable plugins in _config.yml
+	j-mentions?
+	gem install github-pages
+	(all deps needed)
+	put in a docker (search first)
+
+jekyll setup from minimal install
+root:
+	dnf update
+	dnf install -y git rubygems ruby-devel make gcc redhat-rpm-config g++-devel gcc-c++ zlib-devel
+user:
+	gem install github-pages bundler jekyll-{gist,sitemap,algolia,mentions}
+	git clone https://github.com/neomutt/neomutt.github.io
+	jekyll serve
+
+create minimal jekyll template to support separate code doc repo
+
+jekyll page type "hidden" -- don't list
+
+website jekyll serve instructions
+

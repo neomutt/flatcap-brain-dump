@@ -1,5 +1,5 @@
 split up/remove BE-specific code in ci_send_message()
-Move email API:
+move-email API:
 	locate all email-moving code
 	fastmove, slowmove
 colours/attrs
@@ -21,8 +21,8 @@ general notify API
 change M->path from [] to *
 	mailbox->[real]path -> ptr !array
 eliminate AllMailboxes (dep on A-aware sidebar)
-
---------------------------------------------------------------------------------
+	start with fn  ML = get_mailboxes(FLAT|TREE);
+	HIDDEN|VISIBLE
 
 compose: flexible layout => multiple lines for To: CC: etc
 (when necessary)  Hide lines that aren't set, e.g. BCC: Mix chain (optionally)
@@ -30,4 +30,8 @@ Limit number of lines to 2 or 3 in case of degenerate lists
 abbreviate with "(+6 more)"
 
 separate keybindings from curses & IMAP!
+
+rewrite mutt_wstr_trunc()
+	first, rename variables to be something sensible
+	second, refactor to be legible
 

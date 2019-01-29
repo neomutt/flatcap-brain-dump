@@ -150,3 +150,8 @@ lack doxy params
 
 drop pointless bitfield macros: mailbox/imap
 
+browser.c, email.c have a lot of
+	struct Email *tmp;
+	tmp's a bad name for a variable
+
+mutt_file_check_empty doxy comment retvals wrong way around

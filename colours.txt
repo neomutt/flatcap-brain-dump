@@ -62,6 +62,10 @@ Missing attrs:
 	faint italic conceal strikethrough uri
 	blink overline doubleunderline curlyunderline
 
+	underline       == underline1 
+	doubleunderline == underline2 
+	curlyunderline  == underlinec ?
+
 Proposed Syntax:
 	Simple objects:
 		SIMPLE_COLOUR=[black|blue|...] -- store as ANSI value 0-7 (+bright)

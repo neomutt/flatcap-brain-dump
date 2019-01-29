@@ -52,3 +52,5 @@ progress could mutt_debug(1) for:
 for reference purposes
 log already has time stamps
 
+option for coloured underline as progress meter
+	or underline entire line and change colour as it progresses

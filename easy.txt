@@ -1,5 +1,4 @@
 summary :bind, :color, :account, :hooks
---authors, --licence
 	mutt --authors
 		list of all neomutt contributors
 		matches {README,AUTHORS}.md
@@ -18,7 +17,6 @@ neomutt -DD # defaults
 hide status/pager bar when empty
 	format strings: compose_format, pager_format, status_format
 		when empty DON'T display the bar at all
-		easy task?
 	will need a dividing line between index and pager
 trans: eliminate \n
 limit-to-tag function
@@ -34,17 +32,10 @@ $net_folder_format
 		net folders
 		virtual folders
 
---------------------------------------------------------------------------------
-
-Easy
-	one summary page, each
-		read from /usr/share/doc/neomutt/
-		getopt?
-		what else?
-Medium
-	browser - why are delete, rename and create folder limited to IMAP?
-		maildir, mbox should work too
-		mxapi?
+one summary page, each
+	read from /usr/share/doc/neomutt/
+	getopt?
+	what else?
 
 slist
 investigate addr functions
@@ -59,9 +50,6 @@ split up multiple assignments
 investigate:
 	convert mutt_traverse_thread -> function with callback?
 
-1 issue / easy task
-	open to all
-
 monthly email to devel ml?
 
 easy notes:
@@ -69,12 +57,14 @@ easy notes:
 	non-contentious
 	quick to merge
 
-test a distro -- give feedback
-	update last checked date
-
-easy web page
+easy web page / wiki page
 	description links to GH
 	mention translations too
+
+keep a min of 5 easy tasks (coding)
+
+test a distro -- give feedback
+	update last checked date
 
 refactor -> random.c (lib?)
 	lib mem routines -> could exit(1)
@@ -100,8 +90,6 @@ gettext strings
 
 sidebar notmuch indent
 	sort and indent sidebar strings by notmuch desc
-
-keep a min of 5 easy tasks (coding)
 
 travis build scripts
 " -> ' in muttrc
@@ -129,8 +117,7 @@ refactor parse_hooks to use (new) flags in init.h
 eliminate all static variables in functions
 	starting with the libraries
 
-easy task:
-	distro helper
+distro helper
 	instructions for
 		install
 		build
@@ -160,16 +147,14 @@ extra task (for extra points)
 screenshots
 
 user prompting?
-	easy task
 	:ask VARIABLE|MY_VAR "prompt message"
 
-easy
-	stailq smimekey
-	stailq pgpkey
-	muttindexwindow workaround
-	refactor mbox_path_probe (does fgetc, then fread)
+stailq smimekey
+stailq pgpkey
+muttindexwindow workaround
+refactor mbox_path_probe (does fgetc, then fread)
 
-easy: locale.c
+locale.c
 	needs to be free of <intl.h>
 	4 places: setlocale to C and call strftime()
 	4 places: setlocale to C and call mutt_make_string() which has date/time components
@@ -181,8 +166,7 @@ c++ build fix reserved names
 	see code.txt
 
 format strings
-	valid when set
-	easy task?
+	validate when set
 
 intptr_t vs long in config
 	shrink DT_LONG
@@ -196,8 +180,7 @@ find and convert #define num ranges -> enum
 
 usage() - autowrap at $COLUMNS?
 
-non-easy
-	find all OUT-params fn(&val)
+find all OUT-params fn(&val)
 	and ensure the variable is set before
 	flag them all in doxy header
 
@@ -211,4 +194,16 @@ mutt -D? (extra options)
 	SORT the options
 	add comments from init.h?
 	show default values/keybindings
+
+odd code:
+	using strfcpy to write to a struct Buffer
+	over 20 occurrences in color.c, config/dump.c, curs_main.c, hook.c, init.c, keymap.c, mailbox.c, mutt_lua.c, pattern.c, score.c
+	mutt_str_strfcpy(err->data, _("current mailbox shortcut '^' is unset"), err->dsize);
+	grep "strfcpy.*->data"
+	might require buffer_reset() first
+
+int url_pct_decode(char *s)
+void url_pct_encode(char *dst, size_t l, const char *src)
+	move to library
+	list_to_pattern() in ncrypt/crypt_gpgme.c is similar
 

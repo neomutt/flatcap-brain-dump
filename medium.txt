@@ -3,13 +3,21 @@ regex encapsulation
 	if (regex_match(Mask, str, flags)
 	it checks pointers, etc
 	takes 'not' into account
+
 simple Menu API
+
 completion API
 	has a static var
 	encapsulate & refactor
+		sort variables, etc before auto-completion
+			or properly sort the sources of the strings
+
 history API
+
 alias API (labels, description)
+
 strncpy -> strfcpy NUL-terminated
+
 "func", OPCODE, "desc" triple
 	combine function.h and opcode.h, triple of:
 		"function-name", OPCODE, "help description"
@@ -19,10 +27,16 @@ strncpy -> strfcpy NUL-terminated
 		simplifies doc generation too
 		separate duplicate/overlapping names
 			separate OP_DELETE for each object worked on
+
 mxapi create/delete folder
+	browser - why are delete, rename and create folder limited to IMAP?
+		maildir, mbox should work too
+
 progress API
+
 sort out / standardise
 	strsep, strtok, strtok_r
+
 (H)ighlight
 	function to turn option list from
 		(S)ubject to *S*ubject (highlighted/colour)
@@ -32,12 +46,19 @@ sort out / standardise
 
 config list type
 mutt_error() "Error: " prefix, E123 too
+
 mxapi std error codes SUCCESS, WARNING, ERROR, CODE
 	see mxapi.txt
+
 create create flowchart to/from/etc
 add $smtp_user
 sort out log levels, explain how useful this would be
 bool params to enums (find them all first) can any be shared?  confusing?
 
---------------------------------------------------------------------------------
+use tagged emails + edit to view multiple
+	set editor="vim -o"
+	<tag><tag> <tag-prefix><edit>
+
+<compose-to-list> medium task
+	copy of <compose-to-sender>
 

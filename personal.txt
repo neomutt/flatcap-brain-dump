@@ -83,3 +83,6 @@ auto-generate merge commit messages
 
 histignore M and other uppers
 
+script for "build-all-git-tags"
+	publish
+

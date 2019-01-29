@@ -144,3 +144,9 @@ neomutt members -- ask preferred method of communication
 
 mentor team?  probably not yet
 
+new users -- [ci skip], #123 docs
+
+newbie notes
+	PR vs branch
+	you can't co-work on a PR
+

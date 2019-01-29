@@ -47,6 +47,7 @@ after release
 
 path_canon
 	check that Folder, LastFolder, etc exist before using them
+	or, force set them at startup
 
 merge mailbox.c and mx.c?
 	now that there aren't any deps
@@ -236,10 +237,6 @@ some MxOps are compulsory, some are always implemented
 	drop checks for these?
 	what about if (adata) assume free_adata() exists?
 
-eliminate AllMailboxes
-	start with fn  ML = get_mailboxes(FLAT|TREE);
-	HIDDEN|VISIBLE
-
 fedora build docs
 	missing for `--everything` build
 	lua-devel, db-devel, gdbm-devel, qdbm-devel, make, libidn2-devel
@@ -251,10 +248,6 @@ sizeof(Mailbox) = 8392
 
 browser
 	changing sort doesn't force redraw
-
-browser - why are delete, rename and create folder limited to IMAP?
-	maildir, mbox should work too
-	mxapi?
 
 trap more signals?
 	cleanup files (not the partial emails) on exit
@@ -307,17 +300,9 @@ deprecated config - default value is help string
 
 index_format expandos for "Waiting for info"? hourglass?
 libmx - no curses - what would be in it?
-config: set tests missing \ -- am *I* mistaken about need?  unnec?
 
 define config *functions* - named config scripts
 	perhaps named f-USERSPEC -> bind <f-userspec>
-
-odd code:
-	using strfcpy to write to a struct Buffer
-	over 20 occurrences in color.c, config/dump.c, curs_main.c, hook.c, init.c, keymap.c, mailbox.c, mutt_lua.c, pattern.c, score.c
-	mutt_str_strfcpy(err->data, _("current mailbox shortcut '^' is unset"), err->dsize);
-	grep "strfcpy.*->data"
-	might require buffer_reset() first
 
 custom help bar text, like vim's tab bar, status bar -> lua?
 
@@ -356,11 +341,6 @@ index_sort = date,thread:rev-date?
 fake typedef for qsort functions?
 	already have sort_t -- qsort compatible?
 
-what would be needed to have an 'offline' mode?
-	how much extra folder info would we need?
-	just keep one copy of the 'last state'
-	how much code would need rearranging?
-
 maildir:
 	readdir()
 	set errno to 0 first
@@ -369,6 +349,7 @@ maildir:
 check [release]
 	config check
 	one of regexes is missing '\' before a '+'
+config: set tests missing \ -- am *I* mistaken about need?  unnec?
 
 help://
 	add doxy pages
@@ -445,17 +426,6 @@ magic "alias" mailbox stored on server
 
 if user's sendmail fails, notify the user
 
-jekyll/github pages howto
-	clone website
-	gem install
-	jekyll + jekyll-X plugins
-	bundler
-	or disable plugins in _config.yml
-	j-mentions?
-	gem install github-pages
-	(all deps needed)
-	put in a docker (search first)
-
 difference between Body and Attachment
 	which members are used for which?
 
@@ -463,15 +433,6 @@ need unaccount [name|*]
 update roadmap page
 my first PR page
 README donate
-
-jekyll setup from minimal install
-root:
-	dnf update
-	dnf install -y git rubygems ruby-devel make gcc redhat-rpm-config g++-devel gcc-c++ zlib-devel
-user:
-	gem install github-pages bundler jekyll-{gist,sitemap,algolia,mentions}
-	git clone https://github.com/neomutt/neomutt.github.io
-	jekyll serve
 
 convert mutt_expando_format() and family to use intptr_t
 
@@ -515,11 +476,6 @@ hcache lazy_malloc/realloc
 
 struct Message
 	where does this fit into the email?
-
-int url_pct_decode(char *s)
-void url_pct_encode(char *dst, size_t l, const char *src)
-	move to library
-	list_to_pattern() in ncrypt/crypt_gpgme.c is similar
 
 docs
 	convert from utf-8 to local $charset
@@ -619,10 +575,12 @@ option for insertable horizontal divider line in the index
 	configurable positions, e.g
 	this week | this month | old stuff
 	config: 1w:1m -> three sections
+	might interfere with syntax highlighting
 
 (neo)mutt can't read maildir emails
 	it'd be useful to:
 	neomutt -f maildir/cur/email:2,S
+	subclass of MUTT_MAILDIR?
 
 use neomutt as a viewer/pager for emails
 	like less(1)
@@ -638,15 +596,11 @@ build script
 State object -> library
 	excluding AttachmentMarker
 
-user packagers' team to announce build changes
+use packagers' team to announce build changes
 
 58 mutt_mktemp in ncrypt/
 
 shield for freenode/irc --- silver searcher
-
-use tagged emails + edit to view multiple
-	set editor="vim -o"
-	<tag><tag> <tag-prefix><edit>
 
 need (vim-like) foldopen option for search matches
 	what else should open a fold?
@@ -657,9 +611,6 @@ post conceal vim to dev/prog-tips page
 setup function to make aliases
 
 uniq history ∀ *.po msgid for both (neo)mutt
-
-<compose-to-list> medium task
-	copy of <compose-to-sender>
 
 relpage on web
 	doc release notifications
@@ -760,12 +711,6 @@ make E123 a parameter for mutt_error()?
 ":help" look up context-sensitive page
 
 mailbox explanation -> web page / dev ml
-
-star
-	autosetup
-	acutest
-
-create minimal jekyll template to support separate code doc repo
 
 [somehow] build in URL shortening, OR
 build in urlview, tag urls[1] or abbreviate them
@@ -1582,10 +1527,6 @@ each variable type in init.h should have its own validator
 
 relative 'source'ing of files doesn't work if the base is a symlink
 
-browser.c, email.c have a lot of
-	struct Email *tmp;
-	tmp's a bad name for a variable
-
 create an address interface for lookups / completion
 	basic plugin uses aliases
 	notmuch can supply its own plugin
@@ -1741,8 +1682,6 @@ web toplevel dir
 configure summary?
 	--disable-docs -> docs:         no
 	--disable-po   -> translations: no
-
-jekyll page type "hidden" -- don't list
 
 topics for my github repos, icons?
 
@@ -2020,9 +1959,10 @@ complete review of string handling in mutt
 	see which, if any, gnu-only string functions are useful
 
 donate page
-	presents for flatcap?
-	contributions to neomutt.org domain?
+	paypal
+	bitcoin
 	get-together costs?
+	contributions to neomutt.org domain?
 	what?
 
 offline working
@@ -2032,6 +1972,17 @@ offline working
 	"send-on-reconnect?"
 	cache more information about mailboxes?
 	network heartbeat to detect connectivity?
+
+what would be needed to have an 'offline' mode?
+	how much extra folder info would we need?
+	just keep one copy of the 'last state'
+	how much code would need rearranging?
+	∀ index items, need availabity marker
+		which are local?
+		Header, Struct, Body, Attachments
+
+imap force body cache on read
+	option for offline working
 
 magic "combined" folder
 	mbox part for unchanging, historic stuff
@@ -2055,7 +2006,7 @@ collect useful tools in neomutt org:
 	etc
 	swaks: smtp tester
 	khal
-	calcurse
+	calcurse - curses calendar app
 
 web: features list page
 	add upstream column
@@ -2066,8 +2017,6 @@ How to Use Mutt doc
 
 getting started
 	mention travis notification email
-
-website jekyll serve instructions
 
 web: changes page -- since/relative to mutt
 
@@ -2085,13 +2034,15 @@ code school -> neo branches (regularly rebased)
 	[school/new-color]
 	etc
 
+code school
+	variables
+	functions
+	architecture 101
+	web top-level
+
 each web dir, have _source.txt
 	details origin of page data
 	scripts for generating
-
-start de-globalising (pass to functions)
-	Context
-	Incoming
 
 web
 	auto-generate list of WIPs
@@ -2166,12 +2117,6 @@ workflow:
 	notmuch new
 	cache-every-file
 
-code school
-	variables
-	functions
-	architecture 101
-	web top-level
-
 need to document "missing" keybindings
 	^Q ^S flow control
 	^O terminal (BSD only)
@@ -2181,8 +2126,6 @@ need to document "missing" keybindings
 	"stty -a" to show settings
 	cfmakeraw(3)
 	zsh is able to reset terminal configuration after each command with ttyctl -f
-
-new users -- [ci skip], #123 docs
 
 issues -- always assign (for later reference)
 	fixer/mentor only makes sense for bugs/enhancements
@@ -2224,8 +2167,6 @@ bot on server to mail dev list on git commits?
 admins need to make a release in 1 week's time -- practice
 	(one of them, or all)
 
-calcurse -- curses calendar app
-
 "report issue" notes -- OP needs to be around to:
 	answer questions
 	run tests
@@ -2243,10 +2184,6 @@ imap/pop ∀ devs
 	sample emails refreshed nightly
 	btrfs de-duped -- cron
 	or cp --reflink
-
-newbie notes
-	PR vs branch
-	you can't co-work on a PR
 
 function fuzzer + scripting
 	x inputs
@@ -2388,6 +2325,9 @@ Need strategy for unrepeatable/too-little-info bugs/crashes
 
 matcher
 	extend to index, pager, etc
+	works with a set of numbers, [0,n-1]
+	callback to test whether item 'i' matches?
+	callback to redraw panel
 
 what are our killer features?
 	put them on the website writ large
@@ -2425,18 +2365,13 @@ development bottleneck
 ifdef needs an "else" condition
 	how?
 
-sort variables, etc before auto-completion
-	or properly sort the sources of the strings
-
 files/dirs are sorted the same way as network folders
 	may not make sense
-
-imap force body cache on read
-	option for offline working
 
 mbsync better than offlineimap?
 
 imap only 'n' messages option
+	like $nntp_context
 
 modularise header caching/dbs
 	=> needn't use same cache type
@@ -2571,9 +2506,6 @@ mutt doesn't close file handles on fork/exec
 
 generate (script) tree of all source (by tags)
 	and create squashfs
-
-script for "build-all-git-tags"
-	publish
 
 web/readme ∀ pages
 	last proofread date
@@ -2936,10 +2868,6 @@ kdave - limit-current-thread
 	unfortunately they can't see the current email
 	use context, or change prototypes
 
-rewrite mutt_wstr_trunc()
-	first, rename variables to be something sensible
-	second, refactor to be legible
-
 vim library of config options(vars)
 	auto-extract from init.h
 
@@ -2993,7 +2921,6 @@ cond-date
 			color index color237 default "~d>30d"         # Over a month old
 		reuse the ~d code
 			pattern.c:eat_date()
-
 
 do format conditional work on strings, etc?  meaningful?
 	empty => false
@@ -3226,8 +3153,6 @@ startup
 quitting - any use to anyone?
 selected mail changed
 selected mailbox changed
-
-Notifications
 
 make AUTHORS -- which repo did this?
 
