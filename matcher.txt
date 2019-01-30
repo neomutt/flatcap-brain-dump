@@ -69,3 +69,20 @@ options
 	algo: text, regex, index, fuzzy
 	flags: case sensitive
 
+matcher
+	extend to index, pager, etc
+	works with a set of numbers, [0,n-1]
+	callback to test whether item 'i' matches?
+	callback to redraw panel
+
+callback needs library fuzzy match
+	xyz -> x.*y.*z regex
+
+matcher options
+	hide non-matches (squash spaces)
+	grey out non-matches
+
+call the matcher *live* limit?
+
+must still be able to move the cursor/select at any time
+

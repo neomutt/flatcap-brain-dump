@@ -54,3 +54,6 @@ log already has time stamps
 
 option for coloured underline as progress meter
 	or underline entire line and change colour as it progresses
+
+use progress underline in sidebar when loading mailboxes (in parallel!)
+

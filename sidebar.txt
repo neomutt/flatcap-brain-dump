@@ -298,3 +298,5 @@ sidebar_dividers
 	second (wide) character is horizontal divider
 		between different mailboxes (within the sidebar)
 
+overline between A's?
+

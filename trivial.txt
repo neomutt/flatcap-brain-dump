@@ -104,6 +104,9 @@ kill plural enums, e.g. MaiboxType*s*
 go through all large switch statements
 	localise all variables
 	except big buffers?
+	start with loop variables
+change switch to [opcode, fn()] table
+	pass(op, ctx, flags?) -> 100s functions
 
 rename mx_save_hcache to use 'msg' for consistency
 

@@ -2323,12 +2323,6 @@ shutdown-hook
 
 Need strategy for unrepeatable/too-little-info bugs/crashes
 
-matcher
-	extend to index, pager, etc
-	works with a set of numbers, [0,n-1]
-	callback to test whether item 'i' matches?
-	callback to redraw panel
-
 what are our killer features?
 	put them on the website writ large
 	scripting
@@ -2516,9 +2510,6 @@ web/readme ∀ pages
 
 invert index option
 	new mail at top of screen
-
-issue for code required:
-	fuzzy matcher: [devel] [help] [mentor]
 
 index-color -- index_date pattern?
 	and index_label
