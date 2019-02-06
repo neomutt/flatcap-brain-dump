@@ -1,3 +1,9 @@
+mentoring: define the easy/medium/hard tasks
+	in terms of what you need to know to get started
+	how much help will be offered
+	skills like C, revision control, github, compiling, irc, mailing list
+	link to helper docs
+
 open() on open M does what?  sync()
 	can't tear down M, might be other users (views)
 	want to force an update, though
@@ -399,13 +405,6 @@ have a 'theme' command for use in restricted situations, like
 BUG: message says 'purge' but actually deletes (to trash)
 	$trash set, 'd' Delete, vs 'D' purge
 	then leave folder to commit
-
-UI
-	In messages/errors rather than quoting filenames
-	bright/bold them -- how?
-	custom printf-specifier?
-	mutt_message("can't read %Fs");
-	mutt_message inserts the colour codes if required
 
 browser
 	need clearer feedback *what* we're looking at

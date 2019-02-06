@@ -31,6 +31,7 @@ strncpy -> strfcpy NUL-terminated
 mxapi create/delete folder
 	browser - why are delete, rename and create folder limited to IMAP?
 		maildir, mbox should work too
+	might confuse the sidebar
 
 progress API
 

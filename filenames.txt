@@ -1,0 +1,40 @@
+Logging of filenames/URLs
+
+Applies to:
+- mutt_message()
+- mutt_warning()
+- mutt_error()
+- logging to file
+
+Applies to:
+- local files/dirs
+- clickable URLs
+
+
+In messages/errors rather than quoting filenames
+bright/bold them -- how?
+custom printf-specifier?
+mutt_message("can't read %Fs");
+mutt_message inserts the colour codes if required
+
+
+logging filenames, have option to highlight them using colour or ANSI link sequences
+if using ANSI, optionally abbreviate to just filename
+*Always* log full filename
+%X (new letter) might upset compiler checks
+perhaps use `[%s]` - check for existing (or similar) usage
+hmm... still requires rewriting printf,
+need to use expando format that only recognises one expando
+ANSI marked filenames (or web addresses) don't need escaping
+optionally colour ANSI too, for clarity
+if ANSI is off, *do* escaping/quoting, automagically
+ANSI & (colour/attr) independent of each other
+when using URLs, keep proto? e.g. `imap://.../folder`?
+option: which protos to abbrev: `file,imap,nntp`
+custom optimisations?  nntp://a.s.c.b.b.bork
+have separate links when logging?
+	Can't copy FILE1. Doesn't exist
+	FILE1: /full/file name   (not escaped/quoted)
+same for error messages -> multiline (well always 2 lines)
+simplifies messages for translation?
+

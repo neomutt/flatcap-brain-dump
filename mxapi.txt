@@ -64,6 +64,12 @@ mxapi standard error codes?
 	MXAPI_FATAL   -3
 	MXAPI_CODE    -99
 
+MXAPI_CODE used when requires parameters are missing,
+	but not when X_free() is called with a NULL ptr
+
+need a success/error macro
+	which is warning?
+
 #define names for 0, -1
 	SUCCESS, ERROR
 	∀ functions?
