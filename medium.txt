@@ -41,7 +41,7 @@ sort out / standardise
 (H)ighlight
 	function to turn option list from
 		(S)ubject to *S*ubject (highlighted/colour)
-		make them consistant across mutt
+		make them consistent across mutt
 			some are just capital letters
 	colour highlight/underline _Q_uestion, _O_ptions 'q', 'o'
 

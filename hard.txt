@@ -5,7 +5,7 @@ move-email API:
 colours/attrs
 	parse config
 	summary
-	implement colour primatives
+	implement colour primitives
 nntp refactor auto subscription (like imap)
 config +=, -=, etc API
 nested windows - refactor gui, reflow

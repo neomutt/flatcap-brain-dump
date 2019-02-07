@@ -11,7 +11,7 @@ https://github.com/gauteh/gmailieer
 Bidirectional synchronization of notmuch tags with IMAP folders and Gmail Labels,
 http://deferred.io/2016/01/18/notmuch-tags-gmail-labels-bidirectional-sync.html
 
-for notmuch sync accross machines:
+for notmuch sync across machines:
 http://www.muchsync.org/muchsync.html
 
 new notmuch command
@@ -82,7 +82,7 @@ notmuch
 		automatic?
 			allow user rename?
 		ask user?
-	how can we make them persistant?
+	how can we make them persistent?
 
 notmuch.path = full notmuch://?query
 notmuch.realpath = notmuch://path/to/db?query

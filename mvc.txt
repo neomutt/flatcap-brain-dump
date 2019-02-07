@@ -531,7 +531,7 @@ event loop
 	reflow windows
 	repaint all windows (->render)
 
-how does event loop communicate bi-directionally ith Account threads?
+how does event loop communicate bi-directionally with Account threads?
 or do they?
 perhaps Account's thread is just managing object <--> backend comms
 *what* needs to be passed between them?

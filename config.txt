@@ -580,7 +580,7 @@ num, quad, bool, as quoted
 cs_reset flag for ALL changed?o
 
 config possible to make all ac-specific variables *internal* (no global var)?
-	where's the inital value stored?
+	where's the initial value stored?
 have account-only variables?  no global version
 	user (rather than multiple X_user vars)
 

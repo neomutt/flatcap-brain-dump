@@ -88,7 +88,7 @@ combine helppage and summaries?
 mutually exclusive anyway
 
 focus - try me, try siblings (if visible)
-	recurse.  might some inivisible views want to add actions?
+	recurse.  might some invisible views want to add actions?
 	YES.  e.g. top=mutt, or addrbook (OP_OPEN_ADDRBOOK)
 	pass to view, let them decide
 
@@ -175,7 +175,7 @@ allow multiple floating?
 if limited to 1 floating dialog, then give window a single
 floating pointer.  when repainting after close, tell the view
 both the full region and the min repaint area.  optionally,
-clip any writes outside teh invalidated area for speed and
+clip any writes outside the invalidated area for speed and
 flicker-free-ness
 
 turn options questions into multiline floating windows?

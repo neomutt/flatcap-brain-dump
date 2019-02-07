@@ -14,7 +14,7 @@ need dirs in mailbox layout for grouping
 
 need separate timer - normal check_mail many be too frequent
 
-build-in urlview?
+built-in urlview?
 
 basic rendering of html
 	bold... what's needed?

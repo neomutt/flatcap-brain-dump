@@ -10,7 +10,7 @@ kill tabs in strings
 reindent manual.xml
 drop vim modelines
 check for 404 links
-check for mutt-dev@ email addreses
+check for mutt-dev@ email addresses
 
 declare all local functions "static"
 	standard name for statics?
@@ -78,7 +78,7 @@ static functions -- all declared?
 if's bracket anything more complex that ARG or !ARG
 	maths too
 
-grammar: its dont cant, spelling 's
+grammar: it's don't can't, spelling 's
 
 Tidying actions
 
@@ -222,7 +222,7 @@ try to reduce the scope of all variables
 #define mutt_new_header() safe_calloc (1, sizeof (HEADER))
 	et al ought to cast their returns to the correct type
 
-lots of pointers being assiged to 0
+lots of pointers being assigned to 0
 	unsigned char *pending_exact = 0;
         should be NULL
 

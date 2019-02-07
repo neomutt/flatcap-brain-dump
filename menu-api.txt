@@ -42,7 +42,7 @@ virtual functions.  select ties into curses menu
 <flatcap> that means we could never have a separate connection library, or imap library without needing curses
 <flatcap> I suggest a multiplexor, like the logging -- a struct with several function prototypes in it
 <flatcap> at startup, that struct has a set of *text* question functions
-<flatcap> onces curses is initialised, it would be replaced with the pretty curses versions
+<flatcap> once curses is initialised, it would be replaced with the pretty curses versions
 <flatcap> (for testing, we could have functions that answer the questions from a file)
 
 until c) full-blown menu is created, then #ifndef CURSES assume the answer 'y' (or first option) to all questions

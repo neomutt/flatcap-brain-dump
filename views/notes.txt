@@ -36,7 +36,7 @@ need to be able to move items (of the same type) between different sources
 	e.g. between different mail servers
 
 Contacts/Tasks/Calendars - Display:
-	tags - each item has zero/one/mulitple tags
+	tags - each item has zero/one/multiple tags
 	contacts_tags -- like mailboxes command
 	contacts_hierarchy -- group tags like folders
 

@@ -110,7 +110,7 @@ tabs don't draw the colour (the terminal must be moving the cursor directly)
 emitting spaces will draw the colour
 
 setcolor, print, move
-	setcolor is persistant, even after a move
+	setcolor is persistent, even after a move
 	it applies colour
 	unlike ansi printf which applies colour to one location
 

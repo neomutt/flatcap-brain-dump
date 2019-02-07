@@ -209,7 +209,7 @@ use level 0 for info messages -- always logged?
 
 does curses_message() still show up in the logs?
 
-special level for progess messages
+special level for progress messages
 	hard when they're interleaved with other debugging messages
 
 turn message log into fake mailbox
@@ -456,7 +456,7 @@ logging file -- does it expand "~" mutt_expand_path
 	a) cmdline options
 	b) config options
 
-don't log (to file) UI messages like "you are on last messsage"
+don't log (to file) UI messages like "you are on last message"
 	need new log level
 
 logging ideas

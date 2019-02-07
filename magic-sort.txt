@@ -24,7 +24,7 @@ search kernel ml for example
 same parent
 same author
 
-what happens when the auther replies to themself?
+what happens when the author replies to themself?
 
 (Depth == 1)
 	cover letter + sub emails

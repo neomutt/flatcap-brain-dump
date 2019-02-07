@@ -15,7 +15,7 @@ docs:
 
 docs for query_command
 	sveng: the description to query_command in the neomuttrc
-	contains "see 'query'".. but i dont see a "query" option at all
+	contains "see 'query'".. but i don't see a "query" option at all
 
 docs for config with user vars
 	source `hostname`.rc

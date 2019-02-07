@@ -182,7 +182,7 @@ highlight links (underline/colour)
 move "cursor" like links(1)
 	UP/DOWN = scroll page
 	LEFT/RIGHT = prev/next link
-	two colours (un)focussed
+	two colours (un)focused
 	integrate mouse clicks
 
 use status bar on help pages to display

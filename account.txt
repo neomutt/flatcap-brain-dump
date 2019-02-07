@@ -185,7 +185,7 @@ Does the H need to know:
 	b) which T it's in
 	H Header no, UH User-Header YES
 
-Does the UI wnat to work with UH which has T info, tagging, etc?
+Does the UI want to work with UH which has T info, tagging, etc?
 
 HV HeaderView
 	C has HV[]
@@ -615,7 +615,7 @@ Mailboxes - new uses for path, realpath
 	rename realpath to canon_path - contents BE-specific
 if !A then path = canon_path, except for compressed
 if A, then canon_path is canonical and path is pretty
-	relaive to A-$folder (except compressed)
+	relative to A-$folder (except compressed)
 Internally convert =folder to +folder?
 A_find_M(path) uses global AL (for now)
 

@@ -158,3 +158,8 @@ browser.c, email.c have a lot of
 	tmp's a bad name for a variable
 
 mutt_file_check_empty doxy comment retvals wrong way around
+
+codespell
+
+dedupe home/gfx against gfx repo
+

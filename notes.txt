@@ -1,3 +1,14 @@
+F1 or ? on ANY question -> context sensitive help
+	link to guide
+	explanation of options
+
+how many questions would be better as tri-states?
+	yes/no/cancel (escape/ctrl-g)
+
+add star graph to devel page
+
+drop fosdem from website
+
 mentoring: define the easy/medium/hard tasks
 	in terms of what you need to know to get started
 	how much help will be offered
@@ -196,7 +207,7 @@ sileht/imap LONGSTRING -> PATH_MAX * 7
 
 use travis on [master] to update/deploy to gitlab?
 
-rule for BE only new M iff A and MData AND AData full set
+rule for BE only new M if A and MData AND AData full set
 
 Broken?
 	FCC + $record = ^
@@ -522,7 +533,7 @@ have a system for 'tainting' variables
 	if I 'set my_var = $imap_pass' then my_var is tainted too
 	tainted variables will not
 		be displayed on screen
-		exported/expanded for extenal programs (including lua)
+		exported/expanded for external programs (including lua)
 
 rename members
 	bools to is_x, has_x, etc
@@ -1022,7 +1033,7 @@ logging
 	could add "OP_XYZ" to struct #ifdef DEBUG
 	"key is not bound" error doesn't say which key
 
-might wanna add a "Other comments" heading at the end of the PR template
+might want to add a "Other comments" heading at the end of the PR template
 	rawtaz (irc)
 
 do we really need: "set rfc2047_parameters = yes"
@@ -1532,7 +1543,7 @@ create an address interface for lookups / completion
 
 pgp_invoke_decode
 	This is historic and may be removed at some point.
-	lots of simliar functions being redirected
+	lots of similar functions being redirected
 	strip out?
 pgp_application_pgp_handler
 	needpass (bool) starts as -1!
@@ -1685,7 +1696,7 @@ configure summary?
 topics for my github repos, icons?
 
 mutt marks -- are they mailbox-local?
-	can we distinguish (like vim) betweeen
+	can we distinguish (like vim) between
 	`a  mark in this index
 	`A  global mark (potentially in another mailbox)
 		is it safe to change mailboxes without warning?
@@ -2021,7 +2032,7 @@ web: changes page -- since/relative to mutt
 
 web: misc page for extra options that aren't in features
 
-annouce GPLv2 usage for project
+announce GPLv2 usage for project
 	make it clear on the (devel) website
 
 stable branches for LTS releases?
@@ -2121,7 +2132,7 @@ need to document "missing" keybindings
 	^O terminal (BSD only)
 	2016-10-23 22:16 <Riviera> stty discard undef; mutt
 	"stty -ixon" disable Ctrl-Q
-	can this be done programatically by mutt?
+	can this be done programmatically by mutt?
 	"stty -a" to show settings
 	cfmakeraw(3)
 	zsh is able to reset terminal configuration after each command with ttyctl -f
@@ -2372,7 +2383,7 @@ modularise header caching/dbs
 
 pager -- sidebar gets updated but not status line / term header
 
-vim-like hls option: persistant across emails
+vim-like hls option: persistent across emails
 
 source script|
 	pipe -- lookup exact meaning and implications
@@ -2994,7 +3005,7 @@ disposable email address plugin?
 Undo, what's possible?
 	Last action?
 	Many actions?
-persistant undo on email editing?
+persistent undo on email editing?
 undelete?
 unsend?
 tagging?

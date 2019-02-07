@@ -86,3 +86,17 @@ histignore M and other uppers
 script for "build-all-git-tags"
 	publish
 
+fosdem
+keysign
+	clipboard
+	upstairs
+	loadhailer
+	108 people -> 100mins
+new people
+	get together
+travel
+	from midi -> town -> tourist info
+	where to get maps
+	how to navigate
+	pay for metro/buses/trams
+
