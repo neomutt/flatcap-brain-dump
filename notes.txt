@@ -1,13 +1,12 @@
+notification interface
+	each object should start with "int type;"
+
 F1 or ? on ANY question -> context sensitive help
 	link to guide
 	explanation of options
 
 how many questions would be better as tri-states?
 	yes/no/cancel (escape/ctrl-g)
-
-add star graph to devel page
-
-drop fosdem from website
 
 mentoring: define the easy/medium/hard tasks
 	in terms of what you need to know to get started
@@ -31,8 +30,6 @@ ctx_open() vs ctx_wrap() - keeps +1 refcount on M
 mxapi retval -99 fatal => close and reopen
 eliminate mxapi calls in BEs?  helpers?  wrappers?
 
-issue label have:bisect
-
 eliminate context from MXAPI, mx.c -> context.c
 	wrappers ctx_open(), etc
 	move {mx,mailbox,account}.{c,h} to mx/
@@ -51,8 +48,6 @@ notifications
 	BE_init() -> listen to N
 	notify(new A)
 	BE listen_to(A, recurse)
-
-on completion of H,M tasks praise on dev-ml
 
 'Folder' limits the independence of mailbox.c
 	limited to parse_mailboxes()?
@@ -736,6 +731,7 @@ analysis
 	add uncrustify
 	add lcov / coveralls
 	AddressSanitizer build
+	codespell
 
 X-Labels lost if "unignore X-Label" isn't used!
 	suggest in labels docs

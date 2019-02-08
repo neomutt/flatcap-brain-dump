@@ -1,7 +1,3 @@
-mbox_mbox_sync()
-	struct Mailbox *tmp = NULL;
-	reduce scope, rename?
-
 drop #1234 refs to trac or gitlab
 
 free functions to take (**ptr)
@@ -13,45 +9,14 @@ int query_quadoption(int opt, const char *prompt)
 
 add printf format checkers to mutt_message, mutt_debug, etc
 
-msg_count
-msg_unread
-msg_flagged
-msg_new
-msg_deleted
-msg_tagged
-what about ALL int members?
-
-struct B64Context *ctx
-rename vars to bctx for distinction
-check all other XContext structs
-ComposeRedrawData struct Email *msg;   -> email
-FgetConv FILE *file;                   -> fp?
-FgetConvNot FILE *file;                -> fp?
-GroupNode struct Group *g;             -> group
-HdrFormatInfo struct Mailbox *m;       -> mailbox
-ImapHeader struct ImapEmailData *data; -> edata
-MailboxNode struct Mailbox *m;         -> mailbox
-Pattern union struct Group *g;         -> group
-SslSockData SSL_CTX *ctx;              -> sctxQQ
-Pager struct Body *bdy;                -> body
-
-iwyu run over all source
+test int against 0
+	what about ALL int members?
 
 demote to warnings
 mutt_error(_("Warning: XXX"));
 
-refactor mutt_folder_hook()
-make shallower
-break out of loop, drop dupe FREEs
-
 what are deps of url_parse_mailto()
 can it be promoted to library?
-
-move data to top of index.c
-	IndexHelp[]
-	IndexNewsHelp[]
-
-reopen_mailbox() local index_hint_set is waste of time
 
 simplify all our:  if (X) free(X)
 add doxy param doc: (NULL safe) ?
@@ -73,7 +38,9 @@ use enum MailboxType
 mutt_set_flag - last param is bool
 	tricky, intersects with other functions
 
-grep " = [^,;]* [!=]= "
+split up multiple assignments
+	grep " = [^,;]* = "
+	grep " = [^,;]* [!=]= "
 
 conditional constants - reduce to a comment
 	Hmm... non-functional enum entries might cause problems
@@ -108,14 +75,6 @@ go through all large switch statements
 change switch to [opcode, fn()] table
 	pass(op, ctx, flags?) -> 100s functions
 
-rename mx_save_hcache to use 'msg' for consistency
-
-find all vars called ctx, Md5Ctx
-
-rename pop_get_adata()
-	any others misnamed?
-	all used?
-
 init.c
 	getsid() and getpid() are POSIX2001
 	no need for #ifdef?
@@ -124,20 +83,12 @@ init.c
 replace "for (int" -> size_t in libmutt
 	177 occurrences
 
-more 'rc' : 'r', 'rv', 'ret'
-
-check_alias_name() bad,dry -> bool
-
 buffer_init() vs = { 0 }?
 
 change OPT_NO_CURSES to OPT_USE_CURSES
 	and reverse the logic
 	uses: 14 OPT_USE_CURSES, 33 !OPT_USE_CURSES
 	this means defaulting a global bool to true
-
-fix param names -- see prototype
-check others in api
-	int crypt_pgp_decrypt_mime(FILE *a, FILE **b, struct Body *c, struct Body **d)
 
 param names differ
 	hcache_bdb_close
@@ -147,19 +98,9 @@ param names differ
 	hcache_qdbm_close
 	hcache_tokyocabinet_close
 
-lack doxy params
-	imap_adata_get
-	imap_adata_find
-
-drop pointless bitfield macros: mailbox/imap
-
 browser.c, email.c have a lot of
 	struct Email *tmp;
 	tmp's a bad name for a variable
-
-mutt_file_check_empty doxy comment retvals wrong way around
-
-codespell
 
 dedupe home/gfx against gfx repo
 

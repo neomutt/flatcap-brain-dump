@@ -100,3 +100,5 @@ travel
 	how to navigate
 	pay for metro/buses/trams
 
+upload fresh gpg keys to flatcap.org
+

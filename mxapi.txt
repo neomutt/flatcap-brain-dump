@@ -70,6 +70,10 @@ MXAPI_CODE used when requires parameters are missing,
 need a success/error macro
 	which is warning?
 
+error is a fail
+what is a warning?
+	success with message?
+
 #define names for 0, -1
 	SUCCESS, ERROR
 	∀ functions?

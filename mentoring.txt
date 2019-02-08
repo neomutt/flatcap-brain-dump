@@ -150,3 +150,5 @@ newbie notes
 	PR vs branch
 	you can't co-work on a PR
 
+on completion of H,M tasks praise on dev-ml
+
