@@ -8,6 +8,42 @@ mnemosyne
 private repo for dot-mutt repo
 
 git {continue,abort,skip} for git {am,rebase,cherry-pick,bisect}
+git am
+	ORIG_HEAD
+	rebase-apply/
+	status
+		On branch b1
+		You are in the middle of an am session.
+git bisect
+	refs/bisect/good
+	refs/bisect/good-HASH
+	refs/bisect/bad
+	refs/bisect/bad-HASH
+	BISECT_NAMES
+	BISECT_TERMS
+	BISECT_LOG
+	BISECT_START (vital)
+	BISECT_ANCESTORS_OK
+	BISECT_EXPECTED_REV
+	status
+		On branch b1
+		You are currently bisecting, started from branch 'b1'.
+git cherry-pick
+	CHERRY_PICK_HEAD 
+	MERGE_MSG
+	MERGE_RR
+	status
+		On branch b1
+		You are currently cherry-picking commit 97ca7d261.
+git rebase
+	MERGE_RR
+	rebase-apply/
+	rr-cache/
+	REBASE_HEAD (vital)
+	ORIG_HEAD
+	status
+		rebase in progress; onto 844319ad9
+		You are currently rebasing branch 'b1' on '844319ad9'.
 
 code folding - create an exception for <<<< ==== >>>> diff markers?
 	how do you continue?
