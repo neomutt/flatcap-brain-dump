@@ -69,6 +69,12 @@ return statements that might be converted to "return rc;"
 kill plural enums, e.g. MaiboxType*s*
 
 go through all large switch statements
+	index(2038)
+	compose(1077)
+	pager(1041)
+	browser(777)
+	enter(452)
+	start by adding {} to all cases
 	localise all variables
 	except big buffers?
 	start with loop variables
@@ -103,4 +109,26 @@ browser.c, email.c have a lot of
 	tmp's a bad name for a variable
 
 dedupe home/gfx against gfx repo
+
+boolify
+	imap_set_flags(server_changes)
+	set_changed_flag(server_changes)
+
+comp_mbox_close()
+	swap clauses if (!m->append)
+
+move all
+	if (!param)
+	to start of function
+
+index/pager
+	replace CHECK_* macros with function
+	bool pre_requisite(flag|flag, quiet);
+	if (!pre_requisite())
+		break
+	need interface for index/pager operations?
+	what are possible outcomes?
+	break (continue loop)
+	exit (function)
+	fallthrough? NO refactor to avoid
 

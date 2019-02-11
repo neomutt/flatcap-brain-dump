@@ -138,3 +138,9 @@ travel
 
 upload fresh gpg keys to flatcap.org
 
+trust new keys
+
+quickhl command to display highlights (in use)
+
+gpg key to DNS too
+

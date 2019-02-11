@@ -367,3 +367,7 @@ FOREACH should we always use _SAFE if we REMOVE (just for future safety)
 all functions that return int
 	`if (!fn())` should be `if (fn() == X)`
 
+code style
+	allow if (!X) for flags too
+	if (!(flag & NAME))
+

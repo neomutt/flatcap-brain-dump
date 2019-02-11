@@ -1,3 +1,7 @@
+pin github 'help-wanted' issues
+
+shield add 'commits/month' (~50), 2K/year
+
 notification interface
 	each object should start with "int type;"
 
