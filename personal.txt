@@ -144,3 +144,6 @@ quickhl command to display highlights (in use)
 
 gpg key to DNS too
 
+push all git repos to gitlab, bitbucket
+	cron script
+

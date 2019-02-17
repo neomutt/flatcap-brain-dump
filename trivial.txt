@@ -1,7 +1,10 @@
+fix !USE_NNTP build
+	check !USE_SIDEBAR build
+
 drop #1234 refs to trac or gitlab
 
 free functions to take (**ptr)
-then deref to Type *type = *ptr;
+then deref to Type *t = *ptr;
 
 change to return enum
 change callers to use enum
@@ -20,10 +23,6 @@ can it be promoted to library?
 
 simplify all our:  if (X) free(X)
 add doxy param doc: (NULL safe) ?
-
-void mutt_pattern_free(struct Pattern **pat);
-move check: if (pat) inside function
-remove from callers
 
 split up MuttMisc into separate enums
 
@@ -56,15 +55,62 @@ conditional constants - reduce to a comment
 body_copy() : move foreach param -> param_dup()
 
 FILE *x -> fp
+	61 FILE *fp
+	20 FILE *fpout
+	17 FILE *f
+	9 FILE *tmpfp
+	6 FILE *ofp
+	6 FILE *fpin
+	5 FILE *tempfp
+	5 FILE *ifp
+	5 FILE *fperr
+	4 FILE *smimein
+	4 FILE *pgpout
+	4 FILE *pgpin
+	4 FILE *pgperr
+	3 FILE *tfp
+	3 FILE *smimeerr
+	3 FILE *in
+	2 FILE *smimeout
+	2 FILE *savefp
+	2 FILE *parent_fp
+	2 FILE *fptmp
+	2 FILE *decoded_fp
+	1 FILE *tmpfp2
+	1 FILE *root_fp
+	1 FILE *rc
+	1 FILE *outer_fp
+	1 FILE *out
+	1 FILE *nfp
+	1 FILE *newsrc_fp
+	1 FILE *new_fp
+	1 FILE *lockfp
+	1 FILE *fpfilterout
+	1 FILE *fout
+	1 FILE *fin
+	1 FILE *filter
+	1 FILE *fd1
+	1 FILE *devnull
+	1 FILE *bfp
+	1 FILE *attf
+	1 FILE **smimeerr
+	1 FILE **fp_idx
 
 check all src against vim folding
 
 return statements that might be converted to "return rc;"
-     27 return r;
-     21 return ret;
-      5 return result;
-      4 return retval;
+     25 return r;
+     24 return ret;
+      7 return retval;
+      6 return result;
+      2 return rv;
+      2 return return_key;
       2 return res;
+      2 return reg;
+      1 return rset;
+      1 return right;
+      1 return results;
+      1 return resbuf;
 
 kill plural enums, e.g. MaiboxType*s*
 
@@ -80,6 +126,17 @@ go through all large switch statements
 	start with loop variables
 change switch to [opcode, fn()] table
 	pass(op, ctx, flags?) -> 100s functions
+
+index/pager
+	replace CHECK_* macros with function
+	bool pre_requisite(flag|flag, quiet);
+	if (!pre_requisite())
+		break
+	need interface for index/pager operations?
+	what are possible outcomes?
+	break (continue loop)
+	exit (function)
+	fallthrough? NO refactor to avoid
 
 init.c
 	getsid() and getpid() are POSIX2001
@@ -104,31 +161,11 @@ param names differ
 	hcache_qdbm_close
 	hcache_tokyocabinet_close
 
-browser.c, email.c have a lot of
+browser.c has a lot of
 	struct Email *tmp;
 	tmp's a bad name for a variable
-
-dedupe home/gfx against gfx repo
-
-boolify
-	imap_set_flags(server_changes)
-	set_changed_flag(server_changes)
-
-comp_mbox_close()
-	swap clauses if (!m->append)
 
 move all
 	if (!param)
 	to start of function
-
-index/pager
-	replace CHECK_* macros with function
-	bool pre_requisite(flag|flag, quiet);
-	if (!pre_requisite())
-		break
-	need interface for index/pager operations?
-	what are possible outcomes?
-	break (continue loop)
-	exit (function)
-	fallthrough? NO refactor to avoid
 

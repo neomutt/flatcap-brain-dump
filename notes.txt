@@ -1,3 +1,7 @@
+change Score list to use STAILQ
+
+add screenshot to test-render repo
+
 pin github 'help-wanted' issues
 
 shield add 'commits/month' (~50), 2K/year
