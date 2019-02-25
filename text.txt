@@ -12,6 +12,7 @@ Drawing options
 
 store text as a continuous blob
 rope initially split at lines
+	add markers at 1000s of visible chars for fast random access?
 give rope attributes - header, body, attach?
 apply user highlighting (nested)
 apply system highlighting -- search, spelling

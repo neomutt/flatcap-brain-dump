@@ -176,6 +176,7 @@ $tmpdir validator -> try to create sample temp file!
 find and convert #define num ranges -> enum
 
 usage() - autowrap at $COLUMNS?
+	default to 80 if unset
 
 find all OUT-params fn(&val)
 	and ensure the variable is set before

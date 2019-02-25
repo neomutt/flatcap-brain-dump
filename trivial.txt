@@ -113,6 +113,9 @@ return statements that might be converted to "return rc;"
       1 return resbuf;
 
 kill plural enums, e.g. MaiboxType*s*
+	add to style docs
+however WidgetFlags can be plural
+	(1 << 6)...
 
 go through all large switch statements
 	index(2038)
@@ -168,4 +171,50 @@ browser.c has a lot of
 move all
 	if (!param)
 	to start of function
+
+formatting - whitespace
+	#define MUTT_TOKEN_EQUAL         (1<<0)  /**< treat '=' as a special */
+
+there are 9 R_ flags
+	'BOTH' isn't really meaningful
+	#define R_BOTH        (R_INDEX | R_PAGER)
+	#define R_RESORT_BOTH (R_RESORT | R_RESORT_SUB)
+
+eliminate once-used define
+	#define MUTT_MODEFMT "-- NeoMutt: %s"
+
+local variables with capitals
+	addrbook.c:191:         AliasTable
+	browser.c:1105:         GotoSwapper
+	ncrypt/pgpkey.c:331:    KeyTable
+	ncrypt/pgpkey.c:594:    KeyTable
+	ncrypt/cryptglue.c:125: PGP
+	ncrypt/cryptglue.c:175: PGP
+	ncrypt/cryptglue.c:232: PGP
+	ncrypt/cryptglue.c:307: PGP
+	ncrypt/cryptglue.c:338: PGP
+	ncrypt/cryptglue.c:347: PGP
+	query.c:330:            QueryTable
+	ncrypt/cryptglue.c:128: SMIME
+	ncrypt/cryptglue.c:356: SMIME
+	ncrypt/cryptglue.c:400: SMIME
+	ncrypt/cryptglue.c:409: SMIME
+	ncrypt/cryptglue.c:462: SMIME
+	ncrypt/cryptglue.c:493: SMIME
+	hdrline.c:669:          T
+	ncrypt/smime.c:443:     Table
+	browser.c:1009:         TargetDir
+
+name clashes with IMAP_CMD *flags*
+turn into an enum
+	/* IMAP command responses. Used in ImapCommand.state too */
+	#define IMAP_CMD_OK       0  /**< `<tag> OK ...` */
+	#define IMAP_CMD_BAD      -1 /**< `<tag> BAD ...` */
+	#define IMAP_CMD_NO       -2 /**< `<tag> NO ...` */
+	#define IMAP_CMD_CONTINUE 1  /**< `* ...` */
+	#define IMAP_CMD_RESPOND  2  /**< `+` */
+	#define IMAP_CMD_NEW      3  /**< ImapCommand.state additions */
+
+decrypt_part - Explain r_is_signed better
+	returns -1, 0, 1, 2
 

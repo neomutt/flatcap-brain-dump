@@ -1,7 +1,6 @@
-
-fix mnemosyne 0-index bug
-
 mnemosyne
+	fix 0-index bug
+
 	add function to quit recording
 	without altering any registers
 
@@ -49,6 +48,7 @@ code folding - create an exception for <<<< ==== >>>> diff markers?
 	how do you continue?
 
 review bookmarks -> stars
+	linux, git
 
 repo: daily, weekly, monthly updates
 	-> server
@@ -136,14 +136,19 @@ travel
 	how to navigate
 	pay for metro/buses/trams
 
-upload fresh gpg keys to flatcap.org
-
-trust new keys
-
 quickhl command to display highlights (in use)
-
-gpg key to DNS too
 
 push all git repos to gitlab, bitbucket
 	cron script
+
+git alternates
+	list existing alternates
+	prune dead alternates
+	add new alternates
+
+Find trailers in log messages
+	git log --format='%h%n%(trailers:only,unfold)'
+	Co-authored-by:
+	Signed-off-by:
+	Closes: #123
 

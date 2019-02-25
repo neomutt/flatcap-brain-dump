@@ -1,25 +1,6 @@
-
-turn STRING, LONGSTRING into numbered consts
-	STR1024, etc
-	clearer
-
-define?
-	STR_MAILBOX (PATH_MAX sized)
-	STR_COMMAND (BIG)
-
-flags typedef - call it BitField16?
-
-typedef for flags: unsigned type
-	u{8,16,32}, FLAGS{8,16,32}
-
-stop offering to create ~/Mail?
-
-quick votes on
-	global variables (for config), prefix with 'G' or 'C'?
-	unused parameters gcc/clang attribute
-
-all flag fields ought to be unsigned
-	and fixed width, e.g. uint32_t
+unused parameters gcc/clang attribute
 
 drop support for old SSL versions
+
+add "POLL" issue label?
 
