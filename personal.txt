@@ -126,8 +126,8 @@ fosdem
 keysign
 	clipboard
 	upstairs
-	loadhailer
-	108 people -> 100mins
+	loudhailer
+	108 people -> 100mins -> ~50 sigs in return
 new people
 	get together
 travel
@@ -151,4 +151,7 @@ Find trailers in log messages
 	Co-authored-by:
 	Signed-off-by:
 	Closes: #123
+
+change build scripts/aliases to build in /build
+	change 'n' to run build/n
 

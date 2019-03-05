@@ -371,3 +371,6 @@ code style
 	allow if (!X) for flags too
 	if (!(flag & NAME))
 
+enums singular type MailboxType
+flags plural type WidgetFlags
+

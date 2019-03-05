@@ -1,10 +1,42 @@
+flags
+	missing 'rights' in ImapAccountData Mailbox Smtp
+
+flags
+	add to style guide
+	positive
+		if ((flags & MUTT_CM_NOHEADER))
+	negative
+		if (!(flags & MUTT_CM_NOHEADER))
+		if ((flags & MUTT_CM_NOHEADER) == 0)
+
+	move flags before struct's use of them
+
+	naming?
+		STATE_FLAGS
+		state_flags
+		state_flags_t
+		StateFlags
+
+tmp dir for emails
+	use maildir
+	mbox wants to write Status: R
+	check creation of dirs carefully
+		so race conditions not possible
+
+new cache config
+	cache_dir
+	db_per_folder? (for headers)
+	put heaer cache in maildir's 'tmp' dir?  dodgy?
+	cache hierarchy: dots or slashes?
+	name translations like offlineimap?
+
+are $spoolfile, $mbox, mbox-hook needed?
+
 copr add Bug URL: to spec file
 
 add issue templates for
 	'easy' task
 	'questions to dev'
-
-base64.c missing from libmutt diagram
 
 change Score list to use STAILQ
 
@@ -750,6 +782,7 @@ analysis
 	add lcov / coveralls
 	AddressSanitizer build
 	codespell
+	lgtm.com - https://lgtm.com/projects/g/neomutt/neomutt/
 
 X-Labels lost if "unignore X-Label" isn't used!
 	suggest in labels docs
@@ -2320,6 +2353,7 @@ separate packages for neomutt
 	neomutt-docs     - main manual
 	neomutt-contrib  - muttrc, vimrc, etc
 	neomutt-docs-dev - code docs
+	neomutt-distro   - copr, debian, macports
 split repos to match
 branch by version / language
 

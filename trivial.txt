@@ -1,3 +1,10 @@
+simplify cppcheck example
+	cppcheck --enable=all --language=c --std=c99 -i autosetup --platform=unspecified -D_POSIX_PATH_MAX=4096 -DPATH_MAX=2048 -I/usr/include -I/usr/include/mit-krb5 -I. --output-file=cppcheck.xml --xml --xml-version=2 <path to neomutt source code directory>
+	cppcheck --enable=all --language=c --std=c99 -i autosetup -D_POSIX_PATH_MAX=4096 -DPATH_MAX=2048  -I. --output-file=c1  .
+use --check-config to list missing header files
+	cppcheck --verbose --check-config --enable=all --language=c --std=c99 -i autosetup -i test -DPATH_MAX=2048 -D__x86_64__ -I. -I/usr/include -I/usr/lib/gcc/x86_64-redhat-linux/8/include -I/usr/include/qdbm --output-file=c1 .
+	ignore doc dir too
+
 fix !USE_NNTP build
 	check !USE_SIDEBAR build
 
@@ -5,10 +12,6 @@ drop #1234 refs to trac or gitlab
 
 free functions to take (**ptr)
 then deref to Type *t = *ptr;
-
-change to return enum
-change callers to use enum
-int query_quadoption(int opt, const char *prompt)
 
 add printf format checkers to mutt_message, mutt_debug, etc
 
@@ -23,8 +26,6 @@ can it be promoted to library?
 
 simplify all our:  if (X) free(X)
 add doxy param doc: (NULL safe) ?
-
-split up MuttMisc into separate enums
 
 if (!(a && b))
 if (!(a || b))
@@ -54,81 +55,7 @@ conditional constants - reduce to a comment
 
 body_copy() : move foreach param -> param_dup()
 
-FILE *x -> fp
-	61 FILE *fp
-	20 FILE *fpout
-	17 FILE *f
-	9 FILE *tmpfp
-	6 FILE *ofp
-	6 FILE *fpin
-	5 FILE *tempfp
-	5 FILE *ifp
-	5 FILE *fperr
-	4 FILE *smimein
-	4 FILE *pgpout
-	4 FILE *pgpin
-	4 FILE *pgperr
-	3 FILE *tfp
-	3 FILE *smimeerr
-	3 FILE *in
-	2 FILE *smimeout
-	2 FILE *savefp
-	2 FILE *parent_fp
-	2 FILE *fptmp
-	2 FILE *decoded_fp
-	1 FILE *tmpfp2
-	1 FILE *root_fp
-	1 FILE *rc
-	1 FILE *outer_fp
-	1 FILE *out
-	1 FILE *nfp
-	1 FILE *newsrc_fp
-	1 FILE *new_fp
-	1 FILE *lockfp
-	1 FILE *fpfilterout
-	1 FILE *fout
-	1 FILE *fin
-	1 FILE *filter
-	1 FILE *fd1
-	1 FILE *devnull
-	1 FILE *bfp
-	1 FILE *attf
-	1 FILE **smimeerr
-	1 FILE **fp_idx
-
 check all src against vim folding
-
-return statements that might be converted to "return rc;"
-     25 return r;
-     24 return ret;
-      7 return retval;
-      6 return result;
-      2 return rv;
-      2 return return_key;
-      2 return res;
-      2 return reg;
-      1 return rset;
-      1 return right;
-      1 return results;
-      1 return resbuf;
-
-kill plural enums, e.g. MaiboxType*s*
-	add to style docs
-however WidgetFlags can be plural
-	(1 << 6)...
-
-go through all large switch statements
-	index(2038)
-	compose(1077)
-	pager(1041)
-	browser(777)
-	enter(452)
-	start by adding {} to all cases
-	localise all variables
-	except big buffers?
-	start with loop variables
-change switch to [opcode, fn()] table
-	pass(op, ctx, flags?) -> 100s functions
 
 index/pager
 	replace CHECK_* macros with function
@@ -156,54 +83,42 @@ change OPT_NO_CURSES to OPT_USE_CURSES
 	uses: 14 OPT_USE_CURSES, 33 !OPT_USE_CURSES
 	this means defaulting a global bool to true
 
-param names differ
-	hcache_bdb_close
-	hcache_gdbm_close
-	hcache_kyotocabinet_close
-	hcache_lmdb_close
-	hcache_qdbm_close
-	hcache_tokyocabinet_close
-
 browser.c has a lot of
 	struct Email *tmp;
 	tmp's a bad name for a variable
+	scratch is too
 
 move all
 	if (!param)
 	to start of function
+	return early
+	ag "^ +if \(.*\n +return"
 
-formatting - whitespace
-	#define MUTT_TOKEN_EQUAL         (1<<0)  /**< treat '=' as a special */
+decrypt_part - Explain r_is_signed better
+	returns -1, 0, 1, 2
 
-there are 9 R_ flags
-	'BOTH' isn't really meaningful
-	#define R_BOTH        (R_INDEX | R_PAGER)
-	#define R_RESORT_BOTH (R_RESORT | R_RESORT_SUB)
+are these identical? YES
+	static char crypt_flags(KeyFlags flags)
+	static char pgp_flags(KeyFlags flags)
 
-eliminate once-used define
-	#define MUTT_MODEFMT "-- NeoMutt: %s"
+code docs
+	#define's 426/1073 documented 40%
+	members   371/1032 documented 36%
+	add shield
 
-local variables with capitals
-	addrbook.c:191:         AliasTable
-	browser.c:1105:         GotoSwapper
-	ncrypt/pgpkey.c:331:    KeyTable
-	ncrypt/pgpkey.c:594:    KeyTable
-	ncrypt/cryptglue.c:125: PGP
-	ncrypt/cryptglue.c:175: PGP
-	ncrypt/cryptglue.c:232: PGP
-	ncrypt/cryptglue.c:307: PGP
-	ncrypt/cryptglue.c:338: PGP
-	ncrypt/cryptglue.c:347: PGP
-	query.c:330:            QueryTable
-	ncrypt/cryptglue.c:128: SMIME
-	ncrypt/cryptglue.c:356: SMIME
-	ncrypt/cryptglue.c:400: SMIME
-	ncrypt/cryptglue.c:409: SMIME
-	ncrypt/cryptglue.c:462: SMIME
-	ncrypt/cryptglue.c:493: SMIME
-	hdrline.c:669:          T
-	ncrypt/smime.c:443:     Table
-	browser.c:1009:         TargetDir
+refactor to simplify copy.c:350
+        if (mutt_write_one_header(out, 0, headers[x], (flags & CH_PREFIX) ? prefix : 0,
+                                  mutt_window_wrap_cols(MuttIndexWindow, Wrap), flags) == -1)
+	adray: This is unrelated to the naming, but this `if` statement should
+	be modified to be more read able. Moving `(flags & CH_PREFIX) ? prefix
+	: 0` and `mutt_window_wrap_cols(...)` out will make it significantly
+	easier to understand.
+
+some mutt/*.[ch] #include "MUTT/..." !
+	iwyu, too
+
+variables, urgh!
+	mutt_lookup_mime_type() int szf, sze, cur_sze;
 
 name clashes with IMAP_CMD *flags*
 turn into an enum
@@ -215,6 +130,15 @@ turn into an enum
 	#define IMAP_CMD_RESPOND  2  /**< `+` */
 	#define IMAP_CMD_NEW      3  /**< ImapCommand.state additions */
 
-decrypt_part - Explain r_is_signed better
-	returns -1, 0, 1, 2
+param names differ
+	hcache_bdb_close
+	hcache_gdbm_close
+	hcache_kyotocabinet_close
+	hcache_lmdb_close
+	hcache_qdbm_close
+	hcache_tokyocabinet_close
+
+convert to enum?
+	struct ConnAccount.type
+		unsigned char type;     ///< Connection type, e.g. #MUTT_ACCT_TYPE_IMAP
 

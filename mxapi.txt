@@ -90,3 +90,9 @@ move index_format to mx API?
 	have default?
 	how are notifications handled?
 
+need API fn to move a message
+	between mailboxes on same account
+	between mailboxes on different accounts
+copy message fn too?
+what other primitives?
+

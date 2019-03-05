@@ -57,3 +57,8 @@ option for coloured underline as progress meter
 
 use progress underline in sidebar when loading mailboxes (in parallel!)
 
+have progress code do message formatting
+	so if there are 1000s of messages
+	progress can nop them if it wants
+	progress_update(P, num, fmt, ...);
+

@@ -35,3 +35,6 @@ rewrite mutt_wstr_trunc()
 	first, rename variables to be something sensible
 	second, refactor to be legible
 
+change large switch statements to [opcode, fn()] table
+	pass(op, ctx, flags?) -> 100s functions
+
