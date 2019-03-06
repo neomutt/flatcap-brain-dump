@@ -1,0 +1,116 @@
+(N)eomutt
+	AccountList[A]
+	Config
+	WindowRoot
+	History
+	Aliases
+	HeaderCache
+	BodyCache
+	Hooks
+	Environment
+	Events: startup, shutdown, timeout
+
+(A)ccount
+	MailboxList[M]
+	(AView)
+
+(M)ailbox
+	EmailList[E]
+	(MView)
+
+(E)mail
+	(EView)
+
+Config
+	Events: initial set, set, reset
+
+WindowRoot
+	Window hierarchy
+	Each window is listenable, with events
+	Events: change focus, window (in)visible
+
+Config
+	initial set
+	reset
+	reset all
+	toggle -> set
+	ignore disabled/obsolete config
+	notify ALTERNATE on synonym use
+
+NeoMutt
+	new account
+	delete account
+
+Account
+	new mailbox
+	delete mailbox
+	mailbox changed?  how?
+	account opened
+	account closed
+	account sync'd
+	connection lost?
+
+RootWindow
+	WINCH for neomutt to listen to
+	specific window
+		WINCH
+		visibility
+		focus
+	
+Mailbox
+	new email
+	del email
+	changed email?
+		or is changed just seen recursively?
+
+Email
+	email changed (attrs)
+	deleted
+
+Config
+	what about A-specific changes?
+		same mechanism?
+
+------------------------------------------------------------
+
+Notes:
+
+Does sidebar own window or vice versa.  YES, former
+When I "set sidebar_visible = yes" what events happen?
+Config validates, sets, notifies whom?, N, then what?
+ComponentList { sidebar } -> sidebar_init(), listen to N
+Sidebar listens to change-mailbox
+	doesn't repaint, just marks window dirty?
+Status bar initialised like sidebar
+Bundle notifications
+	start()
+	lots of things
+	end()
+Each notify target needs list of children?
+	or a function to enumerate them
+lua callback ∀ notifications
+
+------------------------------------------------------------
+
+Bundle notifications
+1)
+	get_uid()
+	send(ev, bundle_id, ...)
+	send negative bundle_id to end
+	useful for threads, complicated otherwise
+2)
+	bundle_start()
+	...
+	bundle_end()
+	good if list takes a while to compile
+3)
+	notify(event*LIST*)
+
+is list cached until complete?
+
+------------------------------------------------------------
+
+Cases:
+	populate index/sidebar for first time -> multiple notifications
+	new mail - want to know ALL details, A, M, E (bundled)
+

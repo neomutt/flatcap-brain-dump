@@ -63,6 +63,11 @@ mxapi standard error codes?
 	MXAPI_ERROR   -2
 	MXAPI_FATAL   -3
 	MXAPI_CODE    -99
+add backend specfic codes?
+	MXAPI_CUSTOM_SUCCESS{1..5} {11..15}
+	MXAPI_CUSTOM_WARNING{1..5} {-11..-15}
+	MXAPI_CUSTOM_ERROR{1..5}   {-21..-25}
+backend can create their own enum (for internal use?)
 
 MXAPI_CODE used when requires parameters are missing,
 	but not when X_free() is called with a NULL ptr

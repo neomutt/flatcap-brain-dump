@@ -242,7 +242,6 @@ create private "regex -> string" lookup in mutt_charset.c
 move mutt_charset.c -> mutt/charset.c
 move mutt_idna.c -> mutt/idna.c
 
-
 --------------------------------------------------------------------------------
 
 Enabled config

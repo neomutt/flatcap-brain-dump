@@ -1,3 +1,7 @@
+docs grammar
+	abort it's execution
+	search for others
+
 flags
 	missing 'rights' in ImapAccountData Mailbox Smtp
 
@@ -33,6 +37,7 @@ new cache config
 are $spoolfile, $mbox, mbox-hook needed?
 
 copr add Bug URL: to spec file
+	drop 'group'
 
 add issue templates for
 	'easy' task
@@ -47,6 +52,8 @@ pin github 'help-wanted' issues
 	need [HELP-WANTED] ?
 
 shield add 'commits/month' (~50), 2K/year
+	https://img.shields.io/github/commit-activity/ XXX /neomutt/neomutt.svg?style=plastic
+	XXX = w/m/y
 
 notification interface
 	each object should start with "int type;"

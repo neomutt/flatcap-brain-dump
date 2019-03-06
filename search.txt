@@ -1,0 +1,51 @@
+Search API
+
+performed by BE
+common code for local files
+
+search(str, obj, flagss)
+
+obj is root of search N, A, M, E, etc
+
+flags
+	regex
+	whole-word
+	match-case
+	fuzzy
+	multiline
+	recurse
+
+BE selects best method for searching
+
+(needs to?) specify which objects/fields can match
+
+return LIST of matches
+
+Match
+	object type: AME, etc
+	field match: path, desc, etc
+	field offset [x,y]
+	score
+	ptr to obj/UID of obj
+
+Flags
+	partial/whole/fuzzy match
+	matching search flags?
+
+BE could use $simple_search or customer
+
+need search dialog too, with all options
+
+option to limit matches (max num)
+	or (score > num)
+
+results
+	hierarchy?  need parent ptr
+	sort by score, obj type, etc
+	A -> M -> E tree
+
+search results addref objects to keep them safe
+limit to search function
+search() needs LIST of criteria
+	AND/OR flags
+

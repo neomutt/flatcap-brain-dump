@@ -1,3 +1,4 @@
+notmuch requires emails to be in a {cur,new,tmp}/ dir to be identified
 
 Take Control of your Email with Mutt, OfflineIMAP and Notmuch | hobo.house,
 https://hobo.house/2015/09/09/take-control-of-your-email-with-mutt-offlineimap-notmuch/
