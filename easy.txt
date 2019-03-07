@@ -205,3 +205,8 @@ void url_pct_encode(char *dst, size_t l, const char *src)
 	move to library
 	list_to_pattern() in ncrypt/crypt_gpgme.c is similar
 
+mutt_hist_complete()
+	only user of C_History outside of mutt/history.c
+	create a mutt_hist_get_size()
+	mutt_mem_calloc(C_History, sizeof(char *));
+

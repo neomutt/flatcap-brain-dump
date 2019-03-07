@@ -114,3 +114,34 @@ Cases:
 	populate index/sidebar for first time -> multiple notifications
 	new mail - want to know ALL details, A, M, E (bundled)
 
+------------------------------------------------------------
+
+N,A,M,E listener
+
+Listen to N (EventType, flags, callback function, data)
+L knows its parent
+does it care about children? NO propagates upwards
+
+Notifier (Type, parent, LIST(listeners))
+type only needed for debugging?
+opaque type: event(obj->notifier, event type, data)
+add listener, remove listener, event
+
+callback (event, flags, object, data)
+N-objects N, A, M, E - ~16 objects (4 bits) enum or flags?
+each object could have 28 distinct events?
+or
+FLAG_RECURSIVE|FLAG_ALL_EVENTS to mop up
+need event structs
+ENewMail { M, EL }
+EWinch { w, h } or { ow, oh, nw, nh } old,new
+
+Sidebar
+	new account }__ repeat for startup
+	new mailbox }
+	del account }__ unmailboxes
+	del mailbox }
+	select mailbox
+	select account
+	winch
+

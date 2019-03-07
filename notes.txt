@@ -1,6 +1,5 @@
-docs grammar
-	abort it's execution
-	search for others
+move mutt/group.* to email/
+	to remove Address dep in libmutt
 
 flags
 	missing 'rights' in ImapAccountData Mailbox Smtp
