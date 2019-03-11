@@ -145,3 +145,64 @@ Sidebar
 	select account
 	winch
 
+notification interface
+	each object should start with "int type;"
+
+notifications
+	Config attached to N
+	what about A-specific changes?
+	CfgAccount needs A ptr - changes notify A, not N
+	BE_init() -> listen to N
+	notify(new A)
+	BE listen_to(A, recurse)
+
+multiple notifications
+	one on each M that's changed
+	plus, one on A -> STATS_CHANGED
+	one on N, too?  ACTIVITY?
+
+------------------------------------------------------------
+
+Index
+loops waiting for key input
+	km_dokey(MENU_MAIN)
+	triggers timeout
+
+start with passive panels / listeners
+- status bar
+- help?
+- sidebar?
+- new mail command
+
+------------------------------------------------------------
+
+status listens to Config, AME?
+does status *need* any GUI code?
+	just format string to specification
+	not worth splitting
+
+listener function for events
+gui function to display in window
+txt function to format string
+
+need status_init() too
+	status_shutdown() - not nec for passive panels
+
+menu/screen repaint just displays cached string
+	(only when all deps that might change display are events)
+unless:
+- forced (Ctrl-L)
+- WINCH
+- NAME event
+
+status also handles terminal stuff
+	ts_status, ts_icon
+
+status format also needed by NewMailCommand
+	separate source code
+	use status format fn
+	new mail is passive
+
+when event-driven, status could be farmed out to Lua!
+	access to AME objects, expando_fmt(), add_color()/attr()
+

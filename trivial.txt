@@ -101,11 +101,6 @@ are these identical? YES
 	static char crypt_flags(KeyFlags flags)
 	static char pgp_flags(KeyFlags flags)
 
-code docs
-	#define's 426/1073 documented 40%
-	members   371/1032 documented 36%
-	add shield
-
 refactor to simplify copy.c:350
         if (mutt_write_one_header(out, 0, headers[x], (flags & CH_PREFIX) ? prefix : 0,
                                   mutt_window_wrap_cols(MuttIndexWindow, Wrap), flags) == -1)
@@ -142,10 +137,6 @@ convert to enum?
 	struct ConnAccount.type
 		unsigned char type;     ///< Connection type, e.g. #MUTT_ACCT_TYPE_IMAP
 
-search for all buf[n] followed by 0
-	*buf ==
-	other names too
-
 unnec checks
    if (fp_out)
      mutt_file_fclose(&fp_out);
@@ -157,7 +148,5 @@ does this ++col get executed if first part of && is false?  NO!
 	mutt/file.c:1165:45:    if ((prev_sb.st_size == sb.st_size) && (++count >= (timeout ? MAX_LOCK_ATTEMPTS : 0)))
 	pager.c:2088:46:      if (!rd->line_info[i].continuation && (++j == rd->lines))
 
-check doxy headers for
-	struct, enum, typedef?
-	are they consistently * struct X - 
+uncrustify misses adding () in #defines in heades
 

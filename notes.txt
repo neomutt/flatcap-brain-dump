@@ -1,24 +1,9 @@
-move mutt/group.* to email/
-	to remove Address dep in libmutt
+reset screen on segfault?
+	useful when debugging
+	especially for AddressSanitizer
 
 flags
 	missing 'rights' in ImapAccountData Mailbox Smtp
-
-flags
-	add to style guide
-	positive
-		if ((flags & MUTT_CM_NOHEADER))
-	negative
-		if (!(flags & MUTT_CM_NOHEADER))
-		if ((flags & MUTT_CM_NOHEADER) == 0)
-
-	move flags before struct's use of them
-
-	naming?
-		STATE_FLAGS
-		state_flags
-		state_flags_t
-		StateFlags
 
 tmp dir for emails
 	use maildir
@@ -53,9 +38,6 @@ pin github 'help-wanted' issues
 shield add 'commits/month' (~50), 2K/year
 	https://img.shields.io/github/commit-activity/ XXX /neomutt/neomutt.svg?style=plastic
 	XXX = w/m/y
-
-notification interface
-	each object should start with "int type;"
 
 F1 or ? on ANY question -> context sensitive help
 	link to guide
@@ -96,14 +78,6 @@ update wiki for new hard/medium/easy, update roadmap
 
 all mx_X() functions to mailbox_X()? mx_X() for mxapi only?
 	what about wrappers - i.e. most of them?
-
-notifications
-	Config attached to N
-	what about A-specific changes?
-	CfgAccount needs A ptr - changes notify A, not N
-	BE_init() -> listen to N
-	notify(new A)
-	BE listen_to(A, recurse)
 
 'Folder' limits the independence of mailbox.c
 	limited to parse_mailboxes()?
@@ -229,11 +203,6 @@ is smtp a BE?
 	auth, connection
 	definitely need an smtp *dir* and tidier API for sending
 	encapsulate vars in dir
-
-multiple notifications
-	one on each M that's changed
-	plus, one on A -> STATS_CHANGED
-	one on N, too?  ACTIVITY?
 
 help mailbox
 	option to autoopen all images?

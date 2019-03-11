@@ -374,3 +374,29 @@ code style
 enums singular type MailboxType
 flags plural type WidgetFlags
 
+style guide
+	note which rules can be automated by
+	clang-format, uncrustify
+
+flags
+	add to style guide
+	positive
+		if ((flags & MUTT_CM_NOHEADER))
+	negative
+		if (!(flags & MUTT_CM_NOHEADER))
+		if ((flags & MUTT_CM_NOHEADER) == 0)
+
+	move flags before struct's use of them
+
+	naming?
+		STATE_FLAGS
+		state_flags
+		state_flags_t
+		StateFlags
+
+style guide
+	typedef has two possible comments
+	a block for a typedef'd function, with @param
+		named X_t
+	single line for typedef'd flags
+

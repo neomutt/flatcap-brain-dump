@@ -48,7 +48,7 @@ code folding - create an exception for <<<< ==== >>>> diff markers?
 	how do you continue?
 
 review bookmarks -> stars
-	linux, git
+	linux, git, coreutils
 
 repo: daily, weekly, monthly updates
 	-> server

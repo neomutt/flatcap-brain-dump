@@ -15,6 +15,7 @@ Style Guide
 - #defines    are CAPITALISED
 - functions   are snake_case
 - structs     are MixedCase
+- union       are MixedCase
 - enums       are MixedCase
 - enum-values are CAPITALISED
 - locals      are lowercase
@@ -23,6 +24,11 @@ Style Guide
 
 - `struct Context *ctx`
 - `FILE *fp`
+- `struct Account *a`  a-list
+- `struct Mailbox *m`  m-list
+- `struct Email *e`    e-list
+
+- rc, rc2 -- not return, retval, rv, etc
 
 - `struct Account *a` may have:
   - private data: `struct XyzAccountData *adata`
