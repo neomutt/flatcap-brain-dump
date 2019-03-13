@@ -69,9 +69,9 @@ index/pager
 	fallthrough? NO refactor to avoid
 
 init.c
-	getsid() and getpid() are POSIX2001
+	getsid() is POSIX2001
 	no need for #ifdef?
-	check with cygwin
+	exists in cygwin
 
 replace "for (int" -> size_t in libmutt
 	177 occurrences
@@ -109,9 +109,6 @@ refactor to simplify copy.c:350
 	: 0` and `mutt_window_wrap_cols(...)` out will make it significantly
 	easier to understand.
 
-some mutt/*.[ch] #include "MUTT/..." !
-	iwyu, too
-
 variables, urgh! sendlib.c
 	mutt_lookup_mime_type() int szf, sze, cur_sze;
 
@@ -147,6 +144,4 @@ does this ++col get executed if first part of && is false?  NO!
 	mutt/file.c:1097:45:    if ((prev_sb.st_size == sb.st_size) && (++count >= (timeout ? MAX_LOCK_ATTEMPTS : 0)))
 	mutt/file.c:1165:45:    if ((prev_sb.st_size == sb.st_size) && (++count >= (timeout ? MAX_LOCK_ATTEMPTS : 0)))
 	pager.c:2088:46:      if (!rd->line_info[i].continuation && (++j == rd->lines))
-
-uncrustify misses adding () in #defines in heades
 

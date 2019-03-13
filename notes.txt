@@ -363,6 +363,7 @@ nntp allow bare host urls
 
 M - messages menu
 	show name of debug file in status bar
+	no point -- the pager automatically deletes it
 
 create 'let' command for maths?
 	like set for numeric

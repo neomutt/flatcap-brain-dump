@@ -206,3 +206,70 @@ status format also needed by NewMailCommand
 when event-driven, status could be farmed out to Lua!
 	access to AME objects, expando_fmt(), add_color()/attr()
 
+------------------------------------------------------------
+
+need to rename struct Event out of the way
+
+status needs Context too -- pattern
+attach Neo version to N object
+status cache Context, AME (current)
+M needs A-ptr for A-priv data
+does E need M-ptr?
+	do they have a unique parent? PROB NOT
+	what about notmuch (multiple views of same E)
+so status needs Context + NAME
+
+add 6th debug level for notifications
+
+------------------------------------------------------------
+
+new mail - how do %f - mailbox and %n - num new work?
+	can't use status' fmt fn
+use fake mailbox? NO
+have custom format fn that delegates to status fmt
+
+NewMail event only has {M,EL}
+	%n - num new
+	%f - mailbox
+most status expandos are meaningless for new mail
+
+------------------------------------------------------------
+
+hooks - folder-hook on Account?
+most listeners will need to watch N recursively
+all hooks/focus on N?
+same with window
+nobody care about a specific window?
+	except the painter
+	status listens to status_window for WINCH
+who's listening to M?  index is
+NewMail needs to listen for (M,recurse) on N
+on SIGWINCH, notify all windows, breadth first
+how to prevent multiple notifications to a single window owner
+recursive listeners need to filter out dupes.  HOW?  hash?!
+A,M,E-hook change of focus - start at N
+
+Have event structs ∀ events?
+even if only delivering a ptr
+that way we can version the events
+helpful for Lua scripts, etc -- not code dependent
+
+Who owns A-hooks?  N?
+
+------------------------------------------------------------
+
+NAME
+
+N static or dynamic?  Dynamic
+create early in init
+add children as they become event-enabled
+events: startup, shutdown, A-add
+parent NULL
+
+∀ sub-systems init() - allow them to listen to N
+status: add_listener(N,A|ADD, ONLY, callback, data)
+-> LL (listener list) += {subject, flags, callback, data}
+
+rc mailboxes XYZ -> A-new, M-new
+account-hook, A-add, M-add
+

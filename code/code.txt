@@ -79,6 +79,7 @@ if's bracket anything more complex that ARG or !ARG
 	maths too
 
 grammar: it's don't can't, spelling 's
+	codespell
 
 Tidying actions
 
@@ -132,8 +133,8 @@ Make all lists derive from
 
 init all vars
 lots of static fns → _fn_name?
-^L in source
 Doxygen comments
+	# for enums, #defines, etc to link them
 
 strict compilation flags; c++ compiler?
 unnamed args in function prototypes
@@ -165,15 +166,17 @@ cleanup:
 		switches
 	doc switch drop-throughs
 
-while(1), rather than FOREVER
+while(true), rather than FOREVER
 
 check all headers #include requisites for compilation
+	iwyu
 
 sensible retvals on functions
 
 code: switch default must be at end
 
-BOOL -> enum?  what about the bitfields?
+BOOL -> enum? no bool
+what about the bitfields? bool too
 
 regex/regexp pick one in code/docs (gnu has dropped the 'p')
 	manual.xml
