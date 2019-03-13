@@ -1045,3 +1045,12 @@ account [[name] mailbox]
 	mailboxes
 account
 
+----
+
+unaccount command
+	A-specific config will be lost
+
+aliases:
+	mailbox,unmailbox for mailboxes,unmailboxes
+	(no -es)
+

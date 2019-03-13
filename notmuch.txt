@@ -110,3 +110,8 @@ unified frontend interface (notmuch/keywords) backend
 one-direction script -- sync nightmare?
 sync notmuch -> X-Label's?  get out of sync
 
+notmuch doesn't use the header cache
+to do so effectively, it would need to piggy-back on the maildir backend
+currently, there's only one for all maildir dirs
+notmuch might need to keep a reference count on the Account, Maildir and Emails
+

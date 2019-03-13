@@ -273,3 +273,66 @@ status: add_listener(N,A|ADD, ONLY, callback, data)
 rc mailboxes XYZ -> A-new, M-new
 account-hook, A-add, M-add
 
+will config become dependent on libnotify?
+	config -> libnotify -> libmutt?
+
+no more shutdown code
+	code listens for notify(N,DEAD)
+------------------------------------------------------------
+
+unmailboxes
+
+∀ M.EL notify(M,E-del)
+	except where refcount > 1, e.g. notmuch
+	if user's in pager need to notify email first
+M -= EL
+notify(A, M-del)
+A -= M
+if empty(A) notify(N,A-del)
+N -= A
+
+------------------------------------------------------------
+
+index (via init) -> parse_unmailboxes
+resolved to an M
+notify(M, HIDDEN/UNSUB)
+calls remove(A, M)
+remove M from A.ML
+M.release() (may be other users?)
+release - dec refcount, if zero
+∀ EL, release(E), if zero
+notify(E, DEAD)
+remove E from EL
+free(E), NULL
+notify(M, DEAD)
+remove M from ML
+free(M), NULL
+if empty(A) remove(N,A)
+∀ ML, release(M)
+notify(A,DEAD)
+remove A from AL
+free(A), NULL
+
+------------------------------------------------------------
+
+Array of emails
+FOREACH on E.notify
+
+on unmailboxes, who decides new focus?
+on del mail, who decides new focus?
+on del account, who decides new focus?
+
+on E-DEAD, which M do we notify?
+
+notmuch returns 1000 paths, then what?
+currently that's ONE A, if it's open
+if not, open '/'
+A.add_results -> A.ML.EL
+	depth first search for matching mailboxes
+	what about missing 'cur/'?
+notmuch's A is HIDDEN/UNSUB
+account A -> VISIBLE/SUB'D
+notmuch just lock (rc+1) all maildir A's!
+what about M's?  listen for user, add our own
+
+Each VIEW needs to addref the object it's watching
