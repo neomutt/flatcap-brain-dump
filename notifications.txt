@@ -336,3 +336,16 @@ notmuch just lock (rc+1) all maildir A's!
 what about M's?  listen for user, add our own
 
 Each VIEW needs to addref the object it's watching
+
+------------------------------------------------------------
+
+mailboxes DIR
+resolve -> failed
+create M, canon
+find A -> failed
+create A -> notify(N, new A)
+add M -> notify(A, new M)
+mbox_open() -> notify(M, add E * n)
+
+only *new* E, when <sync-mailbox>
+

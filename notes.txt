@@ -1,3 +1,22 @@
+need to be defined bitfield
+	maildir_mbox_check() int changed = 0;
+
+with split views might there be multiple focussed windows?
+	pager1, pagerbar1
+	pager2, pagerbar2
+	different pagers might mean different Mailboxes
+	=> statusbar1, statusbar2
+parent window starts with (A,M), displays (index, pager, status) from it
+
+use status bar/pager bar to show focus
+	like vim's StatusLine{,NC} highlighting
+	what about the sidebar?
+	background colour change?  #101010 / #e0e0e0
+
+User-Agent config from bool to expando?
+
+nntp://nntp.lore.kernel.org/org.kernel.vger.linux-kernel
+
 reset screen on segfault?
 	useful when debugging
 	especially for AddressSanitizer

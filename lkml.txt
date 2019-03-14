@@ -1,0 +1,10 @@
+LKML git email backend
+requires libgit
+readonly
+<sync-mailbox> does "git pull"
+combine several git repos
+need to teach notmuch how to parse git repo (or fake it)
+lkml assistant - autolink lore
+need way to store whether emails are read, flagged, tagged, etc
+	use notmuch for all this?
+need rules for mailinglist-reply, saving sent email, etc

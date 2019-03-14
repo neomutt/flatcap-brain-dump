@@ -17,3 +17,21 @@ test with:
 	10^3 folders containing 10^6 messages
 	10^6 folders containing 10^9 messages
 
+------------------------------------------------------------
+
+UI opens mailbox M
+select M - get count -> 10^6
+alloc index space (all MISSING)
+want header stuff
+query header cache (Y/N)
+	populate index
+query body cache (Y/N)
+	populate index
+get most recent block (10^3)
+	populate index
+repeat in background
+work backwards
+if cursor moves, get emails around new point
+
+bcache should imply hcache is filled
+

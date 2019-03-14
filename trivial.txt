@@ -145,3 +145,7 @@ does this ++col get executed if first part of && is false?  NO!
 	mutt/file.c:1165:45:    if ((prev_sb.st_size == sb.st_size) && (++count >= (timeout ? MAX_LOCK_ATTEMPTS : 0)))
 	pager.c:2088:46:      if (!rd->line_info[i].continuation && (++j == rd->lines))
 
+maildir
+	functions named *context*
+	rename to mailbox
+
