@@ -1054,3 +1054,181 @@ aliases:
 	mailbox,unmailbox for mailboxes,unmailboxes
 	(no -es)
 
+----
+
+main -> index <-> pager
+	       -> compose -> menu
+	
+<change-folder> (or equiv)
+does Pager need Context?
+	where? why?
+	only needs Mailbox, Email
+Context contained in Index only
+	index-pager lines (who owns this?)
+start index with (M), even from main?
+nobody else needs to know - no need to be global
+pass M (or Ctx) to children
+if <change-folder>, close ctx and reopen
+in pager <next-email> not relevant, close pager and reopen
+change folder from pager -> close pager, then index close & reopen ctx
+what about Email's gui parts - not a problem yet
+other ctxs?  compose(attach), postpone(select)
+	limited to those functions
+
+----
+
+2 views, e.g. Mailbox -> Context -> Attach Email
+Two gui views of 1 Mailbox : View1, View2
+readonly is a View attribute
+V1 deletes M1, M2
+v2 deletes M2, M3
+V1 syncs, M1, M2 deleted
+	V2 notified -> what happens?
+		M1, M2 disappear?
+		or wait for V2 sync? NO
+		if M1 is deleted, we can't read it
+Readonly - only relevant for Views
+	for user-facing code
+
+----
+
+open readonly <Alt-C>
+or compose, attach -> R/O
+or neomutt -R
+
+----
+
+V1, modified
+compose, etc
+	attach msg -> new view V2
+does new view show V1's changes?
+
+if we had 2 views of one mailbox how do we know which
+view is the 'current' when we start <compose>?
+
+----
+
+is APPEND a view flag? NO
+	which BE's support APPEND?
+	=> mbox_open_append()
+
+who APPENDs? 7
+
+	Function		acts on		is open
+	trash_append()		[trash]		no
+	mx_mbox_close()		[trash]		no
+	mutt_save_message()	[folder]	possibly
+	pop_fetch_mail()	[spool]		possibly
+	mutt_write_fcc()	[fcc]		possibly
+	mutt_save_attachment()	[folder]	possibly
+	ev_message()		[folder]	yes
+
+2nd compose attach message: where else?  ctx_open()
+
+------------------------------------------------------------
+
+(SF)	mutt_set_flag - 68
+(ESF)	mutt_emails_set_flag - 8
+(CF)	mutt_change_flag - 2 (index/pager)
+(SFU)	mutt_set_flag_update - 3 (score)
+
+ctx -> R/O <CF-ro>
+M -> R/O immutable
+
+D	Deleted
+N	New
+O	Old
+R	Replied
+*	Tagged
+!	Flagged
+
+----
+
+index/pager -> CF -> ESF -> SF -> SFU [5]
+	CF select DNOR*!
+	RO only * availabe, others fail quietly
+	<tag-prefix><set-flag> forbidden
+	            <clear-flag>
+	CHECK_READONLY
+
+----
+
+Index -> ESF -> SF -> SFU
+	CHECK_READONLY
+	CF -> ESF ... [3]
+
+X	score_message -> SFU
+mutt_sort_headers	ctx yes
+ctx_update		ctx yes
+mutt_check_rescore	called by Index
+	after OP_ENTER_COMMAND
+
+----
+
+SF callers
+index
+	2 TAG
+	6 CHECK_READONLY
+pager
+	1 READ
+	8 CHECK_READONLY
+	1 TAG
+have ctx
+	1 mutt_attach_reply REPLIED
+	1 display_message READ
+	3 save_message_ctx DEL,PURGE,TAG
+	1 select_message DEL
+	2 get_postponed DEL,PURGE
+
+----
+
+mx_mbox_close [3]
+	move MUTT_OLD to ctx_close()?
+	DEL,PURGE -> ctx_close() too?
+	Business Logic Layer (BUS)
+	BUS conflated with GUI atm
+
+----
+
+3 thread_set_flag
+	7 index DEL,PURGE,READ,TAG
+	5 pager DEL,PURGE,TAG
+3 pattern_func DEL,PURGE,TAG
+2 ci_send_message REPLIED
+
+Tag only
+	1 check_mailbox
+	1 link_threads
+
+----
+
+ev_message NEEDS context
+	DEL,PURGE,READ
+	TAG
+
+----
+
+nntp_catchup [1]
+	index CHECK_READONLY
+	browser Context
+	mx_mbox_close Context
+	uncatchup [1]
+	browser - Context
+
+----
+
+mx -> tags_commit - disallow in index
+	-> notmuch [6]
+
+mx -> mbox_check -> mbox [7]
+	-> reopen_mbox
+	-> set_flags
+
+mx_mbox_sync()
+mx_mbox_check() - not USER changes
+	allow?  NO
+
+maildir_update_flags
+	nm_mbox_check(mx, sync)
+	mh_mbox_check(mx, check/sync)
+

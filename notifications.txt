@@ -349,3 +349,118 @@ mbox_open() -> notify(M, add E * n)
 
 only *new* E, when <sync-mailbox>
 
+------------------------------------------------------------
+
+M = held by A,I rc=2
+timeout -> index/pager/compose/etc need to cede control - run_loop()?
+timeout -> BE (inotify/imap push) M deleted
+Notify(M,DEL) -> index -> R/O -> error if current
+	BE M -> immutable
+	Pager listens too? (prob not nec)
+
+A-M-E -> pager + unmailboxes(M)
+	index has hold on M (rc=2)
+M is VISIBLE(SUB'D) -> hide(M)
+	notify (M, state change)
+M is HIDDEN no action?
+
+M - unmailboxes, External deletion, unaccount
+	UN -> hidden, but still usable
+	ExtDef -> hidden, immutable
+
+M1, hide A-=M, (N-=A)
+M2 (A,I) hide, notify(hidden), (rc--)
+	when index closes (change folder)
+	M(rc=0) -> notify(DEAD) (kill A too?)
+M3 (A,I,SB) unmailboxes -> hide, notify(M,hidden)
+	SB listen -> drop M (rc--) if !current
+	Change folder, index drop M (rc--)
+
+M's a real Mailbox so hide, but don't delete
+A starts with "mailboxes" or imap sub'd M list
+	A gains Ms by opening/navigation
+	what about notmuch?
+can't preseve notmuch, possible they won't get reused
+notmuch moving window is "same" M
+when moving away from M, who decides?:
+	maildir: keep
+	notmuch query: delete
+change folder is index: free(M), open(M)
+mailboxes/subscribe -> M(rc++)
+
+------------------------------------------------------------
+
+Mailbox - refcounts
+	new +1
+	free -1
+	resolve 0
+	subscribe +1
+	unsubscribe -1
+	find +1
+	find2 +1
+	ac_add +1
+	ac_remove -1
+	ac_find 0
+
+Opened counts
+	open +1
+	close -1
+	reopen 0
+
+------------------------------------------------------------
+
+NeoMutt    ->    Notify    =>   Listeners
+		 type		Flags
+		 listeners[]	callback
+		 		data
+
+notify_send(N->notify, Event)
+add_listener(N->notify, callback)
+
+A -> M(2)	Account 1 ref, Status 1 ref
+	unmailboxes M
+rc=1 hidex M (if visible)			Notify: state change (M)
+	if (rc = 0) remove (A,M)		Notify: removal(A,M)
+		if (empty(A)) remove (N,A)	Notify: removal(N,A)
+	if (rc >= 1) stop
+
+------------------------------------------------------------
+
+Mailbox
+	(S)ubscribed
+	(H)idden
+	(C)urrent
+
+S	rc1	Account flags S		[1]
+H	rc1	Account flags 0		[2]
+CS	rc2	Acc/Index flags SC	[3]
+CH	rc2	Acc/Index flags C	[4]
+
+status bar (B)
+
+B => +1 ∀ states
+
+[1] unmailboxes
+	notify state(M)
+	notify remove(A,M)
+	notify remove(N,A)
+unmailboxes -> subscribed -> hidden (rc--)
+unmailboxes Pager(E) -> does this close the pager?
+	or M(rc=1)
+SB listens for (E enter folder/leave folder)
+	to know current folder
+A doesn't list ALL M - see nntp -> browser
+What's unmailboxes *mean*?
+	forcibly remove from A? YES?  NO?
+	what if user tries to change M after unmailboxes?
+Who's holding M?
+	index, sidebar, status?
+
+M has been deleted outside of NeoMutt
+	=> R/O allow to save cached?
+
+BE timeout detects M has died
+notify M(dead), A(remove M)
+index listens
+Error for open M
+

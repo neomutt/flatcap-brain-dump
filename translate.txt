@@ -208,3 +208,7 @@ mention translation team on translate page
 
 translation - coding, scripting, languages
 
+when updating/syncing
+	de-wrap
+	delete #~ (old)
+

@@ -1,5 +1,21 @@
-need to be defined bitfield
-	maildir_mbox_check() int changed = 0;
+mbox adata.append should use Mailbox.append
+
+Do Mailboxes need an open context
+	thin shim over M
+	hash instance flags, e.g. append
+Do Views deal with M or MI (instance)?
+	MI: might need access to flags
+
+use SPDX headers?
+
+segfault - flush log (nec?)
+	log "segfault" & flush?
+
+standardise naming "folder" vs "mailbox" ∀ docs
+
+does doc/makedoc.c need updating for OpSummary?
+
+imap browser needs way to mark subscribed folders
 
 with split views might there be multiple focussed windows?
 	pager1, pagerbar1
@@ -33,7 +49,7 @@ tmp dir for emails
 new cache config
 	cache_dir
 	db_per_folder? (for headers)
-	put heaer cache in maildir's 'tmp' dir?  dodgy?
+	put header cache in maildir's 'tmp' dir?  dodgy?
 	cache hierarchy: dots or slashes?
 	name translations like offlineimap?
 
