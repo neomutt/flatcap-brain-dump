@@ -464,3 +464,21 @@ notify M(dead), A(remove M)
 index listens
 Error for open M
 
+------------------------------------------------------------
+
+Multiple owners of Emails
+E has "canonical" owner -> maildir
+	notify's parent is A(Maildir)
+other owner notmuch listens
+*any* changes cause notifications to propagate up Maildir tree
+notmuch spans multiple maildirs - many M's, potentially several A's
+lkml spans several git repos, but is "canonical" - it owns the "files"
+notmuch doesn't need maildir M's and A's to start
+notmuch perform query, ask maildir BE for emails
+have notmuch M with E's from many canonical maildir M's
+E need canonical parent ptr to M
+if SB listens to notmuch M, it won't hear anything!
+E needs multiple parents?  NO
+	notmuch listens to "canonical" M and
+	transplants events onto notmuch M and propagates
+

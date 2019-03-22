@@ -210,7 +210,3 @@ mutt_hist_complete()
 	create a mutt_hist_get_size()
 	mutt_mem_calloc(C_History, sizeof(char *));
 
-(a)pple, (b)anana
-	[devel/menu]
-	doesn't appear to do anything yet
-

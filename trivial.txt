@@ -155,3 +155,6 @@ comment all escape sequences
 	// Ctrl-F
 	{ "forget-passphrase",         OP_FORGET_PASSPHRASE,            "\006" },
 
+Tidy messages ending in .
+	ag '\.\\n"'
+

@@ -1,3 +1,11 @@
+<gahr> drafts is still bogus:
+	i) compose
+	ii) save to drafts
+	iii) resume
+	iv) send
+	v) mail is dispatched
+	inbox is unusable (failed to open message)
+
 mbox adata.append should use Mailbox.append
 
 Do Mailboxes need an open context
