@@ -152,3 +152,30 @@ Find trailers in log messages
 change build scripts/aliases to build in /build
 	change 'n' to run build/n
 
+~github
+	if a mirror, add an 'upstream' remote
+	pull & push if 'upstream' exists
+
+gr clone
+	if dir ends in .git make a bare repo
+
+all repos -> laptop: categorise: public, hidden, private
+push all pub/hidden to github,gitlab,bitbucket
+linode user, cron to sync all repos
+backups to disk
+push hikes, craggy, notify friend
+pull linode image -> laptop for vm generator
+change all passwords - save lists somewhere safe
+back to apache
+get craggy running
+get gitolite running
+automake let's encrypt
+extend home page
+fix github/gist scripts and sync
+make /home/mutt_mutable non-backup junk like caches
+ask linode about OpenVPN + IPv6
+hikes -> docker
+craggy -> docker
+dotfiles -> gh
+vimrc -> gh
+

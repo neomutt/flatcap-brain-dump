@@ -1,3 +1,20 @@
+Windows API
+	nesting, reflowing, etc
+
+move temp file into for loop in nntp_fetch_headers()?
+	nntp_fetch_headers()
+	parse_overview_line()
+	mutt_file_mkstemp()
+
+gfx repo upload screenshots, readmes in dirs
+
+list autosetup release/commit hash visibly
+	(for downstream packagers)
+
+body.h header.h (and others)
+	Change LOFF_T to long in headers
+	(doesn't require config.h)
+
 <gahr> drafts is still bogus:
 	i) compose
 	ii) save to drafts
@@ -843,6 +860,11 @@ should default keys be concealed (n -DS)
 open(2) O_TMPFILE
 	mktemp
 	fmemopen
+
+linux only:
+	O_TMPFILE
+	Simple alternative to mkstemp()
+	use if available
 
 SIGUSR1 link to #2
 	mark hard, close
@@ -2904,11 +2926,14 @@ add my gpg signing key to neo.org, fc.org
 
 fmemopen - merge into one place in mutt_mktemp()?
 	idea from dgc email
+	do all the callers know the file size?
+
 Do drafts *need* to be stored in a separate folder?
 	why not inline?
 	in threaded order
 	just tagged or coloured
 	status flag to denote draft
+
 screenshots on website
 neomutt version on website home page
 

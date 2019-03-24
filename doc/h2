@@ -1,0 +1,32 @@
+### Requirements
+
+- One source for all docs
+- Markdown format
+- Easy user contribution
+
+### Plan
+
+- Separate doc repo
+  - Markdown files (with hyperlinks)
+  - Nested dirs (for sections)
+  - YAML header for metadata
+  - Accept Issues and Pull Requests
+
+- Website Guide
+  - Use GitHub pages (Jeykll)
+  - Each page has a button: "Improve this page" (which links to GitHub editor)
+  - Use Algolia to search
+
+- Installed Guide
+  - Install guide repo
+  - Add a new "Help" backend to NeoMutt
+  - Use NeoMutt to view/search the guide
+  - Use `links` navigation style (arrow keys to select and follow hyperlinks)
+  - Each page has a button "Improve this page" (which opens the compose window)
+
+### Benefits
+
+- The user would see a consistent guide
+- The user would only ever be one click away from contributing
+- Easy maintenance
+- No complex deployment steps

@@ -1,3 +1,6 @@
+add separate 'default' colours for each panel
+	index, pager, sidebar, compose, etc
+
 split up/remove BE-specific code in ci_send_message()
 move-email API:
 	locate all email-moving code

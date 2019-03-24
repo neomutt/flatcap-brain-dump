@@ -93,6 +93,8 @@ move all
 	to start of function
 	return early
 	ag "^ +if \(.*\n +return"
+	2540 functions
+	start with libmutt?
 
 decrypt_part - Explain r_is_signed better
 	returns -1, 0, 1, 2
@@ -157,4 +159,106 @@ comment all escape sequences
 
 Tidy messages ending in .
 	ag '\.\\n"'
+
+these macros might want a '_' for clarity
+	ANUM ATTRSET BAD BEEP BINDIR BLOCKSIZE CHUNKSIZE CURATTACH CYCLIC
+	DEVRANDOM DIRECTION DOMAIN DTYPE EILSEQ EMSG ENCODING EXECSHELL FF FG
+	FH FI FLAGGED FREE HCACHEVER HSPACE INITVAL IP ISHEADER ISPELL ISSPACE
+	KILO MAILPATH MAX MAXERRS MAXMIXES MEGA MESSAGE MIN MUTTLOCALEDIR
+	NONULL NUMCOMMANDS NUMVARS OP OPS PACKAGE PKGDATADIR PKGDOCDIR R0 R1 R2
+	R3 R4 REGCOMP RSORT SENDMAIL SEQLEN SETCOLOR SKIPWS SOMEPRIME SORTCODE
+	SWAP SYSCONFDIR TXTENRICHED TXTHTML TXTPLAIN TYPE UL UNREAD W WHERE
+
+make sure all HEAD definitions are after the struct definitions:
+	SLIST_HEAD(PatternHead, Pattern);
+
+fix doxygen (notmuch + hcache)
+
+typo
+	bool mime            : 1; /**< has a MIME-Version email? */
+	bool mime            : 1; /**< has a MIME-Version header? */
+
+still lots of lowercase globals
+	bool_values
+	cc_cflags
+	cc_version
+	configure_options
+	crypt_mod_pgp_classic
+	crypt_mod_pgp_gpgme
+	crypt_mod_smime_classic
+	crypt_mod_smime_gpgme
+	debugfile
+	debugfilename
+	debugfile_cmdline
+	debuglevel
+	debuglevel_cmdline
+	envlist
+	magic_values
+	mx_comp_ops
+	mx_imap_ops
+	mx_maildir_ops
+	mx_mbox_ops
+	mx_mh_ops
+	mx_mmdf_ops
+	mx_nntp_ops
+	mx_notmuch_ops
+	mx_pop_ops
+	optarg
+	optind
+	quad_values
+
+muttindexwindow workaround
+
+16 places where expando requires `Mutt*Window`
+    addrbook.c:116:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(AliasFormat), alias_format_str,
+    browser.c:1080:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols,
+    browser.c:1087:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols,
+    browser.c:1108:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(VfolderFormat),
+    compose.c:254:             mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(AttachFormat),
+    hdrline.c:1436:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, s,
+    mutt_history.c:78:         mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, "%s", history_format_str,
+    ncrypt/crypt_gpgme.c:3164: mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(PgpEntryFormat),
+    ncrypt/pgpinvoke.c:185:    mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(fmt),
+    ncrypt/pgpkey.c:343:       mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(PgpEntryFormat),
+    ncrypt/smime.c:354:        mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(fmt),
+    nntp/newsrc.c:1110:        mutt_expando_format(file, sizeof(file), 0, MuttIndexWindow->cols,
+    query.c:311:               mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(QueryFormat),
+    recvattach.c:428:          mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(AttachFormat),
+    remailer.c:497:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols,
+    sendlib.c:2715:            mutt_expando_format(cmd, sizeof(cmd), 0, MuttIndexWindow->cols,
+
+config system
+	can it return warnings?
+
+fold ~/home/work/help/* into ~/docs
+	and de-dupe
+
+kill ~/home/done
+
+clear ~/neo branches
+	archive or delete
+
+archive and close old PRs
+
+update README.md contributors
+
+buffer use alloc
+	commands.c:669:6:  err.data = mutt_mem_malloc(err.dsize);
+	hook.c:383:6:  err.data = mutt_mem_malloc(err.dsize);
+	hook.c:451:6:  err.data = mutt_mem_malloc(err.dsize);
+	hook.c:635:6:  err.data = mutt_mem_malloc(err.dsize);
+	init.c:388:6:  err.data = mutt_mem_malloc(err.dsize);
+	init.c:3401:6:  err.data = mutt_mem_malloc(err.dsize);
+	init.c:3766:6:  err.data = mutt_mem_malloc(err.dsize);
+	init.c:4306:6:  err.data = mutt_mem_malloc(err.dsize);
+	mutt_lua.c:72:6:  err.data = mutt_mem_malloc(err.dsize);
+	mutt_lua.c:283:6:  err.data = mutt_mem_malloc(err.dsize);
+	pattern.c:1951:6:  err.data = mutt_mem_malloc(err.dsize);
+	pattern.c:2088:10:      err.data = mutt_mem_malloc(err.dsize);
+
+bool dupe -> const
+
+encoder_t is a PTR
+initialise to NULL
+check for other typedefs
 

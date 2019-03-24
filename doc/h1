@@ -1,0 +1,1033 @@
+Subject: An Holistic Solution for Help
+
+--------------------------------------------------------------------------------
+From: Richard Russon
+To: Floyd Anderson
+
+Many months ago, I came up with a global solution for Help in NeoMutt.
+
+- Help in markdown files (in a directory tree)
+- Used to generate web pages
+- Integrated into NeoMutt as a fake mailbox
+
+When I hinted at it in Reis' issue you seemed interested (in the idea at
+least).
+
+- Create a new "help" mailbox type
+  - Populate from a directory of markdown files
+  - Enable searching of all files
+  - Enable hyperlinks between pages
+
+We'll need to convert the docs, too, but that can wait until we've
+sorted out any technical problems.
+
+Are you interested?
+
+--------------------------------------------------------------------------------
+From: Floyd Anderson
+To: Richard Russon
+
+sorry for the delay. I wasn't at home this weekend and because I don't 
+use any kind of mobile devices, I'm completely offline then.
+
+>Hi Floyd,
+>
+>Many months ago, I came up with a global solution for Help in NeoMutt.
+>
+>- Help in markdown files (in a directory tree)
+>- Used to generate web pages
+>- Integrated into NeoMutt as a fake mailbox
+>
+>When I hinted at it in Reis' issue you seemed interested (in the idea at
+>least).
+
+You are right, I'm always open to improve the docs, because I recall 
+good enough how hard it was (at least for me) to understand Mutt's way 
+of configuration, to search all those blogs for information, grabbing 
+and test snippets from several public dot-files just to get a working 
+configuration in the end.
+
+>- Create a new "help" mailbox type
+>  - Populate from a directory of markdown files
+>  - Enable searching of all files
+>  - Enable hyperlinks between pages
+>
+>We'll need to convert the docs, too, but that can wait until we've
+>sorted out any technical problems.
+>
+>Are you interested?
+
+Yes, absolutely. Even I'm not a developer and didn't know exactly where 
+to start or how to implement some kind of 'neomutt://' pseudo protocol, 
+you can count on me.
+
+I 'only' need to know the final goal and what tasks needs to be done for 
+it. I'll pick up one or the other and might be helpful. For instance, I 
+like your last opened issues (tagged with 'good first issue' or 'help 
+wanted' and/or 'mentor'), those makes the direction of the venture very 
+clear to me.
+
+--------------------------------------------------------------------------------
+From: Richard Russon
+To: Floyd Anderson
+
+> sorry for the delay. I wasn't at home this weekend and because I don't use
+> any kind of mobile devices, I'm completely offline then.
+
+That's great.  It's too sunny to be indoors :-)
+
+> > global solution for Help in NeoMutt.
+> > you seemed interested 
+
+> You are right, I'm always open to improve the docs, because I recall good
+> enough how hard it was (at least for me)
+
+For all of us.  (Neo)Mutt's hard to learn.  Changing the docs to be
+task-oriented (with examples) would go a long way to helping beginners.
+
+On the other side, I'm struggling to untangle the code, so that we can
+add features like the 'account' command to simpify the config of
+multiple accounts.
+
+> I like your last opened issues (tagged with 'good first issue' or 'help wanted'
+> and/or 'mentor'), those makes the direction of the venture very clear to me.
+
+Thanks.  I should have done that ages ago.
+That was stage one: motivate the developers.
+
+> search all those blogs for information,
+> grabbing and test snippets from several public
+> dot-files just to get a working configuration in the end.
+
+Stage two (just notes), is to try to motivate all of NeoMutt's users.
+
+One of the jobs is a "config curator".  There are millions of blogs,
+many with great info, but all that wisdom needs to be cut'n'pasted into
+our site.  We need to encourage people to be selfless -- contribute to
+*our* website, not their own :-)
+
+> > - Create a new "help" mailbox type
+> > Are you interested?
+
+> Yes, absolutely.
+
+> I 'only' need to know the final goal and what tasks needs to be done for it.
+> Even I'm not a developer and didn't know exactly where to start
+
+How good are your C skills?
+- Strong: Give me some pointers of where to start
+- OK: Create a framework and I'll fill in the gaps (with help)
+- Not so good: I'll stick to the docs side
+
+--------------------------------------------------------------------------------
+From: Floyd Anderson
+To: Richard Russon
+
+>> I like your last opened issues (tagged with 'good first issue' or 
+>> 'help wanted'
+>> and/or 'mentor'), those makes the direction of the venture very clear to me.
+>
+>Thanks.  I should have done that ages ago.
+>That was stage one: motivate the developers.
+
+Yes, that was my first thought too when I saw the issues, but NeoMutt is 
+on a good way. For example, some people at a Gentoo mailing list never 
+heard of NeoMutt and were surprised of its "gaining traction", although 
+there's a heavily patched regular Mutt. And who knows, maybe we hit the 
+1000 stars and get a few new regular contributors until next year.
+
+>> search all those blogs for information,
+>> grabbing and test snippets from several public
+>> dot-files just to get a working configuration in the end.
+>
+>Stage two (just notes), is to try to motivate all of NeoMutt's users.
+>
+>One of the jobs is a "config curator".  There are millions of blogs,
+>many with great info, but all that wisdom needs to be cut'n'pasted into
+>our site.  We need to encourage people to be selfless -- contribute to
+>*our* website, not their own :-)
+
+He, that'll be a long running target. In the past I saw many sites with 
+the same tip/solution for something, but nearly no one mentioned the 
+real source of it, because people tends to produce news by copy'n'paste 
+as it were it their own stuff. But as I said, NeoMutt is on the way.
+
+I wrote a person about how I like the easy way one can contribute to 
+NeoMutt and got his confirmative response (Mutt endless discussion; 
+NeoMutt just one structural style change and committed). OK, that may be 
+a blue eyed example, but it happened and I saw it also in my case after 
+you invited me to join the project. That (and a patient helping hand) 
+really encourage to be selfless -- after some time people will say we 
+instead of you and I.
+
+>How good are your C skills?
+>- Strong: Give me some pointers of where to start
+>- OK: Create a framework and I'll fill in the gaps (with help)
+>- Not so good: I'll stick to the docs side
+
+Thanks for this 'checkbox' list style, it would be difficult to tell 
+otherwise.  ;-)
+
+Knowing the basics, I think I'm near your second point. When starting 
+something from scratch -- I would be lost. Using existing code as 
+reference to get an idea how to implement/improve other code is easier 
+for me, but here we are at my main handicap -- I'm slow.
+
+I want (and need) to get nearly always a complete overview to be able to 
+make the right decision about the right way of doing things. I can spend 
+hours and hours with searching for an alternative but optimised form of 
+the same code. But that's OK for me, I learn more when testing not only 
+the absolute necessary things.
+
+--------------------------------------------------------------------------------
+From: Richard Russon
+To: Floyd Anderson
+
+> some people at a Gentoo mailing list never heard of NeoMutt
+> although there's a heavily patched regular Mutt
+
+Fabian (@grobian) is big in Gentoo and used to promote NeoMutt
+Then one day cited philosophical differences and he went away.
+
+> > One of the jobs is a "config curator".
+
+> In the past I saw many sites with the same tip/solution for something,
+
+For every useful, often-linked, site we need to be able to say:
+Our guide has that info and it's up-to-date.
+
+> I like the easy way one can contribute to NeoMutt
+> Mutt endless discussion;
+> NeoMutt just one structural style change and committed
+
+Indeed.  We take more risks, which occasionally backfire, but our
+frequent releases mean things get fixed quickly, too.
+
+> you invited me to join the project
+> That (and a patient helping hand) really encourage to be selfless
+
+Thanks.
+
+> > How good are your C skills?
+> Thanks for this 'checkbox' list style
+
+Sorry, I read a lot of articles about project management.
+One said to avoid open-ended questions, like: "What do you think?"
+
+> I think I'm near your second point.
+
+Great.
+
+> I want (and need) to get nearly always a complete overview to be able to
+> make the right decision about the right way of doing things.
+
+You and me, both :-)
+
+> Using existing code as reference to get an idea how to
+> implement/improve other code is easier for me
+
+Last night I spent a couple of hours creating a new mailbox type.
+Branch: devel/help.  It's hacked together.  I'll try to fix it up this week.
+
+For now, start looking at file/dir handling routines:
+- How to read a directory (recursively)
+  Have a look at the browser code
+  https://neomutt.org/code/file.html
+- How to parse lines of text
+  Look at the parse_*() routines in init.c
+  https://neomutt.org/code/string.html
+
+I've also created a test-doc repo with a lot of sample markdown files.
+They have a yaml header (which includes metadata) and are interlinked.
+
+--------------------------------------------------------------------------------
+From: Floyd Anderson
+To: Richard Russon
+
+>> Branch: devel/help
+>
+>It doesn't do much, but it works now.
+
+Frankly, I feel stupid because I tried hard to figure out how it works, 
+without luck. I fear my knowledge is insufficient and/or I'm missing an 
+important step/point, thus I need your help -- once again.
+
+Firstly, branch devel/help compiles fine. In my case, I partially revert
+[doxygen: add headers and links](https://github.com/neomutt/neomutt/commit/2c6ff878865f48d84660df7511009421dd2929c0#diff-8abaf063c6aa4baacba439344cfff1c9)
+and do: '#include "hcversion.h"' -> '#include "hcache/hcversion.h"', in 
+hcache/hcache.c to prevent:
+
+  fatal error: hcversion.h: No such file or directory
+  #include "hcversion.h"
+           ^~~~~~~~~~~~~
+  compilation terminated.
+
+Because I do not compile in $(SRCDIR), i.e. in the repo root. I like to 
+separate the different branch builds in a Git-ignored subdirectory.
+
+Anyway, after looking into the code, it seems to me that all is there to 
+handle a folder as help mailbox. My assumption therefore was to create a 
+folder, define it as format type help within NeoMutt (or a config file) 
+and put some (pseudo-)documents (probably from test-doc repo) in there.
+
+Now my questions:
+
+What do you exactly mean with "it works now", i.e. what works? How can I 
+define a help folder/mailbox (empty or not) that NeoMutt will recognise, 
+so I get some output from the 'mutt_debug(1, "entering help_*\n");' 
+calls in help/help.c? Did I misunderstood your implementation start of a 
+help system?
+
+I hope I expressed my problem clear and short enough (I won't confront a 
+'helping hand' with walls of text). Thanks in advance.
+
+--------------------------------------------------------------------------------
+From: Richard Russon
+To: Floyd Anderson
+
+> > > Branch: devel/help
+>  #include "hcversion.h"
+
+Ah, sorry about that.  That was a bug that I briefly introduced and
+fixed.  The branch has been rebased and should build cleanly.
+
+> > It doesn't do much, but it works now.
+
+> I feel stupid because I tried hard to figure out how it works,
+
+Don't.  The mailbox code is a mess.
+
+Our docs are going to live in `/usr/share/doc/neomutt/help`.  This will
+be our "$folder" directory.  We'll use a URL of "help://" to reference
+files (ignoring the .md suffix).
+
+In NeoMutt: <change-folder>help://sidebar<enter>
+
+NeoMutt calls: mx_open_mailbox("help://sidebar")
+
+The mailbox is a multiplexor.  The mailbox type determines which
+function it calls:
+    mx_open() -> imap_open()
+              -> maildor_open()
+              -> help_open()
+
+# Identify the mailbox type
+mx_open_mailbox() calls
+    mx_get_magic() calls
+        mx_is_help() calls
+            url_check_scheme() which checks
+                UrlMap[]
+MUTT_HELP is returned
+
+# Get the set of functions for that mailbox type
+mx_open_mailbox() calls
+    mx_get_ops()
+mx_help_ops is returned
+
+There's quite a lot of hard-coding to "create" a new mailbox type.
+
+# Open the mailbox
+mx_open_mailbox() calls
+    help_open()
+
+------------------------------------------------------------------------
+
+> What do you exactly mean with "it works now"
+
+In business terms, you've got a vertical slice.
+
+You haven't just got some sample code, you've got a framework that you
+can put code into and actually run it.
+
+------------------------------------------------------------------------
+
+This is what the sample code does.
+
+When help_open() is called, we're expected to provide a list of "emails".
+For each email, we create a `struct Header` which contains a
+`struct Envelope` and a `struct Body`.  The Headers are added to the
+Context's header list `hdrs`.
+
+We create 10 of these with some sample data in them.
+Returning, NeoMutt displays these emails in the index.
+
+When we click on one, NeoMutt calls mx_open_message() which is delegated
+to help_open_msg().  mx_open_message() is expecting a `FILE*` in return
+that has the email data.  As we don't have any real files, we create a
+temp file and fill it with data.
+
+When we leave the pager, mx_close_message() calls help_close_msg(),
+which closes the `FILE*`.
+
+When we leave the mailbox, mx_close_mailbox() calls help_close()
+
+------------------------------------------------------------------------
+
+This is what your code will do.
+
+help_open() will discover the help files -- look through the directory
+for `*.md`.  (Don't worry about recursion, yet).
+
+For each file, we will create an "email".  To start with, we can make up
+the header info.  Later, we'll parse the yaml header.
+
+When help_open_msg() is called, we open the file and return the handle.
+On help_close_msg() we close the handle.
+
+At this point, you can view help files, limit by the "subject"
+(filename) and possibly do "~b" body searches.
+
+------------------------------------------------------------------------
+
+> I won't confront a 'helping hand' with walls of text
+
+That's not a problem.  Ask lots of questions.  The more I explain it,
+the better I understand it and the easier it'll be to fix it (when I
+have some of that mythical "free time" :-)
+
+--------------------------------------------------------------------------------
+From: Floyd Anderson
+To: Richard Russon
+
+I just want you to know, I got it, *yes*  :-)
+and of course say: thank you very much for your really useful detailed 
+explanation, task descriptions and that you took the time for it/me.
+
+>We'll use a URL of "help://" to reference files
+>In NeoMutt: <change-folder>help://sidebar<enter>
+
+I wouldn't have found it without you, even I was close at it and tried 
+'mailboxes help:///path/to/dir' and '<change-folder>=help:///path/to/dir'
+afterwards.
+
+>The mailbox code is a mess.
+
+Really? You're pressure and scaring me -- just kidding.
+
+>Ask lots of questions. The more I explain it, the better I understand 
+>it and the easier it'll be to fix it (when I have some of that mythical 
+>"free time" :-)
+
+Nice principle, although I'll try not to stress that mythical shy being 
+too much. However, now I can switch my brain mode and will look into the 
+tasks. Thanks again.
+
+--------------------------------------------------------------------------------
+From: Floyd Anderson
+To: Richard Russon
+
+first things first, sorry for the delay without any status update. In 
+the past two weeks I'm reading, debugging the code to refresh my spare 
+knowledge and try to accumulate it. There're still so much things to 
+learn and understand, my thanks and respect for you and your work and 
+all the other contributors are still growing.
+
+>How are things going?
+
+The 'tasks' are functional working and partially documented, but I'm 
+currently unsatisfied with it. That means:
+  -- Invoking '<change-folder>help://' or hitting '<Esc>H', will show
+    a listing of all (probably) valid Markdown (MD) files in the index.
+    The help mailbox will be open read-only.
+  - A newly implemented 'help_doc_dir' option defaults to directory
+    'PKGDOCDIR "/help"' (globally HelpDocDir), where NeoMutt search
+    recursively for MD files with a proper extension and a YAML header
+  - hitting '<Enter>' shows the current MD file (with YAML header)
+  - limiting/searching also works
+
+Things I don't like or that I cannot or haven't solved until now:
+  - My idea is to have one root help(mail)box with several sub-helpboxes
+    for chapter and section directories
+  - The way to invoke help. I would like to show the directories (under
+    HelpDocDir) as help mailboxes categorised as:
+        helpbox -> chapter -> section (includes all deeper nested docs)
+    when I enter '?' for a list of helpboxes
+  - It would be nice if NeoMutt with '<change-folder>help://sidebar'
+    would jump directly to section-directory/helpbox 'sidebar' in
+    chapter-dir/box 'feature' -> 'HelpDocDir "feature/sidebar"'
+  - The <change-folder> prompt should be deleted after the first key
+    press and all following input should be treated as a helpbox, so I
+    doesn't have to type 'help://' all the time. Currently that can be
+    achieved by hitting <BackSpace> but feels not naturally
+  - Some systems (like Gentoo) may bzip2 compress all docs under:
+        "/usr/share/doc/neomutt(-20180512)/"
+    on install time. On Gentoo, that can be solved with the ebuild, but
+    I don't know what other distributions do.
+
+Things I cannot find an appropriate answer for from the code/docs:
+  - How long should a file system path string be initialised?:
+        char buf[_POSIX_PATH_MAX, PATH_MAX, LONG_STRING];
+    Background is [1] <https://eklitzke.org/path-max-is-tricky>.
+  - Is there a rule of thumb when to FREE what?
+  - Aside that I cannot find the right point in the code where I can
+    hook into to get a nice help mailbox listing (probably threaded),
+    I'm unsure which data structure to use to store the MD file list.
+    I tried an array of pointers, Buffy structure (because browser.c use
+    it a lot). Currently I'm using a STAILQ list for helpbox/helpdoc
+    (directories and MD files).
+
+I have more to ask but will stop here for now because it stays very 
+theoretical without code. Rich, I think I need two more days to clean 
+out my failed and commented changes and for the remaining remarks and 
+for documentation and just rethinking. Should I push my trial (to 
+devel/help or in a new branch) then? Would you like to see a patch?
+
+Sorry for this long response, I hope you'll see my points, but I'm sure 
+I forgot a bunch of questions, that came up the past week(s).
+
+P.S.: Please, can you write me your idea of how the MD files should be 
+displayed (without an email- but with a YAML-header)? Should the format
+of the index and the menu in pager view be changed for helpboxes? Should 
+a helpbox shortcut (similar to + and =) be implemented? OK, I stop now. 
+:-)
+
+--------------------------------------------------------------------------------
+From: Richard Russon
+To: Floyd Anderson
+
+> The 'tasks' are functional working and partially documented...
+
+Wow, you *have* been busy!
+
+>  - My idea is to have one root help(mail)box with several sub-helpboxes
+>    for chapter and section directories
+
+Yep.  So, each directory has, say, `index.md` which is displayed when
+the directory is referenced without a file.  The index file lists (and
+links to) all the subdirs (subsections).
+
+All these lists will be written by humans, rather than auto-generated.
+
+> I would like to show the directories (under
+>    HelpDocDir) as help mailboxes categorised as:
+>        helpbox -> chapter -> section (includes all deeper nested docs)
+>    when I enter '?' for a list of helpboxes
+
+Yes, a set of nested "emails".  For that we need MuttThread.
+Context->hdrs[] a list of all the "emails" in order.  Each Header has a
+MuttThread which links them in a hierarchy.  I haven't experimented with
+this yet, so you'll have to show me how it's done :-)
+
+>  - It would be nice if NeoMutt with '<change-folder>help://sidebar'
+>    would jump directly to section-directory/helpbox 'sidebar' in
+>    chapter-dir/box 'feature' -> 'HelpDocDir "feature/sidebar"'
+
+For that we need an index.
+There are lots of possibilities here: text, json, csv, sqlite.
+As the help files are static, we could have an install script to
+(re-)generate it.
+
+Words in various places in the help files will have different weightings.
+Searching for "sidebar" should match:
+1. Chapter Title
+2. Metadata
+3. Body text
+4. Links to the above
+
+>  - The <change-folder> prompt should be deleted after the first key
+>    press and all following input should be treated as a helpbox, so I
+>    doesn't have to type 'help://' all the time. Currently that can be
+>    achieved by hitting <BackSpace> but feels not naturally
+
+Hmm... That's an interesting one.  We'd almost want a new behaviour:
+
+Current folder:   imap://host.com/folder/subfolder
+Hit <backspace>:  imap://host.com/
+Hit <backspace>:  [EMPTY]
+
+Current folder:   help://sidebar/sorting
+Hit <backspace>:  help://
+Hit <backspace>:  [EMPTY]
+
+Hmm... where does search fit in?
+
+    help://?something
+
+>  - Some systems (like Gentoo) may bzip2 compress all docs under:
+
+Hmm... that's a little anti-social.
+I think we'll have to insist on plain text.
+Fedora automatically compresses man pages, but nothing else.
+
+>  - How long should a file system path string be initialised?:
+>        char buf[_POSIX_PATH_MAX, PATH_MAX, LONG_STRING];
+
+Today, PATH_MAX (4096).  Tomorrow, NEO_PATH (4096).  See:
+    https://github.com/neomutt/neomutt/pull/1229
+
+> I'm unsure which data structure to use to store the MD file list.
+
+To start with, I wouldn't bother caching the file list.  There aren't
+many files and it'll be quick to regenerate.  Store everything we need
+in the Header/Envelope.  Link them all with MuttThread.
+
+> I need two more days ...
+> Should I push my trial (to devel/help or in a new branch)
+
+Push it to devel/help
+
+> Should the format of the index and the menu in pager view be changed for helpboxes?
+
+Yes, we'll need $help_index_format
+It probably won't need many expandos.
+
+> Should a helpbox shortcut (similar to + and =) be implemented? OK, I stop now. :-)
+
+Yes.  We should have a fake $folder for the help root dir (eventually).
+Due to limitations of the mailbox API, some of the code will be in mx.c
+
+> Please, can you write me your idea of how the MD files should be
+> displayed (without an email- but with a YAML-header)?
+
+------------------------------------------------------------------------
+sidebar.md on disk
+------------------------------------------------------------------------
+
+---
+title: Mastering the Sidebar
+metadata: panel, mailboxes
+config: sidebar_visible, sidebar_width
+functions: sidebar-prev, sidebar-next
+
+---
+
+## Getting started
+
+The yaml fields are just some things that popped into my head.
+title: This will show up in the same places as an email's subject
+metadata: important words that we'd like to match in a search
+config, functions: specific neomutt metadata
+
+------------------------------------------------------------------------
+Sidebar help in the pager
+------------------------------------------------------------------------
+
+title: Mastering the Sidebar
+----------------------------------------
+folder: help://sidebar/intro
+metadata: panel, mailboxes
+config: sidebar_visible, sidebar_width
+functions: sidebar-prev, sidebar-next
+----------------------------------------
+
+## Getting started
+
+The title header would be displayed by default
+The others (in the --- section) would be hidden unless the user runs either:
+- set weed=no
+- unignore folder
+
+--------------------------------------------------------------------------------
+From: Floyd Anderson
+To: Richard Russon
+
+I'm already there, even if I lost myself several times while diving into 
+the code every single day. Oh man, I'm a bad contributor and the time is 
+running so fast. I have not even checked the GitHub repo the past three 
+weeks nor the new version. On the other side, I've never knew more about 
+NeoMutt's internals than now.
+
+After your last mail I better had pushed my work, but I tried to achieve
+the linking with MuttThread instead and don't wanted to push half-baked 
+things. That drives me crazy, because of trouble with my STAILQ list. I 
+could not do sorting, it was in reverse order and macro STAILQ_LAST (to 
+get a previous processed/parent object) always failed due to the 
+underlying QUEUE_TYPEOF macro - code compiles but crashed afterwards.
+
+Anyway, now I use a generic list for several objects, which works as I 
+want, but honestly, it feels a little bit like unnecessary bloating the 
+code. Nevertheless, I hope I'm on the right way.
+
+Following works here so far (tested with a cloned neomutt.github.io and 
+test-doc repo and additional nested sub-directories -- some empty, others 
+with a mix of valid and invalid files (with BOM signature, wrong YAML 
+header with incomplete/badly formatted markers/keywords, bad file name, 
+like "/path/to/.md", etc.):
+  - when NeoMutt starts, the new $help_doc_dir option is set by default
+    to "PKGDOCDIR/help" and function <help-box> is bound to "<Esc>H"
+  - set $help_doc_dir to an appropriate directory path if necessary and
+    pressing the shortcut or execute <help-box> directly or indirectly
+    through <change-folder>, pre-fills the prompt with "help://" string
+  - now press <Enter> to open the "helpbox" or press an arrow key (to 
+    avoid deletion of the help URI) and specify a path fragment of an
+    existing file/folder (relative to $help_doc_dir), like:
+        help://panel/i[ndex.md]
+  - NeoMutt will show the chapter/section threads in its index view
+  - "help/help.c" source file provides hard-coded "options":
+      - HELP_CACHE_DOCLIST    ... to cache the list of documents
+      - HELP_LINK_CHAPTERS    ... to uplink chapters into helpbox
+
+What isn't implemented/doesn't work yet:
+  - pressing "?" at command prompt for list of helpbox chapter/sections
+  - sorting chapter/section related to file header keywords
+  - show up a help folder in sidebar
+  - completion of chapter/section in command prompt
+  - a $help_index_format and a suitable help menu
+  - ...
+
+I pushed my first steps to a Help system to devel/help and rebased the 
+branch. Rich, even it was a lot of stuff to deal with for me so far, do 
+not hesitate to lacerate me and my code. I want to learn the right way.
+
+Thank you for your code docs, for being patient and apologise my delay -- 
+I was really immersed in the code and sometimes dreamed about and in C.
+
+P.S. While my rebase, I noticed different buffer sizes related to 
+DT_PATH in init.c file. Am I wrong or should those:
+
+  - <https://github.com/neomutt/neomutt/blob/833b37df10025c7bac84b42bb496607a7204f2b5/init.c#L2121>
+  - <https://github.com/neomutt/neomutt/blob/833b37df10025c7bac84b42bb496607a7204f2b5/init.c#L4216>
+  - <https://github.com/neomutt/neomutt/blob/833b37df10025c7bac84b42bb496607a7204f2b5/init.c#L4448>
+
+better use PATH_MAX? Additionally I saw:
+
+  - <https://github.com/neomutt/neomutt/blob/b8466bf029ea6ec1c409c65b75e6b7a1820b9635/init.h#L2285>
+
+in init.h file, that use 1 instead of true and talks about "mutt" 
+instead of "NeoMutt".
+
+--------------------------------------------------------------------------------
+From: Richard Russon
+To: Floyd Anderson
+
+> I noticed different buffer sizes related to DT_PATH in init.c file.
+
+Yes, I've been standardising things and tidying.
+It's important to do, but can make merging/rebasing a pain.
+I'll check the code is ok.
+
+> do not hesitate to lacerate me and my code
+> I want to learn the right way.
+
+Sure
+
+> Thank you for your code docs, for being patient and apologise my delay --
+
+You're welcome and no worries.
+
+> I was really immersed in the code and sometimes dreamed about and in C.
+
+:-)
+
+--------------------------------------------------------------------------------
+From: Richard Russon
+To: Floyd Anderson
+
+> I'll check the code is ok.
+
+There was something not quite right about the rebase.
+The help code seemed to be on a parallel (but identical) set of commits.
+
+I've merged your typo fix, run clang-format, rebased and pushed the
+branch.  You'll need to reset your local branch.
+
+It's looking good!  More to come.
+
+--------------------------------------------------------------------------------
+From: Richard Russon
+To: Floyd Anderson
+
+I've read through the code and run it through the debugger.
+I traced a file from disk to screen -- it's a complicated journey!
+
+I made a lot of notes.
+
+First an apology.  I suggested that you use the browser as a model.
+It turns out it's not a great example.  There's a better way using nftw()
+This function does most of the work for you.
+
+This example is from the man page:
+    https://pastebin.com/QQjsvudg
+
+I also suggest that you split up the code.
+
+First, I'd factor out the filesystem code -- helpdir.[ch] -- create
+function(s) that recurse through a directory and store the results in
+NON-neomutt structures.  This function just needs to identify
+directories and markdown files, and put them into a tree structure.
+
+Its only dependencies will be libmutt.a (our shared lib).
+
+The next bit of code turns that tree into Header/Thread/Envelope.
+These structs aren't quite independent of NeoMutt.  When they are,
+(soon), this code could be tested too.
+
+Rather than overwhelm you with hundreds of crazy ideas, I'll stop now.
+
+--------------------------------------------------------------------------------
+From: Floyd Anderson
+To: Richard Russon
+
+this is just a short response from me. I'll have a closer look to your 
+notes this evening and formulate my questions then.
+
+Thank you for looking into my commit and your remarks -- especially for 
+pointing out the nftw() function. I didn't knew it and searching for 
+"tree"/"walk" keywords, which is obviously now, doesn't came to my mind.
+
+--------------------------------------------------------------------------------
+From: Richard Russon
+To: Floyd Anderson
+
+> ... your notes ...
+> this evening and formulate my questions then.
+
+I've given them a tidy.  Most of them you already know -- I've just
+talked them through for my own clarification.
+
+Also, have a think about what you'd like to see in a "developer preview".
+
+--------------------------------------------------------------------------------
+From: Floyd Anderson
+To: Richard Russon
+
+>I've given them a tidy.
+
+Once more, thank you very much to spent time for this.
+
+>I've just talked them through for my own clarification.
+
+This tidy step is really a great help and the structured notes makes it
+much more easier for me to visualise the goal (I'm not good in things I
+cannot see/touch, like allocated memory blocks, which have to be freed).
+
+Nevertheless some questions remains for now:
+
+ 1. While playing with the nftw() example code, I realised that I cannot
+    compile it without specifying '#define _GNU_SOURCE'. Because I found
+    no definition in NeoMutt's code (except for "autosetup/jimsh0.c"), I
+    wonder it will be problematic on other platforms/architectures?
+
+ 2. Should we care about the help file encoding and what the user has
+    set up in NeoMutt? For example, I've had set $assumed_charset to
+    "iso-8859-1" for years (can't remember why), so some test help files
+    won't be displayed correctly. Modifying $assume_charset or run, e.g.
+    'mutt_param_set(&h->content->parameter, "charset", "unknown-8bit");'
+    helps of course, but should or have we to consider this?
+
+ 3. Split up / Factor out the (filesystem) code ...
+    Just to be sure, did you mean to put those code into a separate file
+    like "imap/browse.c" for example?
+
+ 4. Is my thread linking OK so far? Means, one top message, one thread
+    and when collapsed we'll see one index menu entry in your suggested
+    10 lines for $pager_index_lines or should chapters not be linked to
+    the index.md file in root?
+
+ 5. Is help directory fix, so option $help_doc_dir becomes obsolete?
+    If yes, should the user be able to add his own notes, docs to the
+    help system in any way?
+
+I'll try to achieve the first of your pointed out steps the next days 
+(hopefully days, not weeks). ;-)
+
+--------------------------------------------------------------------------------
+From: Richard Russon
+To: Floyd Anderson
+
+> I cannot compile it without specifying '#define _GNU_SOURCE'
+
+The crucial define according to the standard is: _XOPEN_SOURCE >= 500
+    http://pubs.opengroup.org/onlinepubs/009695399/
+
+auto.def defines _GNU_SOURCE=1 for us.
+
+Then features.h uses/defines:
+_GNU_SOURCE
+    _XOPEN_SOURCE=700
+    _XOPEN_SOURCE_EXTENDED=1
+        __USE_XOPEN_EXTENDED=1
+    __USE_GNU=1
+
+This function dates back to 1995, so we should be safe.
+
+> Should we care about the help file encoding
+
+Hmm... Yes.  I hadn't thought of that.
+The docs will be in utf-8, so they should be converted to the user's
+preferred charset.
+
+To start with, the docs will be 99.9% ascii, so we can defer this for a
+while.
+
+> put those code into a separate file like "imap/browse.c" for example?
+
+Exactly.
+
+Encapsulate all the filesytem code in one file.
+
+> 4. Is my thread linking OK so far?
+
+It's OK, but I think a simpler layout would be easier to follow.
+By nesting the top-level docs, you'd make it hard to link to their children.
+
+I'd like the layout to match the web pages.  Each directory has a
+matching markdown file, that describes the section and links to all the
+pages.  There's one exception, index.md, in the root.
+
+index.md
+howto.md
+├─>colours.md
+├─>encryption.md
+└─>gmail.md
+intro.md
+├─>reading.md
+├─>sending.md
+└─>welcome.md
+panel.md
+├─>compose.md
+├─>index.md
+├─>pager.md
+└─>sidebar.md
+
+Oh, and we need to hide the web 404 page.
+
+> 5. Is help directory fix, so option $help_doc_dir becomes obsolete?
+
+I don't know.  What else would they look at?
+
+> I'll try to achieve the first of your pointed out steps the next days
+> (hopefully days, not weeks). ;-)
+
+That's fine (now that I know that quietness == working :-)
+
+--------------------------------------------------------------------------------
+From: Floyd Anderson
+To: Richard Russon
+
+>auto.def defines _GNU_SOURCE=1 for us.
+
+Ah, I see. I tricked myself by searching only in *.[ch] files with:
+  $ ag --cc -C0 -- '_GNU_SOURCE'
+
+>> 5. Is help directory fix, so option $help_doc_dir becomes obsolete?
+>
+>I don't know.  What else would they look at?
+
+I just thought about it related to Gentoo (compression of files in 
+PKGDOCDIR, special NeoMutt ebuild overlays, probably no help documents 
+at all with USE-flag "-doc" set) and a possibility to add personal 
+notes. In the past and long ago, I had a special mailbox in Thunderbird 
+with pseudo help messages for my flagging brain. But I think it's not an 
+essential requirement.
+
+>> I'll try to achieve the first of your pointed out steps the next days
+>> (hopefully days, not weeks). ;-)
+>
+>That's fine (now that I know that quietness == working :-)
+
+:-)
+
+Yes, that's mostly true and as I said previously, you can count on me 
+(on things where I'm probably able to bear a helping hand).
+
+--------------------------------------------------------------------------------
+From: Floyd Anderson
+To: Richard Russon
+
+>> some people at a Gentoo mailing list never heard of NeoMutt
+>> although there's a heavily patched regular Mutt
+>
+>Fabian (@grobian) is big in Gentoo and used to promote NeoMutt
+>Then one day cited philosophical differences and he went away.
+
+Ah, I wondered why I saw no commits from him to the gentoo-neomutt repo 
+after Nov 2016.
+
+I think a main point is also that Mutt works for the end user and most 
+people tends to be conservative, want to keep some kind of backward 
+compatibility or just maintain their own private patch sets.
+
+I understand people (to a certain extent), who want just use software 
+and don't want to fight with configuration and compiling issues, because 
+it eats so much time. For example, I'm happy with Vim (it provides more 
+than I could ever learn) and really, I've never looked at and for a 
+switch to Neovim.
+
+But Fabian is/was the mentor of @nicolasbock (maintainer for NeoMutt at 
+Gentoo). I always got quick responses from Nicolas when I filed bugs on 
+Gentoo's tracker, but unfortunately nothing to my current PR about build 
+breakage of the live ebuild (that will be also relevant for the new 
+NeoMutt release), see <https://github.com/gentoo/gentoo/pull/8198>.
+
+I'll contact him when he bumps Gentoo's NeoMutt ebuild to the new 
+version and still miss the build issue, described in my PR. Even it 
+seems I'm the only person that noticed this, its just to avoid a bad 
+light on or experiences with NeoMutt.
+
+>For every useful, often-linked, site we need to be able to say:
+>Our guide has that info and it's up-to-date.
+
+I'll try to keep an eye on the "up-to-date" challenge from time to time, 
+because I saw some outdated parts regarded to configure/build with 
+Autosetup and just to refresh my Jekyll/Ruby knowledge. Sometimes I wish 
+my day has more than 24 hours, but doubt it would help. :-)
+
+I also think it's worth to give Lua-Scripting (some of a main difference 
+to Mutt) more place in the documentation and on the website to probably 
+get a bigger audience of coding affine people. After writing these 
+lines, I can read your thoughts. ;-)
+
+I'll see what I can do in the future, currently Lua on Gentoo is a 
+tragedy, Lua versions >= 5.1.5-r100 are still masked in portage tree 
+(meanwhile Lua 5.2 is more than six years old).
+
+>Last night I spent a couple of hours creating a new mailbox type.
+>Branch: devel/help.  It's hacked together.  I'll try to fix it up this week.
+>
+>For now, start looking at file/dir handling routines:
+>- How to read a directory (recursively)
+>  Have a look at the browser code
+>  https://neomutt.org/code/file.html
+>- How to parse lines of text
+>  Look at the parse_*() routines in init.c
+>  https://neomutt.org/code/string.html
+>
+>I've also created a test-doc repo with a lot of sample markdown files.
+>They have a yaml header (which includes metadata) and are interlinked.
+
+Thanks for your (frame)work and your hints. I looked into it, but read 
+my other mail.
+
+What is your goal/vision for the really nice "Improve this page"-button? 
+Editing the page within a browser, is that possible with GitHub pages?
+
+--------------------------------------------------------------------------------
+From: Richard Russon
+To: Floyd Anderson
+
+> I'll try to keep an eye on the "up-to-date" challenge from time to time,
+> because I saw some outdated parts regarded to configure/build with Autosetup
+
+I've just updated the 'install.md' file in the source dir (and moved the
+'autosetup.md' to the website.  It's written in a hurry, but much better now.
+
+> I also think it's worth to give Lua-Scripting more place in the documentation
+
+I've been a little cautious about this.  The Lua support is quite
+limited, still, and it's unmaintained atm.  Perhaps it's time to make
+Lua a "medium" task and invite someone to maintain / drive it.
+
+> What is your goal/vision for the really nice "Improve this page"-button?
+> Editing the page within a browser, is that possible with GitHub pages?
+
+Wherever you read the help, I'd like you to be one button-press away from editing the help.
+
+On the website, that's a link to the markdown page.  If you're logged
+in, then you can hit edit and GitHub will manage the forking and stuff.
+
+I haven't tested this personally.  Feel free to try it out on my test
+repo: https://github.com/flatcap/dummy
+
+In NeoMutt, you'd be taken to the compose menu:
+    Subject: Update help page PAGE-REF
+    To: help-update@neomutt.org
+An editor would be opened containing the help page.  You edit, quit, and
+send.
+
+On our side, we can review and commit.
+Finally, travis would build/check/deploy and the changes would be live.
+
+It's a lot of work to get *there*, but I think all the steps forward
+will help us maintain the docs and help users find stuff.
+

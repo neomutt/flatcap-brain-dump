@@ -210,3 +210,6 @@ mutt_hist_complete()
 	create a mutt_hist_get_size()
 	mutt_mem_calloc(C_History, sizeof(char *));
 
+mutt_charset.c mutt_iconv_open()
+	Highlight note: The top-well-named MUTT_ICONV_HOOK_FROM
+	acts on charset-hooks, not at all on iconv-hooks.

@@ -116,3 +116,5 @@ cache files need to hash their name too
 	to avoid two systems "sharing" a single hash
 	and crashing
 
+hcache2 (bitfields)
+	inline, transparent
