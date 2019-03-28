@@ -9,12 +9,6 @@ regex encapsulation
 
 simple Menu API
 
-completion API
-	has a static var
-	encapsulate & refactor
-		sort variables, etc before auto-completion
-			or properly sort the sources of the strings
-
 history API
 
 alias API (labels, description)

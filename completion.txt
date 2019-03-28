@@ -1,0 +1,62 @@
+Completion API
+
+create, populate, query, destroy
+
+query flags: ignore case, fuzzy, magic (dash==underscore), regex (~=fuzzy?), partial
+
+pass list[] { flags, string }
+need work buffer (matching length of longest string)
+need cursor position
+complete *over* flag
+	abc|de<tab> -> abcdef|
+
+option to match first, then cycle
+match longest
+	client responsibility
+
+highlighting of matches for fuzzy/partial
+
+flag partial: (anywhere in string)
+	anchor: start, none, end
+
+multi-field matching?  e.g. Index
+pass [] { flags, str1, str2, etc }
+
+flags control which are matched?  flags ∀ strings?
+C.add_column(flags, [], num)
+	have [] of flags for matches
+	doesn't add data, just flags behaviour
+C.add_row() probably better
+	for data
+
+need set of matcher callback functions
+	pass flags, row
+
+string data passed in is const
+
+self-contained, except for libmutt
+build and test in test-library repo branch
+
+has a static vars (init.c)
+	#define NUMVARS mutt_array_size(MuttVars)
+	#define NUMCOMMANDS mutt_array_size(Commands)
+
+	/* Initial string that starts completion. No telling how much the user has
+	* typed so far. Allocate 1024 just to be sure! */
+	static char UserTyped[1024] = { 0 };
+
+	static int NumMatched = 0;          /* Number of matches for completion */
+	static char Completed[256] = { 0 }; /* completed string (command or variable) */
+	static const char **Matches;
+	/* this is a lie until mutt_init runs: */
+	static int MatchesListsize = MAX(NUMVARS, NUMCOMMANDS) + 10;
+
+	#ifdef USE_NOTMUCH
+	/* List of tags found in last call to mutt_nm_query_complete(). */
+	static char **nm_tags;
+	#endif
+
+encapsulate & refactor
+	sort variables, etc before auto-completion
+		or properly sort the sources of the strings
+

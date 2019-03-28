@@ -1,3 +1,5 @@
+feature: live filter index as you type, cf sidebar matcher
+
 changing the option strings to the form
 	(1a)pple, (2b)anana, (3c)herry
 	1(a)pple, 2(b)anana, 3(c)herry
