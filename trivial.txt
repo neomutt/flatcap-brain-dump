@@ -161,53 +161,20 @@ Tidy messages ending in .
 	ag '\.\\n"'
 
 these macros might want a '_' for clarity
-	ANUM ATTRSET BAD BEEP BINDIR BLOCKSIZE CHUNKSIZE CURATTACH CYCLIC
-	DEVRANDOM DIRECTION DOMAIN DTYPE EILSEQ EMSG ENCODING EXECSHELL FF FG
-	FH FI FLAGGED FREE HCACHEVER HSPACE INITVAL IP ISHEADER ISPELL ISSPACE
-	KILO MAILPATH MAX MAXERRS MAXMIXES MEGA MESSAGE MIN MUTTLOCALEDIR
-	NONULL NUMCOMMANDS NUMVARS OP OPS PACKAGE PKGDATADIR PKGDOCDIR R0 R1 R2
-	R3 R4 REGCOMP RSORT SENDMAIL SEQLEN SETCOLOR SKIPWS SOMEPRIME SORTCODE
-	SWAP SYSCONFDIR TXTENRICHED TXTHTML TXTPLAIN TYPE UL UNREAD W WHERE
+	ATTRSET BINDIR BLOCKSIZE CHUNKSIZE CURATTACH
+	DEVRANDOM DTYPE EMSG EXECSHELL
+	HCACHEVER HSPACE INITVAL ISHEADER ISSPACE
+	MAILPATH MAXERRS MAXMIXES MUTTLOCALEDIR
+	NONULL NUMCOMMANDS NUMVARS PKGDATADIR PKGDOCDIR
+	REGCOMP SEQLEN SETCOLOR SKIPWS SOMEPRIME SORTCODE
+	SYSCONFDIR TXTENRICHED TXTHTML TXTPLAIN
 
 make sure all HEAD definitions are after the struct definitions:
 	SLIST_HEAD(PatternHead, Pattern);
 
-fix doxygen (notmuch + hcache)
-
 typo
 	bool mime            : 1; /**< has a MIME-Version email? */
 	bool mime            : 1; /**< has a MIME-Version header? */
-
-still lots of lowercase globals
-	bool_values
-	cc_cflags
-	cc_version
-	configure_options
-	crypt_mod_pgp_classic
-	crypt_mod_pgp_gpgme
-	crypt_mod_smime_classic
-	crypt_mod_smime_gpgme
-	debugfile
-	debugfilename
-	debugfile_cmdline
-	debuglevel
-	debuglevel_cmdline
-	envlist
-	magic_values
-	mx_comp_ops
-	mx_imap_ops
-	mx_maildir_ops
-	mx_mbox_ops
-	mx_mh_ops
-	mx_mmdf_ops
-	mx_nntp_ops
-	mx_notmuch_ops
-	mx_pop_ops
-	optarg
-	optind
-	quad_values
-
-muttindexwindow workaround
 
 16 places where expando requires `Mutt*Window`
     addrbook.c:116:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(AliasFormat), alias_format_str,
@@ -229,36 +196,39 @@ muttindexwindow workaround
 
 config system
 	can it return warnings?
-
-fold ~/home/work/help/* into ~/docs
-	and de-dupe
-
-kill ~/home/done
-
-clear ~/neo branches
-	archive or delete
+	it doesn't
 
 archive and close old PRs
 
 update README.md contributors
 
 buffer use alloc
-	commands.c:669:6:  err.data = mutt_mem_malloc(err.dsize);
-	hook.c:383:6:  err.data = mutt_mem_malloc(err.dsize);
-	hook.c:451:6:  err.data = mutt_mem_malloc(err.dsize);
-	hook.c:635:6:  err.data = mutt_mem_malloc(err.dsize);
-	init.c:388:6:  err.data = mutt_mem_malloc(err.dsize);
-	init.c:3401:6:  err.data = mutt_mem_malloc(err.dsize);
-	init.c:3766:6:  err.data = mutt_mem_malloc(err.dsize);
-	init.c:4306:6:  err.data = mutt_mem_malloc(err.dsize);
-	mutt_lua.c:72:6:  err.data = mutt_mem_malloc(err.dsize);
-	mutt_lua.c:283:6:  err.data = mutt_mem_malloc(err.dsize);
-	pattern.c:1951:6:  err.data = mutt_mem_malloc(err.dsize);
-	pattern.c:2088:10:      err.data = mutt_mem_malloc(err.dsize);
+	config/cfgaccount.c:106:3:  err.data = mutt_mem_calloc(1, err.dsize);
+	config/set.c:269:3:         err.data = calloc(1,          err.dsize);
+	config/set.c:302:3:         err.data = calloc(1,          err.dsize);
+	hook.c:386:3:               err.data = mutt_mem_malloc(   err.dsize);
+	hook.c:451:3:               err.data = mutt_mem_malloc(   err.dsize);
+	hook.c:635:3:               err.data = mutt_mem_malloc(   err.dsize);
+	init.c:2621:3:              err.data = mutt_mem_malloc(   err.dsize);
+	init.c:288:3:               err.data = mutt_mem_malloc(   err.dsize);
+	init.c:3006:3:              err.data = mutt_mem_malloc(   err.dsize);
+	mutt_lua.c:305:3:           err.data = mutt_mem_malloc(   err.dsize);
+	mutt_lua.c:94:3:            err.data = mutt_mem_malloc(   err.dsize);
+	pattern.c:2375:3:           err.data = mutt_mem_malloc(   err.dsize);
+	pattern.c:2528:7:           err.data = mutt_mem_malloc(   err.dsize);
 
-bool dupe -> const
-
-encoder_t is a PTR
-initialise to NULL
-check for other typedefs
+refactor
+	#ifdef USE_INOTIFY
+	          if ((tmp.ch != -2) || SigWinch || MonitorFilesChanged)
+	#else
+	          if ((tmp.ch != -2) || SigWinch)
+	#endif
+	            goto gotkey;
+to
+	          if ((tmp.ch != -2) || SigWinch)
+	            goto gotkey;
+	#ifdef USE_INOTIFY
+	          if (MonitorFilesChanged)
+	            goto gotkey;
+	#else
 

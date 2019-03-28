@@ -1,3 +1,18 @@
+changing the option strings to the form
+	(1a)pple, (2b)anana, (3c)herry
+	1(a)pple, 2(b)anana, 3(c)herry
+means the translators would be free to reorder the options
+and we could eliminate the "abc" letter string
+this doesn't look so good
+	app1(l)e, bana2(n)a, che3(r)ry
+perhaps
+	app(1l)e, bana(2n)a, che(3r)ry
+or clearer still
+	(1:a)pple, (2:b)anana, (3:c)herry
+	app(1:l)e, bana(2:n)a, che(3:r)ry
+the numbers could even be omitted
+if the translated string matches the order of the original
+
 Windows API
 	nesting, reflowing, etc
 
@@ -465,10 +480,6 @@ create a coding 'charter'
 	what's expected
 		from you
 		from us
-
-mutt_bits_* functions use array of unsigned char
-	unnecessary, nobody uses more that 16 bits
-	just use unsigned int and simplify the macros
 
 status/pager format
 	collapse the status bar and command line?

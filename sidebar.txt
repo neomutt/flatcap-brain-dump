@@ -300,3 +300,7 @@ sidebar_dividers
 
 overline between A's?
 
+It's almost like we need a pattern to control what to display:
+sidebar_display = "~N | ~O | ~F | (~J > 0)"
+(~J = message count -- not implemented)
+

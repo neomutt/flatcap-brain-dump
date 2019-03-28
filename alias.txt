@@ -35,7 +35,7 @@ when displaying aliases:
 		Labelled
 		- Label1
 		- Label2
-	Allow the use to add to label-combination list
+	Allow the user to add to label-combination list
 
 add expandos for "file" and "label"
 add function <display-alias> to show a persons complete details
@@ -50,4 +50,6 @@ turn into an "alias" module (.so)
 create an ldap alias module
 	initially read-only
 sql/sqlite backend
+
+scripts to export db contents as json, csv, text
 

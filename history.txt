@@ -15,3 +15,9 @@ history -1 => infinite
 
 .mutthistory should be .neomutthistory
 
+history has dupes between categories
+try to recategorise to be more meaningful
+e.g. mailbox, alias?
+cross-contamination between prompts
+need owner too
+
