@@ -1,0 +1,19 @@
+Regex Encapsulation
+
+Wrap up all regex use to simplify code from:
+	if ((regexec(hook->regex.regex, url, 0, NULL, 0) == 0) ^ hook->regex.not)
+to
+	if (regex_match(hook->regex, url))
+
+there are 3 regex config variables.  they'd be the starting point, but there's plenty of other regex uses too
+they all work the same way -- all resulting in code like that above, which is hard to read and prone to error
+
+regex encapsulation
+	if (Mask && !((regexec(Mask->regex, nntp_data->group, 0, NULL, 0) == 0) ^ Mask->not))
+	if (regex_match(Mask, str, flags)
+	it checks pointers, etc
+	takes 'not' into account
+	bool regex_is_match_full(const struct Regex *regex, const char *str, size_t num, regmatch_t matches[], int flags);
+	bool regex_is_match(const struct Regex *regex, const char *str);
+	checks for empty regex string
+

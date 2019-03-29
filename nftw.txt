@@ -1,0 +1,8 @@
+
+http://pubs.opengroup.org/onlinepubs/009695399/
+
+devel/help
+
+samples
+
+https://gist.github.com/flatcap/f0ee75ee26b30a8cade75c37b55419b5

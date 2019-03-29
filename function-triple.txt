@@ -1,0 +1,11 @@
+
+"func", OPCODE, "desc" triple
+	combine function.h and opcode.h, triple of:
+		"function-name", OPCODE, "help description"
+		enum of OPCODEs
+		Mapping of "function-name", "help description"
+		alpha order -> binary search
+		simplifies doc generation too
+		separate duplicate/overlapping names
+			separate OP_DELETE for each object worked on
+

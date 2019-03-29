@@ -1,0 +1,11 @@
+$net_folder_format
+	separate folder_format for dirs vs network mailboxes?
+	imap_folder_format defaults to folder_format if empty
+	alternative -- folder_format add
+		%local expando for use with nested-if
+		conditional display
+	need separate folder_format for
+		local dirs
+		net folders
+		virtual folders
+

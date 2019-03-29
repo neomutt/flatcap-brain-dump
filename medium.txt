@@ -1,12 +1,3 @@
-regex encapsulation
-	if (Mask && !((regexec(Mask->regex, nntp_data->group, 0, NULL, 0) == 0) ^ Mask->not))
-	if (regex_match(Mask, str, flags)
-	it checks pointers, etc
-	takes 'not' into account
-	bool regex_is_match_full(const struct Regex *regex, const char *str, size_t num, regmatch_t matches[], int flags);
-	bool regex_is_match(const struct Regex *regex, const char *str);
-	checks for empty regex string
-
 simple Menu API
 
 history API
@@ -14,16 +5,6 @@ history API
 alias API (labels, description)
 
 strncpy -> strfcpy NUL-terminated
-
-"func", OPCODE, "desc" triple
-	combine function.h and opcode.h, triple of:
-		"function-name", OPCODE, "help description"
-		enum of OPCODEs
-		Mapping of "function-name", "help description"
-		alpha order -> binary search
-		simplifies doc generation too
-		separate duplicate/overlapping names
-			separate OP_DELETE for each object worked on
 
 mxapi create/delete folder
 	browser - why are delete, rename and create folder limited to IMAP?
@@ -34,13 +15,6 @@ progress API
 
 sort out / standardise
 	strsep, strtok, strtok_r
-
-(H)ighlight
-	function to turn option list from
-		(S)ubject to *S*ubject (highlighted/colour)
-		make them consistent across mutt
-			some are just capital letters
-	colour highlight/underline _Q_uestion, _O_ptions 'q', 'o'
 
 config list type
 mutt_error() "Error: " prefix, E123 too
