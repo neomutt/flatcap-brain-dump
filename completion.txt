@@ -1,4 +1,26 @@
-Completion API
+Auto-Completion API
+
+Encapsulate all the completion code to make it easier to test and maintain.
+
+- Create an Auto-Completion library -- separate the code from the rest of NeoMutt
+- Create an API (list of functions) that everyone uses
+
+This library should be only be dependent on libmutt.
+
+The auto-completion code is given:
+- a list of possible symbols to match
+- what the user has typed so far
+
+It replies by:
+- doing nothing (no matches)
+- completing the symbols (one match found)
+- returning the list of matching symbols
+  The user can either <kbd>Tab</kbd> through them or select from a menu
+
+Currently, this code is scattered throughout NeoMutt and often uses global
+variables.  It needs to be separated and tidied up.
+
+--------------------------------------------------------------------------------
 
 create, populate, query, destroy
 

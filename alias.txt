@@ -1,3 +1,49 @@
+Alias API -- Refactor Alias Handling
+
+- Create an Alias library -- separate the code from the rest of NeoMutt
+- Create an API (list of functions) that everyone uses
+
+This library should be only be dependent on libmutt and libemail.
+
+The library only needs to store and serve up the aliases and their associated
+data.  Parsing the config file should remain part of the NeoMutt code.
+
+Separating the alias code will make it easier to test and maintain.
+
+---
+
+An "alias" is a short name you can assign to an email address to save you having
+to remember it.  NeoMutt's config looks like this:
+
+```
+alias jd  John Doe <john.doe42@example.com>  # Met in Vegas
+```
+
+Extra info:
+- aliases can be put in groups ("alias -group")
+- an alias can refer to multiple addresses ("alias x, y, ...")
+- an alias can refer to the user ("alternates")
+- patterns can check if the address:
+  - is an alias
+  - is to the user
+  - is a mailing list
+
+See also:
+- [Aliases](https://neomutt.org/guide/configuration#alias)
+- [Address Groups](https://neomutt.org/guide/configuration#addrgroup)
+- [Alternates](https://neomutt.org/guide/configuration#alternates)
+- [Mailing Lists](https://neomutt.org/guide/configuration#lists)
+- [Patterns](https://neomutt.org/guide/advancedusage.html#patterns)
+
+---
+
+Once complete, there are some optional extra challenges:
+- Improve the storage of aliases (currently a branched linked list)
+- Add tagging/labelling to the aliases
+- Create a database backend, e.g. sqlite
+
+------------------------------------------------------------
+
 Ideas for Aliases
 
 account-specific aliases
@@ -87,4 +133,7 @@ for completion or display, get all data then filter, etc
 tag for "self"
 need fn to get list of groups for an EmailList
 	hard.  iterate through list instead
+
+when you create an alias, it only offers you the "from" (or "reply-to")
+	can't alias other recipients
 

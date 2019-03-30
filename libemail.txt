@@ -1,0 +1,10 @@
+Fix dependencies of libemail
+
+Upstream recently added a new function to `email/parse.c`: `mutt_auto_subscribe()`.
+This requires `url_parse_mailto()` which isn't in the library.
+
+This may be a simple task.
+
+If `url_parse_mailto()` doesn't have any dependencies (except `libmutt`), then move it to `libemail`.
+
+If it does have dependencies, then try to find a way to resolve them :-)

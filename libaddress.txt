@@ -1,0 +1,16 @@
+Separate Address from libemail
+
+- This will require a lot of investigation
+- This may not currently be possible, due to dependency problems
+
+The alias code needs to be able to work with addresses.
+The address code is currently in libemail.
+
+Can we separate the address code, by moving:
+- `address.c`
+- `group.c`
+- `rfc2047.c`
+- `idna.c`
+
+libaddress would be responsible for parsing, storing and serving up addresses.
+

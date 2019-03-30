@@ -1,11 +1,46 @@
+enum of OPCODEs
+Mapping of "function-name", "help description"
+alpha order -> binary search
+simplifies doc generation too
+separate duplicate/overlapping names
+	separate OP_DELETE for each object worked on
 
-"func", OPCODE, "desc" triple
-	combine function.h and opcode.h, triple of:
-		"function-name", OPCODE, "help description"
-		enum of OPCODEs
-		Mapping of "function-name", "help description"
-		alpha order -> binary search
-		simplifies doc generation too
-		separate duplicate/overlapping names
-			separate OP_DELETE for each object worked on
+------------------------------------------------------------
+
+function:opcode:description -- De-duping functions 
+ 
+The simplest way to describe the problem here, is to look at the "delete"
+function (there's duplication elsewhere, too).  "delete" appears on most menus.
+The name may vary a little, but they're mostly mapped to `OP_DELETE`.  This
+opcode has a description attached: "delete something".  It's a bit generic.
+
+If we gave each function a unique opcode, then the descriptions could be more
+specific to the menu in use.
+
+Index:        "delete-email",   OP_DELETE_EMAIL,   "Delete the selected email"
+PGP key list: "delete-pgp-key", OP_DELETE_PGP_KEY, "Delete the selected pgp key"
+...
+
+This would allow us to give context-sensitive help for all the functions,
+e.g.  tell the user:
+- what's being deleted 
+- whether the action can be undone
+- etc
+
+---
+
+The functions are defined in `functions.h` and linked to an opcode.
+They're grouped by menu, e.g.  Index, Pager, Compose.
+
+The opcodes are defined in `opcodes.h` and linked to a description.
+
+---
+
+Once they're separated, there are a couple of optional extra challenges:
+
+- Suggest better, more consistent, names for the user-facing functions
+  e.g. "delete-entry" -\> "delete-email"
+
+- Investigate whether the opcodes could be split into object and action,
+  e.g. "delete-email" == OP_DELETE | OP_EMAIL
 
