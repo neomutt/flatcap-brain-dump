@@ -17,9 +17,6 @@ special reader for alias file, that parses comments, e.g.
 	# labels:red,blue,green phone:'1234'
 	or json (one-line)
 
-api
-	functions to query aliases
-
 2016-08-09
 	01:35 <SvenG> but giving a color to "known" addresses (via aliases) would be a killer
 
@@ -52,4 +49,42 @@ create an ldap alias module
 sql/sqlite backend
 
 scripts to export db contents as json, csv, text
+
+api
+	functions to query aliases
+
+alias file as definitive source
+if this becomes a list, then where do we save?
+	first? last?
+header: generated file - do we store other comments?
+	how?  where?
+needs to work as normal alias file
+ALIAS SHORT NAME1 NAME2 ... <EMAIL> # COMMENT
+encode extra data into comment, in form
+	tag:"data" [tag:...]
+{tag/group/label} nick, irc, addr, etc
+allow embedded '\n'
+List of Aliases -> Vector
+when do aliases get save?
+	on creation?  on exit?  on command?
+functions
+	get alias by name
+	get all -> R/O
+	set_{short|name|comment|email}
+	get_{short|name|comment|email}
+	get fields -> list of extra data
+	get field(a, fname)
+	count aliaes
+	add alias
+	del alias
+create sidebar ∀ fields
+	split display
+	sidebar with groups/tags
+	index 1-line list of aliases
+	pager extra data
+for completion or display, get all data then filter, etc
+	data can't be opaque
+tag for "self"
+need fn to get list of groups for an EmailList
+	hard.  iterate through list instead
 

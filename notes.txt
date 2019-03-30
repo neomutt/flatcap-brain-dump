@@ -1,3 +1,7 @@
+3-way split display for index, aliases, pgp key list
+	does each need domain-specific config
+	{index,pgp,alias}_pager_lines
+
 feature: live filter index as you type, cf sidebar matcher
 
 changing the option strings to the form
