@@ -1,0 +1,74 @@
+Config String List
+
+Create a new high-level Config Primitive (it's simpler that it sounds :-)
+
+The old config system had a central function that decided which values were allowed for all of the config variables.
+The new config system defines a set of data types, which can be refined and subclassed (using validator funcions).
+
+e.g. from [`init.h`](https://github.com/neomutt/neomutt/blob/master/init.h)
+- `..., DT_STRING|DT_NOT_EMPTY, ...`
+- `..., DT_NUMBER|DT_NOT_NEGATIVE, ...`
+- `..., DT_NUMBER, ..., level_validator },`
+
+### String Lists
+
+There are five config variables which are lists: `$assumed_charset`, `$attach_charset`, `$hidden_tags`, `$mailcap_path`, `$send_charset`.
+Most have a `:` separator, one has a `,` separator.
+Currently there are different parts of the code that parse these strings each time a value is needed.  Not very efficient.
+
+The solution is a "String List" type.  
+
+Whenever the user sets a config variable, it would be split apart once and stored in a format that the code could easily process.
+In this case it will be a `TAILQ`.
+
+There's some code to split strings, [here](https://github.com/neomutt/neomutt/blob/master/mutt/string.c#L1156)
+and a start to the `DT_SLIST` type, [here](https://github.com/neomutt/test-config).  This repo will be useful for development and testing.
+
+### Jobs
+
+- Finish off the slist code
+- Plug new splitting code into slist
+- Change the users of the config variables to take advantage
+
+We'll need some functions to work with the list:
+- `add_item()`
+- `remove_item()`
+- `is_member()`
+- `count_members()`
+- `list_to_string()`
+
+### Future Directions
+
+Add more flags to make the list type more versatile:
+
+- `TRIM_WHITESPACE`
+  Humans often type a space in comma-separated lists
+- `ALLOW_DUPES`
+  I don't think any of the current config makes sense to have repeated entries
+- `ALLOW_EMPTY`
+  e.g. `apple:banana::cherry`
+- `CASE_SENSITIVE`
+  Is case important when looking for dupes?
+
+Extend the config system with new commands:
+
+- Add `+=` command
+- Add `-=` command
+
+These new commands would be very useful for other types, too.
+
+--------------------------------------------------------------------------------
+
+- `:` assumed_charset
+- `:` attach_charset
+- `,` hidden_tags
+- `:` mailcap_path
+- `:` send_charset
+
+**Questions**:
+
+- Should we be checking for escaped separators?
+  `apple,banana\,cherry`
+- Should we store the flags in the list itself?
+- Should we store the item count in the list?
+
