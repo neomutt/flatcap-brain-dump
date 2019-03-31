@@ -1,3 +1,13 @@
+ellipsise long mailbox names in the sidebar
+	how?  formatter doesn't know type
+
+code style: list 'reserved' variable names
+	loop: i, j, k
+	NAME: Mailbox m, Account a, Email e, etc
+	buf, buflen
+	ans
+	list off limits files: md5.c, queue.h
+
 3-way split display for index, aliases, pgp key list
 	does each need domain-specific config
 	{index,pgp,alias}_pager_lines
@@ -18,9 +28,6 @@ or clearer still
 	app(1:l)e, bana(2:n)a, che(3:r)ry
 the numbers could even be omitted
 if the translated string matches the order of the original
-
-Windows API
-	nesting, reflowing, etc
 
 move temp file into for loop in nntp_fetch_headers()?
 	nntp_fetch_headers()
@@ -1240,13 +1247,6 @@ deprecate AUR repo & notify
 
 drop mailmap, use management one
 
-init.c main()
-	Is this still true?
-	seems to work ok without it
-	/* Always create the mutt_windows because batch mode has some shared code
-	* paths that end up referencing them. */
-	mutt_init_windows();
-
 move ncrypt/crypt.c disable_coredumps() to init
 	there we could disable coredumps UNLESS
 	the user enables debug logging
@@ -2370,10 +2370,6 @@ mime-typer plugin
 	notify if the mime type doesn't match what *you* think it should be
 	change the type (option)
 
-window manager
-	menu mode, like jed/links
-	popup menus
-
 pgp key manager/management
 	list, ignore revoked keys
 	sort options
@@ -2984,12 +2980,6 @@ vim library of config options(vars)
 kill version.c:rstrip_in_place()
 	fix external build scripts
 
-how about modal dialogs?
-	1 dialog could invalidate sidebar, index, pager
-	sibling to sidebar, index, pager but last in list (z-order)
-	sb, index, panel get painted, then "floating" window gets painted over
-	modal => disable key mappings/propagation
-
 how should mutt_yesorno() work?
 	Question is asked modally & outside area of asker
 	=> hide command line, show question
@@ -2997,13 +2987,6 @@ how should mutt_yesorno() work?
 		make command-line panel invisible?
 		make question panel higher in z-order?
 			=> they are coincident
-
-attach sets of keybindings to panel hierarchy?
-can some keybindings be set "only active when window is visible"?
-	=> help doesn't (necessarily) hide sidebar
-		should sidebar keys work?  probably not
-	*should* help hide the sidebar?
-		probably yes
 
 changes to css must set both fg, bg
 	cf <note>
@@ -3241,11 +3224,6 @@ wrap at:
 No wrap →
 	extra char at end of line ">"
 
-Window changes
-	hidden  no params
-	visible rect
-	resize  rect
-	focus   in/out
 colours changes
 keypress        key, no params
 config change   key, value

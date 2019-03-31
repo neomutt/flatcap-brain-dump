@@ -11,7 +11,6 @@ colours/attrs
 	implement colour primitives
 nntp refactor auto subscription (like imap)
 config +=, -=, etc API
-nested windows - refactor gui, reflow
 browser rewrite
 Account-specific config
 libconn independent

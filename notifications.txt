@@ -239,7 +239,7 @@ hooks - folder-hook on Account?
 most listeners will need to watch N recursively
 all hooks/focus on N?
 same with window
-nobody care about a specific window?
+nobody cares about a specific window?
 	except the painter
 	status listens to status_window for WINCH
 who's listening to M?  index is

@@ -176,25 +176,6 @@ typo
 	bool mime            : 1; /**< has a MIME-Version email? */
 	bool mime            : 1; /**< has a MIME-Version header? */
 
-16 places where expando requires `Mutt*Window`
-	Wait for Window API
-	addrbook.c:116:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(AliasFormat), alias_format_str,
-	browser.c:1080:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols,
-	browser.c:1087:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols,
-	browser.c:1108:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(VfolderFormat),
-	compose.c:254:             mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(AttachFormat),
-	hdrline.c:1436:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, s,
-	mutt_history.c:78:         mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, "%s", history_format_str,
-	ncrypt/crypt_gpgme.c:3164: mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(PgpEntryFormat),
-	ncrypt/pgpinvoke.c:185:    mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(fmt),
-	ncrypt/pgpkey.c:343:       mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(PgpEntryFormat),
-	ncrypt/smime.c:354:        mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(fmt),
-	nntp/newsrc.c:1110:        mutt_expando_format(file, sizeof(file), 0, MuttIndexWindow->cols,
-	query.c:311:               mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(QueryFormat),
-	recvattach.c:428:          mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(AttachFormat),
-	remailer.c:497:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols,
-	sendlib.c:2715:            mutt_expando_format(cmd, sizeof(cmd), 0, MuttIndexWindow->cols,
-
 config system
 	can it return warnings?
 	it doesn't

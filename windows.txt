@@ -1,0 +1,191 @@
+Windows API
+
+Create a set of nested windows and eliminate global variables.
+
+Currently there are five windows: Help, Index, Message, Sidebar, Status.
+They're all global variables and there's a large degree of reuse between them.
+A vital part of the window system is `mutt_window_reflow()` which resizes them when the terminal is resized, or a window becomes invisible (unused).
+This function is complicated.  It has a lot of rules and uses five config variables to determine the right layout.
+
+Most modern GUI applications use a fluid, nested, layout of Windows.
+This includes some non-visible containers, which constrain the layout.
+Here's what NeoMutt would look like in this form:
+
+![NeoMutt](https://flatcap.org/mutt/neomutt4.svg)
+
+- **V** - Vertically stacked container
+- **H** - Horizontally stacked container
+
+The inner **V** has three children: Index, Status, Pager.
+The Index and Status have fixed heights, but expand to fit the width of their container.
+The Pager is set to expand in both directions.
+
+When the code needs a window, it inserts it into the tree and configures its behaviour.
+If the terminal is resized, the reflow code can calculate the sizes without complex rules and config variables.
+
+There is a sample application that demonstrates this: [Panel-Manager](https://github.com/neomutt/panel-manager) 
+
+---
+
+### Part 1 - Nesting
+
+- Change `MuttWindow` to include the info needed for nesting
+- Create set of nested Windows
+- Add function to initialise all the Windows
+- Set the global variables to point to the right Windows
+
+### Part 2 - API
+
+- Create a list of all the functions NeoMutt will need to manipulate the Windows
+- Implement them
+- Convert NeoMutt to use the API
+- Eliminate rules and config from `mutt_window_reflow()`
+
+---
+
+### Future Directions
+
+Once the windows are nested, NeoMutt will have greater flexibility in the layout.
+The following should be easier to implement:
+
+- Widescreen layout ([Index and Pager side-by-side](https://github.com/neomutt/gfx/tree/master/layout#widescreen))
+- Popup Windows (for questions)
+- Drop-down Menus
+- Moving focus between Windows
+
+--------------------------------------------------------------------------------
+
+nesting, reflowing, etc
+
+initialise -> RootWindow (vertical or horizontal?)
+setup: index,pager,helpbar,statusbar,sidebar (some invisible)
+set globals (for now)
+named windows
+find_window(name)
+insert_child()/append_child()
+set attrs (set visible)
+attributes: fixed vs resizable, (in)visible
+
+init.c main()
+	Is this still true?
+	seems to work ok without it
+	/* Always create the mutt_windows because batch mode has some shared code
+	* paths that end up referencing them. */
+	mutt_init_windows();
+
+window manager
+	menu mode, like jed/links
+	popup menus
+
+how about modal dialogs?
+	1 dialog could invalidate sidebar, index, pager
+	sibling to sidebar, index, pager but last in list (z-order)
+	sb, index, panel get painted, then "floating" window gets painted over
+	modal => disable key mappings/propagation
+
+attach sets of keybindings to panel hierarchy?
+can some keybindings be set "only active when window is visible"?
+	=> help doesn't (necessarily) hide sidebar
+		should sidebar keys work?  probably not
+	*should* help hide the sidebar?
+		probably yes
+
+Window changes
+	hidden  no params
+	visible rect
+	resize  rect
+	focus   in/out
+
+16 places where expando requires `Mutt*Window`
+	Wait for Window API
+	addrbook.c:116:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(AliasFormat), alias_format_str,
+	browser.c:1080:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols,
+	browser.c:1087:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols,
+	browser.c:1108:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(VfolderFormat),
+	compose.c:254:             mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(AttachFormat),
+	hdrline.c:1436:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, s,
+	mutt_history.c:78:         mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, "%s", history_format_str,
+	ncrypt/crypt_gpgme.c:3164: mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(PgpEntryFormat),
+	ncrypt/pgpinvoke.c:185:    mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(fmt),
+	ncrypt/pgpkey.c:343:       mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(PgpEntryFormat),
+	ncrypt/smime.c:354:        mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(fmt),
+	nntp/newsrc.c:1110:        mutt_expando_format(file, sizeof(file), 0, MuttIndexWindow->cols,
+	query.c:311:               mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(QueryFormat),
+	recvattach.c:428:          mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols, NONULL(AttachFormat),
+	remailer.c:497:            mutt_expando_format(buf, buflen, 0, MuttIndexWindow->cols,
+	sendlib.c:2715:            mutt_expando_format(cmd, sizeof(cmd), 0, MuttIndexWindow->cols,
+
+nested windows - refactor gui, reflow
+
+WindowAttrs
+	Min/Max size
+	Borders
+	Colour default
+	Expansion vert/horizontal
+	Z-order
+	Modal?
+
+each window is only constrained in one direction
+
+Keys to move focus <focus-up>,<focus-down>,<focus-left>,<focus-right>
+plus absolute <move-to-X>
+	where X=Sidebar,Index,Pager,etc
+
+keys to enlarge/reduce window
+
+changing size of sidebar or index changes associated variable
+	$sidebar_width
+	$pager_index_lines
+
+with focus on pager or sidebar, user can <pgup>,<pgdown> for speed
+
+sidebar, index_lines have min/max size
+	$sidebar_visible toggles Window's visibility
+	=> triggers repaint
+
+to move focus down from index, take coords of SW corner and add 1 row
+	descend tree looking for deepest visible Window
+	+Z-order
+
+See: https://github.com/neomutt/gfx/tree/master/layout#window-hierarchy
+
+Move check cell
+	Left	NW
+	Right	NE
+	Up	NW
+	Down	SW
+Add 1 cell to avoid borders
+
+Window *WinList;
+Window *WinFocus;
+
+WinList+--> V--> S
+       |    +--> R--> I
+       V         +--> P
+       Compose
+       |
+       V
+       Help
+
+Focus on sidebar, press 'q' -> quit
+	=> sidebar_visible=no
+	=> repaint
+Focus on index, press 'q' -> quit
+	=> pager_index_lines=0
+	=> repaint
+Focus on pager, press 'q' -> quit
+	=> kill pager, return to index
+	How?
+
+On hide/kill window consider NW corner
+	(+1 cell for borders)
+	Who *now* owns this cell
+	-> focus
+
+Kill pager => hide and make index visible
+	with no pager the index will fill the space vertically
+
+Each window has a render function
+	fn takes focus-object
+	=> need common base for all objects
+

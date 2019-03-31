@@ -33,66 +33,6 @@ WindowAttrs
 	Z-order
 	Modal?
 
-Keys to move focus <focus-up>,<focus-down>,<focus-left>,<focus-right>
-plus absolute <move-to-X>
-	where X=Sidebar,Index,Pager,etc
-
-keys to enlarge/reduce window
-each window is only constrained in one direction
-
-changing size of sidebar or index changes associated variable
-	$sidebar_width
-	$pager_index_lines
-
-with focus on pager or sidebar, user can <pgup>,<pgdown> for speed
-
-sidebar, index_lines have min/max size
-	$sidebar_visible toggles Window's visibility
-	=> triggers repaint
-
-to move focus down from index, take coords of SW corder and add 1 row
-	descend tree looking for deepest visible Window
-	+Z-order
-
-
-See: https://github.com/neomutt/gfx/tree/master/layout#window-hierarchy
-
-Move check cell
-	Left	NW
-	Right	NE
-	Up	NW
-	Down	SW
-Add 1 cell to avoid borders
-
-Window *WinList;
-Window *WinFocus;
-
-WinList+--> V--> S
-       |    +--> R--> I
-       V         +--> P
-       Compose
-       |
-       V
-       Help
-
-Focus on sidebar, press 'q' -> quit
-	=> sidebar_visible=no
-	=> repaint
-Focus on index, press 'q' -> quit
-	=> pager_index_lines=0
-	=> repaint
-Focus on pager, press 'q' -> quit
-	=> kill pager, return to index
-	How?
-
-On hide/kill window consider NW corner
-	(+1 cell for borders)
-	Who *now* owns this cell
-	-> focus
-
-Kill pager => hide and make index visible
-	with no pager the index will fill the space vertically
-
 Events:
 	key, mouse, timer, fs, net, signal
 
@@ -118,10 +58,6 @@ Index: One Folder, One Email (selection)
 	show email's parent Folder
 Pager: One Email
 	shows one email
-
-Each window has a render function
-	fn takes focus-object
-	=> need common base for all objects
 
 <sidebar-open>, <select-next>
 simply change focus and cause repaint

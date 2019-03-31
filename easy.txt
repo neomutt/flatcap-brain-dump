@@ -14,6 +14,7 @@ neomutt -DD # defaults
 	all config with the default values are #'d out!
 	neomutt -D with annotations
 		set timeout = 3 # seconds
+
 hide status/pager bar when empty
 	format strings: compose_format, pager_format, status_format
 		when empty DON'T display the bar at all
