@@ -1,3 +1,29 @@
+Translation improvements:
+
+Eliminate space at end of questions, e.g.  "why? "
+	fix code
+	edit all translations
+	~30 questions (check)
+
+Check all questions end in "?"
+	Western languages only
+
+Check multi-choice questions use "(a)"
+	exact format
+
+Check for use of questions ending ": "
+
+Check for any leading/trailing space
+	(except for alignment)
+	Can it be eliminated?
+
+Post-process PGP text
+	Remove "[-- " and " --]" from translations
+	Update code to insert them
+	Accept multiline translations
+
+--------------------------------------------------------------------------------
+
 news: fi, nl
 
 change deploy script to commit *AS* the translator
