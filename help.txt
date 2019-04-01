@@ -1,0 +1,61 @@
+Help todo
+
+$help_simple_search
+$help_index_format
+hide YAML header
+nftw directory traversal
+convert DocBook to Markdown
+
+--------------------------------------------------------------------------------
+
+Help Browser - Add new config
+
+> The Help Browser is a new feature to bring online help to NeoMutt.
+> The code is in the [devel/help](https://github.com/neomutt/neomutt/tree/devel/help) branch.
+> 
+> It adds a new config variable: `$help_doc_dir` which should point to a copy of the [`test-doc`](https://github.com/neomutt/test-doc) repo.
+> Help can be activated by pressing <kbd>Alt-H</kbd>
+
+### Part 1
+
+Add a new config variable `$help_index_format` to format the index list appropriately.
+
+Tasks:
+- Add config variable to `init.h`
+- Add global variable to `help.[ch]`
+- Alter `index.c` to use the new global
+
+### Part 2
+
+Add a new config variable `$help_simple_search` to search the help.
+
+When a user searches for a string, but doesn't use a NeoMutt pattern, the string is transformed using [`$simple_search`](https://neomutt.org/guide/reference#simple-search).
+This isn't appropriate for the help.
+
+Tasks:
+- Add config variable to `init.h`
+- Add global variable to `help.[ch]`
+- Alter `pattern.c` to use the new global
+
+The final part is a little trickier.  The pattern function doesn't know if this is a 'help' mailbox.
+
+There are a couple of possible solutions:
+- Pass the 'simple_search' variable in as a parameter
+- Expand the search using 'simple_search' before calling
+
+--------------------------------------------------------------------------------
+
+Help Browser - Modernise the directory traversal
+
+> The Help Browser is a new feature to bring online help to NeoMutt.
+> The code is in the [devel/help](https://github.com/neomutt/neomutt/tree/devel/help) branch.
+> 
+> It adds a new config variable: `$help_doc_dir` which should point to a copy of the [`test-doc`](https://github.com/neomutt/test-doc) repo.
+> Help can be activated by pressing <kbd>Alt-H</kbd>
+
+Task:
+- Replace the directory traversal with the `nftw()` function
+  It's the modern replacement for the `readdir()` function.
+
+There is some sample code in [this gist](https://gist.github.com/flatcap/f0ee75ee26b30a8cade75c37b55419b5)
+
