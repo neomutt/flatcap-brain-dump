@@ -1,0 +1,60 @@
+code-style sections
+
+general source
+	tabs
+	utf8
+	whitespace
+	ctrl-l
+	vertical whitespace
+	escape
+	tabs in strings
+	clang-format (c not h)
+
+intro - 1 liner
+	try to make your code look the the code around it
+
+intro - para
+	try to follow the guidelines
+	automatic tools
+	important
+	guidelines
+
+naming
+	functions
+	params
+	enums
+	defines
+	exceptions
+	magic anmes
+	regex(p)
+
+auto tools
+	build
+	format
+	doxy
+	[release]
+	iwyu
+	uncrustify
+	coverity
+
+comments
+	C
+	C++
+	doxy
+
+doxygen
+	examples of all comment blocks
+
+doc symbols
+	automatic
+	important rule
+	guideline
+	good example
+	bad example
+
+doc linkage
+	sections
+	table of contents for each
+	children in grouped dirs
+	prev, next, up buttons
+
