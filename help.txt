@@ -59,3 +59,42 @@ Task:
 
 There is some sample code in [this gist](https://gist.github.com/flatcap/f0ee75ee26b30a8cade75c37b55419b5)
 
+--------------------------------------------------------------------------------
+
+Help Browser - Filter the page display
+
+> The Help Browser is a new feature to bring online help to NeoMutt.
+> The code is in the [devel/help](https://github.com/neomutt/neomutt/tree/devel/help) branch.
+> 
+> It adds a new config variable: `$help_doc_dir` which should point to a copy of the [`test-doc`](https://github.com/neomutt/test-doc) repo.
+> Help can be activated by pressing <kbd>Alt-H</kbd>
+
+### Part 1 - Filter out YAML
+
+Currently, the raw file is displayed in the pager.
+This includes the YAML header, which is no use to the reader.
+
+When we create the temporary file for the pager, don't copy the header block (terminated by an empty line).
+
+### Part 2 - Parse the YAML
+
+The YAML header will contain a lot of information that's useful to NeoMutt.
+e.g. Keywords, Author
+
+This will be used to aid the searching and display of the help files.
+
+The data needs to be parsed and stored in `struct Email`s private data.
+
+### Part 3 - Format the Display
+
+Currently, the help files are displayed as plain text.
+Some of them contain 'liquid' tags like `{{ page.title }}`
+
+Any `page.*` tags should be looked up using the YAML header data and replaced
+
+Optional extra task -- Implement basic markdown:
+
+- Replace `**text**` with bold text
+- Replace `[alt-text](url)` with a number and add a footnote with the url
+- Replace `:+1:` with unicode 'thumbs up' (and the others :-)
+

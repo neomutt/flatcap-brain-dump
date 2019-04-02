@@ -1,3 +1,12 @@
+a option to remove empty header fields from the email
+	when composing with $edit_headers set
+	no more "^Bcc: $", etc
+alternate ways: delete
+	autocmd BufRead ~/.cache/mutt/neomutt-* 1,/^$/g/^\v(Reply-To|Bcc): *$/d
+hide
+	:syntax match hide_header "^\v(cc|bcc|reply-to): *$" containedin=mailHeaderKey
+	:highlight hide_header guifg=#606060
+
 ellipsise long mailbox names in the sidebar
 	how?  formatter doesn't know type
 
