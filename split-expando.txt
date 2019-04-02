@@ -1,0 +1,20 @@
+Split up mutt_expando_format()
+
+`mutt_expando_format()` is a powerful, flexible, function that transforms `printf(3)`-like strings.
+It's used in config variables, hooks, color specifications and more.
+
+The basic function 
+The problem with `mutt_expando_format()` is that it **does too much**.
+
+| Domain                | Example               |
+| :-------------------- | :-------------------- |
+| NeoMutt (globals)     | version               |
+| AccountView           | sort order            |
+| Account               | name                  |
+| MailboxView (Context) | current limit pattern |
+| Mailbox               | path, size            |
+| EmailView             | tagged                |
+| Email                 | new                   |
+| (None)                | padding, formatting   |
+| Domain-specific       | compress hooks        |
+
