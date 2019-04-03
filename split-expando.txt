@@ -3,18 +3,58 @@ Split up mutt_expando_format()
 `mutt_expando_format()` is a powerful, flexible, function that transforms `printf(3)`-like strings.
 It's used in config variables, hooks, color specifications and more.
 
-The basic function 
+The basic function
 The problem with `mutt_expando_format()` is that it **does too much**.
 
-| Domain                | Example               |
-| :-------------------- | :-------------------- |
-| NeoMutt (globals)     | version               |
-| AccountView           | sort order            |
-| Account               | name                  |
-| MailboxView (Context) | current limit pattern |
-| Mailbox               | path, size            |
-| EmailView             | tagged                |
-| Email                 | new                   |
-| (None)                | padding, formatting   |
-| Domain-specific       | compress hooks        |
+47 alphabetic chars: AaBbCcDdEeFfgHhIiJKkLlMmNnOoPpQqRrSsTtuVvWXxYyZ
+1 non-alphabetic:    !
+5 multi-char:        Fp Gx zc zs zt
+4 bracketed:         (fmt) [...] [fmt] {fmt}
+
+separate function for each letter?
+
+what about multi-letter combos?
+what about ${name} in the future?
+lookup tables passed for callbacks
+[] { key letter / string, fn }
+need data for each array
+	or possibly for each letter
+pass params of (array, data)
+	-> callback(opt letter, data)
+does this mean sharing letters?  NO
+	(unifying them across callers?)
+
+pass array of { string, function, data }
+
+struct option
+{
+  const char *option;      // "a" to represent `%a`, "algorithm" to represent `%{algorithm}`
+  opt_callback_t callback; // Callback function(struct option *opt)
+  intptr_t data;           // Private data for callback
+};
+
+Each caller can specify their own letters, but choose from standard callback
+functions, or supply their own.
+
+code: expando dir for common callbacks
+	dependent on libmutt, libemail
+
+mutt_expando.c contains callbacks for views, MailboxView, EmailView (if nec)
+
+functions in base
+	actually formatting
+	precision
+	if/then/else
+		how?
+
+functions in callback
+	generate string from data
+	no formatting
+	no precision
+
+pass flags to base
+	ALLOW_CONDITIONAL
+
+pass flags to callback
+	callback-specific
 
