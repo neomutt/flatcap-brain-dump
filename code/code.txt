@@ -403,3 +403,10 @@ style guide
 		named X_t
 	single line for typedef'd flags
 
+code style: list 'reserved' variable names
+	loop: i, j, k
+	NAME: Mailbox m, Account a, Email e, etc
+	buf, buflen
+	ans
+	list off limits files: md5.c, queue.h
+
