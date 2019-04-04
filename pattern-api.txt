@@ -1,0 +1,47 @@
+Patterns API
+
+patterns only apply to EmailList or EmailView
+separate patterns by domain
+can't add new pattern without altering pattern.c
+#ifdef IMAP, NNTP, FMEMOPEN!
+are Context, Mailbox, Email needed by mutt_pattern_comp() YES
+	should only be needed by mutt_pattern_exec()
+ranges need encoding and matching separating
+	encode currently looks up *actual* messages
+	e.g. '$' -> Context->mailbox->msg_count
+
+external functions and their callers:
+	mutt_pattern_comp
+		add_pattern
+		mutt_parse_hook
+		mutt_parse_score
+	mutt_pattern_exec
+		addr_hook
+		get_color
+		mutt_message_hook
+		mutt_score_message
+		mutt_set_header_color
+		update_index_threaded
+		update_index_unthreaded
+	mutt_pattern_func
+		mutt_index_menu
+	mutt_search_command
+		mutt_index_menu
+
+Parser functions (called by mutt_pattern_comp()) and their dependencies
+	eat_date
+		mutt_extract_token()
+	eat_message_range
+		Context
+	eat_query
+		mutt_extract_token()
+	eat_range
+		none
+	eat_regex
+		mutt_extract_token()
+	
+Need:
+	issue to separate Context define vs Context use
+	split up mutt_extract_token() deps
+	lots of test cases
+

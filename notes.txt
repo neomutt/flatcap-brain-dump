@@ -1,3 +1,6 @@
+use GoF terminology
+	notifier/listener -> subject/observer
+
 user question:
 	is there a way to protect an email from the 'd' delete command?
 	$flag_safe
