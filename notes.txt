@@ -1,5 +1,6 @@
 user question:
 	is there a way to protect an email from the 'd' delete command?
+	$flag_safe
 
 set of fake variables $THIS or $THIS_EMAIL
 	representing the current email

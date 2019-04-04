@@ -26,13 +26,6 @@ does this mean sharing letters?  NO
 
 pass array of { string, function, data }
 
-struct option
-{
-  const char *option;      // "a" to represent `%a`, "algorithm" to represent `%{algorithm}`
-  opt_callback_t callback; // Callback function(struct option *opt)
-  intptr_t data;           // Private data for callback
-};
-
 Each caller can specify their own letters, but choose from standard callback
 functions, or supply their own.
 
@@ -57,4 +50,40 @@ pass flags to base
 
 pass flags to callback
 	callback-specific
+
+conditional -> numeric (== 0) or (!= 0)
+	but we're passed a string
+base parse letter, precision, conditional, callback for string -> buf
+if cond type, flag the callback function
+	recurse with 'if' or 'else'
+alloc buffer, allow cb to realloc if nec (big filename?)
+how is colour handled if cb doesn't manage precision?
+	[C-on]apple[C-off] -> [C-on]app[C-off] ?
+	or just truncate at text and END colour
+	need to truncate in text, not a magic (color, or tree, etc)
+can't pass opt struct to callback
+	need specific letter
+	in case many letters have the same callback function
+
+subject "tree" is an EV (view characteristic)
+	"tagged" too
+all fields and colours are limited to their column
+	except indicator, selection, highlight
+	index line regexes
+	where are they added?
+unless multi-coloured (e.g. tree+subject)
+	don't end colour in callback?
+	let base do it after truncation
+put common callbacks in their associated source
+	EV in email_view.c (or mutt_email.c)
+	Ctx in context.c
+
+base function, separate functions to
+	identify start of expando
+	parse conditional into
+		expando
+		if clause
+		else clause
+		next char
+	parse/apply precision
 

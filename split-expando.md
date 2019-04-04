@@ -56,21 +56,21 @@
 
 <details><summary>crypt_format_str</summary>
 
-- `%u` User id
-- `%n` Number
-- `%t` Trust/validity of the key-uid association
-- `%p` Protocol
-- `%[...]` Date of key using strftime(3)
-- `%k` Key id
 - `%a` Algorithm
-- `%l` Length
-- `%f` Flags
-- `%c` Capabilities
-- `%K` Key id of the principal key
 - `%A` Algorithm of the principal key
-- `%L` Length of the principal key
-- `%F` Flags of the principal key
+- `%c` Capabilities
 - `%C` Capabilities of the principal key
+- `%f` Flags
+- `%F` Flags of the principal key
+- `%k` Key id
+- `%K` Key id of the principal key
+- `%l` Length
+- `%L` Length of the principal key
+- `%n` Number
+- `%p` Protocol
+- `%t` Trust/validity of the key-uid association
+- `%u` User id
+- `%[...]` Date of key using strftime(3)
 </details>
 
 <details><summary>fmt_pgp_command</summary>
@@ -130,6 +130,7 @@
 
 <details><summary>index_format_str</summary>
 
+- `%(fmt)` Date/time when the message was received
 - `%a` Address of the author
 - `%A` Reply-to address (if present; otherwise: address of author)
 - `%b` Filename of the original message folder (think mailbox)
@@ -140,11 +141,11 @@
 - `%d` Date and time of message using `$date_format` and sender's timezone
 - `%e` Current message number in thread
 - `%E` Number of messages in current thread
-- `%F` Author name, or recipient name if the message is from you
 - `%Fp` Like %F, but plain. No contextual formatting is applied to recipient name
+- `%F` Author name, or recipient name if the message is from you
 - `%f` Sender (address + real name), either From: or Return-Path:
-- `%g` Message tags (e.g. notmuch tags/imap flags)
 - `%Gx` Individual message tag (e.g. notmuch tags/imap flags)
+- `%g` Message tags (e.g. notmuch tags/imap flags)
 - `%H` Spam attribute(s) of this message
 - `%I` Initials of author
 - `%i` Message-id of the current message
@@ -154,8 +155,8 @@
 - `%l` Number of lines in the message
 - `%M` Number of hidden messages if the thread is collapsed
 - `%m` Total number of message in the mailbox
-- `%N` Message score
 - `%n` Author's real name (or address if missing)
+- `%N` Message score
 - `%O` Like %L, except using address instead of name
 - `%P` Progress indicator for the built-in pager (how much of the file has been displayed)
 - `%q` Newsgroup name (if compiled with NNTP support)
@@ -163,20 +164,19 @@
 - `%r` Comma separated list of To: recipients
 - `%S` Single character status of the message (N/O/D/d/!/r/-)
 - `%s` Subject of the message
-- `%T` The appropriate character from the `$to_chars` string
 - `%t` 'To:' field (recipients)
+- `%T` The appropriate character from the `$to_chars` string
 - `%u` User (login) name of the author
 - `%v` First name of the author, or the recipient if the message is from you
 - `%W` Name of organization of author ('Organization:' field)
 - `%x` 'X-Comment-To:' field (if present and compiled with NNTP support)
 - `%X` Number of MIME attachments
-- `%Y` 'X-Label:' field (if present, tree unfolded, and != parent's x-label)
 - `%y` 'X-Label:' field (if present)
-- `%Z` Combined message flags
+- `%Y` 'X-Label:' field (if present, tree unfolded, and != parent's x-label)
 - `%zc` Message crypto flags
 - `%zs` Message status flags
 - `%zt` Message tag flags
-- `%(fmt)` Date/time when the message was received
+- `%Z` Combined message flags
 - `%[fmt]` Message date/time converted to the local time zone
 - `%{fmt}` Message date/time converted to sender's time zone
 </details>
@@ -228,23 +228,23 @@
 
 <details><summary>sidebar_format_str</summary>
 
+- `%!` 'n!' Flagged messages
 - `%B` Name of the mailbox
-- `%d` Number of deleted messages
 - `%D` Description of the mailbox
+- `%d` Number of deleted messages
 - `%F` Number of Flagged messages in the mailbox
 - `%L` Number of messages after limiting
 - `%n` N if mailbox has new mail, blank otherwise
 - `%N` Number of unread messages in the mailbox
 - `%S` Size of mailbox (total number of messages)
 - `%t` Number of tagged messages
-- `%!` 'n!' Flagged messages
 </details>
 
 <details><summary>status_format_str</summary>
 
 - `%b` Number of incoming folders with unread messages
-- `%d` Number of deleted messages
 - `%D` Description of the mailbox
+- `%d` Number of deleted messages
 - `%f` Full mailbox path
 - `%F` Number of flagged messages
 - `%h` Hostname
