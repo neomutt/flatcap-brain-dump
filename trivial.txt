@@ -154,9 +154,6 @@ comment all escape sequences
 	// Ctrl-F
 	{ "forget-passphrase",         OP_FORGET_PASSPHRASE,            "\006" },
 
-Tidy messages ending in .
-	ag '\.\\n"'
-
 these macros might want a '_' for clarity
 	ATTRSET BINDIR BLOCKSIZE CHUNKSIZE CURATTACH
 	DEVRANDOM DTYPE EMSG EXECSHELL
@@ -220,4 +217,8 @@ unused macros?
 	SHA_DIGEST_LENGTH
 	SMIME_BADSIGN
 	SMIME_GOODSIGN
+
+mutt_any_key_to_continue()
+	int f -> fd
+	check for all other open()s, etc
 

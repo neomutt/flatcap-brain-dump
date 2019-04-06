@@ -1,0 +1,30 @@
+Refactor all the code that asks the user a question:
+see menu-api.txt
+
+args have trailing space
+	mutt_enter_fname_full adds, either of
+		" ('?' for list): "
+		": "
+	mutt_enter_fname calls mutt_enter_fname_full
+	mutt_get_field_full prints prompt verbatim
+	mutt_get_field calls mutt_get_field_full
+		includes both "From: "
+		and ":" for :commands
+	mutt_pattern_func calls mutt_get_field
+		all end ": "
+	crypt_ask_for_key calls mutt_get_field
+		all ": "
+	pgp_ask_for_key calls mutt_get_field
+		all ": "
+	mutt_get_field_unbuffered calls mutt_get_field
+		all ": "
+	mutt_get_password calls  mutt_get_field_unbuffered
+		some ": "
+		some ":" !!!
+	edit_address calls mutt_get_field
+		all ": "
+
+Check for any leading/trailing space
+	(except for alignment)
+	Can it be eliminated?
+

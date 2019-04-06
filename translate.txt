@@ -1,30 +1,8 @@
-Translation improvements:
-
-Eliminate space at end of questions, e.g.  "why? "
-	fix code
-	edit all translations
-	~30 questions (check)
-
-Check all questions end in "?"
-	Western languages only
-
-Check multi-choice questions use "(a)"
-	exact format
-
-Check for use of questions ending ": "
-
-Check for any leading/trailing space
-	(except for alignment)
-	Can it be eliminated?
-
 Post-process PGP text
 	Remove "[-- " and " --]" from translations
+		needs double printf!
 	Update code to insert them
 	Accept multiline translations
-
---------------------------------------------------------------------------------
-
-news: fi, nl
 
 change deploy script to commit *AS* the translator
 
@@ -78,8 +56,6 @@ split up all multiline translated strings
 	especially the copyright messages
 	for easier translation and updating
 
-10m, clone, trans, PR (poeditor.com)
-
 change "L10N" comments to "TRANSLATORS:"
 	(as that's the default)
 
@@ -110,7 +86,6 @@ comments
 		thread = x
 	comments ∀ translators
 	mnemonic letters
-	formatting, e.g. "[-- TEXT --]"
 	functions calls, uname(1)
 	L10N dotfill
 		to/from/subject
@@ -143,65 +118,6 @@ guarantee translations, when?
 branch - pull, work, push
 	even if WIP
 	NO, that would break updates for all others
-
-dupes?
-	"Can't create %s"
-	"Can't create %s."
-
-	"Can't create %s: %s."
-	"Can't create file %s"
-
-	"Compressing %s"
-	"Compressing %s..."
-
-	"mismatched brackets: %s"
-	"mismatched parenthesis: %s"
-
-	"Connecting to %s..."
-	"Connecting with \"%s\"..."
-
-	%s is not a mailbox!
-	%s is not a mailbox.
-
-	%s: invalid value
-	%s: invalid value (%s)
-
-	%s: no such color
-	%s: no such function
-	%s: no such menu
-	%s: no such object
-
-	%s: unknown type
-	%s: Unknown type.
-
-	Article %d not found on the server.
-	Article %s not found on the server.
-
-	Authenticating (%s)...
-	Authenticating (anonymous)...
-	Authenticating (APOP)...
-	Authenticating (CRAM-MD5)...
-	Authenticating (GSSAPI)...
-	Authenticating (SASL)...
-
-	Can't create %s %s
-	Can't create %s: %s.
-
-	Command TOP is not supported by server.
-	Command UIDL is not supported by server.
-	Command USER is not supported by server.
-
-	Decryption failed
-	Decryption failed.
-
-	Integer overflow -- can't allocate memory!
-	Integer overflow -- can't allocate memory.
-
-	SASL authentication failed
-	SASL authentication failed.
-
-	Write message to mailbox
-	write the message to a folder
 
 tips to web
 	new section?
@@ -238,34 +154,10 @@ when updating/syncing
 	de-wrap
 	delete #~ (old)
 
-Not all parts have Content-Language: set, continue?
-Not all parts have 'Content-Language' set, continue?
-
-Grouping alternatives requires at least 2 tagged messages.
-Grouping 'alternatives' requires at least 2 tagged messages.
-
-Grouping multilingual requires at least 2 tagged messages.
-Grouping 'multilingual' requires at least 2 tagged messages.
-
-group tagged attachments as multipart/alternative
-group tagged attachments as 'multipart/alternative'
-
-group tagged attachments as multipart/multilingual
-group tagged attachments as 'multipart/multilingual'
-
-edit the Content-Language of the attachment
-edit the 'Content-Language' of the attachment
-
-Empty Content-Language
-Empty 'Content-Language'
-
-relative path "impossible" message, too
-
-trans style guide - can't vs cannot, etc
-trans formatting "[-- MSG --]\n\n" needs double printf!
+style guide - can't vs cannot, etc
 trans info from _("") cmdline (keep which lines?)
 trans: warning/error prefix?  what about RTL languages?
-trans rules, always pull before starting work
+rules, always pull before starting work
 msgattrib --only-fuzzy de.po
 msgattrib --untranslated de.po
 	how to merge the result?
@@ -275,94 +167,4 @@ trans scripts to management, inc msggrep for questions
 update all copyright translations
 
 [translate] PR - no webpush
-
-is it "grouping multilingual" or "multilingual grouping"?
-I believe "grouping alternatives requires" and "grouping multilingual requires" should use "require" (no 's') in the way it is
-Also, the field name 'Content-Language:' and 'Content-Language' need quotes to avoid mixing with the sentence themselves
-BTW, is it possible to also tag "untranslated" messages as it is done with the "fuzzy" ones? they are hard to find (at least i didn't come up with a easy way of finding them)
-Only "grouping alternatives requires" should drop the 's' in requires
-
-dupes?
-	"Can't create %s"
-	"Can't create %s."
-
-	"Can't create %s: %s."
-	"Can't create file %s"
-
-	"Compressing %s"
-	"Compressing %s..."
-
-	"mismatched brackets: %s"
-	"mismatched parenthesis: %s"
-
-	"Connecting to %s..."
-	"Connecting with \"%s\"..."
-
-	%s is not a mailbox!
-	%s is not a mailbox.
-
-	%s: invalid value
-	%s: invalid value (%s)
-
-	%s: no such color
-	%s: no such function
-	%s: no such menu
-	%s: no such object
-
-	%s: unknown type
-	%s: Unknown type.
-
-	Article %d not found on the server.
-	Article %s not found on the server.
-
-	Authenticating (%s)...
-	Authenticating (anonymous)...
-	Authenticating (APOP)...
-	Authenticating (CRAM-MD5)...
-	Authenticating (GSSAPI)...
-	Authenticating (SASL)...
-
-	Can't create %s %s
-	Can't create %s: %s.
-
-	Command TOP is not supported by server.
-	Command UIDL is not supported by server.
-	Command USER is not supported by server.
-
-	Decryption failed
-	Decryption failed.
-
-	Integer overflow -- can't allocate memory!
-	Integer overflow -- can't allocate memory.
-
-	SASL authentication failed
-	SASL authentication failed.
-
-	Write message to mailbox
-	write the message to a folder
-
--------------------------------------------------------------------------------- 
-
-Not all parts have Content-Language: set, continue?
-Not all parts have 'Content-Language' set, continue?
-
-Grouping alternatives requires at least 2 tagged messages.
-Grouping 'alternatives' requires at least 2 tagged messages.
-
-Grouping multilingual requires at least 2 tagged messages.
-Grouping 'multilingual' requires at least 2 tagged messages.
-
-group tagged attachments as multipart/alternative
-group tagged attachments as 'multipart/alternative'
-
-group tagged attachments as multipart/multilingual
-group tagged attachments as 'multipart/multilingual'
-
-edit the Content-Language of the attachment
-edit the 'Content-Language' of the attachment
-
-Empty Content-Language
-Empty 'Content-Language'
-
-relative path "impossible" message, too
 

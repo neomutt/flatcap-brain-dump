@@ -1,3 +1,8 @@
+<R2robot> w3m -dump -s -o display_link=yes -o display_link_number=yes -o decode_url=yes -T text/html
+<jindraj> elinks -dump -dump-charset utf-8 -dump-width ${COLUMNS:-80} %s
+
+version "ssl" missing ("gnutls" is there)
+
 use GoF terminology
 	notifier/listener -> subject/observer
 

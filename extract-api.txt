@@ -1,0 +1,23 @@
+Extract API
+	what?
+	how?
+	overlap with mutt_str_split()?
+
+string splitting
+	by various criteria
+pattern expansion
+	$config
+	$VARIABLE
+	`cmd`
+	and recurse?
+handles
+	escaping
+	'quoting'
+	"quoting"
+	`backticks`
+
+need
+	list of split char
+	quoting rules/tests
+	modularity
+
