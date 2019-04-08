@@ -1,3 +1,6 @@
+65 One-line messages that end \n
+	eliminate
+
 Post-process PGP text
 	Remove "[-- " and " --]" from translations
 		needs double printf!
@@ -143,8 +146,6 @@ Most translation messages that are questions (to prompt the user)
 
 frequently merge master INTO translate?
 	would encourage frequent "make update-po"!
-
-translate: eliminate "\n" from strings where possible?
 
 mention translation team on translate page
 

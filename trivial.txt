@@ -218,7 +218,10 @@ unused macros?
 	SMIME_BADSIGN
 	SMIME_GOODSIGN
 
-mutt_any_key_to_continue()
-	int f -> fd
-	check for all other open()s, etc
+check all functions with Flags parameters
+	check for 0 passed
+	replace with X_NO_FLAGS
+
+reduce local scope
+	eat_regex() - errmsg, r
 

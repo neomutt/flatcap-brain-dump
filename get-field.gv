@@ -23,16 +23,16 @@ digraph enter
 	];
 
 
-	mutt_enter_fname_full     [ label="mutt_enter_fname_full - ': '" ]
-	mutt_enter_fname          [ label="mutt_enter_fname" ]
-	mutt_get_field_full       [ label="mutt_get_field_full - ''" ]
-	mutt_get_field            [ label="mutt_get_field - ': ' or ':'" ]
-	mutt_pattern_func         [ label="mutt_pattern_func - ': '" ]
-	crypt_ask_for_key         [ label="crypt_ask_for_key - ': '" ]
-	pgp_ask_for_key           [ label="pgp_ask_for_key - ': '" ]
-	mutt_get_field_unbuffered [ label="mutt_get_field_unbuffered - ': '" ]
-	mutt_get_password         [ label="mutt_get_password - ': ' or ':'" ]
-	edit_address              [ label="edit_address - ': '" ]
+	mutt_enter_fname_full     [ label="mutt_enter_fname_full() - ': '" ]
+	mutt_enter_fname          [ label="mutt_enter_fname()" ]
+	mutt_get_field_full       [ label="mutt_get_field_full() - ''" ]
+	mutt_get_field            [ label="mutt_get_field() - ': ' or ':'" ]
+	mutt_pattern_func         [ label="mutt_pattern_func() - ': '" ]
+	crypt_ask_for_key         [ label="crypt_ask_for_key() - ': '" ]
+	pgp_ask_for_key           [ label="pgp_ask_for_key() - ': '" ]
+	mutt_get_field_unbuffered [ label="mutt_get_field_unbuffered() - ': '" ]
+	mutt_get_password         [ label="mutt_get_password() - ': ' or ':'" ]
+	edit_address              [ label="edit_address() - ': '" ]
 
 	crypt_ask_for_key         -> mutt_get_field
 	edit_address              -> mutt_get_field

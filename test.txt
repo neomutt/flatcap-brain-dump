@@ -1,0 +1,26 @@
+need EBNF/ABNF ∀ config, text entry
+config files: all commands (87)
+all entry fields
+all config (431)
+49 command functions
+config by type and subtype
+EBNF as a tree of validity
+	deviate => wrong & parse failure
+
+color object fg bg
+"color" fixed
+object: from a fixed list
+fg, bg: color-spec
+color-spec: "red", "color123", "#xxxxxx" (future)
+	"bright", etc
+mono attrs too: list
+
+tests ∀ valid input
+tests for invalid input in every position
+specify errors ∀ invalids tests?
+	maybe debug only
+E123 invalid color
+individual error msgs, but all linked to E123
+
+wrong: string not in list, number out of range, too few args, too many args, not a number
+
