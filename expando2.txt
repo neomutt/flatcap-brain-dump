@@ -91,3 +91,9 @@ custom type ∀ formats is OK
 	since they share most of the code
 	just data array is diff
 
+simplify init.h
+	default value NULL
+	set_initial on startup
+	set default value to tree/array
+	on shutdown free data
+

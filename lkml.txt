@@ -8,3 +8,30 @@ lkml assistant - autolink lore
 need way to store whether emails are read, flagged, tagged, etc
 	use notmuch for all this?
 need rules for mailinglist-reply, saving sent email, etc
+
+have cron job
+	pulling
+	notmuch new
+	populate hcache!
+have internal and external (to neomutt) versions
+	external version reads neomutt config?  expensive?
+
+index: deep option - read emails
+	count
+	work backwards
+	progress meter
+	trap ctrl-c
+	show date range processed so far
+
+reading repo
+	cold/warm fs cache
+	cat packfile 13/0s
+	git count 6/4s
+	git log 10/8s
+	1.1GB file
+	570K emails
+
+history is linear so
+	assign sequence numbers
+	factor out newsrc code
+

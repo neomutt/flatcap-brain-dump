@@ -1,3 +1,19 @@
+reorg struct Email
+	move View (UI) elements last
+
+how will non-curses UI detect mouse clicks etc?
+
+source dir.d (.d significant) -> find all children or just '*.rc'
+
+librify all the readdir() code
+	bcache, nntp, maildir, complete, browser, help
+	then replace with nftw()
+	options: recurse, regex match (or lambda), stat(), type file/dir, max-depth
+	trap ctrl-c
+	what are the callers' requirements?
+		list of names?  more?
+	callback function to call ∀ match
+
 feature: live filter index as you type, cf sidebar matcher
 
 <R2robot> w3m -dump -s -o display_link=yes -o display_link_number=yes -o decode_url=yes -T text/html

@@ -246,3 +246,8 @@ Either this is an *enum* or it's *flags*
 int retval check against 0 (or boolify function)
 	!crypt_valid_passphrase()
 
+sidebar.h unused
+	struct Context;
+
+check new upstream functions for library suitability
+
