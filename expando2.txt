@@ -1,0 +1,93 @@
+expando % given start code [end code]
+what needs to be in base?
+	padding? YES
+	pipe| ? NO can't be (filter)
+	`backticks`? NO can't be (filter)
+what's left?
+	quoting
+	escaping
+	delegating
+	conditionals (nested)
+
+parse loop
+'\' first , ignore next char
+not % -> litera
+% -> start
+	function to match precision
+	function to match letter against array
+two stage parse on config variable set
+	populates as needed
+
+parsing (simple)
+	%a (single)
+	%ab (double)
+	%{...} (limited range)
+
+parse returns
+	key letter(s)
+	key length
+	callback
+	precision
+	NOT the text
+	location of end of range
+		assume keylen == 1?
+what about (nested) conditionals?
+
+Parse
+	%?a?b&c?  or  %<a?b&c>
+parse_cond() returns tree of info
+	a -- b  (a marked conditional)
+	  \- c
+finds '?' or '<' -> conditional
+parse_letter(NO_PRECISION) -> a,1
+expect '?'
+find first non-escaped '?' -> true clause
+'?' find '&' -> false clause
+
+*when* is condition tested?
+	immediately -> parse_letter(cond) => true/false
+	delayed -> store letter & children for later
+true/false clauses passed recursively to expando
+
+can we recurse before finding end?  (and hope it works)  have to
+
+	%<a?%<p?q&r>&%<x?y&z>>
+
+'%' start
+'<' conditional
+letter(cond) => a,1
+'?' good
+expando(cond) recurse
+'%' start
+'<' conditional
+letter(conf) => p,1
+'?' good
+expando(cond) recurse
+'q' '&' END
+'&' good recurse
+'r' '>' END
+'&' good
+[repeat for x,y,z]
+'>' END
+
+back to top level with literals
+insert literals into example throughout
+result is tree of FormatInfo
+parent has root of tree + original string
+FormatInfo's point into original string
+	for literals: orig[off,len]
+
+%{a:cond} or %{cond:a}  %{else}  %{cond-end} or %{end}
+	plus nesting
+
+"index_format" has default value, but no validator
+we need letter array data for
+	1) validating
+	2) pre-processing into tree
+unless we define new type ∀ formats (or subtype)
+or default string is struct of info for parsing?
+
+custom type ∀ formats is OK
+	since they share most of the code
+	just data array is diff
+

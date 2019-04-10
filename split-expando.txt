@@ -9,9 +9,12 @@ The problem with `mutt_expando_format()` is that it **does too much**.
 47 alphabetic chars: AaBbCcDdEeFfgHhIiJKkLlMmNnOoPpQqRrSsTtuVvWXxYyZ
 1 non-alphabetic:    !
 5 multi-char:        Fp Gx zc zs zt
-4 bracketed:         (fmt) [...] [fmt] {fmt}
+4 bracketed:         (fmt) [fmt] {fmt}
+0 named:             {date} {author}
 
 separate function for each letter?
+
+how to validate format strings
 
 what about multi-letter combos?
 what about ${name} in the future?
@@ -23,6 +26,7 @@ pass params of (array, data)
 	-> callback(opt letter, data)
 does this mean sharing letters?  NO
 	(unifying them across callers?)
+sort array by longest match (named entities) first
 
 pass array of { string, function, data }
 
@@ -86,4 +90,28 @@ base function, separate functions to
 		else clause
 		next char
 	parse/apply precision
+
+format strings have a list of
+	[ callback_fn, data ]
+	use this to split up deps
+	GUI could have [ X, ctx ]
+	reducing deps of mutt_expando_format()
+
+revamp format string expandos (2018-10-12)
+	<darnir> But on a more serious note, how about printf style format strings, with modifiers?
+	<flatcap> they already accept %4.4s type modifiers, so it's a bit tricky to fit anything else in
+	<flatcap> the alternative is to steal back %{} and have %{name} -- it gets a bit verbose, but it's much clearer
+	<darnir> I like that
+	<darnir> It's a config file. I never mind things that are verbose in there
+	<flatcap> it might be possible to transition without causing trouble...
+	<flatcap> %{} is a date specifier, but if we check the contents for our magic words first
+	<darnir> With the verbose %{} ones. Yeah, that should be doable.
+	<darnir> I have a suggestion, but it depends on how willing you are to deprecate old syntax
+	<darnir> %{option-name:optional fmt string}
+	<darnir> And in a year or so, make the %{fmt} syntax disappear
+	<flatcap> so %{desc:.40} description limited to 40 chars
+	<flatcap> I like the self-contained-ness of it
+	<darnir> I like that as well
+
+how to (nested) conditionals work with %{named} format?
 

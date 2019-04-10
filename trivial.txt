@@ -218,10 +218,31 @@ unused macros?
 	SMIME_BADSIGN
 	SMIME_GOODSIGN
 
-check all functions with Flags parameters
-	check for 0 passed
-	replace with X_NO_FLAGS
+simplify handler.c
+	mutt_copy_hdr(s->fp_in, s->fp_out, off_start, b->parts->offset,
+		(((s->flags & MUTT_WEED) ||
+			((s->flags & (MUTT_DISPLAY | MUTT_PRINTING)) && C_Weed)) ?
+			(CH_WEED | CH_REORDER) :
+			CH_NO_FLAGS) |
+			(s->prefix ? CH_PREFIX : CH_NO_FLAGS) | CH_DECODE | CH_FROM |
+			((s->flags & MUTT_DISPLAY) ? CH_DISPLAY : CH_NO_FLAGS),
+		s->prefix);
 
-reduce local scope
-	eat_regex() - errmsg, r
+boolify
+	mutt_parse_crypt_hdr(set_empty_signas)
+
+docs say `%[...]` but others say `%[fmt]`
+	ncrypt/crypt_gpgme.c: * | \%[...] | Date of key using strftime(3)
+	ncrypt/pgpkey.c: * | \%[...] | Date of key using strftime(3)
+
+some bools in init.h default to 0/1
+	imap_condstore                   DT_BOOL    0
+	imap_qresync                     DT_BOOL    0
+	pgp_check_gpg_decrypt_status_fd  DT_BOOL    1
+
+Either this is an *enum* or it's *flags*
+	enum PatternExecFlag
+
+int retval check against 0 (or boolify function)
+	!crypt_valid_passphrase()
 

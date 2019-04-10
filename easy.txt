@@ -1,3 +1,5 @@
+sync neomutt.vim config commands etc
+
 summary :bind, :color, :account, :hooks
 	mutt --authors
 		list of all neomutt contributors
