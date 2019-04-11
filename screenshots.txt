@@ -1,0 +1,79 @@
+Screenshots of NeoMutt
+
+What to capture?
+	index
+	index + sidebar
+	pager
+	pager + sidebar
+	alias selection
+	index + threading
+	compose with attachments
+	help page
+	error message
+	new mail arrival
+	command entry
+	error message log
+	browser - file
+	browser - mailbox - subscribed
+	browser - mailbox - all
+	history search
+	index + labels
+	index_format * 3
+	using PGP
+	using SMIME
+	receiving PGP
+	receiving SMIME
+	notmuch + tags
+	colour schemes * n
+	nntp?
+	sidebar_format * 2
+	searching
+	limiting
+	pager index lines
+	chars
+		flag_chars
+		from_chars
+		status_chars
+		to_chars
+	translations * 3
+	index + utf-8
+	tagged emails
+	deleted emails
+	formats
+		alias_format
+		attach_format
+		compose_format
+		date_format
+		folder_format
+		forward_format
+		group_index_format
+		index_format
+		message_format
+		pager_format
+		pgp_entry_format
+		query_format
+		sidebar_format
+		status_format
+		vfolder_format
+	reply indented
+	progress bar
+	questions
+
+Notes:
+	Sample config ∀ screenshots
+	links to help
+	see also
+	workflow links
+	label areas of diagrams
+	instructions for translators
+	sample data
+	all in separate repo
+		screenshots repo
+		expose to website
+	sample few in code README.md
+	similarity: all examples
+		80x25
+		opaque background
+		no window decorations
+		svg
+
