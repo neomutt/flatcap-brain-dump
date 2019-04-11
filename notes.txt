@@ -1,3 +1,6 @@
+merge email generator scripts
+	move to sample-data/bin
+
 reorg struct Email
 	move View (UI) elements last
 

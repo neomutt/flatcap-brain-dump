@@ -65,15 +65,8 @@ index/pager
 	exit (function)
 	fallthrough? NO refactor to avoid
 
-init.c
-	getsid() is POSIX2001
-	no need for #ifdef?
-	exists in cygwin
-
 replace "for (int" -> size_t in libmutt
 	177 occurrences
-
-buffer_init() vs = { 0 }?
 
 change OPT_NO_CURSES to OPT_USE_CURSES
 	and reverse the logic
@@ -99,17 +92,6 @@ decrypt_part - Explain r_is_signed better
 are these identical? YES
 	static char crypt_flags(KeyFlags flags)
 	static char pgp_flags(KeyFlags flags)
-
-refactor to simplify copy.c:350
-        if (mutt_write_one_header(out, 0, headers[x], (flags & CH_PREFIX) ? prefix : 0,
-                                  mutt_window_wrap_cols(MuttIndexWindow, Wrap), flags) == -1)
-	adray: This is unrelated to the naming, but this `if` statement should
-	be modified to be more read able. Moving `(flags & CH_PREFIX) ? prefix
-	: 0` and `mutt_window_wrap_cols(...)` out will make it significantly
-	easier to understand.
-
-variables, urgh! sendlib.c
-	mutt_lookup_mime_type() int szf, sze, cur_sze;
 
 name clashes with IMAP_CMD *flags*
 turn into an enum
@@ -150,19 +132,6 @@ keymap.c
 	check uncrustify behaviour
 	int i = C_Timeout > 0 ? C_Timeout : 60;
 
-comment all escape sequences
-	// Ctrl-F
-	{ "forget-passphrase",         OP_FORGET_PASSPHRASE,            "\006" },
-
-these macros might want a '_' for clarity
-	ATTRSET BINDIR BLOCKSIZE CHUNKSIZE CURATTACH
-	DEVRANDOM DTYPE EMSG EXECSHELL
-	HCACHEVER HSPACE INITVAL ISHEADER ISSPACE
-	MAILPATH MAXERRS MAXMIXES MUTTLOCALEDIR
-	NONULL NUMCOMMANDS NUMVARS PKGDATADIR PKGDOCDIR
-	REGCOMP SEQLEN SETCOLOR SKIPWS SOMEPRIME SORTCODE
-	SYSCONFDIR TXTENRICHED TXTHTML TXTPLAIN
-
 make sure all HEAD definitions are after the struct definitions:
 	SLIST_HEAD(PatternHead, Pattern);
 
@@ -171,23 +140,6 @@ config system
 	it doesn't
 
 archive and close old PRs
-
-update README.md contributors
-
-buffer use alloc
-	config/cfgaccount.c:106:3:  err.data = mutt_mem_calloc(1, err.dsize);
-	config/set.c:269:3:         err.data = calloc(1,          err.dsize);
-	config/set.c:302:3:         err.data = calloc(1,          err.dsize);
-	hook.c:386:3:               err.data = mutt_mem_malloc(   err.dsize);
-	hook.c:451:3:               err.data = mutt_mem_malloc(   err.dsize);
-	hook.c:635:3:               err.data = mutt_mem_malloc(   err.dsize);
-	init.c:2621:3:              err.data = mutt_mem_malloc(   err.dsize);
-	init.c:288:3:               err.data = mutt_mem_malloc(   err.dsize);
-	init.c:3006:3:              err.data = mutt_mem_malloc(   err.dsize);
-	mutt_lua.c:305:3:           err.data = mutt_mem_malloc(   err.dsize);
-	mutt_lua.c:94:3:            err.data = mutt_mem_malloc(   err.dsize);
-	pattern.c:2375:3:           err.data = mutt_mem_malloc(   err.dsize);
-	pattern.c:2528:7:           err.data = mutt_mem_malloc(   err.dsize);
 
 refactor
 	#ifdef USE_INOTIFY
@@ -228,26 +180,49 @@ simplify handler.c
 			((s->flags & MUTT_DISPLAY) ? CH_DISPLAY : CH_NO_FLAGS),
 		s->prefix);
 
-boolify
-	mutt_parse_crypt_hdr(set_empty_signas)
+buffer_init() vs = { 0 }?
 
-docs say `%[...]` but others say `%[fmt]`
-	ncrypt/crypt_gpgme.c: * | \%[...] | Date of key using strftime(3)
-	ncrypt/pgpkey.c: * | \%[...] | Date of key using strftime(3)
+buffer use alloc
+	config/cfgaccount.c:106:3:  err.data = mutt_mem_calloc(1, err.dsize);
+	config/set.c:269:3:         err.data = calloc(1,          err.dsize);
+	config/set.c:302:3:         err.data = calloc(1,          err.dsize);
+	hook.c:386:3:               err.data = mutt_mem_malloc(   err.dsize);
+	hook.c:451:3:               err.data = mutt_mem_malloc(   err.dsize);
+	hook.c:635:3:               err.data = mutt_mem_malloc(   err.dsize);
+	init.c:2621:3:              err.data = mutt_mem_malloc(   err.dsize);
+	init.c:288:3:               err.data = mutt_mem_malloc(   err.dsize);
+	init.c:3006:3:              err.data = mutt_mem_malloc(   err.dsize);
+	mutt_lua.c:305:3:           err.data = mutt_mem_malloc(   err.dsize);
+	mutt_lua.c:94:3:            err.data = mutt_mem_malloc(   err.dsize);
+	pattern.c:2375:3:           err.data = mutt_mem_malloc(   err.dsize);
+	pattern.c:2528:7:           err.data = mutt_mem_malloc(   err.dsize);
 
-some bools in init.h default to 0/1
-	imap_condstore                   DT_BOOL    0
-	imap_qresync                     DT_BOOL    0
-	pgp_check_gpg_decrypt_status_fd  DT_BOOL    1
+init.c
+	getsid() is POSIX2001
+	no need for #ifdef?
+	exists in cygwin
 
-Either this is an *enum* or it's *flags*
-	enum PatternExecFlag
+refactor to simplify copy.c:350
+        if (mutt_write_one_header(out, 0, headers[x], (flags & CH_PREFIX) ? prefix : 0,
+                                  mutt_window_wrap_cols(MuttIndexWindow, Wrap), flags) == -1)
+	adray: This is unrelated to the naming, but this `if` statement should
+	be modified to be more read able. Moving `(flags & CH_PREFIX) ? prefix
+	: 0` and `mutt_window_wrap_cols(...)` out will make it significantly
+	easier to understand.
 
-int retval check against 0 (or boolify function)
-	!crypt_valid_passphrase()
+variables, urgh! sendlib.c
+	mutt_lookup_mime_type() int szf, sze, cur_sze;
 
-sidebar.h unused
-	struct Context;
+these macros might want a '_' for clarity
+	ATTRSET BINDIR BLOCKSIZE CHUNKSIZE CURATTACH
+	DEVRANDOM DTYPE EMSG EXECSHELL
+	HCACHEVER HSPACE INITVAL ISHEADER ISSPACE
+	MAILPATH MAXERRS MAXMIXES MUTTLOCALEDIR
+	NONULL NUMCOMMANDS NUMVARS PKGDATADIR PKGDOCDIR
+	REGCOMP SEQLEN SETCOLOR SKIPWS SOMEPRIME SORTCODE
+	SYSCONFDIR TXTENRICHED TXTHTML TXTPLAIN
 
-check new upstream functions for library suitability
+comment all escape sequences
+	// Ctrl-F
+	{ "forget-passphrase",         OP_FORGET_PASSPHRASE,            "\006" },
 
