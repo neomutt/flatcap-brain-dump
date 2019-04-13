@@ -17,6 +17,17 @@
 - `%n` Index number
 - `%r` Address which alias expands to
 - `%t` Character which indicates if the alias is tagged for inclusion
+---
+- `%>X` Right justify the rest of the string and pad with character `X`
+- `%|X` Pad to the end of the line with character `X`
+- `%*X` Soft-fill with character `X` as pad 
+---
+- `$config` Expand NeoMutt config
+- `$ENV` Expand an environment variable
+- `pipe.sh|` Expand and run command
+- `\x` Whitespace characters, carriage-return, line feed, etc
+- ``` `backticks` ``` Execute command
+
 </details>
 
 <details><summary>attach_format_str</summary>
@@ -70,7 +81,7 @@
 - `%p` Protocol
 - `%t` Trust/validity of the key-uid association
 - `%u` User id
-- `%[...]` Date of key using strftime(3)
+- `%[fmt]` Date of key using strftime(3)
 </details>
 
 <details><summary>fmt_pgp_command</summary>
@@ -214,7 +225,7 @@
 - `%n` Number
 - `%t` Trust/validity of the key-uid association
 - `%u` User id
-- `%[...]` Date of key using strftime(3)
+- `%[fmt]` Date of key using strftime(3)
 </details>
 
 <details><summary>query_format_str</summary>

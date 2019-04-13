@@ -32,9 +32,6 @@ use enum MailboxType
 	what about smtp?
 	add entry?
 
-mutt_set_flag - last param is bool
-	tricky, intersects with other functions
-
 split up multiple assignments
 	grep " = [^,;]* = "
 	grep " = [^,;]* [!=]= "
@@ -44,9 +41,7 @@ conditional constants - reduce to a comment
 	MENU_KEY_SELECT_PGP
 	MENU_MIX
 	MT_COLOR_DIVIDER
-	MUTT_NEWSGROUPS
-	MUTT_NEW_SSL_SOCKET
-	MUTT_NM_QUERY
+	MUTT_PAT_NEWSGROUPS
 	MUTT_OPEN_HOOK
 	REDRAW_SIDEBAR
 
@@ -54,7 +49,7 @@ body_copy() : move foreach param -> param_dup()
 
 check all src against vim folding
 
-index/pager
+pager
 	replace CHECK_* macros with function
 	bool pre_requisite(flag|flag, quiet);
 	if (!pre_requisite())
@@ -67,11 +62,6 @@ index/pager
 
 replace "for (int" -> size_t in libmutt
 	177 occurrences
-
-change OPT_NO_CURSES to OPT_USE_CURSES
-	and reverse the logic
-	uses: 14 OPT_USE_CURSES, 33 !OPT_USE_CURSES
-	this means defaulting a global bool to true
 
 browser.c has a lot of
 	struct Email *tmp;
@@ -115,25 +105,9 @@ convert to enum?
 	struct ConnAccount.type
 		unsigned char type;     ///< Connection type, e.g. #MUTT_ACCT_TYPE_IMAP
 
-unnec checks
-	   if (fp_out)
-	     mutt_file_fclose(&fp_out);
-
-misleading pre-increments
-does this ++col get executed if first part of && is false?  NO!
-	sendlib.c:1845:37:    if (!(chflags & CH_DISPLAY) && (++col >= 998))
-	mutt/file.c:1097:45:    if ((prev_sb.st_size == sb.st_size) && (++count >= (timeout ? MAX_LOCK_ATTEMPTS : 0)))
-	mutt/file.c:1165:45:    if ((prev_sb.st_size == sb.st_size) && (++count >= (timeout ? MAX_LOCK_ATTEMPTS : 0)))
-	pager.c:2088:46:      if (!rd->line_info[i].continuation && (++j == rd->lines))
-
-keymap.c
-	no () around ternary condition
+no () around ternary condition
 	check for others
 	check uncrustify behaviour
-	int i = C_Timeout > 0 ? C_Timeout : 60;
-
-make sure all HEAD definitions are after the struct definitions:
-	SLIST_HEAD(PatternHead, Pattern);
 
 config system
 	can it return warnings?
@@ -156,73 +130,18 @@ to
 	            goto gotkey;
 	#else
 
-unused macros?
-	BLOCKSIZE
-	IMAP_CACHE_LEN
-	KEYFLAG_SECRET
-	MUTT_ACCT__NO_FLAGS
-	PGP_GOODSIGN
-	RANGE_ABS_SLOT_RX
-	RANGE_NUM_RX
-	RANGE_REL_SLOT_RX
-	SEC_KEYBLOCK
-	SHA_DIGEST_LENGTH
-	SMIME_BADSIGN
-	SMIME_GOODSIGN
-
-simplify handler.c
-	mutt_copy_hdr(s->fp_in, s->fp_out, off_start, b->parts->offset,
-		(((s->flags & MUTT_WEED) ||
-			((s->flags & (MUTT_DISPLAY | MUTT_PRINTING)) && C_Weed)) ?
-			(CH_WEED | CH_REORDER) :
-			CH_NO_FLAGS) |
-			(s->prefix ? CH_PREFIX : CH_NO_FLAGS) | CH_DECODE | CH_FROM |
-			((s->flags & MUTT_DISPLAY) ? CH_DISPLAY : CH_NO_FLAGS),
-		s->prefix);
-
 buffer_init() vs = { 0 }?
-
-buffer use alloc
-	config/cfgaccount.c:106:3:  err.data = mutt_mem_calloc(1, err.dsize);
-	config/set.c:269:3:         err.data = calloc(1,          err.dsize);
-	config/set.c:302:3:         err.data = calloc(1,          err.dsize);
-	hook.c:386:3:               err.data = mutt_mem_malloc(   err.dsize);
-	hook.c:451:3:               err.data = mutt_mem_malloc(   err.dsize);
-	hook.c:635:3:               err.data = mutt_mem_malloc(   err.dsize);
-	init.c:2621:3:              err.data = mutt_mem_malloc(   err.dsize);
-	init.c:288:3:               err.data = mutt_mem_malloc(   err.dsize);
-	init.c:3006:3:              err.data = mutt_mem_malloc(   err.dsize);
-	mutt_lua.c:305:3:           err.data = mutt_mem_malloc(   err.dsize);
-	mutt_lua.c:94:3:            err.data = mutt_mem_malloc(   err.dsize);
-	pattern.c:2375:3:           err.data = mutt_mem_malloc(   err.dsize);
-	pattern.c:2528:7:           err.data = mutt_mem_malloc(   err.dsize);
 
 init.c
 	getsid() is POSIX2001
 	no need for #ifdef?
 	exists in cygwin
 
-refactor to simplify copy.c:350
-        if (mutt_write_one_header(out, 0, headers[x], (flags & CH_PREFIX) ? prefix : 0,
-                                  mutt_window_wrap_cols(MuttIndexWindow, Wrap), flags) == -1)
-	adray: This is unrelated to the naming, but this `if` statement should
-	be modified to be more read able. Moving `(flags & CH_PREFIX) ? prefix
-	: 0` and `mutt_window_wrap_cols(...)` out will make it significantly
-	easier to understand.
-
 variables, urgh! sendlib.c
 	mutt_lookup_mime_type() int szf, sze, cur_sze;
 
-these macros might want a '_' for clarity
-	ATTRSET BINDIR BLOCKSIZE CHUNKSIZE CURATTACH
-	DEVRANDOM DTYPE EMSG EXECSHELL
-	HCACHEVER HSPACE INITVAL ISHEADER ISSPACE
-	MAILPATH MAXERRS MAXMIXES MUTTLOCALEDIR
-	NONULL NUMCOMMANDS NUMVARS PKGDATADIR PKGDOCDIR
-	REGCOMP SEQLEN SETCOLOR SKIPWS SOMEPRIME SORTCODE
-	SYSCONFDIR TXTENRICHED TXTHTML TXTPLAIN
 
-comment all escape sequences
-	// Ctrl-F
-	{ "forget-passphrase",         OP_FORGET_PASSPHRASE,            "\006" },
+Shane Donohoe
+	sharktamer -> shanedabes
+	mailmaps
 

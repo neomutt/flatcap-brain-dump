@@ -115,3 +115,22 @@ revamp format string expandos (2018-10-12)
 
 how to (nested) conditionals work with %{named} format?
 
+which expandos allow $config $ENV pipe| expansion?
+	delegate these too
+
+pipe| and `back` callbacks cat get/copy/modify the global environment
+
+Docs:
+	Any format string ending in a vertical bar (“|”) will be expanded and
+	piped through the first word in the string, using spaces as separator.
+	The string returned will be used for display. If the returned string
+	ends in %, it will be passed through the formatter a second time. This
+	allows the filter to generate a replacement format string including %
+	expandos. 
+
+What expansion goes on before
+	`pipe.sh|` Expand and run command
+	``` `backticks` ``` Execute command
+any differences?
+does returning '%' at the end work for both?
+
