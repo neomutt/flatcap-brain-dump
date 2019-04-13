@@ -97,3 +97,7 @@ simplify init.h
 	set default value to tree/array
 	on shutdown free data
 
+expando callback may fail, e.g. $conf vs $ENV
+conf fails, no action
+env fails (returns success) but empty
+

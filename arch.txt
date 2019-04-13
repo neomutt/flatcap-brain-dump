@@ -1,0 +1,80 @@
+libwindow?
+	wrap curses/slang/window
+libui?
+	colours attrs?
+	what's used in curses/slang?
+keyboard?
+mouse?
+some R/O event
+	WINCH, paint
+others actionable
+	keypress returns [USED|NOT]
+keys need to be global (&mouse)
+
+Windows, WM (managers), Keys, Colours, Functions, Events (R/O, OP)
+
+		NeoMutt
+		   |
+		  / \
+	SB-WM <- SB Index* -> IndexWM
+
+		MAIN LOOP (* focus)
+
+NeoMutt
+	Keys -> WM
+	Colours -> Object
+	Config
+	Commands
+
+ConfigSet []types, Hash(Elem)->data == ConfigDef
+	hash by name
+ConfigDef: { "name", type, init, value, validator }
+	backed by native globals
+ConfigType: { "name", get, set, reset, destroy }
+
+	User str_{get,set}() <--> HashTable <--> native_{get,set}() Code
+
+HT set -> notification
+Inheritance: fake ConfigDef { "name", HE parent, Account, value }
+(missing: myvars, private ENV)
+	scope to my:, env: ?
+	env needs to be a vector (for exec())
+N -> A -> M -> E setup by config & mx layer -> events
+merge config events into N
+
+Colours, functions - WM specific (but globally stored)
+keys global (&mouse)
+Index, SB, pager, etc init() -> reg_color(X), reg_func(Y)
+colours,functions -> HashTable/Vector (binary search) for quick lookup
+
+N->colours { union }
+	curses pair ("red", "default", etc)
+	colorNNN, colorNNN
+	#RRGGBB, #RRGGBB
+	attrs (underline, bold, etc)
+	flags to show which are 'NONE' or 'default'
+
+N->functions { "name", "desc", opcode, owner WM }
+how are functions called?
+	:exec X
+	keypress -> X from loop
+how do we work out the data to pass to them?  NAME?  fn "reply"
+what about exec sidebar_next?
+	function is *owned* by index, sb, etc
+*owner* knows what to do with it
+
+N->commands { "name", function, flags }
+	all happen at global level
+
+what happens to color and bind commands?
+color: lookup on N, additive unless uncolor
+	allow setting multiple types
+	{color pair|colorNNN} & rgb triple
+	independent of all attrs
+
+need :color summary - hash walk, then sort and display
+
+bind/macro: lookup fn on N, check for existing binding
+	needs to be a vector so we can check of 'a' vs 'ab'
+	for clashes, etc
+
