@@ -1,16 +1,39 @@
-Separate Address from libemail
+Address
 
-- This will require a lot of investigation
-- This may not currently be possible, due to dependency problems
+where from?
+loose from alias.rc
+straight list Envelope
+Branched alias.rc + groups
+Tags -> multiple groupings
 
-The alias code needs to be able to work with addresses.
-The address code is currently in libemail.
+external list with children
+how to display each type?
 
-Can we separate the address code, by moving:
-- `address.c`
-- `group.c`
-- `rfc2047.c`
-- `idna.c`
+loose -> list/menu
+grouped -> tree
+tagged -> sidebar
 
-libaddress would be responsible for parsing, storing and serving up addresses.
+what are parent-of-group, tag set objects?
+	empty addreses?
+
+for tag sidebar need:
+	All Addresses
+	All Tagged
+	Untagged
+	Tag1
+	Tag2
+	...
+
+Tags apply to all children
+	e.g. grouped addrs
+
+menu selection: how to tag in multiple groups
+pager contains:
+	extra info
+or
+	current selection (cumulative)
+
+sending code shouldn't know about tags/tree structure
+addr_lookup(name) -> linearised lst - only if name is unique
+OR -> menu of addresses, limited to (name) -- allow unlimiting
 

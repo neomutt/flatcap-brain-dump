@@ -140,8 +140,5 @@ init.c
 variables, urgh! sendlib.c
 	mutt_lookup_mime_type() int szf, sze, cur_sze;
 
-
-Shane Donohoe
-	sharktamer -> shanedabes
-	mailmaps
-
+void mutt_str_append_item(char **str, const char *item, int sep)
+	change sep to char
