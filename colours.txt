@@ -181,3 +181,30 @@ index-color
 
 'uncolor status' doesn't work
 
+:color
+	list configured colours
+	XXX (in colour/attr) name-of-object [pattern]
+:color all
+	list ALL colours include unsed
+	exluding patterns
+:color -v
+	list colours as config?
+	mixed with XXX... NO
+		hard to cut'n'paste
+
+screen: SET_COLOR
+file: magic sequence
+
+config: "red", "color123", "#RRGGBB", attrs
+	need option to decide which to use
+	means one theme file can contain both old and new colours
+
+magic file sequence => max of 256 different colours in use at once
+magic could interfere with UTF-8 sequences.  NO
+	all low nums (<32) should be fine
+keep array of used colours, limit to 256
+
+lolcat      https://github.com/neomutt/neomutt-old
+test-ansi   https://github.com/neomutt/test-ansi
+test-render https://github.com/neomutt/test-render
+

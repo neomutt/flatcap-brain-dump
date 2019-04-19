@@ -142,3 +142,6 @@ variables, urgh! sendlib.c
 
 void mutt_str_append_item(char **str, const char *item, int sep)
 	change sep to char
+
+boolify retval
+	int mutt_path_to_absolute(char *path, const char *reference)
