@@ -189,3 +189,8 @@ Each window has a render function
 	fn takes focus-object
 	=> need common base for all objects
 
+Does each window need its own
+	(internal) cursor?
+	remember the last used colour?
+		to reset after movement
+	

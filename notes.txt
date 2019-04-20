@@ -1,3 +1,47 @@
+rerun uncrustify on new code for ()s
+
+move Buffer functions to separate file?
+	file.c
+	file-buf.c
+	separate out deps
+
+unknown keys elicit error
+	how about after 'bind noop'?
+
+could Buffer.data become const
+	-> mutt_b2s -> (const char *) cast
+
+Change all our code from Buffer *alloc* -> pool
+
+lgtm warnings on
+	ctime -> ctime_r NO (obsolete) use strftime
+	utime -> utimensat
+	atoi,atol,atoll -> strtol, strtoll
+	rewind -> fseed
+	gettimeofday -> clock_gettime
+
+add lcov to [release]
+
+split Buffer and BufferPool src?
+	split Addr and AddrList, etc?
+
+tests: comment list other sibling functions that are dependencies?
+
+coverage -> web
+	easy tasks for test -> 100% fn/code cov
+	NO coveralls instead
+	shield for each lib: mutt, config, email, addr
+
+MoreArgs() 74 uses -> function?
+
+README
+	dev section
+	screenshots linked from contrib
+library: eliminate void functions
+	for easier testing
+
+update libemail.gv in gfx repo
+
 merge email generator scripts
 	move to sample-data/bin
 

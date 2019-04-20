@@ -17,3 +17,6 @@ bot command
 		privately messages botty
 	botty replies in-channel
 
+lookup full github issue/PR paths too
+	just give description
+
