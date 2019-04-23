@@ -189,3 +189,15 @@ git neo
 	mkdir .git/files
 	copy hooks too
 
+git build
+	create separate numbered dirs, with commit hash
+	build-01-xxxxxx
+
+git ignore
+	.build
+	build*
+
+fix build2 for mutt
+
+fix bash-completion for 'm'
+	.build/Makefile

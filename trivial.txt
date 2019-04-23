@@ -139,3 +139,16 @@ init.c
 
 variables, urgh! sendlib.c
 	mutt_lookup_mime_type() int szf, sze, cur_sze;
+
+mutt_parse_hook()
+  	local var `ptr`
+
+flags typedef
+	/* flag to mutt_pattern_comp() */
+	#define MUTT_FULL_MSG           (1<<0)  ///< enable body and header matching
+	#define MUTT_PATTERN_DYNAMIC    (1<<1)  ///< enable runtime date range evaluation
+
+boolify local
+	rfc1524_expand_filename()
+	int ps;
+

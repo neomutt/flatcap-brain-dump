@@ -37,3 +37,20 @@ sending code shouldn't know about tags/tree structure
 addr_lookup(name) -> linearised lst - only if name is unique
 OR -> menu of addresses, limited to (name) -- allow unlimiting
 
+sensitive repo for lkml metadata
+1) one address per line, raw
+2) all raw header address lines
+3) all headers (plus a 1 line body)
+	need to exclude signing/MIME headers
+4) deploy key for travis testing
+5) sample addresses with/missing extras
+	"comment"
+	(comment)
+	etc
+6) sample addresses with all encodings
+7) degenerate addresses
+	too long
+	etc
+8) error codes for all failures
+9) sample IDN addresses
+

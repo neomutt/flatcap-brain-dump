@@ -1,3 +1,7 @@
+docs:
+	document side-effect of '\' at end of config line
+	leading whitespace on continuation line is part of the text
+
 rerun uncrustify on new code for ()s
 
 move Buffer functions to separate file?
