@@ -1,6 +1,33 @@
-docs:
-	document side-effect of '\' at end of config line
-	leading whitespace on continuation line is part of the text
+easy? while -> FOREACH_SAFE
+	mutt_pattern_free()
+
+docs missing spaces
+	you could use lists^neomutt-users@neomutt\\.org$ or
+	subscribe^neomutt-users@neomutt\\.org$ to match only mail from the
+	actual list. 
+
+syntax highlighting
+	group is highligted in 'lists' but not 'subscribe'
+	lists     -group mutt    mutt-users@mutt.org
+	subscribe -group neomutt neomutt-devel@neomutt.org
+
+docs
+	Table 4.3. GNU regular expression extensions
+	too many backslashes!
+
+if debuglevel > X, dump all the config after all files are processed
+	a complete config dump
+	config variables
+		(or possibly just the changed config)
+		unless the level is very high
+	colours
+	aliases
+	etc
+
+what are the dependencies of all the init.c parse functions?
+	mutt_extract_token()
+	what else?
+	can they be isolated, so we can test config parsing?
 
 rerun uncrustify on new code for ()s
 
@@ -8,6 +35,7 @@ move Buffer functions to separate file?
 	file.c
 	file-buf.c
 	separate out deps
+	sketch diagram to check if it's worth it
 
 unknown keys elicit error
 	how about after 'bind noop'?
@@ -44,8 +72,6 @@ README
 library: eliminate void functions
 	for easier testing
 
-update libemail.gv in gfx repo
-
 merge email generator scripts
 	move to sample-data/bin
 
@@ -56,7 +82,7 @@ how will non-curses UI detect mouse clicks etc?
 
 source dir.d (.d significant) -> find all children or just '*.rc'
 
-librify all the readdir() code
+librarify all the readdir() code
 	bcache, nntp, maildir, complete, browser, help
 	then replace with nftw()
 	options: recurse, regex match (or lambda), stat(), type file/dir, max-depth

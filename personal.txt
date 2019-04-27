@@ -201,3 +201,6 @@ fix build2 for mutt
 
 fix bash-completion for 'm'
 	.build/Makefile
+
+fix neom alias ∀ maintainers/reviewers
+

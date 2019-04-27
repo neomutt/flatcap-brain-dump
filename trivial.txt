@@ -148,7 +148,9 @@ flags typedef
 	#define MUTT_FULL_MSG           (1<<0)  ///< enable body and header matching
 	#define MUTT_PATTERN_DYNAMIC    (1<<1)  ///< enable runtime date range evaluation
 
-boolify local
-	rfc1524_expand_filename()
-	int ps;
+change param from ctx to gl?
+	static int parse_grouplist(struct GroupList *ctx, struct Buffer *buf,
+
+boolify
+	mutt_change_flag(bf)
 
