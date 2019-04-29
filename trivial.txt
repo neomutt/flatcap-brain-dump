@@ -154,3 +154,14 @@ change param from ctx to gl?
 boolify
 	mutt_change_flag(bf)
 
+mutt_file_read_line - Read a line from a file
+	desc doesn't match variable names
+
+void mutt_file_sanitize_filename(char *fp, bool slash);
+	parameter name can't be fp if not a FILE*
+	
+rename buffer to buf
+	void mutt_md5_process_bytes(const void *buffer, size_t len, struct Md5Ctx *md5ctx)
+
+.clang-format add "address/lib.h"
+

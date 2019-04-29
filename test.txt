@@ -24,3 +24,5 @@ individual error msgs, but all linked to E123
 
 wrong: string not in list, number out of range, too few args, too many args, not a number
 
+change void fn() -> retval -> easier testing
+eliminate void fn(void) globals -> act on something -> testable

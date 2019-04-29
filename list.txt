@@ -1,0 +1,21 @@
+22104 List-Unsubscribe
+19836 List-Post
+17306 List-Id
+15518 List-Archive
+ 2400 List-Subscribe
+ 2399 List-Help
+    8 List-Unsubscribe-Post
+    2 List-Owner 
+
+11939 List-Post: <mailto:reply+XXXXXX@reply.github.com>
+ 3092 List-Post: <mailto:mutt-dev@mutt.org>
+ 2393 List-Post: <mailto:mutt-users@mutt.org>
+  686 List-Post: <mailto:noreply@github.com>
+  662 List-Post: <mailto:neomutt-devel@neomutt.org>
+  535 List-Post: <mailto:neomutt-users@neomutt.org>
+   24 List-Post: <mailto:mutt-announce@mutt.org>
+    4 List-Post: <mailto:neomutt-list@guckes.net>
+    2 List-Post: <mailto:mutt-users@lists.mutt.org>
+    1 List-Post: <mailto:mutt-users@osuosl.org>
+    1 List-Post: <mailto:tz@iana.org>
+

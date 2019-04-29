@@ -54,3 +54,73 @@ sensitive repo for lkml metadata
 8) error codes for all failures
 9) sample IDN addresses
 
+---
+
+Addr given raw text
+	who parses the commas?
+	ideally the outside
+raw text untouched
+parse to name, email, comment
+get_display()
+checked for IDN
+get_canon() (xn-- if nec)
+display is utf8
+canon is ascii
+populate as needed?
+ref-counting
+lists outside of object
+group is list of Addr
+Groups: list,hash,vector
+	not going to be many
+Addr could be in many groups (labels)
+can groups contain groups?
+	tree of Addrs?
+	doesn't seem possible with current config
+in use: lots of email will have multiple raw addresses
+	that all have the same canon email
+	do we link them?
+
+patterns - need to test group membership
+	=> reverse lookup
+	linking email "Rich <r@f.o>" -> 'Richard "flatcap" Russon <r@f.o>"
+	if it exists only need raw and ptr to master
+	if not need full Addr
+raw,display,canone
+is canon encoded?  NO
+	different encodings exists -> hard to search
+
+Grouping: sidebar group -> AddrList easy
+flat list -> groups column HOW?
+	Many-to-many table
+fake group "all" for "known" addresses
+index classification
+Email: known, in (regex) group, is self(user), unknown
+
+Conditionals for testing group membership
+colours based on group membership
+searching means lots of lookups based on email
+	OR it's already done when populating the index
+
+limit group apple, checks Email -> master -> group
+	NO many-to-many
+how is limited index affected when groups change?
+Addr notifications?
+display name overridden by alias name for selected groups?
+Does all this belong in libaddr?
+	Probably not
+	just the raw, split, canon
+	lists and groups too?
+
+create alias must affect is-in-group checks ∀ addrs, HOW?
+libaddr (used by config) needs to shrink (rest goes to libcontacts)
+
+libconfig will work with get_display() versions of Addr
+	dump() too
+need subflags ∀ address expandos To, From, Cc, Bcc to determine
+	which gets displayed
+	$config too: display|punycode|alias|group|initials
+colours
+	by block (it's a date)
+	by display choice
+	by regex
+

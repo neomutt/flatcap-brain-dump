@@ -1,19 +1,21 @@
+Does N want a User object
+	personal info
+	alternate addresses etc
+:user - display all "self" info from N->user
+	inc pwinfo & all addrs
+:accounts => display all A & all subscribed mailing lists
+
+after completion API
+	X-Labels define separator
+	fix completion
+
 easy? while -> FOREACH_SAFE
 	mutt_pattern_free()
-
-docs missing spaces
-	you could use lists^neomutt-users@neomutt\\.org$ or
-	subscribe^neomutt-users@neomutt\\.org$ to match only mail from the
-	actual list. 
 
 syntax highlighting
 	group is highligted in 'lists' but not 'subscribe'
 	lists     -group mutt    mutt-users@mutt.org
 	subscribe -group neomutt neomutt-devel@neomutt.org
-
-docs
-	Table 4.3. GNU regular expression extensions
-	too many backslashes!
 
 if debuglevel > X, dump all the config after all files are processed
 	a complete config dump

@@ -237,3 +237,5 @@ Riskier things we can do:
 
 travis xenial - try more compiler flags
 
+travis propagate idn2 fixes accross all config
+
