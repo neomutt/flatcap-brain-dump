@@ -1,3 +1,28 @@
+fuzz
+	list all *parsed* headers
+	create 1 function for each
+	librarify -> fuzz
+
+fuzz
+	sub-header parts
+	dates, addresses, list subscription URI
+
+coveralls - travis cron, or master?
+
+change acutest macro to hide 'test' prefix?
+
+asan fix leaks on tests
+
+adjust default builds to enable testing
+
+pick decsriptive names for each rfc for code/config naming
+	update rfc 'dot' tree
+
+msg/hdr cache invalid after msg is moved?
+	msgid changes!?
+
+buffer pool dump hide tide mark on exit
+
 Does N want a User object
 	personal info
 	alternate addresses etc
@@ -51,10 +76,12 @@ lgtm warnings on
 	ctime -> ctime_r NO (obsolete) use strftime
 	utime -> utimensat
 	atoi,atol,atoll -> strtol, strtoll
-	rewind -> fseed
+	rewind -> fseek
 	gettimeofday -> clock_gettime
 
-add lcov to [release]
+[release]
+	add lcov
+	add make test
 
 split Buffer and BufferPool src?
 	split Addr and AddrList, etc?

@@ -204,3 +204,7 @@ fix bash-completion for 'm'
 
 fix neom alias ∀ maintainers/reviewers
 
+syntax and {} paragraph keys don't work in visual mode
+
+all complex git aliases -> scripts -> repo
+
