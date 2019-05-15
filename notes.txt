@@ -1,3 +1,15 @@
+different lists for different jobs?
+	email/email.h defines `struct Email`
+	Index needs an EmailViewList of EmailViewNode (for gui stuff)
+	Notifications needs an EmailNotifyList of EmailNotifyNode (for diff notify types)
+
+move/copy email should keep hcache valid
+	msgid may change, so we might need new hcache entry
+
+context-sensitive help should work ∀ prompts,
+	e.g. 's' to save email, default location comes up,
+	<f1> opens page about saving and the 'save-hook'
+
 fuzz
 	list all *parsed* headers
 	create 1 function for each
