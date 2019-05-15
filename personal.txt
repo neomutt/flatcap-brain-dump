@@ -208,3 +208,7 @@ syntax and {} paragraph keys don't work in visual mode
 
 all complex git aliases -> scripts -> repo
 
+B params
+	. build here (default)
+	DIR build elsewhere, e.g. build123
+

@@ -201,3 +201,10 @@ transform to x[123] in driver_tags_add()
 	static int print_val(FILE *fp, const char *pfx, const char *value,
 	static char *unfold_header(char *s)
 
+EXTRA_CFLAGS+=("-Wformat-truncation=2");
+	bump buffer sizes
+
+tidy test/*.c includes (eliminate blank lines)
+
+rename mailbox functions to mutt_mailbox_*
+

@@ -1,3 +1,70 @@
+keep test-config, or archive?
+	add readme before archiving
+	keep for slist testing?
+
+add .gitattributes ∀ C repos
+
+maildir - (advanced, future)
+	try harder to reconcile: changed folder plus external change
+	if no overlap, don't error
+	merge-tool-like
+	accept change?  [New/Old]?
+	
+new mail expandos
+	%n num
+	one notify per folder?
+	or %f! ∀ list
+	will we ever notify on mail in multiple folders? NO
+	they'll come separately
+	%s! %a! (for all subjects, all authors)
+	%{%a %s} for repeats?  complicated
+	%n %a! %s! num, author*num, subject*num - easier
+	\! for actual ! char
+	different %a for name, initials, alias name, full email, encoded email, etc
+	$ (sync) -> multitple new mail notifications! how to coalesce?
+	freeze(), notify() * n, thaw()
+	observer accumulates
+	who sends freeze() -- index? YES
+	with freeze/thaw should anyone send notifications with lists?
+	OR send *lots* of individual notifies?
+	LISTS - fewer big events, not separable
+
+release
+	add credits for bug raisers too
+	list first?
+	only *fixed* bugs?
+	only *valid* bugs?
+
+clang-format
+	test/*
+
+fuzz weblinks & twitter
+	mention test suite
+
+kill buffer_pool in all libraries
+
+compose expando for filename of email %s for macros
+
+sanitize flags for make test?
+
+null logging handler - use in tests, etc
+
+test pattern code s/{0,1}/{false,true}/
+
+vim-repeat feature for neomutt
+	. (dot) to repeat last action
+	need to define *what* to repeat
+
+test_pattern coverage of mutt_pattern_comp()
+
+move [release] to [master]
+
+move [fuzzer] to [master]
+	change script
+	if [fuzzer] exists, use it
+	else use [master]
+	easier for development?
+
 different lists for different jobs?
 	email/email.h defines `struct Email`
 	Index needs an EmailViewList of EmailViewNode (for gui stuff)
