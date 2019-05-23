@@ -115,3 +115,6 @@ to do so effectively, it would need to piggy-back on the maildir backend
 currently, there's only one for all maildir dirs
 notmuch might need to keep a reference count on the Account, Maildir and Emails
 
+change functions to use enums (if they go back far enough in the history)
+	notmuch_query_set_omit_excluded(query, 1);
+		1 => NOTMUCH_EXCLUDE_TRUE

@@ -1,3 +1,24 @@
+mgedmin
+	~d take an iso date YYYY-MM-DD
+	4 digit year should be ok
+
+fix awful code
+	fix_uid()
+	assignment `buf[n] = 0` in middle of `if` clause
+	else if ((n >= 0) && ((ob - buf) == n) && (buf[n] = 0, (strlen(buf) < (size_t) n)))
+
+after:
+	split of name:function:description
+	windows with focus
+	keybindings with timeout
+	split of <sidebar-next> constants to SIDEBAR | NEXT
+feature:
+	create prefix commands
+	<sidebar-open> becomes <sidebar><open>
+	just <open> means open the default thing with focus
+	use also for <skip-deleted><next> / <prev>
+	<focus> prefix to be explicit
+
 keep test-config, or archive?
 	add readme before archiving
 	keep for slist testing?

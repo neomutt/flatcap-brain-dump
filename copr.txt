@@ -1,3 +1,6 @@
+add .desktop file with icon
+	to handle mailto:// links
+
 readme in copr repo
 	put rpm build scripts in repo too
 
