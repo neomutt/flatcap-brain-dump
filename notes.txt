@@ -1,3 +1,14 @@
+.github/SECURITY.md
+
+.github/FUNDING.yml ∀ repos
+
+shrink code repo
+
+equivalence for `$a_b` and `$a-b` (underscore, dash, none)
+	what about `$ab` ?
+	for read/write/completion?
+	possible?
+
 mgedmin
 	~d take an iso date YYYY-MM-DD
 	4 digit year should be ok
@@ -67,10 +78,6 @@ kill buffer_pool in all libraries
 compose expando for filename of email %s for macros
 
 sanitize flags for make test?
-
-null logging handler - use in tests, etc
-
-test pattern code s/{0,1}/{false,true}/
 
 vim-repeat feature for neomutt
 	. (dot) to repeat last action

@@ -124,3 +124,9 @@ colours
 	by display choice
 	by regex
 
+mxopen/hcache -> index -> just raw -> storing in hcache?
+addr has broken down name, email, comment
+index.  IdnDecode = no => get_canon()
+canon will always exist?  YES, need for sorting?  comparison? YES
+IdnDecode = yes
+
