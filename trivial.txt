@@ -156,3 +156,11 @@ rename el_free()
 
 iwyu ∀
 
+substr_cpy -> copy, reorder parameters
+
+how many List refs in mutt/string.c?
+	2 MOVE to list.c
+
+string fn to pretty print \t, \r, \n for tests
+	handle NULL, quote string
+

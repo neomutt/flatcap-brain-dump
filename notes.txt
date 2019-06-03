@@ -1,3 +1,21 @@
+merge/collate email generator scripts
+
+conststrings build failed in zh_CN.utf-8
+	change gcc -v to gcc --version
+	briefer
+
+reduce all branches
+how much debug code's acceptable?
+	dump text
+	dump dot visitors
+	TAILQ conversions
+	summary
+	help --devel-help (backend)
+
+run coverity with idn2, openssl, slang
+
+add ASAN,UBSAN,Valgrind to [release] make test?
+
 .github/SECURITY.md
 
 .github/FUNDING.yml ∀ repos

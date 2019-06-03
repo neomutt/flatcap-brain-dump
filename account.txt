@@ -1232,3 +1232,91 @@ maildir_update_flags
 	nm_mbox_check(mx, sync)
 	mh_mbox_check(mx, check/sync)
 
+create N, perform all init()s, they observe(N)
+init Config before init()s.  inits may add config, e.g. sidebar
+inits ignore config setting. wait for NeoInitComplete
+after inits, read config files, etc
+
+create N, core init -> ConfigInit, core vars, sb init, etc
+Xinit: reg types, reg vars, set vals, set observers - all configurable parts
+configure option for disabled config - recognised but ignored
+need to *register* commands, e.g. sb_whitelist
+when do *functions* need to be registered/defined? <sb_open>
+re (FN_PAGER, SB_OPEN) an array of fn defs, with default keys
+*NEEDS* to be in init, so user can bind keys to them
+sorted vector/arrays of commands/functions
+	ptrs into static array
+
+InitComplete -> enable observers YES, now read config
+config -> mailboxes/accounts -> A's =>
+
+"account home" -> A_new(), then N.add(A) -> notify new A
+"mailboxes path" -> M_new(), canon/expand $folder
+A.add(M) -> success -> notify new M
+failure -> ac_find(M)
+not found -> A_new(), N.add(A) -> notify new A
+found mx_ac_add(A,M) -> A.add(M) -> notify new M
+
+enum NotifyOBJECT
+struct EventOBJECT
+
+entry points ∀ events
+main() : startup, config
+main() -f mbox or $spoolfile, mx_mbox_open()
+	mutt_index_menu
+index OP_QUIT, shutdown-hook, mbox_close
+
+config "account home" -> A_new(), N.add(A), <a-post-create>
+"mailboxes path" -> M_new(), A.add(M), <m-post-create>
+
+"mailboxes path" -> M_new() -> A_new(), N.add(A), <a-post-create)
+	A.add(M), <m-post-create>
+
+parse_account - (ac_find by name, ac_set_current), ac_new()
+A might be temporary => N.add(A) -> <a-post-create>
+"unaccount home" -> <a-pre-del>, N.del(a), free(A)
+	=> ∀ M <m-pre-del>, A.del(M), free(M)
+
+Hooks: black box
+	21 hooks + unhook
+	3 parse functions
+
+account home ( -imap) ?
+set imap_pass="secret"
+mailboxes imap://...
+can't be sure until mailboxes, can't insist it comes first
+=> overfill to keep all config
+when is A type defined?
+auto & immediate for mailboxes imap://
+delayed for "account home"
+account could be cumulative
+file1 "account home" config
+file2 "account home" mailboxes
+could end up with unspecified A at startup =>
+	don't error or drop it
+	more config could come later
+	just ignore empty A's
+
+what happens after "account home" source file
+	end of included file will stop account-ness!
+	need to stack, push name
+	repeated "account" in one file shouldn't nest
+
+account create empty A
+mailboxes + empty A -> typed A
+mailboxes + typed A -> OK
+mailboxes + wrong A -> warning, new typed A
+	is "account" still active after error? prob yes
+	offer all M to active A, first
+who adds sub Config?
+	parse_mailboxes adds it
+when
+	when it becomes typed?
+source nested - what about nested account commands
+stack
+	ac Apple
+	source jim.rc -> Apple,Apple
+	rc contains more accounts -> Apple,Banana
+	EOF -> pop -> Apple
+	continue
+
