@@ -1,0 +1,802 @@
+struct {type, hash, name, union {vars}}
+OPT_INT(Var)
+get_int_opt(name|id)
+type includes "my_"-ness
+who holds the vars?
+get(NULL, name) => default?
+hash inside or out, or both. BOTH
+HASH *vars
+get_name (id)
+get_hash(name)
+get_var(name|id)
+set_var(name|id, var)
+some vars need a validator
+variable sets know their parent
+set variables via a function() -> notifications
+get variables direct from their Var
+variables don't know about refreshing
+where are validators / notifications stored?
+	globally (on default config-set)
+	per-config-set (allow overrides)
+key my_vars in separate set?
+
+functions per set, per type
+	setter
+	getter
+	validator
+set by string (from config)
+get by type of user's choice
+internal getters: string, int, bool, void*
+overridden getter returns "Var"?
+then coerced to type?
+
+hc_init()
+	register_type(DT_HCACHE, ops)
+parse_set()
+	-> hc_set(string)
+	-> hc_validator(string)
+validator per type
+REQUIRE get_str ∀ types
+
+have separate int/uint variable types?
+	which variables need negative values?
+
+have a 'time' variable type
+	allows setting: x=30m (minutes), etc
+	may not be worth it, most times are sub-1minute
+
+strdup? or does the config_set take ownership?
+
+use high bits of 'type' to save free()/don't free() of a string
+
+how does 'reset' work?	where is the original value stored?
+do we keep it in the hash elem?
+a "parent" config set of original values?
+how many config values are changed?
+too much overhead?
+hashelems won't be constant
+	init var  == address1
+	set var	  == address2
+	set var	  == address2
+	reset var == address1
+too much overhead?
+
+how are variables read?
+macro doesn't work if things might be overridden/reset
+	can't cache address of HashElem
+	unless we have a RESET flag
+hash id may not be unique
+need to work with string representation
+get_bool("sidebar_visible")
+horrendous duplication of strings?
+
+reset means:
+	keep the old value
+	or remember who owns the variable
+
+get/set
+	hash = overhead looking up string when USING the variable
+	vars = overhead looking up string when setting variables
+
+notifications to invalidate HashElems?
+	too complicated
+
+caching options could be account-local
+	header cache for local mboxes
+	body cache too for remote mboxes
+
+parse_set
+	get hashelem
+	get id from he
+	lookup str_set
+	set_set(he, value)
+
+base types
+	bool, num, str, quad
+	mutt -D ∀ dump specific
+	else str_get
+
+coercion hc_get_int(he)
+
+dropping hash means losing the trapping of set-value
+	we lose the ability to trigger notifications
+
+how many variables are going to be account-specific?
+
+how will +=, -=, *=, /=, ^= work?
+
+path variable type?  subtype of string?
+	flags: FILE, DIR (or both)
+	does the setting engine need to know
+mailbox variable type?	subtype of string?
+command variable type?	subtype of string?
+	more scrutiny for setting?
+
+for variables that have their initial value set at runtime,
+set a flag in the VariableDef to free() the string at shutdown
+
+set all setters with the wrong DT_*
+
+
+for account vars
+set var => AC0 set var
+
+for non-ac vars
+set var -> base set var
+account AC1 set var => var set var
+
+variable: Base or Account 	VB	VA
+Set by: user/config or code	SU	SC
+type value: real, inherited	TR	TI
+read by user(std i/face), code	RU	RC
+
+When is AC0 setup?  After init_vars()
+	allows modules to set any defaults
+init_vars()
+	reg_type()
+	reg_vars()
+create AC0
+load user config
+
+
+no inheritance - copy at AC creation
+	=> create AC0 after user config
+set with no AC -> goes where?
+	Base => nobody sees it  NO
+	AC0 => won't get used  NO
+	AC(cur) => gets used  YES
+
+Config		Create AC0(empty)
+	x;y;z -> base
+AC1 a;b;c -> AC1 just those settings
+	p;q;r -> base
+
+AC0 no settings, some mailboxes
+AC1 some settings, specified mailboxes
+then fill out unset vars from base
+
+
+Difference between
+1) set var
+2) account name set var
+3) account - set var  (magic name)
+	useful for hooks!
+
+does it matter when they happen?
+	startup, preAC, postAC
+	unsed AC value, set AC value
+
+
+if AC holds(HE*), then inheritance works
+	get_char(ctx->ac->sb_div)
+1) set base (maybe inherited by many)
+2) set specific AC
+3) set current AC
+=> types need (HE*) setters/getters
+
+Hash
+  ┌──────────────┬─┬────┬─┬─┬─┬──────┬─┬────┬─┬─┬────────────┐
+  │              │X│    │X│X│X│      │X│    │X│X│            │
+  └──────────────┼─┼────┴─┼─┼─┴──────┼─┼────┴─┴─┴────────────┘
+                 │X│      │X│        │X│
+                 └─┘      ├─┤        └─┘
+                          │X│
+                          └─┘
+
+
+
+AC0 only container "inherit" vars
+new accound coped AC0 verbatim
+
+to generate AC0, need lookup table for struct
+list of strings, index is offset into AC struct
+
+
+copying won't give stable address
+!!! ACs => allow_dupes
+        => slower lookups
+prefix AC name to variable AC:var
+allow setting vars thus
+
+1) set var (base var)
+2) set name:var (spec ac)
+3) set -:var (current ac)
+3') set :var (current ac)
+account x
+        set y=z
+account / EOF
+=> set x:y=z
+(try 'x:y' else 'y')
+
+to generate AC, create new set of named(prefixed)
+variables of type "inherit".  AC struct holds pointers
+HEs are fixed/static for lifetime of AC => bond between
+inheritable vars and AC struct
+
+new AC-spec var => add struct member
+add to lookup string table
+
+what about nested config sets?
+do CSs have a list of children?
+can CSs be freed recursively?
+do HE-inherit have an HE ptr inside?
+for about CS inheritance
+
+
+set "x:var" must exist
+if not check "var" & error
+
+
+Where are the values of inherited variables?
+Internal?
+
+
+All config names are backed by a real variable
+(not centralised), some may be global (extern)
+
+All AC config names are internal to the hash => only
+accessible via HE
+get_int(HE) may use value of get inherited value
+
+who owns AC ptrs?  buffy
+how do we get from sidebar-open to AC?
+sb_open => buffy -> AC update ctx
+
+what happens if *first* AC command is
+        account x set y=z
+need to create ACx first
+
+What about
+        set x:y = z   FAIL? YES
+require AC command first
+
+inherit HE is bit-flag over var type
+
+
+Base Hash
+  ┌──────────────┬─┬────┬─┬─┬─┬──────┬─┬────┬─┬─┬────────────┐
+  │              │A│    │B│C│D│      │E│    │F│G│            │
+  └──────────────┴─┴────┴─┴─┴─┴──────┴─┴────┴─┴─┴────────────┘
+
+
+
+
+              AC1┌──┬──┬──┐            AC2┌──┬──┬──┐
+                 │A*│D*│G*│               │A*│D*│G*│
+                 └──┴──┴──┘               └──┴──┴──┘
+                                          ^
+                                          |
+                                          |
+                                       Buffy
+                                          ^
+                                          |
+                                          |
+                                         ctx
+
+what about named mailboxes / notmuch
+where do they fit in?
+
+Do AC vars need real backing?
+If AC vars are only HE, do ptr persistance matter?
+caching an AC ptr isn't useful
+AC could change
+
+
+Do we need the base hash for the initial version?
+can we just use init.h as before?
+
+inherited HEs *need* ptr to parent *and* embedded value
+when "reset" need both
+
+do we make the HE bigger of alloc lots of small mem blocks
+or AC object has lookup table of what?
+given an HE* we can't tell anything about the variable
+
+:reset :var
+ctx->buffy->AC
+AC needs a hash table of its own
+could have large HEs
+AC HE has
+	-> HE parent
+	value
+	type/flags
+AC hash var -> HE
+destroy (HE->value), NULL
+type -> inherited
+notify
+
+reset base of inherited variable
+how are ACs notified?
+ACs need to be listeners of the base
+
+
+register types
+∀ module register vars
+(init.h line)
+
+var has
+	name
+	type (+flags)
+	variable ->
+	initial value
+
+hash table has 1 HE per variable
+HE has ->init.h type
+
+1) read config: set originary vars
+name(hashed) -> HE			} repeat
+HE->type->set_string(value)		}
+
+2) dump_config, e.g mutt -D
+walk hash
+∀ HE save name, value
+sort & print
+sort account info last
+'-v' -> print inherited values
+(commented out)
+
+:reset var  /  :set var
+ctx hashvar -> HE
+destroy (HE->variable), NULL
+copy initial value
+notify (var, (RE)SET)
+
+AC listener
+has var -> HE  hash(ACName:var)
+if (he->type == inherited)
+notify (var, (RE)set)
+
+
+notifyees can cache opaque HE ptrs
+AC_notify("sb_sep") -> HE
+AC_notify could do with an enum
+
+mutt -D who's responsible for quoting/escaping values?
+flag on type code or the dump code
+probably the dump code
+
+scope "my_vars" with "_my:"?
+demos of all dump options
+e.g. only if changed
+allow my:var?  also?
+
+unary operators for DT_PATH
+	'+', '=' expand to $folder
+=> not a subclass of DT_STR
+
+delete from set when destroying AC
+need separate notification
+=> need create notification
+only happens after initial setup
+
+
+test/bool.c code
+test/bool.txt expected output
+
+validator called twice with native set
+move var defs into Cset helps with isolation testing
+
+notifications for new var, del var & shutdown, startup
+=> allow others to cache if nec
+
+unary operator ':' -> AC scope
+
+variable def configure writer to generate correctly escaped config file
+
+scoped myL variable should sort last in "mutt -D"
+vars; AC vars; my vars
+
+
+operators => transitivity
+x = y + z
+means need a tmp var for (y+z) of typeof(x)
+
+need to support synonyns (initially)
+highbit flag to redirect
+
+test setting existing string/addrs to NULL
+to free their resources
+non-null string validator?
+	num_positive validator
+	num_non_zero
+flags for common string validation (or number)
+validator before !NULL test
+
+test register of invalid types
+test Cset + heavy overflow
+test ac
+
+
+setter set error message but return true
+=> warning for user
+need buffer_is_empty()
+
+define types
+	INT8,16,32,64
+	signed/unsigned
+one num type with size flags
+
+check expected failure messages
+
+variable operations
+all must support
+	'='
+	set by string
+	get by string (dump, completion)
+flags on type defns '+=' is meaningful to this type
+	num += addition
+	string += concat
+	list += append list
+		flags: are lists sorted or config-order
+Ops +, -, *, ^, /, !
+
+Unary operators?
+	-X
+	!X
+	"set"?
+numX = -numY
+boolX = !boolY
+boolX = stringY (if set) }- perhaps these should be ()d
+boolX = numZ (non-zero)  }  to highlight booliness
+
+numY, BoolY, stringY, numZ -- actually need to be '&variable'
+	or do they?
+	set timeout = variable_name
+		isn't ambiguous
+	anything that's a variable name (that's not quoted) should be expanded
+	numbers aren't variables
+
+call num_operation(HE, OP_ADD, str_val)
+
+declare global vars const extern (not allowed)
+only allow setters to change
+WHERE -> EXTERN
+
+hcache/vars.h - *its* globals, extern
+hcache/vars.c - *its* var array [ | | | ]
+
+hash table means sorting entries before completion
+quicker to walk, filter, sort, display
+
+a lot of crypto globals could be private to /ncrypt
+
+custom reset functions (per type)
+
+command variable - must exist?
+need to parse first element
+
+listeners need to lookup their variable / HE
+
+Tests:
+	compiler
+	valgrind
+	coverity
+	coveralls
+	iwyu
+
+variable flags
+easier than a validator
+	int:
+		positive
+		non-zero (cardinal)
+	string:
+		not empty
+
+need mutt deps to be isolated so we can build
+a variable rig without mutt proper
+(or compat #defines for mutt_strdup, FREE)
+
+for failing var ops, put message in buffer
+if no buffer, log it
+log it anyway
+	hmm... we expect the called to display/log the message
+
+
+doc section sorting and folding mail
+2 sb vars in init.h -- UL OPT_X!
+5 uses of HC vars outside HC
+struct Option, data, init -> intptr_t
+triv - move mime.types
+neo vim plugin #include guard macro
+SWAK -> mutt guide
+
+
+set ac var, dupe if nec
+
+
+var count
+	9 pop
+	4 hc
+	13 notmuch
+	11 nntp
+	12 sidebar
+	69 crypto
+	15 ssl
+	14 imap
+	8 forward
+
+separate file
+type/bool.[ch]
+maybe type.h ∀ basic types
+
+1000 variable uses
+100 sets of 30 diff vars
+half sets are sort vars
+
+
+create AC => dupe all members?
+YES, then create AC
+=> dupe all members
+if var are AC-specific can the base members
+ever be set?  yes, when they're common to all AC
+
+
+Can get from: str <--> HE --> var
+
+set non-ac-var		val in base
+set ac-var		val in base
+ac1 set ac-var		val in ac1
+reset non-ac-var	init val in base
+reset ac-var		init val in base
+ac1 reset ac-var	base val in ac1
+
+
+default ac is pointer to base (if it needs to exist)
+no ac commands, everything works as usual
+get_bool(AC->sb_visible)
+Context ->ac = base
+	->ac = ac1
+all gets/sets through (ctx->ac)
+
+ac contains dummy links for unset vars
+	=> persistence of HE for lifetime of AC
+
+
+can *any* variable be ac-specific?
+no.  code would need to know
+ac obj has HE ptrs ∀ ac-vars
+for rest, *still* means, 400 global variables!
+or 400 constants => no hash table => array
+array => bunching of constants for AC-vars
+
+
+HE or HE->data?
+{ ...
+{ name, type, varptr, initial }
+{ ...
+unique ID?
+Account overlay
+move *val* first for easy access
+
+
+CS Table
+  ┌─┐
+  │*│
+  ├─┤     ┌─┬─┬─┬─┐
+  │*│---->│V│N│T│I│
+  ├─┤     └─┴─┴─┴─┘<--+
+  │*│                 |
+  ├─┤                ┌─┐  Child
+  │ │                │*│  Type = UNSET
+  │ │                ├─┤
+  └─┘                │ │
+                     ├─┤
+                     │ │
+                     └─┘
+
+he -> row
+macro(HE) -> value ∀ types
+var *ptr* becomes intptr_t and *is* value
+
+each var provider has its own rows added to hash table
+
+main rows    }
+hcache rows  } init_X -> register_vars(rows)
+sidebar rows }
+imap rows    }
+
+
+config sets
+		    +-> BASE (build from rows) *all* vars
+                   /     ^  ^
+                  /      |   \
+		AC1	AC2    AC3	(points to orig data)
+		         ^
+		         |
+			ctx
+
+
+using libhcache => move globals to hcache.c
+and hc/globals.h
+check deps of hcache lib
+
+note: 45 testable functions, test cases needed
+
+mutt_debug log_level 1 -> n + flags
+F_SENSITIVE (caller knows)
+or don't log it at all
+
+/etc/muttrc needs gutting
+reference docs
+
+refcount buffys for debugging purposes
+start with something simpler?
+
+stop printing config errors on options
+that are *valid* but disabled (dkc suggestion)
+needs some thought!
+
+
+devel ideas:
+* assert / bugon
+  	assert too much
+		don't stop program
+	warning_on -> log
+	val return
+
+sort #includes
+	config.h
+	<std.h>
+	"self.h"
+	"lib/*.h"
+	"config/*.h"
+	"others.h"
+
+
+main
+	cs
+	ac
+	set_he_bool(ac, v, true)
+	ac_set_val(ac, v, true)
+	cs_set_val(cs, he, true)
+	bool_set_native
+	notify
+
+HE
+	{ "var", ..., void *var }
+	set (cs, "name", intptr_t value)
+	cs, name -> he -> cst -> setter(native)
+	validation
+	notification
+
+
+Design
+	begins with configset
+	register some types
+	register some vars
+	cs -> hash -> he[]
+	init.h muttvars unsorted -> ~200 strcmps
+
+	follow
+	"hc_pagesize" (long type)
+	no extern
+	change => close/reopen db
+	initial value
+
+Design decisions
+	container, hash
+	problems - completion
+	redistribute
+	keep init.h format, keep (var*) & vars
+	reduce scope of externs
+	isolation of vars/externs
+
+OO pattern -> 400 * set_X(), 400 * get_X()
+mostly reads, fewer changes, real vars
+if not real vars
+realloc'd array -> changing (HE*)
+indent rationale
+validator can be dynamic, based on anything
+must log why it failed
+mbchar_table/regex - alloc'd,  init value
+
+
+		Incoming        Children
+                --------        --------
+ctx  ->		AC0   ->         Buffy1
+                 |                 |
+                 V                 v
+		AC1              Buffy2
+		 |
+		 V
+		AC2
+
+or
+
+		AC List         Incoming
+                -------         --------
+ctx  ->		AC0   ->         Buffy1
+                 |                 |
+                 V                 v
+		AC1              Buffy2
+		 |
+		 V
+		AC2
+
+AC2 ->  name
+	vars 	 HE[]
+	children buffy[]
+
+
+ctx -> ConfigSet
+	HashTable	HE[]
+	Types  		CST[]
+	Listeners  	fn[]
+
+HE -> VDef
+	name
+	type
+	init
+	validator
+or
+
+HE -> Inheritance
+	HE *parent
+	name
+	AC
+	var
+
+ConfigSetType
+	name
+	setter/getter
+	native setter/getter
+
+Iterate through Incoming (all buffys)
+or AC, children, depth first
+account/children/buffy
+
+
+can we eliminate all L10N strings from config/?
+what about other libs?
+what about type-specific errors?
+
+too big, invalid format, etc
+encode errorcodes in pointers
+
+should any of the native functions display messages?
+	probably yes.  the validator could still fail
+
+consider AC listening to CS for scenario when
+	AC is inheriting
+	CS gets set
+	AC might need to notify someone
+
+finally move all test code to separate repo "test-config"
+
+clang build demo
+
+teach parse_set about curly quotes
+cut'n'paste from guide
+
+vote move #ifdef/#include
+into header file, #ifndef
+
+drop NONULL -- all strings are defined in type
+
+what other strings would need protecting?
+#define EMPTY_STRING ""
+or const! free checks for empty string
+
+
+notmuch users' team
+ping them on changes
+
+
+why is safe_free(void*) not (void**)? test
+
+config (code) only allows one level of inheritance?
+	expand?
+
+export text values from config, e.g. "yes", "no"
+	exporting means they'll need NULL terminating
+	and the array_size's adjusting
+
+store the componet in the config set for each config item, e.g.
+	Sidebar:
+		sidebar_width
+		sidebar_visible
+	Imap:
+		imap_user
+		imap_pass
+	so that the config could be dumped by component?
+

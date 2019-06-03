@@ -1,0 +1,30 @@
+Integrating into NeoMutt
+
+set initial values -- test overwrite
+synonyms -- test; use warning mechanism
+check all functions use if (!ptr)
+rename type/ dir to config/
+warnings -- enum retval
+rename functions
+file headers
+doxy blocks
+doxygen pages glue
+
+changes to existing code -- buffer.c hash.c
+	mapping.h to lib
+add config/ lib
+
+------------------------------------------------------------
+
+L10N unify messages, _() them
+
+add cs, ac, inh code
+put in calls to generate types & cleanup
+dupe init.h -> data.c, register variables
+rework parse set to update cs & test
+rework mutt -D to use cs & test
+	(implement dump modes, or easy task)
+create listeners ∀ init.h flags & test
+	debug lines for each possible notification
+factor out docs from init.h (gut muttrc)
+drop init.h, globals.h, options.h, mutt.h

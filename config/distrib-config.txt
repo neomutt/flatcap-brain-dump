@@ -1,0 +1,16 @@
+distributed config
+
+sources need to define config
+	imap
+	pop
+	nntp
+	notmuch
+	maildir
+	mbox
+	mh
+
+views, too?
+	sidebar
+
+what about index, pager?
+

@@ -1,0 +1,84 @@
+name: local or unnamed
+config: pass through to mutt
+folder: /home/mutt/mail/linode
+mailboxes:
+	mutt
+	mutt.devel
+	mutt.users
+	neo
+	neo.devel
+	neo.github
+	neo.users
+
+name: apple
+config: cached
+folder: imaps://apple@192.168.122.2/
+mailboxes:
+	INBOX
+	acute
+	alarm
+	apart
+	arete
+	asked
+
+name: news
+config: cached
+folder: news://192.168.122.58/
+mailboxes:
+	test.apple
+	test.banana
+	test.cherry
+	test.damson
+
+common cached options:
+	folder
+	sidebar_delim_chars
+	sidebar_folder_indent
+	sidebar_format
+	sidebar_indent_string
+	sidebar_new_mail_only
+	sidebar_short_path
+	sidebar_sort_method
+
+misc options:
+	mark_old
+	record
+	postponed
+	from
+	realname
+	index_format
+	sort
+	sort_aux
+	spoolfile
+	signature
+
+private config:
+	imap_authenticators imap_pass imap_user
+	nntp_authenticators nntp_pass nntp_user
+	pop_authenticators  pop_pass  pop_user
+	smtp_authenticators smtp_pass smtp_url
+
+example commands:
+	# account-specific config (one-off)
+	account news set sidebar_short_path = yes
+	# start block of SPECIFIC-account config
+	account news
+	# start block of CURRENT-account config
+	account -
+	# end block of account-specific config
+	# also end block on EOF
+	account
+
+notes:
+	warn on other (ignored) config?
+	fix account hook to use the short names
+	extend to keymappings?
+	extend to hooks
+	should account show cumulative totals?
+	'reset' on a variable deletes the account copy
+
+what's the result of:
+	set variable
+	account - set variable
+	account news set variable
+

@@ -1,0 +1,29 @@
+initialise type
+
+create an account
+
+register some variables
+  plain/inheritable
+  with/without validators
+
+set by string
+  plain/inheritable
+  with/without validators
+
+get by string
+  plain/inheritable
+
+set native
+  plain/inheritable
+  with/without validators
+
+get native
+  plain/inheritable
+
+set values
+  valid strings(8)
+  valid native(0,1)
+  invalid strings
+  invalid native
+
+reset values

@@ -1,0 +1,26 @@
+Variable: Base (VB), Account (VA)
+Type of value: Real (TR), Inherited (TI)
+Set by: User/config (SU), Code (SC)
+Read by: User/config (RU), Code (RC)
+
+|    | Variable Base, Type Real                                                       |
+| -- | ------------------------------------------------------------------------------ |
+| SU | by string, lookup hashelem in current account, call type-setter                |
+| SC | setter function from module.h, call function                                   |
+| RU | by string, lookup hashelem in current account, call type-writer                |
+| RC | extern variable from module.h, read value                                      |
+
+|    | Variable Account, Type Real                                                    |
+| -- | ------------------------------------------------------------------------------ |
+| SU | by string, lookup hashelem in current account, call type-setter                |
+| SC | by string, lookup hashelem in current account, XXX                             |
+| RU | by string, lookup hashelem in current account, call type-writer                |
+| RC | var in current account, read value                                             |
+
+|    | Variable Account, Type Inherited                                                        |
+| -- | --------------------------------------------------------------------------------------- |
+| SU | by string, lookup hashelem in current account, call type-setter (which looks up parent) |
+| SC |                                                                                         |
+| RU | by string, lookup hashelem in current account, call type-writer (which looks up parent) |
+| RC | XXX                                                                                     |
+
