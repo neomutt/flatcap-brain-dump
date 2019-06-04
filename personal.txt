@@ -212,3 +212,7 @@ B params
 	. build here (default)
 	DIR build elsewhere, e.g. build123
 
+m - make / cd make (& cp -s ?)
+
+n neo / .build/neo
+

@@ -1,3 +1,16 @@
+embedded editor
+	how?  pty's cf screen/tmux
+	can screen/tmux nest?
+
+split travis targets using github checks api
+	skip if not relevant
+	state: queued, in progress, complete
+	outcome: action required, failed, neutral, success
+	test: build, out-of-tree, whitespace, install/uninstall, test, coverage, translate, doxy, config
+
+lgtm shield for dev page
+https://img.shields.io/lgtm/alerts/github/neomutt/neomutt.svg?logo=lgtm
+
 merge/collate email generator scripts
 
 conststrings build failed in zh_CN.utf-8
@@ -17,8 +30,6 @@ run coverity with idn2, openssl, slang
 add ASAN,UBSAN,Valgrind to [release] make test?
 
 .github/SECURITY.md
-
-.github/FUNDING.yml ∀ repos
 
 shrink code repo
 
