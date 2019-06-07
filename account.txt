@@ -1320,3 +1320,129 @@ stack
 	EOF -> pop -> Apple
 	continue
 
+tests
+
+	t00-legacy - mutt-compatible with hooks, etc
+	t01-simple - account A, account B, account C in one file
+
+lots of different but equivalent configs
+including some degenerate ones
+
+move test data to repo
+	cars
+	f1/fruit
+	o1/o2/oceans
+	t1/t2/t3/trees
+
+$folder masks depth
+
+---
+
+Account docs
+
+everything sounds better preceded by "account-specific"
+rationale - reduce number of account-,folder-hooks
+reduce config complexity for multiple accounts - in short maxim (above)
+
+sample: two M on different A (imap) a-hooks, f-hooks
+sample: with account command (indent for clarity)
+
+account [ name [ config ] ]
+	examples of each
+
+"account" range - account empty, named, EOF
+
+nested "source"d files inherit parent's "account"
+
+implemented:
+	done: mailboxes
+	WIP: $folder, $index_formal
+	planned: $imap_*, $maildir_*, all index config e.g. sorting
+	long term: colours?  other hooks?, M-specific config?
+
+a-hook: user/pass/etc, crypto, tunnel, etc
+
+examples for grouping Maildir
+	does this work on ONE imap account?
+		make it work
+
+---
+
+warn of non-A config
+warn of ill-matches Mailbox+Account combo
+
+---
+
+test double inheritance
+	base - Account - Mailbox
+	(no need for named-mailboxes!?)
+
+relative dates script
+	read email dates
+	take latest as high-water mark
+	rebase ∀ to NOW
+	dir param -> all under
+	files -> just them
+	-d "base date" - relative to date
+
+---
+
+Inherited config
+
+Base - Account - Mailbox
+
+can be (re)set independently
+
+test B(S,I); A(S,I); M(S,I)
+	S = set
+	I = initial or inherited
+=> 8 tests, 3 values for each
+∀ Base value == global var
+
+8 reset tests
+	set all, then reset
+	3 value for each
+
+all config objects might need altering to find *base* value for inheritance
+test set_initial on B,A,M - meaning?  always most base?
+	YES, only code and only during initialisation.
+	only allow on Base
+
+"mailbox" command "mailbox name" => named-mailboxes
+	NO, no path
+"mailbox [name [config]]"
+	path command only valid in "mailbox" command?
+or "mailbox name" only after "named-mailboxes" *defines* M?
+"mailbox" extends to
+	mailboxes empty, named, EOF or account command!
+
+mailboxes name
+	path XYZ
+	set ABC
+	(color ...)
+
+is some config A-only, some M-only, some both A- and M-?
+account credentials - clearly A-only, $folder too
+$index_format could be Base, A- or M-specific
+	=> there's no M-only config
+	M ⊂ A
+
+---
+
+How is config used?
+
+need A-VID and M-VID maybe
+list of M-config comes first with M-VID, then A-conf, A-VID
+don't want to expose A-conf on Mailbox
+	=> need separate A-get_value() and M-get_value()
+
+get_string(A->cs, A_VID)
+
+named-mailboxes *defines* M-config?
+	any point if not used? NO
+
+if A-, M-config isn't defined how do we degrade gracefully?
+	cs == NULL!  then what?
+	M knows parent A
+	A? => global Config
+

@@ -216,3 +216,7 @@ m - make / cd make (& cp -s ?)
 
 n neo / .build/neo
 
+github dir
+	flatcap/github remotes not origin
+	mirrors need 2 remotes upstream and 'other'
+

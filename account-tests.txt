@@ -1,0 +1,36 @@
+plain, flat 3*M in 1A
+simple, nest, a->b->c (deeper)
+tree
+	a->b
+	 ->c
+deep tree
+
+in file, one account -> EOF
+account home -> account
+repeated account A, account B, account C, EOF
+nested account A -> account B -> account C -> EOF * 3
+
+tree account A-> account B
+	      -> account C
+
+tree multi
+account A-> account B -> account D
+         -> account C -> account E
+
+∀ dump of base/inherited config
+	imap_user
+	imap_pass
+	folder
+
+set default values at start of first rc
+
+multiple maildir accounts as examples
+alter sidebar to display A-names
+vary $folder per A to abbrev sidebar fields
+
+config
+	$folder
+	$index_format
+	$sort
+	$sort_aux
+

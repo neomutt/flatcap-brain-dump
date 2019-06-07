@@ -109,21 +109,6 @@ config system
 	can it return warnings?
 	it doesn't
 
-refactor
-	#ifdef USE_INOTIFY
-	          if ((tmp.ch != -2) || SigWinch || MonitorFilesChanged)
-	#else
-	          if ((tmp.ch != -2) || SigWinch)
-	#endif
-	            goto gotkey;
-to
-	          if ((tmp.ch != -2) || SigWinch)
-	            goto gotkey;
-	#ifdef USE_INOTIFY
-	          if (MonitorFilesChanged)
-	            goto gotkey;
-	#else
-
 init.c
 	getsid() is POSIX2001
 	no need for #ifdef?
@@ -153,8 +138,6 @@ deglobalise
 
 rename el_free()
 	mutt_emaillist_free()
-
-iwyu ∀
 
 substr_cpy -> copy, reorder parameters
 

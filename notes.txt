@@ -1,3 +1,17 @@
+docs: "Since: YYYY-MM-DD (or version)"
+	drop after 1 year
+
+--devel-graphviz
+	graphviz visitor
+	split per object visited
+	tidy
+	more #ifdefs
+
+imap - compare_uid -> doxy implements sort_t
+
+mutt_get_name() shouldn't be in sort.c
+	NO, it's used
+
 embedded editor
 	how?  pty's cf screen/tmux
 	can screen/tmux nest?
