@@ -595,3 +595,29 @@ add flags to DT_PATH for
 	when validating the file/dir, preservve the stat info?
 		where? in the large 'File' object?
 
+--------------------------------------------------------------------------------
+
+ConfigDef rename flags to data
+Move F_SENSITIVE to type flag
+use data for display flags (will become obsolete)
+use data for enum definition (leaves validator free)
+enum add flags to definition? e.g. match case?  NO
+can't turn DT_BOOL into enum until display flags are gone (31 bools)
+	unless display flags are merged with type
+	=> data field is only used by enum (wasteful?)
+	we can sae the field if enums can't have validators
+10 display flags across 8 types + DT_STRING|F_SENSITIVE
+32 bits, type 4 bits, display flags 10 bits, private flags 4 bits (0xFFFFFFFF)
+config/command.c doxy implements * lots
+config/{string,path,command}.c are identical merge (flags)
+bool,quad,magic -> enum
+	how big's the backing variable?
+	always unsigned char?
+	typedef ConfigEnum to be safe
+SORT|SUBTYPE -> 6*enum!
+enum - need functions to get enum values, range, etc
+	work on cdef->data (EnumDef) or HE config var
+need macros for testing string subtypes
+	if ((type & (DT_STRING | DT_PATH)) == (DT_STRING | DT_PATH))
+	same for command
+

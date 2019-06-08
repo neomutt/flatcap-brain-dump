@@ -1446,3 +1446,34 @@ if A-, M-config isn't defined how do we degrade gracefully?
 	M knows parent A
 	A? => global Config
 
+---
+
+name	Base		Account		Mailbox
+	HashElem	HashElem	HashElem
+type	STRING		STR|INHERITED	STR|INHERITED
+ptr	ConfigDef	Inheritance	Inheritance
+backed	init.h		Base-HE		Account-HE
+var	global		struct		struct
+
+draw diagram
+
+backends may use *their* globals directly. NO OTHERS
+Notes: all inheritance happens in config/set.c
+type source files are simple
+
+how does "mailbox" naming work?
+only allowed in "account"?
+or must match "mailbox aname:mname"?
+limits names to no whitespace
+allow whitespace in names if escaped of quoted?
+utf-8 too
+just no colons
+
+A has cs ptr, so all backends can be global-free
+inherited A uses A->cs
+inherited M uses M->parent->cs
+
+backend: globals *only* for settings global to the entire driver
+everything else is A- or M-specific
+all config may start as global, but should become A- or M-specific
+
