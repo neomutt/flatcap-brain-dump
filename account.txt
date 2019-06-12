@@ -1477,3 +1477,11 @@ backend: globals *only* for settings global to the entire driver
 everything else is A- or M-specific
 all config may start as global, but should become A- or M-specific
 
+unaccount/unmailboxes need to *un*register inherited variables
+
+*un*account before merging account
+	inheritance fixes too
+
+set completion for account/mailbox scoping
+	acc:mbox:var
+

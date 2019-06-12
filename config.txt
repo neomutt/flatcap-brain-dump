@@ -621,3 +621,16 @@ need macros for testing string subtypes
 	if ((type & (DT_STRING | DT_PATH)) == (DT_STRING | DT_PATH))
 	same for command
 
+can we fake BOOL and QUAD for legibility?
+init.h says DT_BOOL but reg type uses enum machinery.  QUAD too
+still need data ptr for EnumDef unless hard-coded into enum.c?
+enum registers ENUM, BOOL, QUAD?
+string registers STRING, PATH, COMMAND?  or just sub-types?
+hcache could be enum (list fixed at compile time)
+	or string with validator
+	if hcache backends become dynamically loadable
+		=> must be string + validator
+hcache enum NEEDS empty option - enum flag?
+	can *ENUMS* be empty?
+enum - first value allowed to be NULL?
+

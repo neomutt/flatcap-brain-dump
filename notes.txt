@@ -1,3 +1,12 @@
+core lib
+	NeoMutt, Config, Account, Mailbox, Notify
+	can it be made independent?
+		need to de-gui Email, etc
+	core depends on mutt,address,email libs
+	config depends on mutt,address,core libs
+	backends will depend on mutt,config,email,address,core
+		plus ncrypt,conn
+
 docs: "Since: YYYY-MM-DD (or version)"
 	drop after 1 year
 

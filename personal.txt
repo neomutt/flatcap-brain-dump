@@ -220,3 +220,5 @@ github dir
 	flatcap/github remotes not origin
 	mirrors need 2 remotes upstream and 'other'
 
+test pretty-git-prompt
+
