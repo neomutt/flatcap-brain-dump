@@ -16,8 +16,6 @@ docs: "Since: YYYY-MM-DD (or version)"
 	tidy
 	more #ifdefs
 
-imap - compare_uid -> doxy implements sort_t
-
 mutt_get_name() shouldn't be in sort.c
 	NO, it's used
 
@@ -119,9 +117,6 @@ release
 	only *fixed* bugs?
 	only *valid* bugs?
 
-clang-format
-	test/*
-
 fuzz weblinks & twitter
 	mention test suite
 
@@ -170,8 +165,6 @@ coveralls - travis cron, or master?
 
 change acutest macro to hide 'test' prefix?
 
-asan fix leaks on tests
-
 adjust default builds to enable testing
 
 pick decsriptive names for each rfc for code/config naming
@@ -180,7 +173,7 @@ pick decsriptive names for each rfc for code/config naming
 msg/hdr cache invalid after msg is moved?
 	msgid changes!?
 
-buffer pool dump hide tide mark on exit
+buffer pool dump high-tide mark on exit
 
 Does N want a User object
 	personal info
@@ -232,18 +225,14 @@ could Buffer.data become const
 Change all our code from Buffer *alloc* -> pool
 
 lgtm warnings on
-	ctime -> ctime_r NO (obsolete) use strftime
 	utime -> utimensat
-	atoi,atol,atoll -> strtol, strtoll
 	rewind -> fseek
 	gettimeofday -> clock_gettime
 
 [release]
 	add lcov
-	add make test
 
-split Buffer and BufferPool src?
-	split Addr and AddrList, etc?
+split Addr and AddrList, etc?
 
 tests: comment list other sibling functions that are dependencies?
 
@@ -283,9 +272,6 @@ feature: live filter index as you type, cf sidebar matcher
 
 <R2robot> w3m -dump -s -o display_link=yes -o display_link_number=yes -o decode_url=yes -T text/html
 <jindraj> elinks -dump -dump-charset utf-8 -dump-width ${COLUMNS:-80} %s
-
-use GoF terminology
-	notifier/listener -> subject/observer
 
 user question:
 	is there a way to protect an email from the 'd' delete command?
@@ -367,8 +353,6 @@ segfault - flush log (nec?)
 	log "segfault" & flush?
 
 standardise naming "folder" vs "mailbox" ∀ docs
-
-does doc/makedoc.c need updating for OpSummary?
 
 imap browser needs way to mark subscribed folders
 

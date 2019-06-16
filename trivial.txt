@@ -125,9 +125,6 @@ flags typedef
 	#define MUTT_FULL_MSG           (1<<0)  ///< enable body and header matching
 	#define MUTT_PATTERN_DYNAMIC    (1<<1)  ///< enable runtime date range evaluation
 
-change param from ctx to gl?
-	static int parse_grouplist(struct GroupList *ctx, struct Buffer *buf,
-
 boolify Buffer
 	int destroy;  /**< destroy 'data' when done? */
 	or eliminate it
@@ -135,14 +132,6 @@ boolify Buffer
 deglobalise
 	EnvList in mutt/envlist.c
 	C_HiddenTags in driver_tags_add()
-
-rename el_free()
-	mutt_emaillist_free()
-
-substr_cpy -> copy, reorder parameters
-
-how many List refs in mutt/string.c?
-	2 MOVE to list.c
 
 string fn to pretty print \t, \r, \n for tests
 	handle NULL, quote string
