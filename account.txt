@@ -1485,3 +1485,55 @@ unaccount/unmailboxes need to *un*register inherited variables
 set completion for account/mailbox scoping
 	acc:mbox:var
 
+each backend/module registers variables
+	but need to ref A-,M-specific config
+	NO, VIDs would vary
+	currently A needs to hard-code list of A-specific vars
+	flag on ConfigDef?
+	The each user would need to keep HashElem pointers for all the vars they want to use
+	setup list at MODULE_init()
+	what happens when init.h is split?
+	IMAP, POP both require shared config vars
+		what about the backing global variable?
+		who owns it?
+	reg_one_var() can't warn or error -- needs to be quiet
+
+subset: add_config(cs, NULL) for A
+	add_config(cs, A-Subset) for M
+	parent name
+	need parent ptr? or pass in name?
+
+Do we need N-subset?
+	Large! nearly 500 ptrs * 2 (8K)
+	just so we can get_var(N-Sub), (A-Sub), (M-Sub)?
+	majority of N-sub are read-only vars
+		not worth it
+
+cs_add_subset(cs, subset)
+	subset contains full name
+	A&M cannot be renamed
+	A-Sub "acc", M-Sub "acc:mbox"
+	get_var(A-Sub/M-Sub, Name/HE, VID)
+	get_X(subset, VID)
+	lookup(subset, name) how?
+	if we have 'HE', use base config functions
+	lookup if contains ':' use it, else prefix with sub.name
+	search var_names, return VID, fixed for life of build
+
+ultimately will all config become Subset-used?
+	all cfg is abstract?
+
+deep testing
+	complex type - Address
+	(initial, neo, acc, mailbox) versions
+	create cs, destroy cs
+	create cs, set val, destroy cs
+	create A, create M, destroy M, destroy A
+	create A, create M, set A, destroy M, destroy A
+	create A, create M, set M, destroy M, destroy A
+	create A, create M, set A, set M, destroy M, destroy A
+	(no initial, initial)
+	(no action, set val)
+	NONE | N | A | M
+	get A, set N, get A, reset N, get A, set A, get A
+

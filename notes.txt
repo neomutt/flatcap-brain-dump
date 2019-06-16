@@ -1,3 +1,16 @@
+deferred config evaluation
+	automatic for sensitive variables?
+	global contans `script.sh` get_value() evaluates the backticks
+	can't be done by config system, only outside can eval ``s
+	need to be careful to avoid double evaluation
+	don't want backends evaluating ``s either (transparent)
+
+enable -Wextra ?
+	how much noise?  quite a bit
+	unused parameters
+	unsigned compare
+	uninitialised struct members
+
 core lib
 	NeoMutt, Config, Account, Mailbox, Notify
 	can it be made independent?
