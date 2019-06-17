@@ -1537,3 +1537,135 @@ deep testing
 	NONE | N | A | M
 	get A, set N, get A, reset N, get A, set A, get A
 
+--------------------------------------------------------------------------------
+
+Config
+
+core (neomutt, e.g. gui)
+modules (sidebar, imap, etc)
+multi-level inheritance
+central config?
+split config?
+config flagged for inheritance
+reg(core); reg(imap); ...
+
+inherit - fixed at build?  or dynamic at configure?
+get_val("name") or
+get_val(subset, "name") or
+get_val(module, subset, "name")
+module is just a ConfigSet NO
+Account { Subset }, Mailbox { Subset }
+NO, I'd need a Subset ptr per module
+	get_val(ImapModule, AccountSubset, "name")
+	module has ConfigSet
+	subset has logical prefix
+imap_get_val(subset, "name)
+
+split config => subset is just a name
+	get_val(ImapModule, Account->name, "name") NO
+	need HE for Inheritance
+if we get_val(... Mailbox->name, ...)
+	need to default to M->valu, A-val, N-val (initial)
+
+on "account" need to inherit.  inherit what?  everything?
+flagged for inheritance => reg_var NO
+	notification Config on new Account "name"
+	reg_var("name", inherit)
+	"account work"
+		-> notify new A
+		-> Config observes
+		-> Config notify new A
+		=> imap inherit "work:name"
+	"mailbox todo"
+		-> notify new M
+		-> Config observes
+		-> Config notify new M
+		=> imap inherit "work:todo:name"
+	who concats 'work' and 'todo'?
+
+subset knows parent
+	M-sub "work:todo" -> A-sub "work" -> NULL -> plain name
+	get_val(ImapModule, M-sub, "name")
+
+how does set_val() work?
+how does completion work if all vars aren't declared?
+
+physical split can' work unless Config is part of Module API
+Central Config - module owners?
+module API ∀ add_inheritance("acc") or ("acc:mbox")
+	=> inherit ∀ flagged config
+	remove_inheritance() opposite
+	list_config() -> completion purposes
+
+set_val()
+	set name = val			set name = val
+	account set name = val		set acc:name = val
+	mailbox set name = val		set acc:mbox:name = val
+
+parse_set() needs to know about all the modules
+	or every variable has a module ptr { set(), get() }
+	set acc:mbox:name -> split out name, lookup set(a:m:name)
+	can't lookup name, need to iterate ∀ modules
+	inherit flag on ConfigDef -> can be dumped as help!
+		separate flags for A-, M-specific inheritance
+		M- implies A-
+
+should we instantiate EVERY inherited value?
+	200 items * 5 accounts => 1000 empty configs (HashElems)
+	or teach "set" completion about accounts/mailboxes
+
+Completion
+	"set <tab>"
+		all BASE config names
+		all ACCOUNT names (complete to "acc:")
+	"set acc:<tab>"
+		all Account-specific config names
+		all MAILBOX names (complete to "acc:mbox:")
+	"set acc:mbox:<tab>"
+		all Mailbox-specific config name
+
+Dump
+	":set" (only changed)
+		BASE config names
+		Account-specific config names
+		Maibox-specific config names
+	":set all" (all config)
+		all BASE config names
+		changed Account-specific config names
+		changed Maibox-specific config names
+
+Sorting, in alpha order
+	BASE config
+	Account-specific config
+		Mailbox-specific config
+	Account-specific config
+		Mailbox-specific config
+
+If subset doesn't contain an array of HashElem,
+	then N can have one has a parent of A->sub
+	ConfigSet is global or on N
+
+bit of duplication for get_val(a:m:name)
+	-> inheritance, using HashElem
+	or if missing, try parent subset, then grandparent subset, etc
+
+cs_subset_new(cs?, name, parent-sub) - makes no changes to ConfigSet
+cs_subset_free(sub) needs to release all scoped variables
+	needs to happen before its parent is freed
+	we don't have a list any more, so HashWalk to find them (if any)
+
+how does set_val() work with missing HashElems?
+assuming only base value
+	set_val(a:name)
+		create(a:name), if nec, set value
+	set_val(a:m:name)
+		create(a:name), if nec, set inherited
+		create(a:m:name), if nec, set value
+how does reset(a:name) work?
+	NEVER delete (leave until subset_free())
+	create(a:name) if nec, set inherited
+
+how does reset(a:m:name) work?
+	create(a:name) if nec, set inherited
+	create(a:m:name), if nec, set inherited
+
