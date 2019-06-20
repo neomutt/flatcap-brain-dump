@@ -1,0 +1,148 @@
+Events
+	(E0) config		ct_get_sub()
+	(E1) account NAME	ct_set_account(NAME)
+	(E2) account		ct_set_account(NULL)
+	(E3) mailbox NAME	ct_set_mailbox(NAME)
+	(E4) mailbox		ct_set_mailbox(NULL)
+	(E5) source FILE	ct_push_top()
+	(E6) EOF		ct_pop()
+
+s0
+	[empty]
+		(E0) config		global config
+		(E1) account a1		FAIL
+		(E2) account		FAIL
+		(E3) mailbox m1		FAIL
+		(E4) mailbox		FAIL
+		(E5) source FILE	(-,-)
+		(E6) EOF		FAIL
+
+s1
+	(-,-)
+		(E0) config		global config
+		(E1) account a2		(a2,-)
+		(E2) account		WARN - no active account
+		(E3) mailbox m2		WARN - no active account
+		(E4) mailbox		WARN - no active account
+		(E5) source FILE	(-,-) (-,-)
+		(E6) EOF		EMPTY
+	(a1,-)
+		(E0) config		a1:config
+		(E1) account a2		(a2,-)
+		(E2) account		(-,-)
+		(E3) mailbox m2		(a1,m2)
+		(E4) mailbox		WARN - no active mailbox
+		(E5) source FILE	(a1,-) (a1,-)
+		(E6) EOF		EMPTY
+	(a1,m1)
+		(E0) config		a1:m1:config
+		(E1) account a2		(a2,-)
+		(E2) account		(-,-)
+		(E3) mailbox m2		(a1,m2)
+		(E4) mailbox		(a1,-)
+		(E5) source FILE	(a1,m1) (a1,m1)
+		(E6) EOF		EMPTY
+
+s2
+	(-,-) (-,-)
+		(E0) config		global config
+		(E1) account a3		(-,-) (a3,-)
+		(E2) account		WARN - no active account
+		(E3) mailbox m3		WARN - no active account
+		(E4) mailbox		WARN - no active mailbox
+		(E5) source FILE	(-,-) (-,-) (-,-)
+		(E6) EOF		(-,-)
+	(-,-) (a2,-)
+		(E0) config		a2:config
+		(E1) account a3		(-,-) (a3,-)
+		(E2) account		(-,-) (-,-)
+		(E3) mailbox m3		(-,-) (a2,m3)
+		(E4) mailbox		WARN - no active mailbox
+		(E5) source FILE	(-,-) (a2,-) (a2,-)
+		(E6) EOF		(-,-)
+	(-,-) (a2,m2)
+		(E0) config		a2:m2:config
+		(E1) account a3		(-,-) (a3,-)
+		(E2) account		(-,-) (-,-)
+		(E3) mailbox m3		(-,-) (a2,m3)
+		(E4) mailbox		(-,-) (a2,-)
+		(E5) source FILE	(-,-) (a2,m2) (a2,m2)
+		(E6) EOF		(-,-)
+	(a1,-) (-,-)
+		(E0) config		a1:config
+		(E1) account a3		(a1,-) (a3,-)
+		(E2) account		WARN - no active account
+		(E3) mailbox m3		WARN - no active account
+		(E4) mailbox		WARN - no active mailbox
+		(E5) source FILE	(a1,-) (-,-) (-,-)
+		(E6) EOF		(a1,-)
+	(a1,-) (a2,-)
+		(E0) config		a2:config
+		(E1) account a3		(a1,-) (a3,-)
+		(E2) account		(-,-) (-,-)
+		(E3) mailbox m3		(a1,-) (a2,m3)
+		(E4) mailbox		WARN - no active mailbox
+		(E5) source FILE	(a1,-) (a2,-) (a2,-)
+		(E6) EOF		(a1,-)
+	(a1,-) (a2,m2)
+		(E0) config		a2:m2:config
+		(E1) account a3		(a1,-) (a3,-)
+		(E2) account		(-,-) (-,-)
+		(E3) mailbox m3		(a1,-) (a2,m3)
+		(E4) mailbox		(a1,-) (a2,-)
+		(E5) source FILE	(a1,-) (a2,m2) (a2,m2)
+		(E6) EOF		(a1,-)
+	(a1,m1) (-,-)
+		(E0) config		a1:m1:config
+		(E1) account a3		(a1,m1) (a3,-)
+		(E2) account		WARN - no active account
+		(E3) mailbox m3		WARN - no active account
+		(E4) mailbox		WARN - no active mailbox
+		(E5) source FILE	(a1,m1) (-,-) (-,-)
+		(E6) EOF		(a1,m1)
+	(a1,m1) (a2,-)
+		(E0) config		a2:config
+		(E1) account a3		(a1,m1) (a3,-)
+		(E2) account		(a1,m1) (-,-)
+		(E3) mailbox m3		(a1,m1) (a2,m3)
+		(E4) mailbox		WARN - no active mailbox
+		(E5) source FILE	(a1,m1) (a2,-) (a2,-)
+		(E6) EOF		(a1,m1)
+	(a1,m1) (a2,m2)
+		(E0) config		a2:m2:config
+		(E1) account a3		(a1,m1) (a3,-)
+		(E2) account		(a1,m1) (-,-)
+		(E3) mailbox m3		(a1,m1) (a2,m3)
+		(E4) mailbox		(a1,m1) (a2,-)
+		(E5) source FILE	(a1,m1) (a2,m2) (a2,m2)
+		(E6) EOF		(a1,m1)
+
+s3
+	(-,-) (-,-) (-,-)
+	(-,-) (-,-) (a,-)
+	(-,-) (-,-) (a,m)
+	(-,-) (a,-) (-,-)
+	(-,-) (a,-) (a,-)
+	(-,-) (a,-) (a,m)
+	(-,-) (a,m) (-,-)
+	(-,-) (a,m) (a,-)
+	(-,-) (a,m) (a,m)
+	(a,-) (-,-) (-,-)
+	(a,-) (-,-) (a,-)
+	(a,-) (-,-) (a,m)
+	(a,-) (a,-) (-,-)
+	(a,-) (a,-) (a,-)
+	(a,-) (a,-) (a,m)
+	(a,-) (a,m) (-,-)
+	(a,-) (a,m) (a,-)
+	(a,-) (a,m) (a,m)
+	(a,m) (-,-) (-,-)
+	(a,m) (-,-) (a,-)
+	(a,m) (-,-) (a,m)
+	(a,m) (a,-) (-,-)
+	(a,m) (a,-) (a,-)
+	(a,m) (a,-) (a,m)
+	(a,m) (a,m) (-,-)
+	(a,m) (a,m) (a,-)
+	(a,m) (a,m) (a,m)
+

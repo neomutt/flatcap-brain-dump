@@ -136,3 +136,10 @@ deglobalise
 string fn to pretty print \t, \r, \n for tests
 	handle NULL, quote string
 
+mutt_parse_rc_line(buf, struct Buffer *token, struct Buffer *err)
+	'token' is a tmp buffer -> 'tmp'
+
+rename
+	mutt_mailbox_X to mailbox_X
+	mutt_email_X to email_X
+

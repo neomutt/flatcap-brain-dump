@@ -1,3 +1,7 @@
+test sample configs with Valgrind, ASAN, UBSAN, Coverity
+
+rename sub to cfg?  clearer meaning?
+
 Context - paths, counts
 Header[] list -> Env, Body, etc
 Incoming -> Buffy[] (paths, counts)
@@ -1660,7 +1664,7 @@ assuming only base value
 		create(a:name), if nec, set value
 	set_val(a:m:name)
 		create(a:name), if nec, set inherited
-		create(a:m:name), if nec, set value
+		breate(a:m:name), if nec, set value
 how does reset(a:name) work?
 	NEVER delete (leave until subset_free())
 	create(a:name) if nec, set inherited
@@ -1668,4 +1672,184 @@ how does reset(a:name) work?
 how does reset(a:m:name) work?
 	create(a:name) if nec, set inherited
 	create(a:m:name), if nec, set inherited
+
+--------------------------------------------------------------------------------
+
+Account/Mailbox commands
+
+how does "mailbox" command work?
+can't be global, needs to be A-specific
+	otherwise nested A-config and nested M-config will break
+
+---------------------------------------------------------------------
+file1.rc		file2.rc		file3.rc
+
+account work
+mailbox todo
+source file2.rc
+			config (work:todo:)
+			account home
+			config (home:)
+			mailbox diy
+			source file3.rc
+						config (home:diy:)
+						EOF
+			EOF
+config (work:todo:)
+EOF
+---------------------------------------------------------------------
+convert to svg
+
+not global
+	A-stack is on N
+	M-stack is on A
+	N->get_current_A()
+	A->get_current_M()
+
+NO, won't work, "source" needs to dupe stack top
+
+global stack of { A-name, M-name }?
+	{acc,-} -> {acc,mbox} or {-,mbox}?
+	what about mailbox apple banana?
+	{acc,-}, {-,apple}, {-,banana}?
+new file (source) -> dupe to last A
+EOF -> kill to last A
+New A -> kill to last A, add {new-A,-}
+New M -> kill top M's, add {-,new-M}
+
+change {str,str} to {int,str} NT_ACC, NT_MBOX
+multiple M's -> multiple sub's -> complex cose
+
+suggest mailbox apple source shared.rc, etc
+back to {str,str}? only one A, only one M
+
+new A -> set	{A,-}	set_account()
+new M2 -> set	{A,M2}	set_mailbox()
+source -> dupe top	push_top()
+EOF			pop()
+startup push {-,-}
+	should return to this after every complete config read
+
+--------------------------------------------------------------------------------
+
+account work
+	[options]
+	mailboxes a b c
+	named-mailboxes A a B b C c
+	mailbox D d
+		[options]
+
+or mailbox is named synonym
+	no, not quite
+	named is legacy
+
+named-mailboxes E e F f	doesn't affect following options
+mailbox G g H h		affects following options
+	applies to single/multiple mailboxes
+
+mailbox [empty] or account [empty]
+or mailbox new-name or account new-name, or EOF
+
+stack of names, cf account
+	except in multiple cases - comma-separated
+--------------------------------------------------------------------------------
+
+modules plus inherted Config*Set*s
+subset has entire ConfigSet, flagged, with pointer to parent Set
+Account.subset.ConfigSet get_val(name)
+	=> lookup plain "name", if fails look at Set->parent
+is ConfigSet names?  prob no need
+modules would be unaware of inherited set
+*NO*  we'd need 1 inherted Set per module
+unless Inherited item points to parent set  NO
+	if item isn't inherited we've got no info
+
+--------------------------------------------------------------------------------
+
+we don't instantiate all inherited values
+	=> subset is empty, just name,parent
+	=> NeoMutt can have a subset
+	=> all config could be abstract
+
+unaccount name|*|...
+	destroy name(s), or all A
+	if A->name in ConfigAccountStack, NULL then
+	so we keep the stack sane on EOF
+if we invalidate current A, invalidate M-stack too
+
+--------------------------------------------------------------------------------
+
+"account name"
+"account"
+"account name config"
+
+"mailbox name"
+"mailbox"
+"mailbox name config"
+
+should allow "account name mailbox name config"
+
+account wants name, description
+mailbox wants name, description
+
+description command on in A-,M-config
+name is short, used for config, default in sidebar
+desc(ription) can be anything, utf-8, whitespace, etc
+
+named-mailboxes => mailbox name  -- what about the path?
+mailbox needs path, can have name, desc
+
+disallow?
+	"account name config"
+	"mailbox name config"
+	=> hence :account name config etc?
+	=> config that you can't type in manually
+unless you can
+	account name<enter>
+	config<enter>
+	config<enter><enter>
+(continuation prompt)
+
+account name [config]	=> set name:X
+mailbox name path	=> set name:name:X
+mailbox name [config]
+	path set path		=> mailbox name path imap://
+	desc set description	=> mailbox name desc "pretty"
+
+account takes desc command too
+	mailboxes path [path] ...
+	named-mailboxes name path [name path] ...
+	mailbox name path imap://
+extensible to other commands
+
+deprecate named-mailboxes -> mailbox
+gotcha: mailbox "name" path is one-liner
+	following config isn't scoped to "name"
+sloppy parsing?  allow continuation?
+so these are equivalent:
+
+	mailbox work
+		path imap://
+		set index_format=""
+	
+	mailbox work path imap://
+		set index_format=""
+
+doesn't apply to ':' commands
+	they're one-liners
+
+NEED path command, should add desc command
+what about:
+	mailbox name desc "pretty" path imap://
+	each command takes exactly one param
+	can we chain them?
+trickier wit other commands, 'set' eats all args
+	account name desc pretty set index_format=""
+	desc has to come first
+
+account NAME [config]
+	desc[ription]
+mailbox NAME [config]
+	path PATH
+	desc[ription]
 

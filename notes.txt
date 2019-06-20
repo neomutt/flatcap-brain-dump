@@ -1,3 +1,19 @@
+newbie question
+	how does mail get into neomutt
+	What's an MUA?
+
+<f1> for context sensitive help
+	<f2> for help on last error received?
+	create functions
+
+dump-config
+	INDENT option for A-,M-specific
+
+dump-config SHOW_DOCS option
+	if $xyx is inherited, then show and document the base value
+	don't doc inherited value
+	if base value isn't changed from default, comment it out
+
 deferred config evaluation
 	automatic for sensitive variables?
 	global contans `script.sh` get_value() evaluates the backticks
