@@ -12,7 +12,7 @@ need dirs in mailbox layout for grouping
 	how to do that in neomutt's config?
 	abuse named-mailboxes?
 
-need separate timer - normal check_mail many be too frequent
+need separate timer - normal check_mail may be too frequent
 
 built-in urlview?
 

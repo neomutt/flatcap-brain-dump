@@ -1853,3 +1853,65 @@ mailbox NAME [config]
 	path PATH
 	desc[ription]
 
+--------------------------------------------------------------------------------
+
+mailboxes / named-mailboxes PATH
+	sufficient to identify type and create Account
+"account", "mailbox" incomplete until "path"
+path -> magic for M & A, mxops
+what happens when M's in an A don't have matching types?
+what happens if a path is mising?
+	potentially A is untyped
+leave them in memory in case more config is read?
+do we notify when A,M are created or when complete?
+if only complete, then need big warnings after config red
+
+--------------------------------------------------------------------------------
+
+simple A only "account name"; config; mailboxes * n
+	or named mailboxes * n
+ay config of (named-)mailboxes is M-scoped
+A-specific non-config would go on A-view, e.g. colours
+
+--------------------------------------------------------------------------------
+
+what config exists?
+	N, NA, NM, NAM
+what config is wanted?
+	N, NA, NAM
+
+want N
+	only N.global, or by name "index_format"
+	for global config, or unsupported inheritance
+	NA, NAM, NM disallowed
+
+want NA
+	get_account(), subset_get("index_format")
+	NM, NAM disallowed
+	handles A missing, defaults to N
+
+want NAM
+	get_mailbox(), subset_get("index_format")
+	all allowed
+	handles M or AM missing, A missing irrelevant
+
+want N
+	get_neomutt() / N.sub, subset_get("index_format")
+	for consistency
+
+merge get_X(), get_val()?  NO can't.  don't know which A/M to use
+get_val() needs (N,A,M-sub, name)
+	sub might not exists (unnamed)
+config many not be inherited
+get_A, get_M only relevant during config read (tracker only relevant)
+parse_set needs to distinguish between get_val()
+	during config setup and later?
+	no, just the src or A,M is diff
+		get A vs param A, etc
+
+get_var(sub,name) wrapper
+
+how does independent ':set' work?
+what about &, !, inv, no?
+	where do they fit?
+

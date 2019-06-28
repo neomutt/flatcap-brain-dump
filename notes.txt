@@ -1,3 +1,17 @@
+union mailbox, a la notmuch
+	how?
+	where does incoming mail go?
+
+change "hidden_tags" to be a regex? (#1744)
+	backwards-compatible how?
+	look for '(' ')' '*' '|' ?
+	how do we store it in Config if it has two possible types?
+
+tmp *dir* per email
+	mostly unused? NO
+	lifetime of email
+	save attachments in it
+
 newbie question
 	how does mail get into neomutt
 	What's an MUA?
