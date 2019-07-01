@@ -1915,3 +1915,17 @@ how does independent ':set' work?
 what about &, !, inv, no?
 	where do they fit?
 
+--------------------------------------------------------------------------------
+
+set, completion(index_format, folder)
+tests FA
+
+set noX, acc:noX, acc:mbox:noX
+set invX, acc:invX, acc:mbox:invX
+unset X, acc:X, acc:mbox:X
+
+{set,unset,reset,toggle} [acc:[mbox:]]X
+
+set {&,?}[acc:[mbox:]]X
+set [acc:[mbox:]]X?
+

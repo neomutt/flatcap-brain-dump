@@ -1,3 +1,20 @@
+like lkml backend, run notmuch on IMAP as background task
+	select Account/Mailboxes you want to index
+	work backwards from NOW
+	apply to new mail
+	unapply to deleted mail (or tag)
+	unapply to trashed mail (or tag)
+	implies notmuch is a transparent layer over backend
+		for maildir, imap, lkml, nntp
+	need rules to cull old entries
+	might need separate databases
+	better as an external prog?
+	notmuch layer listens for new-mail, del-mail notifications, etc
+
+create sample code for inline and out-of-line STAILQ useand others
+
+save option for summary page info
+
 union mailbox, a la notmuch
 	how?
 	where does incoming mail go?
@@ -427,6 +444,7 @@ tmp dir for emails
 	mbox wants to write Status: R
 	check creation of dirs carefully
 		so race conditions not possible
+	cf `vim -r` recovery mode
 
 new cache config
 	cache_dir

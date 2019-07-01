@@ -143,3 +143,16 @@ rename
 	mutt_mailbox_X to mailbox_X
 	mutt_email_X to email_X
 
+struct Mailbox *mutt_mailbox_find_desc(const char *desc)
+	if (np->mailbox->desc && (mutt_str_strcmp(np->mailbox->desc, desc) == 0))
+	(np->mailbox->desc) test not nec
+
+rename to m_desc
+	struct Mailbox *desc_m = mutt_mailbox_find_desc(C_Spoolfile);
+	check for others
+
+refs to "Header" in help.c
+
+nm_description_to_path() unused
+	mutt_mailbox_find_by_desc() instead
+
