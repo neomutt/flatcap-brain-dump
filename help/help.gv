@@ -1,0 +1,107 @@
+digraph neomutt
+{
+
+	graph [
+		rankdir="TB"
+		nodesep="0.5"
+		ranksep="0.5"
+	];
+
+	node [
+		shape="plain"
+	];
+
+	edge [
+		penwidth="4.5"
+		arrowsize="1.0"
+		color="#c0c0c0"
+	];
+
+	obj_0x56af30 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" bgcolor="#80ffff" port="top"><font color="#000000" point-size="20"><b>AllAccounts</b></font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0xfc56b0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Account</b></font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">magic</td>
+			<td border="0">=</td>
+			<td border="0" align="left">Help</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0xf9bde0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#60c0c0" port="top" colspan="3"><font color="#000000" point-size="20"><b>HelpAccountData</b></font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">key</td>
+			<td border="0">=</td>
+			<td border="0" align="left">value</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0xfc56f0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" bgcolor="#80ff80" port="top"><font color="#000000" point-size="20"><b>MN</b></font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0xfe4660 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Mailbox</b></font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">Help</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">path</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"index.md"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">account</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#80ffff">0xfc56b0</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x10134f0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#60c060" port="top" colspan="3"><font color="#000000" point-size="20"><b>HelpMboxData</b></font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">dir</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"/home/user/docs"</td>
+		</tr>
+		</table>>
+	];
+
+	{ rank=same obj_0xfc56b0 obj_0xf9bde0 }
+
+	obj_0x56af30 -> obj_0xfc56b0 [  edgetooltip="AllAccounts->first" ];
+	obj_0xfc56b0 -> obj_0xf9bde0 [  edgetooltip="Account->adata" ];
+	obj_0xfc56b0 -> obj_0xfc56f0 [  edgetooltip="Account->mailboxes" ];
+	obj_0xfe4660 -> obj_0x10134f0 [  edgetooltip="Mailbox->mdata" ];
+	obj_0xfc56f0 -> obj_0xfe4660 [  edgetooltip="MailboxNode->m" ];
+	{ rank=same obj_0xfc56f0 obj_0xfe4660 obj_0x10134f0 };
+
+}

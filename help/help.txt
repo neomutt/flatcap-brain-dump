@@ -98,3 +98,39 @@ Optional extra task -- Implement basic markdown:
 - Replace `[alt-text](url)` with a number and add a footnote with the url
 - Replace `:+1:` with unicode 'thumbs up' (and the others :-)
 
+--------------------------------------------------------------------------------
+
+navigation
+
+1a) help://dir/file[.md] opens correct file
+
+section naming?
+	sequential #s1 #s2
+	massaged #index-panel (From "Index Panel")
+	metadata #index (from YAML)
+		that's a lot of metadata
+		can we squeeze it into the actual markdown?
+line numbers?
+	#l123
+search?
+	#q=QUERY
+	#q="SOME THING"
+	#q=SOME+THING
+
+command to show page address for the current cursor position
+	top of screen?  probably not
+	first heading on screen?  better
+
+how is "magic" context-sensitive-help <F2> achieved?
+	need metadata passing to every question asked
+	and in every menu
+
+help-doc repo has several *list* sections
+	parent defines 'list'
+	LOTS of tiny files
+	possibly with lots of links
+	Config items
+	Commands
+	Functions
+	Error messages
+
