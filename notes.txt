@@ -1,3 +1,38 @@
+context sensitive help
+	use index selection
+	e.g. mailing list specific
+	index help should be backend-specific
+
+mail_check_stats(_interval) -- A-specific
+	use *un*folder-hook to have different settings for
+	current and 'other' accounts
+
+API contract guarantees callback functions won't be passed NULL?
+
+upstream
+	config - resize long
+	hcache size -> 'long'
+
+log_disp_debug_terminal
+	*everything* to stdout
+
+help disabiguation pages for commonly confused terms
+
+notify_remove() needs data for exact match
+
+hcache leaking
+	lmdb 4 + 3*Account + 2*Mailbox objects
+	maildir 2*Account + 2*Mailbox objects
+
+<quiet> option for <pipe-message> and <shell-escape>
+	logs output raw to neomutt debug log
+	mutt_error() if it fails
+
+webpage: how to debug neomutt problems
+	bisect config
+	null config
+	etc
+
 feature: live filter index as you type, cf sidebar matcher
 
 [release] test
@@ -173,7 +208,7 @@ maildir - (advanced, future)
 	if no overlap, don't error
 	merge-tool-like
 	accept change?  [New/Old]?
-	
+
 new mail expandos
 	%n num
 	one notify per folder?
@@ -580,7 +615,7 @@ mx_mbox_open -- force type?
 	'n' == MBOX, etc
 
 split up opcodes by action and detail (sub-action)
-	18:03 <adray> You know how we define virtual-mailboxes as "MUTT_VIRTUAL | MUTT_NAMED". Would it be possible to do the same for opcodes? So instead 
+	18:03 <adray> You know how we define virtual-mailboxes as "MUTT_VIRTUAL | MUTT_NAMED". Would it be possible to do the same for opcodes? So instead
 		of OP_MAIN_VFOLDER_FROM_QUERY_READONLY, it could be OP_MAIN_VFOLDER_FROM_QUERY | OP_READONLY?
 	18:04 <adray> (this also ties into your OP_DELETE code, possible to do OP_ATTACHMENT | OP_DELETE)
 	18:06 <flatcap> currently, they're an enumeration
@@ -1372,7 +1407,7 @@ mutt tips
 	create http-reading mailbox type
 	needs to be able to scan host (or read an index)
 	served as html by CDN
-tls_set_priority - 
+tls_set_priority -
 mutt tips
 	RSS feed?
 	we can control the length of the history

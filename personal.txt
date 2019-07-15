@@ -222,3 +222,5 @@ github dir
 
 test pretty-git-prompt
 
+custom gdb pretty print for Buffer, FILE (fileno), etc
+
