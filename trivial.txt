@@ -117,9 +117,6 @@ init.c
 variables, urgh! sendlib.c
 	mutt_lookup_mime_type() int szf, sze, cur_sze;
 
-mutt_parse_hook()
-  	local var `ptr`
-
 flags typedef
 	/* flag to mutt_pattern_comp() */
 	#define MUTT_FULL_MSG           (1<<0)  ///< enable body and header matching
@@ -136,22 +133,7 @@ deglobalise
 string fn to pretty print \t, \r, \n for tests
 	handle NULL, quote string
 
-mutt_parse_rc_line(buf, struct Buffer *token, struct Buffer *err)
+mutt_parse_rc_line(char *line, struct Buffer *token, struct Buffer *err)
 	'token' is a tmp buffer -> 'tmp'
-
-rename
-	mutt_mailbox_X to mailbox_X
-	mutt_email_X to email_X
-
-struct Mailbox *mutt_mailbox_find_desc(const char *desc)
-	if (np->mailbox->desc && (mutt_str_strcmp(np->mailbox->desc, desc) == 0))
-	(np->mailbox->desc) test not nec
-
-boolify
-	char *imap_next_word(char *s)
-		int quoted = 0;
-
-ParameterList *p -> pl
-
-free adata, mdata, edata before deconstruction of object
+	or eliminate it with the BufferPool
 
