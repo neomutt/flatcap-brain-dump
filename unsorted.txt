@@ -1,0 +1,590 @@
+main - loop, readchar, 1s timeout
+	tree of windows, one focussed
+	key -> each window - returns handled; no, need more
+		more keys within timeout
+	check timers -> timeout-hook
+
+--------------------------------------------------------------------------------
+
+index: check_mbox() returs list of changes NO
+	if emails were deleted, index's ptrs would be dangling
+	needs to be a notify/callback
+	up to 3 (del, change, new)
+	index -> mbox_sync()
+	index watches M(data: c) all data/changes limited to c
+
+--------------------------------------------------------------------------------
+
+how do global actions notify C/M of change
+	e.g. "color " needs index to repaint!
+	':' command handled at top level outside index/pager
+	"config" notification sent to N, C is observing
+	*UI* notify?
+	index/pager need to know when Context changes, then can use ctx
+
+--------------------------------------------------------------------------------
+
+Invisible, Max, Min, Fixed - siblings
+	[new log level for win (reflowing and notifications)?
+all windows are maximised in one direction (dependent on container)
+RootWindow is V, fixed @ (80x24)
+iterate through children using up V space of 24
+Inv = skip, no space
+Fixed = alloc if possible
+Min, alloc all space, recurse, shrink around children, treat as fixed
+Max, alloc 1, set flag=max
+SHared alloc 1 set flags=share (overrides max)
+	no flags, no shared, just a count of Max elements
+End: leftover space
+share between Max elements, adjust accordingly
+Finally recurse through all non-Min children
+
+--------------------------------------------------------------------------------
+
+:toggle abc<tab>
+	shoud it only complete to booleans? etc
+
+sidebar could be an overlay - oscure index temporarily
+	<sb-hide> for completeness
+	if the timeout is short, then magic sidebar
+	visible timeout after any action or <sb-show>
+
+@page for Help backend
+
+multiple progress in parallel
+nested progress bars for subtasks?
+how to display?
+	braille or sparklines
+	allow four lines
+	or lots of columns with 4 graduations
+
+bug: wide multi-select prompts aren't being wrapped
+
+--------------------------------------------------------------------------------
+
+scenarios
+	Index, Compose, Attach Message
+	Index, Change Folder, Index
+
+Layer - owning Helpine, sidebar, index, pager, status, pbar, cli
+	all listening to Context
+
+Change Folder / Change Account
+	what happens to the Windows?
+
+GuiOpenMailbox - checks and perform mbox_open()
+if all successful -> create/reuse Windows
+
+are Windows observing M or MV?  E or EV? etc
+M or E No view notifications, send() to data object
+
+HelpLine Window, needs HL-API on many objects
+	Index, Compose, HelpPage, etc need HLAPI
+	object is List of strings for Menu + Notify subject
+
+need object ∀ Window or is that the Window itself?
+each object supports WindowAPI - nesting info, etc
+
+Do Windows exist if unused?  have observers to enable them?
+	who populates them?
+	":set help" needs Win and starter object
+	empty but initialised to HLAPI
+
+when you "compose" you get a new complete layer
+could reuse HelpLine, but *don't*, don't want sidebar
+index/pager could split screen, but we want all of it
+could use status, but don't
+cli _could_ be shared ∀ screens
+
+--------------------------------------------------------------------------------
+
+start with path P, resolve to M(a)
+create_index(M) -> I
+create_window() -> V0
+
+create_helpline(V0, I.HL)
+	HL has repaint notification, HelpLine is observer =>
+NeoMutt does HelpLine.repaint()
+HL observer calls repaint too
+
+create_sidebar(H1, N) -> S
+S observes N, listening for new,del,change of A,M
+notifications call .repaint()
+
+OK for passive behaviour, what about <sidebar-next>?
+who's listening for keystrokes?
+who's distributing events?  whither?
+<sb-next> just visual
+<sb-open> causes change HOW?
+
+--------------------------------------------------------------------------------
+
+need outer 'focus' object on N
+	set_focus(MAILBOX, M)?
+	Current A, M, E
+pager listening for a current E
+pager makes itself visible?
+
+Who's controlling the business logic?
+	state machine?
+
+--------------------------------------------------------------------------------
+
+help and summary should share a layer (or close existing)
+
+focus need fine grain, so F2 (ctx-sensitive help) can do a good job
+	need window ptr, win needs unique name
+	or qualified name, e.g. browser-pgp
+	-> find "browser-pgp" help or
+	"browser" help or base
+	or a direct link into docs?  too constraining?
+
+--------------------------------------------------------------------------------
+
+pager needs to be *passed* a window to paint on
+are (index,status) or (pager,pbar) separate windows PROB YES
+	they might be updated independently
+
+msg window -> shrink sidebar, index -> notify shrink, e.g.
+	sb decides no action
+	index decides repaint=true
+who prompts actual repaint?  when?
+	repaint=true => all children
+
+--------------------------------------------------------------------------------
+
+main loop servicing keystrokes
+	N.focus NO, NV.focus is Index
+
+if focus moves to Compose, where does it go after?  stack?
+if you type ":" <BS> needs to return exactly
+push_focus(win), pop_focus()
+
+--------------------------------------------------------------------------------
+
+separate Pager: Text, Markup, Display?
+Text excludes decode, etc => text is raw email
+	identical to body cache
+	are layers separate?  prob NO
+	layers *are* independent, but unlikely to change
+
+first markup is weed, then decode
+second (plugins) colours, styles, replacesments, etc
+	everything but wrapping
+	if screen is resized, might that affect markup etc? *possibly*
+pass the pager a raw email and a set of plugin modifiers and a window
+raw email is r/o mmap()d
+
+--------------------------------------------------------------------------------
+
+reflow: Win Requested size old(current) size, allocated size
+			   old(current) posn, calculated posn
+
+old/new hidden, old/new size param
+Fixed, Max, Min.
+	fixed needs one size param
+	Max, Min need zero
+Floating window would need one or two sizes
+	Sidebar vs Popup win
+
+int -> ushort, USHRT_MAX
+
+*state* (rows, cold, pos row, pos col, hidden) * 2 + (req row, req col)
+state passed to notifications?
+	update, pass old state
+	copy alloc -> old state
+	use req to alloc space -> alloc
+reshape, notify if changes
+	fn(s1, s2) -> state change flags
+	visible, grew, shrank, posn moved, etc
+
+--------------------------------------------------------------------------------
+
+new expand code is OK for Email, but what about private Notmuch E->edata?
+In pager, expose functions to collapse thred, etc in index?
+add more synonyms to unify imap_url vs smtp_url, etc
+F1 ctx-help - option to open online web help instead
+need reflow() to take a Window, if NULL, reflow all
+reflow.c - test with fake Window
+
+--------------------------------------------------------------------------------
+
+Index
+	2 functions: index_repaint(), index_main_loop()
+
+need shared data
+main loop: prep data, attach data to window?
+is prep() a separate function called by repaint()? and main()?
+what events could cause change?
+	data, scree, event
+	data -> new/del/change Email
+	screen -> visible, resize
+	events -> sort, move focus, etc
+
+as index and status are linked, share data?
+	attach data to container?
+	PROB NOT
+
+data is *View*
+	Index has MV, EV
+	Status has AV, MV
+	need to maintain idea of "current"
+	E doesn't know its parent, so Index needs both MV, EV
+
+When Index -> Compose -> Attach Email - is new Index readonly?
+	(except sort)?
+Index expects that when it ents, NeoMutt closes
+status bar, new mail, terminal status - share formatter and requirements
+
+--------------------------------------------------------------------------------
+
+Index() should create 2, Help, 4,5, Index, IBar
+	=> Pager() should  create 6, Pager, PBar
+	if so, who creates the sidebar and when?
+		how does it get plugged in?
+	or 2 et al are created as a "set piece"
+
+--------------------------------------------------------------------------------
+
+Who creates/owns the Views?
+	when are they created/destroyed?
+	on NEW ACCOUNT event?
+	who's listening / holding?
+	new A affects status, but not Index NO wrong
+Index holds notion of Current A,M,E - could be another Index
+W2 - set piece holds Views (set piece == dialog?)
+
+--------------------------------------------------------------------------------
+
+Insert a "dialog" window to wrap (2) for ease of inserting new
+	add a popup container too?
+
+dash-to-dock - sidebar top-levels become tabs (top == Account?)
+use tabs for account switching, for those not wanting to waste space on sidebar
+	or both tabs and sidebar (tab == favourites?)
+
+--------------------------------------------------------------------------------
+
+d = dlg_index_new()
+	creates dialog object
+	creates IWindow, observer, *not* inserted
+	d is subject for events.  which?
+	d observes config, window (WINCH)
+
+d->set_X(Mailbox|Email|etc)
+	or _new(priv_data)
+	can be called by event handlers
+	d->Window->data = d
+
+is any of this dlg-specific?
+
+dlg_push(d) - insert into hierarchy - called by dlg_run()
+dlg_run(d) - main loop
+dlg_pop(d) - remove from hierarchy - called by dlg_run()
+
+run
+	hide current dlg
+	show new dlg
+	reflow ∀
+	repaint ∀
+
+each window has repaint(), event_handler()
+repaint(win) - needs data -- from where?
+
+--------------------------------------------------------------------------------
+
+N.A.M.E.
+
+cset
+new N(cs)
+new A(name)
+	create sub(name) - unusable until added
+
+N.add(A)
+	sub.parent = N.sub
+	sub.cs = N.sub.cs
+
+new M(name)
+	create sub(name) unusable
+A.add(M)
+	sub.parent = A.sub
+	sub.cs = A.sub.cs
+
+n_new(cs)
+n_a_add(n, a)
+a_new(name)
+n_m_add(a,m)
+m_new(name)
+
+  N - sub - cs
+  |    ^
+  V    |
+  A - sub - cs
+  |    ^
+  V    |
+  M - sub
+
+mailboxes M
+	canon M
+	find A for M
+!A
+	new A
+A exists
+	does M exist already?
+	YES done
+	NO continue
+		A.add(M), fail -> DONE
+			N.add(A)
+
+--------------------------------------------------------------------------------
+
+maildir_check()
+	m->e[] (old, new)
+
+stat new/
+stat cur/
+
+read 'new' -> List Maildir -> Email
+copy new list -> el_new
+
+read 'cur' -> List Maidir -> Email
+
+Hash all canon filenames (Maildir)
+	no path, no suffix
+
+∀ M -> E find canon filename in Hash
+	active = false
+	find filename -> active
+	update flags
+	sync deleted-ness
+
+before new, cur, !exist
+	unchanged, changed, deleted
+
+--------------------------------------------------------------------------------
+
+unmailboxes P
+unmailboxes *
+
+M = find P, check type, A->remove(M)
+	* -> A->remove(NULL)  NO
+	  need notify in init.c
+	| hidden?
+
+--------------------------------------------------------------------------------
+
+DocList
+	item size (Email)
+	size 0
+	capa 10
+	data[] 10
+
+Add to list -> gather(file.md | full path)
+	append, read file -> HFHeader(key, vl)
+HelpList[] of Header
+HDMeta { (key,val), filename, CHAPTER }
+
+Email edata = meta + body, env, msgid
+	subject from "title" "desc" *meta*
+
+DocList -> 21*Email, Sort
+Uplinking, Checksub(dir)
+
+--------------------------------------------------------------------------------
+
+M states
+
+U)nknown - no mailboxes, no opens/saves
+M)ailboxes -> known
+O)pen ->
+D)ouble open - save, postpone, attach
+
+U)	M)	O)	D)
+-	1	1	2	M refcount
+N	Y	Y	Y	get stats
+N	N	Y	Y	Emails
+
+A state
+
+U)nknown
+E)mpty - still has conn info & config
+P)opulated
+
+U)	E)	P)
+N	N	Y	sidebar visible
+N	Y	Y	config items
+N	Y	Y	conn info
+N	N	Y	logged in
+
+(un)account, mailboxes, logout
+
+--------------------------------------------------------------------------------
+
+mailboxes => A holds ref AND set flag
+
+"account A"
+	acc_new() -> + list
+
+"mailboxes M"
+	acc_new() -> list(N)
+	mbox_new -> list(A)
+
+"unaccount A"
+	free all M
+	∀ close M, free M
+	free A
+
+--------------------------------------------------------------------------------
+
+Current N, A, M, E
+
+IndexBar (Status)
+Initialise with A or AV
+Listens to A for View events
+observes SET_CURR_M(MV)
+listening at A-level???
+
+--------------------------------------------------------------------------------
+
+Help, Cli, Sidebar are global
+	don't rely on Views
+Index() holds curent A,M,E (AV,MV,EV)
+How are Index->Postponed Index separate?
+
+--------------------------------------------------------------------------------
+
+2 container(I) INDEX
+	sidebar
+	index
+	status
+
+needs AV, MV, EV
+
+3 container(P) POSTPONED
+	index
+	status
+
+needs AV, MV, EV
+
+most likely different A, but possibly the same
+same index code for display -- not quite
+	postponed has limited commands available
+
+Index() passed (2)
+	find_win(SB,I,IB) by name/id
+
+--------------------------------------------------------------------------------
+
+Main creates 'set piece' (SB, I, IB, P, PB)
+
+sb_init(win)
+use N to find all A
+attach data to win
+observe N for new/del A,M,etc
+win needs free_fn for sb
+win needs repaint_fn for sb
+sb needs event_fn to handle keys
+index/page determine which bindings are active
+sb handles actual work?
+passive thing (move focus) easy -> repaint
+actions *mark* window as dirty,
+	so macros don't repaint after every step
+	just at end
+
+--------------------------------------------------------------------------------
+
+sb active events - open folder
+find win (sb->parent, WIN_INDEX)
+OR is the dialog the master and index the slave?
+find_win(sb, WIN_DIALOG) ->
+	INDEX_PAGER_DLG -> API
+index_dlg_open_mailbox()
+sb observes updates
+index observes updates
+
+--------------------------------------------------------------------------------
+
+new_dialog event(win) would allow plugins
+	(sb or widescreen) to change things, install things
+
+new_dialog event (win (2), ID_INDEX_PAGER)
+sidebar inserts container & sb window
+	observes dialog?  or what? N?
+
+--------------------------------------------------------------------------------
+
+dlg_open_mailbox(M)
+	if nec create AV }- cache them?
+	if nec create MV }  is sort order per M, or global?
+
+notify (CURR_A, AV) if nec
+notify (CURR_M, MV) if changed?  always? -> force refresh
+
+--------------------------------------------------------------------------------
+
+'o' sort need <current-account> or <current-mailbox>
+	prefix to sort whole A, or specific M
+
+macro index,pager o <current-account><sort-mailbox>
+or binding for <curr-a>, <curr-m> like ';' for tag
+print account-, mailbox- in msg window like tag-
+
+does 'o' default to mailbox sort
+i.e. sort *this* mailbox only?
+if so, need a <global> prefix too
+
+--------------------------------------------------------------------------------
+
+dialog has main loop, dlg_run() - means breaking up Menu?
+
+is there a timeout on <tag-prefix>?
+	should be for tag-, account-, mailbox-
+
+--------------------------------------------------------------------------------
+
+intermediate step
+	index runs menu loop()
+	move all sb events to switch default:
+	redirect to sb dlg
+
+--------------------------------------------------------------------------------
+
+in the pager, how does the index (lines) get repainted?
+	proabably QUIT (NEXT_EMAIL) RESTART!
+
+
+Key Event distribution
+Focus - maintained by dialog (2)
+Focus on Pager - events for pager, index, sidebar, generic:
+Events tried on focussed window first
+focus -> *leaf* window
+
+<page-down>
+	test Pager?  DONE
+
+<next-email>
+	test Pager? NO
+	siblings
+		PagerBar NO
+	children of (4)
+		(5) NO
+		Index YES, DONE
+
+<sidebar-next>
+	test Pager? NO
+	siblings? NO
+	children of (4) NO
+	siblings of (4)
+		sidebar YES, DONE
+
+<version>
+	pager NO
+	siblings NO
+	children of (4) NO, (4) NO
+	siblings of (4) NO
+	children of (3) NO, (3) NO
+	siblings of (3) NO
+	children of (2) NO, (2) NO
+	siblings of (2) NO
+	children of (R) NO, (R) YES, DONE
+

@@ -122,6 +122,11 @@ flags typedef
 	#define MUTT_FULL_MSG           (1<<0)  ///< enable body and header matching
 	#define MUTT_PATTERN_DYNAMIC    (1<<1)  ///< enable runtime date range evaluation
 
+	/* ... DT_REGEX */
+	#define DT_REGEX_MATCH_CASE 0x040 /**< Case-sensitive matching */
+	#define DT_REGEX_ALLOW_NOT  0x080 /**< Regex can begin with '!' */
+	#define DT_REGEX_NOSUB      0x100 /**< Do not report what was matched (REG_NOSUB) */
+
 boolify Buffer
 	int destroy;  /**< destroy 'data' when done? */
 	or eliminate it
@@ -136,4 +141,55 @@ string fn to pretty print \t, \r, \n for tests
 mutt_parse_rc_line(char *line, struct Buffer *token, struct Buffer *err)
 	'token' is a tmp buffer -> 'tmp'
 	or eliminate it with the BufferPool
+
+refactor
+	index.c:690 conditional
+
+rename to _free()
+	void mutt_menu_destroy(struct Menu **p)
+	rename param
+
+boolify pager.c
+	static short InHelp = 0;
+
+s/TRUE/true/g
+        clearok(stdscr, TRUE);
+
+move, convert to (1 << n) ncrypt/pgpkey.c
+	#define PGP_KV_VALID 1
+	#define PGP_KV_ADDR 2
+	#define PGP_KV_STRING 4
+	#define PGP_KV_STRONGID 8
+	#define PGP_KV_MATCH (PGP_KV_ADDR | PGP_KV_STRING)
+
+indent wrong (1 space) in auto.def
+	###############################################################################
+	# Native Language Support (NLS)
+	if {[get-define want-nls]} {
+	 if {![check-gettext [opt-val with-nls $prefix]]} {
+	   user-error "Unable to find gettext. Consider --disable-nls"
+	 }
+	 if {![cc-check-progs msgfmt msgmerge xgettext]} {
+	   user-error "Unable to find gettext tools (msgfmt, msgmerge, xgettext).\
+	               Consider --disable-nls"
+	 }
+	}
+
+wrong name, shoud be _free()
+	void mutt_addrlist_clear(struct AddressList *al)
+	  ...
+	  mutt_addr_free(&a);
+
+email/parse.c
+	some refs to 'parms'
+	rename to 'params' or 'pl' (ParameterList)
+
+ncrypt/crypt_gpgme.c
+	move enum, data to top of source
+
+boolify in interactive_check_cert
+while (done == 0)
+int done
+
+MENU_POST -> posting, not postpone!
 

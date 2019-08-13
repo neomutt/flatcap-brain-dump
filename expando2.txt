@@ -11,7 +11,7 @@ what's left?
 
 parse loop
 '\' first , ignore next char
-not % -> litera
+not % -> literal
 % -> start
 	function to match precision
 	function to match letter against array
