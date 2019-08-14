@@ -1,3 +1,10 @@
+multiple progress in parallel
+nested progress bars for subtasks?
+how to display?
+	braille or sparklines
+	allow four lines
+	or lots of columns with 4 graduations
+
 option to use terminal title esc seqs
 
 better progress indicator

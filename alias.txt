@@ -137,3 +137,12 @@ need fn to get list of groups for an EmailList
 when you create an alias, it only offers you the "from" (or "reply-to")
 	can't alias other recipients
 
+3 parts:
+	pure - add,remove,free,etc
+	file - read file, parse line, write file
+	menu - r/o selection, r/w editing
+
+commands: alias, group, alternates, lists, subscribe
+files: alias.[ch], addrbook.[ch], init.[ch]
+Contacts with sidebar could display: alternates, mailing lists
+

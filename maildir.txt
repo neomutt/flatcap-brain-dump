@@ -1,0 +1,23 @@
+maildir_check()
+	m->e[] (old, new)
+
+stat new/
+stat cur/
+
+read 'new' -> List Maildir -> Email
+copy new list -> el_new
+
+read 'cur' -> List Maidir -> Email
+
+Hash all canon filenames (Maildir)
+	no path, no suffix
+
+∀ M -> E find canon filename in Hash
+	active = false
+	find filename -> active
+	update flags
+	sync deleted-ness
+
+before new, cur, !exist
+	unchanged, changed, deleted
+

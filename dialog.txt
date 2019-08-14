@@ -41,24 +41,10 @@ Finally recurse through all non-Min children
 
 --------------------------------------------------------------------------------
 
-:toggle abc<tab>
-	shoud it only complete to booleans? etc
-
 sidebar could be an overlay - oscure index temporarily
 	<sb-hide> for completeness
 	if the timeout is short, then magic sidebar
 	visible timeout after any action or <sb-show>
-
-@page for Help backend
-
-multiple progress in parallel
-nested progress bars for subtasks?
-how to display?
-	braille or sparklines
-	allow four lines
-	or lots of columns with 4 graduations
-
-bug: wide multi-select prompts aren't being wrapped
 
 --------------------------------------------------------------------------------
 
@@ -338,31 +324,6 @@ A exists
 
 --------------------------------------------------------------------------------
 
-maildir_check()
-	m->e[] (old, new)
-
-stat new/
-stat cur/
-
-read 'new' -> List Maildir -> Email
-copy new list -> el_new
-
-read 'cur' -> List Maidir -> Email
-
-Hash all canon filenames (Maildir)
-	no path, no suffix
-
-∀ M -> E find canon filename in Hash
-	active = false
-	find filename -> active
-	update flags
-	sync deleted-ness
-
-before new, cur, !exist
-	unchanged, changed, deleted
-
---------------------------------------------------------------------------------
-
 unmailboxes P
 unmailboxes *
 
@@ -370,25 +331,6 @@ M = find P, check type, A->remove(M)
 	* -> A->remove(NULL)  NO
 	  need notify in init.c
 	| hidden?
-
---------------------------------------------------------------------------------
-
-DocList
-	item size (Email)
-	size 0
-	capa 10
-	data[] 10
-
-Add to list -> gather(file.md | full path)
-	append, read file -> HFHeader(key, vl)
-HelpList[] of Header
-HDMeta { (key,val), filename, CHAPTER }
-
-Email edata = meta + body, env, msgid
-	subject from "title" "desc" *meta*
-
-DocList -> 21*Email, Sort
-Uplinking, Checksub(dir)
 
 --------------------------------------------------------------------------------
 

@@ -177,8 +177,9 @@ indent wrong (1 space) in auto.def
 
 wrong name, shoud be _free()
 	void mutt_addrlist_clear(struct AddressList *al)
-	  ...
-	  mutt_addr_free(&a);
+	...
+	mutt_addr_free(&a);
+	hmm... but it doesn't free the actual AddressList
 
 email/parse.c
 	some refs to 'parms'
@@ -192,4 +193,13 @@ while (done == 0)
 int done
 
 MENU_POST -> posting, not postpone!
+
+char *mutt_path_dirname(const char *path)
+	need @note FREE the result
+
+parse_grouplist()
+	don't need bail goto
+
+char *driver_tags_get_transformed_for(const char *name, struct TagHead *head)
+	reorder params?
 

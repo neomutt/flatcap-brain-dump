@@ -134,3 +134,22 @@ help-doc repo has several *list* sections
 	Functions
 	Error messages
 
+@page for Help backend
+
+DocList
+	item size (Email)
+	size 0
+	capa 10
+	data[] 10
+
+Add to list -> gather(file.md | full path)
+	append, read file -> HFHeader(key, vl)
+HelpList[] of Header
+HDMeta { (key,val), filename, CHAPTER }
+
+Email edata = meta + body, env, msgid
+	subject from "title" "desc" *meta*
+
+DocList -> 21*Email, Sort
+Uplinking, Checksub(dir)
+
