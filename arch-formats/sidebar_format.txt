@@ -1,0 +1,21 @@
+SIDEBAR
+"%B%*  %n"
+
+A
+	| %B     | Name of the Account
+	|        | Account Type
+
+MV
+	| %L     | Number of messages after limiting
+	| %t     | Number of tagged messages
+
+M
+	| %!     | 'n!' Flagged messages
+	| %B     | Name of the mailbox
+	| %D     | Description of the mailbox
+	| %d     | Number of deleted messages
+	| %F     | Number of Flagged messages in the mailbox
+	| %n     | N if mailbox has new mail, blank otherwise
+	| %N     | Number of unread messages in the mailbox
+	| %S     | Size of mailbox (total number of messages)
+

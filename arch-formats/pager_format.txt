@@ -1,0 +1,60 @@
+PAGER
+"-%Z- %C/%m: %-20.20n   %s%*  -- (%P)"
+
+M
+	| %b     | Filename of the original message folder (think mailbox)
+	| %B     | The list to which the letter was sent, or else the folder name (%b)
+	| %m     | Total number of message in the mailbox
+	| %q     | Newsgroup name (if compiled with NNTP support)
+
+EV
+	| %C     | Current message number
+	| %e     | Current message number in thread
+	| %E     | Number of messages in current thread
+	| %J     | Message tags (if present, tree unfolded, and != parent's tags)
+	| %P     | Progress indicator for the built-in pager (how much of the file has been displayed)
+	| %Y     | 'X-Label:' field (if present, tree unfolded, and != parent's x-label)
+
+E
+	| %a     | Address of the author
+	| %A     | Reply-to address (if present; otherwise: address of author)
+	| %c     | Number of characters (bytes) in the message
+	| %D     | Date and time of message using $date_format and local timezone
+	| %d     | Date and time of message using $date_format and sender's timezone
+	| %F     | Author name, or recipient name if the message is from you
+	| %Fp    | Like %F, but plain. No contextual formatting is applied to recipient name
+	| %f     | Sender (address + real name), either From: or Return-Path:
+	| %g     | Message tags (e.g. notmuch tags/imap flags)
+	| %Gx    | Individual message tag (e.g. notmuch tags/imap flags)
+	| %H     | Spam attribute(s) of this message
+	| %I     | Initials of author
+	| %i     | Message-id of the current message
+	| %K     | The list to which the letter was sent (if any; otherwise: empty)
+	| %L     | Like %F, except 'lists' are displayed first
+	| %l     | Number of lines in the message
+	| %n     | Author's real name (or address if missing)
+	| %N     | Message score
+	| %O     | Like %L, except using address instead of name
+	| %R     | Comma separated list of Cc: recipients
+	| %r     | Comma separated list of To: recipients
+	| %S     | Single character status of the message (N/O/D/d/!/r/-)
+	| %s     | Subject of the message
+	| %t     | 'To:' field (recipients)
+	| %T     | The appropriate character from the $to_chars string
+	| %u     | User (login) name of the author
+	| %v     | First name of the author, or the recipient if the message is from you
+	| %W     | Name of organization of author ('Organization:' field)
+	| %x     | 'X-Comment-To:' field (if present and compiled with NNTP support)
+	| %X     | Number of MIME attachments
+	| %y     | 'X-Label:' field (if present)
+	| %Z     | Combined message flags
+	| %zc    | Message crypto flags
+	| %zs    | Message status flags
+	| %zt    | Message tag flags
+	| %(fmt) | Date/time when the message was received
+	| %[fmt] | Message date/time converted to the local time zone
+	| %{fmt} | Message date/time converted to sender's time zone
+
+Meaningless
+	| %M     | Number of hidden messages if the thread is collapsed
+

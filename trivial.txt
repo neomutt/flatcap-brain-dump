@@ -203,3 +203,5 @@ parse_grouplist()
 char *driver_tags_get_transformed_for(const char *name, struct TagHead *head)
 	reorder params?
 
+status_format (tweak description)
+	| %L     | Size (in bytes) of the messages shown (or limited)
