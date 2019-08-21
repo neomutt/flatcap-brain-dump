@@ -83,24 +83,6 @@ are these identical? YES
 	static char crypt_flags(KeyFlags flags)
 	static char pgp_flags(KeyFlags flags)
 
-name clashes with IMAP_CMD *flags*
-turn into an enum
-	/* IMAP command responses. Used in ImapCommand.state too */
-	#define IMAP_CMD_OK       0  /**< `<tag> OK ...` */
-	#define IMAP_CMD_BAD      -1 /**< `<tag> BAD ...` */
-	#define IMAP_CMD_NO       -2 /**< `<tag> NO ...` */
-	#define IMAP_CMD_CONTINUE 1  /**< `* ...` */
-	#define IMAP_CMD_RESPOND  2  /**< `+` */
-	#define IMAP_CMD_NEW      3  /**< ImapCommand.state additions */
-
-param names differ
-	hcache_bdb_close
-	hcache_gdbm_close
-	hcache_kyotocabinet_close
-	hcache_lmdb_close
-	hcache_qdbm_close
-	hcache_tokyocabinet_close
-
 convert to enum?
 	struct ConnAccount.type
 		unsigned char type;     ///< Connection type, e.g. #MUTT_ACCT_TYPE_IMAP
@@ -117,20 +99,6 @@ init.c
 variables, urgh! sendlib.c
 	mutt_lookup_mime_type() int szf, sze, cur_sze;
 
-flags typedef
-	/* flag to mutt_pattern_comp() */
-	#define MUTT_FULL_MSG           (1<<0)  ///< enable body and header matching
-	#define MUTT_PATTERN_DYNAMIC    (1<<1)  ///< enable runtime date range evaluation
-
-	/* ... DT_REGEX */
-	#define DT_REGEX_MATCH_CASE 0x040 /**< Case-sensitive matching */
-	#define DT_REGEX_ALLOW_NOT  0x080 /**< Regex can begin with '!' */
-	#define DT_REGEX_NOSUB      0x100 /**< Do not report what was matched (REG_NOSUB) */
-
-boolify Buffer
-	int destroy;  /**< destroy 'data' when done? */
-	or eliminate it
-
 deglobalise
 	EnvList in mutt/envlist.c
 	C_HiddenTags in driver_tags_add()
@@ -142,66 +110,9 @@ mutt_parse_rc_line(char *line, struct Buffer *token, struct Buffer *err)
 	'token' is a tmp buffer -> 'tmp'
 	or eliminate it with the BufferPool
 
-refactor
-	index.c:690 conditional
-
-rename to _free()
-	void mutt_menu_destroy(struct Menu **p)
-	rename param
-
-boolify pager.c
-	static short InHelp = 0;
-
-s/TRUE/true/g
-        clearok(stdscr, TRUE);
-
-move, convert to (1 << n) ncrypt/pgpkey.c
-	#define PGP_KV_VALID 1
-	#define PGP_KV_ADDR 2
-	#define PGP_KV_STRING 4
-	#define PGP_KV_STRONGID 8
-	#define PGP_KV_MATCH (PGP_KV_ADDR | PGP_KV_STRING)
-
-indent wrong (1 space) in auto.def
-	###############################################################################
-	# Native Language Support (NLS)
-	if {[get-define want-nls]} {
-	 if {![check-gettext [opt-val with-nls $prefix]]} {
-	   user-error "Unable to find gettext. Consider --disable-nls"
-	 }
-	 if {![cc-check-progs msgfmt msgmerge xgettext]} {
-	   user-error "Unable to find gettext tools (msgfmt, msgmerge, xgettext).\
-	               Consider --disable-nls"
-	 }
-	}
-
 wrong name, shoud be _free()
 	void mutt_addrlist_clear(struct AddressList *al)
 	...
 	mutt_addr_free(&a);
 	hmm... but it doesn't free the actual AddressList
 
-email/parse.c
-	some refs to 'parms'
-	rename to 'params' or 'pl' (ParameterList)
-
-ncrypt/crypt_gpgme.c
-	move enum, data to top of source
-
-boolify in interactive_check_cert
-while (done == 0)
-int done
-
-MENU_POST -> posting, not postpone!
-
-char *mutt_path_dirname(const char *path)
-	need @note FREE the result
-
-parse_grouplist()
-	don't need bail goto
-
-char *driver_tags_get_transformed_for(const char *name, struct TagHead *head)
-	reorder params?
-
-status_format (tweak description)
-	| %L     | Size (in bytes) of the messages shown (or limited)
