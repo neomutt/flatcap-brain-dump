@@ -1,0 +1,38 @@
+Sidebar
+
+A: Account name
+MV: num tagged, limit
+M: desc, num msgs
+
+Observes
+	N: listen for A,M
+	Config for format, visible, etc
+	MV: for limit, tagged
+
+Data stored   }
+Flags on data }- see IBar
+First run     }
+For some data }
+
+Data - attached to Window
+	Flags
+	Ptrs (or get_current_X())
+	Cached values
+
+Functions
+	observers - recalc, set ptrs
+	repaint - just gfx
+	handler - 2 parts - passive, active
+
+color -> repaint
+
+Handlers
+	passive events -> reflow &| repaint
+	active events <sb-open>
+		find dialog, change current(M)
+		=> lots of notifications
+		=> lots of hooks
+		etc
+	<sb-toggle-visible>
+		=> reflow, repaint
+

@@ -1,0 +1,11 @@
+Dialog
+
+Current A,M,E
+Root of AV,MV,EV
+
+Functions
+
+set_current(A,M,E)
+handler for
+	'c' change folder
+

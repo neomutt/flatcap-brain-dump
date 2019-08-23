@@ -1,0 +1,28 @@
+Pager Bar
+
+M: mailbox name
+EV: msg num, num in thread
+E: addr, tags
+
+Observes
+	M: listen for M,E
+	Config for format
+	EV for label visibility
+
+Data stored   }
+Flags on data }- see IBar
+First run     }
+For some data }
+
+Data - attached to Window
+	Flags
+	Ptrs (or get_current_X())
+	Cached values
+
+Functions
+	observers - recalc, set ptrs
+	repaint - just gfx
+	no handlers - passive
+
+color status -- see Ibar
+

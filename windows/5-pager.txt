@@ -1,0 +1,32 @@
+Pager
+
+E: addr, tags
+Att: attachments
+
+Observes
+	E: listen to E only
+	Config: for behaviour config
+	no views
+
+Data
+	Pager struct
+	(ctx,email,body,fp,attach)
+
+Functions
+	observers - recalc, set ptrs
+	repaint - just gfx
+	handlers - several
+
+color -> repaint
+
+Handlers
+	pager(passive): pg_up
+	pager(active): toggle-quoted
+	index(passive): fold thread
+	index(active): next-email
+	generic: redraw-screen
+
+
+Dialog
+	'c' change-folder
+

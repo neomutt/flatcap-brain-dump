@@ -1,0 +1,29 @@
+Index
+
+MV: limit, current E
+M: EL
+EV: tagged, etc
+E: address
+
+Observes
+	M: listen for M,E
+	Config for behaviour config
+	no views (other users are passive?)
+
+Data?
+	MV, EV
+
+Functions
+	observers - recalc
+	repaint - just gfx
+	handlers - several
+
+color -> repaint
+
+Handlers
+	index(passive) - no data change
+		just repain
+	index(active) - e.g. change threading
+	generic: redraw
+	dlg: 'c' change folder
+

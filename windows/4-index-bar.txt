@@ -1,0 +1,42 @@
+Index Bar (status)
+
+N: hostname, version (global)
+AL: Unread folders, Postponed msgs
+MV: limit, tagged
+M: num unread, path
+
+Observes
+	N: listen for A,M
+	Config for hostname, format str
+	MV for limit, etc
+
+Data stored depends on format
+Need all data cached =>
+	repaint just paints
+
+Flags on data - WHAT'S NEEDED
+	MV change => recalc X,Y,Z
+	M change => recalc P,Q,R
+
+First run - no cached data
+	no flags set
+	set flags as each expando processed
+	reset if format string changes?
+
+For some data - no cache is required
+	just save an object ptr
+	use ptr->member
+
+Data - attached to Window
+	Flags
+	Ptrs (or get_current_X())
+	Cached values
+
+Functions
+	observers - recalc, set ptrs
+	repaint - just gfx
+	no handlers - passive
+
+color status ...
+	needs to force a repaint of just this window
+	start with rule: 'color' => repaint ∀
