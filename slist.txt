@@ -16,7 +16,7 @@ There are five config variables which are lists: `$assumed_charset`, `$attach_ch
 Most have a `:` separator, one has a `,` separator.
 Currently there are different parts of the code that parse these strings each time a value is needed.  Not very efficient.
 
-The solution is a "String List" type.  
+The solution is a "String List" type.
 
 Whenever the user sets a config variable, it would be split apart once and stored in a format that the code could easily process.
 In this case it will be a `TAILQ`.

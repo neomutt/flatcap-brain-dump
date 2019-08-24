@@ -8,18 +8,18 @@ If you have any questions about it, please ask.
 Well over 400 config items of a mix of types.
 Most simple, some backed by structs.
 
-    180  DT_BOOL       boolean option 
-    109  DT_STR        a string 
-    38   DT_NUM        a number 
-    34   DT_PATH       a pathname 
-    28   DT_QUAD       quad-option (yes/no/ask-yes/ask-no) 
-    24   DT_SYN        synonym for another variable 
+    180  DT_BOOL       boolean option
+    109  DT_STR        a string
+    38   DT_NUM        a number
+    34   DT_PATH       a pathname
+    28   DT_QUAD       quad-option (yes/no/ask-yes/ask-no)
+    24   DT_SYN        synonym for another variable
     8    DT_RX         regular expressions
-    6    DT_SORT       sorting methods 
-    4    DT_MBCHARTBL  multibyte char table 
-    2    DT_ADDR       e-mail address 
-    1    DT_MAGIC      mailbox type 
-    1    DT_HCACHE     header cache backend 
+    6    DT_SORT       sorting methods
+    4    DT_MBCHARTBL  multibyte char table
+    2    DT_ADDR       e-mail address
+    1    DT_MAGIC      mailbox type
+    1    DT_HCACHE     header cache backend
 
 Centrally defined in `init.h`
     { name, type, flags, variable, initial_value }

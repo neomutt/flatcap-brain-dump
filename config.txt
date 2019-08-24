@@ -73,9 +73,9 @@ support set VAR? (postfix '?')
 how to handle notification for "reset all"?
 
 flag types:
-	can be "set"  set X valid    
-	can be "inv"  set invX valid 
-	can be "no"   set noX valid  
+	can be "set"  set X valid
+	can be "inv"  set invX valid
+	can be "no"   set noX valid
 
 validator for "charset"
 could the validator have a side-effect?

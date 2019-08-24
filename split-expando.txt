@@ -126,7 +126,7 @@ Docs:
 	The string returned will be used for display. If the returned string
 	ends in %, it will be passed through the formatter a second time. This
 	allows the filter to generate a replacement format string including %
-	expandos. 
+	expandos.
 
 What expansion goes on before
 	`pipe.sh|` Expand and run command

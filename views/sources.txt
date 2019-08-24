@@ -1,7 +1,7 @@
 Sources
 
 Remote API      IMAP, POP, SQL, NNTP, RSS, Google
-Local API       Sqlite, JSON, XML    
+Local API       Sqlite, JSON, XML
 Local file      Mbox, flat file
 
 mail/

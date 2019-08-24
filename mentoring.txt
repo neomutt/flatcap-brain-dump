@@ -41,7 +41,7 @@ docs
 	howto -- make user friendly
 	translate
 		=> split up
-	OPS 
+	OPS
 		tidy into sentence case
 		allow whitespace for alignment
 

@@ -643,7 +643,7 @@ expandos for canon_path, pretty_path, A-name too
 	short_canon too? no (user,login,port) or make canon expando smart?
 	when creating a new A, check others to determine which attributes
 		make a path canonical (user,login,port) -- NO confusing
-	
+
 Mailbox/mbox path = user entered path, tidied up
 	canon_path = realpath() of path
 
@@ -1062,7 +1062,7 @@ aliases:
 
 main -> index <-> pager
 	       -> compose -> menu
-	
+
 <change-folder> (or equiv)
 does Pager need Context?
 	where? why?
@@ -1831,7 +1831,7 @@ so these are equivalent:
 	mailbox work
 		path imap://
 		set index_format=""
-	
+
 	mailbox work path imap://
 		set index_format=""
 

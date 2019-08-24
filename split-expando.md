@@ -20,7 +20,7 @@
 ---
 - `%>X` Right justify the rest of the string and pad with character `X`
 - `%|X` Pad to the end of the line with character `X`
-- `%*X` Soft-fill with character `X` as pad 
+- `%*X` Soft-fill with character `X` as pad
 ---
 - `$config` Expand NeoMutt config
 - `$ENV` Expand an environment variable

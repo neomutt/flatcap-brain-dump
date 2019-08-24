@@ -62,8 +62,8 @@ Missing attrs:
 	faint italic conceal strikethrough uri
 	blink overline doubleunderline curlyunderline
 
-	underline       == underline1 
-	doubleunderline == underline2 
+	underline       == underline1
+	doubleunderline == underline2
 	curlyunderline  == underlinec ?
 
 Proposed Syntax:
@@ -83,7 +83,7 @@ Proposed Syntax:
 		highlight OBJECT [regex=REGEX] [fg=SIMPLECOLOUR] [bg=SIMPLECOLOUR] [sp=SIMPLECOLOUR] [palfg=PALETTE_COLOUR] [palbg=PALETTE_COLOUR] [rgbfg=RGB_COLOUR] [rgbbg=RGB_COLOUR] [attr=ATTR_LIST]
 		which would allow one colourscheme for all possibilities
 		would need to store all three colour sets for every object
-		
+
 
 Colour sequences
 	38 Set foreground

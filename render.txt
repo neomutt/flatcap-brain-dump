@@ -20,7 +20,7 @@ e.g.
 	"  ", Colour*, "boxname"
 	CT 1 string, "  boxname"
 	   1 ColourOffset { Colour, size_t, size_t }
-	
+
 Pager text - reading from file
 	encoded, e.g. quoted printable
 	"~~~~~<Cr>~~~~~"

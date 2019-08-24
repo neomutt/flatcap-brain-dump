@@ -1,4 +1,4 @@
-## Help files 
+## Help files
 All in markdown with YAML headers
 Chapters/sections stored in directories
 Each directory has a directory.md as a title page
@@ -76,7 +76,7 @@ Recurse through our HelpTree, reading the YAML header for each file.
 - path - Location of file
 
 **struct Envelope**:
-- subject / 
+- subject /
 - disp_subject
 
 **struct Thread**:

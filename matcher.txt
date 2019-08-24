@@ -27,8 +27,8 @@ user types 'a'
 allow display to do highlighting?
 	would need to match algorithm
 	put match info in filter_info
-	=> highlight 
-		fuzzy = chars: 1,3-4,7-12 
+	=> highlight
+		fuzzy = chars: 1,3-4,7-12
 		simple = 3-6
 
 matcher

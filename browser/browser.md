@@ -453,7 +453,7 @@ Allow the user to select a PGP key.
 * Separators
   - Blank - for visual clarity
   - Titled - for distinguishing groups of data
-  - Inserted by the code, not the user 
+  - Inserted by the code, not the user
 
 ### How do we want to display lines?
 
@@ -559,7 +559,7 @@ If the browser doesn't know about fields, then the searching needs to be done by
 * **header** - non-selectable _row_ in the _browser_
 * **hidden** - _item_ in _list_ that shouldn't be displayed
 * **item** - object (in a _list_) to be selected
-* **line** - one screen line, see _row_ 
+* **line** - one screen line, see _row_
 * **list** - collection of _items_
 * **panel** - window containing the _browser_
 * **row** - one _item_ on screen, may use several _lines_
@@ -572,11 +572,11 @@ If the browser doesn't know about fields, then the searching needs to be done by
 ╭─────────────┬───────────────────────────────────────────────────────────────────╮
 │ Header      │ Column1  Column2         Column3            Column4               │
 │             ├───────────────────────────────────────────────────────────────────┤
-             
+
 │             ├───────────────────────────────────────────────────────────────────┤
 │ Simple Row  │Field1    Field2          Field3             Field4                │
 │             ├───────────────────────────────────────────────────────────────────┤
-             
+
 │             ├───────────────────────────────────────────────────────────────────┤
 │ Complex Row │Field1    Field2          Field3             Field4                │
 │  2nd line   │    Some other formatted data                                      │

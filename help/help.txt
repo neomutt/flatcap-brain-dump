@@ -12,7 +12,7 @@ Help Browser - Add new config
 
 > The Help Browser is a new feature to bring online help to NeoMutt.
 > The code is in the [devel/help](https://github.com/neomutt/neomutt/tree/devel/help) branch.
-> 
+>
 > It adds a new config variable: `$help_doc_dir` which should point to a copy of the [`test-doc`](https://github.com/neomutt/test-doc) repo.
 > Help can be activated by pressing <kbd>Alt-H</kbd>
 
@@ -49,7 +49,7 @@ Help Browser - Modernise the directory traversal
 
 > The Help Browser is a new feature to bring online help to NeoMutt.
 > The code is in the [devel/help](https://github.com/neomutt/neomutt/tree/devel/help) branch.
-> 
+>
 > It adds a new config variable: `$help_doc_dir` which should point to a copy of the [`test-doc`](https://github.com/neomutt/test-doc) repo.
 > Help can be activated by pressing <kbd>Alt-H</kbd>
 
@@ -65,7 +65,7 @@ Help Browser - Filter the page display
 
 > The Help Browser is a new feature to bring online help to NeoMutt.
 > The code is in the [devel/help](https://github.com/neomutt/neomutt/tree/devel/help) branch.
-> 
+>
 > It adds a new config variable: `$help_doc_dir` which should point to a copy of the [`test-doc`](https://github.com/neomutt/test-doc) repo.
 > Help can be activated by pressing <kbd>Alt-H</kbd>
 

@@ -125,7 +125,7 @@ for non-ac vars
 set var -> base set var
 account AC1 set var => var set var
 
-variable: Base or Account 	VB	VA
+variable: Base or Account	VB	VA
 Set by: user/config or code	SU	SC
 type value: real, inherited	TR	TI
 read by user(std i/face), code	RU	RC
@@ -629,7 +629,7 @@ needs some thought!
 
 devel ideas:
 * assert / bugon
-  	assert too much
+	assert too much
 		don't stop program
 	warning_on -> log
 	val return
@@ -714,14 +714,14 @@ ctx  ->		AC0   ->         Buffy1
 		AC2
 
 AC2 ->  name
-	vars 	 HE[]
+	vars	 HE[]
 	children buffy[]
 
 
 ctx -> ConfigSet
 	HashTable	HE[]
-	Types  		CST[]
-	Listeners  	fn[]
+	Types		CST[]
+	Listeners	fn[]
 
 HE -> VDef
 	name

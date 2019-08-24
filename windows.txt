@@ -23,7 +23,7 @@ The Pager is set to expand in both directions.
 When the code needs a window, it inserts it into the tree and configures its behaviour.
 If the terminal is resized, the reflow code can calculate the sizes without complex rules and config variables.
 
-There is a sample application that demonstrates this: [Panel-Manager](https://github.com/neomutt/panel-manager) 
+There is a sample application that demonstrates this: [Panel-Manager](https://github.com/neomutt/panel-manager)
 
 ---
 
@@ -193,4 +193,4 @@ Does each window need its own
 	(internal) cursor?
 	remember the last used colour?
 		to reset after movement
-	
+

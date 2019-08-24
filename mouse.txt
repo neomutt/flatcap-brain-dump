@@ -36,7 +36,7 @@ Help
 	click		show menu
 
 Status bar
-	click		???	
+	click		???
 
 mouse support, change cursor to pointer, rather than I-beam
 

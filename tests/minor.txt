@@ -87,7 +87,7 @@ nested-if - allow deeply nested conditions
 
 	browser-2 - new messages
 		%<N?%3N&   >
-	
+
 	sidebar-1 - flagged messages
 		%<F? [%F]>
 	sidebar-3 - flagged/new/total

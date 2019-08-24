@@ -46,4 +46,4 @@ bool filebr_key_cb(struct Browser *b, int key)
   // BR_KEY_NOT_HANDLED
 }
 
-bool br_sort_cb(struct Browser *b, 
+bool br_sort_cb(struct Browser *b,

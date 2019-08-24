@@ -1,32 +1,32 @@
 Id	Name	Source	Folders	Description
 
 1a	mail	single	list	basic mode (folders)
-1b	mail	single	tree	
+1b	mail	single	tree
 1c	mail	multiple	list	multiple mailboxes
-1d	mail	multiple	tree	
+1d	mail	multiple	tree
 1e	mail	multiple	mixture	independent folder looks
-				
+
 2a	search	single	list	source linked to mail source => refcount
-				
+
 3a	address	single	list	basic mode (grouped)
 3b	address	single	tree	nested groups
 3c	address	multiple	list	multiple address books
 3d	address	multiple	tree	multiple nested
 3e	address	multiple	mixture	independent
-				
+
 4a	news (nntp)	single	list	basic mode (group list)
-4b	news (nntp)	single	tree	
+4b	news (nntp)	single	tree
 4c	news (nntp)	multiple	list	multiple news servers
 4d	news (nntp)	multiple	tree	nested
-4e	news (nntp)	multiple	mixture	
-				
+4e	news (nntp)	multiple	mixture
+
 5a	tasks	single	list	basic mode (folders)
 5b	tasks	single	tree	nested folders
 5c	tasks	multiple	list	multiple task sources
-5d	tasks	multiple	tree	
-5e	tasks	multiple	mixture	
-				
+5d	tasks	multiple	tree
+5e	tasks	multiple	mixture
+
 6a	news (rss)	multiple	single	1:1 source:folder relationship
-				
+
 7a	calendar	single	list?	basic mode (months)
 7b	calendar	multiple	list?	merged mode (months)

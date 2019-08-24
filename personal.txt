@@ -28,7 +28,7 @@ git bisect
 		On branch b1
 		You are currently bisecting, started from branch 'b1'.
 git cherry-pick
-	CHERRY_PICK_HEAD 
+	CHERRY_PICK_HEAD
 	MERGE_MSG
 	MERGE_RR
 	status

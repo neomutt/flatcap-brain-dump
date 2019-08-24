@@ -27,7 +27,7 @@ Are you interested?
 From: Floyd Anderson
 To: Richard Russon
 
-sorry for the delay. I wasn't at home this weekend and because I don't 
+sorry for the delay. I wasn't at home this weekend and because I don't
 use any kind of mobile devices, I'm completely offline then.
 
 >Hi Floyd,
@@ -41,10 +41,10 @@ use any kind of mobile devices, I'm completely offline then.
 >When I hinted at it in Reis' issue you seemed interested (in the idea at
 >least).
 
-You are right, I'm always open to improve the docs, because I recall 
-good enough how hard it was (at least for me) to understand Mutt's way 
-of configuration, to search all those blogs for information, grabbing 
-and test snippets from several public dot-files just to get a working 
+You are right, I'm always open to improve the docs, because I recall
+good enough how hard it was (at least for me) to understand Mutt's way
+of configuration, to search all those blogs for information, grabbing
+and test snippets from several public dot-files just to get a working
 configuration in the end.
 
 >- Create a new "help" mailbox type
@@ -57,14 +57,14 @@ configuration in the end.
 >
 >Are you interested?
 
-Yes, absolutely. Even I'm not a developer and didn't know exactly where 
-to start or how to implement some kind of 'neomutt://' pseudo protocol, 
+Yes, absolutely. Even I'm not a developer and didn't know exactly where
+to start or how to implement some kind of 'neomutt://' pseudo protocol,
 you can count on me.
 
-I 'only' need to know the final goal and what tasks needs to be done for 
-it. I'll pick up one or the other and might be helpful. For instance, I 
-like your last opened issues (tagged with 'good first issue' or 'help 
-wanted' and/or 'mentor'), those makes the direction of the venture very 
+I 'only' need to know the final goal and what tasks needs to be done for
+it. I'll pick up one or the other and might be helpful. For instance, I
+like your last opened issues (tagged with 'good first issue' or 'help
+wanted' and/or 'mentor'), those makes the direction of the venture very
 clear to me.
 
 --------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ To: Floyd Anderson
 That's great.  It's too sunny to be indoors :-)
 
 > > global solution for Help in NeoMutt.
-> > you seemed interested 
+> > you seemed interested
 
 > You are right, I'm always open to improve the docs, because I recall good
 > enough how hard it was (at least for me)
@@ -123,17 +123,17 @@ How good are your C skills?
 From: Floyd Anderson
 To: Richard Russon
 
->> I like your last opened issues (tagged with 'good first issue' or 
+>> I like your last opened issues (tagged with 'good first issue' or
 >> 'help wanted'
 >> and/or 'mentor'), those makes the direction of the venture very clear to me.
 >
 >Thanks.  I should have done that ages ago.
 >That was stage one: motivate the developers.
 
-Yes, that was my first thought too when I saw the issues, but NeoMutt is 
-on a good way. For example, some people at a Gentoo mailing list never 
-heard of NeoMutt and were surprised of its "gaining traction", although 
-there's a heavily patched regular Mutt. And who knows, maybe we hit the 
+Yes, that was my first thought too when I saw the issues, but NeoMutt is
+on a good way. For example, some people at a Gentoo mailing list never
+heard of NeoMutt and were surprised of its "gaining traction", although
+there's a heavily patched regular Mutt. And who knows, maybe we hit the
 1000 stars and get a few new regular contributors until next year.
 
 >> search all those blogs for information,
@@ -147,17 +147,17 @@ there's a heavily patched regular Mutt. And who knows, maybe we hit the
 >our site.  We need to encourage people to be selfless -- contribute to
 >*our* website, not their own :-)
 
-He, that'll be a long running target. In the past I saw many sites with 
-the same tip/solution for something, but nearly no one mentioned the 
-real source of it, because people tends to produce news by copy'n'paste 
+He, that'll be a long running target. In the past I saw many sites with
+the same tip/solution for something, but nearly no one mentioned the
+real source of it, because people tends to produce news by copy'n'paste
 as it were it their own stuff. But as I said, NeoMutt is on the way.
 
-I wrote a person about how I like the easy way one can contribute to 
-NeoMutt and got his confirmative response (Mutt endless discussion; 
-NeoMutt just one structural style change and committed). OK, that may be 
-a blue eyed example, but it happened and I saw it also in my case after 
-you invited me to join the project. That (and a patient helping hand) 
-really encourage to be selfless -- after some time people will say we 
+I wrote a person about how I like the easy way one can contribute to
+NeoMutt and got his confirmative response (Mutt endless discussion;
+NeoMutt just one structural style change and committed). OK, that may be
+a blue eyed example, but it happened and I saw it also in my case after
+you invited me to join the project. That (and a patient helping hand)
+really encourage to be selfless -- after some time people will say we
 instead of you and I.
 
 >How good are your C skills?
@@ -165,18 +165,18 @@ instead of you and I.
 >- OK: Create a framework and I'll fill in the gaps (with help)
 >- Not so good: I'll stick to the docs side
 
-Thanks for this 'checkbox' list style, it would be difficult to tell 
+Thanks for this 'checkbox' list style, it would be difficult to tell
 otherwise.  ;-)
 
-Knowing the basics, I think I'm near your second point. When starting 
-something from scratch -- I would be lost. Using existing code as 
-reference to get an idea how to implement/improve other code is easier 
+Knowing the basics, I think I'm near your second point. When starting
+something from scratch -- I would be lost. Using existing code as
+reference to get an idea how to implement/improve other code is easier
 for me, but here we are at my main handicap -- I'm slow.
 
-I want (and need) to get nearly always a complete overview to be able to 
-make the right decision about the right way of doing things. I can spend 
-hours and hours with searching for an alternative but optimised form of 
-the same code. But that's OK for me, I learn more when testing not only 
+I want (and need) to get nearly always a complete overview to be able to
+make the right decision about the right way of doing things. I can spend
+hours and hours with searching for an alternative but optimised form of
+the same code. But that's OK for me, I learn more when testing not only
 the absolute necessary things.
 
 --------------------------------------------------------------------------------
@@ -248,13 +248,13 @@ To: Richard Russon
 >
 >It doesn't do much, but it works now.
 
-Frankly, I feel stupid because I tried hard to figure out how it works, 
-without luck. I fear my knowledge is insufficient and/or I'm missing an 
+Frankly, I feel stupid because I tried hard to figure out how it works,
+without luck. I fear my knowledge is insufficient and/or I'm missing an
 important step/point, thus I need your help -- once again.
 
 Firstly, branch devel/help compiles fine. In my case, I partially revert
 [doxygen: add headers and links](https://github.com/neomutt/neomutt/commit/2c6ff878865f48d84660df7511009421dd2929c0#diff-8abaf063c6aa4baacba439344cfff1c9)
-and do: '#include "hcversion.h"' -> '#include "hcache/hcversion.h"', in 
+and do: '#include "hcversion.h"' -> '#include "hcache/hcversion.h"', in
 hcache/hcache.c to prevent:
 
   fatal error: hcversion.h: No such file or directory
@@ -262,23 +262,23 @@ hcache/hcache.c to prevent:
            ^~~~~~~~~~~~~
   compilation terminated.
 
-Because I do not compile in $(SRCDIR), i.e. in the repo root. I like to 
+Because I do not compile in $(SRCDIR), i.e. in the repo root. I like to
 separate the different branch builds in a Git-ignored subdirectory.
 
-Anyway, after looking into the code, it seems to me that all is there to 
-handle a folder as help mailbox. My assumption therefore was to create a 
-folder, define it as format type help within NeoMutt (or a config file) 
+Anyway, after looking into the code, it seems to me that all is there to
+handle a folder as help mailbox. My assumption therefore was to create a
+folder, define it as format type help within NeoMutt (or a config file)
 and put some (pseudo-)documents (probably from test-doc repo) in there.
 
 Now my questions:
 
-What do you exactly mean with "it works now", i.e. what works? How can I 
-define a help folder/mailbox (empty or not) that NeoMutt will recognise, 
-so I get some output from the 'mutt_debug(1, "entering help_*\n");' 
-calls in help/help.c? Did I misunderstood your implementation start of a 
+What do you exactly mean with "it works now", i.e. what works? How can I
+define a help folder/mailbox (empty or not) that NeoMutt will recognise,
+so I get some output from the 'mutt_debug(1, "entering help_*\n");'
+calls in help/help.c? Did I misunderstood your implementation start of a
 help system?
 
-I hope I expressed my problem clear and short enough (I won't confront a 
+I hope I expressed my problem clear and short enough (I won't confront a
 'helping hand' with walls of text). Thanks in advance.
 
 --------------------------------------------------------------------------------
@@ -390,13 +390,13 @@ From: Floyd Anderson
 To: Richard Russon
 
 I just want you to know, I got it, *yes*  :-)
-and of course say: thank you very much for your really useful detailed 
+and of course say: thank you very much for your really useful detailed
 explanation, task descriptions and that you took the time for it/me.
 
 >We'll use a URL of "help://" to reference files
 >In NeoMutt: <change-folder>help://sidebar<enter>
 
-I wouldn't have found it without you, even I was close at it and tried 
+I wouldn't have found it without you, even I was close at it and tried
 'mailboxes help:///path/to/dir' and '<change-folder>=help:///path/to/dir'
 afterwards.
 
@@ -404,27 +404,27 @@ afterwards.
 
 Really? You're pressure and scaring me -- just kidding.
 
->Ask lots of questions. The more I explain it, the better I understand 
->it and the easier it'll be to fix it (when I have some of that mythical 
+>Ask lots of questions. The more I explain it, the better I understand
+>it and the easier it'll be to fix it (when I have some of that mythical
 >"free time" :-)
 
-Nice principle, although I'll try not to stress that mythical shy being 
-too much. However, now I can switch my brain mode and will look into the 
+Nice principle, although I'll try not to stress that mythical shy being
+too much. However, now I can switch my brain mode and will look into the
 tasks. Thanks again.
 
 --------------------------------------------------------------------------------
 From: Floyd Anderson
 To: Richard Russon
 
-first things first, sorry for the delay without any status update. In 
-the past two weeks I'm reading, debugging the code to refresh my spare 
-knowledge and try to accumulate it. There're still so much things to 
-learn and understand, my thanks and respect for you and your work and 
+first things first, sorry for the delay without any status update. In
+the past two weeks I'm reading, debugging the code to refresh my spare
+knowledge and try to accumulate it. There're still so much things to
+learn and understand, my thanks and respect for you and your work and
 all the other contributors are still growing.
 
 >How are things going?
 
-The 'tasks' are functional working and partially documented, but I'm 
+The 'tasks' are functional working and partially documented, but I'm
 currently unsatisfied with it. That means:
   -- Invoking '<change-folder>help://' or hitting '<Esc>H', will show
     a listing of all (probably) valid Markdown (MD) files in the index.
@@ -466,19 +466,19 @@ Things I cannot find an appropriate answer for from the code/docs:
     it a lot). Currently I'm using a STAILQ list for helpbox/helpdoc
     (directories and MD files).
 
-I have more to ask but will stop here for now because it stays very 
-theoretical without code. Rich, I think I need two more days to clean 
-out my failed and commented changes and for the remaining remarks and 
-for documentation and just rethinking. Should I push my trial (to 
+I have more to ask but will stop here for now because it stays very
+theoretical without code. Rich, I think I need two more days to clean
+out my failed and commented changes and for the remaining remarks and
+for documentation and just rethinking. Should I push my trial (to
 devel/help or in a new branch) then? Would you like to see a patch?
 
-Sorry for this long response, I hope you'll see my points, but I'm sure 
+Sorry for this long response, I hope you'll see my points, but I'm sure
 I forgot a bunch of questions, that came up the past week(s).
 
-P.S.: Please, can you write me your idea of how the MD files should be 
+P.S.: Please, can you write me your idea of how the MD files should be
 displayed (without an email- but with a YAML-header)? Should the format
-of the index and the menu in pager view be changed for helpboxes? Should 
-a helpbox shortcut (similar to + and =) be implemented? OK, I stop now. 
+of the index and the menu in pager view be changed for helpboxes? Should
+a helpbox shortcut (similar to + and =) be implemented? OK, I stop now.
 :-)
 
 --------------------------------------------------------------------------------
@@ -621,34 +621,34 @@ The others (in the --- section) would be hidden unless the user runs either:
 From: Floyd Anderson
 To: Richard Russon
 
-I'm already there, even if I lost myself several times while diving into 
-the code every single day. Oh man, I'm a bad contributor and the time is 
-running so fast. I have not even checked the GitHub repo the past three 
-weeks nor the new version. On the other side, I've never knew more about 
+I'm already there, even if I lost myself several times while diving into
+the code every single day. Oh man, I'm a bad contributor and the time is
+running so fast. I have not even checked the GitHub repo the past three
+weeks nor the new version. On the other side, I've never knew more about
 NeoMutt's internals than now.
 
 After your last mail I better had pushed my work, but I tried to achieve
-the linking with MuttThread instead and don't wanted to push half-baked 
-things. That drives me crazy, because of trouble with my STAILQ list. I 
-could not do sorting, it was in reverse order and macro STAILQ_LAST (to 
-get a previous processed/parent object) always failed due to the 
+the linking with MuttThread instead and don't wanted to push half-baked
+things. That drives me crazy, because of trouble with my STAILQ list. I
+could not do sorting, it was in reverse order and macro STAILQ_LAST (to
+get a previous processed/parent object) always failed due to the
 underlying QUEUE_TYPEOF macro - code compiles but crashed afterwards.
 
-Anyway, now I use a generic list for several objects, which works as I 
-want, but honestly, it feels a little bit like unnecessary bloating the 
+Anyway, now I use a generic list for several objects, which works as I
+want, but honestly, it feels a little bit like unnecessary bloating the
 code. Nevertheless, I hope I'm on the right way.
 
-Following works here so far (tested with a cloned neomutt.github.io and 
-test-doc repo and additional nested sub-directories -- some empty, others 
-with a mix of valid and invalid files (with BOM signature, wrong YAML 
-header with incomplete/badly formatted markers/keywords, bad file name, 
+Following works here so far (tested with a cloned neomutt.github.io and
+test-doc repo and additional nested sub-directories -- some empty, others
+with a mix of valid and invalid files (with BOM signature, wrong YAML
+header with incomplete/badly formatted markers/keywords, bad file name,
 like "/path/to/.md", etc.):
   - when NeoMutt starts, the new $help_doc_dir option is set by default
     to "PKGDOCDIR/help" and function <help-box> is bound to "<Esc>H"
   - set $help_doc_dir to an appropriate directory path if necessary and
     pressing the shortcut or execute <help-box> directly or indirectly
     through <change-folder>, pre-fills the prompt with "help://" string
-  - now press <Enter> to open the "helpbox" or press an arrow key (to 
+  - now press <Enter> to open the "helpbox" or press an arrow key (to
     avoid deletion of the help URI) and specify a path fragment of an
     existing file/folder (relative to $help_doc_dir), like:
         help://panel/i[ndex.md]
@@ -665,14 +665,14 @@ What isn't implemented/doesn't work yet:
   - a $help_index_format and a suitable help menu
   - ...
 
-I pushed my first steps to a Help system to devel/help and rebased the 
-branch. Rich, even it was a lot of stuff to deal with for me so far, do 
+I pushed my first steps to a Help system to devel/help and rebased the
+branch. Rich, even it was a lot of stuff to deal with for me so far, do
 not hesitate to lacerate me and my code. I want to learn the right way.
 
-Thank you for your code docs, for being patient and apologise my delay -- 
+Thank you for your code docs, for being patient and apologise my delay --
 I was really immersed in the code and sometimes dreamed about and in C.
 
-P.S. While my rebase, I noticed different buffer sizes related to 
+P.S. While my rebase, I noticed different buffer sizes related to
 DT_PATH in init.c file. Am I wrong or should those:
 
   - <https://github.com/neomutt/neomutt/blob/833b37df10025c7bac84b42bb496607a7204f2b5/init.c#L2121>
@@ -683,7 +683,7 @@ better use PATH_MAX? Additionally I saw:
 
   - <https://github.com/neomutt/neomutt/blob/b8466bf029ea6ec1c409c65b75e6b7a1820b9635/init.h#L2285>
 
-in init.h file, that use 1 instead of true and talks about "mutt" 
+in init.h file, that use 1 instead of true and talks about "mutt"
 instead of "NeoMutt".
 
 --------------------------------------------------------------------------------
@@ -758,11 +758,11 @@ Rather than overwhelm you with hundreds of crazy ideas, I'll stop now.
 From: Floyd Anderson
 To: Richard Russon
 
-this is just a short response from me. I'll have a closer look to your 
+this is just a short response from me. I'll have a closer look to your
 notes this evening and formulate my questions then.
 
-Thank you for looking into my commit and your remarks -- especially for 
-pointing out the nftw() function. I didn't knew it and searching for 
+Thank you for looking into my commit and your remarks -- especially for
+pointing out the nftw() function. I didn't knew it and searching for
 "tree"/"walk" keywords, which is obviously now, doesn't came to my mind.
 
 --------------------------------------------------------------------------------
@@ -818,7 +818,7 @@ Nevertheless some questions remains for now:
     If yes, should the user be able to add his own notes, docs to the
     help system in any way?
 
-I'll try to achieve the first of your pointed out steps the next days 
+I'll try to achieve the first of your pointed out steps the next days
 (hopefully days, not weeks). ;-)
 
 --------------------------------------------------------------------------------
@@ -904,11 +904,11 @@ Ah, I see. I tricked myself by searching only in *.[ch] files with:
 >
 >I don't know.  What else would they look at?
 
-I just thought about it related to Gentoo (compression of files in 
-PKGDOCDIR, special NeoMutt ebuild overlays, probably no help documents 
-at all with USE-flag "-doc" set) and a possibility to add personal 
-notes. In the past and long ago, I had a special mailbox in Thunderbird 
-with pseudo help messages for my flagging brain. But I think it's not an 
+I just thought about it related to Gentoo (compression of files in
+PKGDOCDIR, special NeoMutt ebuild overlays, probably no help documents
+at all with USE-flag "-doc" set) and a possibility to add personal
+notes. In the past and long ago, I had a special mailbox in Thunderbird
+with pseudo help messages for my flagging brain. But I think it's not an
 essential requirement.
 
 >> I'll try to achieve the first of your pointed out steps the next days
@@ -918,7 +918,7 @@ essential requirement.
 
 :-)
 
-Yes, that's mostly true and as I said previously, you can count on me 
+Yes, that's mostly true and as I said previously, you can count on me
 (on things where I'm probably able to bear a helping hand).
 
 --------------------------------------------------------------------------------
@@ -931,45 +931,45 @@ To: Richard Russon
 >Fabian (@grobian) is big in Gentoo and used to promote NeoMutt
 >Then one day cited philosophical differences and he went away.
 
-Ah, I wondered why I saw no commits from him to the gentoo-neomutt repo 
+Ah, I wondered why I saw no commits from him to the gentoo-neomutt repo
 after Nov 2016.
 
-I think a main point is also that Mutt works for the end user and most 
-people tends to be conservative, want to keep some kind of backward 
+I think a main point is also that Mutt works for the end user and most
+people tends to be conservative, want to keep some kind of backward
 compatibility or just maintain their own private patch sets.
 
-I understand people (to a certain extent), who want just use software 
-and don't want to fight with configuration and compiling issues, because 
-it eats so much time. For example, I'm happy with Vim (it provides more 
-than I could ever learn) and really, I've never looked at and for a 
+I understand people (to a certain extent), who want just use software
+and don't want to fight with configuration and compiling issues, because
+it eats so much time. For example, I'm happy with Vim (it provides more
+than I could ever learn) and really, I've never looked at and for a
 switch to Neovim.
 
-But Fabian is/was the mentor of @nicolasbock (maintainer for NeoMutt at 
-Gentoo). I always got quick responses from Nicolas when I filed bugs on 
-Gentoo's tracker, but unfortunately nothing to my current PR about build 
-breakage of the live ebuild (that will be also relevant for the new 
+But Fabian is/was the mentor of @nicolasbock (maintainer for NeoMutt at
+Gentoo). I always got quick responses from Nicolas when I filed bugs on
+Gentoo's tracker, but unfortunately nothing to my current PR about build
+breakage of the live ebuild (that will be also relevant for the new
 NeoMutt release), see <https://github.com/gentoo/gentoo/pull/8198>.
 
-I'll contact him when he bumps Gentoo's NeoMutt ebuild to the new 
-version and still miss the build issue, described in my PR. Even it 
-seems I'm the only person that noticed this, its just to avoid a bad 
+I'll contact him when he bumps Gentoo's NeoMutt ebuild to the new
+version and still miss the build issue, described in my PR. Even it
+seems I'm the only person that noticed this, its just to avoid a bad
 light on or experiences with NeoMutt.
 
 >For every useful, often-linked, site we need to be able to say:
 >Our guide has that info and it's up-to-date.
 
-I'll try to keep an eye on the "up-to-date" challenge from time to time, 
-because I saw some outdated parts regarded to configure/build with 
-Autosetup and just to refresh my Jekyll/Ruby knowledge. Sometimes I wish 
+I'll try to keep an eye on the "up-to-date" challenge from time to time,
+because I saw some outdated parts regarded to configure/build with
+Autosetup and just to refresh my Jekyll/Ruby knowledge. Sometimes I wish
 my day has more than 24 hours, but doubt it would help. :-)
 
-I also think it's worth to give Lua-Scripting (some of a main difference 
-to Mutt) more place in the documentation and on the website to probably 
-get a bigger audience of coding affine people. After writing these 
+I also think it's worth to give Lua-Scripting (some of a main difference
+to Mutt) more place in the documentation and on the website to probably
+get a bigger audience of coding affine people. After writing these
 lines, I can read your thoughts. ;-)
 
-I'll see what I can do in the future, currently Lua on Gentoo is a 
-tragedy, Lua versions >= 5.1.5-r100 are still masked in portage tree 
+I'll see what I can do in the future, currently Lua on Gentoo is a
+tragedy, Lua versions >= 5.1.5-r100 are still masked in portage tree
 (meanwhile Lua 5.2 is more than six years old).
 
 >Last night I spent a couple of hours creating a new mailbox type.
@@ -986,10 +986,10 @@ tragedy, Lua versions >= 5.1.5-r100 are still masked in portage tree
 >I've also created a test-doc repo with a lot of sample markdown files.
 >They have a yaml header (which includes metadata) and are interlinked.
 
-Thanks for your (frame)work and your hints. I looked into it, but read 
+Thanks for your (frame)work and your hints. I looked into it, but read
 my other mail.
 
-What is your goal/vision for the really nice "Improve this page"-button? 
+What is your goal/vision for the really nice "Improve this page"-button?
 Editing the page within a browser, is that possible with GitHub pages?
 
 --------------------------------------------------------------------------------

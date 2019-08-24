@@ -56,7 +56,7 @@ RootWindow
 		WINCH
 		visibility
 		focus
-	
+
 Mailbox
 	new email
 	del email
@@ -409,10 +409,10 @@ Opened counts
 
 ------------------------------------------------------------
 
-NeoMutt    ->    Notify    =>   Listeners
-		 type		Flags
-		 listeners[]	callback
-		 		data
+NeoMutt    ->   Notify     =>   Listeners
+		type		Flags
+		listeners[]	callback
+				data
 
 notify_send(N->notify, Event)
 add_listener(N->notify, callback)

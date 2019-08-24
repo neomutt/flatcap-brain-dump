@@ -5,7 +5,7 @@
  2400 List-Subscribe
  2399 List-Help
     8 List-Unsubscribe-Post
-    2 List-Owner 
+    2 List-Owner
 
 11939 List-Post: <mailto:reply+XXXXXX@reply.github.com>
  3092 List-Post: <mailto:mutt-dev@mutt.org>

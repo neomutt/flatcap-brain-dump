@@ -3,7 +3,7 @@ is help shared or does each plugin need its own?
 
 Top level: mail (vert) (TOP)
 	Helpline?
-	horiz (MIDDLE) -> 	Sidebar
+	horiz (MIDDLE) ->	Sidebar
 	status line?		Vert (RIGHT) ->	Index Window
 	command line				Index status
 						Pager window

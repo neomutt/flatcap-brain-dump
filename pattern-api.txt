@@ -39,7 +39,7 @@ Parser functions (called by mutt_pattern_comp()) and their dependencies
 		none
 	eat_regex
 		mutt_extract_token()
-	
+
 Need:
 	issue to separate Context define vs Context use
 	split up mutt_extract_token() deps

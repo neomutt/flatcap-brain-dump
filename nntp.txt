@@ -132,8 +132,8 @@ mailboxes news://host.com/group.subgroup (not subscribed)
 
 <change-folder> news://host.com
 	AllMailboxes (MB_ACCOUNT)
-<change-folder> news://host.com/group.subgroup (subscribed)     
-<change-folder> news://host.com/group.subgroup (not subscribed) 
+<change-folder> news://host.com/group.subgroup (subscribed)
+<change-folder> news://host.com/group.subgroup (not subscribed)
 
 Action:
 - mailboxes

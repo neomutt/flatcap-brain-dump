@@ -308,7 +308,7 @@ main()top
 	if 'D'
 		flush(stderr)
 		exit
-	
+
 	** DebugFile
 	** DebugLevel
 
