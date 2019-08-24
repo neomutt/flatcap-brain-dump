@@ -1,0 +1,112 @@
+how are views attached?
+how are events passed?
+separate dialogs need separate Views and Events
+who owns NV? (and N?)
+who'd be watching View events at N-level?  anyone?
+
+DATA	VIEWS
+ N  <--  NV	- owns dialogs, windows, etc for events
+ |        |
+ A  <--  AV    }               AV2   }
+ |        |    }                |    }
+ M  <--  MV    }- dialog       MV2   }- dialog2
+ |        |    }                |    }
+ E  <--  EV    }               EV2   }
+
+Do View events stop propagating at Dialog-level?  NO can't see Dialog
+Do we need NV?  can we pass events to N?
+What about gfx elements (Windows) outside of Dialogs?
+
+ Root		Dlg	Dlg     ^
+ |		 |       |      |
+ Dialog  ---	Win --- Win     | Events
+ |		/ \     / \     |
+ Message	W W     W W     |
+
+Win Events propagate to Dialog, then Root
+
+Root: HL, D, CLI
+D: D1, D2, D3
+D1(Index): SB, [4]([5](I,IB),[6](P,PB))
+D2(Compose): Env,AttBar,Attach,ComposeBar
+D3(Index r/o): SB, [4]([5](I,IB))
+
+Dialog: Data, Views, Events, Root Window, Focus?
+Focus on Dlg AND Root
+
+Are any Windows sharing a View?  Probably
+	IB wants to know I's limit info
+What does each View contain?
+What events can happen to Views?
+How to repaints happen?
+How are events handled?  Propagated?
+How are *data* changes handled?
+Who owns the Views?
+What happens on SIGWINCH?
+What cn each Window do to a View?
+How does ':' command work?
+
+Focus: a coordinate, not a Window
+	=> Focus Pager, <move-left> -> Sidebar, <move-right> -> Pager!
+Focus can't happen at Dlg-level, needs to be at Root-level (NV?) -> HelpLine, CLI
+
+--------------------------------------------------------------------------------
+
+Views
+
+Sidebar needs List of A, Lists of M
+AV has "current M", MVL
+MV has "current E", limit, sort, EVL
+NV has "current A", A/M sort, AVL
+EV has tagged, deleted, index num, thread num
+NV observes N.  SHUTDOWN -> kill all.  how?
+	unselect A -> unselect M -> unselect E
+sidebar Window -> data = NV
+	observes N ∀ A,M events?
+Events (new/del) (A,M,E) notify NAME
+	how do the Views know?
+How many Views listening?
+	NV
+	AV ∀ A (sidebar)
+	MV ∀ M (sidebar)
+	EV ∀ E in current M
+Could we reduce the number of observers by observing at a higher level?
+	Still need 1:1 for E:EV for tagging, etc
+Current A,M only apply to current Dlg
+	'c' change folder limited to Dlg
+	'c' is handled by Index anyway
+	are there any global commands that change M?
+	or is it?  'c' can be handled by the Dlg!
+	what else?
+	are all ':' commands global?
+
+Window has private data, set by X_dlg_new()
+	Sidebar wants NV
+	Index wants MV
+	IBar wants MV
+	Pager wants EV
+	PBar wants EV
+Window notify set to clear_my_ptr() on remove event
+
+Deleting Email -> E.remove -> EV.remove -> NULL
+	and Pager repaint -> Pager dies -> reflow -> Index repaint???
+
+E's are ref-counted, so E-del events can come at end of processing
+E.del -> EV.del - Pager and MV need to know (&PBar)
+	(6) can observe?
+	Is MV observing all E/EV?
+
+Sidebar spans 3 levels: NV,AV,MV
+Index   spans 2 levels: MV,EV
+Pager   spans 1 level:  EV
+
+Can I externalise Plugin ops for the Pager, e.g. OP_POST (NNTP)
+Deglobalise sort: 'o' set View's sort, $sort is global default
+	what about $sidebar_visible?
+IBar,PBar (being passive) should be in separate source files
+If we put {sidebar,index,ibar,pager,pbar}.{c,h} in a libdir - would it work
+	pager is used widely.  it would need to be generic and outside lib
+	alias sidebar would be custom, anyway, but pager is shared everywhere!
+
+changes to bindings can affect helpline -- need to listen
+

@@ -22,7 +22,7 @@ color -> repaint
 
 Handlers
 	index(passive) - no data change
-		just repain
+		just repaint
 	index(active) - e.g. change threading
 	generic: redraw
 	dlg: 'c' change folder
