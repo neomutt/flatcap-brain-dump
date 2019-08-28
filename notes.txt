@@ -1,3 +1,9 @@
+'eval' command prefix for controlled evaluation of backticks, etc
+	or 'noeval' command => literal string
+
+configure allows --gnutls AND --ssl
+	need to warn/fail
+
 bug: wide multi-select prompts aren't being wrapped
 
 :toggle abc<tab>

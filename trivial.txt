@@ -116,3 +116,9 @@ wrong name, shoud be _free()
 	mutt_addr_free(&a);
 	hmm... but it doesn't free the actual AddressList
 
+duplicate struct
+	struct Entry
+	struct Syntax
+
+name all TAILQ parts
+	static TAILQ_HEAD(, Lookup) Lookups = TAILQ_HEAD_INITIALIZER(Lookups);

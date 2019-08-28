@@ -110,3 +110,20 @@ If we put {sidebar,index,ibar,pager,pbar}.{c,h} in a libdir - would it work
 
 changes to bindings can affect helpline -- need to listen
 
+test reflow on Window with MIN size and MAX attr
+
+status_on_top: who needs to listen?  Everyone!
+	Root + every Dialog
+
+who calls reflow, repaint?  When?
+
+If (! $help) then toggle status_on_top doesn't affect sidebar
+	=> only reflow dialogs
+
+need separate reflow, repaint flags
+status_on_top - Window flag in State - simplifies Dialogs
+reflow might not cause repaint
+pass config events to all Windows?
+	almost all Windows are affecty by _some_ config
+	all *visible* Windows
+		NO. dialog Windows are affected by status_on_top!
