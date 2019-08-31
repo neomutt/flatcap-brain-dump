@@ -69,3 +69,13 @@ have progress code do message formatting
 	progress can nop them if it wants
 	progress_update(P, num, fmt, ...);
 
+progress messages
+	log only if previous message != progress
+	log last progress message too
+	need to cache them
+
+**Ideas**:
+- Record progress bar info too, e.g. 100%, 45sec, "Opened mailbox"
+- Take into account:  $read_inc   $write_inc   $net_inc
+## scripts -- Show a list of config files loaded
+

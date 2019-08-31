@@ -132,11 +132,6 @@ option in :messages page to save the text
 default log level to -1
 	level 0 logs msg/error
 
-progress messages
-	log only if previous message != progress
-	log last progress message too
-	need to cache them
-
 stderr ignores progress message (or same magic filtering)
 
 abstract progress into separate file
