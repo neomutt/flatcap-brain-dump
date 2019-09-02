@@ -1,3 +1,10 @@
+add autocrypt to travis builds
+	[release]
+	[coverity]
+
+shrink 'code' repo, or replace empty and restart
+	exclude from mirroring
+
 'eval' command prefix for controlled evaluation of backticks, etc
 	or 'noeval' command => literal string
 

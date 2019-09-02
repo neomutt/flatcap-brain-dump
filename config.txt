@@ -634,3 +634,6 @@ hcache enum NEEDS empty option - enum flag?
 	can *ENUMS* be empty?
 enum - first value allowed to be NULL?
 
+config prefix 'pager'
+	set pager:var = 3
+	'compose', 'index', etc?!

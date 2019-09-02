@@ -1,0 +1,31 @@
+<toggle-quoted> command
+
+toggle_quoted_show_levels
+
+> xxx
+> > yyy
+> > > zzz
+
+perhaps change to config *variable*
+
+- hide_quoted (bool)
+- hide_quoted_level (int)
+
+<toggle-quoted> doesn't persist between emails
+
+hide_quoted would persist between emails
+
+this would lead to problems with user feedback
+they won't know when something's been hidden
+
+> xxx
+> > [4 lines hidden]
+
+unless the number is large, this might lead to a lot of clutter
+
+alternatively, we could use an expando in the status bar
+
+[%Q lines hidden]
+
+combine with status-colour feature for highlighting
+
