@@ -185,8 +185,8 @@ index-color
 	list configured colours
 	XXX (in colour/attr) name-of-object [pattern]
 :color all
-	list ALL colours include unsed
-	exluding patterns
+	list ALL colours include unused
+	excluding patterns
 :color -v
 	list colours as config?
 	mixed with XXX... NO

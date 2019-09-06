@@ -118,3 +118,14 @@ cache files need to hash their name too
 
 hcache2 (bitfields)
 	inline, transparent
+
+where are the magic structs in the code?
+	address/address.h
+	email/body.h
+	email/email.h
+	email/envelope.h
+	email/parameter.h
+	mutt/buffer.h
+	mutt/list.h
+separate files for each magic struct to reduce dependencies?
+

@@ -1,12 +1,12 @@
 main - loop, readchar, 1s timeout
-	tree of windows, one focussed
+	tree of windows, one focused
 	key -> each window - returns handled; no, need more
 		more keys within timeout
 	check timers -> timeout-hook
 
 --------------------------------------------------------------------------------
 
-index: check_mbox() returs list of changes NO
+index: check_mbox() returns list of changes NO
 	if emails were deleted, index's ptrs would be dangling
 	needs to be a notify/callback
 	up to 3 (del, change, new)
@@ -187,7 +187,7 @@ reshape, notify if changes
 --------------------------------------------------------------------------------
 
 new expand code is OK for Email, but what about private Notmuch E->edata?
-In pager, expose functions to collapse thred, etc in index?
+In pager, expose functions to collapse thread, etc in index?
 add more synonyms to unify imap_url vs smtp_url, etc
 F1 ctx-help - option to open online web help instead
 need reflow() to take a Window, if NULL, reflow all
@@ -390,7 +390,7 @@ listening at A-level???
 
 Help, Cli, Sidebar are global
 	don't rely on Views
-Index() holds curent A,M,E (AV,MV,EV)
+Index() holds current A,M,E (AV,MV,EV)
 How are Index->Postponed Index separate?
 
 --------------------------------------------------------------------------------
@@ -498,7 +498,7 @@ in the pager, how does the index (lines) get repainted?
 Key Event distribution
 Focus - maintained by dialog (2)
 Focus on Pager - events for pager, index, sidebar, generic:
-Events tried on focussed window first
+Events tried on focused window first
 focus -> *leaf* window
 
 <page-down>

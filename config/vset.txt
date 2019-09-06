@@ -164,7 +164,7 @@ Difference between
 
 does it matter when they happen?
 	startup, preAC, postAC
-	unsed AC value, set AC value
+	unused AC value, set AC value
 
 
 if AC holds(HE*), then inheritance works
@@ -186,7 +186,7 @@ Hash
 
 
 AC0 only container "inherit" vars
-new accound coped AC0 verbatim
+new account coped AC0 verbatim
 
 to generate AC0, need lookup table for struct
 list of strings, index is offset into AC struct
@@ -277,7 +277,7 @@ what about named mailboxes / notmuch
 where do they fit in?
 
 Do AC vars need real backing?
-If AC vars are only HE, do ptr persistance matter?
+If AC vars are only HE, do ptr persistence matter?
 caching an AC ptr isn't useful
 AC could change
 
@@ -791,7 +791,7 @@ export text values from config, e.g. "yes", "no"
 	exporting means they'll need NULL terminating
 	and the array_size's adjusting
 
-store the componet in the config set for each config item, e.g.
+store the component in the config set for each config item, e.g.
 	Sidebar:
 		sidebar_width
 		sidebar_visible

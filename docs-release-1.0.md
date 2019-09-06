@@ -77,7 +77,7 @@ talk about packaging
 
 man pages -> md
 script to gen man pages
-sample muttrc integreated
+sample muttrc integrated
 ChangeLog/Versions?
 howtos
 pictures

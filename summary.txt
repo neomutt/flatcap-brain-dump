@@ -90,7 +90,7 @@ using the source command.
 Ideas:
 - Red-flag any that had errors
 - Add a command line option to list the files that would be loaded
-- List all the non-existant files that were attempted
+- List all the non-existent files that were attempted
 ## set -- Show a list of variables
 
 **Command**:  set [all]

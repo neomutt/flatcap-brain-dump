@@ -14,7 +14,7 @@ grouped -> tree
 tagged -> sidebar
 
 what are parent-of-group, tag set objects?
-	empty addreses?
+	empty addresses?
 
 for tag sidebar need:
 	All Addresses

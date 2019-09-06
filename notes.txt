@@ -1,6 +1,8 @@
-add autocrypt to travis builds
+add autocrypt to all automatic builds
+	scripts, parallel, travis
 	[release]
 	[coverity]
+	Xenial doesn't have idn2, or gpgme 1.8.0
 
 shrink 'code' repo, or replace empty and restart
 	exclude from mirroring
@@ -11,10 +13,8 @@ shrink 'code' repo, or replace empty and restart
 configure allows --gnutls AND --ssl
 	need to warn/fail
 
-bug: wide multi-select prompts aren't being wrapped
-
 :toggle abc<tab>
-	shoud it only complete to booleans? etc
+	should it only complete to booleans? etc
 
 context sensitive help
 	use index selection
@@ -67,7 +67,7 @@ help metadata
 	add min-version header
 	-> warning "Your version of NeoMutt doesn't support this feature"
 
-neo maildir header/messag cache
+neo maildir header/message cache
 	auto-add README.md, saying
 	"auto-generated"
 	"safe to delete anything"
@@ -122,7 +122,7 @@ dump-config SHOW_DOCS option
 
 deferred config evaluation
 	automatic for sensitive variables?
-	global contans `script.sh` get_value() evaluates the backticks
+	global contains `script.sh` get_value() evaluates the backticks
 	can't be done by config system, only outside can eval ``s
 	need to be careful to avoid double evaluation
 	don't want backends evaluating ``s either (transparent)
@@ -325,7 +325,7 @@ easy? while -> FOREACH_SAFE
 	mutt_pattern_free()
 
 syntax highlighting
-	group is highligted in 'lists' but not 'subscribe'
+	group is highlighted in 'lists' but not 'subscribe'
 	lists     -group mutt    mutt-users@mutt.org
 	subscribe -group neomutt neomutt-devel@neomutt.org
 
@@ -491,7 +491,7 @@ standardise naming "folder" vs "mailbox" ∀ docs
 
 imap browser needs way to mark subscribed folders
 
-with split views might there be multiple focussed windows?
+with split views might there be multiple focused windows?
 	pager1, pagerbar1
 	pager2, pagerbar2
 	different pagers might mean different Mailboxes

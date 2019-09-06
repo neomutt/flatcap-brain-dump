@@ -950,7 +950,7 @@ account-hook canon, since matche to realpath (start)
 	so that imap://host matches imap://user@host?
 	NO, it's a regex
 
-A for possibly non-existant M
+A for possibly non-existent M
 	A* ac_find_account(P)
 	that's mostly probe()
 
@@ -1150,7 +1150,7 @@ R	Replied
 
 index/pager -> CF -> ESF -> SF -> SFU [5]
 	CF select DNOR*!
-	RO only * availabe, others fail quietly
+	RO only * available, others fail quietly
 	<tag-prefix><set-flag> forbidden
 	            <clear-flag>
 	CHECK_READONLY
@@ -1569,7 +1569,7 @@ split config => subset is just a name
 	get_val(ImapModule, Account->name, "name") NO
 	need HE for Inheritance
 if we get_val(... Mailbox->name, ...)
-	need to default to M->valu, A-val, N-val (initial)
+	need to default to M->val, A-val, N-val (initial)
 
 on "account" need to inherit.  inherit what?  everything?
 flagged for inheritance => reg_var NO
@@ -1843,7 +1843,7 @@ what about:
 	mailbox name desc "pretty" path imap://
 	each command takes exactly one param
 	can we chain them?
-trickier wit other commands, 'set' eats all args
+trickier with other commands, 'set' eats all args
 	account name desc pretty set index_format=""
 	desc has to come first
 
@@ -1860,7 +1860,7 @@ mailboxes / named-mailboxes PATH
 "account", "mailbox" incomplete until "path"
 path -> magic for M & A, mxops
 what happens when M's in an A don't have matching types?
-what happens if a path is mising?
+what happens if a path is missing?
 	potentially A is untyped
 leave them in memory in case more config is read?
 do we notify when A,M are created or when complete?
