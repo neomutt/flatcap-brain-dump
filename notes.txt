@@ -1,3 +1,5 @@
+progress - how to do progress_done() cleanly on all error paths
+
 add autocrypt to all automatic builds
 	scripts, parallel, travis
 	[release]
