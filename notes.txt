@@ -1,10 +1,35 @@
-progress - how to do progress_done() cleanly on all error paths
+attach_save_dir config
+	DT_*DIR* must be dir or non-existent
+	stop trailing '/'
+	if exists, warn if not writeable
+	warn if non-dir
+	hmm... default is "./" -> "."
+	DT_FILE, no trailing '/'
+		if exists, writeable
+		or non-existent
 
-add autocrypt to all automatic builds
-	scripts, parallel, travis
-	[release]
-	[coverity]
-	Xenial doesn't have idn2, or gpgme 1.8.0
+code style:
+	while (condition)
+	  ;
+	need something for clarity?
+	{} instead?
+	; // Do nothing?
+	enforce blank line after?
+
+endwin(); printf(); refresh()
+	makes output go to 'normal' screen
+		can be coloured!
+	NO flicker
+	save the output of ALL commands
+	and log it twice: to LOG and normal screen
+
+chop down 'long' config item to int (64 -> 32 bits)
+
+tag emails, then save|copy -- no progress
+
+iwyu - list 'problem' headers
+
+progress - how to do progress_done() cleanly on all error paths
 
 shrink 'code' repo, or replace empty and restart
 	exclude from mirroring

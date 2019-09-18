@@ -116,7 +116,11 @@ wrong name, should be _free()
 	mutt_addr_free(&a);
 	hmm... but it doesn't free the actual AddressList
 
-not a DT_COMMAND!
-	check for other new config
-	{ "pop_oauth_refresh_command",       DT_STRING|DT_SENSITIVE,                       &C_PopOauthRefreshCommand,       0 },
-	"tunnel" too
+This doesn't seem to be documented in neomutt's manual either
+I wonder if we could kill this unexpected behaviour
+  /* This is an undocumented feature of ELM pointed out to me by Felix von
+   * Leitner <leitner@prz.fu-berlin.de> */
+  if (mutt_str_strcmp(mutt_b2s(buf), ".") == 0)
+    mutt_buffer_strcpy(buf, LastSaveFolder);
+  else
+    mutt_str_strfcpy(LastSaveFolder, mutt_b2s(buf), sizeof(LastSaveFolder));
