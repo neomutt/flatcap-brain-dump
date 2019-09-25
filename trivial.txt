@@ -124,3 +124,26 @@ I wonder if we could kill this unexpected behaviour
     mutt_buffer_strcpy(buf, LastSaveFolder);
   else
     mutt_str_strfcpy(LastSaveFolder, mutt_b2s(buf), sizeof(LastSaveFolder));
+
+SEND_NO_FREE_HEADER refers to an Email, SEND_NO_FREE_EMAIL?
+
+should be _free() -> need _new() too
+	void mutt_bcache_close(struct BodyCache **bcache)
+
+optimise bail out cleanup
+	static void rfc3676_space_stuff(struct Email *e)
+
+int mutt_buffer_get_field_full(const char *field, struct Buffer *buf, CompletionFlags complete,
+reorder for clarity
+	if (ret != 0)
+	mutt_buffer_reset(buf);
+	else
+	mutt_buffer_fix_dptr(buf);
+
+flags typedef?
+	/* force flags passed to mutt_mailbox_check() */
+	#define MUTT_MAILBOX_CHECK_FORCE       (1 << 0)
+	#define MUTT_MAILBOX_CHECK_FORCE_STATS (1 << 1)
+
+mutt_mailbox.c rename var?
+	struct stat contex_sb;
