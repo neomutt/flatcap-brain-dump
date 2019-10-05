@@ -1,0 +1,96 @@
+# color SIMPLE-OBJECT [ attribute ...] foreground background
+# ColorDefs[object] = COLOUR
+color attachment red default               # MT_COLOR_ATTACHMENT                           Colour for attachment headers
+color bold       red default               # MT_COLOR_BOLD                                 Highlighting bold patterns in the body of messages
+color error      red default               # MT_COLOR_ERROR                                Error messages printed by NeoMutt
+color hdrdefault red default               # MT_COLOR_HDEFAULT                             Default colour of the message header in the pager
+color indicator  red default               # MT_COLOR_INDICATOR                            Arrow or bar used to indicate the current item in a menu
+color markers    red default               # MT_COLOR_MARKERS                              The "+" markers at the beginning of wrapped lines in the pager
+color message    red default               # MT_COLOR_MESSAGE                              Informational messages
+color normal     red default               # MT_COLOR_NORMAL                               Default colour for all text
+color options    red default               # MT_COLOR_OPTIONS                              The key letters in multi-choice questions
+color progress   red default               # MT_COLOR_PROGRESS                             Visual progress bar
+color prompt     red default               # MT_COLOR_PROMPT                               A question
+color search     red default               # MT_COLOR_SEARCH                               Highlighting of words in the pager
+color signature  red default               # MT_COLOR_SIGNATURE                            Email's signature lines (.sig)
+color tilde      red default               # MT_COLOR_TILDE                                The "~" used to pad blank lines in the pager
+color tree       red default               # MT_COLOR_TREE                                 Thread tree drawn in the message index and attachment menu
+color underline  red default               # MT_COLOR_UNDERLINE                            Highlighting underlined patterns in the body of messages
+color warning    red default               # MT_COLOR_WARNING                              Warning messages
+
+uncolor SIMPLE-OBJECT
+
+# color SIMPLE-INDEX [ attribute ...] foreground background
+# ColorDefs[object] = COLOUR
+color index_collapsed red default          # MT_COLOR_INDEX_COLLAPSED                      Number of messages in a collapsed thread, %M
+color index_date      red default          # MT_COLOR_INDEX_DATE                           Date field, %d %D %{fmt} %[fmt] %(fmt)
+color index_label     red default          # MT_COLOR_INDEX_LABEL                          Message label, %y %Y
+color index_number    red default          # MT_COLOR_INDEX_NUMBER                         Message number, %C
+color index_size      red default          # MT_COLOR_INDEX_SIZE                           Message size, %c %l
+color index_tags      red default          # MT_COLOR_INDEX_TAGS                           Transformed message tags, %g %J
+
+uncolor SIMPLE-INDEX
+
+# color SIMPLE-SIDEBAR [ attribute ...] foreground background
+# ColorDefs[object] = COLOUR
+color sidebar_divider   red default        # MT_COLOR_DIVIDER                              The dividing line between the Sidebar and the Index/Pager panels
+color sidebar_flagged   red default        # MT_COLOR_FLAGGED                              Mailboxes containing flagged mail
+color sidebar_highlight red default        # MT_COLOR_HIGHLIGHT                            Cursor to select a mailbox
+color sidebar_indicator red default        # MT_COLOR_SB_INDICATOR                         The mailbox open in the Index panel
+color sidebar_new       red default        # MT_COLOR_NEW                                  Mailboxes containing new mail
+color sidebar_ordinary  red default        # MT_COLOR_ORDINARY                             Mailboxes that have no new/flagged mails, etc
+color sidebar_spoolfile red default        # MT_COLOR_SB_SPOOLFILE                         Mailbox that receives incoming mail
+
+uncolor SIMPLE-SIDEBAR
+
+# color compose SIMPLE-COMPOSE [ attribute ...] foreground background
+# ColorDefs[object] = COLOUR
+color compose header           red default # MT_COLOR_COMPOSE_HEADER                       Header labels, e.g. From:
+color compose security_encrypt red default # MT_COLOR_COMPOSE_SECURITY_ENCRYPT             Mail will be encrypted
+color compose security_sign    red default # MT_COLOR_COMPOSE_SECURITY_SIGN                Mail will be signed
+color compose security_both    red default # MT_COLOR_COMPOSE_SECURITY_BOTH                Mail will be encrypted and signed
+color compose security_none    red default # MT_COLOR_COMPOSE_SECURITY_NONE                Mail will not be encrypted or signed
+
+uncolor compose SIMPLE-COMPOSE
+
+# color QUOTED-OBJECT [ attribute ...] foreground background
+# ColorDefs[object] = COLOUR
+# ColorQuote[NUM] = COLOUR
+color quoted  red default                  # MT_COLOR_QUOTED         ColorQuote            Text matching $quote_regex in the body of a message
+color quoted1 red default
+color quoted2 red default
+color quotedN red default
+
+uncolor QUOTED-OBJECT
+
+# color REGEX-LIST [ attribute ...] foreground background regex
+# add_pattern(&LIST, ...)
+color attach_headers red default "hel*o"   # MT_COLOR_ATTACH_HEADERS ColorAttachList       Attachment headers
+color body           red default "hel*o"   # MT_COLOR_BODY           ColorBodyList         Email body
+color header         red default "hel*o"   # MT_COLOR_HEADER         ColorHdrList          Email headers
+
+uncolor REGEX-LIST regex
+uncolor REGEX-LIST *
+
+# color status [ attribute ...] foreground background [ regex [ num ] ]
+# add_pattern(&LIST, ...)
+color status         red default "hel*o"   # MT_COLOR_STATUS         ColorStatusList       Status bar
+
+uncolor status regex
+uncolor status *
+
+# color INDEX-LIST [ attribute ...] foreground background PATTERN
+# add_pattern(&LIST, ...)
+color index          red default "~f jim"  # MT_COLOR_INDEX          ColorIndexList        Default highlighting of the entire index line
+color index_author   red default "~f jim"  # MT_COLOR_INDEX_AUTHOR   ColorIndexAuthorList  Author in the index, %A %a %F %L %n
+color index_flags    red default "~f jim"  # MT_COLOR_INDEX_FLAGS    ColorIndexFlagsList   Flags in the index, %S %Z
+color index_subject  red default "~f jim"  # MT_COLOR_INDEX_SUBJECT  ColorIndexSubjectList Subject in the index, %s
+color index_tag      red default "~f jim"  # MT_COLOR_INDEX_TAG      ColorIndexTagList     Tags in the index, %G
+
+uncolor INDEX-LIST regex
+uncolor INDEX-LIST *
+
+# Everything
+uncolor *
+
+# vim: syn=neomuttrc
