@@ -26,7 +26,7 @@
 - `$ENV` Expand an environment variable
 - `pipe.sh|` Expand and run command
 - `\x` Whitespace characters, carriage-return, line feed, etc
-- ``` `backticks` ``` Execute command
+- ```` `backticks` ```` Execute command
 
 </details>
 

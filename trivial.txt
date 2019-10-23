@@ -147,3 +147,38 @@ flags typedef?
 
 mutt_mailbox.c rename var?
 	struct stat contex_sb;
+
+DOXY
+static const struct AddressList *choose_default_to(const struct Address *from, const struct Envelope *env)
+
+mutt_attach_reply - reduce scope
+	struct State st;
+
+reorder params, State first
+tidy header
+	void state_mark_attach(struct State *s);
+	void state_mark_protected_header (struct State *s);
+	void state_attach_puts(const char *t, struct State *s);
+	void state_prefix_putc(char c, struct State *s);
+	int state_printf(struct State *s, const char *fmt, ...);
+	int state_putws(const wchar_t *ws, struct State *s);
+	void state_prefix_put(const char *buf, size_t buflen, struct State *s);
+	#define state_puts(str, state) fputs(str, (state)->fp_out)
+	#define state_putc(str, state) fputc(str, (state)->fp_out)
+
+{ "wrap_headers", DT_NUMBER|DT_NOT_NEGATIVE|R_PAGER, &C_WrapHeaders, 78 },
+	validator 78 <= x <= 998
+
+correct grammar
+	mutt_debug(LL_DEBUG1, "WEED is %s\n", (chflags & CH_WEED) ? "Set" : "Not");
+
+mutt_copy_message_fp (8 others in code)
+	empty line before `else`
+
+rename to 'index'?
+	hdrline.c
+	struct HdrFormatInfo
+
+switch order of 'if'
+	static int autoview_handler(struct Body *a, struct State *s)
+	if (!piped)
