@@ -61,8 +61,6 @@ upstream
 log_disp_debug_terminal
 	*everything* to stdout
 
-help disabiguation pages for commonly confused terms
-
 notify_remove() needs data for exact match
 
 hcache leaking
@@ -83,16 +81,6 @@ feature: live filter index as you type, cf sidebar matcher
 [release] test
 	use ctags to look for 'new', 'delete', etc other reserved
 	doxy look for @note: colon
-
-help backend
-	use multiple mailboxes for different sections?
-		probably not
-	different mailbox for different dirs:
-		help_doc_dir=x:y:z
-
-help metadata
-	add min-version header
-	-> warning "Your version of NeoMutt doesn't support this feature"
 
 neo maildir header/message cache
 	auto-add README.md, saying
@@ -735,11 +723,6 @@ is smtp a BE?
 	definitely need an smtp *dir* and tidier API for sending
 	encapsulate vars in dir
 
-help mailbox
-	option to autoopen all images?
-	or cursor right on link
-	when composing help update, add header with filename, commit hash if poss
-
 reddit mailbox backend?
 	see rtv project (python, curses)
 
@@ -904,9 +887,6 @@ check [release]
 	one of regexes is missing '\' before a '+'
 config: set tests missing \ -- am *I* mistaken about need?  unnec?
 
-help://
-	add doxy pages
-
 twitter "Re:" -> default config?
 
 users
@@ -926,8 +906,6 @@ status/pager format
 	what about error messages?  timed?
 
 option to mailcap-view objects from the browser (on attach)
-
-Display help mailbox if no others are 'mailboxes'd
 
 Easy: postpone question to three-way
 	(S)ave, (D)elete, (C)ancel

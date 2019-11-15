@@ -162,3 +162,25 @@ split out upstream features, or yaml tag them
 "edit this page" button
 	doesn't make sense for docbook conversions
 
+help backend
+	use multiple mailboxes for different sections?
+		probably not
+	different mailbox for different dirs:
+		help_doc_dir=x:y:z
+
+help metadata
+	add min-version header
+	-> warning "Your version of NeoMutt doesn't support this feature"
+
+help disabiguation pages for commonly confused terms
+
+help mailbox
+	option to autoopen all images?
+	or cursor right on link
+	when composing help update, add header with filename, commit hash if poss
+
+help://
+	add doxy pages
+
+Display help mailbox if no others are 'mailboxes'd
+
