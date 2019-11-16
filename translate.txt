@@ -1,3 +1,6 @@
+check/merge translation instructions
+	+power user in team area
+
 65 One-line messages that end \n
 	eliminate
 
@@ -168,4 +171,7 @@ trans scripts to management, inc msggrep for questions
 update all copyright translations
 
 [translate] PR - no webpush
+
+replace website flags with emoji flags
+	some missing
 

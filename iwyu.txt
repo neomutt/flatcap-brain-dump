@@ -1,0 +1,18 @@
+list 'problem' headers
+
+ignore lib.h helpers, wchar, curses, wtype
+test on Bionic, add to [release]
+ref keyword to include imp files
+list generated files (to ignore)
+
+iwyu on test/*?
+
+keep inttypes, etc
+begin/end_exports for lib.h (facade headers)
+private for *_private.h
+
+travis yml libsqlite3-dev
+368 files (6 facades, 10 pragmas, 5 broken)
+
+WIFEDITED defined in <sys/wait.h> - system.c
+

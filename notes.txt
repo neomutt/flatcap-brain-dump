@@ -1,3 +1,219 @@
+Mailbox, Email - rearrange members: pure data first, connecting pointers,
+	private data, last view data - move into inline View struct?
+	move into external view struct?
+	func data is from file/server - no config required, no globals
+	use hcache as guide to purity of data
+	Email shrinks from 192 byts to 32
+	Body shrinks from 176 bytes to 24
+	Envelope is 344 bytes
+
+no such mailbox -> link to docs
+	fake mailboxes
+
+project "next release"
+	rename to "2019-MM-DD" after release
+	notes, triage, todo, done
+
+VIM update
+
+credits repo
+	thanks, mailmap
+	pictures?
+	split by recent-ness: last 6 months (with pics), and the rest
+
+split up management repo?
+
+new form for error messages?  two-lines
+	first line has error message: "Can't open folder"
+	second line has the place: folder, path, url, etc
+	simplifies translation strings
+	can highlight path
+	path less likely to be truncated/wrapped
+
+pager <change-folder>?<enter>q goes back to pager
+
+Progress becomes notification
+	does it always have an object?
+	analyse use
+Progress notify happens on P object (parent is M or E)
+	P object has M/E ptr?
+
+log macro actions carefully
+
+log all hooks
+
+$folder = /dev/null
+	leads to crash (not repeated)
+
+config: can't un*set* enum!
+
+postponed docs don't contain the work "draft"!
+
+post-send hook for doing stuff
+
+muttlib.c getrandom()
+
+M must exist
+	what about "sent" or "trash" folders?  which might not
+	option to create (silently) missing Mailboxes?
+	could be messy
+
+add dashes to version in neomutt
+
+help: macros with descriptions are truncated
+	can't see full-text
+	need wrapping
+
+account-hook is #ifdef SOCKET!
+
+cli(debug) mailbox dump, print index to screen width formatted
+	coloured, batch mode, retval like -z, -Z
+	or just dump *new* mail
+	multiple mailboxes too, separated by M's path?
+	json/xml output?
+	eventually split into separate app using libmutt, etc
+	use getopt_long -- all platforms >10y
+
+Feature: when entering a field, print errors on the line above
+	alternaively, *insert* entry field below message window
+	it's empty and invsible unless used!
+	could use for completion matches too
+
+MBN_CLOSED -> unify Mailbox events
+
+mutt_buffer_mktemp() ought to live in muttlib! because of config etc
+	buffer.c should have no dependencies (except memory, string)
+
+config validators - allow to change value, clamp, ignore "builtin"
+
+eliminate config.h ∀ .h (29) start with libs
+
+Narrow sidebar idea, when width = 1 (or 2)
+	abbreviate to single letter
+	use colour to show new (or icon)
+	position gives you a clue where new mail is
+	width=1 no divider, use bg colour to distinguish from index/pager
+
+progress clear on 100% means 100% will never be show to user!
+time mbox, maildir, imap with LARGE mailboxes, cf mutt & old neomutt
+doxy update %ages, add test coverage %age by fn count
+
+rename var tmpfile (it's a libc fn)
+
+drop all email addrs from docs (except mine?)
+
+add_index_color with ID = '%' -> expando format problems
+
+which commands *might* have observers?
+	sidebar fns don't know about/if there's a sidebar!
+
+command events, pass Commands[] index, no other data needed
+
+ACS_VLINE(sb) -> create primitives draw_line(), draw_box()!
+
+eliminate all strtoX(), use mutt_str_strtoX()
+
+Config (accept-disabled-config)
+	enable by default
+	allow distros to disable
+
+--------------------------------------------------------------------------------
+
+init base windows main()
+(compartmentalised world)
+index creates dialog - tree, diagram
+dialog has data (state including current Mailbox)
+sidebar init -> window
+	sb_init(dlg) -> inserts itself
+	show data tree to A->M
+
+Index <sb-open> -> sb_fn(open) -> dlg.set_current(M) - index processes
+	send notify M changed (sb listens -> need recalc)
+Index calls reflow/repaint on dlg, sg reacts, repaints.  Done
+
+On window drag resize, when are recalc/repaints done?
+Drag (horizontal) -> SIGWINCH -> reflow root -> *some* windows notify size
+(sb no action), (index need recalc), repaint root, skip sb, repaint index DONE
+Drag (vertical) (helpbar no change), others repaint
+
+separate re*calc* from re*paint* stages for cleaner refresh?
+	functions in Window: recalc, repaint, handle function()
+Index->find(ID_SIDEBAR) in dlg, call sb(win, x, y, z)
+sb->find(ID_INDEX) in dlg
+
+--------------------------------------------------------------------------------
+
+idea: magic wrap - regex to ignore wrapping for URLs etc
+	or $no_wrap_split
+
+lower case attrset not wrapped!
+
+docs: check paths are correct
+	/usr/share/docs/sample
+
+debug-only MARKER logging ∀ colour code paths
+	all valid, all error, all dupes, all uncolor non-existent
+	if not markers, comments ∀
+	LL_MARKER (#ifdef DEBUG) level7 just for testing?
+
+how many ways are there to reply?
+	how many config vars/lots affect reply?
+	alternates, aliases, bounce, reply-to:, etc
+	flowchart?  too complicated?
+
+allow "uncolor obj" for normal objecs -> default default (no attrs)
+	+ attach_headers, staus, uncolor needs retval
+
+libgui - new logging level?
+
+wrap ColorQuote array, get_quote_color(n)?
+use ifndef in /etc/neomuttrc to disable *some* defaults
+	colours, bindings
+
+challenge - preserve order of tagged emails, so that
+	copy/save occurs in the proscribed order
+- need to add to EL_tagged as it happens
+- maildir (dest) needs to tweak timestamps to ensure order
+  (or save to mbox instead)
+tweaking can't happen in backend -- it only sees one file at a time
+need MXAPI for fast copy for when src & dst backends are the same
+change maildir to use (save to) timestamp, if set (NOW, if not)
+saving emails to IMAP, what are files in underlying maildir?
+	files timestampted for most recent (topmost)
+	received timestamp
+mx_msg_open_new(), mutt_safe_message()
+maildir_msg_open_new(), md_commit_message()
+
+BUG: hooks not run on initial "mailboxes" command, but are later
+
+LEAK: buffer pool, alias groups (not *owned*)
+
+BUG: "set charset" should call mutt_ch_set_charset()
+
+CHECK: other NOT_EMPTY config isn't emptied by reset
+
+GH Label has:workaround
+
+VERIFY: no leaks, no UB, ∀ startup pats
+CHECK: -T output (drop or #ifdef)
+
+in:  echo `sleep 10 &`
+	ampersand isn't honoured
+	problem upstream too
+	it IS in honoured elsewhere
+
+fopen ∀ log path & fd
+	log fd on close
+	macro to get FILE, LINE, FUNCTION
+	err Buffer too?
+	need flags for perms
+
+gpgme = yes
+
+symlinks
+	when should symlinks be resolved?
+	should neomutt show the resolved or unresolved path?
+
 attach_save_dir config
 	DT_*DIR* must be dir or non-existent
 	stop trailing '/'
@@ -26,8 +242,6 @@ endwin(); printf(); refresh()
 chop down 'long' config item to int (64 -> 32 bits)
 
 tag emails, then save|copy -- no progress
-
-iwyu - list 'problem' headers
 
 progress - how to do progress_done() cleanly on all error paths
 
@@ -1248,6 +1462,7 @@ analysis
 	AddressSanitizer build
 	codespell
 	lgtm.com - https://lgtm.com/projects/g/neomutt/neomutt/
+	-O2 -D_FORTIFY_SOURCE=2
 
 X-Labels lost if "unignore X-Label" isn't used!
 	suggest in labels docs

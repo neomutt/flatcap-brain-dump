@@ -35,3 +35,27 @@ change "version" to 2016MMDD
 
 remove dotlock references
 
+add autocrypt
+add lua?
+
+copr: regen FC30 2018 build
+
+notes for fedora/copr to use coredumpctl in the event of a crash
+
+gpgme?
+	enable by default?
+
+fedora min install, add
+	make
+	w3m?
+everything build?
+	lua-devel
+	libdb-devel
+	gdbm-devel
+	qdbm-devel
+
+RHEL old notmuch?
+	how old?  0.28?
+
+centos 6,8?
+

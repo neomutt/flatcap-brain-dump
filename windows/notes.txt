@@ -127,3 +127,92 @@ pass config events to all Windows?
 	almost all Windows are affecty by _some_ config
 	all *visible* Windows
 		NO. dialog Windows are affected by status_on_top!
+
+--------------------------------------------------------------------------------
+
+Functions
+	432 in 14 maps, 275 unique fn names, linear search, strmp()
+	"name" to OP_NAME unique
+	functions need to happen (be defined) beore config is read
+Commands
+	88 commands, linear search, strcasecmp()
+Functions will have different bindings depending on Menu
+Root Window -> Dlg Win need to exist at sidebar_init()
+	or use a two-stage init?
+Does sidebar need to register its functions every time the index starts?
+	where are they stored, if not?
+Or are they *not* registered?
+	Neo calls out to sidebar for an action?
+	NO, key handling needs to be central, completin needs then central too
+
+--------------------------------------------------------------------------------
+
+Index-Pager share windows
+Deglobalise all IndexWin, PagerWin uses
+Encapsulate ncurses calls
+Eliminate (Index|Pager)Win
+Notifications ∀ Win changes
+Eliminate R_X flags in init.h / config
+All Win ops use Windows API
+Encapsulate Colours -> API
+
+Colours API - parse string
+	alloc colour
+	overlay colour
+	Window push_colour(), pop()
+	Colour = fg, bg, attr(s)
+	Flags for attrs?
+	Need way to embed them in Pager
+	Encode in text file, use unicode?
+	reserved block - avoid nerd fonts
+
+expando_format - option/flags to *dis*able
+	justify options for non-screen uses
+
+--------------------------------------------------------------------------------
+
+New layout idea
+	SB | Index
+	-----------
+	Pager
+*Somebody* needs to resize the sidebar
+unless SB and I,IB are containered
+
+--------------------------------------------------------------------------------
+
+sidebar events
+	14 config (13 require sidebar repaint)
+	sb_on_right -> dlg repaint
+	7 sb colours + indicator -> repaint
+	Window reisze/ or movement (e.g. toggle help)
+	new/deleted mailbox
+	update mailbox/account stats
+	mailbox *view* changes, e.g. user flags/tags email
+	visibility changes e.g. obscured by another dialog
+	shutdown (window will be destroyed)
+	commands sb_(un)whitelist, (un)subscribe -> new/del Mailbox
+	simple functions: move cursor, pg up/down, toggle visible -> repaint
+	hard function: <sidebar-open> change curent mailbox -> repaint
+
+--------------------------------------------------------------------------------
+
+who is MV's(Views) notify parent? M or A?  Prob M, no *DEF* M
+
+mailboxes "special folders" "space" blank line, "divide" horizontal line
+names need decorating to avoid clashes with real folders
+
+--------------------------------------------------------------------------------
+
+Mailbox: Read, Old, New
+	empty, R, O, N, RO, RN, ON, RON
+Config mark_old Yes/No
+Flagged Yes/No
+Stats Yes/No
+Check stats, timestamp, size, readonly mailbox (r/o filesystem or %)
+progress reading mbox, copying, saving messages
+
+X-Status: none, A, F, AF
+	check on enter index   FORCE
+	check on change folder FORCE
+	loop start             NONE
+

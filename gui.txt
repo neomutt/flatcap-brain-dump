@@ -1,0 +1,25 @@
+
+all addch, printw to go through mutt_win() functions
+	check for visible, save colour and position?
+
+MuttWindow separate Window-y from drawing primitives
+	mutt_win_* vs mutt_window_*? urgh!
+	just separate prototypes
+
+isendwin, endwin -> curses is_gui_mode(), end_gui_mode()
+tree symbols -> curses init, exported global
+
+libgui (after nested windows)
+	curses, windows, not colours?
+	all drawing through windows
+	no curses outside of libgui?
+	where/how do colours/attrs fit in?
+	who parses? who stores?
+	eliminate OptNoCurses
+
+gui modes: normal, alternate, disable
+	or YES, NO, BATCH
+	or NORMAL, GUI, BATCH
+what about messages in backends?
+	if (!OptCurses) mutt_message()
+

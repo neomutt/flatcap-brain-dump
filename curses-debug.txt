@@ -8,6 +8,7 @@ after each write, call getyx to confirm positions }
 screenshot command with ANSI escape sequences / HTML+CSS
 	need internal representation of the screen
 	multiple => screen cast
+	asciinema compatible
 
 capture at screen or window-level?
 	windows have no relationships, so screen for now

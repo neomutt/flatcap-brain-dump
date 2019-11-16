@@ -1,4 +1,3 @@
-
 make them all robust -- check all pointers
 
 promote lib/file.c to libfile.a
@@ -15,14 +14,10 @@ need to centralise the wide-character routines
 
 split up big files even if it means making static functions non-static
 
-sha1 is only used by pgppubring (soon to be obsolete)
 move tools to /tools
 
 try to de-prefix lib functions
 	mutt_buffer_X -> buffer_X
-
-rfc1524.c
-	rename to mailcap.c
 
 rfc822.c
 	meaning?
@@ -45,5 +40,4 @@ send.c
 
 mbox.c
 	mbox_reset_atime refactor over lib/file
-
 

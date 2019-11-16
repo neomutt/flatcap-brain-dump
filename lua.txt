@@ -1,3 +1,11 @@
+lua issue - public relations PR
+	what's available
+	how to use it
+	what next?
+	design
+	code
+	mentor
+
 integrate scripting language
 	lua, perl, python, ruby
 

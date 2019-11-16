@@ -1,4 +1,4 @@
-mutt
+neomutt
 	string get_version()
 	string get_config_option()
 	list   get_account_list()

@@ -8,8 +8,6 @@ use --check-config to list missing header files
 fix !USE_NNTP build
 	check !USE_SIDEBAR build
 
-drop #1234 refs to trac or gitlab
-
 free functions to take (**ptr)
 then deref to Type *t = *ptr;
 
@@ -27,6 +25,9 @@ add doxy param doc: (NULL safe) ?
 if (!(a && b))
 if (!(a || b))
 ag 'if \(!\(.*(&&|\|\|).*\)\)'
+
+ag '\(!\((.*) && (.*)\)\)'
+ag '\(!\((.*) \|\| (.*)\)\)'
 
 eliminate enum AccountType?
 use enum MailboxType
@@ -90,7 +91,7 @@ convert to enum?
 
 config system
 	can it return warnings?
-	it doesn't
+	yes, but it doesn't
 
 init.c
 	getsid() is POSIX2001
@@ -108,7 +109,7 @@ string fn to pretty print \t, \r, \n for tests
 	handle NULL, quote string
 
 mutt_parse_rc_line(char *line, struct Buffer *token, struct Buffer *err)
-	'token' is a tmp buffer -> 'tmp'
+	'token' is a tmp buffer -> 'tmp' (or 'scratch')
 	or eliminate it with the BufferPool
 
 wrong name, should be _free()
@@ -149,4 +150,46 @@ mutt_mailbox.c rename var?
 rename to 'index'?
 	hdrline.c
 	struct HdrFormatInfo
+
+find out meaning of "ci_" prefix, or drop it (curses interface?)
+	CI_is_return
+	ci_bounce_message
+		bounce_message
+		ci_bounce_message
+		mutt_attach_bounce
+		mutt_bounce_message
+	ci_first_message
+	ci_next_undeleted
+	ci_previous_undeleted
+	ci_send_message
+		ci_send_message
+		mix_send_message
+		mutt_resend_message
+		send_message
+
+eliminate complicated macros (multiline, conditionals, many callers)
+refactor complicated or oft-used macros
+	compose.c:118:1:     CHECK_COUNT
+	email/mime.h:77:1:   is_multipart
+	email/mime.h:83:1:   TYPE
+	email/mime.h:85:1:   ENCODING
+	index.c:140:1:       CUR_EMAIL
+	index.c:144:1:       CAN_COLLAPSE
+	mutt/buffer.h:43:1:  MoreArgs
+	mutt/regex3.h:52:1:  REG_COMP
+	mutt/string2.h:47:1: SKIPWS
+	mutt/string2.h:51:1: terminate_string
+	mutt/string2.h:60:1: terminate_buffer
+	pager.c:254:1:       IsAttach
+	pager.c:255:1:       IsMsgAttach
+	pager.c:257:1:       IsEmail
+	pager.c:261:1:       CHECK_MODE
+	pager.c:269:1:       CHECK_READONLY
+	pager.c:277:1:       CHECK_ATTACH
+	pager.c:285:1:       CHECK_ACL
+	pattern.c:93:1:      CTX_MSGNO
+	recvattach.c:82:1:   CHECK_READONLY
+	recvattach.c:100:1:  CHECK_ATTACH
+	state.h:55:1:        state_puts
+	state.h:56:1:        state_putc
 
