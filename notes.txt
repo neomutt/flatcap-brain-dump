@@ -1,3 +1,30 @@
+
+status bar idea:
+	empty status_format -> do not draw
+	using conditional expandos that evaluate to an empty string -> do not draw
+
+debug refresh idea: use greyscale background
+	increment each repaint
+	need to combine colours
+	would need bitfield or flag (changed & visible) on Mailboxes
+	or each window has a repaint count
+		need way to reset occasionally
+		Ctrl-L?
+
+add 'sleep' command
+	useful for macros
+	allow fractional seconds
+	can lua do this instead?
+
+easy: mxapi: mbox_create/delete()
+then add to browser, need exists fn too
+
+mxapi open_append - move create? query to neo
+backend->does_mailbox_exist()
+	no, query user
+	be->create_mailbox() OK
+	be->open_mailbox()
+
 Mailbox, Email - rearrange members: pure data first, connecting pointers,
 	private data, last view data - move into inline View struct?
 	move into external view struct?

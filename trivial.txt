@@ -193,3 +193,11 @@ refactor complicated or oft-used macros
 	state.h:55:1:        state_puts
 	state.h:56:1:        state_putc
 
+extra space
+	[in, out]
+
+change to @sa
+ * @see   mutt_file_chmod_add_stat()
+ * @see   mutt_file_chmod_add()
+ * @see   mutt_file_chmod_rm_stat()
+ * @see   mutt_file_chmod_rm()
