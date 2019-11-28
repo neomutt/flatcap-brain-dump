@@ -1,3 +1,18 @@
+ask to be added to the LZ4 page
+	star the new compression homepages
+
+help_line_format - put custom text at the top
+	tie in with account-hooks, macros, etc
+	for reminders, etc
+
+compose menu using its own is_tagged
+	use EmailList instead
+	+5 others in index. nec?
+	change subordinates to take EL
+
+mutt_inline_forward uses tagged
+
+mutt_sort_headers actually sorted Emails
 
 status bar idea:
 	empty status_format -> do not draw
