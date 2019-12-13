@@ -1,0 +1,40 @@
+Passive panels
+
+require data stored on Dialog
+
+- Help
+- IndexBar
+- PagerBar
+- Sidebar (partial)
+
+Help (helpline.c)
+	set by index/panel/menu?
+	N bind event - who's observing?
+	observer set string
+	helpline can repaint itself (string is cached)
+	doesn't need recalc (will truncate if nec)
+	":bind" (could change strng) -> N.notify, observer(N, Helpline, fn)
+	Helpline needs enough data to rebuild - menutype, list of options
+	special function where weve got nntp, etc
+	notify -> recreate string, check if changed, set need-repaint flag
+	when dialog closes, set help string to ""
+	how does parent dialog know to re*set* helpstring?
+	code after every sub-dialog
+	OR help has stack of help strings
+		(push|set|pop)_help_string
+		push(menu, objs)
+
+IndexBar needs M, MV, E, EV attached to dialog
+	observe M and Window for "current M"
+	"tag" -> MV changed -> need to recalc|paint
+	event loop reflows, recalcs, repaints (where nec)
+
+PagerBar needs EV, E attached to dialog
+	observe E and Window for "current E"
+	"next" -> "current E" changes -> need recalc|paint
+	wait for event loop
+
+Dialog needs "current M", "current E", "current A"?
+	dlg set(A|M|E) -> notify
+	in turn listening to N in case of deletion of object!
+
