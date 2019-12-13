@@ -1,0 +1,17 @@
+Check Browser Behaviour
+
+Browser
+	Files/Dirs
+	Mailboxes
+	Mailbox Directory
+	[multimode]
+
+Attach
+	file
+	message
+
+Drafts
+	Save
+	recover 1
+	recover list
+

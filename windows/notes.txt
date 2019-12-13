@@ -216,3 +216,37 @@ X-Status: none, A, F, AF
 	check on change folder FORCE
 	loop start             NONE
 
+--------------------------------------------------------------------------------
+
+sb_observe
+	N for A or M changes
+	N for config, colour, command
+	Window for size, visibility, position
+	Dialog for change to current A|M|E
+	index/pager 7 easy functions
+		Window->event(OP_SB_X)
+		add error buffer
+		return SUCCESS, WARN, ERROR, NOT_HANDLED
+	index/pager 1 hard - keep for now
+
+sidebar integration (mixed - mostly passive)
+
+create index windows, inc sidebar
+init_sidebar(win_sb) assume N is unique
+create sb_data, iterate AL, ML
+	generate what?  when?
+	generate A,M tree immediately?  YES
+	add observers - react to events
+		+A, -M, etc
+		set need_(recalc|repaint)
+	on *calc* generate formatted text (only for visible window)
+	on *paint* write to screen
+	assumption - nothing can happen between calc and paint
+	SB_AV members?  MVL?
+	SB_MV formatted string, highlighted, selected?
+
+Dialog Window
+	Data: current M
+	Notify - change to current M
+	Function: set current M (later)
+
