@@ -1,5 +1,60 @@
+add compress to 'P' build, travis, scripts
+	check P settings
+	fmemopen?
+	inotify?
+
+code: C99, POSIX:2001
+
+after release check acutest, autosetup for new releases
+
+analysis-compiler - list all my gcc flags
+
+more test builds with deployment
+	scan-build
+	cppcheck
+	lcov - deploy to website repos
+	link in from analysis pages
+	repos have README.md - which has priority on main website?
+	put content in analysis/ for scoping
+	test dupes and scoping
+
+autocrypt *prompt* has trailing <space>
+	check all
+
+code: if (!x) {} else {}
+	swap order
+
+web: add GH release notes emojis to web top-level menus?
+
+put header cache structs in separate *minimal* header files
+
+shellcheck on hcachever.sh
+	unicode space!
+
+struct Pager -> PagerInfo?
+
+move file deletion out of page
+	which callers can be fixed?
+
+code: every .c has "config.h"
+	(layout)
+
+sort/wrap Makefiles
+
+[release] use full-doc? (to reduce warnings)
+
+iwyu - need review of *
+	whitelisted includes - how often?
+	list source exceptions
+	mutt_curses.h
+	review: del all pragmas - try compiling
+	create [iwyu] top-level travis branch?
+	exceptions are still hard-coded into scripts
+	5 files - might be reducible
+
 ask to be added to the LZ4 page
 	star the new compression homepages
+	zstd page too
 
 help_line_format - put custom text at the top
 	tie in with account-hooks, macros, etc
