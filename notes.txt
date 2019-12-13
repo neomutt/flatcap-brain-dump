@@ -100,8 +100,6 @@ M must exist
 	option to create (silently) missing Mailboxes?
 	could be messy
 
-add dashes to version in neomutt
-
 help: macros with descriptions are truncated
 	can't see full-text
 	need wrapping

@@ -192,8 +192,40 @@ refactor complicated or oft-used macros
 	recvattach.c:100:1:  CHECK_ATTACH
 	state.h:55:1:        state_puts
 	state.h:56:1:        state_putc
+-------------
+	state_puts       98
+	MoreArgs         78
+	SKIPWS           51
+	CUR_EMAIL        46
+	IsEmail          42
+	CHECK_ATTACH     42
+	TYPE             35
+	CHECK_READONLY   34
+	CHECK_MODE       32
+	state_putc       30
+	CHECK_ACL        28
+	IsMsgAttach      22
+	CHECK_COUNT      19
+	REG_COMP         18
+	IsAttach         10
+	terminate_buffer 9
+	is_multipart     8
+	ENCODING         7
+	terminate_string 5
+	CTX_MSGNO        5
+	CAN_COLLAPSE     5
 
-these 2 typedefs don't match the pattern for function typdefs
+these 2 typedefs don't match the pattern for function typedefs
 	header_cache_t    hcache/hcache.h   /^typedef struct EmailCache header_cache_t;$/;"
 	keycode_t         keymap.h          /^typedef short keycode_t;$/;"
 
+main.c
+	text outside of else, search for others (over 60 comments before else)
+	/* If editing the infile, keep it around afterwards so
+	* it doesn't get unlinked, and we can rebuild the draft_file */
+	else
+
+commands.c
+	bools?
+	e->changed = 1;
+	Context->mailbox->changed = 1;

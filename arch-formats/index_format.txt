@@ -4,6 +4,7 @@ INDEX
 M
 	| %b     | Filename of the original message folder (think mailbox)
 	| %B     | The list to which the letter was sent, or else the folder name (%b)
+	| %m     | Total number of message in the mailbox
 	| %q     | Newsgroup name (if compiled with NNTP support)
 
 EV
@@ -12,7 +13,6 @@ EV
 	| %E     | Number of messages in current thread
 	| %J     | Message tags (if present, tree unfolded, and != parent's tags)
 	| %M     | Number of hidden messages if the thread is collapsed
-	| %m     | Total number of message in the mailbox
 	| %Y     | 'X-Label:' field (if present, tree unfolded, and != parent's x-label)
 
 E
