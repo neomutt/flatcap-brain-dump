@@ -40,3 +40,11 @@ Status bar
 
 mouse support, change cursor to pointer, rather than I-beam
 
+click on divider - reduce sidebar to 1 char wide
+	click again to restore
+	two-click mode
+		1) click on minimised sidebar to display it
+		2) click on mailbox to open it
+		   this automatically minimises the sidebar
+	keyboard functions to perform minimisaton too
+
