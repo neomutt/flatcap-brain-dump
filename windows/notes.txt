@@ -250,3 +250,13 @@ Dialog Window
 	Notify - change to current M
 	Function: set current M (later)
 
+compose: split up windows
+
+separate/distinguish between window functions
+	win/reflow vs gfx (print, clear, etc)
+	all gfx ops are const wrt Window!
+	mutt_win_X() vs gfx_win_X()?
+	mutt_window.[ch] is free of curses
+
+debug: event loop - fill window red before calling .paint()
+	NO, breaks partial repaints
