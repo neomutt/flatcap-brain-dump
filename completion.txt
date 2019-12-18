@@ -82,3 +82,10 @@ encapsulate & refactor
 	sort variables, etc before auto-completion
 		or properly sort the sources of the strings
 
+<tab> needn't complete, it could just display the possiblities
+	even when there's only one match
+
+when completing in the message window, hijack the status window for possible matches?
+	NO status window might be status-on-top, or missing (future)
+	use mutt_window_reflow_message_rows() to make message window bigger temporarily
+
