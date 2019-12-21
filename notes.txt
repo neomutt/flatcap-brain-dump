@@ -1,3 +1,13 @@
+":seta" == ":account set" ?
+":setm" == ":mailbox set" ?
+
+libdebug
+	notify
+	graphviz
+	backtrace
+	etc
+	#ifdef DEBUG
+
 add compress to 'P' build, travis, scripts
 	check P settings
 	fmemopen?

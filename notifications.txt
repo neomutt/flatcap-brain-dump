@@ -485,3 +485,37 @@ E needs multiple parents?  NO
 observer: special retval to have self removed from list
 	(for one-shot actions)
 
+filter out "set" command, etc
+	as they send out notifications separately.  NO
+command create even with raw text?
+cmd notify on failure? NO
+"finish" YES!
+cmd function returns flags - Don't notify (already done)
+	(for custom notifications)
+
+--------------------------------------------------------------------------------
+
+config: global, account, mailbox
+only on ConfigSet
+global should go through N.subset (for consistency)
+account through A.subset, M through M.subset
+A.subset.notify.parent == N.notify
+M.subset.notify.parent == A.notify
+M_config => must use named_mailboxes: need scope name
+Global  uses N.subset notifies parent N
+Account uses A.subset notifies parent A notifies N
+Mailbox uses M.subset notifies parent M notifies A notifies N
+
+ConfigEvent { enum scope, scope name, varname, he, cs }
+scope = (Neo|Acc|Mbox)
+scope name = NULL, "Acc", "Acc:Mbox"
+varname is plain, "sidebar_visible"
+who's observing at what level?
+observe N for global config, lots of code (really?)
+observe N for A config, or M config?  nobody?
+Observe A for A config: GUI dialog?
+	Dlg has current (A|M|E) listens to A (or M|E) for config changes
+	triggers recalc|repaint as necessary
+
+A,M-specific config notifications should be routed through A,M!
+

@@ -233,3 +233,6 @@ commands.c
 reorder functions to put AddressList first
 	mutt_addrlist_search
 	mutt_addrlist_write
+
+mutt_window "on screen" add hyphen
+
