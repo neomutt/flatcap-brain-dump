@@ -482,3 +482,6 @@ E needs multiple parents?  NO
 	notmuch listens to "canonical" M and
 	transplants events onto notmuch M and propagates
 
+observer: special retval to have self removed from list
+	(for one-shot actions)
+

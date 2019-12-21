@@ -229,3 +229,7 @@ commands.c
 	bools?
 	e->changed = 1;
 	Context->mailbox->changed = 1;
+
+reorder functions to put AddressList first
+	mutt_addrlist_search
+	mutt_addrlist_write
