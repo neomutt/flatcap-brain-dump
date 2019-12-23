@@ -637,3 +637,20 @@ enum - first value allowed to be NULL?
 config prefix 'pager'
 	set pager:var = 3
 	'compose', 'index', etc?!
+
+init.h config INH_NONE, INH_ACC, INH_MBOX
+Config contains all config
+Hide Config global, must use N|A|M->sub
+get N->config --> C->config			}
+get A->config (missing) delegate to N->sub	}- by string
+get M->config (missing) delegate to A->sub	}
+get M he -> ? return C he?
+	or forcibly create A he, M he (inherited)
+OR create *all* config ∀ A, M (that are named)! overkill?!
+do subsets need he?  useful, can be cached
+	is speed likely to be a problem?
+	if we can reuse the hashed string, it's a max of 3 lookups
+	NO, diff string! "fruit:apple:variable"
+get M->config (missing) don't lookup, delegate to parent
+set M->config, lookup (fail), delegate *create* to parent, then create, then set
+

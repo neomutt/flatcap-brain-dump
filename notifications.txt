@@ -519,3 +519,5 @@ Observe A for A config: GUI dialog?
 
 A,M-specific config notifications should be routed through A,M!
 
+do myvars trigger notifications?
+

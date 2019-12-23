@@ -1,4 +1,3 @@
-
 history - fix this:
 	docs "The buffer is cleared each time the variable is set."
 
@@ -20,4 +19,8 @@ try to recategorise to be more meaningful
 e.g. mailbox, alias?
 cross-contamination between prompts
 need owner too
+
+history sidebar
+	"all" and each category
+	commands/functions to de-dupe, sort, delete, add?, save
 

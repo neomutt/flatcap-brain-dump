@@ -236,3 +236,25 @@ reorder functions to put AddressList first
 
 mutt_window "on screen" add hyphen
 
+remove -Igui from Makefile (not nec)
+
+rename helper includes to '*/lib.h' ?
+	autocrypt/autocrypt.h
+	conn/conn.h
+	hcache/hcache.h
+	hcache/hcversion.h
+	imap/imap.h
+	mbox/mbox.h
+	mutt/mutt.h
+	ncrypt/crypt_gpgme.h
+	ncrypt/ncrypt.h
+	nntp/nntp.h
+	notmuch/mutt_notmuch.h
+	pop/pop.h
+
+imap/browse.c - drop imap/
+	#include "imap/imap_private.h"
+
+remove 'config/'
+	subset.c:#include "config/lib.h"
+

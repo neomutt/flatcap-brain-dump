@@ -1,3 +1,10 @@
+change myvars to use NT_MYVAR in Config
+	allow A-, M-scoping?
+
+Config error messages aren't translated
+
+sidebar announce behavioural changes (user-ml, website news) link to twitter, irc
+
 ":seta" == ":account set" ?
 ":setm" == ":mailbox set" ?
 
