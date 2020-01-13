@@ -173,7 +173,6 @@ refactor complicated or oft-used macros
 	email/mime.h:77:1:   is_multipart
 	email/mime.h:83:1:   TYPE
 	email/mime.h:85:1:   ENCODING
-	index.c:140:1:       CUR_EMAIL
 	index.c:144:1:       CAN_COLLAPSE
 	mutt/buffer.h:43:1:  MoreArgs
 	mutt/regex3.h:52:1:  REG_COMP
@@ -196,7 +195,6 @@ refactor complicated or oft-used macros
 	state_puts       98
 	MoreArgs         78
 	SKIPWS           51
-	CUR_EMAIL        46
 	IsEmail          42
 	CHECK_ATTACH     42
 	TYPE             35
@@ -222,39 +220,10 @@ these 2 typedefs don't match the pattern for function typedefs
 main.c
 	text outside of else, search for others (over 60 comments before else)
 	/* If editing the infile, keep it around afterwards so
-	* it doesn't get unlinked, and we can rebuild the draft_file */
+	 * it doesn't get unlinked, and we can rebuild the draft_file */
 	else
 
-commands.c
-	bools?
-	e->changed = 1;
-	Context->mailbox->changed = 1;
-
-reorder functions to put AddressList first
-	mutt_addrlist_search
-	mutt_addrlist_write
-
-mutt_window "on screen" add hyphen
-
-remove -Igui from Makefile (not nec)
-
-rename helper includes to '*/lib.h' ?
-	autocrypt/autocrypt.h
-	conn/conn.h
-	hcache/hcache.h
-	hcache/hcversion.h
-	imap/imap.h
-	mbox/mbox.h
-	mutt/mutt.h
-	ncrypt/crypt_gpgme.h
-	ncrypt/ncrypt.h
-	nntp/nntp.h
-	notmuch/mutt_notmuch.h
-	pop/pop.h
-
-imap/browse.c - drop imap/
-	#include "imap/imap_private.h"
-
-remove 'config/'
-	subset.c:#include "config/lib.h"
+rename helper includes to '*/lib.h' for consistency?
+	*conn/conn.h
+	*mutt/mutt.h
 

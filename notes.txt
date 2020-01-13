@@ -1,7 +1,7 @@
+bug: after being prompted for an smtp password, it's not cached in C_SmtpPass
+
 change myvars to use NT_MYVAR in Config
 	allow A-, M-scoping?
-
-Config error messages aren't translated
 
 sidebar announce behavioural changes (user-ml, website news) link to twitter, irc
 
@@ -34,9 +34,6 @@ more test builds with deployment
 	repos have README.md - which has priority on main website?
 	put content in analysis/ for scoping
 	test dupes and scoping
-
-autocrypt *prompt* has trailing <space>
-	check all
 
 code: if (!x) {} else {}
 	swap order
@@ -190,8 +187,6 @@ Feature: when entering a field, print errors on the line above
 	alternaively, *insert* entry field below message window
 	it's empty and invsible unless used!
 	could use for completion matches too
-
-MBN_CLOSED -> unify Mailbox events
 
 mutt_buffer_mktemp() ought to live in muttlib! because of config etc
 	buffer.c should have no dependencies (except memory, string)
@@ -367,7 +362,7 @@ configure allows --gnutls AND --ssl
 	need to warn/fail
 
 :toggle abc<tab>
-	should it only complete to booleans? etc
+	should it only complete to booleans/quads? etc
 
 context sensitive help
 	use index selection
