@@ -1,0 +1,146 @@
+delegate Config object to NeoMutt (don't free it separately(
+NV NeomuttView => ndata & free_ndata - wrap gui globals
+
+∀ types
+∀ levels N|A|M
+∀ (name|HE)
+∀ (get|set)
+∀ (native|string)
+
+level	HE
+N	* --> Global
+	^
+	|
+A	* (value)
+	^
+	|
+M	* (value)
+
+lookups with missing HE -> string
+manipulations to generate scope, etc
+lookup on unchanged M mean 2 redirects
+if M-value is looked at *once*, it's likely to be again
+	so always generate
+
+N-sub or Globals ∀ code?
+	N-sub where possible
+	then convert to (scope-)-sub later
+
+sidebar (love it or hate it) - always visible
+status bar tightly bound
+nested windows, not global, not reused, simplify code, test cases
+new *ideas* feasible
+	compose envelope
+	magic sidebar
+	move focus
+	magic status bar
+	widescreen
+bigger steps
+	sidebar rewrite
+	isolate dialogs data
+
+create_inheritance needs to honour INH_ACC|INH_MBOX
+if config *can't* be inherited, will all lookups be inefficient?  probably
+or drop flags - inherit anything, code will decide N|A|M
+NO. need flags to warn user (flags to match code)
+inherit where A-sub or M-sub are used
+need flags for config dump (add to :set output)
+does INH_MBOX imply INH_ACC?  probably
+	specify both for clarity?  YES
+need to categorise all Config
+	NONE (global)
+	Account-specific
+	Mailbox-specific
+	447 config variables
+:set -h (help) other options for dump flags, including inheritance
+
+NOT USED
+	C_VfolderFormat (notmuch)
+	C_MimeSubject (nntp)
+
+IS_PATH, IS_COMMAND macros not right
+	(t == STRING) && (flag set)
+
+my copyright
+	sort/wrap Makefiles/auto.def
+
+after dlg-local data, move src into dlg dirs
+	(index, pager, sidebar)
+	browser
+	addrbook
+	history
+	compose
+	remailer
+	query
+	recvattach
+	+ncrypt * 3
+	+conn * 2
+	+autocrypt
+
+init.h, config def
+	convert comment to markdown *string*
+	support: bold, italic, paragraphs, lists, tables
+config dump option to display in various formats
+	text
+	highlighted-text
+	nroff
+	docbook
+fix doc build
+
+create_inheritance
+	N-, A, M-sub missing name
+degenerate !sub, or !name -- fail
+simple name exists return HE
+A-sub, parent -->  N-sub exists, create A:name
+M-sub, parent --> A-sub, parent --> N-sub exists, create A:name, create M:name
+
+Pass sub to dialogs -- their config scope
+What if dlg needs some A- and some M-specific config?
+Dlg given M-sub, searching for A-limited config will cause M-inherit!
+All gui-config is global -- initially
+All index/page config is M-specific, compose too
+Alias/query is global
+Who checks config setting?  parse_set?  validator?
+	magic validator ∀ config to check inheritance?
+Add *sub* to dlg, get_config_scope(dlg)?
+	change varname from sub to "cfg"
+After docs split, break up / comment config lists by N|A|M scope?
+
+{imap,pop,smtp,nntp}_port config?  only settable by URL!
+timeouts on variables (for passwords)?
+	require all accesses to be through cs/sub
+libsend around smtp.c send.c sendlib.c
+sort_re docs wrong
+why are the 6 charset conig not using DT_SLIST?
+
+help backend
+	if neomutt started with zero mailboxes, load help
+	first email says "Welcome to NeoMutt, press <enter> to continue"
+	use localised version of email where available
+	then vim-tutor like
+
+Account observes config
+{user,pass,login} -> set_X
+url change -> wipe settings, set all
+
+need service name "imap", etc
+globals - need to parameterise:
+	$tunnel
+	$preconnect
+	$use_ipv6
+	$connect_timeout
+
+ConfigAccount - cached credentials (rename?)
+if (!has_X) get(X)
+	function callback to Account
+
+mx_open -> imap_open -> socket -> sasl (missing creds) -> connect
+	sasl needs to ask user for info
+	ssl/tls need to validate certificates
+
+missing credentials (before connect) - has to happen here
+	*sasl* might ask questions
+	accept/reject cert (mid-connect)
+		pass in response for testing purposes?
+	NO have special version of libquestion
+
