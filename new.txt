@@ -81,6 +81,7 @@ init.h, config def
 	convert comment to markdown *string*
 	support: bold, italic, paragraphs, lists, tables
 config dump option to display in various formats
+	markdown (unprocessed)
 	text
 	highlighted-text
 	nroff
@@ -143,4 +144,32 @@ missing credentials (before connect) - has to happen here
 	accept/reject cert (mid-connect)
 		pass in response for testing purposes?
 	NO have special version of libquestion
+
+startup - sidebar doesn't refresh until ctrl-l or event happens
+
+magic pager bar too
+create index/pager macros that save/restore
+	pager_index_lines
+	sidebar_visible
+	pager_format
+	save to myvars
+	if ifdef to only need one macro?
+
+M.quiet for messages -> notification?
+	let UI decide if quiet or not
+
+main reuses Buffer *folder confusingly?
+
+mx_check_empty -> API?
+	only called from main()
+	need Mailbox, Account?
+
+main - folder-hook is called before startup-hook
+	should it?
+
+pop_fetch_mail()
+	move spoolfile, $folder out of pop/
+
+ConnAccount needs method to *push* data
+	e.g. ask for a password, then Account saves to config
 

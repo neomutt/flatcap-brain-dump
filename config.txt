@@ -654,3 +654,22 @@ do subsets need he?  useful, can be cached
 get M->config (missing) don't lookup, delegate to parent
 set M->config, lookup (fail), delegate *create* to parent, then create, then set
 
+--------------------------------------------------------------------------------
+
+config will lose "full-doc" option until CS suports "disabled"
+need state-ending for markdown processing
+internal help should be 1-liner -- rest is in external doc repo!
+	use 'extern' comments and possibly add cross-reference for docs
+register variables takes data + DEPRECATED | DISABLED flags
+	it applies flags to all config items
+	will this work?
+	means data set *isn't* const! probably isn't already
+	how are initial values set!  probably OK
+using disabled/deprecated implies split config
+	after docs re-make
+"full-doc" -> disabled, no option for displaying deprecated
+add 1-liner to :set output
+is internal help worth it?
+	just maintain an external text file?
+
+

@@ -227,3 +227,11 @@ rename helper includes to '*/lib.h' for consistency?
 	*conn/conn.h
 	*mutt/mutt.h
 
+some 'mutt's have crept into the docs
+
+pager.c refactor flags into var
+	if ((mutt_save_message(Context->mailbox, &el,
+			(ch == OP_DECRYPT_SAVE) || (ch == OP_SAVE) || (ch == OP_DECODE_SAVE),
+			(ch == OP_DECODE_SAVE) || (ch == OP_DECODE_COPY),
+			(ch == OP_DECRYPT_SAVE) || (ch == OP_DECRYPT_COPY)) == 0) &&
+	((ch == OP_SAVE) || (ch == OP_DECODE_SAVE) || (ch == OP_DECRYPT_SAVE)))
