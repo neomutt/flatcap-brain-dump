@@ -235,3 +235,10 @@ pager.c refactor flags into var
 			(ch == OP_DECODE_SAVE) || (ch == OP_DECODE_COPY),
 			(ch == OP_DECRYPT_SAVE) || (ch == OP_DECRYPT_COPY)) == 0) &&
 	((ch == OP_SAVE) || (ch == OP_DECODE_SAVE) || (ch == OP_DECRYPT_SAVE)))
+
+doesn't appear to be *shared*
+	int mh_mbox_close(struct Mailbox *m)
+
+boolify param
+	void mutt_sig_allow_interrupt(bool allow)
+

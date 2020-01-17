@@ -173,3 +173,29 @@ pop_fetch_mail()
 ConnAccount needs method to *push* data
 	e.g. ask for a password, then Account saves to config
 
+lots of sidebar settings apply to the browser
+	should be account display settings!
+
+folder format needs 'subscribed' flag/field
+
+format format use %l (hard links) to distinguish local/net browser formats (conditional)
+
+:changelog ?
+	read from /usr/share/doc/neomutt
+	:news ?
+
+auto.def
+	list devel features, e.g. magic bars
+	add disclaimer
+
+desktop stuff (mailto, icon)
+	contrib
+	web contrib
+	mailing lists
+	twitter
+
+backends need splitting
+	UI stuff vs pure code (only dep libmutt etc)
+	good for asking questions too
+	"pop/gui.c" all the wrappers
+

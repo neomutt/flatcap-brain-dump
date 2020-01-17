@@ -1,3 +1,5 @@
+unify 'magic' to type?
+
 bug: after being prompted for an smtp password, it's not cached in C_SmtpPass
 
 change myvars to use NT_MYVAR in Config
