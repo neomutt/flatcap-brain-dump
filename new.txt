@@ -201,3 +201,8 @@ backends need splitting
 	good for asking questions too
 	"pop/gui.c" all the wrappers
 
+Add Imap seq letter/fd to all logs?
+	need imap_debug() macro
+
+Document Imap compression to user ml (etc)
+

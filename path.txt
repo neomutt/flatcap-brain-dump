@@ -157,5 +157,22 @@ How do we:
 	u->r
 when do we probe?
 	part of resolve?
+	YES.  need to probe before we can tidy()
 flag for URI format path!
 	like 'stat' flag
+
+--------------------------------------------------------------------------------
+
+change folder - free form string
+Path { "freeform", NULL, UNKNOWN }
+resolve '+' etc, probe tidy
+Path { "tidy", NULL, TYPE }
+find_M needs canon for path_compare
+	who does 'canon'? compare
+find_M -> ∀A, ∀M compare(M.path, test.path)
+find_M (a maibox function) doesn't need to know about canon
+compare (a path function) canons both paths as necessary
+does the +pretty name belong in Path? NO $folder may change
+does the "desc name" belong in Path? Possibly.  use in browser, etc
+separate path API from MXAPI?  can local M's share path functions?
+
