@@ -242,3 +242,19 @@ doesn't appear to be *shared*
 boolify param
 	void mutt_sig_allow_interrupt(bool allow)
 
+sort out "RFC<space>1234"
+
+undoc'd
+	void clear_source_stack(void)
+
+neomuttlog.vim
+	add notify level
+	offer to vim ml
+
+stack variable isn't always NULL'd, contains pointer
+	struct ImapList
+
+browser.h UNUSED members in struct BrowserState
+	bool noselect : 1;
+	bool marked : 1;
+	bool unmarked : 1;

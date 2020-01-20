@@ -183,6 +183,8 @@ format format use %l (hard links) to distinguish local/net browser formats (cond
 :changelog ?
 	read from /usr/share/doc/neomutt
 	:news ?
+	:credits
+	:about
 
 auto.def
 	list devel features, e.g. magic bars

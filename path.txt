@@ -119,3 +119,43 @@ mx_pretty(path, folder)
 		imap tidy *sub*path
 		notmuch -> NULL?
 
+--------------------------------------------------------------------------------
+
+any function using an M needs to resolve paths themselves
+distinguish "folders" / "mailboxes" that *must* be local files/dirs
+add flag to canonical Mailboxes
+create/delete/rename M available in index
+	(pager too if any M functions are available)
+		can't find any
+delete/rename work on current M
+	create prompts with current $folder!
+should they be sidebar functions?
+	or both?
+
+--------------------------------------------------------------------------------
+
+Path resolver - Buffer + flags
+	char[] would be easier
+States:
+	unknown
+	+pretty
+	resolved
+	canonical
+	(r, c have magic)
+resolve() p->r -- neo function, need $folder
+pretty() r->p  -- neo function, need $folder
+resolve needs to *tidy*?
+	but not canonicalise
+	collapse paths, but not symlinks?
+	NO leave path as user intended?
+	(use canon for comparison)
+canon() r->c -- backend function
+*flags* for state (U|P|R|C)
+*flags* for local/remove/virtual?
+How do we:
+	u->p
+	u->r
+when do we probe?
+	part of resolve?
+flag for URI format path!
+	like 'stat' flag
