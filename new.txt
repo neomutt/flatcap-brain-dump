@@ -58,9 +58,6 @@ NOT USED
 	C_VfolderFormat (notmuch)
 	C_MimeSubject (nntp)
 
-IS_PATH, IS_COMMAND macros not right
-	(t == STRING) && (flag set)
-
 my copyright
 	sort/wrap Makefiles/auto.def
 
