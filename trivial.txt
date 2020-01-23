@@ -226,3 +226,7 @@ rename helper includes to '*/lib.h' for consistency?
 
 neomuttlog.vim
 	offer to vim ml
+
+needs typedef
+needs NO_FLAGS
+#define U_PATH          (1 << 1)

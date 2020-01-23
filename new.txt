@@ -26,19 +26,6 @@ N-sub or Globals ∀ code?
 	N-sub where possible
 	then convert to (scope-)-sub later
 
-sidebar (love it or hate it) - always visible
-status bar tightly bound
-nested windows, not global, not reused, simplify code, test cases
-new *ideas* feasible
-	compose envelope
-	magic sidebar
-	move focus
-	magic status bar
-	widescreen
-bigger steps
-	sidebar rewrite
-	isolate dialogs data
-
 create_inheritance needs to honour INH_ACC|INH_MBOX
 if config *can't* be inherited, will all lookups be inefficient?  probably
 or drop flags - inherit anything, code will decide N|A|M
@@ -202,4 +189,37 @@ Add Imap seq letter/fd to all logs?
 	need imap_debug() macro
 
 Document Imap compression to user ml (etc)
+
+change imap_error to use macro and MuttLogger correctly
+	or eliminate it!  no gettext, uses function names!
+
+backend/path.c ∀ type
+
+webdocs -- collapsed groups in menu need sign saying "open me" '+'?
+
+loglevel for data (imap) showing '\n'?
+
+mutt_inbox_cmp() called by
+	browser, sidebar
+
+use startup notifaction to imap_login()?
+	parse config
+	"mailboxes" -> A,M generation
+what if INBOX isn't subscribed?
+	what happens to empty '/' Mailbox?
+	Kept -- it was "mailboxes" after all
+After cofnig, have A-M tree
+	Imap listens for STARTUP
+startup:
+	startup-notification
+	startup-hook
+	folder-hook
+	open folder
+imap uses notify to login ∀ A
+	login -> LSUB -> mailboxes
+startup-hook
+	allows user to make post-config changes / commands
+folder-hook
+	allows user to make folder-specific changes
+open folder
 
