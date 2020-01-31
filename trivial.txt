@@ -230,3 +230,27 @@ neomuttlog.vim
 needs typedef
 needs NO_FLAGS
 #define U_PATH          (1 << 1)
+
+ssl HAVE_RAND_STATUS #ifdef missed!
+
+is sidebar_unread colour missing from sidebar intro?
+
+why are enum SortType numbered?
+	SORT_ALPHA    =  3, ///< Required by makedoc.c
+	SORT_SUBJECT  =  3, ///< Sort by the email's subject
+	do we need SORT_MAX
+	do we need ANY X_MAX enum values?
+
+should use a Buffer
+	void mutt_default_save(char *path, size_t pathlen, struct Email *e)
+
+#include is outside of guard!
+	mutt/envlist.h
+	#ifndef MUTT_LIB_ENVLIST_H
+	#define MUTT_LIB_ENVLIST_H
+
+return/break early
+	case OP_DELETE_MAILBOX:
+		if (!state.entry[menu->current].imap)
+			mutt_error(_("Delete is only supported for IMAP mailboxes"));
+	check for all 'if' immediately after a case

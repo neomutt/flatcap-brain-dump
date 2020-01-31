@@ -223,3 +223,41 @@ folder-hook
 	allows user to make folder-specific changes
 open folder
 
+$folder should be tidied on setting - strip trailing slash
+probe
+	if local dir, squash ../ etc
+	imap, trailing / (need Account)
+who does the tidying?  when?
+	validator/fixer?
+	or observer?  NO
+		observer -> user set, notif, fixer set, notify!
+
+change reset_tilde to just search all config
+	to save keeping list up-to-date
+
+split buffer_expand/resolve into PATH functions and MAILBOX functions!
+
+config: change sort to work like enum -- use Data field
+	except allow magic "reverse-", "last-" prefixes
+
+1600 C_ config uses
+188 WHERE uses
+
+create mailbox (browser)
+	errors on empty -- kill error
+	rename, delete too?
+
+backend/hcache.c?
+
+change OP_X to exactly match function name?
+
+split up MxOps?
+	have backends register their functions?
+
+split mx.c mx_{mbox,msg,path}.c
+
+dir for compress backend?
+	split up too
+
+backend/{mbox,msg,path,tags}.c ∀
+

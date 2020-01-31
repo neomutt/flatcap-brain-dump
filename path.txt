@@ -176,3 +176,68 @@ does the +pretty name belong in Path? NO $folder may change
 does the "desc name" belong in Path? Possibly.  use in browser, etc
 separate path API from MXAPI?  can local M's share path functions?
 
+path/mailbox types
+	18 PATH
+	6 MAILBOX
+Path
+	user -> tidied  ../ etc
+	canon -> resolve symlinks
+		use during config parting (for loop detection)
+Distinguish between: FILE, DIR, EITHER?
+	MUST_EXIST flag?
+	WILL_CREATE flag?
+Pretty(P) -> ~/ on user path
+fopen(P) => P cannot contain '~'
+Allow/disallow relative paths?
+	or always expand?
+P of ../dir can't canonicalise it '.' might change
+resolve(P) turns relative path into absolute path
+	resolve is a Mailbox thing
+want a Path specifiy tidy?
+	what about P/M vas?
+	NO probe and use mxapi tidy
+upstream resolve doesn't expand symlinks
+	or do realpath (in pretty)
+path *type* (with Mailbox flag)
+	type, flags live in libcore
+type is away of mxapi
+	or plain PATH type is only path aware
+mailbox type is mxapi-aware, can delegate to PATH type
+PATH could delegate to STRING?
+Config - what does "get" offer?  "user" or "canon" string?
+	USER string, if we want canon, then get_native object
+PATH needs global HomeDir (will probably end up in N.user_info)
+set_path(P), path_tidy(P)
+	or set user to anything, absolute, relative, ~/, then resolve on fopen?
+	canon is useless
+only tidy if absolute or ~/ (can then be canonicalised if necessary)
+	means attach_save_dir "./" is OK
+set mailbox(M) - probe, if "local" type delegate to PATH
+	resolve, probe, tidy
+
+Path { orig, canon, tidy, flags }
+
+DT_PATH test
+	file | dir
+	absolute | relative | tilde
+	clean | dirty (dir/..)
+	symlink | real
+	trailing slash | none
+
+store as (abs|rel|tilde)
+	tidy abs dirty
+	expand for use?  NO
+or expand before save?  BEFORE
+
+expand before => fopen(C_X) will succeed without processing C_X
+
+investigate nntp_expand_path
+
+does struct Path need void *data for parsed URI info?
+
+rename path2 wrappers to imap_* for debugging purposes
+
+when to we canon +trash?
+	just before use?
+	or dup, then canon?  probably
+
