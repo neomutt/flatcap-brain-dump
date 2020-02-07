@@ -261,3 +261,19 @@ dir for compress backend?
 
 backend/{mbox,msg,path,tags}.c ∀
 
+Distinguish all IMAP logging by its connection details
+	create imap_debug() macro
+	add prefix field to log_dispatcher_t
+	all the functions using mutt_debug() need an adata param/local
+	use prefix of [seqid/fd]
+
+style:
+	callback functions must be named uniquely
+	(for clarity when debugging)
+
+new sort option to sort flagged emails first
+	include entire thread?
+
+have HomeDir, create CurrentDir for cwd?
+	it doesn't change
+

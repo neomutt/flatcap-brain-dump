@@ -241,3 +241,7 @@ when to we canon +trash?
 	just before use?
 	or dup, then canon?  probably
 
+maildir canon
+	strip ",flags" from path, or ":"?
+
+path always open with "orig", compare with "canon"

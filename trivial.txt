@@ -254,3 +254,16 @@ return/break early
 		if (!state.entry[menu->current].imap)
 			mutt_error(_("Delete is only supported for IMAP mailboxes"));
 	check for all 'if' immediately after a case
+
+status.c
+	change # to number
+	* | \%t     | # of tagged messages
+
+s/uri/url/
+	url is a uri with a scheme://
+	all our uris have a scheme
+	33 vs 317
+
+contract in Path API docs
+	RESOLVED, CANON, NOT NULL, etc
+
