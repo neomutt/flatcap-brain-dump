@@ -245,3 +245,7 @@ maildir canon
 	strip ",flags" from path, or ":"?
 
 path always open with "orig", compare with "canon"
+
+contract in Path API docs
+	RESOLVED, CANON, NOT NULL, etc
+

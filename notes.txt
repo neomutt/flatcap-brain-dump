@@ -116,7 +116,7 @@ Mailbox, Email - rearrange members: pure data first, connecting pointers,
 	move into external view struct?
 	func data is from file/server - no config required, no globals
 	use hcache as guide to purity of data
-	Email shrinks from 192 byts to 32
+	Email shrinks from 192 bytes to 32
 	Body shrinks from 176 bytes to 24
 	Envelope is 344 bytes
 
@@ -1509,6 +1509,7 @@ are any config strings required to be MixedCase?
 
 custom arrow cursor using expando
 	colour as usual
+	conditionally replace %4C with arrow to save space?  HOW?
 
 ask config system for type completions?
 	make sense for enums, what else?
