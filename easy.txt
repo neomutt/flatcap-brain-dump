@@ -207,3 +207,7 @@ mutt_hist_complete()
 mutt_charset.c mutt_iconv_open()
 	Highlight note: The top-well-named MUTT_ICONV_HOOK_FROM
 	acts on charset-hooks, not at all on iconv-hooks.
+
+easy task: convert to use Buffer
+	mutt_make_help(), km_expand_key()
+

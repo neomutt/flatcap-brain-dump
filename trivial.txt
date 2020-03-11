@@ -237,6 +237,7 @@ should use a Buffer
 	void mutt_default_save(char *path, size_t pathlen, struct Email *e)
 	problem: it leads to format functions that take buf, buflen
 
-struct Command has intptr_t data, but callback function has unsugned long data
+struct Command has intptr_t data, but callback function has unsigned long data
 	command_t
 
+arrow_cursor: blank line introduced to mutt_config.c

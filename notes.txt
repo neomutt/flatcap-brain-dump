@@ -10,13 +10,6 @@ sidebar announce behavioural changes (user-ml, website news) link to twitter, ir
 ":seta" == ":account set" ?
 ":setm" == ":mailbox set" ?
 
-libdebug
-	notify
-	graphviz
-	backtrace
-	etc
-	#ifdef DEBUG
-
 add compress to 'P' build, travis, scripts
 	check P settings
 	fmemopen?
@@ -211,8 +204,6 @@ rename var tmpfile (it's a libc fn)
 
 drop all email addrs from docs (except mine?)
 
-add_index_color with ID = '%' -> expando format problems
-
 which commands *might* have observers?
 	sidebar fns don't know about/if there's a sidebar!
 
@@ -316,8 +307,6 @@ fopen ∀ log path & fd
 	macro to get FILE, LINE, FUNCTION
 	err Buffer too?
 	need flags for perms
-
-gpgme = yes
 
 symlinks
 	when should symlinks be resolved?
@@ -483,12 +472,6 @@ core lib
 docs: "Since: YYYY-MM-DD (or version)"
 	drop after 1 year
 
---devel-graphviz
-	graphviz visitor
-	split per object visited
-	tidy
-	more #ifdefs
-
 mutt_get_name() shouldn't be in sort.c
 	NO, it's used
 
@@ -531,10 +514,6 @@ equivalence for `$a_b` and `$a-b` (underscore, dash, none)
 	what about `$ab` ?
 	for read/write/completion?
 	possible?
-
-mgedmin
-	~d take an iso date YYYY-MM-DD
-	4 digit year should be ok
 
 fix awful code
 	fix_uid()
