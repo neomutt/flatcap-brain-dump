@@ -202,13 +202,13 @@ loglevel for data (imap) showing '\n'?
 mutt_inbox_cmp() called by
 	browser, sidebar
 
-use startup notifaction to imap_login()?
+use startup notification to imap_login()?
 	parse config
 	"mailboxes" -> A,M generation
 what if INBOX isn't subscribed?
 	what happens to empty '/' Mailbox?
 	Kept -- it was "mailboxes" after all
-After cofnig, have A-M tree
+After config, have A-M tree
 	Imap listens for STARTUP
 startup:
 	startup-notification

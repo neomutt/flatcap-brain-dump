@@ -166,49 +166,28 @@ find out meaning of "ci_" prefix, or drop it (curses interface?)
 
 eliminate complicated macros (multiline, conditionals, many callers)
 refactor complicated or oft-used macros
-	compose.c:118:1:     CHECK_COUNT
-	email/mime.h:77:1:   is_multipart
-	email/mime.h:83:1:   TYPE
-	email/mime.h:85:1:   ENCODING
-	index.c:144:1:       CAN_COLLAPSE
-	mutt/buffer.h:43:1:  MoreArgs
-	mutt/regex3.h:52:1:  REG_COMP
-	mutt/string2.h:47:1: SKIPWS
-	mutt/string2.h:51:1: terminate_string
-	mutt/string2.h:60:1: terminate_buffer
-	pager.c:254:1:       IsAttach
-	pager.c:255:1:       IsMsgAttach
-	pager.c:257:1:       IsEmail
-	pager.c:261:1:       CHECK_MODE
-	pager.c:269:1:       CHECK_READONLY
-	pager.c:277:1:       CHECK_ATTACH
-	pager.c:285:1:       CHECK_ACL
-	pattern.c:93:1:      CTX_MSGNO
-	recvattach.c:82:1:   CHECK_READONLY
-	recvattach.c:100:1:  CHECK_ATTACH
-	state.h:55:1:        state_puts
-	state.h:56:1:        state_putc
--------------
-	state_puts       98
-	MoreArgs         78
-	SKIPWS           51
-	IsEmail          42
-	CHECK_ATTACH     42
-	TYPE             35
-	CHECK_READONLY   34
-	CHECK_MODE       32
-	state_putc       30
-	CHECK_ACL        28
-	IsMsgAttach      22
-	CHECK_COUNT      19
-	REG_COMP         18
-	IsAttach         10
-	terminate_buffer 9
-	is_multipart     8
-	ENCODING         7
-	terminate_string 5
-	CTX_MSGNO        5
-	CAN_COLLAPSE     5
+	index.c:144:1:       CAN_COLLAPSE     5
+	pager.c:285:1:       CHECK_ACL        28
+	pager.c:277:1:       CHECK_ATTACH     42
+	recvattach.c:100:1:  CHECK_ATTACH     19
+	compose.c:118:1:     CHECK_COUNT      32
+	pager.c:261:1:       CHECK_MODE       34
+	pager.c:269:1:       CHECK_READONLY   
+	recvattach.c:82:1:   CHECK_READONLY   
+	pattern.c:93:1:      CTX_MSGNO        5
+	email/mime.h:85:1:   ENCODING         7
+	pager.c:254:1:       IsAttach         10
+	pager.c:257:1:       IsEmail          42
+	pager.c:255:1:       IsMsgAttach      22
+	email/mime.h:77:1:   is_multipart     8
+	mutt/buffer.h:43:1:  MoreArgs         78
+	mutt/regex3.h:52:1:  REG_COMP         18
+	mutt/string2.h:47:1: SKIPWS           51
+	state.h:56:1:        state_putc       30
+	state.h:55:1:        state_puts       98
+	mutt/string2.h:60:1: terminate_buffer 9
+	mutt/string2.h:51:1: terminate_string 5
+	email/mime.h:83:1:   TYPE             35
 
 these 2 typedefs don't match the pattern for function typedefs
 	header_cache_t    hcache/hcache.h   /^typedef struct EmailCache header_cache_t;$/;"
@@ -237,7 +216,6 @@ should use a Buffer
 	void mutt_default_save(char *path, size_t pathlen, struct Email *e)
 	problem: it leads to format functions that take buf, buflen
 
-struct Command has intptr_t data, but callback function has unsigned long data
-	command_t
+variable i used for rc and `for` loops
+	static int mbox_mbox_sync(struct Mailbox *m, int *index_hint)
 
-arrow_cursor: blank line introduced to mutt_config.c

@@ -1,5 +1,3 @@
-unify 'magic' to type?
-
 bug: after being prompted for an smtp password, it's not cached in C_SmtpPass
 
 change myvars to use NT_MYVAR in Config
@@ -782,14 +780,6 @@ list autosetup release/commit hash visibly
 body.h header.h (and others)
 	Change LOFF_T to long in headers
 	(doesn't require config.h)
-
-<gahr> drafts is still bogus:
-	i) compose
-	ii) save to drafts
-	iii) resume
-	iv) send
-	v) mail is dispatched
-	inbox is unusable (failed to open message)
 
 mbox adata.append should use Mailbox.append
 

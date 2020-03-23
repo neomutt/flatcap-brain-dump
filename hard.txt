@@ -13,7 +13,6 @@ nntp refactor auto subscription (like imap)
 config +=, -=, etc API
 browser rewrite
 Account-specific config
-libconn independent
 new help system, $help_format_string
 sidebar A-aware
 hcache/bcache -> maildir!

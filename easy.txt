@@ -24,6 +24,8 @@ hide status/pager bar when empty
 	wait for Window API
 
 trans: eliminate \n
+	66 one-liner messages ending in \n
+
 limit-to-tag function
 
 one summary page, each
