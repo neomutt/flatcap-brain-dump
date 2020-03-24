@@ -4,6 +4,7 @@ general source
 	tabs
 	utf8
 	whitespace
+		non-breaking spaces
 	ctrl-l
 	vertical whitespace
 	escape

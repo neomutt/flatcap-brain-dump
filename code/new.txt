@@ -1,0 +1,50 @@
+
+style:
+	callback functions must be named uniquely
+	(for clarity when debugging)
+
+code style:
+	while (condition)
+	  ;
+	need something for clarity?
+	{} instead?
+	; // Do nothing?
+	enforce blank line after?
+
+c++ build fix reserved names
+	see code.txt
+
+whitespace
+	indenting, etc
+commenting
+introduce BOOL
+static function
+variables - unify naming
+	struct CONTEXT
+		->changed is a BOOL
+		->deleted is a number
+confusing tests like
+	if (!x->deleted)
+	imply deleted is a BOOL
+some macros use multiple statements separated by comma
+	change to { X; Y; Z; } while(0)
+unify #if/#ifdef HAVE_X/USE_X
+clearly mark empty for loops
+	/* nothing */
+sort definitions
+	vars, functions
+static functions first
+check all string config vars are NONULL'd
+while (1) rather than FOREVER
+check ALL pointers
+reorder functions to reduce forward function declarations
+forward declare structs in headers to reduce includes
+
+code: C99, POSIX:2001
+
+code: if (!x) {} else {}
+	swap order
+
+code: every .c has "config.h"
+	(layout)
+

@@ -13,8 +13,6 @@ add compress to 'P' build, travis, scripts
 	fmemopen?
 	inotify?
 
-code: C99, POSIX:2001
-
 after release check acutest, autosetup for new releases
 
 analysis-compiler - list all my gcc flags
@@ -28,9 +26,6 @@ more test builds with deployment
 	put content in analysis/ for scoping
 	test dupes and scoping
 
-code: if (!x) {} else {}
-	swap order
-
 web: add GH release notes emojis to web top-level menus?
 
 put header cache structs in separate *minimal* header files
@@ -42,9 +37,6 @@ struct Pager -> PagerInfo?
 
 move file deletion out of page
 	which callers can be fixed?
-
-code: every .c has "config.h"
-	(layout)
 
 sort/wrap Makefiles
 
@@ -320,14 +312,6 @@ attach_save_dir config
 		if exists, writeable
 		or non-existent
 
-code style:
-	while (condition)
-	  ;
-	need something for clarity?
-	{} instead?
-	; // Do nothing?
-	enforce blank line after?
-
 endwin(); printf(); refresh()
 	makes output go to 'normal' screen
 		can be coloured!
@@ -505,8 +489,6 @@ run coverity with idn2, openssl, slang
 add ASAN,UBSAN,Valgrind to [release] make test?
 
 .github/SECURITY.md
-
-shrink code repo
 
 equivalence for `$a_b` and `$a-b` (underscore, dash, none)
 	what about `$ab` ?

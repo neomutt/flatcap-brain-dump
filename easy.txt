@@ -155,9 +155,6 @@ locale.c
 	Some strange code in ncrypt/crypt_gpgme.c
 	wrap up all but gpgme
 
-c++ build fix reserved names
-	see code.txt
-
 format strings
 	validate when set
 
