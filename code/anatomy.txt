@@ -1,0 +1,31 @@
+@page immediately after @copy
+
+style layout of file
+indent links to whitespace doc
+anatomy of a file (naming of file)
+@file, @copy, copyright, @page
+#include guards (naming)
+config.h
+#includes / clang-format sorting
+function order static, then public
+vs forward decls
+repo layout
+	/src
+	/lib/src
+	/doc
+	etc
+anatomy of build
+auto.def Makefile.autosetup
+X/lib.h
+X/X_private.h
+∀ fn doxy
+∀ struct, enum, typedef
+∀ members ∀ params
+anatomy of an API
+API defn struct
+name member?
+fn list + doxy, contracts
+"Implements"
+"Wrapper"
+"Multiplexor"
+whitespace style all in one file
