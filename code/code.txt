@@ -410,3 +410,7 @@ code style: list 'reserved' variable names
 	ans
 	list off limits files: md5.c, queue.h
 
+struct ZZZAccountData - ZZZ-specific Account data - @extends Account
+struct ZZZEmailData - ZZZ-specific Email data - @extends Email
+struct ZZZMboxData - ZZZ-specific Mailbox data - @extends Mailbox
+

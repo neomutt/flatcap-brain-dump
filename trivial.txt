@@ -159,7 +159,6 @@ find out meaning of "ci_" prefix, or drop it (curses interface?)
 	ci_next_undeleted
 	ci_previous_undeleted
 	ci_send_message
-		ci_send_message
 		mix_send_message
 		mutt_resend_message
 		send_message
@@ -219,3 +218,6 @@ should use a Buffer
 variable i used for rc and `for` loops
 	static int mbox_mbox_sync(struct Mailbox *m, int *index_hint)
 
+doxy convert NOTE: (check for others)
+	mutt_rfc822_parse_message - parse a Message/RFC822 body
+	NOTE: this assumes that 'parent->length' has been set!

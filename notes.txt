@@ -1,3 +1,5 @@
+<jindraj> Since neomutt supports autocrypt it would be nice if it was listed here: https://autocrypt.org/dev-status.html wouldn't it?
+
 header and msgcache use different dirs!
 	imaps:flatcap-mail@flatcap.org
 	imaps_flatcap-mail_flatcap.org
@@ -56,10 +58,6 @@ iwyu - need review of *
 	create [iwyu] top-level travis branch?
 	exceptions are still hard-coded into scripts
 	5 files - might be reducible
-
-ask to be added to the LZ4 page
-	star the new compression homepages
-	zstd page too
 
 help_line_format - put custom text at the top
 	tie in with account-hooks, macros, etc
