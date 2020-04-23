@@ -218,6 +218,6 @@ should use a Buffer
 variable i used for rc and `for` loops
 	static int mbox_mbox_sync(struct Mailbox *m, int *index_hint)
 
-doxy convert NOTE: (check for others)
-	mutt_rfc822_parse_message - parse a Message/RFC822 body
-	NOTE: this assumes that 'parent->length' has been set!
+Rename to match other format functions (an in neomuttrc.vim too)
+	pgp_entry_fmt()
+	fmt_smime_command()

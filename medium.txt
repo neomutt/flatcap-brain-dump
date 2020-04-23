@@ -6,11 +6,6 @@ alias API (labels, description)
 
 strncpy -> strfcpy NUL-terminated
 
-mxapi create/delete folder
-	browser - why are delete, rename and create folder limited to IMAP?
-		maildir, mbox should work too
-	might confuse the sidebar
-
 progress API
 
 sort out / standardise
@@ -18,9 +13,6 @@ sort out / standardise
 
 config list type
 mutt_error() "Error: " prefix, E123 too
-
-mxapi std error codes SUCCESS, WARNING, ERROR, CODE
-	see mxapi.txt
 
 create create flowchart to/from/etc
 add $smtp_user

@@ -1,10 +1,11 @@
+tweak maildir backend to allow opening a single file
+	fake mailbox, 1 email, read-only
+
 <jindraj> Since neomutt supports autocrypt it would be nice if it was listed here: https://autocrypt.org/dev-status.html wouldn't it?
 
 header and msgcache use different dirs!
 	imaps:flatcap-mail@flatcap.org
 	imaps_flatcap-mail_flatcap.org
-
-move all docs in code dir into the code, e.g. hcache/README.md
 
 bug: after being prompted for an smtp password, it's not cached in C_SmtpPass
 
@@ -491,6 +492,7 @@ run coverity with idn2, openssl, slang
 add ASAN,UBSAN,Valgrind to [release] make test?
 
 .github/SECURITY.md
+	containing what?
 
 equivalence for `$a_b` and `$a-b` (underscore, dash, none)
 	what about `$ab` ?

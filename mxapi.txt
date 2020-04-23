@@ -102,3 +102,14 @@ need API fn to move a message
 copy message fn too?
 what other primitives?
 
+mxapi create/delete folder
+	browser - why are delete, rename and create folder limited to IMAP?
+		maildir, mbox should work too
+	might confuse the sidebar
+
+mxapi std error codes SUCCESS, WARNING, ERROR, CODE
+	see mxapi.txt
+
+move-email API:
+	locate all email-moving code
+	fastmove, slowmove
