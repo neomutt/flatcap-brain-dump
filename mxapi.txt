@@ -113,3 +113,4 @@ mxapi std error codes SUCCESS, WARNING, ERROR, CODE
 move-email API:
 	locate all email-moving code
 	fastmove, slowmove
+	for local fs, might want to stat the dirs and check the devices match

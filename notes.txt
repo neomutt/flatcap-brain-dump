@@ -49,8 +49,6 @@ move file deletion out of page
 
 sort/wrap Makefiles
 
-[release] use full-doc? (to reduce warnings)
-
 iwyu - need review of *
 	whitelisted includes - how often?
 	list source exceptions
@@ -377,10 +375,6 @@ webpage: how to debug neomutt problems
 
 feature: live filter index as you type, cf sidebar matcher
 
-[release] test
-	use ctags to look for 'new', 'delete', etc other reserved
-	doxy look for @note: colon
-
 neo maildir header/message cache
 	auto-add README.md, saying
 	"auto-generated"
@@ -489,8 +483,6 @@ how much debug code's acceptable?
 
 run coverity with idn2, openssl, slang
 
-add ASAN,UBSAN,Valgrind to [release] make test?
-
 .github/SECURITY.md
 	containing what?
 
@@ -567,8 +559,6 @@ vim-repeat feature for neomutt
 	need to define *what* to repeat
 
 test_pattern coverage of mutt_pattern_comp()
-
-move [release] to [master]
 
 move [fuzzer] to [master]
 	change script
@@ -664,9 +654,6 @@ lgtm warnings on
 	utime -> utimensat
 	rewind -> fseek
 	gettimeofday -> clock_gettime
-
-[release]
-	add lcov
 
 split Addr and AddrList, etc?
 
@@ -1160,11 +1147,6 @@ maildir:
 	set errno to 0 first
 	check after and perror if nec
 
-check [release]
-	config check
-	one of regexes is missing '\' before a '+'
-config: set tests missing \ -- am *I* mistaken about need?  unnec?
-
 twitter "Re:" -> default config?
 
 users
@@ -1491,15 +1473,6 @@ mbox has 8KiB buffer.  test overflow with HUGE headers
 padlock icon for protected (encrypted, autocrypt) headers
 
 cron 12/06/2018 drop web changes dir
-
-[release] branch, use travis cron
-	run daily
-	run tests after 10 commits or 7 days
-	do thorough test of builds / install etc
-	automatically rebase branch
-	afterwards, reduce the other travis builds
-	(except [travis])
-	rename [travis]?
 
 need for TAILQ_COUNT()?
 

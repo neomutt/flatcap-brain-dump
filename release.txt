@@ -1,0 +1,159 @@
+release branch testing
+
+[release]
+	add lcov
+
+check [release]
+	config check
+	one of regexes is missing '\' before a '+'
+config: set tests missing \ -- am *I* mistaken about need?  unnec?
+
+[release] branch, use travis cron
+	run daily
+	run tests after 10 commits or 7 days
+	do thorough test of builds / install etc
+	automatically rebase branch
+	afterwards, reduce the other travis builds
+	(except [travis])
+	rename [travis]?
+
+[release] use full-doc? (to reduce warnings)
+
+[release] test
+	use ctags to look for 'new', 'delete', etc other reserved
+	doxy look for @note: colon
+
+add ASAN,UBSAN,Valgrind to [release] make test?
+
+move [release] to [master]
+
+[release] check everything w/, w/o pkgconf
+
+--------------------------------------------------------------------------------
+
+--with-ncurses=path           Location of ncurses
+--with-slang=path             Location of S-Lang
+
+--disable-doc                 Disable building the documentation
+--full-doc                    Build the full documentation set
+--docdir=path                 Documentation root
+--with-lock?=fcntl?           Select fcntl() or flock() to lock files
+--fmemopen                    Use fmemopen() for temporary in-memory files
+--disable-inotify             Disable file monitoring support (Linux only)
+--locales-fix                 Enable locales fix
+--disable-pgp                 Disable PGP support
+--disable-smime               Disable SMIME support
+--mixmaster                   Enable Mixmaster support
+--homespool                   Enable new mail spooling in the user's HOME
+--with-homespool=mailbox      File in the user's HOME where new mail is spooled
+--with-mailpath=/var/mail     Directory where spool mailboxes are located
+--with-domain=domain          Specify your DNS domain name
+--ssl                         Enable TLS support using OpenSSL
+--gnutls                      Enable TLS support using GnuTLS
+--gpgme                       Enable GPGME support
+--gss                         Use GSSAPI authentication for IMAP
+--sasl                        Use the SASL network security library
+--lua                         Enable Lua scripting support
+--notmuch                     Enable Notmuch support
+--disable-nls                 Disable Native Language Support
+--disable-idn                 Disable GNU libidn for internationalized domain names
+--idn2                        Enable GNU libidn2 for internationalized domain names
+--pcre2                       Enable PCRE2 regular expressions
+
+--autocrypt                   Enable AutoCrypt support (requires GPGME and SQLite)
+--sqlite                      Enable SQLite support
+
+--testing                     Enable Unit Testing
+--coverage                    Enable Coverage Testing
+--pkgconf                     Use pkg-config during configure
+
+--everything                  Enable all options
+
+--debug-backtrace             DEBUG: Enable backtrace support with libunwind
+--debug-graphviz              DEBUG: Enable Graphviz dump
+--debug-notify                DEBUG: Enable Notifications dump
+--debug-parse-test            DEBUG: Enable 'neomutt -T' for config testing
+--debug-window                DEBUG: Enable windows dump
+
+--------------------------------------------------------------------------------
+
+# STORE
+--autocrypt --disable-idn --fmemopen --full-doc --gnutls --gpgme --gss --homespool --idn2 --locales-fix --lua --mixmaster --notmuch --sasl --with-domain=example.com --with-lock=fcntl --with-ui=ncurses
+--autocrypt --disable-idn --full-doc --gnutls --gpgme --gss --idn2 --lua --lz4 --notmuch --sasl --with-lock=fcntl --with-ui=ncurses --zlib --zstd
+--autocrypt --disable-idn --full-doc --gnutls --gpgme --gss --idn2 --lua --notmuch --sasl --with-lock=fcntl --with-ui=ncurses
+--autocrypt --disable-idn --full-doc --gnutls --gpgme --gss --idn2 --lua --notmuch --sasl --with-lock=fcntl --with-ui=ncurses --devel-help
+
+--autocrypt --sqlite
+--disable-idn --disable-nls --disable-pgp --disable-smime
+--disable-idn --idn2
+--disable-nls
+--disable-nls --disable-idn --disable-pgp --disable-smime
+--disable-pgp
+--disable-smime
+--everything
+--fmemopen --homespool --locales-fix --mixmaster --ssl --with-domain=example.com --with-lock=flock --with-ui=slang
+--gnutls
+--gpgme
+--gss
+--homespool
+--locales-fix
+--lua
+--mixmaster
+--notmuch
+--sasl
+--ssl
+--tokyocabinet --qdbm --gdbm --bdb --lmdb --kyotocabinet
+--with-domain=example.com
+--with-lock=flock
+--with-lock=flock --lua --locales-fix --homespool --with-domain=example.com --notmuch --gpgme --mixmaster --fmemopen
+--with-ui=slang
+
+--------------------------------------------------------------------------------
+
+current-dir build variants
+out-of-tree build variants
+
+STORE="--bdb --gdbm --kyotocabinet --lmdb --qdbm --rocksdb --tdb --tokyocabinet"
+COMPRESS="--lz4 --zlib --zstd"
+
+BUILD_DEFAULT=""
+BUILD_EVERYTHING="--everything"
+BUILD_SLANG="--fmemopen --homespool --locales-fix --mixmaster --ssl --with-domain=example.com --with-lock=flock --with-ui=slang"
+BUILD_CURSES="$STORE $COMPRESS --autocrypt --disable-idn --full-doc --gnutls --gpgme --gss --idn2 --lua --notmuch --sasl --testing --with-lock=fcntl --with-ui=ncurses"
+
+dependencies for everything (including debug options)
+	autopoint
+	docbook-simple
+	docbook-xsl
+	doxygen
+	gettext
+	gpgsm
+	graphviz
+	jimsh
+	libdb-dev
+	libgdbm-dev
+	libgnutls28-dev
+	libgpgme11-dev
+	libgss-dev
+	libidn2-0-dev
+	libkyotocabinet-dev
+	liblmdb-dev
+	liblua5.2-dev
+	liblz4-dev
+	libncursesw5-dev
+	libnotmuch-dev
+	libqdbm-dev
+	librocksdb-dev
+	libsasl2-dev
+	libslang2-dev
+	libssl-dev
+	libtdb-dev
+	libtokyocabinet-dev
+	libxml2-utils
+	libzstd-dev
+	lua5.2
+	lynx
+	xsltproc
+
+do we need 'autopoint'?
+does coveralls need 'software-properties-common'?

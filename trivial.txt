@@ -218,6 +218,8 @@ should use a Buffer
 variable i used for rc and `for` loops
 	static int mbox_mbox_sync(struct Mailbox *m, int *index_hint)
 
-Rename to match other format functions (an in neomuttrc.vim too)
-	pgp_entry_fmt()
-	fmt_smime_command()
+shellcheck hcachever.sh
+	test output against various releases
+
+acutest ctor/dtor functions
+
