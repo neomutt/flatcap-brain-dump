@@ -89,3 +89,74 @@ when completing in the message window, hijack the status window for possible mat
 	NO status window might be status-on-top, or missing (future)
 	use mutt_window_reflow_message_rows() to make message window bigger temporarily
 
+vim-options (wildmode)
+	""		Complete only the first match.
+	"full"		Complete the next full match.  After the last match,
+			the original string is used and then the first match
+			again.
+	"longest"	Complete till longest common string.  If this doesn't
+			result in a longer string, use the next part.
+	"longest:full"	Like "longest", but also start 'wildmenu' if it is
+			enabled.
+	"list"		When more than one match, list all matches.
+	"list:full"	When more than one match, list all matches and
+			complete first match.
+	"list:longest"	When more than one match, list all matches and
+			complete till longest common string.
+
+--------------------------------------------------------------------------------
+
+struct CompleteItem
+{
+	char *string;
+	int flags;
+	void *data;
+};
+
+struct Complete
+{
+	char *orig;
+	int cursor;
+	int flags;
+	int num_matches;
+
+	int first_match;
+	int curr_match;
+
+	struct CompleteItem **items;
+	int num_items;
+	int max_items;
+
+	void (*cdata_free)(void **ptr);
+};
+
+struct Complete *comp_new(void)
+{
+}
+
+void comp_free(struct Complete **ptr)
+{
+}
+
+int comp_add_data(struct Complete *comp, const char *name, void *data)
+{
+}
+
+DATA
+	adam
+	alanb
+	alanj
+	alexg
+	alicia
+	amanda
+
+ORIG
+	[al|      ]
+COMPLETE
+0	[al|      ]	initial state
+1	[alanb|   ]	1*<tab>
+2	[alanj|   ]	2*<tab>
+3	[alexg|   ]	3*<tab>
+4	[alicia|  ]	4*<tab>
+5	[al|      ]	5*<tab>, no matches, return to start
+
