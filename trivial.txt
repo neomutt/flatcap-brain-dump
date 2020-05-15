@@ -221,5 +221,22 @@ variable i used for rc and `for` loops
 shellcheck hcachever.sh
 	test output against various releases
 
-acutest ctor/dtor functions
+accept both nntp:// and news://
+
+unused functions
+	gui/mutt_window.c:330:0:    mutt_window_copy_size
+	mbox/mbox.c:816:0:          mbox_test_new_folder
+	muttlib.c:527:0:            mutt_rand32
+	ncrypt/pgplib.c:109:0:      pgp_get_abilities
+	ncrypt/pgplib.c:249:0:      pgp_keyinfo_new
+
+files
+	notmuch/mutt_notmuch.c -> notmuch.c
+
+whitespace
+	WHERE char *C_AbortKey;                   ///< Config: String representation of key to abort prompts
+
+menu->data -> mdata?
+
+bare ';' -> ; // Do nothing
 

@@ -70,7 +70,7 @@ when parsing aliases, store which file they came from
 when displaying aliases:
 	if one file, just display a list
 	if multiple files, use the sidebar
-		All alises
+		All aliases
 		- File1
 		- File2
 	if labels exist, use the sidebar
@@ -111,7 +111,7 @@ encode extra data into comment, in form
 {tag/group/label} nick, irc, addr, etc
 allow embedded '\n'
 List of Aliases -> Vector
-when do aliases get save?
+when do aliases get saved?
 	on creation?  on exit?  on command?
 functions
 	get alias by name

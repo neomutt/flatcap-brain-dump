@@ -1,3 +1,11 @@
+freeing a tree of data - should we free the children first?
+	probably
+
+imap mailbox comments/descriptions
+	https://tools.ietf.org/html/rfc5464
+	https://doc.dovecot.org/configuration_manual/imap_metadata/
+	CAPA: METADATA
+
 tweak maildir backend to allow opening a single file
 	fake mailbox, 1 email, read-only
 
