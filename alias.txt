@@ -110,7 +110,6 @@ encode extra data into comment, in form
 	tag:"data" [tag:...]
 {tag/group/label} nick, irc, addr, etc
 allow embedded '\n'
-List of Aliases -> Vector
 when do aliases get saved?
 	on creation?  on exit?  on command?
 functions
@@ -145,4 +144,34 @@ when you create an alias, it only offers you the "from" (or "reply-to")
 commands: alias, group, alternates, lists, subscribe
 files: alias.[ch], addrbook.[ch], init.[ch]
 Contacts with sidebar could display: alternates, mailing lists
+
+tag-alias doesn't work in index or query menus
+limit command
+	match patterns against fields
+	~f (from) alias name
+	~t (to)   to address
+	~y (tags)
+	~m (message number)
+	~T tagged
+	~D deleted
+	~s (subject) comments
+parse 'magic' comment string 'labels=label[,label[,...]]'
+add labels field to Alias
+add labels expando to $alias_format
+add sidebar to alias, fields:
+	All Aliases, Unlabelled, Self, Labels: tag1, tag2, ...
+	auto-width to match labels
+self is all matching alternates, but not unalternates
+functions
+	tag-pattern
+	delete-pattern
+	undelete-pattern
+add sort function
+add comment sort option
+`:alias` command opens addrbook (and does what?)
+	or `<addrbook-open>`
+expando %f flag: 'S' for 'Self' (overridden by 'D')
+	check alternates/unalternates
+//QWQ const size_t len = strlen(buf); // for efficiency
+menu cursor position isn't preserved on updates (insertion/deletion)
 

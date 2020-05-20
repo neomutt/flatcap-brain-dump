@@ -233,10 +233,3 @@ unused functions
 files
 	notmuch/mutt_notmuch.c -> notmuch.c
 
-whitespace
-	WHERE char *C_AbortKey;                   ///< Config: String representation of key to abort prompts
-
-menu->data -> mdata?
-
-bare ';' -> ; // Do nothing
-

@@ -1,3 +1,8 @@
+These return stack Lists, may not be safe
+	mutt_list_str_split()
+	neomutt_mailboxlist_get_all()
+	rfc2231_encode_string()
+
 freeing a tree of data - should we free the children first?
 	probably
 

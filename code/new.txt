@@ -48,3 +48,4 @@ code: if (!x) {} else {}
 code: every .c has "config.h"
 	(layout)
 
+look for ternary conditions starting:  !x ? y : z
