@@ -15,17 +15,11 @@ sidebar A-aware
 hcache/bcache -> maildir!
 lua objects for Account, Mailbox, Email, etc
 inline hcache, offline
-general notify API
 change M->path from [] to *
 	mailbox->[real]path -> ptr !array
 eliminate AllMailboxes (dep on A-aware sidebar)
 	start with fn  ML = get_mailboxes(FLAT|TREE);
 	HIDDEN|VISIBLE
-
-compose: flexible layout => multiple lines for To: CC: etc
-(when necessary)  Hide lines that aren't set, e.g. BCC: Mix chain (optionally)
-Limit number of lines to 2 or 3 in case of degenerate lists
-abbreviate with "(+6 more)"
 
 separate keybindings from curses & IMAP!
 

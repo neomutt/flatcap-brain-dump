@@ -15,7 +15,6 @@ config list type
 mutt_error() "Error: " prefix, E123 too
 
 create create flowchart to/from/etc
-add $smtp_user
 sort out log levels, explain how useful this would be
 bool params to enums (find them all first) can any be shared?  confusing?
 

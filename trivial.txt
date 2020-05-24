@@ -232,4 +232,5 @@ unused functions
 
 files
 	notmuch/mutt_notmuch.c -> notmuch.c
+	notmuch/nm_db.c -> db.c
 
