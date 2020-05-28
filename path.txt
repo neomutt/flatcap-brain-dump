@@ -249,3 +249,332 @@ path always open with "orig", compare with "canon"
 contract in Path API docs
 	RESOLVED, CANON, NOT NULL, etc
 
+--------------------------------------------------------------------------------
+
+mailboxes X
+
+1) no A, no M
+2) A, match M
+3) A, no match M
+
+--------------------
+
+resolve(X)
+tidy(X)
+find_A(X)
+∀ A API->ac_find()
+
+--------------------
+
+1) mailboxes imap://host.com/path
+	find_A -> no
+	create_A(P) -> A(scheme, host, path?)
+
+folder = imap://host.com
+mailboxes +path
+	resolve, tidy
+
+find_A(P)
+create_A(P) -> A(scheme, host, path?)
+
+mailboxes +banana
+	resolve, tidy
+
+	find_A(P)
+	∀ A match type
+	A->match(A,P)
+		doesn't use compare
+		doesn't canon
+		incomplete info
+		until login
+
+--------------------
+
+find A -> no match
+	create A(P)
+find A -> match
+	OK
+
+A->match(A,P) -> M
+	match -> use M -> unhidden
+	no match
+
+create M(P)
+	A->ac_add(M)
+	setup A -> M mappings
+	config/notify setup (M)
+
+--------------------
+
+ac_add(A,M) 1st M
+A->adata->conn_acc
+
+--------------------
+
+parse string
+create P(str)
+resolve/tidy(P) || fail
+find_by_name(P)
+
+--------------------
+
+imap lsub
+create P(str)
+	already resolved/tidy by defn
+find_by_name(P) we know A => find_by_name2(A,P)
+
+--------------------
+
+find_by_name(P) already probed/resolved
+∀ A call A->match(P) || create A
+	=> A
+find_by_name2(A,P)
+
+--------------------
+
+find_by_name2(A,P)
+	A->find_M(P) && success
+		unhide, notify, finish
+	create M(P)
+	A->ac_add(M)
+	config/notify setup(M)
+
+--------------------
+
+find_by_name(P) A->match(P) no matches
+	create A(P) || fail
+	=> A(scheme, host, path?)
+
+--------------------
+
+named_mailboxes - where does the N go?
+	find_by_name2(A, P, N)
+
+--------------------
+
+resolve() needs to understand N, too
+resolve(P) -> M
+<save-message>N  how
+
+--------------------
+
+is N stored in P?  probably.  YES!
+=>pretty(P) -> N, or +N, or fail
+returns ptr to P.pretty
+if N, return N
+if $folder, abbr, set N, return N
+else return P.orig (tidy, non canon)
+canon(P) returns P.canon if exists
+or mx.canon(P), then return P.canon
+path(P) returns P.orig
+
+--------------------
+
+test named_mailboxes, *then* lsub
+	lsub _then_ named_mailboxes
+
+--------------------
+
+resolve(str) => P
+	full path, +rel, desc, local path!
+
+mx_path2_resolve(str) => P
+	P.orig = str
+	probe(P) success => full path (to M)
+	resolve(P) success => +rel
+	search (P) success => "desc"
+	else local file/dir?
+
+do I care which?
+
+-------------------- 
+
+resolve(P) +rel (and tidy)
+probe(P) ∀ non-local types
+	success => finish, return P
+∀ M match "desc"
+	success => finish, return copy of M.P
+probe(P) ∀ local types
+	success => tidy path, return P
+
+-------------------- 
+
+find_M(desc, A)
+	A optional to search first!
+get_all_M(A), list A first (optional)
+if multiple matches, complete to current A first
+
+-------------------- 
+
+find_desc(desc,A) => M (A optional)
+∀ M match name -> success, return M
+else
+	resolve (P) +rel (and tidy)
+	probe (P) ∀ non-local
+	probe (P) ∀ local + tidy ~ or relative
+find_P(P,A) -> M (A optional)
+	return M
+else
+	unrecognised
+	no such M
+
+who creates new M on Imap?
+
+--------------------------------------------------------------------------------
+
+<change-folder>
+full - fully qualified path
++rel - abbreviated using $folder
+desc - descriptive name
+
+P.orig = str
+
+--------------------
+
+find_M(P) => M  (P,A)?
+	success M, free P
+	fail create M from P
+
+1) find_desc (P.orig, A) -> M
+2) resolve(P) (and tidy)
+3) probe (P) ∀ non-local
+4) probe (P) ∀ local (and tidy)
+5) find_P(P,A) -> M
+
+--------------------
+
+1) find_by_desc(P,A) -> M
+	if A, A->find_by_desc(P) -> M
+	else ∀ A, A->find_by_desc(P) -> M
+	dup_path(P)?
+
+2) resolve(P)
+	expand '+', etc
+
+3) probe(P) non-local 	}
+	API->probe(P)	}
+			}- or fail
+4) probe(P) local	}
+	API->probe(P)	}
+
+5) API->tidy(P)
+
+6) find_by_path(P,A) -> M
+	if A, A->find_by_path(P) -> M
+	else ∀ A, A->find_by_path(P) -> M
+	dup_path(P)?
+
+--------------------
+
+M => known mailbox
+NULL => error, or unknown!
+if (P.type) && (P.orig)
+	valid path to try to open
+create M(P) -> M
+
+--------------------
+
+what should mbox_open() take?
+	mbox_open(M)
+	mbox_open(P)
+	mbox_open(str)
+who should create the MV/Context?
+what should happen to the P,M,PV after?
+which are delegated?, e.g. to A?
+
+--------------------
+
+All of the above
+
+mbox_open(M) -> int
+	existing M
+	or new M with resolved P
+
+--------------------
+
+mbox_open(P) > int
+	resolve(P)	}
+	tidy(P)		}- might fail
+	probe(P)	}
+	find_M(P) -> M
+	new_M(P) -> M
+	mbox_open(M) - NO can't return M!
+
+--------------------
+
+Do functions handle error messages?
+*who* frees *what* on all error paths?
+
+--------------------
+
+string L (location)
+resolve (L) -> P (tidy)
+find(P) -> M
+	drop P, flag M, done
+new_M(P) -> M
+
+--------------------
+
+Account
+	current A (account command)
+	ac_add(M)
+		notify, done
+	fail -> continue
+
+--------------------
+
+find_A(M) -> A
+	ac_add(M)
+		notify, done
+	fail -> continue
+
+--------------------
+
+new_A() -> A
+	ac_add(M)
+		notify, done
+	fail -> STOP
+
+--------------------
+
+if curr A, sub = A->sub
+else sub = N->sub
+resolve(L, $folder) -> P
+
+--------------------
+
+when mailboxes?  A?
+	config		Y|N
+	cli (-e)	Y|N
+	command (:)	Y|N
+	source		Y|N
+		account x mailboxes M
+		account x source S
+
+--------------------
+
+n -f +jim/bob
+
+--------------------
+
+Mailbox *config*type*?
+
+mbox, postponed, record, spoolfile, trash, folder?
+store as Path?
+probably incomplete "+sent"
+only resolve at time of use
+validator for $folder
+it must be probe-able -> Path
+store all in Path
+type PARTIAL? NO
+	don't want to alter string on use
+	copy it into path and resolve
+flag as DT_STRING | DT_MAILBOX
+Validator [+=]* OK?
+	or probe(X) == 0
+probe will fail for non-existent local file/dir
+
+--------------------------------------------------------------------------------
+
+
+
