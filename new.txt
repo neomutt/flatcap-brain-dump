@@ -273,3 +273,97 @@ new sort option to sort flagged emails first
 have HomeDir, create CurrentDir for cwd?
 	it doesn't change
 
+named mailboxes - check "name" is unique across *A*
+compare local fs using dev id, inode id
+test ("prefix/%s/suffix", path)
+HomeDir, CurrentDir _const_ char *
+fix test names: test_pop_path2 -> test_path2_pop
+Have HomeDir, create CurrentDir for cwd?
+	it doesn't change (yet)
+
+A is global, outside of parse(M, a, etc) so
+split parse? for imap to use?  where is A subst?
+M-fn(M-str, A (optional)), parse uses stack. imap uses A-self
+M-str is de-escaped, de-quoted
+parse M is A-stack-aware, get str, get stack A
+M-fn() if A A->sub else N->sub.  lookup $folder
+	resolve (M-str) -> P; find (P) -> M or ac_add(M) on A
+	or new A, ac_add(M), or fail
+
+rename mbox - what happens to hcache?
+	what happens currently with IMAP? - lost? unreachable
+	NOTHING
+
+credits repo - separate out from management
+travis *cron daily* - check main repos for commits
+also check translate branch, update if nec, credits, mailmaps
+README: sections [123] header, flatcap, admins?
+list of committers since last release
+list of committers in last 6 months
+plus others
+repo "credits" style to fit into website
+since last release: new/returning
+last updated timestamp (if changed)
+
+issue template -> folding section + ``` ?
+setenv doesn't accept "X?" to query only "?X"
+mutt_date_localtime_l (with C locale?)
+bug: HOME=/ neomutt -d6 crashes on startup - fopen failed
+define LL_CONFIG even if it's only 5
+config logging level, file,rc ':cmd', acc, mailboxes, stack?
+test case for saving to a symlinks -> real mustn't overwrite symlink!
+test realloc(0), rather than code exception!
+cron: check all msg/error for gettext
+change #ifdef else -> #ifdef/endif #ifdef/endif for testing both paths?
+
+use mbox driver to open orphan maildir file R/O?  NO, maildir
+release check everything with, without pgkconf
+doc release-test.sh, shellcheck it
+shellcheck hcachever.sh and test output for various releases
+mailboxes -spacer "free form string" ?
+change twitter to *my* email - access to others?  how?
+nntp:// == news://  -- accept both
+change_folder_next broken?
+https://github.com/neomutt/neomutt/contribute !!!
+
+'force' flag for recalc(), repaint()?
+	ctrl-l => reflow *all*, recalc *all*, repaint *all*
+
+--------------------------------------------------------------------------------
+
+Sidebar folding
+fold_level
+	fold at account only
+	fold at any nested Mailbox
+exceptions for New, Flagged emails, current Mailbox
+Highlight on Account expands all M
+	move down to A, highlight on A
+	move up from next A, highlight on A's last M!
+
+Sorting
+	Mailboxes only by N or count, etc
+	Inc A => sort *within* A by N or count, etc
+
+Colour for A, e.g. red + underline
+Expandos for
+	A: type IMAP, host, user, port, desc
+	folded mailboxes: num M, total N, total F, total E, total O, total R, etc
+	subscribed expando "*" vs space
+	<toggle-subscribed> to view all M
+	$sb_show_all?
+	<subscribe>/<unsubscribe> to mailboxes/unmailboxes
+	<next-sibling>(prev) <parent-folder>
+	expandos for *totals* or automagic?
+
+--------------------------------------------------------------------------------
+
+capitalise Autocrypt: code, docs, trans
+alias - recent queries as sidebar entries
+popup windows - dim(grey) all colours of other windows (how?)
+alias tag == groups?
+makefile autosetup folding
+contract for notify API
+sidebar colour obserer - check for indicator & normal changes
+sidebar config obserer - check for ascii_chars, folder, spoolfile changes
+easy: add patterns (optional) to other index fields
+
