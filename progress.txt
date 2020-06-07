@@ -79,3 +79,24 @@ progress messages
 - Take into account:  $read_inc   $write_inc   $net_inc
 ## scripts -- Show a list of config files loaded
 
+Progress becomes notification
+	does it always have an object?
+	analyse use
+Progress notify happens on P object (parent is M or E)
+	P object has M/E ptr?
+
+progress clear on 100% means 100% will never be show to user!
+time mbox, maildir, imap with LARGE mailboxes, cf mutt & old neomutt
+doxy update %ages, add test coverage %age by fn count
+
+progress - how to do progress_done() cleanly on all error paths
+
+status bar:
+	sub-window for progress bars
+	initially 0-width
+	each new progress adds to window
+	Label [XXXXXXXX........]
+	Label [XXXXXXXX........] Label [XXX.............]
+	or shrink
+	[XXXX....][XX.......]
+

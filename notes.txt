@@ -1,8 +1,3 @@
-These return stack Lists, may not be safe
-	mutt_list_str_split()
-	neomutt_mailboxlist_get_all()
-	rfc2231_encode_string()
-
 freeing a tree of data - should we free the children first?
 	probably
 
@@ -142,12 +137,6 @@ new form for error messages?  two-lines
 
 pager <change-folder>?<enter>q goes back to pager
 
-Progress becomes notification
-	does it always have an object?
-	analyse use
-Progress notify happens on P object (parent is M or E)
-	P object has M/E ptr?
-
 log macro actions carefully
 
 log all hooks
@@ -199,10 +188,6 @@ Narrow sidebar idea, when width = 1 (or 2)
 	use colour to show new (or icon)
 	position gives you a clue where new mail is
 	width=1 no divider, use bg colour to distinguish from index/pager
-
-progress clear on 100% means 100% will never be show to user!
-time mbox, maildir, imap with LARGE mailboxes, cf mutt & old neomutt
-doxy update %ages, add test coverage %age by fn count
 
 rename var tmpfile (it's a libc fn)
 
@@ -336,8 +321,6 @@ endwin(); printf(); refresh()
 chop down 'long' config item to int (64 -> 32 bits)
 
 tag emails, then save|copy -- no progress
-
-progress - how to do progress_done() cleanly on all error paths
 
 shrink 'code' repo, or replace empty and restart
 	exclude from mirroring

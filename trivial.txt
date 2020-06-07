@@ -233,4 +233,15 @@ unused functions
 files
 	notmuch/mutt_notmuch.c -> notmuch.c
 	notmuch/nm_db.c -> db.c
+	any X/mutt_Y.c -> X/Y.c
 
+commands that don't need data, just use global
+	mutt_parse_idxfmt_hook MUTT_IDXFMTHOOK
+	mutt_parse_color       Colors
+	mutt_parse_mono        Colors
+	mutt_parse_uncolor     Colors
+	mutt_parse_unmono      Colors
+	parse_subjectrx_list   SubjectRegexList
+	parse_unsubjectrx_list SubjectRegexList
+
+boolify header_parsed
