@@ -139,7 +139,7 @@ create index/pager macros that save/restore
 	save to myvars
 	if ifdef to only need one macro?
 
-M.quiet for messages -> notification?
+M.verbose for messages -> notification?
 	let UI decide if quiet or not
 
 main reuses Buffer *folder confusingly?
@@ -230,7 +230,7 @@ probe
 who does the tidying?  when?
 	validator/fixer?
 	or observer?  NO
-		observer -> user set, notif, fixer set, notify!
+		observer -> user set, notify, fixer set, notify!
 
 change reset_tilde to just search all config
 	to save keeping list up-to-date
@@ -322,7 +322,6 @@ doc release-test.sh, shellcheck it
 shellcheck hcachever.sh and test output for various releases
 mailboxes -spacer "free form string" ?
 change twitter to *my* email - access to others?  how?
-nntp:// == news://  -- accept both
 change_folder_next broken?
 https://github.com/neomutt/neomutt/contribute !!!
 
@@ -363,7 +362,7 @@ popup windows - dim(grey) all colours of other windows (how?)
 alias tag == groups?
 makefile autosetup folding
 contract for notify API
-sidebar colour obserer - check for indicator & normal changes
-sidebar config obserer - check for ascii_chars, folder, spoolfile changes
+sidebar colour observer - check for indicator & normal changes
+sidebar config observer - check for ascii_chars, folder, spoolfile changes
 easy: add patterns (optional) to other index fields
 

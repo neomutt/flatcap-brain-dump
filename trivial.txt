@@ -221,8 +221,6 @@ variable i used for rc and `for` loops
 shellcheck hcachever.sh
 	test output against various releases
 
-accept both nntp:// and news://
-
 unused functions
 	gui/mutt_window.c:330:0:    mutt_window_copy_size
 	mbox/mbox.c:816:0:          mbox_test_new_folder
@@ -231,17 +229,12 @@ unused functions
 	ncrypt/pgplib.c:249:0:      pgp_keyinfo_new
 
 files
-	notmuch/mutt_notmuch.c -> notmuch.c
-	notmuch/nm_db.c -> db.c
 	any X/mutt_Y.c -> X/Y.c
+	gui/mutt_curses.c
+	gui/mutt_curses.h
+	gui/mutt_window.c
+	gui/mutt_window.h
 
-commands that don't need data, just use global
-	mutt_parse_idxfmt_hook MUTT_IDXFMTHOOK
-	mutt_parse_color       Colors
-	mutt_parse_mono        Colors
-	mutt_parse_uncolor     Colors
-	mutt_parse_unmono      Colors
-	parse_subjectrx_list   SubjectRegexList
-	parse_unsubjectrx_list SubjectRegexList
-
-boolify header_parsed
+StoreOps
+	int (*store)(void *store, const char *key, size_t klen, void *value, size_t vlen);
+	should value be const?

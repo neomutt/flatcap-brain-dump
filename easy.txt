@@ -210,3 +210,7 @@ mutt_charset.c mutt_iconv_open()
 easy task: convert to use Buffer
 	mutt_make_help(), km_expand_key()
 
+compose
+	only send2-hook if envelope *changes*
+	show my_hdrs in flexible layout
+

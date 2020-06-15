@@ -1,3 +1,13 @@
+command/function to display current ssl cert info
+	for current account
+
+expose *read-only* config variables for
+	cwd, current A/M/E . name/path/etc?
+
+bash completion for neomutt, based on: /usr/share/bash-completion/completions/mutt
+	∀ cli options
+	for aliases too?
+
 freeing a tree of data - should we free the children first?
 	probably
 
@@ -48,7 +58,6 @@ web: add GH release notes emojis to web top-level menus?
 put header cache structs in separate *minimal* header files
 
 shellcheck on hcachever.sh
-	unicode space!
 
 struct Pager -> PagerInfo?
 
@@ -965,9 +974,6 @@ we have A-specific config
 command to switch account - multi-selection list?  menu?
 
 change pager for <show-log-messages> to start at end of file
-
-nntp
-	nntp:// or news:// ?
 
 .desktop for nntp:// -> neomutt
 
