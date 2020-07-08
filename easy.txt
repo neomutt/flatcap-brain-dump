@@ -214,3 +214,14 @@ compose
 	only send2-hook if envelope *changes*
 	show my_hdrs in flexible layout
 
+unify.  write to a Buffer, then merge, then move to libaddress
+	mutt_write_addrlist()
+	format_address_header()
+
+easy - libsend
+	change to Slist
+	static char **add_args_one(char **args, size_t *argslen, size_t *argsmax, struct Address *addr)
+	static char **add_args(char **args, size_t *argslen, size_t *argsmax, struct AddressList *al)
+	static char **add_option(char **args, size_t *argslen, size_t *argsmax, char *s)
+	need to copy slist expand from config/slist
+

@@ -1,5 +1,15 @@
+iconv
+	drop PreferredMimeNames
+	check all charset names strictly using iconv
+	have deprecation period where we tell the user what to use instead
+
 command/function to display current ssl cert info
 	for current account
+	add to :show-account command
+	account credentials (or ***)
+	hostname
+	certificate
+	account-specific config
 
 expose *read-only* config variables for
 	cwd, current A/M/E . name/path/etc?
@@ -158,8 +168,6 @@ config: can't un*set* enum!
 postponed docs don't contain the work "draft"!
 
 post-send hook for doing stuff
-
-muttlib.c getrandom()
 
 M must exist
 	what about "sent" or "trash" folders?  which might not
@@ -485,9 +493,6 @@ how much debug code's acceptable?
 	help --devel-help (backend)
 
 run coverity with idn2, openssl, slang
-
-.github/SECURITY.md
-	containing what?
 
 equivalence for `$a_b` and `$a-b` (underscore, dash, none)
 	what about `$ab` ?

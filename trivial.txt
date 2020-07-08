@@ -228,13 +228,25 @@ unused functions
 	ncrypt/pgplib.c:109:0:      pgp_get_abilities
 	ncrypt/pgplib.c:249:0:      pgp_keyinfo_new
 
-files
-	any X/mutt_Y.c -> X/Y.c
-	gui/mutt_curses.c
-	gui/mutt_curses.h
-	gui/mutt_window.c
-	gui/mutt_window.h
-
 StoreOps
 	int (*store)(void *store, const char *key, size_t klen, void *value, size_t vlen);
 	should value be const?
+
+move to email/body? (and rename)
+	struct Body *mutt_make_multipart(struct Body *b)
+	struct Body *mutt_remove_multipart(struct Body *b)
+move to email/address? (and rename)
+	void mutt_write_addrlist(struct AddressList *al, FILE *fp, int linelen, bool display)
+
+config
+	have macro -- VALID_PTR() for native retvals?
+
+not closed on exit
+	static FILE *fp_random;
+
+typo in comment */ /*
+	{ "smime_encrypt_command", DT_STRING|DT_COMMAND, &C_SmimeEncryptCommand, 0 },
+	{ "ts_enabled", DT_BOOL|R_INDEX|R_PAGER, &C_TsEnabled, false },
+	/* The default must be off to force in the validity checking. */
+sort out of order
+	{ "toggle_quoted_show_levels", DT_NUMBER|DT_NOT_NEGATIVE, &C_ToggleQuotedShowLevels, 0 },
