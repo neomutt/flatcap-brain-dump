@@ -1,3 +1,22 @@
+config
+	cdef: name, &var, initial
+	type my_var delegates to String
+		implements +=, -=
+	subset name "", !parent
+	scope MYVAR
+	cs_inherit_variable(cs, NULL, "my_var")
+	always store as string
+	merge create_synonym and inherit variable?
+
+-Wextra
+	183 signed-ness
+	268 unused param
+	466 missing field (ConfigDef)
+	  9 missing field (PrexStorage)
+	 12 missing field ConnAccount
+
+20:34 <Raid-1> Yes, adding "deb http://ftp.de.debian.org/debian testing main" to my sources.list worked like a charm.
+
 iconv
 	drop PreferredMimeNames
 	check all charset names strictly using iconv

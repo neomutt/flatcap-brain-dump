@@ -6,6 +6,9 @@ hide YAML header
 nftw directory traversal
 convert DocBook to Markdown
 
+{ "pgp_replyinline", DT_BOOL, false, 0, NULL,
+  HELP_SECTION_PGP, "this is some help text" },
+
 --------------------------------------------------------------------------------
 
 Help Browser - Add new config

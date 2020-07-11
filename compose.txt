@@ -1,0 +1,57 @@
+compose refactor
+
+upstream duplicate lots of config
+	214 bools
+	25 quad
+	9 others
+
+compose dlg+windows
+data local to dlg
+View data, Constructed Email
+sub = N->sub (global config)
+
+<background>
+	save config to new Sub
+	what happens to the Dlg
+	can't pop it, need to hide it
+
+<restore>
+	need postpone-like menu
+	show window (sub = scoped)
+	how is ":set X" handled?
+	command is global, sub isn't
+	":set" show compose config?  how?
+
+<background> hide window
+<send> send email
+	clear up sub, tmpfile
+
+backgrounded composes and current index are effectively *tabs*
+
+<show-tabs> button
+overwrite top line with names
+or show popup menu with names
+<show-tabs>i = index
+	what about multiple indexes?
+<show-tabs>1,2,3 composes
+is 1 first compose, or most recent?
+background, chronological or most-recently-used
+MRU confusing
+
+function to create new Index
+how is ":set X" handled?
+index-specific? or global?
+needs its own sub
+
+Root
+	Dlgs (Index)
+	Msg (Compose)
+	Cli  Index still separate
+
+Index (1)
+(Compose1) (2)
+(Compose2) (3)
+(Compose3) (4)
+
+tab_format_string %To, %Subject, etc
+

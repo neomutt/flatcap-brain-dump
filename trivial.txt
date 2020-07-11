@@ -250,3 +250,8 @@ typo in comment */ /*
 	/* The default must be off to force in the validity checking. */
 sort out of order
 	{ "toggle_quoted_show_levels", DT_NUMBER|DT_NOT_NEGATIVE, &C_ToggleQuotedShowLevels, 0 },
+
+move SbEntry *back* to sidebar.c!
+
+doxy bcache library doesn't match others
+

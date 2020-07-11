@@ -21,3 +21,27 @@ Hash all canon filenames (Maildir)
 before new, cur, !exist
 	unchanged, changed, deleted
 
+--------------------------------------------------------------------------------
+
+open		- read new, cur
+open_append	- create dirs
+check		- check new, cur for new, changed flags, deleted
+check_stats	- check new cur for emails
+sync		- api check(), write changes
+close		- (no data)
+
+Mailbox (Mdata)
+Email (Edata)
+
+Mailbox
+	hash/array of Email keys
+
+Email
+	maildir flags
+	hashed key
+
+Maildir sync
+	Elist *new (num)
+	Elist *changed (num)
+	Elist *deleted (num)
+
