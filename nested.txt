@@ -1,0 +1,12 @@
+NEST tests
+	compmbox & notmuch
+	partial possible?
+	or full required?
+
+gmail backend nested on imap?
+	autoshow "magic" folders, labels, etc
+
+nested mboxes, partial mbox fill fits in with partial index loading
+	imap index on-demand?
+
+

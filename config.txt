@@ -672,4 +672,15 @@ add 1-liner to :set output
 is internal help worth it?
 	just maintain an external text file?
 
+no-variable
+normal
+	DT_NUM	var -> short
+	DT_ADDR	var -> struct Address
+	DT_SYN	var -> HE other
+	DT_DEP	var -> variable
+no-var
+	DT_NUM	var scalar
+	DT_ADDR	var pointer
+	DT_SYN	var -> HE other
+	DT_DEP	var -> scalar/ptr
 

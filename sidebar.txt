@@ -304,3 +304,29 @@ It's almost like we need a pattern to control what to display:
 sidebar_display = "~N | ~O | ~F | (~J > 0)"
 (~J = message count -- not implemented)
 
+--------------------------------------------------------------------------------
+
+function, config, mbox_close, colour, pagercmd, indexcmd, indexwin, cmdparse, cmd
+	mbox_check 38
+
+Event Window (N-level for Index Dialog)
+	Account	alters wdata, flags win!
+	Mailbox alters wdata, flags win!
+	Colour flag win, colours global
+	Command flag win, acts on global
+	Window? flag win, *only* our dialog
+		*only* when visible
+	Dialog? Current-M-changed -> flag win
+
+divider needs to be a Window
+	what about dragging it?
+
+--------------------------------------------------------------------------------
+
+one calc & draw are separated, add tests
+function to turn string list into A/M tree,
+then calc and turn back into string for checking
+paths, descriptions, $folder, $sb_X
+config needs parameterising
+folder names need to be separate from format string calculation
+

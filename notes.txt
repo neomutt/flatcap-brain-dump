@@ -1,3 +1,134 @@
+bug:
+	set pager_index_lines=0
+	display message
+	set pager_index_lines=0
+	doesn't redraw correctly
+
+Config
+	rather than C_X = val; fn(); C_X = oldval
+	create tmp *subset* with that one value changed!
+	isolates change from other code/readers/threads!
+	will that work?
+	if A:M:Cfg and set plain Cfg?
+	if unnamed subset, will normal inheritance still work?
+
+"builtin" lots of refs left in docs/code
+	validator warning?
+
+flatcap/flatcap/README.md!
+
+man validate: mandoc -Tlint file.1
+
+attach_abort, macos, use ENHANCED symbol?
+
+DT_LONG to BIGNUM? (+/-2^31)
+
+<f1> help
+<f2> web help, use mailcap!
+ConfigDef
+	help section=href
+	varname = #offset!
+
+mutt_assert()
+	endwin, backtrace, assert
+	or #ifndef DEBUG, just assert?
+
+config register
+	ignore dupes?
+	pop/imap share MessageCacheClean
+
+Kushal: ideas for motivating devel community?o
+
+clang-format: */lib.h order?
+	before ./*.h headers
+
+have *Window* cache text/attrs?
+	repaint itself?
+	unless (calc?)
+	might lead to multiple paintings
+
+docs for log vim syntax, conceallevel=2
+
+folder struct in C is private 'o' symbol
+
+76KLoC (ignore space and {}s)
+	1400 original
+	52K rich
+	6700 kevin
+	6100 pietro
+	2400 roessler
+	83.5% Neo
+	14.7% Mutt
+	1.8% orig
+
+universal docs - all text and SVG
+
+validator contract?
+	what's expected for each config type?
+
+validator need to pass *var* especially if inherited
+
+bash completion for ./configure
+
+attach list expando for boundary param, how?
+
+audit imap untagged commands before authentication
+
+test build all db store combinations + pkgconf!  ~512
+
+make store TESTCASE (lmdb)
+
+devel/noconfig (or globals)
+	var = &cdef->var !
+	+ flag, (assert NULL)
+
+const ∀ graphviz functions
+
+sb/preview insertion: observe AllDialogs
+	rather than Neomutt, for reduced noise
+
+progress bar to status bar expando?
+	how to disable normal display?
+
+index what do the functions apply to?
+	sb, mbox, email, notmuch, index
+
+check "const" ∀ API function params
+
+test: check that test_X() provides 100% coverage of X()
+	and other test functions aren't required, ∀X
+
+index "preview" panel
+	sort of "opposite" of index_pager_lines (focus on pager)
+	option to *not* read email (or default)
+
+add space into API headrs, code style too - blank link
+
+review upstream sed scripts
+
+test files need to be non-symlinked dir. doc this
+
+debug
+	move win_name to common?
+
+error message
+	options %s may not...
+	underline %s for emphasis.  how?
+	printf("%s", decorate(param))
+		not possible without static buffer
+
+travis
+	libpcre2-dev + pcre2 missng
+	idn2 too?
+
+array of components to X_init(), X_shutdown()
+
+cumulative expandos for threads, etc
+	%x, %Cx
+	%b, %Cb
+
+gnutls + ssl -- auto.def, no warning
+
 config
 	cdef: name, &var, initial
 	type my_var delegates to String

@@ -55,3 +55,7 @@ Index (1)
 
 tab_format_string %To, %Subject, etc
 
+:cmd in compose, use *our* sub
+	=> can't do global stuff!
+or does it?  only override *send* cfg in *sub*
+rest drops through

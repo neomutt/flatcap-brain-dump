@@ -225,3 +225,7 @@ easy - libsend
 	static char **add_option(char **args, size_t *argslen, size_t *argsmax, char *s)
 	need to copy slist expand from config/slist
 
+display custom headers in compose
+
+add validators for pop/imap/smtp/nntp authenticators
+
