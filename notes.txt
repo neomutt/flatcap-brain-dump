@@ -1,3 +1,17 @@
+create a page to doc (link) all the APIs (12)
+	Command, ComprOps, ConfigDef, ConfigSetType, ConnAccount, Connection,
+	CryptModuleSpecs, ICommand, ImapAuth, Menu, MxOps, StoreOps
+plus all the typedef'd function callbacks (19)
+	addr_predicate_t, bcache_list_t, config_init_t, eat_arg_t, encoder_t,
+	format_t, handler_t, hash_cmp_key_t, hash_gen_hash_t,
+	hash_hdata_free_t, hcache_namer_t, list_free_t, log_dispatcher_t,
+	mutt_file_map_t, observer_t, parser_callback_t, pop_fetch_t,
+	sig_handler_t, sort_t
+
+merge gfx/arch diagrams into doxygen docs?
+	where?  how?
+	link from dev page
+
 bug:
 	set pager_index_lines=0
 	display message

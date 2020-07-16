@@ -244,14 +244,18 @@ config
 not closed on exit
 	static FILE *fp_random;
 
-typo in comment */ /*
-	{ "smime_encrypt_command", DT_STRING|DT_COMMAND, &C_SmimeEncryptCommand, 0 },
-	{ "ts_enabled", DT_BOOL|R_INDEX|R_PAGER, &C_TsEnabled, false },
-	/* The default must be off to force in the validity checking. */
-sort out of order
-	{ "toggle_quoted_show_levels", DT_NUMBER|DT_NOT_NEGATIVE, &C_ToggleQuotedShowLevels, 0 },
+flip to match M.verbose
+	#define MUTT_QUIET         (1 << 3) ///< Do not print any messages
 
-move SbEntry *back* to sidebar.c!
+const struct WindowState *new = &win->state;
+	reserved name
 
-doxy bcache library doesn't match others
+shouldn't be there
+	browser.h:extern char *C_VfolderFormat;
+
+missing * before format_t
+typedef const char *(format_t)(char *buf, size_t buflen, size_t col, int cols,
+
+eliminate unnec typedef
+	typedef struct EmailCache header_cache_t;
 
