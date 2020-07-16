@@ -1,6 +1,7 @@
 create a page to doc (link) all the APIs (12)
 	Command, ComprOps, ConfigDef, ConfigSetType, ConnAccount, Connection,
 	CryptModuleSpecs, ICommand, ImapAuth, Menu, MxOps, StoreOps
+	Path (WIP)
 plus all the typedef'd function callbacks (19)
 	addr_predicate_t, bcache_list_t, config_init_t, eat_arg_t, encoder_t,
 	format_t, handler_t, hash_cmp_key_t, hash_gen_hash_t,
@@ -106,8 +107,6 @@ progress bar to status bar expando?
 
 index what do the functions apply to?
 	sb, mbox, email, notmuch, index
-
-check "const" ∀ API function params
 
 test: check that test_X() provides 100% coverage of X()
 	and other test functions aren't required, ∀X
@@ -523,8 +522,6 @@ context sensitive help
 mail_check_stats(_interval) -- A-specific
 	use *un*folder-hook to have different settings for
 	current and 'other' accounts
-
-API contract guarantees callback functions won't be passed NULL?
 
 upstream
 	config - resize long

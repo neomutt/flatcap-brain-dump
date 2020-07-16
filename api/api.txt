@@ -1,0 +1,23 @@
+
+check "const" ∀ API function params
+
+API contract guarantees callback functions won't be passed NULL?
+
+alias api
+history API
+progress API
+colours API
+Search/Limit API
+browser api
+
+APIs
+	address
+	alias (contacts, manage own file)
+	completion
+	history
+	menu
+	progress
+	questions
+	regex
+	windows
+

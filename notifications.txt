@@ -521,3 +521,5 @@ A,M-specific config notifications should be routed through A,M!
 
 do myvars trigger notifications?
 
+contract for notify API
+

@@ -1,0 +1,192 @@
+API structs (19):
+	Account, Command, ComprOps, ConfigDef, ConfigSetType, ConnAccount,
+        Connection, CryptModuleSpecs, Email, Hash, ICommand, ImapAuth, Mailbox,
+        Menu, MxOps, Observer, PatternFlags, SaslSockData, StoreOps
+
+API functions (11):
+	log_queue_flush(), mutt_bcache_list(), mutt_expando_format(),
+	mutt_file_map_lines(), mutt_get_sort_func(),
+	mutt_hash_set_destructor(), mutt_hcache_open(),
+	mutt_is_predicate_recipient(), mutt_list_free_type(), mutt_sig_init(),
+	notify_observer_remove()
+
+// --------------------------------------------------------------------------------
+
+struct Account
+	void (*free_adata)(void **ptr)
+
+struct Command
+	enum CommandResult (*parse)(struct Buffer *buf, struct Buffer *s, unsigned long data, struct Buffer *err)
+
+struct ComprOps
+	void *      (*open)         (const char *path)
+	void *      (*fetch)        (void *store, const char *key, size_t klen, size_t *vlen)
+	void        (*free)         (void *store, void **ptr)
+	int         (*store)        (void *store, const char *key, size_t klen, void *value, size_t vlen)
+	int         (*delete_record)(void *store, const char *key, size_t klen)
+	void        (*close)        (void **ptr)
+	const char *(*version)      (void)
+
+struct ConfigDef
+	int (*validator)(const struct ConfigSet *cs, const struct ConfigDef *cdef, intptr_t value, struct Buffer *err)
+
+struct ConfigSetType
+	int      (*string_set)(const struct ConfigSet *cs, void *var, struct ConfigDef *cdef, const char *value, struct Buffer *err)
+	int      (*string_get)(const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, struct Buffer *result)
+	int      (*native_set)(const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, intptr_t value, struct Buffer *err)
+	intptr_t (*native_get)(const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, struct Buffer *err)
+	int      (*reset)     (const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, struct Buffer *err)
+	void     (*destroy)   (const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef)
+
+struct ConnAccount
+	const char *(*get_field)(enum ConnAccountField field)
+
+struct Connection
+	int (*open) (struct Connection *conn)
+	int (*read) (struct Connection *conn, char *buf, size_t count)
+	int (*write)(struct Connection *conn, const char *buf, size_t count)
+	int (*poll) (struct Connection *conn, time_t wait_secs)
+	int (*close)(struct Connection *conn)
+
+struct CryptModuleSpecs
+	void         (*init)                           (void)
+	void         (*void_passphrase)                (void)
+	bool         (*valid_passphrase)               (void)
+	int          (*decrypt_mime)                   (FILE *fp_in, FILE **fp_out, struct Body *b, struct Body **cur)
+	int          (*application_handler)            (struct Body *m, struct State *s)
+	int          (*encrypted_handler)              (struct Body *m, struct State *s)
+	char *       (*find_keys)                      (struct AddressList *addrlist, bool oppenc_mode)
+	struct Body *(*sign_message)                   (struct Body *a, const struct AddressList *from)
+	int          (*verify_one)                     (struct Body *sigbdy, struct State *s, const char *tempf)
+	int          (*send_menu)                      (struct Email *e)
+	void         (*set_sender)                     (const char *sender)
+	struct Body *(*pgp_encrypt_message)            (struct Body *a, char *keylist, bool sign, const struct AddressList *from)
+	struct Body *(*pgp_make_key_attachment)        (void)
+	int          (*pgp_check_traditional)          (FILE *fp, struct Body *b, bool just_one)
+	struct Body *(*pgp_traditional_encryptsign)    (struct Body *a, SecurityFlags flags, char *keylist)
+	void         (*pgp_invoke_getkeys)             (struct Address *addr)
+	void         (*pgp_invoke_import)              (const char *fname)
+	void         (*pgp_extract_key_from_attachment)(FILE *fp, struct Body *top)
+	void         (*smime_getkeys)                  (struct Envelope *env)
+	int          (*smime_verify_sender)            (struct Mailbox *m, struct Email *e)
+	struct Body *(*smime_build_smime_entity)       (struct Body *a, char *certlist)
+	void         (*smime_invoke_import)            (const char *infile, const char *mailbox)
+
+struct Email
+	void (*free_edata)(void **ptr)
+
+struct HashTable
+	size_t (*gen_hash)       (union HashKey, size_t)
+	int    (*cmp_key)        (union HashKey, union HashKey)
+	void   (*hashelem_free_t)(int type, void *obj, intptr_t data)
+
+struct StoreOps
+	void *      (*open)         (const char *path)
+	void *      (*fetch)        (void *ctx, const char *key, size_t keylen, size_t *dlen)
+	void        (*free)         (void *ctx, void **data)
+	int         (*store)        (void *ctx, const char *key, size_t keylen, void *data, size_t datalen)
+	int         (*delete_header)(void *ctx, const char *key, size_t keylen)
+	void        (*close)        (void **ctx)
+	const char *(*backend)      (void)
+
+struct ICommand
+	enum CommandResult (*func)(struct Buffer *buf, struct Buffer *s, unsigned long data, struct Buffer *err)
+
+struct ImapAuth
+	enum ImapAuthRes (*authenticate)(struct ImapAccountData *adata, const char *method)
+
+struct Mailbox
+	void (*free_mdata)(void **ptr)
+
+struct Menu
+	void (*make_entry)   (char *buf, size_t buflen, struct Menu *menu, int line)
+	int  (*search)       (struct Menu *menu, regex_t *rx, int line)
+	int  (*tag)          (struct Menu *menu, int sel, int act)
+	int  (*color)        (int line)
+	void (*custom_redraw)(struct Menu *menu)
+
+struct MxOps
+	struct Account * (*ac_find)         (struct Account *a, const char *path)
+	int              (*ac_add)          (struct Account *a, struct Mailbox *m)
+	int              (*mbox_open)       (struct Mailbox *m)
+	int              (*mbox_open_append)(struct Mailbox *m, OpenMailboxFlags flags)
+	int              (*mbox_check)      (struct Mailbox *m, int *index_hint)
+	int              (*mbox_check_stats)(struct Mailbox *m, int flags)
+	int              (*mbox_sync)       (struct Mailbox *m, int *index_hint)
+	int              (*mbox_close)      (struct Mailbox *m)
+	int              (*msg_open)        (struct Mailbox *m, struct Message *msg, int msgno)
+	int              (*msg_open_new)    (struct Mailbox *m, struct Message *msg, struct Email *e)
+	int              (*msg_commit)      (struct Mailbox *m, struct Message *msg)
+	int              (*msg_close)       (struct Mailbox *m, struct Message *msg)
+	int              (*msg_padding_size)(struct Mailbox *m)
+	int              (*msg_save_hcache) (struct Mailbox *m, struct Email *e)
+	int              (*tags_edit)       (struct Mailbox *m, const char *tags, char *buf, size_t buflen)
+	int              (*tags_commit)     (struct Mailbox *m, struct Email *e, char *buf)
+	enum MailboxType (*path_probe)      (const char *path, const struct stat *st)
+	int              (*path_canon)      (char *buf, size_t buflen)
+	int              (*path_pretty)     (char *buf, size_t buflen, const char *folder)
+	int              (*path_parent)     (char *buf, size_t buflen)
+	---
+	int              (*path2_canon)     (struct Path *path)
+	int              (*path2_compare)   (struct Path *path1, struct Path *path2)
+	int              (*path2_parent)    (const struct Path *path, struct Path **parent)
+	int              (*path2_pretty)    (const struct Path *path, const char *folder, char **pretty)
+	int              (*path2_probe)     (struct Path *path, const struct stat *st)
+	int              (*path2_tidy)      (struct Path *path)
+	int              (*ac2_is_owner)    (struct Account *a, const struct Path *path)
+
+struct Observer
+	int (*observer_t)(struct NotifyCallback *nc)
+
+struct PatternFlags
+	bool (*eat_arg)(struct Pattern *pat, int flags, struct Buffer *s, struct Buffer *err)
+
+struct PopAuth
+	enum PopAuthRes (*authenticate)(struct PopAccountData *adata, const char *method)
+
+struct SaslSockData
+	int (*open) (struct Connection *conn)
+	int (*read) (struct Connection *conn, char *buf, size_t count)
+	int (*write)(struct Connection *conn, const char *buf, size_t count)
+	int (*poll) (struct Connection *conn, time_t wait_secs)
+	int (*close)(struct Connection *conn)
+
+struct MuttWindow
+	void (*free_wdata)(struct MuttWindow *win, void **ptr)
+
+// --------------------------------------------------------------------------------
+
+log_queue_flush()
+	int (*log_dispatcher_t)(time_t stamp, const char *file, int line, const char *function, enum LogLevel level, ...)
+
+mutt_bcache_list()
+	int (*bcache_list_t)(const char *id, struct BodyCache *bcache, void *data)
+
+mutt_expando_format()
+	const char *(format_t)(char *buf, size_t buflen, size_t col, int cols, char op, const char *src, const char *prec, const char *if_str, const char *else_str, unsigned long data, MuttFormatFlags flags)
+
+mutt_file_map_lines()
+	bool (*mutt_file_map_t)(char *line, int line_num, void *user_data)
+
+mutt_get_sort_func()
+	int (*sort_t)(const void *a, const void *b)
+
+mutt_hash_set_destructor()
+	void (*hashelem_free_t)(int type, void *obj, intptr_t data)
+
+mutt_hcache_open()
+	void (*hcache_namer_t)(const char *path, struct Buffer *dest)
+
+mutt_is_predicate_recipient()
+	bool (*addr_predicate_t)(const struct Address *a)
+
+mutt_list_free_type()
+	void (*list_free_t)(void **ptr)
+
+mutt_sig_init()
+	void (*sig_handler_t)(int sig)
+
+notify_observer_remove()
+	int (*observer_t)(struct NotifyCallback *nc)
+
+// vim: syn=c ts=8

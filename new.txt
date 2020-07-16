@@ -144,10 +144,6 @@ M.verbose for messages -> notification?
 
 main reuses Buffer *folder confusingly?
 
-mx_check_empty -> API?
-	only called from main()
-	need Mailbox, Account?
-
 main - folder-hook is called before startup-hook
 	should it?
 
@@ -361,7 +357,6 @@ alias - recent queries as sidebar entries
 popup windows - dim(grey) all colours of other windows (how?)
 alias tag == groups?
 makefile autosetup folding
-contract for notify API
 sidebar colour observer - check for indicator & normal changes
 sidebar config observer - check for ascii_chars, folder, spoolfile changes
 easy: add patterns (optional) to other index fields
