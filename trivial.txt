@@ -259,3 +259,4 @@ typedef const char *(format_t)(char *buf, size_t buflen, size_t col, int cols,
 eliminate unnec typedef
 	typedef struct EmailCache header_cache_t;
 
+eliminate ``xyz'' quoting crept back into docs/config.c

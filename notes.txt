@@ -1,3 +1,27 @@
+~w pattern missing from docs
+
+on segfault, write backtrace to neomutt-bt-YYYY-MM-DD-HH:MM:SS.txt?
+
+create a function to create a "standard" dialog
+	index + ibar (or pager + pbar)
+	sensitive to status_on_top
+	what do callers need to add/alter/insert?
+
+test: pattern tests: reduce dependencies now that pattern/*.c exist
+
+format string functions: unify naming?
+	pattern_format_str()
+	make_pattern_entry()
+
+use `ifdef` to test if file exists?
+	syntax?
+	new command instead?
+	or <silent> option?
+
+off-by-one pager_index_lines doesn't include ibar
+sidebar will become the same when divider is in a separate window!
+what about users that share config between old/new neomutt (or upstream mutt)?
+
 merge gfx/arch diagrams into doxygen docs?
 	where?  how?
 	link from dev page
