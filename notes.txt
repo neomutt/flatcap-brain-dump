@@ -1,11 +1,14 @@
+add brief README.md to each library dir
+	quick description
+	links to arch pages
+	note
+		which configure options enable the code
+		build dependencies
+		or push these to the code docs?
+
 ~w pattern missing from docs
 
 on segfault, write backtrace to neomutt-bt-YYYY-MM-DD-HH:MM:SS.txt?
-
-create a function to create a "standard" dialog
-	index + ibar (or pager + pbar)
-	sensitive to status_on_top
-	what do callers need to add/alter/insert?
 
 test: pattern tests: reduce dependencies now that pattern/*.c exist
 
@@ -25,12 +28,6 @@ what about users that share config between old/new neomutt (or upstream mutt)?
 merge gfx/arch diagrams into doxygen docs?
 	where?  how?
 	link from dev page
-
-bug:
-	set pager_index_lines=0
-	display message
-	set pager_index_lines=0
-	doesn't redraw correctly
 
 Config
 	rather than C_X = val; fn(); C_X = oldval
