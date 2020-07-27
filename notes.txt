@@ -1,3 +1,6 @@
+docs: two types of dialog: pager, index
+	plus passive windows
+
 add brief README.md to each library dir
 	quick description
 	links to arch pages

@@ -150,6 +150,7 @@ sidebar
 	option to fold nested mailboxes
 	option to unfold when new mail arrives
 	folded, they should show the cumulative totals for all the children
+	colour for folded?
 
 revert sidebar cursor positioning?
 	no longer needed now that sidebar isn't drawn during key-waits
