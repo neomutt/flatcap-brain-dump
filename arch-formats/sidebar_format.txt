@@ -15,7 +15,10 @@ M
 	| %D     | Description of the mailbox
 	| %d     | Number of deleted messages
 	| %F     | Number of Flagged messages in the mailbox
-	| %n     | N if mailbox has new mail, blank otherwise
+	| %n     | 'N' if mailbox has new mail, ' ' (space) otherwise
 	| %N     | Number of unread messages in the mailbox
+	| %o     | Number of old unread messages in the mailbox
+	| %r     | Number of read messages in the mailbox
 	| %S     | Size of mailbox (total number of messages)
+	| %Z     | Number of new unseen messages in the mailbox
 

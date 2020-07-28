@@ -3,7 +3,7 @@ PAGER
 
 M
 	| %b     | Filename of the original message folder (think mailbox)
-	| %B     | The list to which the letter was sent, or else the folder name (%b)
+	| %B     | The list to which the email was sent, or else the folder name (%b)
 	| %m     | Total number of message in the mailbox
 	| %q     | Newsgroup name (if compiled with NNTP support)
 
@@ -18,9 +18,9 @@ EV
 E
 	| %a     | Address of the author
 	| %A     | Reply-to address (if present; otherwise: address of author)
-	| %c     | Number of characters (bytes) in the message
-	| %D     | Date and time of message using $date_format and local timezone
-	| %d     | Date and time of message using $date_format and sender's timezone
+	| %c     | Number of characters (bytes) in the body of the message
+	| %D     | Date and time of message using `$date_format` and local timezone
+	| %d     | Date and time of message using `$date_format` and sender's timezone
 	| %F     | Author name, or recipient name if the message is from you
 	| %Fp    | Like %F, but plain. No contextual formatting is applied to recipient name
 	| %f     | Sender (address + real name), either From: or Return-Path:
@@ -29,7 +29,7 @@ E
 	| %H     | Spam attribute(s) of this message
 	| %I     | Initials of author
 	| %i     | Message-id of the current message
-	| %K     | The list to which the letter was sent (if any; otherwise: empty)
+	| %K     | The list to which the email was sent (if any; otherwise: empty)
 	| %L     | Like %F, except 'lists' are displayed first
 	| %l     | Number of lines in the message
 	| %n     | Author's real name (or address if missing)
@@ -40,7 +40,7 @@ E
 	| %S     | Single character status of the message (N/O/D/d/!/r/-)
 	| %s     | Subject of the message
 	| %t     | 'To:' field (recipients)
-	| %T     | The appropriate character from the $to_chars string
+	| %T     | The appropriate character from the `$to_chars` string
 	| %u     | User (login) name of the author
 	| %v     | First name of the author, or the recipient if the message is from you
 	| %W     | Name of organization of author ('Organization:' field)
