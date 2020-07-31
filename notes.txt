@@ -9,8 +9,6 @@ add brief README.md to each library dir
 		build dependencies
 		or push these to the code docs?
 
-~w pattern missing from docs
-
 on segfault, write backtrace to neomutt-bt-YYYY-MM-DD-HH:MM:SS.txt?
 
 test: pattern tests: reduce dependencies now that pattern/*.c exist
@@ -168,7 +166,6 @@ config
 -Wextra
 	183 signed-ness
 	268 unused param
-	466 missing field (ConfigDef)
 	  9 missing field (PrexStorage)
 	 12 missing field ConnAccount
 
@@ -267,8 +264,6 @@ compose menu using its own is_tagged
 	use EmailList instead
 	+5 others in index. nec?
 	change subordinates to take EL
-
-mutt_inline_forward uses tagged
 
 mutt_sort_headers actually sorted Emails
 

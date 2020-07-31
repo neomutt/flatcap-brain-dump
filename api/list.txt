@@ -1,54 +1,151 @@
-API structs (19):
-	Account, Command, ComprOps, ConfigDef, ConfigSetType, ConnAccount,
-        Connection, CryptModuleSpecs, Email, Hash, ICommand, ImapAuth, Mailbox,
-        Menu, MxOps, Observer, PatternFlags, SaslSockData, StoreOps
+API structs (18):
+	doc	Command          - parse
+	doc	ComprOps         - open compress decompress close
+	doc	ConfigDef        - validator
+	doc	ConfigSetType    - string_set string_get native_set native_get string_plus_equals string_minus_equals reset destroy
+	doc	ConnAccount      - get_field
+	doc	Connection       - open read write poll close
+	doc	CryptModuleSpecs - init cleanup void_passphrase valid_passphrase decrypt_mime application_handler encrypted_handler find_keys sign_message verify_one send_menu set_sender pgp_encrypt_message pgp_make_key_attachment pgp_check_traditional pgp_traditional_encryptsign pgp_invoke_getkeys pgp_invoke_import pgp_extract_key_from_attachment smime_getkeys smime_verify_sender smime_build_smime_entity smime_invoke_import
+	doc	HashTable        - hdata_free
+	doc	ICommand         - parse
+	doc	ImapAuth         - authenticate
+	doc	Menu             - make_entry search tag color custom_redraw
+	doc	MxOps            - ac_find ac_add mbox_open mbox_open_append mbox_check mbox_check_stats mbox_sync mbox_close msg_open msg_open_new msg_commit msg_close msg_padding_size msg_save_hcache tags_edit tags_commit path_probe path_canon path_pretty path_parent
+	doc	Observer         - callback
+	doc	PopAuth          - authenticate
+	doc	SaslSockData     - open read write poll close
+	doc	StoreOps         - open fetch free store delete_record close version
+	doc	Account          - adata_free
+				 - imap_adata_free mbox_adata_free nm_adata_free nntp_adata_free pop_adata_free - doc
+				ImapAccountData MboxAccountData NmAccountData NntpAccountData PopAccountData - @extends
+				SmtpAccountData - n/a
+	doc	Email            - edata_free
+				 - imap_edata_free maildir_edata_free nntp_edata_free pop_edata_free - doc
+				ImapEmailData MaildirEmailData NmEmailData NntpEmailData PopEmailData - @extends
+	doc	Mailbox          - mdata_free
+				 - imap_mdata_free maildir_mdata_free nm_mdata_free nntp_mdata_free - doc
+				 ImapMboxData MaildirMboxData NmMboxData NntpMboxData
 
 API functions (11):
-	log_queue_flush(), mutt_bcache_list(), mutt_expando_format(),
-	mutt_file_map_lines(), mutt_get_sort_func(),
-	mutt_hash_set_destructor(), mutt_hcache_open(),
-	mutt_is_predicate_recipient(), mutt_list_free_type(), mutt_sig_init(),
-	notify_observer_remove()
+	doc	log_queue_flush()             - disp
+						log_disp_curses log_disp_file log_disp_null log_disp_queue log_disp_terminal - doc
+	doc	mutt_bcache_list()            - want_id
+						msg_cache_check msg_cache_clean_cb nntp_bcache_delete - doc
+	doc	mutt_expando_format()         - callback
+						account_format_str alias_format_str attach_format_str compose_format_str compress_format_str crypt_format_str folder_format_str group_index_format_str history_format_str index_format_str mix_format_str nntp_format_str pattern_format_str pgp_command_format_str pgp_entry_format_str query_format_str sidebar_format_str smime_command_format_str status_format_str - doc
+	doc	mutt_file_map_lines()         - func
+						add_query_msgid - doc
+	doc	mutt_get_sort_func()          - compare_date_received compare_date_sent compare_from compare_label compare_order compare_score compare_size compare_spam compare_subject compare_to nntp_compare_order
+	doc	mutt_hash_set_destructor()    - fn
+						delete_idxfmt_hooklist destroy nntp_hashelem_free thread_hash_destructor - doc
+	doc	mutt_hcache_open()            - namer
+						imap_hcache_namer nntp_hcache_namer pop_hcache_namer - doc
+	doc	mutt_is_predicate_recipient() - p
+						mutt_is_subscribed_list mutt_is_mail_list - doc
+	doc	mutt_list_free_type()         - fn
+						mutt_attachmatch_free - doc
+	doc	mutt_sig_init()               - sig_fn exit_fn segv_fn
+						curses_signal_handler curses_exit_handler curses_segv_handler - doc
+	doc	notify_observer_remove()      - callback
+						alias_data_observer ctx_mailbox_observer dialog_config_observer helpbar_observer mailbox_index_observer mutt_dlgindex_observer mutt_dlg_compose_observer mutt_dlg_dopager_observer mutt_dlg_rootwin_observer sb_insertion_observer sb_observer - doc
 
 // --------------------------------------------------------------------------------
 
-struct Account
+struct Account - doc
 	void (*free_adata)(void **ptr)
 
-struct Command
+struct Command - doc
 	enum CommandResult (*parse)(struct Buffer *buf, struct Buffer *s, unsigned long data, struct Buffer *err)
 
-struct ComprOps
-	void *      (*open)         (const char *path)
-	void *      (*fetch)        (void *store, const char *key, size_t klen, size_t *vlen)
-	void        (*free)         (void *store, void **ptr)
-	int         (*store)        (void *store, const char *key, size_t klen, void *value, size_t vlen)
-	int         (*delete_record)(void *store, const char *key, size_t klen)
-	void        (*close)        (void **ptr)
-	const char *(*version)      (void)
+	mutt_lua_parse
+	mutt_lua_source_file
+	mutt_parse_bind
+	mutt_parse_color
+	mutt_parse_exec
+	mutt_parse_hook
+	mutt_parse_idxfmt_hook
+	mutt_parse_macro
+	mutt_parse_mono
+	mutt_parse_push
+	mutt_parse_score
+	mutt_parse_unbind
+	mutt_parse_uncolor
+	mutt_parse_unhook
+	mutt_parse_unmono
+	mutt_parse_unscore
+	parse_alias
+	parse_alternates
+	parse_attachments
+	parse_cd
+	parse_echo
+	parse_finish
+	parse_group
+	parse_ifdef
+	parse_ignore
+	parse_lists
+	parse_mailboxes
+	parse_my_hdr
+	parse_set
+	parse_setenv
+	parse_source
+	parse_spam_list
+	parse_stailq
+	parse_subjectrx_list
+	parse_subscribe
+	parse_subscribe_to
+	parse_tag_formats
+	parse_tag_transforms
+	parse_unalias
+	parse_unalternates
+	parse_unattachments
+	parse_unignore
+	parse_unlists
+	parse_unmailboxes
+	parse_unmy_hdr
+	parse_unstailq
+	parse_unsubjectrx_list
+	parse_unsubscribe
+	parse_unsubscribe_from
+	sb_parse_unwhitelist
+	sb_parse_whitelist
 
-struct ConfigDef
+struct ComprOps - doc
+	void *      (*open)         (short level);
+	void *      (*compress)     (void *cctx, const char *data, size_t dlen, size_t *clen);
+	void *      (*decompress)   (void *cctx, const char *cbuf, size_t clen);
+	void        (*close)        (void **cctx);
+
+struct ConfigDef - doc
 	int (*validator)(const struct ConfigSet *cs, const struct ConfigDef *cdef, intptr_t value, struct Buffer *err)
 
-struct ConfigSetType
-	int      (*string_set)(const struct ConfigSet *cs, void *var, struct ConfigDef *cdef, const char *value, struct Buffer *err)
-	int      (*string_get)(const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, struct Buffer *result)
-	int      (*native_set)(const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, intptr_t value, struct Buffer *err)
-	intptr_t (*native_get)(const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, struct Buffer *err)
-	int      (*reset)     (const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, struct Buffer *err)
-	void     (*destroy)   (const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef)
+struct ConfigSetType - doc
+	int      (*string_set)         (const struct ConfigSet *cs, void *var, struct ConfigDef *cdef, const char *value, struct Buffer *err);
+	int      (*string_get)         (const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, struct Buffer *result);
+	int      (*native_set)         (const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, intptr_t value, struct Buffer *err);
+	intptr_t (*native_get)         (const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, struct Buffer *err);
+	int      (*string_plus_equals) (const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, const char *value, struct Buffer *err);
+	int      (*string_minus_equals)(const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, const char *value, struct Buffer *err);
+	int      (*reset)              (const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef, struct Buffer *err);
+	void     (*destroy)            (const struct ConfigSet *cs, void *var, const struct ConfigDef *cdef);
 
-struct ConnAccount
+struct ConnAccount - doc
 	const char *(*get_field)(enum ConnAccountField field)
+	imap_get_field pop_get_field smtp_get_field nntp_get_field
 
-struct Connection
-	int (*open) (struct Connection *conn)
-	int (*read) (struct Connection *conn, char *buf, size_t count)
-	int (*write)(struct Connection *conn, const char *buf, size_t count)
-	int (*poll) (struct Connection *conn, time_t wait_secs)
-	int (*close)(struct Connection *conn)
+struct Connection - doc
+	int (*open) (struct Connection *conn);
+	int (*read) (struct Connection *conn, char *buf, size_t count);
+	int (*write)(struct Connection *conn, const char *buf, size_t count);
+	int (*poll) (struct Connection *conn, time_t wait_secs);
+	int (*close)(struct Connection *conn);
 
-struct CryptModuleSpecs
+	mutt_sasl_conn_close raw_socket_close ssl_socket_close tls_socket_close tls_starttls_close tunnel_socket_close zstrm_close
+	mutt_sasl_conn_open raw_socket_open ssl_socket_open tls_socket_open tunnel_socket_open zstrm_open
+	mutt_sasl_conn_poll raw_socket_poll ssl_socket_poll tls_socket_poll tunnel_socket_poll zstrm_poll
+	mutt_sasl_conn_read raw_socket_read ssl_socket_read tls_socket_read tunnel_socket_read zstrm_read
+	mutt_sasl_conn_write raw_socket_write ssl_socket_write tls_socket_write tunnel_socket_write zstrm_write
+
+struct CryptModuleSpecs - doc
 	void         (*init)                           (void)
 	void         (*void_passphrase)                (void)
 	bool         (*valid_passphrase)               (void)
@@ -72,40 +169,65 @@ struct CryptModuleSpecs
 	struct Body *(*smime_build_smime_entity)       (struct Body *a, char *certlist)
 	void         (*smime_invoke_import)            (const char *infile, const char *mailbox)
 
-struct Email
+	pgp_class_application_handler pgp_class_encrypted_handler pgp_gpgme_application_handler pgp_gpgme_encrypted_handler smime_class_application_handler smime_gpgme_application_handler
+	pgp_class_check_traditional pgp_gpgme_check_traditional
+	pgp_class_decrypt_mime pgp_gpgme_decrypt_mime smime_class_decrypt_mime smime_gpgme_decrypt_mime
+	pgp_class_encrypt_message pgp_class_sign_message pgp_gpgme_encrypt_message pgp_gpgme_sign_message smime_class_sign_message smime_gpgme_sign_message
+	pgp_class_extract_key_from_attachment pgp_class_make_key_attachment pgp_gpgme_make_key_attachment
+	pgp_class_find_keys pgp_gpgme_find_keys smime_class_find_keys smime_gpgme_find_keys
+	pgp_class_invoke_getkeys smime_class_getkeys
+	pgp_class_invoke_import pgp_gpgme_invoke_import smime_class_invoke_import
+	pgp_class_send_menu pgp_gpgme_send_menu smime_class_send_menu smime_gpgme_send_menu
+	pgp_class_traditional_encryptsign pgp_gpgme_set_sender smime_class_verify_sender smime_gpgme_verify_sender
+	pgp_class_valid_passphrase pgp_class_void_passphrase pgp_gpgme_valid_passphrase pgp_gpgme_void_passphrase smime_class_valid_passphrase smime_class_void_passphrase smime_gpgme_valid_passphrase smime_gpgme_void_passphrase
+	pgp_class_verify_one pgp_gpgme_verify_one smime_class_verify_one smime_gpgme_verify_one
+	pgp_gpgme_init smime_gpgme_init
+	smime_class_build_smime_entity smime_gpgme_build_smime_entity
+
+struct Email - doc
 	void (*free_edata)(void **ptr)
 
-struct HashTable
+struct HashTable - doc
 	size_t (*gen_hash)       (union HashKey, size_t)
 	int    (*cmp_key)        (union HashKey, union HashKey)
 	void   (*hashelem_free_t)(int type, void *obj, intptr_t data)
 
-struct StoreOps
-	void *      (*open)         (const char *path)
-	void *      (*fetch)        (void *ctx, const char *key, size_t keylen, size_t *dlen)
-	void        (*free)         (void *ctx, void **data)
-	int         (*store)        (void *ctx, const char *key, size_t keylen, void *data, size_t datalen)
-	int         (*delete_header)(void *ctx, const char *key, size_t keylen)
-	void        (*close)        (void **ctx)
-	const char *(*backend)      (void)
+	gen_case_string_hash gen_string_hash gen_int_hash
+	cmp_case_string_key cmp_string_key cmp_int_key
+	delete_idxfmt_hooklist destroy nntp_hashelem_free thread_hash_destructor
 
-struct ICommand
+struct StoreOps - doc
+	void *      (*open)         (const char *path);
+	void *      (*fetch)        (void *store, const char *key, size_t klen, size_t *vlen);
+	void        (*free)         (void *store, void **ptr);
+	int         (*store)        (void *store, const char *key, size_t klen, void *value, size_t vlen);
+	int         (*delete_record)(void *store, const char *key, size_t klen);
+	void        (*close)        (void **ptr);
+	const char *(*version)      (void);
+
+struct ICommand - doc
 	enum CommandResult (*func)(struct Buffer *buf, struct Buffer *s, unsigned long data, struct Buffer *err)
 
-struct ImapAuth
+struct ImapAuth - doc
 	enum ImapAuthRes (*authenticate)(struct ImapAccountData *adata, const char *method)
 
-struct Mailbox
+struct Mailbox - doc
 	void (*free_mdata)(void **ptr)
 
-struct Menu
-	void (*make_entry)   (char *buf, size_t buflen, struct Menu *menu, int line)
-	int  (*search)       (struct Menu *menu, regex_t *rx, int line)
-	int  (*tag)          (struct Menu *menu, int sel, int act)
-	int  (*color)        (int line)
-	void (*custom_redraw)(struct Menu *menu)
+struct Menu - doc
+	void (*make_entry)   (char *buf, size_t buflen, struct Menu *menu, int line);
+	int  (*search)       (struct Menu *menu, regex_t *rx, int line);
+	int  (*tag)          (struct Menu *menu, int sel, int act);
+	int  (*color)        (int line);
+	void (*custom_redraw)(struct Menu *menu);
 
-struct MxOps
+	account_make_entry alias_make_entry attach_make_entry crypt_make_entry folder_make_entry history_make_entry index_make_entry make_pattern_entry mix_make_entry pgp_make_entry post_make_entry query_make_entry smime_make_entry snd_make_entry
+	generic_search query_search select_file_search
+	alias_tag attach_tag file_tag query_tag
+	default_color index_color
+	compose_custom_redraw index_custom_redraw pager_custom_redraw
+
+struct MxOps - doc
 	struct Account * (*ac_find)         (struct Account *a, const char *path)
 	int              (*ac_add)          (struct Account *a, struct Mailbox *m)
 	int              (*mbox_open)       (struct Mailbox *m)
@@ -135,29 +257,52 @@ struct MxOps
 	int              (*path2_tidy)      (struct Path *path)
 	int              (*ac2_is_owner)    (struct Account *a, const struct Path *path)
 
-struct Observer
+	MxCompOps MxImapOps MxMaildirOps MxMboxOps MxMhOps MxMmdfOps MxNntpOps MxNotmuchOps MxPopOps
+
+	comp_ac_add imap_ac_add maildir_ac_add mbox_ac_add nm_ac_add nntp_ac_add pop_ac_add
+	comp_ac_find imap_ac_find maildir_ac_find mbox_ac_find nm_ac_find nntp_ac_find pop_ac_find
+	comp_mbox_check imap_mbox_check maildir_mbox_check mbox_mbox_check mh_mbox_check nm_mbox_check nntp_mbox_check pop_mbox_check
+	comp_mbox_close comp_msg_close imap_mbox_close imap_msg_close mbox_mbox_close mbox_msg_close mh_mbox_close mh_msg_close nm_mbox_close nm_msg_close nntp_mbox_close nntp_msg_close pop_mbox_close pop_msg_close
+	comp_mbox_open comp_msg_open imap_mbox_open imap_msg_open maildir_mbox_open maildir_msg_open mbox_mbox_open mbox_msg_open mh_mbox_open mh_msg_open nm_mbox_open nm_msg_open nntp_mbox_open nntp_msg_open pop_mbox_open pop_msg_open
+	comp_mbox_open_append imap_mbox_open_append maildir_mbox_open_append mbox_mbox_open_append mh_mbox_open_append
+	comp_mbox_sync mbox_mbox_sync mh_mbox_sync nm_mbox_sync nntp_mbox_sync pop_mbox_sync
+	comp_msg_commit comp_tags_commit imap_msg_commit imap_tags_commit maildir_msg_commit mbox_msg_commit mh_msg_commit mmdf_msg_commit nm_msg_commit nm_tags_commit
+	comp_msg_open_new imap_msg_open_new maildir_msg_open_new mbox_msg_open_new mh_msg_open_new
+	comp_msg_padding_size mbox_msg_padding_size mmdf_msg_padding_size
+	comp_msg_save_hcache imap_msg_save_hcache maildir_msg_save_hcache mh_msg_save_hcache pop_msg_save_hcache
+	comp_path_canon imap_path_canon maildir_path_canon mbox_path_canon nm_path_canon nntp_path_canon pop_path_canon
+	comp_path_parent imap_path_parent maildir_path_parent mbox_path_parent nm_path_parent nntp_path_parent pop_path_parent
+	comp_path_pretty imap_path_pretty maildir_path_pretty mbox_path_pretty nm_path_pretty nntp_path_pretty pop_path_pretty
+	comp_path_probe imap_path_probe maildir_path_probe mbox_path_probe mh_path_probe nm_path_probe nntp_path_probe pop_path_probe
+	comp_tags_edit imap_tags_edit nm_tags_edit
+	imap_mbox_check_stats maildir_mbox_check_stats mbox_mbox_check_stats mh_mbox_check_stats nm_mbox_check_stats
+
+struct Observer - doc
 	int (*observer_t)(struct NotifyCallback *nc)
 
-struct PatternFlags
-	bool (*eat_arg)(struct Pattern *pat, int flags, struct Buffer *s, struct Buffer *err)
+	alias_data_observer ctx_mailbox_observer debug_notify_observer dialog_config_observer helpbar_observer mailbox_index_observer mutt_abort_key_config_observer mutt_dlgindex_observer mutt_dlg_compose_observer mutt_dlg_dopager_observer mutt_dlg_rootwin_observer mutt_hist_observer mutt_log_observer mutt_menu_color_observer mutt_menu_config_observer mutt_reply_observer sb_insertion_observer sb_observer
 
-struct PopAuth
+struct PopAuth - doc
 	enum PopAuthRes (*authenticate)(struct PopAccountData *adata, const char *method)
 
-struct SaslSockData
+	pop_auth_apop pop_auth_oauth pop_auth_sasl pop_auth_user
+
+struct SaslSockData - doc
 	int (*open) (struct Connection *conn)
 	int (*read) (struct Connection *conn, char *buf, size_t count)
 	int (*write)(struct Connection *conn, const char *buf, size_t count)
 	int (*poll) (struct Connection *conn, time_t wait_secs)
 	int (*close)(struct Connection *conn)
 
-struct MuttWindow
-	void (*free_wdata)(struct MuttWindow *win, void **ptr)
+struct MuttWindow - doc
+	void (*wdata_free)(struct MuttWindow *win, void **ptr)
+	helpbar_wdata_free sb_wdata_free
 
 // --------------------------------------------------------------------------------
 
 log_queue_flush()
 	int (*log_dispatcher_t)(time_t stamp, const char *file, int line, const char *function, enum LogLevel level, ...)
+	log_disp_curses log_disp_file log_disp_null log_disp_queue log_disp_terminal
 
 mutt_bcache_list()
 	int (*bcache_list_t)(const char *id, struct BodyCache *bcache, void *data)

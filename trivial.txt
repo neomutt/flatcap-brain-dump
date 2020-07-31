@@ -240,69 +240,59 @@ flip to match M.verbose
 
 rename Email.content to Email.body
 
-more @extends keywords
-	look for all Xdata members (and Xdata_free) and the structs that are attached
-
 change to **ptr, look for others
-	static void menu_free(struct Menu **menu)
-	address_free	config/address.c	/^void address_free(struct Address **addr)$/;"	f	typeref:typename:void
-	aliaslist_free	alias/alias.c	/^void aliaslist_free(struct AliasList *al)$/;"	f	typeref:typename:void
-	buffer_free	mutt/pool.c	/^static void buffer_free(struct Buffer **p)$/;"	f	typeref:typename:void	file:
-	compress_info_free	compmbox/compress.c	/^static void compress_info_free(struct Mailbox *m)$/;"	f	typeref:typename:void	file:
-	crypt_key_free	ncrypt/crypt_gpgme.c	/^static void crypt_key_free(struct CryptKeyInfo **keylist)$/;"	f	typeref:typename:void	file:
-	crypto_module_free	ncrypt/crypt_mod.c	/^void crypto_module_free(void)$/;"	f	typeref:typename:void
-	defs_free	gui/color.c	/^static void defs_free(struct Colors *c)$/;"	f	typeref:typename:void	file:
-	driver_tags_free	email/tags.c	/^void driver_tags_free(struct TagList *list)$/;"	f	typeref:typename:void
-	key_free	ncrypt/pgplib.c	/^static void key_free(struct PgpKeyInfo **kpp)$/;"	f	typeref:typename:void	file:
-	maildir_free	maildir/shared.c	/^static void maildir_free(struct Maildir **md)$/;"	f	typeref:typename:void	file:
-	mbtable_free	config/mbtable.c	/^void mbtable_free(struct MbTable **table)$/;"	f	typeref:typename:void
-	menu_free	autocrypt/dlgautocrypt.c	/^static void menu_free(struct Menu **menu)$/;"	f	typeref:typename:void	file:
-	mhs_sequences_free	maildir/mh.c	/^void mhs_sequences_free(struct MhSequences *mhs)$/;"	f	typeref:typename:void
-	mix_type2_list_free	remailer.c	/^static void mix_type2_list_free(struct Remailer ***ttlp)$/;"	f	typeref:typename:void	file:
-	monitor_check_free	monitor.c	/^static void monitor_check_free(void)$/;"	f	typeref:typename:void	file:
-	monitor_info_free	monitor.c	/^static void monitor_info_free(struct MonitorInfo *info)$/;"	f	typeref:typename:void	file:
-	mutt_actx_entries_free	email/attach.c	/^void mutt_actx_entries_free(struct AttachCtx *actx)$/;"	f	typeref:typename:void
-	mutt_autocrypthdr_free	email/envelope.c	/^void mutt_autocrypthdr_free(struct AutocryptHeader **p)$/;"	f	typeref:typename:void
-	mutt_buffer_pool_free	mutt/pool.c	/^void mutt_buffer_pool_free(void)$/;"	f	typeref:typename:void
-	mutt_color_free	gui/color.c	/^void mutt_color_free(struct Colors *c, uint32_t fg, uint32_t bg)$/;"	f	typeref:typename:void
-	mutt_envlist_free	mutt/envlist.c	/^void mutt_envlist_free(void)$/;"	f	typeref:typename:void
-	mutt_grouplist_free	address/group.c	/^void mutt_grouplist_free(void)$/;"	f	typeref:typename:void
-	mutt_hash_set_destructor	mutt/hash.c	/^void mutt_hash_set_destructor(struct HashTable *table, hash_hdata_free_t fn, intptr_t fn_data)$/;"	f	typeref:typename:void
-	mutt_hcache_free_raw	hcache/hcache.c	/^void mutt_hcache_free_raw(struct HeaderCache *hc, void **data)$/;"	f	typeref:typename:void
-	mutt_hist_free	history/history.c	/^void mutt_hist_free(void)$/;"	f	typeref:typename:void
-	mutt_keys_free	keymap.c	/^void mutt_keys_free(void)$/;"	f	typeref:typename:void
-	mutt_list_free	mutt/list.c	/^void mutt_list_free(struct ListHead *h)$/;"	f	typeref:typename:void
-	mutt_list_free_type	mutt/list.c	/^void mutt_list_free_type(struct ListHead *h, list_free_t fn)$/;"	f	typeref:typename:void
-	mutt_mem_free	mutt/memory.c	/^void mutt_mem_free(void *ptr)$/;"	f	typeref:typename:void
-	mutt_opts_free	init.c	/^void mutt_opts_free(void)$/;"	f	typeref:typename:void
-	mutt_param_free	email/parameter.c	/^void mutt_param_free(struct ParameterList *pl)$/;"	f	typeref:typename:void
-	mutt_param_free_one	email/parameter.c	/^void mutt_param_free_one(struct Parameter **p)$/;"	f	typeref:typename:void
-	mutt_pattern_free	pattern/compile.c	/^void mutt_pattern_free(struct PatternList **pat)$/;"	f	typeref:typename:void
-	mutt_prex_free	mutt/prex.c	/^void mutt_prex_free(void)$/;"	f	typeref:typename:void
-	mutt_regex_free	mutt/regex.c	/^void mutt_regex_free(struct Regex **r)$/;"	f	typeref:typename:void
-	mutt_regexlist_free	mutt/regex.c	/^void mutt_regexlist_free(struct RegexList *rl)$/;"	f	typeref:typename:void
-	mutt_replacelist_free	mutt/regex.c	/^void mutt_replacelist_free(struct ReplaceList *rl)$/;"	f	typeref:typename:void
-	mutt_window_free_all	gui/mutt_window.c	/^void mutt_window_free_all(void)$/;"	f	typeref:typename:void
-	mutt_winlist_free	gui/mutt_window.c	/^void mutt_winlist_free(struct MuttWindowList *head)$/;"	f	typeref:typename:void
-	myvarlist_free	myvar.c	/^void myvarlist_free(struct MyVarList *list)$/;"	f	typeref:typename:void
-	nm_db_free	notmuch/db.c	/^void nm_db_free(notmuch_database_t *db)$/;"	f	typeref:typename:void
-	nntp_acache_free	nntp/newsrc.c	/^void nntp_acache_free(struct NntpMboxData *mdata)$/;"	f	typeref:typename:void
-	nntp_hashelem_free	nntp/nntp.c	/^static void nntp_hashelem_free(int type, void *obj, intptr_t data)$/;"	f	typeref:typename:void	file:
-	parameter_free	email/rfc2231.c	/^static void parameter_free(struct Rfc2231Parameter **p)$/;"	f	typeref:typename:void	file:
-	pgp_key_free	ncrypt/pgplib.c	/^void pgp_key_free(struct PgpKeyInfo **kpp)$/;"	f	typeref:typename:void
-	pgp_uid_free	ncrypt/pgplib.c	/^static void pgp_uid_free(struct PgpUid **upp)$/;"	f	typeref:typename:void	file:
-	quotes_free	gui/color.c	/^static void quotes_free(struct Colors *c)$/;"	f	typeref:typename:void	file:
-	recipient_set_free	ncrypt/crypt_gpgme.c	/^static void recipient_set_free(gpgme_key_t **p_rset)$/;"	f	typeref:typename:void	file:
-	regex_free	config/regex.c	/^void regex_free(struct Regex **r)$/;"	f	typeref:typename:void
-	slist_free	mutt/slist.c	/^void slist_free(struct Slist **list)$/;"	f	typeref:typename:void
-	smime_key_free	ncrypt/smime.c	/^static void smime_key_free(struct SmimeKey **keylist)$/;"	f	typeref:typename:void	file:
-	zstrm_free	conn/zstrm.c	/^static void zstrm_free(void *opaque, void *address)$/;"	f	typeref:typename:void	file:
-
-∀ config init -> mutt_config.c
-	MACROS to prototype functions (avoid #includes)
-
-comment true?
-	#define DT_SORT_AUX     0x200 ///< Sort id for #SortAliasMethods
+	address_free             config/address.c
+	aliaslist_free           alias/alias.c
+	buffer_free              mutt/pool.c
+	compress_info_free       compmbox/compress.c
+	crypt_key_free           ncrypt/crypt_gpgme.c
+	crypto_module_free       ncrypt/crypt_mod.c
+	defs_free                gui/color.c
+	driver_tags_free         email/tags.c
+	key_free                 ncrypt/pgplib.c
+	maildir_free             maildir/shared.c
+	mbtable_free             config/mbtable.c
+	menu_free                autocrypt/dlgautocrypt.c
+	mhs_sequences_free       maildir/mh.c
+	mix_type2_list_free      remailer.c
+	monitor_check_free       monitor.c
+	monitor_info_free        monitor.c
+	mutt_actx_entries_free   email/attach.c
+	mutt_autocrypthdr_free   email/envelope.c
+	mutt_buffer_pool_free    mutt/pool.c
+	mutt_color_free          gui/color.c
+	mutt_envlist_free        mutt/envlist.c
+	mutt_grouplist_free      address/group.c
+	mutt_hash_set_destructor mutt/hash.c
+	mutt_hcache_free_raw     hcache/hcache.c
+	mutt_hist_free           history/history.c
+	mutt_keys_free           keymap.c
+	mutt_list_free           mutt/list.c
+	mutt_list_free_type      mutt/list.c
+	mutt_mem_free            mutt/memory.c
+	mutt_opts_free           init.c
+	mutt_param_free          email/parameter.c
+	mutt_param_free_one      email/parameter.c
+	mutt_pattern_free        pattern/compile.c
+	mutt_prex_free           mutt/prex.c
+	mutt_regex_free          mutt/regex.c
+	mutt_regexlist_free      mutt/regex.c
+	mutt_replacelist_free    mutt/regex.c
+	mutt_window_free_all     gui/mutt_window.c
+	mutt_winlist_free        gui/mutt_window.c
+	myvarlist_free           myvar.c
+	nm_db_free               notmuch/db.c
+	nntp_acache_free         nntp/newsrc.c
+	nntp_hashelem_free       nntp/nntp.c
+	parameter_free           email/rfc2231.c
+	pgp_key_free             ncrypt/pgplib.c
+	pgp_uid_free             ncrypt/pgplib.c
+	quotes_free              gui/color.c
+	recipient_set_free       ncrypt/crypt_gpgme.c
+	regex_free               config/regex.c
+	slist_free               mutt/slist.c
+	smime_key_free           ncrypt/smime.c
+	zstrm_free               conn/zstrm.c
 
 rename dialog functions
 	alias/dlgalias.c:195:28:         alias_menu()                  dlg = dialog_create_simple_index(menu, WT_DLG_ALIAS);
@@ -320,3 +310,7 @@ rename dialog functions
 	postpone.c:230:28:               select_msg()                  dlg = dialog_create_simple_index(menu, WT_DLG_POSTPONE);
 	recvattach.c:1560:28:            mutt_view_attachments()       dlg = dialog_create_simple_index(menu, WT_DLG_ATTACH);
 	remailer.c:616:28:               mix_make_chain()              dlg = dialog_create_simple_index(menu, WT_DLG_REMAILER);
+
+e->env
+        /* TODO: why the check for h->env?  Is this possible? */
+
