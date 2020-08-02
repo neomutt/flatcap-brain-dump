@@ -331,3 +331,19 @@ paths, descriptions, $folder, $sb_X
 config needs parameterising
 folder names need to be separate from format string calculation
 
+--------------------------------------------------------------------------------
+
+top, opn, hil, bot
+
+sidebar - all config is global (N)?
+	save and use wdata->sub
+create wdata N->sub, observers, get initial M-list
+recalc() uses wdata: MVL calc window bounds
+∀ M format entry: pass M, width, calc indent, gen indent string, gen colour
+put fixed string & colour in wdata
+recalc(win) - win_is_visible() (contract: only calc visible?)
+shortcut if 0 Mailboxes (check 0 width, 0 height?) -> page_size
+calc visibility ∀ M, cfg, whitelist; sort entries, cfg
+reframe hilight on screen; ∀ SBEntry: select colour
+abbrev, calc depth
+

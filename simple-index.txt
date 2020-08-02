@@ -1,0 +1,21 @@
+Simple Index Dialog - SID
+
+2 window layout - Index + IBar
+custom wdata, wdata_free
+custom recalc(), format_entry()
+repaint handled by SID => std data format
+custom event()
+custom help data
+
+In Dlg Win wrapper,
+	no sidebar
+	no tree
+	single/multiple selection?
+
+SID handles generic <up>, <down>, <select>
+need way to extract results (from wdata?)
+need way to add/remove line data
+
+SimpleIndexData { ptr, selected }
+	what about custom attrs, e.g. 'd'eleted?
+

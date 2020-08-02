@@ -1,0 +1,26 @@
+--devel-focus
+	Window->focus
+	need Window->operation()
+
+on Dialog.run(), main loop could compile array of event "receivers"
+	recursive descent of Window tree
+	start at focus, breadth-first search
+
+focus on Pager: focus list is
+- Pager
+- Index
+- Sidebar
+- CmdWin
+- NeoMutt
+
+PBar, IBar, HelpBar, containers are passive
+
+CmdWin handles ":"!
+Sidebar manages its own commands, uses dlg functions to change state
+Index controls whether Pager is visible - Next Email, etc
+Pager handles 'q', hides self, restores focus to Index
+NeoMutt handles 'V' version and other globals
+CmdWin: <what-key>
+
+NeoMutt catches ":" unless overridden by the Dialog
+	e.g. a backgrounded compose

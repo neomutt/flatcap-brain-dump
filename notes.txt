@@ -1,3 +1,21 @@
+"mailboxes -folded X"
+"mailboxes -recurse X"
+	how would the sidebar/maildir declare/process the option?
+
+Window observer WIN_DELETE as d'tor!
+
+Where is menu->title used?
+	*simple* index bars
+
+cli text mode option - sets $ascii_chars
+	how can we do this automatically?
+
+set_focus() -> return old focus, so that it can be returned to
+
+add capability to use external browser to attach files in compose
+	it returns a list of files
+	e.g. vifm
+
 docs: two types of dialog: pager, index
 	plus passive windows
 
