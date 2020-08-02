@@ -314,3 +314,5 @@ rename dialog functions
 e->env
         /* TODO: why the check for h->env?  Is this possible? */
 
+functions.c move notes into @page block
+

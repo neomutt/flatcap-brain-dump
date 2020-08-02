@@ -24,3 +24,36 @@ CmdWin: <what-key>
 
 NeoMutt catches ":" unless overridden by the Dialog
 	e.g. a backgrounded compose
+
+--------------------------------------------------------------------------------
+
+define functions to move focus between windows
+	<focus-left>
+	<focus-right>
+	<focus-up>
+	<focus-down>
+
+the primary window will still need to run the event loop
+	index: op = km_dokey(MENU_MAIN);
+	pager: ch = km_dokey(MENU_PAGER);
+
+need functions to navigate between sibling windows
+
+index <--> sidebar
+
+sidebar
+	Generic          -> Sidebar
+	<next-entry>     -> <sidebar-next>
+	<previous-entry> -> <sidebar-prev>
+	<select-entry>   -> <sidebar-open>
+
+how is the focus shown to the user?
+	background colour?
+	dimming other windows?
+	terminal cursor
+	extra colour for hightlight/selection?
+
+Events handled by Window.event()
+	requires wdata
+	separation of calc/paint useful too
+
