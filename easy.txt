@@ -208,14 +208,11 @@ mutt_charset.c mutt_iconv_open()
 	acts on charset-hooks, not at all on iconv-hooks.
 
 easy task: convert to use Buffer
-	mutt_make_help(), km_expand_key()
-
-compose
-	only send2-hook if envelope *changes*
-	show my_hdrs in flexible layout
+	km_expand_key()
+	need to check uses of result string
 
 unify.  write to a Buffer, then merge, then move to libaddress
-	mutt_write_addrlist()
+	mutt_addrlist_write()
 	format_address_header()
 
 easy - libsend
@@ -228,4 +225,9 @@ easy - libsend
 display custom headers in compose
 
 add validators for pop/imap/smtp/nntp authenticators
+	$pop_authenticators, pop_authenticators[]
+	$imap_authenticators, imap_authenticators[]
+	$smtp_authenticators, need to create array from smtp_auth()
+	$nntp_authenticators, need to create array. NntpAccountData.authenticators
+		// L10N: (%s) is the method name, e.g. Anonymous, CRAM-MD5, GSSAPI, SASL
 

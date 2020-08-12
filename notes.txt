@@ -4,9 +4,6 @@
 
 Window observer WIN_DELETE as d'tor!
 
-Where is menu->title used?
-	*simple* index bars
-
 cli text mode option - sets $ascii_chars
 	how can we do this automatically?
 
@@ -21,15 +18,14 @@ docs: two types of dialog: pager, index
 
 add brief README.md to each library dir
 	quick description
-	links to arch pages
+	links to [devel] arch pages
+	links to [user] dialog pages
 	note
 		which configure options enable the code
 		build dependencies
 		or push these to the code docs?
 
 on segfault, write backtrace to neomutt-bt-YYYY-MM-DD-HH:MM:SS.txt?
-
-test: pattern tests: reduce dependencies now that pattern/*.c exist
 
 format string functions: unify naming?
 	pattern_format_str()
@@ -81,10 +77,7 @@ config register
 	ignore dupes?
 	pop/imap share MessageCacheClean
 
-Kushal: ideas for motivating devel community?o
-
-clang-format: */lib.h order?
-	before ./*.h headers
+Kushal: ideas for motivating devel community?
 
 have *Window* cache text/attrs?
 	repaint itself?
@@ -93,7 +86,8 @@ have *Window* cache text/attrs?
 
 docs for log vim syntax, conceallevel=2
 
-folder struct in C is private 'o' symbol
+folded struct in C is private 'o' symbol
+	comment for folded function
 
 76KLoC (ignore space and {}s)
 	1400 original
@@ -208,9 +202,6 @@ expose *read-only* config variables for
 bash completion for neomutt, based on: /usr/share/bash-completion/completions/mutt
 	∀ cli options
 	for aliases too?
-
-freeing a tree of data - should we free the children first?
-	probably
 
 imap mailbox comments/descriptions
 	https://tools.ietf.org/html/rfc5464

@@ -238,8 +238,6 @@ not closed on exit
 flip to match M.verbose
 	#define MUTT_QUIET         (1 << 3) ///< Do not print any messages
 
-rename Email.content to Email.body
-
 change to **ptr, look for others
 	address_free             config/address.c
 	aliaslist_free           alias/alias.c
@@ -294,25 +292,28 @@ change to **ptr, look for others
 	smime_key_free           ncrypt/smime.c
 	zstrm_free               conn/zstrm.c
 
-rename dialog functions
-	alias/dlgalias.c:195:28:         alias_menu()                  dlg = dialog_create_simple_index(menu, WT_DLG_ALIAS);
-	alias/dlgquery.c:320:28:         query_menu()                  dlg = dialog_create_simple_index(menu, WT_DLG_QUERY);
-	autocrypt/dlgautocrypt.c:272:28: mutt_autocrypt_account_menu() dlg = dialog_create_simple_index(menu, WT_DLG_AUTOCRYPT);
-	autocrypt/dlgautocrypt.c:292:15: mutt_autocrypt_account_menu() dlg = dialog_create_simple_index(menu, WT_DLG_AUTOCRYPT);
-	autocrypt/dlgautocrypt.c:315:17: mutt_autocrypt_account_menu() dlg = dialog_create_simple_index(menu, WT_DLG_AUTOCRYPT);
-	browser.c:1348:28:               mutt_buffer_select_file()     dlg = dialog_create_simple_index(menu, WT_DLG_BROWSER);
-	conn/dlgverifycert.c:72:28:      dlg_verify_cert()             dlg = dialog_create_simple_index(menu, WT_DLG_CERTIFICATE);
-	history/dlghistory.c:104:28:     history_menu()                dlg = dialog_create_simple_index(menu, WT_DLG_HISTORY);
-	ncrypt/dlggpgme.c:1261:28:       crypt_select_key()            dlg = dialog_create_simple_index(menu, WT_DLG_CRYPT_GPGME);
-	ncrypt/dlgpgp.c:537:28:          pgp_select_key()              dlg = dialog_create_simple_index(menu, WT_DLG_PGP);
-	ncrypt/dlgsmime.c:183:28:        smime_select_key()            dlg = dialog_create_simple_index(menu, WT_DLG_SMIME);
-	pattern/dlgpattern.c:268:28:     mutt_ask_pattern()            dlg = dialog_create_simple_index(menu, WT_DLG_PATTERN);
-	postpone.c:230:28:               select_msg()                  dlg = dialog_create_simple_index(menu, WT_DLG_POSTPONE);
-	recvattach.c:1560:28:            mutt_view_attachments()       dlg = dialog_create_simple_index(menu, WT_DLG_ATTACH);
-	remailer.c:616:28:               mix_make_chain()              dlg = dialog_create_simple_index(menu, WT_DLG_REMAILER);
+rename s/mutt_buffer_select_file/dlg_browser/
+	factor out the 'dialog' part first
 
-e->env
-        /* TODO: why the check for h->env?  Is this possible? */
+capitalisation?
+	HCacheEntry
+	ICommand
+	MUpdate
+	QClass
+	MSN
 
-functions.c move notes into @page block
+MXAPI: macro fake prototypes like config
+	extern struct MxOps MxHelpOps;
+
+Direct leak of 8192 byte(s) in 1 object(s) allocated from:
+    #1 0x72a070 in mutt_mem_calloc mutt/memory.c:55
+    #2 0x6e5775 in get_elem_list config/subset.c:69
+    #3 0x5b2416 in dot_config debug/graphviz.c:450
+    #4 0x5b6db5 in dump_graphviz debug/graphviz.c:959
+    #5 0x48ccae in mutt_index_menu /home/mutt/work/neo/index.c:1765
+    #6 0x4be8fc in main /home/mutt/work/neo/main.c:1233
+
+doxy typo
+	* mutt_thread_coll_set - toggle collapse
+	void mutt_thread_collapse(struct ThreadsContext *tctx, bool collapse)
 
