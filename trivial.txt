@@ -303,7 +303,7 @@ capitalisation?
 	MSN
 
 MXAPI: macro fake prototypes like config
-	extern struct MxOps MxHelpOps;
+	extern struct MxOps MxImapOps;
 
 Direct leak of 8192 byte(s) in 1 object(s) allocated from:
     #1 0x72a070 in mutt_mem_calloc mutt/memory.c:55
@@ -313,7 +313,7 @@ Direct leak of 8192 byte(s) in 1 object(s) allocated from:
     #5 0x48ccae in mutt_index_menu /home/mutt/work/neo/index.c:1765
     #6 0x4be8fc in main /home/mutt/work/neo/main.c:1233
 
-doxy typo
-	* mutt_thread_coll_set - toggle collapse
-	void mutt_thread_collapse(struct ThreadsContext *tctx, bool collapse)
+doxy: mutt/lib @page to mutt_ prefix
+	conflicts with mutt_*.c
+	rename them to neo_?
 

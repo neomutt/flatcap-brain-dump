@@ -1,3 +1,51 @@
+help page should collate shortcuts
+	currently sorted by ASCII
+		in keybindings
+	M & m distant!
+
+memory usage
+	where's it all going?
+	need tree of objects
+	visitor sizeof()!
+	:memory command
+	--debug-memory
+
+create more easy tasks (investigate)
+	pin issue
+
+tabs for accounts - steal space from helpbar (if visible)
+	on left?
+	on right?
+tab name needs format string for "*" notifications
+preset, coloured blobs?
+
+DYK - Did you know?
+	frequent simple neomutt tips
+	post to user-ml
+	digest to website (then link to twitter)
+	ctrl-g
+	addr-book comments
+
+for popup windows, or non-focussed, *dim* other windows
+	want to preserve indicator presence
+	color dim_{text,indicator,bar}
+	if unset, don't dim?
+	or generate defaults?
+	need 3 or 4 indicator colours {focus,dim}_{indicator,highlight}
+	sidebar _does_ show dim_highlight
+
+screenshots
+	svg - fake sidebar divider line?
+	termtosvg - hide cursor
+
+update copyright date
+
+mutt_clear_error() - obsolete?  eliminate?
+
+:verbose set -- like vim
+	save location of last setting of var
+	config, cli, etc
+
 "mailboxes -folded X"
 "mailboxes -recurse X"
 	how would the sidebar/maildir declare/process the option?
