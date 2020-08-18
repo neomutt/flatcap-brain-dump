@@ -317,3 +317,5 @@ doxy: mutt/lib @page to mutt_ prefix
 	conflicts with mutt_*.c
 	rename them to neo_?
 
+check config/ for x->type that don't use DTYPE()
+
