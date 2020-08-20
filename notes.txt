@@ -1,3 +1,10 @@
+dyk: botty dyk NUM -> title + url
+
+emails[] split - stepping stone
+	backend keeps private array
+	notifies to another part of self to update frontent array
+	frontend behaves as normal during transition
+
 help page should collate shortcuts
 	currently sorted by ASCII
 		in keybindings
@@ -25,6 +32,7 @@ DYK - Did you know?
 	digest to website (then link to twitter)
 	ctrl-g
 	addr-book comments
+	need repo, issues, project?
 
 for popup windows, or non-focussed, *dim* other windows
 	want to preserve indicator presence
@@ -186,7 +194,7 @@ index "preview" panel
 	sort of "opposite" of index_pager_lines (focus on pager)
 	option to *not* read email (or default)
 
-add space into API headrs, code style too - blank link
+add space into API headers, code style too - blank link
 
 review upstream sed scripts
 
@@ -631,7 +639,12 @@ like lkml backend, run notmuch on IMAP as background task
 	better as an external prog?
 	notmuch layer listens for new-mail, del-mail notifications, etc
 
-create sample code for inline and out-of-line STAILQ useand others
+create sample code for inline and out-of-line STAILQ use and others
+	where to put it
+	use apple and banana gist
+	https://gist.github.com/flatcap/105cd65e37d89fc434b2b632e85c3702
+	add diagrams
+	list users (or helper classes)
 
 save option for summary page info
 
@@ -942,7 +955,7 @@ set of fake variables $THIS or $THIS_EMAIL
 	what about multiple addresses, e.g. CC:
 		`~f $THIS.cc` -> `(~f andy | ~f bert | ~f charlie)`
 
-a option to remove empty header fields from the email
+add an option to remove empty header fields from the email
 	when composing with $edit_headers set
 	no more "^Bcc: $", etc
 alternate ways: delete

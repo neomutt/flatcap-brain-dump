@@ -86,7 +86,6 @@ custom type for charset
 	and replacement char?
 
 validators for:
-	show_multipart_alternative
 	debug_file
 	debug_level
 

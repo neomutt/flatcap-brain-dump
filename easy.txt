@@ -22,7 +22,7 @@ hide status/pager bar when empty
 	wait for Window API
 
 trans: eliminate \n
-	66 one-liner messages ending in \n
+	58 one-liner messages ending in \n
 
 limit-to-tag function
 
@@ -211,7 +211,6 @@ add validators for pop/imap/smtp/nntp authenticators
 	$nntp_authenticators, need to create array. NntpAccountData.authenticators
 		// L10N: (%s) is the method name, e.g. Anonymous, CRAM-MD5, GSSAPI, SASL
 
-
 move sort definitions to data field of config def
 	codify last- reverse- as flags
 	sufficient?
@@ -228,3 +227,10 @@ dlgalias doesn't observe config changes, e.g. $sort_alias
 alias pager/preview for details, esp. for groups
 
 query fix live sorting too
+
+rename format_str callback functions
+	need to identify them all first
+
+list all functions without 100% test coverage
+	list all the tests that would be required
+
