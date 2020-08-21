@@ -230,3 +230,18 @@ rename format_str callback functions
 list all functions without 100% test coverage
 	list all the tests that would be required
 
+add patterns (optional) to other index fields
+
+disabled config
+
+docs of all config types
+	+ flag subtypes
+	list separators
+
+setenv: support X? query
+	in addition to ?X query
+
+more index color patterns
+	make all patterns optional?
+	investigate
+

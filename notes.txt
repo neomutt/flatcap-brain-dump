@@ -1,3 +1,383 @@
+diagrams and descriptions of EVERY combination of
+	index/pager/sidebar status_on_top, sidebar_on_right
+	too many?
+
+update & publish docs/config/design*.md
+	web/dev
+	link to The Diagram!
+
+dlgalias: mouse
+	single-click = tag
+	double-click = select (all tagged)
+	+ sidebar support
+	functions to tag/untag
+	function to save
+	transform icons like notmuch (and colour)
+	support for tags/icons in index_format
+	column for tags
+	search pattern ∀ fields
+	functions for sidebar navigation
+
+--------------------------------------------------------------------------------
+
+delegate Config object to NeoMutt (don't free it separately)
+NV NeomuttView => ndata & free_ndata - wrap gui globals
+
+∀ types
+∀ levels N|A|M
+∀ (name|HE)
+∀ (get|set)
+∀ (native|string)
+
+level	HE
+N	* --> Global
+	^
+	|
+A	* (value)
+	^
+	|
+M	* (value)
+
+lookups with missing HE -> string
+manipulations to generate scope, etc
+lookup on unchanged M mean 2 redirects
+if M-value is looked at *once*, it's likely to be again
+	so always generate
+
+N-sub or Globals ∀ code?
+	N-sub where possible
+	then convert to (scope-)-sub later
+
+create_inheritance needs to honour INH_ACC|INH_MBOX
+if config *can't* be inherited, will all lookups be inefficient?  probably
+or drop flags - inherit anything, code will decide N|A|M
+NO. need flags to warn user (flags to match code)
+inherit where A-sub or M-sub are used
+need flags for config dump (add to :set output)
+does INH_MBOX imply INH_ACC?  probably
+	specify both for clarity?  YES
+need to categorise all Config
+	NONE (global)
+	Account-specific
+	Mailbox-specific
+	447 config variables
+:set -h (help) other options for dump flags, including inheritance
+
+NOT USED
+	C_VfolderFormat (notmuch)
+	C_MimeSubject (nntp)
+
+my copyright
+	sort/wrap Makefiles/auto.def
+
+after dlg-local data, move src into dlg dirs
+	(index, pager, sidebar)
+	browser
+	addrbook
+	history
+	compose
+	remailer
+	query
+	recvattach
+	+ncrypt * 3
+	+conn * 2
+	+autocrypt
+
+init.h, config def
+	convert comment to markdown *string*
+	support: bold, italic, paragraphs, lists, tables
+config dump option to display in various formats
+	markdown (unprocessed)
+	text
+	highlighted-text
+	nroff
+	docbook
+fix doc build
+
+create_inheritance
+	N-, A, M-sub missing name
+degenerate !sub, or !name -- fail
+simple name exists return HE
+A-sub, parent -->  N-sub exists, create A:name
+M-sub, parent --> A-sub, parent --> N-sub exists, create A:name, create M:name
+
+Pass sub to dialogs -- their config scope
+What if dlg needs some A- and some M-specific config?
+Dlg given M-sub, searching for A-limited config will cause M-inherit!
+All gui-config is global -- initially
+All index/page config is M-specific, compose too
+Alias/query is global
+Who checks config setting?  parse_set?  validator?
+	magic validator ∀ config to check inheritance?
+Add *sub* to dlg, get_config_scope(dlg)?
+	change varname from sub to "cfg"
+After docs split, break up / comment config lists by N|A|M scope?
+
+{imap,pop,smtp,nntp}_port config?  only settable by URL!
+timeouts on variables (for passwords)?
+	require all accesses to be through cs/sub
+libsend around smtp.c send.c sendlib.c
+sort_re docs wrong
+why are the 6 charset config not using DT_SLIST?
+
+help backend
+	if neomutt started with zero mailboxes, load help
+	first email says "Welcome to NeoMutt, press <enter> to continue"
+	use localised version of email where available
+	then vim-tutor like
+
+Account observes config
+{user,pass,login} -> set_X
+url change -> wipe settings, set all
+
+need service name "imap", etc
+globals - need to parameterise:
+	$tunnel
+	$preconnect
+	$use_ipv6
+	$connect_timeout
+
+ConfigAccount - cached credentials (rename?)
+if (!has_X) get(X)
+	function callback to Account
+
+mx_open -> imap_open -> socket -> sasl (missing creds) -> connect
+	sasl needs to ask user for info
+	ssl/tls need to validate certificates
+
+missing credentials (before connect) - has to happen here
+	*sasl* might ask questions
+	accept/reject cert (mid-connect)
+		pass in response for testing purposes?
+	NO have special version of libquestion
+
+startup - sidebar doesn't refresh until ctrl-l or event happens
+
+magic pager bar too
+create index/pager macros that save/restore
+	pager_index_lines
+	sidebar_visible
+	pager_format
+	save to myvars
+	if ifdef to only need one macro?
+
+M.verbose for messages -> notification?
+	let UI decide if quiet or not
+
+main reuses Buffer *folder confusingly?
+
+main - folder-hook is called before startup-hook
+	should it?
+
+pop_fetch_mail()
+	move spoolfile, $folder out of pop/
+
+ConnAccount needs method to *push* data
+	e.g. ask for a password, then Account saves to config
+
+lots of sidebar settings apply to the browser
+	should be account display settings!
+
+folder format needs 'subscribed' flag/field
+
+format format use %l (hard links) to distinguish local/net browser formats (conditional)
+
+:changelog ?
+	read from /usr/share/doc/neomutt
+	:news ?
+	:credits
+	:about
+
+auto.def
+	list devel features, e.g. magic bars
+	add disclaimer
+
+desktop stuff (mailto, icon)
+	contrib
+	web contrib
+	mailing lists
+	twitter
+
+backends need splitting
+	UI stuff vs pure code (only dep libmutt etc)
+	good for asking questions too
+	"pop/gui.c" all the wrappers
+
+Add Imap seq letter/fd to all logs?
+	need imap_debug() macro
+
+Document Imap compression to user ml (etc)
+
+change imap_error to use macro and MuttLogger correctly
+	or eliminate it!  no gettext, uses function names!
+
+backend/path.c ∀ type
+
+webdocs -- collapsed groups in menu need sign saying "open me" '+'?
+
+loglevel for data (imap) showing '\n'?
+
+mutt_inbox_cmp() called by
+	browser, sidebar
+
+use startup notification to imap_login()?
+	parse config
+	"mailboxes" -> A,M generation
+what if INBOX isn't subscribed?
+	what happens to empty '/' Mailbox?
+	Kept -- it was "mailboxes" after all
+After config, have A-M tree
+	Imap listens for STARTUP
+startup:
+	startup-notification
+	startup-hook
+	folder-hook
+	open folder
+imap uses notify to login ∀ A
+	login -> LSUB -> mailboxes
+startup-hook
+	allows user to make post-config changes / commands
+folder-hook
+	allows user to make folder-specific changes
+open folder
+
+$folder should be tidied on setting - strip trailing slash
+probe
+	if local dir, squash ../ etc
+	imap, trailing / (need Account)
+who does the tidying?  when?
+	validator/fixer?
+	or observer?  NO
+		observer -> user set, notify, fixer set, notify!
+
+change reset_tilde to just search all config
+	to save keeping list up-to-date
+
+split buffer_expand/resolve into PATH functions and MAILBOX functions!
+
+config: change sort to work like enum -- use Data field
+	except allow magic "reverse-", "last-" prefixes
+
+1600 C_ config uses
+188 WHERE uses
+
+create mailbox (browser)
+	errors on empty -- kill error
+	rename, delete too?
+
+{backend}/hcache.c?
+
+change OP_X to exactly match function name?
+
+split up MxOps?
+	have backends register their functions?
+
+split mx.c mx_{mbox,msg,path}.c
+
+{backend}/{mbox,msg,path,tags}.c ∀
+
+Distinguish all IMAP logging by its connection details
+	create imap_debug() macro
+	add prefix field to log_dispatcher_t
+	all the functions using mutt_debug() need an adata param/local
+	use prefix of [seqid/fd]
+
+new sort option to sort flagged emails first
+	include entire thread?
+
+have HomeDir, create CurrentDir for cwd?
+	it doesn't change
+
+named mailboxes - check "name" is unique across *A*
+compare local fs using dev id, inode id
+test ("prefix/%s/suffix", path)
+HomeDir, CurrentDir _const_ char *
+fix test names: test_pop_path2 -> test_path2_pop
+Have HomeDir, create CurrentDir for cwd?
+	it doesn't change (yet)
+
+A is global, outside of parse(M, a, etc) so
+split parse? for imap to use?  where is A subst?
+M-fn(M-str, A (optional)), parse uses stack. imap uses A-self
+M-str is de-escaped, de-quoted
+parse M is A-stack-aware, get str, get stack A
+M-fn() if A A->sub else N->sub.  lookup $folder
+	resolve (M-str) -> P; find (P) -> M or ac_add(M) on A
+	or new A, ac_add(M), or fail
+
+rename mbox - what happens to hcache?
+	what happens currently with IMAP? - lost? unreachable
+	NOTHING
+
+credits repo - separate out from management
+travis *cron daily* - check main repos for commits
+also check translate branch, update if nec, credits, mailmaps
+README: sections [123] header, flatcap, admins?
+list of committers since last release
+list of committers in last 6 months
+plus others
+repo "credits" style to fit into website
+since last release: new/returning
+last updated timestamp (if changed)
+
+issue template -> folding section + ``` ?
+setenv doesn't accept "X?" to query only "?X"
+mutt_date_localtime_l (with C locale?)
+bug: HOME=/ neomutt -d6 crashes on startup - fopen failed
+define LL_CONFIG even if it's only 5
+config logging level, file,rc ':cmd', acc, mailboxes, stack?
+test case for saving to a symlinks -> real mustn't overwrite symlink!
+test realloc(0), rather than code exception!
+cron: check all msg/error for gettext
+change #ifdef else -> #ifdef/endif #ifdef/endif for testing both paths?
+
+use mbox driver to open orphan maildir file R/O?  NO, maildir
+release check everything with, without pgkconf
+doc release-test.sh, shellcheck it
+shellcheck hcachever.sh and test output for various releases
+mailboxes -spacer "free form string" ?
+change twitter to *my* email - access to others?  how?
+change_folder_next broken?
+https://github.com/neomutt/neomutt/contribute !!!
+
+'force' flag for recalc(), repaint()?
+	ctrl-l => reflow *all*, recalc *all*, repaint *all*
+
+--------------------------------------------------------------------------------
+
+
+Sidebar folding
+fold_level
+	fold at account only
+	fold at any nested Mailbox
+exceptions for New, Flagged emails, current Mailbox
+Highlight on Account expands all M
+	move down to A, highlight on 
+	move up from next A, highlight on A's last M!
+
+Sorting
+	Mailboxes only by N or count, etc
+	Inc A => sort *within* A by N or count, etc
+
+Colour for A, e.g. red + underline
+Expandos for
+	A: type IMAP, host, user, port, desc
+	folded mailboxes: num M, total N, total F, total E, total O, total R, etc
+	subscribed expando "*" vs space
+	<toggle-subscribed> to view all M
+	$sb_show_all?
+	<subscribe>/<unsubscribe> to mailboxes/unmailboxes
+	<next-sibling>(prev) <parent-folder>
+	expandos for *totals* or automagic?
+
+--------------------------------------------------------------------------------
+
+capitalise Autocrypt: code, docs, trans
+alias - recent queries as sidebar entries
+popup windows - dim(grey) all colours of other windows (how?)
+alias tag == groups?
+makefile autosetup folding
+
 dyk: botty dyk NUM -> title + url
 
 emails[] split - stepping stone
