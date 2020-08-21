@@ -43,7 +43,6 @@ parse_set -> new config
 dump config -D
 complete <tab>
 
-split init.h (comments -> docs)
 check initial of -1 works
 move SYN to syn.c
 
@@ -575,7 +574,7 @@ neomutt -D
 dump -D, -Q, :set?
 num, quad, bool, as quoted
 
-cs_reset flag for ALL changed?o
+cs_reset flag for ALL changed?
 
 config possible to make all ac-specific variables *internal* (no global var)?
 	where's the initial value stored?
@@ -613,7 +612,6 @@ bool,quad,magic -> enum
 	how big's the backing variable?
 	always unsigned char?
 	typedef ConfigEnum to be safe
-SORT|SUBTYPE -> 6*enum!
 enum - need functions to get enum values, range, etc
 	work on cdef->data (EnumDef) or HE config var
 need macros for testing string subtypes

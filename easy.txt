@@ -211,11 +211,7 @@ add validators for pop/imap/smtp/nntp authenticators
 	$nntp_authenticators, need to create array. NntpAccountData.authenticators
 		// L10N: (%s) is the method name, e.g. Anonymous, CRAM-MD5, GSSAPI, SASL
 
-move sort definitions to data field of config def
-	codify last- reverse- as flags
-	sufficient?
-	sb can't sort by DESC, missing if clause!
-	rename SORT_ORDER to SORT_UNSORTED, define as 0 always
+rename SORT_ORDER to SORT_UNSORTED, define as 0 always
 
 dlgalias doesn't observe config changes, e.g. $sort_alias
 	how much refactoring?

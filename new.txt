@@ -1,4 +1,4 @@
-delegate Config object to NeoMutt (don't free it separately(
+delegate Config object to NeoMutt (don't free it separately)
 NV NeomuttView => ndata & free_ndata - wrap gui globals
 
 ∀ types
@@ -96,7 +96,7 @@ timeouts on variables (for passwords)?
 	require all accesses to be through cs/sub
 libsend around smtp.c send.c sendlib.c
 sort_re docs wrong
-why are the 6 charset conig not using DT_SLIST?
+why are the 6 charset config not using DT_SLIST?
 
 help backend
 	if neomutt started with zero mailboxes, load help
@@ -243,7 +243,7 @@ create mailbox (browser)
 	errors on empty -- kill error
 	rename, delete too?
 
-backend/hcache.c?
+{backend}/hcache.c?
 
 change OP_X to exactly match function name?
 
@@ -252,10 +252,7 @@ split up MxOps?
 
 split mx.c mx_{mbox,msg,path}.c
 
-dir for compress backend?
-	split up too
-
-backend/{mbox,msg,path,tags}.c ∀
+{backend}/{mbox,msg,path,tags}.c ∀
 
 Distinguish all IMAP logging by its connection details
 	create imap_debug() macro
@@ -332,7 +329,7 @@ fold_level
 	fold at any nested Mailbox
 exceptions for New, Flagged emails, current Mailbox
 Highlight on Account expands all M
-	move down to A, highlight on A
+	move down to A, highlight on 
 	move up from next A, highlight on A's last M!
 
 Sorting
@@ -357,7 +354,5 @@ alias - recent queries as sidebar entries
 popup windows - dim(grey) all colours of other windows (how?)
 alias tag == groups?
 makefile autosetup folding
-sidebar colour observer - check for indicator & normal changes
-sidebar config observer - check for ascii_chars, folder, spoolfile changes
 easy: add patterns (optional) to other index fields
 
