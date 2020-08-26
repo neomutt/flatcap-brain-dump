@@ -1,3 +1,41 @@
+open address book with <open-address-book>
+	tag some addresses
+	then <mail> -> compose
+	do we need to involve the index?
+		prob not
+		share compose startup code
+	<quit> goes back to wherever you were before
+
+fake mailboxes (dividers) get sorted by Accounts
+	how do we insert "mailboxes -label" into the right place?
+	what about sorting?
+
+non-easy task "mailboxes -label"?
+	tyler132 / @Tyler-Roche progress?
+
+command synonym for "sidebar-whitelist"?
+
+update sidebar code diagram
+
+review SORT_*
+	UNSORTED = 0
+	deprecate "order" naming
+
+DYK
+	text vs gui
+	mailcap, copiousoutput, auto_view
+
+travis shellcheck scripts
+	[release]?
+
+rawhide broken
+
+devel feature - docs/web link to "may change" page
+
+docs config: list flags?
+	(not empty)
+	(not negative)
+
 diagrams and descriptions of EVERY combination of
 	index/pager/sidebar status_on_top, sidebar_on_right
 	too many?

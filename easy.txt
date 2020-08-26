@@ -224,9 +224,6 @@ alias pager/preview for details, esp. for groups
 
 query fix live sorting too
 
-rename format_str callback functions
-	need to identify them all first
-
 list all functions without 100% test coverage
 	list all the tests that would be required
 
@@ -244,4 +241,12 @@ setenv: support X? query
 more index color patterns
 	make all patterns optional?
 	investigate
+
+rename account_format_str() params to match ::format_t
+others are ok
+	alias_format_str attach_format_str compose_format_str compress_format_str
+	crypt_format_str folder_format_str group_index_format_str history_format_str
+	index_format_str mix_format_str nntp_format_str pattern_format_str
+	pgp_command_format_str pgp_entry_format_str query_format_str sidebar_format_str
+	smime_command_format_str status_format_str
 

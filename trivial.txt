@@ -188,8 +188,7 @@ refactor complicated or oft-used macros
 	mutt/string2.h:51:1: terminate_string 5
 	email/mime.h:83:1:   TYPE             35
 
-these 2 typedefs don't match the pattern for function typedefs
-	header_cache_t    hcache/hcache.h   /^typedef struct EmailCache header_cache_t;$/;"
+this typedef doesn't match the pattern for function typedefs
 	keycode_t         keymap.h          /^typedef short keycode_t;$/;"
 
 main.c
@@ -317,5 +316,15 @@ doxy: mutt/lib @page to mutt_ prefix
 	conflicts with mutt_*.c
 	rename them to neo_?
 
-check config/ for x->type that don't use DTYPE()
+'them'!
+ * @page help Generate the help-page and GUI display them
 
+isn't used!
+	MT_COLOR_MESSAGE_LOG
+
+missing gettext() in all messages in
+	parse_set()
+	parse_setenv()
+
+docs, should be +fruit, etc
+	sidebar_whitelist fruit fruit/apple
