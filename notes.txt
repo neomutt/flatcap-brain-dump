@@ -1,3 +1,43 @@
+user headers "..." to "(+n more)"?
+	after 5th header?
+	in left column?
+
+imap (un)subscribe to bypass mutt_parse_rc_line()
+	see upstream
+	easy?
+
+non-easy: setenv to use the message window, rather than stdout
+	use printf to ensure wrapping (and cut'n'pastability)
+
+non-easy: (daedric?) - pager url ANSI escape sequence
+
+to devel-ml (and/or user-ml)
+	after sidebar fixes
+	announce new features [FEAT], enhancements [ENH]
+	+= / -= for number, slist
+	setenv
+	addrbook
+	compose
+
+easy: charset validator flags for "single" and "strict" => no deps
+
+easy: move validators to mutt_config.c / hcache.c
+
+eliminate 53 strcmp()s + 1 strncmp()?
+
+mx.h dependencies - ensure API defn headers are dependency free
+	move to libmutt?
+
+alias_get_sort_function() doesn't use param!
+
+nntp_auth() split up into separate functions, like other backends?
+
+typedefs that should be in library headers to reduce dependencies
+	sort_t
+	format_t
+	handler_t
+	module_init_config_t
+
 open address book with <open-address-book>
 	tag some addresses
 	then <mail> -> compose
@@ -20,10 +60,6 @@ update sidebar code diagram
 review SORT_*
 	UNSORTED = 0
 	deprecate "order" naming
-
-DYK
-	text vs gui
-	mailcap, copiousoutput, auto_view
 
 travis shellcheck scripts
 	[release]?
@@ -416,8 +452,6 @@ popup windows - dim(grey) all colours of other windows (how?)
 alias tag == groups?
 makefile autosetup folding
 
-dyk: botty dyk NUM -> title + url
-
 emails[] split - stepping stone
 	backend keeps private array
 	notifies to another part of self to update frontent array
@@ -443,14 +477,6 @@ tabs for accounts - steal space from helpbar (if visible)
 	on right?
 tab name needs format string for "*" notifications
 preset, coloured blobs?
-
-DYK - Did you know?
-	frequent simple neomutt tips
-	post to user-ml
-	digest to website (then link to twitter)
-	ctrl-g
-	addr-book comments
-	need repo, issues, project?
 
 for popup windows, or non-focussed, *dim* other windows
 	want to preserve indicator presence

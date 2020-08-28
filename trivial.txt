@@ -325,6 +325,8 @@ isn't used!
 missing gettext() in all messages in
 	parse_set()
 	parse_setenv()
+	strip ERR000 -> comment
 
-docs, should be +fruit, etc
-	sidebar_whitelist fruit fruit/apple
+'l' bad choice of param name
+	First l chars of both strings are equal
+

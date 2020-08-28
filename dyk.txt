@@ -1,0 +1,37 @@
+Did You Know?
+
+frequent simple neomutt tips
+post to user-ml
+digest to website (then link to twitter)
+ctrl-g
+addr-book comments
+need repo, issues, project?
+
+easy task python
+	neo-bot (rename repo)
+	modernise neo-bot
+	dyk036 -> title + url
+
+/dyk/001 (1000)
+	date in header? YES
+	or sort by number? YES
+
+repo for issues/ideas
+	do we need a repo?  no files?
+	use website issues
+	add issue templates
+
+section on website + reverse date table
+	link to latest on home page
+
+set variables from variables: status_format="... ${from} ..."
+
+subject editing [devel] etc
+	with examples for our two mailing lists
+
+
+	text vs gui
+	mailcap, copiousoutput, auto_view
+
+botty dyk NUM -> title + url
+
