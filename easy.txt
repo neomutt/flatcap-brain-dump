@@ -195,13 +195,6 @@ unify.  write to a Buffer, then merge, then move to libaddress
 	mutt_addrlist_write()
 	format_address_header()
 
-easy - libsend
-	change to Slist
-	static char **add_args_one(char **args, size_t *argslen, size_t *argsmax, struct Address *addr)
-	static char **add_args(char **args, size_t *argslen, size_t *argsmax, struct AddressList *al)
-	static char **add_option(char **args, size_t *argslen, size_t *argsmax, char *s)
-	need to copy slist expand from config/slist
-
 display custom headers in compose
 
 add validators for pop/imap/smtp/nntp authenticators
@@ -213,16 +206,10 @@ add validators for pop/imap/smtp/nntp authenticators
 
 rename SORT_ORDER to SORT_UNSORTED, define as 0 always
 
-dlgalias doesn't observe config changes, e.g. $sort_alias
-	how much refactoring?
-	doesn't observer colour changes, what else?
-	alias sort by address doesn't use collation o-slash after z!
-	should collate for alias, address
+dlgalias
 	alias need field/sort/limit for "this-is-a-group"?
 
 alias pager/preview for details, esp. for groups
-
-query fix live sorting too
 
 list all functions without 100% test coverage
 	list all the tests that would be required
@@ -235,18 +222,11 @@ docs of all config types
 	+ flag subtypes
 	list separators
 
-setenv: support X? query
-	in addition to ?X query
-
 more index color patterns
 	make all patterns optional?
 	investigate
 
-rename account_format_str() params to match ::format_t
-others are ok
-	alias_format_str attach_format_str compose_format_str compress_format_str
-	crypt_format_str folder_format_str group_index_format_str history_format_str
-	index_format_str mix_format_str nntp_format_str pattern_format_str
-	pgp_command_format_str pgp_entry_format_str query_format_str sidebar_format_str
-	smime_command_format_str status_format_str
+charset validator flags for "single" and "strict" => no deps
+
+move validators to mutt_config.c / hcache.c
 

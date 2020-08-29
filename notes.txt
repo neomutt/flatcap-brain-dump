@@ -6,11 +6,6 @@ imap (un)subscribe to bypass mutt_parse_rc_line()
 	see upstream
 	easy?
 
-non-easy: setenv to use the message window, rather than stdout
-	use printf to ensure wrapping (and cut'n'pastability)
-
-non-easy: (daedric?) - pager url ANSI escape sequence
-
 to devel-ml (and/or user-ml)
 	after sidebar fixes
 	announce new features [FEAT], enhancements [ENH]
@@ -19,16 +14,10 @@ to devel-ml (and/or user-ml)
 	addrbook
 	compose
 
-easy: charset validator flags for "single" and "strict" => no deps
-
-easy: move validators to mutt_config.c / hcache.c
-
 eliminate 53 strcmp()s + 1 strncmp()?
 
 mx.h dependencies - ensure API defn headers are dependency free
 	move to libmutt?
-
-alias_get_sort_function() doesn't use param!
 
 nntp_auth() split up into separate functions, like other backends?
 
@@ -54,8 +43,6 @@ non-easy task "mailboxes -label"?
 	tyler132 / @Tyler-Roche progress?
 
 command synonym for "sidebar-whitelist"?
-
-update sidebar code diagram
 
 review SORT_*
 	UNSORTED = 0
@@ -225,8 +212,6 @@ missing credentials (before connect) - has to happen here
 		pass in response for testing purposes?
 	NO have special version of libquestion
 
-startup - sidebar doesn't refresh until ctrl-l or event happens
-
 magic pager bar too
 create index/pager macros that save/restore
 	pager_index_lines
@@ -332,8 +317,8 @@ split buffer_expand/resolve into PATH functions and MAILBOX functions!
 config: change sort to work like enum -- use Data field
 	except allow magic "reverse-", "last-" prefixes
 
-1600 C_ config uses
-188 WHERE uses
+1334 C_ config uses
+137 WHERE uses
 
 create mailbox (browser)
 	errors on empty -- kill error

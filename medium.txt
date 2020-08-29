@@ -28,3 +28,8 @@ use tagged emails + edit to view multiple
 issue for code required:
 	fuzzy matcher: [devel] [help] [mentor]
 
+setenv to use the message window, rather than stdout
+	use printf to ensure wrapping (and cut'n'pastability)
+
+(daedric?) - pager url ANSI escape sequence
+

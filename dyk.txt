@@ -35,3 +35,7 @@ subject editing [devel] etc
 
 botty dyk NUM -> title + url
 
+associate mailto: link with neomutt
+	see https://gist.github.com/flatcap/a1c94399c40893db39d641fb106a0dc2
+	contents of ~/desktop
+

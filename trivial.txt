@@ -316,17 +316,14 @@ doxy: mutt/lib @page to mutt_ prefix
 	conflicts with mutt_*.c
 	rename them to neo_?
 
-'them'!
- * @page help Generate the help-page and GUI display them
-
 isn't used!
 	MT_COLOR_MESSAGE_LOG
 
-missing gettext() in all messages in
-	parse_set()
-	parse_setenv()
-	strip ERR000 -> comment
-
 'l' bad choice of param name
 	First l chars of both strings are equal
+
+xgettext: warning: msgid 'Attachment saved' is used without plural and with plural.
+                   recvattach.c:647: Here is the occurrence without plural.
+                   recvattach.c:822: Here is the occurrence with plural.
+                   Workaround: If the msgid is a sentence, change the wording of the sentence; otherwise, use contexts for disambiguation.
 
