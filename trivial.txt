@@ -327,3 +327,6 @@ xgettext: warning: msgid 'Attachment saved' is used without plural and with plur
                    recvattach.c:822: Here is the occurrence with plural.
                    Workaround: If the msgid is a sentence, change the wording of the sentence; otherwise, use contexts for disambiguation.
 
+menu globals, not free on exit
+	char *SearchBuffers[MENU_MAX];
+

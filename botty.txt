@@ -11,6 +11,13 @@ botty
 	a7b0fb8
 	https://github.com/neomutt/neomutt/commit/a7b0fb8
 	<p class="commit-title">Clear out extraneous errors before SSL_connect() (see #3916)</p>
+	OR
+	.../a7b0fb8.patch
+	and first four lines contain full commit hash, author, date, subject!
+	From efacf083dc20d94855789f2ad66f25fd1d8fcd38 Mon Sep 17 00:00:00 2001
+	From: Richard Russon <rich@flatcap.org>
+	Date: Wed, 26 Aug 2020 23:30:59 +0100
+	Subject: [PATCH] trivial code tidying
 
 bot command
 	/notice botty doc $folder

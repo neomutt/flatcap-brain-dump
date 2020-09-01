@@ -1,3 +1,11 @@
+SIGWINCH - only root window should be listening
+	sends out Window Events on change
+	need ALL dialogs to be listening, first
+
+encrypt to self: alternative to neomutt config
+	add to gnupg.conf
+	encrypt-to <your keyid>
+
 user headers "..." to "(+n more)"?
 	after 5th header?
 	in left column?

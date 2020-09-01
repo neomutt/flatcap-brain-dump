@@ -118,3 +118,16 @@ notmuch might need to keep a reference count on the Account, Maildir and Emails
 change functions to use enums (if they go back far enough in the history)
 	notmuch_query_set_omit_excluded(query, 1);
 		1 => NOTMUCH_EXCLUDE_TRUE
+
+what's the minimum to get notmuch working?
+	brief howto
+	<bochku> hello, how can I use notmuch with neomutt?
+	<flatcap> you'll need your email locally in maildir format
+	<bochku> yeah I have my mail locally in maildir format
+	<flatcap> then "notmuch setup" will set up the database
+	<bochku> okay
+	<flatcap> and neomutt config: set nm_default_url = "notmuch:///home/..." (path to db)
+	<flatcap> then  :exec vfolder-from-query   and type something to find
+	<flatcap> I _think_ that's about the minimum you need
+	<flatcap> (but that's the limit of my knowledge (of notmuch))
+
