@@ -1,3 +1,38 @@
+pattern help
+	complete on % too
+	list %patterns in help
+
+limit neomutt support to versions less than
+	n years / m months old
+
+change config errors to file:line for easier vim
+	where else are file / line nums used?
+
+mouse scroll should move viewport (natural)
+	rather than focus
+	add $option?
+	should allow highlight and indicator to move offscreen
+	$devel_mouse = yes?
+
+doxy - missing docs for send config
+	no `///< Config:` comments
+
+searching: pattern expansion using simple_search
+	`apple` will be expanded using $simple_search
+	`apple | ~f foo` won't
+		it will fail because `apple` isn't valid
+	can we apply the checks and expansion to each part?
+	would the result still be predictable?
+
+function/setting to turn off confirmations whilst in a macro
+	might make functions unpredictable
+	unless there's some visual feedback
+
+master -> main -- when?
+
+botty -> neo-bot
+botty killed by deleted issue #2529
+
 SIGWINCH - only root window should be listening
 	sends out Window Events on change
 	need ALL dialogs to be listening, first
@@ -454,6 +489,7 @@ help page should collate shortcuts
 	currently sorted by ASCII
 		in keybindings
 	M & m distant!
+	collate
 
 memory usage
 	where's it all going?

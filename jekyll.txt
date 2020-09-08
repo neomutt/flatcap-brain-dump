@@ -59,3 +59,34 @@ jekyll page type "hidden" -- don't list
 
 website jekyll serve instructions
 
+jekyll:
+	gem install nokogiri -- --use-system-libraries
+	gem install github-pages
+	gem install jekyll-algolia
+	gem install i18n bigdecimal
+
+The website's built using Jekyll -- a static site generator.
+Jekyll's written in Ruby.  You'll need to install some Ruby devel
+packages first (distro-dependent), then it _should_ be as simple as:
+
+        gem install github-pages
+        gem install jekyll-algolia
+
+Once installed, clone the website:
+
+    git clone --branch dyk https://github.com/neomutt/neomutt.github.io
+
+and run the local webserver:
+
+    cd neomutt.github.io
+    jekyll serve
+    http://127.0.0.1:4000/
+
+The website takes about 10s to build/update, so I recommend:
+
+    jekyll serve --incremental --livereload
+
+There's now a top-level menu "Did You Know?", with some sample pages.
+Adding a new page is as simple as adding a new file in the /dyk dir.
+(the table is auto-generated)
+

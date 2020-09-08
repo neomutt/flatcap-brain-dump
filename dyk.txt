@@ -47,3 +47,11 @@ alias add # comments
 
 :<space>command  (won't show up in history)
 
+$index_format dates
+	there are three formats:
+	${...} time email was sent in senders timezone
+	$[...] time email was sent in *your* timezone
+	$(...) time email was received in *your* timezone
+	https://neomutt.org/guide/reference.html#index-format
+	the ... is strftime() compatible letters ("man strftime" in a terminal will document them)
+

@@ -304,18 +304,6 @@ capitalisation?
 MXAPI: macro fake prototypes like config
 	extern struct MxOps MxImapOps;
 
-Direct leak of 8192 byte(s) in 1 object(s) allocated from:
-    #1 0x72a070 in mutt_mem_calloc mutt/memory.c:55
-    #2 0x6e5775 in get_elem_list config/subset.c:69
-    #3 0x5b2416 in dot_config debug/graphviz.c:450
-    #4 0x5b6db5 in dump_graphviz debug/graphviz.c:959
-    #5 0x48ccae in mutt_index_menu /home/mutt/work/neo/index.c:1765
-    #6 0x4be8fc in main /home/mutt/work/neo/main.c:1233
-
-doxy: mutt/lib @page to mutt_ prefix
-	conflicts with mutt_*.c
-	rename them to neo_?
-
 isn't used!
 	MT_COLOR_MESSAGE_LOG
 
@@ -327,6 +315,15 @@ xgettext: warning: msgid 'Attachment saved' is used without plural and with plur
                    recvattach.c:822: Here is the occurrence with plural.
                    Workaround: If the msgid is a sentence, change the wording of the sentence; otherwise, use contexts for disambiguation.
 
-menu globals, not free on exit
+menu globals, not freed on exit?
+	can't find where it's freed
 	char *SearchBuffers[MENU_MAX];
 
+typo an/and
+ * match_addrlist - Match a Pattern against and Address list
+
+change notify to NT_COLOR, NT_COLOR_{ACTION}
+	put object in Event
+
+ARRAY_FOREACH()
+	one is missing {}s

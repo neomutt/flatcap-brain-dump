@@ -150,3 +150,23 @@ ChangeLog?
 \todo { paragraph describing what is to be done }
 \warning { warning message }
 
+duplicate filenames cause problems
+can't link to root version of file
+only to subdir versions with path/file
+	complete.c
+	nntp/complete.c
+
+	commands.c
+	sidebar/commands.c
+	alias/commands.c
+
+	flags.c
+	pattern/flags.c
+
+	functions.c
+	sidebar/functions.c
+
+	sort.c
+	config/sort.c
+	sidebar/sort.c
+

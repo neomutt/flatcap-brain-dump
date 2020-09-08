@@ -195,8 +195,6 @@ unify.  write to a Buffer, then merge, then move to libaddress
 	mutt_addrlist_write()
 	format_address_header()
 
-display custom headers in compose
-
 add validators for pop/imap/smtp/nntp authenticators
 	$pop_authenticators, pop_authenticators[]
 	$imap_authenticators, imap_authenticators[]
@@ -221,12 +219,9 @@ disabled config
 docs of all config types
 	+ flag subtypes
 	list separators
+	tie into `neomutt -DD`
 
 more index color patterns
 	make all patterns optional?
 	investigate
-
-charset validator flags for "single" and "strict" => no deps
-
-move validators to mutt_config.c / hcache.c
 
