@@ -1,3 +1,6 @@
+option to reverse the direction of $resolve
+	for users that `set sort=reverse-date`
+
 pattern help
 	complete on % too
 	list %patterns in help
@@ -314,8 +317,6 @@ change imap_error to use macro and MuttLogger correctly
 	or eliminate it!  no gettext, uses function names!
 
 backend/path.c ∀ type
-
-webdocs -- collapsed groups in menu need sign saying "open me" '+'?
 
 loglevel for data (imap) showing '\n'?
 
@@ -1461,7 +1462,9 @@ or clearer still
 the numbers could even be omitted
 if the translated string matches the order of the original
 what about purely numbered questions, like crypto algorithms
-	msgid "(1) AES128, (2) AES192, (3) AES256?"
+	msgid "(1) apple, (2) banana, (3) cherry?"
+	msgid "(1:1) apple, (3:2) cherry, (2:3) banana?"
+	(x:y) x:number for neomutt, y:number for human
 
 move temp file into for loop in nntp_fetch_headers()?
 	nntp_fetch_headers()
@@ -2215,7 +2218,6 @@ analysis
 	add clang-tidy
 	add uncrustify
 	add lcov / coveralls
-	AddressSanitizer build
 	codespell
 	lgtm.com - https://lgtm.com/projects/g/neomutt/neomutt/
 	-O2 -D_FORTIFY_SOURCE=2
@@ -2544,10 +2546,6 @@ hibernate-hook - would one be useful to anyone?
 	does hibernate need a time option
 	if (Δt > n) then fire hook
 
-may need to rename one of:
-	mutt/message.h
-	imap/message.h
-
 when you force an imap update: <imap-fetch-mail>
 	a notification: X new mails would be nice
 
@@ -2834,10 +2832,6 @@ update _dev/signing.md
 	test using build user
 
 change feature neomuttrc examples to be useful working versions
-
-rebuild all of mutt-*, neomutt-* binaries
-	make sure they all use /etc /usr
-	symlink, or put config so that mutt has good defaults
 
 Create LTS release branched from 2017-09-12
 	until all big features are done

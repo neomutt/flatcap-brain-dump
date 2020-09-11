@@ -319,11 +319,10 @@ menu globals, not freed on exit?
 	can't find where it's freed
 	char *SearchBuffers[MENU_MAX];
 
-typo an/and
- * match_addrlist - Match a Pattern against and Address list
+drop full stop (check for others)
+	"Error sending message, child exited %d.\n"
+	"Caught signal %d (%s) ...  Exiting.\n"
+	"Caught signal %d ...  Exiting.\n"
 
-change notify to NT_COLOR, NT_COLOR_{ACTION}
-	put object in Event
+[wrapping] -> old
 
-ARRAY_FOREACH()
-	one is missing {}s

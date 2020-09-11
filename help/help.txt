@@ -24,7 +24,7 @@ Help Browser - Add new config
 Add a new config variable `$help_index_format` to format the index list appropriately.
 
 Tasks:
-- Add config variable to `init.h`
+- Add config variable to `help/config.h`
 - Add global variable to `help.[ch]`
 - Alter `index.c` to use the new global
 
@@ -36,7 +36,7 @@ When a user searches for a string, but doesn't use a NeoMutt pattern, the string
 This isn't appropriate for the help.
 
 Tasks:
-- Add config variable to `init.h`
+- Add config variable to `help/config.h`
 - Add global variable to `help.[ch]`
 - Alter `pattern.c` to use the new global
 

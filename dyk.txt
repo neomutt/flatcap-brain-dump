@@ -29,7 +29,6 @@ set variables from variables: status_format="... ${from} ..."
 subject editing [devel] etc
 	with examples for our two mailing lists
 
-
 text vs gui
 	mailcap, copiousoutput, auto_view
 
@@ -37,7 +36,7 @@ associate mailto: link with neomutt
 	see https://gist.github.com/flatcap/a1c94399c40893db39d641fb106a0dc2
 	contents of ~/desktop
 
-autocmd BufRead            /tmp/mutt/neomutt-*          setl syntax=mail ts=8 sw=2 et
+autocmd BufRead /tmp/mutt/neomutt-* setl syntax=mail ts=8 sw=2 et
 
 jump to first blank line (after headers)
 
