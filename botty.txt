@@ -1,12 +1,12 @@
 
-prep 1-liner descriptions of all var,cmd,fn etc for botty
+prep 1-liner descriptions of all var,cmd,fn etc for neo-bot
 
-python coder needed to update botty
+python coder needed to update neo-bot
 	use github api
 	commits
 	issues/PRs
 
-botty
+neo-bot
 	look for commits?
 	a7b0fb8
 	https://github.com/neomutt/neomutt/commit/a7b0fb8
@@ -20,10 +20,12 @@ botty
 	Subject: [PATCH] trivial code tidying
 
 bot command
-	/notice botty doc $folder
-		privately messages botty
-	botty replies in-channel
+	/notice neo-bot doc $folder
+		privately messages neo-bot
+	neo-bot replies in-channel
 
 lookup full github issue/PR paths too
 	just give description
+
+neo-bot killed by deleted issue #2529
 

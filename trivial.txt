@@ -319,10 +319,3 @@ menu globals, not freed on exit?
 	can't find where it's freed
 	char *SearchBuffers[MENU_MAX];
 
-drop full stop (check for others)
-	"Error sending message, child exited %d.\n"
-	"Caught signal %d (%s) ...  Exiting.\n"
-	"Caught signal %d ...  Exiting.\n"
-
-[wrapping] -> old
-

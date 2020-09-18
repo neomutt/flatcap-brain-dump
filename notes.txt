@@ -1,3 +1,46 @@
+Alias colours for deleted, tagged, search
+	(or defined some standard names/colours for these states)
+	add vim:hls option
+	use notmuch-style colours, abbrs for labels (icons)
+	combine colours
+	vim:hls only highlight matched part
+		colour line, highlight match!
+	sort_alias missing REVERSE flag
+		allows `last-` flag clash!
+
+add build and analysis pages to welcome email
+	revamp newbie page
+
+dlg_verify_certificate() only user of Menu.dialog
+	like pager with (m)enu selection
+
+[] move the view 1/2 page (viewport)
+	add keys to move +/- 1 line (^E, ^Y)
+	hook up to the mouse?
+
+Add more warnings to default build?
+
+pop
+	move auth data to top of file
+	same for smtp
+	auth change while -> for * 2
+	PopAuth.method -> name?
+
+when deprecating config, etc
+	display links to website giving details
+
+giving the Mailboxes a monotonic sequence number
+	(as their unsorted order)
+	means dividers wouldn't need to be the same type
+	as their siblings (wouldn't be grouped by Account)
+	when sidebar_sort_method=unsorted
+
+mailcap doesn't accept */*
+	(as a fallback)
+
+tidy, doc, publish all build/parallel scripts
+	build-scripts repo
+
 option to reverse the direction of $resolve
 	for users that `set sort=reverse-date`
 
@@ -32,9 +75,7 @@ function/setting to turn off confirmations whilst in a macro
 	unless there's some visual feedback
 
 master -> main -- when?
-
-botty -> neo-bot
-botty killed by deleted issue #2529
+	after release
 
 SIGWINCH - only root window should be listening
 	sends out Window Events on change
@@ -369,6 +410,7 @@ create mailbox (browser)
 	rename, delete too?
 
 {backend}/hcache.c?
+	no, hcache shouldn't be in backends
 
 change OP_X to exactly match function name?
 
