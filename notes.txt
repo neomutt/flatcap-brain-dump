@@ -1,9 +1,11 @@
+irc alias to update topic using just version number
+
 Alias colours for deleted, tagged, search
 	(or defined some standard names/colours for these states)
-	add vim:hls option
+	add vim's hls option
 	use notmuch-style colours, abbrs for labels (icons)
 	combine colours
-	vim:hls only highlight matched part
+	vim's hls only highlight matched part
 		colour line, highlight match!
 	sort_alias missing REVERSE flag
 		allows `last-` flag clash!
@@ -1804,7 +1806,7 @@ maintain stable numbering in the index
 		find 5 messages, regardless of number?
 
 connect to server using openssl
-	openssl s_client -connect 10.8.0.1:993
+	openssl s_client -connect 10.8.0.1:imaps
 	then use imap commands
 	a1 login USERNAME PASSWORD
 
@@ -2197,8 +2199,6 @@ New/updated primitives:
 		pass
 		list of params
 		function to serialise
-
-test imap server: openssl s_client -connect 10.8.0.1:imaps
 
 relative time option for the index_format
 	3h (ago), 2d, etc

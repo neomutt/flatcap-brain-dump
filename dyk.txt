@@ -54,3 +54,5 @@ $index_format dates
 	https://neomutt.org/guide/reference.html#index-format
 	the ... is strftime() compatible letters ("man strftime" in a terminal will document them)
 
+imap compression
+
