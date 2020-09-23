@@ -319,3 +319,8 @@ menu globals, not freed on exit?
 	can't find where it's freed
 	char *SearchBuffers[MENU_MAX];
 
+drop ternary
+    md->email->read = (flags & MH_SEQ_UNSEEN) ? false : true;
+    md->email->flagged = (flags & MH_SEQ_FLAGGED) ? true : false;
+    md->email->replied = (flags & MH_SEQ_REPLIED) ? true : false;
+

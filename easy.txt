@@ -218,3 +218,15 @@ more index color patterns
 	make all patterns optional?
 	investigate
 
+create
+	{backend}/adata.[ch]
+	{backend}/mdata.[ch]
+	{backend}/edata.[ch]
+	for _new(), _free(), _get()
+
+convert `struct MhSequences` to `MhSeqArray`
+
+add contract to mxapi
+	declutter called functions
+	add API mbox_is_empty()
+

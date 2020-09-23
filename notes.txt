@@ -1,4 +1,11 @@
-irc alias to update topic using just version number
+expandos
+	option / mechanism to show which fields have been truncated `…` 
+	HOW?
+	alter formatting syntax %-min.maxS ?
+	or add extra expandos for selected big fields
+	%s (subject), %st (subject truncatation-marked)
+
+howto - bisect your config
 
 Alias colours for deleted, tagged, search
 	(or defined some standard names/colours for these states)
@@ -15,6 +22,10 @@ add build and analysis pages to welcome email
 
 dlg_verify_certificate() only user of Menu.dialog
 	like pager with (m)enu selection
+	separate windows!
+	pager (handling paging keys)
+	message window (handling menu keys)
+	message window has focus, delegates to pager
 
 [] move the view 1/2 page (viewport)
 	add keys to move +/- 1 line (^E, ^Y)
