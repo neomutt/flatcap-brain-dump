@@ -189,9 +189,6 @@ unify.  write to a Buffer, then merge, then move to libaddress
 	format_address_header()
 
 add validators for pop/imap/smtp/nntp authenticators
-	$pop_authenticators, pop_authenticators[]
-	$imap_authenticators, imap_authenticators[]
-	$smtp_authenticators, need to create array from smtp_auth()
 	$nntp_authenticators, need to create array. NntpAccountData.authenticators
 		// L10N: (%s) is the method name, e.g. Anonymous, CRAM-MD5, GSSAPI, SASL
 

@@ -34,8 +34,6 @@ dlg_verify_certificate() only user of Menu.dialog
 Add more warnings to default build?
 
 pop
-	move auth data to top of file
-	same for smtp
 	auth change while -> for * 2
 	PopAuth.method -> name?
 
@@ -117,15 +115,15 @@ to devel-ml (and/or user-ml)
 eliminate 53 strcmp()s + 1 strncmp()?
 
 mx.h dependencies - ensure API defn headers are dependency free
-	move to libmutt?
-
-nntp_auth() split up into separate functions, like other backends?
+	move to libmutt? / libcore? (because of Mailbox)
 
 typedefs that should be in library headers to reduce dependencies
 	sort_t
 	format_t
 	handler_t
 	module_init_config_t
+
+nntp_auth() split up into separate functions, like other backends?
 
 open address book with <open-address-book>
 	tag some addresses

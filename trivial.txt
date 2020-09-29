@@ -324,3 +324,5 @@ drop ternary
     md->email->flagged = (flags & MH_SEQ_FLAGGED) ? true : false;
     md->email->replied = (flags & MH_SEQ_REPLIED) ? true : false;
 
+eliminate \t from logs
+
