@@ -319,10 +319,12 @@ menu globals, not freed on exit?
 	can't find where it's freed
 	char *SearchBuffers[MENU_MAX];
 
-drop ternary
-    md->email->read = (flags & MH_SEQ_UNSEEN) ? false : true;
-    md->email->flagged = (flags & MH_SEQ_FLAGGED) ? true : false;
-    md->email->replied = (flags & MH_SEQ_REPLIED) ? true : false;
+alter ASAN page to mention `--asan`
 
-eliminate \t from logs
+WRONG - depends on strlen(C_ArrowString)
+	why bother for non Braille?
+	cursor isn't visible
+    /* move the cursor out of the way */
+    if (C_ArrowCursor)
+      mutt_window_move(menu->win_index, 2, menu->current - menu->top);
 
