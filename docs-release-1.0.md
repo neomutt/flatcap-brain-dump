@@ -11,7 +11,7 @@ README*
 ChangeLog*
 [A-Z]*
 po/*
-init.h
+mutt_config.c
 functions.h
 OPS*
 *.[ch] help strings
@@ -66,7 +66,7 @@ doc -> txt
 ## Drop Docs From Source
 
 drop /doc
-drop init.h comments
+drop mutt_config.c comments
 drop function.h comments
 
 ## Contact Distros

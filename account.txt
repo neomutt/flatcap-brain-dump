@@ -1456,7 +1456,7 @@ name	Base		Account		Mailbox
 	HashElem	HashElem	HashElem
 type	STRING		STR|INHERITED	STR|INHERITED
 ptr	ConfigDef	Inheritance	Inheritance
-backed	init.h		Base-HE		Account-HE
+backed	mutt_config.c	Base-HE		Account-HE
 var	global		struct		struct
 
 draw diagram
@@ -1496,7 +1496,7 @@ each backend/module registers variables
 	flag on ConfigDef?
 	The each user would need to keep HashElem pointers for all the vars they want to use
 	setup list at MODULE_init()
-	what happens when init.h is split?
+	what happens when mutt_config.c is split?
 	IMAP, POP both require shared config vars
 		what about the backing global variable?
 		who owns it?

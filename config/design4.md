@@ -1,6 +1,6 @@
 New Config Design 4 - Scope
 
-Currently over 400 of the config items are defined in a huge list in init.h
+Currently over 400 of the config items are defined in a huge list in mutt_config.c
 
     { "sidebar_delim_chars",   DT_STR,  R_SIDEBAR, &SidebarDelimChars,        "/." },
     { "sidebar_divider_char",  DT_STR,  R_SIDEBAR, &SidebarDividerChar,       0    },

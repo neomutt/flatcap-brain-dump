@@ -21,7 +21,7 @@ Most simple, some backed by structs.
     1    DT_MAGIC      mailbox type
     1    DT_HCACHE     header cache backend
 
-Centrally defined in `init.h`
+Centrally defined in `mutt_config.c`
     { name, type, flags, variable, initial_value }
 
 Centrally backed by:
@@ -32,7 +32,7 @@ Centrally backed by:
 
 95% of the config items are only set when reading a config file (or the user
 manually enters a command).  These are handled by `parse_set()`.  This
-function notifies NeoMutt according to the flags defined in `init.h`.
+function notifies NeoMutt according to the flags defined in `mutt_config.c`.
 
 All the config types need to be handled in `parse_set()` and any validation.
 

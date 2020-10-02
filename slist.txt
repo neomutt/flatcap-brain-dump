@@ -5,7 +5,7 @@ Create a new high-level Config Primitive (it's simpler that it sounds :-)
 The old config system had a central function that decided which values were allowed for all of the config variables.
 The new config system defines a set of data types, which can be refined and subclassed (using validator functions).
 
-e.g. from [`init.h`](https://github.com/neomutt/neomutt/blob/master/init.h)
+e.g. from [`mutt_config.c`](https://github.com/neomutt/neomutt/blob/master/mutt_config.c)
 - `..., DT_STRING|DT_NOT_EMPTY, ...`
 - `..., DT_NUMBER|DT_NOT_NEGATIVE, ...`
 - `..., DT_NUMBER, ..., level_validator },`

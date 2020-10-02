@@ -87,7 +87,7 @@ replace mbtowc() with mbrtowc() in my_width()
 	only used in one place
 	man page says: "The function mbrtowc(3) provides a better interface to the same functionality"
 
-refactor parse_hooks to use (new) flags in init.h
+refactor parse_hooks to use (new) flags in mutt_config.c
 	e.g. TAKES_PATTERN, TAKES_REGEX
 
 eliminate all static variables in functions
@@ -163,7 +163,6 @@ mutt -D? (extra options)
 	only display CHANGED values
 	only hide SET values
 	SORT the options
-	add comments from init.h?
 	show default values/keybindings
 
 int url_pct_decode(char *s)

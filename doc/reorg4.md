@@ -8,7 +8,7 @@ They spot a mistake in, say, $compose_format.
 They helpfully decide to try to fix the problem, so they:
 - Create a Pull-Request for the website -- WRONG
 - They find the DocBook source in the code repo -- WRONG, it's not there
-- Are told that they need to edit `init.h` -- Source code!
+- Are told that they need to edit `mutt_config.c` -- Source code!
 
 This isn't good enough.
 
@@ -55,7 +55,7 @@ it should be immediately obvious how they would do that.
 Initially, this will just be a few very large markdown files.
 Later, editing will split them up.
 
-* Strip `init.h` of comments
+* Strip `mutt_config.c` of comments
 
 They're non-functional
 
@@ -65,5 +65,5 @@ The are lots of sources for NeoMutt's documentation:
     DocBook xml files
     Text files (and markdown)
     Manual pages
-    Comments in the code (init.h)
+    Comments in the code (mutt_config.c)
 

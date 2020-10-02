@@ -619,7 +619,7 @@ need macros for testing string subtypes
 	same for command
 
 can we fake BOOL and QUAD for legibility?
-init.h says DT_BOOL but reg type uses enum machinery.  QUAD too
+mutt_config.c says DT_BOOL but reg type uses enum machinery.  QUAD too
 still need data ptr for EnumDef unless hard-coded into enum.c?
 enum registers ENUM, BOOL, QUAD?
 string registers STRING, PATH, COMMAND?  or just sub-types?
@@ -635,7 +635,7 @@ config prefix 'pager'
 	set pager:var = 3
 	'compose', 'index', etc?!
 
-init.h config INH_NONE, INH_ACC, INH_MBOX
+mutt_config.c config INH_NONE, INH_ACC, INH_MBOX
 Config contains all config
 Hide Config global, must use N|A|M->sub
 get N->config --> C->config			}

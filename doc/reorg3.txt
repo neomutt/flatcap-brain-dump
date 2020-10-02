@@ -34,7 +34,7 @@ TOCs autogenerate - how?
 hidden _order files for cat-ing?
 Debian restriction on generated markdown file too?
 neomuttrc - put fully doc'd sample in doc dir?
-init.h comments -> md
+mutt_config.c comments -> md
 strings in code -> :help?
 
 docs: LOTS of small files - .md

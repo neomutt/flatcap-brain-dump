@@ -17,7 +17,7 @@ README.*
 ChangeLog.*
 [A-Z]*
 translations po/*
-init.h
+mutt_config.c
 functions.h
 OPS*
 *.[ch]
@@ -31,7 +31,7 @@ DocBook is base for all
 manual
 	~7000 lines for vars, functions
 	600l functions, 6400l variables (390 vars)
-Muttrc.head (init.h)
+Muttrc.head (mutt_config.c)
 	~100 lines + 5000 generated
 sidebar guide => html for highlighting
 

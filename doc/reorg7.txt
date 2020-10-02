@@ -61,7 +61,7 @@ reorganise docs
 			too hard?
 			WHICH sections are currently conditional?
 	generate man pages from these sources
-	strip init.h of its docs
+	strip mutt_config.c of its docs
 	get default values from "mutt -D" instead
 
 ~Y docs match label missing?

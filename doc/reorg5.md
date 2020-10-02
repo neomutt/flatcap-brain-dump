@@ -5,7 +5,7 @@ how to link ":help X" to the right page?
 sqlite index: Title, metadata, body, links?
 ignore common English and markdown -- tool
 
-functions.h, opcodes.h, init.h ->
+functions.h, opcodes.h, mutt_config.c ->
     reference section
     neomuttrc.5
 reference list has negative score so that
@@ -24,7 +24,7 @@ folders
     panel/xyz
 :help <tab> completion
 
-functions.h, opcodes.h, init.h -> md?
+functions.h, opcodes.h, mutt_config.c -> md?
 NO LINK?
     seldom changing
     new config -> update: index, section, rc.5
@@ -35,7 +35,7 @@ slash separators for URIs / paths
 seldom changing
 functions.h - functions
 opcodes.h - ops
-init.h - cfg
+mutt_config.c - cfg
     mutt -D -> csv, json?
 
 functions.h
@@ -45,7 +45,7 @@ OpPager, OpAttach, ... (13)
 opcodes.h
     OP_GROUP_REPLY, "desc help" (247)
 
-init.h
+mutt_config.c
     "alias_format", DT_STR, defval, comment (447/-23)
 
 sort (6 sets)

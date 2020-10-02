@@ -681,9 +681,9 @@ DT_PATH in init.c file. Am I wrong or should those:
 
 better use PATH_MAX? Additionally I saw:
 
-  - <https://github.com/neomutt/neomutt/blob/b8466bf029ea6ec1c409c65b75e6b7a1820b9635/init.h#L2285>
+  - <https://github.com/neomutt/neomutt/blob/b8466bf029ea6ec1c409c65b75e6b7a1820b9635/mutt_config.c#L2285>
 
-in init.h file, that use 1 instead of true and talks about "mutt"
+in mutt_config.c file, that use 1 instead of true and talks about "mutt"
 instead of "NeoMutt".
 
 --------------------------------------------------------------------------------

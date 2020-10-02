@@ -283,7 +283,7 @@ AC could change
 
 
 Do we need the base hash for the initial version?
-can we just use init.h as before?
+can we just use mutt_config.c as before?
 
 inherited HEs *need* ptr to parent *and* embedded value
 when "reset" need both
@@ -312,7 +312,7 @@ ACs need to be listeners of the base
 
 register types
 ∀ module register vars
-(init.h line)
+(mutt_config.c line)
 
 var has
 	name
@@ -321,7 +321,7 @@ var has
 	initial value
 
 hash table has 1 HE per variable
-HE has ->init.h type
+HE has ->mutt_config.c type
 
 1) read config: set originary vars
 name(hashed) -> HE			} repeat
@@ -493,7 +493,7 @@ log it anyway
 
 
 doc section sorting and folding mail
-2 sb vars in init.h -- UL OPT_X!
+2 sb vars in mutt_config.c -- UL OPT_X!
 5 uses of HC vars outside HC
 struct Option, data, init -> intptr_t
 triv - move mime.types
@@ -665,7 +665,7 @@ Design
 	register some types
 	register some vars
 	cs -> hash -> he[]
-	init.h muttvars unsorted -> ~200 strcmps
+	mutt_config.c muttvars unsorted -> ~200 strcmps
 
 	follow
 	"hc_pagesize" (long type)
@@ -677,7 +677,7 @@ Design decisions
 	container, hash
 	problems - completion
 	redistribute
-	keep init.h format, keep (var*) & vars
+	keep mutt_config.c format, keep (var*) & vars
 	reduce scope of externs
 	isolation of vars/externs
 

@@ -20,11 +20,10 @@ L10N unify messages, _() them
 
 add cs, ac, inh code
 put in calls to generate types & cleanup
-dupe init.h -> data.c, register variables
 rework parse set to update cs & test
 rework mutt -D to use cs & test
 	(implement dump modes, or easy task)
-create listeners ∀ init.h flags & test
+create listeners ∀ mutt_config.c flags & test
 	debug lines for each possible notification
-factor out docs from init.h (gut muttrc)
-drop init.h, globals.h, options.h, mutt.h
+factor out docs from mutt_config.c (gut muttrc)
+drop globals.h, options.h, mutt.h

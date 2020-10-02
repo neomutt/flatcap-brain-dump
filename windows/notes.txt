@@ -152,7 +152,7 @@ Deglobalise all IndexWin, PagerWin uses
 Encapsulate ncurses calls
 Eliminate (Index|Pager)Win
 Notifications ∀ Win changes
-Eliminate R_X flags in init.h / config
+Eliminate R_X flags in mutt_config.c / config
 All Win ops use Windows API
 Encapsulate Colours -> API
 

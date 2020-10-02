@@ -40,7 +40,6 @@ TRUE/FALSE → BOOL return [01]; 752 occurrences
 bracket logic
 
 doc switch drop-throughs
-sort options in: init.h, globals.h, functions.h, switches
 
 functions - move static before public
 	reduce / remove need for forward declarations
@@ -87,7 +86,6 @@ Comments on
 	functions
 	block
 	removal of junk comments
-	init.h functions
 
 Indent
 	our source files
@@ -143,8 +141,6 @@ spurious \ line endings (in middle of if!)
 check for unused #include
 sort includes <>, ""
 
-sort init.h, globals.h, etc
-
 kill one-line if's:
 	if (adsfa) command;
 
@@ -160,7 +156,6 @@ cleanup:
 		rebracket
 		refold
 	sort options in
-		init.h
 		globals.h
 		functions.h
 		switches

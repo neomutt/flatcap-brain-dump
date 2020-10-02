@@ -39,7 +39,7 @@ NeoMutt's basic Types are:
 * String
 
 Now we register some Variables.  Each is represented by a VariableDef which
-is similar to the format in `init.h`
+is similar to the format in `mutt_config.c`
 
     /* Name            Type     Variable      Initial      Validator */
     { "timeout",       DT_NUM,  &Timeout,     600,         NULL },
