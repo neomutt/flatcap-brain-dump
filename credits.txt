@@ -1,0 +1,16 @@
+credits repo - separate out from management
+travis *cron daily* - check main repos for commits
+also check translate branch, update if nec, credits, mailmaps
+README: sections [123] header, flatcap, admins?
+list of committers since last release
+list of committers in last 6 months
+plus others
+repo "credits" style to fit into website
+since last release: new/returning
+last updated timestamp (if changed)
+
+credits repo
+	thanks, mailmap
+	pictures?
+	split by recent-ness: last 6 months (with pics), and the rest
+

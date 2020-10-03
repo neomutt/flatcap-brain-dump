@@ -4,46 +4,22 @@ add .desktop file with icon
 readme in copr repo
 	put rpm build scripts in repo too
 
-drop --debug?
-
-check what COPR installs
-	docs/
-	dupes + empty files!
-
 neomutt-unstable for devel-features
 	would need to be completely automated
 	sell to users mailing list!
 	or neomutt-nightly
 
-API automate
-
-nightlies - arch/osx
-	=> not [devel/*]
-
 check stats 1 week after release, 2 weeks
-
-copr install "find . -name '*.neomutt' -delete"
-	deletes some files I want
 
 move constants out of the spec file into the build script
 
-sync hurricanehrndz's suse spec file
-
-change "version" to 2016MMDD
+change "version" to 2020MMDD
 	=> increase epoch
 	provide mutt = OLDMUTTVER
-
-remove dotlock references
-
-add autocrypt
-add lua?
 
 copr: regen FC30 2018 build
 
 notes for fedora/copr to use coredumpctl in the event of a crash
-
-gpgme?
-	enable by default?
 
 fedora min install, add
 	make
@@ -57,5 +33,6 @@ everything build?
 RHEL old notmuch?
 	how old?  0.28?
 
-centos 6,8?
+add Bug URL: to spec file
+	drop 'group'
 

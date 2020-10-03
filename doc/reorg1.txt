@@ -75,3 +75,11 @@ glossary
 	bounce
 	forward
 
+docs
+	convert from utf-8 to local $charset
+	header for 404 page - do-not-display?
+	accept web addresses http:// and do the right thing
+		cli too?
+	yaml authors: could get long (envelope->from)
+	improve this page, use {{ page.path }}
+

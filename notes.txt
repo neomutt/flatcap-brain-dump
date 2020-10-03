@@ -5,7 +5,10 @@ expandos
 	or add extra expandos for selected big fields
 	%s (subject), %st (subject truncation-marked)
 
-howto - bisect your config
+webpage: how to debug neomutt problems
+	bisect config
+	null config
+	etc
 
 Alias colours for deleted, tagged, search
 	(or defined some standard names/colours for these states)
@@ -465,17 +468,6 @@ rename mbox - what happens to hcache?
 	what happens currently with IMAP? - lost? unreachable
 	NOTHING
 
-credits repo - separate out from management
-travis *cron daily* - check main repos for commits
-also check translate branch, update if nec, credits, mailmaps
-README: sections [123] header, flatcap, admins?
-list of committers since last release
-list of committers in last 6 months
-plus others
-repo "credits" style to fit into website
-since last release: new/returning
-last updated timestamp (if changed)
-
 issue template -> folding section + ``` ?
 setenv doesn't accept "X?" to query only "?X"
 mutt_date_localtime_l (with C locale?)
@@ -567,9 +559,12 @@ screenshots
 	svg - fake sidebar divider line?
 	termtosvg - hide cursor
 
-:verbose set -- like vim
+:verbose set/color/etc
+	like vim
 	save location of last setting of var
 	config, cli, etc
+	show when/who last set that variable/color/etc
+	debug/devel only?
 
 "mailboxes -folded X"
 "mailboxes -recurse X"
@@ -617,8 +612,6 @@ man validate: mandoc -Tlint file.1
 
 attach_abort, macos, use ENHANCED symbol?
 
-DT_LONG to BIGNUM? (+/-2^31)
-
 <f1> help
 <f2> web help, use mailcap!
 ConfigDef
@@ -644,16 +637,6 @@ docs for log vim syntax, conceallevel=2
 
 folded struct in C is private 'o' symbol
 	comment for folded function
-
-76KLoC (ignore space and {}s)
-	1400 original
-	52K rich
-	6700 kevin
-	6100 pietro
-	2400 roessler
-	83.5% Neo
-	14.7% Mutt
-	1.8% orig
 
 universal docs - all text and SVG
 
@@ -731,7 +714,8 @@ config
 	always store as string
 	merge create_synonym and inherit variable?
 
--Wextra
+enable -Wextra ?
+	how much noise?  quite a bit
 	183 signed-ness
 	268 unused param
 	  9 missing field (PrexStorage)
@@ -859,6 +843,7 @@ backend->does_mailbox_exist()
 	be->open_mailbox()
 
 Mailbox, Email - rearrange members: pure data first, connecting pointers,
+	see #1870
 	private data, last view data - move into inline View struct?
 	move into external view struct?
 	func data is from file/server - no config required, no globals
@@ -875,11 +860,6 @@ project "next release"
 	notes, triage, todo, done
 
 VIM update
-
-credits repo
-	thanks, mailmap
-	pictures?
-	split by recent-ness: last 6 months (with pics), and the rest
 
 split up management repo?
 
@@ -1071,8 +1051,6 @@ endwin(); printf(); refresh()
 	save the output of ALL commands
 	and log it twice: to LOG and normal screen
 
-chop down 'long' config item to int (64 -> 32 bits)
-
 tag emails, then save|copy -- no progress
 
 shrink 'code' repo, or replace empty and restart
@@ -1096,10 +1074,6 @@ mail_check_stats(_interval) -- A-specific
 	use *un*folder-hook to have different settings for
 	current and 'other' accounts
 
-upstream
-	config - resize long
-	hcache size -> 'long'
-
 log_disp_debug_terminal
 	*everything* to stdout
 
@@ -1113,12 +1087,8 @@ hcache leaking
 	logs output raw to neomutt debug log
 	mutt_error() if it fails
 
-webpage: how to debug neomutt problems
-	bisect config
-	null config
-	etc
-
 feature: live filter index as you type, cf sidebar matcher
+	fuzzy?
 
 neo maildir header/message cache
 	auto-add README.md, saying
@@ -1185,12 +1155,6 @@ deferred config evaluation
 	need to be careful to avoid double evaluation
 	don't want backends evaluating ``s either (transparent)
 
-enable -Wextra ?
-	how much noise?  quite a bit
-	unused parameters
-	unsigned compare
-	uninitialised struct members
-
 core lib
 	NeoMutt, Config, Account, Mailbox, Notify
 	can it be made independent?
@@ -1220,8 +1184,6 @@ lgtm shield for dev page
 https://img.shields.io/lgtm/alerts/github/neomutt/neomutt.svg?logo=lgtm
 
 merge/collate email generator scripts
-
-conststrings build failed in zh_CN.utf-8
 
 reduce all branches
 how much debug code's acceptable?
@@ -1497,8 +1459,6 @@ move temp file into for loop in nntp_fetch_headers()?
 	parse_overview_line()
 	mutt_file_mkstemp()
 
-gfx repo upload screenshots, readmes in dirs
-
 list autosetup release/commit hash visibly
 	(for downstream packagers)
 
@@ -1561,9 +1521,6 @@ new cache config
 	name translations like offlineimap?
 
 are $spoolfile, $mbox, mbox-hook needed?
-
-copr add Bug URL: to spec file
-	drop 'group'
 
 add issue templates for
 	'easy' task
@@ -1635,10 +1592,6 @@ merge mailbox.c and mx.c?
 	now that there aren't any deps
 	may need to move parse_(un)mailboxes out
 	no? mailbox.c for Mailbox-y things, mx.c for mxapi stuff
-
-:verbose set/color/etc
-	show when/who last set that variable/color/etc
-	debug/devel only?
 
 RE-opening mailbox
 	postpone, trash, edit msg, send message (fcc ^)
@@ -1904,7 +1857,7 @@ users
 	formatoptions needs 'n'
 
 create a coding 'charter'
-	what's expected
+	what's expectedzh_CN.utf-8zh_CN.utf-8zh_CN.utf-8
 		from you
 		from us
 
@@ -1966,8 +1919,6 @@ convert mutt_expando_format() and family to use intptr_t
 email
 	move 'ignore' code to regex? (replacelist)
 
-neolog vimrc, 'set wrap linebreak showbreak=\ \ \ '
-
 create custom error functions, that do the domain-specfic lookup, e.g.
 	mutt_regex_error
 	mutt_imap_error (exists)
@@ -1980,17 +1931,11 @@ add "I'm a developer" issue template
 
 devel guide: "how to bisect"
 
-what's the difference between
-	bool address_uses_unicode(const char *a)
-	bool addresses_use_unicode(const struct Address *a)
-
 param order differs from other functions
 	make_reference_headers()
 
 bug
 	can't encrypt-to-self if original email isn't encrypted
-
-copr use idn2 & gpgme
 
 packagers
 	gpgme dep?  enable by default
@@ -2004,29 +1949,12 @@ hcache lazy_malloc/realloc
 struct Message
 	where does this fit into the email?
 
-docs
-	convert from utf-8 to local $charset
-	header for 404 page - do-not-display?
-	accept web addresses http:// and do the right thing
-		cli too?
-	yaml authors: could get long (envelope->from)
-	improve this page, use {{ page.path }}
-
-issue template
-	vunerability : email owner directly
-
 web key directory for gpg keys for neomutt
 
 nntp all message ranges should be checked against the context
 
 Header data #ifdefs
 	drop POP/NNTP #ifdefs for libemail
-	use data for maildir instead of maildir_flags
-
-web
-	is layout: header nec?
-	they all use the same one
-		except post
 
 html email
 	I use this: text/html; elinks -dump 1 -config-dir ~/.mutt/ %s; nametemplate=%s.html; copiousoutput
@@ -2116,10 +2044,6 @@ use neomutt as a viewer/pager for emails
 remove umask code from mh.c
 	redundant due to `umask(077)` in main.c
 
-build script
-	if clang else gcc
-	optional compiler flags
-
 State object -> library
 	excluding AttachmentMarker
 
@@ -2132,8 +2056,6 @@ shield for freenode/irc --- silver searcher
 need (vim-like) foldopen option for search matches
 	what else should open a fold?
 	jump?
-
-post conceal vim to dev/prog-tips page
 
 setup function to make aliases
 
@@ -2378,9 +2300,6 @@ any others?
 
 mutt-wizard: contact, adopt?
 
-all contributors -> list
-	script to gen readme
-
 use inotifywait to find all the build tmp files and .gitignore them
 
 deprecation -- offer list of old names
@@ -2417,9 +2336,6 @@ bug in nntp cache
 	why aren't the body cache files in the nntp dir?
 	why is the file called ".active" hidden file?
 		or is the host missing?
-
-add neomutt.vim to COPR
-	need to tag repo to match release
 
 add "Add profile picture" to welcome letter
 
@@ -2477,9 +2393,6 @@ startup: doc all routes to exits
 	coverage?
 	from call graph work out which variables are ref'd
 		NO: all globals could be
-
-gdb ignore mutt/*.[ch]
-	-> dev ml?
 
 libconn
 	conn/getdomain.c -> conn/dns.c
@@ -2540,13 +2453,6 @@ check for !*var
 	some int vars -> (*num == 0)
 	LOTS of them
 	worth doing?
-
-logging
-	mutt_index_menu() [1119]: Got op 151
-	can we lookup the name of 151?
-	no.  we can only lookup the description
-	could add "OP_XYZ" to struct #ifdef DEBUG
-	"key is not bound" error doesn't say which key
 
 might want to add a "Other comments" heading at the end of the PR template
 	rawtaz (irc)

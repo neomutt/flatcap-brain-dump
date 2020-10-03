@@ -140,6 +140,7 @@ format strings
 
 intptr_t vs long in config
 	shrink DT_LONG
+	DT_LONG to BIGNUM? (+/-2^31)
 
 remove #ifdef for #defines and enums
 	replace #ifdef with a comment
@@ -225,6 +226,7 @@ convert `struct MhSequences` to `MhSeqArray`
 add contract to mxapi
 	declutter called functions
 	add API mbox_is_empty()
+	mbox exists/create/delete
 
 typedefs that should be in library headers to reduce dependencies
 	sort_t

@@ -335,3 +335,22 @@ add brief README.md to each library dir
 		build dependencies
 		or push these to the code docs?
 
+copr add Bug URL: to spec file
+	drop 'group'
+
+neolog vimrc, 'set wrap linebreak showbreak=\ \ \ '
+
+web
+	is layout: header nec? NO
+	defaults!
+	https://jekyllrb.com/docs/configuration/front-matter-defaults/
+	https://jekyllrb.com/docs/layouts/
+	they all use the same one
+		except post
+build script
+	if clang else gcc
+	optional compiler flags
+
+invite newbies to review PRs (or at least ask questions)
+	expand reviewers to all, so they are notified
+

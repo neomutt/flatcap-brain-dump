@@ -56,3 +56,8 @@ $index_format dates
 
 imap compression
 
+gdb ignore mutt/*.[ch]
+	-> dev ml?
+
+post conceal vim to dev/prog-tips page
+
