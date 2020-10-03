@@ -226,3 +226,16 @@ add contract to mxapi
 	declutter called functions
 	add API mbox_is_empty()
 
+typedefs that should be in library headers to reduce dependencies
+	sort_t
+	format_t
+	handler_t
+	module_init_config_t
+
+set_focus() -> return old focus, so that it can be returned to
+
+on segfault, write backtrace to neomutt-bt-YYYY-MM-DD-HH:MM:SS.txt?
+	include version text
+	include github issues address
+	cwd, or /tmp?
+

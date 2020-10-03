@@ -3,7 +3,7 @@ expandos
 	HOW?
 	alter formatting syntax %-min.maxS ?
 	or add extra expandos for selected big fields
-	%s (subject), %st (subject truncatation-marked)
+	%s (subject), %st (subject truncation-marked)
 
 howto - bisect your config
 
@@ -14,8 +14,6 @@ Alias colours for deleted, tagged, search
 	combine colours
 	vim's hls only highlight matched part
 		colour line, highlight match!
-	sort_alias missing REVERSE flag
-		allows `last-` flag clash!
 
 add build and analysis pages to welcome email
 	revamp newbie page
@@ -64,6 +62,14 @@ limit neomutt support to versions less than
 
 change config errors to file:line for easier vim
 	where else are file / line nums used?
+	mutt_debug(LL_DEBUG1, "%s:%d: ERROR: unlink(\"%s\"): %s (errno %d)\n", src, line, buf, strerror(errno), errno);
+	mutt_debug(LL_DEBUG1, "%s:%d: ERROR: unlink(\"%s\"): %s (errno %d)\n", src, line, mutt_b2s(buf), strerror(errno), errno);
+	mutt_debug(LL_DEBUG3, "%s:%d: mutt_mktemp returns \"%s\"\n", src, line, buf);
+	mutt_debug(LL_DEBUG3, "%s:%d: mutt_mktemp returns \"%s\"\n", src, line, mutt_b2s(buf));
+	mutt_error(_("Bad history file format (line %d)"), line);
+	mutt_error(_("Error in %s, line %d: %s"), rcfile, lineno, err->data);
+	mutt_error(_("Improperly formatted entry for type %s in \"%s\" line %d"), type, filename, line);
+	mutt_warning(_("Warning in %s, line %d: %s"), rcfile, lineno, err->data);
 
 mouse scroll should move viewport (natural)
 	rather than focus
@@ -116,12 +122,6 @@ eliminate 53 strcmp()s + 1 strncmp()?
 
 mx.h dependencies - ensure API defn headers are dependency free
 	move to libmutt? / libcore? (because of Mailbox)
-
-typedefs that should be in library headers to reduce dependencies
-	sort_t
-	format_t
-	handler_t
-	module_init_config_t
 
 nntp_auth() split up into separate functions, like other backends?
 
@@ -428,9 +428,9 @@ change OP_X to exactly match function name?
 split up MxOps?
 	have backends register their functions?
 
-split mx.c mx_{mbox,msg,path}.c
+split mx.c mx_{ac,mbox,msg,path,tags}.c
 
-{backend}/{mbox,msg,path,tags}.c ∀
+{backend}/{ac,mbox,msg,path,tags}.c ∀
 
 Distinguish all IMAP logging by its connection details
 	create imap_debug() macro
@@ -539,12 +539,6 @@ emails[] split - stepping stone
 	notifies to another part of self to update frontent array
 	frontend behaves as normal during transition
 
-help page should collate shortcuts
-	currently sorted by ASCII
-		in keybindings
-	M & m distant!
-	collate
-
 memory usage
 	where's it all going?
 	need tree of objects
@@ -573,10 +567,6 @@ screenshots
 	svg - fake sidebar divider line?
 	termtosvg - hide cursor
 
-update copyright date
-
-mutt_clear_error() - obsolete?  eliminate?
-
 :verbose set -- like vim
 	save location of last setting of var
 	config, cli, etc
@@ -590,29 +580,12 @@ Window observer WIN_DELETE as d'tor!
 cli text mode option - sets $ascii_chars
 	how can we do this automatically?
 
-set_focus() -> return old focus, so that it can be returned to
-
 add capability to use external browser to attach files in compose
 	it returns a list of files
 	e.g. vifm
 
 docs: two types of dialog: pager, index
 	plus passive windows
-
-add brief README.md to each library dir
-	quick description
-	links to [devel] arch pages
-	links to [user] dialog pages
-	note
-		which configure options enable the code
-		build dependencies
-		or push these to the code docs?
-
-on segfault, write backtrace to neomutt-bt-YYYY-MM-DD-HH:MM:SS.txt?
-
-format string functions: unify naming?
-	pattern_format_str()
-	make_pattern_entry()
 
 use `ifdef` to test if file exists?
 	syntax?

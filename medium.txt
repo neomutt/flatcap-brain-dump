@@ -33,3 +33,11 @@ setenv to use the message window, rather than stdout
 
 (daedric?) - pager url ANSI escape sequence
 
+help page should collate shortcuts
+	currently sorted by ASCII
+		in keybindings
+	M & m distant!
+	collate
+
+mutt_clear_error() - obsolete?  eliminate?
+

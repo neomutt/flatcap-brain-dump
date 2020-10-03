@@ -108,10 +108,6 @@ deglobalise
 string fn to pretty print \t, \r, \n for tests
 	handle NULL, quote string
 
-mutt_parse_rc_line(char *line, struct Buffer *token, struct Buffer *err)
-	'token' is a tmp buffer -> 'tmp' (or 'scratch')
-	or eliminate it with the BufferPool
-
 wrong name, should be _free()
 	void mutt_addrlist_clear(struct AddressList *al)
 	...
@@ -327,4 +323,15 @@ WRONG - depends on strlen(C_ArrowString)
     /* move the cursor out of the way */
     if (C_ArrowCursor)
       mutt_window_move(menu->win_index, 2, menu->current - menu->top);
+
+update copyright date
+
+add brief README.md to each library dir
+	quick description
+	links to [devel] arch pages
+	links to [user] dialog pages
+	note
+		which configure options enable the code
+		build dependencies
+		or push these to the code docs?
 
