@@ -315,8 +315,6 @@ menu globals, not freed on exit?
 	can't find where it's freed
 	char *SearchBuffers[MENU_MAX];
 
-alter ASAN page to mention `--asan`
-
 WRONG - depends on strlen(C_ArrowString)
 	why bother for non Braille?
 	cursor isn't visible
@@ -335,22 +333,9 @@ add brief README.md to each library dir
 		build dependencies
 		or push these to the code docs?
 
-copr add Bug URL: to spec file
-	drop 'group'
-
 neolog vimrc, 'set wrap linebreak showbreak=\ \ \ '
 
-web
-	is layout: header nec? NO
-	defaults!
-	https://jekyllrb.com/docs/configuration/front-matter-defaults/
-	https://jekyllrb.com/docs/layouts/
-	they all use the same one
-		except post
 build script
 	if clang else gcc
 	optional compiler flags
-
-invite newbies to review PRs (or at least ask questions)
-	expand reviewers to all, so they are notified
 

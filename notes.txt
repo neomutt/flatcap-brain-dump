@@ -2781,9 +2781,6 @@ deprecate muttrc in favour of neomuttrc
 	5 Wait a few releases
 	6 Drop muttrc
 
-debug config options
-	-O0 -g what else?
-
 "wrapmargin" config option needs deprecating like the synonyms
 
 notifications happen when something happens, e.g. new mail
@@ -2855,8 +2852,6 @@ magic -- set *string*, save *int*
 	or both?
 	retrieve string from Mapping[value]
 
-buffer code solaris9(2005!) check
-
 predefined buffer macros (static)
 	=> addstr could fail (out of space)
 	easier memory management
@@ -2869,8 +2864,6 @@ keep their own var lists?  register at startup?
 
 now that IMAP, et al, are compiled-in, what's in the docs
 	that might be excluded (makedoc conditional)
-
-check management README (missing)
 
 two stage index update?
 	hide, refresh
@@ -2909,9 +2902,6 @@ Misc
 	3) User's muttrc? NO
 	4) $XDG_CACHE_HOME? NO
 
-RFC
-	account command user ml, devel ml
-
 Decide
 	#ifdef DEBUG
 	move some web/discuss to "hard"
@@ -2926,20 +2916,11 @@ Searches
 
 add release count to changes doc on web
 
-options accelerator '&' double up to escape
-static buffer parse translations on first run
-needs to cope with missing options or
-options reordered -- still need "letters" internally
-NO, need letters in po file
-
 modular mutt: imap & nntp share some functions
 "subscribe" -- both should declare and mutt notifies both?
 or can it tell whose command it is?
 
 devel list - favourite vim plugins -- promote mine?
-
-each variable type in mutt_config.c should have its own validator
-(null for free form strings, or unranged numbers)
 
 relative 'source'ing of files doesn't work if the base is a symlink
 
@@ -2995,7 +2976,6 @@ index folding cf vim
 vim plugin - cino options etc
 
 travis/neomutt-test-configs configs & build tags
-mutt_config.c -> options.[ch]
 eliminate WHERE
 mutt -D options
 shrink authors (split out)
@@ -3095,10 +3075,6 @@ web toplevel dir
 	move all samples from the guide
 	link guide to samples
 
-configure summary?
-	--disable-docs -> docs:         no
-	--disable-po   -> translations: no
-
 topics for my github repos, icons?
 
 mutt marks -- are they mailbox-local?
@@ -3141,13 +3117,6 @@ investigate:
 	global config
 	list all the IMAP variables
 	list all their uses
-
-github/irc bot.  notify on:
-	@neomutt/reviewers Please Review -> "guyzmo asked for review of #298 (Desc)"
-	"flatcap approved #298 (Desc)"
-
-github peer review bot:
-	https://github.com/felixrieseberg/peer-review-bot
 
 work towards: no commit without an issue
 	A reviewer's "OK" for an idea can come from:
@@ -3478,8 +3447,6 @@ create file on all neo members
 imap supports queries
 	"+?query=tab:inbox"
 
-un-named-mailboxes needs to work against path or description
-
 website
 	404 is static!
 	manual/guide -- not a collection
@@ -3565,18 +3532,11 @@ need way to repeatably test net failure
 find all non-mail users of pager
 	add to index/pager tests
 
-does label workflow make sense for PRs?
-	if not, why not
-
 index preview mode - display 'n' lines of the email body
 	when in the index
 
 nested-if -- index-format display ? if doesn't match string put in
 	%<> changed to %? !
-
-move separate tools to a separate tools directory
-	adjust ctags to ignore them
-	or, if no deps, move to contrib
 
 bot on server to mail dev list on git commits?
 
@@ -3662,10 +3622,6 @@ multi-line index.  options:
 	for current thread
 wrap long fields
 sacrifice height to save width
-
-justify every file in the neo build
-	use min-build to start
-	show compilation steps
 
 mime-typer plugin
 	notify if the mime type doesn't match what *you* think it should be
