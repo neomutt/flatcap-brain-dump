@@ -241,3 +241,6 @@ on segfault, write backtrace to neomutt-bt-YYYY-MM-DD-HH:MM:SS.txt?
 	include github issues address
 	cwd, or /tmp?
 
+convert mutt_command_get() to use bsearch()
+	already has compare function
+
