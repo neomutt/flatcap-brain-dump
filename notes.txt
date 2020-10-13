@@ -1,3 +1,13 @@
+notmuch address search, adjusted to neomutt query format
+	notmuch address --output=sender %s | sed 's/\(.*\) <\(.*\)>$/\2\t\1/'
+	notmuch address --output=count --output=sender %s | sed 's/\([0-9]\+\)\t\(.*\) <\(.*\)>$/\3\t\2\t# \1/'
+
+neo-bot de-dupe entries before display
+
+pager:
+	option to turn off wrapping
+	then have functions to scroll left/right?
+
 expandos
 	option / mechanism to show which fields have been truncated `…` 
 	HOW?

@@ -340,9 +340,7 @@ build script
 	optional compiler flags
 
 investigate whether we need both Menu->mdata and Menu->redraw_data
-	NO
-
-cfa -> cfd, cfd1, cfdm, cfat
+	Yes, compose
 
 can we eliminate R_REFLOW yet?
 	are ALL dialogs affected by config events?
