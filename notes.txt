@@ -1,3 +1,16 @@
+on mailbox_sync()
+	does the frontend *know* what's changed?
+	should sync() be given a subset of E?
+	what benefit?  rest might change anyway (externally)
+
+sort_alias default to "unsorted"?
+	since it affects the query menu
+
+pinned issues
+	I need help - how to ask for help, how to write a good issue
+	I want to help - how to join us
+	I want to thank you - star, donate, help, "thanks" -> irc
+
 notmuch address search, adjusted to neomutt query format
 	notmuch address --output=sender %s | sed 's/\(.*\) <\(.*\)>$/\2\t\1/'
 	notmuch address --output=count --output=sender %s | sed 's/\([0-9]\+\)\t\(.*\) <\(.*\)>$/\3\t\2\t# \1/'

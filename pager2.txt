@@ -1,0 +1,11 @@
+pager 2.0
+
+text, formatting, display, file
+windows/dlg
+events: resize, painting, navigation
+layers of formattting
+handlers for Body types
+Event loop outside
+
+EmailPager, HelpPager, SummaryPager?
+

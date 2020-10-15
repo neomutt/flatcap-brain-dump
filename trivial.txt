@@ -348,3 +348,10 @@ can we eliminate R_REFLOW yet?
 make static
 	const struct Command mutt_commands[] = {
 
+master/main
+github/upstream for flatcap repos
+sync script looking for upstream remotes pull/push
+
+ctags dev page
+	s/doc/docs/
+

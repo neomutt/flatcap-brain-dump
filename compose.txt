@@ -59,3 +59,19 @@ tab_format_string %To, %Subject, etc
 	=> can't do global stuff!
 or does it?  only override *send* cfg in *sub*
 rest drops through
+
+background compose (treat like tabs)
+	<goto-tab>0 -> index
+	<goto-tab>1 -> first backgrounded compose
+	2 -> second, etc
+	use menu for >9
+
+background compose
+	enhance select menu to have preview windoow
+	select -> fullscreen!
+
+background
+	csub: empty, inactive until bg, then full
+	isub: full: ask index to populate
+	asub: pass-through
+what happens to `:set` ?

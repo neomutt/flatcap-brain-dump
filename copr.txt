@@ -36,3 +36,9 @@ RHEL old notmuch?
 add Bug URL: to spec file
 	drop 'group'
 
+user flatcap/neomutt-test as a downgrade repo
+	keep previous build here
+
+create neomutt-stable, neomutt-latest repos?
+	too much work to maintain
+

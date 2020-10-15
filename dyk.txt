@@ -61,3 +61,13 @@ gdb ignore mutt/*.[ch]
 
 post conceal vim to dev/prog-tips page
 
+<grummund> Can a folder hook supply the pathname of the mail folder to a shell command it calls out to?
+<grummund> something like...
+<grummund> folder-hook lists/* 'set from = `script.sh $dir`@example.com'
+<kevin8t8> grummund: you can set an environment variable that you reference from the script.
+<kevin8t8> grummund: folder-hook . 'set visual=^'
+<kevin8t8> grummund: folder-hook . 'setenv MYCURFOLDER $visual'
+<kevin8t8> this assumes you aren't using $visual for anything, and uses the folder shortcut '^' to get the current folder with path variable expansion.  then assigns it to the envvar of your choice.
+
+msg ranges, relative, ^, $, .
+

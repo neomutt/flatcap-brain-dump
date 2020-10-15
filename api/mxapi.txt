@@ -12,6 +12,7 @@ msg_* needs everything, tags_* too
 mxapi guarantee includes
 	m->hdrs
 	m->v2r
+	(these are front-end things, backends shouldn't see them)
 
 path $trash, resolve -> M(magic, path, real, ops)
 	flag as minimal?
@@ -40,6 +41,9 @@ if path is just relative path, then we need to manipulate $folder after it's set
 need mxapi trash function - two variants
 	sibling mailboxes - fast_trash()
 	non-sibling mailboxes - copy_trash()
+	who decides which is called?
+	always call fast() -> NO_POSSIBLE?
+	then call slow()
 
 mxapi add
 	mbox_create()
