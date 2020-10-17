@@ -1,3 +1,18 @@
+allow <limit> in the pager, so the user can
+	<limit><enter> to refresh the index
+
+*live* limit (config option?)
+	limit is reapplied after any action
+	`~N` limit: emails disappear after reading (e.g. in Pager)
+
+<jindraj>
+	I know about one case when tag prefix doesn't work.
+	When you use internal pager and have pager_index_lines set to some positive number.
+	Tag multiple messages, open any message, then tag prefix doesn't work, all actions are applied only to a opened message.
+	It may be misleading because you can see the messages tagged.
+<tag-prefix> isn't implemented for the pager
+	should it be?
+
 on mailbox_sync()
 	does the frontend *know* what's changed?
 	should sync() be given a subset of E?
@@ -740,7 +755,7 @@ config
 enable -Wextra ?
 	how much noise?  quite a bit
 	183 signed-ness
-	268 unused param
+	306 unused param
 	  9 missing field (PrexStorage)
 	 12 missing field ConnAccount
 

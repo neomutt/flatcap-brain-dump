@@ -129,3 +129,20 @@ where are the magic structs in the code?
 	mutt/list.h
 separate files for each magic struct to reduce dependencies?
 
+--------------------------------------------------------------------------------
+
+the header cache keys seem to include the full path
+if we have separate caches per Mailbox, then we don't need them
+key should be JUST the canonical name
+for maildir that means no path, no flags
+	probably ought to drop the ,S=6074,W=6162 fields too
+
+all the keys are paths, IDs or hashes
+	add a separate data key with info
+_NEO_DATA
+	version of _NEO_DATA
+	neomutt-version
+	mailbox type
+	path
+	creation date
+

@@ -345,13 +345,31 @@ investigate whether we need both Menu->mdata and Menu->redraw_data
 can we eliminate R_REFLOW yet?
 	are ALL dialogs affected by config events?
 
-make static
-	const struct Command mutt_commands[] = {
-
 master/main
 github/upstream for flatcap repos
 sync script looking for upstream remotes pull/push
 
-ctags dev page
-	s/doc/docs/
+#define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
 
+unused!
+ * notify_observer_add - Add an observer to an object
+ * @param type        Notification type to observe, e.g. #NT_WINDOW
+
+update test-library
+
+log_disp_terminal doesn't honour log_file_set_level(LL_DEBUG1, false);
+
+not used
+	mh_parse_dir
+	bool is_old = false;
+
+swap.  if we're going to stop, do it before a slow operation
+	while (((de = readdir(dirp))) && (SigInt != 1))
+
+maildir_parse_flags
+        case 'T': /* trashed */
+          if (e->flagged && C_FlagSafe)
+should set flags, then update in frontend if C_FlagSafe condition is met
+
+Email indent
+	struct Body *body;        ///< List of MIME parts
