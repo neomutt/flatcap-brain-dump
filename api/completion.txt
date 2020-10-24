@@ -160,3 +160,20 @@ COMPLETE
 4	[alicia|  ]	4*<tab>
 5	[al|      ]	5*<tab>, no matches, return to start
 
+--------------------------------------------------------------------------------
+
+Existing completion functions
+	alias_complete
+	complete_all_nm_tags
+	complete_hosts
+	imap_complete
+	mutt_command_complete
+	mutt_complete
+	mutt_hist_complete
+	mutt_label_complete
+	mutt_nm_query_complete
+	mutt_nm_tag_complete
+	mutt_var_value_complete
+	nntp_complete
+	query_complete
+

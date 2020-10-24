@@ -145,4 +145,5 @@ _NEO_DATA
 	mailbox type
 	path
 	creation date
+check this data on opening the cache
 

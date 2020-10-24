@@ -1,3 +1,38 @@
+event scripting
+	<gahr> I want an integration with a scripting language
+	<jindraj> lua?
+	<gahr> and the integration is event driven
+	<gahr> jindraj: I don't care too much
+	<flatcap> who are you?  and what have you done with gahr?
+	<gahr> so neomutt issues events like key_pressed, or message_opened
+	<gahr> and those functions are implemented in a script and can call to neomutt commands
+	<flatcap> that would be very nice...
+	<gahr> key_pressed(key) { if (key == 'a') { neomutt::open_folder('imaps://....') }
+	<flatcap> but I'm damned if I know how you'll do it!
+	<gahr> you'd get rid of macros, folder-hooks, everything
+	<gahr> just events
+	<flatcap> one of my reasons for refactoring the dialogs is as preparation for moving the main event loop...
+	<flatcap> i'd like one getch() in main() that distributes events to the "focussed window" (or wherever)
+	<flatcap> it would also include timers (so we can get rid of the imap code in the getch())
+	<flatcap> delegating events to a script would be simple
+
+signature
+	warns if missing
+	defaults to a file!
+
+add hcache warning
+	I wonder if neomutt should warn me about this
+	"hey you have configured header_cache=foo/ but foo is a file, not a directory"
+
+focus in/out. useful?
+	https://unix.stackexchange.com/a/480138/417458
+	http://invisible-island.net/xterm/ctlseqs/ctlseqs.html
+	There's a FocusIn/FocusOut mode. To enable:
+		echo -ne '\e[?1004h'
+	To disable:
+		echo -ne '\e[?1004l'
+	On each focus event, you receive either \e[I (in) or \e[O (out) from the input stream.
+
 allow <limit> in the pager, so the user can
 	<limit><enter> to refresh the index
 
@@ -189,8 +224,6 @@ review SORT_*
 
 travis shellcheck scripts
 	[release]?
-
-rawhide broken
 
 devel feature - docs/web link to "may change" page
 
