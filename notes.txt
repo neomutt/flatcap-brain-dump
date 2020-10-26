@@ -1,3 +1,6 @@
+move progress api to library
+	does that mean we need a default implementation
+
 event scripting
 	<gahr> I want an integration with a scripting language
 	<jindraj> lua?

@@ -39,7 +39,7 @@ update (x) on the same scale
 
 store start time in P
 	user can show elapsed time
-	calcalate ETA (if > n secs)
+	calculate ETA (if > n secs)
 
 callback function (P, data)
 	run when needed
@@ -85,9 +85,8 @@ Progress becomes notification
 Progress notify happens on P object (parent is M or E)
 	P object has M/E ptr?
 
-progress clear on 100% means 100% will never be show to user!
+progress clear on 100% means 100% will never be shown to user!
 time mbox, maildir, imap with LARGE mailboxes, cf mutt & old neomutt
-doxy update %ages, add test coverage %age by fn count
 
 progress - how to do progress_done() cleanly on all error paths
 
@@ -99,4 +98,8 @@ status bar:
 	Label [XXXXXXXX........] Label [XXX.............]
 	or shrink
 	[XXXX....][XX.......]
+
+progress API -- copy logging API
+	have global progress dispatcher
+	extern struct Progress *MuttProgress = progress_disp_{window,text,null};
 

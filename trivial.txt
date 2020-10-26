@@ -377,3 +377,10 @@ re-work and publish docs/config/design*.md to web/dev
 
 copy turkish
 
+const buf
+rename params
+	size_t mutt_mb_mbstowcs(wchar_t **pwbuf, size_t *pwbuflen, size_t i, char *buf);
+
+rename to maildir_*
+	int           md_cmp_inode             (const void *a, const void *b);
+

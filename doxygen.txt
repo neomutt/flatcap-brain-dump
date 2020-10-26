@@ -170,3 +170,4 @@ only to subdir versions with path/file
 	config/sort.c
 	sidebar/sort.c
 
+doxy update %ages, add test coverage %age by fn count
