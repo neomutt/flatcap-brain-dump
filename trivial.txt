@@ -357,10 +357,6 @@ unused!
 
 log_disp_terminal doesn't honour log_file_set_level(LL_DEBUG1, false);
 
-not used
-	mh_parse_dir
-	bool is_old = false;
-
 swap.  if we're going to stop, do it before a slow operation
 	while (((de = readdir(dirp))) && (SigInt != 1))
 
@@ -383,4 +379,9 @@ rename params
 
 rename to maildir_*
 	int           md_cmp_inode             (const void *a, const void *b);
+
+refactor mutt_hcache_open()
+  	move to separate function
+	if (hcachever == 0x0) { calc; }
+
 

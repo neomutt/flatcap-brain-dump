@@ -1,3 +1,46 @@
+devel_new_mail_command
+	for maildir only (for now)
+	log command output
+	not on screen unless failed
+
+testing maildir
+	need functions to (create/move/delete) (mailboxes/emails)
+
+add visual feedback for SIGINT-interruptability?
+	is this just synonymous with progress bar?
+	probably
+
+hcache
+	split dir and key
+	don't save dir for *dir* cache
+	eliminate UIDVALIDITY? UIDNEXT?
+	fold into key?
+	or into cache name?
+
+hcache #1870
+	strip each struct
+	each in separate header file
+	move cached first
+	comment marking END
+	store as memcpy for speed and space?
+
+eliminate helper functions
+	compress_get_ops()
+	compr_get_ops()
+	etc
+	store the state somewhere and use that instead
+
+hcache leak?
+	enable compression
+	open hcache
+	disable compression
+	close hcache
+see
+	mutt_hcache_close()
+		if (C_HeaderCacheCompressMethod)
+			compr_get_ops()->close(&hc->cctx);
+need to save compress ops in `hc`
+
 move progress api to library
 	does that mean we need a default implementation
 

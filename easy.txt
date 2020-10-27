@@ -244,3 +244,5 @@ on segfault, write backtrace to neomutt-bt-YYYY-MM-DD-HH:MM:SS.txt?
 convert mutt_command_get() to use bsearch()
 	already has compare function
 
+change file tests to clean up tmp/ afterwards
+
