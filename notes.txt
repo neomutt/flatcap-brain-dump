@@ -10,36 +10,11 @@ add visual feedback for SIGINT-interruptability?
 	is this just synonymous with progress bar?
 	probably
 
-hcache
-	split dir and key
-	don't save dir for *dir* cache
-	eliminate UIDVALIDITY? UIDNEXT?
-	fold into key?
-	or into cache name?
-
-hcache #1870
-	strip each struct
-	each in separate header file
-	move cached first
-	comment marking END
-	store as memcpy for speed and space?
-
 eliminate helper functions
 	compress_get_ops()
 	compr_get_ops()
 	etc
 	store the state somewhere and use that instead
-
-hcache leak?
-	enable compression
-	open hcache
-	disable compression
-	close hcache
-see
-	mutt_hcache_close()
-		if (C_HeaderCacheCompressMethod)
-			compr_get_ops()->close(&hc->cctx);
-need to save compress ops in `hc`
 
 move progress api to library
 	does that mean we need a default implementation
@@ -65,10 +40,6 @@ event scripting
 signature
 	warns if missing
 	defaults to a file!
-
-add hcache warning
-	I wonder if neomutt should warn me about this
-	"hey you have configured header_cache=foo/ but foo is a file, not a directory"
 
 focus in/out. useful?
 	https://unix.stackexchange.com/a/480138/417458
@@ -1196,10 +1167,6 @@ log_disp_debug_terminal
 
 notify_remove() needs data for exact match
 
-hcache leaking
-	lmdb 4 + 3*Account + 2*Mailbox objects
-	maildir 2*Account + 2*Mailbox objects
-
 <quiet> option for <pipe-message> and <shell-escape>
 	logs output raw to neomutt debug log
 	mutt_error() if it fails
@@ -1396,9 +1363,6 @@ different lists for different jobs?
 	email/email.h defines `struct Email`
 	Index needs an EmailViewList of EmailViewNode (for gui stuff)
 	Notifications needs an EmailNotifyList of EmailNotifyNode (for diff notify types)
-
-move/copy email should keep hcache valid
-	msgid may change, so we might need new hcache entry
 
 context-sensitive help should work ∀ prompts,
 	e.g. 's' to save email, default location comes up,
@@ -2057,11 +2021,6 @@ bug
 packagers
 	gpgme dep?  enable by default
 	deprecate old ssl/tls versions
-
-hcache lazy_malloc/realloc
-	who else uses similar scheme, Buffer?
-	move to library
-	investigate the 129 reallocs in neomutt
 
 struct Message
 	where does this fit into the email?

@@ -147,3 +147,40 @@ _NEO_DATA
 	creation date
 check this data on opening the cache
 
+split dir and key
+don't save dir for *dir* cache
+eliminate UIDVALIDITY? UIDNEXT?
+fold into key?
+or into cache name?
+
+#1870
+strip each struct
+each in separate header file
+move cached first
+comment marking END
+store as memcpy for speed and space?
+
+hcache leak?
+	enable compression
+	open hcache
+	disable compression
+	close hcache
+see
+	mutt_hcache_close()
+		if (C_HeaderCacheCompressMethod)
+			compr_get_ops()->close(&hc->cctx);
+need to save compress ops in `hc`
+
+add hcache warning
+	I wonder if neomutt should warn me about this
+	"hey you have configured header_cache=foo/ but foo is a file, not a directory"
+
+hcache leaking
+	lmdb 4 + 3*Account + 2*Mailbox objects
+	maildir 2*Account + 2*Mailbox objects
+
+hcache lazy_malloc/realloc
+	who else uses similar scheme, Buffer?
+	move to library
+	investigate the 129 reallocs in neomutt
+

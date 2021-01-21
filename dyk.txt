@@ -74,3 +74,5 @@ post conceal vim to dev/prog-tips page
 
 msg ranges, relative, ^, $, .
 
+folder-hook =trash             'push <delete-pattern>~d>30d<enter>'
+
