@@ -347,3 +347,6 @@ calc visibility ∀ M, cfg, whitelist; sort entries, cfg
 reframe hilight on screen; ∀ SBEntry: select colour
 abbrev, calc depth
 
+floating sidebar (on right)
+	hovers over index
+

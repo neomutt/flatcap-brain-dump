@@ -384,4 +384,7 @@ refactor mutt_hcache_open()
   	move to separate function
 	if (hcachever == 0x0) { calc; }
 
+store/bdb.c (uint32_t)
+	u_int32_t createflags = DB_CREATE;
+
 

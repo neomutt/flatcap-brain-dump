@@ -1,3 +1,24 @@
+compose: <edit-type> doesn't refresh screen!
+
+pattern for matching mime/types?
+
+./configure /tmp
+
+.neomuttdebug*
+	log "neomutt -v" output on startup
+	minimise it
+
+reference CONTRIBUTING.md in newbie-tutorial
+
+(un)focus-hook
+	change check_stats timings!
+
+hcache metadata - be specific about Mailbox maildir:/path
+
+Email.path -> edata (mbox, maildir only? compressed?) notmuch?
+
+Email.*gui* -> Email.view {} move to end of struct
+
 devel_new_mail_command
 	for maildir only (for now)
 	log command output
