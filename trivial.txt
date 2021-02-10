@@ -365,26 +365,18 @@ maildir_parse_flags
           if (e->flagged && C_FlagSafe)
 should set flags, then update in frontend if C_FlagSafe condition is met
 
-Email indent
-	struct Body *body;        ///< List of MIME parts
-
 re-work and publish docs/config/design*.md to web/dev
 	https://github.com/neomutt/gfx/blob/master/arch/README.md#config-and-inheritance
 
 copy turkish
 
-const buf
 rename params
 	size_t mutt_mb_mbstowcs(wchar_t **pwbuf, size_t *pwbuflen, size_t i, char *buf);
-
-rename to maildir_*
-	int           md_cmp_inode             (const void *a, const void *b);
 
 refactor mutt_hcache_open()
   	move to separate function
 	if (hcachever == 0x0) { calc; }
 
-store/bdb.c (uint32_t)
-	u_int32_t createflags = DB_CREATE;
-
-
+BOOL
+	static void set_copy_flags(struct Email *e, bool decode, bool decrypt,
+	decode = 1;
