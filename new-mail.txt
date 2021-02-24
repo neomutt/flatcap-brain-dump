@@ -1,0 +1,36 @@
+new mail expandos
+	%n num
+	one notify per folder?
+	or %f! ∀ list
+	will we ever notify on mail in multiple folders? NO
+	they'll come separately
+	%s! %a! (for all subjects, all authors)
+	%{%a %s} for repeats?  complicated
+	%n %a! %s! num, author*num, subject*num - easier
+	\! for actual ! char
+	different %a for name, initials, alias name, full email, encoded email, etc
+	$ (sync) -> multitple new mail notifications! how to coalesce?
+	freeze(), notify() * n, thaw()
+	observer accumulates
+	who sends freeze() -- index? YES
+	with freeze/thaw should anyone send notifications with lists?
+	OR send *lots* of individual notifies?
+	LISTS - fewer big events, not separable
+
+new mail hook -- frequency limit
+	if time < 5s since last notification
+
+in index->compose->index, if new mail arrives, does NewMailCmd get called in both contexts?
+if NewMail is independent at dialog-level, same question.  same problem?
+ah! NewMail *isn't* dialog-level, it's N-level!
+probably - only 1 index gets *new mail* update, other is out-of-date!
+if $nmc is global -> N-level, what if A-level? or M-level?
+New mail notification happens on M, NMC (at N-level) observes,
+	uses M-sub to find command at M-, A- or N-level
+"easy" new-mail.c init after N, observe N, cleanup on N-close
+M-, A-, N-specific expandos for #new msgs *this call* vs total #new msgs
+new vs total => keep track of numbers => N, A, M-level counters?!
+before each call, may need to recalc totals,
+	on demand rather than continuously observing
+plugin reg, config, no commands, no colours, etc -> .so?  API needed
+

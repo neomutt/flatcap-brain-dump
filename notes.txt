@@ -1334,25 +1334,6 @@ maildir - (advanced, future)
 	merge-tool-like
 	accept change?  [New/Old]?
 
-new mail expandos
-	%n num
-	one notify per folder?
-	or %f! ∀ list
-	will we ever notify on mail in multiple folders? NO
-	they'll come separately
-	%s! %a! (for all subjects, all authors)
-	%{%a %s} for repeats?  complicated
-	%n %a! %s! num, author*num, subject*num - easier
-	\! for actual ! char
-	different %a for name, initials, alias name, full email, encoded email, etc
-	$ (sync) -> multitple new mail notifications! how to coalesce?
-	freeze(), notify() * n, thaw()
-	observer accumulates
-	who sends freeze() -- index? YES
-	with freeze/thaw should anyone send notifications with lists?
-	OR send *lots* of individual notifies?
-	LISTS - fewer big events, not separable
-
 release
 	add credits for bug raisers too
 	list first?
@@ -3647,9 +3628,6 @@ admins need to make a release in 1 week's time -- practice
 
 can we workaround the case of gpgme + self sign / smime?
 	but use it otherwise?
-
-new mail hook -- frequency limit
-	if time < 5s since last notification
 
 imap/pop ∀ devs
 	no outgoing

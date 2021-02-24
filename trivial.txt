@@ -380,3 +380,26 @@ refactor mutt_hcache_open()
 BOOL
 	static void set_copy_flags(struct Email *e, bool decode, bool decrypt,
 	decode = 1;
+
+check all string-list config items note the separator character
+	alter makedoc to use the slist flags to say:
+		string list (comma-separated)
+
+index:
+	OP_MAIN_CHANGE_FOLDER vs OP_MAIN_CHANGE_FOLDER_READONLY:
+	OP_MAIN_VFOLDER_FROM_QUERY vs OP_MAIN_VFOLDER_FROM_QUERY_READONLY
+	vfolder READONLY isn't handled correctly, doesn't follow READONLY path
+
+hdrline.c
+	NULL!
+	hfi.pager_progress = 0;
+
+in bcache/*.c
+	#include "bcache/lib.h"
+	drop bcache/
+	check for others
+		XXX/xyz.h in dir XXX
+
+send/lib.h
+	blank line in @page block
+
