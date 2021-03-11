@@ -1318,6 +1318,10 @@ after:
 feature:
 	create prefix commands
 	<sidebar-open> becomes <sidebar><open>
+	same for <thread>, <subthread>
+		<limit-current-thread> -> <thread><limit>
+	would this break the `bind` command?
+		or allow an exception for <prefix> + <function>?
 	just <open> means open the default thing with focus
 	use also for <skip-deleted><next> / <prev>
 	<focus> prefix to be explicit

@@ -390,16 +390,46 @@ index:
 	OP_MAIN_VFOLDER_FROM_QUERY vs OP_MAIN_VFOLDER_FROM_QUERY_READONLY
 	vfolder READONLY isn't handled correctly, doesn't follow READONLY path
 
-hdrline.c
-	NULL!
-	hfi.pager_progress = 0;
-
-in bcache/*.c
-	#include "bcache/lib.h"
-	drop bcache/
-	check for others
-		XXX/xyz.h in dir XXX
-
 send/lib.h
 	blank line in @page block
 
+hcache/restore.c
+	static struct Email *restore(const unsigned char *d)
+		STAILQ_INIT(&e->tags);
+		STAILQ_INIT(&e->chain);
+	no nec, done by email_new()
+	WRONG - while memcpy is used, STAILQ_INIT's are nec
+
+stats_last_checked isn't set, cf upstream
+	buffy.c
+	629:67:      (mutt_stat_timespec_compare (sb, MUTT_STAT_MTIME, &mailbox->stats_last_checked) > 0))
+	638:16:      mailbox->stats_last_checked = ctx.mtime;
+
+bad C functions
+	https://github.com/git/git/blob/master/banned.h
+
+compose 51 case statements, many share tmp vars
+	8	char buf[PATH_MAX];
+	4	struct Buffer fname;
+
+index, unnec? elim
+	int attach_msg = OptAttachMsg;
+
+compose - drop `if` -- if value hasn't changed nothing will happen anyway
+	if (old_sort != cs_subset_sort(sub, "sort"))
+	  cs_subset_str_native_set(sub, "sort", old_sort, NULL);
+	if (old_sort_aux != cs_subset_sort(sub, "sort_aux"))
+	  cs_subset_str_native_set(sub, "sort_aux", old_sort_aux, NULL);
+	search for other "x = old_x" (no point to `if`s)
+
+compile.c invert if
+	struct Mailbox *m = ctx_mailbox(ctx);
+	if (!m)
+	{
+	}
+	else
+	{
+	}
+
+reverse is bool
+struct Header *find_virtual(struct MuttThread *cur, int reverse)
