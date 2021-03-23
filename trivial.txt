@@ -377,10 +377,6 @@ refactor mutt_hcache_open()
   	move to separate function
 	if (hcachever == 0x0) { calc; }
 
-BOOL
-	static void set_copy_flags(struct Email *e, bool decode, bool decrypt,
-	decode = 1;
-
 check all string-list config items note the separator character
 	alter makedoc to use the slist flags to say:
 		string list (comma-separated)
@@ -389,9 +385,6 @@ index:
 	OP_MAIN_CHANGE_FOLDER vs OP_MAIN_CHANGE_FOLDER_READONLY:
 	OP_MAIN_VFOLDER_FROM_QUERY vs OP_MAIN_VFOLDER_FROM_QUERY_READONLY
 	vfolder READONLY isn't handled correctly, doesn't follow READONLY path
-
-send/lib.h
-	blank line in @page block
 
 hcache/restore.c
 	static struct Email *restore(const unsigned char *d)
@@ -415,21 +408,18 @@ compose 51 case statements, many share tmp vars
 index, unnec? elim
 	int attach_msg = OptAttachMsg;
 
-compose - drop `if` -- if value hasn't changed nothing will happen anyway
-	if (old_sort != cs_subset_sort(sub, "sort"))
-	  cs_subset_str_native_set(sub, "sort", old_sort, NULL);
-	if (old_sort_aux != cs_subset_sort(sub, "sort_aux"))
-	  cs_subset_str_native_set(sub, "sort_aux", old_sort_aux, NULL);
-	search for other "x = old_x" (no point to `if`s)
+coverage: enum, mbtable helpers not tested
 
-compile.c invert if
-	struct Mailbox *m = ctx_mailbox(ctx);
-	if (!m)
-	{
-	}
-	else
-	{
-	}
+doxy: layout
+	nm_string_to_query_type()
 
-reverse is bool
-struct Header *find_virtual(struct MuttThread *cur, int reverse)
+config var mismatch!
+  { "attach_save_without_prompting", DT_BOOL, &C_AttachSaveWithoutPrompting, false, 0, NULL,
+  char *C_AttachSaveWithoutPrompting; ///< Config: If true, then don't prompt to save
+
+reduce ternary
+      edata->old = c_mark_old ? true : false;
+
+toogley, compose optional clauses
+check all 17 format string blocks
+

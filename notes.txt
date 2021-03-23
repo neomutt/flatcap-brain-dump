@@ -1,3 +1,9 @@
+add graphviz to analysis web page
+
+replace greeting, attribution, signature, etc
+	%{greeting} ... %{attribution} ... %{signature}
+	mail-merge for one-off emails
+
 compose: <edit-type> doesn't refresh screen!
 
 pattern for matching mime/types?
@@ -1164,9 +1170,6 @@ tag emails, then save|copy -- no progress
 
 shrink 'code' repo, or replace empty and restart
 	exclude from mirroring
-
-'eval' command prefix for controlled evaluation of backticks, etc
-	or 'noeval' command => literal string
 
 configure allows --gnutls AND --ssl
 	need to warn/fail
@@ -2722,12 +2725,6 @@ connections
 	who negotiates ssl, sasl?
 	how does opportunistic ssl work?
 
-create mechanism for *literal* set variable
-	set pass = literal< ... >
-	how do you know where it ends?
-	perhaps literal must be the last thing on the line?
-	would the variable need to know?
-
 use summary log for informational info
 	Sent email "Subject" to
 		ppl-list
@@ -2813,10 +2810,6 @@ up-to-date list of functions/data for each library, split into:
 one (background?) colour for each library
 one shared colour for ALL static functions
 use ctags to generate lists
-
-create a literal string marker:
-	set x = /Don't "shoot"?/
-or something like vim's unmagic \V
 
 kill ISSPACE macro -- no benefit to having it
 	what about the (unsigned char*) cast in it?

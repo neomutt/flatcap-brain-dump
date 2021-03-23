@@ -1,0 +1,14 @@
+
+'eval' command prefix for controlled evaluation of backticks, etc
+	or 'noeval' command => literal string
+
+create mechanism for *literal* set variable
+	set pass = literal< ... >
+	how do you know where it ends?
+	perhaps literal must be the last thing on the line?
+	would the variable need to know?
+
+create a literal string marker:
+	set x = /Don't "shoot"?/
+or something like vim's unmagic \V
+

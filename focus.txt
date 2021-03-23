@@ -52,6 +52,12 @@ how is the focus shown to the user?
 	dimming other windows?
 	terminal cursor
 	extra colour for hightlight/selection?
+	on loss of focus:
+		selection becomes highlight-coloured
+		highlight loses colour
+	on gaining focus
+		selection regains selection colour
+		highlight regains highlight colour
 
 Events handled by Window.event()
 	requires wdata
