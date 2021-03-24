@@ -423,3 +423,21 @@ reduce ternary
 toogley, compose optional clauses
 check all 17 format string blocks
 
+pop/auth.c eliminate #ifdef DEBUG
+	(nearly) only use in entire code base
+
+retval desc wrong - 0/-1 success/error
+ * mutt_select_sort - Ask the user for a sort method
+ * @retval num Sort type, see #SortType
+
+optimise mutt_select_sort()
+	don't get old value
+	use cs_subset_str_native_set() retval to know if change occurred
+
+more const for all static data
+	const char *const AddressErrors[] = {
+
+trailing whitespace
+
+$mime_subject unused (NNTP)
+
