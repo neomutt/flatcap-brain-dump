@@ -240,8 +240,6 @@ convert mutt_command_get() to use bsearch()
 
 change file tests to clean up tmp/ afterwards
 
-signature: only warn if missing AND diff from default
-
 query append
 	change title to "X + Y + Z + ..."
 	for each new append

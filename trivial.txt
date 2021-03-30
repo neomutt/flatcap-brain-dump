@@ -339,11 +339,8 @@ build script
 	if clang else gcc
 	optional compiler flags
 
-investigate whether we need both Menu->mdata and Menu->redraw_data
-	Yes, compose
-
 can we eliminate R_REFLOW yet?
-	are ALL dialogs affected by config events?
+	7a0e1fdcd6are ALL dialogs affected by config events?
 
 master/main
 github/upstream for flatcap repos
@@ -380,6 +377,7 @@ refactor mutt_hcache_open()
 check all string-list config items note the separator character
 	alter makedoc to use the slist flags to say:
 		string list (comma-separated)
+	means adding SLIST_SEP_* flags to docs/config.c
 
 index:
 	OP_MAIN_CHANGE_FOLDER vs OP_MAIN_CHANGE_FOLDER_READONLY:
@@ -408,36 +406,6 @@ compose 51 case statements, many share tmp vars
 index, unnec? elim
 	int attach_msg = OptAttachMsg;
 
-coverage: enum, mbtable helpers not tested
-
-doxy: layout
-	nm_string_to_query_type()
-
-config var mismatch!
-  { "attach_save_without_prompting", DT_BOOL, &C_AttachSaveWithoutPrompting, false, 0, NULL,
-  char *C_AttachSaveWithoutPrompting; ///< Config: If true, then don't prompt to save
-
-reduce ternary
-      edata->old = c_mark_old ? true : false;
-
-toogley, compose optional clauses
-check all 17 format string blocks
-
 pop/auth.c eliminate #ifdef DEBUG
 	(nearly) only use in entire code base
-
-retval desc wrong - 0/-1 success/error
- * mutt_select_sort - Ask the user for a sort method
- * @retval num Sort type, see #SortType
-
-optimise mutt_select_sort()
-	don't get old value
-	use cs_subset_str_native_set() retval to know if change occurred
-
-more const for all static data
-	const char *const AddressErrors[] = {
-
-trailing whitespace
-
-$mime_subject unused (NNTP)
 
