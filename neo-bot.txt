@@ -29,3 +29,5 @@ lookup full github issue/PR paths too
 
 neo-bot killed by deleted issue #2529
 
+recognise config names, when asked directly and reply with one-liner description
+
