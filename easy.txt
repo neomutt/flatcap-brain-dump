@@ -244,3 +244,9 @@ query append
 	change title to "X + Y + Z + ..."
 	for each new append
 
+convert history search to use ARRAY
+
+.neomuttdebug*
+	log "neomutt -v" output on startup
+	minimise it
+

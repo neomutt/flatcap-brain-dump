@@ -9,10 +9,7 @@ compose: <edit-type> doesn't refresh screen!
 pattern for matching mime/types?
 
 ./configure /tmp
-
-.neomuttdebug*
-	log "neomutt -v" output on startup
-	minimise it
+	notify packagers
 
 reference CONTRIBUTING.md in newbie-tutorial
 
@@ -63,10 +60,6 @@ event scripting
 	<flatcap> i'd like one getch() in main() that distributes events to the "focussed window" (or wherever)
 	<flatcap> it would also include timers (so we can get rid of the imap code in the getch())
 	<flatcap> delegating events to a script would be simple
-
-signature
-	warns if missing
-	defaults to a file!
 
 focus in/out. useful?
 	https://unix.stackexchange.com/a/480138/417458

@@ -340,7 +340,7 @@ build script
 	optional compiler flags
 
 can we eliminate R_REFLOW yet?
-	7a0e1fdcd6are ALL dialogs affected by config events?
+	are ALL dialogs affected by config events?
 
 master/main
 github/upstream for flatcap repos
@@ -361,9 +361,6 @@ maildir_parse_flags
         case 'T': /* trashed */
           if (e->flagged && C_FlagSafe)
 should set flags, then update in frontend if C_FlagSafe condition is met
-
-re-work and publish docs/config/design*.md to web/dev
-	https://github.com/neomutt/gfx/blob/master/arch/README.md#config-and-inheritance
 
 copy turkish
 
@@ -408,4 +405,13 @@ index, unnec? elim
 
 pop/auth.c eliminate #ifdef DEBUG
 	(nearly) only use in entire code base
+
+docs: "delimited" lists -> "separated"
+
+doxy
+	mutt_alternates_match - XXX
+
+structs containing:
+	struct Notify *notify;
+	doxy link to, e.g. #NotifyEmail, #EventEmail
 
