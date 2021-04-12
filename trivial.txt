@@ -408,10 +408,3 @@ pop/auth.c eliminate #ifdef DEBUG
 
 docs: "delimited" lists -> "separated"
 
-doxy
-	mutt_alternates_match - XXX
-
-structs containing:
-	struct Notify *notify;
-	doxy link to, e.g. #NotifyEmail, #EventEmail
-
