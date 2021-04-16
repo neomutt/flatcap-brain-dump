@@ -4,8 +4,6 @@ replace greeting, attribution, signature, etc
 	%{greeting} ... %{attribution} ... %{signature}
 	mail-merge for one-off emails
 
-compose: <edit-type> doesn't refresh screen!
-
 pattern for matching mime/types?
 
 ./configure /tmp

@@ -5,16 +5,20 @@ Global
 	| %h     | Hostname
 	| %v     | NeoMutt version
 
-AL
+Config
+	| %S     | Current aux sorting method (`$sort_aux`)
+	| %s     | Current sorting method (`$sort`)
+
+Menu
+	| %P     | Percent of way through index
+
+A
 	| %b     | Number of incoming folders with unread messages
 	| %p     | Number of postponed messages
 
 MV
 	| %L     | Size (in bytes) of the messages shown (or limited)
 	| %M     | Number of messages shown (virtual message count when limiting)
-	| %P     | Percent of way through index
-	| %S     | Current aux sorting method (`$sort_aux`)
-	| %s     | Current sorting method (`$sort`)
 	| %t     | Number of tagged messages
 	| %V     | Currently active limit pattern
 

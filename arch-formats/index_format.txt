@@ -5,7 +5,6 @@ M
 	| %b     | Filename of the original message folder (think mailbox)
 	| %B     | The list to which the email was sent, or else the folder name (%b)
 	| %m     | Total number of message in the mailbox
-	| %q     | Newsgroup name (if compiled with NNTP support)
 
 EV
 	| %C     | Current message number
@@ -35,6 +34,7 @@ E
 	| %n     | Author's real name (or address if missing)
 	| %N     | Message score
 	| %O     | Like %L, except using address instead of name
+	| %q     | Newsgroup name (if compiled with NNTP support)
 	| %R     | Comma separated list of Cc: recipients
 	| %r     | Comma separated list of To: recipients
 	| %S     | Single character status of the message (N/O/D/d/!/r/-)

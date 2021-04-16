@@ -408,3 +408,15 @@ pop/auth.c eliminate #ifdef DEBUG
 
 docs: "delimited" lists -> "separated"
 
+scan-build
+
+reorg 'build' to add options conditionally on compiler
+
+reorg .extra to build CFLAGS
+
+refactor into ONE printf, adjust translations to just "Limit:"
+    mutt_str_asprintf(&tmp_str, _("Limit: %s"), limit);
+    mutt_str_asprintf(&new_title, "%s - %s", menu_name, tmp_str);
+
+test all graphviz (and other debug) functions compile and run
+
