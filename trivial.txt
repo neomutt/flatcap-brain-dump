@@ -420,3 +420,25 @@ refactor into ONE printf, adjust translations to just "Limit:"
 
 test all graphviz (and other debug) functions compile and run
 
+use ctags to look for reserved keywords, e.g. variables called private
+	then put in github action
+
+neo-bot
+	ignore (x < 100)
+
+use `gh gist` to update local mirrors
+	python scripts need to turn "private" repos into git@ urls
+
+homepage
+	cracking, mailman*2, docs:config
+
+iwyu
+	fix scripts to check for 'config.h'
+	common.sh file?
+
+look for static functions called mutt_*
+	static void mutt_update_recvattach_menu()
+
+mutt_string.c wrappers for the few mutt/string.c functions that use config
+
+copy asan configure/bash scripts to dev page

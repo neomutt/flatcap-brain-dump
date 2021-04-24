@@ -41,3 +41,9 @@ help page should collate shortcuts
 
 mutt_clear_error() - obsolete?  eliminate?
 
+struct AttachCtx
+	convert to ARRAY?
+	struct AttachPtr **idx; ///< Array of attachments
+	FILE **fp_idx;          ///< Extra FILE* used for decryption
+	struct Body **body_idx; ///< Extra struct Body* used for decryption
+
