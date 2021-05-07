@@ -1,3 +1,46 @@
+add stats page:
+	email stats about one email?
+		size, headers, etc?
+	mailbox stats
+		num emails, num uniq addr/recipients, size
+	click on num addrs for *list* of addrs
+		user can act on list: email, alias, etc
+	stats on all mailboxes, number, size
+	email stats across all mailboxes?
+	try to limit info to that in header cache for speed
+
+github action
+	check for @file header, etc
+	*.c need config.h
+	*.h need include guard
+	check for empty line at eof
+	*.c @page
+	"calc" undoc'd functions
+
+Live log message window (for devs?)
+	magic height
+	shown when several messages arrive in 1s => show all
+	Ctrl-L clear
+
+add dev docs for all --debug/--devel configure options
+	link to docs from ./configure --help
+
+in future with external event loop,
+	macros can be executed in one go, without refreshes
+	currently the keys get put into the buffer
+	then the index/pager/etc executes them individually
+	perhaps the user *wants* to see feedback for the macro?
+	-> <silent> (<verbose>) surrounds
+	end of macro -> !<silent>
+	nested macros will depend on if <verbose> were used in any
+	(cf vim lazyredraw, :silent)
+
+behaviour on multiple error messages?
+	stop action on first?
+	tell use to read <show-log-messages>
+	or a counter "error... (+2)"
+	or 1 sec timeout & queue
+
 why no <tag-pattern> in alias dlg?
 
 widescreen

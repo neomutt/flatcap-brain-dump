@@ -577,3 +577,26 @@ PBar - cached display string
 index_dispatcher(win_index, op)
 index_function(op, shared, private)
 
+--------------------------------------------------------------------------------
+
+reorg windows
+panel.c handles status_on_top?
+bar.c - self-contained status bar
+
+which windows have unique types?, which generic?
+how to tell Index/Pager panels apart (if generic)
+how many screens have IndexPanel, PagerPanel?
+how to callers get ptrs to Windows/Menu?
+	return struct of ptrs?
+
+Panel creates/destroys Menu - what happens when pager is hidden?
+	does Menu get reused or replaced?
+
+after IBar, PBar
+	mutt_do_pager(): add container, refactor to use pager_panel
+
+after index is Window-ised (and all the others)
+	can SigWinch be eliminated -- reflow only?
+	would need to include MessageWindow for resize duing text entry
+	screens just need to respong to NT_WINDOW rather than SigWinch
+
