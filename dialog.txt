@@ -530,3 +530,50 @@ focus -> *leaf* window
 	siblings of (2) NO
 	children of (R) NO, (R) YES, DONE
 
+--------------------------------------------------------------------------------
+
+create dlg(args) -> Win -> idata(args)
+win_free(dlg)
+index_run(dlg) no args
+	-> event loop()
+index_set_prop(dlg, p)
+index_reset(dlg)?
+dlg_push(dlg) -> focus -> external event loop
+dlg_pop() -> unfocus, free win -> free wdata
+index_run() - no init, done by index_init()
+	loop, getch(), process events, process idle
+
+menu needs refactor - de-looping
+	change to be window-centric
+
+who owns Views?
+who needs Views?
+what do the Views contain?
+
+
+ptr
+	shared -> dlg data (or Data)
+	private -> state info (or View)
+
+
+Who holds what data?
+--------------------
+
+Dlg - Current M,E (and MV, EV?) YES, Sub, Account, notify
+Sidebar: all sb stat info
+	needs A,AV,M,MV
+	ptr to dlg data
+IContainer - index state info
+Index - Menu/mdata
+IBar - cached display string
+	needs: (M, EV, E)
+	ptr to dlg data?
+PContainer - Pager state info
+Pager - Menu/mdata
+PBar - cached display string
+	needs (M,EV,E)
+	ptr to dlg data
+
+index_dispatcher(win_index, op)
+index_function(op, shared, private)
+
