@@ -449,3 +449,7 @@ tidy print_enriched_string()
 	move out of loop
 		const bool c_ascii_chars = cs_subset_bool(NeoMutt->sub, "ascii_chars");
 
+vim PlugUpdate assumes "master"
+
+fix fuzzer install
+

@@ -1,3 +1,50 @@
+config errors
+	file:linenum: error
+	print offending line
+	(+E1234?)
+	tidy filenames with '~' for errors
+	or relative to '.'
+
+merge gfx repo into website /gfx ?
+
+eliminate fallthroughs
+	index/pager/compose/etc
+	use functions
+
+banned.h
+	sprintf -> snprintf
+	etc
+
+config: allow dupe registrations
+	iff they are identical:flags, type, default
+
+socket: add timeout code
+
+safari77 : mutt_sidebar repo
+
+RFC6154 - set imap trash sent/record automatically?
+
+rtlexpand
+	add build option?
+	add to make (dist)clean?
+	DISTCLEAN_TARGETS
+
+build
+	add --undefined for ubsan
+	add debug prefix for asan option
+
+rename (synonym) <save-message> to <move-message>
+
+CHECK: neomuttrc.5 is correctly built (not missing */config.c)
+
+bug: pager: $wrap=0 doesn't clear '+'s at beginning of line
+
+add $imap_context like nntp to limit to recent emails
+
+add <function> for graphviz dump?
+
+too many <delete-*> functions -- need one which can be configured
+
 refactor all notify_observer_remove to use the supplied notify object
 
 change one-liner help to be useful as an error message when setting config?
