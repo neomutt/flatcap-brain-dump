@@ -175,3 +175,11 @@ update all copyright translations
 replace website flags with emoji flags
 	some missing
 
+translation for enumeration types
+	values: hour, day, week, month, year
+	translate each individually
+	put N_("") into lookup table
+	enum-validator prints allowable values + translations?
+		hour (Stunde), day (Tag), week (Woche), month (Monat), year (Jahr)
+
+add all one-liner help to translations N_("")?

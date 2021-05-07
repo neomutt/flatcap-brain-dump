@@ -3,9 +3,9 @@ Turning Menu into a library
 recalc() -> generate lines
 repaint() -> draw and free()
 
-can't observer data
+can't observe data
 doesn't understand data
-should observer colour and config
+should observe colour and config
 colour -> repaint Index, IBar
 
 If menu is separate window, with focus

@@ -1,3 +1,8 @@
+refactor all notify_observer_remove to use the supplied notify object
+
+change one-liner help to be useful as an error message when setting config?
+	see translate.txt
+
 add graphviz to analysis web page
 
 replace greeting, attribution, signature, etc
