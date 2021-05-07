@@ -1,0 +1,10 @@
+Patterns
+
+Marker		~, =
+Letter		[a-zA-Z], some symbols (Key)
+Param		None, simple (normal quoting), Custom (parse and update Buffer)
+Data		M, E, MV, EV, etc
+Functions	Parse, Compile, Free
+	Register, Compile, Execute, Free, Unreg?
+Docs (one-liner)
+
