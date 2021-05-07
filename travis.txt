@@ -239,3 +239,16 @@ travis xenial - try more compiler flags
 
 travis propagate idn2 fixes across all config
 
+--------------------------------------------------------------------------------
+
+replacement
+
+scripted builds for many branches
+master, devel/*, PR, PR(draft), flatcap/*
+coverity, doxygen, translate, release, coveralls - deployment
+release tests: build, (un)install
+trans: PO, stats, update-po
+docs, test config, make test, whitespace, doxygen
+out-of-tree build
+clang-format?
+Others: Cirrus, LGTM

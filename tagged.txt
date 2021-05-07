@@ -1,0 +1,12 @@
+Tagging
+
+where?
+	E vs M(EL) vs M.tagged = 'n'
+	EL vs EA! could be BIG
+
+if EA->fast lookup + size member
+notiify EA changed +/-, EA entire set
+sort by EV.index_num -- HOW? if it's EA, no view info!
+is it EA or EVA? afger E, EV split?
+cannot pass EVA to backends!
+
