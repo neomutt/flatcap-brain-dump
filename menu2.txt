@@ -1,0 +1,43 @@
+Menu 2
+
+Menu			Menu Data			View
+--------------		--------------			-----------
+page size		is_tagged			MenuData (read-only?)
+top			is_selected			* real data
+max			is_search_highlighted		caller-specific view data
+type			needs_repaint
+callback() * n		cached_string
+			is_visible
+			index_num
+
+ONE			ONE per Menu Item		One per Menu Item
+
+--------------------------------------------------------------------------------
+
+Caller creates Array of View*
+Menu treats it as Array of MenuData*
+All changes through menu_*(), set_sel(), set_tag(), get_sel()
+menu functions can invalidate specific items or whole menu
+external changes: new item, deleted item, resorted
+when freeing View, menu needs to free MenuData
+after external changes, invalidate whole menu - what happens to ViewPort?
+	if select still exists, then it should be visible
+	if not, caller dependent
+
+calc()
+	reframe selection in viewport, if nec
+	recalcand cache all visible items
+	(free cached items outside of viewport)
+	flag entries that have changed (need repainting), possibly all
+	set WA_REPAINT
+
+repaint()
+	redraw items flagged as needing repaint
+	or all if forced (need to add bool force to repaint())
+	notifications:
+		selection changed
+		tagged changed (+/- set of items)
+		viewport changed
+			size change (winch)
+			position change (page up/down)
+
