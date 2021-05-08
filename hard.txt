@@ -30,3 +30,7 @@ rewrite mutt_wstr_trunc()
 change large switch statements to [opcode, fn()] table
 	pass(op, ctx, flags?) -> 100s functions
 
+add timeout structs + callbacks for keymap.c
+	eliminate imap dependencies
+	on $imap_keepalive change alter timeout val
+

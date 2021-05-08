@@ -681,3 +681,40 @@ no-var
 	DT_SYN	var -> HE other
 	DT_DEP	var -> scalar/ptr
 
+config event: pass raw value
+	update observers to use value
+	rather than cs_subset?
+	does this make sense?
+	observer needs value associated with the *observed* object
+		not global
+		observer-specific?
+
+config: separate DEPRECATED, SYNONYM to separate arrays?
+	no advantage?  no
+
+config: LCOV_EXCL_LINE -> assert
+
+config: separate DT_TYPE from DT_FLAGS, eliminate DTYPE macro, etc
+
+--------------------------------------------------------------------------------
+
+config UNDERSCORE renames
+	doc old name
+	or reverse synonym?
+
+SYN flags NEO1 => certain date
+NEO_HIST => old conversion
+since NeoMutt 2021...
+
+flag synonyms/or new config so that CLI -O
+produces extra line:
+	Note: before NeoMutt vX, this was called $Alt
+
+add same to docs generation, leave for 6 months?
+
+register(synonym) modifies orig! +FLAG, +DATA!
+
+put "since" date in SYN data field
+
+--------------------------------------------------------------------------------
+

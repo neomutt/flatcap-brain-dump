@@ -1,3 +1,29 @@
+
+coverage: check dev analysis docs for new 'coverage' dir
+
+<thread><function>, <subthread> to act without tagging
+	like <tag-prefix>, add "-prefix" to above?
+
+elim Neomutt->sub from libmutt, then elim config
+
+nntp docs:
+	document '?' on screen to browse after 'i'
+
+multi-line error messages?  HOW?
+
+config parsing revamp
+	track stack of files 'source'd
+	track line numbers
+	batch mode flag -> do nothing for gui config like 'color'
+	cache locations of config
+		like vim's `:verbose set x`
+	need framework to delegate parsing
+
+split Menu and Pager
+	Menu for selectable *items*
+	pager for text
+	=> elim Menu->dialog[]
+
 add stats page:
 	email stats about one email?
 		size, headers, etc?
@@ -21,6 +47,13 @@ Live log message window (for devs?)
 	magic height
 	shown when several messages arrive in 1s => show all
 	Ctrl-L clear
+	list for logging (needs notify)
+	follow log, always at end (no user interaction?)
+	top-level window.  where?
+		side -> narrow
+		bottom -> short
+	page up/down could cause more logging!
+	simple interactions would have to be log free
 
 add dev docs for all --debug/--devel configure options
 	link to docs from ./configure --help

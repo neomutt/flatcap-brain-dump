@@ -600,3 +600,71 @@ after index is Window-ised (and all the others)
 	would need to include MessageWindow for resize duing text entry
 	screens just need to respong to NT_WINDOW rather than SigWinch
 
+should dlg_run() do push/pop & control visibility?
+	PROB
+
+when Index/pager are window-ised, elim R_* config flags
+
+can status_on_top be function-ised?
+	s_o_t(dlg, bool sot) look for WT_BAR ?
+
+--------------------------------------------------------------------------------
+
+COMPOSE
+separate files. dialog + each window/bar
+dialog: set up windows, handle status_on_top, own shared data
+envelope (custom) [envelope.c]
+attachment bar (simple bar) [none]
+attachment view (menu) [attach.c]
+compose bar (custom) [cbar.c]
+[functions.c] + [lib.c] (shared?)
+all externals mediated through dialog.[ch]
+shared data [shared.c]
+private data [private.c]
+
+--------------------------------------------------------------------------------
+
+mutt_do_pager() -> simple_pager() ?
+	plain text + colour codes
+wraps IndexSharedData around dlg
+
+move colours into callers!
+<show-log-messages>
+	process log -> mem, char * ARRAY (as it's small)
+	colour log.  in-place?
+		or part of ARRAY (as colouring is linewise)
+	write to file, pass to simple pager?
+
+simple pager honours colour codes and *continues* colour 
+	if the line is wrapped (multiple times)
+
+add colour to :bind, :set, :version, etc
+should be colour codes be custom or ANSI?
+
+Add some std filters for URLs, etc
+	-> magic ANSI seq
+ANSI -> :version could share markup
+
+--------------------------------------------------------------------------------
+
+different modes -> different Pagers?
+	or wrappers around one pager?
+different modes register different sets of functions!
+
+split view_attachment() into
+	simple_dlg() or display_message()
+
+move $pager_format into pager/config.c?
+
+make refresh_all() *flag* for change, no *do*it*
+
+--------------------------------------------------------------------------------
+
+Index/Pager
+
+Who opens/closes I/P?
+Is pager_index_lines identical to Index?
+who manages status_on_top
+	both Index and Pager and dlg?
+who marks new email, old on pager exit/change?
+
