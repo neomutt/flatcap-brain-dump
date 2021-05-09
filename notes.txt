@@ -1,3 +1,4 @@
+nntp: allow sub/unsub in index/pager
 
 coverage: check dev analysis docs for new 'coverage' dir
 

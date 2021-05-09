@@ -1,0 +1,24 @@
+Docs Overview
+
+xml	Whole guide
+txt	Whole guide
+html	single, multiple
+man	neomutt, (2*tools, 2*file format), neomuttrc
+rc	config, macros, colors (50 lines)
+
+neomutt.1
+	cli summary, details
+	env vars
+	file locations
+
+neomuttrc.5
+	quoting
+	commands syntax, desc (long)
+	patterns: list, logic
+	config: type, default, desc (long)
+
+Config: name, type, default, 1-liner, full, desc
+Functions: name, 1-liner, full desc
+One-liners are translated!
+Help backend (preferred reader of /usr/share/doc/neomutt?)
+

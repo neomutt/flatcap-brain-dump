@@ -1,3 +1,6 @@
+use @pre/@post !NULL
+	then elim lib checks
+
 calc number of #defines undocumented
 
 add href to each @page link to website

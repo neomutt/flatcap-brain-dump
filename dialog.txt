@@ -668,3 +668,5 @@ who manages status_on_top
 	both Index and Pager and dlg?
 who marks new email, old on pager exit/change?
 
+--------------------------------------------------------------------------------
+
