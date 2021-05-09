@@ -635,7 +635,7 @@ move colours into callers!
 		or part of ARRAY (as colouring is linewise)
 	write to file, pass to simple pager?
 
-simple pager honours colour codes and *continues* colour 
+simple pager honours colour codes and *continues* colour
 	if the line is wrapped (multiple times)
 
 add colour to :bind, :set, :version, etc
@@ -669,4 +669,124 @@ who manages status_on_top
 who marks new email, old on pager exit/change?
 
 --------------------------------------------------------------------------------
+
+Dialog -> Container -> WinMenu
+			  |
+			  V	(wdata)
+			Menu
+			  |	(mdata)
+			  V
+			Priv Data { Rows[], state info }
+
+WinMenu
+	Redraw flags
+	recalc() - check stat info, update view
+	repaint() - repaint to window
+
+Menu notifications -> WinMenu -> ... RootWindow
+
+Dispatcher -> functions can alter/manipulate
+	WinMenu - only to set RECALC
+	Menu - motion, selection, etc
+	PrivData - alter state/behaviour
+	*Data* - add/remove items
+
+Observers on Menu
+	Config, Colour, Window? -- Set up by Menu?
+	Data(rows)		-- Set up by Dialog?
+
+Data functions are unaware of Menu
+Notify on Data -> effect change!
+
+:unDATAx command modifies global DATA, sends NT_DATA
+	Menu observes NT_DATA, triggers recalc
+
+Who handles OP_TAG, OP_DELETE,etc?
+	Menu if MenuView
+
+Move is_{matches,tagged,deleted,visible} into Menu-specific struct
+MenuView { state_info, void *payload }
+MenuView {tagged} -> CustomView { display_subject } -> Object { data }
+Combine MenuView and CustomView for fewer allocs
+
+--------------------------------------------------------------------------------
+
+Window		->	Menu	->	Draw Data		Global
+------		 	----	 	---- ----		------
+resized, etc            Cursor move     new data                Colour
+visibility              repaging        del data                Config
+   |                       |               |                       |
+   V                       V               V                       V
+NT_WiNDOW                ???            custom NT_X             NT_COLOR
+   |                    NT_MENU         need to inform Menu     NT_CONFIG
+   V                       |            wrapper observes        needed by both
+Menu observes              V            manipulates Menu          Menu and Wrapper!
+                        IBar/PBar
+                        ---------                               Menu observes colour
+			recalc()                                but wrapper might use
+			repaint()                               others. same of config
+
+--------------------------------------------------------------------------------
+
+AllDialogs
+	dlg = create_simple(SimpleDialog)
+
+SimpleDialog
+	SimpleIndex(wdata) -> Menu(mdata) -> IndexData (dlg-specific)
+		Window: recalc(), repaint()
+		Observe: config (status_on_top)
+	SimpleBar(wdata) -> char *title
+		Window: recalc(), repaint()
+		Observe: colour, menu?
+
+Global
+	set_title()
+	get_menu()
+	get_index_win()
+
+External Observers
+	colour
+	data: Accound, Mailbox, Email, ???
+	config
+	recalc(), repaint()
+		how to attach?
+
+--------------------------------------------------------------------------------
+
+Menu: visible window is from index 20-40
+if item is added/deleted at position 4
+then ideally, the view wouldn't change NO!
+index number would change implying *complete* redraw
+Item added/deleted from position 4 => WA_REPAINT
+	=> loop of make_entry()
+	nothing can be usefully cached
+
+What happens if the user changes *sort*?
+
+--------------------------------------------------------------------------------
+
+Menu
+
+CALLER			MENU			Window			Terminal
+custom data             max                     [.] 0
+  [.] 0                 top                     [.]                     WINCH
+  [.]                   pagelen                 [.]
+  [.] top               index                   [.]
+  [.]                                           [.]
+  [.] index                                     [.] n
+  [.]
+  [.] max               menu_recalc() <-------- recalc()
+                        menu_repaint() <------- repaint()
+
+			calc=> recalc window position/limits -> WA_REPAINT
+                        repaint-> loop,make_entry() & display
+			window => WA_RECALC only
+
+data doesn't know what's visible
+*could* tell Menu 'object X has changed'
+	(or new or deleted)
+	NO!
+	meaningless to Menu, because Menu doesn't see data (ever)
+data changes => WA_REPAINT
+only use WA_RECALC for dimension changes?
 

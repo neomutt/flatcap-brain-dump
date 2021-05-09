@@ -1,2 +1,41 @@
-Backend
+Backend			Frontend
+
+Mailbox (changed)
+
+Emails			v2r (user sorted)
+	[.] --> E		3
+	[.] --> E		4
+	[.] --> E		1
+	[.] --> E		2
+
+E(changed) -> Env
+
+
+Mailbox observes *itself* to see E changes?!
+
+
+Function
+--------
+
+f(E) -> E'	<toggle-new>
+	notify(E, flags)  Changed 'X'
+	need flags ∀ changes
+	=> Mailbox
+
+M observes M
+	notify(M, flags)  Changed 'Y'
+	relay relevant to M
+
+
+Gui observes M
+	Decides if resort is nec (flags View *resort*)
+	Flags Window RECALC
+	Single E update -> RECALC (flag View *paint*single*)
+
+
+Gui recalc
+	sort? save current E, sort, restore selection => REPAINT
+	single? find E, recalc E => REPAINT
+
+other GUIs: Ibar, PBar, Sidebar
 
