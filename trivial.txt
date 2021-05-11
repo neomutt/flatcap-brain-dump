@@ -478,3 +478,26 @@ add dialog helper functions to get:
 
 Menu: SearchBuffers aren't freed on exit!
 
+rename index vars to idx to avoid index(3)
+
+attach refactor
+	libattach
+	dlg(view)attach
+	pass attach list to functions
+		(c.f. tagged emails)
+
+move mutt_X.[ch] into libX
+	deps don't matter, it's a separate src file
+	just mutt_history.*
+
+move hdrline to libindex?
+	rename
+
+icommands: fold into normal commands, drop separate src files?
+
+add X_new()/X_free() wrappers for non-trivial objects
+	AttachPtr, QClass, Regex, ListNode
+	SmimeKey, PgpUid, MuttThread, Message, Hook
+
+fix git hook for cherry-pic
+

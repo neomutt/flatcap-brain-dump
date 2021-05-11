@@ -790,3 +790,7 @@ data doesn't know what's visible
 data changes => WA_REPAINT
 only use WA_RECALC for dimension changes?
 
+do Window users need private redraw flags?
+	set_flag(win, flag)
+	auto-set WA_RECALC?
+

@@ -1,3 +1,6 @@
+reduce CI cost:
+	only run most test for test/NAME branches
+
 colours:
 	add flags to definitions?  TAKES_REGEX?
 	add callback parse function?
