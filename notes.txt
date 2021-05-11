@@ -1,3 +1,18 @@
+colours:
+	add flags to definitions?  TAKES_REGEX?
+	add callback parse function?
+
+struct Email: adding notify changed the struct
+	check hcache version is diff for release
+
+github action: lcov/coverage
+	deploy to repl
+	integrate into website
+	update coveralls site too
+
+docs: add page describing all config types
+	including all flags (subtypes)
+	
 nntp: allow sub/unsub in index/pager
 
 coverage: check dev analysis docs for new 'coverage' dir
