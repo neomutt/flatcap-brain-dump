@@ -38,6 +38,10 @@ Help
 Status bar
 	click		???
 
+Message window
+	click		(on error message)
+			show more help, more detail
+
 mouse support, change cursor to pointer, rather than I-beam
 
 click on divider - reduce sidebar to 1 char wide

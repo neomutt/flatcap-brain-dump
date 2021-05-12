@@ -1,3 +1,8 @@
+color command doesn't update pager!
+	`color header fg bg .`
+	it would mean re-rendering the email to re-embed the colour codes
+	setting SigWinch-1 forces the issue
+
 reduce CI cost:
 	only run most test for test/NAME branches
 

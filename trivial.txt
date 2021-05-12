@@ -459,8 +459,7 @@ update releases webpage
 
 add `rm compile_commands.json` to distclean
 
-iwyu script ∀ lib dirs
-	parameterise iwyu.sh '*.c' -> selects correct backend script
+iwyu: parameterise iwyu.sh '*.c' -> selects correct backend script
 
 unify names of all:
 	wdata_free functions
@@ -499,5 +498,17 @@ add X_new()/X_free() wrappers for non-trivial objects
 	AttachPtr, QClass, Regex, ListNode
 	SmimeKey, PgpUid, MuttThread, Message, Hook
 
-fix git hook for cherry-pic
+fix git hook for cherry-pick
+
+libbrowser?
+	dlgbrowser
+	split up deps
+	elim Menu->is_mailbox_list!
+	elim menu_loop() static local var `last_position`
+
+keymap.c
+	replace all `enum MenuType menu` with `mtype`
+
+rename retval to `op` ∀ int km_dokey(enum MenuType menu)
+	backport into [devel/refactor]
 

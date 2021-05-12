@@ -1,0 +1,68 @@
+Terminal -> SIGWINCH
+curses_signal_handler() -> SigWinch=1 (needs to be atomic)
+
+Event loops
+-----------
+	index/pager - custom call to km_dokey()
+	Simple + others - menu_loop()
+	mutt_enter_string_full() - custom km_dokey()
+	questions: mutt_yesorno(), mutt_multi_choice(), query_quadoption()
+		- custom mutt_getch()
+	mutt_change_flag(), menu_dialog_dokey() - custom mutt_getch()
+
+mutt_resize_screen()
+	get LINES, COLUMNS
+	NT_WINDOW ∀
+external event, e.g. edit file
+	resize and repaint
+
+Event loop - RESIZE
+	get_ch (convert to OP)
+	resize
+		mutt_resize_screen()
+			set_root(cols, rows)
+			window_reflow()
+			window_notify_all()
+		NT_WINDOW
+		WA_RECALC
+	redraw
+		window_redraw()
+			window_reflow()		# KILL
+			window_notify_all()	# KILL
+			window_recalc()
+			window_repaint()
+
+Ctrl-L (OP_REDRAW)
+	get_ch (OP_REDRAW)
+	window_invalidate(root)
+		∀ win WA_REPAINT
+	redraw
+		window_redraw()		# clearok() first?
+		window_recalc()
+		window_repaint()	# refresh() after?
+
+clearok()
+	ctrl-L? YES
+	resize? NO
+	external? YES
+
+extract RootWindow, NULL param -> RootWindow, static?
+
+Resize (SBar) needs observer (NT_WINDOW) => WA_REPAINT
+Resize (Sidebar) NT_WINDOW -> WA_RECALC -> WA_REPAINT
+Resize (SimpleDlg) needs observer (NT_WINDOW) -> WA_RECALC, MENU_FULL, WA_REPAINT
+	repaint() -> menu_redraw()
+Ctrl-L (Index/Pager) -> win_invalidate(), win_redraw()
+	Index needs observer(NT_WINDOW) -> WA_RECALC, MENU_FULL, WA_REPAINT
+	Pager - same
+OP_NULL - some op with no visual change (event loop startup)
+	redraw -> window_redraw()
+		=> window_recalc() NOOP
+		=> window_repaint() NOOP
+
+mutt_need_hard_redraw()
+	external tools / pin entry
+
+who repaint(force)?
+	NONE => win_invalidate()
+
