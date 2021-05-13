@@ -137,13 +137,6 @@ flagify
 	#define MUTT_UNBIND  1<<0
 	#define MUTT_UNMACRO 1<<1
 
-mutt_mailbox.c rename var?
-	struct stat contex_sb;
-
-rename to 'index'?
-	hdrline.c
-	struct HdrFormatInfo
-
 find out meaning of "ci_" prefix, or drop it (curses interface?)
 	CI_is_return
 	ci_bounce_message
@@ -161,19 +154,7 @@ find out meaning of "ci_" prefix, or drop it (curses interface?)
 
 eliminate complicated macros (multiline, conditionals, many callers)
 refactor complicated or oft-used macros
-	index.c:144:1:       CAN_COLLAPSE     5
-	pager.c:285:1:       CHECK_ACL        28
-	pager.c:277:1:       CHECK_ATTACH     42
-	recvattach.c:100:1:  CHECK_ATTACH     19
-	compose.c:118:1:     CHECK_COUNT      32
-	pager.c:261:1:       CHECK_MODE       34
-	pager.c:269:1:       CHECK_READONLY
-	recvattach.c:82:1:   CHECK_READONLY
-	pattern.c:93:1:      CTX_MSGNO        5
 	email/mime.h:85:1:   ENCODING         7
-	pager.c:254:1:       IsAttach         10
-	pager.c:257:1:       IsEmail          42
-	pager.c:255:1:       IsMsgAttach      22
 	email/mime.h:77:1:   is_multipart     8
 	mutt/buffer.h:43:1:  MoreArgs         78
 	mutt/regex3.h:52:1:  REG_COMP         18
@@ -183,9 +164,6 @@ refactor complicated or oft-used macros
 	mutt/string2.h:60:1: terminate_buffer 9
 	mutt/string2.h:51:1: terminate_string 5
 	email/mime.h:83:1:   TYPE             35
-
-this typedef doesn't match the pattern for function typedefs
-	keycode_t         keymap.h          /^typedef short keycode_t;$/;"
 
 main.c
 	text outside of else, search for others (over 60 comments before else)
@@ -306,11 +284,6 @@ isn't used!
 'l' bad choice of param name
 	First l chars of both strings are equal
 
-xgettext: warning: msgid 'Attachment saved' is used without plural and with plural.
-                   recvattach.c:647: Here is the occurrence without plural.
-                   recvattach.c:822: Here is the occurrence with plural.
-                   Workaround: If the msgid is a sentence, change the wording of the sentence; otherwise, use contexts for disambiguation.
-
 menu globals, not freed on exit?
 	can't find where it's freed
 	char *SearchBuffers[MENU_MAX];
@@ -339,18 +312,11 @@ build script
 	if clang else gcc
 	optional compiler flags
 
-can we eliminate R_REFLOW yet?
-	are ALL dialogs affected by config events?
-
 master/main
 github/upstream for flatcap repos
 sync script looking for upstream remotes pull/push
 
 #define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
-
-unused!
- * notify_observer_add - Add an observer to an object
- * @param type        Notification type to observe, e.g. #NT_WINDOW
 
 log_disp_terminal doesn't honour log_file_set_level(LL_DEBUG1, false);
 
@@ -415,8 +381,8 @@ reorg 'build' to add options conditionally on compiler
 reorg .extra to build CFLAGS
 
 refactor into ONE printf, adjust translations to just "Limit:"
-    mutt_str_asprintf(&tmp_str, _("Limit: %s"), limit);
-    mutt_str_asprintf(&new_title, "%s - %s", menu_name, tmp_str);
+	mutt_str_asprintf(&tmp_str, _("Limit: %s"), limit);
+	mutt_str_asprintf(&new_title, "%s - %s", menu_name, tmp_str);
 
 test all graphviz (and other debug) functions compile and run
 
@@ -438,16 +404,26 @@ iwyu
 
 look for static functions called mutt_*
 	static void mutt_update_recvattach_menu()
+	mutt_bcache_move
+	mutt_getaddrinfo_a
+	mutt_get_winsize
+	mutt_is_predicate_recipient
+	mutt_is_spool
+	mutt_keymaplist_free
+	mutt_keymap_free
+	mutt_lookup_color
+	mutt_make_greeting
+	mutt_md5_process_block
+	mutt_md5_read_ctx
+	mutt_monitor_getch
+	mutt_pattern_node_new
+	mutt_update_recvattach_menu
+	mutt_update_v2r
 
-mutt_string.c wrappers for the few mutt/string.c functions that use config
+libmutt.c wrappers for the few functions that use config in
+	charset.c, file.c, state.c
 
 copy asan configure/bash scripts to dev page
-
-tidy print_enriched_string()
-	add {}s
-		if (do_color)
-	move out of loop
-		const bool c_ascii_chars = cs_subset_bool(NeoMutt->sub, "ascii_chars");
 
 vim PlugUpdate assumes "master"
 
@@ -455,27 +431,13 @@ fix fuzzer install
 
 git lt [NUM]
 
-update releases webpage
-
-add `rm compile_commands.json` to distclean
-
 iwyu: parameterise iwyu.sh '*.c' -> selects correct backend script
-
-unify names of all:
-	wdata_free functions
-	mdata_free functions
-	observer callback functions
-	event variables
-
-resolve window_create() vs window_add()
 
 add dialog helper functions to get:
 	shared data
 	priv data
 	menu
 	etc
-
-Menu: SearchBuffers aren't freed on exit!
 
 rename index vars to idx to avoid index(3)
 
@@ -490,13 +452,10 @@ move mutt_X.[ch] into libX
 	just mutt_history.*
 
 move hdrline to libindex?
-	rename
+	rename to 'index'?
+	struct HdrFormatInfo
 
 icommands: fold into normal commands, drop separate src files?
-
-add X_new()/X_free() wrappers for non-trivial objects
-	AttachPtr, QClass, Regex, ListNode
-	SmimeKey, PgpUid, MuttThread, Message, Hook
 
 fix git hook for cherry-pick
 
@@ -506,9 +465,15 @@ libbrowser?
 	elim Menu->is_mailbox_list!
 	elim menu_loop() static local var `last_position`
 
-keymap.c
-	replace all `enum MenuType menu` with `mtype`
+resolve window_create() vs window_add()
 
-rename retval to `op` ∀ int km_dokey(enum MenuType menu)
-	backport into [devel/refactor]
+add X_new()/X_free() wrappers for non-trivial objects
+	AttachPtr, QClass, Regex, ListNode
+	SmimeKey, PgpUid, MuttThread, Message, Hook
+
+mutt_mailbox.c rename var?
+	struct stat contex_sb;
+
+this typedef doesn't match the pattern for function typedefs
+	keycode_t         keymap.h          /^typedef short keycode_t;$/;"
 
