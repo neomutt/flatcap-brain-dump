@@ -1,3 +1,8 @@
+mutt_query_exit()
+	on Ctrl-C, Y, don't exit(1)
+	set a global that causes the dialog stack to collapse?
+	potentially allow the backends to close down gracefully
+
 color command doesn't update pager!
 	`color header fg bg .`
 	it would mean re-rendering the email to re-embed the colour codes

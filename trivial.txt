@@ -465,8 +465,6 @@ libbrowser?
 	elim Menu->is_mailbox_list!
 	elim menu_loop() static local var `last_position`
 
-resolve window_create() vs window_add()
-
 add X_new()/X_free() wrappers for non-trivial objects
 	AttachPtr, QClass, Regex, ListNode
 	SmimeKey, PgpUid, MuttThread, Message, Hook
@@ -476,4 +474,12 @@ mutt_mailbox.c rename var?
 
 this typedef doesn't match the pattern for function typedefs
 	keycode_t         keymap.h          /^typedef short keycode_t;$/;"
+
+buf, buflen
+ * km_expand_key - Get the key string bound to a Keymap
+ * @param s   Buffer for the key string
+ * @param len Length of buffer
+
+merge mutt_buffer_get_field(), mutt_enter_string_full()
+	latter only has one caller
 

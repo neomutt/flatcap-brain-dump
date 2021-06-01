@@ -224,3 +224,8 @@ test pretty-git-prompt
 
 custom gdb pretty print for Buffer, FILE (fileno), etc
 
+snapshots
+	git repack -ad
+	remove alternates file
+	split into separate script
+

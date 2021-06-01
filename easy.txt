@@ -250,3 +250,17 @@ convert history search to use ARRAY
 	log "neomutt -v" output on startup
 	minimise it
 
+eliminate config from libmutt
+first two should be easy
+third has a macro, could be trickier
+	mutt_ch_convert_nonmime_string()
+		$assumed_charset
+		$charset
+
+	mutt_ch_get_default_charset()
+		mutt_ch_convert_nonmime_string()
+		$assumed_charset
+
+	mutt_file_mkstemp_full()
+		$tmpdir
+
