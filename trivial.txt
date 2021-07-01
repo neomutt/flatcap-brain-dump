@@ -483,3 +483,34 @@ buf, buflen
 merge mutt_buffer_get_field(), mutt_enter_string_full()
 	latter only has one caller
 
+run iwyu with openssl enabled, slang too?
+
+trans: merge
+	msgid "Query: "
+	msgid "Query"
+
+doxy: link all wdata structs to MuttWindow?
+	WT_CUSTOM          ComposeEnvelopeData
+	WT_DLG_COMPOSE     ComposeSharedData
+	WT_DLG_DO_PAGER    IndexSharedData
+	WT_DLG_INDEX       IndexSharedData
+	WT_INDEX           IndexPrivateData
+	WT_MENU            AccountEntry
+	WT_MENU            AliasMenuData
+	WT_MENU            AttachCtx
+	WT_MENU            BrowserStateEntry
+	WT_MENU            ComposeAttachData
+	WT_MENU            CryptKeyInfo
+	WT_MENU            IndexSharedData
+	WT_MENU            PagerRedrawData
+	WT_MENU            PatternEntry
+	WT_MENU            PgpUid
+	WT_MENU            Remailer
+	WT_MENU            SmimeKey
+	WT_MESSAGE         MsgWinPrivateData
+	WT_PAGER           PagerPrivateData
+	WT_STATUS_BAR      ComposeBarData
+	WT_STATUS_BAR      IBarPrivateData
+	WT_STATUS_BAR      PBarPrivateData
+	WT_STATUS_BAR      SBarPrivateData
+

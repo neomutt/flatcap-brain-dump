@@ -1,3 +1,10 @@
+"uncolor status" doesn't work
+	"uncolor status regex" does work
+	can't undo base colour
+
+is there a security? reason that we don't log all gpg commands?
+	all the gpg commands go through: ncrypt/pgpinvoke.c:226
+
 mutt_query_exit()
 	on Ctrl-C, Y, don't exit(1)
 	set a global that causes the dialog stack to collapse?
