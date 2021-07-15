@@ -1,3 +1,10 @@
+guideline for mutt_{message,warning,error}
+	would you want the message to interrupt a macro running?
+	mutt_error() => stop macro?
+	mutt_warning() => print/queue during macro?
+	mutt_message() => ignore during macro?
+	option to ignore erros duing macro run?
+
 "uncolor status" doesn't work
 	"uncolor status regex" does work
 	can't undo base colour
@@ -13,7 +20,7 @@ mutt_query_exit()
 color command doesn't update pager!
 	`color header fg bg .`
 	it would mean re-rendering the email to re-embed the colour codes
-	setting SigWinch-1 forces the issue
+	setting SigWinch=1 forces the issue
 
 reduce CI cost:
 	only run most test for test/NAME branches
@@ -26,7 +33,7 @@ struct Email: adding notify changed the struct
 	check hcache version is diff for release
 
 github action: lcov/coverage
-	deploy to repl
+	deploy to repo
 	integrate into website
 	update coveralls site too
 
@@ -212,9 +219,6 @@ eliminate helper functions
 	compr_get_ops()
 	etc
 	store the state somewhere and use that instead
-
-move progress api to library
-	does that mean we need a default implementation
 
 event scripting
 	<gahr> I want an integration with a scripting language

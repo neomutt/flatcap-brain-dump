@@ -457,8 +457,6 @@ move hdrline to libindex?
 
 icommands: fold into normal commands, drop separate src files?
 
-fix git hook for cherry-pick
-
 libbrowser?
 	dlgbrowser
 	split up deps
@@ -468,12 +466,6 @@ libbrowser?
 add X_new()/X_free() wrappers for non-trivial objects
 	AttachPtr, QClass, Regex, ListNode
 	SmimeKey, PgpUid, MuttThread, Message, Hook
-
-mutt_mailbox.c rename var?
-	struct stat contex_sb;
-
-this typedef doesn't match the pattern for function typedefs
-	keycode_t         keymap.h          /^typedef short keycode_t;$/;"
 
 buf, buflen
  * km_expand_key - Get the key string bound to a Keymap
@@ -488,29 +480,4 @@ run iwyu with openssl enabled, slang too?
 trans: merge
 	msgid "Query: "
 	msgid "Query"
-
-doxy: link all wdata structs to MuttWindow?
-	WT_CUSTOM          ComposeEnvelopeData
-	WT_DLG_COMPOSE     ComposeSharedData
-	WT_DLG_DO_PAGER    IndexSharedData
-	WT_DLG_INDEX       IndexSharedData
-	WT_INDEX           IndexPrivateData
-	WT_MENU            AccountEntry
-	WT_MENU            AliasMenuData
-	WT_MENU            AttachCtx
-	WT_MENU            BrowserStateEntry
-	WT_MENU            ComposeAttachData
-	WT_MENU            CryptKeyInfo
-	WT_MENU            IndexSharedData
-	WT_MENU            PagerRedrawData
-	WT_MENU            PatternEntry
-	WT_MENU            PgpUid
-	WT_MENU            Remailer
-	WT_MENU            SmimeKey
-	WT_MESSAGE         MsgWinPrivateData
-	WT_PAGER           PagerPrivateData
-	WT_STATUS_BAR      ComposeBarData
-	WT_STATUS_BAR      IBarPrivateData
-	WT_STATUS_BAR      PBarPrivateData
-	WT_STATUS_BAR      SBarPrivateData
 

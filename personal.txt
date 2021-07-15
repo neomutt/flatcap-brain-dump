@@ -229,3 +229,5 @@ snapshots
 	remove alternates file
 	split into separate script
 
+fix git hook for cherry-pick
+

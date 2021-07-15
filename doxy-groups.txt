@@ -1,0 +1,15 @@
+doxygen groups - arbitrary lists
+
+observers split by type
+  win 26, cfg 24, colour 10, mbox 4, index 4, others 19
+expando formats
+mx api split by fn
+adata, mdata, edata, menu data, wdata
+qsort callbacks
+log backends
+compression backends
+mbox backends link to MxOps struct
+hcache by fn
+store by fn
+config - link to structs
+windows?  link to what?
