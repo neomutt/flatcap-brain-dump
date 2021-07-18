@@ -481,3 +481,9 @@ trans: merge
 	msgid "Query: "
 	msgid "Query"
 
+members not doc'd
+	struct EnumDef
+
+move it
+	* This should be in mx.c, but it only gets used here.
+	int mx_toggle_write(struct Mailbox *m)
