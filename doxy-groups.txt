@@ -1,13 +1,13 @@
 doxygen groups - arbitrary lists
 
-expando formats
-config type
+Compression API     - The Compression API
+Config Type API     - Type definition for a config item
+Expando API         - Callback functions for mutt_expando_format()
+Key Value Store API - The Key Value Store API
+Logging API         - The Logging API
+Mailbox API         - The Mailbox API
+
 mbox backends link to MxOps struct
-store by fn
-log backends
-compression backends
-mx api split by fn
-config api split by fn
 
 observers split by type
   win 26, cfg 24, colour 10, mbox 4, index 4, others 19
@@ -15,3 +15,5 @@ adata, mdata, edata, menu data, wdata
 qsort callbacks
 hcache by fn
 windows?  link to what?
+all functions (handlers) - duplicate names!
+all commands (handlers) - parse functions?
