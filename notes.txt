@@ -1,3 +1,7 @@
+file browser, add (toggle-able) live preview window
+	mailcap the current selection into the window
+	need focus control or duplicate set of motion functions
+
 guideline for mutt_{message,warning,error}
 	would you want the message to interrupt a macro running?
 	mutt_error() => stop macro?
@@ -85,6 +89,7 @@ github action
 	check for empty line at eof
 	*.c @page
 	"calc" undoc'd functions
+	shellcheck
 
 Live log message window (for devs?)
 	magic height
@@ -137,9 +142,7 @@ config errors
 
 merge gfx repo into website /gfx ?
 
-eliminate fallthroughs
-	index/pager/compose/etc
-	use functions
+eliminate fallthroughs - use functions
 
 banned.h
 	sprintf -> snprintf

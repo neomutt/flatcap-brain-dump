@@ -362,10 +362,6 @@ stats_last_checked isn't set, cf upstream
 bad C functions
 	https://github.com/git/git/blob/master/banned.h
 
-compose 51 case statements, many share tmp vars
-	8	char buf[PATH_MAX];
-	4	struct Buffer fname;
-
 index, unnec? elim
 	int attach_msg = OptAttachMsg;
 
@@ -425,8 +421,6 @@ libmutt.c wrappers for the few functions that use config in
 
 copy asan configure/bash scripts to dev page
 
-vim PlugUpdate assumes "master"
-
 fix fuzzer install
 
 git lt [NUM]
@@ -456,6 +450,7 @@ move hdrline to libindex?
 	struct HdrFormatInfo
 
 icommands: fold into normal commands, drop separate src files?
+	start with indepdendent commands
 
 libbrowser?
 	dlgbrowser
@@ -482,4 +477,91 @@ trans: merge
 	msgid "Query"
 
 NDEBUG warnings around asserts
+
+irc aliases, add
+NOTE: logging at that level can reveal personal details, so be careful before pasting any logs
+
+char color -> enum ColorId
+static size_t add_index_color(char *buf, size_t buflen, MuttFormatFlags flags, char color)
+
+sync mutt_extract_token() to test/pattern/extract.c
+int mutt_extract_token(struct Buffer *dest, struct Buffer *tok, TokenFlags flags)
+
+make sure all notifys doxy their data
+struct Notify *notify;    ///< Notifications: #NotifyIndex, #IndexSharedData
+
+promote gist to DYK
+	https://gist.github.com/flatcap/bd9105208b016ae39ed253f95d94e808
+	for the perfect example, you'd wrap the "on" case with <tag-prefix-cond> ... <end-cond>, to be a no-op when there are zero tagged files
+	add comments
+	space before command to prevent history (separate DYK)
+
+coverity action, cron weekly (Sunday night?)
+	*can* I use actions to do coverity?
+	https://github.com/ruby/actions-coverity-scan/blob/master/.github/workflows/coverity-scan.yml
+
+split browser cases by function
+	and other dialogs
+	so all <functions> are independent functions()
+	check against OpPager lists, etc
+	dlg_select_attachment / mutt_attach_display_loop
+		alias/dlgalias.c:330:7:         11 dlg_select_alias
+		alias/dlgquery.c:439:7:         13 dlg_select_query
+		attach/dlg_attach.c:611:7:      26 dlg_select_attachment
+		attach/recvattach.c:948:7:       9 mutt_attach_display_loop
+		autocrypt/dlgautocrypt.c:375:7:  5 dlg_select_autocrypt_account
+		browser.c:1512:7:               26 mutt_buffer_select_file
+		dlg_postpone.c:202:7:            8 dlg_select_postponed_email
+		enter.c:250:9:                  23 mutt_enter_string_full
+		history/dlghistory.c:144:7:      2 dlg_select_history
+		menu/menu.c:382:7:              30 menu_loop
+		ncrypt/dlggpgme.c:1435:7:        4 dlg_select_gpgme_key
+		ncrypt/dlgpgp.c:686:7:           4 dlg_select_pgp_key
+		ncrypt/dlgsmime.c:238:7:         2 dlg_select_smime_key
+		pattern/dlgpattern.c:362:7:      2 dlg_select_pattern
+		remailer.c:743:7:                9 dlg_select_mixmaster_chain
+
+pager/dlg_pager
+	priv->rc = -1;
+	getting trampled by memset()
+
+10 largest functions
+	1087 mutt_buffer_select_file
+	1013 index_format_str
+	 950 main
+	 850 mutt_send_message
+	 678 mutt_enter_string_full
+	 535 mutt_expando_format
+	 443 mutt_rfc822_parse_line
+	 440 mutt_pager
+	 378 parse_set
+	 377 mbox_mbox_sync
+
+dedupe function names:
+	add_cert
+	add_folder
+	append_message
+	attach_config_observer
+	attach_window_observer
+	cmp_version_strings
+	create_gpgme_context
+	dump_menu
+	format_line
+	init_mailbox
+	mutt_exit
+	mutt_file_lock
+	mutt_file_unlock
+	mutt_resize_screen
+	mutt_ssl_socket_setup
+	mutt_ssl_starttls
+	mutt_str_asprintf
+	pgp_check_traditional_one_body
+	tls_set_priority
+
+add with/without build tests for autocrypt
+	needs vm without libraries installed
+
+add to build-and-test action
+	if po/*.po have changed
+	msgfmt --statistics -c -o /dev/null po/pl.po
 
