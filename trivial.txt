@@ -496,10 +496,6 @@ promote gist to DYK
 	add comments
 	space before command to prevent history (separate DYK)
 
-coverity action, cron weekly (Sunday night?)
-	*can* I use actions to do coverity?
-	https://github.com/ruby/actions-coverity-scan/blob/master/.github/workflows/coverity-scan.yml
-
 split browser cases by function
 	and other dialogs
 	so all <functions> are independent functions()
@@ -520,10 +516,6 @@ split browser cases by function
 		ncrypt/dlgsmime.c:238:7:         2 dlg_select_smime_key
 		pattern/dlgpattern.c:362:7:      2 dlg_select_pattern
 		remailer.c:743:7:                9 dlg_select_mixmaster_chain
-
-pager/dlg_pager
-	priv->rc = -1;
-	getting trampled by memset()
 
 10 largest functions
 	1087 mutt_buffer_select_file
@@ -564,4 +556,34 @@ add with/without build tests for autocrypt
 add to build-and-test action
 	if po/*.po have changed
 	msgfmt --statistics -c -o /dev/null po/pl.po
+
+add links in web/dev to gfx repo for arch diagrams etc
+	and/or dev list
+
+update dev translate deployment
+	add coverity
+
+neomutt -v output:
+	add $LANG?
+	multi-column output to reduce lines?
+
+compose/functions.c
+	reword joke error message
+	What we have here is a failure to make an attachment
+
+update web site releases
+
+merge two sort typedefs
+	sort_t
+	qsort_compar_t
+
+change !asan to *asan (for devel options)
+	or drop indicator, just use colour
+
+neomutt repos
+	more master -> main
+
+update test library
+
+rename action repos to "action-XYZ"
 

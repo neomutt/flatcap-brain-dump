@@ -1,3 +1,26 @@
+visual glitch at time of sending mail?
+	
+coverity action:
+	check secret exists at startup
+	all actions needing secrets
+
+neomutt 2021-02-05 vs latest
+	latest is flickerly when holding down <next-line> in the pager
+	wide lines wrapping show it more obviously
+
+make mail_check_stats default to YES?
+	most people will want it
+
+ideas for REALLY deeply nested emails:
+	The number of replies is much more than 100
+	1) In index view center subject if message is under cursor.
+	2) Limit the maximal offset of discussions in index view.
+
+make all notification objects const?
+	possible?
+
+rename op_XYZ() functions to fn_&?
+
 file browser, add (toggle-able) live preview window
 	mailcap the current selection into the window
 	need focus control or duplicate set of motion functions
