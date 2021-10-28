@@ -1,0 +1,14 @@
+diff --git i/mutt/buffer.c w/mutt/buffer.c
+index 3dbbf1711..6d794a667 100644
+--- i/mutt/buffer.c
++++ w/mutt/buffer.c
+@@ -154,6 +154,9 @@ static int buffer_printf(struct Buffer *buf, const char *fmt, va_list ap)
+  * @param buf Buffer
+  * @param fmt printf-style format string
+  * @param ... Arguments to be formatted
++ * @pre @a buf not NULL
++ * @pre @a fmt not NULL
++ * @post @a buf NUL-terminated
+  * @retval num Characters written
+  * @retval -1  Error
+  */
