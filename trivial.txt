@@ -463,9 +463,9 @@ add X_new()/X_free() wrappers for non-trivial objects
 	SmimeKey, PgpUid, MuttThread, Message, Hook
 
 buf, buflen
- * km_expand_key - Get the key string bound to a Keymap
- * @param s   Buffer for the key string
- * @param len Length of buffer
+	* km_expand_key - Get the key string bound to a Keymap
+	* @param s   Buffer for the key string
+	* @param len Length of buffer
 
 merge mutt_buffer_get_field(), mutt_enter_string_full()
 	latter only has one caller
@@ -571,19 +571,25 @@ compose/functions.c
 	reword joke error message
 	What we have here is a failure to make an attachment
 
-update web site releases
-
 merge two sort typedefs
 	sort_t
 	qsort_compar_t
-
-change !asan to *asan (for devel options)
-	or drop indicator, just use colour
 
 neomutt repos
 	more master -> main
 
 update test library
 
-rename action repos to "action-XYZ"
+docker
+	alter docker action to use cron
+		rebuild
+		perform package updates
+		once a month?
+	rename to docker-build
+	add doxygen to docker build
+	add readme
+
+put all shields on my homepage
+
+sync github to all my private gitlab repos (or delete them)
 

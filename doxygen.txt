@@ -1,3 +1,6 @@
+"@note Emits:"
+	for all functions that can send notifications
+
 use @pre/@post !NULL
 	then elim lib checks
 
