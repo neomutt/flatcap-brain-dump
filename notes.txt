@@ -201,6 +201,7 @@ change one-liner help to be useful as an error message when setting config?
 	see translate.txt
 
 add graphviz to analysis web page
+	and coveralls
 
 replace greeting, attribution, signature, etc
 	%{greeting} ... %{attribution} ... %{signature}

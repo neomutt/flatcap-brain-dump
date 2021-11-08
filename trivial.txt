@@ -581,15 +581,15 @@ neomutt repos
 update test library
 
 docker
-	alter docker action to use cron
-		rebuild
-		perform package updates
-		once a month?
-	rename to docker-build
 	add doxygen to docker build
 	add readme
 
-put all shields on my homepage
-
 sync github to all my private gitlab repos (or delete them)
+
+update neomuttrc.vim
+	new config with underscores!
+		really deprecate old ones?
+	colors with attributes
+
+actions: need to check those that upload results really succeed
 
