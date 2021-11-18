@@ -581,7 +581,6 @@ neomutt repos
 update test library
 
 docker
-	add doxygen to docker build
 	add readme
 
 sync github to all my private gitlab repos (or delete them)
@@ -592,4 +591,26 @@ update neomuttrc.vim
 	colors with attributes
 
 actions: need to check those that upload results really succeed
+
+link observer function docs to Event/EventStruct they receive
+
+dyk add?
+	# abort_noattach = yes
+	# set attach_keyword = "\\<(attach|attached|attachments?)\\>"
+	# set attach_keyword = "\\<(bijvoegen|bijgevoegd|bijlage|bijlagen)\\>"
+	# set attach_keyword = "\\<(anhängen|angehängt|anhang|anhänge|hängt an)\\>"
+	# set attach_keyword = "\\<(attaché|attachés|attache|attachons|joint|jointe|joints|jointes|joins|joignons)\\>"
+
+fix /master/ raw links in md files
+
+doc egypt workflow
+	CFLAGS -> svg
+	make flatcap branch the main?  or merge?
+	merge extra filters from https://github.com/lkundrak/egypt
+
+vim plugin
+	setlocal keywordprg=neomutt\ -n\ -F\ /dev/null\ -OQ
+	extend to ALL neomutt symbols: commands, functions, colors, etc
+
+https://github.com/marketplace/actions/skip-duplicate-actions
 

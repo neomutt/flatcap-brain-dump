@@ -1,3 +1,11 @@
+bug
+	three accounts wth imap_check_subscribed fail
+		apple@host.com
+		banana@host.com
+		cherry@host.com
+	tries to lsub cherry's mailboxes to plain "host.com"
+	need upstreams fix b48f8e1e
+
 visual glitch at time of sending mail?
 	sidebar always gets updated and refreshed ahead of other windows!
 	
@@ -52,11 +60,6 @@ colours:
 
 struct Email: adding notify changed the struct
 	check hcache version is diff for release
-
-github action: lcov/coverage
-	deploy to repo
-	integrate into website
-	update coveralls site too
 
 docs: add page describing all config types
 	including all flags (subtypes)
