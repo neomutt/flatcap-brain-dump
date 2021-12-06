@@ -84,10 +84,6 @@ website
 
 port other patches
 
-github
-	CI
-	coverity
-
 sidebar
 	fix refresh
 	background colour - sidebar_color

@@ -725,7 +725,6 @@ split buffer_expand/resolve into PATH functions and MAILBOX functions!
 config: change sort to work like enum -- use Data field
 	except allow magic "reverse-", "last-" prefixes
 
-1334 C_ config uses
 137 WHERE uses
 
 create mailbox (browser)
@@ -3575,8 +3574,6 @@ two open milestones (next-feature-release, next-bug-fix-release)
 list Sven's unused letters to the main guide
 
 leave-folder hook?
-
-coverity to use travis-build script!
 
 chronic "moreutils" package
 

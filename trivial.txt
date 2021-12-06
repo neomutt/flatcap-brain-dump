@@ -590,8 +590,6 @@ update neomuttrc.vim
 		really deprecate old ones?
 	colors with attributes
 
-actions: need to check those that upload results really succeed
-
 link observer function docs to Event/EventStruct they receive
 
 dyk add?
@@ -606,11 +604,52 @@ fix /master/ raw links in md files
 doc egypt workflow
 	CFLAGS -> svg
 	make flatcap branch the main?  or merge?
-	merge extra filters from https://github.com/lkundrak/egypt
 
 vim plugin
-	setlocal keywordprg=neomutt\ -n\ -F\ /dev/null\ -OQ
+	setlocal keywordprg=echo;echo;neomutt\ -n\ -F\ /dev/null\ -OQ
 	extend to ALL neomutt symbols: commands, functions, colors, etc
 
 https://github.com/marketplace/actions/skip-duplicate-actions
+
+commit all changes in all repos and push
+
+create distro-specific dockerfiles, build weekly
+bases
+	https://hub.docker.com/_/debian
+	https://hub.docker.com/_/ubuntu
+	https://hub.docker.com/_/archlinux
+	which others?
+macos?
+
+https://hub.docker.com/r/dovecot/dovecot
+
+actions: check that matrix builds continue on error
+
+logging error fd == -1 ?
+	mutt_socket_write_d() -1> a0000 SELECT "INBOX"
+
+translate:
+	lt, cs, sr < 100% => email to maintainer
+
+rfc2047_decode_addrlist()
+	move config code out of loop
+	(or out of function?)
+
+strip mirrors of branches
+
+neomutt version "debug" -> "logging"?
+	assuming that's what it is
+
+neomutt version
+	deprecate the fixed part?
+	might interfere with `ifdef` command
+	do _those_ features matter if they've been included for so long?
+	when did it last change? > 4 years
+
+fix 4 lgtm defects
+
+change browser_sort() to not take *entire* state,
+	just the array that needs sorting
+	convert all comparision functions to the qsort_r() compatible
+	factor out config use to top-level parameter
 
