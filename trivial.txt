@@ -628,9 +628,6 @@ actions: check that matrix builds continue on error
 logging error fd == -1 ?
 	mutt_socket_write_d() -1> a0000 SELECT "INBOX"
 
-translate:
-	lt, cs, sr < 100% => email to maintainer
-
 rfc2047_decode_addrlist()
 	move config code out of loop
 	(or out of function?)
@@ -652,4 +649,77 @@ change browser_sort() to not take *entire* state,
 	just the array that needs sorting
 	convert all comparision functions to the qsort_r() compatible
 	factor out config use to top-level parameter
+
+these aren't *comp* flags, separate flags?
+	MUTT_COMP_CLEAR
+	MUTT_COMP_PASS
+add unbuffered flag?
+
+static struct SmimeKey *smime_ask_for_key(char *prompt, KeyFlags abilities, bool only_public_key)
+checks for prompt, but it's always set
+
+find potential places for struct Buffer
+	921	ag "([a-z_]+(->[a-z_]+)*), sizeof\(\1\)"
+	64	ag "([a-z_]+(->[a-z_]+)*)-\>data, \1-\>dsize"
+
+refactor "not reached"
+	ag "not reached" | wc -l
+	13
+
+kill #define EXTRA_SPACE (15 + 7 + 2)
+	recvcmd.c
+	commands.c
+heuristic dating back to 2000
+
+reuse yml actions
+	uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@master
+	# org/repo/dir/dir2/dir3
+	# in dir3/actions.yml is run
+	set oss-fuzz repo, file
+		infra/cifuzz/actions/build_fuzzers/action.yml
+
+useful?
+	#if defined(__COVERITY__)
+
+clang-format?
+	PenaltyBreakAssignment: 100
+	PenaltyBreakBeforeFirstCallParameter: 100
+	BreakStringLiterals: false
+
+comment to avoid warning
+/* coverity[check_return] */
+/* coverity[suspicious_sizeof] */
+
+typo?  autocrypt?!
+	de.po:msgid "no"
+	de.po-msgstr "nein"
+vs
+	de.po:msgid "No"
+	de.po:msgstr "No"
+
+recvattach listing attachments doesn't repaint on resize
+all simple dialogs
+dlg_alias
+
+DYK about index_format padding: `... %s%> (%c)` vs `... %s%* (%c)`
+	which of subject vs ending (%c) gets priority in a low-space situation
+	and generally min/max widths and left/right justification
+
+DYK autodiscovery of maildir
+	mailboxes `find ~/mail -type d -name cur -printf "%h\n"`
+
+DYK?
+	set index_format="%4C %-12@date@ %-15.15F %Z (%4c) %s"
+	index-format-hook  date  "~d<1H"    "just now"
+	index-format-hook  date  "~d<2H"    "an hour ago"
+	index-format-hook  date  "~d<4H"    "few hours ago"
+	index-format-hook  date  "~d<1d"    "earlier today"
+	index-format-hook  date  "~d<2d"    "yesterday"
+	index-format-hook  date  "~d<7d"    "this week"
+	index-format-hook  date  "~d<1m"    "%[%a %d]"
+	index-format-hook  date  "~d<1y"    "%[%b %d]"
+	index-format-hook  date  "~A"       "%[%m/%y]"
+
+∀ menu_make_entry overrides
+	doxygen - doc formatting function, e.g. index_format_str
 

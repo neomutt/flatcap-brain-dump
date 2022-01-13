@@ -1,3 +1,10 @@
+add expandos for mailbox/email to pipe/filter commands
+	e.g. my_command --title "%s"
+	for the email subject
+
+generate y/n regex from our "yes" and "no" translations
+	to work around OpenBSD's lack of working nl_langinfo()
+
 bug
 	three accounts wth imap_check_subscribed fail
 		apple@host.com
