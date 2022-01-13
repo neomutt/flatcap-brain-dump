@@ -1426,10 +1426,6 @@ create sample code for inline and out-of-line STAILQ use and others
 
 save option for summary page info
 
-union mailbox, a la notmuch
-	how?
-	where does incoming mail go?
-
 change "hidden_tags" to be a regex? (#1744)
 	backwards-compatible how?
 	look for '(' ')' '*' '|' ?
@@ -3641,15 +3637,6 @@ what would be needed to have an 'offline' mode?
 
 imap force body cache on read
 	option for offline working
-
-magic "combined" folder
-	mbox part for unchanging, historic stuff
-	mbox part needs hcache for speed
-	maildir part of changeable stuff
-	combined into one view
-	need method to "fix" emails i.e. mark them as no-more-changes
-	cf unionfs - what happens to writes?
-	cf compressed mailbox - delegate to multiple backend open mailboxes
 
 inotify ∀ local mailboxes
 	2016-11-16 12:13 <royger>

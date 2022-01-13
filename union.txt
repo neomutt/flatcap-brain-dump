@@ -1,0 +1,85 @@
+Union Mailbox
+
+union mailbox, a la notmuch
+	how?
+	where does incoming mail go?
+
+
+magic "combined" folder
+	mbox part for unchanging, historic stuff
+	mbox part needs hcache for speed
+	maildir part of changeable stuff
+	combined into one view
+	need method to "fix" emails i.e. mark them as no-more-changes
+	cf unionfs - what happens to writes?
+	cf compressed mailbox - delegate to multiple backend open mailboxes
+
+Any mailbox type
+Any number of mailboxes
+
+e.g.
+	Notmuch query + backing mailboxes
+	Inbox + Sent union
+
+Mailbox
+	emails[]
+	v2r[]
+	mxops
+	owners[] / children[]?
+
+get_email(n) - honour limit, ownership
+get_ops(m, e) NEED e! -> owner(e) -> get_ops()
+
+what type? UNION?
+what mdata?  -- owners[] / children[]? etc
+is it readonly?  if not, need sink for incoming emails
+	(emails moved into the union)
+all M members need to be protected - functions for every action
+is only 1 mbox r/w? no, notmuch needs all r/w!
+mx_mbox_X() handles lookup?
+sync() - does it sync 1st only, or all mboxes?
+which mx_X() fns are Email specific?
+	msg_open(), msg_close(), etc?
+	do they all take a Mailbox? prob Y
+
+does Mu have an A?
+	if not, how do we enumerate them?
+
+notmuch opens query, new mail in multiple folders, mark all read, sync
+	now what?
+	mbox_sync(Mu) -> ∀ children sync(Mc)
+
+do we care about Mc's index for E?
+	might change on new mail, etc
+
+header cache needs redirecting too, w.r.t. M
+
+Notifications
+	N <- A <- M <- E
+
+	Au <- Mu <- Mc1 <- E
+	         <- Mc2 <- E
+		 ...
+
+up and down?
+
+Mc -> Mu and Ac
+	does Au exist?
+
+Au exists but is skipped in enums?
+	prevents dupe events at top-level
+	Au doesn't propagate to N?
+
+OR no notification path from Mc -> Mu
+	Mu observes Mc explicitly -> Mc doesn't know about Mu
+	Au owns Mu - no notifications, no dupe?
+
+If Mu has homogenous children, does it live in Ac?
+If Mu has heterogenous children, where does it live?
+
+New E - EventEmail(New)
+	E -> Mc -- observed by Mu and re-emitted
+GUI observes Mu, sees new E
+
+
+
