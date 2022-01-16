@@ -723,3 +723,8 @@ DYK?
 ∀ menu_make_entry overrides
 	doxygen - doc formatting function, e.g. index_format_str
 
+review all reallocs => memset to clear new memory
+	email/attach.c has lots!
+
+copy [debug/compose] -> neomutt-old
+

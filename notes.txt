@@ -1,3 +1,6 @@
+$smart_wrap doesn't apply to email headers
+	should it?
+
 add expandos for mailbox/email to pipe/filter commands
 	e.g. my_command --title "%s"
 	for the email subject
