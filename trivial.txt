@@ -720,11 +720,27 @@ DYK?
 	index-format-hook  date  "~d<1y"    "%[%b %d]"
 	index-format-hook  date  "~A"       "%[%m/%y]"
 
+DYK -> github "announce" discussion!
+
 ∀ menu_make_entry overrides
 	doxygen - doc formatting function, e.g. index_format_str
 
 review all reallocs => memset to clear new memory
 	email/attach.c has lots!
 
+find/read the `git log --date=human` code
+	or better still --date=relative
+
+how much work to fix the new_mail command?
+	notifications from backends
+
 copy [debug/compose] -> neomutt-old
+	update it
+
+update neo-bot docs
+	doc PAT token
+	document service file
+	link to test-graphql
+	copyright
+	license
 

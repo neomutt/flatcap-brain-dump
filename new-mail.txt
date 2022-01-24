@@ -34,3 +34,12 @@ before each call, may need to recalc totals,
 	on demand rather than continuously observing
 plugin reg, config, no commands, no colours, etc -> .so?  API needed
 
+need to implement
+	-nonotify / -notify (first)
+	-nopoll / -poll (while we're at it)
+
+from threads idea:
+cumulative expandos for threads, etc
+	%x, %Cx
+	%b, %Cb
+
