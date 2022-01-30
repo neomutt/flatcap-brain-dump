@@ -1,11 +1,6 @@
 
 prep 1-liner descriptions of all var,cmd,fn etc for neo-bot
 
-python coder needed to update neo-bot
-	use github api
-	commits
-	issues/PRs
-
 neo-bot
 	look for commits?
 	a7b0fb8
@@ -30,4 +25,27 @@ lookup full github issue/PR paths too
 neo-bot killed by deleted issue #2529
 
 recognise config names, when asked directly and reply with one-liner description
+
+ignore (x < 100)
+
+update docs
+	doc PAT token
+	document service file
+	link to test-graphql
+	copyright
+	license
+	support commits #[0-9a-fA-F]{7,40}
+neo-bot support, when spoken to directly
+	where does the info come from?
+	neo-bot: $config
+		# strftime format string for the `%d` expando - https://neomutt.org/guide/reference#date-format
+		set date_format = "!%a, %b %d, %Y at %I:%M:%S%p %Z"
+		want to use names with new underscores (synonym lookups)
+		guide might be out-of-date!
+	neo-bot: <function>
+	neo-bot: :command
+		link to guide?
+	privmsg -> name issue #1234 in response!
+
+de-dupe entries before display
 

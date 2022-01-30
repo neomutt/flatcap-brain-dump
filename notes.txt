@@ -1,3 +1,11 @@
+Is there any way to capture and refer back to the address captured by 'send2-hook ~t %s' in a backtick command on the right-hand side?
+	e.g. ~t "jim@host.com"  ->  set varible = "\1"  (meaning jim@host.com)
+	hmm... not easily, because we'd have to de-construct the pattern
+	"~t jim@example.com" is easy enough, but what about "~t jim | ~t bob"
+	hmm... if the pattern-matching code were able to tell the caller _which_ part of the pattern matched
+	patterns are only ever matched against one type of object, but we wouldn't be able to tell which field
+	mutt_pattern_exec() would return: MUTT_PAT_TO, "jim@example.com"
+
 $smart_wrap doesn't apply to email headers
 	should it?
 
@@ -312,8 +320,6 @@ pinned issues
 notmuch address search, adjusted to neomutt query format
 	notmuch address --output=sender %s | sed 's/\(.*\) <\(.*\)>$/\2\t\1/'
 	notmuch address --output=count --output=sender %s | sed 's/\([0-9]\+\)\t\(.*\) <\(.*\)>$/\3\t\2\t# \1/'
-
-neo-bot de-dupe entries before display
 
 pager:
 	option to turn off wrapping

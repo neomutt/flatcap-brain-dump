@@ -385,9 +385,6 @@ test all graphviz (and other debug) functions compile and run
 use ctags to look for reserved keywords, e.g. variables called private
 	then put in github action
 
-neo-bot
-	ignore (x < 100)
-
 use `gh gist` to update local mirrors
 	python scripts need to turn "private" repos into git@ urls
 
@@ -703,10 +700,17 @@ how much work to fix the new_mail command?
 copy [debug/compose] -> neomutt-old
 	update it
 
-update neo-bot docs
-	doc PAT token
-	document service file
-	link to test-graphql
-	copyright
-	license
+action for IRC notifier
+	https://github.com/rectalogic/notify-irc
+	https://github.com/Gottox/irc-message-action
+	on:
+		discussion:
+			types: [created, edited, answered]
+
+mutt_regex_new() doesn't free object on error, if `err` isn't set!
+	if ((rc != 0) && err)
+	check all callers
+
+comment wrong
+	MT_COLOR_INDEX_COLLAPSED,          ///< Index: number of messages in collapsed thread
 

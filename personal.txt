@@ -232,7 +232,6 @@ snapshots
 fix git hook for cherry-pick
 
 server
-	service for neo-bot
 	service for www news update
 	service for weechat
 		start each 2 mins after boot?
