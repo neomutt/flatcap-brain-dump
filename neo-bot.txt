@@ -49,3 +49,98 @@ neo-bot support, when spoken to directly
 
 de-dupe entries before display
 
+in neomutt channel "#3200"
+	on_pubmsg
+		self.channel	#neomutt-test
+		e.source.nick	flatcap
+		e.target	#neomutt-test
+		e.arguments	['#3200']
+
+in neomutt channel "neo-bot-flatcap: #3200"
+	on_pubmsg
+		self.channel	#neomutt-test
+		e.source.nick	flatcap
+		e.target	#neomutt-test
+		e.arguments	['neo-bot-flatcap: #3200']
+
+/msg bot #3200
+	on_privmsg
+		self.channel	#neomutt-test
+		e.source.nick	flatcap
+		e.target	neo-bot-flatcap
+		e.arguments	['#3200']
+
+in bot channel "#3200"
+	on_privmsg
+		self.channel	#neomutt-test
+		e.source.nick	flatcap
+		e.target	neo-bot-flatcap
+		e.arguments	['#3200']
+
+# print("{} Discussion by @{} '{}' ({}💬) {}".format(icon, author, title, comments, url))
+
+Grammar:
+
+Output:
+
+PR #3199
+Issue #3200
+Discussion #3203
+
+PR by @gahr "Use FreeBSD 13 in Cirrus": https://github.com/neomutt/neomutt/pull/3199
+Issue by @wgmayer0 "Save all attachments with a keybinding": https://github.com/neomutt/neomutt/issues/3200
+💀 discussion by @flatcap "Compose: Renaming Op Codes" with 4 comments: https://github.com/neomutt/neomutt/discussions/3203
+
+--------------------------------------------------------------------------------
+
+✅ PR #3199 by @gahr "Use FreeBSD 13 in Cirrus" (6📄/+400/-128) (4💬)
+   https://github.com/neomutt/neomutt/pull/3199
+
+🐞 Issue #3200 by @wgmayer0 "Save all attachments with a keybinding" (4💬)
+   https://github.com/neomutt/neomutt/issues/3200
+
+💀 Discussion #3203 by @flatcap "Compose: Renaming Op Codes" (4💬)
+   https://github.com/neomutt/neomutt/discussions/3203
+
+📝 Commit 852f9878b by @flatcap (6📄/+400/-128) 2022-01-25
+   https://github.com/neomutt/neomutt/commit/852f9878b458253bf500f842620a42cdb971a566
+
+📗 Config: set recall = ask-yes
+   Recall postponed mesaages when asked to compose a message
+   https://neomutt.org/guide/reference#recall
+
+📘 Function: <next-undeleted>
+   move to the next undeleted message
+   https://neomutt.org/guide/reference#pager-map
+   https://neomutt.org/guide/reference#index-map
+   ???
+
+📙 Command: :message-hook
+   Change Settings Before Formatting a Message
+   https://neomutt.org/guide/configuration.html#message-hook
+
+🎨 Colour: index_date
+   Index date field, %d %D %{fmt} %[fmt] %(fmt)
+   https://neomutt.org/guide/configuration.html#color-simple-index
+
+--------------------------------------------------------------------------------
+
+🐞 Issue
+✅ Pull Request
+🔧 Development
+💀 Development - Old
+❓ Questions
+💡 Did you know
+
+📣 Announcements
+💬 General
+💡 Ideas
+🙏 Q&A
+🙌 Show and tell
+
+--------------------------------------------------------------------------------
+
+⛔ ✅ ❌ ❎ ❓ ❔ ❕ ❗ ❗ ⭐ ⭕ 🎉 🐞
+👀 👍 💀 💡 💣 💥 💬 💭 📁 📂 📃 📄 📑
+📖 📗 📘 📙 📜 📝 🔐 🔑 🔒 🔓 🔔 🔥 🔧
+🚧 🚨 🚫 🛑 🎨
