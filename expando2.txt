@@ -101,3 +101,9 @@ expando callback may fail, e.g. $conf vs $ENV
 conf fails, no action
 env fails (returns success) but empty
 
+gahr:
+	%{header:from}
+	${date:recipient}
+	${date:recipient-local}
+	${date:recipient-UTC}
+

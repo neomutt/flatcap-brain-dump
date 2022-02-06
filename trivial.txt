@@ -328,8 +328,6 @@ maildir_parse_flags
           if (e->flagged && C_FlagSafe)
 should set flags, then update in frontend if C_FlagSafe condition is met
 
-copy turkish
-
 rename params
 	size_t mutt_mb_mbstowcs(wchar_t **pwbuf, size_t *pwbuflen, size_t i, char *buf);
 
@@ -418,8 +416,6 @@ libmutt.c wrappers for the few functions that use config in
 
 copy asan configure/bash scripts to dev page
 
-fix fuzzer install
-
 git lt [NUM]
 
 iwyu: parameterise iwyu.sh '*.c' -> selects correct backend script
@@ -494,7 +490,6 @@ split browser cases by function
 	dlg_select_attachment / mutt_attach_display_loop
 		alias/dlgalias.c:330:7:         11 dlg_select_alias
 		alias/dlgquery.c:439:7:         13 dlg_select_query
-		attach/dlg_attach.c:611:7:      26 dlg_select_attachment
 		attach/recvattach.c:948:7:       9 mutt_attach_display_loop
 		autocrypt/dlgautocrypt.c:375:7:  5 dlg_select_autocrypt_account
 		browser.c:1512:7:               26 mutt_buffer_select_file
@@ -607,7 +602,7 @@ macos?
 
 https://hub.docker.com/r/dovecot/dovecot
 
-actions: check that matrix builds continue on error
+amutt_expando_formatctions: check that matrix builds continue on error
 
 logging error fd == -1 ?
 	mutt_socket_write_d() -1> a0000 SELECT "INBOX"
@@ -685,9 +680,6 @@ recvattach listing attachments doesn't repaint on resize
 all simple dialogs
 dlg_alias
 
-∀ menu_make_entry overrides
-	doxygen - doc formatting function, e.g. index_format_str
-
 review all reallocs => memset to clear new memory
 	email/attach.c has lots!
 
@@ -707,10 +699,6 @@ action for IRC notifier
 		discussion:
 			types: [created, edited, answered]
 
-mutt_regex_new() doesn't free object on error, if `err` isn't set!
-	if ((rc != 0) && err)
-	check all callers
-
-comment wrong
-	MT_COLOR_INDEX_COLLAPSED,          ///< Index: number of messages in collapsed thread
+dump old branches
+reorder email examples (and shorten title)
 

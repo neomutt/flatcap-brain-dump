@@ -102,7 +102,7 @@ Issue by @wgmayer0 "Save all attachments with a keybinding": https://github.com/
 💀 Discussion #3203 by @flatcap "Compose: Renaming Op Codes" (4💬)
    https://github.com/neomutt/neomutt/discussions/3203
 
-📝 Commit 852f9878b by @flatcap (6📄/+400/-128) 2022-01-25
+📝 Commit 852f9878b by @flatcap "rename OpMain/MENU_MAIN" (6📄/+400/-128) 2022-01-25
    https://github.com/neomutt/neomutt/commit/852f9878b458253bf500f842620a42cdb971a566
 
 📗 Config: set recall = ask-yes
