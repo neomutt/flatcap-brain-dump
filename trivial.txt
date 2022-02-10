@@ -700,5 +700,16 @@ action for IRC notifier
 			types: [created, edited, answered]
 
 dump old branches
-reorder email examples (and shorten title)
+
+update releases
+update upstream patches
+	drop pre-processed
+	merge patch dirs
+
+guide
+	Pgp: Pseudo Header
+	missing other options
+	see mutt_parse_crypt_hdr()
+
+strip down code repo?
 

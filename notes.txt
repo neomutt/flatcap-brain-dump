@@ -1,8 +1,12 @@
+auto release build tests
+	*.h: first two "^#" should be #include guards, and last line
+
 <force> function that turns off confirmation for the next function
 
 change help during questions
 	yes/no show all possible responses
 	including $abort_key (Ctrl-G)
+	is abort always available?
 
 Is there any way to capture and refer back to the address captured by 'send2-hook ~t %s' in a backtick command on the right-hand side?
 	e.g. ~t "jim@host.com"  ->  set varible = "\1"  (meaning jim@host.com)

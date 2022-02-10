@@ -1,0 +1,18 @@
+Index
+
+What it might look like if the attachments could be viewed inline:
+Narrowed view (margin of 8)
+Coloured for emphasis
+
+10-Dec r + John Doe                   I can help with translation                                   (4.6K)
+11-Dec   F Richard Russon             ├─>                                                            (74K)
+        I     1 <no description>                                  [multipa/alternativ, 7bit, 2.3K]
+        I     2 ├─><no description>                                [text/plain, 7bit, utf-8, 0.3K]
+        I     3 └─><no description>                                 [text/html, 7bit, utf-8, 1.7K]
+11-Dec   F Richard Russon             ├─>                                                           (0.4K)
+18-Dec   F Richard Russon             ├─>                                                           (0.2K)
+
+If this is possible, why no message preview?
+
+syn match attach "^ \+\zsI.*"
+hi attach guibg=#404040
