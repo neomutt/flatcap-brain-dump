@@ -12,6 +12,19 @@ Coloured for emphasis
 11-Dec   F Richard Russon             ├─>                                                           (0.4K)
 18-Dec   F Richard Russon             ├─>                                                           (0.2K)
 
+popup window
+	does it re-space the underlying menu?
+	might be messy if it doesn't
+mini-attachment window
+	whilst focus is here, cursor is limited to the window
+	or does it persist until:
+		cursor leaves region?
+		another email has 'v' pressed
+	'q' / <esc> kills the window, restores the menu
+		or 'v' to toggle it?
+	normal attachment functions
+	viewing an attachment will have to go full-screen
+
 If this is possible, why no message preview?
 
 syn match attach "^ \+\zsI.*"

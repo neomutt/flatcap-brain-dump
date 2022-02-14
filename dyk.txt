@@ -111,3 +111,9 @@ add?
 
 discussion icon :bulb:
 
+sending a file "apple.txt"
+	# if you want the file as the body of the email
+	cat apple.txt | neomutt -s "new file" john.doe@example.com
+	# if you want message "hello" and apple.txt as an attachment
+	echo hello | neomutt -s "new file" john.doe@example.com -a apple.txt
+
