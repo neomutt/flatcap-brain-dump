@@ -1,3 +1,8 @@
+try to replace the %<strtime> expando,
+	so the current time/date can be used in macros, etc
+	ideally need a pair of matching symbols
+	{} [] <> in use
+
 auto release build tests
 	*.h: first two "^#" should be #include guards, and last line
 

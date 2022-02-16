@@ -488,20 +488,20 @@ split browser cases by function
 	so all <functions> are independent functions()
 	check against OpPager lists, etc
 	dlg_select_attachment / mutt_attach_display_loop
-		alias/dlgalias.c:330:7:         11 dlg_select_alias
-		alias/dlgquery.c:439:7:         13 dlg_select_query
-		attach/recvattach.c:948:7:       9 mutt_attach_display_loop
-		autocrypt/dlgautocrypt.c:375:7:  5 dlg_select_autocrypt_account
-		browser.c:1512:7:               26 mutt_buffer_select_file
-		dlg_postpone.c:202:7:            8 dlg_select_postponed_email
-		enter.c:250:9:                  23 mutt_enter_string_full
-		history/dlghistory.c:144:7:      2 dlg_select_history
-		menu/menu.c:382:7:              30 menu_loop
-		ncrypt/dlggpgme.c:1435:7:        4 dlg_select_gpgme_key
-		ncrypt/dlgpgp.c:686:7:           4 dlg_select_pgp_key
-		ncrypt/dlgsmime.c:238:7:         2 dlg_select_smime_key
-		pattern/dlgpattern.c:362:7:      2 dlg_select_pattern
-		remailer.c:743:7:                9 dlg_select_mixmaster_chain
+		menu_loop alias/dlgalias.c:330:7:         11 dlg_select_alias
+		menu_loop alias/dlgquery.c:439:7:         13 dlg_select_query
+		???       attach/recvattach.c:948:7:       9 mutt_attach_display_loop
+		menu_loop autocrypt/dlgautocrypt.c:375:7:  5 dlg_select_autocrypt_account
+		menu_loop browser/browser.c:1347:7:       26 mutt_buffer_select_file
+		menu_loop dlg_postpone.c:202:7:            8 dlg_select_postponed_email
+		km_dokey  enter/enter.c:238:9:            23 mutt_enter_string_full
+		menu_loop history/dlghistory.c:144:7:      2 dlg_select_history
+		km_dokey  menu/menu.c:382:7:              30 menu_loop
+		menu_loop ncrypt/dlggpgme.c:1435:7:        4 dlg_select_gpgme_key
+		menu_loop ncrypt/dlgpgp.c:686:7:           4 dlg_select_pgp_key
+		menu_loop ncrypt/dlgsmime.c:238:7:         2 dlg_select_smime_key
+		menu_loop pattern/dlgpattern.c:362:7:      2 dlg_select_pattern
+		menu_loop remailer.c:743:7:                9 dlg_select_mixmaster_chain
 
 10 largest functions
 	1087 mutt_buffer_select_file
@@ -701,15 +701,14 @@ action for IRC notifier
 
 dump old branches
 
-update releases
-update upstream patches
-	drop pre-processed
-	merge patch dirs
-
 guide
 	Pgp: Pseudo Header
 	missing other options
 	see mutt_parse_crypt_hdr()
 
-strip down code repo?
+add debug options to actions builds?
+
+rename
+	OpAutocryptAcct -> OpAutocrypt
+	OpPost -> OpPostpone
 
