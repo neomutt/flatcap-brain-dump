@@ -1,3 +1,29 @@
+upgrade MbTable to understand unicode character modifiers
+	e.g. 0xfe0f (emoji), gender, fitzpatrick (skin tones)
+	https://www.unicode.org/L2/L2016/16181-gender-zwj-sequences.pdf
+	without this fix, $from_chars, etc get their calculations wrong
+
+<tag-prefix> vs $auto_tag
+	try to make all the behaviour consistent
+	*except* where the function only allows tagged usage,
+	e.g. <group-altenatives>
+
+gahr
+	would you change alias_to_addrlist to append to the addrlist param ?
+	So you could avoid the temporaries + mutt_addrlist_copy
+it's not quite trivial due to `first->personal` and call to mutt_addrlist_to_intl()
+that'd get repeated for the entire list
+
+add ASAN notes to github canned responses
+
+check sample/contrib themes work
+
+aliases:
+	after a query, cache the results
+	if the user doesn't already have any aliases
+	using <complete-query> will add/overwrite cached results
+	<complete> will use cached addresses
+
 try to replace the %<strtime> expando,
 	so the current time/date can be used in macros, etc
 	ideally need a pair of matching symbols
@@ -7,6 +33,8 @@ auto release build tests
 	*.h: first two "^#" should be #include guards, and last line
 
 <force> function that turns off confirmation for the next function
+	or to end of macro
+	<unforce> to re-enable?
 
 change help during questions
 	yes/no show all possible responses

@@ -708,7 +708,3 @@ guide
 
 add debug options to actions builds?
 
-rename
-	OpAutocryptAcct -> OpAutocrypt
-	OpPost -> OpPostpone
-

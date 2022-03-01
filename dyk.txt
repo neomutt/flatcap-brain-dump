@@ -117,3 +117,9 @@ sending a file "apple.txt"
 	# if you want message "hello" and apple.txt as an attachment
 	echo hello | neomutt -s "new file" john.doe@example.com -a apple.txt
 
+hide "Autoview" lines
+	color attach_headers black black "\\[--\\ Autoview.*\\]$"
+	set display_filter = "grep -v '\\\[-- Autoview using'"
+	set display_filter = 'grep -v "\\[-- Autoview using"'
+	https://github.com/neomutt/neomutt/issues/3243
+
