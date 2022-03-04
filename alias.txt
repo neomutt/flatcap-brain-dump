@@ -175,3 +175,6 @@ expando %f flag: 'S' for 'Self' (overridden by 'D')
 //QWQ const size_t len = strlen(buf); // for efficiency
 menu cursor position isn't preserved on updates (insertion/deletion)
 
+function to scan a mailbox and create a menu of all addresses found
+	functions to turn them into aliases
+

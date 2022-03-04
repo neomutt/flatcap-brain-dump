@@ -488,8 +488,6 @@ split browser cases by function
 	so all <functions> are independent functions()
 	check against OpPager lists, etc
 	dlg_select_attachment / mutt_attach_display_loop
-		menu_loop alias/dlgalias.c:330:7:         11 dlg_select_alias
-		menu_loop alias/dlgquery.c:439:7:         13 dlg_select_query
 		???       attach/recvattach.c:948:7:       9 mutt_attach_display_loop
 		menu_loop autocrypt/dlgautocrypt.c:375:7:  5 dlg_select_autocrypt_account
 		menu_loop browser/browser.c:1347:7:       26 mutt_buffer_select_file
@@ -707,4 +705,29 @@ guide
 	see mutt_parse_crypt_hdr()
 
 add debug options to actions builds?
+
+define?
+	OP_ERROR   -1
+	OP_TIMEOUT -2
+comparisons to fix
+	browser/browser.c:1355:5: if (op >= 0)
+	compose/compose.c:355:5:  if (op >= 0)
+	index/dlg_index.c:1106:5: if (priv->tag && () && () && (op != -2))
+	index/dlg_index.c:1234:5: if (op >= 0)
+	index/dlg_index.c:1285:7: if (op < 0)
+	index/functions.c:381:3:  if (op < 0)
+	keymap.c:695:5:           if (tmp.op)
+	pager/dlg_pager.c:826:5:  if (op >= 0)
+	pager/dlg_pager.c:833:5:  if (op < 0)
+need to be careful with OpStrings[]
+	hide it, and create a function to lookup names/descriptions
+	that copes with OP_ABORT, OP_TIMEOUT
+opcodes.c doxy describe structs/enums that are defined
+	OpStrings[][1] only used by help.c
+
+translate: "tag-" ?
+
+graphviz / debug - dump pattern contents
+	to help with debugging #3285 Leak with save-hook
+	https://github.com/neomutt/neomutt/issues/3285
 
