@@ -89,6 +89,8 @@ replace mbtowc() with mbrtowc() in my_width()
 
 refactor parse_hooks to use (new) flags in mutt_config.c
 	e.g. TAKES_PATTERN, TAKES_REGEX
+	mutt_parse_hook()
+	mutt_commands[] in mutt_commands.c
 
 eliminate all static variables in functions
 	starting with the libraries
@@ -249,6 +251,8 @@ convert history search to use ARRAY
 .neomuttdebug*
 	log "neomutt -v" output on startup
 	minimise it
+	after log_translation() in main
+	need to convert FILE* output to ListHead?
 
 eliminate config from libmutt
 first two should be easy

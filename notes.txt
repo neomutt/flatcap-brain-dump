@@ -6,7 +6,7 @@ upgrade MbTable to understand unicode character modifiers
 <tag-prefix> vs $auto_tag
 	try to make all the behaviour consistent
 	*except* where the function only allows tagged usage,
-	e.g. <group-altenatives>
+	e.g. <group-alternatives>
 
 gahr
 	would you change alias_to_addrlist to append to the addrlist param ?

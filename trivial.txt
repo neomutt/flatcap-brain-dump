@@ -600,7 +600,7 @@ macos?
 
 https://hub.docker.com/r/dovecot/dovecot
 
-amutt_expando_formatctions: check that matrix builds continue on error
+actions: check that matrix builds continue on error
 
 logging error fd == -1 ?
 	mutt_socket_write_d() -1> a0000 SELECT "INBOX"
@@ -705,25 +705,7 @@ guide
 	see mutt_parse_crypt_hdr()
 
 add debug options to actions builds?
-
-define?
-	OP_ERROR   -1
-	OP_TIMEOUT -2
-comparisons to fix
-	browser/browser.c:1355:5: if (op >= 0)
-	compose/compose.c:355:5:  if (op >= 0)
-	index/dlg_index.c:1106:5: if (priv->tag && () && () && (op != -2))
-	index/dlg_index.c:1234:5: if (op >= 0)
-	index/dlg_index.c:1285:7: if (op < 0)
-	index/functions.c:381:3:  if (op < 0)
-	keymap.c:695:5:           if (tmp.op)
-	pager/dlg_pager.c:826:5:  if (op >= 0)
-	pager/dlg_pager.c:833:5:  if (op < 0)
-need to be careful with OpStrings[]
-	hide it, and create a function to lookup names/descriptions
-	that copes with OP_ABORT, OP_TIMEOUT
-opcodes.c doxy describe structs/enums that are defined
-	OpStrings[][1] only used by help.c
+	weekly wide-build of debug/devel options
 
 translate: "tag-" ?
 
