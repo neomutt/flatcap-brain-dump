@@ -372,8 +372,6 @@ scan-build
 
 reorg 'build' to add options conditionally on compiler
 
-reorg .extra to build CFLAGS
-
 refactor into ONE printf, adjust translations to just "Limit:"
 	mutt_str_asprintf(&tmp_str, _("Limit: %s"), limit);
 	mutt_str_asprintf(&new_title, "%s - %s", menu_name, tmp_str);
@@ -464,10 +462,6 @@ merge mutt_buffer_get_field(), mutt_enter_string_full()
 	latter only has one caller
 
 run iwyu with openssl enabled, slang too?
-
-trans: merge
-	msgid "Query: "
-	msgid "Query"
 
 NDEBUG warnings around asserts
 
@@ -704,12 +698,20 @@ guide
 	missing other options
 	see mutt_parse_crypt_hdr()
 
-add debug options to actions builds?
-	weekly wide-build of debug/devel options
-
 translate: "tag-" ?
 
-graphviz / debug - dump pattern contents
-	to help with debugging #3285 Leak with save-hook
-	https://github.com/neomutt/neomutt/issues/3285
+update {windows,data,overview}.txt
+
+add sample patterns to test/leak.c
+	enable pattern coverage
+	need mailbox/emails, menu data
+
+rebase getfield branches
+
+improve score
+	https://www.mail-tester.com/
+
+actions
+	add workflow to all
+	merge asan into build-and-test
 

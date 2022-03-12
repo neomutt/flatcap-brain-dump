@@ -178,3 +178,11 @@ menu cursor position isn't preserved on updates (insertion/deletion)
 function to scan a mailbox and create a menu of all addresses found
 	functions to turn them into aliases
 
+alias sidebar
+	bool visible
+	bool auto-labels (self, each separate label found)
+	alias_label tony,oscar [optional desc]
+	alias_label oscar,emmy [optional desc]
+	define special labels so that the auto-labels can be recreated manually
+		but with custom labels
+
