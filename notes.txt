@@ -1,3 +1,8 @@
+query: limit: de-colon translation strings
+
+query-append
+	doesn't dedupe new entries
+
 upgrade MbTable to understand unicode character modifiers
 	e.g. 0xfe0f (emoji), gender, fitzpatrick (skin tones)
 	https://www.unicode.org/L2/L2016/16181-gender-zwj-sequences.pdf

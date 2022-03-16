@@ -482,18 +482,18 @@ split browser cases by function
 	so all <functions> are independent functions()
 	check against OpPager lists, etc
 	dlg_select_attachment / mutt_attach_display_loop
-		???       attach/recvattach.c:948:7:       9 mutt_attach_display_loop
-		menu_loop autocrypt/dlgautocrypt.c:375:7:  5 dlg_select_autocrypt_account
-		menu_loop browser/browser.c:1347:7:       26 mutt_buffer_select_file
-		menu_loop dlg_postpone.c:202:7:            8 dlg_select_postponed_email
-		km_dokey  enter/enter.c:238:9:            23 mutt_enter_string_full
-		menu_loop history/dlghistory.c:144:7:      2 dlg_select_history
-		km_dokey  menu/menu.c:382:7:              30 menu_loop
-		menu_loop ncrypt/dlggpgme.c:1435:7:        4 dlg_select_gpgme_key
-		menu_loop ncrypt/dlgpgp.c:686:7:           4 dlg_select_pgp_key
-		menu_loop ncrypt/dlgsmime.c:238:7:         2 dlg_select_smime_key
-		menu_loop pattern/dlgpattern.c:362:7:      2 dlg_select_pattern
-		menu_loop remailer.c:743:7:                9 dlg_select_mixmaster_chain
+		attach/recvattach.c:948:7:       9 mutt_attach_display_loop
+		autocrypt/dlgautocrypt.c:375:7:  5 dlg_select_autocrypt_account
+		browser/browser.c:1347:7:       26 mutt_buffer_select_file
+		dlg_postpone.c:202:7:            8 dlg_select_postponed_email
+		enter/enter.c:238:9:            23 mutt_enter_string_full
+		history/dlghistory.c:144:7:      2 dlg_select_history
+		menu/menu.c:382:7:              30 menu_loop
+		ncrypt/dlggpgme.c:1435:7:        4 dlg_select_gpgme_key
+		ncrypt/dlgpgp.c:686:7:           4 dlg_select_pgp_key
+		ncrypt/dlgsmime.c:238:7:         2 dlg_select_smime_key
+		pattern/dlgpattern.c:362:7:      2 dlg_select_pattern
+		remailer.c:743:7:                9 dlg_select_mixmaster_chain
 
 10 largest functions
 	1087 mutt_buffer_select_file
@@ -706,12 +706,40 @@ add sample patterns to test/leak.c
 	enable pattern coverage
 	need mailbox/emails, menu data
 
-rebase getfield branches
-
 improve score
 	https://www.mail-tester.com/
 
 actions
 	add workflow to all
 	merge asan into build-and-test
+
+post freeze:
+	doc reorg
+	website update
+		guide
+		intro
+		screenshots
+	iwyu
+	upstream
+		small
+	unit test coverage
+	remaining big
+		colour
+		get_field
+		browser
+		small dispatchers
+	update neomuttrc.vim
+	update copyright date
+	update {windows,data,overview}.txt
+	nntp pass PR
+	compose multipart video
+
+post release:
+	c99 -> c11?
+	master -> main
+	cull members
+	cull issues
+	clang-format?
+
+fix mutt/neomutt shared config
 
