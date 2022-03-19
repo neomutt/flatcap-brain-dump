@@ -123,3 +123,7 @@ hide "Autoview" lines
 	set display_filter = 'grep -v "\\[-- Autoview using"'
 	https://github.com/neomutt/neomutt/issues/3243
 
+macro index,pager <f5> '<enter-command>set pager_index_lines=`bc <<< "10 - $pager_index_lines"`<enter>'
+macro pager,index I ':set pager_index_lines=`dc -e "10 $pager_index_lines -p"`<enter>'
+	add leading space to prevent history
+

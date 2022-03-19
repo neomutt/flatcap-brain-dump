@@ -1,3 +1,8 @@
+enable hcache by default using XDG cache dir, #3125
+	"Support XDG Base Directory Specification ... a little more"
+	https://github.com/neomutt/neomutt/pull/3125
+	pick a modern default backend
+
 query: limit: de-colon translation strings
 
 query-append

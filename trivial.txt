@@ -482,18 +482,17 @@ split browser cases by function
 	so all <functions> are independent functions()
 	check against OpPager lists, etc
 	dlg_select_attachment / mutt_attach_display_loop
-		attach/recvattach.c:948:7:       9 mutt_attach_display_loop
-		autocrypt/dlgautocrypt.c:375:7:  5 dlg_select_autocrypt_account
-		browser/browser.c:1347:7:       26 mutt_buffer_select_file
-		dlg_postpone.c:202:7:            8 dlg_select_postponed_email
-		enter/enter.c:238:9:            23 mutt_enter_string_full
-		history/dlghistory.c:144:7:      2 dlg_select_history
-		menu/menu.c:382:7:              30 menu_loop
-		ncrypt/dlggpgme.c:1435:7:        4 dlg_select_gpgme_key
-		ncrypt/dlgpgp.c:686:7:           4 dlg_select_pgp_key
-		ncrypt/dlgsmime.c:238:7:         2 dlg_select_smime_key
-		pattern/dlgpattern.c:362:7:      2 dlg_select_pattern
-		remailer.c:743:7:                9 dlg_select_mixmaster_chain
+		attach/recvattach.c:946:       9  mutt_attach_display_loop
+		autocrypt/dlg_autocrypt.c:393: 5  dlg_select_autocrypt_account
+		browser/browser.c:1380:        26 mutt_buffer_select_file
+		dlg_postpone.c:218:            8  dlg_select_postponed_email
+		enter/enter.c:238:             23 mutt_enter_string_full
+		history/dlg_history.c:163:     2  dlg_select_history
+		ncrypt/dlg_gpgme.c:1453:       4  dlg_select_gpgme_key
+		ncrypt/dlg_pgp.c:703:          4  dlg_select_pgp_key
+		ncrypt/dlg_smime.c:252:        2  dlg_select_smime_key
+		pattern/dlg_pattern.c:380:     2  dlg_select_pattern
+		remailer.c:757:                9  dlg_select_mixmaster_chain
 
 10 largest functions
 	1087 mutt_buffer_select_file
@@ -714,12 +713,13 @@ actions
 	merge asan into build-and-test
 
 post freeze:
+	colour changes - explanation
 	doc reorg
 	website update
 		guide
+			config + old versions
 		intro
 		screenshots
-	iwyu
 	upstream
 		small
 	unit test coverage
@@ -732,14 +732,22 @@ post freeze:
 	update copyright date
 	update {windows,data,overview}.txt
 	nntp pass PR
+	openbsd y/n question
 	compose multipart video
+	new coverity defect
 
 post release:
 	c99 -> c11?
+	POSIX:2008
 	master -> main
 	cull members
 	cull issues
 	clang-format?
+	author repo / git mailmap
 
 fix mutt/neomutt shared config
+
+asan analysis mention?
+	debian: libasan6
+	fedora: libasan
 
