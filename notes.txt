@@ -1,3 +1,6 @@
+create a unique handler-function for each neomutt function/command
+	if many neomutt functions/commands share code, factor it into another c function
+
 enable hcache by default using XDG cache dir, #3125
 	"Support XDG Base Directory Specification ... a little more"
 	https://github.com/neomutt/neomutt/pull/3125

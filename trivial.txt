@@ -651,11 +651,6 @@ reuse yml actions
 useful?
 	#if defined(__COVERITY__)
 
-clang-format?
-	PenaltyBreakAssignment: 100
-	PenaltyBreakBeforeFirstCallParameter: 100
-	BreakStringLiterals: false
-
 comment to avoid warning
 /* coverity[check_return] */
 /* coverity[suspicious_sizeof] */
@@ -750,4 +745,17 @@ fix mutt/neomutt shared config
 asan analysis mention?
 	debian: libasan6
 	fedora: libasan
+
+vim neomutt, -noregex not recognised
+
+and friends
+	s/mutt_debug/printf/
+to check params used correctly
+
+clang-format?
+	PenaltyBreakAssignment: 100
+	PenaltyBreakBeforeFirstCallParameter: 100
+	BreakStringLiterals: false
+create sample branches for each, and all combined
+	diffstats
 
