@@ -711,8 +711,6 @@ post freeze:
 	colour changes - explanation
 	doc reorg
 	website update
-		guide
-			config + old versions
 		intro
 		screenshots
 	upstream
@@ -723,22 +721,23 @@ post freeze:
 		get_field
 		browser
 		small dispatchers
-	update neomuttrc.vim
 	update copyright date
 	update {windows,data,overview}.txt
+		dev web section
 	nntp pass PR
 	openbsd y/n question
 	compose multipart video
 	new coverity defect
 
 post release:
-	c99 -> c11?
+	c99 -> c11? (threading)
 	POSIX:2008
 	master -> main
 	cull members
 	cull issues
 	clang-format?
 	author repo / git mailmap
+	Context -> MailboxView
 
 fix mutt/neomutt shared config
 
@@ -748,14 +747,43 @@ asan analysis mention?
 
 vim neomutt, -noregex not recognised
 
-and friends
-	s/mutt_debug/printf/
-to check params used correctly
-
 clang-format?
 	PenaltyBreakAssignment: 100
 	PenaltyBreakBeforeFirstCallParameter: 100
 	BreakStringLiterals: false
+		test with LONG "strings"
+		unwrap all strings first (excluding \n)
 create sample branches for each, and all combined
-	diffstats
+	diffstats -600 lines
+
+why doesn't Pager support OpGeneric
+	it's skipped in km_dokey()
+
+rename OPs to match functions
+	e.g. drop MAIN_
+	{ "set-flag", OP_MAIN_SET_FLAG },
+
+star every repo I have write access to
+
+man pages (inc synonyms, deprecated)
+neomuttrc.vim
+
+config docs: unify (imap only)-style sections
+	dedupe any deprecated/synonym refs
+
+generate list of dialogs (all combinations)
+	macros/config to navigate to each
+	<write-screen>X<enter>
+	sample emails / config
+	draw graph
+	pager: plain, email, attachment mode
+		with / without index
+		with / without sidebar
+		with / without help
+	index: normal, postpone, attach-email
+		with / without sidebar
+		with / without help
+
+:color OBJ
+	display one-line summary of colour in msgwin
 

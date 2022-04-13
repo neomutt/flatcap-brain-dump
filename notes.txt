@@ -1,3 +1,17 @@
+:theme X
+	load a colour scheme from /usr/share/doc/neomutt/themes/X
+	or :theme path/to/file
+	$theme_path (colon separated)
+:theme [list]
+	show a list of themes from dir in a menu
+	two panel window? like index/pager
+	top (index) shows list of themes
+	bottom (pager) shows contents of file?  highlighted to match
+	bottom (pager) shows list of effects?
+		how to do this without actually applying it?
+	'q' quits, <enter> selects theme
+	:theme [autocomplete]
+
 create a unique handler-function for each neomutt function/command
 	if many neomutt functions/commands share code, factor it into another c function
 
@@ -372,6 +386,7 @@ pinned issues
 	I need help - how to ask for help, how to write a good issue
 	I want to help - how to join us
 	I want to thank you - star, donate, help, "thanks" -> irc
+	link to Discussions
 
 notmuch address search, adjusted to neomutt query format
 	notmuch address --output=sender %s | sed 's/\(.*\) <\(.*\)>$/\2\t\1/'
