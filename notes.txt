@@ -1,5 +1,6 @@
 :theme X
 	load a colour scheme from /usr/share/doc/neomutt/themes/X
+	`set my_theme = X` (auto, or in file)
 	or :theme path/to/file
 	$theme_path (colon separated)
 :theme [list]

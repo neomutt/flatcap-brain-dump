@@ -537,7 +537,7 @@ add to build-and-test action
 add links in web/dev to gfx repo for arch diagrams etc
 	and/or dev list
 
-update dev translate deployment
+update web dev translate deployment
 	add coverity
 
 neomutt -v output:
@@ -551,9 +551,6 @@ compose/functions.c
 merge two sort typedefs
 	sort_t
 	qsort_compar_t
-
-neomutt repos
-	more master -> main
 
 update test library
 
@@ -685,8 +682,6 @@ action for IRC notifier
 		discussion:
 			types: [created, edited, answered]
 
-dump old branches
-
 guide
 	Pgp: Pseudo Header
 	missing other options
@@ -732,10 +727,8 @@ post freeze:
 post release:
 	c99 -> c11? (threading)
 	POSIX:2008
-	master -> main
 	cull members
 	cull issues
-	clang-format?
 	author repo / git mailmap
 	Context -> MailboxView
 
@@ -746,15 +739,6 @@ asan analysis mention?
 	fedora: libasan
 
 vim neomutt, -noregex not recognised
-
-clang-format?
-	PenaltyBreakAssignment: 100
-	PenaltyBreakBeforeFirstCallParameter: 100
-	BreakStringLiterals: false
-		test with LONG "strings"
-		unwrap all strings first (excluding \n)
-create sample branches for each, and all combined
-	diffstats -600 lines
 
 why doesn't Pager support OpGeneric
 	it's skipped in km_dokey()
@@ -786,4 +770,14 @@ generate list of dialogs (all combinations)
 
 :color OBJ
 	display one-line summary of colour in msgwin
+	how? need special handler to display the colours
+	temporarily take ownership?
+	what about colours that take multiple regexes?
+		resize msgwin?  how much?
+
+attach/functions.c (check other dispatchers)
+	dlg unused?
+	struct MuttWindow *dlg = dialog_find(win);
+	if (!dlg || !dlg->wdata)
+	  return FR_ERROR;
 
