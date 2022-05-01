@@ -84,9 +84,6 @@ add expandos for mailbox/email to pipe/filter commands
 	e.g. my_command --title "%s"
 	for the email subject
 
-generate y/n regex from our "yes" and "no" translations
-	to work around OpenBSD's lack of working nl_langinfo()
-
 bug
 	three accounts wth imap_check_subscribed fail
 		apple@host.com
@@ -122,10 +119,6 @@ guideline for mutt_{message,warning,error}
 	mutt_warning() => print/queue during macro?
 	mutt_message() => ignore during macro?
 	option to ignore erros duing macro run?
-
-"uncolor status" doesn't work
-	"uncolor status regex" does work
-	can't undo base colour
 
 is there a security? reason that we don't log all gpg commands?
 	all the gpg commands go through: ncrypt/pgpinvoke.c:226
@@ -174,11 +167,6 @@ config parsing revamp
 	cache locations of config
 		like vim's `:verbose set x`
 	need framework to delegate parsing
-
-split Menu and Pager
-	Menu for selectable *items*
-	pager for text
-	=> elim Menu->dialog[]
 
 add stats page:
 	email stats about one email?
@@ -473,12 +461,6 @@ change config errors to file:line for easier vim
 	mutt_error(_("Improperly formatted entry for type %s in \"%s\" line %d"), type, filename, line);
 	mutt_warning(_("Warning in %s, line %d: %s"), rcfile, lineno, err->data);
 
-mouse scroll should move viewport (natural)
-	rather than focus
-	add $option?
-	should allow highlight and indicator to move offscreen
-	$devel_mouse = yes?
-
 doxy - missing docs for send config
 	no `///< Config:` comments
 
@@ -492,9 +474,6 @@ searching: pattern expansion using simple_search
 function/setting to turn off confirmations whilst in a macro
 	might make functions unpredictable
 	unless there's some visual feedback
-
-master -> main -- when?
-	after release
 
 SIGWINCH - only root window should be listening
 	sends out Window Events on change
@@ -540,7 +519,6 @@ fake mailboxes (dividers) get sorted by Accounts
 	what about sorting?
 
 non-easy task "mailboxes -label"?
-	tyler132 / @Tyler-Roche progress?
 
 command synonym for "sidebar-whitelist"?
 
@@ -564,18 +542,6 @@ diagrams and descriptions of EVERY combination of
 update & publish docs/config/design*.md
 	web/dev
 	link to The Diagram!
-
-dlgalias: mouse
-	single-click = tag
-	double-click = select (all tagged)
-	+ sidebar support
-	functions to tag/untag
-	function to save
-	transform icons like notmuch (and colour)
-	support for tags/icons in index_format
-	column for tags
-	search pattern ∀ fields
-	functions for sidebar navigation
 
 --------------------------------------------------------------------------------
 
@@ -888,7 +854,6 @@ https://github.com/neomutt/neomutt/contribute !!!
 	ctrl-l => reflow *all*, recalc *all*, repaint *all*
 
 --------------------------------------------------------------------------------
-
 
 Sidebar folding
 fold_level
@@ -1254,8 +1219,6 @@ no such mailbox -> link to docs
 project "next release"
 	rename to "2019-MM-DD" after release
 	notes, triage, todo, done
-
-VIM update
 
 split up management repo?
 
@@ -1754,8 +1717,6 @@ merge email generator scripts
 
 reorg struct Email
 	move View (UI) elements last
-
-how will non-curses UI detect mouse clicks etc?
 
 source dir.d (.d significant) -> find all children or just '*.rc'
 

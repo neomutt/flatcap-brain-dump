@@ -349,7 +349,7 @@ hcache/restore.c
 	static struct Email *restore(const unsigned char *d)
 		STAILQ_INIT(&e->tags);
 		STAILQ_INIT(&e->chain);
-	no nec, done by email_new()
+	not nec, done by email_new()
 	WRONG - while memcpy is used, STAILQ_INIT's are nec
 
 stats_last_checked isn't set, cf upstream
@@ -483,16 +483,11 @@ split browser cases by function
 	check against OpPager lists, etc
 	dlg_select_attachment / mutt_attach_display_loop
 		attach/recvattach.c:946:       9  mutt_attach_display_loop
-		autocrypt/dlg_autocrypt.c:393: 5  dlg_select_autocrypt_account
 		browser/browser.c:1380:        26 mutt_buffer_select_file
-		dlg_postpone.c:218:            8  dlg_select_postponed_email
 		enter/enter.c:238:             23 mutt_enter_string_full
-		history/dlg_history.c:163:     2  dlg_select_history
 		ncrypt/dlg_gpgme.c:1453:       4  dlg_select_gpgme_key
 		ncrypt/dlg_pgp.c:703:          4  dlg_select_pgp_key
 		ncrypt/dlg_smime.c:252:        2  dlg_select_smime_key
-		pattern/dlg_pattern.c:380:     2  dlg_select_pattern
-		remailer.c:757:                9  dlg_select_mixmaster_chain
 
 10 largest functions
 	1087 mutt_buffer_select_file
@@ -565,8 +560,6 @@ update neomuttrc.vim
 	colors with attributes
 
 link observer function docs to Event/EventStruct they receive
-
-fix /master/ raw links in md files
 
 doc egypt workflow
 	CFLAGS -> svg
@@ -719,18 +712,14 @@ post freeze:
 	update copyright date
 	update {windows,data,overview}.txt
 		dev web section
-	nntp pass PR
-	openbsd y/n question
 	compose multipart video
 	new coverity defect
 
 post release:
 	c99 -> c11? (threading)
 	POSIX:2008
-	cull members
 	cull issues
 	author repo / git mailmap
-	Context -> MailboxView
 
 fix mutt/neomutt shared config
 
@@ -780,4 +769,12 @@ attach/functions.c (check other dispatchers)
 	struct MuttWindow *dlg = dialog_find(win);
 	if (!dlg || !dlg->wdata)
 	  return FR_ERROR;
+
+alternative to ASAN?
+	clang -ftrivial-auto-var-init=pattern -o jim jim.c
+
+not translated
+	snprintf(buf, sizeof(buf), "-- Remailer chain [Length: %d]", len);
+change to host list?
+	mutt_error(_("Can't get mixmaster's type2.list"));
 

@@ -52,3 +52,23 @@ click on divider - reduce sidebar to 1 char wide
 		   this automatically minimises the sidebar
 	keyboard functions to perform minimisaton too
 
+dlgalias: mouse
+	single-click = tag
+	double-click = select (all tagged)
+	+ sidebar support
+	functions to tag/untag
+	function to save
+	transform icons like notmuch (and colour)
+	support for tags/icons in index_format
+	column for tags
+	search pattern ∀ fields
+	functions for sidebar navigation
+
+how will non-curses UI detect mouse clicks etc?
+
+mouse scroll should move viewport (natural)
+	rather than focus
+	add $option?
+	should allow highlight and indicator to move offscreen
+	$devel_mouse = yes?
+
