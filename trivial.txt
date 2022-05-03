@@ -461,18 +461,9 @@ buf, buflen
 merge mutt_buffer_get_field(), mutt_enter_string_full()
 	latter only has one caller
 
-run iwyu with openssl enabled, slang too?
+run iwyu with openssl enabled?
 
 NDEBUG warnings around asserts
-
-irc aliases, add
-NOTE: logging at that level can reveal personal details, so be careful before pasting any logs
-
-char color -> enum ColorId
-static size_t add_index_color(char *buf, size_t buflen, MuttFormatFlags flags, char color)
-
-sync mutt_extract_token() to test/pattern/extract.c
-int mutt_extract_token(struct Buffer *dest, struct Buffer *tok, TokenFlags flags)
 
 make sure all notifys doxy their data
 struct Notify *notify;    ///< Notifications: #NotifyIndex, #IndexSharedData
@@ -485,9 +476,6 @@ split browser cases by function
 		attach/recvattach.c:946:       9  mutt_attach_display_loop
 		browser/browser.c:1380:        26 mutt_buffer_select_file
 		enter/enter.c:238:             23 mutt_enter_string_full
-		ncrypt/dlg_gpgme.c:1453:       4  dlg_select_gpgme_key
-		ncrypt/dlg_pgp.c:703:          4  dlg_select_pgp_key
-		ncrypt/dlg_smime.c:252:        2  dlg_select_smime_key
 
 10 largest functions
 	1087 mutt_buffer_select_file
@@ -603,7 +591,7 @@ neomutt version
 	do _those_ features matter if they've been included for so long?
 	when did it last change? > 4 years
 
-fix 4 lgtm defects
+fix 6 lgtm defects
 
 change browser_sort() to not take *entire* state,
 	just the array that needs sorting
@@ -652,12 +640,9 @@ vs
 	de.po:msgid "No"
 	de.po:msgstr "No"
 
-recvattach listing attachments doesn't repaint on resize
-all simple dialogs
-dlg_alias
-
 review all reallocs => memset to clear new memory
 	email/attach.c has lots!
+	mutt_realloc_zero(ptr, size, old_size)
 
 find/read the `git log --date=human` code
 	or better still --date=relative
