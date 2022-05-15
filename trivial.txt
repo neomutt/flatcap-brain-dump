@@ -468,15 +468,6 @@ NDEBUG warnings around asserts
 make sure all notifys doxy their data
 struct Notify *notify;    ///< Notifications: #NotifyIndex, #IndexSharedData
 
-split browser cases by function
-	and other dialogs
-	so all <functions> are independent functions()
-	check against OpPager lists, etc
-	dlg_select_attachment / mutt_attach_display_loop
-		attach/recvattach.c:946:       9  mutt_attach_display_loop
-		browser/browser.c:1380:        26 mutt_buffer_select_file
-		enter/enter.c:238:             23 mutt_enter_string_full
-
 10 largest functions
 	1087 mutt_buffer_select_file
 	1013 index_format_str
@@ -762,4 +753,18 @@ not translated
 	snprintf(buf, sizeof(buf), "-- Remailer chain [Length: %d]", len);
 change to host list?
 	mutt_error(_("Can't get mixmaster's type2.list"));
+
+split browser cases by function
+	and other dialogs
+	so all <functions> are independent functions()
+	check against OpPager lists, etc
+	dlg_select_attachment / mutt_attach_display_loop
+		attach/recvattach.c:946:       9  mutt_attach_display_loop
+
+build&test action missing
+	fmemopen
+	mixmaster
+	pcre2
+	rocksdb
+	(coverity too)
 
