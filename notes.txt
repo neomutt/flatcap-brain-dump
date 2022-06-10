@@ -303,11 +303,6 @@ Email.path -> edata (mbox, maildir only? compressed?) notmuch?
 
 Email.*gui* -> Email.view {} move to end of struct
 
-devel_new_mail_command
-	for maildir only (for now)
-	log command output
-	not on screen unless failed
-
 testing maildir
 	need functions to (create/move/delete) (mailboxes/emails)
 
@@ -1111,8 +1106,6 @@ imap mailbox comments/descriptions
 
 tweak maildir backend to allow opening a single file
 	fake mailbox, 1 email, read-only
-
-<jindraj> Since neomutt supports autocrypt it would be nice if it was listed here: https://autocrypt.org/dev-status.html wouldn't it?
 
 header and msgcache use different dirs!
 	imaps:flatcap-mail@flatcap.org
