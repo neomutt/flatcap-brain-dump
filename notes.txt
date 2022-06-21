@@ -1,3 +1,6 @@
+optionally replace the Menu tree chars
+	$tree_chars
+
 :theme X
 	load a colour scheme from /usr/share/doc/neomutt/themes/X
 	`set my_theme = X` (auto, or in file)
@@ -928,7 +931,8 @@ screenshots
 
 Window observer WIN_DELETE as d'tor!
 
-cli text mode option - sets $ascii_chars
+cli text mode opti
+on - sets $ascii_chars
 	how can we do this automatically?
 
 add capability to use external browser to attach files in compose

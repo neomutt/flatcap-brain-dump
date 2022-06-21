@@ -758,13 +758,6 @@ split browser cases by function
 	dlg_select_attachment / mutt_attach_display_loop
 		attach/recvattach.c:946:       9  mutt_attach_display_loop
 
-build&test action missing
-	fmemopen
-	mixmaster
-	pcre2
-	rocksdb
-	(coverity too)
-
 cull neomutt mentor project
 
 gnu sasl
@@ -791,4 +784,26 @@ root
 	weekly ctags
 	/usr/include
 	/usr/lib/gcc/x86_64-redhat-linux/12/include/
+OR
+	run ctags OF those dirs, elsewhere
+	keep in ~/.cache
+
+update neomutt readme ⭐ 🌟 
+add goal of 10 sponsors -> newsletter
+twitter sponsors
+
+contrib:
+	update rpm spec & bugzilla
+	notify packagers
+
+bisect <tab> to next mail hangs
+
+functionise `git d1`
+
+from python/black:
+	Authors
+	The author list is quite long nowadays, so it lives in its own file.
+	See AUTHORS.md
+
+update authors / mailmap
 
