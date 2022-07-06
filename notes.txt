@@ -1,3 +1,6 @@
+editor: add flag to function for specific callers that will accept <mailbox-cycle>
+	i.e. it will default to <space> on attach-file
+
 optionally replace the Menu tree chars
 	$tree_chars
 

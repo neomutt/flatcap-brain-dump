@@ -791,10 +791,14 @@ OR
 update neomutt readme ⭐ 🌟 
 add goal of 10 sponsors -> newsletter
 twitter sponsors
+release
+	thanks/sponsors
+	link to authors repo
 
 contrib:
 	update rpm spec & bugzilla
 	notify packagers
+		ask them NOT to compress everything!
 
 bisect <tab> to next mail hangs
 
@@ -805,5 +809,15 @@ from python/black:
 	The author list is quite long nowadays, so it lives in its own file.
 	See AUTHORS.md
 
-update authors / mailmap
+anything in wiki worth saving?
+
+find all functions returning 0=success,-1=failure
+	check they are tested with `if (x() == 0)` not `if (!x())`
+
+oauth2/mutt_oauth2.py.README -> README.md
+
+demote all neo branches to flatcap/DATE
+
+struct Mailbox, comment is misplaced?
+	// These next three are only set when MailCheckStats is set
 
