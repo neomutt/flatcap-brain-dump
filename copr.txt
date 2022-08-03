@@ -17,8 +17,6 @@ change "version" to 2020MMDD
 	=> increase epoch
 	provide mutt = OLDMUTTVER
 
-copr: regen FC30 2018 build
-
 notes for fedora/copr to use coredumpctl in the event of a crash
 
 fedora min install, add
@@ -41,4 +39,9 @@ user flatcap/neomutt-test as a downgrade repo
 
 create neomutt-stable, neomutt-latest repos?
 	too much work to maintain
+
+Large documentation must go in a -doc subpackage.
+Large could be size (~1MB) or number of files.
+Note: Documentation size is 3614720 bytes in 20 files.
+https://docs.fedoraproject.org/en-US/packaging-guidelines/#_documentation
 

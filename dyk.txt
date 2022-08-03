@@ -130,3 +130,6 @@ macro pager,index I ':set pager_index_lines=`dc -e "10 $pager_index_lines -p"`<e
 fake/external new mail command
 	zsw: if using linux, there's incrond for firing off a command/script when a dir is touched
 
+position cursor in input field, e.g.
+	macro index <F5> '<limit>-I ""<left>'
+

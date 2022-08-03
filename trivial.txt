@@ -815,9 +815,24 @@ find all functions returning 0=success,-1=failure
 	check they are tested with `if (x() == 0)` not `if (!x())`
 
 oauth2/mutt_oauth2.py.README -> README.md
+	markdown-ify
 
 demote all neo branches to flatcap/DATE
 
 struct Mailbox, comment is misplaced?
 	// These next three are only set when MailCheckStats is set
+
+set command
+	change docs to POST-fix
+	Using the <enter-command>function in the index menu, you can query the value of a variable by prefixing the name of the variable with a question mark:
+	set ?allow_8bit
+
+italics
+	https://apple.stackexchange.com/a/267261
+	mac:
+		Terminal.app good
+		iTerm.app needs https://apple.stackexchange.com/a/267261
+
+* If 0 is passed, all the hooks will be deleted.
+	MUTT_HOOK_NO_FLAGS
 
