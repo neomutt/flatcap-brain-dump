@@ -836,3 +836,5 @@ italics
 * If 0 is passed, all the hooks will be deleted.
 	MUTT_HOOK_NO_FLAGS
 
+A_ITALIC doesn't exist in centos 7
+
