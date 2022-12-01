@@ -838,3 +838,8 @@ italics
 
 A_ITALIC doesn't exist in centos 7
 
+acutest implement ASSERT_EQ(left,right), ASSERT_NEQ(left,right)
+	this would allow acutest to print both values when they differ
+	(saving the user from doing so)
+	update LOTS of our tests
+
