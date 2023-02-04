@@ -762,8 +762,6 @@ cull neomutt mentor project
 
 gnu sasl
 
-try stacked PRs again?
-
 PR template
 - All builds and tests are passing
 update to mention test files
@@ -819,22 +817,11 @@ oauth2/mutt_oauth2.py.README -> README.md
 
 demote all neo branches to flatcap/DATE
 
-struct Mailbox, comment is misplaced?
-	// These next three are only set when MailCheckStats is set
-
-set command
-	change docs to POST-fix
-	Using the <enter-command>function in the index menu, you can query the value of a variable by prefixing the name of the variable with a question mark:
-	set ?allow_8bit
-
 italics
 	https://apple.stackexchange.com/a/267261
 	mac:
 		Terminal.app good
 		iTerm.app needs https://apple.stackexchange.com/a/267261
-
-* If 0 is passed, all the hooks will be deleted.
-	MUTT_HOOK_NO_FLAGS
 
 A_ITALIC doesn't exist in centos 7
 
@@ -842,4 +829,11 @@ acutest implement ASSERT_EQ(left,right), ASSERT_NEQ(left,right)
 	this would allow acutest to print both values when they differ
 	(saving the user from doing so)
 	update LOTS of our tests
+
+check doxygen version in ubuntu-latest
+	1.9.1
+check if the debian-sid container is still needed
+
+shouldn't be in the Libraries section of the Code docs
+	GNU SASL authentication	IMAP GNU SASL authentication method
 
