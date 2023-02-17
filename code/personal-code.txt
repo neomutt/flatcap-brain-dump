@@ -1,0 +1,19 @@
+personal taste
+
+These changes aren't an official Mutt guideline, they're my personal
+preferences.  I find them easier/quicker to read/understand.
+
+Prefer:
+    if (x == 3)
+Rather than:
+    if (3 == x)
+
+I like ()s around any logic that has more than one token.
+
+These simple tokens are OK:
+    if (!x || !y)
+
+Prefer:
+    if ((x == 3) && (y == 2))
+Rather than:
+    if (x == 3 && y == 2)

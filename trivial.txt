@@ -758,8 +758,6 @@ split browser cases by function
 	dlg_select_attachment / mutt_attach_display_loop
 		attach/recvattach.c:946:       9  mutt_attach_display_loop
 
-cull neomutt mentor project
-
 gnu sasl
 
 PR template
@@ -834,6 +832,18 @@ check doxygen version in ubuntu-latest
 	1.9.1
 check if the debian-sid container is still needed
 
-shouldn't be in the Libraries section of the Code docs
-	GNU SASL authentication	IMAP GNU SASL authentication method
+bump attach_format truncation size to 60 or 80
+check which of filename or end-of-line info is still visible on narrow window
+
+make lmdb, rocksdb, tdb default stores (modern)
+	lmdb, rocksdb, tdb, tokyocabinet, kyotocabinet, bdb, gdbm, qdbm
+	encourage packagers to choose at least one of the first three
+
+Carsten Reith offered to help
+proficient in C
+	-nopoll etc
+	<ask-question>
+	multi-help a), b), ?)
+
+all style guide ideas -> discussion
 
