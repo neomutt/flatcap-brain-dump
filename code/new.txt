@@ -49,3 +49,6 @@ code: every .c has "config.h"
 	(layout)
 
 look for ternary conditions starting:  !x ? y : z
+
+config variables "$xyz_abc" -> c_xyz_abc
+

@@ -847,3 +847,26 @@ proficient in C
 
 all style guide ideas -> discussion
 
+docs: add "recently changed" section to front of guide!
+	plus link to github releases page
+
+graphviz doc to dev/analysis
+
+some actions missing from https://neomutt.org/dev/actions
+	~/work/site-actions/
+
+https://github.com/autozimu/LanguageClient-neovim
+https://people.freebsd.org/~gahr/lc.vim
+
+convert all questions(issues) -> discussions
+
+add a weekly build action to test all the debug-* options still compile
+	include multiple graphviz options
+
+upstream localised config strings
+	DT_L10N_STR
+
+no doxy!
+	static struct ConfigDef SidebarVars[] = {
+	check others
+

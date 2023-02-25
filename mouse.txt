@@ -94,3 +94,7 @@ Vim mappings:
 unknown
 different arches, versions of ncurses, etc
 
+ideas:
+	header in pager so I can change the sort fields
+	some kinda "quick limit" button such that if I click a particular author/sender, I see their emails
+

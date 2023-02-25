@@ -1,3 +1,8 @@
+User wanted to set a bunch of config based on a language setting
+	Is there some kind of syntax like in `.desktop` files to achieve this?
+	set greeting[en] = "Hello"
+	set greeting[es] = "¡Hola!"
+
 editor: add flag to function for specific callers that will accept <mailbox-cycle>
 	i.e. it will default to <space> on attach-file
 
