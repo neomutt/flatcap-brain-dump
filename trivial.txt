@@ -709,8 +709,6 @@ rename OPs to match functions
 	e.g. drop MAIN_
 	{ "set-flag", OP_MAIN_SET_FLAG },
 
-star every repo I have write access to
-
 man pages (inc synonyms, deprecated)
 neomuttrc.vim
 
@@ -784,7 +782,7 @@ OR
 	run ctags OF those dirs, elsewhere
 	keep in ~/.cache
 
-update neomutt readme ⭐ 🌟 
+update neomutt readme ⭐ 🌟
 add goal of 10 sponsors -> newsletter
 twitter sponsors
 release
@@ -832,9 +830,6 @@ check doxygen version in ubuntu-latest
 	1.9.1
 check if the debian-sid container is still needed
 
-bump attach_format truncation size to 60 or 80
-check which of filename or end-of-line info is still visible on narrow window
-
 make lmdb, rocksdb, tdb default stores (modern)
 	lmdb, rocksdb, tdb, tokyocabinet, kyotocabinet, bdb, gdbm, qdbm
 	encourage packagers to choose at least one of the first three
@@ -845,28 +840,28 @@ proficient in C
 	<ask-question>
 	multi-help a), b), ?)
 
-all style guide ideas -> discussion
-
 docs: add "recently changed" section to front of guide!
-	plus link to github releases page
+	plus link to github releases page / changelog
+
+https://github.com/autozimu/LanguageClient-neovim
+https://people.freebsd.org/~gahr/lc.vim
+
+add a weekly build action to test all the debug-* options still compile
+	include multiple graphviz options
+
+install g++ for #3736 - Convert score to C++
+
+all style guide ideas -> discussion
 
 graphviz doc to dev/analysis
 
 some actions missing from https://neomutt.org/dev/actions
 	~/work/site-actions/
 
-https://github.com/autozimu/LanguageClient-neovim
-https://people.freebsd.org/~gahr/lc.vim
-
 convert all questions(issues) -> discussions
+	1) find all question issues
+	gh issue list --label type:question --state closed
 
-add a weekly build action to test all the debug-* options still compile
-	include multiple graphviz options
-
-upstream localised config strings
-	DT_L10N_STR
-
-no doxy!
-	static struct ConfigDef SidebarVars[] = {
-	check others
+rename compose/compose.c to compose/dlg_compose.c
+	others?
 

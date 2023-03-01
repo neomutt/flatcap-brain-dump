@@ -1,4 +1,3 @@
-
 style:
 	callback functions must be named uniquely
 	(for clarity when debugging)
@@ -51,4 +50,8 @@ code: every .c has "config.h"
 look for ternary conditions starting:  !x ? y : z
 
 config variables "$xyz_abc" -> c_xyz_abc
+
+for non-trivial structs create both X_new() and X_free() functions
+
+HashElem *he
 
