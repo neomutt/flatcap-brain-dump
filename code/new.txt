@@ -1,7 +1,3 @@
-style:
-	callback functions must be named uniquely
-	(for clarity when debugging)
-
 code style:
 	while (condition)
 	  ;
@@ -16,12 +12,7 @@ c++ build fix reserved names
 whitespace
 	indenting, etc
 commenting
-introduce BOOL
 static function
-variables - unify naming
-	struct CONTEXT
-		->changed is a BOOL
-		->deleted is a number
 confusing tests like
 	if (!x->deleted)
 	imply deleted is a BOOL
@@ -34,7 +25,6 @@ sort definitions
 	vars, functions
 static functions first
 check all string config vars are NONULL'd
-while (1) rather than FOREVER
 check ALL pointers
 reorder functions to reduce forward function declarations
 forward declare structs in headers to reduce includes
@@ -49,9 +39,5 @@ code: every .c has "config.h"
 
 look for ternary conditions starting:  !x ? y : z
 
-config variables "$xyz_abc" -> c_xyz_abc
-
 for non-trivial structs create both X_new() and X_free() functions
-
-HashElem *he
 

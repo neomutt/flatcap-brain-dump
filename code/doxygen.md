@@ -1,14 +1,6 @@
----
-title: Doxygen Comments
-description: Formatted Comment Blocks
-status: wip
-author: flatcap
----
+# Doxygen Comments
 
-# {{ page.title }}
-
-{:.subtitle}
-{{ page.description }}
+Formatted Comment Blocks
 
 [Doxygen](http://www.doxygen.nl/) reads specially formatted
 comment blocks and turns them into documentation.
@@ -18,13 +10,30 @@ The Doxygen
 lists all the possible commands. Some common ones are:
 
 - **`@param`**   -- a function parameter
-- **`@struct`**  -- a C-struct.
-- **`@union`**   -- a union.
-- **`@enum`**    -- an enumeration type.
-- **`@var`**     -- a variable or typedef or enum value.
-- **`@def`**     -- a #define.
-- **`@typedef`** -- a type definition.
-- **`@file`**    -- a file.
+- **`@struct`**  -- a C-struct
+- **`@union`**   -- a union
+- **`@enum`**    -- an enumeration type
+- **`@var`**     -- a variable or typedef or enum value
+- **`@def`**     -- a #define
+- **`@typedef`** -- a type definition
+- **`@file`**    -- a file
+
+@a Argument
+@image Include an image
+@note
+@param
+@pre
+@retval
+@sa
+@warning
+
+@defgroup
+@extends
+@ingroup
+@mainpage
+@page
+@ref
+@subpage
 
 ## Functions
 
@@ -37,7 +46,7 @@ Here's a basic template for a function comment. It begins with two asterisks.
  * @param NAME2 SHORT-DESC
  * ...
  *
- * @return DESC-OF-RETURN-VALUE
+ * @retval DESC-OF-RETURN-VALUE
  *
  * LONG DESCRIPTION
  */

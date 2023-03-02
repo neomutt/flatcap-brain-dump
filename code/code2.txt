@@ -20,14 +20,7 @@ intro - para
 	important
 	guidelines
 
-naming
-	functions
-	params
-	enums
-	defines
-	exceptions
-	magic anmes
-	regex(p)
+naming.txt
 
 auto tools
 	build

@@ -1,37 +1,9 @@
-Trivial (~400)
-
-Variable naming:
-	FILE*: fp, fp_*
-	file descriptors: fd, fd_*
-	Account*: a, a_*
-		List al, al_*
-	Mailbox*: m, m_*
-		List ml, ml_*
-	Email*: e, e_*
-		List el, el_*
-	don't use reserved identifiers, new, delete, tc
-	Config backing variables 'C_' + MixedCase version of snake_case config variable
-
-Function naming:
-	non-trivial alloc -> *_new()
-	release object -> *_free()
-		free takes void **ptr or TYPE **ptr
-		cast to OBJECT*
-	OBJECT_ACTION()
-		Object = AddressList
-		Action = Search
-	first param is object (this)
-
 File renaming:
-	buffy -> mailbox
 	rfc1524 -> mailcap
-	curs_main -> index
-	sha1 -> DEAD
 
 Struct renaming:
 	duplicate struct Syntax
 	duplicate struct Entry
-	Header -> Email
 
 Whitespace:
 	trailing
@@ -50,7 +22,6 @@ Flags:
 
 Enum:
 	mutually exclusive
-	MixedCase
 	Typename is singular
 
 #defines:
@@ -70,27 +41,13 @@ code:
 	/* closing marker on same line as text */
 	initialise all pointers to NULL
 	initialise all vars passed by pointer (out-params)
-	local variables in lower case
 	char check against / set to '\0'
 	check strcmp family against 0
 	check int functions against 0
-	macros: name parameters sensibly
 	refactor #ifdef's in conditionals
-	descr[iption] -> desc
-	buff -> buf
-	hdr -> e
-	command -> cmd
-	string -> str
-	synch -> sync
-	regexp -> regex
-	msg -> e
 	order functions to avoid forward declarations
 	replace strncpy with strfcpy
-	rv (retval) -> rc (return code)
-		also: r, result, ret, etc
 	add {} to multiline conditionals
-	#include guards
-		MUTT_{DIR_}{FILE}_H
 	eliminate double assign
 		x = y = 42;
 	return early.  no function-spanning `if`s

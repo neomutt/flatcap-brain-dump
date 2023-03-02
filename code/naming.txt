@@ -1,0 +1,116 @@
+naming
+	functions
+	params
+	enums
+	defines
+	exceptions
+	magic anmes
+	regex(p)
+
+
+callback functions must be named uniquely
+(for clarity when debugging)
+
+variables - unify naming
+	struct CONTEXT
+		->changed is a BOOL
+		->deleted is a number
+
+var naming lots of default names in config/*.[ch]
+	use as examples
+
+HashElem *he
+
+config variables "$xyz_abc" -> c_xyz_abc
+
+Variable naming:
+	FILE*: fp, fp_*
+	file descriptors: fd, fd_*
+	Account*: a, a_*
+		List al, al_*
+	Mailbox*: m, m_*
+		List ml, ml_*
+	Email*: e, e_*
+		List el, el_*
+	don't use reserved identifiers, new, delete, tc
+	Config backing variables 'C_' + MixedCase version of snake_case config variable
+
+Function naming:
+	non-trivial alloc -> *_new()
+	release object -> *_free()
+		free takes void **ptr or TYPE **ptr
+		cast to OBJECT*
+	OBJECT_ACTION()
+		Object = AddressList
+		Action = Search
+	first param is object (this)
+
+Enum:
+	MixedCase
+
+#defines:
+	UPPER_CASE
+	underscores for clarity
+
+macros: name parameters sensibly
+
+local variables in lower case
+
+descr[iption] -> desc
+buff -> buf
+hdr -> e
+command -> cmd
+string -> str
+synch -> sync
+regexp -> regex
+msg -> e
+
+rv (retval) -> rc (return code)
+	also: r, result, ret, etc
+
+#include guards
+	MUTT_{DIR_}{FILE}_H
+
+## Variable naming
+
+- Globals     are MixedCase
+- #defines    are CAPITALISED
+- functions   are snake_case
+- structs     are MixedCase
+- union       are MixedCase
+- enums       are MixedCase
+- enum-values are CAPITALISED
+- locals      are lowercase
+
+## Variable naming
+
+- `struct Context *ctx`
+- `FILE *fp`
+- `struct Account *a`  a-list
+- `struct Mailbox *m`  m-list
+- `struct Email *e`    e-list
+
+- rc, rc2 -- not return, retval, rv, etc
+
+- `struct Account *a` may have:
+  - private data: `struct XyzAccountData *adata`
+  - helper functions: `xyz_adata_free()`, `xyz_adata_get()`, `xyz_adata_new()`
+
+- `struct Email *e` may have:
+  - private data: `struct XyzEmailData *edata`
+  - helper functions: `xyz_edata_free()`, `xyz_edata_get()`, `xyz_edata_new()`
+
+- `struct Mailbox *m` may have:
+  - private data: `struct XyzMailboxData *mdata`
+  - helper functions: `xyz_mdata_free()`, `xyz_mdata_get()`, `xyz_mdata_new()`
+
+## Function naming - APIs
+
+- `OWNER_OBJECT_ACTION()` e.g. `imap_msg_open()`
+
+## Buffer passing
+
+- `(char *buf, size_t buflen)`
+
+prototypes, all params named as in fn
+

@@ -3,7 +3,6 @@ buffer: b2s(buf[0] == '\0')  == empty()
 
 do/while() must have {}s
 
-prototypes, all params named as in fn
 function prototype before macros
 
 struct stat var st or st_*?
