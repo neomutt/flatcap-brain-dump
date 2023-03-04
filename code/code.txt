@@ -16,7 +16,6 @@ declare all local functions "static"
 	standard name for statics?
 	drop mutt_ prefix
 
-while(true), rather than FOREVER (33 occurrences) or for (;;)
 iwyu on all source files
 #include with "" not <> for mutt headers
 drop #if HAVE_CONFIG_H
@@ -44,9 +43,6 @@ doc switch drop-throughs
 functions - move static before public
 	reduce / remove need for forward declarations
 
-regexp -> regex
-
-drop regex.[ch]
 clang-format
 
 ---------------------------------------
@@ -161,8 +157,6 @@ cleanup:
 		switches
 	doc switch drop-throughs
 
-while(true), rather than FOREVER
-
 check all headers #include requisites for compilation
 	iwyu
 
@@ -172,14 +166,6 @@ code: switch default must be at end
 
 BOOL -> enum? no bool
 what about the bitfields? bool too
-
-regex/regexp pick one in code/docs (gnu has dropped the 'p')
-	manual.xml
-		regexp 65
-		regex 7
-	*.[ch]
-		regexp 48
-		regex 25
 
 should static functions be called mutt_*?
 check minor new functions are static
@@ -200,7 +186,7 @@ lots of preprocessor symbols that use #if on undefined symbols
 
 macros() should be MACROS()
 
-check everyone's using safe_fopen(), safe_fclose(), etc
+check everyone's using mutt_file_fopen(), mutt_file_fclose(), etc
 
 rename safe_X(**ptr) to X_null?
 	safe_free -> free_null (**ptr)
@@ -235,17 +221,11 @@ purge all macros from neomutt?
 
 sizeof(x) vs sizeof x
 
-puts() and _() missing ()s
-
-#include <hcache.h> should be ""
-
 drop #if HAVE_CONFIG_H / #endif around #include "config.h"
 	it's a compulsory part of our build
 
 mutt_new_header() -> safe_*
 	because it can't fail?
-
-drop regex.c (after reformatting phase?)
 
 #defines → enums?
 
@@ -345,11 +325,6 @@ alternative, have coding standard in _std dir
 
 find remaining snake_case globals and replace them
 
-kill all function names with plural objects
-	new_body() OK
-	delete_bodies() BAD
-	hard to search for similar functions
-
 if a struct has a X_free() it must have a X_alloc()
 	check all allocs are *C*alloc
 
@@ -368,9 +343,6 @@ all functions that return int
 code style
 	allow if (!X) for flags too
 	if (!(flag & NAME))
-
-enums singular type MailboxType
-flags plural type WidgetFlags
 
 style guide
 	note which rules can be automated by
@@ -397,13 +369,6 @@ style guide
 	a block for a typedef'd function, with @param
 		named X_t
 	single line for typedef'd flags
-
-code style: list 'reserved' variable names
-	loop: i, j, k
-	NAME: Mailbox m, Account a, Email e, etc
-	buf, buflen
-	ans
-	list off limits files: md5.c, queue.h
 
 struct ZZZAccountData - ZZZ-specific Account data - @extends Account
 struct ZZZEmailData - ZZZ-specific Email data - @extends Email

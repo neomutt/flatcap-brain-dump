@@ -4,7 +4,7 @@ naming
 	enums
 	defines
 	exceptions
-	magic anmes
+	magic names
 	regex(p)
 
 
@@ -111,6 +111,26 @@ rv (retval) -> rc (return code)
 ## Buffer passing
 
 - `(char *buf, size_t buflen)`
+buf,buflen
 
 prototypes, all params named as in fn
+
+struct stat var st or st_*?
+
+tempfile -> tmpfile?
+
+code style: list 'reserved' variable names
+	loop: i, j, k
+	NAME: Mailbox m, Account a, Email e, etc
+	buf, buflen
+	ans
+	list off limits files: md5.c, queue.h
+
+enums singular type MailboxType
+flags plural type WidgetFlags
+
+kill all function names with plural objects
+	new_body() OK
+	delete_bodies() BAD
+	hard to search for similar functions
 

@@ -1,0 +1,10 @@
+How to create a library
+
+main.c doxy
+
+apple/
+libapple.a
+Makefile
+auto.def (conditional)
+	configure
+

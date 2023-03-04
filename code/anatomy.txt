@@ -21,8 +21,6 @@ X/X_private.h
 ∀ fn doxy
 ∀ struct, enum, typedef
 ∀ members ∀ params
-anatomy of an API
-API defn struct
 name member?
 fn list + doxy, contracts
 "Implements"

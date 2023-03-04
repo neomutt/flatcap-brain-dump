@@ -41,3 +41,19 @@ look for ternary conditions starting:  !x ? y : z
 
 for non-trivial structs create both X_new() and X_free() functions
 
+## Variable Use
+
+- Define variables as late as possible (to reduce scope)
+- e.g. `for (size_t i = 0; ...)`
+- All pointers must be initialised (to `NULL`)
+- Out-params to functions must be initialised before the call
+  ```c
+  int i = 0;
+  perform(&i);
+  ```
+
+## Conditionals
+
+- Pointers and bools may be tested with `!`
+- Integer types must be tested against `0`
+

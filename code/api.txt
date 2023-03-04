@@ -1,0 +1,10 @@
+## Doxygen Headers - Exceptions for API functions
+
+- `function_name - Description - Implements Api::function_name()`
+- `function_name - Description - Wrapper for Api::function_name()`
+- Don't document the parameters
+- Only describe the function where it differs from the API
+- Only document the retval if it differs from the API (or is constant)
+
+anatomy of an API
+API defn struct

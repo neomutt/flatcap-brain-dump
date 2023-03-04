@@ -1,5 +1,5 @@
 File renaming:
-	rfc1524 -> mailcap
+	rfc3676.[ch] -> flowed.[ch]?
 
 Struct renaming:
 	duplicate struct Syntax
@@ -30,7 +30,6 @@ Enum:
 
 code:
 	add brackets to clarify logic
-	buf,buflen
 	comment escape sequences
 	compare integers against 0
 	reduce variable scope, esp. for loops
@@ -70,4 +69,16 @@ messages
 	etc
 
 function(THIS, OUTPARAM, x, y, z) refactor
+
+buffer: b2s(buf[0] == '\0')  == empty()
+
+do/while() must have {}s
+
+function prototype before macros
+
+goto labels unique XrayYankeeZulu -> xyz_name:
+
+init ptrs - gpgme typedefs too
+
+start by annotating .clang-format
 
