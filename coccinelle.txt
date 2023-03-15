@@ -1,7 +1,6 @@
 initialise pointers to NULL
 	avoid static
 	avoid extern
-	avoid WHERE
 	cope with multiple definitions
 
 remove mutt-isms (use sed?)

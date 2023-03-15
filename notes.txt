@@ -785,8 +785,6 @@ split buffer_expand/resolve into PATH functions and MAILBOX functions!
 config: change sort to work like enum -- use Data field
 	except allow magic "reverse-", "last-" prefixes
 
-137 WHERE uses
-
 create mailbox (browser)
 	errors on empty -- kill error
 	rename, delete too?
@@ -3294,7 +3292,6 @@ index folding cf vim
 vim plugin - cino options etc
 
 travis/neomutt-test-configs configs & build tags
-eliminate WHERE
 mutt -D options
 shrink authors (split out)
 

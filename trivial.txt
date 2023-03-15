@@ -854,6 +854,17 @@ install g++ for #3736 - Convert score to C++
 all style guide ideas -> discussion
 
 graphviz doc to dev/analysis
+add brief page for each option
+	--debug-backtrace   Enable backtrace support with libunwind
+	--debug-color       Enable Color dump
+	--debug-email       Enable Email dump
+	--debug-graphviz    Enable Graphviz dump
+	--debug-notify      Enable Notifications dump
+	--debug-parse-test  Enable 'neomutt -T' for config testing
+	--debug-queue       Enable TAILQ debugging
+	--debug-window      Enable windows dump
+What about?
+	--fuzzing           Enable Fuzz Testing
 
 some actions missing from https://neomutt.org/dev/actions
 	~/work/site-actions/
@@ -866,5 +877,42 @@ rename compose/compose.c to compose/dlg_compose.c
 	others?
 
 - name: Coveralls GitHub Action
-  uses: coverallsapp/github-action@v1
+  uses: coverallsapp/github-action@v2
+
+list macros
+	count their use
+	eliminate any?
+		82 MoreArgs
+		68 mutt_set_flag
+		52 SKIPWS
+		48 mutt_socket_send
+		29 state_putc
+
+archive branches?
+
+cs_register_variables(..., 0)
+	DT_NO_FLAGS
+
+inform dev ml, translators about release
+
+lots of int outparams in hache dump/restore fns need initialising
+
+changelog
+	new sponsor
+	update changelog
+	rebase over main
+
+some libmutt functions refer to NeoMutt->sub
+	move them to libcore?
+	or somewhere
+
+once we can test mutt_parse_rc_buffer()
+	wrap a fuzzer around it!
+	seeded with hundreds of valid set/unset lines
+
+mutt_get_content_info.c:(.text+0x30): warning: the use of `tmpnam' is dangerous, better use `mkstemp'
+
+top tip
+	:bind index p end-cond
+	# make 'p' do nothing, silently, on the index
 

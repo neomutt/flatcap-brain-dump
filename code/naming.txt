@@ -134,3 +134,7 @@ kill all function names with plural objects
 	delete_bodies() BAD
 	hard to search for similar functions
 
+struct Menu *menu
+
+char ch
+

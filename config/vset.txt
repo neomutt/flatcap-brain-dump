@@ -450,7 +450,6 @@ call num_operation(HE, OP_ADD, str_val)
 
 declare global vars const extern (not allowed)
 only allow setters to change
-WHERE -> EXTERN
 
 hcache/vars.h - *its* globals, extern
 hcache/vars.c - *its* var array [ | | | ]
