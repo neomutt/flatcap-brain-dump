@@ -27,11 +27,6 @@ optionally replace the Menu tree chars
 create a unique handler-function for each neomutt function/command
 	if many neomutt functions/commands share code, factor it into another c function
 
-enable hcache by default using XDG cache dir, #3125
-	"Support XDG Base Directory Specification ... a little more"
-	https://github.com/neomutt/neomutt/pull/3125
-	pick a modern default backend
-
 query: limit: de-colon translation strings
 
 query-append
@@ -467,9 +462,6 @@ change config errors to file:line for easier vim
 	mutt_error(_("Improperly formatted entry for type %s in \"%s\" line %d"), type, filename, line);
 	mutt_warning(_("Warning in %s, line %d: %s"), rcfile, lineno, err->data);
 
-doxy - missing docs for send config
-	no `///< Config:` comments
-
 searching: pattern expansion using simple_search
 	`apple` will be expanded using $simple_search
 	`apple | ~f foo` won't
@@ -525,8 +517,6 @@ fake mailboxes (dividers) get sorted by Accounts
 	what about sorting?
 
 non-easy task "mailboxes -label"?
-
-command synonym for "sidebar-whitelist"?
 
 review SORT_*
 	UNSORTED = 0

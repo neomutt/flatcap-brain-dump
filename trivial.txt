@@ -85,7 +85,7 @@ are these identical? YES
 	static char crypt_flags(KeyFlags flags)
 	static char pgp_flags(KeyFlags flags)
 
-convert to enum?
+Convert to enum?
 	struct ConnAccount.type
 		unsigned char type;     ///< Connection type, e.g. #MUTT_ACCT_TYPE_IMAP
 
@@ -103,7 +103,7 @@ variables, urgh! sendlib.c
 
 deglobalise
 	EnvList in mutt/envlist.c
-	C_HiddenTags in driver_tags_add()
+	c_hidden_tags in driver_tags_add()
 
 string fn to pretty print \t, \r, \n for tests
 	handle NULL, quote string
@@ -173,10 +173,6 @@ main.c
 
 neomuttlog.vim
 	offer to vim ml
-
-needs typedef
-needs NO_FLAGS
-#define U_PATH          (1 << 1)
 
 why are enum SortType numbered?
 	SORT_ALPHA    =  3, ///< Required by makedoc.c
@@ -270,7 +266,6 @@ rename s/mutt_buffer_select_file/dlg_browser/
 
 capitalisation?
 	HCacheEntry
-	ICommand
 	MUpdate
 	QClass
 	MSN
@@ -283,7 +278,7 @@ isn't used!
 
 'l' bad choice of param name
 	First l chars of both strings are equal
-
+devel/dump-screendevel/dump-screen
 menu globals, not freed on exit?
 	can't find where it's freed
 	char *SearchBuffers[MENU_MAX];
@@ -406,9 +401,6 @@ look for static functions called mutt_*
 	mutt_update_recvattach_menu
 	mutt_update_v2r
 
-libmutt.c wrappers for the few functions that use config in
-	charset.c, file.c, state.c
-
 copy asan configure/bash scripts to dev page
 
 git lt [NUM]
@@ -436,9 +428,6 @@ move mutt_X.[ch] into libX
 move hdrline to libindex?
 	rename to 'index'?
 	struct HdrFormatInfo
-
-icommands: fold into normal commands, drop separate src files?
-	start with indepdendent commands
 
 libbrowser?
 	dlgbrowser
@@ -768,9 +757,6 @@ find/kill
 	else if...
 	if (.*\n\s\+{\n\s\+return\>.*\n\s\+}\n\s\+else
 
-fix test warning
-	/home/mutt/work/getfield/test/convert/mutt_get_content_info.c:59: warning: the use of `tmpnam' is dangerous, better use `mkstemp'
-
 doesn't cause a repaint of the index
 	set narrow_tree = no
 
@@ -781,13 +767,6 @@ root
 OR
 	run ctags OF those dirs, elsewhere
 	keep in ~/.cache
-
-update neomutt readme ⭐ 🌟
-add goal of 10 sponsors -> newsletter
-twitter sponsors
-release
-	thanks/sponsors
-	link to authors repo
 
 contrib:
 	update rpm spec & bugzilla
@@ -834,12 +813,6 @@ make lmdb, rocksdb, tdb default stores (modern)
 	lmdb, rocksdb, tdb, tokyocabinet, kyotocabinet, bdb, gdbm, qdbm
 	encourage packagers to choose at least one of the first three
 
-Carsten Reith offered to help
-proficient in C
-	-nopoll etc
-	<ask-question>
-	multi-help a), b), ?)
-
 docs: add "recently changed" section to front of guide!
 	plus link to github releases page / changelog
 
@@ -848,8 +821,6 @@ https://people.freebsd.org/~gahr/lc.vim
 
 add a weekly build action to test all the debug-* options still compile
 	include multiple graphviz options
-
-install g++ for #3736 - Convert score to C++
 
 all style guide ideas -> discussion
 
@@ -860,7 +831,6 @@ add brief page for each option
 	--debug-email       Enable Email dump
 	--debug-graphviz    Enable Graphviz dump
 	--debug-notify      Enable Notifications dump
-	--debug-parse-test  Enable 'neomutt -T' for config testing
 	--debug-queue       Enable TAILQ debugging
 	--debug-window      Enable windows dump
 What about?
@@ -878,6 +848,7 @@ rename compose/compose.c to compose/dlg_compose.c
 
 - name: Coveralls GitHub Action
   uses: coverallsapp/github-action@v2
+Option path-to-lcov is now deprecated, use file instead.
 
 list macros
 	count their use
@@ -890,29 +861,18 @@ list macros
 
 archive branches?
 
-cs_register_variables(..., 0)
-	DT_NO_FLAGS
-
-inform dev ml, translators about release
-
 lots of int outparams in hache dump/restore fns need initialising
-
-changelog
-	new sponsor
-	update changelog
-	rebase over main
-
-some libmutt functions refer to NeoMutt->sub
-	move them to libcore?
-	or somewhere
 
 once we can test mutt_parse_rc_buffer()
 	wrap a fuzzer around it!
 	seeded with hundreds of valid set/unset lines
 
-mutt_get_content_info.c:(.text+0x30): warning: the use of `tmpnam' is dangerous, better use `mkstemp'
-
 top tip
 	:bind index p end-cond
 	# make 'p' do nothing, silently, on the index
+
+tests combine
+	NeoMutt = test_neomutt_create();
+	TEST_CHECK(NeoMutt != NULL);
+	TEST_CHECK(cs_register_variables(NeoMutt->sub->cs, Vars, DT_NO_FLAGS));
 
