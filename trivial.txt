@@ -291,6 +291,7 @@ WRONG - depends on strlen(C_ArrowString)
       mutt_window_move(menu->win_index, 2, menu->current - menu->top);
 
 update copyright date
+	∀ users > ~10 lines
 
 add brief README.md to each library dir
 	quick description
@@ -875,4 +876,60 @@ tests combine
 	NeoMutt = test_neomutt_create();
 	TEST_CHECK(NeoMutt != NULL);
 	TEST_CHECK(cs_register_variables(NeoMutt->sub->cs, Vars, DT_NO_FLAGS));
+
+add logging info to ubsan page
+	https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#logging
+
+config register
+	ignore dupes?
+	pop/imap share MessageCacheClean
+
+docs refer to old files
+	source /usr/local/share/doc/neomutt/samples/gpg.rc 
+	source /usr/local/share/doc/neomutt/samples/smime.rc
+emphasize gpgme
+
+for --devel-feature, add a section in the ./configure summary
+that explains: this feature may change or be removed without warning
+please give feedback
+create discussion for each --devel option and link to it
+
+:source supports relative paths, but :lua-source doesn't!
+
+speed test a huge mbox mailbox vs 2022-04-29
+
+e->lines IS an int
+        snprintf(buf + colorlen, buflen - colorlen, fmt, (int) e->lines);
+
+debug: dump_thread()
+	dump the contents of MuttThread
+
+investigate renaming mutt_buffer_* -> buffer_*
+	4545 Total
+	1805 mutt_buffer_string
+	581  mutt_buffer_reset
+	360  mutt_buffer_printf
+	249  mutt_buffer_strcpy
+	227  mutt_buffer_addstr
+	213  mutt_buffer_make
+	212  mutt_buffer_dealloc
+	147  mutt_buffer_addch
+	140  mutt_buffer_is_empty
+	119  mutt_buffer_add_printf
+	63   mutt_buffer_copy
+	61   mutt_buffer_alloc
+	59   mutt_buffer_len
+	58   mutt_buffer_strdup
+	41   mutt_buffer_concat_path
+	37   mutt_buffer_init
+	37   mutt_buffer_fix_dptr
+	36   mutt_buffer_addstr_n
+	34   mutt_buffer_strcpy_n
+	21   mutt_buffer_insert
+	17   mutt_buffer_substrcpy
+	16   mutt_buffer_concatn_path
+	12   mutt_buffer_seek
+
+A lot of (x == NULL) and (x != NULL) have crept in
+	(!x) and (x) them
 

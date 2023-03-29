@@ -159,8 +159,6 @@ coverage: check dev analysis docs for new 'coverage' dir
 <thread><function>, <subthread> to act without tagging
 	like <tag-prefix>, add "-prefix" to above?
 
-elim Neomutt->sub from libmutt, then elim config
-
 nntp docs:
 	document '?' on screen to browse after 'i'
 
@@ -497,8 +495,6 @@ to devel-ml (and/or user-ml)
 	addrbook
 	compose
 
-eliminate 53 strcmp()s + 1 strncmp()?
-
 mx.h dependencies - ensure API defn headers are dependency free
 	move to libmutt? / libcore? (because of Mailbox)
 
@@ -583,10 +579,6 @@ need to categorise all Config
 	Mailbox-specific
 	447 config variables
 :set -h (help) other options for dump flags, including inheritance
-
-NOT USED
-	C_VfolderFormat (notmuch)
-	C_MimeSubject (nntp)
 
 my copyright
 	sort/wrap Makefiles/auto.def
@@ -977,10 +969,6 @@ ConfigDef
 mutt_assert()
 	endwin, backtrace, assert
 	or #ifndef DEBUG, just assert?
-
-config register
-	ignore dupes?
-	pop/imap share MessageCacheClean
 
 Kushal: ideas for motivating devel community?
 
