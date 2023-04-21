@@ -63,7 +63,6 @@ move [release] to [master]
 --autocrypt                   Enable AutoCrypt support (requires GPGME and SQLite)
 --sqlite                      Enable SQLite support
 
---testing                     Enable Unit Testing
 --coverage                    Enable Coverage Testing
 --pkgconf                     Use pkg-config during configure
 
@@ -119,7 +118,7 @@ COMPRESS="--lz4 --zlib --zstd"
 BUILD_DEFAULT=""
 BUILD_EVERYTHING="--everything"
 BUILD_SLANG="--fmemopen --homespool --locales-fix --mixmaster --ssl --with-domain=example.com --with-lock=flock --with-ui=slang"
-BUILD_CURSES="$STORE $COMPRESS --autocrypt --disable-idn --full-doc --gnutls --gpgme --gss --idn2 --lua --notmuch --sasl --testing --with-lock=fcntl --with-ui=ncurses"
+BUILD_CURSES="$STORE $COMPRESS --autocrypt --disable-idn --full-doc --gnutls --gpgme --gss --idn2 --lua --notmuch --sasl --with-lock=fcntl --with-ui=ncurses"
 
 dependencies for everything (including debug options)
 	autopoint

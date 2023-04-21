@@ -8,9 +8,6 @@ use --check-config to list missing header files
 fix !USE_NNTP build
 	check !USE_SIDEBAR build
 
-free functions to take (**ptr)
-then deref to Type *t = *ptr;
-
 add printf format checkers to mutt_message, mutt_debug, etc
 
 test int against 0
@@ -18,9 +15,6 @@ test int against 0
 
 demote to warnings
 mutt_error(_("Warning: XXX"));
-
-simplify all our:  if (X) free(X)
-add doxy param doc: (NULL safe) ?
 
 if (!(a && b))
 if (!(a || b))
@@ -33,10 +27,6 @@ eliminate enum AccountType?
 use enum MailboxType
 	what about smtp?
 	add entry?
-
-split up multiple assignments
-	grep " = [^,;]* = "
-	grep " = [^,;]* [!=]= "
 
 conditional constants - reduce to a comment
 	Hmm... non-functional enum entries might cause problems
@@ -98,9 +88,6 @@ init.c
 	no need for #ifdef?
 	exists in cygwin
 
-variables, urgh! sendlib.c
-	mutt_lookup_mime_type() int szf, sze, cur_sze;
-
 deglobalise
 	EnvList in mutt/envlist.c
 	c_hidden_tags in driver_tags_add()
@@ -123,11 +110,6 @@ I wonder if we could kill this unexpected behaviour
   else
     mutt_str_strfcpy(LastSaveFolder, mutt_b2s(buf), sizeof(LastSaveFolder));
 
-SEND_NO_FREE_HEADER refers to an Email, SEND_NO_FREE_EMAIL?
-
-should be _free() -> need _new() too
-	void mutt_bcache_close(struct BodyCache **bcache)
-
 flags typedef?
 	/* force flags passed to mutt_mailbox_check() */
 	#define MUTT_MAILBOX_CHECK_FORCE       (1 << 0)
@@ -136,21 +118,6 @@ flags typedef?
 flagify
 	#define MUTT_UNBIND  1<<0
 	#define MUTT_UNMACRO 1<<1
-
-find out meaning of "ci_" prefix, or drop it (curses interface?)
-	CI_is_return
-	ci_bounce_message
-		bounce_message
-		ci_bounce_message
-		mutt_attach_bounce
-		mutt_bounce_message
-	ci_first_message
-	ci_next_undeleted
-	ci_previous_undeleted
-	ci_send_message
-		mix_send_message
-		mutt_resend_message
-		send_message
 
 eliminate complicated macros (multiline, conditionals, many callers)
 refactor complicated or oft-used macros
@@ -184,12 +151,6 @@ should use a Buffer
 	void mutt_default_save(char *path, size_t pathlen, struct Email *e)
 	problem: it leads to format functions that take buf, buflen
 
-variable i used for rc and `for` loops
-	static int mbox_mbox_sync(struct Mailbox *m, int *index_hint)
-
-shellcheck hcachever.sh
-	test output against various releases
-
 move to email/body? (and rename)
 	struct Body *mutt_make_multipart(struct Body *b)
 	struct Body *mutt_remove_multipart(struct Body *b)
@@ -201,87 +162,11 @@ base32 doesn't belong in mutt/random.c
 config
 	have macro -- VALID_PTR() for native retvals?
 
-not closed on exit
-	static FILE *fp_random;
-
 flip to match M.verbose
 	#define MUTT_QUIET         (1 << 3) ///< Do not print any messages
 
-change to **ptr, look for others
-	address_free             config/address.c
-	aliaslist_free           alias/alias.c
-	buffer_free              mutt/pool.c
-	compress_info_free       compmbox/compress.c
-	crypt_key_free           ncrypt/crypt_gpgme.c
-	crypto_module_free       ncrypt/crypt_mod.c
-	defs_free                gui/color.c
-	driver_tags_free         email/tags.c
-	key_free                 ncrypt/pgplib.c
-	maildir_free             maildir/shared.c
-	mbtable_free             config/mbtable.c
-	menu_free                autocrypt/dlgautocrypt.c
-	mhs_sequences_free       maildir/mh.c
-	mix_type2_list_free      remailer.c
-	monitor_check_free       monitor.c
-	monitor_info_free        monitor.c
-	mutt_actx_entries_free   email/attach.c
-	mutt_autocrypthdr_free   email/envelope.c
-	mutt_buffer_pool_free    mutt/pool.c
-	mutt_color_free          gui/color.c
-	mutt_envlist_free        mutt/envlist.c
-	mutt_grouplist_free      address/group.c
-	mutt_hash_set_destructor mutt/hash.c
-	mutt_hcache_free_raw     hcache/hcache.c
-	mutt_hist_free           history/history.c
-	mutt_keys_free           keymap.c
-	mutt_list_free           mutt/list.c
-	mutt_list_free_type      mutt/list.c
-	mutt_mem_free            mutt/memory.c
-	mutt_opts_free           init.c
-	mutt_param_free          email/parameter.c
-	mutt_param_free_one      email/parameter.c
-	mutt_pattern_free        pattern/compile.c
-	mutt_prex_free           mutt/prex.c
-	mutt_regex_free          mutt/regex.c
-	mutt_regexlist_free      mutt/regex.c
-	mutt_replacelist_free    mutt/regex.c
-	mutt_window_free_all     gui/mutt_window.c
-	mutt_winlist_free        gui/mutt_window.c
-	myvarlist_free           myvar.c
-	nm_db_free               notmuch/db.c
-	nntp_acache_free         nntp/newsrc.c
-	nntp_hashelem_free       nntp/nntp.c
-	parameter_free           email/rfc2231.c
-	pgp_key_free             ncrypt/pgplib.c
-	pgp_uid_free             ncrypt/pgplib.c
-	quotes_free              gui/color.c
-	recipient_set_free       ncrypt/crypt_gpgme.c
-	regex_free               config/regex.c
-	slist_free               mutt/slist.c
-	smime_key_free           ncrypt/smime.c
-	zstrm_free               conn/zstrm.c
-
-rename s/mutt_buffer_select_file/dlg_browser/
-	factor out the 'dialog' part first
-
-capitalisation?
-	HCacheEntry
-	MUpdate
-	QClass
-	MSN
-
-MXAPI: macro fake prototypes like config
-	extern struct MxOps MxImapOps;
-
 isn't used!
 	MT_COLOR_MESSAGE_LOG
-
-'l' bad choice of param name
-	First l chars of both strings are equal
-devel/dump-screendevel/dump-screen
-menu globals, not freed on exit?
-	can't find where it's freed
-	char *SearchBuffers[MENU_MAX];
 
 WRONG - depends on strlen(C_ArrowString)
 	why bother for non Braille?
@@ -289,9 +174,6 @@ WRONG - depends on strlen(C_ArrowString)
     /* move the cursor out of the way */
     if (C_ArrowCursor)
       mutt_window_move(menu->win_index, 2, menu->current - menu->top);
-
-update copyright date
-	∀ users > ~10 lines
 
 add brief README.md to each library dir
 	quick description
@@ -316,16 +198,10 @@ sync script looking for upstream remotes pull/push
 
 log_disp_terminal doesn't honour log_file_set_level(LL_DEBUG1, false);
 
-swap.  if we're going to stop, do it before a slow operation
-	while (((de = readdir(dirp))) && (SigInt != 1))
-
 maildir_parse_flags
         case 'T': /* trashed */
           if (e->flagged && C_FlagSafe)
 should set flags, then update in frontend if C_FlagSafe condition is met
-
-rename params
-	size_t mutt_mb_mbstowcs(wchar_t **pwbuf, size_t *pwbuflen, size_t i, char *buf);
 
 refactor mutt_hcache_open()
   	move to separate function
@@ -341,28 +217,11 @@ index:
 	OP_MAIN_VFOLDER_FROM_QUERY vs OP_MAIN_VFOLDER_FROM_QUERY_READONLY
 	vfolder READONLY isn't handled correctly, doesn't follow READONLY path
 
-hcache/restore.c
-	static struct Email *restore(const unsigned char *d)
-		STAILQ_INIT(&e->tags);
-		STAILQ_INIT(&e->chain);
-	not nec, done by email_new()
-	WRONG - while memcpy is used, STAILQ_INIT's are nec
-
-stats_last_checked isn't set, cf upstream
-	buffy.c
-	629:67:      (mutt_stat_timespec_compare (sb, MUTT_STAT_MTIME, &mailbox->stats_last_checked) > 0))
-	638:16:      mailbox->stats_last_checked = ctx.mtime;
-
 bad C functions
 	https://github.com/git/git/blob/master/banned.h
 
-index, unnec? elim
-	int attach_msg = OptAttachMsg;
-
 pop/auth.c eliminate #ifdef DEBUG
 	(nearly) only use in entire code base
-
-docs: "delimited" lists -> "separated"
 
 scan-build
 
@@ -422,14 +281,6 @@ attach refactor
 	pass attach list to functions
 		(c.f. tagged emails)
 
-move mutt_X.[ch] into libX
-	deps don't matter, it's a separate src file
-	just mutt_history.*
-
-move hdrline to libindex?
-	rename to 'index'?
-	struct HdrFormatInfo
-
 libbrowser?
 	dlgbrowser
 	split up deps
@@ -439,11 +290,6 @@ libbrowser?
 add X_new()/X_free() wrappers for non-trivial objects
 	AttachPtr, QClass, Regex, ListNode
 	SmimeKey, PgpUid, MuttThread, Message, Hook
-
-buf, buflen
-	* km_expand_key - Get the key string bound to a Keymap
-	* @param s   Buffer for the key string
-	* @param len Length of buffer
 
 merge mutt_buffer_get_field(), mutt_enter_string_full()
 	latter only has one caller
@@ -467,51 +313,14 @@ struct Notify *notify;    ///< Notifications: #NotifyIndex, #IndexSharedData
 	 378 parse_set
 	 377 mbox_mbox_sync
 
-dedupe function names:
-	add_cert
-	add_folder
-	append_message
-	attach_config_observer
-	attach_window_observer
-	cmp_version_strings
-	create_gpgme_context
-	dump_menu
-	format_line
-	init_mailbox
-	mutt_exit
-	mutt_file_lock
-	mutt_file_unlock
-	mutt_resize_screen
-	mutt_ssl_socket_setup
-	mutt_ssl_starttls
-	mutt_str_asprintf
-	pgp_check_traditional_one_body
-	tls_set_priority
-
 add with/without build tests for autocrypt
 	needs vm without libraries installed
-
-add to build-and-test action
-	if po/*.po have changed
-	msgfmt --statistics -c -o /dev/null po/pl.po
 
 add links in web/dev to gfx repo for arch diagrams etc
 	and/or dev list
 
 update web dev translate deployment
 	add coverity
-
-neomutt -v output:
-	add $LANG?
-	multi-column output to reduce lines?
-
-compose/functions.c
-	reword joke error message
-	What we have here is a failure to make an attachment
-
-merge two sort typedefs
-	sort_t
-	qsort_compar_t
 
 update test library
 
@@ -537,8 +346,6 @@ vim plugin
 
 https://github.com/marketplace/actions/skip-duplicate-actions
 
-commit all changes in all repos and push
-
 create distro-specific dockerfiles, build weekly
 bases
 	https://hub.docker.com/_/debian
@@ -554,22 +361,10 @@ actions: check that matrix builds continue on error
 logging error fd == -1 ?
 	mutt_socket_write_d() -1> a0000 SELECT "INBOX"
 
-rfc2047_decode_addrlist()
-	move config code out of loop
-	(or out of function?)
-
 strip mirrors of branches
 
 neomutt version "debug" -> "logging"?
 	assuming that's what it is
-
-neomutt version
-	deprecate the fixed part?
-	might interfere with `ifdef` command
-	do _those_ features matter if they've been included for so long?
-	when did it last change? > 4 years
-
-fix 6 lgtm defects
 
 change browser_sort() to not take *entire* state,
 	just the array that needs sorting
@@ -638,11 +433,6 @@ action for IRC notifier
 		discussion:
 			types: [created, edited, answered]
 
-guide
-	Pgp: Pseudo Header
-	missing other options
-	see mutt_parse_crypt_hdr()
-
 translate: "tag-" ?
 
 update {windows,data,overview}.txt
@@ -653,10 +443,6 @@ add sample patterns to test/leak.c
 
 improve score
 	https://www.mail-tester.com/
-
-actions
-	add workflow to all
-	merge asan into build-and-test
 
 post freeze:
 	colour changes - explanation
@@ -695,10 +481,6 @@ vim neomutt, -noregex not recognised
 why doesn't Pager support OpGeneric
 	it's skipped in km_dokey()
 
-rename OPs to match functions
-	e.g. drop MAIN_
-	{ "set-flag", OP_MAIN_SET_FLAG },
-
 man pages (inc synonyms, deprecated)
 neomuttrc.vim
 
@@ -725,12 +507,6 @@ generate list of dialogs (all combinations)
 	what about colours that take multiple regexes?
 		resize msgwin?  how much?
 
-attach/functions.c (check other dispatchers)
-	dlg unused?
-	struct MuttWindow *dlg = dialog_find(win);
-	if (!dlg || !dlg->wdata)
-	  return FR_ERROR;
-
 alternative to ASAN?
 	clang -ftrivial-auto-var-init=pattern -o jim jim.c
 
@@ -738,20 +514,6 @@ not translated
 	snprintf(buf, sizeof(buf), "-- Remailer chain [Length: %d]", len);
 change to host list?
 	mutt_error(_("Can't get mixmaster's type2.list"));
-
-split browser cases by function
-	and other dialogs
-	so all <functions> are independent functions()
-	check against OpPager lists, etc
-	dlg_select_attachment / mutt_attach_display_loop
-		attach/recvattach.c:946:       9  mutt_attach_display_loop
-
-gnu sasl
-
-PR template
-- All builds and tests are passing
-update to mention test files
-https://github.com/neomutt/neomutt-test-files
 
 find/kill
 	if (x) return (or continue or break)
@@ -844,13 +606,6 @@ convert all questions(issues) -> discussions
 	1) find all question issues
 	gh issue list --label type:question --state closed
 
-rename compose/compose.c to compose/dlg_compose.c
-	others?
-
-- name: Coveralls GitHub Action
-  uses: coverallsapp/github-action@v2
-Option path-to-lcov is now deprecated, use file instead.
-
 list macros
 	count their use
 	eliminate any?
@@ -861,8 +616,6 @@ list macros
 		29 state_putc
 
 archive branches?
-
-lots of int outparams in hache dump/restore fns need initialising
 
 once we can test mutt_parse_rc_buffer()
 	wrap a fuzzer around it!
@@ -884,11 +637,6 @@ config register
 	ignore dupes?
 	pop/imap share MessageCacheClean
 
-docs refer to old files
-	source /usr/local/share/doc/neomutt/samples/gpg.rc 
-	source /usr/local/share/doc/neomutt/samples/smime.rc
-emphasize gpgme
-
 for --devel-feature, add a section in the ./configure summary
 that explains: this feature may change or be removed without warning
 please give feedback
@@ -897,39 +645,54 @@ create discussion for each --devel option and link to it
 :source supports relative paths, but :lua-source doesn't!
 
 speed test a huge mbox mailbox vs 2022-04-29
+	compare against mutt
 
-e->lines IS an int
-        snprintf(buf + colorlen, buflen - colorlen, fmt, (int) e->lines);
+web/dev document oss-fuzz steps for a local build/test
 
-debug: dump_thread()
-	dump the contents of MuttThread
+neo-bot: version command (only directly to bot)
+	version number (need one)
+	repo location
 
-investigate renaming mutt_buffer_* -> buffer_*
-	4545 Total
-	1805 mutt_buffer_string
-	581  mutt_buffer_reset
-	360  mutt_buffer_printf
-	249  mutt_buffer_strcpy
-	227  mutt_buffer_addstr
-	213  mutt_buffer_make
-	212  mutt_buffer_dealloc
-	147  mutt_buffer_addch
-	140  mutt_buffer_is_empty
-	119  mutt_buffer_add_printf
-	63   mutt_buffer_copy
-	61   mutt_buffer_alloc
-	59   mutt_buffer_len
-	58   mutt_buffer_strdup
-	41   mutt_buffer_concat_path
-	37   mutt_buffer_init
-	37   mutt_buffer_fix_dptr
-	36   mutt_buffer_addstr_n
-	34   mutt_buffer_strcpy_n
-	21   mutt_buffer_insert
-	17   mutt_buffer_substrcpy
-	16   mutt_buffer_concatn_path
-	12   mutt_buffer_seek
+is all the code need to parse an email independent?
+can it be:
+	library-ised
+	stressed tested?
+	speed tested?
+	fuzzed?
 
-A lot of (x == NULL) and (x != NULL) have crept in
-	(!x) and (x) them
+How many globals are doxygen doc'd?
+	ffch ctags -x --c-kinds=v
+
+understand its use and rename it to match
+	@note The top-well-named MUTT_ICONV_HOOK_FROM acts on charset-hooks, not at all on iconv-hooks.
+
+change function typedefs?
+	function-pointer.org
+	anyways, just don't do the pointer as part of the typedef, and it's much easier
+	typedef void func_t(int, int);
+	func_t *ptr = NULL;
+	this reads _exactly_ like a function declaration, much easier to remember
+
+update neomutt-test-files readme -- no --testing
+
+sieve for github maintainers
+	more sieves
+
+update fedora / centos install pages
+	update copr page
+	dnf install epel-release
+	dnf install neomutt
+Importing GPG key 0x8483C65D:
+ Userid     : "CentOS (CentOS Official Signing Key) <security@centos.org>"
+ Fingerprint: 99DB 70FA E1D7 CE22 7FB6 4882 05B5 55B3 8483 C65D
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+Is this ok [y/N]: y
+
+add `test/neomutt-test -E` as a separate test
+	fix two failing cases, if possible
+
+update neomutt binaries
+
+test our more toolbox distros
+	https://github.com/toolbx-images/images
 
