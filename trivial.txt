@@ -239,10 +239,6 @@ use ctags to look for reserved keywords, e.g. variables called private
 use `gh gist` to update local mirrors
 	python scripts need to turn "private" repos into git@ urls
 
-iwyu
-	fix scripts to check for 'config.h'
-	common.sh file?
-
 look for static functions called mutt_*
 	static void mutt_update_recvattach_menu()
 	mutt_bcache_move
@@ -265,7 +261,11 @@ copy asan configure/bash scripts to dev page
 
 git lt [NUM]
 
-iwyu: parameterise iwyu.sh '*.c' -> selects correct backend script
+iwyu:
+	parameterise iwyu.sh '*.c' -> selects correct backend script
+	fix scripts to check for 'config.h'
+	common.sh file?
+	run with openssl enabled?
 
 add dialog helper functions to get:
 	shared data
@@ -294,24 +294,10 @@ add X_new()/X_free() wrappers for non-trivial objects
 merge mutt_buffer_get_field(), mutt_enter_string_full()
 	latter only has one caller
 
-run iwyu with openssl enabled?
-
 NDEBUG warnings around asserts
 
 make sure all notifys doxy their data
 struct Notify *notify;    ///< Notifications: #NotifyIndex, #IndexSharedData
-
-10 largest functions
-	1087 mutt_buffer_select_file
-	1013 index_format_str
-	 950 main
-	 850 mutt_send_message
-	 678 mutt_enter_string_full
-	 535 mutt_expando_format
-	 443 mutt_rfc822_parse_line
-	 440 mutt_pager
-	 378 parse_set
-	 377 mbox_mbox_sync
 
 add with/without build tests for autocrypt
 	needs vm without libraries installed
@@ -526,7 +512,7 @@ doesn't cause a repaint of the index
 root
 	weekly ctags
 	/usr/include
-	/usr/lib/gcc/x86_64-redhat-linux/12/include/
+	/usr/lib/gcc/x86_64-redhat-linux/13/include/
 OR
 	run ctags OF those dirs, elsewhere
 	keep in ~/.cache
@@ -695,4 +681,269 @@ update neomutt binaries
 
 test our more toolbox distros
 	https://github.com/toolbx-images/images
+
+split up multiple assignments
+        grep " = [^,;]* = "
+        grep " = [^,;]* [!=]= "
+
+kill the num_accounts and return the value
+int mutt_autocrypt_db_account_get_all(struct AutocryptAccount ***accounts, int *num_accounts)
+
+not closed on exit
+        static FILE *fp_random;
+
+menu globals, not freed on exit?
+        can't find where it's freed
+        char *SearchBuffers[MENU_MAX];
+
+update copyright dates
+        ∀ users > ~10 lines
+
+compose/functions.c
+        reword joke error message
+        What we have here is a failure to make an attachment
+
+how to extract libmenu, so that it can be independently tested
+        3 $configs:
+                menu_context, menu_move_off, menu_scroll
+        20 <functions>
+                OP_BOTTOM_PAGE, OP_CURRENT_BOTTOM, OP_CURRENT_MIDDLE,
+                OP_CURRENT_TOP, OP_FIRST_ENTRY, OP_HALF_DOWN, OP_HALF_UP,
+                OP_LAST_ENTRY, OP_MIDDLE_PAGE, OP_NEXT_ENTRY, OP_NEXT_LINE,
+                OP_NEXT_PAGE, OP_PREV_ENTRY, OP_PREV_LINE, OP_PREV_PAGE,
+                OP_SEARCH, OP_SEARCH_NEXT, OP_SEARCH_OPPOSITE,
+                OP_SEARCH_REVERSE, OP_TOP_PAGE
+        lists: empty, 1, 2, <page, =page, >page, big, really big
+
+add _dev analysis fuzzing page
+
+mention corpus and dictionaries
+
+BUILD
+	PR template
+	- All builds and tests are passing
+	update to mention test files
+	https://github.com/neomutt/neomutt-test-files
+
+	update all templates
+
+	actions
+		merge asan into build-and-test
+
+	test make install / uninstall?
+		test for zero files afterwards
+
+	add to build-and-test action
+		if po/*.po have changed
+		msgfmt --statistics -c -o /dev/null po/pl.po
+
+	move mutt_X.[ch] into libX
+		deps don't matter, it's a separate src file
+		just mutt_history.*
+
+	move hdrline to libindex?
+		rename to 'index'?
+		struct HdrFormatInfo
+
+CHAR-ERRORS
+	a lot of comparisons to:
+		if ((k == (size_t) (-1)) || (k == (size_t) (-2)))
+		can they be given a name?
+		or X_invalid() macro?
+		-1 => Illegal sequence
+		-2 => Buffer too small
+
+	list functions that are returning errors
+		(for log message)
+
+	separate constants
+
+CLI
+	neomutt -v output:
+		add $LANG?
+		multi-column output to reduce lines?
+
+	neomutt version
+		deprecate the fixed part?
+		might interfere with `ifdef` command
+		do _those_ features matter if they've been included for so long?
+		when did it last change? > 4 years
+
+DOCS
+	docs: "delimited" lists -> "separated"
+
+FUNCTIONS
+	split browser cases by function
+		and other dialogs
+		so all <functions> are independent functions()
+		check against OpPager lists, etc
+		dlg_select_attachment / mutt_attach_display_loop
+			attach/recvattach.c:946:       9  mutt_attach_display_loop
+
+	browser seems ok
+
+	are ANY <functions> handled in the switch/case?
+
+	rename OPs to match functions
+		e.g. drop MAIN_
+		{ "set-flag", OP_MAIN_SET_FLAG },
+
+	dedupe function names: (check again for new dupes)
+		add_cert
+		add_folder
+		append_message
+		attach_config_observer
+		attach_window_observer
+		cmp_version_strings
+		create_gpgme_context
+		dump_menu
+		format_line
+		init_mailbox
+		mutt_exit
+		mutt_file_lock
+		mutt_file_unlock
+		mutt_resize_screen
+		mutt_ssl_socket_setup
+		mutt_ssl_starttls
+		mutt_str_asprintf
+		pgp_check_traditional_one_body
+		tls_set_priority
+
+	rename: buf, buflen
+		look for others, how?
+		* km_expand_key - Get the key string bound to a Keymap
+		* @param s   Buffer for the key string
+		* @param len Length of buffer
+
+RENAME
+	rename compose/compose.c to compose/dlg_compose.c
+		others?
+
+	rename params
+		size_t mutt_mb_mbstowcs(wchar_t **pwbuf, size_t *pwbuflen, size_t i, char *buf);
+
+	'l' bad choice of param name
+		First l chars of both strings are equal
+
+	rename s/mutt_buffer_select_file/dlg_browser/
+		factor out the 'dialog' part first
+
+	change to **ptr, look for others
+	free functions to take (**ptr)
+	then deref to Type *t = *ptr;
+	check ALL free pointers are safe on NULL -- document param as such
+		address_free             config/address.c
+		aliaslist_free           alias/alias.c
+		buffer_free              mutt/pool.c
+		compress_info_free       compmbox/compress.c
+		crypt_key_free           ncrypt/crypt_gpgme.c
+		crypto_module_free       ncrypt/crypt_mod.c
+		defs_free                gui/color.c
+		driver_tags_free         email/tags.c
+		key_free                 ncrypt/pgplib.c
+		maildir_free             maildir/shared.c
+		mbtable_free             config/mbtable.c
+		menu_free                autocrypt/dlgautocrypt.c
+		mhs_sequences_free       maildir/mh.c
+		mix_type2_list_free      remailer.c
+		monitor_check_free       monitor.c
+		monitor_info_free        monitor.c
+		mutt_actx_entries_free   email/attach.c
+		mutt_autocrypthdr_free   email/envelope.c
+		mutt_buffer_pool_free    mutt/pool.c
+		mutt_color_free          gui/color.c
+		mutt_envlist_free        mutt/envlist.c
+		mutt_grouplist_free      address/group.c
+		mutt_hash_set_destructor mutt/hash.c
+		mutt_hcache_free_raw     hcache/hcache.c
+		mutt_hist_free           history/history.c
+		mutt_keys_free           keymap.c
+		mutt_list_free           mutt/list.c
+		mutt_list_free_type      mutt/list.c
+		mutt_mem_free            mutt/memory.c
+		mutt_opts_free           init.c
+		mutt_param_free          email/parameter.c
+		mutt_param_free_one      email/parameter.c
+		mutt_pattern_free        pattern/compile.c
+		mutt_prex_free           mutt/prex.c
+		mutt_regex_free          mutt/regex.c
+		mutt_regexlist_free      mutt/regex.c
+		mutt_replacelist_free    mutt/regex.c
+		mutt_window_free_all     gui/mutt_window.c
+		mutt_winlist_free        gui/mutt_window.c
+		myvarlist_free           myvar.c
+		nm_db_free               notmuch/db.c
+		nntp_acache_free         nntp/newsrc.c
+		nntp_hashelem_free       nntp/nntp.c
+		parameter_free           email/rfc2231.c
+		pgp_key_free             ncrypt/pgplib.c
+		pgp_uid_free             ncrypt/pgplib.c
+		quotes_free              gui/color.c
+		recipient_set_free       ncrypt/crypt_gpgme.c
+		regex_free               config/regex.c
+		slist_free               mutt/slist.c
+		smime_key_free           ncrypt/smime.c
+		zstrm_free               conn/zstrm.c
+
+	find out meaning of "ci_" prefix, or drop it (curses interface?)
+		CI_is_return
+		ci_bounce_message
+			bounce_message
+			ci_bounce_message
+			mutt_attach_bounce
+			mutt_bounce_message
+		ci_first_message
+		ci_next_undeleted
+		ci_previous_undeleted
+		ci_send_message
+			mix_send_message
+			mutt_resend_message
+			send_message
+
+	SEND_NO_FREE_HEADER refers to an Email, SEND_NO_FREE_EMAIL?
+
+	should be _free() -> need _new() too
+		void mutt_bcache_close(struct BodyCache **bcache)
+
+	variables, urgh! sendlib.c
+		mutt_lookup_mime_type() int szf, sze, cur_sze;
+
+SORT
+	merge two sort typedefs
+		sort_t
+		qsort_compar_t
+
+TEST-TIDY
+	test cases, delete contents of /tmp afterwards
+
+	list all the test cases
+
+subjectrx results should be stored in EmailView not Envelope
+	char *subject;   ///< Email's subject
+	char *real_subj; ///< Offset of the real subject
+	char *disp_subj; ///< Display subject (modified copy of subject)
+
+move mview.* into index/
+	or libmview? encapsulate it?
+		if so what's in index? what's in mview?
+
+tell dev-ml about directcolor
+	merge vim syntax updates
+
+notify translate
+
+IRC user: I was just wondering why tag-pattern isn't available in the alias menu
+
+RECALC
+10 largest functions
+	1087 mutt_buffer_select_file
+	1013 index_format_str
+	 950 main
+	 850 mutt_send_message
+	 678 mutt_enter_string_full
+	 535 mutt_expando_format
+	 443 mutt_rfc822_parse_line
+	 440 mutt_pager
+	 378 parse_set
+	 377 mbox_mbox_sync
 
