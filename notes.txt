@@ -1,3 +1,5 @@
+#define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
+
 User wanted to set a bunch of config based on a language setting
 	Is there some kind of syntax like in `.desktop` files to achieve this?
 	set greeting[en] = "Hello"

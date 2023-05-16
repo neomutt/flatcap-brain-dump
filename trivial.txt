@@ -2,8 +2,8 @@ simplify cppcheck example
 	cppcheck --enable=all --language=c --std=c99 -i autosetup --platform=unspecified -D_POSIX_PATH_MAX=4096 -DPATH_MAX=2048 -I/usr/include -I/usr/include/mit-krb5 -I. --output-file=cppcheck.xml --xml --xml-version=2 <path to neomutt source code directory>
 	cppcheck --enable=all --language=c --std=c99 -i autosetup -D_POSIX_PATH_MAX=4096 -DPATH_MAX=2048  -I. --output-file=c1  .
 use --check-config to list missing header files
-	cppcheck --verbose --check-config --enable=all --language=c --std=c99 -i autosetup -i test -DPATH_MAX=2048 -D__x86_64__ -I. -I/usr/include -I/usr/lib/gcc/x86_64-redhat-linux/8/include -I/usr/include/qdbm --output-file=c1 .
-	ignore doc dir too
+working example 2023-05-03
+	cppcheck --verbose --enable=all --language=c --std=c99 -i docs -i autosetup -i test -DPATH_MAX=2048 -D__x86_64__ -I. -I/usr/include -I/usr/lib/gcc/x86_64-redhat-linux/13/include -I/usr/include/qdbm --output-file=c1 .
 
 fix !USE_NNTP build
 	check !USE_SIDEBAR build
@@ -22,6 +22,28 @@ ag 'if \(!\(.*(&&|\|\|).*\)\)'
 
 ag '\(!\((.*) && (.*)\)\)'
 ag '\(!\((.*) \|\| (.*)\)\)'
+
+20 largest functions - 2023-04-30
+	982 index_format_str()
+	944 main()
+	851 mutt_send_message()
+	524 mutt_expando_format()
+	431 mutt_rfc822_parse_line()
+	398 mutt_pager()
+	372 mbox_mbox_sync()
+	329 status_format_str()
+	318 folder_format_str()
+	316 pgp_class_application_handler()
+	310 mutt_view_attachment()
+	308 mutt_index_menu()
+	304 resolve_types()
+	296 mutt_copy_hdr()
+	295 qstyle_classify()
+	294 pattern_exec()
+	294 mx_mbox_close()
+	292 mutt_set_flag_update()
+	288 display_line()
+	281 mutt_init()
 
 eliminate enum AccountType?
 use enum MailboxType
@@ -90,7 +112,6 @@ init.c
 
 deglobalise
 	EnvList in mutt/envlist.c
-	c_hidden_tags in driver_tags_add()
 
 string fn to pretty print \t, \r, \n for tests
 	handle NULL, quote string
@@ -266,6 +287,7 @@ iwyu:
 	fix scripts to check for 'config.h'
 	common.sh file?
 	run with openssl enabled?
+	parameterise the gcc location?
 
 add dialog helper functions to get:
 	shared data
@@ -496,8 +518,6 @@ generate list of dialogs (all combinations)
 alternative to ASAN?
 	clang -ftrivial-auto-var-init=pattern -o jim jim.c
 
-not translated
-	snprintf(buf, sizeof(buf), "-- Remailer chain [Length: %d]", len);
 change to host list?
 	mutt_error(_("Can't get mixmaster's type2.list"));
 
@@ -677,8 +697,6 @@ Is this ok [y/N]: y
 add `test/neomutt-test -E` as a separate test
 	fix two failing cases, if possible
 
-update neomutt binaries
-
 test our more toolbox distros
 	https://github.com/toolbx-images/images
 
@@ -727,9 +745,6 @@ BUILD
 
 	update all templates
 
-	actions
-		merge asan into build-and-test
-
 	test make install / uninstall?
 		test for zero files afterwards
 
@@ -744,19 +759,6 @@ BUILD
 	move hdrline to libindex?
 		rename to 'index'?
 		struct HdrFormatInfo
-
-CHAR-ERRORS
-	a lot of comparisons to:
-		if ((k == (size_t) (-1)) || (k == (size_t) (-2)))
-		can they be given a name?
-		or X_invalid() macro?
-		-1 => Illegal sequence
-		-2 => Buffer too small
-
-	list functions that are returning errors
-		(for log message)
-
-	separate constants
 
 CLI
 	neomutt -v output:
@@ -927,23 +929,57 @@ move mview.* into index/
 	or libmview? encapsulate it?
 		if so what's in index? what's in mview?
 
-tell dev-ml about directcolor
-	merge vim syntax updates
-
-notify translate
-
 IRC user: I was just wondering why tag-pattern isn't available in the alias menu
 
-RECALC
-10 largest functions
-	1087 mutt_buffer_select_file
-	1013 index_format_str
-	 950 main
-	 850 mutt_send_message
-	 678 mutt_enter_string_full
-	 535 mutt_expando_format
-	 443 mutt_rfc822_parse_line
-	 440 mutt_pager
-	 378 parse_set
-	 377 mbox_mbox_sync
+:setenv
+	don't leave neomutt to setenv query?
+	translate tabs and escapes
+		flags for the pager?
+	any key to leave the pager (flag?)
+
+coverage
+	get 100% function coverage first?
+	notmuch - reachable?
+	enter/functions
+	mutt/memory
+	store/*
+
+identify 100 old issues to kill
+	include easy-task, etc
+
+eliminate some CodeQL warnings/errors
+	https://github.com/neomutt/neomutt/security/code-scanning
+
+get vim css color working with neomutt config #rgb colour syntax
+
+update vim syntax
+
+restore progress bar to imap
+	caused repaint race condition
+	removed in e3773a736
+
+deprecate COPR
+
+new sponsor
+	add sponsors to sponsor page
+	delete from old releases?
+		or collapse to one-liners
+
+[changelog]
+	add github.md
+	create checklist for release
+
+cull members
+
+check how all bit-bools are used in `if` clauses
+	bool matched         : 1;    ///< Search matches this Email
+!!!
+	if (e->matched > 0)
+hard to match without *marker*-ing them all
+
+rpm spec %changelog wasn't updated
+
+modify *our* themes to use *bold* rather than *bright*
+
+triv: dump keymaps #ifdef? --debug-keymaps
 
