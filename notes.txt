@@ -1,3 +1,12 @@
+sidebar plugins!
+	reserve an area for a calendar, clock, or text from a file
+	https://gist.github.com/flatcap/e3da53679afd9a9a65418c228a8c3040
+	sidebar_top file1
+	sidebar_top file2
+	sidebar_bottom '`cal`'
+	interpret ansi colours
+	integrate to calcurse
+
 #define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
 
 User wanted to set a bunch of config based on a language setting

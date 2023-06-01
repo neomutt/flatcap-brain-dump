@@ -261,22 +261,28 @@ use `gh gist` to update local mirrors
 	python scripts need to turn "private" repos into git@ urls
 
 look for static functions called mutt_*
-	static void mutt_update_recvattach_menu()
-	mutt_bcache_move
-	mutt_getaddrinfo_a
-	mutt_get_winsize
-	mutt_is_predicate_recipient
-	mutt_is_spool
-	mutt_keymaplist_free
-	mutt_keymap_free
-	mutt_lookup_color
-	mutt_make_greeting
-	mutt_md5_process_block
-	mutt_md5_read_ctx
-	mutt_monitor_getch
-	mutt_pattern_node_new
-	mutt_update_recvattach_menu
-	mutt_update_v2r
+	ignore callback functions?
+	mutt_bcache_move               mutt_poll_fd_add
+	mutt_date_parse_rfc5322_strict mutt_poll_fd_remove
+	mutt_getaddrinfo               mutt_randbuf
+	mutt_getaddrinfo_a             mutt_regmatch_end
+	mutt_get_hook_type             mutt_regmatch_len
+	mutt_get_winsize               mutt_regmatch_start
+	mutt_gsasl_callback            mutt_sasl_cb_authname
+	mutt_gsasl_init                mutt_sasl_cb_log
+	mutt_is_predicate_recipient    mutt_sasl_cb_pass
+	mutt_is_spool                  mutt_sasl_conn_close
+	mutt_keymaplist_free           mutt_sasl_conn_open
+	mutt_keymap_free               mutt_sasl_conn_poll
+	mutt_make_greeting             mutt_sasl_conn_read
+	mutt_md5_process_block         mutt_sasl_conn_write
+	mutt_md5_read_ctx              mutt_sasl_get_callbacks
+	mutt_monitor_getch             mutt_sasl_start
+	mutt_parse_idxfmt_hook         mutt_sort_subthreads
+	mutt_parse_unhook              mutt_ssl_socket_setup
+	mutt_pattern_list_new          mutt_str_is_email_wsp
+	mutt_pattern_new               mutt_update_v2r
+	mutt_pgp_command               
 
 copy asan configure/bash scripts to dev page
 
@@ -649,6 +655,7 @@ please give feedback
 create discussion for each --devel option and link to it
 
 :source supports relative paths, but :lua-source doesn't!
+	when called from hooks
 
 speed test a huge mbox mailbox vs 2022-04-29
 	compare against mutt
@@ -716,10 +723,6 @@ menu globals, not freed on exit?
 
 update copyright dates
         ∀ users > ~10 lines
-
-compose/functions.c
-        reword joke error message
-        What we have here is a failure to make an attachment
 
 how to extract libmenu, so that it can be independently tested
         3 $configs:
@@ -887,21 +890,6 @@ RENAME
 		smime_key_free           ncrypt/smime.c
 		zstrm_free               conn/zstrm.c
 
-	find out meaning of "ci_" prefix, or drop it (curses interface?)
-		CI_is_return
-		ci_bounce_message
-			bounce_message
-			ci_bounce_message
-			mutt_attach_bounce
-			mutt_bounce_message
-		ci_first_message
-		ci_next_undeleted
-		ci_previous_undeleted
-		ci_send_message
-			mix_send_message
-			mutt_resend_message
-			send_message
-
 	SEND_NO_FREE_HEADER refers to an Email, SEND_NO_FREE_EMAIL?
 
 	should be _free() -> need _new() too
@@ -960,26 +948,30 @@ restore progress bar to imap
 
 deprecate COPR
 
-new sponsor
-	add sponsors to sponsor page
-	delete from old releases?
-		or collapse to one-liners
-
-[changelog]
-	add github.md
-	create checklist for release
-
-cull members
-
-check how all bit-bools are used in `if` clauses
-	bool matched         : 1;    ///< Search matches this Email
-!!!
-	if (e->matched > 0)
-hard to match without *marker*-ing them all
-
-rpm spec %changelog wasn't updated
-
-modify *our* themes to use *bold* rather than *bright*
-
 triv: dump keymaps #ifdef? --debug-keymaps
+
+replace urlview (unmaintained) with urlscan (maintainer, more features)
+	need to change /etc/neomuttrc
+	need to update rpm .spec file
+
+refactor: ?
+	only used in two tests
+	can it be used for anything else?
+	#define SET_UP() (file_set_up(__func__))
+	#define TEAR_DOWN(fp) (file_tear_down((fp), __func__))
+
+after Buffer changes, refactor pool.c to use buf_new()/buf_free()
+
+asan instructions -- add EXTRA_CFLAGS='-ggdb3 -O0' to ensure debugging info
+	seems not to matter, only stripping the binary affects the output
+
+ARRAY_FREE -> _CLEAR
+
+a lot of `int retval`s still
+
+rebuild neomutt
+
+external pager - hitting 'j' doesn't advance to next email
+
+github fedora docker failing for f39
 
