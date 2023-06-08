@@ -37,6 +37,7 @@ Variable naming:
 
 Function naming:
 	non-trivial alloc -> *_new()
+		or needs to call some other init fn
 	release object -> *_free()
 		free takes void **ptr or TYPE **ptr
 		cast to OBJECT*

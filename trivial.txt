@@ -898,11 +898,6 @@ RENAME
 	variables, urgh! sendlib.c
 		mutt_lookup_mime_type() int szf, sze, cur_sze;
 
-SORT
-	merge two sort typedefs
-		sort_t
-		qsort_compar_t
-
 TEST-TIDY
 	test cases, delete contents of /tmp afterwards
 
@@ -960,18 +955,36 @@ refactor: ?
 	#define SET_UP() (file_set_up(__func__))
 	#define TEAR_DOWN(fp) (file_tear_down((fp), __func__))
 
-after Buffer changes, refactor pool.c to use buf_new()/buf_free()
-
 asan instructions -- add EXTRA_CFLAGS='-ggdb3 -O0' to ensure debugging info
 	seems not to matter, only stripping the binary affects the output
 
 ARRAY_FREE -> _CLEAR
-
-a lot of `int retval`s still
-
-rebuild neomutt
+	free(**ptr) free, null pointer
+	clear(*ptr) empty
+	cleanup()   tidy global resources
+add to code docs
+void buf_dealloc(struct Buffer *buf); -> _clear()
 
 external pager - hitting 'j' doesn't advance to next email
 
 github fedora docker failing for f39
+
+why isn't md5 test coverage higher?
+
+triv: break up huge case: clauses
+	measure all of them
+
+sort out bash history
+
+elim mutt.org from code
+
+refactor actions to use actions/checkout to *push*
+	https://github.com/actions/checkout/#Push-a-commit-using-the-built-in-token
+	.github/workflows/doxygen.yml
+	.github/workflows/translate.yml
+
+commands.c
+	lots of buf->data -> buf_string(buf)
+	buf->data[0] -> buf_at(buf, 0)
+	look for others
 
