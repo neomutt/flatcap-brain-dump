@@ -1,0 +1,27 @@
+index_format
+
+DT_STRING | DT_FORMAT
+tree of format nodes
+%a %b %c  =>  [A] -> [B] -> [C]
+conditional formats
+	a
+      b   c
+a=cond, b=true, c=false
+
+format node holds:
+	key - expando letter(s)
+		or delimited %<...>, etc
+	precision: min, max
+	alignment: left, right
+
+parser needs:
+	list of all valid expando
+	∀ expando: type => does conditional make sense?
+		   size: min, max, fixed 'n'
+
+render needs:
+	data ∀ format node (if visible)
+	callback fn for data
+		index doesn't know what's visible
+		render traverses node tree collecting
+

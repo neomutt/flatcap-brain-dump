@@ -1,0 +1,67 @@
+expando/format string usage 2023-06-10
+
+alias_format          = "%3n %f%t %-15a %-56r | %c"
+attach_format         = "%u%D%I %t%4n %T%d %> [%.7m/%.10M, %.6e%<C?, %C>, %s] "
+autocrypt_acct_format = "%4n %-30a %20p %10s"
+compose_format        = "-- NeoMutt: Compose  [Approx. msg size: %l   Atts: %a]%>-"
+date_format           = "!%a, %b %d, %Y at %I:%M:%S%p %Z"
+folder_format         = "%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %i"
+forward_format        = "[%a: %s]"
+group_index_format    = "%4C %M%N %5s  %-45.45f %d"
+index_format          = "%4C %Z %{%b %d} %-15.15L (%<l?%4l&%4c>) %s"
+mailbox_folder_format = "%2C %<n?%6n&%6 > %6m %i"
+message_format        = "%s"
+mix_entry_format      = "%4n %c %-16s %a"
+pager_format          = "-%Z- %C/%m: %-20.20n   %s%*  -- (%P)"
+pattern_format        = "%2n %-15e  %d"
+pgp_entry_format      = "%4n %t%f %4l/0x%k %-4a %2c %u"
+query_format          = "%3c %t %-25.25n %-25.25a | %e"
+sidebar_format        = "%D%*  %n"
+status_format         = "-%r-NeoMutt: %D [Msgs:%<M?%M/>%m%<n? New:%n>%<o? Old:%o>%<d? Del:%d>%<F? Flag:%F>%<t? Tag:%t>%<p? Post:%p>%<b? Inc:%b>%<l? %l>]---(%<T?%T/>%s/%S)-%>-(%P)---"
+ts_icon_format        = "M%<n?AIL&ail>"
+ts_status_format      = "NeoMutt with %<m?%m messages&no messages>%<n? [%n NEW]>"
+
+formats
+	'%X'
+	'%-30X'
+	'%30X'
+	'%> '
+	'%* '
+	'%| '
+	'%.7X'
+	'%8.8X'
+	'%-8.8X'
+
+date
+	'%{XXX}'
+	'%[XXX]'
+	'%(XXX)'
+
+special
+	'%@XXX@'
+	'%XY'
+	'%%'
+
+broken
+	'%6 '
+	works for folder_format_str()
+
+conditionals
+	'%X?TRUE?'
+	'%X<TRUE>'
+	'%X?TRUE&FALSE?'
+	'%X<TRUE&FALSE>'
+
+some formats are dependent on config
+	$date_format
+	$from_chars
+	$size_show_bytes
+	$size_show_fractions
+	$size_show_mb
+	$size_units_on_left
+	$status_chars
+	$to_chars
+
+or
+	index-format-hook
+
