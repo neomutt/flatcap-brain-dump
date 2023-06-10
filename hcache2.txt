@@ -207,7 +207,7 @@ index features: size, subject, structure/attach/body
 
 get header
 	1) parse header
-	2) parse headr
+	2) parse header
 	3) get header
 	4) get whole
 	5) get header
@@ -261,7 +261,7 @@ missing from diagram
 	menu api
 
 separate in diagram
-	cachces
+	caches
 	mailboxes
 	neo UI
 	mx,msg,tags

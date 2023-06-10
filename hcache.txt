@@ -27,7 +27,7 @@ gahr, hcache
 	all via hcache.h
 	.so dyanamic library
 	conflicts autoconf a bit
-	multiple static/dyamic
+	multiple static/dynamic
 	global?
 	per mailbox?
 	break deps on mutt structs

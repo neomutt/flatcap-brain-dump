@@ -427,10 +427,6 @@ vs
 	de.po:msgid "No"
 	de.po:msgstr "No"
 
-review all reallocs => memset to clear new memory
-	email/attach.c has lots!
-	mutt_realloc_zero(ptr, size, old_size)
-
 find/read the `git log --date=human` code
 	or better still --date=relative
 
@@ -987,4 +983,20 @@ commands.c
 	lots of buf->data -> buf_string(buf)
 	buf->data[0] -> buf_at(buf, 0)
 	look for others
+
+review all reallocs => memset to clear new memory
+	email/attach.c has lots!
+	mutt_realloc_zero(ptr, size, old_size)
+	couple of places using bare realloc
+	lazy_realloc() in hcache
+		library-ify for Buffer too?
+
+op_exit() doesn't
+	mutt_startup_shutdown_hook(MUTT_SHUTDOWN_HOOK);
+	mutt_debug(LL_NOTIFY, "NT_GLOBAL_SHUTDOWN\n");
+like op_quit() does
+
+search docs (guide/man) for conditional expandos
+	Tip: try %?H?[%H] ?to display spam tags only when they are defined
+replace with %<VAR?TRUE&FALSE> syntax
 
