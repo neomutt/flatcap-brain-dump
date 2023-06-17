@@ -65,3 +65,7 @@ some formats are dependent on config
 or
 	index-format-hook
 
+note
+	conditionals don't support width specification
+	e.g.  %-14.3<...> to limit both parts
+
