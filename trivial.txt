@@ -833,58 +833,6 @@ RENAME
 	free functions to take (**ptr)
 	then deref to Type *t = *ptr;
 	check ALL free pointers are safe on NULL -- document param as such
-		address_free             config/address.c
-		aliaslist_free           alias/alias.c
-		buffer_free              mutt/pool.c
-		compress_info_free       compmbox/compress.c
-		crypt_key_free           ncrypt/crypt_gpgme.c
-		crypto_module_free       ncrypt/crypt_mod.c
-		defs_free                gui/color.c
-		driver_tags_free         email/tags.c
-		key_free                 ncrypt/pgplib.c
-		maildir_free             maildir/shared.c
-		mbtable_free             config/mbtable.c
-		menu_free                autocrypt/dlgautocrypt.c
-		mhs_sequences_free       maildir/mh.c
-		mix_type2_list_free      remailer.c
-		monitor_check_free       monitor.c
-		monitor_info_free        monitor.c
-		mutt_actx_entries_free   email/attach.c
-		mutt_autocrypthdr_free   email/envelope.c
-		mutt_buffer_pool_free    mutt/pool.c
-		mutt_color_free          gui/color.c
-		mutt_envlist_free        mutt/envlist.c
-		mutt_grouplist_free      address/group.c
-		mutt_hash_set_destructor mutt/hash.c
-		mutt_hcache_free_raw     hcache/hcache.c
-		mutt_hist_free           history/history.c
-		mutt_keys_free           keymap.c
-		mutt_list_free           mutt/list.c
-		mutt_list_free_type      mutt/list.c
-		mutt_mem_free            mutt/memory.c
-		mutt_opts_free           init.c
-		mutt_param_free          email/parameter.c
-		mutt_param_free_one      email/parameter.c
-		mutt_pattern_free        pattern/compile.c
-		mutt_prex_free           mutt/prex.c
-		mutt_regex_free          mutt/regex.c
-		mutt_regexlist_free      mutt/regex.c
-		mutt_replacelist_free    mutt/regex.c
-		mutt_window_free_all     gui/mutt_window.c
-		mutt_winlist_free        gui/mutt_window.c
-		myvarlist_free           myvar.c
-		nm_db_free               notmuch/db.c
-		nntp_acache_free         nntp/newsrc.c
-		nntp_hashelem_free       nntp/nntp.c
-		parameter_free           email/rfc2231.c
-		pgp_key_free             ncrypt/pgplib.c
-		pgp_uid_free             ncrypt/pgplib.c
-		quotes_free              gui/color.c
-		recipient_set_free       ncrypt/crypt_gpgme.c
-		regex_free               config/regex.c
-		slist_free               mutt/slist.c
-		smime_key_free           ncrypt/smime.c
-		zstrm_free               conn/zstrm.c
 
 	SEND_NO_FREE_HEADER refers to an Email, SEND_NO_FREE_EMAIL?
 
@@ -938,6 +886,7 @@ restore progress bar to imap
 	removed in e3773a736
 
 deprecate COPR
+	HOW?
 
 triv: dump keymaps #ifdef? --debug-keymaps
 
@@ -962,10 +911,6 @@ add to code docs
 void buf_dealloc(struct Buffer *buf); -> _clear()
 
 external pager - hitting 'j' doesn't advance to next email
-
-github fedora docker failing for f39
-
-why isn't md5 test coverage higher?
 
 triv: break up huge case: clauses
 	measure all of them
@@ -996,7 +941,37 @@ op_exit() doesn't
 	mutt_debug(LL_NOTIFY, "NT_GLOBAL_SHUTDOWN\n");
 like op_quit() does
 
-search docs (guide/man) for conditional expandos
-	Tip: try %?H?[%H] ?to display spam tags only when they are defined
-replace with %<VAR?TRUE&FALSE> syntax
+try https://github.com/grobian/html2text
+
+fopen() -> mutt_file_fopen() ?
+	75 fopen, 122 mutt_file_fopen()
+
+hcache Email, compare size:
+	memcpy Email (sizeof Email) == 216 bytes
+		used part of Email == 32 bytes
+	caching individual parts
+		SecurityFlags security; 
+		bool expired : 1; 
+		bool flagged : 1; 
+		bool mime : 1; 
+		bool old : 1; 
+		bool read : 1; 
+		bool replied : 1; 
+		bool superseded : 1; 
+		bool trash : 1; 
+		unsigned int zhours : 5; 
+		unsigned int zminutes : 6; 
+		bool zoccident : 1; 
+		time_t date_sent; 
+		time_t received; 
+		int lines; 
+
+tidy live neomutt config
+	dupe to ~mutt  
+create parallel mutt config
+	dupe to ~mutt  
+
+c_from->mailbox is a *Buffer* now
+	check for other logging problems
+	mutt_debug(LL_DEBUG5, "#5 yes, %s = %s\n", buf_string(addr->mailbox), c_from->mailbox);
 
