@@ -103,7 +103,7 @@ env fails (returns success) but empty
 
 gahr:
 	%{header:from}
-	${date:recipient}
-	${date:recipient-local}
-	${date:recipient-UTC}
+	%{date:recipient}
+	%{date:recipient-local}
+	%{date:recipient-UTC}
 
