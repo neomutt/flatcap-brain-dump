@@ -159,9 +159,6 @@ main.c
 	 * it doesn't get unlinked, and we can rebuild the draft_file */
 	else
 
-neomuttlog.vim
-	offer to vim ml
-
 why are enum SortType numbered?
 	SORT_ALPHA    =  3, ///< Required by makedoc.c
 	SORT_SUBJECT  =  3, ///< Sort by the email's subject
@@ -343,11 +340,6 @@ docker
 
 sync github to all my private gitlab repos (or delete them)
 
-update neomuttrc.vim
-	new config with underscores!
-		really deprecate old ones?
-	colors with attributes
-
 link observer function docs to Event/EventStruct they receive
 
 doc egypt workflow
@@ -486,13 +478,10 @@ asan analysis mention?
 	debian: libasan6
 	fedora: libasan
 
-vim neomutt, -noregex not recognised
-
 why doesn't Pager support OpGeneric
 	it's skipped in km_dokey()
 
 man pages (inc synonyms, deprecated)
-neomuttrc.vim
 
 config docs: unify (imap only)-style sections
 	dedupe any deprecated/synonym refs
@@ -538,7 +527,7 @@ root
 OR
 	run ctags OF those dirs, elsewhere
 	keep in ~/.cache
-
+four kids and it
 contrib:
 	update rpm spec & bugzilla
 	notify packagers
@@ -560,8 +549,6 @@ find all functions returning 0=success,-1=failure
 
 oauth2/mutt_oauth2.py.README -> README.md
 	markdown-ify
-
-demote all neo branches to flatcap/DATE
 
 italics
 	https://apple.stackexchange.com/a/267261
@@ -877,10 +864,6 @@ identify 100 old issues to kill
 eliminate some CodeQL warnings/errors
 	https://github.com/neomutt/neomutt/security/code-scanning
 
-get vim css color working with neomutt config #rgb colour syntax
-
-update vim syntax
-
 restore progress bar to imap
 	caused repaint race condition
 	removed in e3773a736
@@ -928,6 +911,7 @@ commands.c
 	lots of buf->data -> buf_string(buf)
 	buf->data[0] -> buf_at(buf, 0)
 	look for others
+	make buf_at() inline?
 
 review all reallocs => memset to clear new memory
 	email/attach.c has lots!
@@ -946,32 +930,68 @@ try https://github.com/grobian/html2text
 fopen() -> mutt_file_fopen() ?
 	75 fopen, 122 mutt_file_fopen()
 
-hcache Email, compare size:
-	memcpy Email (sizeof Email) == 216 bytes
-		used part of Email == 32 bytes
-	caching individual parts
-		SecurityFlags security; 
-		bool expired : 1; 
-		bool flagged : 1; 
-		bool mime : 1; 
-		bool old : 1; 
-		bool read : 1; 
-		bool replied : 1; 
-		bool superseded : 1; 
-		bool trash : 1; 
-		unsigned int zhours : 5; 
-		unsigned int zminutes : 6; 
-		bool zoccident : 1; 
-		time_t date_sent; 
-		time_t received; 
-		int lines; 
-
 tidy live neomutt config
 	dupe to ~mutt  
 create parallel mutt config
 	dupe to ~mutt  
+start by flattening it into one file
+then reorganise and resplit
+move into .config/neomutt
+fix git upstream for main repo
 
-c_from->mailbox is a *Buffer* now
-	check for other logging problems
-	mutt_debug(LL_DEBUG5, "#5 yes, %s = %s\n", buf_string(addr->mailbox), c_from->mailbox);
+convert hcache to use Buffer as the store
+	eliminate lazy_realloc
+
+hcache: lazy_realloc() is only lazy to 4KiB
+	then it reallocs for every tiny addition
+	change increase to 4KiB blocks
+	all 54000 test emails lead to hcache sizes < 4KiB
+
+neomuttrc.vim
+	neomuttlog.vim offer to vim ml
+
+	update neomuttrc.vim
+		colors with attributes
+
+	vim neomutt, -noregex not recognised
+
+	get vim css color working with neomutt config #rgb colour syntax
+
+filter inbox into folders
+	sieve future mail
+
+renew gpg keys
+	regen backup
+	upload keys to website
+
+BUG: resolve=no <toggle-new> doesn't refresh -- ctrl-l fixes
+
+config that isn't relative to parent config file
+	$certificate_file
+	$autocrypt_dir
+	check all files/dirs?
+	are *any* expanded when set?
+
+strip down /home/github
+	create backup script to ignore 3rd-party/
+	dated, vivo-github.tar
+
+changelog
+	markdown files
+
+Buffer move semantics
+	flatcap | but we don't have a function to *transfer* ownership of a string, yet
+	   navi | yeah, it clones it
+	   navi | would the transfer be useful? bc it seems pretty simple to do too
+	flatcap | probably, yes
+	   navi | a `buf_movestr(struct Buffer *buf, const char *s)` or similar
+	flatcap | hmm...
+	flatcap | I'd be tempted to make that: `char **ptr` -- we *take* the string and NULL the caller's pointer
+	   navi | that's actually a good idea
+	   navi | avoid the caller passing that to FREE() by accident
+	flatcap | yeah
+
+DT_ONCE, DT_ON_STARTUP
+	can't be changed after startup completes
+	i.e. must be in config file or cli: `-e set...`
 
