@@ -8,8 +8,6 @@ working example 2023-05-03
 fix !USE_NNTP build
 	check !USE_SIDEBAR build
 
-add printf format checkers to mutt_message, mutt_debug, etc
-
 test int against 0
 	what about ALL int members?
 
@@ -109,9 +107,6 @@ init.c
 	getsid() is POSIX2001
 	no need for #ifdef?
 	exists in cygwin
-
-deglobalise
-	EnvList in mutt/envlist.c
 
 string fn to pretty print \t, \r, \n for tests
 	handle NULL, quote string
@@ -279,16 +274,11 @@ look for static functions called mutt_*
 	mutt_parse_unhook              mutt_ssl_socket_setup
 	mutt_pattern_list_new          mutt_str_is_email_wsp
 	mutt_pattern_new               mutt_update_v2r
-	mutt_pgp_command               
-
-copy asan configure/bash scripts to dev page
+	mutt_pgp_command
 
 git lt [NUM]
 
 iwyu:
-	parameterise iwyu.sh '*.c' -> selects correct backend script
-	fix scripts to check for 'config.h'
-	common.sh file?
 	run with openssl enabled?
 	parameterise the gcc location?
 
@@ -321,30 +311,12 @@ merge mutt_buffer_get_field(), mutt_enter_string_full()
 
 NDEBUG warnings around asserts
 
-make sure all notifys doxy their data
-struct Notify *notify;    ///< Notifications: #NotifyIndex, #IndexSharedData
-
-add with/without build tests for autocrypt
-	needs vm without libraries installed
-
-add links in web/dev to gfx repo for arch diagrams etc
-	and/or dev list
-
-update web dev translate deployment
-	add coverity
-
 update test library
 
 docker
 	add readme
 
 sync github to all my private gitlab repos (or delete them)
-
-link observer function docs to Event/EventStruct they receive
-
-doc egypt workflow
-	CFLAGS -> svg
-	make flatcap branch the main?  or merge?
 
 vim plugin
 	setlocal keywordprg=echo;echo;neomutt\ -n\ -F\ /dev/null\ -OQ
@@ -472,12 +444,6 @@ post release:
 	cull issues
 	author repo / git mailmap
 
-fix mutt/neomutt shared config
-
-asan analysis mention?
-	debian: libasan6
-	fedora: libasan
-
 why doesn't Pager support OpGeneric
 	it's skipped in km_dokey()
 
@@ -527,7 +493,7 @@ root
 OR
 	run ctags OF those dirs, elsewhere
 	keep in ~/.cache
-four kids and it
+
 contrib:
 	update rpm spec & bugzilla
 	notify packagers
@@ -573,29 +539,12 @@ make lmdb, rocksdb, tdb default stores (modern)
 
 docs: add "recently changed" section to front of guide!
 	plus link to github releases page / changelog
+	:changelog
 
 https://github.com/autozimu/LanguageClient-neovim
 https://people.freebsd.org/~gahr/lc.vim
 
-add a weekly build action to test all the debug-* options still compile
-	include multiple graphviz options
-
 all style guide ideas -> discussion
-
-graphviz doc to dev/analysis
-add brief page for each option
-	--debug-backtrace   Enable backtrace support with libunwind
-	--debug-color       Enable Color dump
-	--debug-email       Enable Email dump
-	--debug-graphviz    Enable Graphviz dump
-	--debug-notify      Enable Notifications dump
-	--debug-queue       Enable TAILQ debugging
-	--debug-window      Enable windows dump
-What about?
-	--fuzzing           Enable Fuzz Testing
-
-some actions missing from https://neomutt.org/dev/actions
-	~/work/site-actions/
 
 convert all questions(issues) -> discussions
 	1) find all question issues
@@ -610,8 +559,6 @@ list macros
 		48 mutt_socket_send
 		29 state_putc
 
-archive branches?
-
 once we can test mutt_parse_rc_buffer()
 	wrap a fuzzer around it!
 	seeded with hundreds of valid set/unset lines
@@ -624,9 +571,6 @@ tests combine
 	NeoMutt = test_neomutt_create();
 	TEST_CHECK(NeoMutt != NULL);
 	TEST_CHECK(cs_register_variables(NeoMutt->sub->cs, Vars, DT_NO_FLAGS));
-
-add logging info to ubsan page
-	https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#logging
 
 config register
 	ignore dupes?
@@ -694,16 +638,6 @@ split up multiple assignments
         grep " = [^,;]* = "
         grep " = [^,;]* [!=]= "
 
-kill the num_accounts and return the value
-int mutt_autocrypt_db_account_get_all(struct AutocryptAccount ***accounts, int *num_accounts)
-
-not closed on exit
-        static FILE *fp_random;
-
-menu globals, not freed on exit?
-        can't find where it's freed
-        char *SearchBuffers[MENU_MAX];
-
 update copyright dates
         ∀ users > ~10 lines
 
@@ -718,8 +652,6 @@ how to extract libmenu, so that it can be independently tested
                 OP_SEARCH, OP_SEARCH_NEXT, OP_SEARCH_OPPOSITE,
                 OP_SEARCH_REVERSE, OP_TOP_PAGE
         lists: empty, 1, 2, <page, =page, >page, big, really big
-
-add _dev analysis fuzzing page
 
 mention corpus and dictionaries
 
@@ -871,8 +803,6 @@ restore progress bar to imap
 deprecate COPR
 	HOW?
 
-triv: dump keymaps #ifdef? --debug-keymaps
-
 replace urlview (unmaintained) with urlscan (maintainer, more features)
 	need to change /etc/neomuttrc
 	need to update rpm .spec file
@@ -882,9 +812,6 @@ refactor: ?
 	can it be used for anything else?
 	#define SET_UP() (file_set_up(__func__))
 	#define TEAR_DOWN(fp) (file_tear_down((fp), __func__))
-
-asan instructions -- add EXTRA_CFLAGS='-ggdb3 -O0' to ensure debugging info
-	seems not to matter, only stripping the binary affects the output
 
 ARRAY_FREE -> _CLEAR
 	free(**ptr) free, null pointer
@@ -901,6 +828,7 @@ triv: break up huge case: clauses
 sort out bash history
 
 elim mutt.org from code
+	just one ref to urlview
 
 refactor actions to use actions/checkout to *push*
 	https://github.com/actions/checkout/#Push-a-commit-using-the-built-in-token
@@ -928,12 +856,14 @@ like op_quit() does
 try https://github.com/grobian/html2text
 
 fopen() -> mutt_file_fopen() ?
-	75 fopen, 122 mutt_file_fopen()
+	75 fopen(), 122 mutt_file_fopen()
+	7 fclose(), 360 mutt_files_close()
+	check for "fopen" error messages
 
 tidy live neomutt config
-	dupe to ~mutt  
+	dupe to ~mutt
 create parallel mutt config
-	dupe to ~mutt  
+	dupe to ~mutt
 start by flattening it into one file
 then reorganise and resplit
 move into .config/neomutt
@@ -962,7 +892,6 @@ filter inbox into folders
 
 renew gpg keys
 	regen backup
-	upload keys to website
 
 BUG: resolve=no <toggle-new> doesn't refresh -- ctrl-l fixes
 
@@ -979,19 +908,113 @@ strip down /home/github
 changelog
 	markdown files
 
-Buffer move semantics
-	flatcap | but we don't have a function to *transfer* ownership of a string, yet
-	   navi | yeah, it clones it
-	   navi | would the transfer be useful? bc it seems pretty simple to do too
-	flatcap | probably, yes
-	   navi | a `buf_movestr(struct Buffer *buf, const char *s)` or similar
-	flatcap | hmm...
-	flatcap | I'd be tempted to make that: `char **ptr` -- we *take* the string and NULL the caller's pointer
-	   navi | that's actually a good idea
-	   navi | avoid the caller passing that to FREE() by accident
-	flatcap | yeah
-
 DT_ONCE, DT_ON_STARTUP
 	can't be changed after startup completes
 	i.e. must be in config file or cli: `-e set...`
+
+discussions
+	realloc_zero() - ARRAY upgrades
+	address book upgrades (tags, limit, sidebar, colour)
+	background edit - steps, arch how?
+	expando overhaul - explain ideas
+	-nopoll -nonotify flags
+	DT_STARTUP
+
+try to find homes for the contents of protos.h
+	or merge it with something else
+
+analyse all /*.h used in */*.[ch]
+	e.g. format_t to core/ ?
+		(used by many libraries)
+
+move *.rc to ~/.mutt/
+move *.mbox to ~/mail/
+
+:help [TOPIC]
+	e.g. to_chars
+	auto-complete on TOPICs
+	what would be the source?
+	would it be translated?
+
+asan analysis mention?
+	debian: libasan6
+	fedora: libasan
+
+graphviz doc to dev/analysis
+What about?
+	--fuzzing           Enable Fuzz Testing
+add _dev analysis fuzzing page
+
+copy asan configure/bash scripts to dev page
+
+some actions missing from https://neomutt.org/dev/actions
+	~/work/site-actions/
+	macOS
+
+make sure all notifys doxy their data
+struct Notify *notify;    ///< Notifications: #NotifyIndex, #IndexSharedData
+
+add with/without build tests for autocrypt
+	needs vm without libraries installed
+
+add links in web/dev to gfx repo for arch diagrams etc
+	and/or dev list
+
+update web dev translate deployment
+	add coverity
+
+link observer function docs to Event/EventStruct they receive
+
+doc egypt workflow
+	CFLAGS -> svg
+	make flatcap branch the main?  or merge?
+
+add logging info to ubsan page
+	https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#logging
+
+kill the num_accounts and return the value
+int mutt_autocrypt_db_account_get_all(struct AutocryptAccount ***accounts, int *num_accounts)
+
+not closed on exit
+        static FILE *fp_random;
+
+menu globals, not freed on exit?
+        can't find where it's freed
+        char *SearchBuffers[MENU_MAX];
+
+triv: dump keymaps #ifdef? --debug-keymaps
+
+asan instructions -- add EXTRA_CFLAGS='-ggdb3 -O0' to ensure debugging info
+	seems not to matter, only stripping the binary affects the output
+
+MARKER Buffer.data
+	count dereferences outside of mutt/buffer.[ch]
+		main test
+		449   30 Buffer.data
+		158    0 Buffer.dptr
+		 75    5 Buffer.dsize
+		 62    0 Buffer.data, Buffer.dsize
+	aim to replace with buf_at()
+	need to inline buf_at() first
+	ASSERT() range checks?
+	make the Buffer opaque?
+	distinguish between buf_len() and buf_strlen()
+
+rename DlgX functions' files to dlg_x.c
+	reduce functions in dlg_*.c to just dlg_*() + statics
+
+s-lang? Pardon?
+	pager/display.c
+	/* end the last color pattern (needed by S-Lang) */
+	if (special || ((col != win_pager->state.cols) && (flags & (MUTT_SHOWCOLOR | MUTT_SEARCH))))
+	  resolve_color(win_pager, *lines, line_num, vch, flags, 0, &ansi);
+
+colour schemes
+	need background = light|dark
+	theme-name-light.rc
+	theme-name-dark.rc
+	could link objects together, like vim
+		color sidebar_indicator link indicator
+
+drop docs/help-lines when merged
 
