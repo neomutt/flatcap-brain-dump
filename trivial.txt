@@ -119,12 +119,12 @@ wrong name, should be _free()
 
 This doesn't seem to be documented in neomutt's manual either
 I wonder if we could kill this unexpected behaviour
-  /* This is an undocumented feature of ELM pointed out to me by Felix von
-   * Leitner <leitner@prz.fu-berlin.de> */
-  if (mutt_str_strcmp(mutt_b2s(buf), ".") == 0)
-    mutt_buffer_strcpy(buf, LastSaveFolder);
-  else
-    mutt_str_strfcpy(LastSaveFolder, mutt_b2s(buf), sizeof(LastSaveFolder));
+	/* This is an undocumented feature of ELM pointed out to me by Felix von
+	 * Leitner <leitner@prz.fu-berlin.de> */
+	if (mutt_str_strcmp(mutt_b2s(buf), ".") == 0)
+	  mutt_buffer_strcpy(buf, LastSaveFolder);
+	else
+	  mutt_str_strfcpy(LastSaveFolder, mutt_b2s(buf), sizeof(LastSaveFolder));
 
 flags typedef?
 	/* force flags passed to mutt_mailbox_check() */
@@ -180,13 +180,6 @@ flip to match M.verbose
 
 isn't used!
 	MT_COLOR_MESSAGE_LOG
-
-WRONG - depends on strlen(C_ArrowString)
-	why bother for non Braille?
-	cursor isn't visible
-    /* move the cursor out of the way */
-    if (C_ArrowCursor)
-      mutt_window_move(menu->win_index, 2, menu->current - menu->top);
 
 add brief README.md to each library dir
 	quick description
@@ -313,9 +306,6 @@ NDEBUG warnings around asserts
 
 update test library
 
-docker
-	add readme
-
 sync github to all my private gitlab repos (or delete them)
 
 vim plugin
@@ -338,8 +328,6 @@ actions: check that matrix builds continue on error
 
 logging error fd == -1 ?
 	mutt_socket_write_d() -1> a0000 SELECT "INBOX"
-
-strip mirrors of branches
 
 neomutt version "debug" -> "logging"?
 	assuming that's what it is
@@ -397,9 +385,6 @@ find/read the `git log --date=human` code
 how much work to fix the new_mail command?
 	notifications from backends
 
-copy [debug/compose] -> neomutt-old
-	update it
-
 action for IRC notifier
 	https://github.com/rectalogic/notify-irc
 	https://github.com/Gottox/irc-message-action
@@ -444,9 +429,6 @@ post release:
 	cull issues
 	author repo / git mailmap
 
-why doesn't Pager support OpGeneric
-	it's skipped in km_dokey()
-
 man pages (inc synonyms, deprecated)
 
 config docs: unify (imap only)-style sections
@@ -482,9 +464,6 @@ find/kill
 	if (x) return (or continue or break)
 	else if...
 	if (.*\n\s\+{\n\s\+return\>.*\n\s\+}\n\s\+else
-
-doesn't cause a repaint of the index
-	set narrow_tree = no
 
 root
 	weekly ctags
@@ -540,6 +519,8 @@ make lmdb, rocksdb, tdb default stores (modern)
 docs: add "recently changed" section to front of guide!
 	plus link to github releases page / changelog
 	:changelog
+changelog
+	markdown files
 
 https://github.com/autozimu/LanguageClient-neovim
 https://people.freebsd.org/~gahr/lc.vim
@@ -890,11 +871,6 @@ neomuttrc.vim
 filter inbox into folders
 	sieve future mail
 
-renew gpg keys
-	regen backup
-
-BUG: resolve=no <toggle-new> doesn't refresh -- ctrl-l fixes
-
 config that isn't relative to parent config file
 	$certificate_file
 	$autocrypt_dir
@@ -904,9 +880,6 @@ config that isn't relative to parent config file
 strip down /home/github
 	create backup script to ignore 3rd-party/
 	dated, vivo-github.tar
-
-changelog
-	markdown files
 
 DT_ONCE, DT_ON_STARTUP
 	can't be changed after startup completes
@@ -919,6 +892,9 @@ discussions
 	expando overhaul - explain ideas
 	-nopoll -nonotify flags
 	DT_STARTUP
+	buffer.buf_at() inline
+	buffer opaque?
+	buf_len() vs buf_strlen()?
 
 try to find homes for the contents of protos.h
 	or merge it with something else
@@ -1000,15 +976,6 @@ MARKER Buffer.data
 	make the Buffer opaque?
 	distinguish between buf_len() and buf_strlen()
 
-rename DlgX functions' files to dlg_x.c
-	reduce functions in dlg_*.c to just dlg_*() + statics
-
-s-lang? Pardon?
-	pager/display.c
-	/* end the last color pattern (needed by S-Lang) */
-	if (special || ((col != win_pager->state.cols) && (flags & (MUTT_SHOWCOLOR | MUTT_SEARCH))))
-	  resolve_color(win_pager, *lines, line_num, vch, flags, 0, &ansi);
-
 colour schemes
 	need background = light|dark
 	theme-name-light.rc
@@ -1016,5 +983,46 @@ colour schemes
 	could link objects together, like vim
 		color sidebar_indicator link indicator
 
-drop docs/help-lines when merged
+https://github.com/MaJerle/c-code-style
+https://github.com/mcinglis/c-style
+
+help
+	use expandos to generate the help page
+		ideally needs dynamic widths to use space as needed
+	but dump the output to a file, then pager as normal
+
+no space before \$
+	ag -u '[^ \t]\\$'
+
+rename mw_ source files like dlg_*.c?
+
+discuss: reviewers
+	active devs
+	all members
+	others
+ask what/why/how/etc
+
+be explicit?
+	win->wdata_free = NULL; // No need, we hold the data
+or dynamically alloc them, and prevent lots of github security warnings
+	win->wdata_free = NULL; // No need, we hold the data
+	autocrypt/dlg_autocrypt.c:326:6: dlg->wdata = &ad;
+	browser/dlg_browser.c:1368:6:    dlg->wdata = priv;
+	enter/window.c:263:8:            win->wdata = &wdata;
+	gui/simple.c:140:6:              dlg->wdata = win_menu->wdata;
+	history/dlg_history.c:147:6:     dlg->wdata = &hd;
+	mixmaster/dlg_mixmaster.c:149:6: dlg->wdata = priv;
+	ncrypt/dlg_gpgme.c:751:6:        dlg->wdata = &gd;
+	ncrypt/dlg_pgp.c:669:6:          dlg->wdata = &pd;
+	ncrypt/dlg_smime.c:224:6:        dlg->wdata = &sd;
+	pager/pager.c:420:6:             win->wdata = priv;
+	pattern/dlg_pattern.c:344:6:     dlg->wdata = &pd;
+	postpone/dlg_postpone.c:215:6:   dlg->wdata = &pd;
+
+BUG: resolve=no <toggle-new> doesn't refresh -- ctrl-l fixes
+
+BUG: <mail><tab> -> address book, leaves progress bar on screen
+
+BUG: doesn't cause a repaint of the index
+	set narrow_tree = no
 

@@ -98,3 +98,7 @@ ideas:
 	header in pager so I can change the sort fields
 	some kinda "quick limit" button such that if I click a particular author/sender, I see their emails
 
+Context-specific help:
+	<help-select> => Message: "Click on a Window for help..."
+	<click> -> Window.context_help();
+
