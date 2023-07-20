@@ -886,7 +886,6 @@ discussions
 	realloc_zero() - ARRAY upgrades
 	address book upgrades (tags, limit, sidebar, colour)
 	background edit - steps, arch how?
-	expando overhaul - explain ideas
 	-nopoll -nonotify flags
 	DT_STARTUP
 	buffer.buf_at() inline
@@ -1027,4 +1026,12 @@ BUG: <mail><tab> -> address book, leaves progress bar on screen
 
 BUG: doesn't cause a repaint of the index
 	set narrow_tree = no
+
+BUG: jindraj | <toggle-write> doesn't trigger redraw of status bar
+	bisect: https://github.com/neomutt/neomutt/commit/19003d1d09c5210c1b8e31bae81bbfc4efa21968
+	drop notification relays
+
+nf - no fail versions of functions
+	c/o @ossilator Oswald Buddenhagen 
+	https://sourceforge.net/p/isync/isync/ci/master/tree/src/util.c#l609
 

@@ -107,3 +107,11 @@ gahr:
 	%{date:recipient-local}
 	%{date:recipient-UTC}
 
+note
+	conditionals don't support width specification
+	e.g.  %-14.3<...> to limit both parts
+
+broken
+	`%6 `
+	works for folder_format_str()
+

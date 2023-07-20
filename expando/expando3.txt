@@ -1,71 +1,125 @@
-expando/format string usage 2023-06-10
+## Every Expando
 
-alias_format          = "%3n %f%t %-15a %-56r | %c"
-attach_format         = "%u%D%I %t%4n %T%d %> [%.7m/%.10M, %.6e%<C?, %C>, %s] "
-autocrypt_acct_format = "%4n %-30a %20p %10s"
-compose_format        = "-- NeoMutt: Compose  [Approx. msg size: %l   Atts: %a]%>-"
-date_format           = "!%a, %b %d, %Y at %I:%M:%S%p %Z"
-folder_format         = "%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %i"
-forward_format        = "[%a: %s]"
-group_index_format    = "%4C %M%N %5s  %-45.45f %d"
-index_format          = "%4C %Z %{%b %d} %-15.15L (%<l?%4l&%4c>) %s"
-mailbox_folder_format = "%2C %<n?%6n&%6 > %6m %i"
-message_format        = "%s"
-mix_entry_format      = "%4n %c %-16s %a"
-pager_format          = "-%Z- %C/%m: %-20.20n   %s%*  -- (%P)"
-pattern_format        = "%2n %-15e  %d"
-pgp_entry_format      = "%4n %t%f %4l/0x%k %-4a %2c %u"
-query_format          = "%3c %t %-25.25n %-25.25a | %e"
-sidebar_format        = "%D%*  %n"
-status_format         = "-%r-NeoMutt: %D [Msgs:%<M?%M/>%m%<n? New:%n>%<o? Old:%o>%<d? Del:%d>%<F? Flag:%F>%<t? Tag:%t>%<p? Post:%p>%<b? Inc:%b>%<l? %l>]---(%<T?%T/>%s/%S)-%>-(%P)---"
-ts_icon_format        = "M%<n?AIL&ail>"
-ts_status_format      = "NeoMutt with %<m?%m messages&no messages>%<n? [%n NEW]>"
+### Basic Formats
 
-formats
-	'%X'
-	'%-30X'
-	'%30X'
-	'%> '
-	'%* '
-	'%| '
-	'%.7X'
-	'%8.8X'
-	'%-8.8X'
+The simplest of the expandos work like `printf()`: `%` + a single letter `X`.
+They can have min and max sizes, be left/right justified and have space/zero leaders.
 
-date
-	'%{XXX}'
-	'%[XXX]'
-	'%(XXX)'
+| Format   | Description                                        |
+| :------- | :------------------------------------------------- |
+| `%X`     | Unformatted                                        |
+| `%8X`    | Min size 8 chars, pad with spaces, right justified |
+| `%-8X`   | Min size 8 chars, pad with spaces, left justified  |
+| `%08X`   | Min size 8 chars, pad with `0`s                    |
+| `%.8X`   | Max size 8 chars                                   |
+| `%8.8X`  | Min size 8 chars, max size 8 chars                 |
+| `%-8.8X` | Min size 8 chars, max size 8 chars, left justified |
 
-special
-	'%@XXX@'
-	'%XY'
-	'%%'
+There are a couple of extras to consider:
 
-broken
-	'%6 '
-	works for folder_format_str()
+- `%%` - To display a literal `%` character in the string
+- `%XY` - Some expandos have been extended to use two characters
+  (often because there are few free letters to choose from)
 
-conditionals
-	'%X?TRUE?'
-	'%X<TRUE>'
-	'%X?TRUE&FALSE?'
-	'%X<TRUE&FALSE>'
+### Date Formats
 
-some formats are dependent on config
-	$date_format
-	$from_chars
-	$size_show_bytes
-	$size_show_fractions
-	$size_show_mb
-	$size_units_on_left
-	$status_chars
-	$to_chars
+Some of the format strings display dates.
 
-or
-	index-format-hook
+- `%{fmt}`
+- `%[fmt]`
+- `%(fmt)`
 
-note
-	conditionals don't support width specification
-	e.g.  %-14.3<...> to limit both parts
+The `fmt` inside is a `strftime()`-compatible string, e.g.
+
+- `%Y-%m-%d` becomes `2023-07-20`
+
+### Padding Formats
+
+NeoMutt supports three forms of "smart" padding.
+The padding character `X` is typically a space.
+
+- `%|X` Fill the rest of the line with `X`, any further formatting is discarded
+- `%>X` Hard fill with `X`, preserve the left-hand-side
+- `%*X` Soft fill with `X`, preserve the right-hand-side
+
+The hard and soft fill behave differently when there's too little space for everything.
+
+Hard fill: `appleAPPLE%> bananaBANANA`
+
+Decreasing amounts of space; the right-hand-side is truncated to fit.
+
+- `appleAPPLE    bananaBANANA`
+- `appleAPPLEbananaBANANA`
+- `appleAPPLEbananaBA`
+- `appleAPPLEbana`
+- `appleAPPLE`
+- `appleA`
+
+Soft fill: `appleAPPLE%* bananaBANANA`
+
+Decreasing amounts of space; the left-hand-side is truncated to fit.
+
+- `appleAPPLE    bananaBANANA`
+- `appleAPPLEbananaBANANA`
+- `appleAbananaBANANA`
+- `apbananaBANANA`
+- `bananaBANA`
+- `banana`
+
+### Conditional formats (1)
+
+Mutt's original style of conditional formatting was:
+
+- `%X?TRUE?` - If `%X` is non-zero, or not-empty, then display the `TRUE` clause
+- `%X?TRUE&FALSE?` If `%X` then display `TRUE`, else display `FALSE`
+
+The `TRUE` and `FALSE` clauses can contain other expandos.
+
+An original NeoMutt patch stole the unused `%<>` format to create:
+
+- `%X<TRUE>`
+- `%X<TRUE&FALSE>`
+
+The big benefit of this new format was that it was nestable.
+Technically, you _could_ nest the original format, but the levels of escaping required made the resulting string illegible.
+
+- `%X< %Y<apple&banana> & %Y<cherry&damson> >`
+
+| X  | Y  | Output  |
+| -- | -- | ------- |
+| 0  | 0  | damson  |
+| 1  | 0  | banana  |
+| 0  | 1  | cherry  |
+| 1  | 1  | apple   |
+
+
+### Conditional formats (2)
+
+More recently, Mutt introduced the `index-format-hook` to allow conditional formatting.
+
+First, define a set of hooks with a name, `date`.
+Each has a condition, e.g. `~d<1m` (date is less than 1 month ago)
+Then each has a formatting string to substitute, e.g. `%[%a %d]` ("Thu 20").
+
+```
+index-format-hook  date  "~d<1d"  "%[%H:%M]"
+index-format-hook  date  "~d<1m"  "%[%a %d]"
+index-format-hook  date  "~d<1y"  "%[%b %d]"
+index-format-hook  date  "~A"     "%[%m/%y]"
+
+set index_format="... %@date@ ..."
+```
+
+### Config
+
+The style of some expandos is dependent on config variables.
+
+- `$date_format`
+- `$from_chars`
+- `$size_show_bytes`
+- `$size_show_fractions`
+- `$size_show_mb`
+- `$size_units_on_left`
+- `$status_chars`
+- `$to_chars`
 
