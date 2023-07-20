@@ -12,8 +12,6 @@
 
 Implements ::format_t - @ingroup expando_api
 
-20
-
 ---
 - `%>X` Right justify the rest of the string and pad with character `X`
 - `%|X` Pad to the end of the line with character `X`
@@ -24,4 +22,6 @@ Implements ::format_t - @ingroup expando_api
 - `pipe.sh|` Expand and run command
 - `\x` Whitespace characters, carriage-return, line feed, etc
 - ```` `backticks` ```` Execute command
+
+%% is literal
 

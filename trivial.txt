@@ -774,9 +774,6 @@ coverage
 identify 100 old issues to kill
 	include easy-task, etc
 
-eliminate some CodeQL warnings/errors
-	https://github.com/neomutt/neomutt/security/code-scanning
-
 restore progress bar to imap
 	caused repaint race condition
 	removed in e3773a736
@@ -895,6 +892,11 @@ discussions
 	buffer.buf_at() inline
 	buffer opaque?
 	buf_len() vs buf_strlen()?
+	offer up some code-scanning issues for fixing
+
+eliminate some CodeQL warnings/errors
+	https://github.com/neomutt/neomutt/security/code-scanning
+	dev analysis page with download instructions
 
 try to find homes for the contents of protos.h
 	or merge it with something else
