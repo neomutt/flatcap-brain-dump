@@ -115,3 +115,26 @@ broken
 	`%6 `
 	works for folder_format_str()
 
+%{desc:-10.3}  ==  description, left justified, max 3, min 10
+
+%{name} -- minimum unique name from data {}
+data = { aardvark, apple, applied }
+	aa(rdvark)
+	apple
+	appli(ed)
+
+arbitrary fields, e.g.  %{header:from}
+need to define more domains
+could be expensive for index_format
+just use for hooks?
+
+how do conditionals work?  (and nest)
+
+%{test:flagged} ... %{test:end}
+%{test:flagged} ... %{test:else} ... %{test:end}
+
+or s/test/cond/g
+
+can you format conditionals to restrict both if/else clauses?
+	%{test:flagged:-10.3} ?
+

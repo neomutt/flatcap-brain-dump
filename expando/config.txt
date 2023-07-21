@@ -25,3 +25,77 @@ render needs:
 		index doesn't know what's visible
 		render traverses node tree collecting
 
+------------------------------------------------------------
+
+config
+	"apple %a banana %8b cherry %.6cx"
+
+data
+	{ { "a",  MV_ENUM_A,   callback_mv },
+	  { "b",  MV_ENUM_B,   callback_mv },
+	  { "cx", ACC_ENUM_CX, callback_acc } }
+
+node-tree:
+	root
+	├── { NODE_TEXT,   "apple",   0,  5 }
+	├── { MV_ENUM_A,   NULL,     -1, -1 }
+	├── { NODE_TEXT,   "banana",  0,  6 }
+	├── { MV_ENUM_B,   NULL,      0,  8 }
+	├── { NODE_TEXT,   "cherry",  0,  6 }
+	└── { ACC_ENUM_CX, NULL,     -1,  6 }
+
+------------------------------------------------------------
+
+config
+	"apple %<x? banana & cherry > damson"
+
+data
+	{ { "x",  MV_ENUM_X,   callback_mv } }
+
+node-tree:
+	root
+	├── { NODE_TEXT, "apple",    0,  5 }
+	├── { NODE_COND, MV_ENUM_X, -1, -1 }
+	│   ├── { NODE_TEXT,   "banana",  0,  6 }
+	│   └── { NODE_TEXT,   "cherry",  0,  6 }
+	└── { NODE_TEXT,   "damson",  0,  6 }
+
+------------------------------------------------------------
+
+menu_repaint() ... menu_redraw_index() -> make_entry(lnum)
+
+e = get_email(lnum)
+n = get_nodes(index_format)
+
+text = render(n, data)
+	what about multiple domains?
+multi-data? ugly
+	{ struct Mailbox *m;
+	  struct MailboxView *mv;
+	  struct Account *a;
+	  ... };
+
+render ∀ node: callback(line, data)
+
+------------------------------------------------------------
+
+| Domain                | Example               |
+| :-------------------- | :-------------------- |
+| NeoMutt (globals)     | version               |
+| AccountView           | sort order            |
+| Account               | name                  |
+| MailboxView (Context) | current limit pattern |
+| Mailbox               | path, size            |
+| EmailView             | tagged                |
+| Email                 | new                   |
+| (None)                | padding, formatting   |
+| Domain-specific       | compress hooks        |
+
+Implements ::format_t - @ingroup expando_api
+
+- `$config` Expand NeoMutt config
+- `$ENV` Expand an environment variable
+- `pipe.sh|` Expand and run command
+- `\x` Whitespace characters, carriage-return, line feed, etc
+- ```` `backticks` ```` Execute command
+
