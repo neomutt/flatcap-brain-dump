@@ -997,12 +997,6 @@ no space before \$
 
 rename mw_ source files like dlg_*.c?
 
-discuss: reviewers
-	active devs
-	all members
-	others
-ask what/why/how/etc
-
 be explicit?
 	win->wdata_free = NULL; // No need, we hold the data
 or dynamically alloc them, and prevent lots of github security warnings
@@ -1020,6 +1014,13 @@ or dynamically alloc them, and prevent lots of github security warnings
 	pattern/dlg_pattern.c:344:6:     dlg->wdata = &pd;
 	postpone/dlg_postpone.c:215:6:   dlg->wdata = &pd;
 
+nf - no fail versions of functions
+	c/o @ossilator Oswald Buddenhagen 
+	https://sourceforge.net/p/isync/isync/ci/master/tree/src/util.c#l609
+
+L10N comment, wrong file
+	mutt_str_pretty_size() in mutt/string.c
+
 BUG: resolve=no <toggle-new> doesn't refresh -- ctrl-l fixes
 
 BUG: <mail><tab> -> address book, leaves progress bar on screen
@@ -1031,7 +1032,13 @@ BUG: jindraj | <toggle-write> doesn't trigger redraw of status bar
 	bisect: https://github.com/neomutt/neomutt/commit/19003d1d09c5210c1b8e31bae81bbfc4efa21968
 	drop notification relays
 
-nf - no fail versions of functions
-	c/o @ossilator Oswald Buddenhagen 
-	https://sourceforge.net/p/isync/isync/ci/master/tree/src/util.c#l609
+BUG: nn0 - compose email, $from is unset
+	compose screen shows: From: <;
+
+window_redraw()
+	after window_repaint(win)
+	call window_repaint(focus)
+	allowing window to position the cursor and make it visible
+	windows that allow focus need to check for (win->actions & WA_REPAINT)
+	to prevent duplicate repainting
 
