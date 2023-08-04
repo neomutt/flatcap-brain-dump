@@ -1042,3 +1042,88 @@ window_redraw()
 	windows that allow focus need to check for (win->actions & WA_REPAINT)
 	to prevent duplicate repainting
 
+typo, spurious 'a'
+	* This question can be answered using a locale-dependent letters, e.g.
+
+these need to be paired exactly, making them error prone
+	notify_observer_add()
+	notify_observer_remove()
+
+export/squash devel/expando
+	to neomutt-old because it needs neomutt repo as it merges
+	won't give any credit
+
+ifdef color-name ...?
+
+messages that might benefit from \n
+plus the keymap.c http:// error
+	%d message has been lost. Try reopening the mailbox.
+	%d messages have been lost. Try reopening the mailbox.
+	%s does not exist. Create it?
+	Attachment #%d modified. Update encoding for %s?
+	Can't decode all tagged attachments.  MIME-encapsulate the others?
+	Can't decode all tagged attachments.  MIME-forward the others?
+	Can't postpone.  $postponed is unset
+	Can't sign: No key specified. Use Sign As.
+	Connected to %s. %s
+	Connection lost. Reconnect to POP server?
+	Connection to %s lost. Reconnect?
+	Error encrypting message. Check your crypt settings.
+	Error saving flags. Close anyway?
+	Error. Preserving temporary file: %s
+	failed to find message in notmuch database. try running 'notmuch new'.
+	Fcc failed. (r)etry, alternate (m)ailbox, or (s)kip?
+	ID has undefined validity. Do you really want to use the key?
+	ID is expired/disabled/revoked. Do you really want to use the key?
+	ID is not trusted. Do you really want to use the key?
+	ID is not valid. Do you really want to use the key?
+	ID is only marginally valid. Do you really want to use the key?
+	Inline PGP can't be used with attachments.  Revert to PGP/MIME?
+	Inline PGP can't be used with format=flowed.  Revert to PGP/MIME?
+	Internal error.  Please submit a bug report.
+	Key is not bound.  Press '%s' for help.
+	Mailbox is marked unwritable. %s
+	Mailbox was externally modified.  Flags may be wrong.
+	Message can't be sent inline.  Revert to using PGP/MIME?
+	Message contains text matching \$abort_noattach_regex\. Not sending.
+	Message of read-only mailbox modified! Ignoring changes.
+	MIME type not defined.  Can't view attachment.
+	nm_default_url must be: notmuch://<absolute path> . Current: %s
+	No crypto backend configured.  Disabling message security setting.
+	No matching mailcap entry found.  Viewing as text.
+	No Message-Id. Unable to perform operation.
+	PGP already selected. Clear and continue?
+	Posting to this group not allowed, may be moderated. Continue?
+	QRESYNC failed.  Reopening mailbox.
+	S/MIME already selected. Clear and continue?
+	The message index is incorrect. Try reopening the mailbox.
+	This IMAP server is ancient. NeoMutt does not work with it.
+	Warning: This alias name may not work.  Fix it?
+	[-- Can't run %s. --]\n
+
+guug: neomutt, a TUI email client that lets you zip through emails
+mbiscuit: I like the emphasis on speed.
+
+guug_ | flatcap: Another tagline (a bit hippy)-- neomutt: 60 to 0 in 2.3 seconds.
+
+mouse
+	guug: So yeah but in the "mouse support thing", my one wish would be some frequently accessible things also accessible by mouse thus opening neomutt to non-power users.
+	guug: e.g. the limit thing could be a tiny box [fi(l)ter: ] where user could click to see this expand.
+
+tutorial
+	mbiscuit | what you need is some young person with nimble fingers and all the keyboard shortcuts in their head doing a 'this is how fast mailing can be' tutorial
+probably need two runs, one at speed, then one slow with explanations and a list of shortcuts/macros used
+
+why doesn't this use ngettext() ?
+	if (query_quadoption(c_print, (msg_count == 1) ? _("Print message?") : _("Print tagged messages?")) != MUTT_YES)
+
+doxy typo
+	ibar_data_new - Free the private data attached to the MuttWindow
+
+discussions
+	(re-)label *all* of them
+	move some to old?
+
+pin a "help wanted" issue linking to discussions
+	clear out, or transfer, all issues wanting help
+

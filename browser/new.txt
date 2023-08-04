@@ -5,6 +5,11 @@ WINCH event, send (old,new) sizes *might*not* invalidate all
 it item raw data is strdup'd, then br_destroy can clean it up
 mutt's sorting quirks : INBOX first, or '..' first
 
+option to sort dirs before files
+	$sort_browser_partition
+	$sort_browser_dirs_first
+	$browser_sort_dirs_first
+
 have area for multiline help
 	current directory/folder
 	valid keys for navigation

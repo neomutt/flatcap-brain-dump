@@ -102,3 +102,5 @@ Context-specific help:
 	<help-select> => Message: "Click on a Window for help..."
 	<click> -> Window.context_help();
 
+click on abbreviated status bar for a temporary enlargement
+
