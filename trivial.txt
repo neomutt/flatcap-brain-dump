@@ -1021,19 +1021,10 @@ nf - no fail versions of functions
 L10N comment, wrong file
 	mutt_str_pretty_size() in mutt/string.c
 
-BUG: resolve=no <toggle-new> doesn't refresh -- ctrl-l fixes
-
 BUG: <mail><tab> -> address book, leaves progress bar on screen
 
 BUG: doesn't cause a repaint of the index
 	set narrow_tree = no
-
-BUG: jindraj | <toggle-write> doesn't trigger redraw of status bar
-	bisect: https://github.com/neomutt/neomutt/commit/19003d1d09c5210c1b8e31bae81bbfc4efa21968
-	drop notification relays
-
-BUG: nn0 - compose email, $from is unset
-	compose screen shows: From: <;
 
 window_redraw()
 	after window_repaint(win)
@@ -1042,16 +1033,9 @@ window_redraw()
 	windows that allow focus need to check for (win->actions & WA_REPAINT)
 	to prevent duplicate repainting
 
-typo, spurious 'a'
-	* This question can be answered using a locale-dependent letters, e.g.
-
 these need to be paired exactly, making them error prone
 	notify_observer_add()
 	notify_observer_remove()
-
-export/squash devel/expando
-	to neomutt-old because it needs neomutt repo as it merges
-	won't give any credit
 
 ifdef color-name ...?
 
@@ -1117,13 +1101,95 @@ probably need two runs, one at speed, then one slow with explanations and a list
 why doesn't this use ngettext() ?
 	if (query_quadoption(c_print, (msg_count == 1) ? _("Print message?") : _("Print tagged messages?")) != MUTT_YES)
 
-doxy typo
-	ibar_data_new - Free the private data attached to the MuttWindow
-
 discussions
 	(re-)label *all* of them
 	move some to old?
+	group into help-wanted, in-progress, crazy-ideas?
+	move all ideas in issues into discussions
 
 pin a "help wanted" issue linking to discussions
 	clear out, or transfer, all issues wanting help
+
+ren progress bar to mw_progress_bar?
+
+log_disp_debug -- dump everything?
+	MuttLogger = log_disp_terminal;
+
+check sort options are separated by ',' (comma) to allow splitting
+	msgid "Sort (d)ate,(f)rm,(r)ecv,(s)ubj,t(o),(t)hread,(u)nsort,si(z)e,s(c)ore,s(p)am,(l)abel?"
+	msgstr "Tri (d)ate/(a)uteur/(r)eçu/(o)bjet/de(s)t/d(i)scus/aucu(n)/(t)aille/s(c)ore/s(p)am/(l)abel?"
+after msgwin improvements, change to ', ' (comma space)
+or allow splitting on comma-alnum or comma-bracket
+
+log this?
+	void mutt_beep(bool force)
+
+index/functions.c is the (!shared->mailbox_view) check redundant?
+	check if neomutt crashes without it
+	run it through coverity
+	if (!shared->mailbox_view || ((check = mx_mbox_close(shared->mailbox)) == MX_STATUS_OK))
+
+like `color options`, have a colour for default/alternate answers? [yes]/no
+	make default brighter
+	make alternate dimmer
+	or use existing 'options' colour
+		replacing [xxx]
+apart from mw_yesorno() which other questions are there?
+
+can ANY *_new() function fail?
+	struct MuttWindow *win = msgwin_new(true);
+	if (!win)
+	  return MUTT_ABORT;
+command as such, remove post fn checks
+
+qsort functions
+unify naming
+check doxy header
+	alias_sort_address          - Compare two Aliases by their Addresses                       - Implements ::sort_t - @ingroup sort_api
+	alias_sort_name             - Compare two Aliases by their short names                     - Implements ::sort_t - @ingroup sort_api
+	alias_sort_unsort           - Compare two Aliases by their original configuration position - Implements ::sort_t - @ingroup sort_api
+	browser_compare             - Sort the items in the browser                                - Implements ::sort_t - @ingroup sort_api
+	browser_sort_count          - Compare the message count of two browser entries             - Implements ::sort_t - @ingroup sort_api
+	browser_sort_count_new      - Compare the new count of two browser entries                 - Implements ::sort_t - @ingroup sort_api
+	browser_sort_date           - Compare the date of two browser entries                      - Implements ::sort_t - @ingroup sort_api
+	browser_sort_desc           - Compare the descriptions of two browser entries              - Implements ::sort_t - @ingroup sort_api
+	browser_sort_order          - Compare the order of creation of two browser entries         - Implements ::sort_t - @ingroup sort_api
+	browser_sort_size           - Compare the size of two browser entries                      - Implements ::sort_t - @ingroup sort_api
+	browser_sort_subject        - Compare the subject of two browser entries                   - Implements ::sort_t - @ingroup sort_api
+	commands_sort               - Compare two commands by name                                 - Implements ::sort_t - @ingroup sort_api
+	compare_email_shim          - qsort_r() comparator to drive mutt_compare_emails            - Implements ::sort_t - @ingroup sort_api
+	compare_threads             - qsort_r() function for comparing email threads               - Implements ::sort_t - @ingroup sort_api
+	crypt_compare_address_qsort - Compare the addresses of two keys                            - Implements ::sort_t - @ingroup sort_api
+	crypt_compare_date_qsort    - Compare the dates of two keys                                - Implements ::sort_t - @ingroup sort_api
+	crypt_compare_keyid_qsort   - Compare the IDs of two keys                                  - Implements ::sort_t - @ingroup sort_api
+	crypt_compare_trust_qsort   - Compare the trust levels of two keys                         - Implements ::sort_t - @ingroup sort_api
+	elem_list_sort              - Sort two HashElem pointers to config                         - Implements ::sort_t - @ingroup sort_api
+	envlist_sort                - Sort two environment strings                                 - Implements ::sort_t - @ingroup sort_api
+	imap_sort_email_uid         - Compare two Emails by UID                                    - Implements ::sort_t - @ingroup sort_api
+	imap_sort_uid               - Compare two UIDs                                             - Implements ::sort_t - @ingroup sort_api
+	label_sort                  - Sort two label strings                                       - Implements ::sort_t - @ingroup sort_api
+	maildir_sort_flags          - Compare two flag characters                                  - Implements ::sort_t - @ingroup sort_api
+	maildir_sort_inode          - Compare two Maildirs by inode number                         - Implements ::sort_t - @ingroup sort_api
+	mh_sort_path                - Compare two Maildirs by path                                 - Implements ::sort_t - @ingroup sort_api
+	pgp_compare_address_qsort   - Compare the addresses of two PGP keys                        - Implements ::sort_t - @ingroup sort_api
+	pgp_compare_date_qsort      - Compare the dates of two PGP keys                            - Implements ::sort_t - @ingroup sort_api
+	pgp_compare_keyid_qsort     - Compare key IDs                                              - Implements ::sort_t - @ingroup sort_api
+	pgp_compare_trust_qsort     - Compare the trust levels of two PGP keys                     - Implements ::sort_t - @ingroup sort_api
+	sb_sort_count               - Sort Sidebar entries by count                                - Implements ::sort_t - @ingroup sort_api
+	sb_sort_desc                - Sort Sidebar entries by description                          - Implements ::sort_t - @ingroup sort_api
+	sb_sort_flagged             - Sort Sidebar entries by flagged                              - Implements ::sort_t - @ingroup sort_api
+	sb_sort_order               - Sort Sidebar entries by order of creation                    - Implements ::sort_t - @ingroup sort_api
+	sb_sort_path                - Sort Sidebar entries by path                                 - Implements ::sort_t - @ingroup sort_api
+	sb_sort_unread              - Sort Sidebar entries by unread                               - Implements ::sort_t - @ingroup sort_api
+	sb_sort_unsorted            - Sort Sidebar entries into their original order               - Implements ::sort_t - @ingroup sort_api
+	crypt_compare_keyid         - Compare Key IDs and addresses for sorting                    -                       @ingroup sort_api
+	crypt_compare_key_address   - Compare Key addresses and IDs for sorting                    -                       @ingroup sort_api
+	crypt_compare_key_date      - Compare Key creation dates and addresses for sorting         -                       @ingroup sort_api
+	crypt_compare_key_trust     - Compare the trust of keys for sorting                        -                       @ingroup sort_api
+	mutt_compare_emails         - Compare two emails using up to two sort methods              -                       @ingroup sort_api
+	mutt_inbox_cmp              - Do two folders share the same path and one is an inbox       -                       @ingroup sort_api
+	pgp_compare_keyid           - Compare Key IDs and addresses for sorting                    -                       @ingroup sort_api
+	pgp_compare_key_address     - Compare Key addresses and IDs for sorting                    -                       @ingroup sort_api
+	pgp_compare_key_date        - Compare Key dates for sorting                                -                       @ingroup sort_api
+	pgp_compare_key_trust       - Compare the trust of keys for sorting                        -                       @ingroup sort_api
 
