@@ -271,10 +271,6 @@ look for static functions called mutt_*
 
 git lt [NUM]
 
-iwyu:
-	run with openssl enabled?
-	parameterise the gcc location?
-
 add dialog helper functions to get:
 	shared data
 	priv data
@@ -351,7 +347,7 @@ find potential places for struct Buffer
 
 refactor "not reached"
 	ag "not reached" | wc -l
-	13
+	8
 
 kill #define EXTRA_SPACE (15 + 7 + 2)
 	recvcmd.c
@@ -534,6 +530,7 @@ convert all questions(issues) -> discussions
 list macros
 	count their use
 	eliminate any?
+	or static inline functions
 		82 MoreArgs
 		68 mutt_set_flag
 		52 SKIPWS
@@ -593,8 +590,6 @@ change function typedefs?
 	typedef void func_t(int, int);
 	func_t *ptr = NULL;
 	this reads _exactly_ like a function declaration, much easier to remember
-
-update neomutt-test-files readme -- no --testing
 
 sieve for github maintainers
 	more sieves
@@ -835,7 +830,7 @@ try https://github.com/grobian/html2text
 
 fopen() -> mutt_file_fopen() ?
 	75 fopen(), 122 mutt_file_fopen()
-	7 fclose(), 360 mutt_files_close()
+	7 fclose(), 360 mutt_file_fclose()
 	check for "fopen" error messages
 
 tidy live neomutt config
@@ -886,7 +881,6 @@ discussions
 	realloc_zero() - ARRAY upgrades
 	address book upgrades (tags, limit, sidebar, colour)
 	background edit - steps, arch how?
-	-nopoll -nonotify flags
 	DT_STARTUP
 	buffer.buf_at() inline
 	buffer opaque?
@@ -1083,7 +1077,6 @@ plus the keymap.c http:// error
 	The message index is incorrect. Try reopening the mailbox.
 	This IMAP server is ancient. NeoMutt does not work with it.
 	Warning: This alias name may not work.  Fix it?
-	[-- Can't run %s. --]\n
 
 guug: neomutt, a TUI email client that lets you zip through emails
 mbiscuit: I like the emphasis on speed.
@@ -1098,13 +1091,10 @@ tutorial
 	mbiscuit | what you need is some young person with nimble fingers and all the keyboard shortcuts in their head doing a 'this is how fast mailing can be' tutorial
 probably need two runs, one at speed, then one slow with explanations and a list of shortcuts/macros used
 
-why doesn't this use ngettext() ?
-	if (query_quadoption(c_print, (msg_count == 1) ? _("Print message?") : _("Print tagged messages?")) != MUTT_YES)
-
 discussions
 	(re-)label *all* of them
-	move some to old?
 	group into help-wanted, in-progress, crazy-ideas?
+		or sub-categories/sections
 	move all ideas in issues into discussions
 
 pin a "help wanted" issue linking to discussions
@@ -1120,6 +1110,17 @@ check sort options are separated by ',' (comma) to allow splitting
 	msgstr "Tri (d)ate/(a)uteur/(r)eçu/(o)bjet/de(s)t/d(i)scus/aucu(n)/(t)aille/s(c)ore/s(p)am/(l)abel?"
 after msgwin improvements, change to ', ' (comma space)
 or allow splitting on comma-alnum or comma-bracket
+check for other compact strings
+long strings (81+)
+	msgid "Reverse sort by (d)ate, (a)lpha, si(z)e, d(e)scription, (c)ount, ne(w) count, or do(n)'t sort?"
+	msgid "Sort by (d)ate, (a)lpha, si(z)e, d(e)scription, (c)ount, ne(w) count, or do(n)'t sort?"
+	msgid "Rev-Sort (d)ate,(f)rm,(r)ecv,(s)ubj,t(o),(t)hread,(u)nsort,si(z)e,s(c)ore,s(p)am,(l)abel?"
+	msgid "Sort (d)ate,(f)rm,(r)ecv,(s)ubj,t(o),(t)hread,(u)nsort,si(z)e,s(c)ore,s(p)am,(l)abel?"
+	msgid "WARNING: We have NO indication whether the key belongs to the person named as shown above\n"
+	msgid "WARNING: It is NOT certain that the key belongs to the person named as shown above\n"
+	msgid "S/MIME (e)ncrypt, (s)ign, encrypt (w)ith, sign (a)s, (b)oth, (c)lear, or (o)ppenc mode?"
+	msgid "Invalid nm_query_window_timebase value (valid values are: hour, day, week, month, year)"
+	msgid "messages whose Message-ID is included in the results returned from an external search program"
 
 log this?
 	void mutt_beep(bool force)
@@ -1136,60 +1137,89 @@ like `color options`, have a colour for default/alternate answers? [yes]/no
 		replacing [xxx]
 apart from mw_yesorno() which other questions are there?
 
-can ANY *_new() function fail?
-	struct MuttWindow *win = msgwin_new(true);
-	if (!win)
-	  return MUTT_ABORT;
-command as such, remove post fn checks
+discussion - message strings
+	define meaning of 'error' and 'warning'
+	demote error -> warning where possible
+	demote error/warning to message where possible
+counts: (868)
+	601 mutt_error()   395 uniq
+	 27 mutt_warning()  25 uniq
+	240 mutt_message() 154 uniq
+possible easy task
+	31 * "warning:"
+	98 * "error:"
+make sure they
+	mutt_warning()
+	mutt_error()
+drop prefix from message and translations
+create standard, translated, prefix for all warnings/errors
+	prefix isn't displayed if `color error` / `color warning` is set
+reword where necessary
+	"Error opening 'memory stream'"
+	"Error: " + "Can't open 'memory stream'"
 
-qsort functions
-unify naming
-check doxy header
-	alias_sort_address          - Compare two Aliases by their Addresses                       - Implements ::sort_t - @ingroup sort_api
-	alias_sort_name             - Compare two Aliases by their short names                     - Implements ::sort_t - @ingroup sort_api
-	alias_sort_unsort           - Compare two Aliases by their original configuration position - Implements ::sort_t - @ingroup sort_api
-	browser_compare             - Sort the items in the browser                                - Implements ::sort_t - @ingroup sort_api
-	browser_sort_count          - Compare the message count of two browser entries             - Implements ::sort_t - @ingroup sort_api
-	browser_sort_count_new      - Compare the new count of two browser entries                 - Implements ::sort_t - @ingroup sort_api
-	browser_sort_date           - Compare the date of two browser entries                      - Implements ::sort_t - @ingroup sort_api
-	browser_sort_desc           - Compare the descriptions of two browser entries              - Implements ::sort_t - @ingroup sort_api
-	browser_sort_order          - Compare the order of creation of two browser entries         - Implements ::sort_t - @ingroup sort_api
-	browser_sort_size           - Compare the size of two browser entries                      - Implements ::sort_t - @ingroup sort_api
-	browser_sort_subject        - Compare the subject of two browser entries                   - Implements ::sort_t - @ingroup sort_api
-	commands_sort               - Compare two commands by name                                 - Implements ::sort_t - @ingroup sort_api
-	compare_email_shim          - qsort_r() comparator to drive mutt_compare_emails            - Implements ::sort_t - @ingroup sort_api
-	compare_threads             - qsort_r() function for comparing email threads               - Implements ::sort_t - @ingroup sort_api
-	crypt_compare_address_qsort - Compare the addresses of two keys                            - Implements ::sort_t - @ingroup sort_api
-	crypt_compare_date_qsort    - Compare the dates of two keys                                - Implements ::sort_t - @ingroup sort_api
-	crypt_compare_keyid_qsort   - Compare the IDs of two keys                                  - Implements ::sort_t - @ingroup sort_api
-	crypt_compare_trust_qsort   - Compare the trust levels of two keys                         - Implements ::sort_t - @ingroup sort_api
-	elem_list_sort              - Sort two HashElem pointers to config                         - Implements ::sort_t - @ingroup sort_api
-	envlist_sort                - Sort two environment strings                                 - Implements ::sort_t - @ingroup sort_api
-	imap_sort_email_uid         - Compare two Emails by UID                                    - Implements ::sort_t - @ingroup sort_api
-	imap_sort_uid               - Compare two UIDs                                             - Implements ::sort_t - @ingroup sort_api
-	label_sort                  - Sort two label strings                                       - Implements ::sort_t - @ingroup sort_api
-	maildir_sort_flags          - Compare two flag characters                                  - Implements ::sort_t - @ingroup sort_api
-	maildir_sort_inode          - Compare two Maildirs by inode number                         - Implements ::sort_t - @ingroup sort_api
-	mh_sort_path                - Compare two Maildirs by path                                 - Implements ::sort_t - @ingroup sort_api
-	pgp_compare_address_qsort   - Compare the addresses of two PGP keys                        - Implements ::sort_t - @ingroup sort_api
-	pgp_compare_date_qsort      - Compare the dates of two PGP keys                            - Implements ::sort_t - @ingroup sort_api
-	pgp_compare_keyid_qsort     - Compare key IDs                                              - Implements ::sort_t - @ingroup sort_api
-	pgp_compare_trust_qsort     - Compare the trust levels of two PGP keys                     - Implements ::sort_t - @ingroup sort_api
-	sb_sort_count               - Sort Sidebar entries by count                                - Implements ::sort_t - @ingroup sort_api
-	sb_sort_desc                - Sort Sidebar entries by description                          - Implements ::sort_t - @ingroup sort_api
-	sb_sort_flagged             - Sort Sidebar entries by flagged                              - Implements ::sort_t - @ingroup sort_api
-	sb_sort_order               - Sort Sidebar entries by order of creation                    - Implements ::sort_t - @ingroup sort_api
-	sb_sort_path                - Sort Sidebar entries by path                                 - Implements ::sort_t - @ingroup sort_api
-	sb_sort_unread              - Sort Sidebar entries by unread                               - Implements ::sort_t - @ingroup sort_api
-	sb_sort_unsorted            - Sort Sidebar entries into their original order               - Implements ::sort_t - @ingroup sort_api
-	crypt_compare_keyid         - Compare Key IDs and addresses for sorting                    -                       @ingroup sort_api
-	crypt_compare_key_address   - Compare Key addresses and IDs for sorting                    -                       @ingroup sort_api
-	crypt_compare_key_date      - Compare Key creation dates and addresses for sorting         -                       @ingroup sort_api
-	crypt_compare_key_trust     - Compare the trust of keys for sorting                        -                       @ingroup sort_api
-	mutt_compare_emails         - Compare two emails using up to two sort methods              -                       @ingroup sort_api
-	mutt_inbox_cmp              - Do two folders share the same path and one is an inbox       -                       @ingroup sort_api
-	pgp_compare_keyid           - Compare Key IDs and addresses for sorting                    -                       @ingroup sort_api
-	pgp_compare_key_address     - Compare Key addresses and IDs for sorting                    -                       @ingroup sort_api
-	pgp_compare_key_date        - Compare Key dates for sorting                                -                       @ingroup sort_api
-	pgp_compare_key_trust       - Compare the trust of keys for sorting                        -                       @ingroup sort_api
+Easy task:
+	change config file error messages to be
+	file:line:[column:] message
+
+monitor
+	"context" globals refer to "current" mailbox
+	bool MonitorContextChanged = false;
+	static int MonitorContextDescriptor = -1;
+
+discussion
+	medium diff - anti-phishing
+	check for non-ascii domains and show punycode
+	work/phishing.mbox
+where?
+	index
+		add to existing field?
+		separate field / expando?
+		warning expando / flag
+	pager
+	compose
+	address book?
+
+folder_make_entry() does config lookups every time
+	can this be factored out?
+	check other format strings
+
+rename `struct ConfigSubset *sub` -> `*cfg`?
+	there are zero variables call cfg!
+	but it *is* a *sub*set
+
+trans: print tagged message(s) -> fuzzy
+	likely to be _correct_ but fuzzy
+	because both messages exists before
+	but now are combined in one multi-message
+
+bug: help + stripes hides search highlighting!
+
+bogus #includes?
+fix .imp files to prevent them?
+	attach/cid.c          core/tmp.h
+	attach/dlg_attach.c   menu/type.h
+	browser/dlg_browser.c nntp/adata.h
+	browser/dlg_browser.c nntp/mdata.h
+	browser/functions.c   nntp/adata.h
+	browser/functions.c   nntp/mdata.h
+	color/command.c       pager/private_data.h
+	complete/helpers.c    menu/type.h
+	compose/functions.c   nntp/adata.h
+	convert/convert.c     email/content.h
+	enter/functions.c     config/helpers.h
+	enter/window.c        color/color.h
+	functions.c           docs/makedoc_defs.h
+	hcache/hcache.c       hcache/hcversion.h
+	index/dlg_index.c     nntp/adata.h
+	index/functions.c     nntp/mdata.h
+	main.c                nntp/adata.h
+	menu/tagging.c        color/color.h
+	mx.c                  nntp/adata.h
+	mx.c                  nntp/mdata.h
+	pattern/exec.c        alias/alias.h
+	pattern/exec.c        alias/gui.h
+	pattern/pattern.c     alias/gui.h
+	send/send.c           nntp/mdata.h
+	send/sendmail.c       core/tmp.h
 

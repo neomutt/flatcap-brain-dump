@@ -16,3 +16,15 @@ travis yml libsqlite3-dev
 
 WIFEDITED defined in <sys/wait.h> - system.c
 
+iwyu - need review of *
+	whitelisted includes - how often?
+	list source exceptions
+	mutt_curses.h
+	review: del all pragmas - try compiling
+	create [iwyu] top-level travis branch?
+	exceptions are still hard-coded into scripts
+	5 files - might be reducible
+
+iwyu:
+	run with openssl enabled?
+

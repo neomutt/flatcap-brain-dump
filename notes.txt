@@ -1151,15 +1151,6 @@ struct Pager -> PagerInfo?
 move file deletion out of page
 	which callers can be fixed?
 
-iwyu - need review of *
-	whitelisted includes - how often?
-	list source exceptions
-	mutt_curses.h
-	review: del all pragmas - try compiling
-	create [iwyu] top-level travis branch?
-	exceptions are still hard-coded into scripts
-	5 files - might be reducible
-
 help_line_format - put custom text at the top
 	tie in with account-hooks, macros, etc
 	for reminders, etc
