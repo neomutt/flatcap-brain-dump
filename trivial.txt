@@ -7,6 +7,15 @@ working example 2023-05-03
 
 fix !USE_NNTP build
 	check !USE_SIDEBAR build
+no, drop them all
+	define USE_COMP_MBOX
+	define USE_IMAP
+	define USE_NNTP
+	define USE_POP
+	define USE_SIDEBAR
+	define USE_SOCKET
+	define USE_SMTP
+or discussion how to *reduce* them first
 
 test int against 0
 	what about ALL int members?
@@ -1012,9 +1021,6 @@ nf - no fail versions of functions
 	c/o @ossilator Oswald Buddenhagen 
 	https://sourceforge.net/p/isync/isync/ci/master/tree/src/util.c#l609
 
-L10N comment, wrong file
-	mutt_str_pretty_size() in mutt/string.c
-
 BUG: <mail><tab> -> address book, leaves progress bar on screen
 
 BUG: doesn't cause a repaint of the index
@@ -1188,38 +1194,48 @@ rename `struct ConfigSubset *sub` -> `*cfg`?
 	there are zero variables call cfg!
 	but it *is* a *sub*set
 
-trans: print tagged message(s) -> fuzzy
-	likely to be _correct_ but fuzzy
-	because both messages exists before
-	but now are combined in one multi-message
+make $abort_key startup only config var?
 
-bug: help + stripes hides search highlighting!
+investigation: eliminate pseudo globals
+	bool OptAttachMsg;           ///< (pseudo) used by attach-message
+	bool OptAutocryptGpgme;      ///< (pseudo) use Autocrypt context inside ncrypt/crypt_gpgme.c
+	bool OptDontHandlePgpKeys;   ///< (pseudo) used to extract PGP keys
+	bool OptForceRefresh;        ///< (pseudo) refresh even during macros
+	bool OptKeepQuiet;           ///< (pseudo) shut up the message and refresh functions while we are executing an external program
+	bool OptMsgErr;              ///< (pseudo) used by mutt_error/mutt_message
+	bool OptNeedRescore;         ///< (pseudo) set when the 'score' command is used
+	bool OptNeedResort;          ///< (pseudo) used to force a re-sort
+	bool OptNews;                ///< (pseudo) used to change reader mode
+	bool OptNewsSend;            ///< (pseudo) used to change behavior when posting
+	bool OptNoCurses;            ///< (pseudo) when sending in batch mode
+	bool OptPgpCheckTrust;       ///< (pseudo) used by dlg_select_pgp_key()
+	bool OptRedrawTree;          ///< (pseudo) redraw the thread tree
+	bool OptResortInit;          ///< (pseudo) used to force the next resort to be from scratch
+	bool OptSearchInvalid;       ///< (pseudo) used to invalidate the search pattern
+	bool OptSearchReverse;       ///< (pseudo) used by ci_search_command
+	bool OptSortSubthreads;      ///< (pseudo) used when $sort_aux changes
 
-bogus #includes?
-fix .imp files to prevent them?
-	attach/cid.c          core/tmp.h
-	attach/dlg_attach.c   menu/type.h
-	browser/dlg_browser.c nntp/adata.h
-	browser/dlg_browser.c nntp/mdata.h
-	browser/functions.c   nntp/adata.h
-	browser/functions.c   nntp/mdata.h
-	color/command.c       pager/private_data.h
-	complete/helpers.c    menu/type.h
-	compose/functions.c   nntp/adata.h
-	convert/convert.c     email/content.h
-	enter/functions.c     config/helpers.h
-	enter/window.c        color/color.h
-	functions.c           docs/makedoc_defs.h
-	hcache/hcache.c       hcache/hcversion.h
-	index/dlg_index.c     nntp/adata.h
-	index/functions.c     nntp/mdata.h
-	main.c                nntp/adata.h
-	menu/tagging.c        color/color.h
-	mx.c                  nntp/adata.h
-	mx.c                  nntp/mdata.h
-	pattern/exec.c        alias/alias.h
-	pattern/exec.c        alias/gui.h
-	pattern/pattern.c     alias/gui.h
-	send/send.c           nntp/mdata.h
-	send/sendmail.c       core/tmp.h
+brackets
+	if (digit > 0 && digit < 10)
+	return (uint64_t) tv.tv_sec * 1000 + tv.tv_usec / 1000;
+
+doesn't seem to work
+	unbind index *
+	unmacro index *
+
+refactor
+	dump_bind()
+	dump_all_binds()
+	dump_macro()
+	dump_all_macros()
+	dump_bind_macro()
+	mutt_parse_bind()
+
+overlay search matches in the index
+	*if* the search field is even visible
+	if I type `/john` in the index, that'll use $simple_search` -> `~f %s | ~s %s`
+	search is telling the menu where to move the indicator, but not _why_
+	the search is done lazily; it stops on the first match
+	if it didn't, we could at least highlight the *lines* matched
+	(and limit it to the visible window for efficiency)
 
