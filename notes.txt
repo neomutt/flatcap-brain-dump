@@ -1,3 +1,16 @@
+feature harvest addresses
+	auto-harvest addresses from emails
+	2 stages, 1) select pool, 2) verify list
+	1) tag lots of emails in a mailbox
+	   sort and uniq the list of addresses
+	   filter out existing addresses and your alternates
+	2) show list of addresses
+	   tag ones to be kept (saved to address book)
+	list includes number of references
+	click on address opens first email with address
+	or better folded address list contains indented list of emails
+	post stage: go to address book with a "new" section to allow editing
+
 source --if-exists FILE?
 
 sidebar plugins!

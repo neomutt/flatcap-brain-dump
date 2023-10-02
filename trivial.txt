@@ -294,12 +294,6 @@ attach refactor
 	pass attach list to functions
 		(c.f. tagged emails)
 
-libbrowser?
-	dlgbrowser
-	split up deps
-	elim Menu->is_mailbox_list!
-	elim menu_loop() static local var `last_position`
-
 add X_new()/X_free() wrappers for non-trivial objects
 	AttachPtr, QClass, Regex, ListNode
 	SmimeKey, PgpUid, MuttThread, Message, Hook
@@ -882,10 +876,6 @@ strip down /home/github
 	create backup script to ignore 3rd-party/
 	dated, vivo-github.tar
 
-DT_ONCE, DT_ON_STARTUP
-	can't be changed after startup completes
-	i.e. must be in config file or cli: `-e set...`
-
 discussions
 	realloc_zero() - ARRAY upgrades
 	address book upgrades (tags, limit, sidebar, colour)
@@ -998,8 +988,6 @@ help
 no space before \$
 	ag -u '[^ \t]\\$'
 
-rename mw_ source files like dlg_*.c?
-
 be explicit?
 	win->wdata_free = NULL; // No need, we hold the data
 or dynamically alloc them, and prevent lots of github security warnings
@@ -1106,8 +1094,6 @@ discussions
 pin a "help wanted" issue linking to discussions
 	clear out, or transfer, all issues wanting help
 
-ren progress bar to mw_progress_bar?
-
 log_disp_debug -- dump everything?
 	MuttLogger = log_disp_terminal;
 
@@ -1195,6 +1181,12 @@ rename `struct ConfigSubset *sub` -> `*cfg`?
 	but it *is* a *sub*set
 
 make $abort_key startup only config var?
+	flag crypt_gpgme too
+	fix error messages
+DT_ONCE, DT_ON_STARTUP
+	can't be changed after startup completes
+	i.e. must be in config file or cli: `-e set...`
+make note in docs
 
 investigation: eliminate pseudo globals
 	bool OptAttachMsg;           ///< (pseudo) used by attach-message
@@ -1215,21 +1207,9 @@ investigation: eliminate pseudo globals
 	bool OptSearchReverse;       ///< (pseudo) used by ci_search_command
 	bool OptSortSubthreads;      ///< (pseudo) used when $sort_aux changes
 
-brackets
-	if (digit > 0 && digit < 10)
-	return (uint64_t) tv.tv_sec * 1000 + tv.tv_usec / 1000;
-
-doesn't seem to work
+don't seem to work.git/files/g3-overview1.gv
 	unbind index *
 	unmacro index *
-
-refactor
-	dump_bind()
-	dump_all_binds()
-	dump_macro()
-	dump_all_macros()
-	dump_bind_macro()
-	mutt_parse_bind()
 
 overlay search matches in the index
 	*if* the search field is even visible
@@ -1238,4 +1218,174 @@ overlay search matches in the index
 	the search is done lazily; it stops on the first match
 	if it didn't, we could at least highlight the *lines* matched
 	(and limit it to the visible window for efficiency)
+
+status bar, new expandos? for
+	search pattern
+	number of matches (4/22)
+		helps to notice wrap-around
+
+Is Menu.search necessary now that we have ordered function dispatchers?
+	compare browser vs alias
+
+eliminate 59 static vars in functions?
+	$ ag "^  static " | wc -l
+	79
+	$ ag "^  static const " | wc -l
+	20
+	postpone/postpone.c:74:1:        static time_t LastModify = 0;
+	postpone/postpone.c:75:1:        static char *OldPostponed = NULL;
+
+what does iwyu.sh *need* from compile_commands.json?
+	just "main.c"
+	is the $PWD path needed?
+	can I strip it down to 1 line?
+	put it in .cache/mutt
+
+wdata_free = wdata_free_generic()
+	a function of the right prototype that just does free()
+	∀ *_free API fns?
+
+$timeout, $mail_check, $mail_check_stats_interval
+	DT_NOT_NEGATIVE already
+	is 0 allowed?
+		yes by config
+		is it meaningful by use?
+			is disabling this timer meaningful?
+		DT_NOT_ZERO?
+
+update all docs that reference time, timeouts, etc
+
+upstream config
+	"compose_confirm_detach_first", DT_BOOL, R_NONE, {.l=OPTCOMPOSECONFIRMDETACH}, {.l=1} },
+	When \fIset\fP, Mutt will prompt for confirmation when trying to
+	use \fC<detach-file>\fP on the first entry in the compose menu.
+	This is to help prevent irreversible loss of the typed message by
+	accidentally hitting 'D' in the menu.
+	Note: Mutt only prompts for the first entry.  It doesn't keep
+	track of which message is the typed message if the entries are
+	reordered, or if the first entry was already deleted.
+
+void mutt_str_pretty_size(char *buf, size_t buflen, size_t num)
+	externalise all the config
+	used in index_format
+
+iwyu branch
+	cron
+	artifacts for results
+	separate build section for displaying results
+		one that fails
+	need sed scripts to filter output
+	or csplit to break it up
+
+create clang-format action using fedora docker
+	cron
+	fail if any diffs
+	diffs -> artifact
+	diffs -> branch [clang-format] (force?)
+		no, push to branch it's working on
+		except [main] -> [clang-format]
+		commit "clang-format [auto]"
+	work out how to clang-format the "#include" *block* of header files
+
+find "release checks" branch
+	check include guards
+	check @page exists in lib.h
+	etc
+
+check logging on hooks is consistent
+
+Find files missing trailing newlines in a git repo:
+	git ls-files -z | grep -vz "png" | xargs -0 -L1 bash -c 'test "$(tail -c 1 "$0")" && echo "$0"'
+
+update test-library
+
+do we want to / how do we remove the state info from libmutt
+the `static const`s are probably fine
+some of the plain `static` might be too
+	mutt/base64.c:45:   static const char                   B64Chars[64]                = {
+	mutt/base64.c:62:          const int                    Index64[128]                = {
+	mutt/buffer.c:46:   static const int                    BufferStepSize              = 128;
+	mutt/charset.c:58:               wchar_t                ReplacementChar             = '?';
+	mutt/charset.c:63:               bool                   CharsetIsUtf8               = false;
+	mutt/charset.c:80:  static       struct LookupList      Lookups                     = TAILQ_HEAD_INITIALIZER(Lookups);
+	mutt/charset.c:95:  static       struct IconvCacheEntry IconvCache[ICONV_CACHE_SIZE];
+	mutt/charset.c:97:  static       int                    IconvCacheUsed              = 0;
+	mutt/charset.c:118: static const struct MimeNames       PreferredMimeNames[]        = {
+	mutt/date.c:50:     static const char *const            Weekdays[]                  = {
+	mutt/date.c:57:     static const char *const            Months[]                    = {
+	mutt/date.c:67:     static const struct Tz              TimeZones[]                 = {
+	mutt/file.c:58:     static const char                   RxSpecialChars[]            = "^.[$()|*+?{\\";
+	mutt/file.c:61:            const char                   FilenameSafeChars[]         = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+@{}._-:%/";
+	mutt/logging.c:45:  static const char *                 LevelAbbr                   = "PEWM12345N";
+	mutt/logging.c:52:               log_dispatcher_t       MuttLogger                  = log_disp_terminal;
+	mutt/logging.c:54:  static       FILE *                 LogFileFP                   = NULL;
+	mutt/logging.c:55:  static       char *                 LogFileName                 = NULL;
+	mutt/logging.c:56:  static       int                    LogFileLevel                = 0;
+	mutt/logging.c:57:  static       char *                 LogFileVersion              = NULL;
+	mutt/logging.c:62:  static       struct LogLineList     LogQueue                    = STAILQ_HEAD_INITIALIZER(LogQueue);
+	mutt/logging.c:64:  static       int                    LogQueueCount               = 0;
+	mutt/logging.c:65:  static       int                    LogQueueMax                 = 0;
+	mutt/mbyte.c:43:                 bool                   OptLocales;
+	mutt/md5.c:46:      static const unsigned char          fillbuf[64]                 = { 0x80, 0 };
+	mutt/notify.c:41:   static const char *                 NotifyTypeNames[]           = {
+	mutt/pool.c:37:     static       size_t                 BufferPoolCount             = 0;
+	mutt/pool.c:39:     static       size_t                 BufferPoolLen               = 0;
+	mutt/pool.c:41:     static const size_t                 BufferPoolIncrement         = 20;
+	mutt/pool.c:43:     static const size_t                 BufferPoolInitialBufferSize = 1024;
+	mutt/pool.c:45:     static       struct Buffer **       BufferPool                  = NULL;
+	mutt/qsort_r.c:37:  static       sort_t                 GlobalCompar                = NULL;
+	mutt/qsort_r.c:39:  static       void *                 GlobalData                  = NULL;
+	mutt/random.c:44:   static       FILE *                 FpRandom                    = NULL;
+	mutt/random.c:47:   static const unsigned char          Base32[]                    = "abcdefghijklmnopqrstuvwxyz234567";
+	mutt/signal.c:39:   static       sigset_t               Sigset;
+	mutt/signal.c:41:   static       sigset_t               SigsetSys;
+	mutt/signal.c:44:   static       struct sigaction       SysOldInt;
+	mutt/signal.c:46:   static       struct sigaction       SysOldQuit;
+	mutt/signal.c:50:   static       bool                   SignalsBlocked;
+	mutt/signal.c:54:   static       bool                   SysSignalsBlocked;
+	mutt/signal.c:57:   static       sig_handler_t          SigHandler                  = mutt_sig_empty_handler;
+	mutt/signal.c:59:   static       sig_handler_t          ExitHandler                 = mutt_sig_exit_handler;
+	mutt/signal.c:61:   static       sig_handler_t          SegvHandler                 = mutt_sig_exit_handler;
+	mutt/string.c:113:  static const struct SysExits        SysExits[]                  = {
+
+RSI prevention, NeoMutt style:
+	# Alt-j inserts =
+	macro editor \ej =
+post to users ml
+
+doesn't seem to work
+	shutdown-hook "date > jim"
+
+∀ *_data_free()
+	precondition that object is not null
+	ptr is not null
+	*ptr is not null
+then tidy all functions
+make adata_free into an API and link together
+
+rename mw_ source files like dlg_*.c?
+
+ren progress bar to mw_progress_bar?
+
+split up functions
+the opcodes can't be split -- too much overlap
+might need to wait for the key code to be reworked
+	gcc -I. -E -C functions.c | sed -n '/map: /,/^$/p'
+		test on bsd, macos
+
+bash history
+
+$status_format -- %b Number of mailboxes with new mail
+	can cause mailbox check
+	const int num = mutt_mailbox_check(m, MUTT_MAILBOX_CHECK_NO_FLAGS);
+	https://github.com/neomutt/neomutt/blob/main/status.c#L118
+	that's probably unnecessary
+
+disable $check_new just in the pager?
+	i.e. quiet "New Mail in X" messages
+
+pre-commit hooks
+
+list of debian changes
+	download src deb
 
