@@ -1356,13 +1356,6 @@ post to users ml
 doesn't seem to work
 	shutdown-hook "date > jim"
 
-∀ *_data_free()
-	precondition that object is not null
-	ptr is not null
-	*ptr is not null
-then tidy all functions
-make adata_free into an API and link together
-
 rename mw_ source files like dlg_*.c?
 
 ren progress bar to mw_progress_bar?
@@ -1373,8 +1366,6 @@ might need to wait for the key code to be reworked
 	gcc -I. -E -C functions.c | sed -n '/map: /,/^$/p'
 		test on bsd, macos
 
-bash history
-
 $status_format -- %b Number of mailboxes with new mail
 	can cause mailbox check
 	const int num = mutt_mailbox_check(m, MUTT_MAILBOX_CHECK_NO_FLAGS);
@@ -1384,8 +1375,22 @@ $status_format -- %b Number of mailboxes with new mail
 disable $check_new just in the pager?
 	i.e. quiet "New Mail in X" messages
 
-pre-commit hooks
+test io_uring.c
+	figure out path to integration
 
-list of debian changes
-	download src deb
+all proto-discussions to ~/work/discussion/
+	make into a git repo
+
+find longest messages, consider multilining
+	plus change po/
+
+colour fix raven for truecolor + ansi
+
+old notebook: type up or rip up
+
+Post Release
+	https://github.com/neomutt/neomutt/discussions/3322
+	clang-format options
+	cull old issues
+	Increase the Build Minimum Versions
 
