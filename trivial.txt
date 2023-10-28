@@ -1384,8 +1384,6 @@ all proto-discussions to ~/work/discussion/
 find longest messages, consider multilining
 	plus change po/
 
-colour fix raven for truecolor + ansi
-
 old notebook: type up or rip up
 
 Post Release
@@ -1393,4 +1391,51 @@ Post Release
 	clang-format options
 	cull old issues
 	Increase the Build Minimum Versions
+
+trans: re-announce free and call for translators
+
+doxy: next big area for coverage?
+	members 76%
+	defines 40%
+	check stats
+	100% structs.svg (247)
+		247 struct
+		40 ARRAY_HEAD SLIST_HEAD STAILQ_HEAD TAILQ_HEAD
+	100% pages.svg
+	100% globals.svg
+	100% functions.svg
+	100% enums.svg
+	76%  members.svg
+	40%  defines.svg
+
+coverage fix stats
+	use lcov --exclude
+	to ignore all the files we never intened to include
+	push to coveralls
+
+check fedora install instructions
+
+top-level (feature) docs for
+	colours
+	caching - recommend LMDB
+
+dyk
+	10:38 alberand | Hey all! Does anyone know if there is an easy way to change received emails? What I want to do is - I get a lot Jira emails and they contains
+		| a bunch of useless info, I want to add bash script on those emails to cut this off
+	10:41  flatcap | hi alberand
+	10:41  flatcap | yes, you could use $display_filter
+	10:43  flatcap | :set display_filter="sed '/^On/,/^$/d'"
+	10:44  flatcap | that'd kill everything between a line beginning "On" and the first blank line after it
+	10:46  flatcap | you could use a couple of `folder-hook`s to make it only apply on certain folders
+
+neomutt-20170526 - missing a release
+
+coredumpctl debug neomutt
+
+kill https://neomutt.org/dev/build/autosetup
+
+info pager, <save-message>
+	add "overwrite?" check
+
+after attaching a file, remember the directory in case of attaching another
 
