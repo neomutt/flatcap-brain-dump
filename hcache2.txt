@@ -171,14 +171,6 @@ or
 	   -> mailbox
 inline => cache uses MX api
 
-flags for every feature that's get-able
-
-some mailbox features
-	list mboxes
-	get subscriptions
-	mbox has new
-	mbox list emails
-
 --------------------------------------------------------------------------------
 
 inline hcache or T-junction?

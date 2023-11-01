@@ -46,6 +46,9 @@ easy task to rejig list of hcache backends
 highlight current one?
 	X Y (Cur) Z
 	Cur (X Y Z)
+hcache: x [y] z
+	y = default
+	only make sense after reading config?
 
 hcache
 	is it a binary blob based on HEADER?
@@ -69,6 +72,7 @@ eliminate #ifdef USE_HCACHE for
 hcache move conditionals to end of struct?
 
 timestamp hcache entries for garbage collection
+	gc may not reduce size of db file
 
 have cache settings per account (or per folder), with flags
 	PREFETCH_ALL
@@ -98,10 +102,6 @@ hcache pruner
 	won't work for caching files, only folders
 		unless we trawl through EVERY email
 		might as well cache them too
-
-hcache: x [y] z
-	y = default
-	only make sense after reading config?
 
 hcache auto magic everything
 
@@ -145,6 +145,7 @@ _NEO_DATA
 	mailbox type
 	path
 	creation date
+	CRC for this data
 check this data on opening the cache
 
 split dir and key
@@ -183,4 +184,20 @@ hcache lazy_malloc/realloc
 	who else uses similar scheme, Buffer?
 	move to library
 	investigate the 129 reallocs in neomutt
+
+# Number of days to retain header/body cache records
+set hcache_expiry_time=90
+on first timeout, `find ~/.cache -mtime +$hcache_expiry_time -delete`
+empty db files of old records too
+	this means reading each record and each one having a timestamp
+change this to a cli option
+	neomutt [options] --tidy-cache=30 (days)
+	display results to user
+	x headers deleted, y messages deleted
+
+debug tool to dump a header cache file
+	need to identify *which* db type
+	need to check version of neomutt (HCACHEVER)
+	sanity-check the data, then dump it
+	see _NEO_DATA above
 

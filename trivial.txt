@@ -1420,13 +1420,12 @@ top-level (feature) docs for
 	caching - recommend LMDB
 
 dyk
-	10:38 alberand | Hey all! Does anyone know if there is an easy way to change received emails? What I want to do is - I get a lot Jira emails and they contains
-		| a bunch of useless info, I want to add bash script on those emails to cut this off
-	10:41  flatcap | hi alberand
-	10:41  flatcap | yes, you could use $display_filter
-	10:43  flatcap | :set display_filter="sed '/^On/,/^$/d'"
-	10:44  flatcap | that'd kill everything between a line beginning "On" and the first blank line after it
-	10:46  flatcap | you could use a couple of `folder-hook`s to make it only apply on certain folders
+	alberand | Hey all! Does anyone know if there is an easy way to change received emails? What I want to do is - I get a lot Jira emails and they contains
+	         | a bunch of useless info, I want to add bash script on those emails to cut this off
+	 flatcap | yes, you could use $display_filter
+	 flatcap | :set display_filter="sed '/^On/,/^$/d'"
+	 flatcap | that'd kill everything between a line beginning "On" and the first blank line after it
+	 flatcap | you could use a couple of `folder-hook`s to make it only apply on certain folders
 
 neomutt-20170526 - missing a release
 
@@ -1438,4 +1437,18 @@ info pager, <save-message>
 	add "overwrite?" check
 
 after attaching a file, remember the directory in case of attaching another
+
+gh pr list --search "closed:>2023-10-23"
+
+info pages (:set, etc) could do with colour
+	but it shouldn't be saved to file
+		flag to colour
+		flag to save colour
+	can't tell if we have a light/dark background
+	set background = {light|dark} ?
+	need colours like vim
+		keyword, comment, string
+
+color link command to share colours
+	Need `enum ColorId link;` in AttrColor
 
