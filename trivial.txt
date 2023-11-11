@@ -880,7 +880,6 @@ discussions
 	realloc_zero() - ARRAY upgrades
 	address book upgrades (tags, limit, sidebar, colour)
 	background edit - steps, arch how?
-	DT_STARTUP
 	buffer.buf_at() inline
 	buffer opaque?
 	buf_len() vs buf_strlen()?
@@ -1180,10 +1179,7 @@ rename `struct ConfigSubset *sub` -> `*cfg`?
 	there are zero variables call cfg!
 	but it *is* a *sub*set
 
-make $abort_key startup only config var?
-	flag crypt_gpgme too
-	fix error messages
-DT_ONCE, DT_ON_STARTUP
+DT_ON_STARTUP
 	can't be changed after startup completes
 	i.e. must be in config file or cli: `-e set...`
 make note in docs
@@ -1265,10 +1261,6 @@ upstream config
 	track of which message is the typed message if the entries are
 	reordered, or if the first entry was already deleted.
 
-void mutt_str_pretty_size(char *buf, size_t buflen, size_t num)
-	externalise all the config
-	used in index_format
-
 iwyu branch
 	cron
 	artifacts for results
@@ -1302,21 +1294,11 @@ update test-library
 do we want to / how do we remove the state info from libmutt
 the `static const`s are probably fine
 some of the plain `static` might be too
-	mutt/base64.c:45:   static const char                   B64Chars[64]                = {
-	mutt/base64.c:62:          const int                    Index64[128]                = {
-	mutt/buffer.c:46:   static const int                    BufferStepSize              = 128;
 	mutt/charset.c:58:               wchar_t                ReplacementChar             = '?';
 	mutt/charset.c:63:               bool                   CharsetIsUtf8               = false;
 	mutt/charset.c:80:  static       struct LookupList      Lookups                     = TAILQ_HEAD_INITIALIZER(Lookups);
 	mutt/charset.c:95:  static       struct IconvCacheEntry IconvCache[ICONV_CACHE_SIZE];
 	mutt/charset.c:97:  static       int                    IconvCacheUsed              = 0;
-	mutt/charset.c:118: static const struct MimeNames       PreferredMimeNames[]        = {
-	mutt/date.c:50:     static const char *const            Weekdays[]                  = {
-	mutt/date.c:57:     static const char *const            Months[]                    = {
-	mutt/date.c:67:     static const struct Tz              TimeZones[]                 = {
-	mutt/file.c:58:     static const char                   RxSpecialChars[]            = "^.[$()|*+?{\\";
-	mutt/file.c:61:            const char                   FilenameSafeChars[]         = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+@{}._-:%/";
-	mutt/logging.c:45:  static const char *                 LevelAbbr                   = "PEWM12345N";
 	mutt/logging.c:52:               log_dispatcher_t       MuttLogger                  = log_disp_terminal;
 	mutt/logging.c:54:  static       FILE *                 LogFileFP                   = NULL;
 	mutt/logging.c:55:  static       char *                 LogFileName                 = NULL;
@@ -1326,17 +1308,12 @@ some of the plain `static` might be too
 	mutt/logging.c:64:  static       int                    LogQueueCount               = 0;
 	mutt/logging.c:65:  static       int                    LogQueueMax                 = 0;
 	mutt/mbyte.c:43:                 bool                   OptLocales;
-	mutt/md5.c:46:      static const unsigned char          fillbuf[64]                 = { 0x80, 0 };
-	mutt/notify.c:41:   static const char *                 NotifyTypeNames[]           = {
 	mutt/pool.c:37:     static       size_t                 BufferPoolCount             = 0;
 	mutt/pool.c:39:     static       size_t                 BufferPoolLen               = 0;
-	mutt/pool.c:41:     static const size_t                 BufferPoolIncrement         = 20;
-	mutt/pool.c:43:     static const size_t                 BufferPoolInitialBufferSize = 1024;
 	mutt/pool.c:45:     static       struct Buffer **       BufferPool                  = NULL;
 	mutt/qsort_r.c:37:  static       sort_t                 GlobalCompar                = NULL;
 	mutt/qsort_r.c:39:  static       void *                 GlobalData                  = NULL;
 	mutt/random.c:44:   static       FILE *                 FpRandom                    = NULL;
-	mutt/random.c:47:   static const unsigned char          Base32[]                    = "abcdefghijklmnopqrstuvwxyz234567";
 	mutt/signal.c:39:   static       sigset_t               Sigset;
 	mutt/signal.c:41:   static       sigset_t               SigsetSys;
 	mutt/signal.c:44:   static       struct sigaction       SysOldInt;
@@ -1346,6 +1323,23 @@ some of the plain `static` might be too
 	mutt/signal.c:57:   static       sig_handler_t          SigHandler                  = mutt_sig_empty_handler;
 	mutt/signal.c:59:   static       sig_handler_t          ExitHandler                 = mutt_sig_exit_handler;
 	mutt/signal.c:61:   static       sig_handler_t          SegvHandler                 = mutt_sig_exit_handler;
+.
+	mutt/base64.c:62:          const int                    Index64[128]                = {
+	mutt/file.c:61:            const char                   FilenameSafeChars[]         = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+@{}._-:%/";
+.
+	mutt/base64.c:45:   static const char                   B64Chars[64]                = {
+	mutt/buffer.c:46:   static const int                    BufferStepSize              = 128;
+	mutt/charset.c:118: static const struct MimeNames       PreferredMimeNames[]        = {
+	mutt/date.c:50:     static const char *const            Weekdays[]                  = {
+	mutt/date.c:57:     static const char *const            Months[]                    = {
+	mutt/date.c:67:     static const struct Tz              TimeZones[]                 = {
+	mutt/file.c:58:     static const char                   RxSpecialChars[]            = "^.[$()|*+?{\\";
+	mutt/logging.c:45:  static const char *                 LevelAbbr                   = "PEWM12345N";
+	mutt/md5.c:46:      static const unsigned char          fillbuf[64]                 = { 0x80, 0 };
+	mutt/notify.c:41:   static const char *                 NotifyTypeNames[]           = {
+	mutt/pool.c:41:     static const size_t                 BufferPoolIncrement         = 20;
+	mutt/pool.c:43:     static const size_t                 BufferPoolInitialBufferSize = 1024;
+	mutt/random.c:47:   static const unsigned char          Base32[]                    = "abcdefghijklmnopqrstuvwxyz234567";
 	mutt/string.c:113:  static const struct SysExits        SysExits[]                  = {
 
 RSI prevention, NeoMutt style:
@@ -1392,8 +1386,6 @@ Post Release
 	cull old issues
 	Increase the Build Minimum Versions
 
-trans: re-announce free and call for translators
-
 doxy: next big area for coverage?
 	members 76%
 	defines 40%
@@ -1427,14 +1419,12 @@ dyk
 	 flatcap | that'd kill everything between a line beginning "On" and the first blank line after it
 	 flatcap | you could use a couple of `folder-hook`s to make it only apply on certain folders
 
-neomutt-20170526 - missing a release
-
 coredumpctl debug neomutt
 
 kill https://neomutt.org/dev/build/autosetup
 
 info pager, <save-message>
-	add "overwrite?" check
+	mutt_sig_allow_interrupt(true);add "overwrite?" check
 
 after attaching a file, remember the directory in case of attaching another
 
@@ -1451,4 +1441,102 @@ info pages (:set, etc) could do with colour
 
 color link command to share colours
 	Need `enum ColorId link;` in AttrColor
+
+dyk / howto re-send automatic emails / template
+	see irc discussion on 2023-11-03
+
+colour: fix escaping, fix "normal"
+	should use 'single' quotes for simplicity of escaping
+orig config
+	color body      brightyellow default  '\<_\S+_\>'
+	color body      brightyellow default  '\*\<\S+\>\*'
+	color body      brightyellow default  '/\<\S+\>/'
+representation in :color
+	color body bold brightyellow default  "\\<_\\S+_\\>"
+	color body bold brightyellow default  "\\*\\<\\S+\\>\\*"
+	color body bold brightyellow default  "/\\<\\S+\\>/"
+
+for each db type, create and populate a database
+	then try to open each database with all the wrong backends
+	check that they all fail
+	_NEO_DATA hcache?
+
+option to save a <vfolder-from--query>
+	see irc discussion on 2023-11-03
+
+stackoverflow
+	In mutt one copies an email to a mailbox with copy-message, bound to C by default.
+	This will ask you for a mailbox to copy it to.
+	Is there a way to copy it directly to the mailbox currently highlighted in the sidebar?
+we could add mailbox shortcut '$', but how would the code work
+index knows about emails, but doesn't know about the sidebar
+sidebar knows about the highlight, but doesn't know about emails
+perhaps the sidebar could register a shortcut symbol, with a callback function
+	see irc discussion on 2023-11-03, 2023-11-04
+where does folder expansion happen?
+	where does '<' become $record?
+	buf_expand_path_regex()
+	https://neomutt.org/guide/advancedusage.html#shortcuts
+
+copr deprecation - update info page
+update copr fork branches, then archive it
+fork koji repo
+
+Fedora, ask for karma
+
+progress different colours for read/write/network?
+
+'s' <save-message> option to strip out ANSI colours
+	update :version to dump colours
+
+discussion: mailmerge howto
+	see irc haxtibal 2023-11-05
+
+c99 -> c11?
+
+sidebar - when did labels start getting indented?
+
+sidebar tree generator
+mxapi.account.get_path_separators()
+	mailbox level
+	or account level
+mxapi.account.get_all_mailboxes()
+	get a list of all (subscribed or not)
+sidebar_fill_in_the_blanks
+	create fake entries to create a coherent tree
+sidebar_generate_tree -fill-gaps ~/mail  or  imap://host.com/
+	=> limited number of sorting methods
+	what happens with hidden mailboxes?
+
+w0lff:
+	I don't know all configuration options for the sidebar but I think the sidebar could have a fresher-upper.
+	Like support for the empty/NoSelect folders (with an own color-group for "this is a non-selectable/non-mbox folder", thunderbird displays these
+	folders in a darker grey);
+	custom hierarchical entries with configurable indent;
+	colorization by character spans e.g. highlight the number of unread mails different from the name of the folder;
+	or even more advanced multiple custom sidebars, useful for multiple account setups or to give a reduced select view of only a subset of mailboxes.
+
+void mutt_str_pretty_size(char *buf, size_t buflen, size_t num)
+	externalise all the config
+	used in index_format
+
+libconfig errors - unify
+	some "Option %s..."
+	some "Variable %s..."
+
+rebase
+
+kill buf_make()
+	first in tests
+	then in main
+
+expando
+	generate data domains: mailbox, email, etc
+	generate uids for each domain
+		uids only unique within domain
+	set types for each expando
+	fix struct ExpandoDefinition to match discussion
+	set flags for each expando
+
+struct Path needs: bool is_local
 
