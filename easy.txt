@@ -148,6 +148,8 @@ remove #ifdef for #defines and enums
 	replace #ifdef with a comment
 
 $tmpdir validator -> try to create sample temp file!
+	1) validate dir exists
+	2) create/remove a file
 
 find and convert #define num ranges -> enum
 

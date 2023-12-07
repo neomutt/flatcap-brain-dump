@@ -5,18 +5,6 @@ use --check-config to list missing header files
 working example 2023-05-03
 	cppcheck --verbose --enable=all --language=c --std=c99 -i docs -i autosetup -i test -DPATH_MAX=2048 -D__x86_64__ -I. -I/usr/include -I/usr/lib/gcc/x86_64-redhat-linux/13/include -I/usr/include/qdbm --output-file=c1 .
 
-fix !USE_NNTP build
-	check !USE_SIDEBAR build
-no, drop them all
-	define USE_COMP_MBOX
-	define USE_IMAP
-	define USE_NNTP
-	define USE_POP
-	define USE_SIDEBAR
-	define USE_SOCKET
-	define USE_SMTP
-or discussion how to *reduce* them first
-
 test int against 0
 	what about ALL int members?
 
@@ -835,6 +823,8 @@ fopen() -> mutt_file_fopen() ?
 	75 fopen(), 122 mutt_file_fopen()
 	7 fclose(), 360 mutt_file_fclose()
 	check for "fopen" error messages
+	log - opening file %s -> %d
+	    - closing %d
 
 tidy live neomutt config
 	dupe to ~mutt
@@ -1005,7 +995,7 @@ or dynamically alloc them, and prevent lots of github security warnings
 	postpone/dlg_postpone.c:215:6:   dlg->wdata = &pd;
 
 nf - no fail versions of functions
-	c/o @ossilator Oswald Buddenhagen 
+	c/o @ossilator Oswald Buddenhagen
 	https://sourceforge.net/p/isync/isync/ci/master/tree/src/util.c#l609
 
 BUG: <mail><tab> -> address book, leaves progress bar on screen
@@ -1438,9 +1428,13 @@ info pages (:set, etc) could do with colour
 	set background = {light|dark} ?
 	need colours like vim
 		keyword, comment, string
+	and colours for the log messages
 
 color link command to share colours
 	Need `enum ColorId link;` in AttrColor
+	if linked, then changing one colour could affect many others
+	would need to change the notification to pass an array
+	'theme' command would only send one notification: ALL
 
 dyk / howto re-send automatic emails / template
 	see irc discussion on 2023-11-03
@@ -1524,19 +1518,73 @@ libconfig errors - unify
 	some "Option %s..."
 	some "Variable %s..."
 
-rebase
-
-kill buf_make()
-	first in tests
-	then in main
-
-expando
-	generate data domains: mailbox, email, etc
-	generate uids for each domain
-		uids only unique within domain
-	set types for each expando
-	fix struct ExpandoDefinition to match discussion
-	set flags for each expando
-
 struct Path needs: bool is_local
+
+DT_NOT_EMPTY -- not implemented in all config types
+	doesn't make sense for numeric types
+	should be there for strings / object types
+
+iwyu
+	and there are some macros that de-reference types that cause trouble
+	test static inline helpers instead
+
+refactor progress_new()
+	new takes type, size
+	progress_set_message(format, ...)
+	printf-style
+	saves on having temporary buffer in many of the callers
+	can be called to change the message
+	new(type) only
+	progress_set_size(1234)?
+
+SigInt / SigWinch -> core?
+
+update changelog
+	knusper emacs
+
+typo: format string is separate arg
+ * log_disp_terminal - Save a log line to the terminal - Implements ::log_dispatcher_t - @ingroup logging_api
+ * @param ...      Format string and parameters, like printf()
+
+nntp rename ANUM to ANUM_FMT
+
+xunused
+	-extra-arg=-I/usr/lib/clang/17/include/
+	/usr/lib/clang/17/include/stddef.h
+	/usr/lib/gcc/x86_64-redhat-linux/13/include/stddef.h
+
+docker move files into separate dirs
+	fedora.39/Dockerfile
+
+actions:
+	I haven't seen "working-directory" in the actions before.
+	I should probably retro-fit that into some of the other actions
+
+https://best.openssf.org/Compiler-Hardening-Guides/Compiler-Options-Hardening-Guide-for-C-and-C++.html
+
+compose enhancement
+	   gzbd | I would like to see the the to,cc,subject etc in the same view along with text/plain attachments.
+	flatcap | oh, see what the email _would_ look like?
+	flatcap | no, that's not possible (yet! :-)
+	   gzbd | IMO this would be a nice visual improvement, since the space is there
+	flatcap | yeah, it's a reasonable idea
+	      * | flatcap thinks how graphical email programs tend to work
+	flatcap | adding a pager in the space at the bottom wouldn't be too hard...
+	flatcap | but making the whole screen a view (meaning that <page-down> would scroll the envelope part off the top), would be trickier
+change attachment bar to show the number of attachments
+insert pager window below attachment menu
+	only if there's >5 lines, say
+		e.g. huge list of attachments
+	OR, limit attachment list to 5 or 10 lines, like $pager_index_lines
+		use rest for the pager
+	<up>/<down> control attachment selection
+	<page-up>/<page-down> control the pager
+pager window displays *pager* view, not mailcap/text view
+	option to control this?
+	OR pager for first attach (main message)
+	and mailcap for the rest
+
+https://gitlab.com/muttmua/mutt/-/merge_requests/174/diffs
+
+add tag-pattern to the browser -- useful for compose-attach
 
