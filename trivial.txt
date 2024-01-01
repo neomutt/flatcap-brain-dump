@@ -585,16 +585,6 @@ change function typedefs?
 sieve for github maintainers
 	more sieves
 
-update fedora / centos install pages
-	update copr page
-	dnf install epel-release
-	dnf install neomutt
-Importing GPG key 0x8483C65D:
- Userid     : "CentOS (CentOS Official Signing Key) <security@centos.org>"
- Fingerprint: 99DB 70FA E1D7 CE22 7FB6 4882 05B5 55B3 8483 C65D
- From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
-Is this ok [y/N]: y
-
 add `test/neomutt-test -E` as a separate test
 	fix two failing cases, if possible
 
@@ -763,9 +753,6 @@ identify 100 old issues to kill
 restore progress bar to imap
 	caused repaint race condition
 	removed in e3773a736
-
-deprecate COPR
-	HOW?
 
 replace urlview (unmaintained) with urlscan (maintainer, more features)
 	need to change /etc/neomuttrc
@@ -1418,7 +1405,7 @@ info pager, <save-message>
 
 after attaching a file, remember the directory in case of attaching another
 
-gh pr list --search "closed:>2023-10-23"
+gh pr list --search "closed:>2023-12-21"
 
 info pages (:set, etc) could do with colour
 	but it shouldn't be saved to file
@@ -1455,7 +1442,7 @@ for each db type, create and populate a database
 	check that they all fail
 	_NEO_DATA hcache?
 
-option to save a <vfolder-from--query>
+option to save a <vfolder-from-query>
 	see irc discussion on 2023-11-03
 
 stackoverflow
@@ -1471,12 +1458,6 @@ where does folder expansion happen?
 	where does '<' become $record?
 	buf_expand_path_regex()
 	https://neomutt.org/guide/advancedusage.html#shortcuts
-
-copr deprecation - update info page
-update copr fork branches, then archive it
-fork koji repo
-
-Fedora, ask for karma
 
 progress different colours for read/write/network?
 
@@ -1514,10 +1495,6 @@ void mutt_str_pretty_size(char *buf, size_t buflen, size_t num)
 	externalise all the config
 	used in index_format
 
-libconfig errors - unify
-	some "Option %s..."
-	some "Variable %s..."
-
 struct Path needs: bool is_local
 
 DT_NOT_EMPTY -- not implemented in all config types
@@ -1539,22 +1516,10 @@ refactor progress_new()
 
 SigInt / SigWinch -> core?
 
-update changelog
-	knusper emacs
-
-typo: format string is separate arg
- * log_disp_terminal - Save a log line to the terminal - Implements ::log_dispatcher_t - @ingroup logging_api
- * @param ...      Format string and parameters, like printf()
-
-nntp rename ANUM to ANUM_FMT
-
 xunused
 	-extra-arg=-I/usr/lib/clang/17/include/
 	/usr/lib/clang/17/include/stddef.h
 	/usr/lib/gcc/x86_64-redhat-linux/13/include/stddef.h
-
-docker move files into separate dirs
-	fedora.39/Dockerfile
 
 actions:
 	I haven't seen "working-directory" in the actions before.
@@ -1584,7 +1549,29 @@ pager window displays *pager* view, not mailcap/text view
 	OR pager for first attach (main message)
 	and mailcap for the rest
 
-https://gitlab.com/muttmua/mutt/-/merge_requests/174/diffs
-
 add tag-pattern to the browser -- useful for compose-attach
+	if multi-selection is allowed
+
+invite raito as nix maintainer
+
+add hcache to tests
+
+rebase
+
+document and asciinema alias tags:
+
+Fedora, ask for karma
+
+update sponsor page
+
+kill
+	create ~/Mail on startup
+	/var/spool/mail doesn't exist
+
+bug?: 'color body' overrides 'color quotedX`!
+	rbmarliere | ha, weird. setting color body color232 default makes all quotedX colors to be ignored hehe
+	   flatcap | same in mutt
+	   flatcap | I suppose it makes sense...
+	   flatcap | the 'body' colouring rules have a higher priority than the 'quotedX' colours
+	   flatcap | though... the quotedX background colours should show through the body's default background
 

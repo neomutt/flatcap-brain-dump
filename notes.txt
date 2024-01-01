@@ -1,3 +1,6 @@
+logs rotated twice
+	https://github.com/neomutt/neomutt/issues/1160
+
 feature harvest addresses
 	auto-harvest addresses from emails
 	2 stages, 1) select pool, 2) verify list
@@ -187,8 +190,6 @@ coverage: check dev analysis docs for new 'coverage' dir
 
 nntp docs:
 	document '?' on screen to browse after 'i'
-
-multi-line error messages?  HOW?
 
 config parsing revamp
 	track stack of files 'source'd
