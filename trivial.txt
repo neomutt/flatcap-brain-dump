@@ -1246,16 +1246,6 @@ iwyu branch
 	need sed scripts to filter output
 	or csplit to break it up
 
-create clang-format action using fedora docker
-	cron
-	fail if any diffs
-	diffs -> artifact
-	diffs -> branch [clang-format] (force?)
-		no, push to branch it's working on
-		except [main] -> [clang-format]
-		commit "clang-format [auto]"
-	work out how to clang-format the "#include" *block* of header files
-
 find "release checks" branch
 	check include guards
 	check @page exists in lib.h
@@ -1554,19 +1544,14 @@ add tag-pattern to the browser -- useful for compose-attach
 
 invite raito as nix maintainer
 
-add hcache to tests
-
-rebase
-
 document and asciinema alias tags:
 
 Fedora, ask for karma
 
-update sponsor page
-
 kill
 	create ~/Mail on startup
 	/var/spool/mail doesn't exist
+		or message: "set spool_file" to pick initial mailbox
 
 bug?: 'color body' overrides 'color quotedX`!
 	rbmarliere | ha, weird. setting color body color232 default makes all quotedX colors to be ignored hehe
@@ -1574,4 +1559,28 @@ bug?: 'color body' overrides 'color quotedX`!
 	   flatcap | I suppose it makes sense...
 	   flatcap | the 'body' colouring rules have a higher priority than the 'quotedX' colours
 	   flatcap | though... the quotedX background colours should show through the body's default background
+
+create clang-format action using fedora docker
+	cron
+	fail if any diffs
+	diffs -> artifact
+	diffs -> branch [clang-format] (force?)
+		no, push to branch it's working on
+		except [main] -> [clang-format]
+		commit "clang-format [auto]"
+	work out how to clang-format the "#include" *block* of header files
+
+create f39/rawhide docker for clang-format
+create devel/* action to run it
+
+coverage:
+	increase email/tags
+
+add hcache to tests
+
+rebase
+
+update sponsor page
+
+doxygen weekly, don't fail if no change
 

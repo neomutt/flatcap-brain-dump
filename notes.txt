@@ -15,6 +15,7 @@ feature harvest addresses
 	post stage: go to address book with a "new" section to allow editing
 
 source --if-exists FILE?
+	or source! FILE
 
 sidebar plugins!
 	reserve an area for a calendar, clock, or text from a file
