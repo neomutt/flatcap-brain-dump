@@ -1584,3 +1584,5 @@ update sponsor page
 
 doxygen weekly, don't fail if no change
 
+artifacts v4.1.0
+

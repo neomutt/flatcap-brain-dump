@@ -1,0 +1,44 @@
+Aliases / Addresses
+
+alias jim James <j@example.com> # tags:work
+
+global Aliases - AliasList (TAILQ)
+struct Alias { ... TagList ... } (STAILQ)
+
+Aliasdlg: ~Y -> serialise tags (comma), then match
+
+Email labels are cached in Mailbox.label_hash (X-Labels)
+	Email.tags (TagList)
+
+Aliases -> ARRAY, for efficiency
+TagList -> HashTable, ref count
+Alias.tags -> ARRAY into HashTable
+
+Completion - search and sort array
+Search / Limit - find tag in HashTable, match ptr against arrays
+	will this fit into existing search methods?
+	ptr vs string?
+
+Index search "~Y @name" -> NO
+	"~f @name" exists -> *from* alias name
+need "~f ^name" (or !name) -> from matches any tagged alias
+	SLOW?
+tie info into index-format-hook for conditional markers
+	"emoji" ∀ aliases!
+
+50 aliases with tag "work", 1000 emails in Index
+∀ alias hash of addresses, on demand, lower cased
+what if "unalias"?
+what if dupe address?
+refcount too?
+
+which lookups / lists are needed?
+
+list of "aliases" for completion, sorted ARRAY?
+list of tags for <create_alias> completion - sorted, refecount
+	sidebar too
+hash of addresses for membership test
+
+patterns for index to match *alias* tags!
+	search/color/limit
+
