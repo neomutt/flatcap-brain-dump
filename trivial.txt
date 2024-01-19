@@ -193,10 +193,6 @@ build script
 	if clang else gcc
 	optional compiler flags
 
-master/main
-github/upstream for flatcap repos
-sync script looking for upstream remotes pull/push
-
 #define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
 
 log_disp_terminal doesn't honour log_file_set_level(LL_DEBUG1, false);
@@ -205,10 +201,6 @@ maildir_parse_flags
         case 'T': /* trashed */
           if (e->flagged && C_FlagSafe)
 should set flags, then update in frontend if C_FlagSafe condition is met
-
-refactor mutt_hcache_open()
-  	move to separate function
-	if (hcachever == 0x0) { calc; }
 
 check all string-list config items note the separator character
 	alter makedoc to use the slist flags to say:
@@ -229,10 +221,6 @@ pop/auth.c eliminate #ifdef DEBUG
 scan-build
 
 reorg 'build' to add options conditionally on compiler
-
-refactor into ONE printf, adjust translations to just "Limit:"
-	mutt_str_asprintf(&tmp_str, _("Limit: %s"), limit);
-	mutt_str_asprintf(&new_title, "%s - %s", menu_name, tmp_str);
 
 test all graphviz (and other debug) functions compile and run
 
@@ -286,9 +274,6 @@ add X_new()/X_free() wrappers for non-trivial objects
 	AttachPtr, QClass, Regex, ListNode
 	SmimeKey, PgpUid, MuttThread, Message, Hook
 
-merge mutt_buffer_get_field(), mutt_enter_string_full()
-	latter only has one caller
-
 NDEBUG warnings around asserts
 
 update test library
@@ -298,8 +283,6 @@ sync github to all my private gitlab repos (or delete them)
 vim plugin
 	setlocal keywordprg=echo;echo;neomutt\ -n\ -F\ /dev/null\ -OQ
 	extend to ALL neomutt symbols: commands, functions, colors, etc
-
-https://github.com/marketplace/actions/skip-duplicate-actions
 
 create distro-specific dockerfiles, build weekly
 bases
@@ -523,7 +506,6 @@ list macros
 	eliminate any?
 	or static inline functions
 		82 MoreArgs
-		68 mutt_set_flag
 		52 SKIPWS
 		48 mutt_socket_send
 		29 state_putc
@@ -640,12 +622,6 @@ CLI
 		add $LANG?
 		multi-column output to reduce lines?
 
-	neomutt version
-		deprecate the fixed part?
-		might interfere with `ifdef` command
-		do _those_ features matter if they've been included for so long?
-		when did it last change? > 4 years
-
 DOCS
 	docs: "delimited" lists -> "separated"
 
@@ -693,9 +669,6 @@ FUNCTIONS
 		* @param len Length of buffer
 
 RENAME
-	rename compose/compose.c to compose/dlg_compose.c
-		others?
-
 	rename params
 		size_t mutt_mb_mbstowcs(wchar_t **pwbuf, size_t *pwbuflen, size_t i, char *buf);
 
@@ -805,13 +778,6 @@ op_exit() doesn't
 like op_quit() does
 
 try https://github.com/grobian/html2text
-
-fopen() -> mutt_file_fopen() ?
-	75 fopen(), 122 mutt_file_fopen()
-	7 fclose(), 360 mutt_file_fclose()
-	check for "fopen" error messages
-	log - opening file %s -> %d
-	    - closing %d
 
 tidy live neomutt config
 	dupe to ~mutt
@@ -985,8 +951,6 @@ nf - no fail versions of functions
 	c/o @ossilator Oswald Buddenhagen
 	https://sourceforge.net/p/isync/isync/ci/master/tree/src/util.c#l609
 
-BUG: <mail><tab> -> address book, leaves progress bar on screen
-
 BUG: doesn't cause a repaint of the index
 	set narrow_tree = no
 
@@ -1126,10 +1090,6 @@ reword where necessary
 	"Error opening 'memory stream'"
 	"Error: " + "Can't open 'memory stream'"
 
-Easy task:
-	change config file error messages to be
-	file:line:[column:] message
-
 monitor
 	"context" globals refer to "current" mailbox
 	bool MonitorContextChanged = false;
@@ -1161,7 +1121,7 @@ DT_ON_STARTUP
 	i.e. must be in config file or cli: `-e set...`
 make note in docs
 
-investigation: eliminate pseudo globals
+Investigation: eliminate pseudo globals
 	bool OptAttachMsg;           ///< (pseudo) used by attach-message
 	bool OptAutocryptGpgme;      ///< (pseudo) use Autocrypt context inside ncrypt/crypt_gpgme.c
 	bool OptDontHandlePgpKeys;   ///< (pseudo) used to extract PGP keys
@@ -1180,7 +1140,7 @@ investigation: eliminate pseudo globals
 	bool OptSearchReverse;       ///< (pseudo) used by ci_search_command
 	bool OptSortSubthreads;      ///< (pseudo) used when $sort_aux changes
 
-don't seem to work.git/files/g3-overview1.gv
+don't seem to work .git/files/g3-overview1.gv
 	unbind index *
 	unmacro index *
 
@@ -1213,6 +1173,8 @@ what does iwyu.sh *need* from compile_commands.json?
 	is the $PWD path needed?
 	can I strip it down to 1 line?
 	put it in .cache/mutt
+	doc the contents of .cache/mutt
+		source, how to build, etc
 
 wdata_free = wdata_free_generic()
 	a function of the right prototype that just does free()
@@ -1369,7 +1331,7 @@ doxy: next big area for coverage?
 
 coverage fix stats
 	use lcov --exclude
-	to ignore all the files we never intened to include
+	to ignore all the files we never intended to include
 	push to coveralls
 
 check fedora install instructions
@@ -1542,8 +1504,6 @@ pager window displays *pager* view, not mailcap/text view
 add tag-pattern to the browser -- useful for compose-attach
 	if multi-selection is allowed
 
-invite raito as nix maintainer
-
 document and asciinema alias tags:
 
 Fedora, ask for karma
@@ -1577,6 +1537,7 @@ coverage:
 	increase email/tags
 
 add hcache to tests
+	and maildir
 
 rebase
 
@@ -1585,4 +1546,15 @@ update sponsor page
 doxygen weekly, don't fail if no change
 
 artifacts v4.1.0
+
+update backup scripts
+       --recipient name vs --hidden-recipient name
+       gpg2 -> gpg
+
+update changelog
+	including website
+
+invite
+	raito as nix maintainer
+	pierre as dev
 
