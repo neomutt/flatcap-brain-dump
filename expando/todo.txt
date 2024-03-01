@@ -1,0 +1,85 @@
+free_* -> (ptr**)
+error msg -> Buffer?
+	pass in?
+	position?!
+	truncate the string? (could be very long)
+move formatting out of callback functions
+doc UIDs, debug name UIDs, etc
+	link UID defs to DID def
+error use short and long option names in msg
+option name -> trans?
+use (S)TAILQ
+KILL MuttFormatFlags
+Container type
+Arrow cursor
+formatting numbers won't work - leader/padding
+elim ED_ALL and matching UIDs
+---
+doxy node_*.[ch], config_type @page
+doxy: fill out all function parameters
+check all frees have if (!ptr || !*ptr)
+unify cols, columns, cols_len, width
+observer for each format string?
+name doesn't match description
+	ED_PGK_KEY_LENGTH PGP: Key id
+	check other gpgme/pgp/smime alignment
+index_Fp(), index_cr() aren't used
+
+
+XXX
+	65 expando/parser.c                  24 email/email.h         
+	55 expando/node_padding.c            17 ncrypt/crypt_gpgme.h  
+	24 expando/node_expando.c            16 index/shared_data.h   
+	21 expando/node_text.c               15 sidebar/private.h     
+	21 expando/node.h                    11 ncrypt/pgplib.h       
+	20 expando/node_condition.c           7 ncrypt/smime.h        
+	20 expando/node_conddate.c            6 conn/connaccount.h    
+	16 expando/validation.h               5 ncrypt/pgp.h          
+	15 expando/uid.h                      4 mutt_config.c         
+	15 expando/dead.c                     4 mixmaster/remailer.h  
+	11 expando/format_callbacks.c         3 pattern/private.h     
+	10 expando/node.c                     3 ncrypt/private.h      
+	10 expando/helpers.c                  3 core/mailbox.h        
+	 8 expando/node_padding.h             2 history/lib.h         
+	 5 expando/node_conddate.h            2 hdrline.c             
+	 4 expando/parser.h                   2 compose/shared_data.h 
+	 4 expando/node_expando.h             1 status.h              
+	 4 expando/node_condition.h           1 ncrypt/config.c       
+	 3 expando/validation.c               1 compmbox/compress.c   
+	 3 expando/helpers.h                  1 browser/config.c      
+	 3 expando/expando.c                  1 attach/dlg_attach.c   
+	 2 expando/format_callbacks.h
+	 1 expando/node_text.h
+	 1 expando/expando.h
+
+use container (children ARRAY), rather than linked list
+easier for rendering?
+
+%_s lowercase!
+	where?
+	how?
+	mutt_expando_format()
+		to_lower
+		no_dots
+
+Use Buffer to simplify:
+	folder_f
+	folder_F
+	folder_g
+	folder_i
+
+move arrow from global domain to menu
+should all index-number should be in menu domain?
+	where is the value coming from?
+
+index_format %Gx needs custom handling
+	how?
+
+de-dupe names
+	attach/dlg_attach.c:465:16:       AttachRenderData
+	compose/attach.c:219:16:          AttachRenderData
+	or better still just use ONE
+	(they're identical)
+	nntp/newsrc.c:1090:16:            NntpRenderData
+	send/sendmail.c:310:18:           NntpRenderData
+

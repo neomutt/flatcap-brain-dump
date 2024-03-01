@@ -342,12 +342,6 @@ add visual feedback for SIGINT-interruptability?
 	is this just synonymous with progress bar?
 	probably
 
-eliminate helper functions
-	compress_get_ops()
-	compr_get_ops()
-	etc
-	store the state somewhere and use that instead
-
 event scripting
 	<gahr> I want an integration with a scripting language
 	<jindraj> lua?

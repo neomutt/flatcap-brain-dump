@@ -292,8 +292,6 @@ bases
 	which others?
 macos?
 
-https://hub.docker.com/r/dovecot/dovecot
-
 actions: check that matrix builds continue on error
 
 logging error fd == -1 ?
@@ -448,8 +446,6 @@ contrib:
 	notify packagers
 		ask them NOT to compress everything!
 
-bisect <tab> to next mail hangs
-
 functionise `git d1`
 
 from python/black:
@@ -472,6 +468,7 @@ italics
 		iTerm.app needs https://apple.stackexchange.com/a/267261
 
 A_ITALIC doesn't exist in centos 7
+	openbsd
 
 acutest implement ASSERT_EQ(left,right), ASSERT_NEQ(left,right)
 	this would allow acutest to print both values when they differ
@@ -848,10 +845,6 @@ move *.mbox to ~/mail/
 	what would be the source?
 	would it be translated?
 
-asan analysis mention?
-	debian: libasan6
-	fedora: libasan
-
 graphviz doc to dev/analysis
 What about?
 	--fuzzing           Enable Fuzz Testing
@@ -1089,11 +1082,6 @@ create standard, translated, prefix for all warnings/errors
 reword where necessary
 	"Error opening 'memory stream'"
 	"Error: " + "Can't open 'memory stream'"
-
-monitor
-	"context" globals refer to "current" mailbox
-	bool MonitorContextChanged = false;
-	static int MonitorContextDescriptor = -1;
 
 discussion
 	medium diff - anti-phishing
@@ -1453,10 +1441,6 @@ DT_NOT_EMPTY -- not implemented in all config types
 	doesn't make sense for numeric types
 	should be there for strings / object types
 
-iwyu
-	and there are some macros that de-reference types that cause trouble
-	test static inline helpers instead
-
 refactor progress_new()
 	new takes type, size
 	progress_set_message(format, ...)
@@ -1465,8 +1449,6 @@ refactor progress_new()
 	can be called to change the message
 	new(type) only
 	progress_set_size(1234)?
-
-SigInt / SigWinch -> core?
 
 xunused
 	-extra-arg=-I/usr/lib/clang/17/include/
@@ -1526,35 +1508,115 @@ create clang-format action using fedora docker
 	diffs -> artifact
 	diffs -> branch [clang-format] (force?)
 		no, push to branch it's working on
-		except [main] -> [clang-format]
+		except [main] -> [clang-format] or [main-clang-format]?
 		commit "clang-format [auto]"
 	work out how to clang-format the "#include" *block* of header files
 
 create f39/rawhide docker for clang-format
 create devel/* action to run it
+	base for a general linter
+	∀ .github/linter/*.sh
+	No 'for' loop, separate steps so CI is clearer
 
 coverage:
 	increase email/tags
-
 add hcache to tests
 	and maildir
+	which other libraries are _testable_?
+	(i.e. don't require gui parts)
+	already tested
+		address color compress config core editor email imap mutt notmuch parse pattern store
+	untested
+		alias attach autocrypt bcache browser complete compmbox compose
+		conn convert envelope gui hcache helpbar history index key
+		maildir mbox menu mh mixmaster ncrypt nntp pager pop postpone
+		progress question send sidebar
+
+main - non-gui
+	investigate / kill the need for:
+	/* Always create the mutt_windows because batch mode has some shared code paths that end up referencing them. */
+	bool NeoMutt.gui = true (or .tty = true?)
+	need tests around all shared gui code
+	every window/dialog create could fail
+		every caller should check
+	every question to the user could return immediately
+		mw_yesorno() could return default
+		query_yesorno() could return default, or use a non-gui form
+	check for any uses of RootWindow, e.g. for width formatting
+		wrapper for this use, fallback to $COLUMNS
+		hide RootWindow
+	need list of all cli modes
+		everything possible from the command line
+
+merge
+	#3890 - add mutt_mem_realloc_zero()
+		need at least one user, first
+		has tests?
+	#4023 - fix observer event types
+
+tv
+	EBNF for all 87 commands?
+	*read* folder_format issue https://github.com/neomutt/neomutt/issues/4170
+
+lua / lua-source aren't documented ANYWHERE
+	need feature page with examples
+
+upstream translated config option strings
+
+`:echo $INTERNAL_VAR` doesn't expand
+	if you `setenv INTERNAL_VAR value` in NeoMutt
+	external vars work, config and my_var do too
+	which version do we use?
+	system getenv() or neomutt's EnvList
+	what about magic vars COLUMNS, LINES?
+
+find cause of bad history error
+	something to do with multiline messages/commands?
 
 rebase
 
-update sponsor page
+coverage core (simple)
+	command
+	config_cache
+	neomutt
+	much of mailbox
 
-doxygen weekly, don't fail if no change
+hide Mix: from compose (when unused)
+	waste of space
+	conditional, but often built in,
+	but unlikely to be used
+	subtle step towards deprecation?
 
-artifacts v4.1.0
+#mutt user asks:
+	how do I know which key I'm encrypting to in compose
+	if there are multiple?
+	hmm... hasn't been decided yet
+	(key selection dialog comes after <send>)
+	move it before?
+		might mess up people's workflow
+	but we could display the key/fingerprint/name
+	what about multiple keys?
+		list them all? probably
 
-update backup scripts
-       --recipient name vs --hidden-recipient name
-       gpg2 -> gpg
+rename *_buffer_*() functions to buf, or strip buffer entirely
+	mutt_b64_buffer_decode (3)
+		mutt_b64_decode (5)
+	mutt_b64_buffer_encode (4)
+		mutt_b64_encode (8)
+	test_mutt_b64_buffer_decode
+	test_mutt_b64_buffer_encode
+	mutt_socket_buffer_readln (2)
+		mutt_socket_readln (19)
+	mutt_socket_buffer_readln_d (1)
+		mutt_socket_readln_d (12)
 
-update changelog
-	including website
+progress bar
+	if message is very long (wider than the screen) it wraps
+	but... the progress bar itself is only one row high
+	leaving junk above it
 
-invite
-	raito as nix maintainer
-	pierre as dev
+egypt - libhistory
+	find bad history format error
+
+test: create code to display every dialog
 
