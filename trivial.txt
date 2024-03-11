@@ -1619,4 +1619,21 @@ egypt - libhistory
 	find bad history format error
 
 test: create code to display every dialog
+	how?  some require files!
+
+vim-tabitha
+	skip windows if
+		b:tabitha_skip = 1
+		window is zero width
+		quickfix window (option?)
+
+buffer version of
+	mutt_str_pretty_size()
+	add_indent()
+
+badly named
+	#define TYPE(body)
+
+replace
+	get_sort_str() with cs_subset_str_string_get()
 
