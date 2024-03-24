@@ -18,27 +18,48 @@ ag 'if \(!\(.*(&&|\|\|).*\)\)'
 ag '\(!\((.*) && (.*)\)\)'
 ag '\(!\((.*) \|\| (.*)\)\)'
 
-20 largest functions - 2023-04-30
+20 largest functions - 2023-04-30 - 8427 lines
 	982 index_format_str()
 	944 main()
 	851 mutt_send_message()
 	524 mutt_expando_format()
 	431 mutt_rfc822_parse_line()
-	398 mutt_pager()
+	398 dlg_pager()
 	372 mbox_mbox_sync()
 	329 status_format_str()
 	318 folder_format_str()
 	316 pgp_class_application_handler()
 	310 mutt_view_attachment()
-	308 mutt_index_menu()
+	308 dlg_index()
 	304 resolve_types()
 	296 mutt_copy_hdr()
 	295 qstyle_classify()
-	294 pattern_exec()
+	294 mutt_pattern_exec()
 	294 mx_mbox_close()
 	292 mutt_set_flag_update()
 	288 display_line()
 	281 mutt_init()
+20 largest functions - 2024-03-21 - 7399 lines
+	943 main
+	851 mutt_send_message
+	430 mutt_rfc822_parse_line
+	389 dlg_pager
+	373 mbox_mbox_sync
+	323 pgp_class_application_handler
+	323 display_line
+	315 resolve_types
+	310 mutt_view_attachment
+	306 mutt_copy_hdr
+	301 mx_mbox_close
+	299 qstyle_classify
+	299 dlg_index
+	297 mutt_set_flag
+	296 mutt_init
+	285 mutt_save_message
+	276 parse_pub_line
+	265 dlg_browser
+	260 nntp_auth
+	258 parse_extract_token
 
 eliminate enum AccountType?
 use enum MailboxType
@@ -161,11 +182,6 @@ should use a Buffer
 	void mutt_default_save(char *path, size_t pathlen, struct Email *e)
 	problem: it leads to format functions that take buf, buflen
 
-move to email/body? (and rename)
-	struct Body *mutt_make_multipart(struct Body *b)
-	struct Body *mutt_remove_multipart(struct Body *b)
-	create email/multipart.c ?
-
 base32 doesn't belong in mutt/random.c
 	maybe in mutt/string.c
 
@@ -211,9 +227,6 @@ index:
 	OP_MAIN_CHANGE_FOLDER vs OP_MAIN_CHANGE_FOLDER_READONLY:
 	OP_MAIN_VFOLDER_FROM_QUERY vs OP_MAIN_VFOLDER_FROM_QUERY_READONLY
 	vfolder READONLY isn't handled correctly, doesn't follow READONLY path
-
-bad C functions
-	https://github.com/git/git/blob/master/banned.h
 
 pop/auth.c eliminate #ifdef DEBUG
 	(nearly) only use in entire code base
@@ -312,14 +325,6 @@ add unbuffered flag?
 
 static struct SmimeKey *smime_ask_for_key(char *prompt, KeyFlags abilities, bool only_public_key)
 checks for prompt, but it's always set
-
-find potential places for struct Buffer
-	921	ag "([a-z_]+(->[a-z_]+)*), sizeof\(\1\)"
-	64	ag "([a-z_]+(->[a-z_]+)*)-\>data, \1-\>dsize"
-
-refactor "not reached"
-	ag "not reached" | wc -l
-	8
 
 kill #define EXTRA_SPACE (15 + 7 + 2)
 	recvcmd.c
@@ -467,9 +472,6 @@ italics
 		Terminal.app good
 		iTerm.app needs https://apple.stackexchange.com/a/267261
 
-A_ITALIC doesn't exist in centos 7
-	openbsd
-
 acutest implement ASSERT_EQ(left,right), ASSERT_NEQ(left,right)
 	this would allow acutest to print both values when they differ
 	(saving the user from doing so)
@@ -573,9 +575,6 @@ test our more toolbox distros
 split up multiple assignments
         grep " = [^,;]* = "
         grep " = [^,;]* [!=]= "
-
-update copyright dates
-        ∀ users > ~10 lines
 
 how to extract libmenu, so that it can be independently tested
         3 $configs:
@@ -717,9 +716,6 @@ coverage
 	mutt/memory
 	store/*
 
-identify 100 old issues to kill
-	include easy-task, etc
-
 restore progress bar to imap
 	caused repaint race condition
 	removed in e3773a736
@@ -745,8 +741,6 @@ external pager - hitting 'j' doesn't advance to next email
 
 triv: break up huge case: clauses
 	measure all of them
-
-sort out bash history
 
 elim mutt.org from code
 	just one ref to urlview
@@ -922,23 +916,6 @@ help
 
 no space before \$
 	ag -u '[^ \t]\\$'
-
-be explicit?
-	win->wdata_free = NULL; // No need, we hold the data
-or dynamically alloc them, and prevent lots of github security warnings
-	win->wdata_free = NULL; // No need, we hold the data
-	autocrypt/dlg_autocrypt.c:326:6: dlg->wdata = &ad;
-	browser/dlg_browser.c:1368:6:    dlg->wdata = priv;
-	enter/window.c:263:8:            win->wdata = &wdata;
-	gui/simple.c:140:6:              dlg->wdata = win_menu->wdata;
-	history/dlg_history.c:147:6:     dlg->wdata = &hd;
-	mixmaster/dlg_mixmaster.c:149:6: dlg->wdata = priv;
-	ncrypt/dlg_gpgme.c:751:6:        dlg->wdata = &gd;
-	ncrypt/dlg_pgp.c:669:6:          dlg->wdata = &pd;
-	ncrypt/dlg_smime.c:224:6:        dlg->wdata = &sd;
-	pager/pager.c:420:6:             win->wdata = priv;
-	pattern/dlg_pattern.c:344:6:     dlg->wdata = &pd;
-	postpone/dlg_postpone.c:215:6:   dlg->wdata = &pd;
 
 nf - no fail versions of functions
 	c/o @ossilator Oswald Buddenhagen
@@ -1431,10 +1408,6 @@ w0lff:
 	colorization by character spans e.g. highlight the number of unread mails different from the name of the folder;
 	or even more advanced multiple custom sidebars, useful for multiple account setups or to give a reduced select view of only a subset of mailboxes.
 
-void mutt_str_pretty_size(char *buf, size_t buflen, size_t num)
-	externalise all the config
-	used in index_format
-
 struct Path needs: bool is_local
 
 DT_NOT_EMPTY -- not implemented in all config types
@@ -1570,11 +1543,6 @@ upstream translated config option strings
 	system getenv() or neomutt's EnvList
 	what about magic vars COLUMNS, LINES?
 
-find cause of bad history error
-	something to do with multiline messages/commands?
-
-rebase
-
 coverage core (simple)
 	command
 	config_cache
@@ -1615,9 +1583,6 @@ progress bar
 	but... the progress bar itself is only one row high
 	leaving junk above it
 
-egypt - libhistory
-	find bad history format error
-
 test: create code to display every dialog
 	how?  some require files!
 
@@ -1631,9 +1596,61 @@ buffer version of
 	mutt_str_pretty_size()
 	add_indent()
 
+void mutt_str_pretty_size(char *buf, size_t buflen, size_t num)
+	externalise all the config
+	used in index_format
+
 badly named
 	#define TYPE(body)
 
 replace
 	get_sort_str() with cs_subset_str_string_get()
+
+message_bar() doesn't need mutt_simple_format()
+	it already has the screen width
+	it just needs to pad using spaces
+
+need to test message_bar() when msg contains 2-cell characters
+	(progress bar)
+
+move to email/body? (and rename)
+	struct Body *mutt_make_multipart(struct Body *b)
+	struct Body *mutt_remove_multipart(struct Body *b)
+	create email/multipart.c ?
+
+be explicit?
+	win->wdata_free = NULL; // No need, we hold the data
+or dynamically alloc them, and prevent lots of github security warnings
+	win->wdata_free = NULL; // No need, we hold the data
+	autocrypt/dlg_autocrypt.c:326:6: dlg->wdata = &ad;
+	browser/dlg_browser.c:1368:6:    dlg->wdata = priv;
+	enter/window.c:263:8:            win->wdata = &wdata;
+	gui/simple.c:140:6:              dlg->wdata = win_menu->wdata;
+	history/dlg_history.c:147:6:     dlg->wdata = &hd;
+	mixmaster/dlg_mixmaster.c:149:6: dlg->wdata = priv;
+	ncrypt/dlg_gpgme.c:751:6:        dlg->wdata = &gd;
+	ncrypt/dlg_pgp.c:669:6:          dlg->wdata = &pd;
+	ncrypt/dlg_smime.c:224:6:        dlg->wdata = &sd;
+	pager/pager.c:420:6:             win->wdata = priv;
+	pattern/dlg_pattern.c:344:6:     dlg->wdata = &pd;
+	postpone/dlg_postpone.c:215:6:   dlg->wdata = &pd;
+
+upstream fixes
+
+msgwin doesn't observe colour changes
+	color normal red blue
+	needs ctrl-l
+
+code ql code scanning update
+
+find potential places for struct Buffer
+	921	ag "([a-z_]+(->[a-z_]+)*), sizeof\(\1\)"
+	64	ag "([a-z_]+(->[a-z_]+)*)-\>data, \1-\>dsize"
+
+refactor "not reached"
+	ag "not reached" | wc -l
+	8
+
+bad C functions
+	https://github.com/git/git/blob/master/banned.h
 

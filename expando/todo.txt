@@ -2,16 +2,11 @@ error msg -> Buffer?
 	pass in?
 	position?!
 	truncate the string? (could be very long)
-move formatting out of callback functions
 error use short and long option names in msg
 option name -> trans?
 use (S)TAILQ
 KILL MuttFormatFlags
-Container type
 Arrow cursor
-
-unify cols, columns, cols_len, width
-observer for each format string?
 
 use container (children ARRAY), rather than linked list
 easier for rendering?
@@ -30,4 +25,33 @@ split out get_string/number() callbacks into separate files
 	reduce deps
 	simplify testing
 	simplify coverage
+	most functions are _so_ simply they don't really _need_ testing
+
+test single and two-char expandos
+
+eliminate EMPTY nodes
+	need test suite first
+
+expando validators
+	compress must contain %f %t
+
+errors: link to web docs?
+
+\% escaped!
+	set index_format = '>>\%C<<'
+
+warn/error on empty conditional %<x?&>, etc
+
+check generic_search() still works (history uses it)
+	is uses ->make_entry()
+
+reorg tree char handling
+	gui always uses utf-8 chars
+	print_enriched_string() swaps them out if $ansi_chars is set
+	pes() needs to read each char individually anyway!
+	might mess up similar chars in "subject", etc
+
+mailbox_folder_format mis-parsed
+	%<n?%6 &bbb>
+	`%6 ` is skipped over and true case displays %b!
 
