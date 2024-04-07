@@ -55,3 +55,11 @@ mailbox_folder_format mis-parsed
 	%<n?%6 &bbb>
 	`%6 ` is skipped over and true case displays %b!
 
+padding needs a flag to say "just one space", when dealing with INT_MAX
+	default menu.search()
+	change flags in node_tree_render()
+		UNLIMITED_SPACE
+	=> padding does one space only
+
+check for untranslated error messages
+

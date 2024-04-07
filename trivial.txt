@@ -382,8 +382,6 @@ post freeze:
 	website update
 		intro
 		screenshots
-	upstream
-		small
 	unit test coverage
 	remaining big
 		colour
@@ -463,9 +461,6 @@ anything in wiki worth saving?
 find all functions returning 0=success,-1=failure
 	check they are tested with `if (x() == 0)` not `if (!x())`
 
-oauth2/mutt_oauth2.py.README -> README.md
-	markdown-ify
-
 italics
 	https://apple.stackexchange.com/a/267261
 	mac:
@@ -490,6 +485,15 @@ docs: add "recently changed" section to front of guide!
 	:changelog
 changelog
 	markdown files
+	<details>
+	<summary><h2>2024-02-01</h2></summary>
+
+	* Features
+	- #4134 Command-line Crypto (neomutt -C)
+	* Bug Fixes
+	- #4065 track new-mail check time per mailbox
+	- #4141 fix(change-folder): don't exclude notmuch
+	</details>
 
 https://github.com/autozimu/LanguageClient-neovim
 https://people.freebsd.org/~gahr/lc.vim
@@ -1144,6 +1148,8 @@ what does iwyu.sh *need* from compile_commands.json?
 wdata_free = wdata_free_generic()
 	a function of the right prototype that just does free()
 	∀ *_free API fns?
+	or if (wdata && !wdata_free) -> assume free() NO
+	if wdata, wdata_free must exist, both or neither
 
 $timeout, $mail_check, $mail_check_stats_interval
 	DT_NOT_NEGATIVE already
@@ -1377,6 +1383,7 @@ where does folder expansion happen?
 	https://neomutt.org/guide/advancedusage.html#shortcuts
 
 progress different colours for read/write/network?
+	merge with base "progress" colour
 
 's' <save-message> option to strip out ANSI colours
 	update :version to dump colours
@@ -1422,11 +1429,6 @@ refactor progress_new()
 	can be called to change the message
 	new(type) only
 	progress_set_size(1234)?
-
-xunused
-	-extra-arg=-I/usr/lib/clang/17/include/
-	/usr/lib/clang/17/include/stddef.h
-	/usr/lib/gcc/x86_64-redhat-linux/13/include/stddef.h
 
 actions:
 	I haven't seen "working-directory" in the actions before.
@@ -1534,8 +1536,6 @@ tv
 lua / lua-source aren't documented ANYWHERE
 	need feature page with examples
 
-upstream translated config option strings
-
 `:echo $INTERNAL_VAR` doesn't expand
 	if you `setenv INTERNAL_VAR value` in NeoMutt
 	external vars work, config and my_var do too
@@ -1548,12 +1548,6 @@ coverage core (simple)
 	config_cache
 	neomutt
 	much of mailbox
-
-hide Mix: from compose (when unused)
-	waste of space
-	conditional, but often built in,
-	but unlikely to be used
-	subtle step towards deprecation?
 
 #mutt user asks:
 	how do I know which key I'm encrypting to in compose
@@ -1577,6 +1571,7 @@ rename *_buffer_*() functions to buf, or strip buffer entirely
 		mutt_socket_readln (19)
 	mutt_socket_buffer_readln_d (1)
 		mutt_socket_readln_d (12)
+find all functions with a Buffer parameter
 
 progress bar
 	if message is very long (wider than the screen) it wraps
@@ -1635,22 +1630,50 @@ or dynamically alloc them, and prevent lots of github security warnings
 	pattern/dlg_pattern.c:344:6:     dlg->wdata = &pd;
 	postpone/dlg_postpone.c:215:6:   dlg->wdata = &pd;
 
-upstream fixes
-
 msgwin doesn't observe colour changes
 	color normal red blue
 	needs ctrl-l
 
-code ql code scanning update
-
 find potential places for struct Buffer
-	921	ag "([a-z_]+(->[a-z_]+)*), sizeof\(\1\)"
-	64	ag "([a-z_]+(->[a-z_]+)*)-\>data, \1-\>dsize"
+	691	ag "([a-z_]+(->[a-z_]+)*), sizeof\(\1\)"
+	37	ag "([a-z_]+(->[a-z_]+)*)-\>data, \1-\>dsize"
 
 refactor "not reached"
-	ag "not reached" | wc -l
-	8
+	8	ag "not reached"
 
 bad C functions
 	https://github.com/git/git/blob/master/banned.h
+
+assert upgrade
+	change to macro that calls:
+	- endwin()
+	- dump_backtrace()
+	- (real) assert()
+	https://nullprogram.com/blog/2022/06/26/
+	#define assert(c) if (!(c)) __builtin_trap()
+	#define ASSERT(COND) do { if (!COND) { endwin(); show_backtrace(); __builtin_trap(); } } while (false);
+
+compare mutt/neomutt config
+	synonyms and deprecated
+	create new synonyms for unnec mutt config
+
+publish code-scanning repo
+	neomutt private repo
+
+Stats: 2024-03-28
+	 Mutt	NeoMutt
+	96576	 127864	lines of code
+	 2415	   4097	functions
+	  215	    748	files
+	  449	    171	loc per file
+	   39	     31	loc per function
+
+OP_ATTACHMENT_PIPE isn't referenced
+	not in mutt
+	pipe-entry works
+
+kill mutt_str_cat in favour of Buffer
+	22 uses + 16 in tests/
+
+start changelog
 
