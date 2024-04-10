@@ -1,0 +1,91 @@
+# Event Queue
+
+heterogeneous - keys, macros, mouse, OP_X
+abstract: queue of [timestamp, type, data] -> API
+owned by NeoMutt?
+
+Actions: keypress, mouse move, code push (command)
+are keypresses independent of processing?
+    who interprets?
+    when?
+    -> check_for_keys() -> queue_key()
+       process_queue() -> get_event()
+
+how's it fit into external event loop?
+
+how are events interpreted?
+    need 'd' -> OP_DELETE lookup
+    need "<F1>" (macro) -> "Twork<enter>;d"
+    need ":push 'text'" -> *insert* into queue
+
+single keypress is easy to interpret
+
+is macro 'n' keypresses?  or atomic text string?
+    atomic ->
+        1) bind a, 2) bind b, 3) bind ab + macro "ab" triggers 3)
+
+dialog wants event; queue has plenty
+dialog needs to specify *all* of its function handlers!
+each function handler is associated with a Window
+Global event handler offers each Window a "go" + recursion
+    -> Reply: Yes, No, Longer
+
+Yes: might imply a macro has inserted more events to the head
+=> each Window needs to be able to handle any type of Event
+
+can global handler deal with macros?  probably
+
+bind ab, macro ax
+    offer 'a' -> longer
+    offer 'ax' -> fail
+    then what?
+who errors 'a' unknown?
+do we try 'x' again?  probably
+
+---
+
+macros *must* be interpreted letter by letter - nested macros or other bindings
+
+problem: macro "abc" where 'a' expands to "xyz"
+    need to insert "xyz" while global handler is working on "abc"
+
+macro "aaaaaXbbbbb"  (X expands)
+
+need 1 char (char could be multibyte utf-8)
+queue doesn't understand data
+macro object could keep track
+caller could peek at queue (ok for a single thread)
+
+caller: t = q_top(); get_char(t)
+    what if it returns OP_X?
+
+if t is empty, pop and retry
+
+caller gets X, expands to macro "RST" (could be multiple items)
+    could be multiple substitutions
+
+"aaaaaXbbbbb" isn't finished
+
+caller: q_insert_head("RST")
+next get/peek gets "RST"
+
+macro calls: "push '...'"  (global)
+
+macro more events from  ":source script.sh|"
+
+callers from different Windows / levels
+    who's driving?
+
+If in AliasDlg -> MsgWin (:command) does <next-entry> work?
+    currently no, but with global event handler, yes
+    could we stop it happening?   Alias could check focus
+    do we want to stop it happening?
+        it could change the select
+    what if the <exit> the dialog?! -- let them?
+    might not be possible if MsgWin handles <exit>
+
+---
+
+macro calls: push "RST"             Q: "aaaaaXbbbbb2"; other
+macro object points to first 'b'    Q: "RST"; "aaaaaXbbbbb2"; other
+

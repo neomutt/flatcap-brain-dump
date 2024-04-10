@@ -1672,8 +1672,17 @@ OP_ATTACHMENT_PIPE isn't referenced
 	not in mutt
 	pipe-entry works
 
-kill mutt_str_cat in favour of Buffer
+kill mutt_str_cat() in favour of Buffer
 	22 uses + 16 in tests/
+	and mutt_strn_cat()
+Buffer-ise
+	url_tostring()
 
-start changelog
+fix hcache vs bcache dir discrepancy
+	bcache imaps:flatcap-mail@flatcap.org
+	hcache imaps_flatcap-mail_flatcap.org
+only mutt_encode_path() the *path* bit
+	assume home dir and config are already valid
+check upstream's docs/behaviour for cache config with/without trailing '/'
+do we consistently mkdir on both?
 
