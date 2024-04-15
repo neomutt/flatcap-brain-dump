@@ -1,5 +1,7 @@
 librender
 
+(see also pager2.txt)
+
 how to markup a line of text?
 what about wrapped lines?
 

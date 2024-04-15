@@ -3,9 +3,30 @@ pager 2.0
 text, formatting, display, file
 windows/dlg
 events: resize, painting, navigation
-layers of formattting
+layers of formattting (see render.txt)
 handlers for Body types
 Event loop outside
 
 EmailPager, HelpPager, SummaryPager?
+
+---
+
+caller passes in text
+what else is needed?
+bitfield for line visibility
+	weeding affects both visibility and order of headers
+		=> set some dupe headers
+		=> toggle visibility to fake changes of order
+colours are embedded ANSI sequences
+flags:
+	- colour (on/off)
+	- wrapping (on/off)
+	- striping
+
+custom functions, e.g.
+	- weeding
+	- folding of comments
+	- skip headers
+	- skip quoted
+	- skip crypto
 

@@ -89,3 +89,24 @@ If in AliasDlg -> MsgWin (:command) does <next-entry> work?
 macro calls: push "RST"             Q: "aaaaaXbbbbb2"; other
 macro object points to first 'b'    Q: "RST"; "aaaaaXbbbbb2"; other
 
+parse_rc_line()
+
+radical idea... are `:command`s part of the event queue?
+config/hook:   echo apple; push "<banana>"; echo cherry
+the entire string is queued as a single item...
+the "processor" gets the top of the queue, parses "echo apple;" and executes it
+the queue is left with:  push "<banana>"; echo cherry
+the "processor" gets the top of the queue, parses: push "<banana>"
+"push" causes the text to be inserted
+queue:  "<banana>"; "echo cherry"
+parse and execute <banana>
+parse and execute "echo cherry"
+
+what about
+	sync-`echo mailbox`
+	shell command must be synchronous
+
+echo apple
+push "<enter-command>echo banana<enter>"
+echo cherry
+

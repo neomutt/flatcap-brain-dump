@@ -178,10 +178,6 @@ why are enum SortType numbered?
 	do we need SORT_MAX
 	do we need ANY X_MAX enum values?
 
-should use a Buffer
-	void mutt_default_save(char *path, size_t pathlen, struct Email *e)
-	problem: it leads to format functions that take buf, buflen
-
 base32 doesn't belong in mutt/random.c
 	maybe in mutt/string.c
 
@@ -1560,19 +1556,6 @@ coverage core (simple)
 	what about multiple keys?
 		list them all? probably
 
-rename *_buffer_*() functions to buf, or strip buffer entirely
-	mutt_b64_buffer_decode (3)
-		mutt_b64_decode (5)
-	mutt_b64_buffer_encode (4)
-		mutt_b64_encode (8)
-	test_mutt_b64_buffer_decode
-	test_mutt_b64_buffer_encode
-	mutt_socket_buffer_readln (2)
-		mutt_socket_readln (19)
-	mutt_socket_buffer_readln_d (1)
-		mutt_socket_readln_d (12)
-find all functions with a Buffer parameter
-
 progress bar
 	if message is very long (wider than the screen) it wraps
 	but... the progress bar itself is only one row high
@@ -1672,12 +1655,6 @@ OP_ATTACHMENT_PIPE isn't referenced
 	not in mutt
 	pipe-entry works
 
-kill mutt_str_cat() in favour of Buffer
-	22 uses + 16 in tests/
-	and mutt_strn_cat()
-Buffer-ise
-	url_tostring()
-
 fix hcache vs bcache dir discrepancy
 	bcache imaps:flatcap-mail@flatcap.org
 	hcache imaps_flatcap-mail_flatcap.org
@@ -1685,4 +1662,20 @@ only mutt_encode_path() the *path* bit
 	assume home dir and config are already valid
 check upstream's docs/behaviour for cache config with/without trailing '/'
 do we consistently mkdir on both?
+
+rename *_buffer_*() functions to buf, or strip buffer entirely
+	mutt_b64_buffer_decode (3)
+		mutt_b64_decode (5)
+	mutt_b64_buffer_encode (4)
+		mutt_b64_encode (8)
+	test_mutt_b64_buffer_decode
+	test_mutt_b64_buffer_encode
+	mutt_socket_buffer_readln (2)
+		mutt_socket_readln (19)
+	mutt_socket_buffer_readln_d (1)
+		mutt_socket_readln_d (12)
+find all functions with a Buffer parameter
+
+wkd - https://wiki.gnupg.org/WKD
+	Web Key Directory
 
