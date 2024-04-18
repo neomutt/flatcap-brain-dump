@@ -110,3 +110,34 @@ echo apple
 push "<enter-command>echo banana<enter>"
 echo cherry
 
+---
+
+parse_rc_line()
+	"sync-`echo mailbox`"
+	echo apple; push "<banana>"; echo cherry
+	echo apple; source banana.sh|; echo cherry
+
+banana -> "echo x; push y; echo z"
+
+normally x| output is read and processed from the pipe
+save to file and queue the file?
+	need file?
+	it could be big
+
+does the normal config read use the same mechanism?
+
+source a.rc -> source b.rc, c.rc -> x.rc, y.rc
+	a.rc
+	├── b.rc
+	└── c.rc
+	    ├── x.rc
+	    └── y.rc
+
+Q object: filename, current line
+what's the diff between startup config and :source?
+	latter can <push>
+what does push do at startup?
+who is interpreting <xyz> and when?
+needs to be put into Q and parsed when it's read
+	which Q items interpret <X>, which are literal?
+

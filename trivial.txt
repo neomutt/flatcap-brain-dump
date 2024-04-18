@@ -1678,4 +1678,26 @@ find all functions with a Buffer parameter
 
 wkd - https://wiki.gnupg.org/WKD
 	Web Key Directory
+	only lists *one* account
+
+changelog
+	website contrib, Konfekt/Enno
+
+look for potential char[] buffer uses
+	buf + pos, buflen - pos
+	ag " \+ (.+)\b.* - \1\b"
+
+sponsor
+	check sponsors' aliases
+
+mute conversation
+	<mute-conversation> <unmute-conversation>
+	flat text file: DATE MESSAGE-ID
+	config for cut-off date for auto-trimming?
+	need hash table
+	mute marks entire thread as read
+	somehow tie into hidden beacon pixel?
+	tie into notmuch with "tag:muted" 🔇
+		auto add "not tag:muted" to queries?
+	muted expando
 

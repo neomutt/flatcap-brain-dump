@@ -13,11 +13,16 @@ EmailPager, HelpPager, SummaryPager?
 
 caller passes in text
 what else is needed?
+
 bitfield for line visibility
 	weeding affects both visibility and order of headers
 		=> set some dupe headers
 		=> toggle visibility to fake changes of order
+	need to parse line offsets / lengths once
+		(or have it passed in)
+
 colours are embedded ANSI sequences
+
 flags:
 	- colour (on/off)
 	- wrapping (on/off)
@@ -25,8 +30,20 @@ flags:
 
 custom functions, e.g.
 	- weeding
-	- folding of comments
+	- folding of:
+	  - headers (weeding)
+	  - quoted
+	  - crypto
 	- skip headers
 	- skip quoted
 	- skip crypto
+
+support for:
+	- text (in memory)
+	- text (in file)
+	- email
+	- attachments
+	- help
+	- certificate verification?
+	  (instead of abusing Menu)
 
