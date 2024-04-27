@@ -1637,20 +1637,6 @@ look for potential char[] buffer uses
 	buf + pos, buflen - pos
 	ag " \+ (.+)\b.* - \1\b"
 
-mute conversation
-	<mute-conversation> <unmute-conversation>
-	flat text file: DATE MESSAGE-ID
-	config for cut-off date for auto-trimming?
-	need hash table
-	mute marks entire thread as read
-	somehow tie into hidden beacon pixel?
-	tie into notmuch with "tag:muted" 🔇
-		auto add "not tag:muted" to queries?
-	muted expando
-	muted threads are collapsed by default
-	add colour for muted threads / emails
-	$mute_time (defaults to 6 months)
-
 doc tags in alias, mail to user ml
 	add to dyk
 

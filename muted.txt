@@ -1,0 +1,45 @@
+mute conversation
+
+<mute-conversation> <unmute-conversation>
+
+flat text file: DATE MESSAGE-ID
+	how long is message-id?
+	store a short hash instead?
+	if we use a hash we'll need to write the hash
+	message-id averages 50 bytes (longest 190 bytes)
+
+on mbox_open()
+	check each email against hash/array
+	email->muted = true
+
+on arrival of new mail
+	check for muted
+	clear new flag
+	prevent notification
+		how?
+		need backend notification of new mail
+
+config for cut-off date for auto-trimming?
+
+need hash table
+	or array + bsearch?
+
+mute marks entire thread as read
+
+tie into notmuch with "tag:muted" 🔇
+	auto add "not tag:muted" to queries?
+
+muted expando
+
+muted threads are collapsed by default
+
+add colour for muted threads / emails
+
+$mute_time (defaults to 6 months)
+
+store mailbox in file?
+	prob not
+
+somehow tie into hidden beacon pixel?
+	see github-assistant.txt
+
