@@ -63,3 +63,15 @@ padding needs a flag to say "just one space", when dealing with INT_MAX
 
 check for untranslated error messages
 
+filter text ending in % => reexpando
+
+BUG expando
+	first doesn't work, <> in a conditional
+		set index_format = "%[%y%m%d %H%M] %Z%?X?%X& ? %4.4c %-18.18L %?M?<%03M> &? %?y?{%y}? %s"
+	second two work, replacing <> with {} or []
+		set index_format = "%[%y%m%d %H%M] %Z%?X?%X& ? %4.4c %-18.18L %?M?{%03M} &? %?y?{%y}? %s"
+		set index_format = "%[%y%m%d %H%M] %Z%?X?%X& ? %4.4c %-18.18L %?M?[%03M] &? %?y?{%y}? %s"
+
+BUG expando
+	padding `%>` missing the char ought to error
+

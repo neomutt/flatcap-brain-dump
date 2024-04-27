@@ -18,49 +18,6 @@ ag 'if \(!\(.*(&&|\|\|).*\)\)'
 ag '\(!\((.*) && (.*)\)\)'
 ag '\(!\((.*) \|\| (.*)\)\)'
 
-20 largest functions - 2023-04-30 - 8427 lines
-	982 index_format_str()
-	944 main()
-	851 mutt_send_message()
-	524 mutt_expando_format()
-	431 mutt_rfc822_parse_line()
-	398 dlg_pager()
-	372 mbox_mbox_sync()
-	329 status_format_str()
-	318 folder_format_str()
-	316 pgp_class_application_handler()
-	310 mutt_view_attachment()
-	308 dlg_index()
-	304 resolve_types()
-	296 mutt_copy_hdr()
-	295 qstyle_classify()
-	294 mutt_pattern_exec()
-	294 mx_mbox_close()
-	292 mutt_set_flag_update()
-	288 display_line()
-	281 mutt_init()
-20 largest functions - 2024-03-21 - 7399 lines
-	943 main
-	851 mutt_send_message
-	430 mutt_rfc822_parse_line
-	389 dlg_pager
-	373 mbox_mbox_sync
-	323 pgp_class_application_handler
-	323 display_line
-	315 resolve_types
-	310 mutt_view_attachment
-	306 mutt_copy_hdr
-	301 mx_mbox_close
-	299 qstyle_classify
-	299 dlg_index
-	297 mutt_set_flag
-	296 mutt_init
-	285 mutt_save_message
-	276 parse_pub_line
-	265 dlg_browser
-	260 nntp_auth
-	258 parse_extract_token
-
 eliminate enum AccountType?
 use enum MailboxType
 	what about smtp?
@@ -1656,10 +1613,6 @@ OP_ATTACHMENT_PIPE isn't referenced
 	pipe-entry works
 
 fix hcache vs bcache dir discrepancy
-	bcache imaps:flatcap-mail@flatcap.org
-	hcache imaps_flatcap-mail_flatcap.org
-only mutt_encode_path() the *path* bit
-	assume home dir and config are already valid
 check upstream's docs/behaviour for cache config with/without trailing '/'
 do we consistently mkdir on both?
 
@@ -1680,15 +1633,9 @@ wkd - https://wiki.gnupg.org/WKD
 	Web Key Directory
 	only lists *one* account
 
-changelog
-	website contrib, Konfekt/Enno
-
 look for potential char[] buffer uses
 	buf + pos, buflen - pos
 	ag " \+ (.+)\b.* - \1\b"
-
-sponsor
-	check sponsors' aliases
 
 mute conversation
 	<mute-conversation> <unmute-conversation>
@@ -1700,4 +1647,23 @@ mute conversation
 	tie into notmuch with "tag:muted" 🔇
 		auto add "not tag:muted" to queries?
 	muted expando
+	muted threads are collapsed by default
+	add colour for muted threads / emails
+	$mute_time (defaults to 6 months)
+
+doc tags in alias, mail to user ml
+	add to dyk
+
+Alex git range-diff
+
+document repro builds in dev/
+	add to rpm.spec
+
+iwyu
+	validate new output
+	find source of changes
+
+dyk
+	example conditional date for "today", "this week", "this month"
+	set index_format = "%<[d?%[Today %R]&%[%F %R]>"
 
