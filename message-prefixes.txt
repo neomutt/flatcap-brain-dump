@@ -27,3 +27,17 @@ Offer the translators a formatting string:
 	ERROR_STRING = "Error"
 	MESSAGE      = "Cannot read file 'x'
 the error string and message are independently translated
+
+---
+
+unify all the errors, warnings, messages
+translatable prefix: "Error", etc
+if color error|warning|message is defined
+	don't use prefix
+if $message_chars is defined, use *it* as a prefix
+	"❗"/"🚨", "⚠️ ", "ℹ️ " -- or nerdfonts, in colour
+
+Icons could be used elsewhere
+
+Add: Good ✔️ ✅, Bad ❌❎ plus colours
+
