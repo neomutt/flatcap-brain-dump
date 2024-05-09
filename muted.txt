@@ -1,6 +1,9 @@
 mute conversation
 
 <mute-conversation> <unmute-conversation>
+	or <mute-thread> <unmute-thread>
+	mutes this email and below (sub-thread)
+	but not necessarily the entire email thread
 
 flat text file: DATE MESSAGE-ID
 	how long is message-id?
@@ -28,6 +31,7 @@ mute marks entire thread as read
 
 tie into notmuch with "tag:muted" 🔇
 	auto add "not tag:muted" to queries?
+	use $nm_exclude_tags
 
 muted expando
 

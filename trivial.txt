@@ -1640,8 +1640,6 @@ look for potential char[] buffer uses
 doc tags in alias, mail to user ml
 	add to dyk
 
-Alex git range-diff
-
 document repro builds in dev/
 	add to rpm.spec
 
@@ -1652,4 +1650,34 @@ iwyu
 dyk
 	example conditional date for "today", "this week", "this month"
 	set index_format = "%<[d?%[Today %R]&%[%F %R]>"
+
+release notes
+	vuori lots of help on IRC
+
+iwyu rules aren't correct w.r.t. regex.h
+	we use a rule to include "mutt/lib.h" -> "mutt/regex3.h" -> <regex.h>
+	but some callers dereference regmatch_t (possibly other stuff too)
+	kill REG_COMP() or wrap it
+	which regex functions do we use direction, outside of mutt/regex.c?
+need <regex.h>
+	alias/commands.c alternates.c attach/attachments.c
+	browser/dlg_browser.c browser/functions.c color/regex.c commands.c
+	config/regex.c conn/accountcmd.c conn/gnutls.c email/envelope.c
+	email/from.c email/parse.c email/rfc2047.c email/url.c hook.c
+	index/dlg_index.c menu/functions.c menu/menu.c mutt/charset.c
+	mutt/prex.h muttlib.c pager/display.h pager/dlg_pager.c
+	pager/functions.c pager/private_data.h pattern/compile.c pattern/exec.c
+	pattern/message.c question/question.c
+
+follow members
+
+quietly ignore non-existant config options beginning devel_*
+	how?  where in code?
+
+"Out of memory" translation still used?!
+
+compose: adding/deleting attachments doesn't update cbar
+
+top tips ONLY if header-cache is set?
+	then we've got a mechanism to save stats
 
