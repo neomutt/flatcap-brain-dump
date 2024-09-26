@@ -123,7 +123,6 @@ DT_PATH    inews (%a %p %P %s %S %u)
 DT_PATH    newsrc (%a %p %P %s %S %u)
 DT_PATH    ispell
 DT_PATH    shell
-DT_PATH    mixmaster
 DT_PATH    pager
 DT_PATH    sendmail
 DT_PATH    visual

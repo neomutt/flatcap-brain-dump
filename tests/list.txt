@@ -49,7 +49,6 @@ Test next new mail
 test alignment of all fields in compose =>
 	pgp sign
 	smime sign
-	mixmaster
 
 test <enter> vs <return>
 

@@ -59,7 +59,6 @@ imap      | 15     |  6
 nntp      | 23     | 14
 hcache    |  5     |  5
 pop       |  9     |  2
-mixmaster |  2     |  0
 
 ---
 

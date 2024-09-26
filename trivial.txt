@@ -381,9 +381,6 @@ generate list of dialogs (all combinations)
 alternative to ASAN?
 	clang -ftrivial-auto-var-init=pattern -o jim jim.c
 
-change to host list?
-	mutt_error(_("Can't get mixmaster's type2.list"));
-
 find/kill
 	if (x) return (or continue or break)
 	else if...
@@ -1344,8 +1341,6 @@ progress different colours for read/write/network?
 discussion: mailmerge howto
 	see irc haxtibal 2023-11-05
 
-c99 -> c11?
-
 sidebar - when did labels start getting indented?
 
 sidebar tree generator
@@ -1457,7 +1452,7 @@ add hcache to tests
 	untested
 		alias attach autocrypt bcache browser complete compmbox compose
 		conn convert envelope gui hcache helpbar history index key
-		maildir mbox menu mh mixmaster ncrypt nntp pager pop postpone
+		maildir mbox menu mh ncrypt nntp pager pop postpone
 		progress question send sidebar
 
 main - non-gui
@@ -1562,7 +1557,6 @@ or dynamically alloc them, and prevent lots of github security warnings
 	enter/window.c:263:8:            win->wdata = &wdata;
 	gui/simple.c:140:6:              dlg->wdata = win_menu->wdata;
 	history/dlg_history.c:147:6:     dlg->wdata = &hd;
-	mixmaster/dlg_mixmaster.c:149:6: dlg->wdata = priv;
 	ncrypt/dlg_gpgme.c:751:6:        dlg->wdata = &gd;
 	ncrypt/dlg_pgp.c:669:6:          dlg->wdata = &pd;
 	ncrypt/dlg_smime.c:224:6:        dlg->wdata = &sd;
@@ -1643,10 +1637,6 @@ doc tags in alias, mail to user ml
 document repro builds in dev/
 	add to rpm.spec
 
-iwyu
-	validate new output
-	find source of changes
-
 dyk
 	example conditional date for "today", "this week", "this month"
 	set index_format = "%<[d?%[Today %R]&%[%F %R]>"
@@ -1669,8 +1659,6 @@ need <regex.h>
 	pager/functions.c pager/private_data.h pattern/compile.c pattern/exec.c
 	pattern/message.c question/question.c
 
-follow members
-
 quietly ignore non-existant config options beginning devel_*
 	how?  where in code?
 
@@ -1680,4 +1668,25 @@ compose: adding/deleting attachments doesn't update cbar
 
 top tips ONLY if header-cache is set?
 	then we've got a mechanism to save stats
+	or if user *asks* for them :tip ?
+
+Fedora build NDEBUG
+
+note alx: ptr vs pptr
+
+email: guide fix
+	changelog
+
+does new PR break newlines in $attribution_intro?
+
+*specify*
+	C11 POSIX.1-2008
+	mailing list
+
+run doxy action on PRs, but not on drafts
+
+renew all github access tokens
+
+mutt -A "" crashes
+same for neomutt
 

@@ -44,6 +44,8 @@ warn/error on empty conditional %<x?&>, etc
 
 check generic_search() still works (history uses it)
 	is uses ->make_entry()
+	is *formatting* applied?
+		WHY?
 
 reorg tree char handling
 	gui always uses utf-8 chars
@@ -103,4 +105,7 @@ split up Index %F into "To: " part and address part
 	will need container for accurately formatting
 	`%-50.50F` becomes `%-50.50{%{label}%{from}}`
 	how do we distinguish %{} dates from %{} container?
+
+drop ExpandoParserFlags
+drop ExpandoConditionStart
 

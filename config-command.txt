@@ -98,7 +98,6 @@ DT_COMMAND
 	inews                         Inews                     0
 	ispell                        Ispell                    ISPELL
 	mime_type_query_command       MimeTypeQueryCommand      0
-	mixmaster                     Mixmaster                 MIXMASTER
 	new_mail_command              NewMailCommand            0
 	pager                         Pager                     builtin
 	pgp_clearsign_command         PgpClearsignCommand       0

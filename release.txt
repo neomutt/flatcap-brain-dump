@@ -43,7 +43,6 @@ move [release] to [master]
 --locales-fix                 Enable locales fix
 --disable-pgp                 Disable PGP support
 --disable-smime               Disable SMIME support
---mixmaster                   Enable Mixmaster support
 --homespool                   Enable new mail spooling in the user's HOME
 --with-homespool=mailbox      File in the user's HOME where new mail is spooled
 --with-mailpath=/var/mail     Directory where spool mailboxes are located
@@ -77,7 +76,7 @@ move [release] to [master]
 --------------------------------------------------------------------------------
 
 # STORE
---autocrypt --disable-idn --fmemopen --full-doc --gnutls --gpgme --gss --homespool --idn2 --locales-fix --lua --mixmaster --notmuch --sasl --with-domain=example.com --with-lock=fcntl --with-ui=ncurses
+--autocrypt --disable-idn --fmemopen --full-doc --gnutls --gpgme --gss --homespool --idn2 --locales-fix --lua --notmuch --sasl --with-domain=example.com --with-lock=fcntl --with-ui=ncurses
 --autocrypt --disable-idn --full-doc --gnutls --gpgme --gss --idn2 --lua --lz4 --notmuch --sasl --with-lock=fcntl --with-ui=ncurses --zlib --zstd
 --autocrypt --disable-idn --full-doc --gnutls --gpgme --gss --idn2 --lua --notmuch --sasl --with-lock=fcntl --with-ui=ncurses
 --autocrypt --disable-idn --full-doc --gnutls --gpgme --gss --idn2 --lua --notmuch --sasl --with-lock=fcntl --with-ui=ncurses --devel-help
@@ -90,21 +89,20 @@ move [release] to [master]
 --disable-pgp
 --disable-smime
 --everything
---fmemopen --homespool --locales-fix --mixmaster --ssl --with-domain=example.com --with-lock=flock --with-ui=slang
+--fmemopen --homespool --locales-fix --ssl --with-domain=example.com --with-lock=flock --with-ui=slang
 --gnutls
 --gpgme
 --gss
 --homespool
 --locales-fix
 --lua
---mixmaster
 --notmuch
 --sasl
 --ssl
 --tokyocabinet --qdbm --gdbm --bdb --lmdb --kyotocabinet
 --with-domain=example.com
 --with-lock=flock
---with-lock=flock --lua --locales-fix --homespool --with-domain=example.com --notmuch --gpgme --mixmaster --fmemopen
+--with-lock=flock --lua --locales-fix --homespool --with-domain=example.com --notmuch --gpgme --fmemopen
 --with-ui=slang
 
 --------------------------------------------------------------------------------
@@ -117,7 +115,7 @@ COMPRESS="--lz4 --zlib --zstd"
 
 BUILD_DEFAULT=""
 BUILD_EVERYTHING="--everything"
-BUILD_SLANG="--fmemopen --homespool --locales-fix --mixmaster --ssl --with-domain=example.com --with-lock=flock --with-ui=slang"
+BUILD_SLANG="--fmemopen --homespool --locales-fix --ssl --with-domain=example.com --with-lock=flock --with-ui=slang"
 BUILD_CURSES="$STORE $COMPRESS --autocrypt --disable-idn --full-doc --gnutls --gpgme --gss --idn2 --lua --notmuch --sasl --with-lock=fcntl --with-ui=ncurses"
 
 dependencies for everything (including debug options)
