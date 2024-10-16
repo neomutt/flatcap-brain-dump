@@ -133,7 +133,15 @@ how do conditionals work?  (and nest)
 %{test:flagged} ... %{test:end}
 %{test:flagged} ... %{test:else} ... %{test:end}
 
+'test' => reserved name
 or s/test/cond/g
+
+or simpler:
+
+%{if:flagged} ... %{end}
+%{if:flagged} ... %{else} ... %{end}
+
+'if', 'else', 'end' => reserved names
 
 can you format conditionals to restrict both if/else clauses?
 	%{test:flagged:-10.3} ?

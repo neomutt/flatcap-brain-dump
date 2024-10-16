@@ -1,3 +1,7 @@
+support xterm bracketed paste
+	https://en.wikipedia.org/wiki/Bracketed-paste
+	allow pasted text to (optionally) ignored
+
 logs rotated twice
 	https://github.com/neomutt/neomutt/issues/1160
 

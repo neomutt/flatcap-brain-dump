@@ -1269,6 +1269,11 @@ dyk
 	 flatcap | that'd kill everything between a line beginning "On" and the first blank line after it
 	 flatcap | you could use a couple of `folder-hook`s to make it only apply on certain folders
 
+dyk
+	#mutt
+	It would be nice to have the "color status" changed for the different mail boxes. Can this be achieved?
+	create folder-hook example
+
 coredumpctl debug neomutt
 
 kill https://neomutt.org/dev/build/autosetup
@@ -1641,9 +1646,6 @@ dyk
 	example conditional date for "today", "this week", "this month"
 	set index_format = "%<[d?%[Today %R]&%[%F %R]>"
 
-release notes
-	vuori lots of help on IRC
-
 iwyu rules aren't correct w.r.t. regex.h
 	we use a rule to include "mutt/lib.h" -> "mutt/regex3.h" -> <regex.h>
 	but some callers dereference regmatch_t (possibly other stuff too)
@@ -1684,9 +1686,4 @@ does new PR break newlines in $attribution_intro?
 	mailing list
 
 run doxy action on PRs, but not on drafts
-
-renew all github access tokens
-
-mutt -A "" crashes
-same for neomutt
 
