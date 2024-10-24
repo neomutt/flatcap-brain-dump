@@ -101,11 +101,6 @@ I wonder if we could kill this unexpected behaviour
 	else
 	  mutt_str_strfcpy(LastSaveFolder, mutt_b2s(buf), sizeof(LastSaveFolder));
 
-flags typedef?
-	/* force flags passed to mutt_mailbox_check() */
-	#define MUTT_MAILBOX_CHECK_FORCE       (1 << 0)
-	#define MUTT_MAILBOX_CHECK_FORCE_STATS (1 << 1)
-
 flagify
 	#define MUTT_UNBIND  1<<0
 	#define MUTT_UNMACRO 1<<1
@@ -230,12 +225,6 @@ add dialog helper functions to get:
 
 rename index vars to idx to avoid index(3)
 
-attach refactor
-	libattach
-	dlg(view)attach
-	pass attach list to functions
-		(c.f. tagged emails)
-
 add X_new()/X_free() wrappers for non-trivial objects
 	AttachPtr, QClass, Regex, ListNode
 	SmimeKey, PgpUid, MuttThread, Message, Hook
@@ -276,9 +265,6 @@ these aren't *comp* flags, separate flags?
 	MUTT_COMP_PASS
 add unbuffered flag?
 
-static struct SmimeKey *smime_ask_for_key(char *prompt, KeyFlags abilities, bool only_public_key)
-checks for prompt, but it's always set
-
 kill #define EXTRA_SPACE (15 + 7 + 2)
 	recvcmd.c
 	commands.c
@@ -305,7 +291,7 @@ vs
 	de.po:msgid "No"
 	de.po:msgstr "No"
 
-find/read the `git log --date=human` code
+find/read the `git log MUTT_MAILBOX_CHECK_POSTPONED--date=human` code
 	or better still --date=relative
 
 how much work to fix the new_mail command?
@@ -467,7 +453,7 @@ once we can test mutt_parse_rc_buffer()
 	wrap a fuzzer around it!
 	seeded with hundreds of valid set/unset lines
 
-top tip
+dyk / top tip
 	:bind index p end-cond
 	# make 'p' do nothing, silently, on the index
 
@@ -654,8 +640,6 @@ subjectrx results should be stored in EmailView not Envelope
 move mview.* into index/
 	or libmview? encapsulate it?
 		if so what's in index? what's in mview?
-
-IRC user: I was just wondering why tag-pattern isn't available in the alias menu
 
 :setenv
 	don't leave neomutt to setenv query?
@@ -1111,16 +1095,6 @@ $timeout, $mail_check, $mail_check_stats_interval
 
 update all docs that reference time, timeouts, etc
 
-upstream config
-	"compose_confirm_detach_first", DT_BOOL, R_NONE, {.l=OPTCOMPOSECONFIRMDETACH}, {.l=1} },
-	When \fIset\fP, Mutt will prompt for confirmation when trying to
-	use \fC<detach-file>\fP on the first entry in the compose menu.
-	This is to help prevent irreversible loss of the typed message by
-	accidentally hitting 'D' in the menu.
-	Note: Mutt only prompts for the first entry.  It doesn't keep
-	track of which message is the typed message if the entries are
-	reordered, or if the first entry was already deleted.
-
 iwyu branch
 	cron
 	artifacts for results
@@ -1192,7 +1166,7 @@ some of the plain `static` might be too
 	mutt/random.c:47:   static const unsigned char          Base32[]                    = "abcdefghijklmnopqrstuvwxyz234567";
 	mutt/string.c:113:  static const struct SysExits        SysExits[]                  = {
 
-RSI prevention, NeoMutt style:
+dyk? / RSI prevention, NeoMutt style:
 	# Alt-j inserts =
 	macro editor \ej =
 post to users ml
@@ -1275,8 +1249,6 @@ dyk
 	create folder-hook example
 
 coredumpctl debug neomutt
-
-kill https://neomutt.org/dev/build/autosetup
 
 info pager, <save-message>
 	mutt_sig_allow_interrupt(true);add "overwrite?" check
@@ -1389,33 +1361,6 @@ actions:
 
 https://best.openssf.org/Compiler-Hardening-Guides/Compiler-Options-Hardening-Guide-for-C-and-C++.html
 
-compose enhancement
-	   gzbd | I would like to see the the to,cc,subject etc in the same view along with text/plain attachments.
-	flatcap | oh, see what the email _would_ look like?
-	flatcap | no, that's not possible (yet! :-)
-	   gzbd | IMO this would be a nice visual improvement, since the space is there
-	flatcap | yeah, it's a reasonable idea
-	      * | flatcap thinks how graphical email programs tend to work
-	flatcap | adding a pager in the space at the bottom wouldn't be too hard...
-	flatcap | but making the whole screen a view (meaning that <page-down> would scroll the envelope part off the top), would be trickier
-change attachment bar to show the number of attachments
-insert pager window below attachment menu
-	only if there's >5 lines, say
-		e.g. huge list of attachments
-	OR, limit attachment list to 5 or 10 lines, like $pager_index_lines
-		use rest for the pager
-	<up>/<down> control attachment selection
-	<page-up>/<page-down> control the pager
-pager window displays *pager* view, not mailcap/text view
-	option to control this?
-	OR pager for first attach (main message)
-	and mailcap for the rest
-
-add tag-pattern to the browser -- useful for compose-attach
-	if multi-selection is allowed
-
-document and asciinema alias tags:
-
 Fedora, ask for karma
 
 kill
@@ -1485,9 +1430,6 @@ merge
 tv
 	EBNF for all 87 commands?
 	*read* folder_format issue https://github.com/neomutt/neomutt/issues/4170
-
-lua / lua-source aren't documented ANYWHERE
-	need feature page with examples
 
 `:echo $INTERNAL_VAR` doesn't expand
 	if you `setenv INTERNAL_VAR value` in NeoMutt
@@ -1583,15 +1525,6 @@ refactor "not reached"
 bad C functions
 	https://github.com/git/git/blob/master/banned.h
 
-assert upgrade
-	change to macro that calls:
-	- endwin()
-	- dump_backtrace()
-	- (real) assert()
-	https://nullprogram.com/blog/2022/06/26/
-	#define assert(c) if (!(c)) __builtin_trap()
-	#define ASSERT(COND) do { if (!COND) { endwin(); show_backtrace(); __builtin_trap(); } } while (false);
-
 compare mutt/neomutt config
 	synonyms and deprecated
 	create new synonyms for unnec mutt config
@@ -1636,15 +1569,8 @@ look for potential char[] buffer uses
 	buf + pos, buflen - pos
 	ag " \+ (.+)\b.* - \1\b"
 
-doc tags in alias, mail to user ml
-	add to dyk
-
 document repro builds in dev/
 	add to rpm.spec
-
-dyk
-	example conditional date for "today", "this week", "this month"
-	set index_format = "%<[d?%[Today %R]&%[%F %R]>"
 
 iwyu rules aren't correct w.r.t. regex.h
 	we use a rule to include "mutt/lib.h" -> "mutt/regex3.h" -> <regex.h>
@@ -1664,26 +1590,86 @@ need <regex.h>
 quietly ignore non-existant config options beginning devel_*
 	how?  where in code?
 
-"Out of memory" translation still used?!
-
-compose: adding/deleting attachments doesn't update cbar
-
 top tips ONLY if header-cache is set?
 	then we've got a mechanism to save stats
 	or if user *asks* for them :tip ?
 
 Fedora build NDEBUG
 
-note alx: ptr vs pptr
-
 email: guide fix
 	changelog
-
-does new PR break newlines in $attribution_intro?
 
 *specify*
 	C11 POSIX.1-2008
 	mailing list
 
 run doxy action on PRs, but not on drafts
+
+compose enhancement
+	   gzbd | I would like to see the the to,cc,subject etc in the same view along with text/plain attachments.
+	flatcap | oh, see what the email _would_ look like?
+	flatcap | no, that's not possible (yet! :-)
+	   gzbd | IMO this would be a nice visual improvement, since the space is there
+	flatcap | yeah, it's a reasonable idea
+	      * | flatcap thinks how graphical email programs tend to work
+	flatcap | adding a pager in the space at the bottom wouldn't be too hard...
+	flatcap | but making the whole screen a view (meaning that <page-down> would scroll the envelope part off the top), would be trickier
+change attachment bar to show the number of attachments
+insert pager window below attachment menu
+	only if there's >5 lines, say
+		e.g. huge list of attachments
+	OR, limit attachment list to 5 or 10 lines, like $pager_index_lines
+		use rest for the pager
+	<up>/<down> control attachment selection
+	<page-up>/<page-down> control the pager
+pager window displays *pager* view, not mailcap/text view
+	option to control this?
+	OR pager for first attach (main message)
+	and mailcap for the rest
+
+--------------------------------------------------------------------------------
+
+does new PR break newlines in $attribution_intro?
+
+doxy retval wrong for mutt_str_atos()
+	check others
+	init ALL outparams
+
+parse_tags_transformed - Parse a custom expando of the form, "%G?" where '?' is an alphabetic character.
+  	test '?' is [A-Za-z]?
+
+quick guides to
+	format strings
+	tagging
+	alias labels
+		document and asciinema alias tags:
+doc tags in alias, mail to user ml
+	add to dyk
+lua / lua-source aren't documented ANYWHERE
+	need feature page with examples
+
+good first issue?
+	add tag-pattern to the browser -- useful for compose-attach
+		if multi-selection is allowed
+
+attach refactor
+	libattach
+	dlg(view)attach
+	pass attach list to functions
+		(c.f. tagged emails)
+
+static struct SmimeKey *smime_ask_for_key(char *prompt, KeyFlags abilities, bool only_public_key)
+checks for prompt, but it's always set
+
+IRC user: I was just wondering why tag-pattern isn't available in the alias menu
+
+dyk
+	example conditional date for "today", "this week", "this month"
+	set index_format = "%<[d?%[Today %R]&%[%F %R]>"
+
+compose: adding/deleting attachments doesn't update cbar
+
+"Out of memory" translation still used?!
+
+note alx: ptr vs pptr
 
