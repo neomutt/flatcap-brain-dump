@@ -1438,12 +1438,6 @@ tv
 	system getenv() or neomutt's EnvList
 	what about magic vars COLUMNS, LINES?
 
-coverage core (simple)
-	command
-	config_cache
-	neomutt
-	much of mailbox
-
 #mutt user asks:
 	how do I know which key I'm encrypting to in compose
 	if there are multiple?
@@ -1629,12 +1623,6 @@ pager window displays *pager* view, not mailcap/text view
 
 --------------------------------------------------------------------------------
 
-does new PR break newlines in $attribution_intro?
-
-doxy retval wrong for mutt_str_atos()
-	check others
-	init ALL outparams
-
 parse_tags_transformed - Parse a custom expando of the form, "%G?" where '?' is an alphabetic character.
   	test '?' is [A-Za-z]?
 
@@ -1658,18 +1646,53 @@ attach refactor
 	pass attach list to functions
 		(c.f. tagged emails)
 
-static struct SmimeKey *smime_ask_for_key(char *prompt, KeyFlags abilities, bool only_public_key)
-checks for prompt, but it's always set
-
-IRC user: I was just wondering why tag-pattern isn't available in the alias menu
-
 dyk
 	example conditional date for "today", "this week", "this month"
 	set index_format = "%<[d?%[Today %R]&%[%F %R]>"
 
-compose: adding/deleting attachments doesn't update cbar
+dyk disable 'p' (print) by binding the key to nop or endcond
+	check/test
 
 "Out of memory" translation still used?!
 
 note alx: ptr vs pptr
+
+apply colour to a column
+	find the index_format node when the `color` command is used
+	or when $index_format is set
+what about row colours?
+
+extend
+	`color header green default '^Subject'`
+	to allow partial matches, like status color does
+	e.g.
+		color header green default '^Subject: (.*)' 1
+	match the text of the subject only
+
+$attach_status to configure the AttachBar
+	default to "Attachments" ?
+	or "Attachments: %n"
+	what else could we display?
+	cumulative size?
+	allow *email* expandos, e.g. To: %t, Subject: %s!
+
+Is this ever true?
+	_fmt(OP_SEARCH, N_("search for a regular expression")) \
+	or are we always searching for a *pattern*?
+
+for the Menu,
+	where is the "deleted" colour?
+	where is the dedicated "tagged" colour?
+	color index fg bg "~T" !
+
+[post-release] for coverity / code-scanning fixes, etc
+
+docs: improve transform-links.vim
+	update deprecated.patch
+
+coverage core (simple)
+	command
+	config_cache
+	neomutt
+	much of mailbox
 
