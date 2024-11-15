@@ -75,3 +75,35 @@ background
 	isub: full: ask index to populate
 	asub: pass-through
 what happens to `:set` ?
+
+compose config to hide infrequently-used fields to save space
+	set compose_hide = "bcc,reply-to,autocrypt"
+	the 'set' function still work
+	if the field is set, it's always visible
+	or $compose_envelope_hide_empty?
+
+compose: kill leading three spaces in envelope
+	unless $x_comment_to and EnvelopeWindowData.is_news
+	fix init_header_padding()
+
+use ANSI URL to abbreviate compose fields
+	NO, relies on hover showing something useful
+	_John_Smith_ with hover of "John Smith <john@example.com>"
+	modes on, off, when necessary to fit
+
+compose option to display alias (with hover link?)
+
+compose bug
+	E (edit headers) fails if $editor isn't set
+
+add capability to use external browser to attach files in compose
+	it returns a list of files
+	e.g. vifm
+
+compose menu using its own is_tagged
+	use EmailList instead
+	+5 others in index. nec?
+	change subordinates to take EL
+
+compose expando for filename of email %s for macros
+

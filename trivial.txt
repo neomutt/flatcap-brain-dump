@@ -1599,28 +1599,6 @@ email: guide fix
 
 run doxy action on PRs, but not on drafts
 
-compose enhancement
-	   gzbd | I would like to see the the to,cc,subject etc in the same view along with text/plain attachments.
-	flatcap | oh, see what the email _would_ look like?
-	flatcap | no, that's not possible (yet! :-)
-	   gzbd | IMO this would be a nice visual improvement, since the space is there
-	flatcap | yeah, it's a reasonable idea
-	      * | flatcap thinks how graphical email programs tend to work
-	flatcap | adding a pager in the space at the bottom wouldn't be too hard...
-	flatcap | but making the whole screen a view (meaning that <page-down> would scroll the envelope part off the top), would be trickier
-change attachment bar to show the number of attachments
-insert pager window below attachment menu
-	only if there's >5 lines, say
-		e.g. huge list of attachments
-	OR, limit attachment list to 5 or 10 lines, like $pager_index_lines
-		use rest for the pager
-	<up>/<down> control attachment selection
-	<page-up>/<page-down> control the pager
-pager window displays *pager* view, not mailcap/text view
-	option to control this?
-	OR pager for first attach (main message)
-	and mailcap for the rest
-
 --------------------------------------------------------------------------------
 
 parse_tags_transformed - Parse a custom expando of the form, "%G?" where '?' is an alphabetic character.
@@ -1705,20 +1683,16 @@ roccoblues
 	signifies a char * but not always. buf_addstr vs. buf_insert. Or buf_startswith
 	should be buf_startswith_str because we could also have a buf_startwith(Buffer, Buffer)?
 
-compose config to hide infrequently-used fields to save space
-	set compose_hide = "bcc,reply-to,autocrypt"
-	the 'set' function still work
-	if the field is set, it's always visible
-	or $compose_envelope_hide_empty?
-
 bare mode cf weechat
 	wrapping, markers '+', scrollbar
 	all interfere with copy'n'paste and urls
 	<bare-mode> drop into basic pager -- endwin()
+		bind to Ctrl-B
 	don't wrap, just dump email to screen
 	let terminal do page up / down
 	optionally use ansi sequences for urls?
 		probably not necessary
 	'q' <quit> to exit
 	eliminates need for urlview / urlscan
+	why not use <pipe-message>cat<enter> ?
 
