@@ -1,3 +1,8 @@
+[expando-arrow] neomutt-old
+	expando %{name}
+
+https://developers.google.com/gmail/imap/imap-extensions
+
 perform sync-mailbox on SIGINT, SIGTERM, SIGSTOP?
 	if computer is shutdown, work could be lost
 

@@ -1684,15 +1684,41 @@ for the Menu,
 	where is the "deleted" colour?
 	where is the dedicated "tagged" colour?
 	color index fg bg "~T" !
-
-[post-release] for coverity / code-scanning fixes, etc
+	create colour "links" first
 
 docs: improve transform-links.vim
 	update deprecated.patch
+	put in repo with README
 
 coverage core (simple)
 	command
 	config_cache
 	neomutt
 	much of mailbox
+
+Menu: rename line to row?
+	int (*make_entry)(struct Menu *menu, int line, int max_cols, struct Buffer *buf);
+	need to fix Menu.search() too
+
+roccoblues
+	when you look in buffer.h you'll notice that most of the time str in the name
+	signifies a char * but not always. buf_addstr vs. buf_insert. Or buf_startswith
+	should be buf_startswith_str because we could also have a buf_startwith(Buffer, Buffer)?
+
+compose config to hide infrequently-used fields to save space
+	set compose_hide = "bcc,reply-to,autocrypt"
+	the 'set' function still work
+	if the field is set, it's always visible
+	or $compose_envelope_hide_empty?
+
+bare mode cf weechat
+	wrapping, markers '+', scrollbar
+	all interfere with copy'n'paste and urls
+	<bare-mode> drop into basic pager -- endwin()
+	don't wrap, just dump email to screen
+	let terminal do page up / down
+	optionally use ansi sequences for urls?
+		probably not necessary
+	'q' <quit> to exit
+	eliminates need for urlview / urlscan
 
