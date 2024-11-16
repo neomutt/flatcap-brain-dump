@@ -7,12 +7,12 @@ It works, it looks good.
 
 ### Configuration
 
-set compose_preview      = yes
-set compose_show_preview = yes
+Either:
+- `set compose_preview      = yes`
+- `set compose_show_preview = yes`
 
 I think it should be enabled by default.
-Enable by default
-    most users won't read the release notes
+Most users won't read the release notes and never hear about our new features.
 
 $compose_attach_lines = 7 or 0 for min
 
@@ -27,15 +27,15 @@ need better sharing of space
     limit Attach to how many rows?
     or msg has min rows?
 
-advanced: 
-    making the whole screen a view (meaning that <page-down> would scroll the
-    envelope part off the top), would be trickier
-
 insert pager window below attachment menu
 	only if there's >5 lines, say
 		e.g. huge list of attachments
 	OR, limit attachment list to 5 or 10 lines, like $pager_index_lines
 		use rest for the pager
+
+Advanced Idea: 
+    making the whole screen a view (meaning that <page-down> would scroll the
+    envelope part off the top), would be trickier
 
 ### Status Bars / Feedback
 
@@ -54,9 +54,13 @@ $compose_attach_status_format!?
 
 ### Functions / Bindings
 
-bindings
+Here's a list of all the Functions we _could_ implement.
+This would allow the user independent control of the Preview.
 
-fn to toggle preview, cf sidebar
+We could bind Page-Up/Down by default.
+
+Adding Search Functions would add complexity to the positioning of the text.
+(also see Colours, below)
 
 | Function                    | Opcode                       |
 | :-------------------------- | :--------------------------- |
@@ -72,28 +76,39 @@ fn to toggle preview, cf sidebar
 | `<preview-search-next>`     | `OP_PREVIEW_SEARCH_NEXT`     |
 | `<preview-search-opposite>` | `OP_PREVIEW_SEARCH_OPPOSITE` |
 | `<preview-search-toggle>`   | `OP_PREVIEW_SEARCH_TOGGLE`   |
+| `<preview-toggle>`          | `OP_PREVIEW_TOGGLE`          |
 
-reusing pager's bindings would make attachment list unreachable
+**Advanced Ideas**
 
-preview binding => menu bindings and links / priority / focus?
+NeoMutt supports an idea of a 'focussed' Window.
 
-OP_PREVIEW_XYZ if not bound transformed into OP_XYZ
-    HOW?
-    OP_PREVIEW_XYZ = OP_XYZ + 1000?
-    likewise sidebar
+This would allow us to reuse a basic function like `<page-up>`,
+whose behaviour would be determined by the Window it acted in.
+Set Focus to the Attachment Window, `<page-up>` affects the Attachments.
 
 ### Colours
 
-colour observer
-    color normal, etc
+Currently, Compose only colours the:
 
-colour for preview window?
-    and/or envelope
-    config to hide preview simple bar?
+- Envelope Headers region, e.g. `Bcc:`
+- Security labels, e.g. `Encrypt`
 
-color body, signature, etc
-    apply to preview?
-    need search colour if <search> is used
+The whole of Compose is also affected by some other colours:
+
+- `normal` - Default colour for all of Neomutt
+- `status` - Default colour for Status Bars
+
+This means that the Preview Window needs a colour observer.
+
+One way to save some space, would be to eliminate the Preview Bar
+and instead colour the Preview, and/or the entire Envelope region.
+A subtle difference in background colour would be enough to make it stand out.
+
+The Preview is monochrome, which makes it nice and simple.
+Applying all the layers of colour is what makes the Pager so complicated.
+
+If we implement `<search>` and friends, we'd probably need to support `color search`.
+Anything more than that, e.g. `color body`, would need Pager 2.0.
 
 ### Events / Notifications
 
