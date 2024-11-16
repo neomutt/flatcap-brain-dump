@@ -14,43 +14,59 @@ Either:
 I think it should be enabled by default.
 Most users won't read the release notes and never hear about our new features.
 
-$compose_attach_lines = 7 or 0 for min
+Do we want to support any Pager config?
 
-pager window displays *pager* view, not mailcap/text view
-	option to control this?
-	OR pager for first attach (main message)
-	and mailcap for the rest
+- `$allow_ansi` -- Allow ANSI color codes in rich text messages
+- `$markers` -- Display a '+' at the beginning of wrapped lines in the pager
+- `$pager_context` -- Number of lines of overlap when changing pages in the pager
+- `$smart_wrap` -- Wrap text at word boundaries
+- `$tilde` -- Display '~' in the pager after the end of the email
+- `$wrap` -- Width to wrap text in the pager
 
 ### Layout
 
-need better sharing of space
-    limit Attach to how many rows?
-    or msg has min rows?
+Few users will have an 80x24 Terminal.
+Whatever the size of Terminal, however many Attachments they have,
+the default layout of Envelope, Preview and Attachments should be pleasing.
 
-insert pager window below attachment menu
-	only if there's >5 lines, say
-		e.g. huge list of attachments
-	OR, limit attachment list to 5 or 10 lines, like $pager_index_lines
-		use rest for the pager
+If there's enough space, neither the Preview nor the Attachments should be limited.
 
-Advanced Idea: 
-    making the whole screen a view (meaning that <page-down> would scroll the
-    envelope part off the top), would be trickier
+Otherwise, we probably want to set a maximum number of Attachments, or a minimum number of Preview rows.
+
+- `"$compose_preview_min_rows"`
+- `"$compose_attach_max_rows"`
+
+If the Terminal is very short, perhaps we could hide the Preview, or just let the Attachments get clipped.
+
+We should probably think of some way to test the possible layouts.
+
+**Advanced Idea**
+
+Make Page-Up/Down act on the entire Dialog.
+
+The Dialog would comprise: Envelope, Preview, Attachments.
+Each would use as many rows as they needed, possibly more rows than the screen had.
+Page-Up/Down would move the set of { Envelope, Preview, Attachments } up and down.
+(I have no idea how to implement this :-)
 
 ### Status Bars / Feedback
 
-text postition need feedback => need total size (rows)
-    45%
+If the Preview displays a long email, it would be good to show some feedback on the position, e.g. "15%"
 
-"Attachments" simple bar => formatted bar
-    'n' attachments, remove from compose bar?
+We could add this to the Compose Bar, but it's a bit far away from the Preview.
+It might be better to upgrade the "Attachments" Simple Bar to a formatted Bar.
+e.g. `|3 Attachments                  25%|`
 
-Preview Bar from Simple to Formatted?
-    or put %age in Attachment bar on r.h.s.
+This would require us to measure the email text (or count the lines).
 
-change attachment bar to show the number of attachments
+We've already got `$compose_format` and use `$attach_format`.
+It would probably have to be the unwieldy: `$compose_attach_status_format`
 
-$compose_attach_status_format!?
+**Advanced Idea**
+
+Create a Scrollbar Window.
+This would be 1 character wide Window placed to the right of the Preview (or the Pager, etc).
+This would be a simple, passive, Window listening to Notifications from the Preview.
 
 ### Functions / Bindings
 
@@ -78,7 +94,7 @@ Adding Search Functions would add complexity to the positioning of the text.
 | `<preview-search-toggle>`   | `OP_PREVIEW_SEARCH_TOGGLE`   |
 | `<preview-toggle>`          | `OP_PREVIEW_TOGGLE`          |
 
-**Advanced Ideas**
+**Advanced Idea**
 
 NeoMutt supports an idea of a 'focussed' Window.
 
@@ -112,30 +128,43 @@ Anything more than that, e.g. `color body`, would need Pager 2.0.
 
 ### Events / Notifications
 
-colour
-window
-editing msg (can affect anything)
+The Preview Window can be affected by the following Notifications:
+
+- Colour `MT_COLOR_NORMAL`
+- Window
+  - `NT_WINDOW_STATE` (visibility, resized)
+  - `NT_WINDOW_DELETE` (shutdown)
+- Email `NT_EMAIL` (edited)
+
+**Note**: Editing the message can affect everything:
+
+- The message itself
+- Attachments, by the `attach:` keyword
+- Security, by the `pgp:` keyword
 
 ### Problems
 
-attachments take up one more row than they need
+- Attachments take up one more row than they need
+  (There's always a blank line)
 
-attachments - fix view
-    after adding attachments, the window is the right size,
-    but only the last is visible
+- Only the last Attachments is visible
+  After adding lots of Attachments, the window is the right size, but only the last Attachments is visible.
+  `<previous-entry>`, `<next-entry>` fixes the view.
 
-Page Up / Down min 1 row!
-    use (Page Size - 1) min overlap
+- Page Up / Down need a minimum of 1 row!
+  If there are **lots** of Attachments, the Preview Window becomes small.
+  Page Up / Down stop working.
+  They should probably move `(Page Size - 1)` rows (giving a 1 line overlap)
 
 ### Testing
 
-tests
+Test behaviour of:
 
-- plain text
-- unicode text
-- embedded ansi escape sequences
+- Plain text
+- Unicode text
+- Embedded ANSI escape sequences
 - ^H overtype sequences
-- emojis
-- text wrapping
-- urls
+- Emojis
+- Text wrapping
+- URLs
 
