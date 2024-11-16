@@ -4,46 +4,40 @@ Some of my ideas are relevant, some more tangential!
 
 Firstly, wow!
 It works, it looks good.
-I think it should be enabled by default.
 
 ### Configuration
-
-
-### Layout
-
-
-### Status Bars
-
-
-### Bindings
-
-
-### Colours
-
-
-### Problems
-
-
---------------------------------------------------------------------------------
-
-Compose Preview
 
 set compose_preview      = yes
 set compose_show_preview = yes
 
-use `devel_` prefix initially?
-
+I think it should be enabled by default.
 Enable by default
     most users won't read the release notes
 
-colour observer
-    color normal, etc
+$compose_attach_lines = 7 or 0 for min
 
-attachments take up one more row than they need
+pager window displays *pager* view, not mailcap/text view
+	option to control this?
+	OR pager for first attach (main message)
+	and mailcap for the rest
 
-attachments - fix view
-    after adding attachments, the window is the right size,
-    but only the last is visible
+### Layout
+
+need better sharing of space
+    limit Attach to how many rows?
+    or msg has min rows?
+
+advanced: 
+    making the whole screen a view (meaning that <page-down> would scroll the
+    envelope part off the top), would be trickier
+
+insert pager window below attachment menu
+	only if there's >5 lines, say
+		e.g. huge list of attachments
+	OR, limit attachment list to 5 or 10 lines, like $pager_index_lines
+		use rest for the pager
+
+### Status Bars / Feedback
 
 text postition need feedback => need total size (rows)
     45%
@@ -51,30 +45,35 @@ text postition need feedback => need total size (rows)
 "Attachments" simple bar => formatted bar
     'n' attachments, remove from compose bar?
 
-need better sharing of space
-    limit Attach to how many rows?
-    or msg has min rows?
-
-Page Up / Down min 1 row!
-    use (Page Size - 1) min overlap
-
-colour for preview window?
-    and/or envelope
-    config to hide preview simple bar?
-
 Preview Bar from Simple to Formatted?
     or put %age in Attachment bar on r.h.s.
 
+change attachment bar to show the number of attachments
+
 $compose_attach_status_format!?
 
-bindings
-    preview_(page|half|line)_(up|down)
-    preview_(top|bottom)
-    search, search_(next|opposite|toggle)
+### Functions / Bindings
 
-reusing pager's bindings would make attachment list unreachable
+bindings
 
 fn to toggle preview, cf sidebar
+
+| Function                    | Opcode                       |
+| :-------------------------- | :--------------------------- |
+| `<preview-page-up>`         | `OP_PREVIEW_PAGE_UP`         |
+| `<preview-page-down>`       | `OP_PREVIEW_PAGE_DOWN`       |
+| `<preview-half-up>`         | `OP_PREVIEW_HALF_UP`         |
+| `<preview-half-down>`       | `OP_PREVIEW_HALF_DOWN`       |
+| `<preview-line-up>`         | `OP_PREVIEW_LINE_UP`         |
+| `<preview-line-down>`       | `OP_PREVIEW_LINE_DOWN`       |
+| `<preview-top>`             | `OP_PREVIEW_TOP`             |
+| `<preview-bottom>`          | `OP_PREVIEW_BOTTOM`          |
+| `<preview-search>`          | `OP_PREVIEW_SEARCH`          |
+| `<preview-search-next>`     | `OP_PREVIEW_SEARCH_NEXT`     |
+| `<preview-search-opposite>` | `OP_PREVIEW_SEARCH_OPPOSITE` |
+| `<preview-search-toggle>`   | `OP_PREVIEW_SEARCH_TOGGLE`   |
+
+reusing pager's bindings would make attachment list unreachable
 
 preview binding => menu bindings and links / priority / focus?
 
@@ -83,35 +82,45 @@ OP_PREVIEW_XYZ if not bound transformed into OP_XYZ
     OP_PREVIEW_XYZ = OP_XYZ + 1000?
     likewise sidebar
 
-editing msg can affect anything
+### Colours
+
+colour observer
+    color normal, etc
+
+colour for preview window?
+    and/or envelope
+    config to hide preview simple bar?
 
 color body, signature, etc
     apply to preview?
     need search colour if <search> is used
 
-$compose_attach_lines = 7 or 0 for min
+### Events / Notifications
 
---------------------------------------------------------------------------------
+colour
+window
+editing msg (can affect anything)
 
-compose enhancement
-	   gzbd | I would like to see the the to,cc,subject etc in the same view along with text/plain attachments.
-	flatcap | oh, see what the email _would_ look like?
-	flatcap | no, that's not possible (yet! :-)
-	   gzbd | IMO this would be a nice visual improvement, since the space is there
-	flatcap | yeah, it's a reasonable idea
-	      * | flatcap thinks how graphical email programs tend to work
-	flatcap | adding a pager in the space at the bottom wouldn't be too hard...
-	flatcap | but making the whole screen a view (meaning that <page-down> would scroll the envelope part off the top), would be trickier
-change attachment bar to show the number of attachments
-insert pager window below attachment menu
-	only if there's >5 lines, say
-		e.g. huge list of attachments
-	OR, limit attachment list to 5 or 10 lines, like $pager_index_lines
-		use rest for the pager
-	<up>/<down> control attachment selection
-	<page-up>/<page-down> control the pager
-pager window displays *pager* view, not mailcap/text view
-	option to control this?
-	OR pager for first attach (main message)
-	and mailcap for the rest
+### Problems
+
+attachments take up one more row than they need
+
+attachments - fix view
+    after adding attachments, the window is the right size,
+    but only the last is visible
+
+Page Up / Down min 1 row!
+    use (Page Size - 1) min overlap
+
+### Testing
+
+tests
+
+- plain text
+- unicode text
+- embedded ansi escape sequences
+- ^H overtype sequences
+- emojis
+- text wrapping
+- urls
 
