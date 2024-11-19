@@ -5,7 +5,7 @@ Some of my ideas are relevant, some more tangential!
 Firstly, wow!
 It works, it looks good.
 
-### Configuration
+## Configuration
 
 Either:
 - `set compose_preview      = yes`
@@ -23,7 +23,7 @@ Do we want to support any Pager config?
 - `$tilde` -- Display '~' in the pager after the end of the email
 - `$wrap` -- Width to wrap text in the pager
 
-### Layout
+## Layout
 
 Few users will have an 80x24 Terminal.
 Whatever the size of Terminal, however many Attachments they have,
@@ -49,7 +49,7 @@ Each would use as many rows as they needed, possibly more rows than the screen h
 Page-Up/Down would move the set of { Envelope, Preview, Attachments } up and down.
 (I have no idea how to implement this :-)
 
-### Status Bars / Feedback
+## Status Bars / Feedback
 
 If the Preview displays a long email, it would be good to show some feedback on the position, e.g. "15%"
 
@@ -68,7 +68,7 @@ Create a Scrollbar Window.
 This would be 1 character wide Window placed to the right of the Preview (or the Pager, etc).
 This would be a simple, passive, Window listening to Notifications from the Preview.
 
-### Functions / Bindings
+## Functions / Bindings
 
 Here's a list of all the Functions we _could_ implement.
 This would allow the user independent control of the Preview.
@@ -102,7 +102,7 @@ This would allow us to reuse a basic function like `<page-up>`,
 whose behaviour would be determined by the Window it acted in.
 Set Focus to the Attachment Window, `<page-up>` affects the Attachments.
 
-### Colours
+## Colours
 
 Currently, Compose only colours the:
 
@@ -126,7 +126,7 @@ Applying all the layers of colour is what makes the Pager so complicated.
 If we implement `<search>` and friends, we'd probably need to support `color search`.
 Anything more than that, e.g. `color body`, would need Pager 2.0.
 
-### Events / Notifications
+## Events / Notifications
 
 The Preview Window can be affected by the following Notifications:
 
@@ -142,7 +142,7 @@ The Preview Window can be affected by the following Notifications:
 - Attachments, by the `attach:` keyword
 - Security, by the `pgp:` keyword
 
-### Problems
+## Problems
 
 - Attachments take up one more row than they need
   (There's always a blank line)
@@ -156,7 +156,7 @@ The Preview Window can be affected by the following Notifications:
   Page Up / Down stop working.
   They should probably move `(Page Size - 1)` rows (giving a 1 line overlap)
 
-### Testing
+## Testing
 
 Test behaviour of:
 

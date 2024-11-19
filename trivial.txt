@@ -1696,3 +1696,50 @@ bare mode cf weechat
 	eliminates need for urlview / urlscan
 	why not use <pipe-message>cat<enter> ?
 
+unify Address Groups and Alias Tags
+	then group patterns match tags
+	%c GROUP   messages carbon-copied to any member of GROUP
+	%C GROUP   messages either to:, cc: or bcc: to any member of GROUP
+	%e GROUP   messages which contain a member of GROUP in the 'Sender' field
+	%f GROUP   messages originating from any member of GROUP
+	%L GROUP   message either originated or received by any member of GROUP
+group commands
+	alias        [ -group name ...] key address [ , address ...]
+	unalias      [ -group name ...] { * | key ... }
+	-------------
+	alternates   [ -group name ...] regex [ regex ...]
+	unalternates [ -group name ...] { * | regex ... }
+	-------------
+	group        [ -group name ...] {     -rx regex ... | -addr address ... }
+	ungroup      [ -group name ...] { * | -rx regex ... | -addr address ... }
+	-------------
+	lists        [ -group name    ]       regex [ regex ...]
+	unlists      [ -group name ...] { * | regex ... }
+	-------------
+	subscribe    [ -group name ...]       regex [ regex ...]
+	unsubscribe  [ -group name ...] { * | regex ... }
+add syntax: <mail>@group to send to entire group?
+
+docs typo
+	lists [ -group name ] regex [ regex ...]
+	should be:
+	lists [ -group name ... ] regex [ regex ...]
+	lists can take multiple -group's
+
+testing.  we've got TEST_CHECK_STR_EQ()
+	we need TEST_CHECK_NUM_EQ()
+	that dumps the values if different
+	test/test_common.h
+	offer upstream?
+
+tests: check which dummy() {} functions are still needed
+
+docs/config
+	urls aren't linkified https://...
+
+sort constants don't need to be centralised
+	SORT_(ADDRESS|ALIAS|ALPHA|COUNT|DATE|DESC|FLAGGED|FROM|KEYID|LABEL|ORDER|PATH|RECEIVED|SCORE|SIZE|SPAM|SUBJECT|THREADS|TO|TRUST|UNREAD)
+	e.g. Alias can define its own
+
+reboot * 2
+

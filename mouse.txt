@@ -104,3 +104,19 @@ Context-specific help:
 
 click on abbreviated status bar for a temporary enlargement
 
+Add configurable Button Panels.  Where?
+	Bottom of Sidebar (or top)
+	Expando (right of) status bar
+	Pager: right of Envelope
+		hmm... will scroll offscreen
+	Below Pager / Bottom of Index / Top of Screen
+		Top => Menu Bar
+
+Buttons:
+	Next unread
+	Delete
+	Archive
+	Label / Toggle
+Abbreviate / iconify (config)
+Colour buttons
+
