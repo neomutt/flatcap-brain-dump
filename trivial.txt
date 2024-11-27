@@ -1713,18 +1713,12 @@ group commands
 	group        [ -group name ...] {     -rx regex ... | -addr address ... }
 	ungroup      [ -group name ...] { * | -rx regex ... | -addr address ... }
 	-------------
-	lists        [ -group name    ]       regex [ regex ...]
+	lists        [ -group name ...]       regex [ regex ...]
 	unlists      [ -group name ...] { * | regex ... }
 	-------------
 	subscribe    [ -group name ...]       regex [ regex ...]
 	unsubscribe  [ -group name ...] { * | regex ... }
 add syntax: <mail>@group to send to entire group?
-
-docs typo
-	lists [ -group name ] regex [ regex ...]
-	should be:
-	lists [ -group name ... ] regex [ regex ...]
-	lists can take multiple -group's
 
 testing.  we've got TEST_CHECK_STR_EQ()
 	we need TEST_CHECK_NUM_EQ()
@@ -1737,9 +1731,50 @@ tests: check which dummy() {} functions are still needed
 docs/config
 	urls aren't linkified https://...
 
-sort constants don't need to be centralised
-	SORT_(ADDRESS|ALIAS|ALPHA|COUNT|DATE|DESC|FLAGGED|FROM|KEYID|LABEL|ORDER|PATH|RECEIVED|SCORE|SIZE|SPAM|SUBJECT|THREADS|TO|TRUST|UNREAD)
-	e.g. Alias can define its own
+expando:
+	move all expando callbacks into LIB/expando.c
+	rename to match members
 
-reboot * 2
+translations
+	need printf format ordering doc
+	msgid "Option %s has an invalid type %d"
+	msgstr "Le type %2$d de l'option %1$s est invalide"
+
+release -- translations
+	check for trailing whitespace
+	kill dead translations
+
+split colours?
+	common enum of domains: MT_INDEX, MT_ALIAS, ...
+	private set of colours MT_IND_SUBJECT
+	cf ExpandoDomain
+	separate `struct RegexColorList IndexList`
+	probably means init() and cleanup() functions for each library
+	what about parsing?
+
+compose <tag> doesn't show "tag-"
+	<tag-prefix> doesn't work
+
+compose attach: browser
+	<tag> multiple files<enter> attaches all
+	should require <tag-prefix>
+	doesn't display "tag-"
+
+compose: attach lots of files
+	select last attachment
+	step-shrink the terminal so selection isn't visible
+	selection isn't visible!
+
+docs for expando architecture
+
+dialogs 21 * Local variable address stored in non-local memory
+	refactor callers
+	dynamically allocate data
+	delegate ownership to menu?
+		probably doesn't make sense for menu to own it
+
+quoted colours not merged correctly
+	color quoted default red
+	color body green default . 
+quoted text should be green red
 

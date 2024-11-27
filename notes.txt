@@ -1,3 +1,5 @@
+search pattern for attachment *name*
+
 [expando-arrow] neomutt-old
 	expando %{name}
 
