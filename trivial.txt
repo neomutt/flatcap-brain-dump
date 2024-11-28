@@ -1731,10 +1731,6 @@ tests: check which dummy() {} functions are still needed
 docs/config
 	urls aren't linkified https://...
 
-expando:
-	move all expando callbacks into LIB/expando.c
-	rename to match members
-
 translations
 	need printf format ordering doc
 	msgid "Option %s has an invalid type %d"
@@ -1752,14 +1748,6 @@ split colours?
 	probably means init() and cleanup() functions for each library
 	what about parsing?
 
-compose <tag> doesn't show "tag-"
-	<tag-prefix> doesn't work
-
-compose attach: browser
-	<tag> multiple files<enter> attaches all
-	should require <tag-prefix>
-	doesn't display "tag-"
-
 compose: attach lots of files
 	select last attachment
 	step-shrink the terminal so selection isn't visible
@@ -1775,6 +1763,6 @@ dialogs 21 * Local variable address stored in non-local memory
 
 quoted colours not merged correctly
 	color quoted default red
-	color body green default . 
+	color body green default .
 quoted text should be green red
 

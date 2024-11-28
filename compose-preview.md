@@ -161,10 +161,25 @@ The Preview Window can be affected by the following Notifications:
 Test behaviour of:
 
 - Plain text
+  - Paragraphs of increasing width
+  - Text wrapping
 - Unicode text
+  - Paragraphs of different languages
 - Embedded ANSI escape sequences
+  - Colours
+    - Simple
+    - Palette
+    - RGB
+  - Attributes (test-ansi)
+  - Cursor position
 - ^H overtype sequences
+  e.g. man page
 - Emojis
-- Text wrapping
+  - Named, e.g. heart 🩸 heart
+  - Simple (one Unicode char)
+  - Complex (multiple Unicode chars)
+- Nerd Font chars
+  -                            
 - URLs
+  - http://example.com
 
