@@ -172,6 +172,7 @@ Test behaviour of:
     - RGB
   - Attributes (test-ansi)
   - Cursor position
+  - URL metadata
 - ^H overtype sequences
   e.g. man page
 - Emojis

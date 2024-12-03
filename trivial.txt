@@ -124,12 +124,6 @@ main.c
 	 * it doesn't get unlinked, and we can rebuild the draft_file */
 	else
 
-why are enum SortType numbered?
-	SORT_ALPHA    =  3, ///< Required by makedoc.c
-	SORT_SUBJECT  =  3, ///< Sort by the email's subject
-	do we need SORT_MAX
-	do we need ANY X_MAX enum values?
-
 base32 doesn't belong in mutt/random.c
 	maybe in mutt/string.c
 
@@ -1765,4 +1759,14 @@ quoted colours not merged correctly
 	color quoted default red
 	color body green default .
 quoted text should be green red
+
+Rename
+	HdrFormatInfo
+	UserHdrsOverride
+	to refer to Email
+
+replicate LOCALES_HACK in the tests
+	if nobody complains, deprecate the configure option
+
+move simple_color_is_header() to pager/display.c
 
