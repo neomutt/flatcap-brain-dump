@@ -1,0 +1,48 @@
+Sidebar Colours
+
+MT_COLOR_SIDEBAR_BACKGROUND
+sidebar/observer.c:216:10:     case MT_COLOR_SIDEBAR_BACKGROUND:
+sidebar/window.c:254:56:       ac_bg = merged_color_overlay(ac_bg, simple_color_get(MT_COLOR_SIDEBAR_BACKGROUND));
+sidebar/window.c:640:50:       ac = merged_color_overlay(ac, simple_color_get(MT_COLOR_SIDEBAR_BACKGROUND));
+sidebar/window.c:676:50:       ac = merged_color_overlay(ac, simple_color_get(MT_COLOR_SIDEBAR_BACKGROUND));
+sidebar/window.c:685:33:       mutt_curses_set_color_by_id(MT_COLOR_SIDEBAR_BACKGROUND);
+
+MT_COLOR_SIDEBAR_DIVIDER
+sidebar/observer.c:217:10:     case MT_COLOR_SIDEBAR_DIVIDER:
+sidebar/window.c:641:50:       ac = merged_color_overlay(ac, simple_color_get(MT_COLOR_SIDEBAR_DIVIDER));
+
+MT_COLOR_SIDEBAR_FLAGGED
+sidebar/observer.c:218:10:     case MT_COLOR_SIDEBAR_FLAGGED:
+sidebar/window.c:233:27:       if (simple_color_is_set(MT_COLOR_SIDEBAR_FLAGGED) && (m->msg_flagged > 0))
+sidebar/window.c:235:52:       ac = merged_color_overlay(ac, simple_color_get(MT_COLOR_SIDEBAR_FLAGGED));
+
+MT_COLOR_SIDEBAR_HIGHLIGHT
+color/simple.c:62:16:          SimpleColors[MT_COLOR_SIDEBAR_HIGHLIGHT].attrs = A_UNDERLINE;
+sidebar/observer.c:219:10:     case MT_COLOR_SIDEBAR_HIGHLIGHT:
+sidebar/window.c:269:15:       color = MT_COLOR_SIDEBAR_HIGHLIGHT;
+
+MT_COLOR_SIDEBAR_INDICATOR
+sidebar/observer.c:220:10:     case MT_COLOR_SIDEBAR_INDICATOR:
+sidebar/window.c:262:31:       if (simple_color_is_set(MT_COLOR_SIDEBAR_INDICATOR))
+sidebar/window.c:263:17:       color = MT_COLOR_SIDEBAR_INDICATOR;
+
+MT_COLOR_SIDEBAR_NEW
+sidebar/observer.c:221:10:     case MT_COLOR_SIDEBAR_NEW:
+sidebar/window.c:243:27:       if (simple_color_is_set(MT_COLOR_SIDEBAR_NEW) && m->has_new)
+sidebar/window.c:245:52:       ac = merged_color_overlay(ac, simple_color_get(MT_COLOR_SIDEBAR_NEW));
+
+MT_COLOR_SIDEBAR_ORDINARY
+sidebar/observer.c:222:10:     case MT_COLOR_SIDEBAR_ORDINARY:
+sidebar/window.c:248:34:       if (!ac && simple_color_is_set(MT_COLOR_SIDEBAR_ORDINARY))
+sidebar/window.c:250:27:       ac = simple_color_get(MT_COLOR_SIDEBAR_ORDINARY);
+
+MT_COLOR_SIDEBAR_SPOOLFILE
+sidebar/observer.c:223:10:     case MT_COLOR_SIDEBAR_SPOOLFILE:
+sidebar/window.c:227:27:       if (simple_color_is_set(MT_COLOR_SIDEBAR_SPOOLFILE) &&
+sidebar/window.c:230:52:       ac = merged_color_overlay(ac, simple_color_get(MT_COLOR_SIDEBAR_SPOOLFILE));
+
+MT_COLOR_SIDEBAR_UNREAD
+sidebar/observer.c:224:10:     case MT_COLOR_SIDEBAR_UNREAD:
+sidebar/window.c:238:27:       if (simple_color_is_set(MT_COLOR_SIDEBAR_UNREAD) && (m->msg_unread > 0))
+sidebar/window.c:240:52:       ac = merged_color_overlay(ac, simple_color_get(MT_COLOR_SIDEBAR_UNREAD));
+

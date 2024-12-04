@@ -1,0 +1,25 @@
+Compose Colours
+
+MT_COLOR_COMPOSE_HEADER
+envelope/window.c:342:45:      mutt_curses_set_normal_backed_color_by_id(MT_COLOR_COMPOSE_HEADER);
+envelope/window.c:355:45:      mutt_curses_set_normal_backed_color_by_id(MT_COLOR_COMPOSE_HEADER);
+envelope/window.c:768:10:      case MT_COLOR_COMPOSE_HEADER:
+
+MT_COLOR_COMPOSE_SECURITY_BOTH
+envelope/window.c:396:47:      mutt_curses_set_normal_backed_color_by_id(MT_COLOR_COMPOSE_SECURITY_BOTH);
+envelope/window.c:769:10:      case MT_COLOR_COMPOSE_SECURITY_BOTH:
+
+MT_COLOR_COMPOSE_SECURITY_ENCRYPT
+envelope/window.c:401:47:      mutt_curses_set_normal_backed_color_by_id(MT_COLOR_COMPOSE_SECURITY_ENCRYPT);
+envelope/window.c:470:49:      mutt_curses_set_normal_backed_color_by_id(MT_COLOR_COMPOSE_SECURITY_ENCRYPT);
+envelope/window.c:770:10:      case MT_COLOR_COMPOSE_SECURITY_ENCRYPT:
+
+MT_COLOR_COMPOSE_SECURITY_NONE
+envelope/window.c:412:47:      mutt_curses_set_normal_backed_color_by_id(MT_COLOR_COMPOSE_SECURITY_NONE);
+envelope/window.c:475:49:      mutt_curses_set_normal_backed_color_by_id(MT_COLOR_COMPOSE_SECURITY_NONE);
+envelope/window.c:771:10:      case MT_COLOR_COMPOSE_SECURITY_NONE:
+
+MT_COLOR_COMPOSE_SECURITY_SIGN
+envelope/window.c:406:47:      mutt_curses_set_normal_backed_color_by_id(MT_COLOR_COMPOSE_SECURITY_SIGN);
+envelope/window.c:772:10:      case MT_COLOR_COMPOSE_SECURITY_SIGN:
+

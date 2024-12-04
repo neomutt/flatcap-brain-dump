@@ -1,0 +1,99 @@
+Index Colours
+
+MT_COLOR_INDEX
+color/color.c:100:46:          (cid == MT_COLOR_HEADER) || (cid == MT_COLOR_INDEX) ||
+color/regex.c:192:10:          case MT_COLOR_INDEX:
+color/regex.c:303:32:          struct EventColor ev_c = { MT_COLOR_INDEX, NULL };
+color/regex.c:345:10:          case MT_COLOR_INDEX:
+expando/node_expando.c:475:22: add_color(buf, MT_COLOR_INDEX);
+index/dlg_index.c:1415:47:     STAILQ_FOREACH(color, regex_colors_get_list(MT_COLOR_INDEX), entries)
+index/index.c:272:17:          if (!((cid == MT_COLOR_INDEX) || (cid == MT_COLOR_INDEX_AUTHOR) ||
+menu/draw.c:251:17:            if (*s == MT_COLOR_INDEX)
+
+MT_COLOR_INDEX_AUTHOR
+color/color.c:101:18:          (cid == MT_COLOR_INDEX_AUTHOR) || (cid == MT_COLOR_INDEX_COLLAPSED) ||
+color/regex.c:194:10:          case MT_COLOR_INDEX_AUTHOR:
+color/regex.c:346:10:          case MT_COLOR_INDEX_AUTHOR:
+index/expando_index.c:709:34:  node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/expando_index.c:1216:34: node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/expando_index.c:1252:36: node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/expando_index.c:1333:34: node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/expando_index.c:1385:36: node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/expando_index.c:1410:34: node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/expando_index.c:1429:34: node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/index.c:272:44:          if (!((cid == MT_COLOR_INDEX) || (cid == MT_COLOR_INDEX_AUTHOR) ||
+
+MT_COLOR_INDEX_COLLAPSED
+color/color.c:101:52:          (cid == MT_COLOR_INDEX_AUTHOR) || (cid == MT_COLOR_INDEX_COLLAPSED) ||
+color/regex.c:196:10:          case MT_COLOR_INDEX_COLLAPSED:
+color/regex.c:347:10:          case MT_COLOR_INDEX_COLLAPSED:
+index/expando_index.c:1021:36: node_expando_set_color(node, MT_COLOR_INDEX_COLLAPSED);
+index/expando_index.c:1028:36: node_expando_set_color(node, MT_COLOR_INDEX_COLLAPSED);
+index/expando_index.c:1051:36: node_expando_set_color(node, MT_COLOR_INDEX_COLLAPSED);
+index/index.c:273:17:          (cid == MT_COLOR_INDEX_COLLAPSED) || (cid == MT_COLOR_INDEX_DATE) ||
+
+MT_COLOR_INDEX_DATE
+color/color.c:102:18:          (cid == MT_COLOR_INDEX_DATE) || (cid == MT_COLOR_INDEX_FLAGS) ||
+color/regex.c:198:10:          case MT_COLOR_INDEX_DATE:
+color/regex.c:348:10:          case MT_COLOR_INDEX_DATE:
+index/expando_index.c:372:34:  node_expando_set_color(node, MT_COLOR_INDEX_DATE);
+index/index.c:273:54:          (cid == MT_COLOR_INDEX_COLLAPSED) || (cid == MT_COLOR_INDEX_DATE) ||
+
+MT_COLOR_INDEX_FLAGS
+color/color.c:102:50:          (cid == MT_COLOR_INDEX_DATE) || (cid == MT_COLOR_INDEX_FLAGS) ||
+color/regex.c:200:10:          case MT_COLOR_INDEX_FLAGS:
+color/regex.c:349:10:          case MT_COLOR_INDEX_FLAGS:
+index/expando_index.c:494:34:  node_expando_set_color(node, MT_COLOR_INDEX_FLAGS);
+index/expando_index.c:535:34:  node_expando_set_color(node, MT_COLOR_INDEX_FLAGS);
+index/expando_index.c:688:34:  node_expando_set_color(node, MT_COLOR_INDEX_FLAGS);
+index/expando_index.c:802:34:  node_expando_set_color(node, MT_COLOR_INDEX_FLAGS);
+index/expando_index.c:924:34:  node_expando_set_color(node, MT_COLOR_INDEX_FLAGS);
+index/index.c:274:17:          (cid == MT_COLOR_INDEX_FLAGS) || (cid == MT_COLOR_INDEX_LABEL) ||
+
+MT_COLOR_INDEX_LABEL
+color/color.c:103:18:          (cid == MT_COLOR_INDEX_LABEL) || (cid == MT_COLOR_INDEX_NUMBER) ||
+color/regex.c:202:10:          case MT_COLOR_INDEX_LABEL:
+color/regex.c:350:10:          case MT_COLOR_INDEX_LABEL:
+index/expando_index.c:1531:34: node_expando_set_color(node, MT_COLOR_INDEX_LABEL);
+index/expando_index.c:1641:34: node_expando_set_color(node, MT_COLOR_INDEX_LABEL);
+index/index.c:274:50:          (cid == MT_COLOR_INDEX_FLAGS) || (cid == MT_COLOR_INDEX_LABEL) ||
+
+MT_COLOR_INDEX_NUMBER
+color/color.c:103:51:          (cid == MT_COLOR_INDEX_LABEL) || (cid == MT_COLOR_INDEX_NUMBER) ||
+color/regex.c:204:10:          case MT_COLOR_INDEX_NUMBER:
+color/regex.c:351:10:          case MT_COLOR_INDEX_NUMBER:
+index/expando_index.c:817:34:  node_expando_set_color(node, MT_COLOR_INDEX_NUMBER);
+index/index.c:275:17:          (cid == MT_COLOR_INDEX_NUMBER) || (cid == MT_COLOR_INDEX_SIZE) ||
+
+MT_COLOR_INDEX_SIZE
+color/color.c:104:18:          (cid == MT_COLOR_INDEX_SIZE) || (cid == MT_COLOR_INDEX_SUBJECT) ||
+color/regex.c:206:10:          case MT_COLOR_INDEX_SIZE:
+color/regex.c:352:10:          case MT_COLOR_INDEX_SIZE:
+index/expando_index.c:411:34:  node_expando_set_color(node, MT_COLOR_INDEX_SIZE);
+index/expando_index.c:744:34:  node_expando_set_color(node, MT_COLOR_INDEX_SIZE);
+index/expando_index.c:849:34:  node_expando_set_color(node, MT_COLOR_INDEX_SIZE);
+index/index.c:275:51:          (cid == MT_COLOR_INDEX_NUMBER) || (cid == MT_COLOR_INDEX_SIZE) ||
+
+MT_COLOR_INDEX_SUBJECT
+color/color.c:104:50:          (cid == MT_COLOR_INDEX_SIZE) || (cid == MT_COLOR_INDEX_SUBJECT) ||
+color/regex.c:208:10:          case MT_COLOR_INDEX_SUBJECT:
+color/regex.c:353:10:          case MT_COLOR_INDEX_SUBJECT:
+index/expando_index.c:1465:34: node_expando_set_color(node, MT_COLOR_INDEX_SUBJECT);
+index/index.c:276:17:          (cid == MT_COLOR_INDEX_SUBJECT) || (cid == MT_COLOR_INDEX_TAG) ||
+
+MT_COLOR_INDEX_TAG
+color/color.c:105:18:          (cid == MT_COLOR_INDEX_TAG) || (cid == MT_COLOR_INDEX_TAGS) ||
+color/regex.c:210:10:          case MT_COLOR_INDEX_TAG:
+color/regex.c:354:10:          case MT_COLOR_INDEX_TAG:
+index/expando_index.c:988:34:  node_expando_set_color(node, MT_COLOR_INDEX_TAG);
+index/index.c:276:52:          (cid == MT_COLOR_INDEX_SUBJECT) || (cid == MT_COLOR_INDEX_TAG) ||
+menu/draw.c:68:15:             if (type == MT_COLOR_INDEX_TAG)
+
+MT_COLOR_INDEX_TAGS
+color/color.c:105:49:          (cid == MT_COLOR_INDEX_TAG) || (cid == MT_COLOR_INDEX_TAGS) ||
+color/regex.c:212:10:          case MT_COLOR_INDEX_TAGS:
+color/regex.c:355:10:          case MT_COLOR_INDEX_TAGS:
+index/expando_index.c:968:34:  node_expando_set_color(node, MT_COLOR_INDEX_TAGS);
+index/expando_index.c:1108:34: node_expando_set_color(node, MT_COLOR_INDEX_TAGS);
+index/index.c:277:17:          (cid == MT_COLOR_INDEX_TAGS) || (cid == MT_COLOR_MAX) ||
+

@@ -1,0 +1,73 @@
+Pager Colours
+
+MT_COLOR_ATTACHMENT
+pager/display.c:575:27:        lines[line_num].cid = MT_COLOR_ATTACHMENT;
+pager/display.c:622:30:        if (lines[line_num].cid == MT_COLOR_ATTACHMENT)
+pager/display.c:634:52:        struct AttrColor *ac_attach = simple_color_get(MT_COLOR_ATTACHMENT);
+
+MT_COLOR_ATTACH_HEADERS
+pager/display.c:644:56:        STAILQ_FOREACH(color_line, regex_colors_get_list(MT_COLOR_ATTACH_HEADERS), entries)
+
+MT_COLOR_BODY
+pager/display.c:390:34:        head = regex_colors_get_list(MT_COLOR_BODY);
+
+MT_COLOR_HDRDEFAULT
+color/simple.c:121:46:         return (cid == MT_COLOR_HEADER) || (cid == MT_COLOR_HDRDEFAULT);
+pager/display.c:384:30:        if (lines[line_num].cid == MT_COLOR_HDRDEFAULT)
+pager/display.c:529:31:        lines[line_num].cid = MT_COLOR_HDRDEFAULT;
+pager/display.c:544:55:        simple_color_get(MT_COLOR_HDRDEFAULT));
+pager/display.c:616:32:        ((lines[line_num].cid == MT_COLOR_HDRDEFAULT) && c_header_color_partial))
+
+MT_COLOR_HEADER
+color/simple.c:121:18:         return (cid == MT_COLOR_HEADER) || (cid == MT_COLOR_HDRDEFAULT);
+pager/display.c:166:29:        else if ((lines[m].cid == MT_COLOR_HEADER) && lines[m].syntax[0].attr_color)
+pager/display.c:386:34:        head = regex_colors_get_list(MT_COLOR_HEADER);
+pager/display.c:537:58:        STAILQ_FOREACH(color_line, regex_colors_get_list(MT_COLOR_HEADER), entries)
+pager/display.c:541:35:        lines[line_num].cid = MT_COLOR_HEADER;
+pager/display.c:584:30:        (lines[i].cid == MT_COLOR_HEADER)))
+pager/display.c:1329:28:       if ((*lines)[m].cid == MT_COLOR_HEADER)
+
+MT_COLOR_MARKERS
+pager/display.c:140:49:        last_color = *mutt_curses_set_color_by_id(MT_COLOR_MARKERS);
+
+MT_COLOR_QUOTED
+pager/display.c:175:52:        if ((flags & MUTT_SHOWCOLOR) && (lines[m].cid == MT_COLOR_QUOTED))
+pager/display.c:583:67:        ((lines[i].cid == MT_COLOR_NORMAL) || (lines[i].cid == MT_COLOR_QUOTED) ||
+pager/display.c:607:27:        lines[line_num].cid = MT_COLOR_QUOTED;
+pager/display.c:615:75:        if ((lines[line_num].cid == MT_COLOR_NORMAL) || (lines[line_num].cid == MT_COLOR_QUOTED) ||
+pager/display.c:1151:50:       if ((flags & MUTT_HIDE) && (cur_line->cid == MT_COLOR_QUOTED) &&
+pager/display.c:1164:25:       (cur_line->cid == MT_COLOR_QUOTED) && !cur_line->quote)
+pager/display.h:53:62:         short cid; ///< Default line colour, e.g. #MT_COLOR_QUOTED
+pager/functions.c:362:38:      if (!hiding || (info[cur].cid != MT_COLOR_QUOTED))
+pager/functions.c:469:64:      if (priv->hide_quoted && (priv->lines[priv->top_line].cid == MT_COLOR_QUOTED))
+pager/functions.c:493:50:      (priv->lines[priv->top_line].cid == MT_COLOR_QUOTED))
+pager/functions.c:665:59:      if ((!priv->hide_quoted || (priv->lines[i].cid != MT_COLOR_QUOTED)) &&
+pager/functions.c:681:59:      if ((!priv->hide_quoted || (priv->lines[i].cid != MT_COLOR_QUOTED)) &&
+pager/functions.c:748:59:      if ((!priv->hide_quoted || (priv->lines[i].cid != MT_COLOR_QUOTED)) &&
+pager/functions.c:778:79:      if ((!priv->hide_quoted || (priv->has_types && (priv->lines[i].cid != MT_COLOR_QUOTED))) &&
+pager/functions.c:900:45:      (priv->lines[new_topline].cid == MT_COLOR_QUOTED))
+pager/functions.c:923:45:      (priv->lines[new_topline].cid != MT_COLOR_QUOTED))
+pager/functions.c:940:45:      (priv->lines[new_topline].cid == MT_COLOR_QUOTED))
+pager/pager.c:255:21:          if ((ev_c->cid == MT_COLOR_QUOTED) || (ev_c->cid == MT_COLOR_MAX))
+
+MT_COLOR_SEARCH
+pager/display.c:211:33:        color = *simple_color_get(MT_COLOR_SEARCH);
+
+MT_COLOR_SIGNATURE
+pager/display.c:64:29:         if (info[offset].cid != MT_COLOR_SIGNATURE)
+pager/display.c:581:27:        lines[line_num].cid = MT_COLOR_SIGNATURE;
+pager/display.c:592:24:        lines[i++].cid = MT_COLOR_SIGNATURE;
+pager/display.c:597:27:        lines[line_num].cid = MT_COLOR_SIGNATURE;
+
+MT_COLOR_TILDE
+pager/pager.c:221:47:          mutt_curses_set_normal_backed_color_by_id(MT_COLOR_TILDE);
+
+# other uses
+color/color.c:99:54:           return (cid == MT_COLOR_ATTACH_HEADERS) || (cid == MT_COLOR_BODY) ||
+color/quoted.c:120:14:         if (cid != MT_COLOR_QUOTED)
+color/quoted.c:149:52:         struct AttrColor *ac_quoted = simple_color_get(MT_COLOR_QUOTED);
+color/regex.c:188:10:          case MT_COLOR_BODY:
+color/regex.c:337:10:          case MT_COLOR_BODY:
+color/simple.c:60:16:          SimpleColors[MT_COLOR_MARKERS].attrs = A_REVERSE;
+color/simple.c:61:16:          SimpleColors[MT_COLOR_SEARCH].attrs = A_REVERSE;
+

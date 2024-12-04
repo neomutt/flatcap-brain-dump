@@ -1,0 +1,116 @@
+Core Colours
+
+MT_COLOR_BOLD
+color/ansi.c:61:45:            ansi->attr_color = simple_color_get(MT_COLOR_BOLD);
+compose/preview.c:200:10:      case MT_COLOR_BOLD:
+envelope/window.c:599:47:      mutt_curses_set_normal_backed_color_by_id(MT_COLOR_BOLD);
+envelope/window.c:767:10:      case MT_COLOR_BOLD:
+pager/display.c:219:29:        if (simple_color_is_set(MT_COLOR_BOLD) && !search)
+pager/display.c:220:33:        color = *simple_color_get(MT_COLOR_BOLD);
+
+MT_COLOR_INDICATOR
+menu/draw.c:331:47:            struct AttrColor *ac_ind = simple_color_get(MT_COLOR_INDICATOR);
+menu/draw.c:400:47:            struct AttrColor *ac_ind = simple_color_get(MT_COLOR_INDICATOR);
+menu/draw.c:454:47:            struct AttrColor *ac_ind = simple_color_get(MT_COLOR_INDICATOR);
+menu/observer.c:51:55:         if ((ev_c->cid != MT_COLOR_NORMAL) && (ev_c->cid != MT_COLOR_INDICATOR) &&
+sidebar/observer.c:214:10:     case MT_COLOR_INDICATOR:
+sidebar/window.c:265:17:       color = MT_COLOR_INDICATOR;
+
+MT_COLOR_ITALIC
+color/ansi.c:65:45:            ansi->attr_color = simple_color_get(MT_COLOR_ITALIC);
+pager/display.c:233:29:        if (simple_color_is_set(MT_COLOR_ITALIC) && !search)
+pager/display.c:234:33:        color = *simple_color_get(MT_COLOR_ITALIC);
+
+MT_COLOR_MESSAGE_LOG
+pager/display.c:1106:23:       cur_line->cid = MT_COLOR_MESSAGE_LOG;
+
+MT_COLOR_NORMAL
+compose/cbar.c:116:31:         mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+compose/cbar.c:135:55:         if ((ev_c->cid != MT_COLOR_STATUS) && (ev_c->cid != MT_COLOR_NORMAL) &&
+compose/preview.c:201:10:      case MT_COLOR_NORMAL:
+editor/window.c:196:31:        mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+envelope/window.c:344:31:      mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+envelope/window.c:357:31:      mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+envelope/window.c:416:31:      mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+envelope/window.c:601:33:      mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+envelope/window.c:714:31:      mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+envelope/window.c:773:10:      case MT_COLOR_NORMAL:
+gui/curs_lib.c:247:56:         const struct AttrColor *ac_normal = simple_color_get(MT_COLOR_NORMAL);
+gui/curs_lib.c:514:56:         const struct AttrColor *ac_normal = simple_color_get(MT_COLOR_NORMAL);
+gui/msgwin.c:268:33:           mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+gui/msgwin.c:271:31:           mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+gui/msgwin.c:500:58:           const struct AttrColor *ac_normal = simple_color_get(MT_COLOR_NORMAL);
+gui/msgwin.c:521:30:           msgwin_set_text(win, NULL, MT_COLOR_NORMAL);
+gui/mutt_curses.c:65:56:       const struct AttrColor *ac_normal = simple_color_get(MT_COLOR_NORMAL);
+gui/mutt_curses.c:83:27:       ac = simple_color_get(MT_COLOR_NORMAL);
+gui/sbar.c:104:31:             mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+gui/sbar.c:126:55:             if ((ev_c->cid != MT_COLOR_STATUS) && (ev_c->cid != MT_COLOR_NORMAL) &&
+helpbar/helpbar.c:188:31:      mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+helpbar/helpbar.c:239:55:      if ((ev_c->cid != MT_COLOR_STATUS) && (ev_c->cid != MT_COLOR_NORMAL) &&
+index/dlg_index.c:979:75:      const struct AttrColor *ac_base = merged_color_overlay(simple_color_get(MT_COLOR_NORMAL),
+index/dlg_index.c:1277:37:     msgwin_set_text(NULL, "tag-", MT_COLOR_NORMAL);
+index/dlg_index.c:1424:50:     struct AttrColor *ac_normal = simple_color_get(MT_COLOR_NORMAL);
+index/ibar.c:152:31:           mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+index/ibar.c:178:55:           if ((ev_c->cid != MT_COLOR_STATUS) && (ev_c->cid != MT_COLOR_NORMAL) &&
+index/index.c:278:17:          (cid == MT_COLOR_NORMAL) || (cid == MT_COLOR_TREE)))
+main.c:940:33:                 mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+menu/draw.c:311:31:            mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+menu/draw.c:374:35:            mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+menu/draw.c:378:31:            mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+menu/draw.c:408:33:            mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+menu/draw.c:421:33:            mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+menu/draw.c:437:31:            mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+menu/draw.c:470:31:            mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+menu/menu.c:50:27:             return simple_color_get(MT_COLOR_NORMAL);
+menu/observer.c:51:21:         if ((ev_c->cid != MT_COLOR_NORMAL) && (ev_c->cid != MT_COLOR_INDICATOR) &&
+menu/tagging.c:59:35:          msgwin_set_text(NULL, "tag-", MT_COLOR_NORMAL);
+menu/tagging.c:133:35:         msgwin_set_text(NULL, "tag-", MT_COLOR_NORMAL);
+mutt_logging.c:135:24:         enum ColorId cid = MT_COLOR_NORMAL;
+pager/display.c:163:37:        def_color = *simple_color_get(MT_COLOR_NORMAL);
+pager/display.c:245:78:        const struct AttrColor *ac_merge = merged_color_overlay(simple_color_get(MT_COLOR_NORMAL),
+pager/display.c:510:29:        lines[line_num].cid = MT_COLOR_NORMAL;
+pager/display.c:571:27:        lines[line_num].cid = MT_COLOR_NORMAL;
+pager/display.c:583:30:        ((lines[i].cid == MT_COLOR_NORMAL) || (lines[i].cid == MT_COLOR_QUOTED) ||
+pager/display.c:611:27:        lines[line_num].cid = MT_COLOR_NORMAL;
+pager/display.c:615:31:        if ((lines[line_num].cid == MT_COLOR_NORMAL) || (lines[line_num].cid == MT_COLOR_QUOTED) ||
+pager/display.c:1114:59:       cur_line->syntax[0].attr_color = simple_color_get(MT_COLOR_NORMAL);
+pager/display.c:1138:34:       (*lines)[line_num].cid = MT_COLOR_NORMAL;
+pager/display.c:1317:35:       mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+pager/display.c:1337:58:       const struct AttrColor *ac_normal = simple_color_get(MT_COLOR_NORMAL);
+pager/display.c:1351:60:       const struct AttrColor *ac_normal = simple_color_get(MT_COLOR_NORMAL);
+pager/display.c:1363:33:       mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+pager/pager.c:230:33:          mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+pager/pbar.c:163:31:           mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+pager/pbar.c:182:43:           if ((cid != MT_COLOR_STATUS) && (cid != MT_COLOR_NORMAL) && (cid != MT_COLOR_MAX))
+progress/window.c:107:35:      mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+progress/window.c:119:35:      mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+question/question.c:71:56:     const struct AttrColor *ac_normal = simple_color_get(MT_COLOR_NORMAL);
+question/question.c:292:63:    msgwin_add_text(win, buf_string(text), simple_color_get(MT_COLOR_NORMAL));
+sidebar/observer.c:215:10:     case MT_COLOR_NORMAL:
+sidebar/window.c:253:52:       const struct AttrColor *ac_bg = simple_color_get(MT_COLOR_NORMAL);
+sidebar/window.c:639:49:       const struct AttrColor *ac = simple_color_get(MT_COLOR_NORMAL);
+sidebar/window.c:657:31:       mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+sidebar/window.c:675:49:       const struct AttrColor *ac = simple_color_get(MT_COLOR_NORMAL);
+
+MT_COLOR_STRIPE_EVEN
+pager/display.c:159:61:        MT_COLOR_STRIPE_EVEN);
+pager/display.c:1299:76:       const enum ColorId cid = ((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD : MT_COLOR_STRIPE_EVEN;
+pager/display.c:1312:78:       const enum ColorId cid = ((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD : MT_COLOR_STRIPE_EVEN;
+pager/display.c:1350:78:       const enum ColorId cid = ((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD : MT_COLOR_STRIPE_EVEN;
+
+MT_COLOR_STRIPE_ODD
+pager/display.c:158:61:        def_color = *simple_color_get(((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD :
+pager/display.c:1299:54:       const enum ColorId cid = ((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD : MT_COLOR_STRIPE_EVEN;
+pager/display.c:1312:56:       const enum ColorId cid = ((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD : MT_COLOR_STRIPE_EVEN;
+pager/display.c:1350:56:       const enum ColorId cid = ((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD : MT_COLOR_STRIPE_EVEN;
+
+MT_COLOR_TREE
+attach/expando.c:79:32:        node_expando_set_color(node, MT_COLOR_TREE);
+index/expando_index.c:1489:32: node_expando_set_color(node, MT_COLOR_TREE);
+index/index.c:278:45:          (cid == MT_COLOR_NORMAL) || (cid == MT_COLOR_TREE)))
+
+MT_COLOR_UNDERLINE
+color/ansi.c:69:45:            ansi->attr_color = simple_color_get(MT_COLOR_UNDERLINE);
+pager/display.c:226:29:        if (simple_color_is_set(MT_COLOR_UNDERLINE) && !search)
+pager/display.c:227:33:        color = *simple_color_get(MT_COLOR_UNDERLINE);
+

@@ -1,0 +1,54 @@
+Message Window Colours
+
+MT_COLOR_ERROR
+mutt_logging.c:140:15:         cid = MT_COLOR_ERROR;
+pager/display.c:1112:59:       cur_line->syntax[0].attr_color = simple_color_get(MT_COLOR_ERROR);
+
+MT_COLOR_MESSAGE
+mutt_logging.c:146:15:         cid = MT_COLOR_MESSAGE;
+pager/display.c:1108:59:       cur_line->syntax[0].attr_color = simple_color_get(MT_COLOR_MESSAGE);
+
+MT_COLOR_OPTIONS
+question/question.c:75:27:     if (simple_color_is_set(MT_COLOR_OPTIONS))
+question/question.c:78:77:     simple_color_get(MT_COLOR_OPTIONS));
+question/question.c:88:57:     // we have a single letter within parentheses - MT_COLOR_OPTIONS
+
+MT_COLOR_PROGRESS
+progress/window.c:95:46:       if ((percent != -1) && simple_color_is_set(MT_COLOR_PROGRESS))
+progress/window.c:100:49:      mutt_curses_set_normal_backed_color_by_id(MT_COLOR_PROGRESS);
+progress/window.c:116:49:      mutt_curses_set_normal_backed_color_by_id(MT_COLOR_PROGRESS);
+
+MT_COLOR_PROMPT
+conn/dlg_verifycert.c:236:39:  msgwin_set_text(NULL, mdata.prompt, MT_COLOR_PROMPT);
+conn/dlg_verifycert.c:246:41:  msgwin_set_text(NULL, mdata.prompt, MT_COLOR_PROMPT);
+editor/window.c:194:45:        mutt_curses_set_normal_backed_color_by_id(MT_COLOR_PROMPT);
+flags.c:467:32:                msgwin_set_text(win, prompt, MT_COLOR_PROMPT);
+gui/curs_lib.c:248:56:         const struct AttrColor *ac_prompt = simple_color_get(MT_COLOR_PROMPT);
+gui/curs_lib.c:507:32:         msgwin_set_text(win, prompt, MT_COLOR_PROMPT);
+gui/curs_lib.c:515:56:         const struct AttrColor *ac_prompt = simple_color_get(MT_COLOR_PROMPT);
+question/question.c:73:77:     simple_color_get(MT_COLOR_PROMPT));
+question/question.c:83:54:     // write the part between prompt and cur using MT_COLOR_PROMPT
+question/question.c:245:42:    msgwin_set_text(win, buf_string(text), MT_COLOR_PROMPT);
+question/question.c:296:63:    msgwin_add_text(win, buf_string(text), simple_color_get(MT_COLOR_PROMPT));
+
+MT_COLOR_STATUS
+color/regex.c:391:14:          if (cid != MT_COLOR_STATUS)
+compose/cbar.c:110:45:         mutt_curses_set_normal_backed_color_by_id(MT_COLOR_STATUS);
+compose/cbar.c:135:21:         if ((ev_c->cid != MT_COLOR_STATUS) && (ev_c->cid != MT_COLOR_NORMAL) &&
+compose/preview.c:202:10:      case MT_COLOR_STATUS:
+envelope/window.c:774:10:      case MT_COLOR_STATUS:
+gui/sbar.c:101:45:             mutt_curses_set_normal_backed_color_by_id(MT_COLOR_STATUS);
+gui/sbar.c:126:21:             if ((ev_c->cid != MT_COLOR_STATUS) && (ev_c->cid != MT_COLOR_NORMAL) &&
+helpbar/helpbar.c:185:45:      mutt_curses_set_normal_backed_color_by_id(MT_COLOR_STATUS);
+helpbar/helpbar.c:239:21:      if ((ev_c->cid != MT_COLOR_STATUS) && (ev_c->cid != MT_COLOR_NORMAL) &&
+index/dlg_index.c:980:75:      simple_color_get(MT_COLOR_STATUS));
+index/dlg_index.c:990:46:      STAILQ_FOREACH(cl, regex_colors_get_list(MT_COLOR_STATUS), entries)
+index/ibar.c:146:45:           mutt_curses_set_normal_backed_color_by_id(MT_COLOR_STATUS);
+index/ibar.c:178:21:           if ((ev_c->cid != MT_COLOR_STATUS) && (ev_c->cid != MT_COLOR_NORMAL) &&
+pager/pbar.c:157:45:           mutt_curses_set_normal_backed_color_by_id(MT_COLOR_STATUS);
+pager/pbar.c:182:15:           if ((cid != MT_COLOR_STATUS) && (cid != MT_COLOR_NORMAL) && (cid != MT_COLOR_MAX))
+
+MT_COLOR_WARNING
+mutt_logging.c:143:15:         cid = MT_COLOR_WARNING;
+pager/display.c:1110:59:       cur_line->syntax[0].attr_color = simple_color_get(MT_COLOR_WARNING);
+
