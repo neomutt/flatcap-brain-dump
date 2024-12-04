@@ -1,0 +1,35 @@
+Plan to Split up the Colours
+
+Rather than a central repository, libraries could maintain their own
+
+- c0 All Colours
+- c1 Core Colours
+- c2 Sidebar Colours
+- c3 Compose Colours
+- c4 Index Colours
+- c5 Pager Colours
+- c6 Message Window Colours
+
+Future:
+- Alias Colours
+- Browser Colours
+
+Need a central enum of "domains", so that { domain, cid } is unique
+
+enum
+{
+  ColourCore = 1,
+  ColourSidebar,
+  ...
+}
+
+Then each library could number theirs from 0
+
+Libraries would need to
+- Register their colours
+- Own / Init / Cleanup RegexColorList's
+- cid -> RegexColorList lookup function
+- Define their colours
+  { "alias_name", MT_COLOR_ALIAS_NAME, OPTIONAL_REGEX, CASE_INSENSITIVE }
+  or handle the parsing themselves
+
