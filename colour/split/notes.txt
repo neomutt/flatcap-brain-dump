@@ -16,13 +16,6 @@ Future:
 
 Need a central enum of "domains", so that { domain, cid } is unique
 
-enum
-{
-  ColourCore = 1,
-  ColourSidebar,
-  ...
-}
-
 Then each library could number theirs from 0
 
 Libraries would need to
@@ -32,4 +25,68 @@ Libraries would need to
 - Define their colours
   { "alias_name", MT_COLOR_ALIAS_NAME, OPTIONAL_REGEX, CASE_INSENSITIVE }
   or handle the parsing themselves
+
+Colour Definition Flags
+	REGEX_COMPULSORY | REGEX_OPTIONAL
+	CASE_SENSITIVE | CASE_INSENSITIVE
+	SINGLE_COLOR
+	SYNONYM
+
+If each definition is associated with RegexColorList
+
+--------------------------------------------------------------------------------
+
+enum ColorDomain
+{
+  CD_CORE = 1,
+  CD_ALIAS,
+  CD_SIDEBAR,
+  ...
+};
+
+enum SidebarSimpleColor
+{
+  CID_SB_DIVIDER,
+  ...
+};
+
+// Colour Domain, Colour ID
+struct SimpleColorDefinition SidebarSimpleColorDefs[] = {
+  { "sidebar_divider", CD_SIDEBAR, CID_SB_DIVIDER, [flags], [AttrColor] },
+  ...
+};
+
+color_register_simple_colors(SidebarSimpleColorDefs);
+
+struct RegexColorList AliasCommentList;   ///< List of colours applied to the alias comment
+
+struct RegexColorDefinition AliasRegexColorDefs[] = {
+  { "alias_comment", CD_ALIAS, CID_ALIAS_COMMENT, [flags], [RegexColorList] },
+  ...
+};
+
+color_register_regexes(AliasRegexColorDefs);
+
+need BOTH:
+	Config:          "name"     -> { did,cid }
+		allows for synonyms, e.g. sidebar_spoolfile
+	Colour Setting: { did,cid } -> AttrColor/RegexColorList
+
+eliminate MT_COLOR_QUOTED in favour of Q{0..9}
+
+synonym
+	"compose[space]xyz" to "compose[underscore]xyz"
+	"quoted" to "quoted0"
+
+--------------------------------------------------------------------------------
+
+Combined?
+
+struct ColorDefinition SidebarColorDefs[] = {
+  { "pager_signature", CD_PAGER, CID_PAGER_SIGNATURE, CT_SIMPLE,     [flags], [data] },
+  { "pager_body",      CD_PAGER, CID_PAGER_BODY,      CT_REGEX_LIST, [flags], [data] },
+  ...
+};
+
+color_register_colors(SidebarColorDefs);
 
