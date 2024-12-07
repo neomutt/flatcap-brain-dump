@@ -1760,13 +1760,10 @@ quoted colours not merged correctly
 	color body green default .
 quoted text should be green red
 
-Rename
-	HdrFormatInfo
-	UserHdrsOverride
-	to refer to Email
-
 replicate LOCALES_HACK in the tests
 	if nobody complains, deprecate the configure option
 
-move simple_color_is_header() to pager/display.c
+merge (almost identical)
+	struct Regex *regex_new(const char *str, uint32_t flags, struct Buffer *err)
+	struct Regex *mutt_regex_new(const char *str, uint32_t flags, struct Buffer *err)
 
