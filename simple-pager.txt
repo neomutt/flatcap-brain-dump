@@ -1,0 +1,107 @@
+Simple Pager Navigation
+
+Actions:
+- <page-down>
+- <page-up>
+- <line-down>
+- <line-up>
+- <home>
+- <end>
+
+Events:
+- Repaint
+- Screen Resize
+- Config change
+
+Screen 80x24
+
+struct TextLine
+{
+	int line_number
+	int line_bytes
+	int screen_cols
+	int file_byte_offset
+}
+
+ARRAY(struct TextLine)
+
+Initial state:
+	top_row = 0
+	rows_displayed = 0
+	file_offset = 0
+
+// Calculate
+for (i = top_row; i < (top_row + 24); i++)
+{
+	TextLine tl = ARRAY_GET(i)
+	if (tl)
+	{
+		fseek(tl.file_byte_offset + tl.line_bytes)
+	}
+	else
+	{
+		Read file one line of the file
+		Measure line's width in screen columns
+		tl = Add a record to the ARRAY
+	}
+
+	using tl:
+	Calculate number of rows required (optionally using $markers)
+	Increase i, if necessary
+}
+
+// Display
+for (i = top_row; i < (top_row + 24); i++)
+{
+	TextLine tl = ARRAY_GET(i)
+	fseek(tl.file_byte_offset)
+
+	Read file one line of the file
+	Display text, wrapping as necessary
+		(optionally using $markers)
+}
+
+// Action <page-down>
+Add rows_displayed to top_row
+Recalculate from new top_row
+(if there are gaps in the ARRAY, we'll need to read sequentially through the file to fill them)
+Display
+
+// Action <line-down>
+like <page-down> but top_row++
+
+// Action <page-up>
+Work backwards through ARRAY, calculating each row
+Wrapping as necessary
+Until the screen has enough rows
+Or the top of the file is reached
+
+// Action <line-up>
+like <page-up> but top_row--
+
+// Action <home>
+top_row = 0
+No calculation necessary
+Display
+
+// Action <end>
+Need to recalculate using the entire file
+Then work backwards to fill the screen, like <page-up>
+Display
+
+// Event Repaint
+No calculation necessary
+Display
+
+// Event Screen Resize
+top_row unchanged
+Recalculate to work out how many text rows are needed
+Update rows_displayed
+Display
+
+// Event Config change
+top_row unchanged
+Recalculate to work out how many text rows are needed
+Update rows_displayed
+Display
+
