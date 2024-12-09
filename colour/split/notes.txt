@@ -27,10 +27,11 @@ Libraries would need to
   or handle the parsing themselves
 
 Colour Definition Flags
-	REGEX_COMPULSORY | REGEX_OPTIONAL
+	REGEX_COMPULSORY | REGEX_OPTIONAL (or PLAIN_COLOR)
 	CASE_SENSITIVE | CASE_INSENSITIVE
 	SINGLE_COLOR
 	SYNONYM
+	BACK_REFERENCE (for status colours)
 
 If each definition is associated with RegexColorList
 
