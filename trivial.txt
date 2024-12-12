@@ -1249,7 +1249,7 @@ info pager, <save-message>
 
 after attaching a file, remember the directory in case of attaching another
 
-gh pr list --search "closed:>2023-12-21"
+$ gh pr list --search "merged:>2024-12-12"
 
 info pages (:set, etc) could do with colour
 	but it shouldn't be saved to file
@@ -1766,20 +1766,4 @@ replicate LOCALES_HACK in the tests
 merge (almost identical)
 	struct Regex *regex_new(const char *str, uint32_t flags, struct Buffer *err)
 	struct Regex *mutt_regex_new(const char *str, uint32_t flags, struct Buffer *err)
-
-Coverity Scan CID 436485:  Incorrect expression  (DIVIDE_BY_ZERO)
-	/compose/preview.c: 180 in draw_preview()
-	174       // Show the scroll percentage in the status bar
-	175       if (i > win->state.rows)
-	176       {
-	177         char title[256] = { 0 };
-	178         double percent = 100.0;
-	179         if (wdata->scroll_offset + row < i)
-	>>>     CID 436485:  Incorrect expression  (DIVIDE_BY_ZERO)
-	>>>     In expression "100. / i", division by expression "i" which may be zero has undefined behavior.
-	180           percent = 100.0 / i * (wdata->scroll_offset + row);
-	181
-	182         // TODO: having the percentage right-aligned would be nice
-	183         snprintf(title, sizeof(title), _("-- Preview (%.0f%%)"), percent);
-	184         sbar_set_title(wdata->bar, title);
 
