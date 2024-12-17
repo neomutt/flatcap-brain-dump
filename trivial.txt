@@ -1730,10 +1730,6 @@ translations
 	msgid "Option %s has an invalid type %d"
 	msgstr "Le type %2$d de l'option %1$s est invalide"
 
-release -- translations
-	check for trailing whitespace
-	kill dead translations
-
 split colours?
 	common enum of domains: MT_INDEX, MT_ALIAS, ...
 	private set of colours MT_IND_SUBJECT
@@ -1766,4 +1762,23 @@ replicate LOCALES_HACK in the tests
 merge (almost identical)
 	struct Regex *regex_new(const char *str, uint32_t flags, struct Buffer *err)
 	struct Regex *mutt_regex_new(const char *str, uint32_t flags, struct Buffer *err)
+
+use to disable emojis?
+	set ascii_chars = no
+from irc
+	dmrz	is there a way to just turn of display of emoji in neomutt?
+	dmrz	emoji are displaying wrong for me, and i suspect fixing this would be somewhat complicated, so i'll like to just turn them off
+	dmrz	("displaying wrong" = covering multiple terminal lines)
+	turned out to be a font problem
+
+bisect
+	notmuch backend altering headers!
+	adding mbox-style "Status: O" and "Tags: inbox"
+
+colour create pager test configs
+
+update gfx repo compose screenshots/etc with preview window
+
+code scanning gist
+	add date/commit that it applies to
 

@@ -81,7 +81,7 @@ temp file is *decoded*
 weeding is done before
 toggle weeding -> recreate tmp file close/open pager
 
-email headers - who does the foldeing to fit on screen?
+email headers - who does the folding to fit on screen?
 How many Segs will be needed for 1 char wide screen?
 are headers wrapped independently of text?
 have min width of 10, or 20, chars?
@@ -163,11 +163,13 @@ header plugin - read until '^$'
 	IP(v6)
 	weed (vs not)
 	mailing list
-use config for head matches?
+use config for header matches?
 
 ignore/unignore should trigger a redisplay of headers
 (if visible).  This will affect the line numbers and
 position of the view in the pager
+	"ignore" plugin?
+	after "header" plugin
 
 header plugin could zebra-stripe the fields odd/even
 continuation lines are grouped with parent (and have link
@@ -203,7 +205,7 @@ unignore* - headers unwrapped
 decode email to file, unwrap all headers (however long)
 	de-mime it.
 
-header plugin could make collective decides
+header plugin could make collective decisions
 if header X is *present*, then highlight all Y
 
 lua binding for render plugins
