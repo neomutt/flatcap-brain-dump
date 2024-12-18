@@ -1778,6 +1778,8 @@ bisect
 colour create pager test configs
 
 update gfx repo compose screenshots/etc with preview window
+	drop mixmaster screenshots, etc
+	check docs/website/etc
 
 code scanning gist
 	add date/commit that it applies to

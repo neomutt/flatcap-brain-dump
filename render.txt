@@ -213,3 +213,12 @@ lua binding for render plugins
 vim has "nocombine" attr
 	it means use these attrs ignoring any base attrs
 
+pager plugins:
+	init function -- allow them to cache config
+	event function -- notify on config/colour change
+	clenaup function -- clean up
+
+pager has array of Lines, each with a default colour (cid)
+	colour observer could use this to determine whether
+	a colour change event is relevant or not
+
