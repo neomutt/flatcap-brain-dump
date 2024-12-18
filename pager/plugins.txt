@@ -1,0 +1,88 @@
+pager uses
+	email
+	help
+	certificate
+	attachment
+	colour dump
+	log messages
+	info: bind/macro
+	info: set
+	info: version
+
+pager plugins
+
+help
+	stripes
+	^E mapping
+	"macro" command
+	"text" macro text
+	edit-type function
+	text description
+
+colour dump
+	"color" command
+	"options" object
+	"bold" attributes
+	"red" colour
+	comment
+
+log messages
+	timestamp
+	level
+		error
+		warning
+		message
+		debug
+
+info: bind/macro
+	"bind" command
+	"alias" menu
+	^E mapping
+	edit-type function
+
+info: set
+	"set" command
+	"save_history" config
+	number
+	string
+	bool/enum?
+
+info: version
+	ansi?
+	bold labels
+	-disabled
+	+enabled
+	version
+
+certificate
+	ansi?
+	labels
+	date
+	fingerpring
+
+attachment
+	common types?
+	diff/patch
+	source
+	use external colourer -> ansi
+	markdown
+
+email: header
+	color normal
+	color hdrdefault
+	color headers
+	$header_color_partial
+
+email: body
+	color normal
+	color body
+	color body regex
+	color quoted*
+	color signature
+	color attachment
+	color attach_headers
+
+email: tilde
+	$tilde
+	color tilde
+
