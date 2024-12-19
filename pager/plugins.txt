@@ -72,15 +72,26 @@ email: header
 	color hdrdefault
 	color headers
 	$header_color_partial
+	$wrap_headers
 
 email: body
 	color normal
 	color body
 	color body regex
 	color quoted*
+		$toggle_quoted_show_levels
+		$quote_regex
+	$smileys
 	color signature
 	color attachment
 	color attach_headers
+	$allow_ansi
+	wrapping
+		color markers
+		$markers
+		$reflow_wrap
+		$smart_wrap
+		$wrap
 
 email: tilde
 	$tilde
