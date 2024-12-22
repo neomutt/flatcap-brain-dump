@@ -58,7 +58,7 @@ certificate
 	ansi?
 	labels
 	date
-	fingerpring
+	fingerprint
 
 attachment
 	common types?
@@ -96,4 +96,14 @@ email: body
 email: tilde
 	$tilde
 	color tilde
+
+events, currently observe:
+	NT_COLOR  pager_color_observer
+	NT_CONFIG pager_config_observer
+	NT_GLOBAL pager_global_observer
+	NT_ALL    pager_index_observer
+	NT_PAGER  pager_pager_observer
+	NT_WINDOW pager_window_observer
+
+effect of each on TextSyntaxArray?
 

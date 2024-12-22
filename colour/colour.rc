@@ -33,13 +33,13 @@ uncolor SIMPLE-INDEX
 
 # color SIMPLE-SIDEBAR [ attribute ...] foreground background
 # ColorDefs[object] = COLOUR
-color sidebar_divider   red default        # MT_COLOR_DIVIDER                              The dividing line between the Sidebar and the Index/Pager panels
-color sidebar_flagged   red default        # MT_COLOR_FLAGGED                              Mailboxes containing flagged mail
-color sidebar_highlight red default        # MT_COLOR_HIGHLIGHT                            Cursor to select a mailbox
-color sidebar_indicator red default        # MT_COLOR_SB_INDICATOR                         The mailbox open in the Index panel
-color sidebar_new       red default        # MT_COLOR_NEW                                  Mailboxes containing new mail
-color sidebar_ordinary  red default        # MT_COLOR_ORDINARY                             Mailboxes that have no new/flagged mails, etc
-color sidebar_spoolfile red default        # MT_COLOR_SB_SPOOLFILE                         Mailbox that receives incoming mail
+color sidebar_divider    red default       # MT_COLOR_DIVIDER                              The dividing line between the Sidebar and the Index/Pager panels
+color sidebar_flagged    red default       # MT_COLOR_FLAGGED                              Mailboxes containing flagged mail
+color sidebar_highlight  red default       # MT_COLOR_HIGHLIGHT                            Cursor to select a mailbox
+color sidebar_indicator  red default       # MT_COLOR_SB_INDICATOR                         The mailbox open in the Index panel
+color sidebar_new        red default       # MT_COLOR_NEW                                  Mailboxes containing new mail
+color sidebar_ordinary   red default       # MT_COLOR_ORDINARY                             Mailboxes that have no new/flagged mails, etc
+color sidebar_spool_file red default       # MT_COLOR_SB_SPOOLFILE                         Mailbox that receives incoming mail
 
 uncolor SIMPLE-SIDEBAR
 
