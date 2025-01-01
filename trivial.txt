@@ -1781,5 +1781,73 @@ update gfx repo compose screenshots/etc with preview window
 
 https://github.com/junegunn/fzf-git.sh
 
+change help page headings from:
+	$flag_chars:
+	$crypt_chars:
+	$to_chars:
+to
+	set flag_chars = "*!DdrONon- "
+	set crypt_chars = "SPsK "
+	set to_chars = " +TCFLR"
+need to "fix" the help file column layout first
+
+flatcap/vim-cpp -> neomutt/vim-neomutt-source ?
+
+MT_COLOR_CONCEAL "conceal" -- not just invisible, not _there_
+	could use for signatures, headers (weeding), toggle-quoted, etc
+	does conceal '.*' leave a blank line?
+		probably, should kill the line
+	alternatively, leave blank line, but squash multiple concealed lines
+	set conceal_level = [0123]
+	toggle conceal_level
+		to toggle visibility
+	set conceal_char = '†'
+		cf vim
+
+these config options are enums and don't need to be quoted
+in `neomutt -D` or `:set`, etc
+	alias_sort
+	browser_sort
+	mbox_type
+	pgp_key_sort
+	sidebar_sort
+	sort
+	sort_aux
+	use_threads
+
+idea from irc:
+	index_format expando for the alias short-name
+		alias bob "Robert Smith <rs@example.com>"
+	gives "bob" in the index
+	how?
+		need HashTable of alias short names
+
+neomutt -n -F /dev/null
+`:set` shows
+	set alias_file = "/dev/null"
+	set folder = "~/Mail"
+	set header_cache_compress_level = 0
+	set mailcap_path = "~/.mailcap:/usr/share/neomutt/mailcap:/etc/mailcap:/usr/etc/mailcap:/usr/local/etc/mailcap"
+	set mbox = "~/mbox"
+	set postponed = "~/postponed"
+	set record = "~/sent"
+	set spool_file = "~/mail/inbox"
+it _should_ show nothing
+header_cache_compress_level is a startup vs validator problem
+
+not true, mutt/file.c
+	/* This is defined in POSIX:2008 which isn't a build requirement */
+	#ifndef O_NOFOLLOW
+	#define O_NOFOLLOW 0
+	#endif
+
+add :help global command to do <help>
+	how would it get the context for the functions?
+		however it works, this mechanism would be
+		needed for mouse click handling
+	use the focus?
+
+add sponsorship info to `neomutt -v`
+
 sponsors!
 
