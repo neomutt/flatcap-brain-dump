@@ -1851,3 +1851,7 @@ add sponsorship info to `neomutt -v`
 
 sponsors!
 
+why are lots of the mutt_window functions: (col, row)
+when (row, col) make more sense (and the order curses uses)
+	(struct MuttWindow *win, int col, int row, const char *fmt, ...)
+
