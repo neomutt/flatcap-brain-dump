@@ -106,7 +106,7 @@ mutt_select_file()
 mutt_enter_fname()
 
 action on timeout/hooks?
-notification of buffy changes
+notification of mailbox changes
 status bar notifications
 
 * "you're in the browser"

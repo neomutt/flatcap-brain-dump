@@ -46,7 +46,7 @@ USE_IMAP 32
 	mutt_account_getuser
 	mutt_account_match
 	mutt_account_tourl
-	mutt_buffy_check
+	mutt_mailbox_check
 	mutt_complete
 	mutt_index_menu
 	mutt_num_postponed
@@ -69,7 +69,7 @@ USE_NNTP 49
 	add_folder
 	attach_reply_envelope_defaults
 	browser_sort
-	buffy_check
+	mailbox_check
 	ci_send_message
 	compare_order
 	draw_envelope
@@ -89,7 +89,7 @@ USE_NNTP 49
 	mutt_add_to_reference_headers
 	mutt_attach_reply
 	mutt_bounce_message
-	mutt_buffy_check
+	mutt_mailbox_check
 	mutt_complete
 	mutt_edit_headers
 	mutt_free_envelope
@@ -117,14 +117,14 @@ USE_NNTP 49
 	_mutt_select_file
 
 USE_NOTMUCH 27
-	buffy_check
+	mailbox_check
 	ci_send_message
 	draw_sidebar
 	folder_format_str
 	get_color
 	get_incoming
 	hdr_format_str
-	mutt_buffy_check
+	mutt_mailbox_check
 	mutt_copy_header
 	mutt_display_message
 	mutt_index_menu
@@ -146,7 +146,7 @@ USE_NOTMUCH 27
 	_mutt_select_file
 
 USE_POP 11
-	buffy_check
+	mailbox_check
 	examine_mailboxes
 	mutt_account_getpass
 	mutt_account_getuser
@@ -159,7 +159,7 @@ USE_POP 11
 	mx_get_ops
 
 USE_SIDEBAR 17
-	buffy_check
+	mailbox_check
 	ci_start_color
 	cmd_parse_status
 	main

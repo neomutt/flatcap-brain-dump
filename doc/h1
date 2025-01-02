@@ -462,7 +462,7 @@ Things I cannot find an appropriate answer for from the code/docs:
   - Aside that I cannot find the right point in the code where I can
     hook into to get a nice help mailbox listing (probably threaded),
     I'm unsure which data structure to use to store the MD file list.
-    I tried an array of pointers, Buffy structure (because browser.c use
+    I tried an array of pointers, Mailbox structure (because browser.c use
     it a lot). Currently I'm using a STAILQ list for helpbox/helpdoc
     (directories and MD files).
 

@@ -178,7 +178,7 @@ Allow the user to select a file or directory.
 
 * <Tab>   toggle-mailboxes
 * <Space> view-file
-* "."     buffy-list
+* "."     mailbox-list
 * "="     goto-folder
 * "@"     display-filename
 * "C"     create-mailbox
@@ -224,7 +224,7 @@ Allow the user to select a network mailbox.
 
 * <Tab>   toggle-mailboxes
 * <Space> view-file
-* "."     buffy-list
+* "."     mailbox-list
 * "="     goto-folder
 * "@"     display-filename
 * "C"     create-mailbox
@@ -300,7 +300,7 @@ Allow the user to select a message, e.g. for attaching.
 * "$"          sync-mailbox
 * "%"          toggle-write
 * "\&"          link-threads
-* "."          buffy-list
+* "."          mailbox-list
 * "@"          display-address
 * "C"          copy-message
 * "D"          delete-pattern

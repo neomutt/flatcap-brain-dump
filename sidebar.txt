@@ -47,7 +47,7 @@ rest are SRC-dependent
 ∀ SRCn::init() call sb_register_source (name, callbacks)
 sidebar function sb_select_source(name)
 
-SRC provides sb with list of BUFFYs
+SRC provides sb with list of MAILBOXs
 	who provides the sorting?
 	different SRCs will have different requirements
 sb displays, paginates, delegates open to SRC
@@ -179,7 +179,7 @@ sidebar, when saving email to a folder use the sidebar as a selector?
 	new indicator colour or prompts "select save folder" + normal highlight
 
 what does Sidebar *really* need?
-	Incoming BUFFY -> notifications of BUFFY changes
+	Incoming MAILBOX -> notifications of MAILBOX changes
 	Panel (geometry) -> notifications of WINCH
 	character libraries -> lengths, widths, formatting, etc
 	options (config access)
@@ -270,7 +270,7 @@ Sidebar actions (that might precipitate change):
 	line-down
 	page-up
 	page-down
-	set buffy from browser
+	set mailbox from browser
 	change sort order
 	add mailbox
 	delete mailbox

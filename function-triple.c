@@ -25,7 +25,7 @@ struct Functions EditorFunctions[] = {
   { "upcase-word",     OP_EDITOR_UPCASE_WORD,     op_editor_capitalize_word, "\033u" /* <Alt-u>  */ N_("convert the word to upper case") },
 
   // Synonyms
-  { "buffy-cycle",     OP_EDITOR_MAILBOX_CYCLE },
+  { "mailbox-cycle",     OP_EDITOR_MAILBOX_CYCLE },
 
   { NULL },
   // clang-format on

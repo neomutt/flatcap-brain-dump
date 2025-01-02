@@ -238,9 +238,9 @@ All AC config names are internal to the hash => only
 accessible via HE
 get_int(HE) may use value of get inherited value
 
-who owns AC ptrs?  buffy
+who owns AC ptrs?  mailbox
 how do we get from sidebar-open to AC?
-sb_open => buffy -> AC update ctx
+sb_open => mailbox -> AC update ctx
 
 what happens if *first* AC command is
         account x set y=z
@@ -267,7 +267,7 @@ Base Hash
                                           ^
                                           |
                                           |
-                                       Buffy
+                                       Mailbox
                                           ^
                                           |
                                           |
@@ -293,7 +293,7 @@ or AC object has lookup table of what?
 given an HE* we can't tell anything about the variable
 
 :reset :var
-ctx->buffy->AC
+ctx->mailbox->AC
 AC needs a hash table of its own
 could have large HEs
 AC HE has
@@ -618,7 +618,7 @@ or don't log it at all
 /etc/muttrc needs gutting
 reference docs
 
-refcount buffys for debugging purposes
+refcount mailboxes for debugging purposes
 start with something simpler?
 
 stop printing config errors on options
@@ -692,10 +692,10 @@ mbchar_table/regex - alloc'd,  init value
 
 		Incoming        Children
                 --------        --------
-ctx  ->		AC0   ->         Buffy1
+ctx  ->		AC0   ->         Mailbox1
                  |                 |
                  V                 v
-		AC1              Buffy2
+		AC1              Mailbox2
 		 |
 		 V
 		AC2
@@ -704,17 +704,17 @@ or
 
 		AC List         Incoming
                 -------         --------
-ctx  ->		AC0   ->         Buffy1
+ctx  ->		AC0   ->         Mailbox1
                  |                 |
                  V                 v
-		AC1              Buffy2
+		AC1              Mailbox2
 		 |
 		 V
 		AC2
 
 AC2 ->  name
 	vars	 HE[]
-	children buffy[]
+	children mailbox[]
 
 
 ctx -> ConfigSet
@@ -740,9 +740,9 @@ ConfigSetType
 	setter/getter
 	native setter/getter
 
-Iterate through Incoming (all buffys)
+Iterate through Incoming (all mailboxs)
 or AC, children, depth first
-account/children/buffy
+account/children/mailbox
 
 
 can we eliminate all L10N strings from config/?

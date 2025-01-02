@@ -4,8 +4,8 @@ rename sub to cfg?  clearer meaning?
 
 Context - paths, counts
 Header[] list -> Env, Body, etc
-Incoming -> Buffy[] (paths, counts)
-Buffy 1/mailbox
+Incoming -> MaiboxList[] (paths, counts)
+MaiboxList 1/mailbox
 no concept of account
 Incoming becomes Account list
 Account: imap server, maildir, notmuch, nntp?

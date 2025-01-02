@@ -32,8 +32,8 @@ Delete mailbox on
 	current page after cursor
 	next page
 
-can you delete the current buffy?  yes
-Top, Bottom buffy could be deleted from under us -- unmailbox
+can you delete the current mailbox?  yes
+Top, Bottom mailbox could be deleted from under us -- unmailbox
 
 How many people/Where does incoming/context get set
 I mutt_parse_mailboxes

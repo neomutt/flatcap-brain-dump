@@ -1,7 +1,7 @@
 add_folder                     USE_IMAP USE_NNTP
 attach_reply_envelope_defaults USE_NNTP
 browser_sort                   USE_NNTP
-buffy_check                    USE_NNTP USE_NOTMUCH USE_POP USE_SIDEBAR
+mailbox_check                    USE_NNTP USE_NOTMUCH USE_POP USE_SIDEBAR
 ci_send_message                USE_IMAP USE_NNTP USE_NOTMUCH
 ci_start_color                 USE_SIDEBAR
 cmd_parse_status               USE_SIDEBAR
@@ -39,7 +39,7 @@ mutt_account_tourl             USE_IMAP USE_NNTP USE_POP USE_SMTP
 mutt_add_to_reference_headers  USE_NNTP
 mutt_attach_reply              USE_NNTP
 mutt_bounce_message            USE_NNTP
-mutt_buffy_check               USE_IMAP USE_NNTP USE_NOTMUCH
+mutt_mailbox_check               USE_IMAP USE_NNTP USE_NOTMUCH
 mutt_complete                  USE_IMAP USE_NNTP
 mutt_copy_header               USE_NOTMUCH
 mutt_display_message           USE_NOTMUCH

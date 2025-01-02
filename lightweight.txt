@@ -1,6 +1,6 @@
 Lightweight 2
 
-On page down set BUFFY's last refresh to:
+On page down set MAILBOX's last refresh to:
 	(now() - RefreshInterval + 1)
 => will refresh in 1 second's time (if still visible)
 
