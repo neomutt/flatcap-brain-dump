@@ -1848,10 +1848,18 @@ add :help global command to do <help>
 	use the focus?
 
 add sponsorship info to `neomutt -v`
+	what about the <help> page too?
 
 sponsors!
 
 why are lots of the mutt_window functions: (col, row)
 when (row, col) make more sense (and the order curses uses)
 	(struct MuttWindow *win, int col, int row, const char *fmt, ...)
+
+help page
+	sort option: binding, function
+	only applies to *bound* keys
+	unbound are always sorted
+
+s/mailbox/mailbox/ in my docs/
 
