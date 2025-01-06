@@ -12,6 +12,13 @@ pager uses
 pager plugins
 
 help
+	3 columns (bound)
+		^R  read-thread  mark the current thread as read
+	2 columns (unbound)
+		sidebar-first  move the highlight to the first mailbox
+	2 columns (chars)
+		D  message is deleted
+	Headings aren't considered for columns widths
 	stripes
 	^E mapping
 	"macro" command

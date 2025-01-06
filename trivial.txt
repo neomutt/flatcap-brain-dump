@@ -1804,17 +1804,6 @@ MT_COLOR_CONCEAL "conceal" -- not just invisible, not _there_
 	set conceal_char = '†'
 		cf vim
 
-these config options are enums and don't need to be quoted
-in `neomutt -D` or `:set`, etc
-	alias_sort
-	browser_sort
-	mbox_type
-	pgp_key_sort
-	sidebar_sort
-	sort
-	sort_aux
-	use_threads
-
 idea from irc:
 	index_format expando for the alias short-name
 		alias bob "Robert Smith <rs@example.com>"
@@ -1847,19 +1836,42 @@ add :help global command to do <help>
 		needed for mouse click handling
 	use the focus?
 
-add sponsorship info to `neomutt -v`
-	what about the <help> page too?
-
-sponsors!
-
-why are lots of the mutt_window functions: (col, row)
-when (row, col) make more sense (and the order curses uses)
-	(struct MuttWindow *win, int col, int row, const char *fmt, ...)
-
 help page
 	sort option: binding, function
 	only applies to *bound* keys
 	unbound are always sorted
 
-s/mailbox/mailbox/ in my docs/
+add sponsorship info to `neomutt -v`
+	what about the <help> page too?
+
+colour notifications
+	might want more destinction for RegexColors
+	*which* RegexColor was added / removed
+	e.g. { MT_COLOR_BODY, REGEX_ADDED, "http://..." }
+		or index into RegexColorList / Array
+
+post-release (build test and coverity first)
+	config dump enums
+	config dump doc links
+	help-page reformat
+	color: smart case matching
+	color: make compose colours simple
+	color: make quoted colours simple
+
+code-scanning: examine
+	27 Poorly documented large function
+
+release this week
+	check/sync translations
+	notify dev ml
+	recheck notmuch fix
+	create [release]
+
+update copyright dates, versions, etc
+	for all of 2024
+	for my changes of 2025
+	summary to ml + twitter
+		x commits
+		y users
+		z releases
 
