@@ -1803,6 +1803,9 @@ MT_COLOR_CONCEAL "conceal" -- not just invisible, not _there_
 		to toggle visibility
 	set conceal_char = '†'
 		cf vim
+	set line default colour to CONCEAL?
+		but then we lose the colour for when it's not hidden
+		have a line-level bool for conceal?
 
 idea from irc:
 	index_format expando for the alias short-name
@@ -1861,12 +1864,6 @@ post-release (build test and coverity first)
 code-scanning: examine
 	27 Poorly documented large function
 
-release this week
-	check/sync translations
-	notify dev ml
-	recheck notmuch fix
-	create [release]
-
 update copyright dates, versions, etc
 	for all of 2024
 	for my changes of 2025
@@ -1874,4 +1871,44 @@ update copyright dates, versions, etc
 		x commits
 		y users
 		z releases
+
+change the discussion issue template to redirect users to the discussions area
+
+`neomutt -vv` recalc top ten contributors
+	(and record the method by which I calc'd it)
+
+syntax highlighting plugin for the Pager
+	define rules
+	line-matching (equivalent to `color body fg bg pattern`)
+	begin-end rules, e.g. signature
+rule signature
+	apply-to: folder [pattern]  OR  email [pattern]
+		folder pattern => folder-hook
+		email pattern => message-hook?
+	begin-pattern: '^-- $'
+	end-pattern:   '^$'
+	max-lines: 4
+	color: fg bg
+	conceal: yes
+
+create "limit" rules for concealing emails?
+	muting conversations?
+
+IRC 2025-01-07
+	   gahr | I wonder if we should have different helps
+	   gahr | I only recently discovered that Message flags are there, at the bottom
+	   gahr | perhaps we should have a 'help functions', 'help macros', 'help flag_chars', ...
+	flatcap | yes, I've considered that. there are a couple of slight issues to work out first...
+	flatcap | first: the help page has hard-coded knowledge -- like those index flags
+	flatcap | we could do with a mechanism (API) to gather the help in a context-specific way
+	flatcap | second: `:help` would be a global command, so that's probably the same problem
+	flatcap | having the function <help> `?` is very accessible...
+	      * | flatcap wonders: what is the user searching for when they hit <help> ?
+	flatcap | perhaps: <help> gives you a context-specific description of *where* you are, *what* you're looking at, *what* you can do next
+	flatcap | from there it'd be nice if pressing a single key (1) Keybindings, (2) flag chars, etc  would take you to the next page
+	flatcap | (also directly accessible by `:help flag-chars`, etc
+	put those other pages in *tabs*!
+	Tabs: [1: Intro] [2: Keys] [3: Macros] [4: Unbound] [5: Flag Chars]
+		<Tab> or [12345] to switch between them
+
 
