@@ -187,20 +187,8 @@
   dev_react
   dev_redhat
   dev_scriptcs
-'
-'
-'
-'
-'
-'
-'
   dev_sqllite
   dev_vim
-unset i
-#!/usr/bin/env bash
-# Font Awesome Extension (170 icons)
-# Codepoints: Nerd Fonts moved E000-E0A9 → E200-E2A9
-test -n "$__i_fae_loaded" && return || __i_fae_loaded=1
   fae_smaller
   fae_snowing
   fae_soda
@@ -371,11 +359,6 @@ test -n "$__i_fae_loaded" && return || __i_fae_loaded=1
   fae_orange
   fae_peach
   fae_pear
-unset i
-#!/usr/bin/env bash
-# Font Awesome (version 4.7.0, 675 icons, 111 aliases)
-# Codepoints: F000-F2E0 with holes
-test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_glass
   fa_music
   fa_search
@@ -389,15 +372,12 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_th
   fa_th_list
   fa_check
-  fa_times
-      i_fa_close_fa_times
-      i_fa_remove_fa_times
+  fa_times i_fa_close_fa_times i_fa_remove_fa_times
   fa_search_plus
   fa_search_minus
   fa_power_off
   fa_signal
-  fa_cog
-      i_fa_gear_fa_cog
+  fa_cog i_fa_gear_fa_cog
   fa_trash_o
   fa_home
   fa_file_o
@@ -408,8 +388,7 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_arrow_circle_o_up
   fa_inbox
   fa_play_circle_o
-  fa_repeat
-      i_fa_rotate_right_fa_repeat
+  fa_repeat i_fa_rotate_right_fa_repeat
   fa_refresh
   fa_list_alt
   fa_lock
@@ -436,19 +415,15 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_align_right
   fa_align_justify
   fa_list
-  fa_outdent
-      i_fa_dedent_fa_outdent
+  fa_outdent i_fa_dedent_fa_outdent
   fa_indent
   fa_video_camera
-  fa_picture_o
-      i_fa_image_fa_picture_o
-      i_fa_photo_fa_picture_o
+  fa_picture_o i_fa_image_fa_picture_o i_fa_photo_fa_picture_o
   fa_pencil
   fa_map_marker
   fa_adjust
   fa_tint
-  fa_pencil_square_o
-      i_fa_edit_fa_pencil_square_o
+  fa_pencil_square_o i_fa_edit_fa_pencil_square_o
   fa_share_square_o
   fa_check_square_o
   fa_arrows
@@ -478,8 +453,7 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_arrow_right
   fa_arrow_up
   fa_arrow_down
-  fa_share
-      i_fa_mail_forward_fa_share
+  fa_share i_fa_mail_forward_fa_share
   fa_expand
   fa_compress
   fa_plus
@@ -491,8 +465,7 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_fire
   fa_eye
   fa_eye_slash
-  fa_exclamation_triangle
-      i_fa_warning_fa_exclamation_triangle
+  fa_exclamation_triangle i_fa_warning_fa_exclamation_triangle
   fa_plane
   fa_calendar
   fa_random
@@ -506,14 +479,12 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_folder_open
   fa_arrows_v
   fa_arrows_h
-  fa_bar_chart
-      i_fa_bar_chart_o_fa_bar_chart
+  fa_bar_chart i_fa_bar_chart_o_fa_bar_chart
   fa_twitter_square
   fa_facebook_square
   fa_camera_retro
   fa_key
-  fa_cogs
-      i_fa_gears_fa_cogs
+  fa_cogs i_fa_gears_fa_cogs
   fa_comments
   fa_thumbs_o_up
   fa_thumbs_o_down
@@ -533,13 +504,11 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_bookmark_o
   fa_phone_square
   fa_twitter
-  fa_facebook
-      i_fa_facebook_f_fa_facebook
+  fa_facebook i_fa_facebook_f_fa_facebook
   fa_github
   fa_unlock
   fa_credit_card
-  fa_rss
-      i_fa_feed_fa_rss
+  fa_rss i_fa_feed_fa_rss
   fa_hdd_o
   fa_bullhorn
   fa_bell_o
@@ -558,23 +527,16 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_filter
   fa_briefcase
   fa_arrows_alt
-  fa_users
-      i_fa_group_fa_users
-  fa_link
-      i_fa_chain_fa_link
+  fa_users i_fa_group_fa_users
+  fa_link i_fa_chain_fa_link
   fa_cloud
   fa_flask
-  fa_scissors
-      i_fa_cut_fa_scissors
-  fa_files_o
-      i_fa_copy_fa_files_o
+  fa_scissors i_fa_cut_fa_scissors
+  fa_files_o i_fa_copy_fa_files_o
   fa_paperclip
-  fa_floppy_o
-      i_fa_save_fa_floppy_o
+  fa_floppy_o i_fa_save_fa_floppy_o
   fa_square
-  fa_bars
-      i_fa_navicon_fa_bars
-      i_fa_reorder_fa_bars
+  fa_bars i_fa_navicon_fa_bars i_fa_reorder_fa_bars
   fa_list_ul
   fa_list_ol
   fa_strikethrough
@@ -592,28 +554,20 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_caret_left
   fa_caret_right
   fa_columns
-  fa_sort
-      i_fa_unsorted_fa_sort
-  fa_sort_desc
-      i_fa_sort_down_fa_sort_desc
-  fa_sort_asc
-      i_fa_sort_up_fa_sort_asc
+  fa_sort i_fa_unsorted_fa_sort
+  fa_sort_desc i_fa_sort_down_fa_sort_desc
+  fa_sort_asc i_fa_sort_up_fa_sort_asc
   fa_envelope
   fa_linkedin
-  fa_undo
-      i_fa_rotate_left_fa_undo
-  fa_gavel
-      i_fa_legal_fa_gavel
-  fa_tachometer
-      i_fa_dashboard_fa_tachometer
+  fa_undo i_fa_rotate_left_fa_undo
+  fa_gavel i_fa_legal_fa_gavel
+  fa_tachometer i_fa_dashboard_fa_tachometer
   fa_comment_o
   fa_comments_o
-  fa_bolt
-      i_fa_flash_fa_bolt
+  fa_bolt i_fa_flash_fa_bolt
   fa_sitemap
   fa_umbrella
-  fa_clipboard
-      i_fa_paste_fa_clipboard
+  fa_clipboard i_fa_paste_fa_clipboard
   fa_lightbulb_o
   fa_exchange
   fa_cloud_download
@@ -644,15 +598,13 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_desktop
   fa_laptop
   fa_tablet
-  fa_mobile
-      i_fa_mobile_phone_fa_mobile
+  fa_mobile i_fa_mobile_phone_fa_mobile
   fa_circle_o
   fa_quote_left
   fa_quote_right
   fa_spinner
   fa_circle
-  fa_reply
-      i_fa_mail_reply_fa_reply
+  fa_reply i_fa_mail_reply_fa_reply
   fa_github_alt
   fa_folder_o
   fa_folder_open_o
@@ -665,16 +617,12 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_flag_checkered
   fa_terminal
   fa_code
-  fa_reply_all
-      i_fa_mail_reply_all_fa_reply_all
-  fa_star_half_o
-      i_fa_star_half_empty_fa_star_half_o
-      i_fa_star_half_full_fa_star_half_o
+  fa_reply_all i_fa_mail_reply_all_fa_reply_all
+  fa_star_half_o i_fa_star_half_empty_fa_star_half_o i_fa_star_half_full_fa_star_half_o
   fa_location_arrow
   fa_crop
   fa_code_fork
-  fa_chain_broken
-      i_fa_unlink_fa_chain_broken
+  fa_chain_broken i_fa_unlink_fa_chain_broken
   fa_question
   fa_info
   fa_exclamation
@@ -712,30 +660,17 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_external_link_square
   fa_share_square
   fa_compass
-  fa_caret_square_o_down
-      i_fa_toggle_down_fa_caret_square_o_down
-  fa_caret_square_o_up
-      i_fa_toggle_up_fa_caret_square_o_up
-  fa_caret_square_o_right
-      i_fa_toggle_right_fa_caret_square_o_right
-  fa_eur
-      i_fa_euro_fa_eur
+  fa_caret_square_o_down i_fa_toggle_down_fa_caret_square_o_down
+  fa_caret_square_o_up i_fa_toggle_up_fa_caret_square_o_up
+  fa_caret_square_o_right i_fa_toggle_right_fa_caret_square_o_right
+  fa_eur i_fa_euro_fa_eur
   fa_gbp
-  fa_usd
-      i_fa_dollar_fa_usd
-  fa_inr
-      i_fa_rupee_fa_inr
-  fa_jpy
-      i_fa_cny_fa_jpy
-      i_fa_rmb_fa_jpy
-      i_fa_yen_fa_jpy
-  fa_rub
-      i_fa_rouble_fa_rub
-      i_fa_ruble_fa_rub
-  fa_krw
-      i_fa_won_fa_krw
-  fa_btc
-      i_fa_bitcoin_fa_btc
+  fa_usd i_fa_dollar_fa_usd
+  fa_inr i_fa_rupee_fa_inr
+  fa_jpy i_fa_cny_fa_jpy i_fa_rmb_fa_jpy i_fa_yen_fa_jpy
+  fa_rub i_fa_rouble_fa_rub i_fa_ruble_fa_rub
+  fa_krw i_fa_won_fa_krw
+  fa_btc i_fa_bitcoin_fa_btc
   fa_file
   fa_file_text
   fa_sort_alpha_asc
@@ -774,8 +709,7 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_trello
   fa_female
   fa_male
-  fa_gratipay
-      i_fa_gittip_fa_gratipay
+  fa_gratipay i_fa_gittip_fa_gratipay
   fa_sun_o
   fa_moon_o
   fa_archive
@@ -787,24 +721,19 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_stack_exchange
   fa_arrow_circle_o_right
   fa_arrow_circle_o_left
-  fa_caret_square_o_left
-      i_fa_toggle_left_fa_caret_square_o_left
+  fa_caret_square_o_left i_fa_toggle_left_fa_caret_square_o_left
   fa_dot_circle_o
   fa_wheelchair
   fa_vimeo_square
-  fa_try
-      i_fa_turkish_lira_fa_try
+  fa_try i_fa_turkish_lira_fa_try
   fa_plus_square_o
   fa_space_shuttle
   fa_slack
   fa_envelope_square
   fa_wordpress
   fa_openid
-  fa_university
-      i_fa_bank_fa_university
-      i_fa_institution_fa_university
-  fa_graduation_cap
-      i_fa_mortar_board_fa_graduation_cap
+  fa_university i_fa_bank_fa_university i_fa_institution_fa_university
+  fa_graduation_cap i_fa_mortar_board_fa_graduation_cap
   fa_yahoo
   fa_google
   fa_reddit
@@ -830,10 +759,8 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_steam
   fa_steam_square
   fa_recycle
-  fa_car
-      i_fa_automobile_fa_car
-  fa_taxi
-      i_fa_cab_fa_taxi
+  fa_car i_fa_automobile_fa_car
+  fa_taxi i_fa_cab_fa_taxi
   fa_tree
   fa_spotify
   fa_deviantart
@@ -843,43 +770,26 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_file_word_o
   fa_file_excel_o
   fa_file_powerpoint_o
-  fa_file_image_o
-      i_fa_file_photo_o_fa_file_image_o
-      i_fa_file_picture_o_fa_file_image_o
-  fa_file_archive_o
-      i_fa_file_zip_o_fa_file_archive_o
-  fa_file_audio_o
-      i_fa_file_sound_o_fa_file_audio_o
-  fa_file_video_o
-      i_fa_file_movie_o_fa_file_video_o
+  fa_file_image_o i_fa_file_photo_o_fa_file_image_o i_fa_file_picture_o_fa_file_image_o
+  fa_file_archive_o i_fa_file_zip_o_fa_file_archive_o
+  fa_file_audio_o i_fa_file_sound_o_fa_file_audio_o
+  fa_file_video_o i_fa_file_movie_o_fa_file_video_o
   fa_file_code_o
   fa_vine
   fa_codepen
   fa_jsfiddle
-  fa_life_ring
-      i_fa_life_bouy_fa_life_ring
-      i_fa_life_buoy_fa_life_ring
-      i_fa_life_saver_fa_life_ring
-      i_fa_support_fa_life_ring
+  fa_life_ring i_fa_life_bouy_fa_life_ring i_fa_life_buoy_fa_life_ring i_fa_life_saver_fa_life_ring i_fa_support_fa_life_ring
   fa_circle_o_notch
-  fa_rebel
-      i_fa_ra_fa_rebel
-      i_fa_resistance_fa_rebel
-  fa_empire
-      i_fa_ge_fa_empire
+  fa_rebel i_fa_ra_fa_rebel i_fa_resistance_fa_rebel
+  fa_empire i_fa_ge_fa_empire
   fa_git_square
   fa_git
-  fa_hacker_news
-      i_fa_y_combinator_square_fa_hacker_news
-      i_fa_yc_square_fa_hacker_news
+  fa_hacker_news i_fa_y_combinator_square_fa_hacker_news i_fa_yc_square_fa_hacker_news
   fa_tencent_weibo
   fa_qq
-  fa_weixin
-      i_fa_wechat_fa_weixin
-  fa_paper_plane
-      i_fa_send_fa_paper_plane
-  fa_paper_plane_o
-      i_fa_send_o_fa_paper_plane_o
+  fa_weixin i_fa_wechat_fa_weixin
+  fa_paper_plane i_fa_send_fa_paper_plane
+  fa_paper_plane_o i_fa_send_o_fa_paper_plane_o
   fa_history
   fa_circle_thin
   fa_header
@@ -888,8 +798,7 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_share_alt
   fa_share_alt_square
   fa_bomb
-  fa_futbol_o
-      i_fa_soccer_ball_o_fa_futbol_o
+  fa_futbol_o i_fa_soccer_ball_o_fa_futbol_o
   fa_tty
   fa_binoculars
   fa_plug
@@ -927,9 +836,7 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_ioxhost
   fa_angellist
   fa_cc
-  fa_ils
-      i_fa_shekel_fa_ils
-      i_fa_sheqel_fa_ils
+  fa_ils i_fa_shekel_fa_ils i_fa_sheqel_fa_ils
   fa_meanpath
   fa_buysellads
   fa_connectdevelop
@@ -951,8 +858,7 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_venus
   fa_mars
   fa_mercury
-  fa_transgender
-      i_fa_intersex_fa_transgender
+  fa_transgender i_fa_intersex_fa_transgender
   fa_transgender_alt
   fa_venus_double
   fa_mars_double
@@ -968,28 +874,20 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_server
   fa_user_plus
   fa_user_times
-  fa_bed
-      i_fa_hotel_fa_bed
+  fa_bed i_fa_hotel_fa_bed
   fa_viacoin
   fa_train
   fa_subway
   fa_medium
-  fa_y_combinator
-      i_fa_yc_fa_y_combinator
+  fa_y_combinator i_fa_yc_fa_y_combinator
   fa_optin_monster
   fa_opencart
   fa_expeditedssl
-  fa_battery_full
-      i_fa_battery_fa_battery_full
-      i_fa_battery_4_fa_battery_full
-  fa_battery_three_quarters
-      i_fa_battery_3_fa_battery_three_quarters
-  fa_battery_half
-      i_fa_battery_2_fa_battery_half
-  fa_battery_quarter
-      i_fa_battery_1_fa_battery_quarter
-  fa_battery_empty
-      i_fa_battery_0_fa_battery_empty
+  fa_battery_full i_fa_battery_fa_battery_full i_fa_battery_4_fa_battery_full
+  fa_battery_three_quarters i_fa_battery_3_fa_battery_three_quarters
+  fa_battery_half i_fa_battery_2_fa_battery_half
+  fa_battery_quarter i_fa_battery_1_fa_battery_quarter
+  fa_battery_empty i_fa_battery_0_fa_battery_empty
   fa_mouse_pointer
   fa_i_cursor
   fa_object_group
@@ -1001,17 +899,12 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_clone
   fa_balance_scale
   fa_hourglass_o
-  fa_hourglass_start
-      i_fa_hourglass_1_fa_hourglass_start
-  fa_hourglass_half
-      i_fa_hourglass_2_fa_hourglass_half
-  fa_hourglass_end
-      i_fa_hourglass_3_fa_hourglass_end
+  fa_hourglass_start i_fa_hourglass_1_fa_hourglass_start
+  fa_hourglass_half i_fa_hourglass_2_fa_hourglass_half
+  fa_hourglass_end i_fa_hourglass_3_fa_hourglass_end
   fa_hourglass
-  fa_hand_rock_o
-      i_fa_hand_grab_o_fa_hand_rock_o
-  fa_hand_paper_o
-      i_fa_hand_stop_o_fa_hand_paper_o
+  fa_hand_rock_o i_fa_hand_grab_o_fa_hand_rock_o
+  fa_hand_paper_o i_fa_hand_stop_o_fa_hand_paper_o
   fa_hand_scissors_o
   fa_hand_lizard_o
   fa_hand_spock_o
@@ -1032,8 +925,7 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_firefox
   fa_opera
   fa_internet_explorer
-  fa_television
-      i_fa_tv_fa_television
+  fa_television i_fa_tv_fa_television
   fa_contao
   fa_500px
   fa_amazon
@@ -1084,15 +976,11 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_volume_control_phone
   fa_braille
   fa_assistive_listening_systems
-  fa_american_sign_language_interpreting
-      i_fa_asl_interpreting_fa_american_sign_language_interpreting
-  fa_deaf
-      i_fa_deafness_fa_deaf
-      i_fa_hard_of_hearing_fa_deaf
+  fa_american_sign_language_interpreting i_fa_asl_interpreting_fa_american_sign_language_interpreting
+  fa_deaf i_fa_deafness_fa_deaf i_fa_hard_of_hearing_fa_deaf
   fa_glide
   fa_glide_g
-  fa_sign_language
-      i_fa_signing_fa_sign_language
+  fa_sign_language i_fa_signing_fa_sign_language
   fa_low_vision
   fa_viadeo
   fa_viadeo_square
@@ -1103,54 +991,38 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_first_order
   fa_yoast
   fa_themeisle
-  fa_google_plus_official
-      i_fa_google_plus_circle_fa_google_plus_official
-  fa_font_awesome
-      i_fa_fa_fa_font_awesome
+  fa_google_plus_official i_fa_google_plus_circle_fa_google_plus_official
+  fa_font_awesome i_fa_fa_fa_font_awesome
   fa_handshake_o
   fa_envelope_open
   fa_envelope_open_o
   fa_linode
   fa_address_book
   fa_address_book_o
-  fa_address_card
-      i_fa_vcard_fa_address_card
-  fa_address_card_o
-      i_fa_vcard_o_fa_address_card_o
+  fa_address_card i_fa_vcard_fa_address_card
+  fa_address_card_o i_fa_vcard_o_fa_address_card_o
   fa_user_circle
   fa_user_circle_o
   fa_user_o
   fa_id_badge
-  fa_id_card
-      i_fa_drivers_license_fa_id_card
-  fa_id_card_o
-      i_fa_drivers_license_o_fa_id_card_o
+  fa_id_card i_fa_drivers_license_fa_id_card
+  fa_id_card_o i_fa_drivers_license_o_fa_id_card_o
   fa_quora
   fa_free_code_camp
   fa_telegram
-  fa_thermometer_full
-      i_fa_thermometer_fa_thermometer_full
-      i_fa_thermometer_4_fa_thermometer_full
-  fa_thermometer_three_quarters
-      i_fa_thermometer_3_fa_thermometer_three_quarters
-  fa_thermometer_half
-      i_fa_thermometer_2_fa_thermometer_half
-  fa_thermometer_quarter
-      i_fa_thermometer_1_fa_thermometer_quarter
-  fa_thermometer_empty
-      i_fa_thermometer_0_fa_thermometer_empty
+  fa_thermometer_full i_fa_thermometer_fa_thermometer_full i_fa_thermometer_4_fa_thermometer_full
+  fa_thermometer_three_quarters i_fa_thermometer_3_fa_thermometer_three_quarters
+  fa_thermometer_half i_fa_thermometer_2_fa_thermometer_half
+  fa_thermometer_quarter i_fa_thermometer_1_fa_thermometer_quarter
+  fa_thermometer_empty i_fa_thermometer_0_fa_thermometer_empty
   fa_shower
-  fa_bath
-      i_fa_bathtub_fa_bath
-      i_fa_s15_fa_bath
+  fa_bath i_fa_bathtub_fa_bath i_fa_s15_fa_bath
   fa_podcast
   fa_window_maximize
   fa_window_minimize
   fa_window_restore
-  fa_window_close
-      i_fa_times_rectangle_fa_window_close
-  fa_window_close_o
-      i_fa_times_rectangle_o_fa_window_close_o
+  fa_window_close i_fa_times_rectangle_fa_window_close
+  fa_window_close_o i_fa_times_rectangle_o_fa_window_close_o
   fa_bandcamp
   fa_grav
   fa_etsy
@@ -1162,23 +1034,11 @@ test -n "$__i_fa_loaded" && return || __i_fa_loaded=1
   fa_superpowers
   fa_wpexplorer
   fa_meetup
-unset i
-#!/usr/bin/env bash
-# IEC Power Symbols (5 icons)
-# Codepoints: 23FB-23FE 2B58
-test -n "$__i_iec_loaded" && return || __i_iec_loaded=1
 ⏻  iec_power
 ⏼  iec_toggle_power
 ⏽  iec_power_on
 ⏾  iec_sleep_mode
 ⭘  iec_power_off
-unset i
-#!/usr/bin/env bash
-# Font Logos (Font Linux) (29 icons)
-# Codepoints: Nerd Fonts moved F100-F11C with holes → F300-F31C
-# Nerd Fonts Version: 2.1.0
-# Script Version: 1.1.0
-test -n "$__i_linux_loaded" && return || __i_linux_loaded=1
   linux_alpine
   linux_aosc
   linux_apple
@@ -1208,13 +1068,6 @@ test -n "$__i_linux_loaded" && return || __i_linux_loaded=1
   linux_tux
   linux_ubuntu
   linux_ubuntu_inverse
-unset i
-#!/usr/bin/env bash
-# Material Design Icons (2,119 icons)
-# Codepoints: F001, F847, Nerd Fonts moved F500-FD46
-# Nerd Fonts Version: 2.1.0
-# Script Version 1.0.0
-test -n "$__i_mdi_loaded" && return || __i_mdi_loaded=1
   mdi_vector_square
   mdi_access_point
   mdi_access_point_network
@@ -2781,7 +2634,7 @@ test -n "$__i_mdi_loaded" && return || __i_mdi_loaded=1
 ﬛  mdi_dialpad
 ﬜  mdi_dictionary
 יִ  mdi_format_horizontal_align_center
-i='ﬞ  mdi_format_horizontal_align_left
+='ﬞ  mdi_format_horizontal_align_left
 ײַ  mdi_format_horizontal_align_right
 ﬠ  mdi_format_vertical_align_bottom
 ﬡ  mdi_format_vertical_align_center
@@ -3334,10 +3187,6 @@ i='ﬞ  mdi_format_horizontal_align_left
 ﵄  mdi_xamarin_outline
 ﵅  mdi_youtube_creator_studio
 ﵆  mdi_youtube_gaming
-#!/usr/bin/env bash
-# Octicons (172 icons)
-# Codepoints: 2665, 26A1, Nerd Fonts moved F000-F105 with holes → F400-F4A8, F27C → F67C
-test -n "$__i_oct_loaded" && return || __i_oct_loaded=1
 ♥  oct_heart
 ⚡  oct_zap
   oct_light_bulb
@@ -3510,18 +3359,10 @@ test -n "$__i_oct_loaded" && return || __i_oct_loaded=1
   oct_plus_small
   oct_reply
   oct_device_desktop
-unset i
-#!/usr/bin/env bash
-# Powerline Extra Symbols (37 icons, 3 aliases)
-# Codepoints: E0A0-E0A3 E0B0-E0BF E0C0-E0C8 E0CC-E0CF E0D0-E0D2 E0D4
-test -n "$__i_ple_loaded" && return || __i_ple_loaded=1
   pl_branch
-  pl_line_number
-      i_pl_current_line_pl_line_number
-  pl_hostname
-      i_pl_readonly_pl_hostname
-  ple_column_number
-      i_ple_current_column_ple_column_number
+  pl_line_number i_pl_current_line_pl_line_number
+  pl_hostname i_pl_readonly_pl_hostname
+  ple_column_number i_ple_current_column_ple_column_number
   pl_left_hard_divider
   pl_left_soft_divider
   pl_right_hard_divider
@@ -3556,11 +3397,6 @@ test -n "$__i_ple_loaded" && return || __i_ple_loaded=1
   ple_lego_block_sideways
   ple_trapezoid_top_bottom
   ple_trapezoid_top_bottom_mirrored
-unset i
-#!/usr/bin/env bash
-# Pomicons (11 icons)
-# Codepoints: E000-E00A
-test -n "$__i_pom_loaded" && return || __i_pom_loaded=1
   pom_clean_code
   pom_pomodoro_done
   pom_pomodoro_estimated
@@ -3572,16 +3408,8 @@ test -n "$__i_pom_loaded" && return || __i_pom_loaded=1
   pom_pair_programming
   pom_internal_interruption
   pom_external_interruption
-unset i
-#!/usr/bin/env bash
-# Seti-UI + Custom (53 icons, 6 aliases)
-# Codepoints: E5FA-E62E
-# Nerd Fonts Version: 2.1.0
-# Script Version: 1.1.0
-test -n "$__i_seti_loaded" && return || __i_seti_loaded=1
   custom_folder_npm
-  custom_folder_git
-      i_custom_folder_git_branch_custom_folder_git
+  custom_folder_git i_custom_folder_git_branch_custom_folder_git
   custom_folder_config
   custom_folder_github
   custom_folder_open
@@ -3597,16 +3425,14 @@ test -n "$__i_seti_loaded" && return || __i_seti_loaded=1
   seti_php
   seti_markdown
   seti_license
-  seti_json
-      i_seti_less_seti_json
+  seti_json i_seti_less_seti_json
   seti_javascript
   seti_image
   seti_html
   seti_mustache
   seti_gulp
   seti_grunt
-  seti_default
-      i_seti_text_seti_default
+  seti_default i_seti_text_seti_default
   seti_folder
   seti_css
   seti_config
@@ -3615,16 +3441,13 @@ test -n "$__i_seti_loaded" && return || __i_seti_loaded=1
   seti_ejs
   seti_xml
   seti_bower
-  seti_coffee
-      i_seti_cjsx_seti_coffee
+  seti_coffee i_seti_cjsx_seti_coffee
   seti_twig
   custom_cpp
   custom_c
   seti_haskell
   seti_lua
-  indent_line
-      i_indentation_line_indent_line
-      i_indent_dotted_guide_indent_line
+  indent_line i_indentation_line_indent_line i_indent_dotted_guide_indent_line
   seti_karma
   seti_favicon
   seti_julia
@@ -3639,13 +3462,6 @@ test -n "$__i_seti_loaded" && return || __i_seti_loaded=1
   custom_elixir
   custom_electron
   custom_crystal
-unset i
-#!/usr/bin/env bash
-# Weather Icons (228 icons)
-# Codepoints: F000, F0EB, Nerd Fonts moved E300-E3EB
-# Nerd Fonts Version: 2.1.0
-# Script Version 1.0.2
-test -n "$__i_weather_loaded" && return || __i_weather_loaded=1
   weather_day_cloudy_gusts
   weather_day_cloudy_windy
   weather_day_cloudy
