@@ -1814,19 +1814,6 @@ idea from irc:
 	how?
 		need HashTable of alias short names
 
-neomutt -n -F /dev/null
-`:set` shows
-	set alias_file = "/dev/null"
-	set folder = "~/Mail"
-	set header_cache_compress_level = 0
-	set mailcap_path = "~/.mailcap:/usr/share/neomutt/mailcap:/etc/mailcap:/usr/etc/mailcap:/usr/local/etc/mailcap"
-	set mbox = "~/mbox"
-	set postponed = "~/postponed"
-	set record = "~/sent"
-	set spool_file = "~/mail/inbox"
-it _should_ show nothing
-header_cache_compress_level is a startup vs validator problem
-
 not true, mutt/file.c
 	/* This is defined in POSIX:2008 which isn't a build requirement */
 	#ifndef O_NOFOLLOW
@@ -1852,14 +1839,6 @@ colour notifications
 	*which* RegexColor was added / removed
 	e.g. { MT_COLOR_BODY, REGEX_ADDED, "http://..." }
 		or index into RegexColorList / Array
-
-post-release (build test and coverity first)
-	config dump enums
-	config dump doc links
-	help-page reformat
-	color: smart case matching
-	color: make compose colours simple
-	color: make quoted colours simple
 
 code-scanning: examine
 	27 Poorly documented large function
@@ -1911,4 +1890,37 @@ IRC 2025-01-07
 	Tabs: [1: Intro] [2: Keys] [3: Macros] [4: Unbound] [5: Flag Chars]
 		<Tab> or [12345] to switch between them
 
+close other repo discussions
+closed, locked, pinned issue:
+enhancement/idea link / template -> discussions
+	"🛟 I Need Help", "💡 I Have Ideas" "♥️  I Want to Help"
+
+certificates
+	add relatives to timestamps (X ago, for Y)
+	This certificate is valid
+	   from Thu, 26 Dec 2024 09:01:01 UTC (x weeks ago)
+	     to Wed, 26 Mar 2025 09:01:00 UTC (for y months)
+
+README.md
+	warning/note/information/tip blocks!
+	> [!NOTE]
+	> markdown text
+	> [!TIP]
+	> [!IMPORTANT]
+	> [!WARNING]
+installation
+	## Installation
+	[![Packaging status](https://repology.org/badge/vertical-allrepos/bat-cat.svg?columns=3&exclude_unsupported=1)](https://repology.org/project/bat-cat/versions)
+	https://repology.org/badge/vertical-allrepos/neomutt.svg?columns=3&exclude_unsupported=1
+
+test/merge
+	https://github.com/neomutt/neomutt/pull/3469
+	source: fix variable interpretation #3469
+
+searching the index with `~i REGEX` matching message ids is problematic
+	they often contain regex special characters
+	alter the docs to make this clear
+add a new syntax to the `~i` pattern...
+	`~i TEXT`   -- text is regex
+	`~i <TEXT>` -- text is literal
 
