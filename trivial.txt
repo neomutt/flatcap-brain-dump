@@ -1900,6 +1900,7 @@ certificates
 	This certificate is valid
 	   from Thu, 26 Dec 2024 09:01:01 UTC (x weeks ago)
 	     to Wed, 26 Mar 2025 09:01:00 UTC (for y months)
+	means lots more translations!
 
 README.md
 	warning/note/information/tip blocks!
@@ -1913,14 +1914,66 @@ installation
 	[![Packaging status](https://repology.org/badge/vertical-allrepos/bat-cat.svg?columns=3&exclude_unsupported=1)](https://repology.org/project/bat-cat/versions)
 	https://repology.org/badge/vertical-allrepos/neomutt.svg?columns=3&exclude_unsupported=1
 
-test/merge
-	https://github.com/neomutt/neomutt/pull/3469
-	source: fix variable interpretation #3469
-
 searching the index with `~i REGEX` matching message ids is problematic
 	they often contain regex special characters
 	alter the docs to make this clear
 add a new syntax to the `~i` pattern...
 	`~i TEXT`   -- text is regex
 	`~i <TEXT>` -- text is literal
+
+Commits as of 2025-01-11
+	Year	Mutt	NeoMutt
+	2016	 316	    788
+	2017	 272	   1615
+	2018	 348	   1873
+	2019	 419	   1752
+	2020	 406	   1070
+	2021	 261	   1114
+	2022	 130	    714
+	2023	  20	   1123
+	2024	  10	    600
+	2025	   0	     30
+
+drop 'i' (index?) binding for <quit>/<exit> for pager
+	non-intuitive
+in help use 'q' <quit> where data is read-only, e.g. info pages
+	accept 'x' <exit> also
+elsewhere
+	'q' <quit> => save and exit
+	'x' <exit> => exit without saving
+
+get neomutt on every available "awesome" list
+
+test/merge
+	https://github.com/neomutt/neomutt/pull/3469
+	source: fix variable interpretation #3469
+
+test/tidy/rebase
+	#4536 expand tabs to spaces in compose preview
+	https://github.com/neomutt/neomutt/pull/4536
+
+update options: https://neomutt.org/dev/analysis/debug
+
+git neomutt-release
+	add all
+	signed
+	dated
+	messaged
+	tagged
+	verify signatures on commit and tag
+	diffstat commit
+	push [y/N]?
+
+main/init contain a lot of pairs of:
+	cs_str_initial_set(cs, "real_name", c_real_name, NULL);
+	cs_str_reset(cs, "real_name", NULL);
+
+neomutt -Q / -D
+	suppress final blank line?
+	only *separate* output?
+	hmm... makes it harder for users to parse
+
+nobrowser to release credits (for bug)
+
+start [release] branch
 
