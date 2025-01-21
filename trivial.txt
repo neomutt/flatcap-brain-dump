@@ -867,8 +867,6 @@ these need to be paired exactly, making them error prone
 	notify_observer_add()
 	notify_observer_remove()
 
-ifdef color-name ...?
-
 messages that might benefit from \n
 plus the keymap.c http:// error
 	%d message has been lost. Try reopening the mailbox.
@@ -1249,7 +1247,7 @@ info pager, <save-message>
 
 after attaching a file, remember the directory in case of attaching another
 
-$ gh pr list --search "merged:>2024-12-12"
+$ gh pr list --search "merged:>2025-01-13"
 
 info pages (:set, etc) could do with colour
 	but it shouldn't be saved to file
@@ -1456,17 +1454,6 @@ vim-tabitha
 		b:tabitha_skip = 1
 		window is zero width
 		quickfix window (option?)
-
-buffer version of
-	mutt_str_pretty_size()
-	add_indent()
-
-void mutt_str_pretty_size(char *buf, size_t buflen, size_t num)
-	externalise all the config
-	used in index_format
-
-badly named
-	#define TYPE(body)
 
 replace
 	get_sort_str() with cs_subset_str_string_get()
@@ -1776,7 +1763,6 @@ bisect
 	adding mbox-style "Status: O" and "Tags: inbox"
 
 update gfx repo compose screenshots/etc with preview window
-	drop mixmaster screenshots, etc
 	check docs/website/etc
 
 https://github.com/junegunn/fzf-git.sh
@@ -1944,36 +1930,41 @@ elsewhere
 
 get neomutt on every available "awesome" list
 
-test/merge
-	https://github.com/neomutt/neomutt/pull/3469
-	source: fix variable interpretation #3469
+~/.config/neomutt/theme.rc
+	file or symlink
 
-test/tidy/rebase
-	#4536 expand tabs to spaces in compose preview
-	https://github.com/neomutt/neomutt/pull/4536
+autocrypt doesn't update peer/gossip dbs on receipt of an email
+	peer_history works on neomutt 20230322
+	I just built (legacy) mutt and tested — and there, I got Recommendation: Yes (which I didn’t get in neomutt)
+	made a manual bisect and end up at between 20230517..20231006 with v20230517 filling peers, v20231006 not
+	the real git bisect ends up at ref. 3289c85d - "add new Buffer functions"
+	on getting the peer key via import_gpg, buf_seek() is called with a bigger offset then buffer length from
+	autocrypt/gpgme.c:333:mutt_b64_buffer_decode -> mutt/base64.c:mutt_b64_buffer_decode buf_seek(buf, olen);
+	I looked at why neomutt won't add autocrypt peers to the db with gdb,
+	but C is kind of foreign to me and I could make a fool out of myself
+	how buffers are created and used - but I could pinpoint the failure:
+	https://github.com/neomutt/neomutt/issues/4548
 
-update options: https://neomutt.org/dev/analysis/debug
+buffer version of
+	mutt_str_pretty_size()
+	add_indent()
 
-git neomutt-release
-	add all
-	signed
-	dated
-	messaged
-	tagged
-	verify signatures on commit and tag
-	diffstat commit
-	push [y/N]?
+void mutt_str_pretty_size(char *buf, size_t buflen, size_t num)
+	externalise all the config
+	used in index_format
 
-main/init contain a lot of pairs of:
-	cs_str_initial_set(cs, "real_name", c_real_name, NULL);
-	cs_str_reset(cs, "real_name", NULL);
+badly named
+	#define TYPE(body)
+	also reconsider DTYPE in config/ ?
 
-neomutt -Q / -D
-	suppress final blank line?
-	only *separate* output?
-	hmm... makes it harder for users to parse
+problems with address completion
+	<mail>unique<tab>
+	using <complete>
+		single match opens alias dialog
+		when it shouldn't
+	using <complete-query>
+		single match completes,
+		but doesn't add ", " to match
 
-nobrowser to release credits (for bug)
-
-start [release] branch
+s/null-terminated/nul-terminated/
 
