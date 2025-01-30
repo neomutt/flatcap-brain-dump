@@ -246,9 +246,6 @@ actions: check that matrix builds continue on error
 logging error fd == -1 ?
 	mutt_socket_write_d() -1> a0000 SELECT "INBOX"
 
-neomutt version "debug" -> "logging"?
-	assuming that's what it is
-
 change browser_sort() to not take *entire* state,
 	just the array that needs sorting
 	convert all comparision functions to the qsort_r() compatible
@@ -325,7 +322,6 @@ post freeze:
 	update {windows,data,overview}.txt
 		dev web section
 	compose multipart video
-	new coverity defect
 
 post release:
 	c99 -> c11? (threading)
@@ -673,9 +669,6 @@ external pager - hitting 'j' doesn't advance to next email
 
 triv: break up huge case: clauses
 	measure all of them
-
-elim mutt.org from code
-	just one ref to urlview
 
 refactor actions to use actions/checkout to *push*
 	https://github.com/actions/checkout/#Push-a-commit-using-the-built-in-token
@@ -1701,12 +1694,6 @@ group commands
 	unsubscribe  [ -group name ...] { * | regex ... }
 add syntax: <mail>@group to send to entire group?
 
-testing.  we've got TEST_CHECK_STR_EQ()
-	we need TEST_CHECK_NUM_EQ()
-	that dumps the values if different
-	test/test_common.h
-	offer upstream?
-
 tests: check which dummy() {} functions are still needed
 
 docs/config
@@ -1764,8 +1751,6 @@ bisect
 
 update gfx repo compose screenshots/etc with preview window
 	check docs/website/etc
-
-https://github.com/junegunn/fzf-git.sh
 
 change help page headings from:
 	$flag_chars:
@@ -1887,6 +1872,7 @@ certificates
 	   from Thu, 26 Dec 2024 09:01:01 UTC (x weeks ago)
 	     to Wed, 26 Mar 2025 09:01:00 UTC (for y months)
 	means lots more translations!
+	also key selection
 
 README.md
 	warning/note/information/tip blocks!
@@ -1933,38 +1919,81 @@ get neomutt on every available "awesome" list
 ~/.config/neomutt/theme.rc
 	file or symlink
 
-autocrypt doesn't update peer/gossip dbs on receipt of an email
-	peer_history works on neomutt 20230322
-	I just built (legacy) mutt and tested — and there, I got Recommendation: Yes (which I didn’t get in neomutt)
-	made a manual bisect and end up at between 20230517..20231006 with v20230517 filling peers, v20231006 not
-	the real git bisect ends up at ref. 3289c85d - "add new Buffer functions"
-	on getting the peer key via import_gpg, buf_seek() is called with a bigger offset then buffer length from
-	autocrypt/gpgme.c:333:mutt_b64_buffer_decode -> mutt/base64.c:mutt_b64_buffer_decode buf_seek(buf, olen);
-	I looked at why neomutt won't add autocrypt peers to the db with gdb,
-	but C is kind of foreign to me and I could make a fool out of myself
-	how buffers are created and used - but I could pinpoint the failure:
-	https://github.com/neomutt/neomutt/issues/4548
-
-buffer version of
-	mutt_str_pretty_size()
-	add_indent()
-
-void mutt_str_pretty_size(char *buf, size_t buflen, size_t num)
-	externalise all the config
-	used in index_format
-
-badly named
-	#define TYPE(body)
-	also reconsider DTYPE in config/ ?
-
-problems with address completion
-	<mail>unique<tab>
+problem with address completion
 	using <complete>
 		single match opens alias dialog
 		when it shouldn't
-	using <complete-query>
-		single match completes,
-		but doesn't add ", " to match
 
-s/null-terminated/nul-terminated/
+dyk: subjectrx
+	subject lines like "Re: AW: WG: Fwd: AW: Re: AG Live Scoring" are common. Can
+	subjectrx '((aw|fwd|re|wg): )*' 're: %R'
+	strips multiple re: aw: etc
+	reducing your example to just "re: AG Live Scoring"
+	(the re: being inserted by choice)
+	---
+	subjectrx '\[neomutt/neomutt\] Run failed: (.*) (\(\x+\))' '✅ [%2] %1'
+	subjectrx '\[neomutt/neomutt\] Run failed: (.*) \(([0-9a-fA-F]+)\)' '✅ [%2] %1'
+	subjectrx '\[neomutt/neomutt\] Run failed: (.*) \(([0-9a-fA-F]+)\)' '❌ [%2] %1'
+	subjectrx '\[neomutt/neomutt\] (.*) \(PR #([0-9]+)\)' '🔀#%2 %1'
+
+how to end-to-end test the autocrypt functions?
+	discussion
+
+test build with ubsan
+	weekly github action
+
+Config system
+	reduce all error messages to error codes
+	there're a finite number of ways the config system can fail
+	possible for the 'generic' failures, "Option %s may not be negative"
+	but setting a regex or expando can return custom errors
+
+*.po
+	verify PGP public key
+
+sponsor
+	yutsuten renew
+	anon bitcoin
+
+expando long-text -- review
+	esp, "flags2" !
+
+colour - what happens if you set both (simple/palette) and truecolor?
+	we want to share both; if $color_directcolor is set then use
+	truecolor, else use (simple/palette)
+	avoids the need for multiple theme files
+	AttrColor needs link to other AttrColors
+		need refcounting
+		or be able to surived the *linked* object disappearing
+	Use linked colours to support truecolor -> simple fallbacks
+
+SimpleBar / ExpandoBar
+	are they compatible?
+	can they be merged?
+
+Help Page Tabs
+	do we need to implement actual Window tabs?
+	can we just fake it? (much simpler)
+	navigate between pages with any of:
+		1..n
+		<Tab> / <Ctrl-Tab>
+		<Ctrl-PgUp> / <Ctrl-PgDown>
+	auto-generate table of contents
+
+use git blame to put weekly/monthly data lines in this file
+	then archive the old stuff off once a month
+
+photo ∀ notebook
+	old one too?
+
+weekly build action with
+	-D_FORTIFY_SOURCE=1
+
+air (on irc)
+	#define SUPPRESS_UNUSED_WARNING(v) (void)v;
+	#define SUPPRESS_UNUSED_RESULT_WARNING(fn_call) do{if(fn_call){/*warn_unused_result*/}}while(0)
+
+find clean/dirty strwidth()
+
+release: commit count
 
