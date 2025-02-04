@@ -8,8 +8,6 @@ https://people.freebsd.org/~gahr/lc.vim
 move *.rc to ~/.mutt/
 move *.mbox to ~/mail/
 
---------------------------------------------------------------------------------
-
 parse_tags_transformed - Parse a custom expando of the form, "%G?" where '?' is an alphabetic character.
   	test '?' is [A-Za-z]?
 
@@ -437,7 +435,4 @@ merge notebook into brain-dump
 
 old notebook: type up or rip up
 	photo first
-
-use git blame to put weekly/monthly data lines in this file
-	then archive the old stuff off once a month
 
