@@ -1,0 +1,28 @@
+Flags
+
+parse_flags(e, fn)  updates e -> x,y,z, edata -> md_flags
+($flag_saafe) *it* merges
+
+end of mbox_open()   ea
+
+check_quick()	pf(fn) ∀ fa   store in Filename?
+	flag compare, flag_merge(disk-to-gui)
+
+chceck_slow()	pf(fn) ∀ fa
+	f compare, f merge  (disk-to-gui)
+
+sync()		pf(fn) ∀ fa
+	f compare, f merge (bi-directional)
+
+gen_flags()	sync_msg(), msg_open_new() / sort_flags()
+
+f_compare() - compare flags in bitfield, strcmp extra flags
+f_merge(disk-to-gui) - F, R, S, T + extras
+	if email *un*changed  F, set flagged, R set reply, S set old, T set trash del
+	if email *changed*    F, set flagged, R set reply, S set old, T set trash del
+	if F *not* set, but email->flagged do nothing, same for others
+		copy extras to email (replace them)
+f_merge(bidirectional)
+	if *un*changed absorb external changes
+	if *changed* OR for R.  F,S,T -> disk absorb extras
+

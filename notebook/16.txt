@@ -1,0 +1,28 @@
+Backend Storage
+
+Email*				HashTable (56)
+uid_start, uid_length		HashElem (40)
+				void* (8)
+
+HashTable, small, fixed size
+	table[n] => HashElem
+
+HashElem, small, fixed
+key -> strkey -> Email.path (intkey)
+	-> data -> Email
+
+50000: HT + table[50000] + 50000 HE
+
+
+Frontend Store
+
+Email + []		Mailbox.emails
+int []			Mailbox.v2r
+
+50000 : emails[50000], v2r[50000]
+
+
+Email
+
+Email, MaildirEmailData, EmailView
+

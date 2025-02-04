@@ -1,0 +1,37 @@
+msgwin testing
+
+what-key	1234567
+change flag	1234567
+multichoice	1234567
+yes-or-no	1234567
+quote char	1234567
+enter fname	123456789
+get field
+
+1	normal keys
+  1a	normal keys
+  1b	bad/wrong keys
+2	abort key
+3	ctrl-c
+4	resize (external)
+  4a	self
+  4b	other
+5	timeout
+6	resize (internal)
+7	wrapping when small
+8	cursor
+  8a	visible (or not)
+  8b	position
+9	ctrl-l
+
+op_editor - wdata->redraw -> REPAINT?!
+recursor() => hide cursor, paint, show cursor?
+	no if no refresh, no problem
+
+ctrl-l *should* clear msgwin
+
+resize shouldn't clear mutt_message(), etc
+	user could be resizing for visibility
+
+repaint vs timeout window_redraw(NULL) vs nothing
+

@@ -1,0 +1,41 @@
+Pager Colours
+
+Header: normal, hdrdefault, headers
+Body: normal, body, body-regex
+Tilde: normal, tilde (simple)
+Attach: normal, body, attachment / attach_headers
+
+Email
++---------+
+| Headers |
++---------+	Attach [--- ... ---]
+| Body    |
++---------+
+| Tilde   |
++---------+
+
+H (normal|-), (hdrdefault|-), (headers*|-), (color_partial|-)
+T (normal|-), (tilde|-), ($tilde|-)
+A (normal|-), (body|-), (attachment|-), (att_headers*|-)
+
+Body normal, body, (body*, quoted*, signature, markers)
+	stripe*, search
+	(msg, warning, error)	msg - colour for debug
+
+Test help, msg log
+
+Signature detector needs state info -- num lines so far!
+what to store?  cid or AttrColor, or both?
+new "color" cmd might cause new TextSyntax (and uncolor)
+Line (offset,cid,cont_h,cont_l, syntax[], search[], quote}
+cont_h, quote are domain-specific
+ansi for fixed colours, cid/ac for the rest
+cid isn't enough, domain determines all the backing colours!
+
+Log messages: wrapping, line colours $markers, $wrap*
+cid = log message, ac = msg/warn/err
+
+who manages weeding / hdrorder?
+leave the file intact, do in memory
+what about pipe_decode, etc?
+

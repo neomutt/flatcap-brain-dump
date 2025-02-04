@@ -1,0 +1,27 @@
+log msg is fixed, no odd space chars, nothing to strip
+don't need a 2nd file, only need to parse once
+more efficient to create TS[] ourselves?
+	possibly, but complicates pager?
+
+repain falgs: need_parse, need_wrap, need_recolor?
+which config affects log msg?  any?  $history_size?  no
+	if only affects the *ring* but the file is committed
+wrapping config handled by pager and window events
+colours: msg, warn, error (debug)
+once parsed -> (cid,ac), colour event menas just recalc *ac*
+log msg is line-based so won't need any TS, only default
+Line {default(cid,ac), TS[], offset}
+parsing log msg is trivial
+parsing :set is non-trivial
+but simple heuristics should be enough
+command obect = (string|number|enum) -- lots of new colours
+:bind, :macro similar
+:version line1, bold labels, +/-feature
+:help stripes + bind/macro heuristics
+macro may (not) have a description, is rhs "quoted"?
+variable column widths make parsing trickier
+help needs to handle window events to resize cols! how?
+raw file is <tab> delimited, regen file? as nec?
+libpager -> libemailpager; new libpager (simple)
+cache col max widths
+

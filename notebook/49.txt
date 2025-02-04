@@ -1,0 +1,6 @@
+New Expando
+
+cum_size, thread_size, total_size
+same ∀ email attrs thread_diff_label
+other attrs
+

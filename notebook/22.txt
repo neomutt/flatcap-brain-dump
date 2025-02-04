@@ -1,0 +1,26 @@
+Sync 4
+
+Message
+	make/break thread
+	add/remove/change label
+	change subject
+	don't affect filename (UID) only affect headers
+
+Whenever e->env->changed
+
+Check *new* - what *can have changed*?
+only compare cached value to disk
+
+cached	disk	result
+-	-	NOP
+-	Y	+Y
+Y	-	-Y
+Y	Y	nop
+
+sync_flagged(e, fn) : bool
+	e->flagged, edata->disk_flags, parse_flags(fn)
+	if (bool(disk flags) == bool(parse_flags)) return false
+	disk flags = parse_flags, return true
+
+if (sync_flagged()) -> e_cha -> hc_store
+

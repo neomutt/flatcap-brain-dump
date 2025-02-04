@@ -1,0 +1,11 @@
+Maildir / Hcache
+
+get list (scan dir * 2) -> FA (filename array)	is_cur
+n = hcache read (FA, EA) (email array)		is_cache?
+diskread (FA, EA)
+	hcache write (EA[n...])
+	error if FA !empty?  (log)
+
+notify
+debug_hcache()
+

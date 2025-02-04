@@ -1,0 +1,21 @@
+Alias Dialog
+
+Dialog { Menu, Bar }  (SimpleDialog, SimpleBar)
+function dispatcher -> AliasWinData, Menu
+menu_X() -> set MENU_PAINT flags & win_actions (WA_REPAINT, WA_RECALC)
+
+<limit>, <query> sbar_set_title()
+
+--------------------------------------------------------------------------------
+
+
+Expando:
+ibar_recalc() could query expando_tree() for EF_NUM_NEW_MAIL
+iff the calc and cache number on every NT_MAILBOX!
+
+:color - ` backtick etc
+
+SLEEP=0 imap-fetch-mail
+
+Discussion for inotify dump of events vs actinos (sep to code desc)
+

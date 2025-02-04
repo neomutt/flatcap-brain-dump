@@ -1,0 +1,43 @@
+Menu / Expando Colour
+
+
+Expando Nodes	  %a	%b    %c	Normal
+		   |     |     |
+		   V     V     V
+		+-----+-----+-----+
+		|     |     |     |
+Menu Data --->	|  A  |  B  |  C  |
+		|     |     |     |
+		+-----+-----+-----+
+		|     |     |     |
+	  --->	|  D  |  E  |  F  |	+ Indicator
+		|     |     |     |
+		+-----+-----+-----+
+		|     |     |     |
+	  --->	|  G  |  H  |  I  |
+		|     |     |     |
+		+-----+-----+-----+
+		   |     |     |
+		   V     V     V
+callbacks	 cb_a   cb_b  cb_c
+
+
+Normal (0)				BG	General
+Default (1)	index			|	   |		quick
+Column (2)	index_subject		|	   |		quick
+Cell (3)	index_subject regex	|	   |		slow?
+Line (4)	index regex		V	   V		cached
+Indicator (5)				FG	Specific
+
+Email.colour cached *line* colour
+Email.colours[] ARRAY of {cid,colour ptr}
+
+Normal, Indicator, Default Index (1) stored in general colours array
+colour columns arrays store *possible* colours
+Email.colours[] refs those colours
+
+make_entr() callbacks (cb_X()) push colour, text, pop colour
+means they don't have to know what the colour *was*
+
+push_colour keeps a stack of applied colours
+

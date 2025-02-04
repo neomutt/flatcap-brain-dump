@@ -1,0 +1,33 @@
+Questions
+
+How does smart-wrap work?
+	word boundaries?
+	hyphens?
+	config?
+Exception for headers!
+"disable for strings"?
+
+How does header wrapping work?
+how to impl in spager?
+disable smart-wrap on line-by-line basis?
+
+wrapping: (on/off), width(+ve,-ve), smart flag(s)
+determined by config, caller flags, line flags <toggle-wrap>
+
+rething line/segment iterator
+
+multisearch - like vim quick-highlight - rainbow of colours
+	add-search, del-search, clear-search, toggle-search, fns
+
+events: what does the spager emit?
+	move, size, colour? config?
+	just one? change affecting exported data
+	position, or wrap
+
+smart-wrap - is the whitespace elided?
+	how much?  all of it?
+
+postiion permanence - wrapping shouldn't affect position
+<toggle-wrap> -> {page|half|char}{left|right}> functions!
+spager_format with all export data
+

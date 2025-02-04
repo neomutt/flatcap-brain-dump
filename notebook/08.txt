@@ -1,0 +1,49 @@
+maildir mbox check stats
+
+new, cur
+stat dir
+inotify
+scan dir
+hash filenames
+eval (new, unchanged, deleted, changed)
+cache: new (changed?), deleted
+
+Buffer *err
+quick - new only } - stat
+slow - new, cur  }
+force - always
+this M vs other M?
+immediate vs delayed (imap)
+verbose? / progress?
+
+eval: changed new <->cur, or flags
+can't tell if deleted unless *both* dirs are scanned
+
+mx_mbox_check() index main lopo, pager main loop, get_postponed()
+mailbox_check() -> mx_mbox_check_stats()
+mutt_mailbox_check() -> mailbox_check()
+op_check_stats() - global, working on *"current"* mbox
+
+sync
+neomutt: unchanged, changed, deleted
+external: unchanged, changed, deleted, new
+
+(u,u) -> nop
+(u,c) -> upd N
+(u,d) -> DEL N
+new -> upd N
+
+(c,u) -> upd Disk
+(c,d) ? del in N
+(c,c) ? sync flags (2)
+
+(d,u) -> del D
+(d,c) -> del D (1)
+(d,d) -> nop
+
+
+(1) DEL has priority
+(2) OR the flags
+
+If NeoMutt1 replies, then Neomutt2 gets R flag
+

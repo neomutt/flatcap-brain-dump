@@ -1,0 +1,39 @@
+Sync 2
+
+FRST
+3 states for each flag.  GUI, last sync, Disk
+
+  | G S D | ch  Result  who			custom flags - use disk version always
+1 | - - - | n     -	 -
+2 | - - - | y     F	 D
+3 | - F - | y     -	 GD
+4 | - F F | y     -	 G
+5 | F - - | y     F	 G
+6 | F - F | y     F	 GD
+7 | F F - | y     -	 D
+8 | F F F | n     F	 -
+
+who: GUI or DISK
+
+Good for flagged, replied, (seen vs $mark_old)
+Trash OK for 1,2,7,8 (3-6 don't happen)
+
+T => trash + deleted
+$maildir_trash, $flag_safe
+
+open (T->trash, deleted) +T, +d
+
+							who?
+1	nop	nop	nop	no change		-
+2	+t,+d	+T	nop	ext +T			D
+3	nop	-T	nop	undelete(both)		GD
+4	nop	-T	-T	undelete(gui)		G
+5	nop	+T	+T	del(gui), $md_trash	G
+6	nop	+T	nop	del(both), $md_trash	GD
+7	-t,-d	-T	nop	ext -T			D
+8	nop	nop	nop	no change		-
+
+$flag_safe prevents gui 'd'
+needs to prevent (2) also
+case (5), (6) prevented by $flag_safe
+

@@ -1,0 +1,29 @@
+Paged File
+
+PagerFile { fp, LA, offset, banner}
+PF = new(), free(pf)
+L = new_line(PF)  insert into LA
+line_add_text(L, text, cid)
+line_commit(L)
+or
+line_add_colored_text()
+line_add_ansi_text()
+add_ansi(L, text, ansi_start, ansi_end)
+	=> TextSyntax copies strings
+
+Doesn't allow for ANSO colours or URLS needed for :version
+
+TS union of (cid,ac) or (start,end) + first,last flag for union
+How does search work?  could overlay partial / multiple TSs
+if text is [abc][d][efg] three colour blocks
+and search is "cde", need to merge 3 separate times
+need to split blocks 1,3?  is splitting nec?  pref not
+Searching sets up the search TS[] => REPAINT
+
+To display line, consider TS[0] (T), Search[0] (S)
+T entirely before S, display T
+T first, S overlaps, display T until S
+order matters because we're overlaying
+add_text/_search adds new TS unless same colour as previous,
+when it extends the previous TS
+

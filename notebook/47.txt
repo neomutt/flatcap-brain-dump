@@ -1,0 +1,17 @@
+Icon
+
+icon_set 30, hike_id 89 (swcp) camp
+	53                     river
+
+icon_set_icon 30 icon_id 30, date, seq
+	30, icon_id 13, 36 rows
+	30, icon_id 14
+	53, 1167, 14 rows
+	53, 1168
+
+icon 13, point_id 13, tent, grass hill
+	1167, 697816, ferry Rock to Padstow
+
+point 13,	 latitude, longitude, elevation, grid_ref
+	697816	 latitude, longitude, X,         X
+

@@ -1,0 +1,33 @@
+Todo
+
+doxy XXX
+observers: config, color, spager, window
+gh PRs
+doc data {dlg|window}_data, what goes where?
+check everything notifies
+help: pick colours - cmd, fn, key, string, comment
+help: set flags = "x" need dump_config_neo() any more?
+help: color output
+search context
+wrap / smart wrap
+PagedFile, cache 64KiB new(), new_file(fp)
+PF get_text from cache -- need line lengths
+PF release_text free or nothing if in cache
+calc only cache visible strings (dlg?)
+observers -> need *sub* everywhere - eliminate NeoMutt
+calc how often called?  don't cache config
+
+log msgs -> color
+:version -> color
+:bind -> color
+	define colours (theme)
+:color
+
+min wrap width
+test wrap with 1 long line (that overfills entire view)!
+$spager_format - needs expando for banner, e.g. "Help"
+	where does data come from
+	how much work to generate each item? cache them?
+
+testing: what's testable? PF, PL, PTextMarkup, Search
+

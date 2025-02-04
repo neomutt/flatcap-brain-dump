@@ -1,0 +1,17 @@
+New Mail
+
+dlg_index()
+	SharedData (ISD)
+	PrivateData (IPD)
+
+Notify
+	same scope as dlg_index()
+	private, access to shared
+	observer
+
+MV vs M
+	-nopoll is M
+	-nonotify in MV
+	mv doesn't exist when config is read!
+NO! -nopoll is MV too, GUI controls checking/frequency
+

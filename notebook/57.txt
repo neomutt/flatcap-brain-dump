@@ -1,0 +1,34 @@
+who's calling menu_redraw_index()
+	do *they* have data?
+are *all* menus using expandos?
+	can we make them?
+
+need *stable* data ptr
+can't be array if it might be resized
+
+Window[size]
+Menu
+			Data
+			0 ...
+current_row		1 ...
+			2 ...
+			3 ...
+			. ...
+			n ...
+Expandos => columns
+
+Window calls repaint
+	=> menu needs its own data ptr
+if it changes, data holder must update Menu
+
+To render one row: data, row num, is_indicator?, row colour
+	n * (data + colour)
+
+extras: trree chars, arrow cursor
+
+Who owns Mailbox / AliasArray?  Window (win/menu)?
+
+MenuWindow:	wdata -> menu
+SimpleDialog:	mdata -> data (priv)
+		wdata -> menu !
+

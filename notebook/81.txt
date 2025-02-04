@@ -1,0 +1,23 @@
+Dump Config
+
+Uses:
+	neomutt -D [-O]
+	neomutt -Q [-O]
+	:set [all] [config]
+	Help Page 3*flags config
+
+Always dump (one-liner help + blank line) but conceal
+use/override/abuse <toggle-search> to reveal / hide
+	or <toggle-quoted>
+or use same key '\' bound to <toggle-concealed>
+
+PagedFile -> interchangeable backend
+MemoryFile for known small data, say <= 64KiB
+DiskFile for existing file or FILE(
+Read/Cache lazily
+get_line()
+MemoryFile ∀ info pager
+or fmemopen(), et al
+How big can an email get?
+How much memory can we alloc? (Assuming paging enabled)
+

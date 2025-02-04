@@ -1,0 +1,49 @@
+Spager RegexColor2
+
+DlgComplex holds WinSpager
+    |               |
+    V               V
+dlg_data	win_data
+
+Raw Text => API   (gen by caller, by API)
+(model of text)   fp, LineArray
+
+Observers
+...color...
+
+How do we keep in sync?
+
+Observers:
+Window
+Config
+Color
+
+Line {TSA, SearchA}
+wrapping -> multiple lines
+
+Can we segment line?  YES!
+
+Line represents *one* raw line of text
+Markup is non-overlapping subsets of Line
+	each has an AttrColor
+
+If we wrap the Line, then recolouring it is hard
+If we unwrap, recolour, rewrap we might
+	have display problems - text jumping around
+
+Alternative: Segment the Line.  Keep array of {bytes,cols}
+
+Line {offset, TSA, SearchA, SegmentA}
+Line: 133 cols, screen width 50, Segments{0, 50, 100}
+
+Spager search works on full Lines
+Drawing *virtual* line 32 => count Line Segments
+	then display (Line, seg_num) => relative offset
+
+
+Segments are *byte* counts, corresponding to screen-width *cols*
+Segments are affected by $markers, $wrap, $smart_wrap NO
+
+*Pass-in* config values as *flags* -- caller observes config
+	=> spager doesn't need ConfigSubset!
+

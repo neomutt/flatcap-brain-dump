@@ -1,0 +1,27 @@
+Nested parse_code_node()
+
+     |      |   |   |   |     |   |   |  
+%<X? | %<Y? | & | > | & | %<Z | & | > | >
+     |      | Y | Y | X |     | Z | Z | X	<- belongs to
+
+
+parse_node_conditional parses "%<X?"
+recursion need to know where to stop
+only pnc() can find while of "%<Y...>", true could contain other stuff
+if "true" is 'text%a%b&mode%c"
+parse_*single*_node()  reads: "text", "%a", "%b", ?
+str to parse, find first of "%", "&" or ">" or "?" (old)
+% => recurse, parse_node_single()
+& => recurse, parse_node(limit)
+
+parse_single()  single expando, min possible (inc formatting)
+	or text to eol, or limited to unescaped %
+
+parse_node() repeat parse_single(), append
+is parse_text() greedy?  unless limited, skips escaped %
+who calls parse_text?
+	parse_node() end is %
+	parse_cond(true) end is %, &, (> or ?)
+	parse_cond(false) end is %, (> or ?)
+parse_node() takes optional end chars
+

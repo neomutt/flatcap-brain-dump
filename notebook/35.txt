@@ -1,0 +1,29 @@
+Parse Conditional
+
+%X, no custom parse -> NodeExpando
+%<[? custom -> NodeCondDat
+
+flag CONDITIONAL
+
+%<X? no custom		-> NodeCondBool
+%<[? custom		-> NodeCondDate
+
+Conditionals expect no formatting
+CondBool, lookup DID/UID, render -> bool
+CondDate, lookup DID/UID, save text string, render -> bool
+CondBool render use get_int() or get_str()
+CondDate render use get_int() to test
+
+parse_node()
+	%<x?...&...>
+	%< %<a&b> & %<c&d> >
+
+%< or $? -> condition
+
+parse_node() needs limits
+parse_node_condition() knows the limits       %<X?...&...>
+parse_node_condition() read and save cond letter(s), skip "?"
+	search for "&", ">" or "?" (iff old) ignore \ char
+	=> range of "true", range of "false" (could be empty)
+-> parse_node(true), parse_node(false)
+

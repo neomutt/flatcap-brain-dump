@@ -1,0 +1,31 @@
+Log Messages
+
+plugin or markup? -- plugin for MT_COLOR*, markup otherwise?
+file or memory? <1MiB -> memory, hide behind get_line()
+pre-process?  if so how do we preserve *this* but clear other
+input: text\ntext\n...
+
+parse() ∀ line: cid(default), TextSyntax[]
+	cid is a marker for owned by, could be API ptr
+	need separate default in case line starts with other colour
+
+wrapping happens after, involves splitting TS[]
+config / color events affect everything -> parse()
+window events => rewrapping => first unwrapping
+	=> re-read visible part of file
+
+recalc() => parse(), wrap() each if nec
+repaint() => paint using TS[] only
+2 files? raw, stripped -- one for processing, one for searching
+stripped is decoded, stripped of ansi ^H, line endings unified
+whitespace unified
+only necessary for emails
+part of parse processo
+
+get_line(TS) -> buf : 1 stripped line from file
+TS refer to file 2 offset
+'color' doesn't affect ansi or ^H (hard-coded)
+config allow_ansi only affects *email* ansi, not info pages
+file/memory => 2 files  / 2 memory or fmemopen() => fp, no "file"
+who creates stripeed file?  when?
+

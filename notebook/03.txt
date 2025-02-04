@@ -1,0 +1,41 @@
+Repaint / Event Loop
+
+repaint WA_REPAINT - first paint only (+ cursor vis, pos)
+resize (internal)
+resize (external) - resize RootWin, recurse, recalc all, repaint all, cursor
+sigint -> query_exit should be global fn, OP_INT?
+	how to interrupt slow ops?
+sigwinch -> NT_RESIZE?
+$abort_key OP_ABORT returned
+-timeout OP_TIMEOUT, NT_TIMEOUT returned
+recalc WA_RECALC slow ops
+reflow? WA_REFLOW? we recalc (can be slow) recurse, retval => reflow what?
+refresh just before getch call only there?
+focus/cursor - post repaint, call repaint without WA_REPAINT
+	(separate fn, recursor()?)
+OP_REPAINT - not timeout, not keypress -> repaint all?
+
+--------------------------------------------------------------------------------
+
+dialogs		-> 	km_dokey()	->	mutt_getch()	->	getch()
+(15+1)			    ^			   ^			  ^
+			    |			   |			  |
+			get_field()		change_flags()		what_key()
+						(5)
+						about	keys[]
+						timeout	macros[]
+						resize
+						sigint
+
+RootWindow	- Help Bar
+		- All Dialogs	- Index
+		  		- IndexBar
+		- MsgCont	- MsgWin
+
+msgwin observes FOCUS - can decide when to clear itself? NO
+	doesn't know importance of message
+
+focussed window is: Menu, Pager, MsgWin
+
+asciinema / screenshots
+

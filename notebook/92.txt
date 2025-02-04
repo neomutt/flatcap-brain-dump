@@ -1,0 +1,28 @@
+Help
+
+Help $help_intro = yes
+Display 1 sentence / 1 para intro on every help screen
+"This is the *index* -- a list of Emails in a Mailbox"
+Where you are, what you can do, how to navigate, etc
+This could be Page/Tab1 - instruction of how to disable
+Disabled => Page is not shown
+Help *always* needs title "Index - Keybindings", etc
+title is tab-depdendent
+What - lots of links to web guide
+Separate tabs could mean differing options per tab!
+intro: smart wrap, bindings no smart wrap
+=> separate WinSpagers needed, can't fake it
+need upper/lower-case translations ∀ menu names
+or "Menu: x - Description" for lower case only
+
+
+need *clean* dep free strwidth() identify the fns
+	that *require* the dirty version
+
+"keybindings for the index Menu" vs "index"?
+multiple spager banners - short / long
+
+use array of array (char * [3] / Array)? p->[2] syntax?!
+StringDouble(Array) or Triple, etc or String[23](Array) for brevity
+HelpLine(Array) -> mutt/tuple.h MACRO?  not yet nec
+

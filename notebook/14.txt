@@ -1,0 +1,28 @@
+check slow
+
+scan(cur) -> fa				5000
+mark old ∀ fa
+scan(new) -> fa						10
+
+hash ∀ E -> hash
+
+∀ fa find in hash
+	match -> email compare
+		no change -> drop, he -> type = NOP
+		change -> he->type = CHA		73
+			move to fa_cha
+	no match -> move to fa_new			6
+
+∀ hash if (type == -1) -> add to ea_del			11
+
+read_file (fa_new)    -> ea_new				6
+update_emails(fa_cha) -> ea_cha				(73)
+hcache_store (ea_new)					6
+hcache_store (ea_cha)					73
+hcache_delete(ea_del)					11
+--							---
+move to mailbox (m, ea_new)				96
+notify(ea_new, ea_cha, ea_del) -> index
+
+∀ ea_del FREE(), remove from emails[]
+

@@ -1,0 +1,22 @@
+Simple Dialog
+
+
+				wdata			mdata
+Window		Dialog		Menu(initial user)	-
+    Window	Menu		Menu			none (user)
+    Window	SimpleBar	SBarPrivateData		-
+
+
+Menu API: make_entry, search, tag, color
+
+exp_alias.c or
+alias_view.c	introspection callbacks
+alias_view.h	enum defs
+
+expando.c	ExpandoDefinition	AliasRenderData?
+expando.h	ExpandoDataAlias enum, extern AliasRenderData[]
+that keeps introspection callbacks private
+
+AliasMenuData *extends* Menu
+	create dynamically, menu frees, => extends Menu
+

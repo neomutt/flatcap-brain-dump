@@ -1,0 +1,20 @@
+Expando Render
+
+Which Nodes need Buffers? (and how many)?
+ExpNode needs 3 (pre, text, post)
+Empty - none
+Text - none, use ptrs and str*n*cpy()
+Pad - char[] malloc'd & memset() - none
+Condition/Container 1 Buffer for combined children? No, none
+	children need to be handled individually to preserve colours
+CondDate - none, calc doesn't need space
+Expando - 3 * Buffer pre/post start empty - might not be used
+
+When are Buffers allocate? Parse or Render?
+many expandos won't be used => Render
+Once alloc'd, leave on Node - good for freq users (index_format)
+
+
+if it's not already present, factor out of expando code
+expando-auto-magic %{arrow} info menu expandos
+

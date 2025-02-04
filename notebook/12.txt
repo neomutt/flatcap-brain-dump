@@ -1,0 +1,7 @@
+fa_changed -> upd  ∀ E, then *store*
+fa_new     -> read ∀ E, then *store*
+fa_delete  -> X,        then *delete*
+
+ea_store -> store
+ea_delete -> delete
+

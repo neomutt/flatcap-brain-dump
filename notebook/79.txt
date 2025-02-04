@@ -1,0 +1,70 @@
+Paging
+
+*page*	up/down
+*half*	up/down
+*line*	up/down
+
+
+Wrapped			Lines[]
+
+0 aaaaaaaaaaaa		.........	     0	+---------------+
+1 bbbbbbbbbbbb		.........		|		|
+2 cccccccccccc		.........		|		|
+    ccccc		.........		|		|
+    ccccc		.........		|		|
+3 dddddddddddd		.........	    Top	+---------------+  }
+    ddddd		.........		|		|  } View
+4 eeeeeeeeeeee		.........		|		|  }
+5 ffffffffffff		.........	Top+Size+---------------+  }
+6 gggggggggggg		.........		|		|
+7 hhhhhhhhhhhh		.........		|		|
+    hhhhh		.........		|		|
+    hhhhh		.........		|		|
+    hhhhh		.........		|		|
+8 iiiiiiiiiiii		.........		|		|
+9 jjjjjjjjjjjj		.........	     n	+---------------+
+
+preserve main line (numbered)
+
+colors
+	normal
+	body*
+	search
+	markers
+	status
+
+config
+	pager_context
+	search_context
+	tilde
+	markers
+	status_on_top (dlg)
+	smart_wrap
+	wrap
+
+functions
+	<top>, <bottom>
+	<half-up/down>
+	<line-up/down>
+	<page-up/down>
+
+File
+	page rows, cols
+	top_line
+
+Calc
+	visible pager ∀ cid if (!ac) gen
+	if win change dewrap, rewrap
+
+color event, wipe all ac -> recalc
+win event - nothing? -> recalc
+if (page rows/cols != win rows/cols)
+toggle status_on_top => no action! -> repaint
+
+colour
+	max, normal affect all status -- remerge
+	does body apply?  NO
+
+new notification: ADD|DEL_PATTERN, event needs a RegexColor!
+	how to apply?
+

@@ -1,0 +1,28 @@
+Expando
+
+Empty, Text, Expando, Pad, Cond, CondDate
+Empty - None
+Text - String, or (Start,End) or (Start, Length)
+Pad - Char, enum Type
+Expando - leader, min, max, just, did, uid, ExpDefn
+Cond - cond, true, false
+CondDate - count, period, multiplier -> Bool/Date?
+
+CondData -> bool	}- E_FLAGS OPTIONAL -> use  by COND
+Many Expando -> bool	}
+
+if Expando is E_TYPE_NUMBER and !=0 => true
+if Expando is E_TYPE_STRING and !NULL => true
+
+do we need a custom bool checker?
+yes for $[ date checking
+
+NODE API
+	bool_test() for COND
+	render()	Node -> string
+	generate()	Node -> format string
+	node_free()	free Node and data
+
+Expando for arrow cursor?
+	allow placement anywhere
+

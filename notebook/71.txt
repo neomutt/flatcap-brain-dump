@@ -1,0 +1,33 @@
+HashTable Colours
+
+Source { "name", cid, flags }			const
+Additional: did(domain), data (AttrColor/RegexColor)
+HashElem: type (int), data (void)
+	type: AC vs RC,  data -> ?
+
+Need : custom parser or pre-processor (simple_search)
+index/alias: simple_search transform
+status: optional back_ref param
+
+need ability to overwrite existing colour, post-transform
+touch for status if only back_ref differs
+regex_color_equal()
+	pattern AND match
+
+pre-processor isn't enough
+need custom parser -> RegexColor
+	need both color and uncolor
+	should *they* manipulate the RegexColorList?
+	who notifies if they do?
+	result (color): success(new), success(overwrite), failure
+	uncolor: success(removed), success(ignore)
+
+overwriting existing RegexColors preserves config ordering
+attach a name to a library's set of colours
+register_colors("sidebar", ColorDefs[], CD_SIDEBAR, cb_color, cb_uncolor)
+
+need libary-level color reset for "uncolor"
+"uncolor *" missing from cmd summary
+
+merge (mutt_)parse_color(); (mutt_)parse_uncolor(); drop mutt_?
+

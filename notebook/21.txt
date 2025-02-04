@@ -1,0 +1,27 @@
+Sync 3
+
+S(seen); E.old, read; new/cur		$mark_old
+open S -> +o, +r
+
+						who?
+1 nop	nop	nop	no change		-
+2 +o,+r	+S	nop	ext +S, read elsewhere	D
+3 nop	-S	nop	unread/-S		GD
+4 nop	-S	-S	unread (gui)		G
+5 nop	+S	+S	email read (gui)	G
+6 nop	+S	nop	email read (both)	GD
+7 -o,-r	-S	nop	ext -S			D
+8 nop	nop	nop	no change		-
+
+dir		cur state	new state
+new/cur		N/O/-		N/O/-
+reading email	N/O -> -, <new> O/- -> N, <flag> -> N/O/-
+
+new	N -> O/-	cur/
+new	O/- -> O/-	cur/
+new	O/- -> N	new/
+
+cur	N -> O/-	cur/
+cur	O/- -> O/-	cur/
+cur	O/- -> N	new/
+

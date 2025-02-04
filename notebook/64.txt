@@ -1,0 +1,38 @@
+Menu
+
+make_entry(menu, line, width, buf) -> text, expando_render()
+mdata -> private data
+text padded / truncated to width
+text contains:
+	ascii, unicode, emojid
+	tree, nerdfonts, colour, attrs
+
+colours:
+	*menu* colour (entire region)
+	*row* colour
+	*column* colour NO
+	*span* colouro
+
+Anything embedded in the text must be *measurable*
+expandos colour at the %X-level
+
+Menu colours where it's told to -- *unaware* of columns / expandos
+
+do we want an ExpandoMenu?
+expando_menu_new($index_format, IndexFmtDef, IndexRenderDef[])!
+No too much config, need observers for unknown objs
+
+Does char_width() work correctly for emojis, nerdfonts, etc?
+colours/attrs are zero-width, tree chars are 1 char/column
+How do (text,colours/attrs, tree) fix into formatted expandos?
+
+expando *node* has colour/attr, when is it applied?
+config DT_EXPANDO + IndexFormatDef
+IndexFormatDef "a" -> (ED_ALI, ED_ALIAS_NAME)
+	could be multiple expandos linking to *that* pair
+
+"color alias_name fg bg" does what? where?
+
+cfg + IndexFormatDef -> ExpandoTree <- this needs colouring.  how?
+ExpandoTree + IndexRenderData -> coloured text
+ExpandoTree could be created before or after "color" commands

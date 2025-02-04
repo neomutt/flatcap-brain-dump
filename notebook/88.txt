@@ -1,0 +1,32 @@
+Config Dump
+
+neomutt -D	he[]		set name = val # comment URL
+neomutt -Q	string->he[]	set name = val # comment URL
+:set [all]	he[]		set name = val -	 -
+:set var?	he[]		set name = val -	 -
+
+options:
+	name, value, one-line, web-line, colour
+	set name = value and/or #...
+
+need to know type to know whether to quote/escpe value
+-Q can be multiple so str -> he -> he[]
+
+	out	colour	comment	url	quoting
+n -D	fp	yes	?	yes	yes
+n -Q	fp	yes	?	yes	yes
+:set	buf/fp	yes	no	no	yes
+:set?	buf	yes	no	no	yes
+
+Each gens he[], ∀ he fn -> value, comment
+already have name (he)
+url fn() name -> buf
+colour: ansi for -D,-Q, simple for :set, set?
+colour_ansi fn() text, cid -> buf
+
+get_elem_list(cs, flags)
+
+color_log_color_attrs() debug
+slist to assemble ansi?
+need D_SLIST_SEP_SEMICOLON
+

@@ -1,0 +1,45 @@
+Search
+
+PFile, PLineA
+
+search/back	next/back	toggle	=> direction
+search_context, text, <search><enter> => next
+from start posn, how much do we search?  line, view, file?
+	prob: file, it's local and fast and small
+
+save: x matches on y lines (z concealed matches?)
+<search-toggle-limit> reduces file to search matches + context
+	conceal other lines
+	"..." between blocks or
+	underline row
+	no separation if search_context=0o
+
+$search_hidden -> search concealed text too (or $search_concealed)
+ignore concealed text/Lines
+until MT_COLOR_CONCEAL, need Line.hide_from_search
+	for hidden headers / quoted text
+
+Max number of wraps?  NO => 1 long line wouldn't get displayed
+	test this
+
+Use PagerLine as a ColouredLine for the Index!
+eliminate the need for embedded colour codes
+what about the search array?  keep it
+use search to highlight matching %expando fields in Index
+either entire expando, .e.g "*this field*"
+or sub-expando, i.e. "this *part* of field"
+
+"color search" exact match		} merged
+"color search_line" wider context	}
+
+e.g. search_line faint bg colour	} merged
+     search      underline		}
+
+Index: always search visible email
+	search again on page-down
+	search + part of recalc()
+
+index_thorough_search option
+
+<limit-to-search> fn?
+

@@ -1,0 +1,41 @@
+Parse / Render Conditional
+
+FormatData
+
+{ "X", "long-name", DID, UID, parse_X },
+{ "Y", "another",   D2,  U2,  parse_Y },
+{ "D", "date",      D3,  U3,  parse_date },
+
+custom parse
+	or expando/bool
+
+%X + parse_X() -> Node {Expando,DID,UID}
+%Y + parse_Y() -> Node {Expando,D2,U2}
+
+RenderData
+{ DID, UID, index_X_str,    NULL           }
+{ D2,  U2,  NULL,           index_Y_int    }
+{ D3,  U3,  index_date_str, index_date_int }
+
+render(node, rdata, data, buf)
+∀ node, render (node)
+lookup (DID,UID) -> rd
+rd->get_string() or rd->get_int()
+format string
+
+custom bool -> custom parse
+custom parse => choice default
+tests empty vs 0
+
+Parse Conditional
+
+"%<X?A&B>" + parse_condit() + parse_X() -> ConditNode { NodeX, TextA, TextB }
+
+render(node)
+	if rd->get_int() - use as bool
+	else rd->get_str() - test if empty
+
+NodeX needs data to fulfil bool
+NodeCondDate..? -> NodeBool, NodeBoolDate
+		-> render -> 0/1
+

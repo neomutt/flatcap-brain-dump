@@ -1,0 +1,31 @@
+Colour Test - RegexColorList / Simple
+
+Init -> (def,def,none) 1 entry "index"			}
+uncolor -> (d,d,n) no change				} Simple
+color	attr	def	def	-> attr (1)		}
+	-	red	def	-> red, def (2)		}
+	-	def	red	-> def, red (3)		}
+							}
+all combis -> last wins 12, 13, 23, 21, 31, 32		}
+all of 123 uncolor index => initial state		}
+
+123 with patterns of apple,banana,cherry
+set bare first {123}{abc} don't affect bare
+need to serialise entire RegexColorList use colours, attrs with
+	diff initials ({a,b} attrs; xy) colours + pattern uppercase
+	({bold,underline}; red, green; APPLE => (bu;rg;A), ...
+	bare => (;--;) no attrs, def colours no pattern
+
+Patterns {new, overwrite}
+uncolor (1) name, (2) name pattern, (3) *	always succeed
+
+(1) resets only "index"
+(2) reset "index" + "pattern" -> delete
+(3) reset "index", delete rest
+
+(1) test on index already reset, index coloured, index + lots of patterns
+(2) no patterns, 1 match, match + other, only others
+(3) index only, index + 1 pattern, index + many others
+
+index => simple_search use body instead
+

@@ -1,0 +1,44 @@
+Config
+
+main
+	gen hea[], either
+		ALL (-D)
+		SOME (-Q)
+	dump_config
+		∀ hea (filtered)
+	dump_config_new()
+
+mutt_enter_command()
+parse_rc_line()
+parse_set()
+command_set_query()
+	set_dump(ONLY_CHANGED)
+	set_dump(ALL)
+set_dump()
+	hea = ALL_CONFIG
+dump_config()
+	∀ hex (filtered)
+msgwin: add_text()
+
+
+to highlight need
+	type (from he->type)
+	name (from he->name)
+	value (lookup)
+	one-liner (from he->cdef)
+
+simple: add_text()
+
+who controls the config/flag for the spager window?
+dlg, windo, config, functions
+what if dlg wants nowrapping but $wrap is set?
+window has settable flags
+dlg has functions/observers that can either
+	pass through or block features
+	=> no config observer on Window
+OR a subset, isolated from main config
+DLG is handling functions!
+
+
+use stripe colours for sections in :color ?
+

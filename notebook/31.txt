@@ -1,0 +1,29 @@
+Parse and Render
+
+Expando: uid, did, render()
+
+Node { type, next, priv*, render() }
+ExpandoPriv {did, uid}
+
+Which need colour? of form (prefix,suffix)?
+*All* for *custom* render() Node is const, priv isn't
+
+ExpNode for %T		ExpDefn {"T",did,uid,custom_parse()}
+Node {did,uid,priv {T stuff(formatting, etc)}}
+where/when do prefix/suffix come in?
+	separate callback?
+wider render()? should it include *line*'s colour? prob NO
+RenderNode shadows Node tree - would need to observe Node tree
+RenderNode {Buffer*3 (prefix,text,suffix), Node*}
+or Node{type,did,uid,Buffer*3(prefix,text,suffix), priv*}
+what about Integers? %d, %nd, %.nd, %n.md
+	+ justification & padding 0/' '
+which nodes have formatting? Exp, Containers
+Container {tree,subject} T is fixed size, s is minimise
+Container takes %s (subject)'s formatting
+Menu maintains arrow string, width and custom render
+When format is set, who inserts %^ (arrow)?
+	Menu config observer?
+if there's an ARROW flag? and %^ isn't already present
+maybe used multiple times?!
+

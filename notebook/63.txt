@@ -1,0 +1,14 @@
+New windows WM_RECALC ∀
+	RoowWindow -> AllDialogs -> ComposeDialog : recalc()
+	business logic ∀ Compose
+	manually call env.recalc() & clear flag
+	assume 3 * Bar = 3
+	halve remaining space
+
+
+PBar hides if preview colour is set?
+
+%|  divider expando = Unicode char + divider colour
+	if $ascii_chars use ascii pipe char |
+check of %| is used anywhere
+

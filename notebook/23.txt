@@ -1,0 +1,13 @@
+SYNC - acutest, autosetup
+
+
+for beginners add header row to Index - how?  index_format
+	tie into expando refit?
+
+new/cur FRST, custom
+
+inside			cache		outside
+flagged,read,etc	FRST		FRST
+?			new/cur		new/cur
+-			custom		custom
+

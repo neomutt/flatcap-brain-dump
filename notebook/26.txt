@@ -1,0 +1,20 @@
+Expando Parse
+
+struct ExpandoDefinition + "format_string" => Node Tree
+
+%X or %{name} lookup in Defs
+
+custom_parser() -> Node + ndata		   + ExpandoDefinition
+or def_parser() -> Node + ndata (Expando)  + ExpandoDefinition
+
+
+Render
+∀ Node -> string
+
+
+Generate
+∀ Node -> format string
+	requires ExpandoDefinition (in Root Node)
+
+:explain index_format -> pager with full breakdown?
+

@@ -1,0 +1,26 @@
+menu_redraw_index()  ∀ row
+
+API make_entry()
+	alias_make_entry()
+expnado_render($alias_format)
+
+API get_string() / get_number()			}
+	alias_n_num()				}
+	node_expando_set_color(ALIAS_NUMBER)	}
+	add_color(node->color)			}
+	format_string()				}
+	add_color(NONE)				}
+
+=> text with an embedded ctrl-char-colours
+
+print_enriched_string()
+	tree chars
+	colour codes (MUTT_SPECIAL_INDEX)
+MT_COLOR_INDEX => use "index" colour
+get_color(num,str)
+	regex_color_get_list(str[0[])
+	get_current_mailbox() !
+	get email from index!
+	regex match colour against colour list
+	merge colours
+

@@ -1,0 +1,24 @@
+check fast
+
+scan -> *fa_sca*
+hash(∀ E) -> *hash_uids*
+lookup ∀ *fa_sca* in *hash_uids*
+	match -> email compare
+		no change - *drop*
+		change move to *fa_cha*		8
+	no match -> move to *fa_new*		10
+
+∀ fa_new -> read file -> add e to ea_new
+∀ fa_cha -> update E,    add e - ea_cha
+
+10 reads, 8+10 stores => 28 ops
+
+need to be separate for notify
+
+read file (fn = new, ea_new)			10
+update email (fa_cha, ea_cha)			(8)
+store (ea_new)					10
+store (ea_cha)					8
+
+notify (ea_new, ea_cha, null)
+

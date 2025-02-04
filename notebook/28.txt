@@ -1,0 +1,33 @@
+Colour
+
+Only index_format, status_format
+could extend to folder_, alias_, query_, mailbox_folder_format
+line coloured by Menu.color()
+status colours are applied to *rendered* string
+All expandos (index) are single colour except %s (subject)
+subject is [tree chars] + [subject ] 2 colours
+
+special parse for %s - creates two ExpNodes %T%s Tree,Subject!
+%T is used, but it doesn't *need* a letter, just a DID/UID
+render - draws them separately, generate just give %s
+what about formatting?  formatting node?
+%30s => %30wide{%T%s}
+
+Only ExpNode is coloured, rest are *line* coloured
+Text -> Exp -> Text	RootNode holds line colour? No
+	 |
+	 V
+	 Colour
+
+When are Nodes coloured?
+Not, colour inserted at render time
+render (ExpNode) -> callback(buf, &colour, flags, did, uid)
+Menu.make_entry(n) -> expando_render(RootNode, data, flags)
+∀ Node callback() -> [str, colour]
+format string, apply colour add to buffer
+
+colour index %{name} / %x / %name fg bg ?
+	any valid named expando
+%{color:X} #rgb, colorN, red, index_subject(neo name for colour)
+${color:none} - conditional colours?  very messy / complicated
+

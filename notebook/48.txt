@@ -1,0 +1,13 @@
+Escape <, >, ?, &, \, %, | (trailing)
+can "subject" be conditional?  HOW?
+
+dates: ymwdHM
+	%[d, 0d, 1d
+	~d<d, 0d, 1d
+	*this*, *this*, 24 hours
+
+%<X?A&B>
+
+%-10.15<X?A&B?
+
+(conditional subject!)

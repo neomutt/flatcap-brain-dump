@@ -1,0 +1,28 @@
+Sync
+
+macro: new file, del file, change dir
+micro: flags changes
+
+scan(new), scan(cur), hash(email)
+=> new -> cache/emails, => del_uncache/_emails
+
+same-checks
+(1) fn: disk flags == edata disk flags
+(2) e changed == false
+(3) fn: custom_flags == edata custom flags (unknown_flags)
+(4) fn: dir == e.dir (new vs cur)
+
+email flags - flags at time of last sync
+	=> e.changed mean text-y stuff, refs, labels, subj
+env.change => text-y stuff
+email flags => RSFT => file rename if changed
+
+Inside
+	Email : flags, flagged, replies, seen, deleted
+	Env: refs, label, subject
+
+Outside
+	Email: flags, FRST / custom abc / dir new/cur
+(UID)	Env? how can we tell?  stat() every email
+	Edata: FRST, custom, E: new/cur
+

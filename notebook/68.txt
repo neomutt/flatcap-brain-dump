@@ -1,0 +1,38 @@
+Render
+
+"%a%b%c" -> menu_draw() -> make_entry()
+line colour ∀ callbacks
+
+Email(View) caches colours for row.  Array of ?
+Which colours affect row?  index*
+	normal, indicator handled by Menu
+
+47 index expandos, index + 10 index_* colours
+Any colour with a regex could be affected by many functions, e.g. tag
+
+Add *tagged* colour to Menu: normal (obj), tagged, indicator
+	Menu needs to know that items are tagged HOW?
+	convert '*' tagged expando callback to use Menu
+	tagged bitfield ∀ Menu.max
+	tag notifies owner rather than owner tag() callback function
+called need to get Array of tagged items!
+
+Array of colours easier if index colours were private 0..n
+they're sequential, so we could rebase them!
+
+(1) default, (2) column, (3) cell, (4) line
+
+0 index, 1 index_author, 2 index_collapsed, 3 index_data, 4 index_flags
+
+which expandos need which array colours?
+when are the array colours set?  lazily?
+size(ARRAY) == 0 could mean zero colours
+capacity of 0 => unchecked ?!o
+
+or *static* AC *no colour
+	take care clearing array!
+
+%a needs "index" colour only
+%b needs "index" + "index_subject"
+%c needs "index" + 2 * "i (regex)"
+

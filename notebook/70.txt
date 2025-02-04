@@ -1,0 +1,23 @@
+Color Split
+
+Color : {domain id, colour id }  did,cid internally
+encode into a typedef'd short, outside of libcolor
+
+*already* colours: index, pager, compose, sidebar
+
+ToDo:
+
+Alias: full row, column, regex + simple string (& Query)
+Pattern, History: add stripes
+Browser: full row, column - ls.colors: type (file,dir,link), suffix
+AttachDlg: full row, column + icon command (+Compose Attach)
+Compose: colour Envelope with regexes / patterns
+PGP Key: colour by trust?  stripes?
+Verify Cert: Bold labels?  summarise dates (x months ago/future)
+
+
+color obj fg bg		=> simple
+color obj fb bg regex	=> regex	(simple search)
+uncolor obj		=> simple
+uncolor obj regex [regex] => regex (multi)
+

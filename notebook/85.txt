@@ -1,0 +1,52 @@
+(Virtual) Rows, Lines, Segments
+
+Screen: rows, cols
+vcount: total (wrapped) virtual rows
+get_virt_row_text(n) -> text, length
+search needs  get_real_row_text(n) -> text
+rcount: total real rows ARRAY_SIZE(pla)
+∀ vrow, get_vtext(), inefficient to keep looking up pl.seg
+	need iterator for efficiency
+	step through (pl,seg)
+	{int,int} reset() -> (0,0)
+	(init) set_vrow(vr) -> (x,y)
+
+      0 +-----------------------+
+        |                       |
+        |                       |
+V0+-----+-----------------------+----+
+  |     |                       |    |
+  |     |                       |    |
+  |     |                       |    |
+  |     |                       |    |
+  |     |                       |    |
+ n+-----+-----------------------+----+
+        |                       |
+        |                       |
+        |                       |
+        |                       |
+        |                       |
+      n +-----------------------+
+
+*Tab*! (+Unicode, emoji, etc)
+Strings|chars need measuring before wrapping, but
+wrapping occurs LATE
+
+Line's byte count important for markup alignment
+Line's col cound not used until wrapping
+pla_add_line()
+pl_add_text(text, attrs) * many
+
+recalc() - first call, measure inc expansions
+\t -> n spaces
+<bad> to replacement char
+ctrl-chars to \octal
+
+This translation needs to happen in the cache phase
+cached string is fully expanded, measured
+at end of calc, string is wrapped if nec
+
+PagedFile: on-disk is raw text, in-memory is expanded text
+cache_get() uses memory for <=64KiB
+or file read; expand; measure
+

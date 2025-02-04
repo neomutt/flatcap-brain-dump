@@ -1,0 +1,28 @@
+SimplePager, RegexColor
+
+Simple coloured objects
+Caller creates markup, TSArary ∀ Line
+SimplePager can handle colour changes - wipe AC, regen/merge
+
+If caller users RegexColor (or mix of RegexColor and SimpleColor)
+then it must handle colour events
+How does the SimplePager know not to do anything?
+It doesn't.  It just needs to act before the caller.
+
+RegexColor events need 3 modes: add, del, changed
+*change* => regex already exists but colour has changed
+SimplePager could probably handle *del* or *changed*
+*del* => strip out matching TS
+*changed* => clear AC
+only makes sense with unified colours
+
+SimplePager: good for *structured* text, with "objects"
+???Pager : *freeform* text
+
+Probably only ONE RegexColor for any given Dlg
+User applies multiple RCs to Dlg
+They all have the same CID, referencing the RegexColor
+The TS (for a match) the CID isn't enough info
+need the specific RC to get the AC
+SimplePager cannot know how to apply colour
+It must be told

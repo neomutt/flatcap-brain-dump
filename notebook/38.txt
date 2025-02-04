@@ -1,0 +1,22 @@
+Encryption Recipients
+
+On receipt: display
+	enc key fingerprint, main key fingerprint
+	real nam (email distiguish hidden from unknown (not in keyring)
+	function to search & import new keys? hard
+		what if there are multiple matches?
+		external cmd, drop to shell?
+
+Encrypting is *open*, keys can be read by anyone
+	option for them all to be hidden?
+Should outgoing mail be encrypted (encrypt-to-self)?
+	of just "sent" mail
+should "sent" mail folder be encrypted ∀ recipients?
+BCC leakage
+	should be hidden *at least*
+	or each bcc recipient should be a separate email
+		only one in "sent" mail through
+	warn if we can't secure bcc anonymity
+
+What *is* the point of encrypt-to-self?
+

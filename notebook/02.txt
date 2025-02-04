@@ -1,0 +1,30 @@
+Trivial
+
+Gen docs: DocBook, man page, correct multi cols, synonyms, deprecated
+Discussions: write up: external event loop + diagrams, tree search, strategy
+
+<change-folder-relative>?  syntax ../X ?  CDPATH=".."
+
+<change-folder> make case insensitive?  how? where?
+
+history full dedupe, not just iff matches prev entry
+doc: what I know about keys for luci
+
+config that *isn't* inheritable?
+	$abort_key, DT_STARTUP
+
+build-config script, e.g. BC -rtl remove rtl build config
+
+io_uring??
+
+multiline messasges
+	investigate all possible candidates
+	elim $sleep_time, [n] for missed messages
+	[n] is where there've been multiple set_text()s but only 1 repaint!
+
+split all multichoice "," to ", " + *.po for better wrapping
+	no need to improve wrapping, algo first
+
+drop "create folder" on startup with zero - display message
+	press "c" to change folder / open a mailbox
+

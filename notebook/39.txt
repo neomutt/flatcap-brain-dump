@@ -1,0 +1,32 @@
+Phishing Protection
+
+PunyCode to any non-ascii domains
+	safelist of domains
+
+Index, Address Book, Status Bar, Compose
+mostly expandos
+option to enable/disable?
+	why would you want it off?
+
+change expandos to suffix puny code
+	add prefix "⚠️" warning? (option)
+need plain expando ∀ modified expandos
+
+is safelist in utf-8 or punycode?
+	or both? must agree - or warn/ignore
+
+function <phishing-add-to-safe-list>
+	would need to know cfg file
+<show-safe-addresses> -> Pager with utf-8 / Punycode
+	cut'n'paste of 's' save
+	list of all addresses
+
+To:
+	x ...
+	y ...
+	z ... Puny
+Cc:
+	r ...
+	s ...
+	t ... Puny
+	

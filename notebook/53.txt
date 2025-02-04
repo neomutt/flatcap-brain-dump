@@ -1,0 +1,28 @@
+All Expandos
+
+NULL, EMPTY, plain text, (all() escaped chars, unicode text, newline
+
+%x:	(match, no match), (contents, none), (numeric, string), longer match: (yes, no)
+
+'%4 '	(space) padding
+%xy	(x only, xy only, both)
+
+format: %FORMAT x:none,
+	(0,) leader
+	(justify, centre, none)
+	(min, max, both)
+	(lowercase, none)
+	%-min.max
+
+bad formats: -, -.3, 3., -w.
+
+padding: (soft, hard, eol), (space,ascii,unicode,emoji,escaped chars)
+
+cond: (empty, true, false, both), (true, false), (format, none)
+contents (true, false): (empty, text, escaped text, expando, cond)
+
+named: %{name:format}  (name exists, doesn't), (format, none)
+name: [a-z_\-0-9]?  ended by ":" or "}"
+cond: %{test:name:format}  %{else} %{end}
+''test' or 'cond' or 'if' => reserved names
+

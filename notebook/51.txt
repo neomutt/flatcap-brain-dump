@@ -1,0 +1,32 @@
+  AAA   %<p?   BBB   %?q?   CCC   &   DDD   ?   EEE   &   FFF   >   GGG
+^     ^      ^     ^      ^     ^   ^     ^   ^     ^   ^     ^   ^
+|     |      |     |      |     |   |     |   |     |   |     |   |
+0     1      2     3      4     5   6     7   8     9   10   11   12
+
+Start: Container loop { node_parse() }
+
+0	text(-)		"AAA"			always finds %, \0
+1	cond	'p' new-style, state: true
+2	-->	text('>', '&')	"BBB"
+3		cond	'q'	old-style, state: true
+4		-->	text('>', '&', '?')	"CCC"
+5			marker '&' state: false
+6			text('>', '&', '?')	"DDD"
+7		<-- marker '?'
+8		text('>', '&')	"EEE"
+9		marker '&', state: false
+10		text('>')	"FFF"
+11	<-- marker '>'
+12	text(-)	"GGG"
+
+Cont
+
+		  / text(BBB)	/ text(CCC)
+text(AAA)	 /  cond(q)    <
+cond(p)		<   text(EEE)	\ text(DDD)
+text(GGG)	 \
+		  \ text(FFF)
+
+
+Exp.defs; parent ptr, disconnect expando, disc. text, drop start/end, drop exp string
+

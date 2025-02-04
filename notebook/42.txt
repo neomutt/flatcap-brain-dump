@@ -1,0 +1,21 @@
+format strings expandos
+
+fmt -> all whitespace between becomes 0x20 width 1
+attributes use make_string() -> IndexRender
+	=> expando must distinguish behaviour
+FormatDef or ConfigDef
+fd is just numbers
+cd has flags
+
+expando_parse() - *config* expando
+*hooks*: compress (command), index_format (format string),
+	mbox, save, fcc (mailbox/file/dir)
+check/fix index-format-hook -- seem ok
+	(require mailbox open?!)
+
+Node [a,b,c]		N [a,b,c]
+	|		     |
+	N[x,P,z]	     P
+			     |
+			    [x,z]
+

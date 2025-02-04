@@ -1,0 +1,24 @@
+Render / Callbacks
+
+expando_render(buf, cols, exp, rdata, pdata, flags)
+recursively render
+render(buf, cols, node, rdata, pdata, flags)
+render_expando() - lookup callback in rdata
+	-> callback(node, pdata, flags, buf, cols)
+node ExpandoNode - type, did, uid, format, children
+	+ ExpandoExpandoPrivate - colour
+
+render_expando() -> callback() - gen string, set Node.priv.colour
+
+Node.render() - custom renderer.  Node+priv -> text
+render_condition()? bool callback (Node, pdata, flag)
+callback depends on node type *custom* to node type
+where's it set?  parse(), put in ndata.  NO
+needs to be generic, YES.  generic ndata - just callback
+Custom parser (conddate) -> test_cond_date()
+Generic parser (string) -> test_string_nonempty()
+	(number) -> test_number_nonzero()
+rely on Defs flags STRING/INT, BOOL
+
+strip out RenderData - fix comments, specifying typedef
+

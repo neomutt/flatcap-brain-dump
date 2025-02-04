@@ -1,0 +1,18 @@
+buf_mktemp(buf) generate neo name in $tmp_dir
+buf_mktemp_pfx_sfx(buf, pre, suf) gen prefix/suffix name in $tmp_dir
+buf_mktemp_full(buf, pre, fix, src, line) ditto logging
+mutt_adv_mktemp(buf) gen name based on template name, pre suf $tmp_dir
+
+mutt_file_mkstemp() -> mutt_file_mkstemp_full(src, line, func)
+mutt_file_mkstemp_full() -> gen name in $tmp_dir (diff algo to above)
+				create file -> FILE*, unlink file
+
+bufs_mktemp		60
+mutt_adv_mktemp		4
+mutt_file_mkstemp_full 18
+	76 gen random filename
+	38 deleted tmp file
+
+
+50 expandos, 17 allow padding
+

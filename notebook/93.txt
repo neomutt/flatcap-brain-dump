@@ -1,0 +1,39 @@
+Key Dump
+
+:bind  [menu|all]
+:macro [menu|all]
+help [bind|macro] for one menu
+
+spacing between blocks
+blocks can be empty
+titles for non-empty blocks
+
+bind
+bind all
+bind menu
+bind menu key fn
+
+
+bind,macro	bind	menu	key	func	-
+		macro	menu	key	text	desc
+	
+help		title	key	func
+			key	[desc]	text
+
+
+help sort by keybindings, ideally need raw keyinfo
+split into modifier and key
+uppercase letter decomposed into <shift> + lower
+single modifiers: none, shift, ctrl, alt (mac)
+sort by (lower_key, then modifier) but display A (not shift-a)
+what are shift,ctrl,alt equivs on Mac?  build-time define?
+=> not ^A -> Ctrl-A, not <esc>A -> Alt-A
+=> need to *accept* them too
+
+Display: split modifier and key right-justify mod, left-justify key
+
+	      A
+	 Ctrl-A
+	  Alt-A
+	Shift-A
+

@@ -1,0 +1,15 @@
+we don't want to calculate colours that won't get used
+
+menu.color() -> index_color() -> email_set_color()
+make_entry() instead, calc all for simplicity?
+
+0 (index) default colour
+1 (author) = default + author + ∀ author regex
+...
+10 (tags) = default + tags + ∀ tags regex
+
+0 default MT_COLOR_INDEX		IndexList
+1 author  MT_COLOR_INDEX_AUTHOR		IndexAuthorList
+...
+10 tags   MT_COLOR_INDEX_TAGS		IndexTagsList
+

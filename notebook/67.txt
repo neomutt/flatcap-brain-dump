@@ -1,0 +1,36 @@
+callback only needs ot know about *its* colour
+rather than set_color(X), text, set_color(def_line) e.g. 'index'
+
+push/pop don't get applied *until *menu is rendered
+push() merges and returns merged colour (and adds to stack)
+top() gets merged colour
+pop() unstacks and returns prev colour
+
+do we still need Menu.color() to get default line colours?
+top([empty]) => NORMAL
+
+print_enriched() still needs indicator colour to be applie
+
+Render "%a%b%c" -> menu_draw() -> make_entry()
+get default colour for line, add_color()
+expando_render() -> cb{a,b,c} colour-enabled callbacks
+
+a() text (no colours)
+b() push (colour 1); text; pop_colour()
+	add_color(c1); text; add_colour(pop)
+c() push(c2); push(c3); text; pop(); pop()
+	add(c2); add(c3); text; pop(); pop()o
+
+what's getting pushed?
+what's getting added to string?
+string "AAA c1 BBB c0 c2 c3 CCC c0 c0"
+print_enriched_string() needs actual AttrColors ACArray?
+
+code index into ACA?
+just need to merge indicator and *normal*
+
+make_entry2(buf, max_cols, ACA, line)
+push default row colour but don't pop it
+allows adding trailing spaces
+tie-in to Email.colors(array)
+

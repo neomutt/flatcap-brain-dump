@@ -1,0 +1,30 @@
+maildir check
+
+quick: bool foce				slow: bool foce
+stat(new), check				+ stat(cur), check
+stat(new) -> fa					+ scan(cur) -> fa
+hash(emails[])					ditto
+looks ∀ fa in hash -> eliminate			ditto
+hcache lookup ∀ fa -> ea			ditto
+	do this for *new* emails??? YES
+read files ∀ fa -> ea				ditto
+hcache store ∀ ea				ditto
+move to mailbox					ditto
+notify ∀ ea					ditto
+
+sync
+	lookup ∀ fa in hash - elim fn, elim HashElem if *unchanged*
+	fn -> *new*, HashWaslk -> *deleted*!
+	if *changed* => ca changed array need all flag info disk vs neomutt
+
+--------------------------------------------------------------------------------
+
+merge MxStatus and MxOpenReturns
+mdata mtime_cur, mtime -> mtime_new - now it's md only
+	if event takes less than $time_inco - no window updates?!
+
+progress: lazy init: create window + wdata, only push window if needed
+whose job to stat the dir & keep last check time?
+
+which mx ops might require a progress bar?  pass-in
+

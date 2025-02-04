@@ -1,0 +1,30 @@
+check
+
+new always small       -> fa parse_key() -> start, len
+cur occasionally large -> fa parse_key() -> start, len
+emails[] always large
+	majority from mbox_open()   -> start, len
+	others from previous checks -> start, len
+
+--------------------------------------------------------------------------------
+
+hash(n) -> n allocs => hash(new) compare emails[]
+for slow check  new+cur ~= emails[], no advantage to either
+for sync hash (emails[])
+
+hash(emails[]) => n HashElem, n keys (because they're subsets of path), 0 data
+	data points to Email?  use he->type for flags
+new only ∀ find in Hash -> no -> new, yes,same -> ignore, yes, diff->upd
+new,cur ∀ find, no->*new*, *same*, flag,ignore, *diff* update, unflagged->*del*!
+sync    ∀ find, ditto,    ditto, 	ditto,		ditto
+
+(new+cur) vs (sync) -> direction of changes
+(new+cur) changes from disk -> gui
+(sycn) changes bidirectional + precedence
+
+--------------------------------------------------------------------------------
+
+hcacche, dump CRC (raw, generated) on startup
+progress set estimate, a guess for the maildir check case, and visibility
+only allow ctrl-c if progress? => always progress?
+

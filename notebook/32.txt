@@ -1,0 +1,28 @@
+Padding
+
+abc%> xyz -> Node -> Pad -> Node
+
+better as	Pad
+		/  \
+	     Node  Node
+	
+Conditional padding abc%<T?jkl%> m&pqr%*Xs>xyz
+
+	ABC -> Cond -> XYX
+	      /    \
+	 Padding  Padding
+	 /    \     /   \
+	jkl   m    pqr   s
+
+-> Node -> Node -> Pad -> Node -> Node
+
+%x.ys -> CONT
+	/   \
+     tree   subject
+
+
+Parent: local var or conditional/container
+
+MuttFormatFlags!
+Container type for tree/subject - how many? 2 (attach_format is separate)
+

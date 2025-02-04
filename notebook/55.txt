@@ -1,0 +1,32 @@
+expando_parse() : loop  node_parse_one(NONE)
+
+
+parse_one(flags)
+	node_text_parse(flags) -> simple, returns
+	node_cond_parse(flags)
+	node_expando_parse() -> simple, returns
+		(%{name})
+
+cond_parse(flags)	(%<m?) ... & ... >
+	read cond, parse_one(&,>)
+
+parse_one "BBB%?X?..."
+	parse_text -> BBB
+	parse_cond "%?X?CCC..."
+		parse_one(&,>,?)
+
+
+text
+	end: %,0,>,&,?
+	ignore: \, %%
+
+cond_parse: true = parse_one(&,>)
+	if (end = &) => false = parse_one(>)
+
+return Node	text, expando, simple
+		cond: CondNode, 3 children
+
+expando_parse() -> container + children
+
+num:(-,min,max,both), (0,n), (' ', 0)
+

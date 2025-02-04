@@ -1,0 +1,33 @@
+Compose Resizing
+
+Dialog
+	Envelope	Envelope
+	ABar		PBar		} PBarData
+	Attachments	Preview		} PData
+	CBar		ABar		} ABarData
+			Attachments	} AData
+			CBar
+
+Container around {PBar, P, ABar, A}
+	reflowed to correct size
+	has 4*Window
+	Bars are always 1
+	Ask how much space is required for P&A
+		take into account P-min and/or A-max
+
+Transitions
+	config: yes -> no
+		no -> yes
+	size: large, sufficient, sufficient-1, small, min, min-1
+
+P requirement is num rows, depends on wrapping
+	Compose width is already fixed!
+
+Dialog: recalc() - it does resizing?
+	It has n rows to distribute
+	call env.recalc() if nec => env_rows
+	3*Bar => 3 rows => n rows
+	halve space, offer to attach_recalc()
+	consider $p_min config of 3?
+	offer remainder to preview_recalc()
+

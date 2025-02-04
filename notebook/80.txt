@@ -1,0 +1,45 @@
+Help Page Reformat
+
+dump_menu()		3 cols
+dump_unbound()		2 cols
+dump_message_flags()	2 cols
+
+implementing <sort>
+	=> rewriting file each time => lose position
+	=> use hacked menu with no selection
+
+kill distinction between "x, macro, full" and "x, full, desc"
+struct Columns { char *, char *, char * } + ColumnsArray
+colours: binding, function, macro, string(desc), heading
+wrapped *stripes* preserve their colour?
+	is multiline macro just one stripe colour?
+
+if macro has no description, don't limit its width
+add title for main bindings - unclude example e..g
+	Pager bindings, e.g. "bind pager H skip-headers"
+color code, or example?
+
+add line to web guide?
+mutt_help() -> dlg_help()?
+
+*Conceal* - underline entire previous row?
+add end-of-row number -> 3 lines elided
+
+| ...                        |
+| apple                    (3|
+|____________________________|
+| banana                     |
+| ...                        |
+
+mouse support, click on "(3" to open
+does <save-message> save the *concealed* lines?
+
+conceal, only put the underline between text, not indent!
+=> tidier for reading
+
+| 	...                  |
+| 	apple              (3|
+|       _____________________|
+| 	banana               |
+| 	...                  |
+

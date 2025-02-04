@@ -1,0 +1,25 @@
+Color Pager
+
+:color -> command object [attrs] fg bg [regex] # swatch
+
+measure col widths per section
+cid colours for cmd, obj, attrs, fg, bg, command
+ansi for swatch. NO use relevant cid
+variable number of columsn make heuristics hard (unless fixed width)
+
+if we define lots of colours we don't need ansi in SimplePager
+
+Is :set, etc documented?
+
+If SimplePager text can't change, then only 1 file is nec
+Use fmemopen() tmp/file, pass fp to spager
+call owns LineArray, TSA; pass to spager
+populate()... add_text() to file, markup to LA/TSA
+∀ item : new line (set default), ∀ token new TS (cid,NULL)
+text needs to be \n terminated
+Use Buffer to keep track of line length, i.e. next *offset*
+
+:set  PagedFile { fp, LA, offset}
+	pf_add(pf, "set", MT_COLOR_COMMAND)
+	pf_add(pf, " ", NONE), etc
+

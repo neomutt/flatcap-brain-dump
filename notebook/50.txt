@@ -1,0 +1,31 @@
+Parse
+
+					expando
+\x	literal x	%{name}		named
+%%	literal %	%{name-sub}	sub-classed
+%a,ab	expando a, ab	%{name:fmt}	formatted
+%-x.y	formatting
+%_a	lowercase a	%{%a}		date
+
+%<x?A&B>	conditional	escape <,>,&
+%?x?A&B?			escape &,?
+
+Format
+	-, ., [0-9], _, space
+
+node_parse() - find first non-text
+	ignore literals - goto absorb text
+	%>, %?	delegate to node_code()
+	%{	offer to node_named() - might not match
+	%	delegate to node_expando()
+	absorb text -- NEEDS \'s stripping and %%s
+
+	%<a?   %?b  ... &      ?     >
+			B      B     A   <-- belongs to
+
+nesting needs to have cumulative exclusion list
+recursive parse_node() - parse_text(): \x literal, %%, literal &, ?, >
+
+How does '>' from 'a' get to parse_node(), parse_text() 'b' ?
+Node->parent.type - parse_cond() checks parent - influences parse_text()
+

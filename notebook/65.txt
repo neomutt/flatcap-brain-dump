@@ -1,0 +1,30 @@
+Menu / Expando
+
+IndexRenderData(ALI, ALIAS_NAME) -> name(), name_num()
+how to map MT_COLOR_ALIAS_NAME -> (ALI, ALIAS_NAME)?
+each colour could have multiple patterns
+on "color" add/replace AliasNameColors
+on expando_render() call merge_colours(AliasNameColors)
+∀ node lookup colour / colour array
+(ALI, ALIAS_NAME) -> AliasNameColors
+merge colours & attach to Node
+colour_observer does what?  owned by whom?
+observer on each ExpandoTree on colour changes
+flag the tree. on render() recolour if flagged
+
+
+version info ANSI *url* lins
+	version num -> rel notes
+	+/- features -> feature page
+	same in :version
+link homepage / issues too?
+	prob not nec
+
+:set -v [all] => show 1-liner help
+	comment coloured
+
+forward mime attachment -> rfc822 blob
+	alter compose to show *sub*parts
+
+WindowChildren -> ARRAY
+

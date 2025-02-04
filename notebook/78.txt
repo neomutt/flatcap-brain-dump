@@ -1,0 +1,25 @@
+Simple Pager
+
+SPWindow (reusable) + observer + *data*
+dlg_sp(wrapper)
+SPBar + *data* + observer
+functions
+
+Dlg	+----------------------+
+	| Help                 |
+	+----------------------+
+	| SPager Window        |
+	|                      |
+	|                      |
+	|                      |
+	+----------------------+
+	| SPBar                |
+	+----------------------+
+
+spager_get_percentage() - 0 -> 100% (or "All") or NT_SPAGER
+
+Spager : PagedFile, Subset, cached config	SimplePagerWindowData
+Dlg: Help, %age, Banner, Spager			SimplePagerDialogData
+dlg_spager: (pf,sub,help, banner)
+spager_window_new(pf, sub)
+

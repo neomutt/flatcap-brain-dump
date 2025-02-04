@@ -1,0 +1,33 @@
+Index Update
+
+observe(ea_new, ea_cha, ea_del)
+	insert ea_new
+	flag ea_cha for update
+	remove users of ea_del
+	sort emails[] (ea_del to end)?
+
+Update times
+
+mtime of cur and new
+check(x) has it changed since last time?
+who maintains "last time" stamp?
+fast/slow? $check vs $stats vs <check> or <sync>
+GUI -> ffs, ffs, ...
+<check> -> slow		}- both should reset GUI's timer of ffc
+<sync>  -> slow+sync	}
+
+GUI ffs is ∀ M -> except -nopoll
+GUI time maintainer by Index (shared data) ∀ Index, only active
+f vs s, new vs cur, force?
+
+maildir
+	(1) f = new only, if changed since check (or force'd)
+	(2) s = new,old,  if changed since       (or force'd)
+	(3) <check> => force new and old
+	(4) <sync> => force new and old, sync
+
+(1) mbox_check()
+(2) mbox_check_stats(!force)
+(3) mbox_check_stats(focee)
+(4) mbox_sync()
+

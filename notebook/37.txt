@@ -1,0 +1,24 @@
+Security
+
+secure header fields: copy into encrypted block
+	to, cc, subject, reply-to
+	still use normal headers for backwards compat
+for compat neomutt needs feedback on match
+	1) warn if match fails
+	2) ✅ against validated fields in header
+	3) hide matched headers in enc_block
+	   (and substiture subject into header, rather than '...')
+
+feature: separate security page => less clutter (optional)
+	"✅" if good signature and decode
+	"⚠️" if signature trust isn't good / out-of-date
+	"❌" bad signature, matches fail
+	on warning - option to expand details
+	on error - auto display all info
+
+Option for fields to "secure"
+	x="subject, to, cc, reply-to"
+
+Fake header for security, unignore "security"
+drop crypt_protected_headers_subject? prob. yes
+

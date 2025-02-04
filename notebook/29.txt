@@ -1,0 +1,44 @@
+Expando Resizing
+
+Fixed - text, %n.nX
+Minimum - %nX
+Maximum - %.nX
+Padding - Soft, Hard, EOL
+Container - Container, Conditional - need format syntax
+
+N: | a,b,c,P,x,y,z |
+W: | 4,5,6,?,7,3,2 |
+         ^
+	/ \
+       {2 4}
+
+Collect all the string to measure their lengths
+=> n storages, each with colours => Nodes are R/W
+	R/O => shadow set of objects
+	=> work in parallel!
+
+If we render into ONE Buffer, then truncate
+	we need to understand how colours work
+Individual strings (plus prefix/suffix) means we don't
+we don't want  20 * 4K Buffer, even if they're reused
+
+Calcalate
+
+Each node / Container has (strwidth(), min, max size) screen cells
+Result Buffer may have max size, e.g. screen width
+∀ Node if Fixed: set min, max
+if minimum, set min, calc max width with strwidth()
+if maximum, set max, calc min width with strwidth()
+if Container, recurse children (same for Conditional)
+(1st) ∀ Node get string, Evaluate conditional
+if Padding, keep track of position
+	Do we need TAILQ (bidirectional)?
+
+Phase 2 - allocate space
+
+Node in a format string; Pad EOL must be at the end
+Padding cannot be in a Conditional Node (or container)
+EOL with a *space* in necessary
+soft/hard at eol unnessary
+built-in validators: only 1 padding
+

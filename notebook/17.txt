@@ -1,0 +1,21 @@
+Test Open
+
+Broken: missing mbox dir, missing new, missing cur		(3)
+State: {N, C} {empty, emails}					(4)
+Cache: ∀ email {miss, hit, old}					(3)
+Abort: scan(cur), scan(new), hc read, files read, hc store	(5)
+
+
+or debug macro that set SigInt - use CLI counter to trigger
+static inline get_sigint(), set_sigint() - interruptible
+
+Test: 3 * broken + 1 empty
+	3*files, no hcache (miss), 3*files + hcache(hit)
+	rename files (change flags), 3*files + hcache(old)
+
+Abort test: scan(cur), scan(new), hc read
+	del cache: files (read), hc store
+
+Test { new,seen } emails in {new,cur} dir
+Test junk files in  {new,cur} .junk, not-dot
+
