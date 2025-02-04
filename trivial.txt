@@ -1010,23 +1010,19 @@ DT_ON_STARTUP
 make note in docs
 
 Investigation: eliminate pseudo globals
-	bool OptAttachMsg;           ///< (pseudo) used by attach-message
-	bool OptAutocryptGpgme;      ///< (pseudo) use Autocrypt context inside ncrypt/crypt_gpgme.c
-	bool OptDontHandlePgpKeys;   ///< (pseudo) used to extract PGP keys
-	bool OptForceRefresh;        ///< (pseudo) refresh even during macros
-	bool OptKeepQuiet;           ///< (pseudo) shut up the message and refresh functions while we are executing an external program
-	bool OptMsgErr;              ///< (pseudo) used by mutt_error/mutt_message
-	bool OptNeedRescore;         ///< (pseudo) set when the 'score' command is used
-	bool OptNeedResort;          ///< (pseudo) used to force a re-sort
-	bool OptNews;                ///< (pseudo) used to change reader mode
-	bool OptNewsSend;            ///< (pseudo) used to change behavior when posting
-	bool OptNoCurses;            ///< (pseudo) when sending in batch mode
-	bool OptPgpCheckTrust;       ///< (pseudo) used by dlg_select_pgp_key()
-	bool OptRedrawTree;          ///< (pseudo) redraw the thread tree
-	bool OptResortInit;          ///< (pseudo) used to force the next resort to be from scratch
-	bool OptSearchInvalid;       ///< (pseudo) used to invalidate the search pattern
-	bool OptSearchReverse;       ///< (pseudo) used by ci_search_command
-	bool OptSortSubthreads;      ///< (pseudo) used when $sort_aux changes
+	bool OptAutocryptGpgme;     ///< (pseudo) use Autocrypt context inside ncrypt/crypt_gpgme.c
+	bool OptDontHandlePgpKeys;  ///< (pseudo) used to extract PGP keys
+	bool OptForceRefresh;       ///< (pseudo) refresh even during macros
+	bool OptKeepQuiet;          ///< (pseudo) shut up the message and refresh functions while we are executing an external program
+	bool OptMsgErr;             ///< (pseudo) used by mutt_error/mutt_message
+	bool OptNeedRescore;        ///< (pseudo) set when the 'score' command is used
+	bool OptNeedResort;         ///< (pseudo) used to force a re-sort
+	bool OptNews;               ///< (pseudo) used to change reader mode
+	bool OptNewsSend;           ///< (pseudo) used to change behavior when posting
+	bool OptNoCurses;           ///< (pseudo) when sending in batch mode
+	bool OptPgpCheckTrust;      ///< (pseudo) used by dlg_pgp()
+	bool OptResortInit;         ///< (pseudo) used to force the next resort to be from scratch
+	bool OptSortSubthreads;     ///< (pseudo) used when $sort_aux changes
 
 don't seem to work .git/files/g3-overview1.gv
 	unbind index *
@@ -1186,8 +1182,6 @@ all proto-discussions to ~/work/discussion/
 
 find longest messages, consider multilining
 	plus change po/
-
-old notebook: type up or rip up
 
 Post Release
 	https://github.com/neomutt/neomutt/discussions/3322
@@ -1948,15 +1942,13 @@ Config system
 	possible for the 'generic' failures, "Option %s may not be negative"
 	but setting a regex or expando can return custom errors
 
-*.po
-	verify PGP public key
-
 sponsor
 	yutsuten renew
 	anon bitcoin
 
 expando long-text -- review
 	esp, "flags2" !
+	need docs -- how?
 
 colour - what happens if you set both (simple/palette) and truecolor?
 	we want to share both; if $color_directcolor is set then use
@@ -1974,26 +1966,51 @@ SimpleBar / ExpandoBar
 Help Page Tabs
 	do we need to implement actual Window tabs?
 	can we just fake it? (much simpler)
+		ideally want a PagedFile for each tab
+		=> separate windows would be simpler
 	navigate between pages with any of:
 		1..n
 		<Tab> / <Ctrl-Tab>
 		<Ctrl-PgUp> / <Ctrl-PgDown>
 	auto-generate table of contents
-
-use git blame to put weekly/monthly data lines in this file
-	then archive the old stuff off once a month
-
-photo ∀ notebook
-	old one too?
+	if ($use_nerd_fonts = yes)
+		we can use advanced chars to sculpt tabs
+		like vim airline status bar
+		nerd-font.rc sample?
+browser tabs?
+	help page first
 
 weekly build action with
-	-D_FORTIFY_SOURCE=1
+	-D_FORTIFY_SOURCE=1 or 2
+	24 * warning: dereferencing type-punned pointer might break strict-aliasing rules
+	e.g. mutt/list.c:153:18:
 
 air (on irc)
 	#define SUPPRESS_UNUSED_WARNING(v) (void)v;
 	#define SUPPRESS_UNUSED_RESULT_WARNING(fn_call) do{if(fn_call){/*warn_unused_result*/}}while(0)
 
-find clean/dirty strwidth()
+find clean/dirty strwidth() / wcwidth() uses
 
 release: commit count
+
+coverity defects
+	array (now using int)
+	menu_get that could fail
+
+docs for %{name} expandos
+
+fold lines that don't match the search pattern
+	:set foldenable foldmethod=expr foldminlines=0 foldexpr=getline(v:lnum)!~@/
+
+expando for a divider character
+	if ($ascii_chars = yes), then use ascii | pipe
+	otherwise use unicode │ vertical bar
+
+merge notebook into brain-dump
+
+old notebook: type up or rip up
+	photo first
+
+use git blame to put weekly/monthly data lines in this file
+	then archive the old stuff off once a month
 
