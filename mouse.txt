@@ -120,3 +120,6 @@ Buttons:
 Abbreviate / iconify (config)
 Colour buttons
 
+guug: So yeah but in the "mouse support thing", my one wish would be some frequently accessible things also accessible by mouse thus opening neomutt to non-power users.
+guug: e.g. the limit thing could be a tiny box [fi(l)ter: ] where user could click to see this expand.
+

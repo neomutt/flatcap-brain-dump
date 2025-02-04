@@ -133,3 +133,47 @@ fake/external new mail command
 position cursor in input field, e.g.
 	macro index <F5> '<limit>-I ""<left>'
 
+:bind index p end-cond
+# make 'p' do nothing, silently, on the index
+
+RSI prevention, NeoMutt style:
+	# Alt-j inserts =
+	macro editor \ej =
+post to users ml
+
+alberand | Hey all! Does anyone know if there is an easy way to change received emails? What I want to do is - I get a lot Jira emails and they contains
+         | a bunch of useless info, I want to add bash script on those emails to cut this off
+ flatcap | yes, you could use $display_filter
+ flatcap | :set display_filter="sed '/^On/,/^$/d'"
+ flatcap | that'd kill everything between a line beginning "On" and the first blank line after it
+ flatcap | you could use a couple of `folder-hook`s to make it only apply on certain folders
+
+#mutt
+It would be nice to have the "color status" changed for the different mail boxes. Can this be achieved?
+create folder-hook example
+
+howto re-send automatic emails / template
+	see irc discussion on 2023-11-03
+
+example conditional date for "today", "this week", "this month"
+set index_format = "%<[d?%[Today %R]&%[%F %R]>"
+
+disable 'p' (print) by binding the key to nop or endcond
+	check/test
+
+subjectrx
+	subject lines like "Re: AW: WG: Fwd: AW: Re: AG Live Scoring" are common. Can
+	subjectrx '((aw|fwd|re|wg): )*' 're: %R'
+	strips multiple re: aw: etc
+	reducing your example to just "re: AG Live Scoring"
+	(the re: being inserted by choice)
+	---
+	subjectrx '\[neomutt/neomutt\] Run failed: (.*) (\(\x+\))' '✅ [%2] %1'
+	subjectrx '\[neomutt/neomutt\] Run failed: (.*) \(([0-9a-fA-F]+)\)' '✅ [%2] %1'
+	subjectrx '\[neomutt/neomutt\] Run failed: (.*) \(([0-9a-fA-F]+)\)' '❌ [%2] %1'
+	subjectrx '\[neomutt/neomutt\] (.*) \(PR #([0-9]+)\)' '🔀#%2 %1'
+
+use toggle on numbers
+	e.g macro to toggle full-screen mode
+	:toggle sidebar_visible pager_index_lines
+
