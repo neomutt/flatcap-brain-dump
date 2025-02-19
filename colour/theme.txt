@@ -1,0 +1,26 @@
+Theme Colours
+
+colours
+	multiple domains per object (simple, palette, rgb)
+	need linking together
+
+parse deep colours, then *cull* on gui_init()
+
+color object *link* object2  
+use same linkage mechnism for multiple colour domains
+
+arrange: object -> rgb -> palette -> simple
+where are teh attrs stored? *separately*
+if rgb isn't valid, nor are its attrs -- culled
+
+if we *cull* them, then :color isn't useful
+flag unusable colours instead
+:color -> # not supported (instead of swatch)
+
+~/.neomutt-theme
+~/.config/neomutt/theme.rc
+
+source! -- no fail
+and/or
+source *dir*  ∀ *.rc withing (alpha sorted)
+

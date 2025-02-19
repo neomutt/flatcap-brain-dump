@@ -3,7 +3,7 @@ don't need a 2nd file, only need to parse once
 more efficient to create TS[] ourselves?
 	possibly, but complicates pager?
 
-repain falgs: need_parse, need_wrap, need_recolor?
+repaint flags: need_parse, need_wrap, need_recolor?
 which config affects log msg?  any?  $history_size?  no
 	if only affects the *ring* but the file is committed
 wrapping config handled by pager and window events

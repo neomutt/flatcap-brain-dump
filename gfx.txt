@@ -1,0 +1,18 @@
+Gfx / Kitty / ITerm
+
+create dedicated window
+use timg to generate seq - cache? ∀ attach?
+position cursor, print (stderr), restore cursos position and visibility
+
+modify
+
+compose - *attach* selection is previewed, not just *message*
+pager - RHS new window - which attach? all?
+attach view  - new window below => preview / images
+
+if we print multiple images, it may scroll off the top
+=> full height window
+=> print gfx first, then neomutt
+
+attach-preview = [auto|mailcap|pager|text]
+wipe window to MT_NORMAL first

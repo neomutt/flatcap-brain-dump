@@ -364,10 +364,6 @@ Config system
 	possible for the 'generic' failures, "Option %s may not be negative"
 	but setting a regex or expando can return custom errors
 
-sponsor
-	yutsuten renew
-	anon bitcoin
-
 expando long-text -- review
 	esp, "flags2" !
 	need docs -- how?
@@ -394,14 +390,19 @@ Help Page Tabs
 		1..n
 		<Tab> / <Ctrl-Tab>
 		<Ctrl-PgUp> / <Ctrl-PgDown>
+	functions for <switch-to-tab-N> {1-10}
+		default mappings using '1'..'0'
+		function dispatcher runs before others
 	auto-generate table of contents
 	if ($use_nerd_fonts = yes)
 		we can use advanced chars to sculpt tabs
 		like vim airline status bar
 		nerd-font.rc sample?
 	Unicode:
-		⎽⎽⎽⎽⎽◢█1 Help█◣╱ 2 Index ╲╱ 3 Pager ╲⎽⎽⎽⎽⎽⎽⎽⎽⎽
-		syn match reverse "1 Help"
+		Mailbox Browser ◢█1 Help█◣╱ 2 Index ╲╱ 3 Pager ╲⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽
+		Mailbox Browser ╱ 1 Help ╲◢█2 Index█◣╱ 3 Pager ╲⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽
+		Mailbox Browser ╱ 1 Help ╲╱ 2 Index ╲◢█3 Pager█◣⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽
+		syntax match reverse "\d \i\+"
 browser tabs?
 	help page first
 
@@ -430,9 +431,35 @@ fold lines that don't match the search pattern
 expando for a divider character
 	if ($ascii_chars = yes), then use ascii | pipe
 	otherwise use unicode │ vertical bar
+	what char? %| is already used for eol-padding
+		eol-padding isn't needed, %*X or %>* will do
+	better that raw | char, because it can be coloured
+		color sidebar_divider -> divider
 
-merge notebook into brain-dump
+old notebook: type up
 
-old notebook: type up or rip up
-	photo first
+migrate neo-file -> brain-dump
+
+colour setting
+	if rgb but not truecolor => error, unless...
+	if colour is already set, don't error, but log
+	then, theme can contain multiple settings
+	where the last viable setting wins
+e.g. same object, but increasing colour depth
+	color object red      green
+	color object color123 color   214
+	color object #aabbcc  #112233
+increasing subtlety!
+
+rebase *
+
+filter synonyms and deprecated out of get_elem_list()
+	so that the callers don't have to
+
+https://www.linuxlinks.com/best-free-open-source-console-email-clients/
+
+test CLI params of "" (which mutt_strdup() will turn into NULL)
+
+pass Keymaps[] to km_init() and all children?
+	where else is it used?
 

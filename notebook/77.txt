@@ -11,7 +11,7 @@ line_add_ansi_text()
 add_ansi(L, text, ansi_start, ansi_end)
 	=> TextSyntax copies strings
 
-Doesn't allow for ANSO colours or URLS needed for :version
+Doesn't allow for ANSI colours or URLS needed for :version
 
 TS union of (cid,ac) or (start,end) + first,last flag for union
 How does search work?  could overlay partial / multiple TSs

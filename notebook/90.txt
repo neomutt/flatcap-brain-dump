@@ -1,8 +1,6 @@
 Todo
 
-doxy XXX
 observers: config, color, spager, window
-gh PRs
 doc data {dlg|window}_data, what goes where?
 check everything notifies
 help: pick colours - cmd, fn, key, string, comment
