@@ -1,0 +1,25 @@
+main()
+
+move non-conditional non-fail-y functions out of mutt_init()
+
+group all config setup
+creating of ConfigSet
+setting of initial values (from env/locale/cli/etc)
+setting of system config
+setting of user config
+pass result to NeoMutt
+what are its dependencies?
+list of all config used or set
+CAN it all be set at once?
+
+where does init stop and action (tui/gui) begin
+
+
+
+CLI flags
+
+| Flags | Upper                      | Lower                      |
+|-------|----------------------------|----------------------------|
+| Used  | ABCDEFGH......O.QRST.....Z | abcdefghi..lmn.p..s..v..yz |
+| Free  | ........IJKLMN.P....UVWXY. | .........jk...o.qr.tu.wx.. |
+

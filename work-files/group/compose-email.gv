@@ -1,0 +1,650 @@
+digraph neomutt
+{
+
+	graph [
+		rankdir="TB"
+		nodesep="0.5"
+		ranksep="0.5"
+	];
+
+	node [
+		shape="plain"
+	];
+
+	edge [
+		penwidth="4.5"
+		arrowsize="1.0"
+		color="#c0c0c0"
+	];
+
+	obj_0x2514f30 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ff80ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Email</b></font> <font point-size="12">(0x2514f30)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">path</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NULL]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NONE]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">security</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NONE]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">num_hidden</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">lines</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">index</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">msgno</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">vnum</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">score</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">attach_total</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x24fc360 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x24fc360)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">file</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"neomutt-laptop-1001-884302-4834870217837174460"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">charset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"utf-8"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"plain"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_TEXT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_7BIT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">stamp</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"2020-06-20 13:27:33"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"unlink"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">attach_count</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">hdr_offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">length</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">aptr</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#3bcbc4">0x248e040</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x24fc378 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#00ff00" port="top" colspan="3"><font color="#000000" point-size="20"><b>ParameterList</b></font> <font point-size="12">(0x24fc378)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">charset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"us-ascii"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x24ae180 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x24ae180)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">description</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"Multilingual part for "/home/mutt/work/group/ChangeLog.md""</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"multilingual"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_MULTIPART"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_OTHER"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">attach_count</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">hdr_offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">length</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">aptr</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#3bcbc4">0x24ee190</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x24ae198 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#00ff00" port="top" colspan="3"><font color="#000000" point-size="20"><b>ParameterList</b></font> <font point-size="12">(0x24ae198)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">boundary</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"qkjefeaybs37gusv"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x24fc220 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x24fc220)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">file</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ChangeLog.md"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">charset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"utf-8"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">language</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"en_GB"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"markdown"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_TEXT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_8BIT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">stamp</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"2020-06-20 13:27:38"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">attach_count</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">hdr_offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">length</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">aptr</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#3bcbc4">0x24a3120</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x24fc238 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#00ff00" port="top" colspan="3"><font color="#000000" point-size="20"><b>ParameterList</b></font> <font point-size="12">(0x24fc238)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">charset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"utf-8"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x24fc0c0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x24fc0c0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">file</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"command_parse.c"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">charset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"utf-8"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">language</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"de_DE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"plain"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_TEXT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_7BIT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">stamp</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"2020-06-20 13:27:38"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">attach_count</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">hdr_offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">length</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">aptr</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#3bcbc4">0x24622d0</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x24fc0d8 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#00ff00" port="top" colspan="3"><font color="#000000" point-size="20"><b>ParameterList</b></font> <font point-size="12">(0x24fc0d8)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">charset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"us-ascii"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x245fe90 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#800080" port="top" colspan="3"><font color="#000000" point-size="20"><b>Content</b></font> <font point-size="12">(0x245fe90)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">hibin</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">lobin</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">nulbin</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">crlf</td>
+			<td border="0">=</td>
+			<td border="0" align="left">2141</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">ascii</td>
+			<td border="0">=</td>
+			<td border="0" align="left">52955</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">linemax</td>
+			<td border="0">=</td>
+			<td border="0" align="left">135</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x245a070 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x245a070)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">file</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"command_parse.h"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">charset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"utf-8"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">language</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"es_ES"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"plain"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_TEXT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_7BIT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">stamp</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"2020-06-20 13:27:38"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">attach_count</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">hdr_offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">length</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">aptr</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#3bcbc4">0x244ed20</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x245a088 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#00ff00" port="top" colspan="3"><font color="#000000" point-size="20"><b>ParameterList</b></font> <font point-size="12">(0x245a088)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">charset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"us-ascii"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x245c500 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#800080" port="top" colspan="3"><font color="#000000" point-size="20"><b>Content</b></font> <font point-size="12">(0x245c500)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">hibin</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">lobin</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">nulbin</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">crlf</td>
+			<td border="0">=</td>
+			<td border="0" align="left">77</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">ascii</td>
+			<td border="0">=</td>
+			<td border="0" align="left">4960</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">linemax</td>
+			<td border="0">=</td>
+			<td border="0" align="left">116</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x2452820 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ffff00" port="top" colspan="3"><font color="#000000" point-size="20"><b>Envelope</b></font> <font point-size="12">(0x2452820)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">changed</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NONE]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">from</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"Richard Russon &lt;rich@flatcap.org&gt;"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">to</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"rich@flatcap.org"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subject</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"test"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">autocrypt</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">autocrypt_gossip</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		</table>>
+	];
+
+
+	obj_0x24fc360 -> obj_0x24fc378 [  edgetooltip="Body->mime_headers" color="#c0c0c0" ];
+	obj_0x24ae180 -> obj_0x24ae198 [  edgetooltip="Body->mime_headers" color="#c0c0c0" ];
+	obj_0x24fc220 -> obj_0x24fc238 [  edgetooltip="Body->mime_headers" color="#c0c0c0" ];
+	obj_0x24fc0c0 -> obj_0x24fc0d8 [  edgetooltip="Body->mime_headers" color="#c0c0c0" ];
+	obj_0x24fc0c0 -> obj_0x245fe90 [  edgetooltip="Body->content" color="#c0c0c0" ];
+	obj_0x24fc220 -> obj_0x24fc0c0 [  edgetooltip="Body->next" color="#008000" ];
+	obj_0x245a070 -> obj_0x245a088 [  edgetooltip="Body->mime_headers" color="#c0c0c0" ];
+	obj_0x245a070 -> obj_0x245c500 [  edgetooltip="Body->content" color="#c0c0c0" ];
+	obj_0x24fc0c0 -> obj_0x245a070 [  edgetooltip="Body->next" color="#008000" ];
+	{ rank=same obj_0x24fc220 obj_0x24fc0c0 obj_0x245a070 };
+	obj_0x24ae180 -> obj_0x24fc220 [  edgetooltip="Body->parts" color="#ff0000" ];
+	obj_0x24fc360 -> obj_0x24ae180 [  edgetooltip="Body->next" color="#008000" ];
+	{ rank=same obj_0x24fc360 obj_0x24ae180 };
+	obj_0x2514f30 -> obj_0x24fc360 [  edgetooltip="Email->content" color="#c0c0c0" ];
+	obj_0x2514f30 -> obj_0x2452820 [  edgetooltip="Email->env" color="#c0c0c0" ];
+	{ rank=same obj_0x2514f30 obj_0x2452820 };
+
+}

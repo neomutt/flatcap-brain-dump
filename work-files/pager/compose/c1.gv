@@ -1,0 +1,61 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	MENU -> compose_make_entry
+	EVENT -> compose_config_observer
+	EVENT -> compose_header_observer
+
+	calc_envelope -> calc_address
+	calc_envelope -> calc_security
+	calc_envelope -> calc_user_hdrs
+	compose_custom_redraw -> calc_envelope
+	compose_custom_redraw -> compose_format_str
+	compose_custom_redraw -> draw_envelope
+	compose_format_str -> cum_attachs_size
+	draw_envelope -> draw_envelope_addr
+	draw_envelope -> draw_envelope_user_hdrs
+	draw_envelope -> draw_header
+	draw_envelope -> redraw_crypt_lines
+	draw_envelope -> redraw_mix_line
+	draw_envelope_addr -> draw_header
+	draw_envelope_user_hdrs -> draw_header
+	draw_envelope_user_hdrs -> draw_header_content
+	init_header_padding -> calc_header_width_padding
+	mutt_compose_menu -> autocrypt_compose_menu
+	mutt_compose_menu -> calc_envelope
+	mutt_compose_menu -> check_attachments
+	mutt_compose_menu -> compose_attach_swap
+	mutt_compose_menu -> delete_attachment
+	mutt_compose_menu -> edit_address_list
+	mutt_compose_menu -> init_header_padding
+	mutt_compose_menu -> mailbox_path
+	mutt_compose_menu -> update_crypt_info
+	mutt_compose_menu -> update_idx
+	mutt_compose_menu -> update_menu
+	redraw_crypt_lines -> draw_floating
+	redraw_crypt_lines -> draw_header
+	redraw_mix_line -> draw_header
+	update_idx -> update_menu
+	update_menu -> gen_attach_list
+
+}

@@ -1,0 +1,60 @@
+
+
+
+
+
+'%-.0d'   0  0   left   ' '
+'%-.d'    0  0   left   ' '
+'%-0.0d'  0  0   left   '0'
+'%-0.d'   0  0   left   '0'
+'%-05.0d' 5  0   left   '0'
+'%-05.d'  5  0   left   '0'
+'%-5.0d'  5  0   left   ' '
+'%-5.d'   5  0   left   ' '
+'%.0d'    0  0   RIGHT  ' '
+'%.d'     0  0   RIGHT  ' '
+'%0.0d'   0  0   RIGHT  '0'
+'%0.d'    0  0   RIGHT  '0'
+'%05.0d'  5  0   RIGHT  '0'
+'%05.d'   5  0   RIGHT  '0'
+'%5.0d'   5  0   RIGHT  ' '
+'%5.d'    5  0   RIGHT  ' '
+
+
+
+
+
+
+'%-05d'   5  1   left   '0'
+'%-08d'   8  1   left   '0'
+'%-0d'    0  1   left   '0'
+'%-5d'    5  1   left   ' '
+'%-8d'    8  1   left   ' '
+'%-d'     0  1   left   ' '
+'%0d'     0  1   RIGHT  '0'
+'%5d'     5  1   RIGHT  ' '
+'%8d'     8  1   RIGHT  ' '
+'%d'
+
+
+
+
+
+
+'%-.8d'   0  8   left   ' '
+'%-0.8d'  0  8   left   '0'
+'%-05.8d' 5  8   left   '0'
+'%-12.8d' 12 8   left   ' '
+'%-5.8d'  5  8   left   ' '
+'%.8d'    0  8   RIGHT  ' '
+'%0.8d'   0  8   RIGHT  '0'
+'%05.8d'  5  8   RIGHT  '0'
+'%12.8d'  12 8   RIGHT  ' '
+'%5.8d'   5  8   RIGHT  ' '
+'%=12.8d' 12 8   centre ' '
+
+
+
+
+'%05d'    5  MAX RIGHT  '0'
+'%08d'    8  MAX RIGHT  '0'

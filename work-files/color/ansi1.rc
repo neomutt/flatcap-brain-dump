@@ -1,0 +1,5 @@
+set help = no
+set allow_ansi = yes
+
+color underline underline white     color124
+color bold      bold      brightred color212

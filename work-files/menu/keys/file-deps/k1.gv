@@ -1,0 +1,112 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ffc0c0" ]
+	dump_all_binds
+	dump_all_macros
+	dump_bind
+	dump_bind_macro
+	dump_macro
+
+	node [ fillcolor="#ffffff" ]
+	array_to_endcond             -> array_pop
+	create_bindings              -> km_bindkey
+	dump_all_binds               -> dump_bind
+	dump_all_macros              -> dump_macro
+	dump_bind                    -> km_expand_key
+	dump_bind                    -> km_get_table
+	dump_bind                    -> mutt_get_func
+	dump_bind_macro              -> dump_all_binds
+	dump_bind_macro              -> dump_all_macros
+	dump_bind_macro              -> dump_bind
+	dump_bind_macro              -> dump_macro
+	dump_macro                   -> km_expand_key
+	generic_tokenize_push_string -> get_op
+	generic_tokenize_push_string -> km_get_table
+	generic_tokenize_push_string -> mutt_push_macro_event
+	generic_tokenize_push_string -> parse_fkey
+	init_extended_keys           -> find_ext_name
+	km_bind                      -> km_bind_err
+	km_bindkey                   -> km_bindkey_err
+	km_bindkey_err               -> km_bind_err
+	km_bind_err                  -> alloc_keys
+	km_bind_err                  -> km_compare_keys
+	km_bind_err                  -> km_expand_key
+	km_bind_err                  -> mutt_keymap_free
+	km_bind_err                  -> parsekeys
+	km_dokey                     -> km_dokey_event
+	km_dokey_event               -> generic_tokenize_push_string
+	km_dokey_event               -> km_get_table
+	km_dokey_event               -> mutt_flushinp
+	km_dokey_event               -> mutt_getch
+	km_dokey_event               -> mutt_get_func
+	km_dokey_event               -> mutt_unget_ch
+	km_dokey_event               -> mutt_unget_string
+	km_dokey_event               -> retry_generic
+	km_error_key                 -> km_expand_key
+	km_error_key                 -> km_find_func
+	km_expand_key                -> km_keyname
+	km_expand_key_string         -> km_keyname
+	km_init                      -> create_bindings
+	km_unbind_all                -> mutt_keymap_free
+	main_config_observer         -> mutt_init_abort_key
+	mutt_flush_macro_to_endcond  -> array_to_endcond
+	mutt_getch                   -> array_pop
+	mutt_getch                   -> mutt_monitor_getch
+	mutt_getch                   -> mutt_unget_ch
+	mutt_init_abort_key          -> parsekeys
+	mutt_keymaplist_free         -> mutt_keymap_free
+	mutt_keys_cleanup            -> mutt_keymaplist_free
+	mutt_push_macro_event        -> array_add
+	mutt_unget_ch                -> array_add
+	mutt_unget_op                -> array_add
+	mutt_unget_string            -> mutt_unget_ch
+	parsekeys                    -> parse_fkey
+	parsekeys                    -> parse_keycode
+	parse_bind                   -> dump_bind_macro
+	parse_bind                   -> get_op
+	parse_bind                   -> km_bindkey
+	parse_bind                   -> km_expand_key_string
+	parse_bind                   -> km_get_table
+	parse_bind                   -> parse_keymap
+	parse_bind                   -> try_bind
+	parse_exec                   -> get_op
+	parse_exec                   -> km_get_table
+	parse_exec                   -> mutt_flushinp
+	parse_exec                   -> mutt_push_macro_event
+	parse_macro                  -> dump_bind_macro
+	parse_macro                  -> km_bind
+	parse_macro                  -> km_expand_key_string
+	parse_macro                  -> parse_keymap
+	parse_push                   -> generic_tokenize_push_string
+	parse_unbind                 -> km_bindkey
+	parse_unbind                 -> km_expand_key_string
+	parse_unbind                 -> km_unbind_all
+	parse_unbind                 -> parse_menu
+	retry_generic                -> km_dokey_event
+	retry_generic                -> mutt_flushinp
+	retry_generic                -> mutt_getch
+	retry_generic                -> mutt_unget_ch
+	try_bind                     -> km_bindkey_err
+
+}

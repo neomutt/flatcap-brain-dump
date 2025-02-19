@@ -1,0 +1,72 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+		fontsize="10"
+		fontcolor="#ff0000"
+	]
+
+	node [ fillcolor="#c0ffc0" ]
+	imap_copy_messages  [ label=<imap_copy_messages(ea)> ]
+	imap_sync_mailbox   [ label=<imap_sync_mailbox()> ]
+	imap_fast_trash     [ label=<imap_fast_trash()> ]
+
+	node [ fillcolor="#c0ffff" ]
+	imap_make_msg_set   [ label=<set = imap_make_msg_set(flag)> ]
+
+	node [ fillcolor="#ffffff" ]
+	// ea_add_tagged       [ label=<ea = ea_add_tagged()> ]
+	imap_exec           [ label=<imap_exec(set)> ]
+	imap_exec_msg_set   [ label=<imap_exec_msg_set(flag)> ]
+	imap_sync_mailbox   [ label=<imap_sync_mailbox()> ]
+	// mutt_save_message   [ label=<mutt_save_message(ea)> ]
+	// op_save             [ label=<op_save()> ]
+	sync_helper_deleted [ label=<sync_helper()> ]
+	sync_helper_flag    [ label=<sync_helper()> ]
+	sync_helper_old     [ label=<sync_helper()> ]
+	sync_helper_read    [ label=<sync_helper()> ]
+	sync_helper_replied [ label=<sync_helper()> ]
+
+	imap_copy_messages  -> imap_exec_msg_set    [ label="TAG"     ]
+	imap_exec_msg_set   -> imap_exec
+	imap_exec_msg_set   -> imap_make_msg_set
+	imap_fast_trash     -> imap_exec_msg_set    [ label="TRASH"   ]
+	imap_sync_mailbox   -> imap_exec_msg_set    [ label="DELETED" ]
+	imap_sync_mailbox   -> sync_helper_deleted
+	imap_sync_mailbox   -> sync_helper_flag
+	imap_sync_mailbox   -> sync_helper_old
+	imap_sync_mailbox   -> sync_helper_read
+	imap_sync_mailbox   -> sync_helper_replied
+	// mutt_save_message   -> imap_copy_messages
+	// op_save             -> ea_add_tagged
+	// op_save             -> mutt_save_message
+	sync_helper_deleted -> imap_exec_msg_set    [ label="DELETED" ]
+	sync_helper_flag    -> imap_exec_msg_set    [ label="FLAG"    ]
+	sync_helper_old     -> imap_exec_msg_set    [ label="OLD"     ]
+	sync_helper_read    -> imap_exec_msg_set    [ label="READ"    ]
+	sync_helper_replied -> imap_exec_msg_set    [ label="REPLIED" ]
+
+	{ rank=same imap_copy_messages imap_sync_mailbox imap_fast_trash }
+
+	// imap_make_msg_set -> imap_exec
+
+	// { rank=same imap_make_msg_set imap_exec }
+}
+

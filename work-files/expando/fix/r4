@@ -1,0 +1,6 @@
+set help = no
+set index_format = "%<[d?%[     Today %R]&%[%F %R]> %Z %-25.25F %<M?+%M) & > %<GI?Yes&No> %s %* %<M?&(%c)>"
+
+color index         color190 default ~d<1d
+color index         default  color52 ~d<24H
+color index_subject cyan     default ~d>2d

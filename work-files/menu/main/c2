@@ -1,0 +1,19 @@
+15 config_set_initial
+ 2 main_timeout_observer
+
+Functions in main.c called exactly once:
+execute_commands
+find_cfg
+getmailname
+get_elem_queries
+get_hostname
+get_user_info
+init_locale
+localise_config
+log_gui
+log_translation
+main
+mutt_init
+reset_tilde
+start_curses
+usage

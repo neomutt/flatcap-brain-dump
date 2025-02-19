@@ -1,0 +1,7 @@
+1 <no description>            multipart/mixed,           7bit
+2 ├─><no description>         text/plain,                quoted-printable, utf-8
+2 └─>Re: Mutt CVE-2020-14093  message/rfc822,            7bit
+3   └─><no description>       multipart/signed,          7bit
+4     ├─><no description>     text/plain,                quoted-printable, us-ascii
+4     └─>signature.asc        application/pgp-signature, 7bit
+1 signature.asc               application/pgp-signature, 7bit

@@ -1,0 +1,8 @@
+color index_collapsed default red
+color index default red "~N"
+color index cyan default "~T"
+color index_date green blue
+color index_subject default magenta "refresh"
+color index_subject default magenta "github"
+
+# vim: syn=neomuttrc

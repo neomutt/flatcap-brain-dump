@@ -1,0 +1,19 @@
+" Ref: group_index_format_str() in nntp/browse.c
+call s:escapesConditionals('GroupIndexFormat', '[CdfMNns]', 1, 0)
+" Defines: muttrcGroupIndexFormatEscapes, muttrcGroupIndexFormatConditionals
+
+syntax region muttrcGroupIndexFormatString contained skipwhite keepend start=+"+ skip=+\\"+ end=+"+ contains=muttrcGroupIndexFormatEscapes,muttrcGroupIndexFormatConditionals,muttrcFormatErrors,muttrcTimeEscapes nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+syntax region muttrcGroupIndexFormatString contained skipwhite keepend start=+'+ skip=+\\'+ end=+'+ contains=muttrcGroupIndexFormatEscapes,muttrcGroupIndexFormatConditionals,muttrcFormatErrors,muttrcTimeEscapes nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+
+syntax match muttrcVarEqualsGroupIndexFormat contained skipwhite "=" nextgroup=muttrcGroupIndexFormatString
+
+syntax keyword muttrcVarString contained skipwhite group_index_format nextgroup=muttrcVarEqualsGroupIndexFormat
+
+highlight def link muttrcGroupIndexFormatConditionals muttrcFormatConditionals2
+highlight def link muttrcGroupIndexFormatEscapes      muttrcEscape
+highlight def link muttrcGroupIndexFormatString       muttrcString
+
+" config             base-name        conditionals                       escapes                       format-string                var-equals
+" group_index_format GroupIndexFormat muttrcGroupIndexFormatConditionals muttrcGroupIndexFormatEscapes muttrcGroupIndexFormatString muttrcVarEqualsGroupIndexFormat
+
+" vim: syntax=vim

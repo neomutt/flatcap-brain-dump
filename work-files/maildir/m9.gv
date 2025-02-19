@@ -1,0 +1,58 @@
+digraph maildir // 2020-09-16
+{
+	// Blue club - Uses hcache
+
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// Functions using HCACHE
+	maildir_delayed_parsing [ label=<maildir_delayed_parsing <font color="blue">♣</font> > ]
+
+	// MXAPI functions
+	node [ color="#ff0000" ]
+	maildir_mbox_check
+	maildir_mbox_check_stats
+	maildir_mbox_open
+	mh_mbox_sync            [ label=<mh_mbox_sync <font color="blue">♣</font> > ]
+
+	node [ color="#000000" ]
+
+	maildir_delayed_parsing   -> maildir_parse_flags
+	maildir_delayed_parsing   -> maildir_parse_message
+	maildir_parse_message     -> maildir_parse_stream
+	maildir_mbox_check        -> maildir_canon_filename
+	maildir_mbox_check        -> maildir_delayed_parsing
+	maildir_mbox_check        -> maildir_move_to_mailbox
+	maildir_mbox_check        -> maildir_parse_dir
+	maildir_mbox_check        -> maildir_update_flags
+	maildir_mbox_check_stats  -> maildir_check_dir
+	maildir_mbox_open         -> mh_read_dir
+	maildir_parse_dir         -> maildir_parse_flags
+	maildir_parse_stream      -> maildir_parse_flags
+	mh_read_dir               -> maildir_delayed_parsing
+	mh_read_dir               -> maildir_move_to_mailbox
+	mh_read_dir               -> maildir_parse_dir
+	mh_read_dir               -> maildir_update_mtime
+	mh_mbox_sync              -> maildir_mbox_check
+	mh_mbox_sync              -> maildir_update_mtime
+
+}

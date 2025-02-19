@@ -1,0 +1,93 @@
+Pager
+  Header, body, signature, tilde
+  --------------------------
+  fill region with hdrdefault background (check $header_color_partial)
+  MT_COLOR_HDRDEFAULT               hdrdefault                 # simple merge with normal
+* MT_COLOR_HEADER                   header                     # patterns merge with normal+hdrdefault
+  --------------------------
+  fill eol with normal
+  MT_COLOR_ATTACHMENT               attachment                 # simple merge with normal
+* MT_COLOR_ATTACH_HEADERS           attach_headers             # patterns merge with normal+attachment
+  --------------------------
+  MT_COLOR_QUOTED                   quoted, quoted{0..9}       # simple merge with normal
+* MT_COLOR_BODY                     body                       # patterns merge with normal(+quoted)
+  MT_COLOR_MARKERS                  markers                    # simple merge with normal
+  fill region with signature background
+  MT_COLOR_SIGNATURE                signature                  # simple merge with normal
+  MT_COLOR_SEARCH                   search                     # simple merge with all
+Pager special
+  MT_COLOR_BOLD                     bold                       #
+  MT_COLOR_UNDERLINE                underline                  #
+
+--------------------------------------------------------------------------------
+DONE
+
+Default
+  MT_COLOR_NORMAL                   normal                     # simple
+
+Fixed block of text
+  MT_COLOR_COMPOSE_HEADER           compose:header             # simple merge with normal
+  MT_COLOR_COMPOSE_SECURITY_BOTH    compose:security_both      # simple merge with normal
+  MT_COLOR_COMPOSE_SECURITY_ENCRYPT compose:security_encrypt   # simple merge with normal
+  MT_COLOR_COMPOSE_SECURITY_NONE    compose:security_none      # simple merge with normal
+  MT_COLOR_COMPOSE_SECURITY_SIGN    compose:security_sign      # simple merge with normal
+  MT_COLOR_SIDEBAR_DIVIDER          sidebar_divider            # simple merge with normal
+
+If background is set, do we fill the line with NORMAL or specified colour?
+  MT_COLOR_ERROR                    error                      # simple merge with normal
+  MT_COLOR_MESSAGE                  message                    # simple merge with normal
+  MT_COLOR_WARNING                  warning                    # simple merge with normal
+  fill eol with specified background colour -- this marks a separate region
+  MT_COLOR_TILDE                    tilde                      # simple merge with normal
+
+Message Window
+  MT_COLOR_PROMPT                   prompt                     # simple merge with normal
+  MT_COLOR_OPTIONS                  options                    # simple merge with normal+prompt
+  MT_COLOR_PROGRESS                 progress                   # simple merge with normal
+
+Status
+  MT_COLOR_STATUS                   status                     # simple merge with normal
+* MT_COLOR_STATUS                   status                     # patterns merge with normal+status
+
+Colours in priority order
+  MT_COLOR_SIDEBAR_ORDINARY         sidebar_ordinary           # simple merge with normal (no characteristics)
+  --------------------------
+  MT_COLOR_SIDEBAR_SPOOLFILE        sidebar_spool_file         # simple merge cumulative
+  MT_COLOR_SIDEBAR_FLAGGED          sidebar_flagged            # simple merge cumulative
+  MT_COLOR_SIDEBAR_UNREAD           sidebar_unread             # simple merge cumulative
+  MT_COLOR_SIDEBAR_NEW              sidebar_new                # simple merge cumulative
+  --------------------------
+  MT_COLOR_SIDEBAR_INDICATOR        sidebar_indicator          # simple merge cumulative }- either or
+  MT_COLOR_SIDEBAR_HIGHLIGHT        sidebar_highlight          # simple merge cumulative }
+
+Index - Base, non-overlapping, subject/tree, indicator
+  fill with normal if narrower than window
+* MT_COLOR_INDEX                    index                      # BASE patterns merge with normal
+  --------------------------
+  simple merge with normal+BASE
+  MT_COLOR_INDEX_COLLAPSED          index_collapsed            # %M
+  MT_COLOR_INDEX_DATE               index_date                 # %d %D %{} %[] %() %<>
+  MT_COLOR_INDEX_LABEL              index_label                # %y %Y
+  MT_COLOR_INDEX_NUMBER             index_number               # %C
+  MT_COLOR_INDEX_SIZE               index_size                 # %c %l
+  MT_COLOR_INDEX_TAGS               index_tags                 # %g %J
+* MT_COLOR_INDEX_AUTHOR             index_author               # %a %A %I %F %L %n
+* MT_COLOR_INDEX_FLAGS              index_flags                # %S %zc %zs %zt %Z
+* MT_COLOR_INDEX_TAG                index_tag                  # %G*
+  --------------------------
+  simple merge with normal+BASE
+  MT_COLOR_TREE                     tree                       # (%s)
+* MT_COLOR_INDEX_SUBJECT            index_subject              # %s
+  --------------------------
+  MT_COLOR_INDICATOR                indicator                  # TOP
+
+Pager
+  Header, body, signature, tilde
+  --------------------------
+  fill region with hdrdefault background (check $header_color_partial)
+  --------------------------
+  fill eol with normal
+  --------------------------
+  fill region with signature background
+Pager special
+

@@ -1,0 +1,191 @@
+NT_ACCOUNT index_shared_account_observer
+NT_ACCOUNT sb_account_observer
+	notify_observer_add(NeoMutt->notify, NT_ACCOUNT, index_shared_account_observer, shared);
+	notify_observer_add(NeoMutt->notify, NT_ACCOUNT, sb_account_observer, win);
+
+NT_ALIAS alias_alias_observer
+	notify_observer_add(NeoMutt->notify, NT_ALIAS, alias_alias_observer, menu);
+
+NT_ALTERN index_altern_observer
+	notify_observer_add(NeoMutt->notify, NT_ALTERN, index_altern_observer, win);
+
+NT_ATTACH index_attach_observer
+	notify_observer_add(NeoMutt->notify, NT_ATTACH, index_attach_observer, win);
+
+NT_BINDING helpbar_binding_observer
+	notify_observer_add(NeoMutt->notify, NT_BINDING, helpbar_binding_observer, win);
+
+NT_COLOR cbar_color_observer
+NT_COLOR env_color_observer
+NT_COLOR helpbar_color_observer
+NT_COLOR ibar_color_observer
+NT_COLOR index_color_observer
+NT_COLOR menu_color_observer
+NT_COLOR pager_color_observer
+NT_COLOR pbar_color_observer
+NT_COLOR sbar_color_observer
+NT_COLOR sb_color_observer
+	notify_observer_add(Colors.notify, NT_COLOR, callback, global_data);
+	notify_observer_add(NeoMutt->notify, NT_COLOR, sbar_color_observer, win_sbar);
+	notify_observer_add(NeoMutt->notify, NT_COLOR, helpbar_color_observer, win);
+	notify_observer_add(NeoMutt->notify, NT_COLOR, ibar_color_observer, win_ibar);
+	notify_observer_add(NeoMutt->notify, NT_COLOR, index_color_observer, win);
+	notify_observer_add(NeoMutt->notify, NT_COLOR, pbar_color_observer, win_pbar);
+	notify_observer_add(NeoMutt->notify, NT_COLOR, pager_color_observer, win);
+	notify_observer_add(NeoMutt->notify, NT_COLOR, sb_color_observer, win);
+	notify_observer_add(NeoMutt->notify, NT_COLOR, cbar_color_observer, win_cbar);
+	notify_observer_add(NeoMutt->notify, NT_COLOR, env_color_observer, win_env);
+
+NT_COMMAND sb_command_observer
+	notify_observer_add(NeoMutt->notify, NT_COMMAND, sb_command_observer, win);
+
+NT_COMPOSE attach_compose_observer
+NT_COMPOSE cbar_compose_observer
+NT_COMPOSE env_compose_observer
+	notify_observer_add(shared->notify, NT_COMPOSE, cbar_compose_observer, win_cbar);
+	notify_observer_add(shared->notify, NT_COMPOSE, env_compose_observer, win_env);
+	notify_observer_add(parent->notify, NT_COMPOSE, attach_compose_observer, win_attach);
+
+NT_CONFIG alias_config_observer
+NT_CONFIG attach_config_observer
+NT_CONFIG cbar_config_observer
+NT_CONFIG compose_config_observer
+NT_CONFIG dopager_config_observer
+NT_CONFIG env_config_observer
+NT_CONFIG helpbar_config_observer
+NT_CONFIG ibar_config_observer
+NT_CONFIG index_config_observer
+NT_CONFIG ipanel_config_observer
+NT_CONFIG main_config_observer
+NT_CONFIG main_hist_observer
+NT_CONFIG main_log_observer
+NT_CONFIG menu_config_observer
+NT_CONFIG pager_config_observer
+NT_CONFIG pbar_config_observer
+NT_CONFIG ppanel_config_observer
+NT_CONFIG remailer_config_observer
+NT_CONFIG rootwin_config_observer
+NT_CONFIG sb_config_observer
+NT_CONFIG simple_config_observer
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, alias_config_observer, menu);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, alias_config_observer, menu);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, simple_config_observer, dlg);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, rootwin_config_observer, win_root);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, helpbar_config_observer, win);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, ibar_config_observer, win_ibar);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, index_config_observer, win);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, ipanel_config_observer, panel_index);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, dopager_config_observer, dlg);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, pbar_config_observer, win_pbar);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, pager_config_observer, win);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, ppanel_config_observer, panel_pager);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, sb_config_observer, win);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, menu_config_observer, menu);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, cbar_config_observer, win_cbar);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, attach_config_observer, win_attach);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, env_config_observer, win_env);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, compose_config_observer, dlg);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, remailer_config_observer, dlg);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, main_hist_observer, NULL);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, main_log_observer, NULL);
+	notify_observer_add(NeoMutt->notify, NT_CONFIG, main_config_observer, NULL);
+
+NT_CONTEXT index_shared_context_observer
+	notify_observer_add(NeoMutt->notify, NT_CONTEXT, index_shared_context_observer, shared);
+
+NT_EMAIL index_shared_email_observer
+NT_EMAIL pager_email_observer
+NT_EMAIL pbar_email_observer
+	notify_observer_add(NeoMutt->notify, NT_EMAIL, index_shared_email_observer, shared);
+	notify_observer_add(new_shared->email->notify, NT_EMAIL, pbar_email_observer, win_pbar);
+	notify_observer_add(shared->email->notify, NT_EMAIL, pbar_email_observer, win_pbar);
+	notify_observer_add(shared->email->notify, NT_EMAIL, pager_email_observer, win);
+
+NT_HEADER env_header_observer
+	notify_observer_add(NeoMutt->notify, NT_HEADER, env_header_observer, win_env);
+
+NT_INDEX ibar_index_observer
+	notify_observer_add(shared->notify, NT_INDEX, ibar_index_observer, win_ibar);
+
+NT_MAILBOX ctx_mailbox_observer
+NT_MAILBOX ibar_mailbox_observer
+NT_MAILBOX index_mailbox_observer
+NT_MAILBOX index_shared_mailbox_observer
+NT_MAILBOX pager_mailbox_observer
+NT_MAILBOX pbar_mailbox_observer
+NT_MAILBOX sb_mailbox_observer
+	notify_observer_add(new_shared->mailbox->notify, NT_MAILBOX,
+	notify_observer_add(shared->mailbox->notify, NT_MAILBOX, ibar_mailbox_observer, win_ibar);
+	notify_observer_add(NeoMutt->notify, NT_MAILBOX, index_shared_mailbox_observer, shared);
+	notify_observer_add(m->notify, NT_MAILBOX, index_mailbox_observer, &m);
+	notify_observer_add(new_shared->mailbox->notify, NT_MAILBOX,
+	notify_observer_add(shared->mailbox->notify, NT_MAILBOX, pbar_mailbox_observer, win_pbar);
+	notify_observer_add(shared->mailbox->notify, NT_MAILBOX, pager_mailbox_observer, win);
+	notify_observer_add(NeoMutt->notify, NT_MAILBOX, sb_mailbox_observer, win);
+	notify_observer_add(m->notify, NT_MAILBOX, ctx_mailbox_observer, ctx);
+
+NT_MENU ibar_menu_observer
+NT_MENU pager_menu_observer
+NT_MENU pbar_menu_observer
+	notify_observer_add(parent->notify, NT_MENU, ibar_menu_observer, win_ibar);
+	notify_observer_add(parent->notify, NT_MENU, pbar_menu_observer, win_pbar);
+	notify_observer_add(parent->notify, NT_MENU, pager_menu_observer, win);
+
+NT_PAGER pager_pager_observer
+NT_PAGER pbar_pager_observer
+	notify_observer_add(shared->notify, NT_PAGER, pbar_pager_observer, win_pbar);
+	notify_observer_add(shared->notify, NT_PAGER, pager_pager_observer, win);
+
+NT_SCORE index_score_observer
+	notify_observer_add(NeoMutt->notify, NT_SCORE, index_score_observer, win);
+
+NT_SUBJRX index_subjrx_observer
+	notify_observer_add(NeoMutt->notify, NT_SUBJRX, index_subjrx_observer, win);
+
+NT_WINDOW alias_window_observer
+NT_WINDOW alldialogs_window_observer
+NT_WINDOW attach_window_observer
+NT_WINDOW cbar_window_observer
+NT_WINDOW compose_window_observer
+NT_WINDOW dopager_window_observer
+NT_WINDOW env_window_observer
+NT_WINDOW helpbar_window_observer
+NT_WINDOW ibar_window_observer
+NT_WINDOW index_window_observer
+NT_WINDOW ipanel_window_observer
+NT_WINDOW menu_window_observer
+NT_WINDOW msgwin_window_observer
+NT_WINDOW pager_window_observer
+NT_WINDOW pbar_window_observer
+NT_WINDOW ppanel_window_observer
+NT_WINDOW query_window_observer
+NT_WINDOW remailer_window_observer
+NT_WINDOW rootwin_window_observer
+NT_WINDOW sbar_window_observer
+NT_WINDOW sb_insertion_window_observer
+NT_WINDOW sb_window_observer
+NT_WINDOW simple_window_observer
+	notify_observer_add(win_menu->notify, NT_WINDOW, alias_window_observer, win_menu);
+	notify_observer_add(win_menu->notify, NT_WINDOW, query_window_observer, win_menu);
+	notify_observer_add(NeoMutt->notify, NT_WINDOW, alldialogs_window_observer, win_alldlgs);
+	notify_observer_add(dlg->notify, NT_WINDOW, simple_window_observer, dlg);
+	notify_observer_add(win_sbar->notify, NT_WINDOW, sbar_window_observer, win_sbar);
+	notify_observer_add(win->notify, NT_WINDOW, msgwin_window_observer, win);
+	notify_observer_add(NeoMutt->notify, NT_WINDOW, rootwin_window_observer, win_root);
+	notify_observer_add(win->notify, NT_WINDOW, helpbar_window_observer, win);
+	notify_observer_add(win_ibar->notify, NT_WINDOW, ibar_window_observer, win_ibar);
+	notify_observer_add(win->notify, NT_WINDOW, index_window_observer, win);
+	notify_observer_add(NeoMutt->notify, NT_WINDOW, ipanel_window_observer, panel_index);
+	notify_observer_add(dlg->notify, NT_WINDOW, dopager_window_observer, dlg);
+	notify_observer_add(win_pbar->notify, NT_WINDOW, pbar_window_observer, win_pbar);
+	notify_observer_add(win->notify, NT_WINDOW, pager_window_observer, win);
+	notify_observer_add(NeoMutt->notify, NT_WINDOW, ppanel_window_observer, panel_pager);
+	notify_observer_add(AllDialogsWindow->notify, NT_WINDOW,
+	notify_observer_add(NeoMutt->notify, NT_WINDOW, sb_window_observer, win);
+	notify_observer_add(menu->win_index->notify, NT_WINDOW, menu_window_observer, menu);
+	notify_observer_add(win_cbar->notify, NT_WINDOW, cbar_window_observer, win_cbar);
+	notify_observer_add(win_attach->notify, NT_WINDOW, attach_window_observer, win_attach);
+	notify_observer_add(win_env->notify, NT_WINDOW, env_window_observer, win_env);
+	notify_observer_add(dlg->notify, NT_WINDOW, compose_window_observer, dlg);
+	notify_observer_add(dlg->notify, NT_WINDOW, remailer_window_observer, dlg);
+

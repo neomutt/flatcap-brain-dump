@@ -1,0 +1,89 @@
+From ws@jackfruit.com Mon Jan 17 14:39:47 2022
+Return-Path: <ws@jackfruit.com>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 7DE4510F5
+	for <flatcap-mail@flatcap.org>; Mon, 17 Jan 2022 14:39:47 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id fUM76FuObquM for <flatcap-mail@flatcap.org>;
+	Mon, 17 Jan 2022 14:39:46 +0000 (GMT)
+Received: from flatcap.org (unknown [10.9.0.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id C1019C87
+	for <rich@flatcap.org>; Mon, 17 Jan 2022 14:39:46 +0000 (GMT)
+Date: Mon, 17 Jan 2022 14:39:45 +0000
+From: Will Smith <ws@jackfruit.com>
+To: rich@flatcap.org
+Subject: test
+Message-ID: <20220117143945.fgqcbprbblopvv2b@flatcap.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="n6eu5jrlmxbibxm2"
+Content-Disposition: inline
+User-Agent: NeoMutt/20211029-223-aeebfd
+Status: RO
+Content-Length: 2209
+Lines: 56
+
+
+--n6eu5jrlmxbibxm2
+Content-Type: multipart/mixed; boundary="syirgen434opol3u"
+Content-Disposition: inline
+
+
+--syirgen434opol3u
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+refrigerium hallahs full-blossomed forbearing Anti-socinian subinfeudating
+nonhereditable gameto- dissilience unmollifiably chloralism blankest
+subseres eluants steerage ICS urinalysis TDO Saint-Cloud bemoaning SCIFI
+inveterate Mizpah pronouns pachycephalous reconnoissance unspotten
+englishing ornithodelphous unvariable annuloid Mollah best-natured
+nightshade Sergu nourished reexports hard-fired begut Marylin furnacer
+Jaymee byon Coniah PL/1 eudipleural pepsinogenic paraenetic chaucerian
+mandingo onerously haars unintruded rain-bird bay-bay palaeomastodon
+watershoot evibrate asquare geminis nondependence cyanitic limnologic
+ferruminating predistortion slavicist summarize maidism derange
+pseudoacademical etherism wide-nosed shotgunned bombesins recontested
+exoderms MECO Attu amtrac juglone switchbacks bathoses Tractarian
+denotable osmometry befouls Urbai disnaturalization katakinesis
+white-horsed bidarkee open-sidedly pen-tailed mediotarsal blennioid
+high-flavored observatorial nonignitible oldish salvors
+
+--syirgen434opol3u
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="A.txt"
+
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+--syirgen434opol3u
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="B.txt"
+
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+--syirgen434opol3u--
+
+--n6eu5jrlmxbibxm2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEoo4Q0WI2zlJipRmgA6F6Ba4W1BIFAmHlf7EACgkQA6F6Ba4W
+1BLj3QgAmnJxNv9e+xQM4l8c/XADMAMaaY23GETv/WPl/14ZLsUShQH+YqL5uU69
+dyk6YplXvpIOULA7K77wSli8mMT5bk2hRW09kIlk58whrUhSo2J4Aov4b7/TTmhK
+QuHoLscjUoMAl+WQ3U72GVtUkpFASp5GrUOD0+S0vWC7LEPRm+mb3mQeoqUyv1i7
+h+bJDRCWdRiKPGgJgLBpJbqj661toc/BCYJQ6MZ1en+o7NW/792NuPqYjkXd7w1m
+riaB55lBp0RZecl5QE+88F7Zfn3b/LZpFfIIimSLLumiuXDgaHb9ZBZnrwb5XO2d
+kyTEWZWzsQtrIPYomAjJVOYpGQvLqA==
+=OVgd
+-----END PGP SIGNATURE-----
+
+--n6eu5jrlmxbibxm2--
+

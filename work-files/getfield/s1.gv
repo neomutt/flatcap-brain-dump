@@ -1,0 +1,137 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ff8080" ]
+
+	mutt_enter_string_full
+
+	node [ fillcolor="#ffffff" ]
+	node [ color="#ff0000" ]
+
+	mutt_buffer_enter_fname
+	mutt_buffer_enter_fname_full
+	mutt_buffer_get_field
+	mutt_buffer_get_field_full
+	mutt_buffer_select_file
+	mutt_enter_string
+	mutt_get_field
+	mutt_get_field_full
+	mutt_get_field_unbuffered
+	mutt_get_password
+	mutt_select_file
+
+	node [ color="#00ff00" ]
+
+	op_bounce_message
+	op_display_message
+	op_edit_label
+	op_edit_type
+	op_enter_command
+	op_get_message
+	op_jump
+	op_main_change_folder
+	op_main_change_group
+	op_main_vfolder_from_query
+	op_mark_msg
+	op_pipe
+	op_save
+	op_shell_escape
+	op_view_attachments
+
+	node [ color="#000000" ]
+
+	ci_bounce_message -> mutt_get_field_full
+	dlg_select_attachment -> mutt_attach_bounce
+	dlg_select_attachment -> mutt_attach_display_loop
+	dlg_select_attachment -> mutt_menu_loop
+	dlg_select_attachment -> mutt_pipe_attachment_list
+	dlg_select_attachment -> mutt_save_attachment_list
+	dlg_select_attachment -> recvattach_edit_content_type
+	dlg_select_mixmaster_chain -> mutt_menu_loop
+	dlg_select_postponed_email -> mutt_menu_loop
+	main -> mutt_buffer_select_file
+	menu_jump -> mutt_get_field_full
+	mutt_attach_bounce -> mutt_get_field_full
+	mutt_attach_display_loop -> mutt_edit_content_type
+	mutt_attach_display_loop -> recvattach_edit_content_type
+	mutt_buffer_enter_fname -> mutt_buffer_enter_fname_full
+	mutt_buffer_get_field -> mutt_buffer_get_field_full
+	mutt_buffer_select_file -> mutt_buffer_get_field_full
+	mutt_buffer_select_file -> mutt_get_field_full
+	mutt_buffer_select_file -> mutt_menu_loop
+	mutt_check_overwrite -> mutt_buffer_get_field_full
+	mutt_display_message -> mutt_pager
+	mutt_edit_content_type -> mutt_get_field_full
+	mutt_enter_command -> mutt_get_field_full
+	mutt_enter_string -> mutt_enter_string_full
+	mutt_enter_string_full -> mutt_select_file
+	mutt_get_field -> mutt_get_field_full
+	mutt_get_password -> mutt_get_field_unbuffered
+	mutt_get_postponed -> dlg_select_postponed_email
+	mutt_label_message -> mutt_get_field_full
+	mutt_menu_loop -> menu_jump
+	mutt_menu_loop -> mutt_enter_command
+	mutt_menu_loop -> mutt_shell_escape
+	mutt_menu_loop -> search
+	mutt_pager -> ci_bounce_message
+	mutt_pager -> dlg_select_attachment
+	mutt_pager -> mutt_attach_bounce
+	mutt_pager -> mutt_enter_command
+	mutt_pager -> mutt_get_field_full
+	mutt_pager -> mutt_label_message
+	mutt_pager -> mutt_pipe_attachment_list
+	mutt_pager -> mutt_pipe_message
+	mutt_pager -> mutt_save_attachment_list
+	mutt_pager -> mutt_save_message
+	mutt_pager -> mutt_shell_escape
+	mutt_pipe_attachment_list -> mutt_buffer_get_field_full
+	mutt_pipe_message -> mutt_buffer_get_field_full
+	mutt_save_attachment_list -> mutt_buffer_get_field_full
+	mutt_save_attachment_list -> mutt_check_overwrite
+	mutt_save_attachment_list -> query_save_attachment
+	mutt_save_attachment_list -> save_without_prompting
+	mutt_save_message -> mutt_buffer_enter_fname_full
+	mutt_select_file -> mutt_buffer_select_file
+	mutt_shell_escape -> mutt_get_field_full
+	op_bounce_message -> ci_bounce_message
+	op_display_message -> mutt_display_message
+	op_edit_label -> mutt_label_message
+	op_edit_type -> mutt_edit_content_type
+	op_enter_command -> mutt_enter_command
+	op_get_message -> mutt_get_field_full
+	op_jump -> mutt_get_field_full
+	op_main_change_folder -> mutt_buffer_enter_fname_full
+	op_main_change_group -> mutt_buffer_enter_fname_full
+	op_main_vfolder_from_query -> mutt_get_field_full
+	op_mark_msg -> mutt_get_field_full
+	op_pipe -> mutt_pipe_message
+	op_save -> mutt_save_message
+	op_shell_escape -> mutt_shell_escape
+	op_view_attachments -> dlg_select_attachment
+	query_save_attachment -> mutt_buffer_get_field_full
+	query_save_attachment -> mutt_check_overwrite
+	recvattach_edit_content_type -> mutt_edit_content_type
+	save_without_prompting -> mutt_check_overwrite
+	search -> mutt_get_field_full
+
+}

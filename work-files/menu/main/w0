@@ -1,0 +1,4 @@
+w1 misc    functions called from main.c
+w2 cleanup functions called from main.c
+w3 free    functions called from main.c
+w4 init    functions called from main.c

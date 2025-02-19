@@ -1,0 +1,69 @@
+Pager Functions
+
+* Enabled for attachments
+A Enabled for attachments ONLY
+E Enabled for EMAIL attachments
+- NOT enabled for attachments
+
+* op_check_stats
+* op_enter_command
+* op_exit
+* op_forget_passphrase
+* op_help
+* op_list_subscribe
+* op_list_unsubscribe
+* op_mailbox_list
+* op_pager_bottom
+* op_pager_half_down
+* op_pager_half_up
+* op_pager_hide_quoted
+* op_pager_next_line
+* op_pager_next_page
+* op_pager_prev_line
+* op_pager_prev_page
+* op_pager_search
+* op_pager_search_next
+* op_pager_skip_headers
+* op_pager_skip_quoted
+* op_pager_top
+* op_quit
+* op_redraw
+* op_search_toggle
+* op_shell_escape
+* op_sidebar_move
+* op_sidebar_toggle_visible
+* op_version
+* op_what_key
+
+A op_pipe
+A op_print
+A op_save
+A op_view_attachments
+
+E op_bounce_message
+E op_compose_to_sender
+E op_create_alias
+E op_display_address
+E op_followup
+E op_forward_message
+E op_forward_to_group
+E op_reply
+E op_resend
+
+- op_check_traditional
+- op_copy_message
+- op_delete
+- op_delete_thread
+- op_edit_label
+- op_extract_keys
+- op_flag_message
+- op_mail
+- op_mail_key
+- op_main_set_flag
+- op_post
+- op_recall_message
+- op_sort
+- op_tag
+- op_toggle_new
+- op_undelete
+- op_undelete_thread

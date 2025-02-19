@@ -1,0 +1,9 @@
+color status bold      blue    yellow  apple
+color status underline blue    yellow  banana 2
+color status reverse   default default cherry
+color status underline red     green   damson
+
+uncolor status cherry
+uncolor status banana
+uncolor status apple
+

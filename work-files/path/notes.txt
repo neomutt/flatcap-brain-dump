@@ -1,0 +1,17 @@
+-poll
+-nopoll
+
+-label label
+-nolabel
+
+-notify
+-nonotify
+
+mailboxes
+
+named-mailboxes     MUTT_NAMED
+virtual-mailboxes   MUTT_NAMED
+
+unmailboxes
+unvirtual-mailboxes 
+

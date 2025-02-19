@@ -1,0 +1,11 @@
+
+WT_DLG_INDEX
+	WT_SIDEBAR
+	WT_CONTAINER
+		WT_INDEX		(panel)
+			WT_MENU			(index)
+			WT_STATUS_BAR		(ibar)
+		WT_PAGER		(panel)
+			WT_MENU			(pager)
+			WT_STATUS_BAR		(pbar)
+

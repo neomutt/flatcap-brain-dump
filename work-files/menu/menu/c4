@@ -1,0 +1,52 @@
+config used by libmenu, outside of libmenu
+
+alias/dlg_alias.c:123:         const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+alias/dlg_query.c:152:         const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+attach/dlg_attach.c:470:       const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+autocrypt/dlg_autocrypt.c:205: const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+browser/dlg_browser.c:960:     const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+compose/attach.c:224:          const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+history/dlg_history.c:121:     const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+index/dlg_index.c:883:         const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+index/dlg_index.c:1251:        const bool c_arrow_cursor = cs_subset_bool(shared->sub, "arrow_cursor");
+ncrypt/dlg_gpgme.c:413:        const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+ncrypt/dlg_pgp.c:440:          const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+pattern/dlg_pattern.c:143:     const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+postpone/dlg_postpone.c:109:   const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+
+alias/dlg_alias.c:126:         const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+alias/dlg_query.c:155:         const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+attach/dlg_attach.c:473:       const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+autocrypt/dlg_autocrypt.c:208: const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+browser/dlg_browser.c:963:     const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+compose/attach.c:227:          const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+history/dlg_history.c:124:     const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+index/dlg_index.c:886:         const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+index/dlg_index.c:1256:        const char *const c_arrow_string = cs_subset_string(shared->sub, "arrow_string");
+ncrypt/dlg_gpgme.c:416:        const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+ncrypt/dlg_pgp.c:443:          const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+pattern/dlg_pattern.c:146:     const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+postpone/dlg_postpone.c:112:   const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+
+sidebar/observer.c:65:         const bool c_ascii_chars = cs_subset_bool(NeoMutt->sub, "ascii_chars");
+sidebar/observer.c:270:        !mutt_str_equal(ev_c->name, "ascii_chars") &&
+sidebar/observer.c:326:        if (mutt_str_equal(ev_c->name, "ascii_chars") ||
+
+index/dlg_index.c:1294:        const bool c_auto_tag = cs_subset_bool(shared->sub, "auto_tag");
+index/functions.c:2309:        const bool c_auto_tag = cs_subset_bool(shared->sub, "auto_tag");
+
+index/dlg_index.c:1252:        const bool c_braille_friendly = cs_subset_bool(shared->sub, "braille_friendly");
+pager/dlg_pager.c:381:         const bool c_braille_friendly = cs_subset_bool(NeoMutt->sub, "braille_friendly");
+
+alias/functions.c:188:         const bool c_resolve = cs_subset_bool(mdata->sub, "resolve");
+attach/functions.c:320:        const bool c_resolve = cs_subset_bool(NeoMutt->sub, "resolve");
+attach/functions.c:381:        const bool c_resolve = cs_subset_bool(NeoMutt->sub, "resolve");
+attach/functions.c:411:        const bool c_resolve = cs_subset_bool(NeoMutt->sub, "resolve");
+index/functions.c:347:         const bool c_resolve = cs_subset_bool(shared->sub, "resolve");
+postpone/functions.c:83:       const bool c_resolve = cs_subset_bool(NeoMutt->sub, "resolve");
+
+pager/functions.c:755:         const bool c_wrap_search = cs_subset_bool(NeoMutt->sub, "wrap_search");
+pager/functions.c:785:         const bool c_wrap_search = cs_subset_bool(NeoMutt->sub, "wrap_search");
+pattern/pattern.c:547:         const bool c_wrap_search = cs_subset_bool(NeoMutt->sub, "wrap_search");
+pattern/pattern.c:703:         const bool c_wrap_search = cs_subset_bool(NeoMutt->sub, "wrap_search");
+

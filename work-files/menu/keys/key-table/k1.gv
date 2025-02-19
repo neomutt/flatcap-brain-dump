@@ -1,0 +1,109 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	subgraph cluster_get_table
+	{
+		fontcolor="black"
+		color="#ff8080"
+		fillcolor="#ffcccc"
+		style="filled"
+
+		node [ color="#ff0000" ]
+		km_get_table
+	}
+
+	subgraph cluster_ifdef
+	{
+		fontcolor="black"
+		color="#8080ff"
+		fillcolor="#ccccff"
+		style="filled"
+		label=<<b>ifdef</b>>
+		labeljust="left"
+
+		node [ color="#0000ff" ]
+		parse_bind -> km_get_table
+		parse_exec -> km_get_table
+		is_function -> km_get_table
+	}
+
+	subgraph cluster_help
+	{
+		fontcolor="black"
+		color="#80ffff"
+		fillcolor="#ccffff"
+		style="filled"
+		label=<<b>help</b>>
+		labeljust="left"
+
+		node [ color="#00ffff" ]
+		op_help [ label="Editor::op_help\rMenu::op_help\rPager::op_help\r" ]
+
+		colon_bind -> print_bind
+		colon_macro -> print_macro
+		gather_menu -> help_lookup_function
+		mutt_help -> gather_menu
+		mutt_help -> km_get_table
+		op_help -> mutt_help
+		print_bind -> gather_menu
+		print_macro -> gather_menu
+	}
+
+	subgraph cluster_complete
+	{
+		fontcolor="black"
+		color="#80ff80"
+		fillcolor="#ccffcc"
+		style="filled"
+		label=<<b>complete</b>>
+		labeljust="left"
+
+		node [ color="#00ff00" ]
+		mutt_command_complete -> km_get_table
+	}
+
+	subgraph cluster_dialog
+	{
+		fontcolor="black"
+		color="#ffff80"
+		fillcolor="#ffffcc"
+		style="filled"
+		label=<<b>dialog</b>>
+		labeljust="left"
+
+		node [ color="#c0c000" ]
+		MANY_DIALOGS [ label="dlg_alias\ldlg_attachment\ldlg_autocrypt\ldlg_browser\ldlg_certificate\ldlg_compose\ldlg_gpgme\ldlg_history\ldlg_index\ldlg_pager\ldlg_pattern\ldlg_pgp\ldlg_postponed\ldlg_query\ldlg_smime\l" ]
+
+		MANY_DIALOGS -> km_dokey
+		external_pager -> km_dokey
+		generic_tokenize_push_string -> km_get_table
+		help_lookup_function -> km_get_table
+		km_dokey -> km_dokey_event
+		km_dokey_event -> generic_tokenize_push_string
+		km_dokey_event -> km_get_table
+		km_dokey_event -> retry_generic
+		mw_get_field -> km_dokey_event
+		parse_push -> generic_tokenize_push_string
+		retry_generic -> km_dokey_event
+	}
+}

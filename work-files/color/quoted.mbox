@@ -1,0 +1,50 @@
+From apple@flatcap.org Thu Oct 15 10:00:00 2020
+From: apple <apple@flatcap.org>
+To: rich@flatcap.org
+Subject: The Raven - Edgar Allan Poe
+Date: Thu, 15 Oct 2020 09:00:00 +0000 (GMT)
+Status: RO
+Content-Length: 2037
+Lines: 4
+
+* Vincent Lefevre <vincent@vinc17.org> [07-26-16 06:52]:
+> On 2016-07-26 11:22:43 +0200, Oswald Buddenhagen wrote:
+> > On Tue, Jul 26, 2016 at 10:26:16AM +0200, Michael Tatge wrote:
+> > > On Mon, Jul 25, 2016 04:39PM +0200 Olaf Hering (olaf@aepfle.de) muttered:
+> > > > Am 25. Juli 2016 14:52:27 MESZ, schrieb Michael Tatge <tatgeml@gmail.com>:
+> > > > 
+> > > > >No. Sending from the command line, in scripts, the error might come up
+> > > > >later during delivery,...
+> > > > 
+> > > > Have you actually tried it with smtp_pass= ? There is no interaction
+> > > > and as a result no password and as a result no mail gets created. 
+> > > 
+> > > using the internal smtp agent is a special case, mutt's scope is wider
+> > > then that.
+> > >
+> > uhm, so? when delivery is done via sendmail and fails later on, it was
+> > successful from mutt's perspective.
+> 
+> Agreed!
+> 
+> If I use
+> 
+>   set sendmail=/bin/false
+> 
+> this is indeed wrong: each time I try to send the message, a copy of
+> the message is stored in $record, which gives the false impression
+> that the mail has been sent.
+
+so mutt becomes responsible for what sendmail does?  I think not.  If
+mutt's internal's fail to complete an action, it should provide notice,
+but not an action after handing off.  If mutt hands off a mail to an app
+to provide a special format/action and that "app" fails, the "app" would
+provide notice but mutt is not responsible.  If in this case sendmail or
+it's representative fails and provided mutt notice, then mutt should act
+on that notice.
+
+-- 
+(paka)Patrick Shanahan       Plainfield, Indiana, USA          @ptilopteri
+http://en.opensuse.org    openSUSE Community Member    facebook/ptilopteri
+http://wahoo.no-ip.org        Photo Album: http://wahoo.no-ip.org/gallery2
+Registered Linux User #207535                    @ http://linuxcounter.net

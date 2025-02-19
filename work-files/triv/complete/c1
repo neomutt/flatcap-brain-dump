@@ -1,0 +1,60 @@
+complete_alias_complete CompleteAliasOps
+	wdata->buffer
+	wdata->state
+
+complete_alias_query    CompleteAliasOps
+	wdata->buffer
+	wdata->state
+
+complete_command        CompleteCommandOps
+	wdata->buffer
+	wdata->state
+	wdata->tabs
+	wdata->cd
+
+complete_file_mbox      CompleteMailboxOps
+	wdata->mailbox
+	wdata->buffer
+	wdata->state
+	wdata->pass
+	wdata->hclass
+	wdata->cdata
+	wdata->flags
+	wdata->first
+	wdata->tempbuf
+	wdata->templen
+	wdata->done
+	wdata->cd
+
+complete_file_simple    CompleteFileOps
+	wdata->mailbox
+	wdata->buffer
+	wdata->state
+	wdata->templen
+	wdata->tempbuf
+	wdata->cd
+
+complete_label          CompleteLabelOps
+	wdata->buffer
+	wdata->state
+	wdata->cd
+	wdata->tabs
+
+complete_nm_query       CompleteNmQueryOps
+	wdata->buffer
+	wdata->state
+	wdata->cd
+	wdata->tabs
+
+complete_nm_tag         CompleteNmTagOps
+	wdata->buffer
+	wdata->state
+	wdata->cd
+	wdata->tabs
+
+complete_pattern        CompletePatternOps
+	wdata->buffer
+	wdata->state
+	wdata->cd
+	wdata->tabs
+

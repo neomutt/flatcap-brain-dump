@@ -1,0 +1,45 @@
+Date: Sat, 30 Mar 2024 12:22:13 +0100
+From: Alejandro Colomar <alx@kernel.es>                                      *11
+Reply-To: evil@example.com                                                   *11
+To: alx@kernel.es
+Cc: bob@example.com                                                          *11
+Subject: ...                                                                 *01
+
+[-- Begin encryption information --]                                                 \
+Recipient: RSA key, ID 1234123412341234                                              |
+Recipient: RSA key, ID 5678567856785678                                              }-----  *02 Hide: $crypt_encryption_info = no
+Recipient: RSA key, ID 0000000000000000                                      *08     |
+[-- End encryption information --]                                                   /
+
+[-- Warning: owner of RSA key, ID 1234123412341234 is not a recepient --]    *03
+[-- Warning: recipient <bob@example.com> cannot decrypt the message --]      *04
+
+[-- Begin signature information --]
+Good signature from: Alejandro Colomar <alx@alejandro-colomar.es>
+                aka: Alejandro Colomar <alx@kernel.org>
+                aka: Alejandro Colomar Andres <alx.manpages@gmail.com>
+            created: Sat Mar 30 12:22:13 2024
+[-- End signature information --]
+
+[-- Warning: the header field 'In-Reply-To' has been tampered with --]       *12
+[-- Warning: the header field 'Mail-Followup-To' has been tampered with --]
+[-- Warning: the header field 'Reply-To' has been tampered with --]
+[-- Warning: the header field 'Sender' has been tampered with --]
+[-- Warning: the header field 'To' has been tampered with --]
+[-- Warning: the header field 'X-Original-To' has been tampered with --]
+
+[-- The following data is PGP/MIME signed and encrypted --]                  *05, *14
+From: Alejandro Colomar <alx@kernel.es>                                      *09     \    \
+Sender: foo@foo.com                                                                  |    |
+Reply-To: foo@foo.com                                                                }----|---- *07 Weed: weed && &crypt_protected_headers_weed = yes
+Mail-Followup-To: foo@foo.com                                                        |    |
+X-Original-To: foo@foo.com                                                           |    |
+To: foo@foo.com                                                                      |    |
+Cc: bob@example.com                                                                  |    }----  *01 Hide: $crypt_protected_headers_read = no
+Subject: Foo                                                                 *01     |    |
+In-Reply-To: <...>                                                           *10     /    |
+                                                                             *06          /
+Body body
+body body body
+body
+[-- End of PGP/MIME signed and encrypted data --]                            *05

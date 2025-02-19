@@ -1,0 +1,65 @@
+
+# Index -> Compose -> Index -> Help -> Bind
+
+✓[0,0] FIX-V [1;33mWT_ROOT[0m (174,41)
+    ✗[1;30m[0,0] FIX-V [1;33mWT_HELP_BAR[0m (174,1)[0m
+    ✓[0,0] MAX-V [1;33mWT_ALL_DIALOGS[0m (174,40)
+
+        ✗[1;30m[0,0] MAX-H [1;33mWT_DLG_INDEX[0m (174,40)[0m
+            ✗[1;30m[0,0] FIX-H [1;33mWT_SIDEBAR[0m (20,40)[0m
+            ✗[1;30m[20,0] MAX-V [1;33mWT_CONTAINER[0m (154,40)[0m
+                ✗[1;30m[20,0] MIN-V [1;33mWT_CONTAINER[0m (154,6)[0m
+                    ✗[1;30m[20,0] FIX-V [1;33mWT_INDEX[0m (154,5)[0m -- MENU
+                    ✗[1;30m[20,5] FIX-V [1;33mWT_INDEX_BAR[0m (154,1)[0m
+                ✗[1;30m[20,6] MAX-V [1;33mWT_CONTAINER[0m (154,34)[0m
+                    ✗[1;30m[20,6] MAX-V [1;33mWT_PAGER[0m (154,33)[0m -- MENU
+                    ✗[1;30m[20,39] FIX-V [1;33mWT_PAGER_BAR[0m (154,1)[0m
+
+        ✗[1;30m[0,0] MAX-V [1;33mWT_DLG_COMPOSE[0m (174,40)[0m
+            ✗[1;30m[0,0] FIX-V [1;33mWT_CUSTOM[0m (174,9)[0m
+            ✗[1;30m[0,9] FIX-V [1;33mWT_CUSTOM[0m (174,1)[0m
+            ✗[1;30m[0,10] MAX-V [1;33mWT_INDEX[0m (174,29)[0m -- MENU
+            ✗[1;30m[0,39] FIX-V [1;33mWT_INDEX_BAR[0m (174,1)[0m
+
+        ✗[1;30m[0,0] MAX-H [1;33mWT_DLG_INDEX[0m (174,40)[0m
+            ✗[1;30m[0,0] FIX-H [1;33mWT_SIDEBAR[0m (20,40)[0m
+            ✗[1;30m[20,0] MAX-V [1;33mWT_CONTAINER[0m (154,40)[0m
+                ✗[1;30m[20,0] MIN-V [1;33mWT_CONTAINER[0m (154,6)[0m
+                    ✗[1;30m[20,0] FIX-V [1;33mWT_INDEX[0m (154,5)[0m -- MENU
+                    ✗[1;30m[20,5] FIX-V [1;33mWT_INDEX_BAR[0m (154,1)[0m
+                ✗[1;30m[20,6] MAX-V [1;33mWT_CONTAINER[0m (154,34)[0m
+                    ✗[1;30m[20,6] MAX-V [1;33mWT_PAGER[0m (154,33)[0m -- MENU
+                    ✗[1;30m[20,39] FIX-V [1;33mWT_PAGER_BAR[0m (154,1)[0m
+
+        ✗[1;30m[0,0] MAX-V [1;33mWT_DLG_DO_PAGER[0m (174,40)[0m
+            ✗[1;30m[0,0] MAX-V [1;33mWT_PAGER[0m (174,39)[0m -- MENU
+            ✗[1;30m[0,39] FIX-V [1;33mWT_PAGER_BAR[0m (174,1)[0m
+
+        ✓[0,0] MAX-V [1;33mWT_DLG_DO_PAGER[0m (174,40)
+            ✓[0,0] MAX-V [1;33mWT_PAGER[0m (174,39) -- MENU
+            ✓[0,39] FIX-V [1;33mWT_PAGER_BAR[0m (174,1)
+
+    ✓[0,40] FIX-V [1;33mWT_MESSAGE[0m (174,1)
+
+# Index -> Alias
+
+✓[0,0] FIX-V [1;33mWT_ROOT[0m (174,44)
+    ✗[1;30m[0,0] FIX-V [1;33mWT_HELP_BAR[0m (174,1)[0m
+    ✓[0,0] MAX-V [1;33mWT_ALL_DIALOGS[0m (174,43)
+
+        ✗[1;30m[0,0] MAX-H [1;33mWT_DLG_INDEX[0m (174,43)[0m
+            ✗[1;30m[0,0] FIX-H [1;33mWT_SIDEBAR[0m (20,43)[0m
+            ✗[1;30m[20,0] MAX-V [1;33mWT_CONTAINER[0m (154,43)[0m
+                ✗[1;30m[20,0] MAX-V [1;33mWT_INDEX[0m (154,43)[0m
+                    ✗[1;30m[20,0] MAX-V [1;33mWT_MENU[0m (154,42)[0m
+                    ✗[1;30m[20,42] FIX-V [1;33mWT_INDEX_BAR[0m (154,1)[0m
+                ✗[1;30m[0,0] MAX-V [1;33mWT_PAGER[0m (0,0)[0m
+                    ✗[1;30m[0,0] MAX-V [1;33mWT_MENU[0m (0,0)[0m
+                    ✗[1;30m[0,0] FIX-V [1;33mWT_PAGER_BAR[0m (0,0)[0m
+
+        ✓[0,0] MAX-V [1;33mWT_DLG_ALIAS[0m (174,43)
+            ✓[0,0] MAX-V [1;33mWT_MENU[0m (174,42)
+            ✓[0,42] FIX-V [1;33mWT_INDEX_BAR[0m (174,1)
+
+    ✓[0,43] FIX-V [1;33mWT_MESSAGE[0m (174,1)
+

@@ -1,0 +1,9 @@
+QueryFormatData query_format_str
+
+struct AliasView
+	a	alias->addr			address			string
+	c	num				number			number
+	e	alias->comment			comment			string
+	n	alias->name			name			string
+	t	is_tagged			tagged			string	bool
+

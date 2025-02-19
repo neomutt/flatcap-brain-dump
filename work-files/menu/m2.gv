@@ -1,0 +1,37 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	menu_redraw -> menu_redraw_current
+	menu_redraw -> menu_redraw_full
+	menu_redraw -> menu_redraw_index
+	menu_redraw -> menu_redraw_motion
+	menu_redraw_current -> menu_pad_string
+	menu_redraw_current -> print_enriched_string
+	menu_redraw_index -> menu_pad_string
+	menu_redraw_index -> print_enriched_string
+	menu_redraw_motion -> menu_pad_string
+	menu_redraw_motion -> print_enriched_string
+	menu_repaint -> menu_redraw
+	print_enriched_string -> get_color
+
+}

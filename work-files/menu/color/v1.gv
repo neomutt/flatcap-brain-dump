@@ -1,0 +1,41 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	add_pattern -> attr_color_overwrite
+	mutt_parse_color -> parse_color
+	mutt_parse_uncolor -> parse_uncolor
+	parse_color -> color_get_def
+	parse_color -> parse_object
+	parse_color -> regex_colors_parse_color_list
+	parse_color -> regex_colors_parse_status_list
+	parse_color -> simple_color_set
+	parse_uncolor -> color_get_def
+	parse_uncolor -> parse_object
+	parse_uncolor -> regex_colors_parse_uncolor
+	parse_uncolor -> simple_color_reset
+	regex_colors_parse_color_list -> add_pattern
+	regex_colors_parse_color_list -> regex_colors_get_list
+	regex_colors_parse_status_list -> add_pattern
+	regex_colors_parse_uncolor -> regex_colors_get_list
+
+}

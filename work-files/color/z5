@@ -1,0 +1,22 @@
+id                      case-sensitive index
+MT_COLOR_ATTACH_HEADERS true           false
+MT_COLOR_BODY           true           false
+MT_COLOR_HEADER         false          false
+MT_COLOR_INDEX          true           true
+MT_COLOR_INDEX_AUTHOR   true           true
+MT_COLOR_INDEX_FLAGS    true           true
+MT_COLOR_INDEX_SUBJECT  true           true
+MT_COLOR_INDEX_TAG      true           true
+
+simple or regex
+	MT_COLOR_STATUS
+
+attach_headers MT_COLOR_ATTACH_HEADERS attach_list        mutt_color_attachments
+body           MT_COLOR_BODY           body_list          mutt_color_body
+header         MT_COLOR_HEADER         hdr_list           mutt_color_headers
+index          MT_COLOR_INDEX          index_list         mutt_color_index
+index_author   MT_COLOR_INDEX_AUTHOR   index_author_list  mutt_color_index_author
+index_flags    MT_COLOR_INDEX_FLAGS    index_flags_list   mutt_color_index_flags
+index_subject  MT_COLOR_INDEX_SUBJECT  index_subject_list mutt_color_index_subject
+index_tag      MT_COLOR_INDEX_TAG      index_tag_list     mutt_color_index_tags
+status         MT_COLOR_STATUS         status_list        mutt_color_status_line

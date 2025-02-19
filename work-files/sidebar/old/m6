@@ -1,0 +1,6 @@
+macro index <f1> "<enter-command>set sidebar_short_path=no sidebar_folder_indent=no status_format='short=NO,indent=NO'<enter>"
+macro index <f2> "<enter-command>set sidebar_short_path=no sidebar_folder_indent=yes status_format='short=NO,indent=YES'<enter>"
+macro index <f3> "<enter-command>set sidebar_short_path=yes sidebar_folder_indent=no status_format='short=YES,indent=NO'<enter>"
+macro index <f4> "<enter-command>set sidebar_short_path=yes sidebar_folder_indent=yes status_format='short=YES,indent=YES'<enter>"
+set sidebar_width=50
+

@@ -1,0 +1,144 @@
+color   [compose] object [attr...] fg bg [regex [num]]
+uncolor [compose] object [regex]
+
+mono    [compose] object [attr...] [regex [num]]
+unmono  [compose] object [regex]
+
+----------------------------------------------------------------------
+COLOR
+SIMPLE
+	color   .       BAD     .     .     .     fg bg .     .
+	color   .       object  BAD   .     .     fg bg .     .
+	color   .       object  attr1 BAD   .     fg bg .     .
+	color   .       object  attr1 attr2 BAD   fg bg .     .
+
+SIMPLE - COMPOSE
+	color   compose object  .     .     .     fg bg .     .
+	color   compose object  attr1 .     .     fg bg .     .
+	color   compose object  attr1 attr2 .     fg bg .     .
+	color   compose object  attr1 attr2 attr3 fg bg .     .
+
+REGEX - SIMPLE
+	color   .       object  .     .     .     fg bg regex .
+	color   .       object  attr1 .     .     fg bg regex .
+	color   .       object  attr1 attr2 .     fg bg regex .
+	color   .       object  attr1 attr2 attr3 fg bg regex .
+
+REGEX - STATUS
+	color   .       object  .     .     .     fg bg regex .
+	color   .       object  attr1 .     .     fg bg regex .
+	color   .       object  attr1 attr2 .     fg bg regex .
+	color   .       object  attr1 attr2 attr3 fg bg regex .
+
+	color   .       object  .     .     .     fg bg regex 1
+	color   .       object  attr1 .     .     fg bg regex 1
+	color   .       object  attr1 attr2 .     fg bg regex 1
+	color   .       object  attr1 attr2 attr3 fg bg regex 1
+
+QUOTED
+	color   .       object  .     .     .     fg bg .     .
+	color   .       object0 .     .     .     fg bg .     .
+	color   .       object1 .     .     .     fg bg .     .
+	color   .       object2 attr1 .     .     fg bg .     .
+	color   .       object3 attr1 .     .     fg bg .     .
+	color   .       object4 attr1 .     .     fg bg .     .
+	color   .       object5 attr1 attr2 .     fg bg .     .
+	color   .       object6 attr1 attr2 .     fg bg .     .
+	color   .       object7 attr1 attr2 .     fg bg .     .
+	color   .       object8 attr1 attr2 attr3 fg bg .     .
+	color   .       object9 attr1 attr2 attr3 fg bg .     .
+
+----------------------------------------------------------------------
+UNCOLOR
+SIMPLE
+	uncolor   .       object  .
+
+SIMPLE - COMPOSE
+	uncolor   compose object  .
+
+REGEX - SIMPLE
+	uncolor   .       object  regex
+
+REGEX - STATUS
+	uncolor   .       object  regex
+
+QUOTED
+	uncolor   .       object  .
+	uncolor   .       object0 .
+	uncolor   .       object1 .
+	uncolor   .       object2 .
+	uncolor   .       object3 .
+	uncolor   .       object4 .
+	uncolor   .       object5 .
+	uncolor   .       object6 .
+	uncolor   .       object7 .
+	uncolor   .       object8 .
+	uncolor   .       object9 .
+
+----------------------------------------------------------------------
+MONO
+SIMPLE
+	mono    .       object  attr1 .     .     .     .
+	mono    .       object  attr1 attr2 .     .     .
+	mono    .       object  attr1 attr2 attr3 .     .
+
+SIMPLE - COMPOSE
+	mono    compose object  attr1 .     .     .     .
+	mono    compose object  attr1 attr2 .     .     .
+	mono    compose object  attr1 attr2 attr3 .     .
+
+REGEX - SIMPLE
+	mono    .       object  attr1 .     .     regex .
+	mono    .       object  attr1 attr2 .     regex .
+	mono    .       object  attr1 attr2 attr3 regex .
+
+REGEX - STATUS
+	mono    .       object  attr1 .     .     regex .
+	mono    .       object  attr1 attr2 .     regex .
+	mono    .       object  attr1 attr2 attr3 regex .
+
+	mono    .       object  attr1 .     .     regex 1
+	mono    .       object  attr1 attr2 .     regex 1
+	mono    .       object  attr1 attr2 attr3 regex 1
+
+QUOTED
+	mono    .       object  attr1 .     .     .     .
+	mono    .       object0 attr1 .     .     .     .
+	mono    .       object1 attr1 .     .     .     .
+	mono    .       object2 attr1 .     .     .     .
+	mono    .       object3 attr1 attr2 .     .     .
+	mono    .       object4 attr1 attr2 .     .     .
+	mono    .       object5 attr1 attr2 .     .     .
+	mono    .       object6 attr1 attr2 attr3 .     .
+	mono    .       object7 attr1 attr2 attr3 .     .
+	mono    .       object8 attr1 attr2 attr3 .     .
+	mono    .       object9 attr1 attr2 attr3 .     .
+
+----------------------------------------------------------------------
+UNMONO
+SIMPLE
+	unmono    .       object  .
+
+SIMPLE - COMPOSE
+	unmono    compose object  .
+
+REGEX - SIMPLE
+	unmono    .       object  regex
+
+REGEX - STATUS
+	unmono    .       object  regex
+
+QUOTED
+	unmono    .       object  .
+	unmono    .       object0 .
+	unmono    .       object1 .
+	unmono    .       object2 .
+	unmono    .       object3 .
+	unmono    .       object4 .
+	unmono    .       object5 .
+	unmono    .       object6 .
+	unmono    .       object7 .
+	unmono    .       object8 .
+	unmono    .       object9 .
+
+----------------------------------------------------------------------

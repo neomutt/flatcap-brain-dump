@@ -1,0 +1,13 @@
+GroupIndexFormatData group_index_format_str
+
+struct Folder
+	a	ff->notify_user			notify			number	bool,optional
+	C	num				number			number
+	d	ff->desc			description		string
+	f	ff->name			newsgroup		string
+	M	ff->nd				flags			string
+	N	ff->nd->subscribed		flags2			string
+	n	ff->nd->unread			new-count		number
+	p	ff->poll_new_mail		poll			number	bool,optional
+	s	ff->nd->unread			unread-count		number
+

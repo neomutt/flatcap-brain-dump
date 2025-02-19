@@ -1,0 +1,443 @@
+diff --git a/attach/attachments.c b/attach/attachments.c
+@@ @@
+   }
+
+   len = strlen(a->minor);
+   tmpminor = mutt_mem_malloc(len + 3);
+   strcpy(&tmpminor[1], a->minor);
+   tmpminor[0] = '^';
+   tmpminor[len + 1] = '$';
+diff --git a/conn/connaccount.c b/conn/connaccount.c
+@@ @@
+ size_t encoded_len = oalen * 4 / 3 + 10;
+ ASSERT(encoded_len < 6010); // Assure LGTM that we won't overflow
+
+ char *encoded_token = mutt_mem_malloc(encoded_len);
+ mutt_b64_encode(oauthbearer, oalen, encoded_token, encoded_len);
+
+ return encoded_token;
+diff --git a/conn/openssl.c b/conn/openssl.c
+@@ @@
+ long buflen = BIO_get_mem_data(bio, &buf);
+ if (buflen > 0)
+ {
+   char *output = mutt_mem_malloc(buflen + 1);
+   memcpy(output, buf, buflen);
+   output[buflen] = '\0';
+   mutt_debug(LL_DEBUG1, "SSL error stack: %s\n", output);
+@@ @@
+     goto out;
+   }
+   bufsize++; /* space for the terminal nul char */
+   buf = mutt_mem_malloc((size_t) bufsize);
+   if (X509_NAME_get_text_by_NID(x509_subject, NID_commonName, buf, bufsize) == -1)
+   {
+     if (err && errlen)
+diff --git a/conn/sasl.c b/conn/sasl.c
+@@ @@
+*/
+void mutt_sasl_setup_conn(struct Connection *conn, sasl_conn_t *saslconn)
+{
+ struct SaslSockData *sasldata = mutt_mem_malloc(sizeof(struct SaslSockData));
+ /* work around sasl_getprop aliasing issues */
+ const void *tmp = NULL;
+
+diff --git a/conn/tunnel.c b/conn/tunnel.c
+@@ @@
+{
+ int pin[2], pout[2];
+
+ struct TunnelSockData *tunnel = mutt_mem_malloc(sizeof(struct TunnelSockData));
+ conn->sockdata = tunnel;
+
+ const char *const c_tunnel = cs_subset_string(NeoMutt->sub, "tunnel");
+diff --git a/conn/zstrm.c b/conn/zstrm.c
+@@ @@
+
+ /* allocate/setup (de)compression buffers */
+ zctx->read.len = 8192;
+ zctx->read.buf = mutt_mem_malloc(zctx->read.len);
+ zctx->read.pos = 0;
+ zctx->write.len = 8192;
+ zctx->write.buf = mutt_mem_malloc(zctx->write.len);
+ zctx->write.pos = 0;
+
+ /* initialise zlib for inflate and deflate for RFC4978 */
+diff --git a/email/rfc2047.c b/email/rfc2047.c
+@@ @@
+ else if (enc == ENC_BASE64)
+ {
+   const int olen = 3 * len / 4 + 1;
+   char *out = mutt_mem_malloc(olen);
+   int dlen = mutt_b64_decode(it, out, olen);
+   if (dlen == -1)
+   {
+@@ @@
+
+ /* Initialise the output buffer with the us-ascii prefix. */
+ buflen = 2 * ulen;
+ buf = mutt_mem_malloc(buflen);
+ bufpos = t0 - u;
+ memcpy(buf, u, t0 - u);
+
+diff --git a/hcache/hcache.c b/hcache/hcache.c
+@@ @@
+ bool convert = !CharsetIsUtf8;
+
+ *off = 0;
+ unsigned char *d = mutt_mem_malloc(4096);
+
+ d = serial_dump_uint32_t((uidvalidity != 0) ? uidvalidity : mutt_date_now(), d, off);
+ d = serial_dump_int(hc->crc, d, off);
+@@ @@
+{
+ /* if the folder is local, canonify the path to ensure equivalent paths share
+  * the hcache */
+ char *p = mutt_mem_malloc(PATH_MAX + 1);
+ if (!realpath(folder, p))
+   mutt_str_replace(&p, folder);
+
+@@ @@
+     return -1;
+   }
+
+   char *whole = mutt_mem_malloc(hlen + clen);
+   memcpy(whole, data, hlen);
+   memcpy(whole + hlen, cdata, clen);
+
+diff --git a/hcache/serialize.c b/hcache/serialize.c
+@@ @@
+   return;
+ }
+
+ *c = mutt_mem_malloc(size);
+ memcpy(*c, d + *off, size);
+ if (convert && !mutt_str_is_ascii(*c, size))
+ {
+diff --git a/imap/auth_sasl.c b/imap/auth_sasl.c
+@@ @@
+ mutt_message(_("Authenticating (%s)..."), mech);
+
+ bufsize = MAX((olen * 2), 1024);
+ buf = mutt_mem_malloc(bufsize);
+
+ snprintf(buf, bufsize, "AUTHENTICATE %s", mech);
+ if ((adata->capabilities & IMAP_CAP_SASL_IR) && client_start)
+diff --git a/imap/imap.c b/imap/imap.c
+@@ @@
+#endif
+
+ /* presort here to avoid doing 10 resorts in imap_exec_msg_set */
+ emails = mutt_mem_malloc(m->msg_count * sizeof(struct Email *));
+ memcpy(emails, m->emails, m->msg_count * sizeof(struct Email *));
+ mutt_qsort_r(emails, m->msg_count, sizeof(struct Email *), imap_sort_email_uid, NULL);
+
+diff --git a/imap/utf7.c b/imap/utf7.c
+@@ @@
+{
+ int b, ch, k;
+
+ char *buf = mutt_mem_malloc(u7len + u7len / 8 + 1);
+ char *p = buf;
+ int pair1 = 0;
+
+@@ @@
+
+ /* In the worst case we convert 2 chars to 7 chars. For example:
+  * "\x10&\x10&..." -> "&ABA-&-&ABA-&-...".  */
+ char *buf = mutt_mem_malloc((u8len / 2) * 7 + 6);
+ char *p = buf;
+
+ while (u8len)
+diff --git a/imap/util.c b/imap/util.c
+@@ @@
+   return 0;
+ }
+
+ b1 = mutt_mem_malloc(strlen(mx1) + 1);
+ b2 = mutt_mem_malloc(strlen(mx2) + 1);
+
+ imap_fix_path('\0', mx1, b1, strlen(mx1) + 1);
+ imap_fix_path('\0', mx2, b2, strlen(mx2) + 1);
+diff --git a/index/dlg_index.c b/index/dlg_index.c
+@@ @@
+ if ((check != MX_STATUS_REOPENED) && (oldcount > 0) &&
+     (lmt || c_uncollapse_new) && (num_new > 0))
+ {
+   save_new = mutt_mem_malloc(num_new * sizeof(struct Email *));
+   for (int i = oldcount; i < m->msg_count; i++)
+     save_new[i - oldcount] = m->emails[i];
+ }
+diff --git a/mutt/charset.c b/mutt/charset.c
+@@ @@
+ {
+   char const *c = np->data;
+   size_t n = mutt_str_len(c);
+   char *fromcode = mutt_mem_malloc(n + 1);
+   mutt_str_copy(fromcode, c, n + 1);
+   char *s = mutt_strn_dup(u, ulen);
+   int m = mutt_ch_convert_string(&s, fromcode, charset, MUTT_ICONV_NO_FLAGS);
+@@ @@
+   return -1;
+
+ size_t outlen = MB_LEN_MAX * slen;
+ char *out = mutt_mem_malloc(outlen + 1);
+ char *saved_out = out;
+
+ const size_t convlen = iconv(cd, (ICONV_CONST char **) &s, &slen, &out, &outlen);
+@@ @@
+   return -1;
+ }
+ size_t obl = MB_LEN_MAX * ibl;
+ char *buf = mutt_mem_malloc(obl + 1);
+ char *ob = buf;
+
+ mutt_ch_iconv(cd, &ib, &ibl, &ob, &obl, inrepls, outrepl, &rc);
+@@ @@
+ {
+   static const char *repls[] = { "\357\277\275", "?", 0 };
+
+   fc = mutt_mem_malloc(sizeof(struct FgetConv));
+   fc->p = fc->bufo;
+   fc->ob = fc->bufo;
+   fc->ib = fc->bufi;
+@@ @@
+ }
+ else
+ {
+   fc = mutt_mem_malloc(sizeof(struct FgetConvNot));
+ }
+ fc->fp = fp;
+ fc->cd = cd;
+diff --git a/mutt/file.c b/mutt/file.c
+@@ @@
+ if (!line)
+ {
+   *size = 256;
+   line = mutt_mem_malloc(*size);
+ }
+
+ while (true)
+diff --git a/mutt/string.c b/mutt/string.c
+@@ @@
+ if (!begin)
+   return NULL;
+
+ char *p = mutt_mem_malloc(len + 1);
+ memcpy(p, begin, len);
+ p[len] = '\0';
+ return p;
+@@ @@
+
+ int rlen = 256;
+
+ *strp = mutt_mem_malloc(rlen);
+ while (true)
+ {
+   va_list ap;
+diff --git a/mutt_thread.c b/mutt_thread.c
+@@ @@
+ /* Do the visibility calculations and free the old thread chars.
+  * From now on we can simply ignore invisible subtrees */
+ calculate_visibility(tree, &max_depth);
+ pfx = mutt_mem_malloc((width * max_depth) + 2);
+ arrow = mutt_mem_malloc((width * max_depth) + 2);
+ const bool c_hide_limited = cs_subset_bool(NeoMutt->sub, "hide_limited");
+ const bool c_hide_missing = cs_subset_bool(NeoMutt->sub, "hide_missing");
+ while (tree)
+@@ @@
+     {
+       myarrow[width] = MUTT_TREE_RARROW;
+       myarrow[width + 1] = 0;
+       new_tree = mutt_mem_malloc(((size_t) depth * width) + 2);
+       if (start_depth > 1)
+       {
+         strncpy(new_tree, pfx, (size_t) width * (start_depth - 1));
+diff --git a/ncrypt/crypt_gpgme.c b/ncrypt/crypt_gpgme.c
+@@ @@
+   return;
+ bool is_pgp = (key->protocol == GPGME_PROTOCOL_OpenPGP);
+
+ char *buf = mutt_mem_malloc(strlen(prefix) + strlen(s) * 4 + 2);
+ strcpy(buf, prefix);
+ char *p = buf + strlen(buf);
+ if (is_pgp && (strlen(s) == 40))
+@@ @@
+     }
+     else
+     {
+       l = mutt_mem_malloc(sizeof(struct CryptCache));
+       l->next = IdDefaults;
+       IdDefaults = l;
+       l->what = mutt_str_dup(whatfor);
+diff --git a/ncrypt/gnupgparse.c b/ncrypt/gnupgparse.c
+@@ @@
+ {
+   int n = s - uid + 1; /* chars available in original buffer */
+
+   char *buf = mutt_mem_malloc(n + 1);
+   const char *ib = uid;
+   size_t ibl = d - uid + 1;
+   char *ob = buf;
+@@ @@
+
+ /* merge temp key back into real key */
+ if (!(is_uid || is_fpr || (*is_subkey && c_pgp_ignore_subkeys)))
+   k = mutt_mem_malloc(sizeof(*k));
+ if (!k)
+   return NULL;
+ memcpy(k, &tmp, sizeof(*k));
+diff --git a/ncrypt/gpgme_functions.c b/ncrypt/gpgme_functions.c
+@@ @@
+*/
+static void print_utf8(FILE *fp, const char *buf, size_t len)
+{
+ char *tstr = mutt_mem_malloc(len + 1);
+ memcpy(tstr, buf, len);
+ tstr[len] = 0;
+
+@@ @@
+ n = s - str;
+ if (n == 0)
+   return NULL; /* empty key */
+ array->key = mutt_mem_malloc(n + 1);
+ p = array->key;
+ memcpy(p, str, n); /* fixme: trim trailing spaces */
+ p[n] = 0;
+@@ @@
+   if ((n == 0) || (n & 1))
+     return NULL; /* empty or odd number of digits */
+   n /= 2;
+   p = mutt_mem_malloc(n + 1);
+   array->value = (char *) p;
+   for (s1 = str; n; s1 += 2, n--)
+     sscanf(s1, "%2hhx", (unsigned char *) p++);
+@@ @@
+     }
+   }
+
+   p = mutt_mem_malloc(n + 1);
+   array->value = (char *) p;
+   for (s = str; n; s++, n--)
+   {
+@@ @@
+ size_t arrayidx, arraysize;
+
+ arraysize = 7; /* C,ST,L,O,OU,CN,email */
+ array = mutt_mem_malloc((arraysize + 1) * sizeof(*array));
+ arrayidx = 0;
+ while (*str)
+ {
+@@ @@
+   {
+     /* neomutt lacks a real mutt_mem_realloc - so we need to copy */
+     arraysize += 5;
+     struct DnArray *a2 = mutt_mem_malloc((arraysize + 1) * sizeof(*array));
+     for (int i = 0; i < arrayidx; i++)
+     {
+       a2[i].key = array[i].key;
+diff --git a/ncrypt/pgpkey.c b/ncrypt/pgpkey.c
+@@ @@
+     }
+     else
+     {
+       l = mutt_mem_malloc(sizeof(struct PgpCache));
+       l->next = IdDefaults;
+       IdDefaults = l;
+       l->what = mutt_str_dup(whatfor);
+diff --git a/ncrypt/pgppacket.c b/ncrypt/pgppacket.c
+@@ @@
+ if (PacketBufLen == 0)
+ {
+   PacketBufLen = CHUNK_SIZE;
+   PacketBuf = mutt_mem_malloc(PacketBufLen);
+ }
+
+ if (fread(&ctb, 1, 1, fp) < 1)
+diff --git a/nntp/adata.c b/nntp/adata.c
+@@ @@
+ adata->groups_hash = mutt_hash_new(1009, MUTT_HASH_NO_FLAGS);
+ mutt_hash_set_destructor(adata->groups_hash, nntp_hashelem_free, 0);
+ adata->groups_max = 16;
+ adata->groups_list = mutt_mem_malloc(adata->groups_max * sizeof(struct NntpMboxData *));
+ return adata;
+}
+diff --git a/nntp/newsrc.c b/nntp/newsrc.c
+@@ @@
+   FREE(&mdata->newsrc_ent);
+ }
+
+ line = mutt_mem_malloc(st.st_size + 1);
+ while (st.st_size && fgets(line, st.st_size + 1, adata->fp_newsrc))
+ {
+   char *b = NULL, *h = NULL;
+diff --git a/nntp/nntp.c b/nntp/nntp.c
+@@ @@
+     size_t buflen = 2048, off = 0, b = 0;
+
+     FREE(&adata->overview_fmt);
+     adata->overview_fmt = mutt_mem_malloc(buflen);
+
+     while (true)
+     {
+@@ @@
+     return 1;
+   }
+
+   line = mutt_mem_malloc(sizeof(buf));
+   rc = 0;
+
+   if (msg)
+@@ @@
+ cc.mailbox = m;
+ cc.num = 0;
+ cc.max = 10;
+ cc.child = mutt_mem_malloc(sizeof(anum_t) * cc.max);
+
+ /* fetch numbers of child messages */
+ snprintf(buf, sizeof(buf), "XPAT References " ANUM_FMT "-" ANUM_FMT " *%s*\r\n",
+diff --git a/notmuch/notmuch.c b/notmuch/notmuch.c
+@@ @@
+{
+ // path to DB + query + url "decoration"
+ size_t len = PATH_MAX + 1024 + 32;
+ char *url = mutt_mem_malloc(len);
+
+ // Try to use `$nm_default_url` or `$folder`.
+ // If neither are set, it is impossible to create a Notmuch URL.
+diff --git a/pop/auth.c b/pop/auth.c
+@@ @@
+ mutt_message(_("Authenticating (%s)..."), "SASL");
+
+ size_t bufsize = MAX((olen * 2), 1024);
+ char *buf = mutt_mem_malloc(bufsize);
+
+ snprintf(buf, bufsize, "AUTH %s", mech);
+ olen = strlen(buf);
+diff --git a/pop/lib.c b/pop/lib.c
+@@ @@
+ if (rc < 0)
+   return rc;
+
+ char *inbuf = mutt_mem_malloc(sizeof(buf));
+
+ while (true)
+ {
+diff --git a/send/send.c b/send/send.c
+@@ @@
+ if (!fp_att)
+   return false;
+
+ char *inputline = mutt_mem_malloc(1024);
+ bool found = false;
+ while (!feof(fp_att) && fgets(inputline, 1024, fp_att))
+ {
+diff --git a/test/compress/common.c b/test/compress/common.c
+@@ @@
+ if (!TEST_CHECK(clen != 0))
+   return;
+
+ void *copy = mutt_mem_malloc(clen);
+ memcpy(copy, cdata, clen);
+
+ void *ddata = compr_ops->decompress(compr_handle, copy, clen);

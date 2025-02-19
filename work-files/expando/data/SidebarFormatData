@@ -1,0 +1,19 @@
+SidebarFormatData sidebar_format_str
+
+struct SbEntry
+	a	m->notify_user			notify			number	bool,optional
+	B	mailbox->name			name			string
+	D	mailbox->name			description		string
+	d	mcur->msg_deleted		deleted-count		number	optional
+	F	m->msg_flagged			flagged-count		number	optional
+	L	m_cur->vcount			limited-count		number	optional
+	N	m->msg_unread			unread-count		number	optional
+	n	m->has_new			new-mail		string	bool,optional
+	o	m_cur->msg_unread		old-count		number	optional
+	p	m->poll_new_mail		poll			number	bool,optional
+	r	m_cur->msg_count		read-count		number	optional
+	S	m->msg_count			message-count		number	optional
+	t	m_cur->msg_tagged		tagged-count		number	optional
+	Z	m_cur->msg_new			unseen-count		number	optional
+	!	m->msg_flagged			flagged			string
+

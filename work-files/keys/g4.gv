@@ -1,0 +1,59 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// mw_enter_fname              -> mutt_getch
+	// mw_get_field                -> km_dokey_event
+	// dlg_browser                  -> km_dokey
+	// dlg_mixmaster                -> km_dokey
+	dlg_alias             -> km_dokey
+	// dlg_attachment        -> km_dokey
+	// dlg_autocrypt         -> km_dokey
+	// dlg_gpgme         -> km_dokey
+	// dlg_history           -> km_dokey_event
+	// dlg_pattern           -> km_dokey_event
+	// dlg_pgp           -> km_dokey
+	// dlg_postponed         -> km_dokey
+	// dlg_query             -> km_dokey
+	// dlg_smime         -> km_dokey
+	// dlg_certificate       -> km_dokey_event
+	// dlg_certificate       -> menu_dialog_dokey
+	// external_pager               -> km_dokey
+	km_dokey                     -> km_dokey_event
+	km_dokey_event               -> mutt_getch
+	km_dokey_event               -> retry_generic
+	// menu_dialog_dokey            -> mutt_getch
+	// mw_change_flag             -> mutt_getch
+	// dlg_compose                  -> km_dokey
+	mutt_getch                   -> getch
+	// mutt_getch                   -> mutt_monitor_getch
+	// dlg_index                    -> km_dokey
+	// mutt_monitor_getch           -> getch
+	// mw_multi_choice            -> mutt_getch
+	// dlg_pager                    -> km_dokey
+	// mw_what_key                -> getch
+	// mw_yesorno                 -> mutt_getch
+	// op_editor_quote_char         -> mutt_getch
+	retry_generic                -> km_dokey_event
+	retry_generic                -> mutt_getch
+
+}                                               

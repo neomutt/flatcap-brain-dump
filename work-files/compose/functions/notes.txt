@@ -1,0 +1,236 @@
+OP_COMPOSE_EDIT_BCC
+	op_compose_edit_bcc
+	"edit the BCC list"
+	email->env->bcc
+
+OP_COMPOSE_EDIT_CC
+	op_compose_edit_cc
+	"edit the CC list"
+	email->env->cc
+
+OP_COMPOSE_EDIT_DESCRIPTION
+	op_compose_edit_description
+	"edit attachment description"
+	cur_att->body->description
+
+OP_COMPOSE_EDIT_ENCODING
+	op_compose_edit_encoding
+	"edit attachment transfer-encoding"
+	cur_att->body->encoding
+
+OP_COMPOSE_EDIT_FCC
+	op_compose_edit_fcc
+	"enter a file to save a copy of this message in"
+	shared->fcc
+
+OP_COMPOSE_EDIT_FILE
+	op_compose_edit_file
+	"edit the file to be attached"
+	c_editor, cur_att->body->filename
+
+OP_COMPOSE_EDIT_FOLLOWUP_TO
+	op_compose_edit_followup_to
+	"edit the Followup-To field"
+	email->env->followup_to
+
+OP_COMPOSE_EDIT_FROM
+	op_compose_edit_from
+	"edit the from field"
+	email->env->from
+
+OP_COMPOSE_EDIT_HEADERS
+	op_compose_edit_headers
+	"edit the message with headers"
+	c_editor, email->body->filename
+
+OP_COMPOSE_EDIT_LANGUAGE
+	op_compose_edit_language
+	"edit the 'Content-Language' of the attachment"
+	cur_att->body->language
+
+OP_COMPOSE_EDIT_MESSAGE
+	op_compose_edit_message
+	"edit the message"
+	c_editor, email->body->filename
+
+OP_COMPOSE_EDIT_MIME
+	op_compose_edit_mime
+	"edit attachment using mailcap entry"
+	cur_att->body
+
+OP_COMPOSE_EDIT_NEWSGROUPS
+	op_compose_edit_newsgroups
+	"edit the newsgroups list"
+	email->env->newsgroups
+
+OP_COMPOSE_EDIT_REPLY_TO
+	op_compose_edit_reply_to
+	"edit the Reply-To field"
+	email->env->reply_to
+
+OP_COMPOSE_EDIT_SUBJECT
+	op_compose_edit_subject
+	"edit the subject of this message"
+	email->env->subject
+
+OP_COMPOSE_EDIT_TO
+	op_compose_edit_to
+	"edit the TO list"
+	email->env->to
+
+OP_COMPOSE_EDIT_X_COMMENT_TO
+	op_compose_edit_x_comment_to
+	"edit the X-Comment-To field"
+	email->env->x_comment_to
+
+OP_EDIT_TYPE
+	op_edit_type
+	"edit attachment content type"
+	cur_att->body
+
+OP_COMPOSE_RENAME_ATTACHMENT
+	op_compose_rename_attachment
+	"send attachment with a different name"
+	cur_att->body->d_filename
+
+OP_COMPOSE_RENAME_FILE
+	op_compose_rename_file
+	"rename/move an attached file"
+	cur_att->body->filename
+
+OP_COMPOSE_TOGGLE_DISPOSITION
+	op_compose_toggle_disposition
+	"toggle disposition between inline/attachment"
+	cur_att->body->disposition
+
+OP_COMPOSE_TOGGLE_RECODE
+	op_compose_toggle_recode
+	"toggle recoding of this attachment"
+	cur_att->body->noconv
+
+OP_COMPOSE_TOGGLE_UNLINK
+	op_compose_toggle_unlink
+	"toggle whether to delete file after sending it"
+	cur_att->body->unlink
+
+OP_COMPOSE_GROUP_ALTS
+	op_compose_group_alts
+	"group tagged attachments as 'multipart/alternative'"
+	shared->adata->actx->idx[i]->body->tagged
+
+OP_COMPOSE_GROUP_LINGUAL
+	op_compose_group_lingual
+	"group tagged attachments as 'multipart/multilingual'"
+	shared->adata->actx->idx[i]->body->tagged
+
+OP_COMPOSE_MOVE_DOWN
+	op_compose_move_down
+	"move an attachment down in the attachment list"
+	doesn't accept tag
+
+OP_COMPOSE_MOVE_UP
+	op_compose_move_up
+	"move an attachment up in the attachment list"
+	doesn't accept tag
+
+OP_COMPOSE_UNGROUP_ATTACHMENT
+	op_compose_ungroup_attachment
+	"ungroup 'multipart' attachment"
+
+OP_DELETE
+	op_delete
+	"delete the current entry"
+
+OP_COMPOSE_ATTACH_FILE
+	op_compose_attach_file
+	"attach files to this message"
+
+OP_COMPOSE_ATTACH_KEY
+	op_compose_attach_key
+	"attach a PGP public key"
+
+OP_COMPOSE_ATTACH_MESSAGE
+	op_compose_attach_message
+	"attach messages to this message"
+
+OP_COMPOSE_ATTACH_NEWS_MESSAGE
+	op_compose_attach_message
+	"attach news articles to this message"
+
+OP_COMPOSE_AUTOCRYPT_MENU
+	op_compose_autocrypt_menu
+	"show autocrypt compose menu options"
+
+OP_COMPOSE_PGP_MENU
+	op_compose_pgp_menu
+	"show PGP options"
+
+OP_COMPOSE_GET_ATTACHMENT
+	op_compose_get_attachment
+	"get a temporary copy of an attachment"
+
+OP_COMPOSE_ISPELL
+	op_compose_ispell
+	"run ispell on the message"
+
+OP_COMPOSE_MIX
+	op_compose_mix
+	"send the message through a mixmaster remailer chain"
+
+OP_COMPOSE_NEW_MIME
+	op_compose_new_mime
+	"compose new attachment using mailcap entry"
+
+OP_COMPOSE_POSTPONE_MESSAGE
+	op_compose_postpone_message
+	"save this message to send later"
+
+OP_COMPOSE_SEND_MESSAGE
+	op_compose_send_message
+	"send the message"
+
+OP_COMPOSE_SMIME_MENU
+	op_compose_smime_menu
+	"show S/MIME options"
+
+OP_COMPOSE_UPDATE_ENCODING
+	op_compose_update_encoding
+	"update an attachment's encoding info"
+	cur_att->body
+
+OP_COMPOSE_WRITE_MESSAGE
+	op_compose_write_message
+	"write the message to a folder"
+
+OP_DISPLAY_HEADERS
+	op_display_headers
+	"display message and toggle header weeding"
+
+OP_EXIT
+	op_exit
+	"exit this menu"
+
+OP_FILTER
+	op_filter
+	"filter attachment through a shell command"
+
+OP_FORGET_PASSPHRASE
+	op_forget_passphrase
+	"wipe passphrases from memory"
+
+OP_PIPE
+	op_filter
+	"pipe message/attachment to a shell command"
+
+OP_PRINT
+	op_print
+	"print the current entry"
+
+OP_SAVE
+	op_save
+	"save message/attachment to a mailbox/file"
+
+OP_VIEW_ATTACH
+	op_display_headers
+	"view attachment using mailcap entry if necessary"
+

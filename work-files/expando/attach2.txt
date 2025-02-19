@@ -1,0 +1,39 @@
+rindex  level
+ 0      0      apple
+ 1      1      ├─> banana
+ 2      1      ├─> cherry
+ 3      1      ├─> damson
+ 4      1      └─> elderberry
+ 5      2        ├─> fig
+ 6      2        ├─> guava
+ 7      2        ├─> hawthorn
+ 8      3        │ ├─> ilama
+ 9      3        │ ├─> jackfruit
+10      3        │ └─> kumquat
+11      3        ├─> lemon
+12      3        ├─> mango
+13      3        └─> nectarine
+
+rindex		level		tree		prev		stem
+
+ 0		0		x		x		x
+ 1		1		├─		x		x
+ 2		1		├─		├─		x
+ 3		1		├─		├─		x
+ 4		1		└─		├─		x
+ 5		2		..├─		└─		x
+ 6		2		..├─		..├─		..
+ 7		2		..├─		..├─		..
+ 8		3		..│.├─		..├─		..
+ 9		3		..│.├─		..│.├─		..│.
+10		3		..│.└─		..│.├─		..│.
+11		2		..├─		..│.└─		..│.
+12		2		..├─		..├─		..
+13		2		..└─		..├─		..
+
+Current starts with 2*(level-1) chars from prev stem
+
+Current ends:
+	├─ if (att->next)
+	└─ if (!att->next)
+

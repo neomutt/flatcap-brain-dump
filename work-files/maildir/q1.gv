@@ -1,0 +1,123 @@
+digraph maildir // 2020-09-20
+{
+	// Blue club - Uses hcache
+
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// API functions
+	node [ color="#ff0000" ]
+	mh_mbox_check
+	mh_mbox_check_stats
+	mh_mbox_open
+	mh_msg_commit
+	mh_msg_open
+	mh_msg_open_new
+
+	node [ color="#00ff00" ]
+	maildir_mbox_check
+	maildir_mbox_check_stats
+	maildir_mbox_open
+	maildir_msg_commit
+	maildir_msg_open
+	maildir_msg_open_new
+	maildir_msg_save_hcache
+
+	node [ color="#00ffff" ]
+	mh_mbox_sync
+
+	node [ color="#000000" ]
+
+	maildir_gen_flags -> ch_compare
+	maildir_sync_message -> maildir_gen_flags
+	maildir_sync_message -> mh_rewrite_message
+	maildir_mbox_open -> mh_read_dir
+	maildir_mbox_check -> maildir_canon_filename
+	maildir_mbox_check -> maildir_delayed_parsing
+	maildir_mbox_check -> maildir_move_to_mailbox
+	maildir_mbox_check -> maildir_parse_dir
+	maildir_mbox_check -> maildir_update_flags
+	maildir_mbox_check_stats -> maildir_check_dir
+	maildir_msg_open -> maildir_mh_open_message
+	maildir_msg_open_new -> maildir_gen_flags
+	maildir_msg_open_new -> mh_umask
+	maildir_msg_commit -> md_commit_message
+	maildir_msg_save_hcache -> maildir_hcache_keylen
+	mh_mbox_check_stats -> mh_already_notified
+	mh_mbox_check_stats -> mh_read_sequences
+	mh_mbox_check_stats -> mhs_check
+	mh_mbox_check_stats -> mh_sequences_changed
+	mh_mbox_check_stats -> mh_valid_message
+	mh_update_maildir -> mhs_check
+	mh_sync_message -> mh_rewrite_message
+	mh_mbox_open -> mh_read_dir
+	mh_mbox_check -> maildir_delayed_parsing
+	mh_mbox_check -> maildir_move_to_mailbox
+	mh_mbox_check -> maildir_parse_dir
+	mh_mbox_check -> maildir_update_flags
+	mh_mbox_check -> mh_mkstemp
+	mh_mbox_check -> mh_read_sequences
+	mh_mbox_check -> mh_update_maildir
+	mh_msg_open -> maildir_mh_open_message
+	mh_msg_open_new -> mh_mkstemp
+	mh_msg_commit -> mh_commit_msg
+	mh_mkstemp -> mh_umask
+	mh_sequences_add_one -> mh_mkstemp
+	mhs_write_one_sequence -> mhs_check
+	mh_update_sequences -> mh_mkstemp
+	mh_update_sequences -> mhs_write_one_sequence
+	maildir_parse_dir -> maildir_parse_flags
+	maildir_parse_dir -> mh_valid_message
+	maildir_move_to_mailbox -> maildirarray_clear
+	maildir_delayed_parsing -> maildir_hcache_keylen
+	maildir_delayed_parsing -> maildir_parse_flags
+	maildir_delayed_parsing -> maildir_parse_message
+	maildir_delayed_parsing -> md_cmp_path
+	mh_read_dir -> maildirarray_clear
+	mh_read_dir -> maildir_delayed_parsing
+	mh_read_dir -> maildir_move_to_mailbox
+	mh_read_dir -> maildir_parse_dir
+	mh_read_dir -> maildir_update_mtime
+	mh_read_dir -> mh_read_sequences
+	mh_read_dir -> mh_umask
+	mh_read_dir -> mh_update_maildir
+	mh_commit_msg -> mh_sequences_add_one
+	mh_rewrite_message -> md_commit_message
+	mh_rewrite_message -> mh_commit_msg
+	md_open_find_message -> maildir_canon_filename
+	maildir_parse_stream -> maildir_parse_flags
+	maildir_parse_message -> maildir_parse_stream
+	mh_sync_mailbox_message -> maildir_hcache_keylen
+	mh_sync_mailbox_message -> maildir_sync_message
+	mh_sync_mailbox_message -> mh_sync_message
+	maildir_open_find_message -> maildir_canon_filename
+	maildir_open_find_message -> md_open_find_message
+	maildir_mh_open_message -> maildir_open_find_message
+	mh_check_empty -> mh_valid_message
+	mh_mbox_sync -> maildir_mbox_check
+	mh_mbox_sync -> maildir_update_mtime
+	mh_mbox_sync -> mh_mbox_check
+	mh_mbox_sync -> mh_sync_mailbox_message
+	mh_mbox_sync -> mh_update_sequences
+
+}
+

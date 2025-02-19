@@ -1,0 +1,237 @@
+From rich@flatcap.org Sat Jun 13 17:08:22 2020
+Return-Path: <rich@flatcap.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 8FC80E7D
+	for <flatcap-mail@flatcap.org>; Sat, 13 Jun 2020 17:08:22 +0100 (BST)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 37MOvN-M-5q9 for <flatcap-mail@flatcap.org>;
+	Sat, 13 Jun 2020 17:08:22 +0100 (BST)
+Received: from laptop.flatcap.org (vpn10.flatcap.org [10.8.0.10])
+	by flatcap.org (Postfix) with ESMTP id 1D237737
+	for <rich@flatcap.org>; Sat, 13 Jun 2020 17:08:22 +0100 (BST)
+Date: Sat, 13 Jun 2020 17:08:16 +0100
+From: mutt@laptop.flatcap.org
+To: rich@flatcap.org
+Subject: test4
+Message-Id: <20200613160816.rguzthgdkpkdmvaz@flatcap.org>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="szorz763fkj6evsn"
+Content-Description: Alternatives for "/tmp/neomutt-laptop-1001-135549-10708880680019210849"
+Content-Disposition: inline
+Content-Transfer-Encoding: x-unknown
+Status: RO
+Content-Length: 9314
+Lines: 153
+
+
+--szorz763fkj6evsn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+plain text
+
+--szorz763fkj6evsn
+Content-Type: text/html; charset=us-ascii
+Content-Disposition: inline
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>this is some 
+  <b>HTML</b>text</body>
+</html>
+
+--szorz763fkj6evsn
+Content-Type: text/markdown; charset=us-ascii
+Content-Disposition: inline
+
+This is in **markdown** format
+
+--szorz763fkj6evsn
+Content-Type: image/png
+Content-Disposition: inline
+Content-Transfer-Encoding: base64
+
+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
+
+--szorz763fkj6evsn--
+
+From rich@flatcap.org Sat Jun 13 17:18:54 2020
+Return-Path: <rich@flatcap.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 0CA72E7D
+	for <flatcap-mail@flatcap.org>; Sat, 13 Jun 2020 17:18:54 +0100 (BST)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id nitdaY9iaXgP for <flatcap-mail@flatcap.org>;
+	Sat, 13 Jun 2020 17:18:53 +0100 (BST)
+Received: from laptop.flatcap.org (vpn10.flatcap.org [10.8.0.10])
+	by flatcap.org (Postfix) with ESMTP id 48263737
+	for <rich@flatcap.org>; Sat, 13 Jun 2020 17:18:53 +0100 (BST)
+Date: Sat, 13 Jun 2020 17:18:48 +0100
+From: mutt@laptop.flatcap.org
+To: rich@flatcap.org
+Subject: lang1
+Message-Id: <20200613161848.jgkdsox2oh72s6hw@flatcap.org>
+MIME-Version: 1.0
+Content-Type: multipart/multilingual; boundary="3fgkwgz4schcdmlc"
+Content-Description: Multilingual part for "/tmp/neomutt-laptop-1001-136242-12179346754319556289"
+Content-Disposition: inline
+Content-Transfer-Encoding: x-unknown
+Status: RO
+Content-Length: 455
+Lines: 24
+
+
+--3fgkwgz4schcdmlc
+Content-Type: text/plain; charset=us-ascii
+Content-Language: en
+Content-Disposition: inline
+
+this is in english
+
+--3fgkwgz4schcdmlc
+Content-Type: text/plain; charset=us-ascii
+Content-Language: de
+Content-Disposition: inline
+
+das ist auf Deutsch
+
+--3fgkwgz4schcdmlc
+Content-Type: text/plain; charset=iso-8859-1
+Content-Language: fr
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+
+ceci est en Français
+
+--3fgkwgz4schcdmlc--
+

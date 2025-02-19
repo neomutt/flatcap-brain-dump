@@ -1,0 +1,192 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// Callers of wcwidth()
+	node [ fillcolor="#ff8080" ]
+	editor_backspace
+	editor_backward_char
+	editor_delete_char
+	editor_forward_char
+	escape_macro
+	format_line
+	format_string
+	format_string
+	measure
+	mutt_mb_charlen
+	mutt_mb_wcwidth
+	mutt_mb_width
+	mutt_paddstr
+	mutt_strnwidth
+	mutt_strwidth
+	mutt_wstr_trunc
+	my_addwch
+
+	// Callers of mutt_strwidth()
+	node [ fillcolor="#ffff80" ]
+	alias_make_entry
+	attach_make_entry
+	autocrypt_make_entry
+	calc_address
+	calc_divider
+	calc_header_width_padding
+	cert_make_entry
+	compose_make_entry
+	crypt_make_entry
+	draw_envelope_user_hdrs
+	folder_make_entry
+	history_make_entry
+	index_make_entry
+	make_sidebar_entry
+	menu_pad_string
+	menu_redraw_index
+	menu_redraw_motion
+	menu_repaint
+	message_bar
+	mutt_draw_statusline
+	mutt_str_expand_tabs
+	mutt_write_one_header
+	pad_string
+	pattern_make_entry
+	pgp_make_entry
+	post_make_entry
+	print_flowed_line
+	print_indent
+	print_key_info
+	print_smime_keyinfo
+	query_make_entry
+	show_flag_if_present
+	smime_make_entry
+
+	node [ fillcolor="#ffffff" ]
+	alias_dialog_new               -> alias_make_entry
+	alias_make_entry               -> mutt_strwidth
+	attach_make_entry              -> mutt_strwidth
+	attach_new                     -> compose_make_entry
+	autocrypt_make_entry           -> mutt_strwidth
+	calc_address                   -> mutt_strwidth
+	calc_divider                   -> mutt_strwidth
+	calc_envelope                  -> calc_address
+	calc_header_width_padding      -> mutt_strwidth
+	cbar_repaint                   -> mutt_draw_statusline
+	cert_make_entry                -> mutt_strnwidth
+	compose_make_entry             -> mutt_strwidth
+	crypt_make_entry               -> mutt_strwidth
+	display_line                   -> format_line
+	dlg_attachment                 -> attach_make_entry
+	dlg_autocrypt                  -> autocrypt_make_entry
+	dlg_browser                    -> folder_make_entry
+	dlg_certificate                -> cert_make_entry
+	dlg_gpgme                      -> crypt_make_entry
+	dlg_history                    -> history_make_entry
+	dlg_index                      -> index_make_entry
+	dlg_pattern                    -> pattern_make_entry
+	dlg_pgp                        -> pgp_make_entry
+	dlg_postponed                  -> post_make_entry
+	dlg_smime                      -> smime_make_entry
+	draw_envelope                  -> draw_envelope_user_hdrs
+	draw_envelope                  -> mutt_paddstr
+	draw_envelope_addr             -> mutt_paddstr
+	draw_envelope_user_hdrs        -> mutt_paddstr
+	draw_envelope_user_hdrs        -> mutt_strwidth
+	draw_header_content            -> mutt_paddstr
+	draw_preview                   -> mutt_paddstr
+	draw_preview                   -> mutt_str_expand_tabs
+	draw_preview                   -> mutt_wstr_trunc
+	dump_bound                     -> escape_macro
+	dump_message_flags             -> show_flag_if_present
+	enter_repaint                  -> my_addwch
+	expando_filter                 -> mutt_wstr_trunc
+	folder_make_entry              -> mutt_strwidth
+	helpbar_repaint                -> mutt_paddstr
+	history_make_entry             -> mutt_strwidth
+	ibar_repaint                   -> mutt_draw_statusline
+	index_make_entry               -> mutt_strwidth
+	index_repaint                  -> menu_redraw_index
+	index_repaint                  -> menu_redraw_motion
+	init_header_padding            -> calc_header_width_padding
+	make_sidebar_entry             -> mutt_strwidth
+	make_sidebar_entry             -> mutt_wstr_trunc
+	menu_pad_string                -> mutt_strwidth
+	menu_redraw                    -> menu_redraw_index
+	menu_redraw                    -> menu_redraw_motion
+	menu_redraw_current            -> menu_pad_string
+	menu_redraw_index              -> menu_pad_string
+	menu_redraw_index              -> mutt_strwidth
+	menu_redraw_motion             -> menu_pad_string
+	menu_redraw_motion             -> mutt_strwidth
+	menu_repaint                   -> mutt_strwidth
+	menu_window_new                -> menu_repaint
+	message_bar                    -> format_string
+	message_bar                    -> mutt_strwidth
+	message_bar                    -> mutt_wstr_trunc
+	msgwin_add_text                -> measure
+	msgwin_add_text_n              -> measure
+	msgwin_set_text                -> measure
+	mutt_copy_hdr                  -> mutt_write_one_header
+	mutt_copy_header               -> mutt_write_one_header
+	mutt_draw_statusline           -> mutt_paddstr
+	mutt_draw_statusline           -> mutt_strwidth
+	mutt_draw_statusline           -> mutt_wstr_trunc
+	mutt_protected_headers_handler -> mutt_write_one_header
+	mutt_rfc822_write_header       -> mutt_write_one_header
+	mutt_strwidth                  -> mutt_strnwidth
+	mutt_str_expand_tabs           -> mutt_strnwidth
+	mutt_write_one_header          -> mutt_strnwidth
+	mutt_write_one_header          -> mutt_strwidth
+	node_condition_render          -> format_string
+	node_container_render          -> format_string
+	node_expando_render            -> format_string
+	node_padding_render_eol        -> pad_string
+	node_padding_render_hard       -> pad_string
+	node_padding_render_soft       -> pad_string
+	node_text_render               -> format_string
+	op_editor_backspace            -> editor_backspace
+	op_editor_backward_char        -> editor_backward_char
+	op_editor_delete_char          -> editor_delete_char
+	op_editor_forward_char         -> editor_forward_char
+	pad_string                     -> mutt_strnwidth
+	pattern_make_entry             -> mutt_strwidth
+	pbar_repaint                   -> mutt_draw_statusline
+	pgp_make_entry                 -> mutt_strwidth
+	post_make_entry                -> mutt_strwidth
+	print_fixed_line               -> print_indent
+	print_flowed_line              -> mutt_strwidth
+	print_flowed_line              -> print_indent
+	print_indent                   -> mutt_strwidth
+	print_key_info                 -> mutt_strwidth
+	print_smime_keyinfo            -> mutt_strwidth
+	progress_window_repaint        -> message_bar
+	query_dialog_new               -> query_make_entry
+	query_make_entry               -> mutt_strwidth
+	rfc3676_handler                -> print_flowed_line
+	sbar_repaint                   -> mutt_paddstr
+	sb_config_observer             -> calc_divider
+	sb_recalc                      -> make_sidebar_entry
+	sb_win_init                    -> calc_divider
+	show_flag_if_present           -> mutt_strwidth
+	show_one_sig_status            -> print_smime_keyinfo
+	smime_make_entry               -> mutt_strnwidth
+	verify_key                     -> print_key_info
+	write_userhdrs                 -> mutt_write_one_header
+
+}

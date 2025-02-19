@@ -1,0 +1,7 @@
+1  mutt_enter_string_full
+2  mutt_select_file
+3  mutt_buffer_select_file
+4  mutt_get_field_unbuffered
+8  mutt_buffer_enter_fname
+16 mutt_buffer_get_field
+47 mutt_get_field

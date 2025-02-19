@@ -1,0 +1,42 @@
+digraph enter_field
+{
+	// enter/enter.c 2021-12-07
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		style="rounded"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// blue    ♣ - CompletionFlags
+	// red     ● - Array of Files
+	// names abbreviated by 'mutt_'
+	completion                [ label=<other completions...> ]
+	mutt_buffer_enter_fname   [ label=<buffer_enter_fname (8) <font color="red">●</font> > ]
+	mutt_buffer_get_field     [ label=<buffer_get_field (63) <font color="blue">♣</font> <font color="red">●</font> > ]
+	mutt_buffer_select_file   [ label=<buffer_select_file (4) <font color="red">●</font> > ]
+	mutt_enter_string_full    [ label=<enter_string_full (1) <font color="blue">♣</font> <font color="red">●</font> > ]
+	mutt_get_field_unbuffered [ label=<get_field_unbuffered (4) <font color="blue">♣</font> > ]
+
+	mutt_buffer_enter_fname   -> mutt_buffer_get_field
+	mutt_buffer_enter_fname   -> mutt_buffer_select_file
+	mutt_buffer_get_field     -> mutt_enter_string_full
+	mutt_enter_string_full    -> mutt_buffer_select_file
+	mutt_enter_string_full    -> completion
+	mutt_get_field_unbuffered -> mutt_buffer_get_field
+
+}

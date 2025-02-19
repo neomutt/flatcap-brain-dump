@@ -1,0 +1,18 @@
+color compose header           red     default
+color compose security_both    blue    default
+color compose security_encrypt magenta default
+color compose security_none    cyan    default
+color compose security_sign    yellow  default
+
+color message red    default
+color warning blue   default
+color error   yellow default
+
+color tilde red default
+
+color prompt red default
+
+color progress red default
+
+color options yellow default
+

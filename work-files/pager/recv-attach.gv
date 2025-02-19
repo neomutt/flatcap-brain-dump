@@ -1,0 +1,121 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ color="#ff0000" ]
+	attach_collapse
+	attach_config_observer
+	attach_format_str
+	attach_make_entry
+	attach_tag
+	attach_window_observer
+	check_attach
+	check_readonly
+	dlg_select_attachment
+	recvattach_extract_pgp_keys
+	recvattach_pgp_check_traditional
+
+	node [ color="#00ff00" ]
+	can_print
+	current_attachment
+	has_a_message
+	mutt_attach_display_loop
+	mutt_attach_init
+	mutt_generate_recvattach_list
+	mutt_pipe_attachment_list
+	mutt_print_attachment_list
+	mutt_save_attachment_list
+	mutt_update_recvattach_menu
+	mutt_update_tree
+	mutt_update_v2r
+	pipe_attachment
+	pipe_attachment_list
+	prepend_savedir
+	print_attachment_list
+	query_pipe_attachment
+	query_save_attachment
+	recvattach_edit_content_type
+	save_attachment_flowed_helper
+	save_without_prompting
+
+	node [ color="#000000" ]
+	attach_collapse -> current_attachment
+	attach_make_entry -> attach_format_str
+	dlg_select_attachment -> attach_collapse
+	dlg_select_attachment -> attach_config_observer
+	dlg_select_attachment -> attach_make_entry
+	dlg_select_attachment -> attach_tag
+	dlg_select_attachment -> attach_window_observer
+	dlg_select_attachment -> check_attach
+	dlg_select_attachment -> check_readonly
+	dlg_select_attachment -> current_attachment
+	dlg_select_attachment -> mutt_attach_display_loop
+	dlg_select_attachment -> mutt_pipe_attachment_list
+	dlg_select_attachment -> mutt_print_attachment_list
+	dlg_select_attachment -> mutt_save_attachment_list
+	dlg_select_attachment -> mutt_update_recvattach_menu
+	dlg_select_attachment -> recvattach_edit_content_type
+	dlg_select_attachment -> recvattach_extract_pgp_keys
+	dlg_select_attachment -> recvattach_pgp_check_traditional
+	inline_forward_attachments -> mutt_generate_recvattach_list
+	mutt_attach_display_loop -> current_attachment
+	mutt_attach_display_loop -> recvattach_edit_content_type
+	mutt_compose_menu -> current_attachment
+	mutt_compose_menu -> mutt_attach_display_loop
+	mutt_compose_menu -> mutt_pipe_attachment_list
+	mutt_compose_menu -> mutt_print_attachment_list
+	mutt_compose_menu -> mutt_save_attachment_list
+	mutt_compose_menu -> update_idx
+	mutt_compose_menu -> update_menu
+	mutt_pager -> dlg_select_attachment
+	mutt_pager -> mutt_pipe_attachment_list
+	mutt_pager -> mutt_print_attachment_list
+	mutt_pager -> mutt_save_attachment_list
+	mutt_pipe_attachment_list -> pipe_attachment_list
+	mutt_print_attachment_list -> can_print
+	mutt_print_attachment_list -> print_attachment_list
+	mutt_save_attachment_list -> prepend_savedir
+	mutt_save_attachment_list -> query_save_attachment
+	mutt_save_attachment_list -> save_attachment_flowed_helper
+	mutt_save_attachment_list -> save_without_prompting
+	mutt_update_recvattach_menu -> mutt_attach_init
+	mutt_update_recvattach_menu -> mutt_generate_recvattach_list
+	mutt_update_recvattach_menu -> mutt_update_tree
+	mutt_update_tree -> mutt_update_v2r
+	pipe_attachment_list -> pipe_attachment
+	pipe_attachment_list -> query_pipe_attachment
+	print_attachment_list -> pipe_attachment
+	query_save_attachment -> has_a_message
+	query_save_attachment -> prepend_savedir
+	query_save_attachment -> save_attachment_flowed_helper
+	recvattach_edit_content_type -> current_attachment
+	recvattach_edit_content_type -> mutt_update_recvattach_menu
+	recvattach_extract_pgp_keys -> current_attachment
+	recvattach_pgp_check_traditional -> current_attachment
+	save_without_prompting -> has_a_message
+	save_without_prompting -> prepend_savedir
+	save_without_prompting -> save_attachment_flowed_helper
+	update_idx -> update_menu
+	update_menu -> mutt_attach_init
+	update_menu -> mutt_update_tree
+
+}

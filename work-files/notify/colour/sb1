@@ -1,0 +1,9 @@
+# MT_COLOR_SIDEBAR_FLAGGED MT_COLOR_SIDEBAR_HIGHLIGHT MT_COLOR_SIDEBAR_INDICATOR MT_COLOR_SIDEBAR_NEW MT_COLOR_SIDEBAR_ORDINARY MT_COLOR_SIDEBAR_SPOOLFILE MT_COLOR_SIDEBAR_UNREAD
+color sidebar_ordinary   red     default
+color sidebar_spool_file blue    default
+color sidebar_flagged    green   default
+color sidebar_unread     yellow  default
+color sidebar_new        cyan    default
+color sidebar_indicator  default brightblue
+color sidebar_highlight  default color245
+

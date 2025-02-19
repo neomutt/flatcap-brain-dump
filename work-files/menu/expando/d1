@@ -1,0 +1,30 @@
+sidebar/config.c:107:23:   sidebar_format        "%D%*  %n"                                              SidebarFormatDef
+	"%{description}%{padding-soft}  %{new-mail}"
+send/config.c:249:23:      forward_format        "[%a: %s]"                                              IndexFormatDefNoPadding
+	"[%{from}: %{subject}]"
+mutt_config.c:590:23:      message_format        "%s"                                                    IndexFormatDef
+	"%{subject}"
+pattern/config.c:62:23:    pattern_format        "%2n %-15e  %d"                                         PatternFormatDef
+	"%2{number} %-15{expression}  %{description}"
+history/config.c:64:23:    history_format        "%s"                                                    HistoryFormatDef
+	"%{match}"
+alias/config.c:116:21:     alias_format          "%3i %f%t %-15a %-56A | %C%> %Y"                        AliasFormatDef
+	"%3{number} %{flags}%{tagged} %-15{alias} %-56{address} | %{comment}%{padding-hard} %{tags}"
+alias/config.c:125:21:     query_format          "%3i %t %-25N %-25E | %C%> %Y"                          QueryFormatDef
+	"%3{number} %{tagged} %-25{name} %-25{email} | %{comment}%{padding-hard} %{tags}"
+autocrypt/config.c:69:30:  autocrypt_acct_format "%4n %-30a %20p %10s"                                   AutocryptFormatDef
+	"%4{number} %-30{address} %20{prefer-encrypt} %10{enabled}"
+pager/config.c:63:21:      pager_format          "-%Z- %C/%m: %-20.20n   %s%*  -- (%P)"                  IndexFormatDef
+	"-%{combined-flags}- %{number}/%{message-count}: %-20.20{name}   %{subject}%{padding-soft}  -- (%{percentage})"
+ncrypt/config.c:148:25:    pgp_entry_format      "%4n %t%f %4l/0x%k %-4a %2c %u"                         PgpEntryFormatDef
+	"%4{number %{trust}%{key-flags} %4{key-length}/0x%{key-id} %-4{key-algorithm} %2{key-capabilities} %{user-id}"
+mutt_config.c:548:21:      index_format          "%4C %Z %{%b %d} %-15.15L (%<l?%4l&%4c>) %s"            IndexFormatDef
+	"%4{number} %{combined-flags} %{%b %d} %-15.15{from-list} (%<l?%4l&%4c>) %{subject}"
+browser/config.c:146:22:   folder_format         "%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %i"              FolderFormatDef
+	"%2{number} %{tagged} %{new-mail} %{file-mode} %2{hard-links} %-8.8{file-owner} %-8.8{file-group} %8{file-size} %{date} %{description}"
+browser/config.c:152:30:   mailbox_folder_format "%2C %<n?%6n&      > %6m %i"                            FolderFormatDef
+	"%2{number} %<n?%6n&      > %6{message-count} %{description}"
+browser/config.c:149:27:   group_index_format    "%4C %M%N %5s  %-45.45f %d"                             GroupIndexFormatDef
+	"%4{number} %{flags}%{flags2} %5{unread-count}  %-45.45{newsgroup} %{description}"
+mutt_config.c:395:22:      attach_format         "%u%D%I %t%4n %T%d %> [%.7m/%.10M, %.6e%<C?, %C>, %s] " AttachFormatDef
+	"%{unlink}%{deleted}%{disposition} %{tagged}%4{number} %{tree}%{description} %{padding-hard} [%.7{mime-major}/%.10{mime-minor}, %.6{mime-encoding}%<C?, %C>, %{file-size}] "

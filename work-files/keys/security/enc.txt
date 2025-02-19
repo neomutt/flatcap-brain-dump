@@ -1,0 +1,27 @@
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+From: Alejandro Colomar <alx@alejandro-colomar.es>
+To: alx@alejandro-colomar.es
+Cc: alx@alejandro-colomar.es
+Subject: To protect and serve
+Reply-To: alx@kernel.org
+MIME-Version: 1.0
+
+Hi Rich,
+
+This is a test for commit a2a1eb58b28273e0d84f97403deebbab940d1dd0,
+with which I think I've finished the development of the fix for the
+first two vulnerabilities (I still need to document it, but the behavior
+is good already, I think).
+
+I've protected all address lists + In-Reply-To.  This message only uses
+=46rom, To, Cc, Bcc (not protected), and Reply-To.
+
+BTW, do you see two encryption info blocks in this mail, or one?
+
+Have a loveyl day!
+Alex
+
+--=20
+<https://www.alejandro-colomar.es/>

@@ -1,0 +1,34 @@
+conn/connaccount.c:129:   if (mutt_get_field_unbuffered(prompt, cac->pass, sizeof(cac->pass), MUTT_COMP_PASS))
+ncrypt/pgp.c:99:          sizeof(PgpPass), MUTT_COMP_PASS) == 0)
+ncrypt/smime.c:179:       sizeof(SmimePass), MUTT_COMP_PASS) == 0)
+alias/alias.c:501:        MUTT_COMP_FILE | MUTT_COMP_CLEAR, false, NULL, NULL) != 0)
+attach/recvattach.c:292:  if ((mutt_buffer_get_field(prompt, buf, MUTT_COMP_FILE | MUTT_COMP_CLEAR,
+attach/recvattach.c:447:  if ((mutt_buffer_get_field(_("Save to file: "), buf, MUTT_COMP_FILE | MUTT_COMP_CLEAR,
+attach/recvattach.c:719:  MUTT_COMP_FILE_SIMPLE, false, NULL, NULL, NULL) != 0)
+browser/browser.c:1703:   int ret = mutt_buffer_get_field(_("Chdir to: "), buf, MUTT_COMP_FILE,
+browser/browser.c:2000:   if (mutt_buffer_get_field(_("New file name: "), buf, MUTT_COMP_FILE,
+browser/browser.c:2150:   if ((mutt_buffer_get_field(tmp2, buf, MUTT_COMP_PATTERN, false,
+commands.c:120:           rc = mutt_get_field(prompt, buf, sizeof(buf), MUTT_COMP_ALIAS, false, NULL, NULL);
+commands.c:424:           if (mutt_buffer_get_field(_("Pipe to command: "), buf, MUTT_COMP_FILE_SIMPLE,
+commands.c:606:           MUTT_COMP_FILE_SIMPLE, false, NULL, NULL) != 0)
+commands.c:642:           if ((mutt_get_field(":", buf, sizeof(buf), MUTT_COMP_COMMAND, false, NULL, NULL) != 0) ||
+compose/functions.c:273:  if (mutt_get_field(_(Prompts[field]), buf, sizeof(buf), MUTT_COMP_ALIAS,
+compose/functions.c:754:  if (mutt_buffer_get_field(Prompts[HDR_FCC], fname, MUTT_COMP_FILE | MUTT_COMP_CLEAR,
+compose/functions.c:1246: if ((mutt_buffer_get_field(_("New file: "), fname, MUTT_COMP_FILE, false,
+compose/functions.c:1390: MUTT_COMP_FILE, false, NULL, NULL, NULL);
+compose/functions.c:1413: if ((mutt_buffer_get_field(_("Rename to: "), fname, MUTT_COMP_FILE, false,
+gui/curs_lib.c:570:       if (mutt_buffer_get_field(pc, fname, (mailbox ? MUTT_COMP_FILE_MBOX : MUTT_COMP_FILE) | MUTT_COMP_CLEAR,
+imap/browse.c:404:        if (mutt_get_field(_("Create mailbox: "), name, sizeof(name), MUTT_COMP_FILE,
+imap/browse.c:459:        if (mutt_get_field(buf, newname, sizeof(newname), MUTT_COMP_FILE, false, NULL, NULL) < 0)
+index/functions.c:2936:   if ((mutt_get_field("Query: ", buf, sizeof(buf), MUTT_COMP_NM_QUERY, false, NULL, NULL) != 0) ||
+menu/menu.c:157:          buf, sizeof(buf), MUTT_COMP_CLEAR, false, NULL, NULL) != 0) ||
+mutt_header.c:140:        MUTT_COMP_LABEL /* | MUTT_COMP_CLEAR */, false, NULL, NULL) != 0)
+muttlib.c:667:            if ((mutt_buffer_get_field(_("File under directory: "), tmp, MUTT_COMP_FILE | MUTT_COMP_CLEAR,
+notmuch/notmuch.c:2401:   if (mutt_get_field("Add/remove labels: ", buf, buflen, MUTT_COMP_NM_TAG,
+pager/functions.c:1270:   buf, sizeof(buf), MUTT_COMP_CLEAR | MUTT_COMP_PATTERN, false, NULL, NULL) != 0)
+pattern/pattern.c:252:    if ((mutt_buffer_get_field(prompt, buf, MUTT_COMP_PATTERN | MUTT_COMP_CLEAR,
+pattern/pattern.c:358:    if ((mutt_buffer_get_field(prompt, buf, MUTT_COMP_PATTERN | MUTT_COMP_CLEAR,
+pattern/pattern.c:508:    buf, sizeof(buf), MUTT_COMP_CLEAR | MUTT_COMP_PATTERN, false, NULL, NULL) != 0) ||
+pattern/pattern.c:666:    buf, sizeof(buf), MUTT_COMP_CLEAR | MUTT_COMP_PATTERN, false, NULL, NULL) != 0) ||
+recvcmd.c:210:            if (mutt_get_field(prompt, buf, sizeof(buf), MUTT_COMP_ALIAS, false, NULL, NULL) ||
+send/send.c:186:          if (mutt_get_field(field, buf, sizeof(buf), MUTT_COMP_ALIAS, false, NULL, NULL) != 0)

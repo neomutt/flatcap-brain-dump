@@ -1,0 +1,60 @@
+digraph q
+{
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound=true
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="14"
+		style="solid"
+		height="0.25"
+		penwidth="1.5"
+		color=black
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// #define
+	node [ color="#00ff00" ]
+
+	mutt_buffer_enter_fname [ label="mutt_buffer_enter_fname (7)" ]
+	mutt_buffer_get_field   [ label="mutt_buffer_get_field (13)" ]
+	mutt_get_field          [ label="mutt_get_field (45)" ]
+	mutt_get_password       [ label="mutt_get_password (3)" ]
+
+	// buffer functions
+	node [ color="red" ]
+
+	mutt_buffer_enter_fname_full [ label="mutt_buffer_enter_fname_full (1)" ]
+	mutt_buffer_get_field_full   [ label="mutt_buffer_get_field_full (2)" ]
+	mutt_buffer_select_file      [ label="mutt_buffer_select_file (3)" ]
+
+	node [ color="black" ]
+
+	mutt_enter_string         [ label="mutt_enter_string (5)" ]
+	mutt_enter_string_full    [ label="mutt_enter_string_full (2)" ]
+	mutt_get_field_full       [ label="mutt_get_field_full (1)" ]
+	mutt_get_field_unbuffered [ label="mutt_get_field_unbuffered (1)" ]
+	mutt_select_file          [ label="mutt_select_file (2)" ]
+
+	mutt_buffer_enter_fname      -> mutt_buffer_enter_fname_full
+	mutt_buffer_enter_fname_full -> mutt_buffer_get_field_full
+	mutt_buffer_enter_fname_full -> mutt_buffer_select_file
+	mutt_buffer_get_field        -> mutt_buffer_get_field_full
+	mutt_buffer_get_field_full   -> mutt_enter_string_full
+	mutt_enter_string            -> mutt_enter_string_full
+	mutt_get_field               -> mutt_get_field_full
+	mutt_get_password            -> mutt_get_field_unbuffered
+	mutt_get_field_full          -> mutt_buffer_get_field_full
+	mutt_get_field_unbuffered    -> mutt_get_field
+	mutt_select_file             -> mutt_buffer_select_file
+
+}
+

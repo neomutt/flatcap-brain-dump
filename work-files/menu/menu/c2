@@ -1,0 +1,13 @@
+all config used by libmenu
+
+arrow_cursor
+arrow_string
+ascii_chars
+auto_tag
+braille_friendly
+menu_context
+menu_move_off
+menu_scroll
+resolve
+wrap_search
+

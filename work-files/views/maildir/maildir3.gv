@@ -1,0 +1,51 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	subgraph cluster_index_pager
+	{
+		label="mxapi"
+		color="#c00000"
+		style="dashed"
+
+		maildir_mbox_check
+		maildir_mbox_open
+		maildir_mbox_sync
+	}
+
+	maildir_check -> maildir_parse_dir
+	maildir_check -> maildir_delayed_parsing
+	maildir_check -> maildir_move_to_mailbox
+
+	maildir_mbox_check -> maildir_check
+	maildir_mbox_open -> maildir_read_dir
+	maildir_mbox_sync -> maildir_check
+
+	maildir_read_dir -> maildir_parse_dir
+	maildir_read_dir -> maildir_delayed_parsing
+	maildir_read_dir -> maildir_move_to_mailbox
+
+	// force the ordering
+	maildir_parse_dir -> maildir_delayed_parsing -> maildir_move_to_mailbox
+	
+	{ rank=same maildir_parse_dir maildir_delayed_parsing maildir_move_to_mailbox }
+}

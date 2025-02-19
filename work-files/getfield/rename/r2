@@ -1,0 +1,21 @@
+naming correct
+
+OP_EDITOR_BACKWARD_CHAR   op_editor_backward_char   backward-char   backward-char        "move the cursor one character to the left"
+OP_EDITOR_BACKWARD_WORD   op_editor_backward_word   backward-word   backward-word        "move the cursor to the beginning of the word"
+OP_EDITOR_CAPITALIZE_WORD op_editor_capitalize_word capitalize-word capitalize-word      "capitalize the word"
+OP_EDITOR_DELETE_CHAR     op_editor_delete_char     delete-char     delete-char          "delete the char under the cursor"
+OP_EDITOR_DOWNCASE_WORD   op_editor_capitalize_word downcase-word   downcase-word        "convert the word to lower case"
+OP_EDITOR_FORWARD_CHAR    op_editor_forward_char    forward-char    forward-char         "move the cursor one character to the right"
+OP_EDITOR_FORWARD_WORD    op_editor_forward_word    forward-word    forward-word         "move the cursor to the end of the word"
+OP_EDITOR_TRANSPOSE_CHARS op_editor_transpose_chars transpose-chars transpose-chars      "transpose character under cursor with previous"
+OP_EDITOR_UPCASE_WORD     op_editor_capitalize_word upcase-word     upcase-word          "convert the word to upper case"
+
+need renaming
+
+OP_EDITOR_BACKSPACE       op_editor_backspace       backspace       backward-delete-char "delete the char in front of the cursor"
+OP_EDITOR_BOL             op_editor_bol             bol             beginning-of-line    "jump to the beginning of the line"
+OP_EDITOR_EOL             op_editor_eol             eol             end-of-line          "jump to the end of the line"
+OP_EDITOR_KILL_EOL        op_editor_kill_eol        kill-eol        kill-line            "delete chars from cursor to end of line"
+OP_EDITOR_KILL_EOW        op_editor_kill_eow        kill-eow        kill-word            "delete chars from the cursor to the end of the word"
+OP_EDITOR_KILL_LINE       op_editor_kill_line       kill-line       unix-line-discard    "delete all chars on the line"
+OP_EDITOR_KILL_WORD       op_editor_kill_word       kill-word       unix-word-rubout     "delete the word in front of the cursor"

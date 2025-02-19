@@ -1,0 +1,34 @@
+Email Pager
+
+config:
+	allow_ansi
+	header_color_partial
+	smiliers!
+	toggle_show_quoted_levels
+	weed
+	quote_regex
+	reflow*
+
+General Config:
+	weed
+	wrap
+	markers
+	smart_wrap
+
+Functions: 
+	display-toggle-weed
+	edit!
+	search*
+
+Commands:
+	(un)ignore
+	(un)hdr_order
+	(un)color / mono?
+
+
+Email
+	Headers (filtered)
+	Body (attach markers)
+	Attachments (rendered)
+	Tilde (opt)
+

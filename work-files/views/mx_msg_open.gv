@@ -1,0 +1,68 @@
+digraph windows
+{
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	maildir_mbox_sync            -> maildir_sync_mailbox_message
+	maildir_sync_mailbox_message -> maildir_sync_message
+	maildir_sync_message         -> maildir_rewrite_message
+	nm_mbox_sync                 -> maildir_sync_mailbox_message
+
+	mh_mbox_sync            -> mh_sync_mailbox_message
+	mh_rewrite_message      -> mx_msg_open
+	mh_sync_mailbox_message -> mh_sync_message
+	mh_sync_message         -> mh_rewrite_message
+
+	check_traditional_pgp            -> mx_msg_open
+	ci_bounce_message                -> mx_msg_open
+	crypt_extract_keys_from_messages -> mx_msg_open
+	external_pager                   -> mx_msg_open
+	include_reply                    -> mx_msg_open
+	include_reply                    -> mx_msg_open
+	index_format_str                 -> mx_msg_open
+	inline_forward_attachments       -> mx_msg_open
+	maildir_rewrite_message          -> mx_msg_open
+	mbox_mbox_sync                   -> mx_msg_open
+	mh_rewrite_message               -> mx_msg_open
+	mutt_append_message              -> mx_msg_open
+	mutt_display_message             -> mx_msg_open
+	mutt_make_message_attach         -> mx_msg_open
+	mutt_pattern_exec                -> mx_msg_open
+	mutt_prepare_template            -> mx_msg_open
+	mutt_save_message_ctx            -> mx_msg_open
+	op_view_attachments              -> mx_msg_open
+	pipe_message                     -> mx_msg_open
+	pipe_msg                         -> mx_msg_open
+
+	mx_msg_open -> MXAPI
+
+	MXAPI -> comp_msg_open
+	MXAPI -> imap_msg_open
+	MXAPI -> maildir_msg_open
+	MXAPI -> mbox_msg_open
+	MXAPI -> mh_msg_open
+	MXAPI -> nm_msg_open
+	MXAPI -> nntp_msg_open
+	MXAPI -> pop_msg_open
+
+}
+

@@ -1,0 +1,30 @@
+Editor (bound)
+	backspace       OP_EDITOR_BACKSPACE
+	backward-char   OP_EDITOR_BACKWARD_CHAR
+	backward-word   OP_EDITOR_BACKWARD_WORD
+	bol             OP_EDITOR_BOL
+	capitalize-word OP_EDITOR_CAPITALIZE_WORD
+	complete        OP_EDITOR_COMPLETE
+	complete-query  OP_EDITOR_COMPLETE_QUERY
+	delete-char     OP_EDITOR_DELETE_CHAR
+	downcase-word   OP_EDITOR_DOWNCASE_WORD
+	eol             OP_EDITOR_EOL
+	forward-char    OP_EDITOR_FORWARD_CHAR
+	forward-word    OP_EDITOR_FORWARD_WORD
+	help            OP_HELP
+	history-down    OP_EDITOR_HISTORY_DOWN
+	history-search  OP_EDITOR_HISTORY_SEARCH
+	history-up      OP_EDITOR_HISTORY_UP
+	kill-eol        OP_EDITOR_KILL_EOL
+	kill-eow        OP_EDITOR_KILL_EOW
+	kill-line       OP_EDITOR_KILL_LINE
+	kill-word       OP_EDITOR_KILL_WORD
+	mailbox-cycle   OP_EDITOR_MAILBOX_CYCLE
+	quote-char      OP_EDITOR_QUOTE_CHAR
+	redraw-screen   OP_REDRAW
+	upcase-word     OP_EDITOR_UPCASE_WORD
+
+Editor (unbound)
+	kill-whole-line OP_EDITOR_KILL_WHOLE_LINE
+	transpose-chars OP_EDITOR_TRANSPOSE_CHARS
+

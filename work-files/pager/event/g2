@@ -1,0 +1,104 @@
+NT_ACCOUNT index_shared_account_observer - Notification that an Account has changed - Implements ::observer_t
+NT_ACCOUNT sb_account_observer - Notification that an Account has changed - Implements ::observer_t
+
+NT_ALIAS alias_alias_observer - Notification that an Alias has changed - Implements ::observer_t
+
+NT_ALTERN index_altern_observer - Notification that an 'alternates' command has occurred - Implements ::observer_t
+
+NT_ATTACH index_attach_observer - Notification that an 'attachments' command has occurred - Implements ::observer_t
+
+NT_BINDING helpbar_binding_observer - Notification that a Key Binding has changed - Implements ::observer_t
+
+NT_COLOR cbar_color_observer - Notification that a Color has changed - Implements ::observer_t
+NT_COLOR env_color_observer - Notification that a Color has changed - Implements ::observer_t
+NT_COLOR helpbar_color_observer - Notification that a Color has changed - Implements ::observer_t
+NT_COLOR ibar_color_observer - Notification that a Color has changed - Implements ::observer_t
+NT_COLOR index_color_observer - Notification that a Color has changed - Implements ::observer_t
+NT_COLOR menu_color_observer - Notification that a Color has changed - Implements ::observer_t
+NT_COLOR pager_color_observer - Notification that a Color has changed - Implements ::observer_t
+NT_COLOR pbar_color_observer - Notification that a Color has changed - Implements ::observer_t
+NT_COLOR sbar_color_observer - Notification that a Color has changed - Implements ::observer_t
+NT_COLOR sb_color_observer - Notification that a Color has changed - Implements ::observer_t
+
+NT_COMMAND sb_command_observer - Notification that a Command has occurred - Implements ::observer_t
+
+NT_COMPOSE attach_compose_observer - Notification that the Compose data has changed - Implements ::observer_t
+NT_COMPOSE cbar_compose_observer - Notification that the Compose data has changed - Implements ::observer_t
+NT_COMPOSE env_compose_observer - Notification that the Compose data has changed - Implements ::observer_t
+
+NT_CONFIG alias_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG attach_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG cbar_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG compose_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG dopager_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG env_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG helpbar_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG ibar_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG index_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG ipanel_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG main_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG main_hist_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG main_log_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG menu_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG pager_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG pbar_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG ppanel_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG remailer_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG rootwin_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG sb_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+NT_CONFIG simple_config_observer - Notification that a Config Variable has changed - Implements ::observer_t
+
+NT_CONTEXT index_shared_context_observer - Notification that the Context has changed - Implements ::observer_t
+
+NT_EMAIL index_shared_email_observer - Notification that an Email has changed - Implements ::observer_t
+NT_EMAIL pager_email_observer - Notification that an Email has changed - Implements ::observer_t
+NT_EMAIL pbar_email_observer - Notification that an Email has changed - Implements ::observer_t
+
+NT_HEADER env_header_observer - Notification that a User Header has changed - Implements ::observer_t
+
+NT_INDEX ibar_index_observer - Notification that the Index has changed - Implements ::observer_t
+
+NT_MAILBOX ctx_mailbox_observer - Notification that a Mailbox has changed - Implements ::observer_t
+NT_MAILBOX ibar_mailbox_observer - Notification that a Mailbox has changed - Implements ::observer_t
+NT_MAILBOX index_mailbox_observer - Notification that a Mailbox has changed - Implements ::observer_t
+NT_MAILBOX index_shared_mailbox_observer - Notification that a Mailbox has changed - Implements ::observer_t
+NT_MAILBOX pager_mailbox_observer - Notification that a Mailbox has changed - Implements ::observer_t
+NT_MAILBOX pbar_mailbox_observer - Notification that a Mailbox has changed - Implements ::observer_t
+NT_MAILBOX sb_mailbox_observer - Notification that a Mailbox has changed - Implements ::observer_t
+
+NT_MENU ibar_menu_observer - Notification that a Menu has changed - Implements ::observer_t
+NT_MENU pager_menu_observer - Notification that a Menu has changed - Implements ::observer_t
+NT_MENU pbar_menu_observer - Notification that a Menu has changed - Implements ::observer_t
+
+NT_PAGER pager_pager_observer - Notification that the Pager has changed - Implements ::observer_t
+NT_PAGER pbar_pager_observer - Notification that the Pager has changed - Implements ::observer_t
+
+NT_SCORE index_score_observer - Notification that a 'score' command has occurred - Implements ::observer_t
+
+NT_SUBJRX index_subjrx_observer - Notification that a 'subjectrx' command has occurred - Implements ::observer_t
+
+NT_WINDOW alias_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW alldialogs_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW attach_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW cbar_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW compose_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW dopager_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW env_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW helpbar_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW ibar_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW index_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW ipanel_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW menu_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW msgwin_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW pager_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW pbar_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW ppanel_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW query_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW remailer_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW rootwin_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW sbar_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW sb_insertion_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW sb_window_observer - Notification that a Window has changed - Implements ::observer_t
+NT_WINDOW simple_window_observer - Notification that a Window has changed - Implements ::observer_t
+
+

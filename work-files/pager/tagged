@@ -1,0 +1,19 @@
+context.c:189:12:         if (e->tagge2)
+context.c:256:25:         if (m->emails[j]->tagge2)
+context.c:336:27:         return e->visible && e->tagge2;
+flags.c:311:17:           if (!e->tagge2)
+flags.c:314:14:           e->tagge2 = true;
+flags.c:319:19:           else if (e->tagge2)
+flags.c:322:12:           e->tagge2 = false;
+hcache/hcache.c:106:10:   e_dump.tagge2 = false;
+hdrline.c:1094:19:        else if (e->tagge2)
+hdrline.c:1298:16:        if (e->tagge2)
+hdrline.c:1358:14:        if (e->tagge2)
+imap/imap.c:243:18:       if (e->tagge2)
+index/index.c:1981:82:    mutt_set_flag(Contex2->mailbox, idata->cur.e, MUTT_TAG, !idata->cur.e->tagge2);
+index/index.c:3907:54:    !idata->cur.e->tagge2, (op != OP_TAG_THREAD));
+mbox/mbox.c:680:60:       mutt_set_flag(m, m->emails[i], MUTT_TAG, e_old[j]->tagge2);
+mx.c:772:14:              e->tagge2 = true;
+mx.c:776:14:              e->tagge2 = false;
+pager.c:3463:82:          mutt_set_flag(Contex2->mailbox, extra->email, MUTT_TAG, !extra->email->tagge2);
+pattern/exec.c:763:32:    return pat->pat_not ^ e->tagge2;

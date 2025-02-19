@@ -1,0 +1,13 @@
+1<enter>
+<attach-file>attachments/A.txt<enter>
+<detach-file>
+<edit-language>de<enter>
+<exit>
+<group-alternatives>
+<group-multilingual>
+<postpone-message>
+<print-message>
+<quit>
+<recall-message>
+<tag-entry>
+<ungroup-attachment>

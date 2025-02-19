@@ -1,0 +1,12 @@
+BrowserState state
+Menu *menu
+bool kill_prefix
+bool multiple
+bool folder
+char goto_swapper[]
+Buffer *OldLastDir
+Buffer *prefix
+FolderFile *ff
+
+static Buffer LastDir
+static Buffer LastDirBackup

@@ -1,0 +1,34 @@
+mutt_parse_rc_buffer() NT_COMMAND: toggle
+cs_subset_notify_observers() NT_CONFIG_SET: help
+notify_send() sending: NT_CONFIG/1
+pager_config_observer() config done
+index_config_observer() config done
+main_log_observer() log done
+window_notify() NT_WINDOW_STATE: WT_HELP_BAR, 0xb29ff0
+notify_send() sending: NT_WINDOW/3
+helpbar_window_observer() window state: request WA_RECALC
+window_notify() NT_WINDOW_STATE: WT_ALL_DIALOGS, 0xb2a1d0
+notify_send() sending: NT_WINDOW/3
+window_notify() NT_WINDOW_STATE: WT_DLG_INDEX, 0xc9cc00
+notify_send() sending: NT_WINDOW/3
+window_notify() NT_WINDOW_STATE: WT_SIDEBAR, 0xc75570
+notify_send() sending: NT_WINDOW/3
+window_notify() NT_WINDOW_STATE: WT_CONTAINER, 0xc7ac60
+notify_send() sending: NT_WINDOW/3
+window_notify() NT_WINDOW_STATE: WT_INDEX, 0xc99aa0
+notify_send() sending: NT_WINDOW/3
+window_notify() NT_WINDOW_STATE: WT_MENU, 0xc93db0
+notify_send() sending: NT_WINDOW/3
+menu_window_observer() window state done, request MENU_REDRAW_INDEX, WA_REPAINT
+helpbar_config_observer() config done: 'help', request WA_REFLOW on parent
+notify_send() sending: NT_COMMAND/61
+helpbar_recalc() recalc done, request WA_REPAINT
+menu_recalc() recalc done, request WA_REPAINT
+helpbar_repaint() repaint done
+menu_redraw_index() NT_MENU
+notify_send() sending: NT_MENU/0
+ibar_menu_observer() menu done, request WA_RECALC
+index_menu_repaint() repaint done
+ibar_repaint() repaint done
+
+

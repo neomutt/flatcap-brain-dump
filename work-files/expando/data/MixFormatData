@@ -1,0 +1,8 @@
+MixFormatData mix_format_str
+
+struct Remailer
+	a	addr				address			string	optional
+	c	mix_format_caps()		capabilities		string	optional
+	n	num				number			number	optional
+	s	shortname			short-name		string	optional
+

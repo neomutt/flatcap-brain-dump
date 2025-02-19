@@ -1,0 +1,205 @@
+From bounces+20220309-rich=flatcap.org@tracker.debian.org Wed Mar  9 11:31:42 2022
+Return-Path: <bounces+20220309-rich=flatcap.org@tracker.debian.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id CF51452D
+	for <flatcap-mail@flatcap.org>; Wed,  9 Mar 2022 11:31:42 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id fnEa7fMvZ_sj for <flatcap-mail@flatcap.org>;
+	Wed,  9 Mar 2022 11:31:41 +0000 (GMT)
+Received: from muffat.debian.org (muffat.debian.org [IPv6:2607:f8f0:614:1::1274:33])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id B134A529
+	for <rich@flatcap.org>; Wed,  9 Mar 2022 11:31:40 +0000 (GMT)
+Received: from ticharich.debian.org ([2607:f8f0:614:1::1274:64]:51692)
+	from C=NA,ST=NA,L=Ankh Morpork,O=Debian SMTP,OU=Debian SMTP CA,CN=ticharich.debian.org,EMAIL=hostmaster@ticharich.debian.org (verified)
+	by muffat.debian.org with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <bounces+20220309-rich=flatcap.org@tracker.debian.org>)
+	id 1nRuXa-0002Oj-0z
+	for rich@flatcap.org; Wed, 09 Mar 2022 11:31:38 +0000
+Received: from localhost ([::1]:53398 helo=ticharich.debian.org)
+	by ticharich.debian.org with esmtp (Exim 4.94.2)
+	(envelope-from <bounces+20220309-rich=flatcap.org@tracker.debian.org>)
+	id 1nRuMz-001pv8-S1
+	for rich@flatcap.org; Wed, 09 Mar 2022 11:20:41 +0000
+Received: from muffat.debian.org ([2607:f8f0:614:1::1274:33]:36190)
+	from C=NA,ST=NA,L=Ankh Morpork,O=Debian SMTP,OU=Debian SMTP CA,CN=muffat.debian.org,EMAIL=hostmaster@muffat.debian.org (verified)
+	by ticharich.debian.org with esmtps (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.94.2)
+	(envelope-from <prvs=060dec396=Dennis.Schneck@schulergroup.com>)
+	id 1nRuMz-001pux-DL
+	for dispatch+mutt_contact@tracker.debian.org; Wed, 09 Mar 2022 11:20:41 +0000
+Received: from picconi.debian.org ([2a02:16a8:dc41:100::132]:57478)
+	from C=NA,ST=NA,L=Ankh Morpork,O=Debian SMTP,OU=Debian SMTP CA,CN=picconi.debian.org,EMAIL=hostmaster@picconi.debian.org (verified)
+	by muffat.debian.org with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <prvs=060dec396=Dennis.Schneck@schulergroup.com>)
+	id 1nRuMy-0001rw-SE
+	for dispatch+mutt_contact@tracker.debian.org; Wed, 09 Mar 2022 11:20:40 +0000
+Received: from mgate01.schulergroup.com ([212.87.143.250]:50694)
+	by picconi.debian.org with esmtps (TLS1.2:DHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <prvs=060dec396=Dennis.Schneck@schulergroup.com>)
+	id 1nRuMu-0008NS-D8
+	for mutt@packages.debian.org; Wed, 09 Mar 2022 11:20:39 +0000
+X-Attachment-filename: target_list, email_to_file.sh., GET_MAILS.sh
+IronPort-Data: =?us-ascii?q?A9a23=3A3CKMNaC24/84IRVW/43iw5YqxClBgxIJ4kV8j?=
+ =?us-ascii?q?C+esSAN5kpmhndQmyZwBTDFfs8+URKhfN51YNu29UIPvsKAzIcwTFRtrS88E?=
+ =?us-ascii?q?y4bpcaUXt/BfhiqYCief5XOFBo2tZ8VY4OQcJpqQnaFq0mmbOPvpHBwvU3kq?=
+ =?us-ascii?q?sIQX8adYUhMeeMNpF/N4zpunuc4hrl0hu+3AgeA/8jy5aUzU3f81WF9ODhL4?=
+ =?us-ascii?q?KuNph01466qtj9G4Qdjaa4X5weDyCdLV8lCfqvsJCKoGtYIQ+TjH7ecwevi8?=
+ =?us-ascii?q?zPUpUomWo70yummGqFmrsY+aiDR2ys+ZpRO6/U2z8BY+okWCM05QGZzsHOSn?=
+ =?us-ascii?q?7ido/0V6Ze5FFwiZPzFwu4TWRIIQi8mbaBN87XKeyHg7JSawhHKKHDhyPw1U?=
+ =?us-ascii?q?B84NtESoL4nDz8fq6BEdToGN0zejrvoqF7XppGA0ex6d5GxVL4iVlFcIRDxX?=
+ =?us-ascii?q?aoqGM6fG/ib64UG0D5gi8xEEf+COZdJOWNhYETLaBNCawwdYH4ccEVEpVGiK?=
+ =?us-ascii?q?WEC+ALNzUYPDt26IDVZiNABC/KIPI3SLSlpthzA/DiepDyoWkty2OG3klJpz?=
+ =?us-ascii?q?Fr934cjogurAOr+JJXgnhJbqAX7Kl47UXX6ZnPnyRWNsXNSbvoEQ6AiFojCm?=
+ =?us-ascii?q?oBpnKCjZoGVsxRVOxdotDZEMzZbO7VSBA1gVsM4SutEb1XoQAKtaPR+3CM3b?=
+ =?us-ascii?q?ScjykKTmZXyDjxytLCPD36QnluWhWnrY25FcilbOXRCF1dZizXgiNhbYhbnY?=
+ =?us-ascii?q?ttlFq+uyOb+GTf9yDOityM+mrEel8ER0Liju1vAhlpAo7CQEFZkul+GBwpJ6?=
+ =?us-ascii?q?SsiPtP1OdX3gbTB1t5FMZqFZkGIt3sNlMWFquwDB5CEkmqKWuplIV0Dz+LdZ?=
+ =?us-ascii?q?Waa3ko2SsFnryD3riblJt0BuCUlcR8vb9JbLBb3RmTPny9RwqNLGm/zNfovJ?=
+ =?us-ascii?q?9qlYygx5bK6SYijTfvUc95DeJdrcxKfuippYCatM6nWuBBEuckC1V2zKK5A1?=
+ =?us-ascii?q?UonNJk=3D?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3ANvBOWKuGbtVl76IIonrdHG+e7skDZdV00z?=
+ =?us-ascii?q?EX/kB9WHVpm7+j5qOTdZUguCMc5wx/ZJhNo6HjBEDiex3hHPxOjbX5VI3KNG?=
+ =?us-ascii?q?KNhILCFvAG0WKN+V3d8mHFl9K1gp0QF5RDNA=3D=3D?=
+X-IronPort-AV: E=Sophos;i="5.90,167,1643670000";
+   d="sh'?scan'208";a="16094291"
+Received: from r244.schulergroup.com (HELO saturn.schuler.de) ([212.87.143.244])
+  by mgate01.schulergroup.com with ESMTP/TLS/DHE-RSA-AES256-SHA; 09 Mar 2022 12:20:29 +0100
+Received: from smail.net.schuler.de ([172.31.1.46])
+	by saturn.schuler.de (8.12.11.20060308/8.12.7/SuSE Linux 0.6) with ESMTP id 229BKTNX019451
+	for <mutt@packages.debian.org>; Wed, 9 Mar 2022 12:20:29 +0100
+Received: from [10.170.0.49] (10.170.0.49) by spgex06.net.schuler.de
+ (172.31.1.46) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 9 Mar
+ 2022 12:20:29 +0100
+Content-Type: multipart/mixed;
+	boundary="------------huTIKFV6bQcwXfKrPo87wymQ"
+Message-ID: <1a226add-0536-16f7-142b-2fb70b8e22f8@schulergroup.com>
+Date: Wed, 9 Mar 2022 12:20:28 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+To: <mutt@packages.debian.org>
+Content-Language: en-US
+From: Dennis Schneck <dennis.schneck@schulergroup.com>
+Subject: mutt in cron - recive mail script - Message: No recipients were
+ specified
+X-Originating-IP: [10.170.0.49]
+Delivered-To: mutt@packages.debian.org
+Delivered-To: dispatch+mutt_contact@tracker.debian.org
+X-Loop: dispatch@tracker.debian.org
+X-Distro-Tracker-Keyword: contact
+X-Distro-Tracker-Package: mutt
+List-Id: <mutt.tracker.debian.org>
+X-Debian: tracker.debian.org
+X-Debian-Package: mutt
+X-PTS-Package: mutt
+X-PTS-Keyword: contact
+Precedence: list
+List-Unsubscribe: <mailto:control@tracker.debian.org?body=unsubscribe%20mutt>
+Status: RO
+Content-Length: 4314
+Lines: 92
+
+--------------huTIKFV6bQcwXfKrPo87wymQ
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+
+
+Hello,
+I build a little script that recive emails from IMAP Server.
+
+When I run this script with cron it did not work. got message from 
+mutt:  "No recipients were specified"
+
+Could this be a bug of mutt ?
+
+I compared the env and set VARIABLES that was not there in the script. 
+So I belive the env is now the same when run with cron.
+
+thanks
+
+
+
+-- 
+
+  
+
+Mit freundlichen Grüßen / Best Regards / 诚挚的问候
+
+Dennis Schneck
+
+  
+Schuler Pressen GmbH | Schuler-Platz 1 | 73033 Göppingen | Germany
+Tel. +49 7161 66-2933
+Dennis.Schneck@schulergroup.com | http://www.schulergroup.com
+Member of the ANDRITZ Group
+E-Mail-Pflichtangaben (gem. EHUG): http://pflichtangaben.schulergroup.com
+
+--------------huTIKFV6bQcwXfKrPo87wymQ
+Content-Type: text/plain; charset="UTF-8"; name="target_list"
+Content-Disposition: attachment; filename="target_list"
+Content-Transfer-Encoding: base64
+
+QUxFUlRcfEFsYXJtCg==
+--------------huTIKFV6bQcwXfKrPo87wymQ
+Content-Type: text/plain; charset="UTF-8"; name="email_to_file.sh."
+Content-Disposition: attachment; filename="email_to_file.sh."
+Content-Transfer-Encoding: base64
+
+IyEvdXNyL2Jpbi9lbnYgYmFzaAojIFNhdmUgcGlwZWQgZW1haWwgdG8gIiQxL1lZTU1ERCBT
+VUJKRUNULmVtbCIKCnNldCAteAoKIyBEb24ndCBvdmVyd3JpdGUgZXhpc3RpbmcgZmlsZQpz
+ZXQgLW8gbm9jbG9iYmVyCgptZXNzYWdlPSQoY2F0KQoKbWFpbF9kYXRlPSQoPDw8IiRtZXNz
+YWdlIiBncmVwIC1vUG0gMSAnXkRhdGU6ID9cSy4qJykKI2Zvcm1hdHRlZF9kYXRlPSQoZGF0
+ZSAtZCIkbWFpbF9kYXRlIiArJXklbSVkJSkKZm9ybWF0dGVkX2RhdGU9JChkYXRlIC1kIiRt
+YWlsX2RhdGUiICsleSVtJWQlSCVNJVMpCiMgR2V0IHRoZSBmaXJzdCBsaW5lIG9mIHRoZSBz
+dWJqZWN0LCBhbmQgY2hhbmdlIC8gdG8g4oiVIHNvIGl0J3Mgbm90IGEgc3ViZGlyZWN0b3J5
+CiNzdWJqZWN0PSQoPDw8IiRtZXNzYWdlIiBncmVwIC1vUG0gMSAnXlN1YmplY3Q6ID9cSy4q
+JyB8IHNlZCAncywvLOKIlSxnJykKc3ViamVjdD0kKDw8PCIkbWVzc2FnZSIgZ3JlcCAtb1Bt
+IDEgJ15TdWJqZWN0OiA/XEsuKicgfCBzZWQgJ3MsLyziiJUsZycgfCBzZWQgLWUgJ3MvIC8v
+ZycpCgppZiBbWyAkZm9ybWF0dGVkX2RhdGUgPT0gJycgXV07IHRoZW4KICBlY2hvIEVycm9y
+OiBubyBkYXRlIHBhcnNlZAogIGV4aXQgMQplbGlmIFtbICRzdWJqZWN0ID09ICcnIF1dOyB0
+aGVuCiAgZWNobyBXYXJuaW5nOiBubyBzdWJqZWN0IGZvdW5kCmZpCgplY2hvICIke21lc3Nh
+Z2V9IiA+ICIkMS8kZm9ybWF0dGVkX2RhdGUkc3ViamVjdC5lbWwiICYmIGVjaG8gRW1haWwg
+c2F2ZWQgdG8gIiQxLyRmb3JtYXR0ZWRfZGF0ZSRzdWJqZWN0LmVtbCIKCg==
+--------------huTIKFV6bQcwXfKrPo87wymQ
+Content-Type: application/x-shellscript; name="GET_MAILS.sh"
+Content-Disposition: attachment; filename="GET_MAILS.sh"
+Content-Transfer-Encoding: base64
+
+IyEvdXNyL2Jpbi96c2gKc291cmNlIC9ob21lL2xwcmFkbS8uenNocmMKZWNobyAkUEFUSApl
+eHBvcnQgVEVSTT14dGVybS0yNTZjb2xvcgpleHBvcnQgU0hFTEw9L2Jpbi96c2gKZXhwb3J0
+IFhER19TRVNTSU9OX1RZUEU9dHR5CmV4cG9ydCBYREdfUlVOVElNRV9ESVI9L3J1bi91c2Vy
+LzEwMDAKZXhwb3J0IERCVVNfU0VTU0lPTl9CVVNfQUREUkVTUz11bml4OnBhdGg9L3J1bi91
+c2VyLzEwMDAvYnVzCiNleHBvcnQgVFRZIC9kZXYvcHRzLzEKClBBVEg9L3Vzci9sb2NhbC9i
+aW46L3Vzci9iaW46L2JpbjovdXNyL2dhbWVzCmVudiA+IGVudl9jcm9uLnR4dApzZXQgPiBz
+ZXRfY3Jvbi50eHQKL3Vzci9iaW4vbXV0dCAtRCA+IG11dHRfZF9jcm9uLnR4dApzZXQgLXgK
+ZnVuY3Rpb24gZ2V0bWFpbCB7CmlmIFsgJD8gLW5lIDAgXQogICAgICAgIHRoZW4KICAgICAg
+ICAgICAgICAgIGVjaG8gImtlaW5lIE1haWxzIgogICAgICAgICAgICAgICAgZXhpdAogICAg
+ICAgIGVsc2UgCiAgICAgICAgICAgICAgICBzdHJhY2UgLWUgJWZpbGUgL3Vzci9iaW4vbXV0
+dCAtRiAvaG9tZS9scHJhZG0vLm11dHRyYyAgLXogLWUgJ3B1c2ggInwgL2hvbWUvbHByYWRt
+L2VtYWlsX3RvX2ZpbGUuc2ggL3RtcC9lbWFpbDxlbnRlcj48ZGVsZXRlLW1lc3NhZ2U+PHF1
+aXQ+PGV4aXQ+PHF1aXQ+JwogICAgICAgICAgICAgICAgZ2V0bWFpbApmaQp9ClsgISAtZCAi
+L3RtcC9lbWFpbCIgXSAmJiBta2RpciAvdG1wL2VtYWlsCnN0cmFjZSAtZSAlZmlsZSAvdXNy
+L2Jpbi9tdXR0IC1GIC9ob21lL2xwcmFkbS8ubXV0dHJjIC16IC1lICdwdXNoICJ8IC9ob21l
+L2xwcmFkbS9lbWFpbF90b19maWxlLnNoIC90bXAvZW1haWw8ZW50ZXI+PGRlbGV0ZS1tZXNz
+YWdlPjxxdWl0PjxleGl0PjxxdWl0PicKClRBUkdFVD1gL3Vzci9iaW4vY2F0IC9ob21lL2xw
+cmFkbS90YXJnZXRfbGlzdGAKCgpmb3IgaSBpbiBgL3Vzci9iaW4vZ3JlcCAtbCBTdWJqZWN0
+IC90bXAvZW1haWwvKmAKZG8KZWNobyAkaQpQUklOVEZJTEU9YC91c3IvYmluL2dyZXAgLWwg
+JFRBUkdFVCAkaWAKaWYgWyAteiAkUFJJTlRGSUxFIF07IHRoZW4gCiBicmVhawpmaQoKL3Vz
+ci9iaW4vaWNvbnYgLXQgVVRGLTggJFBSSU5URklMRSAtbyAvdG1wL2VtYWlsL3ByaW50Zmls
+ZQovdXNyL2Jpbi9pY29udiAtdCBBU0NJSSAvdG1wL2VtYWlsL3ByaW50ZmlsZSAtbyAvdG1w
+L2VtYWlsL3ByaW50ZmlsZTEKL3Vzci9iaW4vbHAgL3RtcC9lbWFpbC9wcmludGZpbGUxCi91
+c3IvYmluL3JtICRQUklOVEZJTEUKL3Vzci9iaW4vcm0gL3RtcC9lbWFpbC9wcmludGZpbGUq
+CmRvbmUK
+--------------huTIKFV6bQcwXfKrPo87wymQ--
+

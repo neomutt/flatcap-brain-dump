@@ -1,0 +1,66 @@
+digraph callgraph {
+	// Browser functions 2021-12-03
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// public
+	node [ color="red" ]
+	mutt_browser_select_dir
+	mutt_buffer_select_file
+	mutt_select_file
+
+	node [ color="black" ]
+	browser_compare -> browser_compare_count
+	browser_compare -> browser_compare_count_new
+	browser_compare -> browser_compare_date
+	browser_compare -> browser_compare_desc
+	browser_compare -> browser_compare_order
+	browser_compare -> browser_compare_size
+	browser_compare -> browser_compare_subject
+	browser_sort -> browser_compare
+	examine_directory -> add_folder
+	examine_directory -> browser_sort
+	examine_directory -> init_state
+	examine_mailboxes -> add_folder
+	examine_mailboxes -> browser_sort
+	examine_mailboxes -> init_state
+	file_tag -> link_is_dir
+	folder_make_entry -> folder_format_str
+	init_menu -> browser_highlight_default
+	mutt_browser_select_dir -> init_lastdir
+	mutt_buffer_select_file -> add_folder
+	mutt_buffer_select_file -> browser_highlight_default
+	mutt_buffer_select_file -> browser_sort
+	mutt_buffer_select_file -> destroy_state
+	mutt_buffer_select_file -> examine_directory
+	mutt_buffer_select_file -> examine_mailboxes
+	mutt_buffer_select_file -> file_tag
+	mutt_buffer_select_file -> folder_make_entry
+	mutt_buffer_select_file -> init_lastdir
+	mutt_buffer_select_file -> init_menu
+	mutt_buffer_select_file -> init_state
+	mutt_buffer_select_file -> link_is_dir
+	mutt_buffer_select_file -> mutt_browser_select_dir
+	mutt_buffer_select_file -> select_file_search
+	mutt_select_file -> mutt_buffer_select_file
+
+}

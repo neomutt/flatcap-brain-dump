@@ -1,0 +1,13 @@
+compose/compose.c:1203: menu_redraw_full(menu);
+compose/compose.c:1210: menu_redraw_index(menu);
+compose/compose.c:1212: menu_redraw_motion(menu);
+compose/compose.c:1214: menu_redraw_current(menu);
+
+index/index.c:1098:     menu_redraw_full(menu);
+index/index.c:1111:     menu_redraw_index(menu);
+index/index.c:1114:     menu_redraw_motion(menu);
+index/index.c:1116:     menu_redraw_current(menu);
+
+pager/pager.c:2081:     menu_redraw_index(menu);
+
+recvattach.c:816:       menu_redraw(menu);

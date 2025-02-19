@@ -1,0 +1,405 @@
+https://github.com/neomutt/gfx/raw/master/screenshots/window/
+
+Base Windows
+	WT_ROOT
+		WT_HELP_BAR
+		WT_ALL_DIALOGS
+		...
+		WT_MESSAGE
+
+
+SIMPLE_DIALOG
+	dialog_create_simple_index()
+
+	WT_DLG_XXX			Menu
+		WT_INDEX		Menu, FOCUS
+		WT_INDEX_BAR
+
+	Dialog
+		type = WT_DLG_XXX
+		wdata = Menu
+		help_data = XXX
+
+		Index
+			type = WT_DLG_INDEX
+			wdata = Menu
+	Menu
+		mdata = XXX
+
+Alias Selection
+	dlg-alias-selection.svg
+	dlg_select_alias()
+	Dialog
+		type = WT_DLG_ALIAS
+		help_data = AliasHelp
+	Menu
+		type = MENU_ALIAS
+		mdata = AliasMenuData
+
+Attachment Selection
+	dlg-attachment-selection.svg
+	dlg_select_attachment()
+	Dialog
+		type = WT_DLG_ATTACH
+		help_data = AttachHelp
+	Menu
+		type = MENU_ATTACH
+		mdata = AttachCtx
+
+Autocrypt Account Selection
+	dlg-autocrypt-account-selection.svg
+	dlg_select_autocrypt_account()
+	Dialog
+		type = WT_DLG_AUTOCRYPT
+		help_data = AutocryptAcctHelp
+	Menu
+		type = MENU_AUTOCRYPT_ACCT
+		mdata = AccountEntry[]
+
+Browser
+	dlg-browser.svg
+	mutt_buffer_select_file()
+	Dialog
+		type = WT_DLG_BROWSER
+		help_data = FolderHelp, FolderNewsHelp
+	Menu
+		type = MENU_FOLDER
+		mdata = BrowserStateEntry[]
+
+GPGME Key Selection
+	dlg-gpgme-pgp-key-selection.svg
+	dlg_select_gpgme_key()
+	Dialog
+		type = WT_DLG_CRYPT_GPGME
+		help_data = GpgmeHelp
+	Menu
+		type = MENU_KEY_SELECT_PGP, MENU_KEY_SELECT_SMIME
+		mdata = CryptKeyInfo
+
+History Selection
+	dlg-history-selection.svg
+	dlg_select_history()
+	Dialog
+		type = WT_DLG_HISTORY
+		help_data = HistoryHelp
+	Menu
+		type = MENU_GENERIC
+		mdata = char*[]
+
+Mixmaster Chain Selection
+	dlg-mixmaster.svg
+	dlg_select_mixmaster_chain()
+	Dialog
+		type = WT_DLG_REMAILER
+		help_data = RemailerHelp
+	Menu
+		type = MENU_MIX
+		mdata = Remailer[]
+
+Pattern Selection
+	dlg-pattern-selection.svg
+	dlg_select_pattern()
+	Dialog
+		type = WT_DLG_PATTERN
+		help_data = PatternHelp
+	Menu
+		type = MENU_GENERIC
+		mdata = PatternEntry
+
+PGP Key Selection
+	dlg-pgp-key-selection.svg
+	dlg_select_pgp_key()
+	Dialog
+		type = WT_DLG_PGP
+		help_data = PgpHelp
+	Menu
+		type = MENU_PGP
+		mdata = PgpUid[]
+
+Postponed Email Selection
+	dlg-postponed-email-selection.svg
+	dlg_select_postponed_email()
+	Dialog
+		type = WT_DLG_POSTPONE
+		help_data = PostponeHelp
+	Menu
+		type = MENU_POSTPONE
+		mdata = Mailbox
+
+Query Selection
+	dlg-query-selection.svg
+	dlg_select_query()
+	Dialog
+		type = WT_DLG_QUERY
+		help_data = QueryHelp
+	Menu
+		type = MENU_QUERY
+		mdata = AliasMenuData
+
+SMIME Key Selection
+	dlg-smime-key-selection.svg
+	dlg_select_smime_key()
+	Dialog
+		type = WT_DLG_SMIME
+		help_data = SmimeHelp
+	Menu
+		type = MENU_SMIME
+		mdata = SmimeKey[]
+
+Verify Certificate
+	dlg-verify-certificate.svg
+	dlg_verify_certificate()
+		dialog = char*
+	Dialog
+		type = WT_DLG_CERTIFICATE
+	Menu
+		type = MENU_GENERIC
+		mdata = NONE
+		help_data = VerifyHelp
+
+
+DO_PAGER
+	mutt_do_pager()
+
+	WT_DLG_DO_PAGER
+		WT_CONTAINER		Pager Panel
+			WT_PAGER	Menu, FOCUS
+			WT_PAGER_BAR
+
+GPGME Verify Key
+	pager-gpgme-verify-pgp-key.svg
+	dlg_select_gpgme_key(), OP_VERIFY_KEY
+	Dialog
+		type = WT_DLG_DO_PAGER
+		wdata = IndexSharedData
+
+		Pager Panel
+			type = WT_CONTAINER
+			wdata = PagerPrivateData
+		Pager
+			type = WT_PAGER
+			wdata = Menu
+	Menu
+		type = MENU_PAGER
+		help_data = PagerHelp, PagerHelpHelp, PagerNewsHelp, PagerNormalHelp
+		mdata = PagerRedrawData
+
+Verify PGP Key
+	pager-pgp-verify-key.svg
+	dlg_select_pgp_key(), OP_VERIFY_KEY
+	Dialog
+		type = WT_DLG_DO_PAGER
+		wdata = IndexSharedData
+
+		Pager Panel
+			type = WT_CONTAINER
+			wdata = PagerPrivateData
+		Pager
+			type = WT_PAGER
+			wdata = Menu
+	Menu
+		type = MENU_PAGER
+		help_data = PagerHelp, PagerHelpHelp, PagerNewsHelp, PagerNormalHelp
+		mdata = PagerRedrawData
+
+Bind/Macro
+	icmd_bind()
+	Dialog
+		type = WT_DLG_DO_PAGER
+		wdata = IndexSharedData
+
+		Pager Panel
+			type = WT_CONTAINER
+			wdata = PagerPrivateData
+		Pager
+			type = WT_PAGER
+			wdata = Menu
+	Menu
+		type = MENU_PAGER
+		help_data = PagerHelp, PagerHelpHelp, PagerNewsHelp, PagerNormalHelp
+		mdata = PagerRedrawData
+
+Set
+	icmd_set()
+	Dialog
+		type = WT_DLG_DO_PAGER
+		wdata = IndexSharedData
+
+		Pager Panel
+			type = WT_CONTAINER
+			wdata = PagerPrivateData
+		Pager
+			type = WT_PAGER
+			wdata = Menu
+	Menu
+		type = MENU_PAGER
+		help_data = PagerHelp, PagerHelpHelp, PagerNewsHelp, PagerNormalHelp
+		mdata = PagerRedrawData
+
+Version
+	icmd_version()
+	Dialog
+		type = WT_DLG_DO_PAGER
+		wdata = IndexSharedData
+
+		Pager Panel
+			type = WT_CONTAINER
+			wdata = PagerPrivateData
+		Pager
+			type = WT_PAGER
+			wdata = Menu
+	Menu
+		type = MENU_PAGER
+		help_data = PagerHelp, PagerHelpHelp, PagerNewsHelp, PagerNormalHelp
+		mdata = PagerRedrawData
+
+Help
+	mutt_help()
+	Dialog
+		type = WT_DLG_DO_PAGER
+		wdata = IndexSharedData
+
+		Pager Panel
+			type = WT_CONTAINER
+			wdata = PagerPrivateData
+		Pager
+			type = WT_PAGER
+			wdata = Menu
+	Menu
+		type = MENU_PAGER
+		help_data = PagerHelp, PagerHelpHelp, PagerNewsHelp, PagerNormalHelp
+		mdata = PagerRedrawData
+
+View Attachment
+	mutt_view_attachment()
+	Dialog
+		type = WT_DLG_DO_PAGER
+		wdata = IndexSharedData
+
+		Pager Panel
+			type = WT_CONTAINER
+			wdata = PagerPrivateData
+		Pager
+			type = WT_PAGER
+			wdata = Menu
+	Menu
+		type = MENU_PAGER
+		help_data = PagerHelp, PagerHelpHelp, PagerNewsHelp, PagerNormalHelp
+		mdata = PagerRedrawData
+
+Invoke Sendmail
+	mutt_invoke_sendmail()
+	Dialog
+		type = WT_DLG_DO_PAGER
+		wdata = IndexSharedData
+
+		Pager Panel
+			type = WT_CONTAINER
+			wdata = PagerPrivateData
+		Pager
+			type = WT_PAGER
+			wdata = Menu
+	Menu
+		type = MENU_PAGER
+		help_data = PagerHelp, PagerHelpHelp, PagerNewsHelp, PagerNormalHelp
+		mdata = PagerRedrawData
+
+Show Log Messages
+	mutt_index_menu(), OP_SHOW_LOG_MESSAGES
+	Dialog
+		type = WT_DLG_DO_PAGER
+		wdata = IndexSharedData
+
+		Pager Panel
+			type = WT_CONTAINER
+			wdata = PagerPrivateData
+		Pager
+			type = WT_PAGER
+			wdata = Menu
+	Menu
+		type = MENU_PAGER
+		help_data = PagerHelp, PagerHelpHelp, PagerNewsHelp, PagerNormalHelp
+		mdata = PagerRedrawData
+
+
+CUSTOM
+
+Compose
+	dlg-compose.svg
+	mutt_compose_menu()
+
+	WT_DLG_COMPOSE
+		WT_CUSTOM		Envelope
+		WT_INDEX_BAR		SimpleBar
+		WT_INDEX		Menu, FOCUS
+		WT_INDEX_BAR		ComposeBar
+
+	Dialog
+		type = WT_DLG_COMPOSE
+		wdata = ComposeSharedData
+
+		Envelope
+			type = WT_CUSTOM
+			wdata = ComposeEnvelopeData
+		SimpleBar
+			type = WT_INDEX_BAR
+			wdata = SBarPrivateData
+		Index
+			type = WT_INDEX
+			wdata = ComposeAttachData
+		ComposeBar
+			type = WT_INDEX_BAR
+			wdata = ComposeBarData
+	Menu
+		type = MENU_COMPOSE
+		wdata = ComposeSharedData
+
+Index/Pager/Sidebar
+	dlg-index-pager.svg
+	mutt_index_menu()
+
+	WT_DLG_INDEX
+		WT_SIDEBAR
+		WT_CONTAINER
+			WT_CONTAINER		Index Panel
+				WT_INDEX	Menu, FOCUS
+				WT_INDEX_BAR
+			WT_CONTAINER		Pager Panel
+				WT_PAGER	Menu, FOCUS
+				WT_PAGER_BAR
+
+	Dialog
+		type = WT_DLG_INDEX
+		wdata = IndexSharedData
+
+		Sidebar
+			type = WT_SIDEBAR
+			wdata = ???
+
+			Index Panel
+				type = WT_CONTAINER
+				wdata = IndexPrivateData
+
+				Index
+					type = WT_INDEX
+					wdata = Menu
+				Index Bar
+					type = WT_INDEX_BAR
+					wdata = IBarPrivateData
+			Pager Panel
+				type = WT_CONTAINER
+				wdata = PagerPrivateData
+
+				Pager
+					type = WT_PAGER
+					wdata = Menu
+				Pager Bar
+					type = WT_PAGER_BAR
+					wdata = PBarPrivateData
+	Menu (Index)
+		type = MENU_MAIN
+		mdata = IndexSharedData
+	Menu (Pager)
+		type = MENU_PAGER
+		mdata = PagerRedrawData
+

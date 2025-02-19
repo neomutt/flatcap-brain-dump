@@ -1,0 +1,238 @@
+$attach_format "%u%D%I %t%4n %T%.40d%> [%.7m/%.10M, %.6e%?C?, %C?, %s]
+
+- `%u` - Unlink
+- `%D` - Deleted flag
+- `%I` - I (inline) or A (attachment)
+- `%t` - Tagged flag
+- `%Q` - countable
+- `%c` - convert
+
+| Column | Text | Expando | Icon | Description | Used in |
+| :----: | :--- | :------ | :--- | :---------- | :------ |
+| 1      | `-`  | `%u`    | `⏳` | unlink      | Compose |
+| 1      | `d`  | `%d`    | `❌` | deleted     | Receive |
+|        |      |         |      |             |         |
+| 2      | `I`  | `%I`    | `📄` | inline      | Both    |
+| 2      | `A`  | `%I`    | `📎` | attachment  | Both    |
+|        |      |         |      |             |         |
+| 3      | `*`  | `%t`    | `✅` | tagged      | Both    |
+| 3      | `Q`  | `%Q`    | `⑫`  | countable   | Both    |
+| 3      | `c`  | `%c`    | `🔄` | convert     | Compose |
+
+Takes up four columns
+
+set attach_chars = "📄📎⑫✅🔄❌⏳👪🔀🌍"
+
+↔️  multipart/alternative
+🔏 multipart/signed
+🔒 multipart/encrypted
+🖂  message/rfc822
+🔐 An attached PGP key
+👪 multipart/related
+🔀 multipart/mixed
+🌍 multipart/lingual
+❓ TYPE_OTHER
+🔊 TYPE_AUDIO
+⚙️  TYPE_APPLICATION
+🖼️ TYPE_IMAGE
+🖂️  TYPE_MESSAGE
+🔩 TYPE_MODEL
+🏘️  TYPE_MULTIPAT
+📄 TYPE_TEXT
+📹 TYPE_VIDEO
+*️  TYPE_ANY
+🔡 font
+
+↔️ <no description>                             [multipart/alternative]
+├─>📄 <no description>                                    [text/plain]
+└─>🌍 <no description>                                     [text/html]
+🖼️  cat.gif                                                 [image/gif]
+📹 dog.avi                                               [image/video]
+
+crypt_chars - Controls the characters used in cryptography flags
+	1  S    The mail is signed, and the signature is successfully verified
+	2  P    The mail is PGP encrypted
+	3  s    The mail is signed
+	4  K    The mail contains a PGP public key
+	5  ' '  The mail has no crypto info
+
+flag_chars - Controls the characters used in several flags
+	1   *    The mail is tagged
+	2   !    The mail is flagged as important
+	3   D    The mail is marked for deletion
+	4   d    The mail has attachments marked for deletion
+	5   r    The mail has been replied to
+	6   O    The mail is Old (Unread but seen)
+	7   N    The mail is New (Unread but not seen)
+	8   o    The mail thread is Old (Unread but seen)
+	9   n    The mail thread is New (Unread but not seen)
+	10  -    The mail is read - %S expando
+	11  ' '  The mail is read - %Z expando
+
+from_chars - Controls the character used to prefix the %F and %L fields in the index
+	1 . Mail is written by you and has a To address, or has a known mailing list in the To address
+	2 . Mail is written by you and has a Cc address, or has a known mailing list in the Cc address
+	3 . Mail is written by you and has a Bcc address
+	4 . All remaining cases
+
+status_chars - Controls the characters used by the "%r" indicator in $$status_format
+	1  -  Mailbox is unchanged
+	2  *  Mailbox has been changed and needs to be resynchronized
+	3  %  Mailbox is read-only, or will not be written when exiting
+	4  A  Folder opened in attach-message mode
+
+to_chars - Controls the character used to indicate mail addressed to you
+	1  ' '  The mail is not addressed to your address
+	2  +    You are the only recipient of the message
+	3  T    Your address appears in the "To:" header field, but you are not the only recipient of the message
+	4  C    Your address is specified in the "Cc:" header field, but you are not the only recipient
+	5  F    Indicates the mail that was sent by you
+	6  L    Indicates the mail was sent to a mailing-list you subscribe to
+	7  R    Your address appears in the "Reply-To:" header field but none of the above applies
+
+# Unicode icons from:  https://www.utf8-chartable.de/unicode-utf8-table.pl?start=9472&unicodeinhtml=dec
+
+# Set single-character status using index_format=%@status@
+# The first match is used
+index-format-hook  status  "~T"    "✔"	# tagged
+index-format-hook  status  "~D"    "✕"	# deleted
+index-format-hook  status  "~F"    "◌"	# flagged
+index-format-hook  status  "~N"    "◍"	# new
+index-format-hook  status  "~O"    "○"	# old (unread on start?)
+index-format-hook  status  "~Q"    "◂"  # replied
+index-format-hook  status  "~U"    "U"  # unread (new or old, never used?)
+index-format-hook  status  "~R"    " "	# read, was "-"
+index-format-hook  status  "~A"    "?"	# all/default
+
+# Set date using index_format=%@date@
+# Need leading space to cut off last letter of the meridiem
+index-format-hook  date  "~d<1d"    " %[%_I:%M%P]"
+index-format-hook  date  "~d<1y"    "%[%b  %e]"
+index-format-hook  date  "~A"       "%[%Y-%m]"
+
+# Set size indicator (in bytes) using index_format=%@size@
+# Word Separator Middle Dot
+# https://unicode.bayashi.net/0x2E31/%E2%B8%B1
+# smaller than Middle Dot
+# https://unicode-search.net/unicode-namesearch.pl
+# Maximum email size is 25Mb (Gmail), 10Mb (Outlook)
+# https://mailtrap.io/blog/email-size/
+index-format-hook  size  "~z     <10k"   "⸱    "
+index-format-hook  size  "~z    <100k"   "⸱⸱   "
+index-format-hook  size  "~z      <1M"   "⸱⸱⸱  "
+index-format-hook  size  "~z     <10M"   "⸱⸱⸱⸱ "
+index-format-hook  size  "~A"            "⸱⸱⸱⸱⸱"
+
+index-format-hook  tome  "~P" "▼"	# from me
+index-format-hook  tome  "~p" "▹"	# to me
+index-format-hook  tome  "~A" " "
+
+▏   ▏
+▎   ▏
+▍   ▏
+▌   ▏
+▋   ▏
+▊   ▏
+▉   ▏
+█   ▏
+█▏  ▏
+█▎  ▏
+█▍  ▏
+█▌  ▏
+█▋  ▏
+█▊  ▏
+█▉  ▏
+██  ▏
+██▏ ▏
+██▎ ▏
+██▍ ▏
+██▌ ▏
+██▋ ▏
+██▊ ▏
+██▉ ▏
+███ ▏
+███▏▏
+███▎▏
+███▍▏
+███▌▏
+███▋▏
+███▊▏
+███▉▏
+████▏
+
+1 - 31 (10485760)
+log scale 
+x = ln(10485760)÷45
+e^x for 1 - 46
+
+set index_format="%<[12m?%<[7d?%<[12H?%[%H:%M ]&%[%a-%d]>&%[%d-%b]>&%[%b-%y]> %Z %-25.25n %<M?+%M) & >%s %* %@size@"
+
+index-format-hook size "~z <149"      "▏   ▏"
+index-format-hook size "~z <213"      "▎   ▏"
+index-format-hook size "~z <305"      "▍   ▏"
+index-format-hook size "~z <437"      "▌   ▏"
+index-format-hook size "~z <625"      "▋   ▏"
+index-format-hook size "~z <894"      "▊   ▏"
+index-format-hook size "~z <1278"     "▉   ▏"
+index-format-hook size "~z <1828"     "█   ▏"
+index-format-hook size "~z <2614"     "█▏  ▏"
+index-format-hook size "~z <3738"     "█▎  ▏"
+index-format-hook size "~z <5346"     "█▍  ▏"
+index-format-hook size "~z <7645"     "█▌  ▏"
+index-format-hook size "~z <10932"    "█▋  ▏"
+index-format-hook size "~z <15634"    "█▊  ▏"
+index-format-hook size "~z <22356"    "█▉  ▏"
+index-format-hook size "~z <31970"    "██  ▏"
+index-format-hook size "~z <45717"    "██▏ ▏"
+index-format-hook size "~z <65375"    "██▎ ▏"
+index-format-hook size "~z <93487"    "██▍ ▏"
+index-format-hook size "~z <133687"   "██▌ ▏"
+index-format-hook size "~z <191172"   "██▋ ▏"
+index-format-hook size "~z <273376"   "██▊ ▏"
+index-format-hook size "~z <390928"   "██▉ ▏"
+index-format-hook size "~z <559027"   "███ ▏"
+index-format-hook size "~z <799409"   "███▏▏"
+index-format-hook size "~z <1143155"  "███▎▏"
+index-format-hook size "~z <1634712"  "███▍▏"
+index-format-hook size "~z <2337639"  "███▌▏"
+index-format-hook size "~z <3342824"  "███▋▏"
+index-format-hook size "~z <4780239"  "███▊▏"
+index-format-hook size "~z <6835741"  "███▉▏"
+index-format-hook size "~z <9775110"  "████▏"
+index-format-hook size "~A"           "⸱⸱⸱⸱⸱"
+
+# vim: syn=neomuttrc
+
+▏   ▏
+▎   ▏
+▍   ▏
+▌   ▏
+▋   ▏
+▊   ▏
+▉   ▏
+█   ▏
+▉▏  ▏
+▉▎  ▏
+▉▍  ▏
+▉▌  ▏
+▉▋  ▏
+▉▊  ▏
+▉▉  ▏
+▉█  ▏
+▉▉▏ ▏
+▉▉▎ ▏
+▉▉▍ ▏
+▉▉▌ ▏
+▉▉▋ ▏
+▉▉▊ ▏
+▉▉▉ ▏
+▉▉█ ▏
+▉▉▉▏▏
+▉▉▉▎▏
+▉▉▉▍▏
+▉▉▉▌▏
+▉▉▉▋▏
+▉▉▉▊▏
+▉▉▉▉▏
+▉▉▉█▏
+

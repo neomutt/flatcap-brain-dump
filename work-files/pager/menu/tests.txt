@@ -1,0 +1,38 @@
+context = 0, 5, 99
+move_off = n, y
+scroll = n, y
+
+top_page
+middle_page
+bottom_page
+prev_entry
+next_entry
+first_entry
+last_entry
+jump
+
+current_top
+current_middle
+current_bottom
+half_up
+half_down
+prev_line
+next_line
+prev_page
+next_page
+
+c=0 o=y s=y
+c=0 o=y s=n
+c=0 o=n s=y
+c=0 o=n s=n
+
+c=5 o=y s=y
+c=5 o=y s=n
+c=5 o=n s=y
+c=5 o=n s=n
+
+c=99 o=y s=y
+c=99 o=y s=n
+c=99 o=n s=y
+c=99 o=n s=n
+

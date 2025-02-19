@@ -1,0 +1,51 @@
+Subject: [PATCH 1/2] Fix $reply_regex
+Date: Thu, 21 Dec 2023 23:46:54 +0100
+To: Richard Russon <rich@flatcap.org>
+Cc: Neomutt Developers <neomutt-devel@neomutt.org>
+From: наб <nabijaczleweli@nabijaczleweli.xyz>
+User-Agent: NeoMutt/20231221-1-5300ff-dirty
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+
+commit 86301955255fc8bcb55a9e3ce5a9ba0d624feb6a ("config: fix flag
+ overlaps") didn't, and instead allocated DT_REGEX_MATCH_CASE in the
+same place as R_INDEX. This only affects
+  $ git grep -w R_INDEX | grep DT_REGEX
+  mutt_config.c:  { "reply_regex", DT_REGEX|R_INDEX|R_RESORT, IP "^((re|aw|sv)(\\[[0-9]+\\])*:[ \t]*)*", 0, NULL,
+
+Nevertheless, reallocate all the regex flags to unused values and
+DT_NOT_NEGATIVE which is only used by number configs to fix all
+DT_REGEXes.
+
+These should probably just be a couple different fields instead of
+a soup of 1<<123 macros with random names.
+
+Fixes: https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/2023-December/000897.html
+ (but only in some index views)
+---
+ mutt/regex3.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/mutt/regex3.h b/mutt/regex3.h
+index 9fd81eb2..f67719a1 100644
+--- a/mutt/regex3.h
++++ b/mutt/regex3.h
+@@ -34,9 +34,9 @@ struct Buffer;
+ /* ... DT_REGEX */
+ /* Note: To save space, sets of config variable flags are packed into a uint32_t.
+  * When adding flags, check all config variables to ensure there are no overlaps of values */
+-#define DT_REGEX_MATCH_CASE (1 << 17)  ///< Case-sensitive matching
+-#define DT_REGEX_ALLOW_NOT  (1 << 18)  ///< Regex can begin with '!'
+-#define DT_REGEX_NOSUB      (1 << 19)  ///< Do not report what was matched (REG_NOSUB)
++#define DT_REGEX_MATCH_CASE (1 << 16)  ///< Case-sensitive matching
++#define DT_REGEX_ALLOW_NOT  (1 << 31)  ///< Regex can begin with '!'
++#define DT_REGEX_NOSUB      DT_NOT_NEGATIVE  ///< Do not report what was matched (REG_NOSUB)
+ 
+ /* This is a non-standard option supported by Solaris 2.5.x
+  * which allows patterns of the form \<...\> */
+-- 
+2.39.2
+
+
+

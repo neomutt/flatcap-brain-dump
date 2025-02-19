@@ -1,0 +1,26 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	keyevent [ label="struct&nbsp;KeyEvent\l\{\l&nbsp;&nbsp;int&nbsp;ch;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Raw&nbsp;key&nbsp;pressed\l&nbsp;&nbsp;int&nbsp;op;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Function&nbsp;opcode\l&nbsp;&nbsp;int&nbsp;count;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Repeat&nbsp;count\l&nbsp;&nbsp;time_t&nbsp;start;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Time&nbsp;of&nbsp;first&nbsp;keypress\l&nbsp;&nbsp;char&nbsp;keys[16];&nbsp;&nbsp;//&nbsp;Multi-keys\l&nbsp;&nbsp;int&nbsp;pos;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Match&nbsp;position\l\}\l" ]
+
+}

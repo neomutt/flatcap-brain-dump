@@ -1,0 +1,12 @@
+external maildir functions used by notmuch
+
+maildir_edata_free
+maildir_edata_new
+maildir_gen_flags
+maildir_msg_open_new
+maildir_open_find_message
+maildir_parse_flags
+maildir_parse_message
+maildir_parse_stream
+maildir_sync_mailbox_message
+maildir_update_flags

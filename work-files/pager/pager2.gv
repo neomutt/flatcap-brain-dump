@@ -1,0 +1,86 @@
+// pager functions 2021-01-08
+digraph pager
+{
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	append_line
+	check_attachment_marker
+	check_marker
+	check_protected_header_marker
+	check_sig
+	classify_quote
+	class_color_new
+	cleanup_quote
+	comp_syntax_t
+	display_line
+	fill_buffer
+	format_line
+	grok_ansi
+	is_ansi
+	mutt_buffer_strip_formatting
+	mutt_clear_pager_position
+	mutt_is_quote_line
+	mutt_pager
+	pager_custom_redraw
+	resolve_color
+	resolve_types
+	shift_class_colors
+	up_n_lines
+
+	check_attachment_marker       -> check_marker
+	check_protected_header_marker -> check_marker
+	classify_quote                -> class_color_new
+	classify_quote                -> shift_class_colors
+	display_line                  -> append_line
+	display_line                  -> classify_quote
+	display_line                  -> fill_buffer
+	display_line                  -> format_line
+	display_line                  -> resolve_color
+	display_line                  -> resolve_types
+	fill_buffer                   -> mutt_buffer_strip_formatting
+	format_line                   -> check_attachment_marker
+	format_line                   -> check_protected_header_marker
+	format_line                   -> grok_ansi
+	format_line                   -> is_ansi
+	format_line                   -> resolve_color
+	mutt_buffer_strip_formatting  -> check_attachment_marker
+	mutt_buffer_strip_formatting  -> check_protected_header_marker
+	mutt_buffer_strip_formatting  -> is_ansi
+	mutt_pager                    -> cleanup_quote
+	mutt_pager                    -> display_line
+	mutt_pager                    -> menu_status_line
+	mutt_pager                    -> mutt_clear_pager_position
+	mutt_pager                    -> pager_custom_redraw
+	mutt_pager                    -> up_n_lines
+	pager_custom_redraw           -> display_line
+	pager_custom_redraw           -> make_entry
+	pager_custom_redraw           -> menu_status_line
+	pager_custom_redraw           -> mutt_make_string_info
+	resolve_color                 -> comp_syntax_t
+	resolve_types                 -> check_attachment_marker
+	resolve_types                 -> check_protected_header_marker
+	resolve_types                 -> check_sig
+	resolve_types                 -> classify_quote
+	resolve_types                 -> mutt_is_quote_line
+
+}

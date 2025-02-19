@@ -1,0 +1,44 @@
+editor_backspace
+	backward-delete-char                         "\C-h", "\C-?"
+
+editor_backward_char
+	backward-char                                "\eOD", "\e[D"
+
+editor_backward_word
+	backward-word                                "\C-b", "\e[1;3D", "\e[1;5D", "\eb"
+
+editor_bol
+	beginning-of-line                            "\C-a", "\eOH", "\e[H"
+
+editor_case_word
+	capitalize-word                              "\ec"
+	downcase-word                                "\el"
+	upcase-word                                  "\eu"
+
+editor_delete_char
+	delete-char                                  "\C-d", "\e[3~"
+
+editor_eol
+	end-of-line                                  "\C-e", "\eOF", "\e[F"
+
+editor_forward_char
+	forward-char                                 "\eOC", "\e[C"
+
+editor_forward_word
+	forward-word                                 "\C-f", "\e[1;3C", "\e[1;5C"
+
+editor_kill_eol
+	kill-line                                    "\C-k"
+
+editor_kill_eow
+	kill-word                                    "\e[3;5~"
+
+editor_kill_line
+	unix-line-discard                            "\C-u"
+
+editor_kill_word
+	unix-word-rubout                             "\C-w"
+
+editor_transpose_chars
+	transpose-chars                              "\C-t"
+

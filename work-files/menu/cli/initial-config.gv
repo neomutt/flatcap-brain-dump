@@ -1,0 +1,45 @@
+digraph callgraph {
+	// Places that set initial config from main()
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ffff80" ]
+	config_str_set_initial
+	config_he_set_initial
+
+	node [ fillcolor="#ffffff" ]
+	config_str_set_initial -> config_he_set_initial
+	get_hostname -> config_str_set_initial
+	get_user_info -> config_str_set_initial
+	init_logging -> config_str_set_initial
+	init_nntp -> config_str_set_initial
+	main -> config_str_set_initial
+	main -> get_user_info
+	main -> init_logging
+	main -> init_nntp
+	main -> mutt_init
+	main -> reset_tilde
+	reset_tilde -> config_he_set_initial
+	mutt_init -> config_str_set_initial
+	mutt_init -> get_hostname
+
+}

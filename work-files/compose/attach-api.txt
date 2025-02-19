@@ -1,0 +1,149 @@
+Attach API
+
+B1 -> B2 -> B3 -> B4 -> B5
+
+	E
+	B1
+	B2 B3 B4
+
+B1
+	B2
+	B3
+	B4
+
+
+# Attachment manipulation
+attach-file         OP_COMPOSE_ATTACH_FILE
+attach-key          OP_COMPOSE_ATTACH_KEY
+attach-message      OP_COMPOSE_ATTACH_MESSAGE
+attach-news-message OP_COMPOSE_ATTACH_NEWS_MESSAGE
+new-mime            OP_COMPOSE_NEW_MIME
+
+detach-file         OP_DELETE
+
+move-down           OP_COMPOSE_MOVE_DOWN
+move-up             OP_COMPOSE_MOVE_UP
+
+group-alternatives  OP_COMPOSE_GROUP_ALTS
+group-multilingual  OP_COMPOSE_GROUP_LINGUAL
+group-related       OP_COMPOSE_GROUP_RELATED
+ungroup-attachment  OP_COMPOSE_UNGROUP_ATTACHMENT
+
+get-attachment      OP_COMPOSE_GET_ATTACHMENT
+
+
+av_insert_before(before, item)
+{
+	TAILQ_INSERT_HEAD()
+	TAILQ_INSERT_BEFORE()
+	recurse_rebuild_indexes()
+}
+
+av_append(parent)
+{
+	TAILQ_INSERT_TAIL()
+	append to bva[]
+	append to v2r[]
+}
+
+av_group(list)
+{
+	business:
+		min tagged
+		same level
+	group = attach_insert_before(first)
+	foreach(tagged)
+		remove(item)
+		append(group, item);
+	recurse_rebuild_indexes()
+}
+
+av_ungroup(item)
+{
+	business:
+		is group
+	foreach(group.children)
+		remove(item)
+		append(group, item)
+	recurse_rebuild_indexes()
+}
+
+av_delete(item)
+{
+	// delete item vs delete group
+	// delete group -> recursive break and delete?
+}
+
+av_move_up(item)
+{
+}
+
+av_move_down(item)
+{
+}
+
+av_move_into_group(item)
+{
+	// aka move right
+}
+
+av_move_out_of_group(item)
+{
+	// aka move left
+}
+
+av_collapse(item)
+{
+}
+
+av_uncollapse(item)
+{
+}
+
+
+child add or get_children(), sib append
+swap siblings / move up / move down
+move attach to position - move in front of / to head
+
+Body
+{
+	Body *parent
+	TAILQ_HEAD(Body) children
+	TAILQ_ENTRY(Body) entries
+}
+
+BodyView (AttachPtr)
+{
+	Body *body
+	bool tagged
+	bool collapsed
+	int index
+	char *tree
+	int level
+	// +more from Body
+}
+
+AttachPrivateData (AttachCtx)
+{
+	BodyView bva[]
+	int v2r[]
+}
+
+
+Num Level
+00   0   ROOT
+01   1   ├── fundamental
+02   1   ├── apple
+03   1   ├── GROUP A
+04   2   │   ├── GROUP B
+05   3   │   │   ├── GROUP C
+06   4   │   │   │   ├── banana
+07   4   │   │   │   └── damson
+08   3   │   │   └── cherry
+09   2   │   └── GROUP D
+10   3   │       ├── guava
+11   3   │       ├── hawthorn
+12   3   │       └── ilama
+13   1   ├── elderberry
+14   1   └── fig
+

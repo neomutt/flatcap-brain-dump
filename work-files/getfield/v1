@@ -1,0 +1,33 @@
+completion methods and other dialogs
+called from mutt_enter_string()
+
+case OP_EDITOR_COMPLETE:
+case OP_EDITOR_COMPLETE_QUERY:
+
+alias_complete          MUTT_COMP_ALIAS       Alias completion (in alias dialog)
+dlg_select_pattern      MUTT_COMP_PATTERN     Pattern mode (in pattern dialog)
+mutt_command_complete   MUTT_COMP_COMMAND     Complete a NeoMutt command
+mutt_var_value_complete MUTT_COMP_COMMAND     Complete a NeoMutt command
+mutt_label_complete     MUTT_COMP_LABEL       Label completion
+mutt_nm_query_complete  MUTT_COMP_NM_QUERY    Notmuch query mode
+mutt_nm_tag_complete    MUTT_COMP_NM_TAG      Notmuch tag +/- mode
+query_complete          MUTT_COMP_ALIAS       Alias completion (in alias dialog)
+mutt_select_file        MUTT_COMP_FILE        File completion (in browser)
+mutt_complete           MUTT_COMP_FILE_MBOX   File completion, plus incoming folders (in browser)
+mutt_hist_complete      OP_EDITOR_HISTORY_SEARCH
+mutt_mailbox_next       OP_EDITOR_MAILBOX_CYCLE
+
+int  alias_complete         (buf->data, buf->dsize, NeoMutt->sub)
+bool dlg_select_pattern     (buf->data, buf->dsize)
+int  mutt_command_complete  (buf->data, buf->dsize, len, state->tabs)
+int  mutt_complete          (buf->data, buf->dsize)
+void mutt_hist_complete     (buf->data, buf->dsize, hclass)
+int  mutt_label_complete    (buf->data, buf->dsize, state->tabs)
+bool mutt_nm_query_complete (buf->data, buf->dsize, len, state->tabs)
+bool mutt_nm_tag_complete   (buf->data, buf->dsize, state->tabs)
+void mutt_select_file       (buf, (flags & MUTT_COMP_FILE_MBOX) ? MUTT_SEL_FOLDER : MUTT_SEL_NO_FLAGS, m, NULL, NULL)
+void mutt_select_file       (buf, ((flags & MUTT_COMP_FILE_MBOX) ? MUTT_SEL_FOLDER : MUTT_SEL_NO_FLAGS) | (multiple ? MUTT_SEL_MULTI : MUTT_SEL_NO_FLAGS), m, files, numfiles)
+int  mutt_var_value_complete(buf->data, buf->dsize, len)
+int  query_complete         (buf, NeoMutt->sub)
+Mbox mutt_mailbox_next      (m, buf)
+

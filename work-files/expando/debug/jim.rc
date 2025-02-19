@@ -1,0 +1,20 @@
+# set index_format = "%<[12m?%<[7d?%<[12H?%[%H:%M ]&%[%a-%d]>&%[%d-%b]>&%[%b-%y]> %Z %-25.25F %<M?+%M) & >%s %* %<M?&(%c)>"
+
+# set index_format="AAA%bCCC%*.XXX%yZZZ"
+# set index_format="%*.XXX%yZZZ"
+# set index_format="AAA%bCCC%*."
+# set index_format="%*."
+
+# set index_format = "%<X?AAA%bCCC%*.FFF%gHHH&PPP%qRRR%*.XXX%yZZZ>"
+# set index_format = "%<X?%*.FFF%gHHH&PPP%qRRR%*.XXX%yZZZ>"
+# set index_format = "%<X?AAA%bCCC%*.&PPP%qRRR%*.XXX%yZZZ>"
+# set index_format = "%<X?%*.&PPP%qRRR%*.XXX%yZZZ>"
+
+# set index_format = "%<X?AAA%bCCC%*.FFF%gHHH&PPP%qRRR%*.XXX%yZZZ>"
+# set index_format = "%<X?AAA%bCCC%*.FFF%gHHH&%*.XXX%yZZZ>"
+# set index_format = "%<X?AAA%bCCC%*.FFF%gHHH&PPP%qRRR%*.>"
+# set index_format = "%<X?AAA%bCCC%*.FFF%gHHH&%*.>"
+
+set index_format = "%<X?%ab%*.c%d&W%X%*.%YZ>"
+
+# vim: syn=neomuttrc

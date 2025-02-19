@@ -1,0 +1,11 @@
+what should formatted conditionals look like?
+
+%<=10.8m? AAA & BBB>
+%?=10.8m? AAA & BBB?
+
+%=10.8<m? AAA & BBB>
+%=10.8?m? AAA & BBB?
+
+which makes more sense?
+which is easier to parse?
+

@@ -1,0 +1,22 @@
+Notification types
+
+NT_ACCOUNT NotifyAccount    EventAccount
+NT_ALIAS   NotifyAlias      EventAlias
+NT_ALTERN  NotifyAlternates 
+NT_ATTACH  NotifyAttach     
+NT_BINDING NotifyBinding    EventBinding
+NT_COLOR   NotifyColor      EventColor
+NT_COMMAND Command          
+NT_COMPOSE NotifyCompose    
+NT_CONFIG  NotifyConfig     EventConfig
+NT_CONTEXT NotifyContext    EventContext
+NT_EMAIL   NotifyEmail      EventEmail
+NT_GLOBAL  NotifyGlobal     
+NT_HEADER  NotifyHeader     EventHeader
+NT_INDEX   NotifyIndex      IndexSharedData
+NT_MAILBOX NotifyMailbox    EventMailbox
+NT_MENU                     
+NT_PAGER   NotifyPager      IndexSharedData
+NT_SCORE                    
+NT_SUBJRX  NotifySubjRx     
+NT_WINDOW  NotifyWindow     EventWindow

@@ -1,0 +1,61 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	getch          [ fillcolor="#ff8080" ]
+	mutt_getch     [ fillcolor="#80ff80" ]
+	km_dokey [ fillcolor="#80ffff" ]
+
+	// Dialogs
+	node [ fillcolor="#ffffe8" ]
+	dlg_index [ label="15 Dialogs" ]
+	dlg_certificate
+
+	// Message Windows
+	node [ fillcolor="#ffe8ff" ]
+	mw_multi_choice [ label="6 MsgWin" ]
+
+	// Global data
+	node [ fillcolor="#ffffff" ]
+	UngetKeyEvents [ color="#d0d0d0" ]
+	MacroEvents    [ color="#d0d0d0" ]
+
+	dlg_index              -> km_dokey
+	dlg_certificate -> km_dokey
+	dlg_certificate -> menu_dialog_dokey
+	external_pager         -> km_dokey
+	km_dokey               -> mutt_getch
+	menu_dialog_dokey      -> mutt_getch
+	mutt_getch             -> getch
+	mw_multi_choice        -> mutt_getch
+
+	mutt_getch             -> MacroEvents    [ color="#c0c0c0" style=dashed ]
+	mutt_getch             -> UngetKeyEvents [ color="#c0c0c0" style=dashed ]
+
+	menu_dialog_dokey -> km_dokey
+
+	{ rank=same menu_dialog_dokey km_dokey }
+
+	UngetKeyEvents -> MacroEvents -> getch
+
+	{ rank=same getch MacroEvents UngetKeyEvents }
+}

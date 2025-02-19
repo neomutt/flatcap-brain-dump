@@ -1,0 +1,14 @@
+fix hcache vs bcache dir discrepancy
+	bcache imaps:flatcap-mail@flatcap.org
+	hcache imaps_flatcap-mail_flatcap.org
+only mutt_encode_path() the *path* bit
+	assume home dir and config are already valid
+check upstream's docs/behaviour for cache config with/without trailing '/'
+do we consistently mkdir on both?
+
+set header_cache      = "~/.cache/mutt/"
+set message_cache_dir = "~/.cache/mutt/aaa@apple.com"
+
+set header_cache      = ""
+set message_cache_dir = ""
+

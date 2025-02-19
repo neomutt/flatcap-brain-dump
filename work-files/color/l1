@@ -1,0 +1,64 @@
+Line: 0
+	offset: 0
+Line: 1
+	offset: 44
+Line: 2
+	offset: 86
+Line: 3
+	offset: 107
+Line: 4
+	offset: 149
+Line: 5
+	offset: 150
+	syntax: 1
+		131840   65   67
+Line: 6
+	offset: 221
+	syntax: 2
+		131840    5    7
+		131840   12   14
+Line: 7
+	offset: 291
+Line: 8
+	offset: 376
+	syntax: 3
+		131840   28   30
+		131840   32   34
+		131840   44   46
+Line: 9
+	offset: 448
+	syntax: 5
+		131840   11   13
+		131840   32   34
+		131840   43   45
+		131840   46   48
+		131840   49   51
+Line: 10
+	offset: 518
+	syntax: 1
+		131840   68   70
+	search: 1
+		33303996   67   74
+Line: 11
+	offset: 635
+	cont_line: yes
+Line: 12
+	offset: 637
+	syntax: 3
+		131840    4    6
+		131840    8   10
+		131840   31   33
+Line: 13
+	offset: 709
+	syntax: 2
+		131840    5    7
+		131840   15   17
+Line: 14
+	offset: 781
+	syntax: 2
+		131840   20   22
+		131840   57   59
+Line: 15
+	offset: 851
+	syntax: 1
+		131840   14   16

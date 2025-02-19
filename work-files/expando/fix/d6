@@ -1,0 +1,25 @@
+Here's how the config options are used:
+
+- commands/hooks
+   - Passed to external commands
+   - No newlines
+- external
+   - Filename
+   - No newlines
+- need newline
+   - Text written to an email
+   - Anything allowed
+   - Written to file, displayed by the pager
+- menu
+   - Text line in a Menu
+   - All whitespace transmuted to space (0x20)
+   - `print_enriched_string()`
+- status bar
+   - Text on a status bar
+   - All whitespace transmuted to space (0x20)
+   - `mutt_draw_statusline()`
+- custom
+   - Written to Window directly
+   - All whitespace transmuted to space (0x20)
+   - `sb_repaint()`
+

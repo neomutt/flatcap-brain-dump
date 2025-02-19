@@ -1,0 +1,14 @@
+SmimeCommandFormatData smime_command_format_str
+
+Global
+	C	smime_ca_location		certificate-path	string	optional
+
+struct SmimeCommandContext
+	c	certificates			certificate-ids		string	optional
+	i	intermediate			intermediate-ids	string	optional
+	s	sig_fname			signature-file		string	optional
+	k	key				key			string	optional
+	a	cryptalg			algorithm		string	optional
+	f	fname				message-file		string	optional
+	d	digestalg			digest-algorithm	string	optional
+

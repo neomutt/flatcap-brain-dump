@@ -1,0 +1,78 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ffc0c0" ]
+	maildir_mbox_check
+	maildir_mbox_check_stats
+	maildir_mbox_close
+	maildir_mbox_open
+	maildir_mbox_open_append
+	maildir_mbox_sync
+
+	node [ fillcolor="#c0ffc0" ]
+	maildir_msg_close
+	maildir_msg_commit
+	maildir_msg_open
+	maildir_msg_open_new
+
+	node [ fillcolor="#c0ffff" ]
+	maildir_open_find_message
+	maildir_parse_message
+	maildir_parse_stream
+	maildir_sync_mailbox_message
+
+	node [ fillcolor="#ffffff" ]
+	maildir_delayed_parsing -> maildir_parse_message
+	// maildir_mbox_check -> maildir_canon_filename
+	maildir_mbox_check -> maildir_delayed_parsing
+	maildir_mbox_check -> maildir_move_to_mailbox
+	maildir_mbox_check -> maildir_parse_dir
+	maildir_mbox_check -> maildir_update_flags
+	maildir_mbox_check_stats -> maildir_check_dir
+	maildir_mbox_open -> maildir_read_dir
+	maildir_mbox_sync -> maildir_mbox_check
+	maildir_mbox_sync -> maildir_sync_mailbox_message
+	maildir_mbox_sync -> maildir_update_mtime
+	maildir_msg_commit -> maildir_commit_message
+	maildir_msg_open -> maildir_open_find_message
+	// maildir_msg_open_new -> maildir_gen_flags
+	// maildir_open_find_message -> maildir_canon_filename
+	maildir_open_find_message -> maildir_open_find_message_dir
+	// maildir_open_find_message_dir -> maildir_canon_filename
+	maildir_parse_message -> maildir_parse_stream
+	maildir_read_dir -> maildir_delayed_parsing
+	maildir_read_dir -> maildir_move_to_mailbox
+	maildir_read_dir -> maildir_parse_dir
+	maildir_rewrite_message -> maildir_commit_message
+	maildir_sync_mailbox_message -> maildir_sync_message
+	// maildir_sync_message -> maildir_gen_flags
+	maildir_sync_message -> maildir_rewrite_message
+
+	{ rank=same
+		maildir_mbox_check_stats maildir_mbox_close maildir_mbox_open maildir_mbox_open_append maildir_mbox_sync
+		maildir_msg_close maildir_msg_commit maildir_msg_open maildir_msg_open_new
+	}
+
+	{ rank=same maildir_read_dir maildir_open_find_message }
+
+}

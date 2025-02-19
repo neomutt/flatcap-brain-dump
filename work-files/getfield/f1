@@ -1,0 +1,8 @@
+mutt_buffer_enter_fname
+mutt_buffer_enter_fname_full
+mutt_buffer_get_field
+mutt_buffer_select_file
+mutt_enter_string
+mutt_get_field
+mutt_get_field_unbuffered
+mutt_get_password

@@ -1,0 +1,23 @@
+AttachFormatData attach_format_str
+
+struct AttachPtr
+	C	body				charset			string	optional
+	n	num				number			number	optional
+	T	tree				tree			string	optional
+
+struct Body
+	c	noconv				charset-convert		string	optional
+	d	description			description		string	optional
+	F	d_filename			file-disposition	string	optional
+	f	filename			file			string	optional
+	D	deleted				deleted			string	bool,optional
+	e	encoding			mime-encoding		string	optional
+	I	disposition			disposition		string	optional
+	m	type				mime-major		string	optional
+	M	type				mime-minor		string	optional
+	Q	attach_qualifies		attach-qualifies	number	bool,optional
+	s	filename			file-size		number	optional
+	t	tagged				tagged			string	bool,optional
+	u	unlink				unlink			string	bool,optional
+	X	attach_count			attach-count		number	optional
+

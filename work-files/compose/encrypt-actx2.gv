@@ -1,0 +1,499 @@
+digraph neomutt
+{
+
+	graph [
+		rankdir="TB"
+		nodesep="0.5"
+		ranksep="0.5"
+	];
+
+	node [
+		shape="plain"
+	];
+
+	edge [
+		penwidth="4.5"
+		arrowsize="1.0"
+		color="#c0c0c0"
+	];
+
+	obj_0x25ebfd0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#9347de" port="top" colspan="3"><font color="#000000" point-size="20"><b>AttachCtx</b></font> <font point-size="12">(0x25ebfd0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">email</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#ff80ff">0x26075d0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fp_root</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0x2605800 (5)</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x25de120 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#9347de" port="top" colspan="3"><font color="#000000" point-size="20"><b>AttachCtx-&gt;idx</b></font> <font point-size="12">(0x25de120)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">idxlen</td>
+			<td border="0">=</td>
+			<td border="0" align="left">3</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">idxmax</td>
+			<td border="0">=</td>
+			<td border="0" align="left">5</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">idx[0]</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#3bcbc4">0x25bdac0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">idx[1]</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#3bcbc4">0x25cbb20</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">idx[2]</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#3bcbc4">0x25bf280</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">idx[3]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">idx[4]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x25bdac0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#3bcbc4" port="top" colspan="3"><font color="#000000" point-size="20"><b>AttachPtr</b></font> <font point-size="12">(0x25bdac0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">body</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#2020ff">0x25cd480</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fp</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0x25b6c30 (6)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">parent_type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_MULTIPART"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">level</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">num</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">unowned</td>
+			<td border="0">=</td>
+			<td border="0" align="left">false</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">decrypted</td>
+			<td border="0">=</td>
+			<td border="0" align="left">true</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x25cbb20 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#3bcbc4" port="top" colspan="3"><font color="#000000" point-size="20"><b>AttachPtr</b></font> <font point-size="12">(0x25cbb20)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">body</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#2020ff">0x2609ab0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fp</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0x25b6c30 (6)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">parent_type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_MULTIPART"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">level</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">num</td>
+			<td border="0">=</td>
+			<td border="0" align="left">1</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">unowned</td>
+			<td border="0">=</td>
+			<td border="0" align="left">false</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">decrypted</td>
+			<td border="0">=</td>
+			<td border="0" align="left">true</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x25bf280 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#3bcbc4" port="top" colspan="3"><font color="#000000" point-size="20"><b>AttachPtr</b></font> <font point-size="12">(0x25bf280)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">body</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#2020ff">0x26148d0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fp</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0x25b6c30 (6)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">parent_type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_MULTIPART"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">level</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">num</td>
+			<td border="0">=</td>
+			<td border="0" align="left">2</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">unowned</td>
+			<td border="0">=</td>
+			<td border="0" align="left">false</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">decrypted</td>
+			<td border="0">=</td>
+			<td border="0" align="left">true</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x25d06d0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#9347de" port="top" colspan="3"><font color="#000000" point-size="20"><b>AttachCtx-&gt;v2r</b></font> <font point-size="12">(0x25d06d0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">vcount</td>
+			<td border="0">=</td>
+			<td border="0" align="left">3</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">v2r[0]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">v2r[1]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">1</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">v2r[2]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">2</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x2614f40 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#f86e28" port="top" colspan="3"><font color="#000000" point-size="20"><b>AttachCtx-&gt;fp_idx</b></font> <font point-size="12">(0x2614f40)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fp_len</td>
+			<td border="0">=</td>
+			<td border="0" align="left">1</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fp_max</td>
+			<td border="0">=</td>
+			<td border="0" align="left">5</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fp_idx[0]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0x25b6c30 (6)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fp_idx[1]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">NULL</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fp_idx[2]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">NULL</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fp_idx[3]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">NULL</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fp_idx[4]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">NULL</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x25de150 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#4ff270" port="top" colspan="3"><font color="#000000" point-size="20"><b>AttachCtx-&gt;body_idx</b></font> <font point-size="12">(0x25de150)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">body_len</td>
+			<td border="0">=</td>
+			<td border="0" align="left">1</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">body_max</td>
+			<td border="0">=</td>
+			<td border="0" align="left">5</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">body_idx[0]</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#2020ff">0x25cce80</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">body_idx[1]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">body_idx[2]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">body_idx[3]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">body_idx[4]</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x25cce80 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x25cce80)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"mixed"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_MULTIPART"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_7BIT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">length</td>
+			<td border="0">=</td>
+			<td border="0" align="left">1531</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x25cd480 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x25cd480)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"plain"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_TEXT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_7BIT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">length</td>
+			<td border="0">=</td>
+			<td border="0" align="left">1043</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x2609ab0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x2609ab0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">file</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"A.txt"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"plain"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_TEXT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_7BIT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_ATTACH"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">length</td>
+			<td border="0">=</td>
+			<td border="0" align="left">73</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x26148d0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x26148d0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">file</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"B.txt"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"plain"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_TEXT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_7BIT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_ATTACH"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">length</td>
+			<td border="0">=</td>
+			<td border="0" align="left">73</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x25de120 -> obj_0x25bdac0 [  edgetooltip="AttachCtx-&gt;idx" color="#c0c0c0" ];
+	obj_0x25de120 -> obj_0x25cbb20 [  edgetooltip="AttachCtx-&gt;idx" color="#c0c0c0" ];
+	obj_0x25de120 -> obj_0x25bf280 [  edgetooltip="AttachCtx-&gt;idx" color="#c0c0c0" ];
+	obj_0x25ebfd0 -> obj_0x25de120 [  edgetooltip="AttachCtx-&gt;idx" color="#c0c0c0" ];
+	obj_0x25ebfd0 -> obj_0x25d06d0 [  edgetooltip="AttachCtx-&gt;v2r" color="#c0c0c0" ];
+	obj_0x25ebfd0 -> obj_0x2614f40 [  edgetooltip="AttachCtx-&gt;fp_idx" color="#c0c0c0" ];
+	obj_0x25cd480 -> obj_0x2609ab0 [  edgetooltip="Body->next" color="#008000" ];
+	obj_0x2609ab0 -> obj_0x26148d0 [  edgetooltip="Body->next" color="#008000" ];
+	{ rank=same obj_0x25cd480 obj_0x2609ab0 obj_0x26148d0 };
+	obj_0x25cce80 -> obj_0x25cd480 [  edgetooltip="Body->parts" color="#ff0000" ];
+	obj_0x25de150 -> obj_0x25cce80 [  edgetooltip="AttachCtx->Body" color="#008000" ];
+	obj_0x25ebfd0 -> obj_0x25de150 [  edgetooltip="AttachCtx-&gt;body_idx" color="#c0c0c0" ];
+
+}

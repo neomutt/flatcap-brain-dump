@@ -1,0 +1,109 @@
+NeoMutt init -- neomutt.c
+
+init *queueing* logging immediately
+move Modules to main.c to avoid dependencies in libcore
+	pass Modules to neomutt_init()
+
+Modules (45)
+	main
+	address alias attach autocrypt bcache browser color complete compmbox
+	compose compress config conn convert core editor email envelope expando
+	gui hcache helpbar history imap index key maildir mbox menu mh mutt
+	ncrypt nntp notmuch pager parse pattern pop postpone progress question
+	send sidebar store
+
+Config users (25)
+	main
+		mutt_config.c
+	alias autocrypt browser compose conn email hcache helpbar history imap
+	index maildir mbox menu mh ncrypt nntp notmuch pager pattern pop
+	progress send sidebar
+
+Command users (5)
+	main
+		commands.c
+		hook.c
+		mutt_lua.c
+	compmbox imap notmuch sidebar
+
+move to main.c
+	struct NeoMutt *NeoMutt = NULL; ///< Global NeoMutt object
+leave in core/
+	extern struct NeoMutt *NeoMutt;
+
+cleanup should probably be void
+	don't care, can't do anything if it fails
+
+--------------------------------------------------------------------
+INIT
+
+--------------------------------------------------------------------
+EARLY
+
+alias_init()			alias
+alternates_init()		main
+attach_init()			attach
+driver_tags_init()		email
+mutt_grouplist_init()		address
+subjrx_init()			main
+
+getegid() check. NO needs argc/argv
+init_locale()
+
+--------------------------------------------------------------------
+CLEANUP
+
+alias_cleanup()			alias
+alternates_cleanup()		main
+attach_cleanup()		attach
+driver_tags_cleanup()		email
+mutt_grouplist_cleanup()	address
+subjrx_cleanup()		main
+
+mutt_regexlist_free(&MailLists)			email
+mutt_regexlist_free(&NoSpamList)		email
+mutt_regexlist_free(&SubscribedLists)		email
+mutt_regexlist_free(&UnMailLists)		email
+mutt_regexlist_free(&UnSubscribedLists)		email
+mutt_list_free(&Ignore)				email
+mutt_list_free(&MailToAllow)			email
+mutt_list_free(&UnIgnore)			email
+mutt_replacelist_free(&SpamList)		email
+mutt_regexlist_free(&NoSpamList)		email
+
+mutt_list_free(&AlternativeOrderList)		main
+mutt_list_free(&AutoViewList)			main
+mutt_list_free(&HeaderOrderList)		main
+mutt_list_free(&MimeLookupList)			main
+mutt_list_free(&Muttrc)				main
+mutt_list_free(&UserHeader)			main
+
+FREE(&CurrentFolder)				main
+FREE(&HomeDir)					main
+FREE(&LastFolder)				main
+FREE(&ShortHostname)				main
+FREE(&Username)					main
+
+mutt_browser_cleanup()		browser
+config_cache_cleanup()		core
+external_cleanup()		main
+mutt_delete_hooks()		main
+source_stack_cleanup()		main
+mutt_prex_cleanup()		mutt
+mutt_ch_cache_cleanup()		mutt?
+crypt_cleanup()			ncrypt
+crypto_module_cleanup()		ncrypt
+
+--------------------------------------------------------------------
+GUI_INIT
+
+--------------------------------------------------------------------
+GUI_CLEANUP
+
+rootwin_cleanup()		gui
+colors_cleanup()		color
+mutt_hist_cleanup()		history
+mutt_keys_cleanup()		key
+menu_cleanup()			menu
+sb_cleanup()			sidebar
+

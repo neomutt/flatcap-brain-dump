@@ -1,0 +1,94 @@
+From nabijaczleweli@nabijaczleweli.xyz Tue Sep 29 15:18:41 2020
+Return-Path: <nabijaczleweli@nabijaczleweli.xyz>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id A16C0170A
+	for <flatcap-mail@flatcap.org>; Tue, 29 Sep 2020 15:18:41 +0100 (BST)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Authentication-Results: flatcap.org (amavisd-new); dkim=pass (2048-bit key)
+	header.d=nabijaczleweli.xyz
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 7M5OwrVOWCxW for <flatcap-mail@flatcap.org>;
+	Tue, 29 Sep 2020 15:18:26 +0100 (BST)
+Received: from tarta.nabijaczleweli.xyz (unknown [139.28.40.42])
+	by flatcap.org (Postfix) with ESMTP id 5ADD41621
+	for <rich@flatcap.org>; Tue, 29 Sep 2020 15:18:26 +0100 (BST)
+Received: from tarta.nabijaczleweli.xyz (unknown [192.168.1.250])
+	by tarta.nabijaczleweli.xyz (Postfix) with ESMTPSA id 0202936061E;
+	Tue, 29 Sep 2020 16:18:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=nabijaczleweli.xyz;
+	s=202006; t=1601389106;
+	bh=0M93kxpoMRx/CoC960dfDD/AL1nyXHyCmYoDcfoQdZ0=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=jlklbjWj5C0n33xw3RJCXoJDyjldoRTvO1X6/Qu2QjY1m6KWbWy0lLaOimNOiuugq
+	 NjZt9fy+TKFiW5S75ZEeS/OCRd8pbnLZJUFVfkKfNphZ/KrOatYwaYV87akCo59Fzj
+	 Vvj3RcRP2BhMikM9DYUrJ6SrL/ysDaMtCYqc4LhcvUJkrtk3FZSuGmaXwSOwyndAu8
+	 EajUEAsvlnKoM6QLUgom1MeDU77RX/vGvocFqXOPm5qi9ArxgclpmDo1KZd1tanWAM
+	 UPDiYD5xw3JdtW90jJ5ICJWNWn1gIn7Whz0j6jvyX6PtaEr4qGFzzJZ/ZXl7VSU+2w
+	 eQDcCHfQ7GJWw==
+Date: Tue, 29 Sep 2020 16:18:24 +0200
+From: =?utf-8?B?0L3QsNCx?= <nabijaczleweli@nabijaczleweli.xyz>
+To: Richard Russon <rich@flatcap.org>
+Subject: Re: NeoMutt issue comment
+Message-ID: <20200929141824.wrgo7ilstw6ulvyf@tarta.nabijaczleweli.xyz>
+References: <20200929134033.43hddynw4xysilb5@flatcap.org>
+MIME-Version: 1.0
+Content-Type: multipart/encrypted; protocol="application/pgp-encrypted";
+	boundary="vrxwumcl3xbbxwmq"
+Content-Disposition: inline
+In-Reply-To: <20200929134033.43hddynw4xysilb5@flatcap.org>
+User-Agent: NeoMutt/20200925
+Status: RO
+Content-Length: 2241
+Lines: 47
+
+
+--vrxwumcl3xbbxwmq
+Content-Type: application/pgp-encrypted
+Content-Disposition: attachment
+
+Version: 1
+
+--vrxwumcl3xbbxwmq
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="msg.asc"
+
+-----BEGIN PGP MESSAGE-----
+
+hQIMA1RPJxwiPOeSARAAh4t2kMCov5Uj3ZGajFaYua7LFc/n+ZAJFK5xIA1Gi+j4
+QHPPTMFDm1I2JYK8IXyyeFZ54YJSFN+nZB4YcYaYdgeZXV9aH6zLajqy6sfgaSP9
+fADfKi+Io2v/Hr1UGBoj/CfS9pEst+hV+FKaH/489ydoWVWV6Wani7t9byqad16Q
+S6Uc8fQ2lnG6eX9+FFw80VqChOW+P8zvpWsitZ9Z3Gfo8fbwp23jkSy9jZ7cbReZ
+j794VIcAdC2JaR9Td/CirzlmwBFU8XYnD1wdIrGuDAkuMaSKIfve66wv+zWwB2cZ
+8WUQtrzm8kMjgKfyNG3y5ooRNtE7vtM/9oeRxyEfJbYq5lrMBsgbAgAbHvhw2qgG
+zBuFPSpXf9SbRwPbP0SHJuLtsxQW5a2mNuHe2h1vBvsgNtP5JVeaMnLAv5xPysY1
+Qt4zpQXYoZ+dWaamfum/ti7AyPXhTLK/qqPGg92vF+VWeIC20ObtVyT1HoXCZDwu
+MM4ExpKdhxOAgdmh+miiOmZVuavq7gdnCpBPyoiMKmLK96JE9sZ0qYT4VX8PfJ6h
+B3Mn6BaZwIoT/grhY0eZ/ZLO98vGy6GCwnqrMSbVzYkxvLkXBshUNnitOikUtpgf
+KBIk6hQ1+1ISKvB71KY5HRgl3e9NqzGjcEVB2u+5A3rZri7xlmk5q4ccwFc/0FaF
+AgwD7UZzNTK4EfsBEAC+leXZHqviU6gzfRSY5QX8WTOcwGlOzUBCaySf9ax5kLIN
+bCiS7Xy8y9ZA/sWi1qpWpOMjkEJaluR7+u/R8Hbm+cwAUnX4mJxbyZXkFMfamm+n
++prup70bLOOJ2aZnRwW0+43nqh7J8fKixOCmGAfsoYbREEvrY5BA2N5XLaiEvG5J
+BQoAW9l3Ulrs/Sj7/jd36mTu2W/T9aqDvvA8vsqgqy/kbVwvSf/KtEOZ7dY50hOd
+JhmL9BLoFPdPNKfVbLzcgChLwMjaMt6ua2OeFo0qI86AezBy0Bfhf/gMCLZCkuyL
+CNiCoRcKpH9FYb1FFTU3UddjfpZhRZotVi4d6hF7AzhdutDCgqxntsGExeP9/YWU
+anGzD/ywCKOGXZ/6d+jXJZG5G8LsSQQT/15M+l45obz505HnASjwFWDI5W55ntpQ
+0hxS042Ze7bQLSNQ7D4Ty1YTw7uHWUaBVg3LUs9yoXnRPs9Ch2PXRwiURmXoxtu9
+7ab+6vWpqT3oZXtr0c6+U5oWKZvSvAlWxJh5971LzaAFtY1Yjey1xduzNRt6465o
+wjo4kkeatJZtJeAfly5Iq1CdSt8ufWWQHOxKnTl0TpEBuaY31JfctA3KXJQ2a8Lk
+Ug6eZJQ3pDTuBu1FpwUwIerC1M89qyc5Ey3t87nHhw6UnwrdJDEsKXL1iV2579LA
+twE6ZNZTFo1WYFxsZYOXYXsPVutAYLFShBbl6SdakccA7TunUX5mC7vgreNE60wm
+nlp7i7pInQ+OVJVZP7dQrZPur05Pgp5do9GK8Xvb3FulZM0BJ0lfnIOm8NbrRKqg
+6KpAbuEbjruoB6gSqUbexIJhQ131MG6EBL711QeTDTNoeDJESE7csB0Kge6D7nRk
+ajJ+HUz+QX+RzVT7R3reG8uTAIn/C83bI5m1pW/QXOGMoeZ9C1QJT7rV1sJ539lV
+EI48e5nLX07u8v8lJbgWEyznCwb8VBphYKC9UpBdnUN0o7xAoE6U8pY2XCBwjVRw
+e3CokPwhv1ynEG4Ij9f5uhZKgGDQljSqtPtyKoStFyaoWbd8/2dijkU1wHkW5MN3
+k6Aq9d8O5ozgvMtStQXFLYFBKBj7+LAzkB4p1zydtovJiolKutL2TuVj4rNL5jbr
+1MBFYI4M5x6+MP9tF9DvqF46UrHsDuLKKkQg8wgtHqksXiOPAn+rHA==
+=zdrR
+-----END PGP MESSAGE-----
+
+--vrxwumcl3xbbxwmq--
+

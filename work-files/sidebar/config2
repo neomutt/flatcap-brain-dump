@@ -1,0 +1,56 @@
+FUNCTIONS
+	sb_change_mailbox
+		C_SidebarNextNewWrap
+
+OBSERVER
+	sb_config_observer
+		C_AsciiChars
+		C_SidebarDividerChar
+		C_SidebarOnRight
+		C_SidebarVisible
+		C_SidebarWidth
+
+SIDEBAR
+	sb_win_init
+		C_SidebarOnRight
+		C_SidebarVisible
+		C_SidebarWidth
+
+WINDOW
+	sb_repaint
+		C_SidebarOnRight
+		C_SidebarWidth
+	calc_divider
+		C_AsciiChars
+		C_SidebarDividerChar
+	fill_empty_space
+		C_SidebarOnRight
+	draw_divider
+		C_AsciiChars
+		C_SidebarDividerChar
+		C_SidebarOnRight
+		C_SidebarWidth
+	sort_entries
+		C_SidebarSortMethod
+	abbrev_folder (-)
+		C_SidebarDelimChars
+	add_indent (sbe->M)
+		C_SidebarIndentString
+	calc_color (M)
+		C_Spoolfile
+	make_sidebar_entry (sbe->M)
+		C_SidebarFormat
+	prepare_sidebar (sbe->M)
+		C_SidebarNewMailOnly
+		C_SidebarNonEmptyMailboxOnly
+		C_SidebarSortMethod
+	sb_recalc (M)
+		C_Folder
+		C_SidebarComponentDepth
+		C_SidebarDelimChars
+		C_SidebarFolderIndent
+		C_SidebarShortPath
+	update_entries_visibility (sbe->M)
+		C_SidebarNewMailOnly
+		C_SidebarNonEmptyMailboxOnly
+

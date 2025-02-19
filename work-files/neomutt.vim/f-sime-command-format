@@ -1,0 +1,23 @@
+" Ref: smime_command_format_str() in ncrypt/smime.c
+call s:escapesConditionals('SmimeFormat', '[aCcdfiks]', 0, 1)
+" Defines: muttrcSmimeCommandFormatEscapes, muttrcSmimeCommandFormatConditionals
+
+syntax region muttrcSmimeCommandFormatString contained skipwhite keepend start=+"+ skip=+\\"+ end=+"+ contains=muttrcSmimeCommandFormatEscapes,muttrcSmimeCommandFormatConditionals,muttrcVariable,muttrcFormatErrors nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+syntax region muttrcSmimeCommandFormatString contained skipwhite keepend start=+'+ skip=+\\'+ end=+'+ contains=muttrcSmimeCommandFormatEscapes,muttrcSmimeCommandFormatConditionals,muttrcVariable,muttrcFormatErrors nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+
+syntax match muttrcVarEqualsSmimeCommandFormat contained skipwhite "=" nextgroup=muttrcSmimeCommandFormatString
+
+syntax keyword muttrcVarString contained skipwhite
+	\ smime_decrypt_command smime_encrypt_command smime_get_cert_command
+	\ smime_get_cert_email_command smime_get_signer_cert_command smime_import_cert_command
+	\ smime_pk7out_command smime_sign_command smime_verify_command smime_verify_opaque_command
+	\ nextgroup=muttrcVarEqualsSmimeCommandFormat
+
+highlight def link muttrcSmimeFormatConditionals  muttrcFormatConditionals2
+highlight def link muttrcSmimeFormatEscapes       muttrcEscape
+highlight def link muttrcSmimeCommandFormatString muttrcString
+
+" config               base-name          conditionals                         escapes                         format-string                  var-equals
+" smime_command_format SmimeCommandFormat muttrcSmimeCommandFormatConditionals muttrcSmimeCommandFormatEscapes muttrcSmimeCommandFormatString muttrcVarEqualsSmimeCommandFormat
+
+" vim: syntax=vim

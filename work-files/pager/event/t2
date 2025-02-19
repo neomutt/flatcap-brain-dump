@@ -1,0 +1,27 @@
+Notifiable structs
+
+struct ComposeSharedData
+	NT_COMPOSE
+struct ConfigSubset
+	NT_CONFIG
+struct Context
+	NT_CONTEXT
+struct Account
+	NT_ACCOUNT
+struct Mailbox
+	NT_MAILBOX
+struct NeoMutt
+	NT_ALIAS
+	NT_BINDING
+	NT_COMMAND
+	NT_GLOBAL
+	NT_HEADER
+	NT_MAILBOX
+struct Email
+	NT_EMAIL
+struct MuttWindow
+	NT_WINDOW
+struct IndexSharedData
+	NT_INDEX
+struct Menu
+	NT_MENU

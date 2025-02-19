@@ -1,0 +1,66 @@
+alias/alias.c:397:8:         mw_get_field(_("Alias as: "), buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0) ||
+alias/alias.c:437:10:        mw_get_field(_("Address: "), buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0) ||
+alias/alias.c:460:7:         mw_get_field(_("Personal name: "), buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0)
+alias/alias.c:468:7:         mw_get_field(_("Comment: "), buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) == 0)
+alias/alias.c:497:7:         mw_get_field(_("Save to file: "), buf, MUTT_COMP_FILE | MUTT_COMP_CLEAR,
+alias/dlg_query.c:550:8:     mw_get_field(_("Query: "), buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0) ||
+alias/functions.c:193:8:     mw_get_field(_("Query: "), buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0) ||
+attach/recvattach.c:303:10:  mw_get_field(prompt, buf, MUTT_COMP_FILE | MUTT_COMP_CLEAR, false,
+attach/recvattach.c:484:16:  mw_get_field(_("Save to file: "), buf, MUTT_COMP_FILE | MUTT_COMP_CLEAR,
+attach/recvattach.c:731:7:   mw_get_field((filter ? _("Filter through: ") : _("Pipe to: ")), buf, MUTT_COMP_FILE_SIMPLE, false, NULL, NULL, NULL) != 0)
+browser/functions.c:99:18:   mw_get_field(_("New file name: "), buf, MUTT_COMP_FILE, false,
+browser/functions.c:313:14:  mw_get_field(_("Chdir to: "), buf, MUTT_COMP_FILE, false, NULL, NULL, NULL);
+browser/functions.c:492:7:   mw_get_field(_("File Mask: "), buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0)
+browser/functions.c:940:8:   mw_get_field(tmp2, buf, MUTT_COMP_PATTERN, false, NULL, NULL, NULL) != 0) ||
+compose/functions.c:893:7:   mw_get_field("Content-ID: ", buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) == 0)
+compose/functions.c:937:7:   mw_get_field("Description: ", buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) == 0)
+compose/functions.c:967:8:   mw_get_field("Content-Transfer-Encoding: ", buf, MUTT_COMP_NO_FLAGS,
+compose/functions.c:1009:7:  mw_get_field("Content-Language: ", buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) == 0)
+compose/functions.c:1310:8:  mw_get_field(_("New file: "), fname, MUTT_COMP_FILE, false, NULL, NULL, NULL) != 0) ||
+compose/functions.c:1319:8:  mw_get_field("Content-Type: ", type, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0) ||
+compose/functions.c:1420:12: mw_get_field(_("Send attachment with name: "), fname, MUTT_COMP_FILE,
+compose/functions.c:1752:8:  mw_get_field(_("Rename to: "), fname, MUTT_COMP_FILE, false, NULL, NULL, NULL) == 0) &&
+conn/connaccount.c:81:20:    mw_get_field(prompt, buf, MUTT_COMP_UNBUFFERED, false, NULL, NULL, NULL);
+conn/connaccount.c:159:20:   mw_get_field(prompt, buf, MUTT_COMP_PASS | MUTT_COMP_UNBUFFERED,
+conn/sasl.c:716:10:          mw_get_field(prompt, resp, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0))
+envelope/functions.c:120:7:  mw_get_field(_(Prompts[field]), new_list, MUTT_COMP_ALIAS, false, NULL, NULL, NULL) == 0)
+envelope/functions.c:230:7:  mw_get_field(Prompts[HDR_FCC], fname, MUTT_COMP_FILE | MUTT_COMP_CLEAR,
+envelope/functions.c:283:7:  mw_get_field(Prompts[HDR_SUBJECT], buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0)
+envelope/functions.c:446:7:  mw_get_field(Prompts[HDR_FOLLOWUPTO], buf, MUTT_COMP_NO_FLAGS, false,
+envelope/functions.c:470:7:  mw_get_field(Prompts[HDR_NEWSGROUPS], buf, MUTT_COMP_NO_FLAGS, false,
+envelope/functions.c:495:7:  mw_get_field(Prompts[HDR_XCOMMENTTO], buf, MUTT_COMP_NO_FLAGS, false,
+external.c:121:8:            mw_get_field(buf_string(prompt), buf, MUTT_COMP_ALIAS, false, NULL, NULL, NULL);
+external.c:431:7:            mw_get_field(_("Pipe to command: "), buf, MUTT_COMP_FILE_SIMPLE, false,
+external.c:601:7:            mw_get_field(_("Shell command: "), buf, MUTT_COMP_FILE_SIMPLE, false,
+external.c:645:8:            mw_get_field(":", buf, MUTT_COMP_COMMAND, false, NULL, NULL, NULL) != 0) ||
+external.c:1120:8:           mw_get_field("Content-Type: ", buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0) ||
+gui/curs_lib.c:489:9:        mw_get_field(pc, fname, (mailbox ? MUTT_COMP_FILE_MBOX : MUTT_COMP_FILE) | MUTT_COMP_CLEAR,
+imap/browse.c:410:7:         mw_get_field(_("Create mailbox: "), name, MUTT_COMP_FILE, false, NULL, NULL, NULL) != 0)
+imap/browse.c:469:7:         mw_get_field(buf_string(buf), newname, MUTT_COMP_FILE, false, NULL, NULL, NULL) != 0)
+imap/imap.c:2194:7:          mw_get_field("Tags: ", buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0)
+index/functions.c:685:8:     mw_get_field(_("Jump to message: "), buf, MUTT_COMP_NO_FLAGS, false,
+index/functions.c:1746:10:   mw_get_field(_("Enter macro stroke: "), buf, MUTT_COMP_NO_FLAGS, false,
+index/functions.c:2472:10:   mw_get_field(_("Enter Message-Id: "), buf, MUTT_COMP_NO_FLAGS, false,
+index/functions.c:2735:8:    mw_get_field("Query: ", buf, MUTT_COMP_NM_QUERY, false, NULL, NULL, NULL) != 0) ||
+menu/functions.c:70:10:      mw_get_field(((op == OP_SEARCH) || (op == OP_SEARCH_NEXT)) ? _("Search for: ") : _("Reverse search for: "), buf, MUTT_COMP_CLEAR, false, NULL, NULL, NULL) != 0) ||
+menu/functions.c:254:8:      mw_get_field(_("Jump to: "), buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) == 0) &&
+mutt_header.c:145:7:         mw_get_field("Label: ", buf, MUTT_COMP_LABEL, false, NULL, NULL, NULL) != 0)
+muttlib.c:624:10:            mw_get_field(_("File under directory: "), tmp, MUTT_COMP_FILE | MUTT_COMP_CLEAR,
+ncrypt/crypt_gpgme.c:3374:9: mw_get_field(tag, resp, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0)
+ncrypt/pgp.c:102:18:         mw_get_field(_("Enter PGP passphrase:"), buf, MUTT_COMP_PASS | MUTT_COMP_UNBUFFERED, false,
+ncrypt/pgpkey.c:203:9:       mw_get_field(tag, resp, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0)
+ncrypt/smime.c:185:18:       mw_get_field(_("Enter S/MIME passphrase:"), buf, MUTT_COMP_PASS | MUTT_COMP_UNBUFFERED, false,
+ncrypt/smime.c:754:9:        mw_get_field(prompt, resp, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0)
+ncrypt/smime.c:1206:10:      mw_get_field(_("Label for certificate: "), buf, MUTT_COMP_NO_FLAGS,
+notmuch/notmuch.c:2392:7:    mw_get_field("Add/remove labels: ", buf, MUTT_COMP_NM_TAG, false, NULL, NULL, NULL) != 0)
+pager/functions.c:314:7:     mw_get_field(((op == OP_SEARCH) || (op == OP_SEARCH_NEXT)) ? _("Search for: ") : _("Reverse search for: "), buf, MUTT_COMP_CLEAR | MUTT_COMP_PATTERN, false, NULL, NULL, NULL) != 0)
+pattern/pattern.c:199:10:    mw_get_field(prompt, buf, MUTT_COMP_PATTERN | MUTT_COMP_CLEAR, false,
+pattern/pattern.c:305:10:    mw_get_field(prompt, buf, MUTT_COMP_PATTERN | MUTT_COMP_CLEAR, false,
+pattern/pattern.c:453:10:    mw_get_field((state->reverse) ? _("Reverse search for: ") : _("Search for: "), state->string, MUTT_COMP_CLEAR | MUTT_COMP_PATTERN, false,
+pattern/pattern.c:608:10:    mw_get_field((flags & OP_SEARCH_REVERSE) ? _("Reverse search for: ") : _("Search for: "), state->string, MUTT_COMP_CLEAR | MUTT_COMP_PATTERN, false,
+recvcmd.c:208:8:             mw_get_field(buf_string(prompt), buf, MUTT_COMP_ALIAS, false, NULL, NULL, NULL) != 0) ||
+send/send.c:195:9:           mw_get_field(field, buf, MUTT_COMP_ALIAS, false, NULL, NULL, NULL) != 0)
+send/send.c:239:9:           mw_get_field("Newsgroups: ", buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0)
+send/send.c:251:31:          mw_get_field("Followup-To: ", buf, MUTT_COMP_NO_FLAGS,
+send/send.c:266:10:          mw_get_field("X-Comment-To: ", buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0))
+send/send.c:338:8:           mw_get_field(_("Subject: "), buf, MUTT_COMP_NO_FLAGS, false, NULL, NULL, NULL) != 0) ||

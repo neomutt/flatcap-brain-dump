@@ -1,0 +1,33 @@
+Menu functions
+
+<bottom-page>     OP_BOTTOM_PAGE     move to the bottom of the page
+<current-bottom>  OP_CURRENT_BOTTOM  move entry to bottom of screen
+<current-middle>  OP_CURRENT_MIDDLE  move entry to middle of screen
+<current-top>     OP_CURRENT_TOP     move entry to top of screen
+<first-entry>     OP_FIRST_ENTRY     move to the first entry
+<half-down>       OP_HALF_DOWN       scroll down 1/2 page
+<half-up>         OP_HALF_UP         scroll up 1/2 page
+<jump>            OP_JUMP            jump to an index number
+<jump>            OP_JUMP_1          jump to an index number
+<jump>            OP_JUMP_2          jump to an index number
+<jump>            OP_JUMP_3          jump to an index number
+<jump>            OP_JUMP_4          jump to an index number
+<jump>            OP_JUMP_5          jump to an index number
+<jump>            OP_JUMP_6          jump to an index number
+<jump>            OP_JUMP_7          jump to an index number
+<jump>            OP_JUMP_8          jump to an index number
+<jump>            OP_JUMP_9          jump to an index number
+<last-entry>      OP_LAST_ENTRY      move to the last entry
+<middle-page>     OP_MIDDLE_PAGE     move to the middle of the page
+<next-entry>      OP_NEXT_ENTRY      move to the next entry
+<next-line>       OP_NEXT_LINE       scroll down one line
+<next-page>       OP_NEXT_PAGE       move to the next page
+<previous-entry>  OP_PREV_ENTRY      move to the previous entry
+<previous-line>   OP_PREV_LINE       scroll up one line
+<previous-page>   OP_PREV_PAGE       move to the previous page
+<search>          OP_SEARCH          search for a regular expression
+<search-next>     OP_SEARCH_NEXT     search for next match
+<search-opposite> OP_SEARCH_OPPOSITE search for next match in opposite direction
+<search-reverse>  OP_SEARCH_REVERSE  search backwards for a regular expression
+<top-page>        OP_TOP_PAGE        move to the top of the page
+

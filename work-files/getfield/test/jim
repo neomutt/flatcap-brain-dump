@@ -1,0 +1,49 @@
+enter/enter.c:139:         undefined reference to `mutt_expand_path'
+enter/enter.c:286:         undefined reference to `km_dokey_event'
+enter/functions.c:114:     undefined reference to `mutt_select_file'
+enter/functions.c:120:     undefined reference to `mutt_complete'
+enter/functions.c:152:     undefined reference to `alias_complete'
+enter/functions.c:180:     undefined reference to `mutt_label_complete'
+enter/functions.c:212:     undefined reference to `mutt_label_complete'
+enter/functions.c:248:     undefined reference to `query_complete'
+enter/functions.c:266:     undefined reference to `mutt_var_value_complete'
+enter/functions.c:270:     undefined reference to `mutt_command_complete'
+enter/functions.c:291:     undefined reference to `mutt_select_file'
+enter/functions.c:308:     undefined reference to `mutt_complete'
+enter/functions.c:330:     undefined reference to `mutt_nm_query_complete'
+enter/functions.c:345:     undefined reference to `mutt_nm_tag_complete'
+enter/functions.c:421:     undefined reference to `mutt_hist_complete'
+enter/functions.c:454:     undefined reference to `mutt_mailbox_next'
+enter/functions.c:843:     undefined reference to `opcodes_get_name'
+menu/functions.c:233:      undefined reference to `mutt_help'
+menu/functions.c:342:      undefined reference to `opcodes_get_name'
+pattern/dlg_pattern.c:189: undefined reference to `sbar_set_title'
+pattern/dlg_pattern.c:334: undefined reference to `simple_dialog_new'
+pattern/dlg_pattern.c:352: undefined reference to `km_dokey_event'
+pattern/dlg_pattern.c:358: undefined reference to `opcodes_get_name'
+pattern/dlg_pattern.c:363: undefined reference to `km_error_key'
+pattern/dlg_pattern.c:373: undefined reference to `global_function_dispatcher'
+pattern/dlg_pattern.c:377: undefined reference to `simple_dialog_free'
+pattern/functions.c:104:   undefined reference to `opcodes_get_name'
+
+libenter.a(enter.o): in function `mutt_enter_string_full':
+libenter.a(enter.o): in function `self_insert':
+libenter.a(functions.o): in function `complete_alias_complete':
+libenter.a(functions.o): in function `complete_alias_query':
+libenter.a(functions.o): in function `complete_command':
+libenter.a(functions.o): in function `complete_file_mbox':
+libenter.a(functions.o): in function `complete_file_simple':
+libenter.a(functions.o): in function `complete_label':
+libenter.a(functions.o): in function `complete_nm_query':
+libenter.a(functions.o): in function `complete_nm_tag':
+libenter.a(functions.o): in function `complete_pattern':
+libenter.a(functions.o): in function `enter_function_dispatcher':
+libenter.a(functions.o): in function `op_editor_history_search':
+libenter.a(functions.o): in function `op_editor_mailbox_cycle':
+libmenu.a(functions.o): in function `menu_function_dispatcher':
+libmenu.a(functions.o): in function `op_help':
+libpattern.a(dlg_pattern.o): in function `create_pattern_menu':
+libpattern.a(dlg_pattern.o): in function `dlg_select_pattern':
+libpattern.a(functions.o): in function `pattern_function_dispatcher':
+test/convert/mutt_get_content_info.o: in function `test_mutt_get_content_info':
+

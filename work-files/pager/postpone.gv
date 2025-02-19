@@ -1,0 +1,62 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ color="#ff0000" ]
+	dlg_select_postponed_email
+	hardclose
+	mutt_get_postponed
+	mutt_num_postponed
+	mutt_parse_crypt_hdr
+	mutt_prepare_template
+	mutt_update_num_postponed
+	postponed_config_observer
+	postponed_window_observer
+	post_make_entry
+
+	node [ color="#000000" ]
+	dlg_select_postponed_email -> postponed_config_observer
+	dlg_select_postponed_email -> postponed_window_observer
+	dlg_select_postponed_email -> post_make_entry
+	main -> mutt_mailbox_check
+	main -> mutt_mailbox_next
+	main -> mutt_prepare_template
+	main -> mutt_send_message
+	mutt_edit_headers -> mutt_parse_crypt_hdr
+	mutt_get_postponed -> dlg_select_postponed_email
+	mutt_get_postponed -> hardclose
+	mutt_get_postponed -> mutt_parse_crypt_hdr
+	mutt_get_postponed -> mutt_prepare_template
+	mutt_mailbox_check -> mutt_update_num_postponed
+	mutt_mailbox_next -> mutt_mailbox_check
+	mutt_mailbox_notify -> mutt_mailbox_check
+	mutt_resend_message -> mutt_prepare_template
+	mutt_resend_message -> mutt_send_message
+	mutt_send_message -> mutt_edit_headers
+	mutt_send_message -> mutt_get_postponed
+	mutt_send_message -> mutt_num_postponed
+	mutt_send_message -> postpone_message
+	postpone_message -> mutt_update_num_postponed
+	status_format_str -> mutt_mailbox_check
+	status_format_str -> mutt_num_postponed
+
+}

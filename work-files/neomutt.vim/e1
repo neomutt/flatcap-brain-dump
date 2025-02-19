@@ -1,0 +1,33 @@
+" Format escapes and conditionals
+syntax match muttrcFormatConditionals2 contained /[^?]*?/
+function! s:escapesConditionals(baseName, sequence, padding, conditional)
+	exec 'syntax match muttrc' . a:baseName . 'Escapes contained /%\%(\%(-\?[0-9]\+\)\?\%(\.[0-9]\+\)\?\)\?[:_]\?\%(' . a:sequence . '\|%\)/'
+	if a:padding
+		exec 'syntax match muttrc' . a:baseName . 'Escapes contained /%[>|*]./'
+	endif
+	if a:conditional
+		exec 'syntax match muttrc' . a:baseName . 'Conditionals contained /%?\%(' . a:sequence . '\)?/ nextgroup=muttrcFormatConditionals2'
+	else
+		exec 'syntax match muttrc' . a:baseName . 'Conditionals contained /%?\%(' . a:sequence . '\)?/'
+	endif
+endfunction
+
+" If padding==1, also match `%>` `%|` `%*` expandos
+" If conditional==1, some expandos support %X? format
+
+call s:escapesConditionals('AliasFormat',      '[acfnrt]',                                                                               1, 0)
+call s:escapesConditionals('AttachFormat',     '[CcDdeFfIMmnQsTtuX]',                                                                    1, 1)
+call s:escapesConditionals('ComposeFormat',    '[ahlv]',                                                                                 1, 1)
+call s:escapesConditionals('FolderFormat',     '[CDdFfgilmNnstu]',                                                                       1, 0)
+call s:escapesConditionals('GroupIndexFormat', '[CdfMNns]',                                                                              1, 1)
+call s:escapesConditionals('IndexFormat',      '[AaBbCDdEefgHIiJKLlMmNnOPqRrSsTtuvWXxYyZ(<[{]\|@\i\+@\|G[a-zA-Z]\+\|Fp\=\|z[cst]\|cr\=', 1, 1)
+call s:escapesConditionals('MixFormat',        '[acns]',                                                                                 1, 0)
+call s:escapesConditionals('PatternFormat',    '[den]',                                                                                  1, 0)
+call s:escapesConditionals('PGPCmdFormat',     '[afprs]',                                                                                0, 1)
+call s:escapesConditionals('PGPFormat',        '[AaCcFfKkLlnptu[]',                                                                      0, 0)
+call s:escapesConditionals('QueryFormat',      '[acent]',                                                                                1, 1)
+call s:escapesConditionals('SidebarFormat',    '[!BDdFLNnorStZ]',                                                                        1, 1)
+call s:escapesConditionals('SmimeFormat',      '[aCcdfiks]',                                                                             0, 1)
+call s:escapesConditionals('StatusFormat',     '[bDdFfhLlMmnoPpRrSsTtuVv]',                                                              1, 1)
+
+" vim: syntax=vim

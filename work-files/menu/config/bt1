@@ -1,0 +1,8 @@
+main
+	generate hea[], either
+		ALL CONFIG (-D)
+		SOME CONFIG (-Q)
+dump_config
+	∀ hea (filtered)
+dump_config_neo
+	formatted text

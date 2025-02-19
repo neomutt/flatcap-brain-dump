@@ -1,0 +1,64 @@
+From riesebie@lxtec.de Tue Jun 16 17:41:52 2020
+Return-Path: <riesebie@lxtec.de>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 58F55F71
+	for <flatcap-mail@flatcap.org>; Tue, 16 Jun 2020 17:41:52 +0100 (BST)
+Date: Tue, 16 Jun 2020 18:41:48 +0200
+From: Elimar Riesebieter <riesebie@lxtec.de>
+To: rich@flatcap.org
+Subject: [kevin@8t8.us] Re: Mutt CVE-2020-14093
+Message-ID: <20200616164148.zropmduocvxzkb42@toy.home.lxtec.de>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256; protocol="application/pgp-signature"; boundary="k33u2rymuuzx6teo"
+Content-Disposition: inline
+Status: RO
+Content-Length: 1430
+Lines: 44
+
+--k33u2rymuuzx6teo
+Content-Type: multipart/mixed; boundary="5msazsws3fyadbf4"; name="mixed.txt"
+Content-Disposition: inline
+
+--5msazsws3fyadbf4
+Content-Type: text/plain; charset=utf-8; name="message.txt"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Rich,
+
+just FYI
+
+Elimar
+
+--5msazsws3fyadbf4
+Content-Type: text/plain; charset=utf-8; name="lorem.txt"
+Content-Disposition: inline
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Vivamus vitae
+risus vitae lorem iaculis placerat. Aliquam sit amet felis. Etiam
+congue. Donec risus risus, pretium ac, tincidunt eu, tempor eu, quam.
+Morbi blandit mollis magna. Suspendisse eu tortor. Donec vitae felis nec
+ligula blandit rhoncus. Ut a pede ac neque mattis facilisis. Nulla nunc
+ipsum, sodales vitae, hendrerit non, imperdiet ac, ante. Morbi sit amet
+mi. Ut magna. Curabitur id est. Nulla velit. Sed consectetuer sodales
+justo. Aliquam dictum gravida libero. Sed eu turpis. Nunc id lorem.
+Aenean consequat tempor mi. Phasellus in neque. Nunc fermentum convallis
+ligula.
+
+--5msazsws3fyadbf4--
+
+--k33u2rymuuzx6teo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEA5qPfgi7vn3+5mXKPas3Tbfc8bsFAl7o9kgACgkQPas3Tbfc
+8buxNQ//SJYa/qo8EMH6Wn4fFRaNYtsaoYhxuDe+pg7ukl3awUG43KgLWDq23V7+
+gblfPjYcKzPGDExhUYAFORkk06oqjsFFTShQVaor4ZsVSZzpgQc=
+=2H9f
+-----END PGP SIGNATURE-----
+
+--k33u2rymuuzx6teo--
+

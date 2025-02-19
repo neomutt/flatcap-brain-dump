@@ -1,0 +1,22 @@
+offset 0
+26 bytes, 26 cols
+[plain]
+text (6)
+    [0-2] MT_COLOR_X_COMMAND(41)
+    [3-3] [plain]
+    [4-18] MT_COLOR_X_CONFIG_OPTION(43)
+    [19-21] [plain]
+    [22-24] MT_COLOR_X_ENUM(46)
+    [25-25] [plain]
+search (3)
+    [2-4] MT_COLOR_SEARCH(23)
+    [14-16] MT_COLOR_SEARCH(23)
+    [17-20] MT_COLOR_SEARCH(23)
+
+set crypt_use_gpgme = yes\n
+..XXX.........XXXXXXX.....
+012345678901234567890123456789
+CCC.CCCCCCCCCCCCCCC...CCC.
+
+/(t c|gpg|me \=)/
+

@@ -1,0 +1,104 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	getch          [ fillcolor="#ff8080" ]
+	mutt_getch     [ fillcolor="#80ff80" ]
+	km_dokey_event [ fillcolor="#80ffff" ]
+
+	// Dialogs
+	node [ fillcolor="#ffffe8" ]
+	dlg_browser
+	dlg_compose
+	dlg_index
+	dlg_mixmaster
+	dlg_pager
+	dlg_alias
+	dlg_attachment
+	dlg_autocrypt
+	dlg_gpgme
+	dlg_history
+	dlg_pattern
+	dlg_pgp
+	dlg_postponed
+	dlg_query
+	dlg_smime
+	dlg_certificate
+
+	// Message Windows
+	node [ fillcolor="#ffe8ff" ]
+	mw_enter_fname
+	mw_get_field
+	mw_change_flag
+	mw_multi_choice
+	mw_what_key
+	mw_yesorno
+	op_editor_quote_char
+
+	// Global data
+	node [ fillcolor="#ffffff" ]
+	UngetKeyEvents [ color="#d0d0d0" ]
+	MacroEvents    [ color="#d0d0d0" ]
+
+	dlg_alias            -> km_dokey
+	dlg_attachment       -> km_dokey
+	dlg_autocrypt        -> km_dokey
+	dlg_browser          -> km_dokey
+	dlg_certificate      -> km_dokey
+	dlg_certificate      -> menu_dialog_dokey
+	dlg_compose          -> km_dokey
+	dlg_gpgme            -> km_dokey
+	dlg_history          -> km_dokey
+	dlg_index            -> km_dokey
+	dlg_mixmaster        -> km_dokey
+	dlg_pager            -> km_dokey
+	dlg_pattern          -> km_dokey
+	dlg_pgp              -> km_dokey
+	dlg_postponed        -> km_dokey
+	dlg_query            -> km_dokey
+	dlg_smime            -> km_dokey
+	external_pager       -> km_dokey
+	km_dokey             -> km_dokey_event
+	km_dokey_event       -> mutt_getch
+	km_dokey_event       -> retry_generic
+	menu_dialog_dokey    -> mutt_getch
+	mutt_getch           -> getch
+	mutt_getch           -> mutt_monitor_getch
+	mutt_monitor_getch   -> getch
+	mw_change_flag       -> mutt_getch
+	mw_enter_fname       -> mutt_getch
+	mw_get_field         -> km_dokey_event
+	mw_multi_choice      -> mutt_getch
+	mw_what_key          -> getch
+	mw_yesorno           -> mutt_getch
+	op_editor_quote_char -> mutt_getch
+	retry_generic        -> km_dokey_event
+	retry_generic        -> mutt_getch
+
+	mutt_getch             -> MacroEvents    [ color="#c0c0c0" style=dashed ]
+	mutt_getch             -> UngetKeyEvents [ color="#c0c0c0" style=dashed ]
+
+	UngetKeyEvents -> MacroEvents -> getch
+
+	{ rank=same getch MacroEvents UngetKeyEvents }
+
+}

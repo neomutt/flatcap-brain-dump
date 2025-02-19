@@ -1,0 +1,75 @@
+color [compose] object         [attribute ...] foreground background
+color           pattern-object [attribute ...] foreground background pattern
+color           regex-object   [attribute ...] foreground background regex
+color           status         [attribute ...] foreground background [regex [num]]
+
+uncolor [compose] object                    
+uncolor           pattern-object {pattern | *}
+uncolor           regex-object   {regex   | *}
+uncolor           status         {regex   | *}
+
+mono object attribute
+mono {header | body} attribute regex
+mono index-object attribute pattern
+
+unmono {index-object|header|body} {* | pattern ...}
+
+--------------------------------------------------------------------------------
+
+Colour objects
+--------------
+
+attachment bold error hdrdefault indicator italic markers message normal
+options progress prompt quoted search sidebar_divider sidebar_flagged
+sidebar_highlight sidebar_indicator sidebar_new sidebar_ordinary
+sidebar_spool_file sidebar_unread signature tilde tree underline warning
+
+Colours with regexes
+--------------------
+
+attach_headers body header 
+
+Index Colours (pattern)
+-------------
+
+index
+index_author
+index_collapsed
+index_date
+index_flags
+index_label
+index_number
+index_size
+index_subject
+index_tag
+index_tags
+
+Status Colours
+-------------
+
+status 
+
+Compose colour objects
+----------------------
+
+header security_encrypt security_sign security_both security_none
+
+--------------------------------------------------------------------------------
+
+attach_headers  	regex   	Attachment headers
+body            	regex   	Email body
+header          	regex   	Email headers
+
+index           	pattern 	Default highlighting of the entire index line
+index_author    	pattern 	Author in the index, %A %a %F %L %n
+index_collapsed 	pattern 	Number of messages in a collapsed thread, %M
+index_date      	pattern 	Date field, %d %D %{fmt} %[fmt] %(fmt)
+index_flags     	pattern 	Flags in the index, %S %Z
+index_label     	pattern 	Message label, %y %Y
+index_number    	pattern 	Message number, %C
+index_size      	pattern 	Message size, %c %cr %l
+index_subject   	pattern 	Subject in the index, %s
+index_tag       	pattern 	Tags in the index, %G
+index_tags      	pattern 	Transformed message tags, %g %J
+
+status          	regex   	Status bar

@@ -1,0 +1,27 @@
+Encrypted:
+
+I     1 <no description>                                     [text/plain]
+A     2 A.txt                                                [text/plain]
+I     3 <no description>                            [multipart/encrypted]
+A     4 ├─><no description>                   [application/pgp-encrypted]
+A     5 └─>msg.asc                             [application/octet-stream]
+A     6 E.txt                                                [text/plain]
+I     7 <no description>                            [multipart/encrypted]
+A     8 ├─><no description>                   [application/pgp-encrypted]
+A     9 └─>msg.asc                             [application/octet-stream]
+A    10 I.txt                                                [text/plain]
+
+Decrypted:
+
+I     1 <no description>                                     [text/plain]
+A     2 A.txt                                                [text/plain]
+A     3 <no description>                          [multipart/alternative]
+A     4 ├─>B.txt                                             [text/plain]
+A     5 ├─>C.txt                                             [text/plain]
+A     6 └─>D.txt                                             [text/plain]
+A     7 E.txt                                                [text/plain]
+A     8 <no description>                          [multipart/alternative]
+A     9 ├─>F.txt                                             [text/plain]
+A    10 ├─>G.txt                                             [text/plain]
+A    11 └─>H.txt                                             [text/plain]
+A    12 I.txt                                                [text/plain]

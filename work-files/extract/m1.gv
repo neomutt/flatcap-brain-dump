@@ -1,0 +1,165 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ color="#0000ff" ]
+	cs_get_base
+	cs_get_elem
+	cs_get_type_def
+	cs_he_string_get
+	cs_inherit_variable
+	cs_subset_create_inheritance
+	cs_subset_he_string_get
+	cs_subset_lookup
+	cs_subset_str_string_get
+
+	node [ color="#00c000" ]
+	mutt_buffer_addch
+	mutt_buffer_addstr
+	mutt_buffer_addstr_n
+	mutt_buffer_alloc
+	mutt_buffer_copy
+	mutt_buffer_dealloc
+	mutt_buffer_fix_dptr
+	mutt_buffer_init
+	mutt_buffer_len
+	mutt_buffer_make
+	mutt_buffer_reset
+	mutt_buffer_seek
+	mutt_buffer_string
+	mutt_envlist_getlist
+	mutt_file_fclose
+	mutt_file_read_line
+	filter_create
+	filter_create_fd
+	filter_wait
+	mutt_hash_find_elem
+	mutt_hash_typed_insert
+	union_hash_find_elem
+	union_hash_insert
+	mutt_mem_calloc
+	mutt_mem_free
+	mutt_mem_malloc
+	mutt_mem_realloc
+	buffer_free
+	buffer_new
+	increase_buffer_pool
+	mutt_buffer_pool_get
+	mutt_buffer_pool_release
+	mutt_sig_block_system
+	mutt_sig_unblock_system
+	mutt_strn_dup
+	mutt_str_cmp
+	mutt_str_copy
+	mutt_str_dup
+	mutt_str_equal
+	mutt_str_getenv
+	mutt_str_len
+
+	node [ color="#ff0000" ]
+	buffer_free                  -> mutt_buffer_dealloc
+	buffer_free                  -> mutt_mem_free
+	buffer_new                   -> mutt_buffer_init
+	buffer_new                   -> mutt_mem_malloc
+	cs_get_elem                  -> mutt_hash_find_elem
+	cs_he_string_get             -> cs_get_base
+	cs_he_string_get             -> cs_get_type_def
+	cs_inherit_variable          -> mutt_hash_typed_insert
+	cs_inherit_variable          -> mutt_mem_calloc
+	cs_inherit_variable          -> mutt_mem_free
+	cs_inherit_variable          -> mutt_str_dup
+	cs_subset_create_inheritance -> cs_inherit_variable
+	cs_subset_create_inheritance -> cs_subset_lookup
+	cs_subset_he_string_get      -> cs_he_string_get
+	cs_subset_lookup             -> cs_get_elem
+	cs_subset_lookup             -> mutt_str_copy
+	cs_subset_str_string_get     -> cs_subset_create_inheritance
+	cs_subset_str_string_get     -> cs_subset_he_string_get
+	filter_create                -> filter_create_fd
+	filter_create_fd             -> mutt_envlist_getlist
+	filter_create_fd             -> mutt_sig_block_system
+	filter_create_fd             -> mutt_sig_unblock_system
+	filter_wait                  -> mutt_sig_unblock_system
+	increase_buffer_pool         -> buffer_new
+	increase_buffer_pool         -> mutt_buffer_alloc
+	increase_buffer_pool         -> mutt_mem_realloc
+	mutt_buffer_addch            -> mutt_buffer_addstr_n
+	mutt_buffer_addstr           -> mutt_buffer_addstr_n
+	mutt_buffer_addstr           -> mutt_str_len
+	mutt_buffer_addstr_n         -> mutt_buffer_alloc
+	mutt_buffer_addstr_n         -> mutt_exit
+	mutt_buffer_alloc            -> mutt_buffer_seek
+	mutt_buffer_alloc            -> mutt_exit
+	mutt_buffer_alloc            -> mutt_mem_realloc
+	mutt_buffer_copy             -> mutt_buffer_addstr_n
+	mutt_buffer_copy             -> mutt_buffer_len
+	mutt_buffer_copy             -> mutt_buffer_reset
+	mutt_buffer_dealloc          -> mutt_mem_free
+	mutt_buffer_fix_dptr         -> mutt_buffer_seek
+	mutt_buffer_make             -> mutt_mem_calloc
+	mutt_buffer_pool_get         -> increase_buffer_pool
+	mutt_buffer_pool_release     -> buffer_free
+	mutt_buffer_pool_release     -> mutt_buffer_reset
+	mutt_buffer_pool_release     -> mutt_mem_realloc
+	mutt_buffer_reset            -> mutt_buffer_seek
+	mutt_endwin                  -> mutt_refresh
+	mutt_exit                    -> mutt_endwin
+	mutt_extract_token           -> cs_subset_str_string_get
+	mutt_extract_token           -> filter_create
+	mutt_extract_token           -> filter_wait
+	mutt_extract_token           -> mutt_buffer_addch
+	mutt_extract_token           -> mutt_buffer_addstr
+	mutt_extract_token           -> mutt_buffer_alloc
+	mutt_extract_token           -> mutt_buffer_copy
+	mutt_extract_token           -> mutt_buffer_fix_dptr
+	mutt_extract_token           -> mutt_buffer_init
+	mutt_extract_token           -> mutt_buffer_make
+	mutt_extract_token           -> mutt_buffer_pool_get
+	mutt_extract_token           -> mutt_buffer_pool_release
+	mutt_extract_token           -> mutt_buffer_reset
+	mutt_extract_token           -> mutt_buffer_seek
+	mutt_extract_token           -> mutt_buffer_string
+	mutt_extract_token           -> mutt_file_fclose
+	mutt_extract_token           -> mutt_file_read_line
+	mutt_extract_token           -> mutt_mem_free
+	mutt_extract_token           -> mutt_strn_dup
+	mutt_extract_token           -> mutt_str_dup
+	mutt_extract_token           -> mutt_str_getenv
+	mutt_extract_token           -> myvar_get
+	mutt_file_read_line          -> mutt_mem_free
+	mutt_file_read_line          -> mutt_mem_malloc
+	mutt_file_read_line          -> mutt_mem_realloc
+	mutt_hash_find_elem          -> union_hash_find_elem
+	mutt_hash_typed_insert       -> mutt_str_dup
+	mutt_hash_typed_insert       -> union_hash_insert
+	mutt_mem_calloc              -> mutt_exit
+	mutt_mem_malloc              -> mutt_exit
+	mutt_mem_realloc             -> mutt_exit
+	mutt_strn_dup                -> mutt_mem_malloc
+	mutt_str_equal               -> mutt_str_cmp
+	myvar_find                   -> mutt_str_equal
+	myvar_get                    -> myvar_find
+	union_hash_insert            -> mutt_mem_calloc
+	union_hash_insert            -> mutt_mem_free
+
+}
+

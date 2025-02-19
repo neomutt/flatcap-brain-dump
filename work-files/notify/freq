@@ -1,0 +1,17 @@
+    273 state
+     57 buf
+     31 buflen
+     19 flags
+     17 hclass
+     10 tempbuf
+      8 templen
+      7 redraw
+      6 first
+      3 pass
+      3 numfiles
+      3 m
+      2 multiple
+      2 files
+      2 col
+
+self_insert:

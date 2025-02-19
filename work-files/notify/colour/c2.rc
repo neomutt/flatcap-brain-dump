@@ -1,0 +1,75 @@
+# vim: syn=neomuttrc
+
+set allow_ansi = yes
+# set index_format="%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) [%GR] %s"
+set index_format="%Z %{%b %d} %-15.15L (%?l?%4l&%4c?) [%GR] %s"
+# set sidebar_visible = no
+set help = no
+
+color normal color46 color225
+# color tilde default blue
+
+# MT_COLOR_SIGNATURE signature
+color signature red default
+
+# MT_COLOR_INDEX          index          IndexList
+color index red     default "~s neomutt"
+color index default green   "~s donation"
+
+# MT_COLOR_INDEX_AUTHOR   index_author   IndexAuthorList
+color index_author red     default "~s neomutt"
+color index_author default green   "~s donation"
+
+# MT_COLOR_INDEX_FLAGS    index_flags    IndexFlagsList
+color index_flags red     default "~s neomutt"
+color index_flags default green   "~s donation"
+
+# MT_COLOR_INDEX_SUBJECT  index_subject  IndexSubjectList
+color index_subject red     default "~s neomutt"
+color index_subject default green   "~s donation"
+
+# MT_COLOR_INDEX_TAG      index_tag      IndexTagList
+color index_tag blue    default ""
+color index_tag default yellow  "red"
+tag-transforms "red" ""
+tag-formats    "red" "GR"
+
+# MT_COLOR_STATUS         status         StatusList
+color status green yellow
+color status brightblack   default   '<0>'
+color status brightwhite   default   '<[1-9][0-9]*>'
+color status brightblack   default   '(Msgs|New|Old|Post|Unread|Del|Tag):0'
+color status brightmagenta default   'Msgs:[1-9][0-9]*'
+color status brightgreen   default   'New:[1-9][0-9]*'
+color status brightyellow  default   'Old:[1-9][0-9]*'
+color status brightblue    default   'Post:[1-9][0-9]*'
+color status brightcyan    default   'Unread:[1-9][0-9]*'
+color status default       brightred 'Del:[1-9][0-9]*'
+color status default       cyan      'Tag:[1-9][0-9]*'
+
+# MT_COLOR_HEADER         header         HeaderList
+color hdrdefault magenta       yellow  
+color header     brightcyan default "^(From|Subject):"
+color header     default    red     "^From:"
+
+# MT_COLOR_BODY           body           BodyList
+color body red     default "[0-9]3[0-9]"
+# color body red     default "[0-9]3"
+# color body red     default "3[0-9]3"
+color body default yellow  "[0-9][0-9][0-9]"
+
+# MT_COLOR_ATTACH_HEADERS attach_headers AttachList
+# color attach_headers red     default ".*plain.*"
+# color attach_headers default green   ".*encoding.*"
+color attach_headers red     default "plain"
+color attach_headers default green   "encoding"
+
+# MT_COLOR_SIDEBAR_FLAGGED MT_COLOR_SIDEBAR_HIGHLIGHT MT_COLOR_SIDEBAR_INDICATOR MT_COLOR_SIDEBAR_NEW MT_COLOR_SIDEBAR_ORDINARY MT_COLOR_SIDEBAR_SPOOLFILE MT_COLOR_SIDEBAR_UNREAD
+color sidebar_ordinary   red     default
+color sidebar_spool_file blue    default
+color sidebar_flagged    green   default
+color sidebar_unread     yellow  default
+color sidebar_new        cyan    default
+color sidebar_indicator  default brightblue
+color sidebar_highlight  default color245
+

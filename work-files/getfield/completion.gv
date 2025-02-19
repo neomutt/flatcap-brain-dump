@@ -1,0 +1,123 @@
+digraph enter_field
+{
+	// libenter 2023-06-21
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		style="rounded"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+
+	buf_enter_fname [ label="buf_enter_fname (8)" ]
+	buf_get_field   [ label="buf_get_field (66)" ]
+
+	// alias_create                    -> buf_get_field
+	// attach_bounce_message           -> buf_get_field
+	// buf_enter_fname                 -> buf_get_field
+	// crypt_ask_for_key               -> buf_get_field
+	// edit_address_list               -> buf_get_field
+	// edit_envelope                   -> buf_get_field
+	// imap_mailbox_create             -> buf_get_field
+	// imap_mailbox_rename             -> buf_get_field
+	// imap_tags_edit                  -> buf_get_field
+	// index_bounce_message            -> buf_get_field
+	// mutt_account_getpass            -> buf_get_field
+	// mutt_account_getuser            -> buf_get_field
+	// mutt_check_overwrite            -> buf_get_field
+	// mutt_edit_address               -> buf_get_field
+	// mutt_edit_content_type          -> buf_get_field
+	// mutt_enter_command              -> buf_get_field
+	// mutt_label_message              -> buf_get_field
+	// mutt_pattern_alias_func         -> buf_get_field
+	// mutt_pattern_func               -> buf_get_field
+	// mutt_pipe_attachment_list       -> buf_get_field
+	// mutt_pipe_message               -> buf_get_field
+	// mutt_sasl_interact              -> buf_get_field
+	// mutt_save_attachment_list       -> buf_get_field
+	// mutt_search_alias_command       -> buf_get_field
+	// mutt_search_command             -> buf_get_field
+	// mutt_shell_escape               -> buf_get_field
+	// nm_tags_edit                    -> buf_get_field
+	// op_attachment_edit_content_id   -> buf_get_field
+	// op_attachment_edit_description  -> buf_get_field
+	// op_attachment_edit_encoding     -> buf_get_field
+	// op_attachment_edit_language     -> buf_get_field
+	// op_attachment_new_mime          -> buf_get_field
+	// op_attachment_rename_attachment -> buf_get_field
+	// op_browser_new_file             -> buf_get_field
+	// op_change_directory             -> buf_get_field
+	// op_compose_rename_file          -> buf_get_field
+	// op_enter_mask                   -> buf_get_field
+	// op_envelope_edit_fcc            -> buf_get_field
+	// op_envelope_edit_followup_to    -> buf_get_field
+	// op_envelope_edit_newsgroups     -> buf_get_field
+	// op_envelope_edit_subject        -> buf_get_field
+	// op_envelope_edit_x_comment_to   -> buf_get_field
+	// op_get_message                  -> buf_get_field
+	// op_jump                         -> buf_get_field
+	// op_main_vfolder_from_query      -> buf_get_field
+	// op_mark_msg                     -> buf_get_field
+	// op_pager_search                 -> buf_get_field
+	// op_query                        -> buf_get_field
+	// op_subscribe_pattern            -> buf_get_field
+	// pgp_ask_for_key                 -> buf_get_field
+	// pgp_class_valid_passphrase      -> buf_get_field
+	// query_index                     -> buf_get_field
+	// query_save_attachment           -> buf_get_field
+	// search                          -> buf_get_field
+	// smime_ask_for_key               -> buf_get_field
+	// smime_class_invoke_import       -> buf_get_field
+	// smime_class_valid_passphrase    -> buf_get_field
+
+	// mutt_autocrypt_scan_mailboxes -> buf_enter_fname
+	// mutt_save_message             -> buf_enter_fname
+	// op_attachment_attach_file     -> buf_enter_fname
+	// op_attachment_attach_message  -> buf_enter_fname
+	// op_compose_write_message      -> buf_enter_fname
+	// op_main_change_folder         -> buf_enter_fname
+	// op_main_change_group          -> buf_enter_fname
+	// save_fcc                      -> buf_enter_fname
+
+	buf_enter_fname               -> buf_get_field
+	buf_get_field                 -> enter_function_dispatcher
+	complete_command              -> mutt_command_complete
+	complete_command              -> mutt_var_value_complete
+	complete_file_mbox            -> mutt_complete
+	complete_file_mbox            -> mutt_select_file
+	complete_file_simple          -> mutt_complete
+	complete_file_simple          -> mutt_select_file
+	complete_label                -> mutt_label_complete
+	complete_nm_query             -> mutt_nm_query_complete
+	complete_nm_tag               -> mutt_nm_tag_complete
+	complete_pattern              -> mutt_label_complete
+	enter_function_dispatcher     -> op_editor_complete
+	mutt_complete                 -> imap_complete
+	mutt_complete                 -> nntp_complete
+	mutt_nm_query_complete        -> complete_all_nm_tags
+	mutt_nm_tag_complete          -> complete_all_nm_tags
+	op_editor_complete            -> complete_alias_complete
+	op_editor_complete            -> complete_alias_query
+	op_editor_complete            -> complete_command
+	op_editor_complete            -> complete_file_mbox
+	op_editor_complete            -> complete_file_simple
+	op_editor_complete            -> complete_label
+	op_editor_complete            -> complete_nm_query
+	op_editor_complete            -> complete_nm_tag
+	op_editor_complete            -> complete_pattern
+
+}

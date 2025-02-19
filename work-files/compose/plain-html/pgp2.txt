@@ -1,0 +1,19 @@
+Content-Type: multipart/mixed; boundary="mzytb43ob5r4paai"
+Content-Disposition: inline
+
+--mzytb43ob5r4paai
+Content-Type: text/wibble; charset=us-ascii
+Content-Disposition: inline
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spam spam spam spam</title>
+  </head>
+  <body>
+    buy my beautiful spam
+  </body>
+</html>
+
+--mzytb43ob5r4paai--
+

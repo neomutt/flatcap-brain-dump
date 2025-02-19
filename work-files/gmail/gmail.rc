@@ -1,0 +1,40 @@
+# To use: change gmail's settings to:
+#     enable imap:
+#         Gmail Settings
+#         Forwarding and POP/IMAP
+#     enable unsafe apps:
+#         https://myaccount.google.com/security
+#         Connected apps & sites
+
+set imap_login = ""
+set imap_pass  = "meiM4shu3uW3aeth"
+set imap_user  = "richard.russon@gmail.com"
+
+set folder     = "imaps://imap.gmail.com:993"
+set spool_file = "imaps://imap.gmail.com/INBOX"
+set postponed  = "imaps://imap.gmail.com/[Gmail]/Drafts"
+set record     = "imaps://imap.gmail.com/[Gmail]/Sent Mail"
+set trash      = "imaps://imap.gmail.com/[Gmail]/Bin"
+
+
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+# set imap_check_subscribed
+set hostname = gmail.com
+
+mailboxes "=INBOX"
+
+# macro index,pager y "<save-message>=[Gmail]/All <enter><enter>" "Archive"
+# macro index,pager d "<save-message>=[Gmail]/Bin<enter><enter>" "Bin"
+
+macro index,pager y "<save-message>=[Gmail]/All <enter>" "Archive"
+macro index,pager d "<save-message>=[Gmail]/Bin<enter>" "Bin"
+
+set delete = yes
+set confirmappend = no
+set confirmcreate = no
+
+set help=no
+
+# vim: syn=neomuttrc

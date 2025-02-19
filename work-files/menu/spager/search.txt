@@ -1,0 +1,90 @@
+Search
+
+direction: {forwards|backwards}
+functions: {search|search-reverse|next|previous}
+pattern:   {none|pattern}
+visible:   {yes|no}
+
+set search_context = 5
+set wrap_search    = yes
+
+OP_SEARCH
+OP_SEARCH_REVERSE
+	pattern = get_field()
+	compile regex
+	direction = {forwards|backwards}
+	record position
+	visible = true
+
+OP_SEARCH_NEXT
+	direction = forwards		search forwards
+	direction = backwards		search backwards
+OP_SEARCH_OPPOSITE
+	direction = forwards		search backwards
+	direction = backwards		search forwards
+
+OP_SEARCH_TOGGLE
+	visible = !visible
+
+Search: Match (n of m)
+	record starting place
+	linear [n -> m], relative to starting place
+	even if wrapping around
+		how do you calculate which number that is?
+	if not wrapping, only see [here -> m]
+
+set search_limit = 1000, 10000?
+	stop degenerate searches
+	=> start searching at current position
+	pass start posn to search
+
+--------------------------------------------------------------------------------
+
+<search> string -> ∀ line match and add markup (clear first)
+current line, if match is there do nothing
+	if not advance to next match ($search_wrap)
+	position dependent on $search_context
+	if $search_context > (rows / 2), sc=r/2
+$search_wrap => "search wrapped"
+<search-next> => advance in *direction*
+<search> => direction = forwards
+<search-reverse> => direction = backwards
+$search_wrap for both start and end wrapping
+	0 -> n, n -> 0
+<search-*> => search_visible
+<next-reverse> => advance in !direction
+<toggle> toggle visibility
+<search> + $search_context only moves forward
+	if match on line 1, $search_context = 5 ???
+
+color search_line?
+	bg colour
+	attr, underline
+	does this match the "current" search,
+	or all search matches -- probably all
+color search_current?
+	probably only makes sense with a cursor
+	which the pager doesn't have
+
+if matches in lines 1-5 with $search_context=5
+	when does <next> move?
+search is stored linewise, not based on segments
+	=> (line num, seg num) is unique, survives wrapping
+
+movement affects result of <next>
+	always relative to top_line
+multiple matches on one lnie are *one* <next>/<prev>
+
+top_line: [line num, seg num], search forw/back for different [line/seg]
+	3 line wrap = 3 * seg, cursor on 3, match on 2, search backwards
+	but just 1 line, 1 search array
+	need to intersect segment and search
+
+--------------------------------------------------------------------------------
+
+when rewrapping byte offset of virtual row
+	PagedLine, Segment give byte offset of first char on line
+	after wrapping locate that char
+	every move reset marker
+		in spager_set_top_row()
+

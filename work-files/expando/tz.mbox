@@ -1,0 +1,27 @@
+From japan@flatcap.org Wed Mar  6 10:10:33 2024
+Return-Path: <japan@flatcap.org>
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id AC878360
+	for <flatcap-mail@flatcap.org>; Wed,  6 Mar 2024 10:10:33 +0000 (GMT)
+Received: from flatcap.org ([127.0.0.1])
+ by localhost (flatcap.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id qjeEwti3ZDnb for <flatcap-mail@flatcap.org>;
+ Wed,  6 Mar 2024 10:10:32 +0000 (GMT)
+Received: from flatcap.org (unknown [10.9.0.16])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id B883D2BD
+	for <rich@flatcap.org>; Wed,  6 Mar 2024 10:10:31 +0000 (GMT)
+Date: Wed, 6 Mar 2024 19:10:30 +0900
+From: Japan <japan@flatcap.org>
+To: rich@flatcap.org
+Subject: time zone test 2
+Message-ID: <63t4cdbs3pv2enes4ziyei7nsoiq35yanvmesb2sx3suqxyker@w5rkcijkkago>
+Status: RO
+Content-Length: 8
+Lines: 1
+
+message
+

@@ -1,0 +1,32 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	eat_message_range       -> eat_range_by_regex
+	eat_range_by_regex      -> is_menu_available
+	eat_range_by_regex      -> scan_range_slot
+	mutt_pattern_comp       -> eat_message_range
+	mutt_pattern_func       -> mutt_pattern_comp
+	mutt_search_command     -> mutt_pattern_comp
+	scan_range_slot         -> scan_range_num
+
+}

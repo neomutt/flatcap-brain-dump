@@ -1,0 +1,3 @@
+set alias_format = "%3i %f%t %-15a %-56A | %C%> %Y"
+set query_format = "%3i %t %-25N %-25E | %C%> %Y"
+# vim: syn=neomuttrc

@@ -1,0 +1,48 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// red     ● - Keymaps
+	// green   ★ - KeyNames
+	// magenta ▼ - *DefaultBindings[]
+	// blue    ♣ - MenuNames
+
+	km_bind_err     [ label=<km_bind_err <font color="red">●</font> <font color="blue">♣</font>> ]
+	create_bindings [ label=<create_bindings <font color="red">●</font>> ]
+	km_init         [ label=<km_init <font color="red">●</font> <font color="magenta">▼</font>> ]
+	// km_keyname      [ label=<km_keyname <font color="green">★</font>> ]
+	// parsekeys       [ label=<parsekeys <font color="green">★</font>> ]
+
+	create_bindings -> km_bindkey
+	km_bindkey -> km_bindkey_err
+	km_bindkey_err -> km_bind_err
+	km_bind_err -> alloc_keys
+	km_bind_err -> km_compare_keys
+	km_bind_err -> km_expand_key
+	km_bind_err -> mutt_keymap_free
+	km_bind_err -> parsekeys
+	km_expand_key -> km_keyname
+	km_init -> create_bindings
+	parsekeys -> parse_fkey
+	parsekeys -> parse_keycode
+
+}

@@ -1,0 +1,135 @@
+MailboxView
+vsize
+pattern
+limit_pattern
+threads
+msg_in_pager
+menu
+collapsed
+mailbox
+notify
+
+Mailbox
+pathbuf
+realpath
+name
+sub
+size
+has_new
+msg_count
+msg_unread
+msg_flagged
+msg_new
+msg_deleted
+msg_tagged
+emails
+email_max
+v2r QWQ
+vcount QWQ
+notified QWQ
+type
+newly_created
+mtime
+last_visited
+mx_ops
+append
+changed
+dontwrite
+first_check_stats_done
+peekonly
+verbose QWQ
+readonly
+rights
+compress_info
+id_hash
+subj_hash
+label_hash
+account
+opened
+visible QWQ
+mdata
+mdata_free
+notify
+gen
+
+ThreadsContext
+mailbox
+tree
+hash
+c_sort
+c_sort_aux
+
+MuttThread
+fake_thread
+duplicate_thread
+sort_children
+check_subject
+visible
+deep
+subtree_visible
+next_subtree_visible
+parent
+child
+next
+prev
+message
+sort_thread_key
+sort_aux_key
+
+Email
+security
+expired
+flagged
+mime
+old
+read
+replied
+superseded
+trash
+zhours
+zminutes
+zoccident
+date_sent
+received
+lines
+// Management data
+sequence
+env
+body
+path
+offset
+tags
+notify
+edata
+active
+changed
+deleted
+purge
+edata_free
+chain
+nm_edata
+// View data
+attach_del QWQ
+attach_valid QWQ
+display_subject QWQ
+matched QWQ
+quasi_deleted QWQ
+recip_valid QWQ
+searched QWQ
+subject_changed QWQ
+tagged QWQ
+threaded QWQ
+index QWQ
+msgno QWQ
+attr_color QWQ
+score QWQ
+vnum QWQ
+attach_total QWQ
+recipient QWQ
+thread QWQ
+collapsed QWQ
+visible QWQ
+limit_visited QWQ
+num_hidden QWQ
+tree QWQ
+

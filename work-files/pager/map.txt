@@ -1,0 +1,53 @@
+Index / Pager / Sidebar
+
+Each MuttWindow->wdata
+
+[Index Dialog] -> IndexSharedData
+	Sidebar -> SidebarPrivateData
+	[Container]
+		[Index Panel] -> IndexPrivateData
+			Index -> Menu(mdata) -> IndexPrivateData
+			Index Bar -> IBarPrivateData
+		[Pager Panel] -> PagerPrivateData
+			Pager -> Menu(mdata) -> PagerPrivateData
+			Pager Bar -> PBarPrivateData
+
+--------------------------------------------------------------------------------
+
+Compose Dialog
+	Envelope
+	Attachment Bar (Simple Bar)
+	Attachments -> Menu(mdata) -> ComposeRedrawData
+	Compose Bar -> CBarPrivateData
+
+struct ComposeRedrawData
+{
+  struct Email *email;
+  struct Buffer *fcc;
+
+  struct ListHead to_list;
+  struct ListHead cc_list;
+  struct ListHead bcc_list;
+
+  short to_rows;
+  short cc_rows;
+  short bcc_rows;
+  short sec_rows;
+
+#ifdef USE_AUTOCRYPT
+  enum AutocryptRec autocrypt_rec;
+#endif
+  struct MuttWindow *win_envelope;
+  struct MuttWindow *win_cbar;
+
+  struct Menu *menu;
+  struct AttachCtx *actx;
+  struct ConfigSubset *sub;
+};
+
+struct CBarPrivateData
+{
+  struct ComposeRedrawData *rd;
+  char *compose_format;
+};
+

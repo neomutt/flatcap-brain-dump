@@ -1,0 +1,13 @@
+a compose_attach_swap
+a delete_attachment
+a gen_attach_list
+a update_idx
+
+e autocrypt_compose_menu
+e edit_address_list
+
+m check_attachments
+
+* update_crypt_info
+* update_menu
+

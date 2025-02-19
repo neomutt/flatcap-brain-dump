@@ -1,0 +1,78 @@
+Dedicated Expando Bar
+
+Window
+
+Observers
+	Window
+	Colour
+	Config
+
+Need
+	ConfigSubset
+	"format_string"
+
+Event
+	Changed
+
+How does the Expando Bar know when to recalc/repaint
+	NT_EMAIL event (for compose)
+
+How many need a banner?
+	hard-coded? or "%{banner}"
+
+------------------------------------------------------------
+
+Compose
+	ConfigSubset
+	"compose_format"
+	MT_COLOR_STATUS, MT_COLOR_NORMAL, MT_COLOR_MAX
+
+Custom event
+	NT_EMAIL -> WA_RECALC
+
+------------------------------------------------------------
+
+Pager
+	ConfigSubset
+	"pager_format"
+	MT_COLOR_STATUS, MT_COLOR_NORMAL, MT_COLOR_MAX
+
+Custom
+	calculate percentage
+	custom banner
+
+Custom event
+	NT_INDEX -> WA_RECALC
+	NT_PAGER -> WA_RECALC
+
+------------------------------------------------------------
+
+Index
+	ConfigSubset
+	"status_format"
+	MT_COLOR_STATUS, MT_COLOR_NORMAL, MT_COLOR_MAX
+
+Custom
+	set ts_status_format
+	set ts_icon_format
+
+Custom event
+	NT_CONFIG
+	NT_ALL
+	NT_MENU
+	NT_WINDOW
+
+Custom config
+	"ts_enabled"
+	"ts_icon_format"
+	"ts_status_format"
+
+------------------------------------------------------------
+
+Spager
+	ConfigSubset
+	"spager_format"
+	MT_COLOR_STATUS, MT_COLOR_NORMAL, MT_COLOR_MAX
+
+------------------------------------------------------------
+

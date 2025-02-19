@@ -1,0 +1,360 @@
+From bounces+20021677-9282-rich=flatcap.org@sendgrid.net Tue Dec 21 01:30:11 2021
+Return-Path: <bounces+20021677-9282-rich=flatcap.org@sendgrid.net>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id BB72AC63
+	for <flatcap-mail@flatcap.org>; Tue, 21 Dec 2021 01:30:11 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Authentication-Results: flatcap.org (amavisd-new); dkim=pass (1024-bit key)
+	header.d=sendgrid.net
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 5W8mhfgBB3kY for <flatcap-mail@flatcap.org>;
+	Tue, 21 Dec 2021 01:30:10 +0000 (GMT)
+Received: from o27.mgw.saas.broadcom.com (o27.mgw.saas.broadcom.com [167.89.96.148])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id B48D32A8
+	for <rich@flatcap.org>; Tue, 21 Dec 2021 01:30:09 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.net;
+	h=from:subject:mime-version:to:content-type;
+	s=smtpapi; bh=ScbuynKH2qAR0/rP6LcrZoMTjQudcYnuHJhB/+PDx1I=;
+	b=M2JGHwWqj2/DVj+IDLSexR4dgT65KhCU4BOIjfQOrfbb6bxEMiWMv5psofrlXfMjT/Ml
+	2s3E9SRz0SRXxllQ7MiHlnBVmTqirt6xymVMkrzmja8kclDLgaQtiK0OjpZEaimxG1p6+O
+	2r2LvDQxETjwCZ8iCxmuivhZ0xtW75V34=
+Received: by filterdrecv-7bf5c69d5-5qwl9 with SMTP id filterdrecv-7bf5c69d5-5qwl9-1-61C12E20-3
+        2021-12-21 01:30:08.099077454 +0000 UTC m=+9515357.715352720
+Received: from ip-10-245-189-117.localdomain (unknown)
+	by ismtpd0196p1iad2.sendgrid.net (SG) with ESMTP id _LyT1gm3QjGEZVOv5MjQAw
+	for <rich@flatcap.org>; Tue, 21 Dec 2021 01:30:07.991 +0000 (UTC)
+Received: from ip-10-245-189-190.ec2.internal (ip-10-245-189-190.ec2.internal [10.245.189.190])
+	by ip-10-245-189-117.localdomain (Postfix) with ESMTP id AB2DF60477
+	for <rich@flatcap.org>; Tue, 21 Dec 2021 01:30:07 +0000 (UTC)
+Received: from ip-10-245-189-190.ec2.internal (ip-10-245-189-190.ec2.internal [127.0.0.1])
+	by ip-10-245-189-190.ec2.internal (PGP Universal) with ESMTP id 877AA301E7
+	for <rich@flatcap.org>; Tue, 21 Dec 2021 01:30:07 +0000 (UTC)
+Received: from ip-10-245-189-190.ec2.internal ([127.0.0.1])
+  by ip-10-245-189-190.ec2.internal (PGP Universal service);
+  Tue, 21 Dec 2021 01:30:07 +0000
+X-PGP-Universal: processed;
+	by ip-10-245-189-190.ec2.internal on Tue, 21 Dec 2021 01:30:07 +0000
+Date: Tue, 21 Dec 2021 01:30:08 +0000 (UTC)
+From: PGP Global Directory <do-not-reply@keyserver1.pgp.com>
+Message-ID: <21764692.2.1640050207500.JavaMail.root@ip-10-245-189-190.ec2.internal>
+Subject: [PGP Global Directory] Verify Your Key
+MIME-Version: 1.0
+X-PGP-Verify-Token: dBYLJWRPJXK3RT5SD2MV4WTZOGM
+X-PGP-Email-Purpose: renew
+X-PGP-Encoding-Format: MIME
+X-PGP-Encoding-Version: 2.0.2
+X-SG-EID: 
+ =?us-ascii?Q?atM0VeofLgcpCDkJXB3Val9fWJupxP6hdumopEQDotn=2FeiNqiFjzq0Xnu6hopg?=
+ =?us-ascii?Q?QvLHc0EArjLHqFRcNQcXn6i5qErNlawgRuCTqif?=
+ =?us-ascii?Q?nTloabQu5dFvI3ki+W2dVbfooUUOE9CuuD1GKtJ?=
+ =?us-ascii?Q?ZjqRCzO+HuOIkwZ5krLAmhriHCXwHC4AZCHFAVv?=
+ =?us-ascii?Q?bmtqhhVrrL4kEvR=2FAkm+7omGGLMdqac5ePOTbzE?=
+ =?us-ascii?Q?vd8y9dkjEI0CL+KN+DJ2ZNYjKh5bLQa8Qxw8TTQ?=
+ =?us-ascii?Q?UR=2FoZISoMxyqu7wMtJXBQ=3D=3D?=
+To: "Richard Russon (flatcap)" <rich@flatcap.org>
+X-Entity-ID: rTkSiVr0ydShKbTQyhWkPQ==
+Content-Type: multipart/signed;
+	boundary="PGP_Universal_D18CBA5B_093C4506_1F893EFB_F48BCD02";
+	protocol="application/pgp-signature";
+	micalg="pgp-sha256"
+Status: RO
+Content-Length: 16455
+Lines: 290
+
+
+--PGP_Universal_D18CBA5B_093C4506_1F893EFB_F48BCD02
+Content-Type: multipart/related;
+	type="multipart/alternative";
+	boundary="----=_Part_0_31984222.1640050207403"
+
+------=_Part_0_31984222.1640050207403
+Content-Type: multipart/alternative;
+	boundary="----=_Part_1_3301049.1640050207407"
+
+------=_Part_1_3301049.1640050207407
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: base64
+
+UEdQIEdsb2JhbCBEaXJlY3RvcnkKClJFVkVSSUZZIFlPVVIgRU1BSUwgQUREUkVTUwoKWW91IGhh
+dmUgcHJldmlvdXNseSBzdWJtaXR0ZWQgYSBrZXkgdG8gdGhlIFBHUCBHbG9iYWwgRGlyZWN0b3J5
+IApjb250YWluaW5nIHRoZSBlbWFpbCBhZGRyZXNzIHJpY2hAZmxhdGNhcC5vcmcuIFdlIHBlcmlv
+ZGljYWxseSB2ZXJpZnkgCmVhY2ggZW1haWwgYWRkcmVzcyB0byBlbnN1cmUgaXQgcmVtYWlucyBh
+Y3RpdmUgYW5kIGNvbmZpZ3VyZWQgdG8gc2VuZCAKYW5kIHJlY2VpdmUgUEdQIHNpZ25lZCBhbmQg
+ZW5jcnlwdGVkIGVtYWlsLiAKCklmIHlvdSB3b3VsZCBsaWtlIHRvIHJlbmV3IHRoZSBrZXkgY29u
+dGFpbmluZyB0aGlzIGFkZHJlc3MsIHBsZWFzZSAKdmlzaXQgdGhlIFBHUCBHbG9iYWwgRGlyZWN0
+b3J5IGJ5IGNsaWNraW5nIHRoZSBsaW5rIGJlbG93LiAKCkNPTVBMRVRFIFRIRSBWRVJJRklDQVRJ
+T04gUFJPQ0VTUyBCWSBGT0xMT1dJTkcgVEhJUyBMSU5LOgpodHRwczovL3UyMDAyMTY3Ny5jdC5z
+ZW5kZ3JpZC5uZXQvbHMvY2xpY2s/dXBuPTY1MVpNUlNLLTJGbWQ4S3VzcTBwVGxQVW1sazBrWDE4
+S2dnc2tyM0ZJQld6OGhia0wwRExKZ05ZRkJnejJ5R21ZeEZZaUdKZXJaUVZnVU81VTdxRXZCazQy
+NWJSSDh0TnZEVS0yRnU1NTFKQzRFQS0zRC03VlhfbUhqRW5GSUdrTjlRQWNHaWFkMHNKZFNOby0y
+QmJLdEZFanZ2YS0yQnJWZHRsb2c5LTJCcWdnRTZNSkx1YzQ0UkRISUFldGxhendnWmxONEtYeFpt
+SXNHVC0yQkdULTJGLTJCeG5JZFcya1VRLTJCdEh5UjZGdjR0Q0pVTmFjZ0YxTlpENmNPNGRkVlVt
+LTJCMjg4S2FMblB6dktjVlhYWVZ6WTAyWWI0TVRHR2lya2czR1pOTUNENWpTcWMtMkZ2cXk0d1A4
+aFdNTlR5UFh2MjdRTzRXdjFQbzdSYzhuNk1RMUtld1FUQS0zRC0zRAoKVGhhbmsgeW91IGZvciB5
+b3VyIGludGVyZXN0IGluIHRoZSBQR1AgR2xvYmFsIERpcmVjdG9yeS4gCgpObyBmdXJ0aGVyIG1l
+c3NhZ2VzIHJlZ2FyZGluZyB0aGUgUEdQIEdsb2JhbCBEaXJlY3Rvcnkgd2lsbCBiZSBzZW50IHRv
+IAp0aGlzIGVtYWlsIGFkZHJlc3MgdW5sZXNzIHlvdSBjaG9vc2UgdG8gcGFydGljaXBhdGUgYnkg
+cHJvdmlkaW5nIGEgCnZlcmlmaWNhdGlvbiByZXNwb25zZSB0byB0aGlzIGVtYWlsLgoK
+
+------=_Part_1_3301049.1640050207407
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+<HTML><HEAD><META content=3D"text/html;charset=3DUTF-8" http-equiv=3D"conte=
+nt-type"><TITLE>PGP Global Directory Verification</TITLE><STYLE type=3D"tex=
+t/css">            body  {
+                background: #ffffff;}
+            a  {
+                color: #0c2d83;
+                text-decoration: underline;}
+           =20
+            td  {
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif; }
+                   =20
+            .title-text  {
+                font-size: 18px;
+                font-family: Arial, Helvetica, sans-serif;=20
+                font-weight: bold;
+                color: #444444;}
+
+            .header-text  {
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;=20
+                font-weight: bold;
+                color: #444444;}
+
+            .light-gray-info-text  {
+                font-size: 10px;
+                font-family: Arial, Helvetica, sans-serif;=20
+                font-weight: bold;
+                color: #cccccc;}
+
+
+            .gray-info-text  {
+                font-size: 10px;
+                font-family: Arial, Helvetica, sans-serif;=20
+                font-weight: bold;
+                color: #444444;}
+
+            .gray-info-text  {
+                font-size: 10px;
+                font-family: Arial, Helvetica, sans-serif;=20
+                font-weight: bold;}
+
+            .item-text  {
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif; }
+
+            .informational-text {
+                font-size: 10px;
+                font-family: Arial, Helvetica, sans-serif;=20
+                color: #000000;
+                text-decoration: none;}
+
+            .bold-item {
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;=20
+                font-weight: bold;
+                color: #000000;
+                text-decoration: none;}
+           =20
+            a.action-link {
+                font-size: 12px;
+                font-family: Arial, Helvetica, sans-serif;=20
+                font-weight: bold;
+                color: #0c2d83;
+                text-decoration: underline;}
+               =20
+        </STYLE></HEAD><BODY alink=3D"#000000" link=3D"#000000" vlink=3D"#0=
+00000"><TABLE border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"600=
+"><TR><TD><!-- start VKD Header --><TABLE border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" id=3D"TaGlobalDirectoryHeader" width=3D"600"><TR><TD><IMG a=
+lt=3D"" border=3D"0" height=3D"46" src=3D"cid:889969269@1652256984" width=
+=3D"600"></TD></TR><TR><TD><IMG alt=3D"" border=3D"0" height=3D"10" src=3D"=
+cid:890666701@2009272459" width=3D"600"></TD></TR></TABLE><!-- end VKD Head=
+er --><!-- start PGP.com Header --><!-- end PGP.com Header --><DIV align=3D=
+"left" id=3D"renewKeySection"><IMG align=3D"absmiddle" alt=3D"" border=3D"0=
+" height=3D"48" src=3D"cid:845738655@744297249" width=3D"48">&nbsp;&nbsp;<F=
+ONT color=3D"#444444" face=3D"Arial, Helvetica, sans-serif" size=3D"4"><B><=
+SPAN class=3D"title-text">Reverify Your Email Address</SPAN></B></FONT> <TA=
+BLE border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"600"><TR><TD>=
+<IMG alt=3D"" border=3D"0" height=3D"1" src=3D"cid:890666701@2009272459" wi=
+dth=3D"10"></TD><TD class=3D"item-text"><BR> <TABLE border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0"><TR><TD><SPAN id=3D"SpKeyRenewContainingEmail">Yo=
+u have previously submitted a key to the PGP Global Directory containing th=
+e email address rich@flatcap.org.</SPAN> We periodically verify each email =
+address to ensure it remains active and configured to send and receive PGP =
+signed and encrypted email.</TD></TR><TR><TD><IMG alt=3D"" border=3D"0" hei=
+ght=3D"10" src=3D"cid:890666701@2009272459" width=3D"1"></TD></TR><TR><TD n=
+owrap><TABLE border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><TR><TD><A hr=
+ef=3D"https://u20021677.ct.sendgrid.net/ls/click?upn=3D651ZMRSK-2Fmd8Kusq0p=
+TlPUmlk0kX18Kggskr3FIBWz8hbkL0DLJgNYFBgz2yGmYxFYiGJerZQVgUO5U7qEvBk425bRH8t=
+NvDU-2Fu551JC4EA-3D6V1I_mHjEnFIGkN9QAcGiad0sJdSNo-2BbKtFEjvva-2BrVdtlog9-2B=
+qggE6MJLuc44RDHIAetXxU6BuUHXrBqA5TqNnwDFwHH0Ng-2FJt206JBXz0FlXlwkB2uySvOkbk=
+125RHMtn6GXJW9lNOgVL-2FS-2Fl6zTuQww2SvSO79u5cJp-2FOvhiHE9lsHXe9pyQgMI1U9sOI=
+uQFF5H4AQtRedD1Gerb-2Fkn2wE5g-3D-3D" id=3D"HrRenewKeyLink2"><IMG align=3D"a=
+bsmiddle" alt=3D"" border=3D"0" height=3D"24" src=3D"cid:1166461041@4226240=
+92" width=3D"25"></A>&nbsp;<FONT face=3D"Arial, Helvetica, sans-serif" size=
+=3D"2"><B><A class=3D"action-link" href=3D"https://u20021677.ct.sendgrid.ne=
+t/ls/click?upn=3D651ZMRSK-2Fmd8Kusq0pTlPUmlk0kX18Kggskr3FIBWz8hbkL0DLJgNYFB=
+gz2yGmYxFYiGJerZQVgUO5U7qEvBk425bRH8tNvDU-2Fu551JC4EA-3DqZHL_mHjEnFIGkN9QAc=
+Giad0sJdSNo-2BbKtFEjvva-2BrVdtlog9-2BqggE6MJLuc44RDHIAet7gN-2FrD6RYTHcngx7B=
+AB9Wl-2F7bLZzl6Hb05KzwZfuep95Wg-2BU5sfSWVlpNclKLY9PZ70onwd-2BoUouTRxHnDlrXK=
+HeCMPVlXiReBveOrfn3P3AmcrDae0dd0zakaF1q59Dfmn4g71VAT5IeUrpM9tgFg-3D-3D" id=
+=3D"HrRenewKeyLink">Complete the Verification Process</A></B></FONT></TD></=
+TR></TABLE></TD></TR><TR><TD><IMG alt=3D"" border=3D"0" height=3D"20" src=
+=3D"cid:890666701@2009272459" width=3D"1"></TD></TR><TR><TD><P><SPAN id=3D"=
+SpLikeToRenew">If you would like to renew the key containing this address, =
+please visit the PGP Global Directory by clicking the button above.</SPAN><=
+P><SPAN id=3D"SpKeyRenewalThankYou">Thank you for your interest in the PGP =
+Global Directory.</SPAN></TD></TR></TABLE><DIV class=3D"light-gray-info-tex=
+t" name=3D"FooterText"><P>If the above link is not working, copy and paste =
+the following link into your web browser:<P><SPAN id=3D"RenewKeyLinkText">h=
+ttp://keyserver1.pgp.com/vkd/v.e?t=3DdBYLJWRPJXK3RT5SD2MV4WTZOGM</SPAN><P><=
+SPAN id=3D"SpRenewKeyNoFurtherMessages">No further messages regarding the P=
+GP Global Directory will be sent to this email address unless you choose to=
+ participate by providing a verification response to this email.</SPAN></DI=
+V></TD></TR></TABLE><BR></DIV></TD></TR></TABLE><img src=3D"https://u200216=
+77.ct.sendgrid.net/wf/open?upn=3DAIYBDUwZkCQnRlp5X-2B8xyZxNFZwit5Y7K3xHeiGf=
+PshgtHaqvc3g5YM2RL8oqehEu0NK3shxLu7aljLJy6Ezc7MRxaJ8PyYsVnO549UYZKInfkRmr2F=
+N3EePsED-2FIhGjZqj7wXOHpTiOEYV4raDiu6MMdjCZiroF-2B-2Bur4ehoz-2BHWfRa7NoxqyS=
+D0D2vA7PO3Dmk5ox5wx4334frMGabRjg-3D-3D" alt=3D"" width=3D"1" height=3D"1" b=
+order=3D"0" style=3D"height:1px !important;width:1px !important;border-widt=
+h:0 !important;margin-top:0 !important;margin-bottom:0 !important;margin-ri=
+ght:0 !important;margin-left:0 !important;padding-top:0 !important;padding-=
+bottom:0 !important;padding-right:0 !important;padding-left:0 !important;"/=
+></BODY></HTML>
+------=_Part_1_3301049.1640050207407--
+
+------=_Part_0_31984222.1640050207403
+Content-Type: image/gif; name="images/email-action-left.gif"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="images/email-action-left.gif"
+Content-ID: <1166461041@422624092>
+
+R0lGODlhGAAYANUAACcsKOHs4kppTH6tgYWxiIq0jTVENpG5lDI/M7bRuEaJSkqOTk2RUU+PU16l
+Yl+lY2iva262cXS6d3rDfYLNhWeeamKTZGSVZkNbRGqhbOPt4////+7u7qioqFZWVlNTUyIiIgAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAGAAYAAAG/8CNcLjRJAqVRqNS
+SGiI0GFgoKhar4NAdHioMhyRCYUyiTgY1cOWUH1ILgIDAGAQXCSPKgHaXUAyGCCCg4IYGRALCmpC
+AVUQFgiEkiAIFhBVWhtUDxmRk5IIGXkDRQoMEoGfHpIYEmhGCg4XnyAdHB+SFw4KRwoRArQdG7eE
+AhEKSAoTBoIdzs/Cw7iCBhMKSQoUAIJbQ8QgABQKStnbIN1C3+HjFcrMtdDO6dMg1dcFvsCfwt+C
+xsgJYs3a10+QLl4aTKGitYpQq1eaFHDyREtQqFGMHEGqSMkSJi4K/ACiZQiRIihsJL6JM6fOnTwK
+9kTpYgqMGDJm0JzsNuWKTw0FWdANMYJECRMnW4IAADs=
+------=_Part_0_31984222.1640050207403
+Content-Type: image/gif; name="images/empty.gif"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="images/empty.gif"
+Content-ID: <890666701@2009272459>
+
+R0lGODlhBQAFAJEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAFAAUAAAIElI+pWAA7
+------=_Part_0_31984222.1640050207403
+Content-Type: image/gif; name="images/mailcaution-light.gif"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="images/mailcaution-light.gif"
+Content-ID: <845738655@744297249>
+
+R0lGODlhMAAwAPf/AMWrCujo6PLdDMe3CvT09DgzA1NJBElCA+bm5vHyDImJipyenkVFRb+/v7y8
+vODg4PLUDBcXF/LuDIWi6tnZ2d7d3n6Y4t++C7a1tVRUVO3gDNvb235+f+3bDJKSkvLpDPLSDDU1
+NSwsLPLZDGFbBYyMjKyaCaepqgEBAfLWDCsmAnaO2js7O83Nze3MDKeMCPLlDN+7C3JycpKEB+3J
+DPLbDHlyBqSmpsbHxuTk5BYUAXp6erOysg0NDcXFxXVuBq+mCZWVlu/kDPLgDHmS3XluBoN+B6mr
+q0JCQuLi4tXU1CEdAfLnDHFlBggHAbm5uaOlpJ+gn5eZmIaHhoVyB+3t7aqsrP////v7+/Dw8Pn5
++crKyuvr63V1df7+/vr6+vj4+PLy8v39/dfX1/z8/Ozs7Pf39/n4+fHx8bu7u+7u7vv6++3s7fz8
++8/Pz+/v7/Pz8/DNDPr5+vv8/Orq6tHR0fr5+e3t7vj3+Ozr7P39/P79/fDv8Pz9/Orr6+vr6vLz
+8vj49/f49+7t7vn6+u3s7P7///3+/fb39/r7+/j4+fn4+PDv7/v7+tHS0vr7+v7+/f79/uvr7Ovq
+6/f4+Pn6+fb29uzt7Ovs6//+/v39/u/v8P38/ElJSe/u7uzs7fr6+fr6+/n5+vj5+fn5+Ozr6/Dw
+7/z8/ezs6/38/f7//urq6+rr6t/f4PLy8du5C/Lx8u7v7u/u71lZWaiOCKCiouvODJmbm+zt7f7+
+/9HS0evs7PDx8e/VDPb29/f29vf39p6VCPz7/PPy8vj5+P///vLx8Y58B9W0C9W6C87BCu7yDGFh
+Yfz9/cfIyPHy8qWoqPf3+O7t7e3u7vDx8PHw8I2BB/Ly8/Lz89vDC21pBfHx8hAPAd/ZC5B+B+bS
+DPj391NPBO7v7+3u7e7lDPLXDEE7A3d3eLaaCfb39q+vr/f2956FCPX29r2uCfLYDOPj5MjIyMrJ
+ysrKyeHh4dbQC9zRC8PDw//+//DnDOnlDPv8+9PT04GBgYOEg////yH5BAEAAP8ALAAAAAAwADAA
+AAj/AP8JHEiwoMGDCBMqXMiwocOHECNKnEixosWLGDNq3Mixo8eJWKyIHEmypMmTJ7EsDHPkisuX
+MGPKlOmlZs0rR8IsrHLiiiEz4Mw8qkQpULRcmTLlMqTKi6Gaqorhy2ToChkEVbAimHOiyk5okSA1
+GFvG2dgGkWzWTLvnkBdNXiDVDFNlxQoiVcJA86qwyg0xYgi0M0OgcGExewBDAryn7SHAmjQdoheA
+iAULAZLc4JuwChQxqRzUUeLAwYbSzTil0tNHD+s+ZMicOtWaU50qFiZMUFMHCmeEVWq1EUaBSwUK
+FFghj828TZs50Oc4J9Nmn6MAasqo4VKn1u+DVaJg/0n06EsjLKFCrUmEZc2jNWuwtIcfH0ujRI1y
+zHuC4Yk8eFF8Z1AVC4jyhRyEECKHgYTYUckXEEZox4R2yCEHKA9GeCEhXywgYEFV3KLFGSRqMYoW
+pJyhBYrEKKLIiiSSuMgiLy5SQgQlmDjiLR8SVIUUYAQZJCV4gCHIkIEIciQYeDSJRyBJBsBADyj0
+kAEdQUrR40BVBGHGl7/4YgYi6Yw5ZhammMIHH3C0CYcrrvChAApG1KMNClEAs04QWwpURQlhABLG
+oIJiI+g1w7RQQQWOOOLGo5DG08MB+iTQTQERtABICX3+U4UC26ARBhpoGPMMLLCQigYGrLL6wKsP
+jP8VAjcDJPBBAkA4wQIaCnRaxRRZBMtLsNVkQU2wWQSg7B9/KOusByjYIIEQQuQjAQko3DCFr/4w
+sskb4ILLByNvbMIIDzjgsMUWPLTLQxA9FKCBBj+EY0QC9iwRAge+9qOGLLH864kaagwcizgttNKK
+Lrq04HALGTgBxAfkqIBCOMt8EAwKSJSxEwdqVDFOFVVMU8Udg1QhDcl3tIzyIINwgAIJMMCQwAHR
+SgCDBgaggMPHn+DCxiVlsPFJIbgUcgkbQ1dRSCFMJxHBEsrAMIQEOBchwRAwuMMNA2T0tUMZeZRd
+xi5loJJHGWljIgnZpZRRigwoWMOEAAJIYA4KP3z/gDcMTaCgjthcFM4FJoZzIYkkhyfOhQ8RmNOB
+ADUI8AG2M8BAuQDfqCDCBp2dMwkXk9BBhx+s0DGJH6yv8scqXPyBQMQACDDC7TAUwY0JQ9w+ggAm
+oCBDZ10Ub/zxyBs/CwpNvJPC8ynUMMAM2YxQzvPl9GJAD3UgFMYY64Yv/vjhI7FEMu9AoD4ENXhT
+wDECrA/BCADowAxCWNBF8v78909yBAaIHwggMEBbWEwFtiCgAmtggAhohAxOMAAEXBCHCsbhHVRY
+AhXKYcE4uAAC2xNDRsAgAhUA4BUxuIAKY0ADZNAgBjC8QAxegQ59aSEj7SgBCg7ADlq84Ic/9CEQ
+jl9AC3YUAE+WEOFFLMEPETjhiVCMohSfGIIxWEIlFzEDF5SggAx0ggFgDKMYGdCJWXiAAlUAgxIt
+ggU0IIACLbiHA9JAxzrW0QE+aAEFEAAHLGLkC2EIAD02MIZCGvKQFNhAEujQR45gAQwEGBWyJoms
+MBAADH7ciBjk84UVefKTX5DPGj9CylKa8pQeCQgAOw==
+------=_Part_0_31984222.1640050207403
+Content-Type: image/gif; name="images/Header-PGPCom.gif"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="images/Header-PGPCom.gif"
+Content-ID: <889969269@1652256984>
+
+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
+xjr2sZBtaBAAADs=
+------=_Part_0_31984222.1640050207403--
+
+--PGP_Universal_D18CBA5B_093C4506_1F893EFB_F48BCD02
+Content-Type: application/pgp-signature;
+	x-mac-type=70674453;
+	name=PGP.sig
+Content-Disposition: attachment; filename=PGP.sig
+
+-----BEGIN PGP SIGNATURE-----
+Version: PGP Universal 3.4.2 (Build 10531)
+
+iQEVAwUBYcEuH5cQuJvKV618AQgEpwf/boj8gQEEZ1+hQAY7HHyhX+DE+OiadKMe
+OBxt3/TaKKElkWhhCwjrFbbIZLyCdVC89IbAtPi4FRLsEtuvQUUv5iqHJNA+SkAU
+bYQ5lPThpDhN1Ge7gfZ6jie+FNmf8OfebVhuM8NkjIrxPf1F+e0MWatUIH79zpLJ
+hWRJ68/yJG/PLYIFNuC2JK8HvUDvR0HM73GUSj8onTyUEM1E6/NZDZ9+HHpmPNr5
+HIuXLHndyiP0jE5BxqSjyx//UdTB9pvqXRQZPE8k7+1vxreAqghpmTyOjlD8O0/f
++OcXWqIkZB1YY+zjuUDxCsmaakYQnaPLXPzSFVOdhoHGfw877B8ywA==
+=vMwT
+-----END PGP SIGNATURE-----
+
+--PGP_Universal_D18CBA5B_093C4506_1F893EFB_F48BCD02--
+

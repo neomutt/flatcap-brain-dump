@@ -1,0 +1,446 @@
+digraph neomutt
+{
+
+	graph [
+		rankdir="TB"
+		nodesep="0.5"
+		ranksep="0.5"
+	];
+
+	node [
+		shape="plain"
+	];
+
+	edge [
+		penwidth="4.5"
+		arrowsize="1.0"
+		color="#c0c0c0"
+	];
+
+	obj_0x11cd0c0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ff80ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Email</b></font> <font point-size="12">(0x11cd0c0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">path</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NULL]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">security</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NONE]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">num_hidden</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">attach_total</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">date_sent</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"2021-04-16 14:46:38 (+0100)"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">received</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"2021-04-16 14:46:42"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x11cd320 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x11cd320)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"mixed"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_MULTIPART"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_7BIT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">aptr</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x11fb000 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x11fb000)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"plain"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_TEXT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_7BIT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">aptr</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0xf6d570 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0xf6d570)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"rfc822"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_MESSAGE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_7BIT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">aptr</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x11fade0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ff80ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Email</b></font> <font point-size="12">(0x11fade0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">path</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NULL]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">security</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NONE]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">num_hidden</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">offset</td>
+			<td border="0">=</td>
+			<td border="0" align="left">2009</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">attach_total</td>
+			<td border="0">=</td>
+			<td border="0" align="left">0</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">date_sent</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"2021-04-16 02:43:52 (+0000)"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">received</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"2021-04-16 02:43:58"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x11f9740 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x11f9740)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"alternative"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_MULTIPART"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_7BIT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">aptr</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x11f9800 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x11f9800)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"plain"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_TEXT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_QUOTED_PRINTABLE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">aptr</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x11f94e0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#2020ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Body</b></font> <font point-size="12">(0x11f94e0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subtype</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"html"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"TYPE_TEXT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">encoding</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ENC_QUOTED_PRINTABLE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">disposition</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"DISP_INLINE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">bools</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"use_disp"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">aptr</td>
+			<td border="0">=</td>
+			<td border="0" align="left">(nil)</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x11fb3c0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ffff00" port="top" colspan="3"><font color="#000000" point-size="20"><b>Envelope</b></font> <font point-size="12">(0x11fb3c0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">changed</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NONE]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">return_path</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"richard.russon+caf_=rich=flatcap.org@gmail.com"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">from</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"Aubergine Kitchen &lt;messages@squaremktg.com&gt;"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">to</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"richardrusson@gmail.com"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">x_original_to</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"flatcap-mail@flatcap.org"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">date</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"Fri, 16 Apr 2021 01:43:52 +0000"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">real_subj</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"Win a free smoothie!"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subject</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"Win a free smoothie!"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x11cd1c0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ffff00" port="top" colspan="3"><font color="#000000" point-size="20"><b>Envelope</b></font> <font point-size="12">(0x11cd1c0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">changed</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NONE]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">return_path</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"rich@flatcap.org"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">from</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"Richard Russon &lt;rich@flatcap.org&gt;"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">to</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"rich@flatcap.org"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">x_original_to</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"flatcap-mail@flatcap.org"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">date</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"Fri, 16 Apr 2021 14:46:38 +0100"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">real_subj</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"test"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">subject</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"test"</td>
+		</tr>
+		</table>>
+	];
+
+
+	obj_0x11f9800 -> obj_0x11f94e0 [  edgetooltip="Body->next" color="#008000" ];
+	{ rank=same obj_0x11f9800 obj_0x11f94e0 };
+	obj_0x11f9740 -> obj_0x11f9800 [  edgetooltip="Body->parts" color="#ff0000" ];
+	obj_0x11fade0 -> obj_0x11f9740 [  edgetooltip="Email->body" color="#c0c0c0" ];
+	obj_0x11fade0 -> obj_0x11fb3c0 [  edgetooltip="Email->env" color="#c0c0c0" ];
+	{ rank=same obj_0x11fade0 obj_0x11fb3c0 };
+	obj_0xf6d570 -> obj_0x11fade0 [  edgetooltip="Body->email" color="#c0c0c0" ];
+	obj_0xf6d570 -> obj_0x11f9740 [  edgetooltip="Body->parts" color="#ff0000" ];
+	obj_0x11fb000 -> obj_0xf6d570 [  edgetooltip="Body->next" color="#008000" ];
+	{ rank=same obj_0x11fb000 obj_0xf6d570 };
+	obj_0x11cd320 -> obj_0x11fb000 [  edgetooltip="Body->parts" color="#ff0000" ];
+	obj_0x11cd0c0 -> obj_0x11cd320 [  edgetooltip="Email->body" color="#c0c0c0" ];
+	obj_0x11cd0c0 -> obj_0x11cd1c0 [  edgetooltip="Email->env" color="#c0c0c0" ];
+	{ rank=same obj_0x11cd0c0 obj_0x11cd1c0 };
+
+}

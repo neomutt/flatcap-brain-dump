@@ -1,0 +1,107 @@
+Minor changes to:
+count_body_parts()
+index_format_str()
+
+$attribution
+$forward_attribution_intro
+$forward_attribution_trailer
+$forward_format
+$indent_string
+$post_indent_string
+
+M
+
+| Expando | Description                                                        |
+| ------- | :----------------------------------------------------------------- |
+| `%b`    | Filename of the original message folder (think mailbox)            |
+| `%B`    | The list to which the email was sent, or else the folder name (%b) |
+| `%m`    | Total number of message in the mailbox                             |
+
+EV
+	| %C     | Current message number
+	| %e     | Current message number in thread
+	| %E     | Number of messages in current thread
+	| %J     | Message tags (if present, tree unfolded, and != parent's tags)
+	| %M     | Number of hidden messages if the thread is collapsed
+	| %Y     | 'X-Label:' field (if present, tree unfolded, and != parent's x-label)
+
+
+```sh
+# Message to start a reply, 'On DATE, PERSON wrote:'
+set attribution = "On %d, %n wrote:"
+
+# Prefix message for forwarded messages
+set forward_attribution_intro = "----- Forwarded message from %f -----"
+
+# Suffix message for forwarded messages
+set forward_attribution_trailer = "----- End forwarded message -----"
+
+# printf-like format string to control the subject when forwarding a message
+set forward_format = "[%a: %s]"
+
+# String used to indent 'reply' text
+set indent_string = "> "
+
+# Suffix message to add after reply text
+set post_indent_string = ""
+```
+
+
+attach_forward_bodies()
+attach_forward_msgs()
+attach_include_reply()
+include_header()
+mutt_attach_forward()
+mutt_forward_intro()
+mutt_forward_trailer()
+mutt_make_attribution()
+mutt_make_forward_subject()
+mutt_make_post_indent()
+
+attach_forward_bodies ($indent_string)
+	mutt_make_forward_subject
+	mutt_forward_intro
+	mutt_make_string
+	include_header
+	mutt_forward_trailer
+
+attach_forward_msgs
+	mutt_forward_intro
+	mutt_forward_trailer
+	mutt_make_forward_subject
+
+attach_include_reply
+	mutt_make_attribution
+	mutt_make_post_indent
+
+include_header ($indent_string)
+	mutt_make_string
+
+mutt_attach_forward
+	attach_forward_msgs
+	attach_forward_bodies
+
+mutt_forward_intro ($forward_attribution_intro)
+	mutt_make_string
+
+mutt_forward_trailer ($forward_attribution_trailer)
+	mutt_make_string
+
+mutt_make_attribution ($attribution)
+	mutt_make_string
+
+mutt_make_forward_subject ($forward_format)
+	mutt_make_string
+
+mutt_make_post_indent ($post_indent_string)
+	mutt_make_string
+
+
+mutt_attach_forward
+	attach_forward_msgs
+	attach_forward_bodies
+		mutt_make_forward_subject
+		mutt_forward_intro
+		mutt_forward_trailer
+			mutt_make_string
+				index_format_str

@@ -1,0 +1,198 @@
+Functions:
+	<group-alternatives>
+	<group-multilingual>
+	<ungroup>
+
+	The two 'group's should behave the same way, except that 'multilingual' will do extra checks.
+
+Test cases
+	ten attachments (apple, banana, cherry, damson, elderberry, fig, guava, haw, ilama, jackfruit)
+
+Degenerate <group>
+	No tagged -- fail, min 2
+	One tagged -- fail, min 2
+	No group -- fail, not a group
+
+Simple <group>
+	tag A+B+C+D (start of set), <group>
+		set occupies original position of A
+	tag C+D+E+F (middle of set), <group>
+		set occupies original position of C
+	tag G+H+I+J (end of set), <group>
+		set occupies original position of G
+	tag A+B+C+D+E+F+G+H+I+J (entire set), <group>
+		set occupies original position of A
+
+Complex <group>
+	Separate Singles
+		tag A+C+E+G (at start), <group>
+			set occupies original position of A
+		tag C+D+G+H (in middle), <group>
+			set occupies original position of C
+		tag E+F+I+J (at end), <group>
+			set occupies original position of E
+
+	Separate Pairs
+		tag A+B+E+F (at start), <group>
+			set occupies original position of A
+		tag C+D+G+H (in middle), <group>
+			set occupies original position of C
+		tag E+F+I+J (at end), <group>
+			set occupies original position of E
+
+Multiple <group>
+	Separate Groups
+		tag A+B+C, <group>, tag F+G+H, <group> (start, middle)
+		tag C+D+E, <group>, tag H+I+J, <group> (middle, end)
+		tag A+B, <group>, tag D+E, <group>, tag I+J, <group> (start, middle, end)
+
+	Adjacent Groups
+		tag A+B+C, <group>, tag D+E+F, <group>
+		tag E+F+G, <group>, tag H+I+J, <group>
+		tag A+B+C+D+E, <group>, tag F+G+H+I+J, <group>
+		tag A+B, <group>, tag C+D, <group>, tag E+F, <group>, tag G+H, <group>, tag I+J, <group>,
+
+Nested <group>
+	Simple (start, middle, end)
+		tag A+B+C+D+E, <group>, tag A+B+C, <group> (start)
+		tag A+B+C+D+E, <group>, tag B+C+D, <group> (middle)
+		tag A+B+C+D+E, <group>, tag C+D+E, <group> (end)
+
+		tag D+E+F+G+H, <group>, tag D+E+F, <group> (start)
+		tag D+E+F+G+H, <group>, tag E+F+G, <group> (middle)
+		tag D+E+F+G+H, <group>, tag F+G+H, <group> (end)
+
+		tag F+G+H+I+J, <group>, tag F+G+H, <group> (start)
+		tag F+G+H+I+J, <group>, tag G+H+I, <group> (middle)
+		tag F+G+H+I+J, <group>, tag H+I+J, <group> (end)
+
+	Multiple
+		tag A+B+C+D+E+F+G+H+I+J, <group>, tag B+C+D+E+F+G+H+I, <group>, tag C+D+E+F+G+H, <group>, tag D+E+F+G, <group>, tag E+F, <group>
+
+Move <group>
+	Top-level groups
+		tag A+B+C+D (start), <group>, select Group(ABCD), <move-up> -- fail
+		tag A+B+C+D (start), <group>, select Group(ABCD), <move-down> -- success
+
+		tag C+D+E+F (middle), <group>, select Group(CDEF), <move-up> -- success
+		tag C+D+E+F (middle), <group>, select Group(CDEF), <move-down> -- success
+
+		tag G+H+I+J (end), <group>, select Group(GHIJ), <move-up> -- success
+		tag G+H+I+J (end), <group>, select Group(GHIJ), <move-down> -- fail
+
+		tag A+B+C+D+E+F+G+H+I+J (entire set), select Group(ABCDEFGHIJ), <group>, <move-up> -- fail
+		tag A+B+C+D+E+F+G+H+I+J (entire set), select Group(ABCDEFGHIJ), <group>, <move-down> -- fail
+
+	Nested groups
+		tag A+B+C+D+E, <group>, tag A+B+C (start), <group>, select Group(ABC), <move-up> -- fail
+		tag A+B+C+D+E, <group>, tag A+B+C (start), <group>, select Group(ABC), <move-down> -- success
+
+		tag A+B+C+D+E, <group>, tag B+C+D (middle), <group>, select Group(BCD), <move-up> -- success
+		tag A+B+C+D+E, <group>, tag B+C+D (middle), <group>, select Group(BCD), <move-down> -- success
+
+		tag A+B+C+D+E, <group>, tag C+D+E (end), <group>, select Group(CDE), <move-up> -- success
+		tag A+B+C+D+E, <group>, tag C+D+E (end), <group>, select Group(CDE), <move-down> -- fail
+
+Simple <ungroup>
+	Simple <group>
+		tag A+B+C+D, <group>, select Group(ABCD), <ungroup>
+		tag C+D+E+F, <group>, select Group(CDEF), <ungroup>
+		tag G+H+I+J, <group>, select Group(GHIJ), <ungroup>
+		tag A+B+C+D+E+F+G+H+I+J, <group>, select Group(ABCDEFGHIJ), <ungroup>
+
+	Multiple <group>
+		Separate Groups
+			tag A+B+C, <group>, tag F+G+H, <group>, select Group(ABC), <ungroup>
+			tag A+B+C, <group>, tag F+G+H, <group>, select Group(FGH), <ungroup>
+
+			tag C+D+E, <group>, tag H+I+J, <group>, select Group(CDE), <ungroup>
+			tag C+D+E, <group>, tag H+I+J, <group>, select Group(HIJ), <ungroup>
+
+			tag A+B, <group>, tag D+E, <group>, tag I+J, <group>, select Group(AB), <ungroup>
+			tag A+B, <group>, tag D+E, <group>, tag I+J, <group>, select Group(DE), <ungroup>
+			tag A+B, <group>, tag D+E, <group>, tag I+J, <group>, select Group(IJ), <ungroup>
+
+		Adjacent Groups
+			tag A+B+C, <group>, tag D+E+F, <group>, select Group(ABC), <ungroup>
+			tag A+B+C, <group>, tag D+E+F, <group>, select Group(DEF), <ungroup>
+
+			tag E+F+G, <group>, tag H+I+J, <group>, select Group(EFG), <ungroup>
+			tag E+F+G, <group>, tag H+I+J, <group>, select Group(HIJ), <ungroup>
+
+			tag A+B+C+D+E, <group>, tag F+G+H+I+J, <group>, select Group(ABCDE), <ungroup>
+			tag A+B+C+D+E, <group>, tag F+G+H+I+J, <group>, select Group(FGHIJ), <ungroup>
+
+
+	Nested <group>
+		Simple
+			tag A+B+C+D+E, <group>, tag A+B+C, <group>, select Group(ABC), <ungroup>
+			tag A+B+C+D+E, <group>, tag B+C+D, <group>, select Group(BCD), <ungroup>
+			tag A+B+C+D+E, <group>, tag C+D+E, <group>, select Group(CDE), <ungroup>
+
+---
+
+add new attachment -- to WHERE?
+	top-level, end, always
+
+remove attachments -- what about empty groups?
+	is a single attach in a group ok?
+		yes
+	empty groups will be automatically removed
+
+promoting attachments into groups
+	tag attachment and group
+		needn't be at same level
+		multiple attachments, but only one group
+
+demoting attachments
+	elide empty group, if nec
+
+<up>, <down> (change order)
+	what about non-contiguous tagged?
+		make contiguous and move?
+
+<left>, <right> (change depth)
+	<left> demote is simple
+	if GROUP1, ATTACH, GROUP2, select ATTACH, <right>
+		which group is it promoted to?
+		must be previous group (add to end)
+
+postpone email, restore
+	is grouping preserved?
+
+bindings
+	<up>           ->  <previous-entry>
+	<down>         ->  <next-entry>
+	<left>         ->  ???
+	<right>        ->  ???
+	<shift-up>     ->  <move-up>
+	<shift-down>   ->  <move-down>
+	<shift-left>   ->  <demote-attach>  (move OUT of group)
+	<shift-right>  ->  <promote-attach> (move INTO   group)
+
+other functions?
+	move into next group?
+	move to parent of group?
+	<home>
+	<shift-home>
+
+Generic functions that might apply to compose attachments
+	<first-entry>     OP_FIRST_ENTRY
+	<last-entry>      OP_LAST_ENTRY
+	<next-page>       OP_NEXT_PAGE		next group? (at same level)
+	<previous-page>   OP_PREV_PAGE		previous group? (at same level)
+	<top-page>        OP_TOP_PAGE		first entry in group?
+	<bottom-page>     OP_BOTTOM_PAGE	last entry in group?
+
+all per-attachment functions should work as normal
+
+OP_DELETE
+	attachment -- delete attachment
+	group -- delete group
+		delete *entire* group?
+		delete group, but promote children?
+
+OP_TAG_THREAD
+	tag all attachments in a group
+	or all *items* at the current *level*
+

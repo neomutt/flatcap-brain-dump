@@ -1,0 +1,291 @@
+## Overview
+
+This is a list of existing security features of NeoMutt and a large number of proposed improvements.
+
+NeoMutt can sign and/or encrypt emails.
+While this adds security to the **message**, the headers could be tampered with.
+Many of the ideas below help to protect against this, or highlight when it happens.
+
+**Developers**: Some of them already have proofs-of-concept that you can try out.
+
+There's a lot to take in.
+Feel free to ask lots of questions and let us know your thoughts.
+
+Thanks! :heart:
+
+## Existing Feature
+
+### `*01` Hidden Subject
+
+When NeoMutt encrypts an email, it has a feature to hide the `Subject:`.
+The headers will contain, say: `Subject: ...` and the real subject will be put in the encrypted body.
+
+This makes it harder for eavesdroppers to follow a conversation.
+
+**See also** `*09`
+
+This feature is controlled by the config:
+
+```sh
+# Display protected headers (Memory Hole) in the pager
+set crypt_protected_headers_read    = yes
+# Save the cleartext Subject with the headers
+set crypt_protected_headers_save    = no
+# Use this as the subject for encrypted emails
+set crypt_protected_headers_subject = "..."
+# Generate protected header (Memory Hole) for signed and encrypted emails
+set crypt_protected_headers_write   = no
+```
+
+## Proposed Features
+
+### `*02` Encryption Info Block
+
+**Pull Request**: #4221
+
+Add a block of information to the Pager showing all the encryption recipients.
+
+```
+Recipient: RSA key, ID 5678567856785678
+```
+
+Currently, this shows a list of encryption **sub-keys**.
+These sub-keys are unique and can be used to look up the user's main key, but they aren't immediately recognisable.
+
+**Future improvements**:
+- Use the sub-key to lookup the main key
+- Use the main key to lookup the user's name and email address
+
+(these steps haven't been tested)
+
+This feature is controlled by the config:
+
+```sh
+set crypt_encryption_info = no
+```
+
+### `*03` Encryption Key/Recipient Check
+
+This would depend on `*02` and looking up the user's email address
+
+Warn the user when an encryption recipient isn't in one of the address fields.
+
+```
+[-- Warning: owner of RSA key, ID 1234123412341234 is not a recepient --]
+```
+
+Looking up the user's real name / email address _could_ be slow (untested).
+
+### `*04`Encryption Recipient/Key Check
+
+This would depend on `*02` and looking up the user's email address
+
+Warn the user when a recipient of the email doesn't have a matching encryption key.
+
+```
+[-- Warning: recipient <bob@example.com> cannot decrypt the message --]
+```
+
+Looking up the user's real name / email address _could_ be slow (untested).
+
+### `*05` Remove Padding Lines
+
+**Confirmed**: See [devel/security](https://github.com/neomutt/neomutt/tree/devel/security) #4243, #4255
+
+Don't display padding around the message, in the Pager.
+
+NeoMutt prints a blank line before and after the message body.
+Remove them, so that what's displayed matches what's signed/encrypted.
+
+```
+[-- The following data is PGP/MIME signed --]
+
+Body body
+body body body
+body
+
+[-- End of PGP/MIME signed data --]
+```
+
+### `*06` Force Blank Line After Mime Header
+
+**Confirmed**: See [devel/security](https://github.com/neomutt/neomutt/tree/devel/security) #4247, #4255
+
+The Mime header block can contain zero or more fields.
+However many fields there are (even zero), they are always followed by a blank line.
+
+This means the user can distinguish between fields that are hidden and zero fields.
+
+```
+[-- The following data is PGP/MIME signed --]
+Subject: Foo
+
+Body body
+body body body
+body
+[-- End of PGP/MIME signed data --]
+```
+
+### `*07` Weeding the Crypto Headers
+
+Optionally hide some of the protected headers.
+
+NeoMutt performs "weeding" (filtering) on the email headers.
+The `ignore` and `unignore` commands tell NeoMutt which to hide or show.
+
+These could be extended to cover the protected headers in the signed/encrypted block.
+This feature would be controlled by,
+
+```sh
+set crypt_protected_headers_weed = yes
+```
+
+### `*08` Hide Bcc
+
+Encrypting to a `Bcc` should use a "hidden recipient".
+
+When `gpg` encrypts, it can embed the key fingerprint in the text.
+Anyone who has the encrypted text, can tell who it's encrypted to.
+
+```
+Recipient: RSA key, ID 1234123412341234
+```
+
+If you send an email `To: Jim` and `Bcc: Bob`, then Jim can infer that Bob received the email too.
+
+By telling `gpg` to use 'hidden recipients', then key isn't visible.
+This is an improvement, but Jim will still know that there's another recipient.
+
+A more thorough solution, and much more work, would be to have NeoMutt send a separate email to each of the `Bcc:` list.
+
+**See also**: `*02` Encryption Info Block
+
+### `*09` Protect Address Lists
+
+Save a copy of any address lists, e.g. `To:`, `Cc:` in the signed/encrypted block.
+
+The headers of an email aren't protected and could be altered by a malicious agent.
+When you reply to an email, you can't be certain that everyone was really an intended recipient.
+
+**See also**:
+- `*12` Warning on Tampering
+- `*07` Weeding the Crypto Headers
+
+### `*10` Protect In-Reply-To
+
+Save a copy of any the `In-Reply-To:` in the signed/encrypted block.
+
+The `In-Reply-To:` field contains sensitive fields.
+If an attacker were to alter them, it could mislead the recipient.
+
+**See also**: `*09` Protect Address Lists
+
+### `*11` Use Protected Fields
+
+Unprotected fields shouldn't be trusted when replying.
+
+If an email's headers have been tampered with, it should still be possible to reply to the email using the protected values.
+
+If the user has already been warned, then the correct values of the fields should be used.
+
+**Note**: Until the message has been opened, it won't be possible to check for tampering.
+
+The Index needs to display the protected values as soon as the Pager has read them.
+
+### `*12` Warning on Tampering
+
+Check the header fields against the protected copy in the signed/encrypted block.
+
+Display a warning in the Pager:
+
+```
+[-- Warning: the header field 'Reply-To' has been tampered with --]
+```
+
+What should we do with this info?
+
+Should we:
+- Highlight the bad field in the headers?
+
+- Leave the original header intact?
+  (For the user to examine)
+
+- Overwrite the header?
+  Keep a `Subject-Orig:`?
+  (So we can warn every time the email is read)
+
+**See also**: `*15` Colours
+
+### `*13` Phishing Protection
+
+Highlight email addresses that could be misleading.
+
+**See also**: #4233 [Phishing Protection](https://github.com/neomutt/neomutt/discussions/4233)
+
+These two addresses are not the same, but in many fonts they look identical.
+```
+info@apple.com  plain ASCII
+info@аррӏе.com  lower case cyrillic
+```
+
+Mark any addresses that aren't entirely ASCII with they're PunyCode equivalent.
+Users can create a list of known safe addresses.
+
+### `*14` Pager Navigation
+
+These features could potentially add a lot of header information to an Email.
+
+We want to encourage more people to use the features, but we don't want to get in the way of reading the email.
+
+Currently, NeoMutt has functions, `<skip-headers>` and `<skip-quoted>`.
+We could alter `<skip-headers>` to step between Mime blocks too.
+
+The top of the screen displays:
+e.g.
+- Start: Envelope
+- `<skip-headers>`: First Mime block
+- `<skip-headers>`: Second Mime block (or no change)
+
+See also: `*16` Compact Display
+
+### `*15` Colours
+
+Use colour to highlight errors, warnings, or correct info.
+
+Using `gpgme` is the preferred way to handle signing/encryption.
+(`set crypt_use_gpgme = yes`)
+
+It **knows** (so NeoMutt knows) when a signature is bad, etc.
+Some old NeoMutt themes had regexes to match and colour "Good signature" / "Bad signature".
+
+Should we create some colours for these common cases?
+
+Currently, all the `[-- ... --]` type headers are coloured with `color attachment`.
+Do we want a separate `color crypto`?
+
+Vim has the ability to link colours together (NeoMutt doesn't, yet :-)
+e.g.
+```
+highlight link Folded Comment
+```
+
+This might allow linking `color crypto_warning` to `color warning`, etc
+
+### `*16` Compact Display
+
+Display less information, without compromising security.
+
+Most users will never see a forged email, but we still want them to enable these safety features.
+This means making the displayed information very quick to parse visually, or very compact.
+
+For a normal email, all the protected fields will be the same as the email header fields.
+In this case, it makes sense **not** to show one of the sets.
+If we hide the protected fields, we need a way to show that the header fields have been validated.
+
+We could define some new colours for the various states: Valid, Unknown, Invalid.
+
+Alternatively, NeoMutt already uses quite a few `*_chars` config options as flags.
+This would allow custom text markers (e.g. using NerdFonts).
+
+Or both!
+

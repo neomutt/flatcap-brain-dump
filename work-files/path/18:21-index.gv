@@ -1,0 +1,187 @@
+digraph neomutt
+{
+
+	graph [
+		rankdir="TB"
+		nodesep="0.5"
+		ranksep="0.5"
+	];
+
+	node [
+		shape="plain"
+	];
+
+	edge [
+		penwidth="4.5"
+		arrowsize="1.0"
+		color="#c0c0c0"
+	];
+
+	obj_0x1f84550 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Account</b></font> <font point-size="12">(0x1f84550)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">MAILDIR</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">name</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NULL]</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x1f89770 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" bgcolor="#80ff80" port="top"><font color="#000000" point-size="20"><b>MN</b></font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x1f84300 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Mailbox</b></font> <font point-size="12">(0x1f84300)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">MAILDIR</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">account</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#80ffff">0x1f84550</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">msg_count</td>
+			<td border="0">=</td>
+			<td border="0" align="left">4</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x1f83d00 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ff80ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Path</b></font> <font point-size="12">(0x1f83d00)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">MAILDIR</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">desc</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"Neo"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">pretty</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NULL]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">orig</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"/home/mutt/mail/linode/neo"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">canon</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"/home/mail/linode/neo"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">flags</td>
+			<td border="0">=</td>
+			<td border="0" align="left">resolved tidy canonical </td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x1f8a050 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" bgcolor="#80ff80" port="top"><font color="#000000" point-size="20"><b>MN</b></font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x1f89e00 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Mailbox</b></font> <font point-size="12">(0x1f89e00)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">MAILDIR</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">account</td>
+			<td border="0">=</td>
+			<td border="0" align="left" bgcolor="#80ffff">0x1f84550</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">msg_count</td>
+			<td border="0">=</td>
+			<td border="0" align="left">426</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x1f89d00 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ff80ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Path</b></font> <font point-size="12">(0x1f89d00)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">MAILDIR</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">desc</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"Neo.GitHub"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">pretty</td>
+			<td border="0">=</td>
+			<td border="0" align="left">[NULL]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">orig</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"/home/mutt/mail/linode/neo.github"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">canon</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"/home/mail/linode/neo.github"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">flags</td>
+			<td border="0">=</td>
+			<td border="0" align="left">resolved tidy canonical </td>
+		</tr>
+		</table>>
+	];
+
+	{ rank=same obj_0x1f84550 }
+
+	obj_0x1f84550 -> obj_0x1f89770 [  edgetooltip="Account->mailboxes" ];
+	obj_0x1f84300 -> obj_0x1f83d00 [  edgetooltip="Mailbox->path" ];
+	obj_0x1f89770 -> obj_0x1f84300 [  edgetooltip="MailboxNode->mailbox" ];
+	{ rank=same obj_0x1f89770 obj_0x1f84300 obj_0x1f83d00 };
+	obj_0x1f89e00 -> obj_0x1f89d00 [  edgetooltip="Mailbox->path" ];
+	obj_0x1f8a050 -> obj_0x1f89e00 [  edgetooltip="MailboxNode->mailbox" ];
+	{ rank=same obj_0x1f8a050 obj_0x1f89e00 obj_0x1f89d00 };
+	obj_0x1f89770 -> obj_0x1f8a050 [  edgetooltip="MailboxNode->next" ];
+
+}

@@ -1,0 +1,93 @@
+index/index.c:618:             menu_adjust(menu);
+
+index/functions.c:2662:        menu_current_middle(priv->menu);
+
+index/index.c:637:             menu_redraw_current(menu);
+
+index/index.c:602:             menu_redraw_full(menu);
+
+index/index.c:629:             menu_redraw_index(menu);
+
+attach/recvattach.c:465:       menu_redraw(menu);
+
+index/index.c:633:             menu_redraw_motion(menu);
+
+compose/attach.c:244:          menu_window_new(MENU_COMPOSE, NeoMutt->sub);
+gui/simple.c:141:              menu_window_new(mtype, NeoMutt->sub);
+index/index.c:653:             menu_window_new(MENU_INDEX, NeoMutt->sub);
+
+alias/dlg_alias.c:298:         menu_tagging_dispatcher(menu->win, op);
+alias/dlg_query.c:366:         menu_tagging_dispatcher(menu->win, op);
+attach/dlg_attach.c:585:       menu_tagging_dispatcher(menu->win, op);
+autocrypt/dlg_autocrypt.c:355: menu_tagging_dispatcher(menu->win, op);
+browser/dlg_browser.c:1523:    menu_tagging_dispatcher(priv->menu->win, op);
+compose/dlg_compose.c:345:     menu_tagging_dispatcher(menu->win, op);
+history/dlg_history.c:164:     menu_tagging_dispatcher(menu->win, op);
+ncrypt/dlg_gpgme.c:573:        menu_tagging_dispatcher(menu->win, op);
+ncrypt/dlg_pgp.c:581:          menu_tagging_dispatcher(menu->win, op);
+ncrypt/dlg_smime.c:225:        menu_tagging_dispatcher(menu->win, op);
+pattern/dlg_pattern.c:346:     menu_tagging_dispatcher(menu->win, op);
+postpone/dlg_postpone.c:245:   menu_tagging_dispatcher(menu->win, op);
+
+alias/dlg_alias.c:183:         menu_set_index(menu, index - 1);
+alias/functions.c:191:         menu_set_index(menu, index + 1);
+alias/functions.c:379:         menu_set_index(menu, index);
+attach/functions.c:324:        menu_set_index(priv->menu, index);
+attach/functions.c:384:        menu_set_index(priv->menu, index);
+attach/functions.c:415:        menu_set_index(priv->menu, index);
+attach/recvattach.c:462:       menu_set_index(menu, b->aptr->num);
+attach/recvattach.c:522:       menu_set_index(menu, last);
+attach/recvattach.c:997:       menu_set_index(menu, index);
+attach/recvattach.c:1013:      menu_set_index(menu, index);
+attach/recvattach.c:1229:      menu_set_index(menu, menu->max - 1);
+browser/dlg_browser.c:1006:    menu_set_index(menu, (menu->max > 1));
+browser/dlg_browser.c:1010:    menu_set_index(menu, 0);
+browser/dlg_browser.c:1029:    menu_set_index(menu, menu->max - 1);
+browser/dlg_browser.c:1031:    menu_set_index(menu, 0);
+browser/dlg_browser.c:1107:    menu_set_index(menu, ARRAY_FOREACH_IDX);
+browser/functions.c:202:       menu_set_index(priv->menu, index + 1);
+browser/functions.c:324:       menu_set_index(priv->menu, index);
+browser/functions.c:1079:      menu_set_index(priv->menu, priv->last_selected_mailbox);
+compose/dlg_compose.c:238:     menu_set_index(menu, menu->max - 1);
+compose/dlg_compose.c:242:     menu_set_index(menu, 0);
+compose/functions.c:437:       menu_set_index(menu, actx->vcount - 1);
+compose/functions.c:1394:      menu_set_index(shared->adata->menu, finalidx);
+compose/functions.c:1428:      menu_set_index(shared->adata->menu, previdx);
+index/dlg_index.c:206:         menu_set_index(menu, i);
+index/dlg_index.c:401:         menu_set_index(menu, new_index);
+index/dlg_index.c:577:         menu_set_index(menu, index);
+index/dlg_index.c:698:         menu_set_index(menu, find_first_message(shared->mailbox_view));
+index/dlg_index.c:706:         menu_set_index(menu, 0);
+index/dlg_index.c:1095:        menu_set_index(priv->menu, find_first_message(shared->mailbox_view));
+index/functions.c:381:         menu_set_index(priv->menu, index);
+index/functions.c:412:         menu_set_index(menu, index);
+index/functions.c:628:         menu_set_index(priv->menu, mutt_thread_next_unread(shared->email));
+index/functions.c:943:         menu_set_index(priv->menu, e->vnum);
+index/functions.c:1054:        menu_set_index(priv->menu, e->vnum);
+index/functions.c:1177:        menu_set_index(priv->menu, index);
+index/functions.c:1181:        menu_set_index(priv->menu, mutt_collapse_thread(shared->email));
+index/functions.c:1251:        menu_set_index(priv->menu, 0);
+index/functions.c:1262:        menu_set_index(priv->menu, i);
+index/functions.c:1317:        menu_set_index(priv->menu, e->vnum);
+index/functions.c:1536:        menu_set_index(priv->menu, saved_current);
+index/functions.c:1556:        menu_set_index(priv->menu, index);
+index/functions.c:1609:        menu_set_index(priv->menu, index);
+index/functions.c:1643:        menu_set_index(priv->menu, index);
+index/functions.c:1699:        menu_set_index(priv->menu, index);
+index/functions.c:1787:        menu_set_index(priv->menu, index);
+index/functions.c:1882:        menu_set_index(priv->menu, i);
+index/functions.c:1899:        menu_set_index(priv->menu, find_first_message(shared->mailbox_view));
+index/functions.c:2030:        menu_set_index(priv->menu, index);
+index/functions.c:2067:        menu_set_index(priv->menu, index - 1);
+index/functions.c:2278:        menu_set_index(priv->menu, index);
+index/functions.c:2647:        menu_set_index(priv->menu, e2->vnum);
+index/functions.c:2659:        menu_set_index(priv->menu, e2->vnum);
+index/functions.c:2720:        menu_set_index(priv->menu, e->vnum);
+index/functions.c:2726:        menu_set_index(priv->menu, e->vnum);
+index/functions.c:2742:        menu_set_index(priv->menu, e->vnum);
+index/functions.c:2945:        menu_set_index(priv->menu, index);
+pager/message.c:419:           menu_set_index(menu, menu_get_index(menu));
+pattern/pattern.c:288:         menu_set_index(menu, 0);
+postpone/functions.c:86:       menu_set_index(menu, index + 1);
+postpone/functions.c:150:      menu_set_index(pd->menu, index);
+

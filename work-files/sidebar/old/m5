@@ -1,0 +1,42 @@
+sidebar_short_path      | Abbreviate the paths using $folder                 
+sidebar_folder_indent   | Indent nested folders                              
+sidebar_delim_chars     | Characters that separate nested folders            
+sidebar_component_depth | Strip leading path components from sidebar folders 
+sidebar_indent_string   | Indent nested folders using this string            
+
+mailbox
+	name (plain)
+	name (nestable)
+	path
+
+type
+	imap
+	notmuch
+	maildir
+
+sidebar_short_path
+	yes
+	no
+
+folder
+	unset
+	match
+	no match
+
+sidebar_folder_indent
+	yes
+	no
+
+sidebar_delim_chars
+	unset
+	set
+
+sidebar_component_depth
+	0
+	1
+	2
+
+sidebar_indent_string
+	unset
+	"  "
+

@@ -1,0 +1,28 @@
+Simple Pager Architecture
+
+Windows
+	DlgSpager		SimplePagerDialogData
+		WindowSpager	SimplePagerWindowData
+		SimpleBar	SimplePagerSbarData
+
+Notify
+	^ AllDialogs
+	| DlgSpager	NT_WINDOW	EventWindow
+	| WinSpager	NT_WINDOW	EventWindow
+	| Spager	NT_SPAGER	EventSimplePager
+	| PagedFile	NT_PFILE	EventPagedFile
+
+Events (WinSpager)
+
+move - view has moved
+search - search: started, changed, cleared, revealed
+text - changed, e.g. conceal, wrapping change, etc
+color - colour changed (does anyone care?)
+
+size - NO, NT_WINDOW instead
+
+Observers
+
+Window: Window, Config, Colour, PagedFile
+Dialog: Window, Config, Colour, Spager
+

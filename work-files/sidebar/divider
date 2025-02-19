@@ -1,0 +1,36 @@
+Default empty
+
+ASCII	STRING	DISPLAY
+y	empty	ascii-|
+y	ascii	user
+y	utf8	ascii-|
+y	bad	ascii-|
+n	empty	utf8-|
+n	ascii	user
+n	utf8	user
+n	bad	utf8-|
+
+
+Default ascii-|
+
+ASCII	STRING	DISPLAY
+y	empty	empty
+y	ascii	user
+y	utf8	ascii-|
+y	bad	ascii-|
+n	empty	empty
+n	ascii	utf8-|
+n	utf8	user
+n	bad	utf8-|
+
+
+  Aftr| Ay Ay Ay An An An 
+Befo  | Se Sa Su Se Sa Su 
+------+-------------------
+Ay Se | .  .  .  .  .  .
+Ay Sa | .  .  .  .  .  .
+Ay Su | .  .  .  .  .  .
+An Se | .  .  .  .  .  .
+An Sa | .  .  .  .  .  .
+An Su | .  .  .  .  .  .
+

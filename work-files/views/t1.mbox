@@ -1,0 +1,2243 @@
+From neomutt-devel-bounces@neomutt.org Wed Feb 10 10:59:26 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 8B6D41A37
+	for <flatcap-mail@flatcap.org>; Wed, 10 Feb 2021 10:59:26 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id sooJz81luarH for <flatcap-mail@flatcap.org>;
+	Wed, 10 Feb 2021 10:59:25 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id E4778D3A
+	for <rich@flatcap.org>; Wed, 10 Feb 2021 10:59:24 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 11AAwKog012689
+	for <rich@flatcap.org>; Wed, 10 Feb 2021 11:58:21 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 11AAwJjT012684
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Wed, 10 Feb 2021 11:58:19 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 11AAwJtT025031
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 11:58:19 +0100
+X-Envelope-From: rich@flatcap.org
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from flatcap.org (flatcap.org [178.79.161.177])
+ by tamarau.in-berlin.de  with ESMTPS id 11AAwFP9022011
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 11:58:17 +0100
+Received: from localhost (localhost [127.0.0.1])
+ by flatcap.org (Postfix) with ESMTP id 973EE1A37
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 10:58:15 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+ by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id JkXJ1NaisLrZ for <neomutt-devel@neomutt.org>;
+ Wed, 10 Feb 2021 10:58:14 +0000 (GMT)
+Received: from laptop.flatcap.org (unknown [10.9.0.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by flatcap.org (Postfix) with ESMTPS id 92184D3A
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 10:58:14 +0000 (GMT)
+Date: Wed, 10 Feb 2021 10:58:14 +0000
+From: Richard Russon <rich@flatcap.org>
+To: Neomutt Developers <neomutt-devel@neomutt.org>
+Message-Id: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="b47cwmns4jfn3wfq"
+Content-Disposition: inline
+User-Agent: NeoMutt/20201127
+Subject: Renaming Config
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+Content-Length: 4885
+
+
+--b47cwmns4jfn3wfq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+I had a strange idea yesterday.
+
+I was trying to remember the name of a config item,
+but I couldn't remember if it had an underscore or not.
+
+Then I thought, "we should fix that".
+Here are my suggested renames
+
+| Old Name                   | New Name                     | Description                                             |
+| :------------------------- | :--------------------------- | :------------------------------------------------------ |
+| `askbcc`                   | `ask_bcc`                    | Ask the user for the blind-carbon-copy recipients       |
+| `askcc`                    | `ask_cc`                     | Ask the user for the carbon-copy recipients             |
+| `autoedit`                 | `auto_edit`                  | Skip the initial compose menu and edit the email        |
+| `confirmappend`            | `confirm_append`             | Confirm before appending emails to a mailbox            |
+| `confirmcreate`            | `confirm_create`             | Confirm before creating a new mailbox                   |
+| `crypt_autoencrypt`        | `crypt_auto_encrypt`         | Automatically PGP encrypt all outgoing mail             |
+| `crypt_autopgp`            | `crypt_auto_pgp`             | Allow automatic PGP functions                           |
+| `crypt_autosign`           | `crypt_auto_sign`            | Automatically PGP sign all outgoing mail                |
+| `crypt_autosmime`          | `crypt_auto_smime`           | Allow automatic SMIME functions                         |
+| `crypt_confirmhook`        | `crypt_confirm_hook`         | Prompt the user to confirm keys before use              |
+| `crypt_replyencrypt`       | `crypt_reply_encrypt`        | Encrypt replies to encrypted messages                   |
+| `crypt_replysignencrypted` | `crypt_reply_sign_encrypted` | Sign replies to encrypted messages                      |
+| `crypt_replysign`          | `crypt_reply_sign`           | Sign replies to signed messages                         |
+| `imap_servernoise`         | `imap_server_noise`          | Display server warnings as error messages               |
+| `include_onlyfirst`        | `include_only_first`         | Only include the first attachment when replying         |
+| `metoo`                    | `me_too`                     | Remove the user's address from the list of recipients   |
+| `pgp_autoinline`           | `pgp_auto_inline`            | Use old-style inline PGP messages                       |
+| `pgp_clearsign_command`    | `pgp_clear_sign_command`     | External command to inline-sign a message               |
+| `pgp_getkeys_command`      | `pgp_get_keys_command`       | External command to download a key for an email address |
+| `pgp_replyinline`          | `pgp_reply_inline`           | Reply using old-style inline PGP messages               |
+| `pop_checkinterval`        | `pop_check_interval`         | Interval between checks for new mail                    |
+| `realname`                 | `real_name`                  | Real name of the user                                   |
+| `spoolfile`                | `spool_file`                 | Inbox                                                   |
+| `ssl_usesystemcerts`       | `ssl_use_system_certs`       | Use CA certificates in the system-wide store            |
+| `use_8bitmime`             | `use_8bit_mime`              | Use 8-bit messages and ESMTP to send messages           |
+| `virtual_spoolfile`        | `virtual_spool_file`         | Use the first virtual mailbox as a spool file           |
+
+Alternate version
+    https://gist.github.com/flatcap/abcc4c03bd61c889a1ec57adf5badf34
+
+The old names would still work (the config systems supports "synonyms")
+See:
+    https://github.com/neomutt/neomutt/blob/master/mutt_config.c#L760
+
+What do you think?
+
+Cheers,
+    Rich / FlatCap
+
+--b47cwmns4jfn3wfq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEaa0dY2rCkuggZYwW68FQ5LXaY98FAmAjvEUACgkQ68FQ5LXa
+Y993Lg//YkPCsB+Aad2EY6Zlug1k+EjqNlHA4k1bmO9j9/Kv95yEqO4Wy4laBYAs
+oFuUs/gxce9aHR8h4ic1NHvXmp0G5BPRIK8rleKwAtN8Yvt68e0YQfbyDTWAyGUc
+SeySIO24de3Q4H8bTEo27cLqsPs1vA+xqoTsWyOq/omiBdo0WUyjswpzSmtfOF/y
+QQNm7vhXS35GqZ8wjcjWA9O6hcx1Ont7cZL5B9PGJHuPSsKJj9Tc5IFXgFyNC9Zj
+yhYI/1lDKLRzZvTF3wuiyqMCXqwB0Lum/Kv38DNjO5khBTnQMCJYYDzooy8TRWo9
+ys4ySCNzuU0yqOH3Oy3nScE0sdcP2nDdz6VmZCPh0j2Iwlwr4AvNzDYhdwDgWHPj
+WPtIYfAM/M+Y/QETDfFDz7m0tI7pSWa/gcX1U3fTQGxQWUq5I+jQk9HC0ci1ognk
+d5Co0Y/OylOYeuRpp+PuXlPl1gshBHGHNtc44zpqwT42o6mMEWujRgRvsO7sRTAb
+fzq5/+Nj0jQZS4ExLYeAG2sVrrTC17oGDdrHDXUgOKqiAt6hLymuUQMSrrBWe4zL
+4D29jGZbDzEy3/W6UoNPyZIjgSiTRI8xNLIbzRhTvRIr/nBP9Ej5oXtZ+JEwJjIZ
+8HWhWtVZJRrUtWV8s9vHgcTm05zOLpVxbbB9vqzVUun5lK7uNME=
+=5gxM
+-----END PGP SIGNATURE-----
+
+--b47cwmns4jfn3wfq--
+
+From rich@flatcap.org Thu Feb 11 12:41:14 2021
+Date: Thu, 11 Feb 2021 12:41:14 +0000
+From: Richard Russon <rich@flatcap.org>
+To: Neomutt Developers <neomutt-devel@neomutt.org>
+Subject: Re: Renaming Config [Help Wanted]
+Message-ID: <20210211124032.plu3fonqxhiwm7dy@laptop.flatcap.org>
+Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+User-Agent: NeoMutt/20210205
+Status: RO
+Content-Length: 403
+
+> Here are my suggested renames
+
+It seems the idea was quite popular.
+
+Would someone like to make it happen?
+
+The task should be pretty easy.
+
+I can point you in the right direction, but I don't have time much
+mentoring, at the moment, so you'll may need to work some things out for
+yourself.
+
+If you're interested, let me know (email or IRC).
+(#neomutt on irc.freenode.net)
+
+Cheers,
+    Rich / FlatCap
+
+From neomutt-devel-bounces@neomutt.org Thu Feb 11 12:42:27 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 869813650
+	for <flatcap-mail@flatcap.org>; Thu, 11 Feb 2021 12:42:27 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id fL_CttdlZ8EM for <flatcap-mail@flatcap.org>;
+	Thu, 11 Feb 2021 12:42:26 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id 7D3B9134B
+	for <rich@flatcap.org>; Thu, 11 Feb 2021 12:42:25 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 11BCfLhf028528
+	for <rich@flatcap.org>; Thu, 11 Feb 2021 13:41:22 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 11BCfJd7028501
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Thu, 11 Feb 2021 13:41:19 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 11BCfJM2024249
+ for <neomutt-devel@neomutt.org>; Thu, 11 Feb 2021 13:41:19 +0100
+X-Envelope-From: rich@flatcap.org
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from flatcap.org (flatcap.org [178.79.161.177])
+ by tamarau.in-berlin.de  with ESMTPS id 11BCfF7f029495
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Thu, 11 Feb 2021 13:41:16 +0100
+Received: from localhost (localhost [127.0.0.1])
+ by flatcap.org (Postfix) with ESMTP id 342D63650
+ for <neomutt-devel@neomutt.org>; Thu, 11 Feb 2021 12:41:15 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+ by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id MObEopBwwKxs for <neomutt-devel@neomutt.org>;
+ Thu, 11 Feb 2021 12:41:14 +0000 (GMT)
+Received: from laptop.flatcap.org (unknown [10.9.0.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by flatcap.org (Postfix) with ESMTPS id 2BBE7134B
+ for <neomutt-devel@neomutt.org>; Thu, 11 Feb 2021 12:41:14 +0000 (GMT)
+Date: Thu, 11 Feb 2021 12:41:13 +0000
+From: Richard Russon <rich@flatcap.org>
+To: Neomutt Developers <neomutt-devel@neomutt.org>
+Message-Id: <20210211124032.plu3fonqxhiwm7dy@flatcap.org>
+Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="qwfm5d5mblxwnndh"
+Content-Disposition: inline
+In-Reply-To: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+User-Agent: NeoMutt/20210205
+Subject: Re: Renaming Config [Help Wanted]
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+X-Status: A
+Content-Length: 1433
+
+
+--qwfm5d5mblxwnndh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+> Here are my suggested renames
+
+It seems the idea was quite popular.
+
+Would someone like to make it happen?
+
+The task should be pretty easy.
+
+I can point you in the right direction, but I don't have time much
+mentoring, at the moment, so you'll may need to work some things out for
+yourself.
+
+If you're interested, let me know (email or IRC).
+(#neomutt on irc.freenode.net)
+
+Cheers,
+    Rich / FlatCap
+
+--qwfm5d5mblxwnndh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEaa0dY2rCkuggZYwW68FQ5LXaY98FAmAlJekACgkQ68FQ5LXa
+Y9+O/BAAgJGi9YL8Czm/nOwbOFDh6jmERX/wnslHonFWFlBMDuMwd6yjKAWdFw3p
+kargmS2p81y5Mg9yEUkNf+H659zO9go0C81TSowqgIdpGccaNYSueDhZcq5qO2/p
+/cA/5ewHA+9dcBaKtX+od+zKxHB+wfu4uGDS6Gokpw0sEuch+qwJn4UvIpvE4kTO
+cYSNSBAUQPJiPEK/aVErPtOH3qFd1w6pWEinbyvnREPXGx1GhDQ/iCjuTFKjOcSb
+CRx9VwchSUtoEWEDSHBwTh+nqnPCuAPrnLv03JB1E6BjAsRap7QrqjYlg22NRhv+
++X72M/95ZrEFQX0s7So9QOQQBPv1lEtGg4wVtRa88utwPKCHf8aK8wQuvHxqJeba
+fsvZ91QRfw/xHwKr4z4YpIjm4h3jOUM+ksuAZiVU6pvhgLdQt5X3QvATt/gGdnwS
+O3dgQDG1FgOFuQP6EnFbwVR/ERYeMepntJ9+ed97Jo7UkX+ymPKYmz308brjNopf
+zSAaaoYS8z9djD3tG3l1bA7/rVOr0y4tvreKJrbnj3IC+p2ZGH0EEf9mRa+s9HeV
+7t1Btddk441vyZJ712iSn3bwTKx8fGQGSlOqPc0z7mXgxQMdhWmgKLhxMj8RTav6
+x4ROnJdbCNnxy8MltVKM4AOngccSphF/baDXIO8IiHl5Jbxqjn0=
+=vKwr
+-----END PGP SIGNATURE-----
+
+--qwfm5d5mblxwnndh--
+
+From rich@flatcap.org Thu Feb 11 13:32:36 2021
+Date: Thu, 11 Feb 2021 13:32:36 +0000
+From: Richard Russon <rich@flatcap.org>
+To: Neomutt Developers <neomutt-devel@neomutt.org>
+Subject: Re: Renaming Config [Help Wanted]
+Message-ID: <20210211133235.sxhky6lxnn7fe3vn@laptop.flatcap.org>
+Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+ <20210211124032.plu3fonqxhiwm7dy@flatcap.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210211124032.plu3fonqxhiwm7dy@flatcap.org>
+User-Agent: NeoMutt/20210205
+Status: RO
+Content-Length: 104
+
+> Would someone like to make it happen?
+
+@jindraj has snapped up this task.
+
+Cheers,
+    Rich / FlatCap
+
+From neomutt-devel-bounces@neomutt.org Thu Feb 11 13:33:47 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 34B7C3650
+	for <flatcap-mail@flatcap.org>; Thu, 11 Feb 2021 13:33:47 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id YTEMVg86nhFJ for <flatcap-mail@flatcap.org>;
+	Thu, 11 Feb 2021 13:33:45 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id 697C1134B
+	for <rich@flatcap.org>; Thu, 11 Feb 2021 13:33:45 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 11BDWfli007560
+	for <rich@flatcap.org>; Thu, 11 Feb 2021 14:32:41 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 11BDWeiF007555
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Thu, 11 Feb 2021 14:32:40 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 11BDWeZn005953
+ for <neomutt-devel@neomutt.org>; Thu, 11 Feb 2021 14:32:40 +0100
+X-Envelope-From: rich@flatcap.org
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from flatcap.org (flatcap.org [178.79.161.177])
+ by tamarau.in-berlin.de  with ESMTPS id 11BDWbqW013369
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Thu, 11 Feb 2021 14:32:38 +0100
+Received: from localhost (localhost [127.0.0.1])
+ by flatcap.org (Postfix) with ESMTP id DBB703650
+ for <neomutt-devel@neomutt.org>; Thu, 11 Feb 2021 13:32:36 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+ by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id EXdvuEmZN-NA for <neomutt-devel@neomutt.org>;
+ Thu, 11 Feb 2021 13:32:36 +0000 (GMT)
+Received: from laptop.flatcap.org (unknown [10.9.0.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by flatcap.org (Postfix) with ESMTPS id F1FB6134B
+ for <neomutt-devel@neomutt.org>; Thu, 11 Feb 2021 13:32:35 +0000 (GMT)
+Date: Thu, 11 Feb 2021 13:32:35 +0000
+From: Richard Russon <rich@flatcap.org>
+To: Neomutt Developers <neomutt-devel@neomutt.org>
+Message-Id: <20210211133235.sxhky6lxnn7fe3vn@flatcap.org>
+Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+ <20210211124032.plu3fonqxhiwm7dy@flatcap.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="gstq4zdwy53iqb4j"
+Content-Disposition: inline
+In-Reply-To: <20210211124032.plu3fonqxhiwm7dy@flatcap.org>
+User-Agent: NeoMutt/20210205
+Subject: Re: Renaming Config [Help Wanted]
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+Content-Length: 1134
+
+
+--gstq4zdwy53iqb4j
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+> Would someone like to make it happen?
+
+@jindraj has snapped up this task.
+
+Cheers,
+    Rich / FlatCap
+
+--gstq4zdwy53iqb4j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEaa0dY2rCkuggZYwW68FQ5LXaY98FAmAlMfMACgkQ68FQ5LXa
+Y98LVw/9G7UtXbZQ+AcgqS8zIR8Q05LfAw0Xq22XCDYWjxOgmIL4Wi95kDKWJDpo
+NiBnO2ZwTqBwjyswZWQ90DBrdaA+wWfgPXcZOoXQzT8iYUwagVZ15HHCnEKroguT
+GYS2A6PnybArWVdMPDilDUqp2k50EW1QwR7UKoIiJMYZ4dA08mXNg7UNG5IQszRb
++xU9JlEeplpLsn6TzYd08cdmfNmSG8xftP+ZHtdJKqPAJcrT8PTuKw0IpyzJGto7
+tuzrVgeRubbD+Lq9y5LJqKfno8p2/TaMcl9EdA0ueNNzJ1q9S5r6CbzOAEaadSD7
+WOpp3HK4zotteX1e30k1JY9hLCVjvwcdpLJP0sfI1FGalQZd/G5hTwEaEOVFp7c4
+kNEk6tFa3XnRTQ5jk2xyPCIwHavmzUkomeVHCWBBOZFI9KVAI6HyFMpPopiyJu+S
+wouE9Gbj/xpTc2CdLvhsRGMFFP9d3MY4jyTHZ7xq5O8H2+YGHqlT95fb4AAO17t2
+lb4dqI8o6a9K7crnUi+Pgfeel3KLokQvXQCCfndtLicD7PrccWUBtEYf2H/uXk44
+sfc3QsmolKN8d3nCdMgS5Fm11MPLVIgGOdafhYHGTXpGTRPhKcrKUmW5NvD3cbQC
+2PTgLvVI+3rDcwI9vaaaFPh/AGtrfszU1lxKyHP8pCi7zAng4iU=
+=Bebd
+-----END PGP SIGNATURE-----
+
+--gstq4zdwy53iqb4j--
+
+From neomutt-devel-bounces@neomutt.org Wed Feb 10 12:08:12 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id B4E501A37
+	for <flatcap-mail@flatcap.org>; Wed, 10 Feb 2021 12:08:12 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id tAoJqp2jEO7j for <flatcap-mail@flatcap.org>;
+	Wed, 10 Feb 2021 12:08:11 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id 45605D3A
+	for <rich@flatcap.org>; Wed, 10 Feb 2021 12:08:11 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 11AC77h7027948
+	for <rich@flatcap.org>; Wed, 10 Feb 2021 13:07:07 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 11AC76Mo027943
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Wed, 10 Feb 2021 13:07:06 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 11AC75Mo024202
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 13:07:05 +0100
+X-Envelope-From: guckes@kudu.in-berlin.de
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from kudu.in-berlin.de (kudu.in-berlin.de [192.109.42.123])
+ by tamarau.in-berlin.de  with ESMTPS id 11AC738W009638
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 13:07:03 +0100
+Received: from kudu.in-berlin.de (localhost [127.0.0.1])
+ by kudu.in-berlin.de (8.15.2/8.15.2/Debian-8+deb9u1) with ESMTP id
+ 11AC73Pn016728
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 13:07:03 +0100
+Received: (from guckes@localhost)
+ by kudu.in-berlin.de (8.15.2/8.15.2/Submit) id 11AC72CB016727
+ for neomutt-devel@neomutt.org; Wed, 10 Feb 2021 13:07:02 +0100
+Date: Wed, 10 Feb 2021 13:07:02 +0100
+From: Sven Guckes <neomutt-lists@guckes.net>
+To: neomutt-devel@neomutt.org
+Message-ID: <20210210120702.57phxm5jgmcn7fhz@guckes.net>
+Mail-Followup-To: neomutt-devel@neomutt.org
+References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="v4a7imv5wvpxgeyc"
+Content-Disposition: inline
+In-Reply-To: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+Subject: Re: Renaming Config - adding "Option:"
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+X-Status: A
+Content-Length: 2969
+
+
+--v4a7imv5wvpxgeyc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+* Richard Russon <rich@flatcap.org> [2021-02-10 12:44]:
+> I had a strange idea yesterday.
+> I was trying to remember the name of a config item,
+> but I couldn't remember if it had an underscore or not.
+> Then I thought, "we should fix that".
+> Here are my suggested renames ..
+> What do you think?
+
+| man neomuttrc | grep Type: -B 1 -A 0 | head -8
+|        abort_backspace
+|               Type: boolean
+| --
+|        abort_key
+|               Type: string
+| --
+|        abort_noattach
+|               Type: quadoption
+
+
+this lookup from the manual would be easier
+if all opton names were prefixed with "Option:".
+
+| man neomuttrc | grep Option:
+
+with this keyword it would not matter if
+the option name has an underscore or not.
+
+another idea:
+when you put both Option:
+and Type: onto the same line..
+
+| Option: abort_backspace Type: boolean
+| Option: abort_key       Type: string
+| Option: abort_noattach  Type: quadoption
+
+.. then grepping for a given Type: also gave
+you all the option names of the same type:
+
+| man neomuttrc | grep Type:.boolean
+
+unfortunately, adding the Defaults to the same line does
+not work well as typically the Strings are pretty long.
+
+| man neomuttrc | grep 'Default: "[^"]\{12,\}"'
+
+but maybe there are even easier ways for these lookups?
+
+Sven
+
+--v4a7imv5wvpxgeyc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQQbBAEBCAAdFiEEMs5WSG5tbW0z5To46rl/IAGFORsFAmAjzGQACgkQ6rl/IAGF
+ORsR/x8/dOPiqWrLeYNGUBiwjAh+Zi8a8U6bqeYS7K49DoqPjx5pUxkB30yaj1r7
+yWvFOSG/+1DNghaBbujs8EGkfPxA26cM3abByKJ1TvYbDmNi5OQR+u6gCOCUWpoK
+SfZ7Y6RU+DpsU8GFvj3M7UnVM7sKzCUNaNnIno3JDeL+FPjbnbXB8umMvx0Tqn5R
+/OQ6FY9vCXIXfchVm/WiyJWSliogRF4BUbzB6+83mtDEA4aTWtjI8PNmNr2HzPNc
+1n8SYCFyDRvdZLHYwjIj+fy7khUqzMxTmjgPe6G+yrMnffb3thJcEXXFRlZ5QkLQ
+iSTlEiJFvPP1m2RgAZbQwJsCGSpoNgPBLvyN46tlY3kBwDR7ow+MjUBEbzycDPVf
+K2QMgV5/+ci5C2oHvM4tzyKAQQFZWnzw/o3ypiXqwvdv9PHzEL31Bp9oJYVt+IJN
+lHdei7TDeTf7fSwijb5iEJUINgPuSCl5GHt1/FcHILzZcYVvea1KVTKd0LbFJjUS
+k0cjVNJQwKakdc2RZLLYjvx7RVcq/6ZbhJcyk6anpEOLnWxsIcubu4YYS0F++/2Q
+4wpujrXT6ybrC6NUu2qgWydPz47ZlKfX2d74wB0F8OlJoJVv06LtSBOhgk5s7s7S
+qRInKDuaImXpa5083PLmcZ+bIR6hXen5NANUqGpT5vsDHeih9f5KSH/e9D0fKjN9
+iw6BI9iJ/+wtm73m79nAH4mXO8CImuWJCZrV0c8HE1j6VbpUEfmWqvuYOAzQrhFc
+m4rrcPYuGBcrhEuyZYfBA1n0do/NfJzhXUaGs98aitO02SBxJHmEQ+9nb3Q7QD5d
+aWvc1PYkmNdv/hZVNv2wloINsoOhSbZdyo3Cr9lwk4yuC8sdr3cwE8/amAETv4tE
+FJZI/ayMyKupUD1zHtqWSPxOrMGfhPpscMjzDzKeCt7rDzg31aNTs6VnCwxe+EE3
+1LSmhx0ja+A6reRl6FieDbDSBDDBq+T+uNm2YlHPd6Yc29a52OhjA1ZgC6oDkP/1
+IJNfSdi/tWFBWXyPXPR9dOYXZqX2WU1UU6A/2hPMp1EysOO73xeWsFobtMa2a8M1
+JkH9f3w63RBcTbjYV6y87a5VX2YJn9rNEiIZ1wS0l94v3o4aTdI7yX+AUtsGNgiE
+7OeTLYh/CGjNompf7RdkHlOJmx1GcGc968ewnK0DCP9hrh3eArNYlvoK31sRRt+l
+d8yAxOEH9nU1HEWXD9jZjz5V4shOmFgBYnWlwfrwz9ZcsuuhOdQRnCSnBnLZkpL7
+0RdJhvv2cDzj9E+AD3xuOe/ibd/xZmew01TNb8CRJsbEUaFQ442GqIwPy3DX9g==
+=ey+7
+-----END PGP SIGNATURE-----
+
+--v4a7imv5wvpxgeyc--
+
+From rich@flatcap.org Wed Feb 10 13:51:45 2021
+Date: Wed, 10 Feb 2021 13:51:45 +0000
+From: Richard Russon <rich@flatcap.org>
+To: Sven Guckes <neomutt-lists@guckes.net>
+Subject: Re: Renaming Config - adding "Option:"
+Message-ID: <20210210135144.hyp3ibhljisxr2jo@laptop.flatcap.org>
+References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+ <20210210120702.57phxm5jgmcn7fhz@guckes.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210210120702.57phxm5jgmcn7fhz@guckes.net>
+User-Agent: NeoMutt/20201127
+Status: RO
+Content-Length: 503
+
+Hi Sven,
+
+> if all option names were prefixed with "Option:".
+
+Hmm... that would add a lot of visual clutter.
+
+One idea I had was to split up the *detailed* docs for the config
+(they'd move to other, more relevant, sections of the guide)
+and create a single page, a one liner table with lots of links.
+
+Perhaps:
+
+    | ...  |      |                                 |
+    | wrap | bool | Width to wrap text in the pager |
+    | ...  |      |                                 |
+
+Cheers,
+    Rich / FlatCap
+
+From neomutt-devel-bounces@neomutt.org Wed Feb 10 13:53:49 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 2E1A71A37
+	for <flatcap-mail@flatcap.org>; Wed, 10 Feb 2021 13:53:49 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 271xFEgrJ2mz for <flatcap-mail@flatcap.org>;
+	Wed, 10 Feb 2021 13:53:48 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id 24C70D3A
+	for <rich@flatcap.org>; Wed, 10 Feb 2021 13:53:47 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 11ADqi5u016962
+	for <rich@flatcap.org>; Wed, 10 Feb 2021 14:52:44 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 11ADqg24016956
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Wed, 10 Feb 2021 14:52:42 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 11ADqgeZ012450
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 14:52:42 +0100
+X-Envelope-From: rich@flatcap.org
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from flatcap.org (flatcap.org [178.79.161.177])
+ by tamarau.in-berlin.de  with ESMTPS id 11ADqdXW007508
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 14:52:40 +0100
+Received: from localhost (localhost [127.0.0.1])
+ by flatcap.org (Postfix) with ESMTP id DC4411A37
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 13:52:38 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+ by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id EbvtI1pwz7cP for <neomutt-devel@neomutt.org>;
+ Wed, 10 Feb 2021 13:52:38 +0000 (GMT)
+Received: from laptop.flatcap.org (unknown [10.9.0.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by flatcap.org (Postfix) with ESMTPS id 765DED3A
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 13:52:38 +0000 (GMT)
+Resent-From: Richard Russon <rich@flatcap.org>
+Resent-Date: Wed, 10 Feb 2021 13:52:38 +0000
+Resent-Message-ID: <20210210135238.rjvqmiywmuu4qto4@laptop.flatcap.org>
+Resent-To: Neomutt Developers <neomutt-devel@neomutt.org>
+Date: Wed, 10 Feb 2021 13:51:45 +0000
+From: Richard Russon <rich@flatcap.org>
+To: Sven Guckes <neomutt-lists@guckes.net>
+Message-Id: <20210210135144.hyp3ibhljisxr2jo@flatcap.org>
+References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+ <20210210120702.57phxm5jgmcn7fhz@guckes.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210210120702.57phxm5jgmcn7fhz@guckes.net>
+User-Agent: NeoMutt/20201127
+Subject: Re: Renaming Config - adding "Option:"
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+Content-Length: 503
+
+Hi Sven,
+
+> if all option names were prefixed with "Option:".
+
+Hmm... that would add a lot of visual clutter.
+
+One idea I had was to split up the *detailed* docs for the config
+(they'd move to other, more relevant, sections of the guide)
+and create a single page, a one liner table with lots of links.
+
+Perhaps:
+
+    | ...  |      |                                 |
+    | wrap | bool | Width to wrap text in the pager |
+    | ...  |      |                                 |
+
+Cheers,
+    Rich / FlatCap
+
+From neomutt-devel-bounces@neomutt.org Wed Feb 10 12:31:54 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 753B61A37
+	for <flatcap-mail@flatcap.org>; Wed, 10 Feb 2021 12:31:54 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Authentication-Results: flatcap.org (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gahr.ch
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id M60UQmK2goqP for <flatcap-mail@flatcap.org>;
+	Wed, 10 Feb 2021 12:31:53 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id BC8E1D3A
+	for <rich@flatcap.org>; Wed, 10 Feb 2021 12:31:53 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 11ACUnTa000657
+	for <rich@flatcap.org>; Wed, 10 Feb 2021 13:30:50 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 11ACUmhp000652
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Wed, 10 Feb 2021 13:30:48 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 11ACUm35005140
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 13:30:48 +0100
+X-Envelope-From: gahr@gahr.ch
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from ptrcrt.ch (ptrcrt.ch [84.22.109.158])
+ by tamarau.in-berlin.de  with ESMTPS id 11ACUjst016825
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 13:30:46 +0100
+Received: from ptrcrt.ch (mail.ptrcrt.ch [192.168.1.1])
+ by ptrcrt.ch (OpenSMTPD) with ESMTP id 719c4ef2
+ for <neomutt-devel@neomutt.org>;
+ Wed, 10 Feb 2021 12:30:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=gahr.ch; h=date:from:to
+ :subject:message-id:reply-to:references:mime-version
+ :content-type:in-reply-to; s=default; bh=gZSDSXSCy0w+FDSW2PDFcxl
+ fYzg=; b=k+Luy0ugWdQmA6bkLDd3tru31nJGagyKH2b+mDnZCVfaJP94ZrFWv77
+ jLxIN2pRLMYgC3zpNXeJc43jM3Ckx1CE/Ksw75sNa4vemy7DVLu/s82Tcdne57tN
+ ykNUrVsfUKkFS607XAHW05dHwrkNuxWOhQyV4LhlPR6CVXj/IMe2efwGWEp6WW9q
+ YOZsAVniG1ewt4Lhns9haB/x/ZTa6nuGc1o7iT2u5+N+rM4I76bdh6/uIr9wB+IQ
+ y8l3gUxYw1qcpFF3gnBrvbbPE3SrRe9eumIroZUZtljxhqI3NoIEhTBXgK/mgn9o
+ GwrhlqGHpAeufh9wLZjh68qVGXZ8VLQ==
+Received: from ptrcrt.ch (mail.ptrcrt.ch [192.168.1.1])
+ by ptrcrt.ch (OpenSMTPD) with ESMTPSA id 231c2705
+ (TLSv1.3:AEAD-AES256-GCM-SHA384:256:NO)
+ for <neomutt-devel@neomutt.org>;
+ Wed, 10 Feb 2021 12:30:45 +0000 (UTC)
+Date: Wed, 10 Feb 2021 12:30:45 +0000
+From: Pietro Cerutti <gahr@gahr.ch>
+To: neomutt-devel@neomutt.org
+Message-ID: <20210210123045.eactoer5uigztoxj@ptrcrt.ch>
+References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+ <20210210120702.57phxm5jgmcn7fhz@guckes.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20210210120702.57phxm5jgmcn7fhz@guckes.net>
+User-Agent: NeoMutt/20210205-26-aa2b0c
+Subject: Re: Renaming Config - adding "Option:"
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Reply-To: Pietro Cerutti <gahr@gahr.ch>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+Content-Length: 790
+
+On Feb 10 2021, 12:07 UTC, Sven Guckes <neomutt-lists@guckes.net> wrote:
+>* Richard Russon <rich@flatcap.org> [2021-02-10 12:44]:
+>> I had a strange idea yesterday.
+>> I was trying to remember the name of a config item,
+>> but I couldn't remember if it had an underscore or not.
+>> Then I thought, "we should fix that".
+>> Here are my suggested renames ..
+>> What do you think?
+>
+>| man neomuttrc | grep Type: -B 1 -A 0 | head -8
+>|        abort_backspace
+>|               Type: boolean
+>| --
+>|        abort_key
+>|               Type: string
+>| --
+>|        abort_noattach
+>|               Type: quadoption
+>
+>
+>this lookup from the manual would be easier
+>if all opton names were prefixed with "Option:".
+
+man neomuttrc | col -b | grep -B1 Type | grep -vE '^--|Type'
+
+
+-- 
+Pietro Cerutti
+
+From neomutt-devel-bounces@neomutt.org Wed Feb 10 13:55:42 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 81F991A37
+	for <flatcap-mail@flatcap.org>; Wed, 10 Feb 2021 13:55:42 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id pUEyPqxEzGmB for <flatcap-mail@flatcap.org>;
+	Wed, 10 Feb 2021 13:55:41 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id 711BED3A
+	for <rich@flatcap.org>; Wed, 10 Feb 2021 13:55:41 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 11ADsbn4017240
+	for <rich@flatcap.org>; Wed, 10 Feb 2021 14:54:38 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 11ADsbfl017235
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Wed, 10 Feb 2021 14:54:37 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 11ADsbNr012995
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 14:54:37 +0100
+X-Envelope-From: guckes@kudu.in-berlin.de
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from kudu.in-berlin.de (kudu.in-berlin.de [192.109.42.123])
+ by tamarau.in-berlin.de  with ESMTPS id 11ADsZkm007908
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 14:54:35 +0100
+Received: from kudu.in-berlin.de (localhost [127.0.0.1])
+ by kudu.in-berlin.de (8.15.2/8.15.2/Debian-8+deb9u1) with ESMTP id
+ 11ADsYtG015100
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 14:54:34 +0100
+Received: (from guckes@localhost)
+ by kudu.in-berlin.de (8.15.2/8.15.2/Submit) id 11ADsYGn015099
+ for neomutt-devel@neomutt.org; Wed, 10 Feb 2021 14:54:34 +0100
+Date: Wed, 10 Feb 2021 14:54:34 +0100
+From: Sven Guckes <neomutt-lists@guckes.net>
+To: neomutt-devel@neomutt.org
+Message-ID: <20210210135434.bhj2bmldmj25u6cr@guckes.net>
+Mail-Followup-To: neomutt-devel@neomutt.org
+References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+ <20210210120702.57phxm5jgmcn7fhz@guckes.net>
+ <20210210123045.eactoer5uigztoxj@ptrcrt.ch>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="t2f4kzn5sdnffbvs"
+Content-Disposition: inline
+In-Reply-To: <20210210123045.eactoer5uigztoxj@ptrcrt.ch>
+Subject: Re: Renaming Config - adding "Option:"
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+Content-Length: 2173
+
+
+--t2f4kzn5sdnffbvs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+* Pietro Cerutti <gahr@gahr.ch> [2021-02-10 14:45]:
+> Sven Guckes <neomutt-lists@guckes.net> wrote:
+> > man neomuttrc | grep Type: -B 1 -A 0 | head -8
+> > this lookup from the manual would be easier
+> > if all opton names were prefixed with "Option:".
+> man neomuttrc | col -b | grep -B1 Type | grep -vE '^--|Type'
+
+almost perfect (two stray lines).
+but not really straightforward to most people.
+
+are there any reasons to *not* to add
+an "Option:" for some simple grepping?
+
+Sven
+
+--t2f4kzn5sdnffbvs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQQbBAEBCAAdFiEEMs5WSG5tbW0z5To46rl/IAGFORsFAmAj5ZYACgkQ6rl/IAGF
+ORujKx8/UCOf6t0/jR3WalrsnWLE/Rl7MPIyYjI7yfbN5aOiape35nrusuYjxlHN
+he5nTCy43MaGJKSUW6fMZIAZZquiGV6mcNWfRmczQJmy04Btsy0dRKyja+qc8LKv
+wF0gxOExDmkDqogkkbFUpsx2JYPupxTlWFmu4hsTzj9TLThMRm5p6HLoXGACMNYn
+J5tTunuikzDUupuOP430RokIgDb860L8bdvo/b0+MI0y4QsLRHJAWKSN+sZkm8K/
+YxW11g6GExHVlrg+ApytVZ+Fx/L3CrG4WE7H9yLz0s9NQ19iGFULfL+wwBCuKnkv
+ahFlRmjccMYJQlpfuY49nDDXlPFOjGHpQZDhFhCQ1FlLiATHHbXobaubxRtzfuoK
+HA1qRllIjvq6I+VtIJEiYEvzjNPn2ly4ElmPkihbqOcoHehG6pP2r2zRSXyaqn4H
+ylf4iOF2ZOkl9JhQdtPCLlrQ2oLFZkdfBK+iixrekfGbEyBoYVbxUBuSLVMmYd+B
+fD/zm0gLxRjKdo5I10fTdoNxnAeNeyxV58jc0sPX23daTGHI7etZGeik+7a9104A
+TEAyftcb3sYjx8BauO9IYzr6v6kjwszNODE4i9h+7uH+6bj3C20uged+NjdOU9hn
+oyDbBuE3KvmMzflqv+ZKYmDPzhG4S7TuaBQAq6SnQr5S61Bzs76K3gC+KMp5inm5
+MmvQFkWPMLCSJqwvQvu6OXDYyO1Uxb2QQRLBJQTlAuMzqCmzgOGycZSPF2JobqC/
+GxrlJ7bHIqwGR8LOUGr2Z/5GruvrDN+5LXyGBlvQnEiq8jRi2Pdy4JGBis2PnZ+O
+c6Rlswcbm1Reb7jX7juNJgtS4rJI1iBcc+uXGYqYLynVN/pAtpecsrehhFq0nGAx
+5ybx+zbNSWoiU7L723afYi+5jLzwiuk0eSbc0F3Fnr5FQNcEDBB6Af0Jhh25/6tY
+1bF9m9HyJk2x9FarXo+fuanJDgjJO5p5hs5qd0A6V0vNq7OXGej/3OAWTgk8aRJD
+i46z/5Si3RajZ3ef6Q8P/S+pqYbKwltWbhQn0lvHvLfyJfEnNaT+RXB/onavJpEl
+F9PzKUb1OJ//ElKUdDaNJY/rltk7vrqj222iWAryo+lt5su0JvnsVOq31BU6w3wl
+jBbd93FQRtR2sQzzZzdH5eIdt/TmymeoctcDyPPvhcxhqDTwywmCGcVyJBrgX4C4
+prQyGv2eDyehmXtCXFF57M8INg6LIT0vifbYjMf+fO7daswnlf78/gSNUqgb+F/1
+w2qhKdnot8XcJ/3I4usWmTK5w3VbQk4JyBubnYa4yZza0aKi6uHdBQIUc/Gzzg==
+=bUT7
+-----END PGP SIGNATURE-----
+
+--t2f4kzn5sdnffbvs--
+
+From neomutt-devel-bounces@neomutt.org Thu Feb 11 00:56:31 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id EAC9B3650
+	for <flatcap-mail@flatcap.org>; Thu, 11 Feb 2021 00:56:31 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Authentication-Results: flatcap.org (amavisd-new); dkim=fail (2048-bit key)
+	reason="fail (message has been altered)" header.d=gmail.com
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id OE3_MXbiMEVe for <flatcap-mail@flatcap.org>;
+	Thu, 11 Feb 2021 00:56:29 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id 09CC2F21
+	for <rich@flatcap.org>; Thu, 11 Feb 2021 00:56:28 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 11B0tOkZ022497
+	for <rich@flatcap.org>; Thu, 11 Feb 2021 01:55:25 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 11B0tOxG022491
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Thu, 11 Feb 2021 01:55:24 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 11B0tNwn000623
+ for <neomutt-devel@neomutt.org>; Thu, 11 Feb 2021 01:55:23 +0100
+X-Envelope-From: rprimus+neomutt@gmail.com
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
+ [209.85.218.43])
+ by tamarau.in-berlin.de  with ESMTPS id 11B0tKed018667
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Thu, 11 Feb 2021 01:55:21 +0100
+Received: by mail-ej1-f43.google.com with SMTP id hs11so7460738ejc.1
+ for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 16:55:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:date:from:to:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=hpxOnuQhW85sOOZt2T5y8yOy1fV2LFAylkanlUAtK+g=;
+ b=BENWzXDlwgtjr2B1yHp/q5LeLO6tVVJtsf+Zo/Wc2BoSKGRvnnHsi2hi094L4I0yCR
+ zf9kpZegpO6BGAhrz6JQW0KC2wXCmxD7NJFkCZEwX0Irqv0sSOzglfhQQEy24xhysX1W
+ +3u3WAS9aIY2QlcLq0fq1RyDot/HmbjEquocf5EPscetYE8i0Z3Z72u/8PZeJMExtHWB
+ JFRIbD/MgA38LBNdeU718bkmy81vMfxwhtW2cAiKoW51DqLkC/ZPoO6fPCU24h+JBM4p
+ 60iVQSNLsG41wjZlTDtHP4jmMebutNtb4kbQUvwWXgmk/kWOiUMTCy/6VgJjWP5M+XSf
+ GcFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:sender:date:from:to:subject:message-id
+ :references:mime-version:content-disposition:in-reply-to;
+ bh=hpxOnuQhW85sOOZt2T5y8yOy1fV2LFAylkanlUAtK+g=;
+ b=Nd86ycPBi9B65liaBnX/qIxP+1+ZybVWYzQQOYyc9lSVGtix7Baw3EPIz2+oR9bvCw
+ JZmc9jHV6+q+kqMhDXBOWClaHmV2L6FqqFWVC/8W8eMdX2gw+NwasP5ZylC/C+m0JMdR
+ j+SCb7mzTY8KqvJajWtc43MTAy0jUzeliRi894teKeJEityXsfBtYKRK9fuyYqvWFKyT
+ T3CGX6r8bY77TMpwjQYHiiqxNL68SFNSrYYlp2tbruw0AMyC8+VxV44cYOsS7XR/hEAY
+ 8y1mJ02bkvJz6qx9ZsV/WCJdN2RruZ0/D8nrG3eG5TESgIftPUlx6NdO+DUi4HPyHKKE
+ 8Ivw==
+X-Gm-Message-State: AOAM531LUN9iUrv6c5L9bGl0pQQOsdvUo7+K7TMN83U6EH39oscYvguO
+ wDdysHTwIAxqJO2xIzGA2E51K++KlrJW5g==
+X-Google-Smtp-Source: ABdhPJyQgyV69oezYAUrrscG+3hORGDHMaGLVDTd8KkIiEXIo0TAUZmbAcLKMyot2rNSXK4L3u6kGA==
+X-Received: by 2002:a17:906:391b:: with SMTP id
+ f27mr5408605eje.228.1613003358742; 
+ Wed, 10 Feb 2021 16:29:18 -0800 (PST)
+Received: from x.local ([134.19.179.235])
+ by smtp.gmail.com with ESMTPSA id kb25sm2591136ejc.19.2021.02.10.16.29.17
+ for <neomutt-devel@neomutt.org>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 10 Feb 2021 16:29:17 -0800 (PST)
+Date: Thu, 11 Feb 2021 00:29:15 +0000
+From: R Primus <rprimus+neomutt@gmail.com>
+To: neomutt-devel@neomutt.org
+Message-ID: <YCR6WzxVjYOQHk5w@x.local>
+References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+ <20210210120702.57phxm5jgmcn7fhz@guckes.net>
+ <20210210123045.eactoer5uigztoxj@ptrcrt.ch>
+ <20210210135434.bhj2bmldmj25u6cr@guckes.net>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="Lh4lXlCdpRddzZJm"
+Content-Disposition: inline
+In-Reply-To: <20210210135434.bhj2bmldmj25u6cr@guckes.net>
+Subject: Re: Renaming Config - adding "Option:"
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+Content-Length: 1952
+
+
+--Lh4lXlCdpRddzZJm
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Feb 10, 2021 at 02:54:34PM +0100, Sven Guckes wrote:
+>* Pietro Cerutti <gahr@gahr.ch> [2021-02-10 14:45]:
+>> man neomuttrc | col -b | grep -B1 Type | grep -vE '^--|Type'
+>
+>almost perfect (two stray lines).
+>but not really straightforward to most people.
+
+Thu 11 Feb 2021 00:25:24 GMT
+
+How about bundling a script that would perform this search?
+
+--=20
+-primus (Train yourself and be your own master.)
+"First, solve the problem.  Then, write the code." - John Johnson
+"Narrowness of experience leads to narrowness of imagination." - Rob Pike
+https://www.catb.org/esr/faqs/smart-questions.html
+https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
+
+--Lh4lXlCdpRddzZJm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQLLBAABCAC1FiEEh9pTXg7C0ebLD6M0ldMbQx12vi0FAmAkels3FIAAAAAAFQAZ
+cGthLWFkZHJlc3NAZ251cGcub3JncnByaW11cytuZW9tdXR0QGdtYWlsLmNvbV8U
+gAAAAAAuAChpc3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2Vt
+YW4ubmV0ODdEQTUzNUUwRUMyRDFFNkNCMEZBMzM0OTVEMzFCNDMxRDc2QkUyRAAK
+CRCV0xtDHXa+LTvMD/oDFaI9xTvgBy47/kEeHjBLsjAutwQkp9VjtpbcBIT8SeD4
+lvxO7cdrJLxnzFWJ9yuMsgCZV+mul7QUSYU6afz3daDgzBtWPO/MAFDbbdoiuOVu
+SWDAFS2dp08PTO6fRNjKuEGV/sdI+nhtojGmYigX9VFqBG2Tjs79G/+V29TMtp3F
+cTSJYSOPWWWGXhY1UOOrq27/FidQJkXTHTnDiHddTmIs3vKhNCUPaV3a8xNth3iN
+etQUbBpcG87YHxdDCc1Uepvg2cFSxJXWrrZiqyWMd3wQiqjNMsKmI+1EgZcWDBVZ
+3tHTxDqO1f+RDEADQE0dJdhnxlQ/F0I1vyZ8VkQqhb8HpqXmqkAIzttVwSkWXF/l
+D6XA8VJXXg4ZCa0zEhtoJiKhzWJwPVX6tQLcmttvNZqA0VO3b3uSPN9sJUGyYA7d
+9fdltUpjMG/+MiScGJX9bsxHadT7fwecy21JAJrh1EA6mjwqG/Cq/Yu0ek54LqnG
+wmKDBdkgDNqX/A9YHSSa0X8WGuyToy4zinPWQdNDOCjw6ufcUGsMMzIGOxsxBnTP
+088fd2W6VoBd2QZxCoS2iN29U+pyhxvEcbQF0+U6rpJ5kAWtYRzHOO55Rr4GS10s
+mIoAJW2RXmYZdhf5IfBq2adyHgpp7uSyOff+Zv59oeBHQMO3zzb3meut5IHdpw==
+=8ufN
+-----END PGP SIGNATURE-----
+
+--Lh4lXlCdpRddzZJm--
+
+From neomutt-devel-bounces@neomutt.org Fri Feb 12 03:11:58 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id E690F37D8
+	for <flatcap-mail@flatcap.org>; Fri, 12 Feb 2021 03:11:58 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id f5XY_KY1Tm5v for <flatcap-mail@flatcap.org>;
+	Fri, 12 Feb 2021 03:11:58 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id 07DD5B45
+	for <rich@flatcap.org>; Fri, 12 Feb 2021 03:11:57 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 11C3AriO006110
+	for <rich@flatcap.org>; Fri, 12 Feb 2021 04:10:54 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 11C3Aput006103
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Fri, 12 Feb 2021 04:10:51 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 11C3Ap7Y026523
+ for <neomutt-devel@neomutt.org>; Fri, 12 Feb 2021 04:10:51 +0100
+X-Envelope-From: guckes@kudu.in-berlin.de
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from kudu.in-berlin.de (kudu.in-berlin.de [192.109.42.123])
+ by tamarau.in-berlin.de  with ESMTPS id 11C3Anto030261
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Fri, 12 Feb 2021 04:10:49 +0100
+Received: from kudu.in-berlin.de (localhost [127.0.0.1])
+ by kudu.in-berlin.de (8.15.2/8.15.2/Debian-8+deb9u1) with ESMTP id
+ 11C3AnEw002182
+ for <neomutt-devel@neomutt.org>; Fri, 12 Feb 2021 04:10:49 +0100
+Received: (from guckes@localhost)
+ by kudu.in-berlin.de (8.15.2/8.15.2/Submit) id 11C3AnbA002180
+ for neomutt-devel@neomutt.org; Fri, 12 Feb 2021 04:10:49 +0100
+Date: Fri, 12 Feb 2021 04:10:49 +0100
+From: Sven Guckes <neomutt-lists@guckes.net>
+To: neomutt-devel@neomutt.org
+Message-ID: <20210212031049.yonbkhglnrxdqb5h@guckes.net>
+Mail-Followup-To: neomutt-devel@neomutt.org
+X-Old-Subject: Re: Renaming Config - adding "Option:"
+References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
+ <20210210120702.57phxm5jgmcn7fhz@guckes.net>
+ <20210210123045.eactoer5uigztoxj@ptrcrt.ch>
+ <20210210135434.bhj2bmldmj25u6cr@guckes.net>
+ <YCR6WzxVjYOQHk5w@x.local>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="cfqn25zkefor2x3m"
+Content-Disposition: inline
+In-Reply-To: <YCR6WzxVjYOQHk5w@x.local>
+Subject: Re: Renaming Config - adding "opt:"
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+Content-Length: 2748
+
+
+--cfqn25zkefor2x3m
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+* R Primus <rprimus+neomutt@gmail.com> [2021-02-11 20:02]:
+> On Wed, Feb 10, 2021 at 02:54:34PM +0100, Sven Guckes wrote:
+> > * Pietro Cerutti <gahr@gahr.ch> [2021-02-10 14:45]:
+> > > man neomuttrc | col -b | grep -B1 Type | grep -vE '^--|Type'
+> > almost perfect (two stray lines).
+> > but not really straightforward to most people.
+> How about bundling a script that would perform this search?
+
+an extra alias/function/script is certainly nice, but
+it is yet another thing to learn about and to remember.
+
+i'd rather add "opt:" before each option.
+this is an easy change.  and many people
+will definitely recognize this simple patterm
+in the neomuttrc and then search for it:
+
+ man neomuttrc | grep opt:
+
+this can certainly be mentioned in the docs,
+maybe even in the neomuttrc itself. :)
+
+Sven
+
+--=20
+"The future is here, it's just not evenly distributed yet." --William Gibson
+What futures have you seen that are here, but unrecognized?
+http://www.ted.com/conversations/69/william_gibson_said_the_futur.html
+
+--cfqn25zkefor2x3m
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQQbBAEBCAAdFiEEMs5WSG5tbW0z5To46rl/IAGFORsFAmAl8bYACgkQ6rl/IAGF
+ORu/bR9AgOVnqJbksdNZTWkMjgcGkDg4yAzLbC9q1aOiACAdEQQWId2U+0Cy01PO
+hmTV2ZSUf/4uPBOJMvXJ+TCyUKE5efGA6xLDbwHrb7Dln1XWuMxRKcatE8VlWfJ1
+wOP1EqenAA1ukPe8OposqNxBx7vG61S0NXVsiNr7GsQQjHU4f/bnAzhuenE6qpXk
+cpjWbmXLjxLQqApSUlnLQxNqR5Nmd/B/1Bh3ygwcRan4irHfgjE5GnU/8w8K7DDk
+yCMyDgCHTcBj3fIFvcDeonjhlKdZv+fhGhe58inZdcNFzCyTF6EfgTc1ihfI+Qlm
+zRHAy+aafyDywAjIMTHwUalx1WSSoTX5sXDlj9dzBh88QkJztfX8ekqnwBZNLJq8
+RwmiM4c/Y3lRmgnavJo0W0Z1splYJrzj3AuKMhKsCMn/jubirMfmoftnJay1f6VY
+V34hXfcexjaK2VZN9XME3jZptTSphwAWR8HQpauT0qVWWA1hRa/yjlSGZbwf3+11
+HpZ18jZL7K1e7kh/DIhkQiFeUsBPFnG4i4JnbOiOC3I6FLgtDWIW3u34hQGygvRa
+gpeGwdwve370CnWrlRdFQJhkODCx2mZDMkn9qF7Ptc5bwmxuZ19RIkWS3LkuELAd
+7e7PDNPLHDLZegR5yESfL0U+7dhZfHFgqqoIrCeWlqXJAR0/hzoyVTekKxoq87jo
+nbeanAHKnvg2y4kMtX988dExDeY58fOQd0Eqpk2/dNEww23ydqephMy1+Yn4NYnH
+WMYrwRSGx0dy6SIdAPkqhkdGSkpG61VXtlurHKbmIUxuRN3+aDKyQdcpfYyajnXH
+mJZh01JRbGQAybG4GtU5ZHJRrafhFjmakb11NrHFFGBHFy/4RQFZ5WgeJfUdN8mc
+7uCr4IhwMuKIG24mh/WN36vvyY4880r5KriVkCOfE9/aod7ThELfmrLyOnDX8sDw
+Kk8gi+WhsKhP+QoQv7lWyjb4vlNmgfZ3b5yNVs6QqsLgP3m8TJb85Z9FCAA/W6NN
+Qng/lKR7andlrgvZoJGX82fzw13A8p6GKCzvQY/0yranUfifX4O7I6huRreL5mHe
+euqCCQRm9acEQWBmsalmzdgoT/lr0u5grku2SGOyLV735EmTdSViJfYlEhxUNA4k
+1lsULIKNKkeMxT/QWBp351CG5pqjWOBsg+lJNF2Fb8C2QsRn8rFBVD0e8Tc53bWw
+8LIPEaZDqNfIO2gyjfah/UfYOEetEmwD+/KAc4wcIrzL/L4rhRVX35IvwqmDTyOt
+snUJ0IX83aETgpBHKLlrmmrPWbL92K3qeZGr+jHKViyWZPfn5jqxk5ymudMH4Q==
+=4u5C
+-----END PGP SIGNATURE-----
+
+--cfqn25zkefor2x3m--
+
+From neomutt-devel-bounces@neomutt.org Fri Mar 19 13:33:17 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 61711196B
+	for <flatcap-mail@flatcap.org>; Fri, 19 Mar 2021 13:33:17 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Authentication-Results: flatcap.org (amavisd-new); dkim=fail (1024-bit key)
+	reason="fail (message has been altered)" header.d=nixnet.email
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 4qhgvGKY2S05 for <flatcap-mail@flatcap.org>;
+	Fri, 19 Mar 2021 13:33:16 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id 3D8DC4A
+	for <rich@flatcap.org>; Fri, 19 Mar 2021 13:33:15 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 12JDWB2k020645
+	for <rich@flatcap.org>; Fri, 19 Mar 2021 14:32:11 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 12JDWAST020640
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Fri, 19 Mar 2021 14:32:10 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 12JDWAMc012636
+ for <neomutt-devel@neomutt.org>; Fri, 19 Mar 2021 14:32:10 +0100
+X-Envelope-From: toogley@nixnet.email
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from mx.nixnet.email (mx.nixnet.email [94.16.121.167])
+ by tamarau.in-berlin.de  with ESMTPS id 12JDW6mo026351
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Fri, 19 Mar 2021 14:32:07 +0100
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by mx.nixnet.email (Postfix) with ESMTPSA id B86D72009C4
+ for <neomutt-devel@neomutt.org>; Fri, 19 Mar 2021 09:32:04 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nixnet.email;
+ s=202002021149; t=1616160724; h=from:from:reply-to:subject:subject:to:to:cc;
+ bh=51cstchAB2y6jya8T92jcJE+/1+xPNfHukKsOlYm5hU=;
+ b=EG+0DvRFRg4hOos7oQxli5yPHe+oawutMCfpVhQ6W3vRzXwjAewS76sQJvsMQC24GhxL96
+ /P8FZcmE+HUD6RoEpu+cRbl9ogqWDlc4d8FLlB9oh5jDnfdv1YhTT+2Ug9RsPBp0wzQuKx
+ S8jxmn3Lod4V30oXPo6ia5He4e7yWzU=
+To: neomutt-devel@neomutt.org
+From: toogley <toogley@nixnet.email>
+Message-ID: <7153a0ba-71d7-f7eb-2275-1ec677955598@nixnet.email>
+Date: Fri, 19 Mar 2021 14:32:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Subject: using sourcehut as alternative
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+X-Status: A
+Content-Length: 2970
+
+Hello everybody,
+
+Ihor recently expressed slight interest in using sourcehut and flatcap
+said a) it should not be cumbersome or decrease efficiency compared to
+github and b) he doesn't want to worry about payment. And c) github
+gives neomutt visibility.
+
+
+So i talked to Drew DeVault about this and he said that we should not
+worry. Financial aid, that is using sourcehut for free, will always be
+possible for us without questions asked. Well we have to write an email
+to Drew asking for it but that's it. Additionally, if my life stabilizes
+again i will be able to pay regardless. So the financial part is worked out.
+
+Now i suggest:
+
+* I create a git mirror on sr.ht (or flatcap if he wants to be the owner)
+
+* we create a neomutt-patches mailinglist on lists.sr.ht and announce it
+here.
+
+* we create a builds.sr.ht CI which will automatically build incoming
+patches sent to the neomutt-patches list.
+
+* still use github issues for tickets
+
+When a patch is sent to the neomutt-patches list like [1], the
+builds.sr.ht will notice that and run the CI. when that is done, the CI
+will sent a mail to the thread, which will look like that:
+
+-------------------
+
+scm.sr.ht/patches: FAILED in 3m55s
+
+[Support .mkd extension for README files][0] from [Anna “CyberTailor”][1]
+
+[0]: https://lists.sr.ht/~sircmpwn/sr.ht-dev/patches/21274
+[1]: mailto:cybertailor@gmail.com
+
+✗ #463076 FAILED  scm.sr.ht/patches/alpine.yml   
+https://builds.sr.ht/~sircmpwn/job/463076
+✓ #463077 SUCCESS scm.sr.ht/patches/archlinux.yml
+https://builds.sr.ht/~sircmpwn/job/463077
+✓ #463078 SUCCESS scm.sr.ht/patches/debian.yml   
+https://builds.sr.ht/~sircmpwn/job/463078
+---------------
+
+As you can see, it will show which builds failed and give a link to the
+build job. When you include the X-Sourcehut-Patchset-Update header in
+the mail answer to the thread lists.sr.ht will update the status of the
+mail[2].
+
+So in essence, i think this actually increases efficency:
+
+1) people who have technical trouble with github for some reason (like i
+do currently) can still sent work out for review.
+
+2) it gives us additional visibility on the sr.ht projects page[3]. I
+think Drew might even feature our neomutt project for some time, so it
+will very prominently be shown on this page: https://sr.ht/ (those
+featured projects rotate from time to time).
+
+3) reviewing things in email is more efficient for some people since you
+can do everything in the terminal.
+
+thoughts? how many people would subscribe to the neomutt-patches
+mailinglist? specifically i am interested what you gahr and flatcap
+think about this. Would you subscribe to the neomutt-patches
+mailinglist? would you review things there? would you be interested
+trying this neomutt-patches mailinglist for your own work?
+
+I am very curious what you all think.
+
+
+[1]: https://lists.sr.ht/~sircmpwn/sr.ht-dev/patches/21274
+
+[2]: https://sourcehut.org/blog/2020-12-15-whats-cooking-december-2020/
+
+[3]: https://sr.ht/projects
+
+
+
+
+From rich@flatcap.org Fri Mar 19 14:51:31 2021
+Date: Fri, 19 Mar 2021 14:51:31 +0000
+From: Richard Russon <rich@flatcap.org>
+To: neomutt-devel@neomutt.org
+Subject: Re: using sourcehut as alternative
+Message-ID: <20210319145037.q45kgs5u2mbcpr7f@laptop.flatcap.org>
+Mail-Followup-To: neomutt-devel@neomutt.org
+References: <7153a0ba-71d7-f7eb-2275-1ec677955598@nixnet.email>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7153a0ba-71d7-f7eb-2275-1ec677955598@nixnet.email>
+User-Agent: NeoMutt/20210205
+Status: RO
+Content-Length: 1022
+
+tl;dr NO.
+
+If people want NeoMutt to succeed, they need to help.
+
+Any user could add to / improve the docs.  But they don't.
+
+Many of the thousands of NeoMutt users could help answer other users'
+questions.  But I don't see that happening, either.
+
+There are probably three people who understand the code, in any depth.
+They need to concentrate on the code.
+
+----------------------------------------------------------------------
+
+I'm working full-time on NeoMutt.  And it's not enough.
+
+People keep suggesting ideas about using this tool, or that methodology,
+but unless it reduces MY workload, then I'm not interested.
+
+Setting up a project on another server just multiplies the amount of
+work needed to coordinate the project.  Another mailing list is just
+another place where I won't look.
+
+Don't do it, unless you're prepared to manage it and convert all the
+mailing list posts into GitHub Pull Requests, so that I don't have to.
+
+Adding a new platform won't magically solve our problems.
+
+Cheers,
+    Rich / FlatCap
+
+From neomutt-devel-bounces@neomutt.org Fri Mar 19 14:52:43 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 8C5AE196B
+	for <flatcap-mail@flatcap.org>; Fri, 19 Mar 2021 14:52:43 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id c2aMnMYD-cDW for <flatcap-mail@flatcap.org>;
+	Fri, 19 Mar 2021 14:52:42 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id 7B4544A
+	for <rich@flatcap.org>; Fri, 19 Mar 2021 14:52:42 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 12JEpcIP003468
+	for <rich@flatcap.org>; Fri, 19 Mar 2021 15:51:38 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 12JEpbD9003463
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Fri, 19 Mar 2021 15:51:37 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 12JEpbjg013063
+ for <neomutt-devel@neomutt.org>; Fri, 19 Mar 2021 15:51:37 +0100
+X-Envelope-From: rich@flatcap.org
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from flatcap.org (flatcap.org [178.79.161.177])
+ by tamarau.in-berlin.de  with ESMTPS id 12JEpWIT010741
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Fri, 19 Mar 2021 15:51:34 +0100
+Received: from localhost (localhost [127.0.0.1])
+ by flatcap.org (Postfix) with ESMTP id 380A8196B
+ for <neomutt-devel@neomutt.org>; Fri, 19 Mar 2021 14:51:32 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+ by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id X-pwuc4tBPbJ for <neomutt-devel@neomutt.org>;
+ Fri, 19 Mar 2021 14:51:31 +0000 (GMT)
+Received: from laptop.flatcap.org (unknown [10.9.0.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by flatcap.org (Postfix) with ESMTPS id 289D34A
+ for <neomutt-devel@neomutt.org>; Fri, 19 Mar 2021 14:51:30 +0000 (GMT)
+Date: Fri, 19 Mar 2021 14:51:30 +0000
+From: Richard Russon <rich@flatcap.org>
+To: neomutt-devel@neomutt.org
+Message-Id: <20210319145037.q45kgs5u2mbcpr7f@flatcap.org>
+Mail-Followup-To: neomutt-devel@neomutt.org
+References: <7153a0ba-71d7-f7eb-2275-1ec677955598@nixnet.email>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="42snhhunpicevh4c"
+Content-Disposition: inline
+In-Reply-To: <7153a0ba-71d7-f7eb-2275-1ec677955598@nixnet.email>
+User-Agent: NeoMutt/20210205
+Subject: Re: using sourcehut as alternative
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+Content-Length: 2052
+
+
+--42snhhunpicevh4c
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+tl;dr NO.
+
+If people want NeoMutt to succeed, they need to help.
+
+Any user could add to / improve the docs.  But they don't.
+
+Many of the thousands of NeoMutt users could help answer other users'
+questions.  But I don't see that happening, either.
+
+There are probably three people who understand the code, in any depth.
+They need to concentrate on the code.
+
+----------------------------------------------------------------------
+
+I'm working full-time on NeoMutt.  And it's not enough.
+
+People keep suggesting ideas about using this tool, or that methodology,
+but unless it reduces MY workload, then I'm not interested.
+
+Setting up a project on another server just multiplies the amount of
+work needed to coordinate the project.  Another mailing list is just
+another place where I won't look.
+
+Don't do it, unless you're prepared to manage it and convert all the
+mailing list posts into GitHub Pull Requests, so that I don't have to.
+
+Adding a new platform won't magically solve our problems.
+
+Cheers,
+    Rich / FlatCap
+
+--42snhhunpicevh4c
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEaa0dY2rCkuggZYwW68FQ5LXaY98FAmBUunIACgkQ68FQ5LXa
+Y9/Umw/+MgQvS5y3dIW2hqnh28J7pjSgxfGLeQYz1iR8YSEMxQlJfmzXb1yNhlOu
+5ZIA++CkAekpm37zMWMJ578pX9+vOTKHbTFNoHvg0oGKlmxMuEkd+kfoGIR17mlx
+OrfPygkXze0q4uE9YPZRi/IqhP6ND71ujm8c+3h0Lz9a6LqfZCg6zjV47nKyNZKD
+rApH9s8zn0xu9CDB6PAXRZ6132lTMOMcnNTAH7h+k9aALqWQj0pL4Iv17KZlGuRl
+QNGPfA6y257ik2v2SKd7O5AbEZ2UyKQYxRq6T/lNFES9ArCSZdbJSZxUBtUHFPkg
+pzVl0RdUhea6S+qtlnYGzE099b6tY+MMYidSB7eg+W27O5Bg+RuSuAbN2ETDwVB6
+V4T1zsOEUozKt3v+01UGCAPOWaXgNDB4n/1Vqgq67Englfn62CwZsmsIhSsc0whj
+/HKB4/phD5Edzik/pAoCypaBX/nZDSCJYHtI/DJmOr8SCZ3orfdjkQKE0x1EKG6T
+ySMM/av0LavPa9kvBDgeLBa1X82zqagV0kY9AYp3/Pxx/7wkrXS2D70EJeBfplq/
+Q1iQzs7ud1P171FsF9xvs4uLJewVVuF4X44LuPxDSdknno2sYR1OZy9HUoSlZH1E
+eBTNqECe2uEooRVVzzc5DNalHgOBFLcG7y/VAqm5hMXdvJ4XJbk=
+=DX83
+-----END PGP SIGNATURE-----
+
+--42snhhunpicevh4c--
+
+From neomutt-devel-bounces@neomutt.org Sat Mar 20 07:23:52 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 827EC196B
+	for <flatcap-mail@flatcap.org>; Sat, 20 Mar 2021 07:23:52 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Authentication-Results: flatcap.org (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gahr.ch
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id jD7HEcleCypF for <flatcap-mail@flatcap.org>;
+	Sat, 20 Mar 2021 07:23:49 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id 6B5FBF7D
+	for <rich@flatcap.org>; Sat, 20 Mar 2021 07:23:49 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 12K7MigP023828
+	for <rich@flatcap.org>; Sat, 20 Mar 2021 08:22:46 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 12K7MiXc023823
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Sat, 20 Mar 2021 08:22:44 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 12K7Mh13024299
+ for <neomutt-devel@neomutt.org>; Sat, 20 Mar 2021 08:22:44 +0100
+X-Envelope-From: gahr@gahr.ch
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from ptrcrt.ch (ptrcrt.ch [84.22.109.158])
+ by tamarau.in-berlin.de  with ESMTPS id 12K7MeTm020035
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Sat, 20 Mar 2021 08:22:41 +0100
+Received: from ptrcrt.ch (mail.ptrcrt.ch [192.168.1.1])
+ by ptrcrt.ch (OpenSMTPD) with ESMTP id d668bbed
+ for <neomutt-devel@neomutt.org>;
+ Sat, 20 Mar 2021 07:22:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=gahr.ch; h=content-type
+ :content-transfer-encoding:from:mime-version:subject:date
+ :message-id:references:in-reply-to:to; s=default; bh=19KNaR7Nl32
+ l/qEfHLxjt4SDBFo=; b=M26lgxUkvxL4YvyHbDGidGJ5Ev9h9nh8lZWI7b4OjFn
+ g1YqRw0ol+0qYrETHu493Wy5PhzL+t3aHqVPqN/oFt13sPpyVB2/BMSXnMLR5ADA
+ XigdQuD9GfccZGLR3l3E2DuRCyKqagP6jqWsN+VnXBrVePk15F+LrnPy23RCD3kJ
+ QH+W0SewUXjQrb7MtBV3s8t6NcaDf+aypxeFwe0uwFgURhg3QEzuI4LefSEsynY3
+ gOfI0K5fDden9QUwp3nTr1GHCoeYaZOJaEc0DLvAsCqtCyO4Nse7JOi2R/YdM5Ji
+ w4rJXUtjaoGUy4cAtn6VpRnYAqSRhGYn2i8X2jqGHyg==
+Received: from [IPv6:2a02:1206:4594:9b0:815d:c170:b6fd:31b3]
+ (dynamic.wline.6rd.res.cust.swisscom.ch
+ [2a02:1206:4594:9b0:815d:c170:b6fd:31b3])
+ by ptrcrt.ch (OpenSMTPD) with ESMTPSA id 321ba1fc
+ (TLSv1.3:AEAD-AES256-GCM-SHA384:256:NO)
+ for <neomutt-devel@neomutt.org>;
+ Sat, 20 Mar 2021 07:22:40 +0000 (UTC)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+From: Pietro Cerutti <gahr@gahr.ch>
+Mime-Version: 1.0 (1.0)
+Date: Sat, 20 Mar 2021 08:22:38 +0100
+Message-Id: <303139CD-8A0D-46DA-AC67-BEDDAB8FF3BA@gahr.ch>
+References: <20210319145037.q45kgs5u2mbcpr7f@flatcap.org>
+In-Reply-To: <20210319145037.q45kgs5u2mbcpr7f@flatcap.org>
+To: neomutt-devel@neomutt.org
+X-Mailer: iPhone Mail (18D52)
+Subject: Re: using sourcehut as alternative
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+Content-Length: 1600
+
+Not that it=E2=80=99s necessary, but a big NO from my side too. We need peop=
+le to do things, not to tell us how we should do things.
+
+Github is used by everybody and their moms. It=E2=80=99s convenient. I can r=
+eview patches from their web intertace, I can comment there, everything is i=
+n one place. Or I can pull the branch and build it locally. I don=E2=80=99t n=
+eed anything else.
+
+--=20
+Pietro Cerutti
+
+> On 19 Mar 2021, at 15:52, Richard Russon <rich@flatcap.org> wrote:
+>=20
+> =EF=BB=BFtl;dr NO.
+>=20
+> If people want NeoMutt to succeed, they need to help.
+>=20
+> Any user could add to / improve the docs.  But they don't.
+>=20
+> Many of the thousands of NeoMutt users could help answer other users'
+> questions.  But I don't see that happening, either.
+>=20
+> There are probably three people who understand the code, in any depth.
+> They need to concentrate on the code.
+>=20
+> ----------------------------------------------------------------------
+>=20
+> I'm working full-time on NeoMutt.  And it's not enough.
+>=20
+> People keep suggesting ideas about using this tool, or that methodology,
+> but unless it reduces MY workload, then I'm not interested.
+>=20
+> Setting up a project on another server just multiplies the amount of
+> work needed to coordinate the project.  Another mailing list is just
+> another place where I won't look.
+>=20
+> Don't do it, unless you're prepared to manage it and convert all the
+> mailing list posts into GitHub Pull Requests, so that I don't have to.
+>=20
+> Adding a new platform won't magically solve our problems.
+>=20
+> Cheers,
+>    Rich / FlatCap
+
+
+From neomutt-devel-bounces@neomutt.org Fri Mar 19 18:22:27 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id D29B8196B
+	for <flatcap-mail@flatcap.org>; Fri, 19 Mar 2021 18:22:27 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ZTZsvqK9DlOX for <flatcap-mail@flatcap.org>;
+	Fri, 19 Mar 2021 18:22:25 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id 0B1714A
+	for <rich@flatcap.org>; Fri, 19 Mar 2021 18:22:24 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 12JILL0l011020
+	for <rich@flatcap.org>; Fri, 19 Mar 2021 19:21:21 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 12JILJrb011015
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Fri, 19 Mar 2021 19:21:19 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 12JILJ1H022880
+ for <neomutt-devel@neomutt.org>; Fri, 19 Mar 2021 19:21:19 +0100
+X-Envelope-From: ihor@antonovs.family
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from mail.antonovs.family (mail.antonovs.family [100.25.240.195])
+ by tamarau.in-berlin.de  with ESMTPS id 12JILEga022486
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Fri, 19 Mar 2021 19:21:16 +0100
+Received: by mail.antonovs.family (OpenSMTPD) with ESMTPSA id 230098b1
+ (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
+ Fri, 19 Mar 2021 18:21:11 +0000 (UTC)
+Date: Fri, 19 Mar 2021 11:21:08 -0700
+From: Ihor Antonov <ihor@antonovs.family>
+To: toogley <toogley@nixnet.email>
+Message-ID: <20210319182108.ntdskrsqojcpnsbv@localhost>
+References: <7153a0ba-71d7-f7eb-2275-1ec677955598@nixnet.email>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <7153a0ba-71d7-f7eb-2275-1ec677955598@nixnet.email>
+Subject: Re: using sourcehut as alternative
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Cc: neomutt-devel@neomutt.org
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+X-Status: A
+Content-Length: 5987
+
+On 2021-03-19 14:32, toogley wrote:
+> Hello everybody,
+
+Hi toogley,
+
+> Ihor recently expressed slight interest in using sourcehut...
+> 
+> So i talked to Drew DeVault about this and he said that we should not
+> worry. Financial aid, that is using sourcehut for free...
+> 
+> Now i suggest ...
+
+There are several layers of what I think and I'll try to be systematic
+and methodical in laying it all out. Additionally I'll try to explain
+flatcap's stance on the subject.
+
+On the surface the idea of using sr.ht is great. That platform has
+certain advantages over GitHub, including but not limited to email patch
+workflow and more OSes available to CI. And so enthusiasm about using
+this platform is understandable.
+
+Now, one has to consider the cost of setup and maintenance that adds up
+to existing costs. The term "cost" that I'll use below is somewhat
+handwavy, as it is hard to define some of it's components. It is mostly
+time and human cognitive capacity to hold and switch contexts. All
+humans have very little amount of this both of these resources.
+And the cost is not uniform between features, so I'll try to break it
+down by feature:
+
+- Mirror on sr.ht is fairly high amount of maintenance, because it is
+  one more place to look at, one more place where sync can break, one
+  more place to keep secure, update passwords, share access etc.  In
+  other words it is one more "house" that somebody has to own and take
+  care of. I don't want to own and maintain it. Neither does flatcap.
+  If you feel like doing it - you don't need our permission, it is
+  opensource, set up an unofficial mirror.
+
+- CI platform itself has probably the lowest cost among the offered
+  features. And *just* sr.ht CI can be used without setting up the
+  mirror on sr.ht (as I did on opensmtpd project). It integrates with
+  GitHub nicely and one can see failed or successful check in a PR, same
+  as GithHub actions, Cicrcle CI, Travis or any other CI platform.
+  This is the only thing that I thing is worth taking a closer look at. 
+
+- Email patch workflow has the highest overhead in my opinion. It
+  requires a mirror to be set up. It also complicates mirror setup as
+  now 2 way sync is required to prevent divergence. As much as I like
+  emails I think the tooling is for this workflow to be efficient is not
+  there yet. It is one more place to context switch to, one more mailing
+  list to read. Believe it or not - not many people even know how to use
+  emails and patches together these days. Occasional patch sent to devel
+  mailing list has significantly lower overhead today than setting up
+  and maintaining sr.ht email patch review platform.
+
+Pair this with the fact that neomutt already has a couple of CI
+platforms set up. The added benefit of yet nother CI and is somwhat
+marginal, the law of diminishing returns an all that.
+
+Now, please don't take offence on flatcap's harsh NO response. Instead
+try to put yourself in his shoes: he is the *only* stable maintainer of
+neomutt. All others, including me and you, are come-and-go weekend
+warriors.  Flatcap has to perform a full range of duties like reviewing
+and merging  PRs, categorizing and  replying to issues, rebasing stale
+PRs to keep them up closer to master, maintain 2 mailing lists, and take
+occasional patches sent there and put them into repo. He also writes a
+shit ton of documentation (pardon my French, but have you seen how much
+there is?) to make the life of other developers easier, he maintains an
+IRC channel and neomutt's website. He has to maintain a mental map of
+all the neomutt's code (and the codebase is huge) to be able to review
+the code and respond to our stupid questions, ensure stability, make
+releases etc.  Finally needs to find time to write some code too.
+
+So as much he might be excited about new things he simply can't afford
+them right now.  He is a human and there are only 24 hours in a day and 
+we are asking him to do even more. Taking something into official repo
+is a commitment.
+
+If you really want to help try to think you how can combine achieving
+your goal and help reducing(or at least not  increasing) his burden. 
+Here are my suggestions of how this can be done:
+
+- Write build manifests to sr.ht CI, submit them for review, I will help
+  you with integrating it into neomutt's CI, I can take care of the rest
+  of sr.sh CI setup (I already have an account there). We can run sr.ht
+  CI tests as optional as a start, later we can promote them to
+  mandatory if they prove to be useful and low overhead.
+
+- It is entirely possible that we are missing an untapped reserve of
+  contributors who are willing to work only on sr.ht and contribute by
+  sending patches. Set up a mirror, take care of bi-directional sync.
+  You can have a branch in main repo to mirror back sr.ht.
+  Convert a stream of email patches to Pull Requests in official repo. 
+  I am sure flatcap will say "thank you".
+  By acting as a mediator between the main repo and your mirror you will
+  achieve what you want, and help flatcap, without putting more work on
+  his back. See for  yourself how much maintenance this is. Try to automate,
+  improve the workflow.  We can mention alternative workflow in the
+  README. 
+
+- Alternatively you can help flatcap with his current focus - refactor
+  the codebase. Make it more approachable, readable, testable. This is a
+  long game, but it leads to sharing flatcap's knowledge of neomutt, and
+  taking some of burden off his plate. With time we can return to sr.ht,
+  when we have more manpower, or lower maintenance overhead of the
+  existing code.
+
+The bottom line is this: you are asking for features, but they mean more
+work for us (more different kinds of work). In return I offer this work to
+you, as we can't take more work now. This is how community works, by
+sharing responsibilities, ownership and work, I hope you understand.
+
+
+----
+Ihor
+
+P.S. Sorry for long email. It would've been shorter if I had more time to
+formulate my thoughts better and shorter. 
+
+From rich@flatcap.org Sat Mar 20 11:58:37 2021
+Date: Sat, 20 Mar 2021 11:58:37 +0000
+From: Richard Russon <rich@flatcap.org>
+To: neomutt-devel@neomutt.org
+Subject: Re: using sourcehut as alternative
+Message-ID: <20210320115834.kvpreeegidm27e3y@laptop.flatcap.org>
+Mail-Followup-To: neomutt-devel@neomutt.org
+References: <7153a0ba-71d7-f7eb-2275-1ec677955598@nixnet.email>
+ <20210319182108.ntdskrsqojcpnsbv@localhost>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210319182108.ntdskrsqojcpnsbv@localhost>
+User-Agent: NeoMutt/20210205
+Status: RO
+Content-Length: 154
+
+> I'll try to explain flatcap's stance on the subject.
+
+Thank you Ihor for carefully and correctly explaining my feelings.
+(really, no sarcasm :-)
+
+Rich
+
+
+From neomutt-devel-bounces@neomutt.org Sat Mar 20 11:59:47 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 1CC43196B
+	for <flatcap-mail@flatcap.org>; Sat, 20 Mar 2021 11:59:47 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id KRPKM4bbXwko for <flatcap-mail@flatcap.org>;
+	Sat, 20 Mar 2021 11:59:46 +0000 (GMT)
+Received: from pferd.in-berlin.de (pferd.in-berlin.de [192.109.42.122])
+	by flatcap.org (Postfix) with ESMTP id 98646F7D
+	for <rich@flatcap.org>; Sat, 20 Mar 2021 11:59:46 +0000 (GMT)
+Received: from pferd.in-berlin.de (localhost [127.0.0.1])
+	by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id 12KBwguw011878
+	for <rich@flatcap.org>; Sat, 20 Mar 2021 12:58:43 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by pferd.in-berlin.de (8.14.4/8.14.4/Debian-4+deb7u1) with ESMTP id
+ 12KBwfjS011873
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Sat, 20 Mar 2021 12:58:41 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 12KBwfEF019970
+ for <neomutt-devel@neomutt.org>; Sat, 20 Mar 2021 12:58:41 +0100
+X-Envelope-From: rich@flatcap.org
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from flatcap.org (flatcap.org [178.79.161.177])
+ by tamarau.in-berlin.de  with ESMTPS id 12KBwclh007542
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Sat, 20 Mar 2021 12:58:39 +0100
+Received: from localhost (localhost [127.0.0.1])
+ by flatcap.org (Postfix) with ESMTP id A3F26196B
+ for <neomutt-devel@neomutt.org>; Sat, 20 Mar 2021 11:58:37 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+ by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id A2PhYE3-_-dz for <neomutt-devel@neomutt.org>;
+ Sat, 20 Mar 2021 11:58:37 +0000 (GMT)
+Received: from laptop.flatcap.org (unknown [10.9.0.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by flatcap.org (Postfix) with ESMTPS id C1699F7D
+ for <neomutt-devel@neomutt.org>; Sat, 20 Mar 2021 11:58:36 +0000 (GMT)
+Date: Sat, 20 Mar 2021 11:58:34 +0000
+From: Richard Russon <rich@flatcap.org>
+To: neomutt-devel@neomutt.org
+Message-Id: <20210320115834.kvpreeegidm27e3y@flatcap.org>
+Mail-Followup-To: neomutt-devel@neomutt.org
+References: <7153a0ba-71d7-f7eb-2275-1ec677955598@nixnet.email>
+ <20210319182108.ntdskrsqojcpnsbv@localhost>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="fgmujecltc5hxabe"
+Content-Disposition: inline
+In-Reply-To: <20210319182108.ntdskrsqojcpnsbv@localhost>
+User-Agent: NeoMutt/20210205
+Subject: Re: using sourcehut as alternative
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+Content-Length: 1184
+
+
+--fgmujecltc5hxabe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+> I'll try to explain flatcap's stance on the subject.
+
+Thank you Ihor for carefully and correctly explaining my feelings.
+(really, no sarcasm :-)
+
+Rich
+
+
+--fgmujecltc5hxabe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEaa0dY2rCkuggZYwW68FQ5LXaY98FAmBV42oACgkQ68FQ5LXa
+Y9/xLQ//fZyM7KmsTB3QB0hYwIeE/sS3jY/mr5F1d+aVZeWGSFEiVBesHU80xDOl
+X6MduzKgmMTjIYTNpf016mZ9WknOL9N9WVaZiIGr9xKJGdXYfduHIEN/Z9YEPMuQ
+kd58tiSf3Qrvhh1pMYJ4aN12xxjLkr6BiG2CyjCxvSaS074rb2VyJH55wcofs9Pk
+QnkhSAS4VsWGMCi48JgOUHLuhWtvWkVZRfj08R7OeJrF7FWRpxAeiHHj10CC5R5s
+werN9mM+JgYxDxsqgiZlpCmYMbzJ4O8RIK9sh4ERrf3nIerZvigxoV8LXYONmzRQ
+AIJKNKdEQ9nxO707UZJnEfqYOIAwB6MU73D00wf5cucN+VTZFommNAVss+gkuv2z
+Xj9P1g0JN+Z9hrZn5wlgm6Baex8XpK39oZhowboIOq09DPLBuAb32H79AX2YybMq
+t8VWkLAxenOcD/vWebwpBrd2TgsQLkoWr/NYDH9OZDgJNLOA+SrfwhhFS4DcssZi
+UicSQRp8iSGRO/ORq356um0jtvAfCYMvPYay+fWGNY49JLwLLzBbjZmWZ4soGUUN
+qxcFU+Cf+u+W2yxEH+FAW20bQR+gUOJMlT6G86OkheEt6fvNnvo574fOszrw4bU/
+buEaI9iNjuQspPARBvQy3iZBGWp3cK6DbuJuOIQ8v7HVQxlb6zE=
+=8Weg
+-----END PGP SIGNATURE-----
+
+--fgmujecltc5hxabe--
+
+From rich@flatcap.org Sat Jun  5 01:59:53 2021
+Date: Sat, 5 Jun 2021 01:59:53 +0100
+From: Richard Russon <rich@flatcap.org>
+To: Neomutt Developers <neomutt-devel@neomutt.org>
+Subject: Meaningless Milestone
+Message-ID: <20210605005953.bhlc5icp2pb6ezhv@laptop.flatcap.org>
+Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: NeoMutt/20210205
+Status: RO
+X-Status: F
+Content-Length: 194
+Lines: 10
+
+A random bit of trivia...
+
+When NeoMutt split from Mutt, the repo contained ~6000 commits.
+
+Recently, the stats looked like:
+
+    Mutt     8000 (+2000)
+    NeoMutt 14000 (+8000)
+
+Rich / FlatCap
+
+From rich@flatcap.org Sat Feb 27 14:42:10 2021
+Date: Sat, 27 Feb 2021 14:42:10 +0000
+From: Richard Russon <rich@flatcap.org>
+To: Neomutt Developers <neomutt-devel@neomutt.org>
+Subject: Tagging Emails
+Message-ID: <20210227144209.guk2m6dy7staiayq@laptop.flatcap.org>
+Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: NeoMutt/20210205
+Status: RO
+X-Status: F
+Content-Length: 771
+Lines: 25
+
+Background: I'm trying to improve how NeoMutt internally handles tagged sets of emails.
+
+If I tag ten emails, then perform an operation on them,
+in which order would you expect them to be worked on?
+
+For example, if you piped them to an external program
+
+- User's sort order
+  Top to bottom in the order they'd appear in the index
+  (including any threading)
+
+- Selection order
+  The first email tagged would be processed first, and so on.
+  Typically, the user would tag top-to-bottom in the index,
+  so this could be the same as the sort order.
+
+- Unseen order -- dependent on other factors, e.g. the mailbox type
+  - Maildir:   Alphabetical
+  - Imap:      By UID (Unique ID)
+  - Generally: By memory address (for speed)
+
+What do you think?
+
+Cheers,
+    Rich / FlatCap
+
+From rich@flatcap.org Fri Sep 25 13:21:48 2020
+Date: Fri, 25 Sep 2020 13:21:48 +0100
+From: Richard Russon <rich@flatcap.org>
+To: Neomutt Developers <neomutt-devel@neomutt.org>
+Subject: NeoMutt 2020-09-25
+Message-ID: <20200925122147.ivrmvme7qml3s7yq@laptop.flatcap.org>
+Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+User-Agent: NeoMutt/20200925
+Status: RO
+X-Status: F
+Content-Length: 2725
+Lines: 96
+
+## Notes
+
+It's been a busy month for NeoMutt with five new contributors.
+They've been fixing things and adding new features.
+
+If you'd like to help, come say "Hello!" in our IRC channel, or email me.
+There are plenty of simple jobs to get started on, and *mentoring* is avail=
+able.
+
+- `#neomutt` on `irc.freenode.net` (or https://webchat.freenode.net/?channe=
+l=3D#neomutt)
+- Richard Russon (@flatcap) <rich@flatcap.org>
+
+This release sees some more modernisations.
+
+- Compose: can now display user-defined headers (see `my_hdr`).
+- Address Book / Query: can now be searched using patterns:
+  - `~f` Alias (*f*rom)
+  - `~t` Address (*t*o)
+  - `~c` Comment
+
+- Config: String Lists now support `+=3D` and `-=3D` to add/remove items.
+  Strings now support `+=3D` for concatenation.
+
+## Thanks
+
+Many thanks to our *new contributors*:
+
+- Matthew Hughes (@matthewhughes934)
+- Romeu Vieira (@romeug)
+- Louis Brauer (@louis77)
+- Aditya De Saha (@adityadesaha)
+- Reto Brunner (@reto)
+
+and our *regular contributors*:
+
+- Pietro Cerutti (@gahr)
+- Jakub Jindra (@jindraj)
+- Marius Gedminas (@mgedmin)
+- =D0=BD=D0=B0=D0=B1 (@nabijaczleweli)
+- Yousef Akbar (@yousefakbar)
+- Martin Mit=C3=A1=C5=A1 (@mity)
+
+## Features
+
+- Compose: display user-defined headers
+- Address Book / Query: live sorting
+- Address Book / Query: patterns for searching
+- Config: Add '+=3D' and '-=3D' operators for String Lists=20
+- Config: Add '+=3D' operator for Strings
+- Allow postfix query ':setenv NAME?' for env vars
+
+## Bug Fixes
+
+- Fix crash when searching with invalid regexes
+- Compose: Prevent infinite loop of `send2-hook`s
+- Fix sidebar on new/removed mailboxes
+- Restore indentation for named mailboxes
+- Prevent half-parsing an alias
+- Remove folder creation prompt for POP path
+- Show error if `$message_cachedir` doesn't point to a valid directory
+- Fix tracking LastDir in case of IMAP paths with Unicode characters
+- Make sure all mail gets applied the index limit
+- Add warnings to -Q query CLI option
+- Fix index tracking functionality
+
+## Changed Config
+
+- Add `$compose_show_user_headers` (yes)
+
+## Translations
+
+- 100% Czech
+- 100% Lithuanian
+- Split up usage strings
+
+## Build
+
+- Run shellcheck on hcachever.sh
+- Add the Address Sanitizer
+- Move compose files to lib under compose/
+- Move address config into libaddress
+- Update to latest acutest - fixes a memory leak in the unit tests
+
+## Code
+
+- Implement ARRAY API
+- Deglobalised the Config Sort functions
+- Refactor the Sidebar to be Event-Driven
+- Refactor the Color Event
+- Refactor the Commands list
+- Make ctx_update_tables private
+- Reduce the scope/deps of some Validator functions
+- Use the Email's IMAP UID instead of an increasing number as index
+- debug: log window focus
+
+

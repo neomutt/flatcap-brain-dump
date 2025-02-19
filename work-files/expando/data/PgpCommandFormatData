@@ -1,0 +1,10 @@
+PgpCommandFormatData pgp_command_format_str
+
+struct PgpCommandContext
+
+	a	signas				sign-as			string	optional
+	f	fname				file-message		string	optional
+	p	need_passphrase			need-pass		number	optional
+	r	ids				key-ids			string	optional
+	s	sig_fname			file-signature		string	optional
+

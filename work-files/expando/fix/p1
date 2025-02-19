@@ -1,0 +1,1 @@
+folder-hook . "set index_format='%3C %4Z %?X?& ? %D %-20.20F %.70s (%-4.4c) %>'"

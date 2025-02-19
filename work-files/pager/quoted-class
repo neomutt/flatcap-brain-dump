@@ -1,0 +1,40 @@
+quote_list = 0x15dc350
+	length = 1
+	index = 0
+	color = 1536
+	prefix = '>'
+	prev = (nil), next = (nil)
+	up = (nil), down = 0x15d4fe0
+
+	quote_list = 0x15d4fe0
+		length = 3
+		index = 3
+		color = 1536
+		prefix = '>	>'
+		prev = (nil), next = 0x15d7270
+		up = 0x15dc350, down = 0x15d2dd0
+
+		quote_list = 0x15d2dd0
+			length = 5
+			index = 4
+			color = 2048
+			prefix = '>	>	>'
+			prev = (nil), next = (nil)
+			up = 0x15d4fe0, down = (nil)
+
+	quote_list = 0x15d7270
+		length = 3
+		index = 1
+		color = 2048
+		prefix = '> >'
+		prev = 0x15d4fe0, next = (nil)
+		up = 0x15dc350, down = 0x15d6360
+
+		quote_list = 0x15d6360
+			length = 5
+			index = 2
+			color = 768
+			prefix = '> > >'
+			prev = (nil), next = (nil)
+			up = 0x15d7270, down = (nil)
+

@@ -1,0 +1,90 @@
+From rich@flatcap.org Mon Jan 17 14:14:13 2022
+Return-Path: <rich@flatcap.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 1703510F5
+	for <flatcap-mail@flatcap.org>; Mon, 17 Jan 2022 14:14:13 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id n5-_EhVgGQC3 for <flatcap-mail@flatcap.org>;
+	Mon, 17 Jan 2022 14:14:12 +0000 (GMT)
+Received: from flatcap.org (unknown [10.9.0.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id 8989CC87
+	for <rich@flatcap.org>; Mon, 17 Jan 2022 14:14:12 +0000 (GMT)
+Date: Mon, 17 Jan 2022 14:14:11 +0000
+From: Richard Russon <rich@flatcap.org>
+To: rich@flatcap.org
+Subject: test
+Message-ID: <20220117141411.a5giyczj7zbdt2bh@flatcap.org>
+MIME-Version: 1.0
+Content-Type: multipart/encrypted; protocol="application/pgp-encrypted";
+	boundary="ydfzrcyutcqyys3k"
+Content-Disposition: inline
+User-Agent: NeoMutt/20211029-223-aeebfd
+Status: RO
+Content-Length: 2895
+Lines: 57
+
+
+--ydfzrcyutcqyys3k
+Content-Type: application/pgp-encrypted
+Content-Disposition: attachment
+
+Version: 1
+
+--ydfzrcyutcqyys3k
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="msg.asc"
+
+-----BEGIN PGP MESSAGE-----
+
+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
+=2bN1
+-----END PGP MESSAGE-----
+
+--ydfzrcyutcqyys3k--
+

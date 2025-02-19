@@ -1,0 +1,65 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	create_bindings                -> km_bindkey
+	generic_tokenize_push_string   -> get_op
+	generic_tokenize_push_string   -> km_get_table
+	generic_tokenize_push_string   -> parse_fkey
+	km_bind                        -> km_bind_err
+	km_bindkey                     -> km_bindkey_err
+	km_bindkey_err                 -> km_bind_err
+	km_bind_err                    -> km_compare_keys
+	km_bind_err                    -> km_expand_key
+	km_bind_err                    -> parsekeys
+	km_dokey                       -> generic_tokenize_push_string
+	km_dokey                       -> km_get_table
+	km_dokey                       -> mutt_get_func
+	km_dokey                       -> retry_generic
+	km_error_key                   -> km_dokey
+	km_error_key                   -> km_expand_key
+	km_error_key                   -> km_find_func
+	km_expand_key                  -> km_keyname
+	km_init                        -> create_bindings
+	km_init                        -> km_bindkey
+	mutt_abort_key_config_observer -> mutt_init_abort_key
+	mutt_init_abort_key            -> parsekeys
+	mutt_parse_bind                -> get_op
+	mutt_parse_bind                -> km_bindkey
+	mutt_parse_bind                -> km_get_table
+	mutt_parse_bind                -> parse_keymap
+	mutt_parse_bind                -> try_bind
+	mutt_parse_exec                -> get_op
+	mutt_parse_exec                -> km_get_table
+	mutt_parse_macro               -> km_bind
+	mutt_parse_macro               -> parse_keymap
+	mutt_parse_push                -> generic_tokenize_push_string
+	mutt_parse_unbind              -> km_bindkey
+	mutt_parse_unbind              -> km_unbind_all
+	mutt_parse_unbind              -> parse_menu
+	mutt_what_key                  -> km_keyname
+	parsekeys                      -> parse_fkey
+	parsekeys                      -> parse_keycode
+	retry_generic                  -> km_dokey
+	try_bind                       -> km_bindkey_err
+
+}

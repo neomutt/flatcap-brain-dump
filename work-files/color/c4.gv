@@ -1,0 +1,87 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	add_pattern -> attr_color_clear
+	add_pattern -> curses_color_new
+	add_pattern -> regex_color_free
+	add_pattern -> regex_color_new
+	ansi_color_list_add -> attr_color_list_find
+	ansi_color_list_add -> attr_color_new
+	ansi_color_list_add -> curses_color_new
+	ansi_color_list_add -> simple_colors_get
+	ansi_color_parse -> ansi_color_list_add
+	ansi_color_parse -> ansi_color_parse_single
+	ansi_color_parse_single -> ansi_color_seq_length
+	attr_color_clear -> curses_color_free
+	attr_color_free -> attr_color_clear
+	attr_color_list_clear -> attr_color_free
+	colors_clear -> quoted_colors_clear
+	colors_clear -> regex_colors_clear
+	colors_clear -> simple_colors_clear
+	curses_color_new -> curses_colors_find
+	curses_color_new -> curses_color_init
+	do_uncolor -> regex_color_free
+	do_uncolor -> regex_color_list_clear
+	find_highest_used -> attr_color_is_set
+	merged_colors_clear -> curses_color_free
+	merged_color_overlay -> attr_color_new
+	merged_color_overlay -> curses_color_new
+	merged_color_overlay -> merged_colors_find
+	mutt_colors_cleanup -> colors_clear
+	mutt_colors_cleanup -> color_notify_free
+	mutt_colors_cleanup -> merged_colors_clear
+	mutt_parse_color -> parse_color
+	mutt_parse_mono -> parse_color
+	mutt_parse_uncolor -> parse_uncolor
+	mutt_parse_unmono -> parse_uncolor
+	parse_color -> curses_color_free
+	parse_color -> curses_color_new
+	parse_color -> get_colorid_name
+	parse_color -> parse_object
+	parse_color -> quoted_colors_parse_color
+	parse_color -> regex_colors_parse_color_list
+	parse_color -> regex_colors_parse_status_list
+	parse_uncolor -> attr_color_clear
+	parse_uncolor -> colors_clear
+	parse_uncolor -> do_uncolor
+	parse_uncolor -> get_colorid_name
+	parse_uncolor -> parse_object
+	parse_uncolor -> quoted_colors_parse_uncolor
+	parse_uncolor -> regex_colors_get_list
+	quoted_colors_clear -> attr_color_clear
+	quoted_colors_parse_color -> curses_color_free
+	quoted_colors_parse_color -> curses_color_new
+	quoted_colors_parse_color -> find_highest_used
+	quoted_colors_parse_uncolor -> attr_color_clear
+	quoted_colors_parse_uncolor -> find_highest_used
+	regex_colors_clear -> regex_color_list_clear
+	regex_colors_parse_color_list -> add_pattern
+	regex_colors_parse_status_list -> add_pattern
+	regex_color_clear -> attr_color_clear
+	regex_color_free -> regex_color_clear
+	regex_color_list_clear -> regex_color_free
+	simple_colors_clear -> attr_color_clear
+	simple_color_is_set -> attr_color_is_set
+	simple_color_is_set -> simple_colors_get
+
+}

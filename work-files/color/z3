@@ -1,0 +1,13 @@
+gui/mutt_curses.c:74:22:   const int chosen = mutt_color(color);
+gui/mutt_curses.c:75:22:   const int normal = mutt_color(MT_COLOR_NORMAL);
+index/dlg_index.c:1396:13: e->pair = mutt_color(MT_COLOR_NORMAL);
+menu/draw.c:88:14:         return mutt_color(type);
+menu/draw.c:131:30:        mutt_curses_set_attr(mutt_color_combine(mutt_color(MT_COLOR_TREE), attr));
+menu/menu.c:91:10:         return mutt_color(MT_COLOR_NORMAL);
+pager/display.c:1664:19:   def_color = mutt_color((*lines)[m].color);
+progress/progress.c:86:7:  if (mutt_color(MT_COLOR_PROGRESS) == 0)
+question/question.c:60:27: const bool opt_cols = ((mutt_color(MT_COLOR_OPTIONS) != 0) &&
+question/question.c:61:27: (mutt_color(MT_COLOR_OPTIONS) != mutt_color(MT_COLOR_PROMPT)));
+sidebar/window.c:255:9:    if (mutt_color(MT_COLOR_SIDEBAR_INDICATOR) != 0)
+sidebar/window.c:271:8:    if ((mutt_color(MT_COLOR_SIDEBAR_SPOOLFILE) != 0) &&
+sidebar/window.c:277:7:    if (mutt_color(MT_COLOR_SIDEBAR_ORDINARY) != 0)

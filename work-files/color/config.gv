@@ -1,0 +1,129 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="box"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="rounded,filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// config users
+	node [ color="#ff0000" ]
+	add_pattern
+	ansi_color_parse_single
+
+	node [ color="#000000" ]
+
+	// call stack to config users
+	edge [ color="#ff0000" penwidth="2.0" ]
+	regex_colors_parse_color_list -> add_pattern
+	regex_colors_parse_status_list -> add_pattern
+	parse_color -> regex_colors_parse_color_list
+	parse_color -> regex_colors_parse_status_list
+	mutt_parse_color -> parse_color
+	mutt_parse_mono -> parse_color
+
+	ansi_color_parse -> ansi_color_parse_single
+	format_line -> ansi_color_parse
+	display_line -> format_line
+
+	edge [ color="#000000" penwidth="1.0" ]
+	add_pattern -> curses_colors_new
+	add_pattern -> regex_color_free
+	add_pattern -> regex_color_new
+	ansi_color_list_add -> attr_color_list_find
+	ansi_color_list_add -> attr_color_new
+	ansi_color_list_add -> curses_colors_new
+	ansi_color_list_add -> simple_colors_get
+	ansi_color_parse -> ansi_color_list_add
+	ansi_color_parse_single -> ansi_color_seq_length
+	attr_color_clear -> curses_colors_free
+	attr_color_free -> attr_color_clear
+	attr_color_list_clear -> attr_color_free
+	check_attachment_marker -> check_marker
+	check_protected_header_marker -> check_marker
+	classify_quote -> class_color_new
+	classify_quote -> quoted_colors_get
+	classify_quote -> quoted_colors_num_used
+	classify_quote -> shift_class_colors
+	class_color_new -> quoted_colors_get
+	colors_clear -> quoted_colors_clear
+	colors_clear -> regex_colors_clear
+	colors_clear -> simple_colors_clear
+	curses_colors_new -> curses_colors_init
+	curses_colors_new -> curses_color_find
+	display_line -> append_line
+	display_line -> classify_quote
+	display_line -> fill_buffer
+	display_line -> resolve_color
+	display_line -> resolve_types
+	display_line -> simple_colors_get
+	display_line -> simple_color_is_header
+	do_uncolor -> regex_color_free
+	do_uncolor -> regex_color_list_clear
+	fill_buffer -> mutt_buffer_strip_formatting
+	format_line -> check_attachment_marker
+	format_line -> check_protected_header_marker
+	format_line -> resolve_color
+	merged_colors_clear -> curses_colors_free
+	merged_color_overlay -> attr_color_new
+	merged_color_overlay -> curses_colors_new
+	merged_color_overlay -> merged_colors_find
+	mutt_buffer_strip_formatting -> ansi_color_seq_length
+	mutt_buffer_strip_formatting -> check_attachment_marker
+	mutt_buffer_strip_formatting -> check_protected_header_marker
+	mutt_colors_cleanup -> colors_clear
+	mutt_colors_cleanup -> color_notify_free
+	mutt_colors_cleanup -> merged_colors_clear
+	mutt_parse_uncolor -> parse_uncolor
+	mutt_parse_unmono -> parse_uncolor
+	parse_color -> curses_colors_new
+	parse_color -> get_colorid_name
+	parse_color -> parse_attr_spec
+	parse_color -> parse_color_pair
+	parse_color -> parse_object
+	parse_color -> quoted_colors_parse_color
+	parse_color_pair -> parse_color_name
+	parse_uncolor -> attr_color_clear
+	parse_uncolor -> colors_clear
+	parse_uncolor -> do_uncolor
+	parse_uncolor -> get_colorid_name
+	parse_uncolor -> parse_object
+	parse_uncolor -> quoted_colors_parse_uncolor
+	parse_uncolor -> regex_colors_get_list
+	quoted_colors_clear -> attr_color_clear
+	quoted_colors_parse_color -> curses_colors_new
+	quoted_colors_parse_uncolor -> attr_color_clear
+	regex_colors_clear -> regex_color_list_clear
+	regex_color_free -> attr_color_clear
+	regex_color_list_clear -> regex_color_free
+	resolve_color -> attr_color_copy
+	resolve_color -> comp_syntax_t
+	resolve_color -> simple_colors_get
+	resolve_color -> simple_color_is_set
+	resolve_types -> check_attachment_marker
+	resolve_types -> check_protected_header_marker
+	resolve_types -> check_sig
+	resolve_types -> classify_quote
+	resolve_types -> mutt_is_quote_line
+	resolve_types -> regex_colors_get_list
+	resolve_types -> simple_color_is_header
+	shift_class_colors -> quoted_colors_get
+	simple_colors_clear -> attr_color_clear
+	simple_color_is_set -> simple_colors_get
+
+}

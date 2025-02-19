@@ -1,0 +1,11 @@
+globals not used in libraries
+
+AlternativeOrderList
+AutoViewList
+CurrentMenu
+ErrorBuf
+ErrorBufMessage
+HeaderOrderList
+Muttrc
+OptMsgErr
+OptNeedRescore

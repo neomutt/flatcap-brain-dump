@@ -1,0 +1,675 @@
+digraph neomutt
+{
+
+	graph [
+		rankdir="TB"
+		nodesep="0.5"
+		ranksep="0.5"
+	];
+
+	node [
+		shape="plain"
+	];
+
+	edge [
+		penwidth="4.5"
+		arrowsize="1.0"
+		color="#c0c0c0"
+	];
+
+	obj_0x508000017a20 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Container</b></font> <font point-size="12">(0x508000017a20)</font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018b20 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Pad</b></font> <font point-size="12">(0x508000018b20)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">type</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"EPT_SOFT_FILL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">char</td>
+			<td border="0">=</td>
+			<td border="0" align="left">" "</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018f20 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Container</b></font> <font point-size="12">(0x508000018f20)</font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018220 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ff8080" port="top" colspan="3"><font color="#000000" point-size="20"><b>Condition</b></font> <font point-size="12">(0x508000018220)</font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000017aa0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#c0c0ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>CondDate</b></font> <font point-size="12">(0x508000017aa0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMAIL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMA_STRF_LOCAL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">count</td>
+			<td border="0">=</td>
+			<td border="0" align="left">12</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">period</td>
+			<td border="0">=</td>
+			<td border="0" align="left">'m'</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x5080000180a0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ff8080" port="top" colspan="3"><font color="#000000" point-size="20"><b>Condition</b></font> <font point-size="12">(0x5080000180a0)</font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000017ba0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#c0c0ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>CondDate</b></font> <font point-size="12">(0x508000017ba0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMAIL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMA_STRF_LOCAL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">count</td>
+			<td border="0">=</td>
+			<td border="0" align="left">7</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">period</td>
+			<td border="0">=</td>
+			<td border="0" align="left">'d'</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000017f20 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ff8080" port="top" colspan="3"><font color="#000000" point-size="20"><b>Condition</b></font> <font point-size="12">(0x508000017f20)</font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000017ca0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#c0c0ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>CondDate</b></font> <font point-size="12">(0x508000017ca0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMAIL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMA_STRF_LOCAL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">count</td>
+			<td border="0">=</td>
+			<td border="0" align="left">12</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">period</td>
+			<td border="0">=</td>
+			<td border="0" align="left">'H'</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000017da0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Expando</b></font> <font point-size="12">(0x508000017da0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMAIL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMA_STRF_LOCAL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">string</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"%H:%M "</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000017ea0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Expando</b></font> <font point-size="12">(0x508000017ea0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMAIL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMA_STRF_LOCAL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">string</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"%a-%d"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018020 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Expando</b></font> <font point-size="12">(0x508000018020)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMAIL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMA_STRF_LOCAL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">string</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"%d-%b"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x5080000181a0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Expando</b></font> <font point-size="12">(0x5080000181a0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMAIL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMA_STRF_LOCAL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">string</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"%b-%y"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x5080000182a0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ffff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Text</b></font> <font point-size="12">(0x5080000182a0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">text</td>
+			<td border="0">=</td>
+			<td border="0" align="left">" "</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018320 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Expando</b></font> <font point-size="12">(0x508000018320)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMAIL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMA_COMBINED_FLAGS"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">string</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"Z"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x5080000183a0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ffff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Text</b></font> <font point-size="12">(0x5080000183a0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">text</td>
+			<td border="0">=</td>
+			<td border="0" align="left">" "</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018420 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Expando</b></font> <font point-size="12">(0x508000018420)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_ENVELOPE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_ENV_SENDER"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">string</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"F"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">min_cols</td>
+			<td border="0">=</td>
+			<td border="0" align="left">25</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">max_cols</td>
+			<td border="0">=</td>
+			<td border="0" align="left">25</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">justification</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"JUSTIFY_LEFT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">leader</td>
+			<td border="0">=</td>
+			<td border="0" align="left">' '</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x5080000184a0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ffff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Text</b></font> <font point-size="12">(0x5080000184a0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">text</td>
+			<td border="0">=</td>
+			<td border="0" align="left">" "</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x5080000188a0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ff8080" port="top" colspan="3"><font color="#000000" point-size="20"><b>Condition</b></font> <font point-size="12">(0x5080000188a0)</font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018520 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#c0c0ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>CondBool</b></font> <font point-size="12">(0x508000018520)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMAIL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMA_THREAD_HIDDEN_COUNT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">string</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"M"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x5080000185a0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Container</b></font> <font point-size="12">(0x5080000185a0)</font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018620 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ffff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Text</b></font> <font point-size="12">(0x508000018620)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">text</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"+"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x5080000186a0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Expando</b></font> <font point-size="12">(0x5080000186a0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMAIL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMA_THREAD_HIDDEN_COUNT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">string</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"M"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018720 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ffff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Text</b></font> <font point-size="12">(0x508000018720)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">text</td>
+			<td border="0">=</td>
+			<td border="0" align="left">") "</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018820 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ffff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Text</b></font> <font point-size="12">(0x508000018820)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">text</td>
+			<td border="0">=</td>
+			<td border="0" align="left">" "</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018a20 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Container</b></font> <font point-size="12">(0x508000018a20)</font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x5080000189a0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Expando</b></font> <font point-size="12">(0x5080000189a0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_ENVELOPE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_ENV_THREAD_TREE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">string</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"s"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018920 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Expando</b></font> <font point-size="12">(0x508000018920)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_ENVELOPE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_ENV_SUBJECT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">string</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"s"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018aa0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ffff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Text</b></font> <font point-size="12">(0x508000018aa0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">text</td>
+			<td border="0">=</td>
+			<td border="0" align="left">" "</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018fa0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Container</b></font> <font point-size="12">(0x508000018fa0)</font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018ea0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ff8080" port="top" colspan="3"><font color="#000000" point-size="20"><b>Condition</b></font> <font point-size="12">(0x508000018ea0)</font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018ba0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#c0c0ff" port="top" colspan="3"><font color="#000000" point-size="20"><b>CondBool</b></font> <font point-size="12">(0x508000018ba0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMAIL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMA_THREAD_HIDDEN_COUNT"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">string</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"M"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018c20 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Container</b></font> <font point-size="12">(0x508000018c20)</font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018ca0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top" colspan="3"><font color="#000000" point-size="20"><b>Container</b></font> <font point-size="12">(0x508000018ca0)</font></td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018d20 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ffff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Text</b></font> <font point-size="12">(0x508000018d20)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">text</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"("</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018da0 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Expando</b></font> <font point-size="12">(0x508000018da0)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">did</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMAIL"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">uid</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"ED_EMA_SIZE"</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">string</td>
+			<td border="0">=</td>
+			<td border="0" align="left">"c"</td>
+		</tr>
+		</table>>
+	];
+
+	obj_0x508000018e20 [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#ffff80" port="top" colspan="3"><font color="#000000" point-size="20"><b>Text</b></font> <font point-size="12">(0x508000018e20)</font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">text</td>
+			<td border="0">=</td>
+			<td border="0" align="left">")"</td>
+		</tr>
+		</table>>
+	];
+
+
+	obj_0x508000017a20 -> obj_0x508000018b20 [  edgetooltip="Node->children" label="children" color="#80ff80" ];
+	obj_0x508000018f20 -> obj_0x508000018220 [  edgetooltip="Node->children" label="children" color="#80ff80" ];
+	obj_0x508000018220 -> obj_0x508000017aa0 [  edgetooltip="Condition->condition" label="condition" color="#ff80ff" ];
+	obj_0x5080000180a0 -> obj_0x508000017ba0 [  edgetooltip="Condition->condition" label="condition" color="#ff80ff" ];
+	obj_0x508000017f20 -> obj_0x508000017ca0 [  edgetooltip="Condition->condition" label="condition" color="#ff80ff" ];
+	obj_0x508000017f20 -> obj_0x508000017da0 [  edgetooltip="Condition->true" label="true" color="#80ff80" ];
+	obj_0x508000017f20 -> obj_0x508000017ea0 [  edgetooltip="Condition->false" label="false" color="#ff8080" ];
+	obj_0x5080000180a0 -> obj_0x508000017f20 [  edgetooltip="Condition->true" label="true" color="#80ff80" ];
+	obj_0x5080000180a0 -> obj_0x508000018020 [  edgetooltip="Condition->false" label="false" color="#ff8080" ];
+	obj_0x508000018220 -> obj_0x5080000180a0 [  edgetooltip="Condition->true" label="true" color="#80ff80" ];
+	obj_0x508000018220 -> obj_0x5080000181a0 [  edgetooltip="Condition->false" label="false" color="#ff8080" ];
+	obj_0x508000018220 -> obj_0x5080000182a0 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	obj_0x5080000182a0 -> obj_0x508000018320 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	obj_0x508000018320 -> obj_0x5080000183a0 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	obj_0x5080000183a0 -> obj_0x508000018420 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	obj_0x508000018420 -> obj_0x5080000184a0 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	obj_0x5080000188a0 -> obj_0x508000018520 [  edgetooltip="Condition->condition" label="condition" color="#ff80ff" ];
+	obj_0x5080000185a0 -> obj_0x508000018620 [  edgetooltip="Node->children" label="children" color="#80ff80" ];
+	obj_0x508000018620 -> obj_0x5080000186a0 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	obj_0x5080000186a0 -> obj_0x508000018720 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	{ rank=same obj_0x508000018620 obj_0x5080000186a0 obj_0x508000018720 };
+	obj_0x5080000188a0 -> obj_0x5080000185a0 [  edgetooltip="Condition->true" label="true" color="#80ff80" ];
+	obj_0x5080000188a0 -> obj_0x508000018820 [  edgetooltip="Condition->false" label="false" color="#ff8080" ];
+	obj_0x5080000184a0 -> obj_0x5080000188a0 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	obj_0x508000018a20 -> obj_0x5080000189a0 [  edgetooltip="Node->children" label="children" color="#80ff80" ];
+	obj_0x5080000189a0 -> obj_0x508000018920 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	{ rank=same obj_0x5080000189a0 obj_0x508000018920 };
+	obj_0x5080000188a0 -> obj_0x508000018a20 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	obj_0x508000018a20 -> obj_0x508000018aa0 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	{ rank=same obj_0x508000018220 obj_0x5080000182a0 obj_0x508000018320 obj_0x5080000183a0 obj_0x508000018420 obj_0x5080000184a0 obj_0x5080000188a0 obj_0x508000018a20 obj_0x508000018aa0 };
+	obj_0x508000018b20 -> obj_0x508000018f20 [  edgetooltip="Pad->left" label="left" color="#80ff80" ];
+	obj_0x508000018fa0 -> obj_0x508000018ea0 [  edgetooltip="Node->children" label="children" color="#80ff80" ];
+	obj_0x508000018ea0 -> obj_0x508000018ba0 [  edgetooltip="Condition->condition" label="condition" color="#ff80ff" ];
+	obj_0x508000018ea0 -> obj_0x508000018c20 [  edgetooltip="Condition->true" label="true" color="#80ff80" ];
+	obj_0x508000018ca0 -> obj_0x508000018d20 [  edgetooltip="Node->children" label="children" color="#80ff80" ];
+	obj_0x508000018d20 -> obj_0x508000018da0 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	obj_0x508000018da0 -> obj_0x508000018e20 [  edgetooltip="Node->next" label="next" color="#80ff80" ];
+	{ rank=same obj_0x508000018d20 obj_0x508000018da0 obj_0x508000018e20 };
+	obj_0x508000018ea0 -> obj_0x508000018ca0 [  edgetooltip="Condition->false" label="false" color="#ff8080" ];
+	{ rank=same obj_0x508000018ea0 };
+	obj_0x508000018b20 -> obj_0x508000018fa0 [  edgetooltip="Pad->right" label="right" color="#ff8080" ];
+	{ rank=same obj_0x508000018b20 };
+
+}

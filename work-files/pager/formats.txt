@@ -1,0 +1,15 @@
+$index_format
+	mutt_make_string
+		index_format_str (hdrline.c)
+
+$pager_format
+	mutt_make_string
+		index_format_str (hdrline.c)
+
+$status_format
+	menu_status_line
+		status_format_str (status.c)
+
+/home/mutt/docs/arch-formats/status_format.txt
+/home/mutt/docs/arch-formats/index_format.txt
+/home/mutt/docs/arch-formats/pager_format.txt

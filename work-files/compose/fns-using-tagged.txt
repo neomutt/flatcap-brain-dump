@@ -1,0 +1,14 @@
+Functions that use menu->tagged
+
+op_attachment_get_attachment
+op_attachment_update_encoding
+
+group_attachments
+op_attachment_group_alts
+op_attachment_group_lingual
+op_compose_group_related
+
+op_attachment_detach
+op_attachment_filter
+op_attachment_print
+op_attachment_save

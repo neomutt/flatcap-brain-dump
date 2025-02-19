@@ -1,0 +1,71 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ffffd0" ]
+	gen_hash
+	cmp_key
+
+	node [ fillcolor="#d0ffff" ]
+	mutt_hash_delete
+	mutt_hash_find_bucket
+	mutt_hash_find
+	mutt_hash_find_elem
+	mutt_hash_free
+	mutt_hash_insert
+	mutt_hash_int_delete
+	mutt_hash_int_find
+	mutt_hash_int_insert
+	mutt_hash_int_new
+	mutt_hash_new
+	mutt_hash_set_destructor
+	mutt_hash_typed_insert
+	mutt_hash_walk
+
+	node [ fillcolor="#ffffff" ]
+	cmp_key                -> cmp_key_case_string
+	cmp_key                -> cmp_key_int
+	cmp_key                -> cmp_key_string
+	gen_hash               -> gen_hash_case_string
+	gen_hash               -> gen_hash_int
+	gen_hash               -> gen_hash_string
+	mutt_hash_delete       -> union_hash_delete
+	mutt_hash_find         -> union_hash_find
+	mutt_hash_find_bucket  -> gen_hash
+	mutt_hash_find_elem    -> union_hash_find_elem
+	mutt_hash_insert       -> mutt_hash_typed_insert
+	mutt_hash_int_delete   -> union_hash_delete
+	mutt_hash_int_find     -> union_hash_find
+	mutt_hash_int_insert   -> union_hash_insert
+	mutt_hash_int_new      -> hash_new
+	mutt_hash_new          -> hash_new
+	mutt_hash_typed_insert -> union_hash_insert
+	union_hash_delete      -> cmp_key
+	union_hash_delete      -> gen_hash
+	union_hash_find        -> union_hash_find_elem
+	union_hash_find_elem   -> cmp_key
+	union_hash_find_elem   -> gen_hash
+	union_hash_insert      -> cmp_key
+	union_hash_insert      -> gen_hash
+
+}
+

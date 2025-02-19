@@ -1,0 +1,24 @@
+Content-Type: multipart/alternative; boundary="yjkbqsamrg5yrepx"
+Content-Disposition: attachment
+
+
+--yjkbqsamrg5yrepx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="B.txt"
+
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+--yjkbqsamrg5yrepx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="C.txt"
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+--yjkbqsamrg5yrepx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="D.txt"
+
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+
+--yjkbqsamrg5yrepx--
+

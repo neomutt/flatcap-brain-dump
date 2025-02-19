@@ -1,0 +1,93 @@
+digraph sidebar {
+	// NeoMutt 20210205-540-8ce755
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// use Context
+	node [ color="#ff0000" ]
+	sb_add_mailbox
+	sb_recalc
+	sidebar_format_str
+	update_entries_visibility
+
+	node [ color="#000000" ]
+
+	abbrev_folder -> imap_is_prefix
+	make_sidebar_entry -> sidebar_format_str
+	prepare_sidebar -> sb_sort_entries
+	prepare_sidebar -> select_next
+	prepare_sidebar -> update_entries_visibility
+	sb_account_observer -> sb_add_mailbox
+	sb_change_mailbox -> select_first
+	sb_change_mailbox -> select_last
+	sb_change_mailbox -> select_next
+	sb_change_mailbox -> select_next_new
+	sb_change_mailbox -> select_page_down
+	sb_change_mailbox -> select_page_up
+	sb_change_mailbox -> select_prev
+	sb_change_mailbox -> select_prev_new
+	sb_config_observer -> calc_divider
+	sb_index_observer -> sb_set_current_mailbox
+	sb_init_data -> sb_add_mailbox
+	sb_insertion_window_observer -> sb_init_data
+	sb_insertion_window_observer -> sb_win_init
+	sb_insertion_window_observer -> sb_win_remove_observers
+	sb_mailbox_observer -> sb_add_mailbox
+	sb_mailbox_observer -> sb_remove_mailbox
+	sb_mailbox_observer -> sb_set_current_mailbox
+	sb_recalc -> abbrev_folder
+	sb_recalc -> abbrev_url
+	sb_recalc -> calc_color
+	sb_recalc -> calc_path_depth
+	sb_recalc -> make_sidebar_entry
+	sb_recalc -> prepare_sidebar
+	sb_recalc -> sb_add_mailbox
+	sb_remove_mailbox -> select_next
+	sb_remove_mailbox -> select_prev
+	sb_repaint -> draw_divider
+	sb_repaint -> fill_empty_space
+	sb_sort_entries -> sb_sort_count
+	sb_sort_entries -> sb_sort_desc
+	sb_sort_entries -> sb_sort_flagged
+	sb_sort_entries -> sb_sort_order
+	sb_sort_entries -> sb_sort_path
+	sb_sort_entries -> sb_sort_unread
+	sb_sort_entries -> sb_sort_unsorted
+	sb_window_observer -> sb_win_remove_observers
+	sb_win_init -> calc_divider
+	sb_win_init -> sb_win_add_observers
+	select_first -> select_next
+	select_last -> select_prev
+	select_next_new -> next_new
+	select_page_down -> select_next
+	select_page_down -> select_prev
+	select_page_up -> select_next
+	select_page_up -> select_prev
+	select_prev_new -> prev_new
+	sidebar_format_str -> add_indent
+
+	sb_color_observer
+	sb_command_observer
+
+	{ rank=same sb_account_observer sb_color_observer sb_command_observer sb_config_observer sb_index_observer sb_insertion_window_observer sb_mailbox_observer sb_window_observer }
+
+}

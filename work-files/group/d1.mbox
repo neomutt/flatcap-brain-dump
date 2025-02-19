@@ -1,0 +1,529 @@
+From owner@bugs.debian.org Tue Jun 16 17:41:52 2020
+Return-Path: <bounces+20160908-rich=flatcap.org@tracker.debian.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id CD4E53FE9
+	for <flatcap-mail@flatcap.org>; Thu,  8 Sep 2016 23:51:40 +0100 (BST)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id GnWzmNRg1SCn for <flatcap-mail@flatcap.org>;
+	Thu,  8 Sep 2016 23:51:39 +0100 (BST)
+Received: from mailly.debian.org (mailly.debian.org [IPv6:2001:41b8:202:deb:6564:a62:52c3:4b72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id 368961455
+	for <rich@flatcap.org>; Thu,  8 Sep 2016 23:51:39 +0100 (BST)
+DMARC-Filter: OpenDMARC Filter v1.3.1 flatcap.org 368961455
+Received: from ticharich.debian.org ([2001:41c8:1000:21::21:23])
+	from C=NA,ST=NA,L=Ankh Morpork,O=Debian SMTP,OU=Debian SMTP CA,CN=ticharich.debian.org,EMAIL=hostmaster@ticharich.debian.org (verified)
+	by mailly.debian.org with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	(Exim 4.84_2)
+	(envelope-from <bounces+20160908-rich=flatcap.org@tracker.debian.org>)
+	id 1bi8AU-0008BO-Pe
+	for rich@flatcap.org; Thu, 08 Sep 2016 22:51:38 +0000
+Received: from localhost ([::1] helo=ticharich.debian.org)
+	by ticharich.debian.org with esmtp (Exim 4.84_2)
+	(envelope-from <bounces+20160908-rich=flatcap.org@tracker.debian.org>)
+	id 1bi7yu-00021u-2Q
+	for rich@flatcap.org; Thu, 08 Sep 2016 22:39:40 +0000
+Received: from muffat.debian.org ([2607:f8f0:610:4000:6564:a62:ce0c:1392])
+	from C=NA,ST=NA,L=Ankh Morpork,O=Debian SMTP,OU=Debian SMTP CA,CN=muffat.debian.org,EMAIL=hostmaster@muffat.debian.org (verified)
+	by ticharich.debian.org with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	(Exim 4.84_2)
+	(envelope-from <debbugs@buxtehude.debian.org>)
+	id 1bi7yt-000214-Bl
+	for dispatch+mutt@tracker.debian.org; Thu, 08 Sep 2016 22:39:39 +0000
+Received: from quantz.debian.org ([2001:41c8:1000:21::21:28])
+	from C=NA,ST=NA,L=Ankh Morpork,O=Debian SMTP,OU=Debian SMTP CA,CN=quantz.debian.org,EMAIL=hostmaster@quantz.debian.org (verified)
+	by muffat.debian.org with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	(Exim 4.84_2)
+	(envelope-from <debbugs@buxtehude.debian.org>)
+	id 1bi7yr-0003I4-5E
+	for dispatch+mutt@tracker.debian.org; Thu, 08 Sep 2016 22:39:37 +0000
+Received: from qa by quantz.debian.org with local (Exim 4.84_2)
+	(envelope-from <debbugs@buxtehude.debian.org>)
+	id 1bi7yp-0000X8-LT
+	for dispatch+mutt@tracker.debian.org; Thu, 08 Sep 2016 22:39:35 +0000
+Received: from buxtehude.debian.org ([2607:f8f0:610:4000:2015:12:0:147])
+	from C=NA,ST=NA,L=Ankh Morpork,O=Debian SMTP,OU=Debian SMTP CA,CN=buxtehude.debian.org,EMAIL=hostmaster@buxtehude.debian.org (verified)
+	by quantz.debian.org with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	(Exim 4.84_2)
+	(envelope-from <debbugs@buxtehude.debian.org>)
+	id 1bi7yp-0000Wj-AK
+	for mutt@packages.qa.debian.org; Thu, 08 Sep 2016 22:39:35 +0000
+Received: from debbugs by buxtehude.debian.org with local (Exim 4.84_2)
+	(envelope-from <debbugs@buxtehude.debian.org>)
+	id 1bi7yk-00038c-8J; Thu, 08 Sep 2016 22:39:30 +0000
+MIME-Version: 1.0
+X-Mailer: MIME-tools 5.505 (Entity 5.505)
+X-Loop: owner@bugs.debian.org
+From: owner@bugs.debian.org (Debian Bug Tracking System)
+To: Antonio Radici <antonio@debian.org>
+Subject: Bug#599136: marked as done (mutt: hangs when IP address changes)
+Message-ID: <handler.599136.D618425.147337424911322.ackdone@bugs.debian.org>
+References: <E1bi7wk-0000wo-RO@franck.debian.org>
+ <20101004234322.GA5298@crustytoothpaste.ath.cx>
+X-Debian-PR-Message: closed 599136
+X-Debian-PR-Package: mutt
+X-Debian-PR-Keywords: upstream confirmed
+X-Debian-PR-Source: mutt
+Date: Thu, 08 Sep 2016 22:39:30 +0000
+Content-Type: multipart/mixed; boundary="----------=_1473374370-12006-6"
+Delivered-To: mutt@packages.qa.debian.org
+Delivered-To: dispatch+mutt@tracker.debian.org
+X-Loop: dispatch@tracker.debian.org
+X-Distro-Tracker-Package: mutt
+X-Distro-Tracker-Keyword: bts
+List-Id: <mutt.tracker.debian.org>
+X-Debian-Package: mutt
+X-Debian: tracker.debian.org
+X-PTS-Package: mutt
+X-PTS-Keyword: bts
+Precedence: list
+List-Unsubscribe: <mailto:control@tracker.debian.org?body=unsubscribe%20mutt>
+
+This is a multi-part message in MIME format...
+
+------------=_1473374370-12006-6
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+
+Your message dated Thu, 08 Sep 2016 22:37:26 +0000
+with message-id <E1bi7wk-0000wo-RO@franck.debian.org>
+and subject line Bug#618425: fixed in mutt 1.7.0-2
+has caused the Debian Bug report #618425,
+regarding mutt: hangs when IP address changes
+to be marked as done.
+
+This means that you claim that the problem has been dealt with.
+If this is not the case it is now your responsibility to reopen the
+Bug report if necessary, and/or fix the problem forthwith.
+
+(NB: If you are a system administrator and have no idea what this
+message is talking about, this may indicate a serious mail system
+misconfiguration somewhere. Please contact owner@bugs.debian.org
+immediately.)
+
+
+--=20
+618425: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D618425
+Debian Bug Tracking System
+Contact owner@bugs.debian.org with problems
+
+------------=_1473374370-12006-6
+Content-Type: message/rfc822
+Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+
+Received: (at submit) by bugs.debian.org; 4 Oct 2010 23:43:36 +0000
+X-Spam-Checker-Version: SpamAssassin 3.2.5-bugs.debian.org_2005_01_02
+	(2008-06-10) on busoni.debian.org
+X-Spam-Level: 
+X-Spam-Bayes: score:0.0000 Tokens: new, 15; hammy, 151; neutral, 632; spammy,
+	0. spammytokens: hammytokens:0.000-+--UD:patch, 0.000-+--H*c:pgp-signature,
+	0.000-+--H*c:protocol, 0.000-+--H*c:micalg, 0.000-+--H*c:signed
+X-Spam-Status: No, score=-12.4 required=4.0 tests=BAYES_00,FOURLA,
+	FVGT_m_MULTI_ODD,HAS_PACKAGE,IMPRONONCABLE_2,MURPHY_DRUGS_REL8,PGPSIGNATURE,
+	URIBL_CNKR autolearn=ham version=3.2.5-bugs.debian.org_2005_01_02
+Return-path: <sandals@crustytoothpaste.net>
+Received: from qmta09.westchester.pa.mail.comcast.net ([76.96.62.96])
+	by busoni.debian.org with esmtp (Exim 4.69)
+	(envelope-from <sandals@crustytoothpaste.net>)
+	id 1P2ugx-0003UN-Kd
+	for submit@bugs.debian.org; Mon, 04 Oct 2010 23:43:36 +0000
+Received: from omta12.westchester.pa.mail.comcast.net ([76.96.62.44])
+	by qmta09.westchester.pa.mail.comcast.net with comcast
+	id Ebkd1f0010xGWP859njVfl; Mon, 04 Oct 2010 23:43:29 +0000
+Received: from castro.crustytoothpaste.net ([98.201.147.76])
+	by omta12.westchester.pa.mail.comcast.net with comcast
+	id EnjT1f00f1f7w2i3YnjUNh; Mon, 04 Oct 2010 23:43:29 +0000
+Received: from crustytoothpaste.ath.cx ([IPv6:2001:470:1f05:79:21b:77ff:fe08:ede2])
+	(authenticated bits=56)
+	by castro.crustytoothpaste.net (8.14.3/8.14.3/Debian-9.4) with ESMTP id o94NhNMf010007
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
+	Mon, 4 Oct 2010 23:43:26 GMT
+Date: Mon, 4 Oct 2010 23:43:23 +0000
+From: "brian m. carlson" <sandals@crustytoothpaste.net>
+To: Debian Bug Tracking System <submit@bugs.debian.org>
+Subject: mutt: hangs when IP address changes
+Message-ID: <20101004234322.GA5298@crustytoothpaste.ath.cx>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ikeVEW9yuYc//A+q"
+Content-Disposition: inline
+X-Reportbug-Version: 4.12.6
+X-No-CC: If you CC me on this list, I will feed you to Branden Robinson.
+X-Machine: Running on lakeview using GNU/Linux on x86_64 (Linux kernel
+ 2.6.36-rc6-amd64)
+User-Agent: Mutt/1.5.20 (2009-06-14)
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.3.7 (castro.crustytoothpaste.net [IPv6:2001:470:1f05:79::1]); Mon, 04 Oct 2010 23:43:26 +0000 (UTC)
+Delivered-To: submit@bugs.debian.org
+
+
+--ikeVEW9yuYc//A+q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Package: mutt
+Version: 1.5.20-9
+Severity: normal
+
+I use mutt with an IMAP server (imap.crustytoothpaste.net, running
+Dovecot).  My IMAP connection is always encrypted.  I'm running mutt on
+my laptop, so often I forget to quit mutt before I put the lid down.
+When I resume my laptop, I am often at another location with a different
+IP address.  When I hit . to refresh the buffer list or pretty much
+anything else, mutt becomes unresponsive and I cannot do anything, even
+quit, for some amount of time (probably until the network times out).
+Even Ctrl-C doesn't work.  I'm forced to wait or use Ctrl-\.
+
+I'd really appreciate it if mutt could be more responsive in this case.
+I would prefer if it would detect that the network address had changed
+or even that the connection it once had does not exist anymore.  I would
+even be satisfied if I could just quit and restart mutt (even if I had
+to interrupt it with Ctrl-C to make it responsive again).
+
+-- Package-specific info:
+Mutt 1.5.20 (2009-06-14)
+Copyright (C) 1996-2009 Michael R. Elkins and others.
+Mutt comes with ABSOLUTELY NO WARRANTY; for details type `mutt -vv'.
+Mutt is free software, and you are welcome to redistribute it
+under certain conditions; type `mutt -vv' for details.
+
+System: Linux 2.6.36-rc6-amd64 (x86_64)
+ncurses: ncurses 5.7.20100313 (compiled with 5.7)
+libidn: 1.18 (compiled with 1.18)
+hcache backend: tokyocabinet 1.4.37
+Compile options:
+-DOMAIN
++DEBUG
+-HOMESPOOL  +USE_SETGID  +USE_DOTLOCK  +DL_STANDALONE  +USE_FCNTL  -USE_FLO=
+CK  =20
++USE_POP  +USE_IMAP  +USE_SMTP =20
+-USE_SSL_OPENSSL  +USE_SSL_GNUTLS  +USE_SASL  +USE_GSS  +HAVE_GETADDRINFO =
+=20
++HAVE_REGCOMP  -USE_GNU_REGEX =20
++HAVE_COLOR  +HAVE_START_COLOR  +HAVE_TYPEAHEAD  +HAVE_BKGDSET =20
++HAVE_CURS_SET  +HAVE_META  +HAVE_RESIZETERM =20
++CRYPT_BACKEND_CLASSIC_PGP  +CRYPT_BACKEND_CLASSIC_SMIME  +CRYPT_BACKEND_GP=
+GME =20
+-EXACT_ADDRESS  -SUN_ATTACHMENT =20
++ENABLE_NLS  -LOCALES_HACK  +COMPRESSED  +HAVE_WC_FUNCS  +HAVE_LANGINFO_COD=
+ESET  +HAVE_LANGINFO_YESEXPR =20
++HAVE_ICONV  -ICONV_NONTRANS  +HAVE_LIBIDN  +HAVE_GETSID  +USE_HCACHE =20
+-ISPELL
+SENDMAIL=3D"/usr/sbin/sendmail"
+MAILPATH=3D"/var/mail"
+PKGDATADIR=3D"/usr/share/mutt"
+SYSCONFDIR=3D"/etc"
+EXECSHELL=3D"/bin/sh"
+MIXMASTER=3D"mixmaster"
+To contact the developers, please mail to <mutt-dev@mutt.org>.
+To report a bug, please visit http://bugs.mutt.org/.
+
+misc/am-maintainer-mode
+misc/hg.pmdef.debugtime
+debian-specific/build_doc_adjustments.diff
+features/ifdef
+features/xtitles
+features/trash-folder
+features/purge-message
+features/sensible_browser_position
+features-old/patch-1.5.4.vk.pgp_verbose_mime
+features/compressed-folders
+features/compressed-folders.debian
+debian-specific/Muttrc
+debian-specific/Md.etc_mailname_gethostbyname.diff
+debian-specific/use_usr_bin_editor.diff
+debian-specific/correct_docdir_in_man_page.diff
+debian-specific/dont_document_not_present_features.diff
+debian-specific/document_debian_defaults
+debian-specific/assumed_charset-compat
+debian-specific/467432-write_bcc.patch
+misc/define-pgp_getkeys_command.diff
+misc/gpg.rc-paths
+misc/smime.rc
+upstream/533209-mutt_perror.patch
+upstream/533459-unmailboxes.patch
+upstream/533439-mbox-time.patch
+upstream/531430-imapuser.patch
+upstream/534543-imap-port.patch
+upstream/538128-mh-folder-access.patch
+upstream/537818-emptycharset.patch
+upstream/535096-pop-port.patch
+upstream/542910-search-segfault.patch
+upstream/533370-pgp-inline.patch
+upstream/533520-signature-highlight.patch
+upstream/393926-internal-viewer.patch
+upstream/543467-thread-segfault.patch
+upstream/544180-italian-yesorno.patch
+upstream/542817-smimekeys-tmpdir.patch
+upstream/544794-smtp-batch.patch
+upstream/537694-segv-imap-headers.patch
+upstream/548577-gpgme-1.2.patch
+upstream/548494-swedish-intl.patch
+upstream/553321-ansi-escape-segfault.patch
+upstream/553238-german-intl.patch
+upstream/557395-muttrc-crypto.patch
+upstream/545316-header-color.patch
+upstream/568295-references.patch
+upstream/547980-smime_keys-chaining.patch
+upstream/528233-readonly-open.patch
+upstream/228671-pipe-mime.patch
+upstream/383769-score-match.patch
+upstream/547739-manual-typos.patch
+upstream/311296-rand-mktemp.patch
+upstream/573823-imap_internal_date
+upstream/542344-dont_fold_From_
+upstream/path_max
+misc/hyphen-as-minus.patch
+misc/smime_keys-manpage.patch
+mutt.org
+
+-- System Information:
+Debian Release: squeeze/sid
+  APT prefers unstable
+  APT policy: (500, 'unstable'), (1, 'experimental')
+Architecture: amd64 (x86_64)
+
+Kernel: Linux 2.6.36-rc6-amd64 (SMP w/2 CPU cores)
+Locale: LANG=3Den_US.UTF-8, LC_CTYPE=3Den_US.UTF-8 (charmap=3DUTF-8)
+Shell: /bin/sh linked to /bin/dash
+
+Versions of packages mutt depends on:
+ii  libc6                     2.11.2-6       Embedded GNU C Library: Shared=
+ lib
+ii  libcomerr2                1.41.12-2      common error description libra=
+ry
+ii  libgnutls26               2.9.9-1        the GNU TLS library - runtime =
+libr
+ii  libgpg-error0             1.6-1          library for common error value=
+s an
+ii  libgpgme11                1.2.0-1.2      GPGME - GnuPG Made Easy
+ii  libgssapi-krb5-2          1.8.3+dfsg-1   MIT Kerberos runtime libraries=
+ - k
+ii  libidn11                  1.18-1         GNU Libidn library, implementa=
+tion
+ii  libk5crypto3              1.8.3+dfsg-1   MIT Kerberos runtime libraries=
+ - C
+ii  libkrb5-3                 1.8.3+dfsg-1   MIT Kerberos runtime libraries
+ii  libncursesw5              5.7+20100313-4 shared libraries for terminal =
+hand
+ii  libsasl2-2                2.1.23.dfsg1-6 Cyrus SASL - authentication ab=
+stra
+ii  libtokyocabinet8          1.4.37-6       Tokyo Cabinet Database Librari=
+es [
+
+Versions of packages mutt recommends:
+ii  esmtp-run [mail-transport 1.2-5          user configurable relay-only M=
+TA -
+ii  libsasl2-modules          2.1.23.dfsg1-6 Cyrus SASL - pluggable authent=
+icat
+ii  locales                   2.11.2-6       Embedded GNU C Library: Nation=
+al L
+ii  mime-support              3.48-1         MIME files 'mime.types' & 'mai=
+lcap
+
+Versions of packages mutt suggests:
+ii  aspell                     0.60.6-4      GNU Aspell spell-checker
+ii  ca-certificates            20090814+nmu2 Common CA certificates
+ii  gnupg                      1.4.10-4      GNU privacy guard - a free PGP=
+ rep
+ii  ispell                     3.1.20.0-7    International Ispell (an inter=
+acti
+pn  mixmaster                  <none>        (no description available)
+ii  openssl                    0.9.8o-2      Secure Socket Layer (SSL) bina=
+ry a
+ii  urlview                    0.9-18.1      Extracts URLs from text
+
+Versions of packages mutt is related to:
+ii  mutt                          1.5.20-9   text-based mailreader supporti=
+ng M
+pn  mutt-dbg                      <none>     (no description available)
+pn  mutt-patched                  <none>     (no description available)
+
+-- no debconf information
+
+--=20
+brian m. carlson / brian with sandals: Houston, Texas, US
++1 832 623 2791 | http://www.crustytoothpaste.net/~bmc | My opinion only
+OpenPGP: RSA v4 4096b: 88AC E9B2 9196 305B A994 7552 F1BA 225C 0223 B187
+
+--ikeVEW9yuYc//A+q
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+Content-Disposition: inline
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+iQIcBAEBCgAGBQJMqmaQAAoJEL9TXYEfUvaL4esP/0CH/BffJgYNcGaa7mZGB5Wx
+4Z89mhJpYhkle38DhnM2oGTNmQR9EsDR3QV2BCina5jtBB9ZnrIA6mBsLSDe90WZ
+GBXzuQHD58YH4jScMKwwQnESRhwfx0bge9o3CsYmdwGjB2LCd1Ymv7ZtVAVyiVLj
+tGBkxZQyBurK3iVkEcwcsf2g4DbGo9Evb25EiEtPZsaq5jVn3g8vmaE3ik4X+WZe
+TCwF8mURRsKfBx8sHfGJEk4r3lUbKv4uhbUFXD1iYGgeL5DWoST3U7VQW+1IVoDK
+F3B1kuUvGJ8r5PRR029vdXEI65d+rfLNxSIo6kj64uBY4YdyJPcjxi3EqRLszMej
+5SOhOEW85FzhEWIZ4bozzfwo8DK7f7PclmTSsrDX4KdltdbOm5seP/1Dkplb98Ev
+HCNCv6N6WW2ZQLuHO/izLoVu0iGdrpmuMPvVY39EOAcy6U3OqUkvJg+VpE01Sl8M
+EEKHPG4c/VaRr/SNSOiwfDxY83sbvmNS0iIp0ajc72EtpOedxnaK8ccrXcTP8Kho
+920F8kEsjwQWHe20FzjG0hcGXqzAvw6wsH7WuHKYfyALyEuzbabXJyoXO4uAaiev
+9+yk4la+saWHeOAcpMWpdChptsoma5XegHhKPvinFuCxDaE1cQyl19LYZpDH3Z3E
+o9JR+L6JV+GiDByv1ix6
+=r5CG
+-----END PGP SIGNATURE-----
+
+--ikeVEW9yuYc//A+q--
+
+
+
+------------=_1473374370-12006-6
+Content-Type: message/rfc822
+Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+
+Received: (at 618425-close) by bugs.debian.org; 8 Sep 2016 22:37:29 +0000
+X-Spam-Checker-Version: SpamAssassin 3.4.0-bugs.debian.org_2005_01_02
+	(2014-02-07) on buxtehude.debian.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-13.8 required=4.0 tests=BAYES_00,DIGITS_LETTERS,
+	FOURLA,FROMDEVELOPER,FVGT_m_MULTI_ODD,HAS_BUG_NUMBER,MURPHY_DRUGS_REL8,
+	PGPSIGNATURE,RCVD_IN_DNSWL_MED,RP_MATCHES_RCVD autolearn=ham
+	autolearn_force=no version=3.4.0-bugs.debian.org_2005_01_02
+X-Spam-Bayes: score:0.0000 Tokens: new, 7; hammy, 150; neutral, 332; spammy,
+	0. spammytokens: hammytokens:0.000-+--HX-Debian:DAK,
+	0.000-+--H*rp:D*ftp-master.debian.org, 0.000-+--H*MI:franck,
+	0.000-+--H*m:franck, 0.000-+--HX-DAK:process-upload
+Return-path: <envelope@ftp-master.debian.org>
+Received: from mailly.debian.org ([2001:41b8:202:deb:6564:a62:52c3:4b72])
+	from C=NA,ST=NA,L=Ankh Morpork,O=Debian SMTP,OU=Debian SMTP CA,CN=mailly.debian.org,EMAIL=hostmaster@mailly.debian.org (verified)
+	by buxtehude.debian.org with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	(Exim 4.84_2)
+	(envelope-from <envelope@ftp-master.debian.org>)
+	id 1bi7wn-0002ug-Fz
+	for 618425-close@bugs.debian.org; Thu, 08 Sep 2016 22:37:29 +0000
+Received: from franck.debian.org ([138.16.160.12])
+	from C=NA,ST=NA,L=Ankh Morpork,O=Debian SMTP,OU=Debian SMTP CA,CN=franck.debian.org,EMAIL=hostmaster@franck.debian.org (verified)
+	by mailly.debian.org with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	(Exim 4.84_2)
+	(envelope-from <envelope@ftp-master.debian.org>)
+	id 1bi7wl-0006wW-TG; Thu, 08 Sep 2016 22:37:27 +0000
+Received: from dak by franck.debian.org with local (Exim 4.84_2)
+	(envelope-from <envelope@ftp-master.debian.org>)
+	id 1bi7wk-0000wo-RO; Thu, 08 Sep 2016 22:37:26 +0000
+From: Antonio Radici <antonio@debian.org>
+To: 618425-close@bugs.debian.org
+X-DAK: dak process-upload
+X-Debian: DAK
+X-Debian-Package: mutt
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Subject: Bug#618425: fixed in mutt 1.7.0-2
+Message-Id: <E1bi7wk-0000wo-RO@franck.debian.org>
+Date: Thu, 08 Sep 2016 22:37:26 +0000
+X-CrossAssassin-Score: 16
+
+Source: mutt
+Source-Version: 1.7.0-2
+
+We believe that the bug you reported is fixed in the latest version of
+mutt, which is due to be installed in the Debian FTP archive.
+
+A summary of the changes between this version and the previous one is
+attached.
+
+Thank you for reporting the bug, which will now be closed.  If you
+have further comments please address them to 618425@bugs.debian.org,
+and the maintainer will reopen the bug report if appropriate.
+
+Debian distribution maintenance software
+pp.
+Antonio Radici <antonio@debian.org> (supplier of updated mutt package)
+
+(This message was generated automatically at their request; if you
+believe that there is a problem with it please contact the archive
+administrators by mailing ftpmaster@ftp-master.debian.org)
+
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Format: 1.8
+Date: Mon, 29 Aug 2016 21:27:08 +0100
+Source: mutt
+Binary: mutt
+Architecture: source
+Version: 1.7.0-2
+Distribution: unstable
+Urgency: medium
+Maintainer: Mutt maintainers <pkg-mutt-maintainers@lists.alioth.debian.org>
+Changed-By: Antonio Radici <antonio@debian.org>
+Description:
+ mutt       - text-based mailreader supporting MIME, GPG, PGP and threading
+Closes: 96144 423931 549204 569038 599136 618425 639533 644992 741213 757141 774746 819196 824832 828751 832971 833192 834448 836148 836812
+Changes:
+ mutt (1.7.0-2) unstable; urgency=medium
+ .
+   * debian/patches:
+     + upstream/833192-preserve-messageid-for-postponed-emails.patch: do not
+       remove the message-id of postponed emails (Closes: 833192).
+     + upstream/819196-disable-X-in-message-scoring.patch: to disable ~X in
+       message scoring, as upstream requested (Closes: 819196).
+     + upstream/757141-date-format-length.patch: allow more space for date_format
+       (Closes: 757141).
+     + upstream/644992-ipv6-literal.patch: to parse ipv6 literal addresses
+       properly (Closes: 644992).
+     + upstream/741213-dsa-elgamal-keys-length.patch: to correctly extract the
+       length of DSA and Elgamal keys (Closes: 741213).
+     + upstream/549204-clear-N-on-readonly-imap-folders.patch: to clear the N
+       flag on readonly IMAP mailboxes (Closes: 549204).
+     + upstream/569038-interrupt-socket-read-write.patch: allow the interruption
+       of operations which can be long-running
+       (Closes: 569038, 774746, 423931, 599136, 618425).
+     + upstream/openssl-1.1-build.patch: to build against openssl 1.1
+     + neomutt-devel/832971-reset-xlabel.patch to reset X-Label properly for
+       newer versions of mutt (Closes: 832971).
+     + neomutt-devel/836812-user-agent-temp-fix.patch: hardcode the NeoMutt
+       version, it will be fixed in the next NeoMutt release (Closes: 836812).
+     + neomutt-devel/834448-restore-i-pager-binding.patch: restored the 'i'
+       binding to exit from the pager (Closes: 834448).
+     + debian-specific/828751-pinentry-gpg2-support.patch: enable gpgme by
+       default, delegating all crypto to gnupg (Closes: 96144, 828751, 824832).
+     + misc/smime.rc.patch: switch to 'openssl cms' for decrypt (superset of
+       smime) (Closes: 639533).
+   * debian/extra/rc/notmuch.rc: restored the notmuch keybindings
+     (Closes: 836148).
+   * debian/NEWS: added information about GPGME being enabled by default.
+Checksums-Sha1:
+ bd330d076f98d6f6b495b14f5e4304aef5a11092 2165 mutt_1.7.0-2.dsc
+ 7e996d68f3cca799410236a331013be2e2553614 255840 mutt_1.7.0-2.debian.tar.xz
+Checksums-Sha256:
+ bef7b5cc73000f68efa0d7131eea0fef747440398f59e9faf0c66fb14932836c 2165 mutt_1.7.0-2.dsc
+ cce475d3f0eb28b46a860659295d8c32f146d4e4867ae944540c58da26d1b3dc 255840 mutt_1.7.0-2.debian.tar.xz
+Files:
+ f7d3d0c85f834167017151ca0d30c5b8 2165 mail optional mutt_1.7.0-2.dsc
+ e76e6b51ea2e0ae602fccde7c0bb1264 255840 mail optional mutt_1.7.0-2.debian.tar.xz
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQIcBAEBCAAGBQJX0dTMAAoJEDXIyIhyyx7tQLwP/j1Z+8z79Tk1wkszjsNvCKih
+b16sYAJFQRg8yekaw46d8aixaoJotsGuyRiuk+yzSHgNiE9cj48luCBhmpZGgQZ1
+So3thRaMWWSAdsY8dGBWBm7/YO91YHJo0Tib0wmu4i14JFZS0lXmWaE9dnQTCztz
+ZOGuCtkziK+O6ztg7VQAp9+qQNKTqQa7p+HvmHYkn8QVbxhk0TdsO/yJ/EUcMaZZ
+UsxvpxMSMssZ+iFCVm475vHQanThi223SO+/6vCEBHdPylY1Coi3AX8X6AcLLjGb
+SXQyYRDjDtiEJqvxUsFQdL9FiWnyvs54FKRiUldHoSfcILE0w/cx94ZKvOH+fU63
+Ibx+w1Ifoai4nTzUUQhk07FN6ptSR3+TZfiatTTNMktccaIOxS7qdw2d7fNxhMFV
+QficJcfpMGO4vp0iVahBJPzMJZzlbb6mGO6+6hW8yl7rcfyQtvnCn7OUzhTZM1QY
+zI1n9vVlrXG8lO/nCIOENCJZZ3Jp6bI+Ra1hOR9F5lo2KPWEQf7Z6tUAsfeNX2vM
+33JV4yuUPflNU80AlhitNMegyVtSUZUlTC/ldywF4CSiqPuU7DkA0eN/DXA4Asbz
+cGoRkNWzz8/34jXH9mNMqPVeYekzK1WZoboxUzUwUi0lAtwHTSK2IAxUW1zUCN1A
+032z/piSav/yqwU7eggb
+=aEMP
+-----END PGP SIGNATURE-----
+------------=_1473374370-12006-6--
+

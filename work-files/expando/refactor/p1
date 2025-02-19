@@ -1,0 +1,24 @@
+ExpandoNode *node_text_parse     (char *str, char *term_chars,                                  char **parsed_until);
+ExpandoNode *node_condition_parse(char *str, ExpandoDefinition *defs,                           char **parsed_until, ExpandoParseError *err);
+ExpandoNode *node_condbool_parse (char *str, ExpandoDefinition *defs, ExpandoParserFlags flags, char **parsed_until, ExpandoParseError *err);
+ExpandoNode *node_conddate_parse (char *str, int did, int uid,                                  char **parsed_until, ExpandoParseError *err)
+ExpandoNode *node_expando_parse  (char *str, ExpandoDefinition *defs, ExpandoParserFlags flags, char **parsed_until, ExpandoParseError *err)
+
+------------------------------------------------------------------------------------------------------------------------
+
+Implements ExpandoDefinition::parse()
+	node_padding_parse          - Parse a Padding Expando
+	parse_folder_date           - Parse a Date Expando
+	parse_index_date            - Parse a Date Expando
+	parse_index_date_local      - Parse a Date Expando
+	parse_index_date_recv_local - Parse a Date Expando
+	parse_index_hook            - Parse an index-hook
+	parse_pgp_date              - Parse a Date Expando
+	parse_subject               - Parse a Subject Expando
+	parse_tags_transformed      - Parse a Tags-Transformed Expando
+
+ExpandoNode *parse_folder_date(char *str, ExpandoFormat *fmt, int did, int uid, ExpandoParserFlags flags, char **parsed_until, ExpandoParseError *err);
+
+return node_conddate_parse(str + 1, parsed_until, did, uid, err);
+
+return node_expando_parse_enclosure(str, parsed_until, did, uid, ']', err);

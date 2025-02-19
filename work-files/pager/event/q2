@@ -1,0 +1,77 @@
+index/index.c:3547:11:      //QWQ COMMAND
+	mutt_resize_screen();
+	window_invalidate_all();
+menu/menu.c:456:11:         //QWQ COMMAND
+	mutt_resize_screen();
+	window_invalidate_all();
+pager/pager.c:3439:11:      //QWQ COMMAND
+	mutt_resize_screen();
+	window_invalidate_all();
+
+index/index.c:1898:11:      //QWQ Ctrl-L
+	mutt_resize_screen();
+	window_invalidate_all();
+menu/menu.c:509:11:         //QWQ Ctrl-L
+	mutt_resize_screen();
+	window_invalidate_all();
+pager/pager.c:3198:11:      //QWQ Ctrl-L
+	mutt_resize_screen();
+	window_invalidate_all();
+remailer.c:686:11:          //QWQ Ctrl-L
+	mutt_resize_screen();
+	window_invalidate_all();
+
+commands.c:407:7:           //QWQ EXTERNAL
+	mutt_resize_screen();
+	window_invalidate_all();
+gui/curs_lib.c:390:5:       //QWQ EXTERNAL
+	mutt_resize_screen();
+	window_invalidate_all();
+ncrypt/crypt_gpgme.c:123:5: //QWQ EXTERNAL
+	mutt_resize_screen();
+	window_invalidate_all();
+ncrypt/crypt_gpgme.c:130:7: //QWQ EXTERNAL
+	mutt_resize_screen();
+	window_invalidate_all();
+ncrypt/pgp.c:648:15:        //QWQ EXTERNAL
+	mutt_resize_screen();
+	window_invalidate_all();
+ncrypt/pgp.c:1101:7:        //QWQ EXTERNAL
+	mutt_resize_screen();
+	window_invalidate_all();
+send/sendmail.c:422:7:      //QWQ EXTERNAL
+	mutt_resize_screen();
+	window_invalidate_all();
+
+gui/msgwin.c:247:5:         //QWQ MESSAGE
+	mutt_window_reflow(MessageWindow->parent);
+
+gui/curs_lib.c:459:11:      //QWQ msgwin_set_height(N)
+	msgwin_set_height(prompt_lines);
+gui/curs_lib.c:523:7:       //QWQ msgwin_set_height(1)
+	msgwin_set_height(1);
+gui/curs_lib.c:901:11:      //QWQ msgwin_set_height(N)
+	msgwin_set_height(prompt_lines);
+gui/curs_lib.c:977:7:       //QWQ msgwin_set_height(1)
+	msgwin_set_height(1);
+
+gui/curs_lib.c:291:9:       //QWQ SIGWINCH
+	mutt_resize_screen();
+gui/curs_lib.c:447:11:      //QWQ SIGWINCH
+	mutt_resize_screen();
+gui/curs_lib.c:881:11:      //QWQ SIGWINCH
+	mutt_resize_screen();
+index/index.c:1366:11:      //QWQ SIGWINCH
+	mutt_resize_screen();
+menu/menu.c:363:9:          //QWQ SIGWINCH
+	mutt_resize_screen();
+pager/pager.c:2632:9:       //QWQ SIGWINCH
+	mutt_resize_screen();
+
+index/index.c:1333:9:       //QWQ LOOP
+	window_redraw(RootWindow);
+menu/menu.c:320:7:          //QWQ LOOP
+	window_redraw(RootWindow);
+pager/pager.c:2517:7:       //QWQ LOOP
+	window_redraw(RootWindow);
+

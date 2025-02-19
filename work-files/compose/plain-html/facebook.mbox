@@ -1,0 +1,48 @@
+From rich@flatcap.org Mon Jan 17 14:14:13 2022
+Return-Path: <rich@flatcap.org>
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 1703510F5
+	for <flatcap-mail@flatcap.org>; Mon, 17 Jan 2022 14:14:13 +0000 (GMT)
+Date: Mon, 17 Jan 2022 14:14:11 +0000
+From: Richard Russon <rich@flatcap.org>
+To: rich@flatcap.org
+Subject: test
+Message-ID: <20220117141411.a5giyczj7zbdt2bh@flatcap.org>
+MIME-Version: 1.0
+Content-Type: multipart/encrypted; protocol="application/pgp-encrypted";
+	boundary="ydfzrcyutcqyys3k"
+Content-Disposition: inline
+Status: RO
+Content-Length: 1026
+Lines: 28
+
+--ydfzrcyutcqyys3k
+Content-Type: application/pgp-encrypted
+Content-Disposition: attachment
+
+Version: 1
+
+--ydfzrcyutcqyys3k
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="msg.asc"
+
+-----BEGIN PGP MESSAGE-----
+
+hQEMA4NpP55aTaj1AQf/UP/GZF3mcvKr1VzaO8flZhvBdqGmFhDXb9rV8HfWs6Wl
+UbG+l7HxhqpxRJyqm0XkqlxyZkrGwhIrDRQWcuGrNRbeypxbGIBrxFgmN3Sh6ImN
+FsBXaFkazDFmOykN6xFzomq8k68l7obeHhbmdfn7tvYzwNAKW3qfVT0WEkHIc0fr
+FqdF8nJqh7AJzsICKh/USpqlEeHPz5VYqnV1OTOsPJOiewpsLE8z2vze0vmQpJ4d
+UHgAlfDBLkpT7IgVCJQvmId8/CnVri4dqqkFHht73ipuVDbh/WN/CYFI5Ecd6Wcr
+qaGbilYjR4ACEr8N/6ySK1HwMrxskjKK/n6GcxdYmdLASAFG9kSoVcTjWFqbHmyP
+x3HYNXB4Q8QC9FLkWqtsIVL2mYIbORxz1dzXIAdHM+KDGQsa5UAMXWDpNibjcpAs
+YtdLJ/S+vSJpYXx8jhzFaAuJpt2bfG1F+mDSXPdKCdkLczZ/ocychKgn+PtiOdej
+DQ5pQwq/bFyWcfrY5ZtyM03/Gz1oDP9PTClpO/vhXZeK4wYirtOSbT4maJwGxozZ
+VZaZGt5E4AIgTUDVbGoegtCuDzyn0E9g5W2lOZoaLIC/iUYA2EphB1rNy+xHeQbN
+rHXkuBenPdAPhZMtwg4TNz3D1HivJLLLdom+4ACuKf2e5g/icWKtq7Cv7QQMrk4a
+l5HS75DQDik4DA==
+=0w2I
+-----END PGP MESSAGE-----
+
+--ydfzrcyutcqyys3k--
+

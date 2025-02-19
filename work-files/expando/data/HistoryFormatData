@@ -1,0 +1,6 @@
+HistoryFormatData history_format_str
+
+const char *
+	C	lineno				number			number
+	s	match				match			string
+

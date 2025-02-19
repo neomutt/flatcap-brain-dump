@@ -1,0 +1,86 @@
+##########################################
+# Nice icon fonts
+##########################################
+tag-transforms "attachment" "" \
+               "encrypted"  "" \
+               "signed"     "" \
+               "amazon"     "" \
+               "gitlab"     "" \
+               "git"        "" \
+               "youtube"    "" \
+               "calendar"   "" \
+               "list"       "" \
+               "redmine"    "" \
+               "replied"    "" \
+               "sent"       "" \
+               "flagged"    "" \
+               "unread"     "" \
+               "killed"     "" \
+               "spam"       "" \
+               "draft"      "" \
+               "inbox"      "" \
+               "zabbix"     ""
+
+color index_tag red default "killed"
+color index_tag red default "spam"
+color index_tag cyan default "flagged"
+color index_tag magenta default "zabbix"
+
+##########################################
+# Notmuch tag to format tag mapping
+##########################################
+tag-formats    "attachment" "Ga" \
+               "encrypted"  "Ge" \
+               "signed"     "GS" \
+               "amazon"     "GA" \
+               "gitlab"     "GG" \
+               "git"        "Gg" \
+               "youtube"    "Gy" \
+               "calendar"   "Gc" \
+               "list"       "Gl" \
+               "redmine"    "GR" \
+               "replied"    "Gr" \
+               "sent"       "Gn" \
+               "flagged"    "Gf" \
+               "unread"     "Gu" \
+               "killed"     "Gk" \
+               "spam"       "Gs" \
+               "draft"      "Gd" \
+               "inbox"      "Gi" \
+               "zabbix"     "Gz"
+
+#########################################
+# Index format
+#
+
+# Show number of messages in collapsed thread.
+set index_format="%2M "
+
+# Show either killed, spam, or inbox tag.
+set index_format+="%<Gk?%Gk&%<Gs?%Gs&%<Gd?%Gd&%1Gi>>> "
+
+# Show message flags.
+set flag_chars="     "
+set index_format+="%S "
+
+# Show dates format depending on how old they are:
+#
+#  Hours old:     10:38
+#  Days old:       金25日
+#  Months old:    1月03日
+#  Years old:    19年12月
+set index_format+="%<[y?%<[m?%<[d?%[%-5H:%M]&%[(%-1a)%2d日]>&%[%-5b%2d日]>&%[%y年%b]> "
+
+# Email author
+set index_format+="%-20.20n "
+
+# Show one, and only one, of the service tags (e.g. amazon, calendar, youtube, etc).
+set index_format+="%<GA?%GA&%<GG?%GG&%<Gg?%Gg&%<Gy?%Gy&%<Gc?%Gc&%<GR?%GR&%<Gz?%Gz&%Gl>>>>>>>"
+
+# Show if the message is encrypted or signed.
+set index_format+="%<Ge?%Ge&%<GS?%GS&%1Ga>>"
+
+# Show email subject
+set index_format+="  %s"
+
+# vim: syn=neomuttrc

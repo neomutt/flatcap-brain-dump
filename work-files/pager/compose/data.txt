@@ -1,0 +1,20 @@
+Dialog (ComposeSharedData)
+	ConfigSubset
+	Mailbox
+	Email
+	WinEnv (ComposeEnvelopeData)
+		AutocryptRec
+		bcc_list, bcc_rows
+		cc_list, cc_rows
+		to_list, to_rows
+		fcc
+		sec_rows
+	WinAttach (Menu)
+		AttachCtx
+			email
+			fp_root
+			v2r, vcount
+			idx, idxlen, idxmax
+			fp_idx, fp_len, fp_max
+			body_idx, body_len, body_max
+		Menu (ComposeAttachData)

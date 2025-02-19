@@ -1,0 +1,46 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	candidate -> matches_ensure_morespace
+	complete_all_nm_tags -> candidate
+	complete_all_nm_tags -> matches_ensure_morespace
+	execute_commands -> mutt_parse_rc_line
+	mutt_command_complete -> candidate
+	mutt_command_complete -> matches_ensure_morespace
+	mutt_init -> execute_commands
+	mutt_init -> find_cfg
+	mutt_init -> get_hostname
+	mutt_init -> mailbox_path
+	mutt_label_complete -> candidate
+	mutt_label_complete -> matches_ensure_morespace
+	mutt_nm_query_complete -> complete_all_nm_tags
+	mutt_nm_tag_complete -> complete_all_nm_tags
+	mutt_parse_rc_buffer -> mutt_extract_token
+	mutt_parse_rc_line -> mutt_parse_rc_buffer
+
+	mutt_get_hook_type
+	mutt_opts_free
+	mutt_query_variables
+	mutt_var_value_complete
+
+}

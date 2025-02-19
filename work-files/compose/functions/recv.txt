@@ -1,0 +1,38 @@
+# Misc
+check-traditional-pgp OP_CHECK_TRADITIONAL
+forget-passphrase     OP_FORGET_PASSPHRASE
+list-subscribe        OP_LIST_SUBSCRIBE
+list-unsubscribe      OP_LIST_UNSUBSCRIBE
+
+# Message actions
+bounce-message        OP_BOUNCE_MESSAGE
+compose-to-sender     OP_COMPOSE_TO_SENDER
+followup-message      OP_FOLLOWUP
+forward-message       OP_FORWARD_MESSAGE
+forward-to-group      OP_FORWARD_TO_GROUP
+group-chat-reply      OP_GROUP_CHAT_REPLY
+group-reply           OP_GROUP_REPLY
+list-reply            OP_LIST_REPLY
+reply                 OP_REPLY
+resend-message        OP_RESEND
+
+# Attachment manipulation
+delete-entry          OP_DELETE
+undelete-entry        OP_UNDELETE
+
+# Attachment actions
+collapse-parts        OP_ATTACH_COLLAPSE
+display-toggle-weed   OP_DISPLAY_HEADERS
+extract-keys          OP_EXTRACT_KEYS
+pipe-entry            OP_PIPE
+print-entry           OP_PRINT
+save-entry            OP_SAVE
+view-attach           OP_VIEW_ATTACH
+view-mailcap          OP_ATTACH_VIEW_MAILCAP
+view-pager            OP_ATTACH_VIEW_PAGER
+view-text             OP_ATTACH_VIEW_TEXT
+
+# Attachment properties
+edit-type             OP_EDIT_TYPE
+	really?
+

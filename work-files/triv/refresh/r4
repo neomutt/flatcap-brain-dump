@@ -1,0 +1,74 @@
+compose/cbar.c:174:24:        win->actions |= WA_REPAINT;
+compose/cbar.c:221:27:        win_cbar->actions |= WA_REPAINT;
+compose/cbar.c:314:13:        win_cbar->repaint = cbar_repaint;
+enter/functions.c:320:56:     } while ((event.op == OP_TIMEOUT) || (event.op == OP_REPAINT));
+enter/window.c:178:22:        win->actions |= WA_REPAINT;
+enter/window.c:304:8:         win->repaint = enter_repaint;
+enter/window.c:330:28:        win->actions |= WA_REPAINT;
+enter/window.c:334:55:        if ((event.op == OP_TIMEOUT) || (event.op == OP_REPAINT))
+enter/window.c:357:28:        win->actions |= WA_REPAINT;
+enter/window.c:382:30:        case FR_CONTINUE:
+envelope/window.c:788:22:     win->actions |= WA_REPAINT;
+envelope/window.c:832:30:     win_env->actions |= WA_REPAINT;
+envelope/window.c:1022:12:    win_env->repaint = env_repaint;
+flags.c:479:56:               } while ((event.op == OP_TIMEOUT) || (event.op == OP_REPAINT));
+gui/curs_lib.c:214:38:        static const struct KeyEvent event_repaint = { 0, OP_REPAINT };
+gui/curs_lib.c:266:20:        return event_repaint;
+gui/curs_lib.c:452:24:        if (event.op == OP_REPAINT)
+gui/curs_lib.c:455:56:        } while ((event.op == OP_TIMEOUT) || (event.op == OP_REPAINT));
+gui/msgwin.c:165:22:          win->actions |= WA_REPAINT;
+gui/msgwin.c:357:26:          win->actions |= WA_REPAINT;
+gui/msgwin.c:383:8:           win->repaint = msgwin_repaint;
+gui/mutt_window.c:598:12:     if (win->repaint && (win->actions & WA_REPAINT))
+gui/mutt_window.c:599:10:     win->repaint(win);
+gui/mutt_window.c:600:23:     win->actions &= ~WA_REPAINT;
+gui/mutt_window.c:605:12:     window_repaint(np);
+gui/mutt_window.c:643:10:     window_repaint(win);
+gui/mutt_window.c:755:34:     win->actions |= WA_RECALC | WA_REPAINT;
+gui/mutt_window.h:187:9:      int (*repaint)(struct MuttWindow *win);
+gui/sbar.c:87:22:             win->actions |= WA_REPAINT;
+gui/sbar.c:134:27:            win_sbar->actions |= WA_REPAINT;
+gui/sbar.c:162:29:            win_sbar->actions |= WA_REPAINT;
+gui/sbar.c:212:13:            win_sbar->repaint = sbar_repaint;
+gui/sbar.c:235:22:            win->actions |= WA_REPAINT;
+helpbar/helpbar.c:168:22:     win->actions |= WA_REPAINT;
+helpbar/helpbar.c:247:30:     win_helpbar->actions |= WA_REPAINT;
+helpbar/helpbar.c:341:8:      win->repaint = helpbar_repaint;
+index/dlg_index.c:1271:18:    if (op == OP_REPAINT)
+index/ibar.c:104:24:          win->actions |= WA_REPAINT;
+index/ibar.c:117:26:          win->actions |= WA_REPAINT;
+index/ibar.c:127:26:          win->actions |= WA_REPAINT;
+index/ibar.c:183:27:          win_ibar->actions |= WA_REPAINT;
+index/ibar.c:275:29:          win_ibar->actions |= WA_REPAINT;
+index/ibar.c:346:13:          win_ibar->repaint = ibar_repaint;
+index/index.c:314:22:         win->actions |= WA_REPAINT;
+index/index.c:536:22:         win->actions |= WA_REPAINT;
+index/index.c:602:8:          win->repaint = index_repaint;
+menu/move.c:96:30:            menu->win->actions |= WA_REPAINT;
+menu/observer.c:61:22:        win->actions |= WA_REPAINT;
+menu/observer.c:115:36:       win->actions |= WA_RECALC | WA_REPAINT;
+menu/tagging.c:136:28:        menu->win->actions |= WA_REPAINT;
+menu/window.c:85:22:          win->actions |= WA_REPAINT;
+menu/window.c:149:8:          win->repaint = menu_repaint;
+mixmaster/win_chain.c:116:22: win->actions |= WA_REPAINT;
+mixmaster/win_chain.c:193:8:  win->repaint = win_chain_repaint;
+mixmaster/win_chain.c:299:22: win->actions |= WA_REPAINT;
+mixmaster/win_chain.c:325:22: win->actions |= WA_REPAINT;
+pager/pager.c:123:22:         win->actions |= WA_REPAINT;
+pager/pager.c:428:8:          win->repaint = pager_repaint;
+pager/pbar.c:146:24:          win->actions |= WA_REPAINT;
+pager/pbar.c:189:27:          win_pbar->actions |= WA_REPAINT;
+pager/pbar.c:275:41:          win_pbar->actions |= WA_RECALC | WA_REPAINT;
+pager/pbar.c:342:13:          win_pbar->repaint = pbar_repaint;
+pager/private_data.h:53:60:   int old_top_line;
+pager/private_data.h:68:40:   bool force_redraw;
+progress/window.c:150:22:     win->actions |= WA_REPAINT;
+progress/window.c:291:8:      win->repaint = progress_window_repaint;
+question/question.c:122:24:   if (event.op == OP_REPAINT)
+question/question.c:125:53:   if ((event.op == OP_TIMEOUT) || (event.op == OP_REPAINT))
+question/question.c:259:53:   if ((event.op == OP_TIMEOUT) || (event.op == OP_REPAINT))
+sidebar/observer.c:125:16:    win_sidebar->repaint = sb_repaint;
+sidebar/observer.c:224:26:    win->actions |= WA_REPAINT;
+sidebar/observer.c:301:24:    win->actions |= WA_REPAINT;
+sidebar/window.c:790:24:      win->actions |= WA_REPAINT;
+sidebar/window.c:870:22:      win->actions |= WA_REPAINT;

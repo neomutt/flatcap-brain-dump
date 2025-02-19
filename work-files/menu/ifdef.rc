@@ -1,0 +1,5 @@
+ifdef apple         echo "apple"
+ifdef indicator     echo "indicator"
+ifdef banana        echo "banana"
+ifdef config_option echo "config_option"
+ifdef cherry        echo "cherry"

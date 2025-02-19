@@ -1,0 +1,56 @@
+Environment variables:
+	COLORTERM
+	COLUMNS
+	EDITOR
+	EGDSOCKET
+	EMAIL
+	HOME
+	LANG
+	LC_ALL
+	LC_CTYPE
+	LINES
+	MAIL
+	MAILCAPS
+	MAILDIR
+	MM_NOASK
+	NNTPSERVER
+	REPLYTO
+	SHELL
+	TERM
+	TEXTDOMAINDIR
+	TMPDIR
+	USER
+	VISUAL
+	XDG_CONFIG_DIRS
+	XDG_CONFIG_HOME
+
+main.c:431:33:  mutt_str_getenv("COLORTERM");
+main.c:441:19:  mutt_str_getenv("MAIL");
+main.c:443:9:   mutt_str_getenv("MAILDIR");
+main.c:455:7:   mutt_str_getenv("REPLYTO");
+main.c:466:7:   mutt_str_getenv("EMAIL");
+main.c:473:24:  mutt_str_getenv("MAILCAPS");
+main.c:490:25:  mutt_str_getenv("TMPDIR");
+main.c:495:24:  mutt_str_getenv("VISUAL");
+main.c:497:14:  mutt_str_getenv("EDITOR");
+main.c:541:32:  mutt_str_getenv("XDG_CONFIG_HOME");
+main.c:879:24:  mutt_str_getenv("TEXTDOMAINDIR");
+main.c:888:7:   mutt_str_getenv("LC_ALL")
+main.c:888:7:   mutt_str_getenv("LANG")
+main.c:888:7:   mutt_str_getenv("LC_CTYPE"))
+main.c:904:23:  mutt_str_getenv("SHELL");
+main.c:971:22:  mutt_str_getenv("TERM");
+main.c:972:28:  mutt_str_getenv("COLORTERM");
+main.c:1228:31: mutt_str_getenv("USER"));
+main.c:1229:30: mutt_str_getenv("HOME"));
+main.c:1378:16: mutt_str_getenv("NNTPSERVER");
+
+conn/openssl.c:569:17:                   add_entropy(mutt_str_getenv("EGDSOCKET"));
+gui/resize.c:85:22:                      const char *cp = mutt_str_getenv("LINES");
+gui/resize.c:92:22:                      const char *cp = mutt_str_getenv("COLUMNS");
+gui/terminal.c:103:22:                   const char *term = mutt_str_getenv("TERM");
+handler.c:436:21:                        const char *val = mutt_str_getenv("MM_NOASK");
+muttlib.c:898:25:                        const char *xdg_env = mutt_str_getenv(XdgEnvVars[type]);
+	[XDG_CONFIG_HOME] = "XDG_CONFIG_HOME",
+	[XDG_CONFIG_DIRS] = "XDG_CONFIG_DIRS",
+

@@ -1,0 +1,17 @@
+mutt_hist_complete      mutt_history.c -> history/complete.c
+mutt_mailbox_next       mutt_mailbox.c
+
+mutt_complete           complete.c -> enter/complete.c
+mutt_command_complete   init.c -> enter/complete.c?
+mutt_label_complete     init.c -> enter/complete.c?
+mutt_var_value_complete init.c -> enter/complete.c?
+
+mutt_nm_query_complete  init.c -> notmuch/complete.c
+mutt_nm_tag_complete    init.c -> notmuch/complete.c
+
+alias_complete          alias/dlgalias.c
+query_complete          alias/dlgquery.c
+mutt_select_file        browser/browser.c
+imap_complete           imap/imap.c
+nntp_complete           nntp/complete.c
+dlg_select_pattern      pattern/dlgpattern.c

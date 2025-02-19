@@ -1,0 +1,46 @@
+#   alias_format          = "%3i %f%t %-15a %-56A | %C%> %Y"
+set alias_format          = "%3{number} %{flags}%{tagged} %-15{alias} %-56{address} | %{comment}%{padding-hard} %{tags}"
+
+#   attach_format         = "%u%D%I %t%4n %T%d %> [%.7m/%.10M, %.6e%<C?, %C>, %s] "
+set attach_format         = "%{unlink}%{deleted}%{disposition} %{tagged}%4{number} %{tree}%{description} %{padding-hard} [%.7{mime-major}/%.10{mime-minor}, %.6{mime-encoding}%<C?, %C>, %{file-size}] "
+
+#   autocrypt_acct_format = "%4n %-30a %20p %10s"
+set autocrypt_acct_format = "%4{number} %-30{address} %20{prefer-encrypt} %10{enabled}"
+
+#   folder_format         = "%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %i"
+set folder_format         = "%2{number} %{tagged} %{new-mail} %{file-mode} %2{hard-links} %-8.8{file-owner} %-8.8{file-group} %8{file-size} %{date} %{description}"
+
+#   forward_format        = "[%a: %s]"
+set forward_format        = "[%{from}: %{subject}]"
+
+#   group_index_format    = "%4C %M%N %5s  %-45.45f %d"
+set group_index_format    = "%4{number} %{flags}%{flags2} %5{unread-count}  %-45.45{newsgroup} %{description}"
+
+#   history_format        = "%s"
+set history_format        = "%{match}"
+
+#   index_format          = "%4C %Z %{%b %d} %-15.15L (%<l?%4l&%4c>) %s"
+set index_format          = "%4{number} %{combined-flags} %{%b %d} %-15.15{from-list} (%<l?%4l&%4c>) %{subject}"
+
+#   mailbox_folder_format = "%2C %<n?%6n&      > %6m %i"
+set mailbox_folder_format = "%2{number} %<n?%6n&      > %6{message-count} %{description}"
+
+#   message_format        = "%s"
+set message_format        = "%{subject}"
+
+#   pager_format          = "-%Z- %C/%m: %-20.20n   %s%*  -- (%P)"
+set pager_format          = "-%{combined-flags}- %{number}/%{message-count}: %-20.20{name}   %{subject}%{padding-soft}  -- (%{percentage})"
+
+#   pattern_format        = "%2n %-15e  %d"
+set pattern_format        = "%2{number} %-15{expression}  %{description}"
+
+#   pgp_entry_format      = "%4n %t%f %4l/0x%k %-4a %2c %u"
+set pgp_entry_format      = "%4{number %{trust}%{key-flags} %4{key-length}/0x%{key-id} %-4{key-algorithm} %2{key-capabilities} %{user-id}"
+
+#   query_format          = "%3i %t %-25N %-25E | %C%> %Y"
+set query_format          = "%3{number} %{tagged} %-25{name} %-25{email} | %{comment}%{padding-hard} %{tags}"
+
+#   sidebar_format        = "%D%*  %n"
+set sidebar_format        = "%{description}%{padding-soft}  %{new-mail}"
+
+# vim: syn=neomuttrc

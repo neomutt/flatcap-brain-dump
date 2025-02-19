@@ -1,0 +1,46 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	getch          [ fillcolor="#ff8080" ]
+	mutt_getch     [ fillcolor="#80ff80" ]
+	km_dokey_event [ fillcolor="#80ffff" ]
+
+	node [ fillcolor="#ffe8ff" ]
+	mw_get_field
+
+	node [ fillcolor="#ffffff" ]
+	UngetKeyEvents [ color="#d0d0d0" ]
+	MacroEvents    [ color="#d0d0d0" ]
+
+	mw_get_field                -> km_dokey_event
+	km_dokey_event               -> mutt_getch
+	km_dokey_event               -> retry_generic
+	mutt_getch                   -> getch
+	mutt_getch                   -> MacroEvents    [ color="#c0c0c0" style=dashed ]
+	mutt_getch                   -> UngetKeyEvents [ color="#c0c0c0" style=dashed ]
+	retry_generic                -> km_dokey_event
+	retry_generic                -> mutt_getch
+
+	{ rank=same getch MacroEvents UngetKeyEvents }
+
+}

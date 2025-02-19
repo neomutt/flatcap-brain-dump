@@ -1,0 +1,61 @@
+# Refactor mutt_index_menu() into separate functions
+
+## `mutt_index_menu()` is way too big
+
+The function contains 151 `case` statements spread over 2939 lines.
+It's complicated by the fact that the Pager delegates work to the Index.
+
+Functionally, this PR makes no changes.
+
+## Break Up
+
+The 151 `case` statements have been refactored into 89 new functions in `index/functions.c`
+
+Each Neomutt `<function>` is now listed in `IndexFunctions[]`.
+It maps the opcode to a C function and lists any pre-requisites:
+
+```c
+{ OP_DELETE, op_delete, CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE },
+```
+
+Each handler function has the prototype:
+
+```c
+int op_XXX(struct IndexSharedData *shared, struct IndexPrivateData *priv, int op);
+```
+
+Each function returns an `enum IndexRetval` or an opcode, e.g. OP_DELETE.
+The opcode return values are only used by the Pager (`op_display_message()`) and will soon be eliminated.
+
+The enum retvals aren't needed by `mutt_index_menu()` but they may be useful to other callers.
+
+## Complications
+
+The Pager often delegates its work to the Index.
+This works by `op_display_message()` returning an opcode, meaning:
+- Perform this function
+- Return to the Pager
+
+The functions that allow this behaviour all contain the code:
+```c
+if (priv->in_pager)
+  return IR_CONTINUE;
+```
+
+Soon, the Pager will be able to call these functions directly and these complications will be eliminated.
+
+## Tests
+
+This PR should not change any behaviour of the Index or Pager.
+
+I've tested quite a lot of functions in the Index and Pager.
+In particular, I've checked:
+
+- Functions work in the Index
+- Functions work in the Pager
+  - and stay in the Pager (e.g. OP_DELETE)
+  - and leave the Pager (e.g. OP_QUIT)
+- OP_JUMP works in the Index and Pager
+- Unbound keys show an error message in the Index and Pager
+- Change folder works in the Index and Pager
+

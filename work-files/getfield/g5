@@ -1,0 +1,22 @@
+mutt_buffer_enter_fname  (char *prompt, Buffer *fname, bool mailbox, Mailbox *m, bool multiple, char ***files, int *numfiles, SelectFileFlags flags)
+mutt_buffer_get_field    (char *field, Buffer *buf, CompletionFlags complete, bool multiple, Mailbox *m, char ***files, int *numfiles)
+mutt_buffer_select_file  (Buffer *file, SelectFileFlags flags, Mailbox *m, char ***files, int *numfiles)
+mutt_enter_string_full   (char *buf, size_t buflen, int col, CompletionFlags flags, bool multiple, Mailbox *m, char ***files, int *numfiles, EnterState *state)
+mutt_get_field           (char *field, char *buf, size_t buflen, CompletionFlags complete, bool multiple, char ***files, int *numfiles)
+mutt_get_field_unbuffered(char *msg, char *buf, size_t buflen, CompletionFlags flags)
+mutt_select_file         (char *file, size_t filelen, SelectFileFlags flags, Mailbox *m, char ***files, int *numfiles)
+
+SelectFileFlags          CompletionFlags
+    MUTT_SEL_MAILBOX         MUTT_COMP_ALIAS
+    MUTT_SEL_MULTI           MUTT_COMP_COMMAND
+    MUTT_SEL_FOLDER          MUTT_COMP_FILE
+                             MUTT_COMP_FILE_MBOX
+HistoryClass                 MUTT_COMP_FILE_SIMPLE
+    HC_CMD                   MUTT_COMP_LABEL
+    HC_ALIAS                 MUTT_COMP_NM_QUERY
+    HC_COMMAND               MUTT_COMP_NM_TAG
+    HC_FILE                  MUTT_COMP_PATTERN
+    HC_PATTERN               MUTT_COMP_CLEAR
+    HC_OTHER                 MUTT_COMP_PASS
+    HC_MBOX
+

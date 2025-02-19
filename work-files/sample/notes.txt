@@ -1,0 +1,2 @@
+# generate gpg keys ∀ actors
+gpg --quick-generate-key --batch --passphrase '' --yes "John Wayne <jw@mango.com>"

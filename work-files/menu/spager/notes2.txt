@@ -1,0 +1,59 @@
+start_color() => COLORS = n
+main() -> start_curses() -> colors_init()
+other curses stuff, endwin()
+
+initscr(); start_color(); use_default_colors(); !refresh(); !endwin()
+initscr() has to come before mutt_signal_init()
+mutt_signal_init() installs *neomutt's curses* signal handler
+man page says install our WINCH after ncurses
+
+
+move each non-gui cleanup
+create API gui_init(), gui_cleanup() and neomutt_ fns
+factor out log_init, cleanup
+init_self/_neomutt for tidiness
+gui_init() for colours before config
+isolate reading config into 1 function, read_config(sysfile,userfile(s))
+
+
+some global vars/lists could move to NeoMutt (if they're non-gui)
+gui vars/lists could be owned by WindowData
+RootWindow / AllDialogs / IndexDialog?
+
+CurrentFolder, LastFolder are GUI
+
+
+*caller* sets STARTED flag on config subset when DT_STARTUP is done
+
+
+how early does *mutt* call initscr() -> alternate screen?
+is it unconditional?
+very early
+*conditional*
+
+
+OptGui -> NeoMutt, pass to Modules!
+	or NeoMutt.has_tty
+
+all init fns use NeoMutt param
+*no* global storage => testable!
+
+colour cfg if !tty COLORS=2^24
+config unused by syn checked?
+
+WINCH
+	check COLS, LINES still update
+	[main] vs [linear] do we get KEY_RESIZE ever?
+	mutt?
+
+besides 'color' config, is any other config restricted by the external env?
+binding *extended* keys prob
+what *are* the *extended* keys?
+can we copy them?
+	static const struct Extkey ExtKeys[] = {
+	{ctrl,shift,alt}-{up,down,left,right,home,end,next,prev}
+
+move global data into private NeoMutt.X, pre Module breakup
+
+split NeoMutt.init() -> init + init_modules (post cli)
+

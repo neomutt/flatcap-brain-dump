@@ -1,0 +1,47 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	ansi_colors_dump -> color_debug_log_attrs_list
+	ansi_colors_dump -> color_debug_log_color_attrs
+	ansi_colors_dump -> color_debug_log_name
+	color_dump -> ansi_colors_dump
+	color_dump -> curses_colors_dump
+	color_dump -> merged_colors_dump
+	color_dump -> quoted_colors_dump
+	color_dump -> regex_colors_dump
+	color_dump -> simple_colors_dump
+	curses_colors_dump -> color_debug_log_color
+	merged_colors_dump -> color_debug_log_attrs_list
+	merged_colors_dump -> color_debug_log_color_attrs
+	merged_colors_dump -> color_debug_log_name
+	quoted_colors_dump -> color_debug_log_attrs_list
+	quoted_colors_dump -> color_debug_log_color_attrs
+	quoted_colors_dump -> color_debug_log_name
+	regex_colors_dump -> color_debug_log_attrs_list
+	regex_colors_dump -> color_debug_log_color_attrs
+	regex_colors_dump -> color_debug_log_name
+	simple_colors_dump -> color_debug_log_attrs_list
+	simple_colors_dump -> color_debug_log_color_attrs
+	simple_colors_dump -> color_debug_log_name
+
+}

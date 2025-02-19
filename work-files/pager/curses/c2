@@ -1,0 +1,42 @@
+gui/curs_lib.c:113:    refresh();
+gui/curs_lib.c:127:    clearok(stdscr, true);
+gui/curs_lib.c:143:    timeout(delay);
+gui/curs_lib.c:156:    timeout(0);
+gui/curs_lib.c:157:    int ch = getch();
+gui/curs_lib.c:158:    timeout(MuttGetchTimeout);
+gui/curs_lib.c:164:    ch = getch();
+gui/curs_lib.c:187:    struct KeyEvent timeout = { -2, OP_NULL };
+gui/curs_lib.c:207:    ch = getch();
+
+gui/mutt_window.c:248: clrtoeol();
+gui/mutt_window.c:257: addch(' ');
+gui/mutt_window.c:260: move(row, col);
+gui/mutt_window.c:384: return move(win->state.row_offset + row, win->state.col_offset + col);
+gui/mutt_window.c:399: return mvaddstr(win->state.row_offset + row, win->state.col_offset + col, (char *) str);
+gui/mutt_window.c:401: return mvaddstr(win->state.row_offset + row, win->state.col_offset + col, str);
+gui/mutt_window.c:491: return addch(ch);
+gui/mutt_window.c:507: return addnstr((char *) str, num);
+gui/mutt_window.c:509: return addnstr(str, num);
+gui/mutt_window.c:525: return addstr((char *) str);
+gui/mutt_window.c:527: return addstr(str);
+gui/mutt_window.c:538: move(row, col);
+gui/mutt_window.c:844: clearok(stdscr, true);
+
+gui/mutt_curses.c:42:  bkgdset(attr | ' ');
+gui/mutt_curses.c:44:  attrset(attr);
+gui/mutt_curses.c:61:  bkgdset((chosen ? chosen : normal) | ' ');
+gui/mutt_curses.c:63:  attrset(chosen ? chosen : normal);
+
+index/index.c:1929:    clearok(stdscr, true);
+menu/menu.c:367:       clearok(stdscr, true);
+menu/menu.c:510:       clearok(stdscr, true);
+pager/pager.c:2673:    clearok(stdscr, true);
+pager/pager.c:3241:    clearok(stdscr, true);
+
+pager/pager.c:1055:    getyx(stdscr, braille_line, braille_col);
+gui/mutt_window.c:253: getyx(stdscr, row, col);
+gui/mutt_window.c:326: getyx(stdscr, y, x);
+
+mutt_signal.c:72:      refresh();
+progress.c:102:        clrtoeol();
+

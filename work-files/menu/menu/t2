@@ -1,0 +1,7 @@
+expando/format.c:137:33:    else if (arboreal && (wc == MUTT_SPECIAL_INDEX))
+expando/helpers.c:101:15:    if (*p == MUTT_SPECIAL_INDEX)
+expando/node_expando.c:397:18:  buf_addch(buf, MUTT_SPECIAL_INDEX);
+gui/curs_lib.c:412:32:    if ((cw < 0) && (src[0] == MUTT_SPECIAL_INDEX))
+gui/curs_lib.c:468:15:    if (*s == MUTT_SPECIAL_INDEX)
+menu/draw.c:248:20:    else if (*s == MUTT_SPECIAL_INDEX)
+mutt_thread.h:73:3:  MUTT_SPECIAL_INDEX = MUTT_TREE_MAX, ///< Colour indicator

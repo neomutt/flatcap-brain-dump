@@ -1,0 +1,3 @@
+37	$quit - Prompt before exiting NeoMutt
+40	https://neomutt.org/guide/reference#quit
+41	Exit NeoMutt without saving? ([yes]/no): 

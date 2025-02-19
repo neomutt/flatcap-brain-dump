@@ -1,0 +1,186 @@
+Index functions
+
+Menu functions
+	<bottom-page>     OP_BOTTOM_PAGE     move to the bottom of the page
+	<current-bottom>  OP_CURRENT_BOTTOM  move entry to bottom of screen
+	<current-middle>  OP_CURRENT_MIDDLE  move entry to middle of screen
+	<current-top>     OP_CURRENT_TOP     move entry to top of screen
+	<first-entry>     OP_FIRST_ENTRY     move to the first entry
+	<half-down>       OP_HALF_DOWN       scroll down 1/2 page
+	<half-up>         OP_HALF_UP         scroll up 1/2 page
+	<jump>            OP_JUMP            jump to an index number
+	<jump>            OP_JUMP_1          jump to an index number
+	<jump>            OP_JUMP_2          jump to an index number
+	<jump>            OP_JUMP_3          jump to an index number
+	<jump>            OP_JUMP_4          jump to an index number
+	<jump>            OP_JUMP_5          jump to an index number
+	<jump>            OP_JUMP_6          jump to an index number
+	<jump>            OP_JUMP_7          jump to an index number
+	<jump>            OP_JUMP_8          jump to an index number
+	<jump>            OP_JUMP_9          jump to an index number
+	<last-entry>      OP_LAST_ENTRY      move to the last entry
+	<middle-page>     OP_MIDDLE_PAGE     move to the middle of the page
+	<next-entry>      OP_NEXT_ENTRY      move to the next entry
+	<next-line>       OP_NEXT_LINE       scroll down one line
+	<next-page>       OP_NEXT_PAGE       move to the next page
+	<previous-entry>  OP_PREV_ENTRY      move to the previous entry
+	<previous-line>   OP_PREV_LINE       scroll up one line
+	<previous-page>   OP_PREV_PAGE       move to the previous page
+	<search>          OP_SEARCH          search for a regular expression
+	<search-next>     OP_SEARCH_NEXT     search for next match
+	<search-opposite> OP_SEARCH_OPPOSITE search for next match in opposite direction
+	<search-reverse>  OP_SEARCH_REVERSE  search backwards for a regular expression
+	<top-page>        OP_TOP_PAGE        move to the top of the page
+
+Thread functions
+	<break-thread>                OP_MAIN_BREAK_THREAD                break the thread in two
+	<delete-subthread>            OP_DELETE_SUBTHREAD                 delete all messages in subthread
+	<delete-thread>               OP_DELETE_THREAD                    delete all messages in thread
+	<entire-thread>               OP_MAIN_ENTIRE_THREAD               read entire thread of the current message
+	<link-threads>                OP_MAIN_LINK_THREADS                link tagged message to the current one
+	<purge-thread>                OP_PURGE_THREAD                     delete the current thread, bypassing the trash folder
+	<read-subthread>              OP_MAIN_READ_SUBTHREAD              mark the current subthread as read
+	<read-thread>                 OP_MAIN_READ_THREAD                 mark the current thread as read
+	<reconstruct-thread>          OP_RECONSTRUCT_THREAD               reconstruct thread containing current message
+	<undelete-subthread>          OP_UNDELETE_SUBTHREAD               undelete all messages in subthread
+	<undelete-thread>             OP_UNDELETE_THREAD                  undelete all messages in thread
+
+MailboxView functions
+	<collapse-all>                OP_MAIN_COLLAPSE_ALL                collapse/uncollapse all threads
+	<collapse-thread>             OP_MAIN_COLLAPSE_THREAD             collapse/uncollapse current thread
+	<limit-current-thread>        OP_LIMIT_CURRENT_THREAD             limit view to current thread
+	<limit>                       OP_MAIN_LIMIT                       show only messages matching a pattern
+	<next-subthread>              OP_MAIN_NEXT_SUBTHREAD              jump to the next subthread
+	<next-thread>                 OP_MAIN_NEXT_THREAD                 jump to the next thread
+	<parent-message>              OP_MAIN_PARENT_MESSAGE              jump to parent message in thread
+	<previous-subthread>          OP_MAIN_PREV_SUBTHREAD              jump to previous subthread
+	<previous-thread>             OP_MAIN_PREV_THREAD                 jump to previous thread
+	<root-message>                OP_MAIN_ROOT_MESSAGE                jump to root message in thread
+	<sort-reverse>                OP_SORT_REVERSE                     sort messages in reverse order
+	<sort>                        OP_SORT                             sort messages
+	<tag-message>                 OP_TAG                              tag the current entry
+	<tag-pattern>                 OP_MAIN_TAG_PATTERN                 tag non-hidden messages matching a pattern
+	<tag-subthread>               OP_TAG_SUBTHREAD                    tag the current subthread
+	<tag-thread>                  OP_TAG_THREAD                       tag the current thread
+	<toggle-read>                 OP_TOGGLE_READ                      toggle view of read messages
+	<untag-pattern>               OP_MAIN_UNTAG_PATTERN               untag non-hidden messages matching a pattern
+
+Global functions
+	<check-stats>       OP_CHECK_STATS       calculate message statistics for all mailboxes
+	<enter-command>     OP_ENTER_COMMAND     enter a neomuttrc command
+	<refresh>           OP_REDRAW            clear and redraw the screen
+	<shell-escape>      OP_SHELL_ESCAPE      invoke a command in a subshell
+	<show-log-messages> OP_SHOW_LOG_MESSAGES show log (and debug) messages
+	<show-version>      OP_VERSION           show the NeoMutt version number and date
+	<what-key>          OP_WHAT_KEY          display the keycode for a key press
+
+Sidebar functions
+	<sidebar-first>          OP_SIDEBAR_FIRST          move the highlight to the first mailbox
+	<sidebar-last>           OP_SIDEBAR_LAST           move the highlight to the last mailbox
+	<sidebar-next-new>       OP_SIDEBAR_NEXT_NEW       move the highlight to next mailbox with new mail
+	<sidebar-next>           OP_SIDEBAR_NEXT           move the highlight to next mailbox
+	<sidebar-open>           OP_SIDEBAR_OPEN           open highlighted mailbox
+	<sidebar-page-down>      OP_SIDEBAR_PAGE_DOWN      scroll the sidebar down 1 page
+	<sidebar-page-up>        OP_SIDEBAR_PAGE_UP        scroll the sidebar up 1 page
+	<sidebar-prev-new>       OP_SIDEBAR_PREV_NEW       move the highlight to previous mailbox with new mail
+	<sidebar-prev>           OP_SIDEBAR_PREV           move the highlight to previous mailbox
+	<sidebar-toggle-virtual> OP_SIDEBAR_TOGGLE_VIRTUAL toggle between mailboxes and virtual mailboxes
+	<sidebar-toggle-visible> OP_SIDEBAR_TOGGLE_VISIBLE make the sidebar (in)visible
+
+
+Mailbox functions
+
+Email functions
+
+no pre-requisites
+	<alias-dialog>                OP_ALIAS_DIALOG                     open the aliases dialog
+	<autocrypt-acct-menu>         OP_AUTOCRYPT_ACCT_MENU              manage autocrypt accounts
+	<change-folder-readonly>      OP_MAIN_CHANGE_FOLDER_READONLY      open a different folder in read only mode
+	<change-folder>               OP_MAIN_CHANGE_FOLDER               open a different folder
+	<change-newsgroup-readonly>   OP_MAIN_CHANGE_GROUP_READONLY       open a different newsgroup in read only mode
+	<change-newsgroup>            OP_MAIN_CHANGE_GROUP                open a different newsgroup
+	<change-vfolder>              OP_MAIN_CHANGE_VFOLDER              open a different virtual folder
+	<create-alias>                OP_CREATE_ALIAS                     create an alias from a message sender
+	<end-cond>                    OP_END_COND                         end of conditional execution (noop)
+	<exit>                        OP_EXIT                             exit this menu
+	<fetch-mail>                  OP_MAIN_FETCH_MAIL                  retrieve mail from POP server
+	<forget-passphrase>           OP_FORGET_PASSPHRASE                wipe passphrases from memory
+	<imap-fetch-mail>             OP_MAIN_IMAP_FETCH                  force retrieval of mail from IMAP server
+	<imap-logout-all>             OP_MAIN_IMAP_LOGOUT_ALL             logout from all IMAP servers
+	<mail-key>                    OP_MAIL_KEY                         mail a PGP public key
+	<mail>                        OP_MAIL                             compose a new mail message
+	<mailbox-list>                OP_MAILBOX_LIST                     list mailboxes with new mail
+	<query>                       OP_QUERY                            query external program for addresses
+	<quit>                        OP_QUIT                             save changes to mailbox and quit
+	<recall-message>              OP_RECALL_MESSAGE                   recall a postponed message
+	<sync-mailbox>                OP_MAIN_SYNC_FOLDER                 save changes to mailbox
+	<vfolder-from-query-readonly> OP_MAIN_VFOLDER_FROM_QUERY_READONLY generate a read-only virtual folder from query
+	<vfolder-from-query>          OP_MAIN_VFOLDER_FROM_QUERY          generate virtual folder from query
+
+mailbox required
+	<delete-pattern>              OP_MAIN_DELETE_PATTERN              delete non-hidden messages matching a pattern
+	<get-message>                 OP_GET_MESSAGE                      get message with Message-Id
+	<next-unread-mailbox>         OP_MAIN_NEXT_UNREAD_MAILBOX         open next mailbox with new mail
+	<post-message>                OP_POST                             post message to newsgroup
+	<show-limit>                  OP_MAIN_SHOW_LIMIT                  show currently active limit pattern
+	<toggle-write>                OP_TOGGLE_WRITE                     toggle whether the mailbox will be rewritten
+	<undelete-pattern>            OP_MAIN_UNDELETE_PATTERN            undelete non-hidden messages matching a pattern
+	<vfolder-window-backward>     OP_MAIN_WINDOWED_VFOLDER_BACKWARD   shifts virtual folder time window backwards
+	<vfolder-window-forward>      OP_MAIN_WINDOWED_VFOLDER_FORWARD    shifts virtual folder time window forwards
+	<vfolder-window-reset>        OP_MAIN_WINDOWED_VFOLDER_RESET      resets virtual folder time window to the present
+
+email required
+	<bounce-message>              OP_BOUNCE_MESSAGE                   remail a message to another user
+	<catchup>                     OP_CATCHUP                          mark all articles in newsgroup as read
+	<check-traditional-pgp>       OP_CHECK_TRADITIONAL                check for classic PGP
+	<clear-flag>                  OP_MAIN_CLEAR_FLAG                  clear a status flag from a message
+	<compose-to-sender>           OP_COMPOSE_TO_SENDER                compose new message to the current message sender
+	<copy-message>                OP_COPY_MESSAGE                     copy a message to a file/mailbox
+	<decode-copy>                 OP_DECODE_COPY                      make decoded (text/plain) copy
+	<decode-save>                 OP_DECODE_SAVE                      make decoded copy (text/plain) and delete
+	<decrypt-copy>                OP_DECRYPT_COPY                     make decrypted copy
+	<decrypt-save>                OP_DECRYPT_SAVE                     make decrypted copy and delete
+	<delete-message>              OP_DELETE                           delete the current entry
+	<display-address>             OP_DISPLAY_ADDRESS                  display full address of sender
+	<display-message>             OP_DISPLAY_MESSAGE                  display a message
+	<display-toggle-weed>         OP_DISPLAY_HEADERS                  display message and toggle header weeding
+	<edit-label>                  OP_EDIT_LABEL                       add, change, or delete a message's label
+	<edit-or-view-raw-message>    OP_EDIT_OR_VIEW_RAW_MESSAGE         edit the raw message if the mailbox is not read-only, otherwise view it
+	<edit-raw-message>            OP_EDIT_RAW_MESSAGE                 edit the raw message (edit and edit-raw-message are synonyms)
+	<edit-type>                   OP_ATTACHMENT_EDIT_TYPE             edit attachment content type
+	<extract-keys>                OP_EXTRACT_KEYS                     extract supported public keys
+	<flag-message>                OP_FLAG_MESSAGE                     toggle a message's 'important' flag
+	<followup-message>            OP_FOLLOWUP                         followup to newsgroup
+	<forward-message>             OP_FORWARD_MESSAGE                  forward a message with comments
+	<forward-to-group>            OP_FORWARD_TO_GROUP                 forward to newsgroup
+	<get-children>                OP_GET_CHILDREN                     get all children of the current message
+	<get-parent>                  OP_GET_PARENT                       get parent of the current message
+	<group-chat-reply>            OP_GROUP_CHAT_REPLY                 reply to all recipients preserving To/Cc
+	<group-reply>                 OP_GROUP_REPLY                      reply to all recipients
+	<list-reply>                  OP_LIST_REPLY                       reply to specified mailing list
+	<list-subscribe>              OP_LIST_SUBSCRIBE                   subscribe to a mailing list
+	<list-unsubscribe>            OP_LIST_UNSUBSCRIBE                 unsubscribe from a mailing list
+	<mark-message>                OP_MARK_MSG                         create a hotkey macro for the current message
+	<modify-tags-then-hide>       OP_MAIN_MODIFY_TAGS_THEN_HIDE       modify (notmuch/imap) tags and then hide message
+	<modify-tags>                 OP_MAIN_MODIFY_TAGS                 modify (notmuch/imap) tags
+	<next-new-then-unread>        OP_MAIN_NEXT_NEW_THEN_UNREAD        jump to the next new or unread message
+	<next-new>                    OP_MAIN_NEXT_NEW                    jump to the next new message
+	<next-undeleted>              OP_MAIN_NEXT_UNDELETED              move to the next undeleted message
+	<next-unread>                 OP_MAIN_NEXT_UNREAD                 jump to the next unread message
+	<pipe-message>                OP_PIPE                             pipe message/attachment to a shell command
+	<previous-new-then-unread>    OP_MAIN_PREV_NEW_THEN_UNREAD        jump to the previous new or unread message
+	<previous-new>                OP_MAIN_PREV_NEW                    jump to the previous new message
+	<previous-undeleted>          OP_MAIN_PREV_UNDELETED              move to the previous undeleted message
+	<previous-unread>             OP_MAIN_PREV_UNREAD                 jump to the previous unread message
+	<print-message>               OP_PRINT                            print the current entry
+	<purge-message>               OP_PURGE_MESSAGE                    delete the current entry, bypassing the trash folder
+	<quasi-delete>                OP_MAIN_QUASI_DELETE                delete from NeoMutt, don't touch on disk
+	<reply>                       OP_REPLY                            reply to a message
+	<resend-message>              OP_RESEND                           use the current message as a template for a new one
+	<save-message>                OP_SAVE                             save message/attachment to a mailbox/file
+	<set-flag>                    OP_MAIN_SET_FLAG                    set a status flag on a message
+	<toggle-new>                  OP_TOGGLE_NEW                       toggle a message's 'new' flag
+	<undelete-message>            OP_UNDELETE                         undelete the current entry
+	<view-attachments>            OP_VIEW_ATTACHMENTS                 show MIME attachments
+	<view-raw-message>            OP_VIEW_RAW_MESSAGE                 show the raw message
+

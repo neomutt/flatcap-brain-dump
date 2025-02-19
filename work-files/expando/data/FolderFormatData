@@ -1,0 +1,21 @@
+FolderFormatData folder_format_str
+
+struct Folder
+	a	ff->notify_user			notify			number	bool,optional
+	C	num				number			number
+	F	ff->mode			file-mode		string
+	f	ff->name			filename		string
+	g	ff->gid				file-group		string
+	i	ff->desc			description		string
+	l	ff->nlink			hard-links		string
+	m	ff->msg_count			message-count		number	optional
+	N	ff->has_new_mail		new-mail		string	bool
+	n	ff->msg_unread			unread-count		number	optional
+	p	ff->poll_new_mail		poll			number	bool,optional
+	s	ff->size			file-size		number
+	t	ff->tagged			tagged			string	bool
+	u	ff->uid				file-owner		string
+	d	ff->mtime			date			string
+	D	ff->mtime			date-format		string
+	[	ff->mtime			-			string
+

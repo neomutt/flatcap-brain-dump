@@ -1,0 +1,4 @@
+browser/complete.c:78:5:    dlg_browser(wdata->buffer,
+browser/complete.c:128:5:    dlg_browser(wdata->buffer, MUTT_SEL_NO_FLAGS, wdata->mailbox, NULL, NULL);
+gui/curs_lib.c:477:5:    dlg_browser(fname, flags, m, files, numfiles);
+main.c:1315:7:      dlg_browser(&folder, MUTT_SEL_FOLDER | MUTT_SEL_MAILBOX, m_cur, NULL, NULL);

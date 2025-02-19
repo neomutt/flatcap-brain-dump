@@ -1,0 +1,42 @@
+set sidebar_visible = yes
+set sidebar_width = 50
+
+set sidebar_component_depth = 0
+set sidebar_delim_chars = "/."
+set sidebar_folder_indent = yes
+set sidebar_indent_string = ".."
+# set sidebar_indent_string = "└─"
+set sidebar_short_path = yes
+
+named-mailboxes "Archive"         "/home/mutt/mail/linode/archive"
+named-mailboxes "Archive.Code"    "/home/mutt/mail/linode/archive.code"
+named-mailboxes "Archive.Family"  "/home/mutt/mail/linode/archive.family"
+named-mailboxes "Archive.Friends" "/home/mutt/mail/linode/archive.friends"
+mailboxes                         "/home/mutt/mail/linode/archive.holidays"
+mailboxes                         "/home/mutt/mail/linode/archive.info"
+mailboxes                         "/home/mutt/mail/linode/archive.job"
+mailboxes                         "/home/mutt/mail/linode/distro"
+mailboxes                         "/home/mutt/mail/linode/distro.arch"
+mailboxes                         "/home/mutt/mail/linode/distro.debian"
+mailboxes                         "/home/mutt/mail/linode/distro.kz"
+mailboxes                         "/home/mutt/mail/linode/distro.suse"
+mailboxes                         "/home/mutt/mail/linode/drafts"
+mailboxes                         "/home/mutt/mail/linode/mutt"
+mailboxes                         "/home/mutt/mail/linode/mutt.devel"
+mailboxes                         "/home/mutt/mail/linode/mutt.trac"
+mailboxes                         "/home/mutt/mail/linode/mutt.users"
+named-mailboxes "Neo"             "/home/mutt/mail/linode/neo"
+named-mailboxes "Neo.Devel"       "/home/mutt/mail/linode/neo.devel"
+named-mailboxes "Neo.Github"      "/home/mutt/mail/linode/neo.github"
+named-mailboxes "Neo.Lang"        "/home/mutt/mail/linode/neo.lang"
+named-mailboxes "Neo.Mailman"     "/home/mutt/mail/linode/neo.mailman"
+named-mailboxes "Neo.Travis"      "/home/mutt/mail/linode/neo.travis"
+named-mailboxes "Neo.Users"       "/home/mutt/mail/linode/neo.users"
+mailboxes                         "/home/mutt/mail/linode/sent"
+mailboxes                         "/home/mutt/mail/linode/system"
+mailboxes                         "/home/mutt/mail/linode/system.cron"
+mailboxes                         "/home/mutt/mail/linode/system.dnssec"
+mailboxes                         "/home/mutt/mail/linode/system.linode"
+mailboxes                         "/home/mutt/mail/linode/trash"
+
+# vim: syn=neomuttrc

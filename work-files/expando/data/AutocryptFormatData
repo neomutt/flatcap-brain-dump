@@ -1,0 +1,9 @@
+AutocryptFormatData autocrypt_format_str
+
+struct AccountEntry
+	a	addr->mailbox			mailbox			string
+	k	account->keyid			keyid			string
+	n	num				number			number
+	p	account->prefer_encrypt		prefer-encrypt		string
+	s	account->enabled		enabled			string
+

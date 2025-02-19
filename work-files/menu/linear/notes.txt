@@ -1,0 +1,103 @@
+NeoMutt init -- neomutt.c
+
+∀ libraries  Module API -- NeoMutt.ModuleArray
+in main() create NeoMutt immediately
+neo.init_config() - does base init then calls:
+	Module.init_config() ∀ libarries
+		allowing them to register options (and types)
+	Module.init_commands()
+	Module.init_colors()
+	Module.cleanup() -- free everything
+library/module.c
+each Module has private data, held by Neomutt. NO
+	held by Module obj
+3 stages for config setup?
+	init_types()
+	init_variables()
+	set_defaults()
+does anyone set defaults *outside* of their library?
+Module.early_init() - stuff with zero deps
+Module.pre_gui_init() - needed if GUI is going to start
+neomutt_shutdown() - MxAPI shudown  cleanup
+neomutt_free() - ∀ Module cleanup() and free
+libgui Module manages ncurses
+pre-gui => observer setup!
+libneo neo if too much complexity
+encapsulate all globals
+
+don't need both /module.c and core/module.c ?
+
+use ARRAY rather than STAILQ
+D_ON_STARTUP - flag on ConfigSubset (inherited)
+	set by external
+	elim need for global StartupComplete
+
+Colour users (possible)
+	compose
+	index
+	sidebar
+don't have a way to register colours yet
+	would need DID/UID and a HashTable
+
+enumerate every possible command line with its outcome -- text | gui
+
+move out of NeoMutt - where?
+  struct Notify *notify_resize;  ///< Window resize notifications handler
+  	gui?
+  struct Notify *notify_timeout; ///< Timeout notifications handler
+  	main?
+
+GUI
+	Module.init() called once, early, for gui libary
+	neomutt_start_gui() triggers Module.pre_gui()
+	neomutt_stop_gui()  triggers Module.post_gui()
+		pair may be called multiple times
+	Module.cleanup() called once, on shutdown, for gui library
+
+-----------------
+INIT
+
+mutt_log_prep()
+	only caller of log_file_set_version
+	log_file_set_version() leaks LogFileVersion
+
+log_translation()
+	must come after bindtextdomain() in init_locale()
+
+-----------------
+EARLY
+
+move EnvList to NeoMutt
+
+reset_tilde(cs)		?
+localise_config(cs)	?
+mutt_ts_capability()
+
+crypt_init()		crypt_cleanup()			ncrypt
+	NO, needs config $crypt_use_gpgme
+
+-----------------
+PRE-GUI
+
+rootwin_new()			gui
+start_curses()			gui?
+mutt_signal_init()		gui?
+mutt_resize_screen()		gui
+log_gui()			gui
+colors_init()			color		before config read
+mutt_hist_init()		history
+mutt_hist_read_file()		history
+mutt_init_abort_key()		key
+menu_init()			menu
+sb_init()			sidebar
+
+-----------------
+CLEANUP
+
+envlist_free(&EnvList)		mutt		or NeoMutt
+buf_pool_cleanup()		mutt		needs to be as late as possible
+log_queue_flush(log_disp_terminal)
+mutt_log_stop()
+
+-----------------
+

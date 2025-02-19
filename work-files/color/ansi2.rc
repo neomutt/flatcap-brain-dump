@@ -1,0 +1,3 @@
+set help = no
+set allow_ansi = no
+color body color86 default "while.*"

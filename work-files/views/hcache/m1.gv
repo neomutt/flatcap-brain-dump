@@ -1,0 +1,53 @@
+digraph callgraph {
+	// 2023-11-18 main: maildir_mbox_open()
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// node [ fillcolor="#ffc0c0" ]
+	// delayed_parsing
+	// hcache_key
+	// hcache_keylen
+	// mbox_open
+
+	// node [ fillcolor="#ffffff" ]
+	// move_to_mailbox
+	// parse_dir
+	// parse_flags
+	// parse_message
+	// parse_stream
+	// read_dir
+	// sort_inode
+
+	delayed_parsing       -> hcache_key
+	delayed_parsing       -> hcache_keylen
+	delayed_parsing       -> parse_flags
+	delayed_parsing       -> parse_message
+	mbox_open             -> read_dir
+	parse_dir             -> parse_flags
+	parse_dir             -> sort_inode
+	parse_message         -> parse_stream
+	parse_stream          -> parse_flags
+	read_dir              -> delayed_parsing
+	read_dir              -> move_to_mailbox
+	read_dir              -> parse_dir
+
+}

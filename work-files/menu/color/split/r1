@@ -1,0 +1,47 @@
+Regex Colours
+
+Attach          "attachment"                MT_COLOR_ATTACHMENT               CF_SIMPLE
+                "attach_headers"            MT_COLOR_ATTACH_HEADERS           CF_REGEX
+
+Body            "body"                      MT_COLOR_BODY                     CF_REGEX
+                defaults to ".*"
+
+Header          "hdrdefault"                MT_COLOR_HDRDEFAULT               CF_SIMPLE
+                "header"                    MT_COLOR_HEADER                   CF_REGEX
+
+Status          "status"                    MT_COLOR_STATUS                   CF_REGEX | CF_BACK_REF
+
+Index           "index"                     MT_COLOR_INDEX                    CF_REGEX
+IndexAuthor     "index_author"              MT_COLOR_INDEX_AUTHOR             CF_REGEX
+IndexCollapsed  "index_collapsed"           MT_COLOR_INDEX_COLLAPSED          CF_REGEX
+IndexDate       "index_date"                MT_COLOR_INDEX_DATE               CF_REGEX
+IndexFlags      "index_flags"               MT_COLOR_INDEX_FLAGS              CF_REGEX
+IndexLabel      "index_label"               MT_COLOR_INDEX_LABEL              CF_REGEX
+IndexNumber     "index_number"              MT_COLOR_INDEX_NUMBER             CF_REGEX
+IndexSize       "index_size"                MT_COLOR_INDEX_SIZE               CF_REGEX
+IndexSubject    "index_subject"             MT_COLOR_INDEX_SUBJECT            CF_REGEX
+IndexTag        "index_tag"                 MT_COLOR_INDEX_TAG                CF_REGEX
+IndexTags       "index_tags"                MT_COLOR_INDEX_TAGS               CF_REGEX
+
+simple_search: "~f %s | ~s %s"
+
+Alias           "alias"                     MT_COLOR_ALIAS                    CF_REGEX
+AliasAddress    "alias_address"             MT_COLOR_ALIAS_ADDRESS            CF_REGEX
+AliasAlias      "alias_alias"               MT_COLOR_ALIAS_ALIAS              CF_REGEX
+AliasComment    "alias_comment"             MT_COLOR_ALIAS_COMMENT            CF_REGEX
+AliasEmail      "alias_email"               MT_COLOR_ALIAS_EMAIL              CF_REGEX
+AliasFlags      "alias_flags"               MT_COLOR_ALIAS_FLAGS              CF_REGEX
+AliasName       "alias_name"                MT_COLOR_ALIAS_NAME               CF_REGEX
+AliasNumber     "alias_number"              MT_COLOR_ALIAS_NUMBER             CF_REGEX
+AliasTags       "alias_tags"                MT_COLOR_ALIAS_TAGS               CF_REGEX
+
+alias_simple_search: "~f %s | ~t %s | ~c %s"
+    ADD CONFIG?
+
+
+color sidebar (deprecate sidebar_background)
+	to match index, body, attachment?
+new blanket colours?
+	color compose
+	color envelope
+

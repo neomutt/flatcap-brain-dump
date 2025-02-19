@@ -1,0 +1,1 @@
+\v<(config_set_initial|execute_commands|find_cfg|getmailname|get_hostname|get_user_info|init_locale|localise_config|log_gui|log_translation|main|main_timeout_observer|mutt_init|reset_tilde|start_curses|usage)>

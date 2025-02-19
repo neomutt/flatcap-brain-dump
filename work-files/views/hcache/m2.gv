@@ -1,0 +1,54 @@
+digraph callgraph {
+	// 2023-11-18 refactored: maildir_mbox_open()
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// maildir_ dropped from labels for simplicity
+
+	node [ fillcolor="#ffffc0" ]
+	maildir_files_read    [ label=<files_read <font color="red">●</font>> ]
+	maildir_files_scan    [ label=<files_scan <font color="red">●</font>> ]
+	maildir_parse_flags   [ label=<parse_flags> ]
+	maildir_parse_message [ label=<parse_message> ]
+	maildir_parse_stream  [ label=<parse_stream> ]
+
+	node [ fillcolor="#c0ffff" ]
+	maildir_hcache_read  [ label=<hcache_read <font color="red">●</font>>  ]
+	maildir_hcache_store [ label=<hcache_store <font color="red">●</font>> ]
+	maildir_parse_key    [ label=<parse_key> ]
+
+	node [ fillcolor="#ffffff" ]
+	maildir_files_read    -> maildir_parse_message
+	maildir_hcache_read   -> maildir_parse_key
+	maildir_hcache_store  -> maildir_parse_key
+	maildir_parse_message -> maildir_parse_stream
+	mbox_open             -> maildir_files_read
+	mbox_open             -> maildir_files_scan
+	mbox_open             -> maildir_hcache_read
+	mbox_open             -> maildir_hcache_store
+	mbox_open             -> maildir_parse_flags
+	mbox_open             -> move_to_mailbox2
+
+	maildir_files_scan -> maildir_hcache_read -> maildir_files_read -> maildir_parse_flags -> maildir_hcache_store -> move_to_mailbox2
+	{ rank=same maildir_files_scan maildir_hcache_read maildir_files_read maildir_parse_flags maildir_hcache_store move_to_mailbox2 }
+
+}

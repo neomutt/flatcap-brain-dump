@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+
+send.c
+
+static int send_message_resume_compose_menu(struct SendContext *sctx)
+
+  if (generate_multipart_alternative(sctx->msg, sctx->flags))
+  {
+    if (!(sctx->flags & SEND_BATCH))
+      goto main_loop;
+    else
+      goto cleanup;
+  }
+
+--------------------------------------------------------------------------------
+

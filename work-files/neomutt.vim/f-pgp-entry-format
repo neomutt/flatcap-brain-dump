@@ -1,0 +1,21 @@
+" Ref: crypt_format_str() in ncrypt/dlg_gpgme.c
+" Ref: pgp_entry_format_str() in ncrypt/dlg_pgp.c
+" Note: crypt_format_str() supports 'p', but pgp_entry_format_str() does not
+call s:escapesConditionals('PgpEntryFormat', '[AaCcFfKkLlnptu[]', 0, 1)
+" Defines: muttrcPgpEntryFormatEscapes, muttrcPgpEntryFormatConditionals
+
+syntax region muttrcPgpEntryFormatString contained skipwhite keepend start=+"+ skip=+\\"+ end=+"+ contains=muttrcPgpEntryFormatEscapes,muttrcPgpEntryFormatConditionals,muttrcFormatErrors,muttrcPgpTimeEscapes nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+syntax region muttrcPgpEntryFormatString contained skipwhite keepend start=+'+ skip=+\\'+ end=+'+ contains=muttrcPgpEntryFormatEscapes,muttrcPgpEntryFormatConditionals,muttrcFormatErrors,muttrcPgpTimeEscapes nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+
+syntax match muttrcVarEqualsPgpEntryFormat contained skipwhite "=" nextgroup=muttrcPgpEntryFormatString
+
+syntax keyword muttrcVarString contained skipwhite pgp_entry_format nextgroup=muttrcVarEqualsPgpEntryFormat
+
+highlight def link muttrcPgpEntryFormatConditionals muttrcFormatConditionals2
+highlight def link muttrcPgpEntryFormatEscapes      muttrcEscape
+highlight def link muttrcPgpEntryFormatString       muttrcString
+
+" config           base-name      conditionals                     escapes                     format-string              var-equals
+" pgp_entry_format PgpEntryFormat muttrcPgpEntryFormatConditionals muttrcPgpEntryFormatEscapes muttrcPgpEntryFormatString muttrcVarEqualsPgpEntryFormat
+
+" vim: syntax=vim

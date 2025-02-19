@@ -1,0 +1,10 @@
+email_free
+envlist_free
+mailbox_free
+mutt_env_free
+mutt_list_free
+mutt_mem_free
+mutt_regexlist_free
+mutt_replacelist_free
+mutt_window_free
+neomutt_free

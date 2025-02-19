@@ -1,0 +1,70 @@
+color attachment      color181 color237         
+color bold            color151 color237         
+color error           color228 color95          
+color hdrdefault      color108 color237         
+color index_author    color223 color237 "[^     ]+"
+color index_collapsed color116 color237         
+color index_date      color248 color237         
+color index_flags     color228 color237 "."     
+color index_flags     color115 color237 "~N|~O" 
+color index_flags     color210 color237 "~F|~D" 
+color index_size      color248 color237         
+color indicator       color188 color233         
+color markers         color181 color237         
+color message         color217 color237         
+color normal          color188 color237         
+color progress        color233 color65          
+color prompt          color181 color237         
+color quoted          color108 color237         
+color quoted1         color116 color237         
+color quoted2         color247 color237         
+color quoted3         color108 color237         
+color quoted4         color116 color237         
+color quoted5         color247 color237         
+color quoted6         color108 color237         
+color quoted7         color116 color237         
+color quoted8         color247 color237         
+color quoted9         color108 color237         
+color search          color210 color52          
+color signature       color108 color237         
+color underline       color151 color237         
+
+color index color115 color237 "~N|~O"
+color index color210 color237 "~D"
+color index color228 color237 "~F"
+color index color108 color237 "~Q"
+
+color header color115 color236 "^(Date|From|Subject|To):"
+color header color187 color236 "^(Bcc|CC|Reply-To|X-Mailer|User-Agent):"
+
+color body color181 color237 "-----BEGIN PGP SIGNED MESSAGE-----"
+color body color181 color237 "-----BEGIN PGP SIGNATURE-----"
+color body color181 color237 "-----END PGP SIGNED MESSAGE-----"
+color body color181 color237 "-----END PGP SIGNATURE-----"
+
+color body color210 color52 "BAD signature .*$"
+color body color108 color237 "Good signature .*$"
+
+color body color217 color237 "Can't check signature: public key not found"
+color body color217 color237 "WARNING: .*!"
+color body color217 color237 "some signal caught ... exiting"
+
+color body color210 color237 "^-.*"
+color body color115 color237 "^[+].*"
+color body color188 color237 "^diff --git.*"
+color body color188 color237 "^index [a-f0-9].*"
+color body color228 color237 "^@@.*"
+
+color body color228 color237 "(http|https|ftp|news|telnet|finger)://[^ \">\t\r\n)]*"
+color body color228 color237 "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+color body color228 color237 "news:[^ \">\t\r\n]*"
+color body color228 color237 "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+color sidebar_divider   color237 color233
+color sidebar_flagged   color188 color237
+color sidebar_highlight color188 color233
+color sidebar_indicator color223 color233
+color sidebar_new       color115 color237
+color sidebar_unread    color108 color237
+
+# vim: syntax=neomuttrc

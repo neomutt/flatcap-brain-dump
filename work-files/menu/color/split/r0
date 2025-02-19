@@ -1,0 +1,56 @@
+Simple Colours
+
+Core
+MT_COLOR_BOLD                     "bold"
+MT_COLOR_ERROR                    "error"
+MT_COLOR_INDICATOR                "indicator"
+MT_COLOR_ITALIC                   "italic"
+MT_COLOR_MESSAGE                  "message"
+MT_COLOR_NORMAL                   "normal"
+MT_COLOR_OPTIONS                  "options"
+MT_COLOR_PROGRESS                 "progress"
+MT_COLOR_PROMPT                   "prompt"
+MT_COLOR_STRIPE_EVEN              "stripe_even"
+MT_COLOR_STRIPE_ODD               "stripe_odd"
+MT_COLOR_TREE                     "tree"
+MT_COLOR_UNDERLINE                "underline"
+MT_COLOR_WARNING                  "warning"
+
+Compose
+MT_COLOR_COMPOSE_HEADER           "compose_header"
+MT_COLOR_COMPOSE_SECURITY_BOTH    "compose_security_both"
+MT_COLOR_COMPOSE_SECURITY_ENCRYPT "compose_security_encrypt"
+MT_COLOR_COMPOSE_SECURITY_NONE    "compose_security_none"
+MT_COLOR_COMPOSE_SECURITY_SIGN    "compose_security_sign"
+
+Quoted
+MT_COLOR_QUOTED0                  "quoted0"
+MT_COLOR_QUOTED1                  "quoted1"
+MT_COLOR_QUOTED2                  "quoted2"
+MT_COLOR_QUOTED3                  "quoted3"
+MT_COLOR_QUOTED4                  "quoted4"
+MT_COLOR_QUOTED5                  "quoted5"
+MT_COLOR_QUOTED6                  "quoted6"
+MT_COLOR_QUOTED7                  "quoted7"
+MT_COLOR_QUOTED8                  "quoted8"
+MT_COLOR_QUOTED9                  "quoted9"
+
+Sidebar
+MT_COLOR_SIDEBAR_BACKGROUND       "sidebar_background"
+MT_COLOR_SIDEBAR_DIVIDER          "sidebar_divider"
+MT_COLOR_SIDEBAR_FLAGGED          "sidebar_flagged"
+MT_COLOR_SIDEBAR_HIGHLIGHT        "sidebar_highlight"
+MT_COLOR_SIDEBAR_INDICATOR        "sidebar_indicator"
+MT_COLOR_SIDEBAR_NEW              "sidebar_new"
+MT_COLOR_SIDEBAR_ORDINARY         "sidebar_ordinary"
+MT_COLOR_SIDEBAR_SPOOLFILE        "sidebar_spool_file"
+MT_COLOR_SIDEBAR_UNREAD           "sidebar_unread"
+
+Pager
+MT_COLOR_ATTACHMENT               "attachment"
+MT_COLOR_HDRDEFAULT               "hdrdefault"
+MT_COLOR_MARKERS                  "markers"
+MT_COLOR_SEARCH                   "search"
+MT_COLOR_SIGNATURE                "signature"
+MT_COLOR_TILDE                    "tilde"
+

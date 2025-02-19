@@ -1,0 +1,112 @@
+Colours
+-------
+
+Colours applied in order
+	NORMAL
+	DEFAULT Colours, e.g. 'index'
+	COLUMN  Colours, e.g. 'index_subject'
+	CELL    Colours, e.g. 'index_subject regex'
+	LINE    Colours, e.g. 'index regex'
+	INDICATOR
+
+want to calculate the colours lazily
+colour cached in Email.attr_color
+	_which_ colours _are_ these?
+
+enum ColorId
+	MT_COLOR_INDICATOR         Selected item in list
+	MT_COLOR_NORMAL            Plain text
+
+-------------------------------------------------------------------------------------------------------
+
+Index Colours
+
+Colour Name	RegexColorList		ColorId				Description
+-------------------------------------------------------------------------------------------------------
+index		IndexList		MT_COLOR_INDEX			Default colour
+index_author	IndexAuthorList		MT_COLOR_INDEX_AUTHOR		Author field
+index_collapsed	IndexCollapsedList	MT_COLOR_INDEX_COLLAPSED	Number of messages in collapsed thread
+index_date	IndexDateList		MT_COLOR_INDEX_DATE		Date field
+index_flags	IndexFlagsList		MT_COLOR_INDEX_FLAGS		Flags field
+index_label	IndexLabelList		MT_COLOR_INDEX_LABEL		Label field
+index_number	IndexNumberList		MT_COLOR_INDEX_NUMBER		Index number
+index_size	IndexSizeList		MT_COLOR_INDEX_SIZE		Size field
+index_subject	IndexSubjectList	MT_COLOR_INDEX_SUBJECT		Subject field
+index_tag	IndexTagList		MT_COLOR_INDEX_TAG		Tag field (%G)
+index_tags	IndexTagsList		MT_COLOR_INDEX_TAGS		Tags field (%g, %J)
+
+DEFAULT Colours
+	`color index     	fg bg`		Default colour
+
+COLUMN Colours
+	`color index_author     fg bg`		Author field
+	`color index_collapsed  fg bg`		Number of messages in collapsed thread
+	`color index_date       fg bg`		Date field
+	`color index_flags      fg bg`		Flags field
+	`color index_label      fg bg`		Label field
+	`color index_number     fg bg`		Index number
+	`color index_size       fg bg`		Size field
+	`color index_subject    fg bg`		Subject field
+	`color index_tag        fg bg`		Tag field (%G)
+	`color index_tags       fg bg`		Tags field (%g, %J)
+
+CELL Colours
+	`color index_author     fg bg regex`	Author field
+	`color index_collapsed  fg bg regex`	Number of messages in collapsed thread
+	`color index_date       fg bg regex`	Date field
+	`color index_flags      fg bg regex`	Flags field
+	`color index_label      fg bg regex`	Label field
+	`color index_number     fg bg regex`	Index number
+	`color index_size       fg bg regex`	Size field
+	`color index_subject    fg bg regex`	Subject field
+	`color index_tag        fg bg regex`	Tag field (%G)
+	`color index_tags       fg bg regex`	Tags field (%g, %J)
+
+LINE Colours
+	`color index            fg bg regex`	Line colour
+
+-------------------------------------------------------------------------------------------------------
+
+Alias Colours
+
+Colour Name	RegexColorList		ColorId				Description
+-------------------------------------------------------------------------------------------------------
+alias		AliasAddressList	MT_COLOR_ALIAS			Default colour
+alias_address	AliasAliasList		MT_COLOR_ALIAS_ADDRESS		Full address %A
+alias_alias	AliasCommentList	MT_COLOR_ALIAS_ALIAS		Alias name %a
+alias_comment	AliasEmailList		MT_COLOR_ALIAS_COMMENT		Comment %C
+alias_email	AliasFlagsList		MT_COLOR_ALIAS_EMAIL		Email address %E
+alias_flags	AliasList		MT_COLOR_ALIAS_FLAGS		Flags %f %t
+alias_name	AliasNameList		MT_COLOR_ALIAS_NAME		Real name %N
+alias_number	AliasNumberList		MT_COLOR_ALIAS_NUMBER		Index number %i
+alias_tags	AliasTagsList		MT_COLOR_ALIAS_TAGS		Tags %Y
+
+DEFAULT Colours
+	`color alias         fg bg`		Default colour
+
+COLUMN Colours
+	`color alias_address fg bg`		Full address  %A  
+	`color alias_alias   fg bg`		Alias name    %a    
+	`color alias_comment fg bg`		Comment       %C       
+	`color alias_email   fg bg`		Email address %E 
+	`color alias_flags   fg bg`		Flags         %f %t      
+	`color alias_name    fg bg`		Real name     %N     
+	`color alias_number  fg bg`		Index number  %i  
+	`color alias_tags    fg bg`		Tags          %Y          
+
+CELL Colours
+	`color alias_address fg bg regex`	Full address  %A  
+	`color alias_alias   fg bg regex`	Alias name    %a    
+	`color alias_comment fg bg regex`	Comment       %C       
+	`color alias_email   fg bg regex`	Email address %E 
+	`color alias_flags   fg bg regex`	Flags         %f %t      
+	`color alias_name    fg bg regex`	Real name     %N     
+	`color alias_number  fg bg regex`	Index number  %i  
+	`color alias_tags    fg bg regex`	Tags          %Y          
+
+LINE Colours
+	`color alias         fg bg regex`	Line colour
+
+-------------------------------------------------------------------------------------------------------
+
+

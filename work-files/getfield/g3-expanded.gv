@@ -1,0 +1,101 @@
+digraph enter_field
+{
+	// enter/enter.c 2021-12-21
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		style="rounded"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// subgraph cluster_key
+	// {
+	// 	fontcolor="black"
+	// 	color="#8080ff"
+	// 	fillcolor="#ccccff"
+	// 	style="filled"
+	// 	node [ color="invis" nodesep="0.0" ranksep="0.0" ]
+	// 	edge [ style="invis" ]
+
+	// 	ArrayOfFiles    [ label=<<font color="red">●</font> ArrayOfFiles> ]
+	// 	CompletionFlags [ label=<<font color="blue">♣</font> CompletionFlags> ]
+	// 	Mailbox         [ label=<<font color="magenta">▼</font> Mailbox> ]
+	// 	Multiple        [ label=<<font color="#00c000">★</font> Multiple> ]
+
+	// 	CompletionFlags -> ArrayOfFiles -> Mailbox -> Multiple
+	// }
+
+	// blue    ♣ - CompletionFlags
+	// red     ● - Array of Files
+	// green   ★ - Multiple
+	// magenta ▼ - Mailbox
+	// names abbreviated by 'mutt_'
+	mutt_enter_fname          [ label=<enter_fname (8) <font color="red">1●</font> <font color="#00c000">1★</font> <font color="magenta">6▼</font> > ]
+	mutt_enter_string         [ label=<enter_string (1) <font color="blue">♣</font> <font color="red">●</font> <font color="#00c000">★</font> <font color="magenta">1▼</font> > penwidth="3" ]
+	mutt_get_field            [ label=<get_field (63) <font color="blue">30♣</font> <font color="red">1●</font> <font color="#00c000">1★</font> <font color="magenta">1▼</font> > penwidth="3" ]
+	mutt_get_field_unbuffered [ label=<get_field_unbuffered (4) > ]
+	op_compose_attach_file    [ label=<op_compose_attach_file (1) <font color="red">●</font> <font color="#00c000">★</font> > ]
+
+	mutt_autocrypt_scan_mailboxes [ label=<autocrypt_scan_mailboxes <font color="magenta">▼</font> > ]
+	op_compose_attach_message     [ label=<op_compose_attach_message <font color="magenta">▼</font> > ]
+	op_compose_write_message      [ label=<op_compose_write_message <font color="magenta">▼</font> > ]
+	op_main_change_folder         [ label=<op_main_change_folder <font color="magenta">▼</font> > ]
+	op_main_change_group          [ label=<op_main_change_group <font color="magenta">▼</font> > ]
+	save_fcc                      [ label=<save_fcc <font color="magenta">▼</font> > ]
+
+	alias_complete          [ label=<alias_complete (1) > ]
+	dlg_select_pattern      [ label=<dlg_select_pattern (1) > ]
+	imap_complete           [ label=<imap_complete (1) > ]
+	mutt_command_complete   [ label=<command_complete (1) > ]
+	mutt_complete           [ label=<complete (2) > ]
+	mutt_hist_complete      [ label=<hist_complete (1) > ]
+	mutt_label_complete     [ label=<label_complete (2) > ]
+	mutt_mailbox_next       [ label=<mailbox_next (3) > ]
+	mutt_nm_query_complete  [ label=<nm_query_complete (1) > ]
+	mutt_nm_tag_complete    [ label=<nm_tag_complete (1) > ]
+	mutt_select_file        [ label=<select_file (4) <font color="red">2●</font> <font color="#00c000">2★</font> <font color="magenta">4▼</font> > ]
+	mutt_var_value_complete [ label=<var_value_complete (1) > ]
+	nntp_complete           [ label=<nntp_complete (1) > ]
+	query_complete          [ label=<query_complete (1) > ]
+
+	mutt_autocrypt_scan_mailboxes -> mutt_enter_fname
+	mutt_complete                 -> imap_complete
+	mutt_complete                 -> nntp_complete
+	mutt_enter_fname              -> mutt_get_field
+	mutt_enter_fname              -> mutt_select_file
+	mutt_enter_string             -> alias_complete
+	mutt_enter_string             -> dlg_select_pattern
+	mutt_enter_string             -> mutt_command_complete
+	mutt_enter_string             -> mutt_complete
+	mutt_enter_string             -> mutt_hist_complete
+	mutt_enter_string             -> mutt_label_complete
+	mutt_enter_string             -> mutt_mailbox_next
+	mutt_enter_string             -> mutt_nm_query_complete
+	mutt_enter_string             -> mutt_nm_tag_complete
+	mutt_enter_string             -> mutt_select_file
+	mutt_enter_string             -> mutt_var_value_complete
+	mutt_enter_string             -> query_complete
+	mutt_get_field                -> mutt_enter_string
+	mutt_get_field_unbuffered     -> mutt_get_field
+	op_compose_attach_file        -> mutt_enter_fname
+	op_compose_attach_message     -> mutt_enter_fname
+	op_compose_write_message      -> mutt_enter_fname
+	op_main_change_folder         -> mutt_enter_fname
+	op_main_change_group          -> mutt_enter_fname
+	save_fcc                      -> mutt_enter_fname
+
+}

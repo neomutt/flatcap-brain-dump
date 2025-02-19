@@ -1,0 +1,13 @@
+s/dlg_select_alias/dlg_alias/g
+s/dlg_select_attachment/dlg_attachment/g
+s/dlg_select_autocrypt/dlg_autocrypt/g
+s/dlg_select_gpgme_key/dlg_gpgme/g
+s/dlg_select_history/dlg_history/g
+s/dlg_select_pattern/dlg_pattern/g
+s/dlg_select_pgp_key/dlg_pgp/g
+s/dlg_select_postponed/dlg_postponed/g
+s/dlg_select_query/dlg_query/g
+s/dlg_select_smime_key/dlg_smime/g
+s/dlg_verify_certificate/dlg_certificate/g
+s/WT_DLG_CRYPT_GPGME/WT_DLG_GPGME/g
+s/WT_DLG_DO_PAGER/WT_DLG_PAGER/g

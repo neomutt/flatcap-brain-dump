@@ -1,0 +1,120 @@
+From rich@flatcap.org Wed Jan 19 01:22:25 2022
+Return-Path: <rich@flatcap.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id AC5961513
+	for <flatcap-mail@flatcap.org>; Wed, 19 Jan 2022 01:22:25 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+X-Spam-Flag: NO
+X-Spam-Score: 2.531
+X-Spam-Level: **
+X-Spam-Status: No, score=2.531 tagged_above=2 required=6.2
+	tests=[BAYES_00=-1.9, ENCRYPTED_MESSAGE=-1, KHOP_HELO_FCRDNS=0.322,
+	PDS_RDNS_DYNAMIC_FP=0.01, RCVD_IN_PBL=3.335, RCVD_IN_SORBS_DUL=0.001,
+	RDNS_DYNAMIC=0.982, SPF_HELO_NONE=0.001, SPF_NEUTRAL=0.779,
+	TO_EQ_FM_DIRECT_MX=0.001] autolearn=no autolearn_force=no
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id eIQqRy4cCYaB for <flatcap-mail@flatcap.org>;
+	Wed, 19 Jan 2022 01:22:24 +0000 (GMT)
+Received: from laptop.flatcap.org (cpc88896-oxfd27-2-0-cust5.4-3.cable.virginm.net [82.41.96.6])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id 558981512
+	for <rich@flatcap.org>; Wed, 19 Jan 2022 01:22:24 +0000 (GMT)
+Date: Wed, 19 Jan 2022 01:22:24 +0000
+From: Richard Russon <rich@flatcap.org>
+To: Richard Russon <rich@flatcap.org>
+Subject: test sign + encrypt
+Message-Id: <20220119012224.tam7dgjyzon2z2dm@flatcap.org>
+MIME-Version: 1.0
+Content-Type: multipart/encrypted; protocol="application/pgp-encrypted";
+	boundary="y4pxauic2l4nmh2r"
+Content-Disposition: inline
+Autocrypt: addr=rich@flatcap.org; prefer-encrypt=mutual; keydata=
+	mDMEYZfIXRYJKwYBBAHaRw8BAQdAOU+5VQe8reYpbu7543eOmDteaoKwFnydlfC+MiZ4R7K0IVJ
+	pY2hhcmQgUnVzc29uIDxyaWNoQGZsYXRjYXAub3JnPoiUBBMWCgA8FiEEBTXr3ZNroaLVnxBwY7
+	zzNBK8W8gFAmGXyF0CGwMFCwkIBwIDIgIBBhUKCQgLAgQWAgMBAh4HAheAAAoJEGO88zQSvFvIx
+	yYBANLPQPqNCE/J7Q5gJxAMnC4MfsPu4bXh9Lpxg68PNMJCAP9li0dAeEX/Hel7leEg71AhfH/h
+	OCe24HUWpZ1PJdo0Abg4BGGXyF0SCisGAQQBl1UBBQEBB0DclQU0T/axODTef2L7DQMz4e97ls8
+	NIbVXLq5gKqQTWQMBCAeIeAQYFgoAIBYhBAU1692Ta6Gi1Z8QcGO88zQSvFvIBQJhl8hdAhsMAA
+	oJEGO88zQSvFvIfI0BAKBELeaQHtF4dIzJtxkP30w3NEqiQIza42mnIoRxTd7TAP96j2WgyksFU
+	oC24wpTAk+gUSWAXnWoiIDJdY2pQaekCA==
+User-Agent: NeoMutt/20211029-224-e2e658
+Status: RO
+Content-Length: 3732
+Lines: 70
+
+
+--y4pxauic2l4nmh2r
+Content-Type: application/pgp-encrypted
+Content-Disposition: attachment
+
+Version: 1
+
+--y4pxauic2l4nmh2r
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="msg.asc"
+
+-----BEGIN PGP MESSAGE-----
+
+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
+=7kju
+-----END PGP MESSAGE-----
+
+--y4pxauic2l4nmh2r--
+

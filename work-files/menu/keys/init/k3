@@ -1,0 +1,13 @@
+alloc_keys
+create_bindings
+km_bindkey
+km_bindkey_err
+km_bind_err
+km_compare_keys
+km_expand_key
+km_init
+km_keyname
+mutt_keymap_free
+parsekeys
+parse_fkey
+parse_keycode

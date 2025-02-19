@@ -1,0 +1,9 @@
+color quoted  bold      blue    yellow
+color quoted1 underline blue    yellow
+color quoted4 reverse   default default
+color quoted3 underline red     green
+
+uncolor quoted4
+uncolor quoted3
+uncolor quoted1
+

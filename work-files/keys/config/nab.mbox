@@ -1,0 +1,965 @@
+From nabijaczleweli@nabijaczleweli.xyz Thu Dec 21 22:46:58 2023
+Return-Path: <nabijaczleweli@nabijaczleweli.xyz>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 6CBB1500
+	for <flatcap-mail@flatcap.org>; Thu, 21 Dec 2023 22:46:58 +0000 (GMT)
+X-Virus-Scanned: amavis at flatcap.org
+Authentication-Results: flatcap.org (amavis); dkim=pass (2048-bit key)
+ header.d=nabijaczleweli.xyz
+Received: from flatcap.org ([127.0.0.1])
+ by localhost (flatcap.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id Qm2e8fAKzwUr for <flatcap-mail@flatcap.org>;
+ Thu, 21 Dec 2023 22:46:56 +0000 (GMT)
+Received: from tarta.nabijaczleweli.xyz (tarta.nabijaczleweli.xyz [139.28.40.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id 7095D44A
+	for <rich@flatcap.org>; Thu, 21 Dec 2023 22:46:56 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nabijaczleweli.xyz;
+	s=202305; t=1703198814;
+	bh=Ucza8h2+t+3yPRbUaTx/8mq5IOAt1psTNKqRvkoq9Ew=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bZKrrf2JRa0RmbkqhmHA/RSH28B3YjPLjSIF5OzLW9Ndyo81clsT+ywXyecRi0a6S
+	 jS3KH0pkeMzHwg8yVNzeKPlpyZ5WU+1dpZGZReMIsxTKPBKuBLOlHHfc1NxCsDFwfD
+	 J0lBmIL4Wr9eeHtFTYE02ENDUSMCB+GHrWFkaCmRjjeYLsVsBFv/CkpGWblS7jL1MT
+	 Q/G2ZkdCc26o8084pOoeMnkurM0B9gGmvJQM58X5fEAdwTO4aaIDwJNBPemntf2SR0
+	 qa2e3fDi1ZxH17UD8AZPoinJ0diC5H1o+GRsQyp96d2Dl8sIBiZgHgEd484SYYu7yw
+	 vmEQJ59Uv744A==
+Received: from tarta.nabijaczleweli.xyz (unknown [192.168.1.250])
+	by tarta.nabijaczleweli.xyz (Postfix) with ESMTPSA id 4760113B4E;
+	Thu, 21 Dec 2023 23:46:54 +0100 (CET)
+Date: Thu, 21 Dec 2023 23:46:54 +0100
+From: =?utf-8?B?0L3QsNCx?= <nabijaczleweli@nabijaczleweli.xyz>
+To: Richard Russon <rich@flatcap.org>
+Cc: Neomutt Developers <neomutt-devel@neomutt.org>
+Subject: [PATCH 1/2] Fix $reply_regex
+Message-ID: <b6b3a2f1c30174538307330bc115b2e1c73b8442.1703198737.git.nabijaczleweli@nabijaczleweli.xyz>
+References: <c67k3zc4j7xwu3lqg4wnmirxmwt22f5gncczcpogvrzc56invs@6n432dskr522>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vsjofdyq4rht7ztq"
+Content-Disposition: inline
+In-Reply-To: <c67k3zc4j7xwu3lqg4wnmirxmwt22f5gncczcpogvrzc56invs@6n432dskr522>
+User-Agent: NeoMutt/20231221-1-5300ff-dirty
+Status: RO
+Content-Length: 2106
+Lines: 60
+
+
+--vsjofdyq4rht7ztq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+commit 86301955255fc8bcb55a9e3ce5a9ba0d624feb6a ("config: fix flag
+ overlaps") didn't, and instead allocated DT_REGEX_MATCH_CASE in the
+same place as R_INDEX. This only affects
+  $ git grep -w R_INDEX | grep DT_REGEX
+  mutt_config.c:  { "reply_regex", DT_REGEX|R_INDEX|R_RESORT, IP "^((re|aw|=
+sv)(\\[[0-9]+\\])*:[ \t]*)*", 0, NULL,
+
+Nevertheless, reallocate all the regex flags to unused values and
+DT_NOT_NEGATIVE which is only used by number configs to fix all
+DT_REGEXes.
+
+These should probably just be a couple different fields instead of
+a soup of 1<<123 macros with random names.
+
+Fixes: https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/2023=
+-December/000897.html
+ (but only in some index views)
+---
+ mutt/regex3.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/mutt/regex3.h b/mutt/regex3.h
+index 9fd81eb2..f67719a1 100644
+--- a/mutt/regex3.h
++++ b/mutt/regex3.h
+@@ -34,9 +34,9 @@ struct Buffer;
+ /* ... DT_REGEX */
+ /* Note: To save space, sets of config variable flags are packed into a ui=
+nt32_t.
+  * When adding flags, check all config variables to ensure there are no ov=
+erlaps of values */
+-#define DT_REGEX_MATCH_CASE (1 << 17)  ///< Case-sensitive matching
+-#define DT_REGEX_ALLOW_NOT  (1 << 18)  ///< Regex can begin with '!'
+-#define DT_REGEX_NOSUB      (1 << 19)  ///< Do not report what was matched=
+ (REG_NOSUB)
++#define DT_REGEX_MATCH_CASE (1 << 16)  ///< Case-sensitive matching
++#define DT_REGEX_ALLOW_NOT  (1 << 31)  ///< Regex can begin with '!'
++#define DT_REGEX_NOSUB      DT_NOT_NEGATIVE  ///< Do not report what was m=
+atched (REG_NOSUB)
+=20
+ /* This is a non-standard option supported by Solaris 2.5.x
+  * which allows patterns of the form \<...\> */
+--=20
+2.39.2
+
+
+--vsjofdyq4rht7ztq
+Content-Type: message/external-body; access-type=x-mutt-deleted;
+	expiration="Sat, 23 Dec 2023 10:07:33 +0000"; length=833
+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+
+--vsjofdyq4rht7ztq--
+
+From nabijaczleweli@nabijaczleweli.xyz Thu Dec 21 22:47:08 2023
+Return-Path: <nabijaczleweli@nabijaczleweli.xyz>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 5D1C1500
+	for <flatcap-mail@flatcap.org>; Thu, 21 Dec 2023 22:47:08 +0000 (GMT)
+X-Virus-Scanned: amavis at flatcap.org
+Authentication-Results: flatcap.org (amavis); dkim=pass (2048-bit key)
+ header.d=nabijaczleweli.xyz
+Received: from flatcap.org ([127.0.0.1])
+ by localhost (flatcap.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id J-LYkt9N_HFg for <flatcap-mail@flatcap.org>;
+ Thu, 21 Dec 2023 22:47:06 +0000 (GMT)
+Received: from tarta.nabijaczleweli.xyz (tarta.nabijaczleweli.xyz [139.28.40.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id 9940744A
+	for <rich@flatcap.org>; Thu, 21 Dec 2023 22:47:06 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nabijaczleweli.xyz;
+	s=202305; t=1703198826;
+	bh=4qQQJl6QYqpDlyHol3JIAWm/NJHCjJ3g/o9L73iOvvA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UVHbVHCQgBCPCRwRLnNWpZErWdBa8yoqJ0GRdD58MIwFA6tWMM3EPcgp06jkit3gg
+	 ccr6pD/mz3/bSv7wKko0CqlmKYyM985+rTwWSoIU0CHrdZtUxfDVYA47MFYw51ZzWM
+	 7JpTt5AlkbTvS7z15DpOUBT976QF0ktsaLYfJIoWFnbiljG0lsuJxh4kO9skRyWwiu
+	 xbWu00BMPTJItbu24AvlqMA6VFmDq+lhrCOiPE6og0f3/VBxM97YYWrTTQ2ZqU76DR
+	 kb9GIl7rzRpt0E7em8LGPh4MKSKLrfkU/jTiNKf3r9BV0VfB+Cknf8eUUUJAaxj7ya
+	 FBPDPxadPOAsw==
+Received: from tarta.nabijaczleweli.xyz (unknown [192.168.1.250])
+	by tarta.nabijaczleweli.xyz (Postfix) with ESMTPSA id 0A7DC13B50;
+	Thu, 21 Dec 2023 23:47:06 +0100 (CET)
+Date: Thu, 21 Dec 2023 23:47:05 +0100
+From: =?utf-8?B?0L3QsNCx?= <nabijaczleweli@nabijaczleweli.xyz>
+To: Richard Russon <rich@flatcap.org>
+Cc: Neomutt Developers <neomutt-devel@neomutt.org>
+Subject: [PATCH 2/2] envelope: manage subject/real_subj together, ensuring
+ real_subj is valid
+Message-ID: <4202cffbffd2ac7ecaa0125f875bd519308b6547.1703198737.git.nabijaczleweli@nabijaczleweli.xyz>
+References: <c67k3zc4j7xwu3lqg4wnmirxmwt22f5gncczcpogvrzc56invs@6n432dskr522>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="dccz3wo2lo4xuahp"
+Content-Disposition: inline
+In-Reply-To: <c67k3zc4j7xwu3lqg4wnmirxmwt22f5gncczcpogvrzc56invs@6n432dskr522>
+User-Agent: NeoMutt/20231221-1-5300ff-dirty
+Status: RO
+Content-Length: 15149
+Lines: 436
+
+
+--dccz3wo2lo4xuahp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+As it stands, subject is assigned at will throughout every interested
+piece of code, and real_subj is parsed with $reply_regex and set in
+three unaffiliated places.
+
+This means that, for example, IMAP mailboxes simply do not have
+$reply_regex processing. Unless you change it, then they refresh
+to have it. Until you reopen and then it's lost.
+
+Mark both fields as const and introduce a mutt_env_set_subject()
+setter that sets subject and parses real_subj. This interior
+mutability is bypassed only in hcache serialisation, by necessity.
+rfc2047 (un)parsing needs to abuse it slightly to match the calling
+convention.
+
+This ensures that real_subj always matches subject, and so $reply_regex
+works as documented instead of not at all.
+
+Fixes: https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/2023=
+-December/000897.html
+---
+ email/envelope.c     | 35 ++++++++++++++++++++++++++++++-----
+ email/envelope.h     |  5 +++--
+ email/parse.c        | 19 +------------------
+ email/rfc2047.c      | 14 ++++++++++++--
+ envelope/functions.c |  2 +-
+ hcache/serialize.c   |  6 +++---
+ index/index.c        | 13 +------------
+ main.c               |  4 ++--
+ ncrypt/crypt.c       |  2 +-
+ pager/message.c      | 14 +-------------
+ postpone/postpone.c  |  2 +-
+ send/send.c          | 14 ++++++++------
+ 12 files changed, 64 insertions(+), 66 deletions(-)
+
+diff --git a/email/envelope.c b/email/envelope.c
+index dcd42048..28110be9 100644
+--- a/email/envelope.c
++++ b/email/envelope.c
+@@ -33,6 +33,8 @@
+ #include <string.h>
+ #include "mutt/lib.h"
+ #include "address/lib.h"
++#include "config/helpers.h"
++#include "core/neomutt.h"
+ #include "envelope.h"
+ #include "email.h"
+=20
+@@ -58,6 +60,29 @@ struct Envelope *mutt_env_new(void)
+   return env;
+ }
+=20
++/**
++ * mutt_env_set_subject - Set both subject and real_subj to @subj
++ */
++void mutt_env_set_subject(struct Envelope *env, const char *subj)
++{
++  mutt_str_replace((char **)&env->subject, subj);
++  *(char **)&env->real_subj =3D NULL;
++
++  if (env->subject) {
++      regmatch_t match;
++      const struct Regex *c_reply_regex =3D cs_subset_regex(NeoMutt->sub, =
+"reply_regex");
++      if (mutt_regex_capture(c_reply_regex, env->subject, 1, &match))
++      {
++        if (env->subject[match.rm_eo] !=3D '\0')
++          *(char **)&env->real_subj =3D env->subject + match.rm_eo;
++      }
++      else
++      {
++        *(char **)&env->real_subj =3D env->subject;
++      }
++  }
++}
++
+ #ifdef USE_AUTOCRYPT
+ /**
+  * mutt_autocrypthdr_new - Create a new AutocryptHeader
+@@ -114,7 +139,7 @@ void mutt_env_free(struct Envelope **ptr)
+   FREE(&env->list_post);
+   FREE(&env->list_subscribe);
+   FREE(&env->list_unsubscribe);
+-  FREE(&env->subject);
++  FREE((char **)&env->subject);
+   /* real_subj is just an offset to subject and shouldn't be freed */
+   FREE(&env->disp_subj);
+   FREE(&env->message_id);
+@@ -226,11 +251,11 @@ void mutt_env_merge(struct Envelope *base, struct Env=
+elope **extra)
+   /* real_subj is subordinate to subject */
+   if (!base->subject)
+   {
+-    base->subject =3D (*extra)->subject;
+-    base->real_subj =3D (*extra)->real_subj;
++    *(char **)&base->subject =3D (*extra)->subject;
++    *(char **)&base->real_subj =3D (*extra)->real_subj;
+     base->disp_subj =3D (*extra)->disp_subj;
+-    (*extra)->subject =3D NULL;
+-    (*extra)->real_subj =3D NULL;
++    *(char **)&(*extra)->subject =3D NULL;
++    *(char **)&(*extra)->real_subj =3D NULL;
+     (*extra)->disp_subj =3D NULL;
+   }
+   /* spam and user headers should never be hashed, and the new envelope may
+diff --git a/email/envelope.h b/email/envelope.h
+index b124c10b..0202900f 100644
+--- a/email/envelope.h
++++ b/email/envelope.h
+@@ -67,8 +67,8 @@ struct Envelope
+   char *list_post;                     ///< This stores a mailto URL, or n=
+othing
+   char *list_subscribe;                ///< This stores a mailto URL, or n=
+othing
+   char *list_unsubscribe;              ///< This stores a mailto URL, or n=
+othing
+-  char *subject;                       ///< Email's subject
+-  char *real_subj;                     ///< Offset of the real subject
++  char *const subject;                 ///< Email's subject
++  char *const real_subj;               ///< Offset of the real subject
+   char *disp_subj;                     ///< Display subject (modified copy=
+ of subject)
+   char *message_id;                    ///< Message ID
+   char *supersedes;                    ///< Supersedes header
+@@ -117,6 +117,7 @@ bool             mutt_env_cmp_strict (const struct Enve=
+lope *e1, const struct En
+ void             mutt_env_free       (struct Envelope **ptr);
+ void             mutt_env_merge      (struct Envelope *base, struct Envelo=
+pe **extra);
+ struct Envelope *mutt_env_new        (void);
++void             mutt_env_set_subject(struct Envelope *env, const char *su=
+bj);
+ bool             mutt_env_notify_send(struct Email *e, enum NotifyEnvelope=
+ type);
+ int              mutt_env_to_intl    (struct Envelope *env, const char **t=
+ag, char **err);
+ void             mutt_env_to_local   (struct Envelope *env);
+diff --git a/email/parse.c b/email/parse.c
+index 9310416a..24ae398c 100644
+--- a/email/parse.c
++++ b/email/parse.c
+@@ -936,7 +936,7 @@ int mutt_rfc822_parse_line(struct Envelope *env, struct=
+ Email *e,
+       if ((name_len =3D=3D 7) && eqi6(name + 1, "ubject"))
+       {
+         if (!env->subject)
+-          env->subject =3D mutt_str_dup(body);
++          mutt_env_set_subject(env, body);
+         matched =3D true;
+       }
+       else if ((name_len =3D=3D 6) && eqi5(name + 1, "ender"))
+@@ -1277,23 +1277,6 @@ struct Envelope *mutt_rfc822_read_header(FILE *fp, s=
+truct Email *e, bool user_hd
+=20
+     rfc2047_decode_envelope(env);
+=20
+-    if (env->subject)
+-    {
+-      regmatch_t pmatch[1];
+-
+-      const struct Regex *c_reply_regex =3D cs_subset_regex(NeoMutt->sub, =
+"reply_regex");
+-      if (mutt_regex_capture(c_reply_regex, env->subject, 1, pmatch))
+-      {
+-        env->real_subj =3D env->subject + pmatch[0].rm_eo;
+-        if (env->real_subj[0] =3D=3D '\0')
+-          env->real_subj =3D NULL;
+-      }
+-      else
+-      {
+-        env->real_subj =3D env->subject;
+-      }
+-    }
+-
+     if (e->received < 0)
+     {
+       mutt_debug(LL_DEBUG1, "resetting invalid received time to 0\n");
+diff --git a/email/rfc2047.c b/email/rfc2047.c
+index d3141049..5980f019 100644
+--- a/email/rfc2047.c
++++ b/email/rfc2047.c
+@@ -838,7 +838,12 @@ void rfc2047_decode_envelope(struct Envelope *env)
+   rfc2047_decode_addrlist(&env->return_path);
+   rfc2047_decode_addrlist(&env->sender);
+   rfc2047_decode(&env->x_label);
+-  rfc2047_decode(&env->subject);
++
++  char * subj =3D env->subject;
++  *(char **)&env->subject =3D NULL;
++  rfc2047_decode(&subj);
++  mutt_env_set_subject(env, subj);
++  FREE(&subj);
+ }
+=20
+ /**
+@@ -858,5 +863,10 @@ void rfc2047_encode_envelope(struct Envelope *env)
+   rfc2047_encode_addrlist(&env->sender, "Sender");
+   const struct Slist *const c_send_charset =3D cs_subset_slist(NeoMutt->su=
+b, "send_charset");
+   rfc2047_encode(&env->x_label, NULL, sizeof("X-Label:"), c_send_charset);
+-  rfc2047_encode(&env->subject, NULL, sizeof("Subject:"), c_send_charset);
++
++  char * subj =3D env->subject;
++  *(char **)&env->subject =3D NULL;
++  rfc2047_encode(&subj, NULL, sizeof("Subject:"), c_send_charset);
++  mutt_env_set_subject(env, subj);
++  FREE(&subj);
+ }
+diff --git a/envelope/functions.c b/envelope/functions.c
+index 0fda976d..c2e87660 100644
+--- a/envelope/functions.c
++++ b/envelope/functions.c
+@@ -287,7 +287,7 @@ static int op_envelope_edit_subject(struct EnvelopeWind=
+owData *wdata, int op)
+   if (mutt_str_equal(wdata->email->env->subject, buf_string(buf)))
+     goto done; // no change
+=20
+-  mutt_str_replace(&wdata->email->env->subject, buf_string(buf));
++  mutt_env_set_subject(wdata->email->env, buf_string(buf));
+   mutt_env_notify_send(wdata->email, NT_ENVELOPE_SUBJECT);
+   rc =3D FR_SUCCESS;
+=20
+diff --git a/hcache/serialize.c b/hcache/serialize.c
+index b5acfd06..92e2ed22 100644
+--- a/hcache/serialize.c
++++ b/hcache/serialize.c
+@@ -651,14 +651,14 @@ void serial_restore_envelope(struct Envelope *env, co=
+nst unsigned char *d, int *
+   if (c_auto_subscribe)
+     mutt_auto_subscribe(env->list_post);
+=20
+-  serial_restore_char(&env->subject, d, off, convert);
++  serial_restore_char((char **)&env->subject, d, off, convert);
+   serial_restore_int((unsigned int *) (&real_subj_off), d, off);
+=20
+   size_t len =3D mutt_str_len(env->subject);
+   if ((real_subj_off < 0) || (real_subj_off >=3D len))
+-    env->real_subj =3D NULL;
++    *(char **)&env->real_subj =3D NULL;
+   else
+-    env->real_subj =3D env->subject + real_subj_off;
++    *(char **)&env->real_subj =3D env->subject + real_subj_off;
+=20
+   serial_restore_char(&env->message_id, d, off, false);
+   serial_restore_char(&env->supersedes, d, off, false);
+diff --git a/index/index.c b/index/index.c
+index 978db75a..b426860f 100644
+--- a/index/index.c
++++ b/index/index.c
+@@ -198,9 +198,6 @@ static int config_reply_regex(struct MailboxView *mv)
+=20
+   struct Mailbox *m =3D mv->mailbox;
+=20
+-  regmatch_t pmatch[1];
+-
+-  const struct Regex *c_reply_regex =3D cs_subset_regex(NeoMutt->sub, "rep=
+ly_regex");
+   for (int i =3D 0; i < m->msg_count; i++)
+   {
+     struct Email *e =3D m->emails[i];
+@@ -210,15 +207,7 @@ static int config_reply_regex(struct MailboxView *mv)
+     if (!env || !env->subject)
+       continue;
+=20
+-    if (mutt_regex_capture(c_reply_regex, env->subject, 1, pmatch))
+-    {
+-      env->real_subj =3D env->subject + pmatch[0].rm_eo;
+-      if (env->real_subj[0] =3D=3D '\0')
+-        env->real_subj =3D NULL;
+-      continue;
+-    }
+-
+-    env->real_subj =3D env->subject;
++    mutt_env_set_subject(env, env->subject);
+   }
+=20
+   OptResortInit =3D true; /* trigger a redraw of the index */
+diff --git a/main.c b/main.c
+index cad43894..af28f425 100644
+--- a/main.c
++++ b/main.c
+@@ -1000,7 +1000,7 @@ main
+=20
+     if (subject)
+     {
+-      mutt_str_replace(&e->env->subject, subject);
++      mutt_env_set_subject(e->env, subject);
+     }
+=20
+     if (draft_file)
+@@ -1142,7 +1142,7 @@ main
+         mutt_addrlist_copy(&e->env->cc, &opts_env->cc, false);
+         mutt_addrlist_copy(&e->env->bcc, &opts_env->bcc, false);
+         if (opts_env->subject)
+-          mutt_str_replace(&e->env->subject, opts_env->subject);
++          mutt_env_set_subject(e->env, opts_env->subject);
+=20
+         mutt_env_free(&opts_env);
+         email_free(&e_tmp);
+diff --git a/ncrypt/crypt.c b/ncrypt/crypt.c
+index 9756f528..c46ff284 100644
+--- a/ncrypt/crypt.c
++++ b/ncrypt/crypt.c
+@@ -273,7 +273,7 @@ int mutt_protect(struct Email *e, char *keylist, bool p=
+ostpone)
+   if (c_crypt_protected_headers_write)
+   {
+     struct Envelope *protected_headers =3D mutt_env_new();
+-    mutt_str_replace(&protected_headers->subject, e->env->subject);
++    mutt_env_set_subject(protected_headers, e->env->subject);
+     /* Note: if other headers get added, such as to, cc, then a call to
+      * mutt_env_to_intl() will need to be added here too. */
+     mutt_prepare_envelope(protected_headers, 0, NeoMutt->sub);
+diff --git a/pager/message.c b/pager/message.c
+index 90d37978..3c84e3e8 100644
+--- a/pager/message.c
++++ b/pager/message.c
+@@ -67,7 +67,6 @@ static const char *ExtPagerProgress =3D N_("all");
+ static void process_protected_headers(struct Mailbox *m, struct Email *e)
+ {
+   struct Envelope *prot_headers =3D NULL;
+-  regmatch_t pmatch[1];
+=20
+   const bool c_crypt_protected_headers_read =3D cs_subset_bool(NeoMutt->su=
+b, "crypt_protected_headers_read");
+ #ifdef USE_AUTOCRYPT
+@@ -121,19 +120,8 @@ static void process_protected_headers(struct Mailbox *=
+m, struct Email *e)
+     if (m->subj_hash && e->env->real_subj)
+       mutt_hash_delete(m->subj_hash, e->env->real_subj, e);
+=20
+-    mutt_str_replace(&e->env->subject, prot_headers->subject);
++    mutt_env_set_subject(e->env, prot_headers->subject);
+     FREE(&e->env->disp_subj);
+-    const struct Regex *c_reply_regex =3D cs_subset_regex(NeoMutt->sub, "r=
+eply_regex");
+-    if (mutt_regex_capture(c_reply_regex, e->env->subject, 1, pmatch))
+-    {
+-      e->env->real_subj =3D e->env->subject + pmatch[0].rm_eo;
+-      if (e->env->real_subj[0] =3D=3D '\0')
+-        e->env->real_subj =3D NULL;
+-    }
+-    else
+-    {
+-      e->env->real_subj =3D e->env->subject;
+-    }
+=20
+     if (m->subj_hash)
+       mutt_hash_insert(m->subj_hash, e->env->real_subj, e);
+diff --git a/postpone/postpone.c b/postpone/postpone.c
+index 788cafc6..c49d5a2e 100644
+--- a/postpone/postpone.c
++++ b/postpone/postpone.c
+@@ -597,7 +597,7 @@ int mutt_prepare_template(FILE *fp, struct Mailbox *m, =
+struct Email *e_new,
+   if (c_crypt_protected_headers_read && protected_headers && protected_hea=
+ders->subject &&
+       !mutt_str_equal(e_new->env->subject, protected_headers->subject))
+   {
+-    mutt_str_replace(&e_new->env->subject, protected_headers->subject);
++    mutt_env_set_subject(e_new->env, protected_headers->subject);
+   }
+   mutt_env_free(&protected_headers);
+=20
+diff --git a/send/send.c b/send/send.c
+index 53a1a5b9..dc50a0c8 100644
+--- a/send/send.c
++++ b/send/send.c
+@@ -336,7 +336,7 @@ static int edit_envelope(struct Envelope *en, SendFlags=
+ flags, struct ConfigSubs
+     mutt_message(_("No subject, aborting"));
+     goto done;
+   }
+-  mutt_str_replace(&en->subject, buf_string(buf));
++  mutt_env_set_subject(en, buf_string(buf));
+   rc =3D 0;
+=20
+ done:
+@@ -1045,7 +1045,7 @@ void mutt_make_forward_subject(struct Envelope *env, =
+struct Email *e, struct Con
+   /* set the default subject for the message. */
+   mutt_make_string(buf, sizeof(buf), 0, NONULL(c_forward_format), NULL, -1=
+, e,
+                    MUTT_FORMAT_NO_FLAGS, NULL);
+-  mutt_str_replace(&env->subject, buf);
++  mutt_env_set_subject(env, buf);
+ }
+=20
+ /**
+@@ -1064,13 +1064,15 @@ void mutt_make_misc_reply_headers(struct Envelope *=
+env, struct Envelope *env_cur
+    * been taken from a List-Post header.  Is that correct?  */
+   if (env_cur->real_subj)
+   {
+-    FREE(&env->subject);
+-    mutt_str_asprintf(&(env->subject), "Re: %s", env_cur->real_subj);
++    char *subj;
++    mutt_str_asprintf(&subj, "Re: %s", env_cur->real_subj);
++    mutt_env_set_subject(env, subj);
++    free(subj);
+   }
+   else if (!env->subject)
+   {
+     const char *const c_empty_subject =3D cs_subset_string(sub, "empty_sub=
+ject");
+-    env->subject =3D mutt_str_dup(c_empty_subject);
++    mutt_env_set_subject(env, c_empty_subject);
+   }
+ }
+=20
+@@ -2958,7 +2960,7 @@ static bool send_simple_email(struct Mailbox *m, stru=
+ct EmailArray *ea,
+   mutt_parse_mailto(e->env, NULL, mailto);
+   if (!e->env->subject)
+   {
+-    e->env->subject =3D mutt_str_dup(subj);
++    mutt_env_set_subject(e->env, subj);
+   }
+   if (TAILQ_EMPTY(&e->env->to) && !mutt_addrlist_parse(&e->env->to, NULL))
+   {
+--=20
+2.39.2
+
+--dccz3wo2lo4xuahp
+Content-Type: message/external-body; access-type=x-mutt-deleted;
+	expiration="Sat, 23 Dec 2023 10:07:33 +0000"; length=833
+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+
+--dccz3wo2lo4xuahp--
+
+From nabijaczleweli@nabijaczleweli.xyz Fri Dec 22 11:35:20 2023
+Return-Path: <nabijaczleweli@nabijaczleweli.xyz>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id AF01C500
+	for <flatcap-mail@flatcap.org>; Fri, 22 Dec 2023 11:35:20 +0000 (GMT)
+X-Virus-Scanned: amavis at flatcap.org
+Authentication-Results: flatcap.org (amavis); dkim=pass (2048-bit key)
+ header.d=nabijaczleweli.xyz
+Received: from flatcap.org ([127.0.0.1])
+ by localhost (flatcap.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id zg_mRY_MTDwt for <flatcap-mail@flatcap.org>;
+ Fri, 22 Dec 2023 11:35:18 +0000 (GMT)
+Received: from tarta.nabijaczleweli.xyz (tarta.nabijaczleweli.xyz [139.28.40.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id BDCD344A
+	for <rich@flatcap.org>; Fri, 22 Dec 2023 11:35:18 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nabijaczleweli.xyz;
+	s=202305; t=1703244917;
+	bh=T6EoiOR+N0TQbDEsdL84f4dKTrVU82+Ku3ItT3BrztM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KA/LBP751IWd9jc7nQjsky6R01k0mnUXjF+FhzCP47lDyWDRwhVJylvc0yb/hwjxa
+	 hDsq31+FyGRuV82+/JTATCq1ieexw/i16Xd8KzMU37NJJf3/kclv4B6LB5r+jQUR8z
+	 eNtDf6tFY7Vd8B3MmZuXFmgKwwU7T4Tbo9VBKpZqEYJSSQAxDu7JrnTovfp69ChpeX
+	 bj/MZu28NpfbIg6EFjsYX+M2hvfAsy+a+NHoBOwwf7hCHzQ/VfI7udW2XowymeDf1h
+	 vVOAgWQvMZFgESEJYAMHm0zTLk2Ho45qlXsZj9xvA7qVEHRmBvWJ4Z3PQOi8fC7XVT
+	 kNG8sJ3DqONhA==
+Received: from tarta.nabijaczleweli.xyz (unknown [192.168.1.250])
+	by tarta.nabijaczleweli.xyz (Postfix) with ESMTPSA id 0C88413BDC;
+	Fri, 22 Dec 2023 12:35:17 +0100 (CET)
+Date: Fri, 22 Dec 2023 12:35:16 +0100
+From: =?utf-8?B?0L3QsNCx?= <nabijaczleweli@nabijaczleweli.xyz>
+To: Richard Russon <rich@flatcap.org>
+Cc: Neomutt Developers <neomutt-devel@neomutt.org>
+Subject: [PATCH] copy: fix format warning on ILP32 with 64-bit off_t
+Message-ID: <pscptorp7sxyk45avpcx7gsfum2mjfjpjai46e2n7rsf5xlxmn@tarta.nabijaczleweli.xyz>
+References: <c67k3zc4j7xwu3lqg4wnmirxmwt22f5gncczcpogvrzc56invs@6n432dskr522>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oexhujahwa33mrl6"
+Content-Disposition: inline
+In-Reply-To: <c67k3zc4j7xwu3lqg4wnmirxmwt22f5gncczcpogvrzc56invs@6n432dskr522>
+User-Agent: NeoMutt/20231221-2-4202cf-dirty
+Status: RO
+Content-Length: 3735
+Lines: 89
+
+
+--oexhujahwa33mrl6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+cc -fno-delete-null-pointer-checks -D_ALL_SOURCE=3D1 -D_GNU_SOURCE=3D1 -D__=
+EXTENSIONS__ -D_XOPEN_SOURCE_EXTENDED -I/usr/include/lua5.4 -I/usr/include =
+-I/usr/include -DNCURSES_WIDECHAR -I/usr/include -I/usr/include/p11-kit-1 -=
+I/usr/include -isystem
+/usr/include/mit-krb5 -O2 -I. -I. -Wall -g  -I./test -MT copy.o -MD -MP -MF=
+ copy.Tpo -c -o copy.o copy.c
+In file included from mutt/lib.h:86,
+                 from copy.c:36:
+copy.c: In function =E2=80=98mutt_copy_message_fp=E2=80=99:
+copy.c:732:29: warning: format =E2=80=98%ld=E2=80=99 expects argument of ty=
+pe =E2=80=98long int=E2=80=99, but argument 7 has type =E2=80=98off_t=E2=80=
+=99 {aka =E2=80=98long long int=E2=80=99} [-Wformat=3D]
+  732 |                             "The length calculation was wrong by %l=
+d bytes", fail),
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~~~~~~~
+mutt/logging2.h:92:88: note: in definition of macro =E2=80=98mutt_error=E2=
+=80=99
+   92 | #define mutt_error(...)        MuttLogger(0, __FILE__, __LINE__, __=
+func__, LL_ERROR,   __VA_ARGS__) ///< @ingroup logging_api
+      |                                                                    =
+                    ^~~~~~~~~~~
+copy.c:732:68: note: format string is defined here
+  732 |                             "The length calculation was wrong by %l=
+d bytes", fail),
+      |                                                                  ~~^
+      |                                                                    |
+      |                                                                    =
+long int
+      |                                                                  %l=
+ld
+copy.c:731:29: warning: format =E2=80=98%ld=E2=80=99 expects argument of ty=
+pe =E2=80=98long int=E2=80=99, but argument 7 has type =E2=80=98off_t=E2=80=
+=99 {aka =E2=80=98long long int=E2=80=99} [-Wformat=3D]
+  731 |         mutt_error(ngettext("The length calculation was wrong by %l=
+d byte",
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~~~~~~
+mutt/logging2.h:92:88: note: in definition of macro =E2=80=98mutt_error=E2=
+=80=99
+   92 | #define mutt_error(...)        MuttLogger(0, __FILE__, __LINE__, __=
+func__, LL_ERROR,   __VA_ARGS__) ///< @ingroup logging_api
+      |                                                                    =
+                    ^~~~~~~~~~~
+copy.c:731:68: note: format string is defined here
+  731 |         mutt_error(ngettext("The length calculation was wrong by %l=
+d byte",
+      |                                                                  ~~^
+      |                                                                    |
+      |                                                                    =
+long int
+      |                                                                  %l=
+ld
+---
+ copy.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/copy.c b/copy.c
+index 7796cac..43f71c2 100644
+--- a/copy.c
++++ b/copy.c
+@@ -730,7 +730,7 @@ int mutt_copy_message_fp(FILE *fp_out, FILE *fp_in, str=
+uct Email *e,
+       {
+         mutt_error(ngettext("The length calculation was wrong by %ld byte",
+                             "The length calculation was wrong by %ld bytes=
+", fail),
+-                   fail);
++                   (long)fail);
+         new_length +=3D fail;
+       }
+=20
+--=20
+2.42.0
+
+--oexhujahwa33mrl6
+Content-Type: message/external-body; access-type=x-mutt-deleted;
+	expiration="Sat, 23 Dec 2023 10:07:33 +0000"; length=833
+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+
+--oexhujahwa33mrl6--
+
+From neomutt-devel-bounces@neomutt.org Thu Dec 21 20:08:53 2023
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 5C5A8500
+	for <flatcap-mail@flatcap.org>; Thu, 21 Dec 2023 20:08:53 +0000 (GMT)
+X-Virus-Scanned: amavis at flatcap.org
+Authentication-Results: flatcap.org (amavis); dkim=fail (2048-bit key)
+ reason="fail (message has been altered)" header.d=nabijaczleweli.xyz
+Received: from flatcap.org ([127.0.0.1])
+ by localhost (flatcap.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id MkseXTwxOMGm for <flatcap-mail@flatcap.org>;
+ Thu, 21 Dec 2023 20:08:51 +0000 (GMT)
+Received: from keiler.in-berlin.de (keiler.in-berlin.de [192.109.42.108])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id 8294B44A
+	for <rich@flatcap.org>; Thu, 21 Dec 2023 20:08:51 +0000 (GMT)
+Received: from keiler.in-berlin.de (localhost [127.0.0.1])
+	by keiler.in-berlin.de  with ESMTP id 3BLK8Jem031073;
+	Thu, 21 Dec 2023 21:08:20 +0100
+X-Mailman-Handler: $Id: mm-handler 5100 2002-04-05 19:41:09Z bwarsaw $
+Received: from einhorn-in.in-berlin.de (einhorn-in.in-berlin.de
+ [192.109.42.16])
+ by keiler.in-berlin.de  with ESMTPS id 3BLK8IlZ031068
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT)
+ for <neomutt-devel+neomutt.org@mailman1.in-berlin.de>;
+ Thu, 21 Dec 2023 21:08:18 +0100
+Received: from tamarau.in-berlin.de (tamarau.in-berlin.de [192.109.42.28])
+ by einhorn-in.in-berlin.de  with ESMTP id 3BLK8InL339298
+ for <neomutt-devel@neomutt.org>; Thu, 21 Dec 2023 21:08:18 +0100
+X-Envelope-From: nabijaczleweli@nabijaczleweli.xyz
+X-Envelope-To: <neomutt-devel@neomutt.org>
+Received: from tarta.nabijaczleweli.xyz (tarta.nabijaczleweli.xyz
+ [139.28.40.42])
+ by tamarau.in-berlin.de  with ESMTPS id 3BLK8FRP027781
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT)
+ for <neomutt-devel@neomutt.org>; Thu, 21 Dec 2023 21:08:16 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nabijaczleweli.xyz;
+ s=202305; t=1703189292;
+ bh=kVsXU/euQq8RYXgO7UKw4iGdmdMbuokGbJ3aTDcJT3o=;
+ h=Date:From:To:Subject:References:In-Reply-To:From;
+ b=HlXn+cN8czs6GGzwPJvwYdhbqy2zVtjzd/m+wJdRdf5x4RvgA1rPI0Fk6Iiz4rOpp
+ ynOQDDqWO6t2I4DgeNFZqFqTDYEGssLXgHJyt2Sc1r2Sb5U/UewfVQXQrppMWSVqxi
+ m9kIqI2er5me6+7qcWoY4TTVpPio8dEtZUBmslRvnpVz2teTiV9d1uSg+Gn/qWJbZa
+ yMZBKHpgPrYv4c9Hp6aKpsMRh/fpl6nG9nGeBP58j+ZZEzxmo9UAlV4hvV2OKzO7st
+ XNb+N4TXZdK+z5TMR055iOeSugRnAfCbHqIK1HfItGhAeqrXSvevXnaauBc+AFcPKN
+ c9/4SV7SzWHuQ==
+Received: from tarta.nabijaczleweli.xyz (unknown [192.168.1.250])
+ by tarta.nabijaczleweli.xyz (Postfix) with ESMTPSA id ACA2613678
+ for <neomutt-devel@neomutt.org>; Thu, 21 Dec 2023 21:08:12 +0100 (CET)
+Date: Thu, 21 Dec 2023 21:08:12 +0100
+From: =?utf-8?B?0L3QsNCx?= <nabijaczleweli@nabijaczleweli.xyz>
+To: Neomutt Developers <neomutt-devel@neomutt.org>
+Message-ID: <ckbc3k6s5freegxbe3ptqb3ip5rajwc2cb6x4r4ktezun6q7sn@tarta.nabijaczleweli.xyz>
+References: <7cnfaayjlx5ckw3btms53oo4d42bqs6uwv2tuzmgjfmyt5ky7y@q63nny4l2w47>
+ <dvrolxwsx4ptlcasl5kywd5ueqf7nko7i7klhdio3hvqem4x7y@tarta.nabijaczleweli.xyz>
+ <5n7veb6bbqivdove3g3bsjy5ec44kfw7vh2npohhnyaf5eydqq@tarta.nabijaczleweli.xyz>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="yvrks4byo6rmx7rr"
+Content-Disposition: inline
+In-Reply-To: <5n7veb6bbqivdove3g3bsjy5ec44kfw7vh2npohhnyaf5eydqq@tarta.nabijaczleweli.xyz>
+User-Agent: NeoMutt/20231103
+Subject: Re: [neomutt-devel] New Release next week
+X-BeenThere: neomutt-devel@neomutt.org
+X-Mailman-Version: 2.1.39
+Precedence: list
+List-Id: Teaching an Old Dog New Tricks <neomutt-devel-neomutt.org>
+List-Unsubscribe: <https://mailman.neomutt.org/mailman/options/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=unsubscribe>
+List-Archive: <https://mailman.neomutt.org/pipermail/neomutt-devel-neomutt.org/>
+List-Post: <mailto:neomutt-devel@neomutt.org>
+List-Help: <mailto:neomutt-devel-request@neomutt.org?subject=help>
+List-Subscribe: <https://mailman.neomutt.org/mailman/listinfo/neomutt-devel-neomutt.org>, 
+ <mailto:neomutt-devel-request@neomutt.org?subject=subscribe>
+Errors-To: neomutt-devel-bounces@neomutt.org
+Sender: "neomutt-devel" <neomutt-devel-bounces@neomutt.org>
+Status: RO
+Content-Length: 5709
+Lines: 141
+
+
+--yvrks4byo6rmx7rr
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Dec 19, 2023 at 04:58:04AM +0100, =D0=BD=D0=B0=D0=B1 wrote:
+> On Tue, Dec 19, 2023 at 04:13:20AM +0100, =D0=BD=D0=B0=D0=B1 wrote:
+> > On Wed, Dec 13, 2023 at 11:49:46AM +0000, Richard Russon wrote:
+> > > If you have a chance, please can you give the build a test.
+> > Works, but I just noticed that when replying, neomutt always wants to
+> > add another "Re:". Even if there's one or two already there.
+> This sure looks like applying $reply_regex just broke
+> (looks like that's how real_subj is derived).
+>=20
+> It looks like reopening the mailbox fixed it?
+It didn't, but changing it did maybe. In ltrace on 20231221 I see
+  $ grep -i re.aw ll
+  neomutt->regcomp(0x555e1ce6be20, "^((re|aw|sv)(\\[[0-9]+\\])*:[ \t]*)"...=
+, 0b1) =3D REG_OK
+  neomutt->regcomp(0x555e1d0550c0, "^((Re|aw|sv)(\\[[0-9]+\\])*:[ \t]*)"...=
+, 0b1) =3D REG_OK
+
+And setting the latter, with the capitalised "Re", explicitly works
+(well, except for messages that have a RE: prefix).
+REG_ICASE is clearly supposed to be applied when compiling,
+but just isn't (it's bit 0b10).
+
+This is controlled by
+  if (((flags & DT_REGEX_MATCH_CASE) =3D=3D 0) && mutt_mb_is_lower(str))
+    rflags |=3D REG_ICASE;
+(this same snippet appears twice, i.a. in regex_new()).
+
+Clearly, this isn't being set, that would be ridiculous,
+it never would've worked. Indeed:
+  { "reply_regex", DT_REGEX|R_INDEX|R_RESORT, IP "^((re|aw|sv)(\\[[0-9]+\\]=
+)*:[ \t]*)*", 0, NULL,
+    "Regex to match message reply subjects like 're: '"
+  },
+
+Consulting regex3.h which defines this:
+  /* ... DT_REGEX */
+  /* Note: To save space, sets of config variable flags are packed into a u=
+int32_t.
+   * When adding flags, check all config variables to ensure there are no o=
+verlaps of values */
+  #define DT_REGEX_MATCH_CASE (1 << 17)  ///< Case-sensitive matching
+  #define DT_REGEX_ALLOW_NOT  (1 << 18)  ///< Regex can begin with '!'
+  #define DT_REGEX_NOSUB      (1 << 19)  ///< Do not report what was matche=
+d (REG_NOSUB)
+
+So no issues right?
+Impervious encoding scheme?
+Of course:
+  $ git grep -E 'define.*(DT_REGEX_MATCH_CASE|DT_REGEX|R_INDEX|R_RESORT)\b'
+  config/types.h:#define DT_REGEX    10  ///< regular expressions
+  config/types.h:#define R_INDEX           (1 << 17) ///< Redraw the index =
+menu (MENU_INDEX)
+  config/types.h:#define R_RESORT          (1 << 18) ///< Resort the mailbox
+  mutt/regex3.h:#define DT_REGEX_MATCH_CASE (1 << 17)  ///< Case-sensitive =
+matching
+
+Blaming types.h goes back >2100 commits. Blaming regex3.h goes to
+  $ git show 863019552 mutt/regex3.h
+  commit 86301955255fc8bcb55a9e3ce5a9ba0d624feb6a
+  Author: Richard Russon (@flatcap) <rich@flatcap.org>
+  Date:   Wed Dec 6 15:10:36 2023 +0000
+ =20
+      config: fix flag overlaps
+ =20
+  diff --git a/mutt/regex3.h b/mutt/regex3.h
+  index a611f514..9fd81eb2 100644
+  --- a/mutt/regex3.h
+  +++ b/mutt/regex3.h
+  @@ -32,9 +32,11 @@
+   struct Buffer;
+ =20
+   /* ... DT_REGEX */
+  -#define DT_REGEX_MATCH_CASE (1 << 6)  ///< Case-sensitive matching
+  -#define DT_REGEX_ALLOW_NOT  (1 << 7)  ///< Regex can begin with '!'
+  -#define DT_REGEX_NOSUB      (1 << 8)  ///< Do not report what was matche=
+d (REG_NOSUB)
+  +/* Note: To save space, sets of config variable flags are packed into a =
+uint32_t.
+  + * When adding flags, check all config variables to ensure there are no =
+overlaps of values */
+  +#define DT_REGEX_MATCH_CASE (1 << 17)  ///< Case-sensitive matching
+  +#define DT_REGEX_ALLOW_NOT  (1 << 18)  ///< Regex can begin with '!'
+  +#define DT_REGEX_NOSUB      (1 << 19)  ///< Do not report what was match=
+ed (REG_NOSUB)
+ =20
+   /* This is a non-standard option supported by Solaris 2.5.x
+    * which allows patterns of the form \<...\> */
+and
+  $ git tag --contains 86301955255fc8bcb55a9e3ce5a9ba0d624feb6a
+  20231221
+so. idk. revert that maybe?
+or somehow make sure the flags actually don't overlap,
+since these are, in order R_INDEX, R_RESORT, R_RESORT_SUB,
+but they used to be DT_ON_STARTUP, DT_NOT_EMPTY, DT_NOT_NEGATIVE.
+
+Allocating these as 1<<16 (unused AFAICT), 1<<31 (likewise), DT_NOT_NEGATIVE
+probably makes the most sense.
+
+Not that that makes it work, of course, since this regex simply isn't
+used when reading IMAP mailboxes, and you need to manually trigger the
+reassessment by running
+  :set reply_regex=3D"^((Re|aw|sv)(\\[[0-9]+\\])*:[ \t]*)*"
+  :set reply_regex=3D"^((re|aw|sv)(\\[[0-9]+\\])*:[ \t]*)*"
+so index.c#config_reply_regex() can re-parse real_subj.
+
+diff --git a/mutt/regex3.h b/mutt/regex3.h
+index 9fd81eb2..f67719a1 100644
+--- a/mutt/regex3.h
++++ b/mutt/regex3.h
+@@ -34,9 +34,9 @@ struct Buffer;
+ /* ... DT_REGEX */
+ /* Note: To save space, sets of config variable flags are packed into a ui=
+nt32_t.
+  * When adding flags, check all config variables to ensure there are no ov=
+erlaps of values */
+-#define DT_REGEX_MATCH_CASE (1 << 17)  ///< Case-sensitive matching
+-#define DT_REGEX_ALLOW_NOT  (1 << 18)  ///< Regex can begin with '!'
+-#define DT_REGEX_NOSUB      (1 << 19)  ///< Do not report what was matched=
+ (REG_NOSUB)
++#define DT_REGEX_MATCH_CASE (1 << 16)  ///< Case-sensitive matching
++#define DT_REGEX_ALLOW_NOT  (1 << 31)  ///< Regex can begin with '!'
++#define DT_REGEX_NOSUB      DT_NOT_NEGATIVE  ///< Do not report what was m=
+atched (REG_NOSUB)
+=20
+ /* This is a non-standard option supported by Solaris 2.5.x
+  * which allows patterns of the form \<...\> */
+
+--yvrks4byo6rmx7rr
+Content-Type: message/external-body; access-type=x-mutt-deleted;
+	expiration="Sat, 23 Dec 2023 10:07:02 +0000"; length=833
+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+
+--yvrks4byo6rmx7rr--
+

@@ -1,0 +1,145 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ffffc0" ]
+	abort_for_missing_attachments add_args add_args_one bounce_message
+	decode_descriptions default_to edit_envelope envelope_defaults
+	generate_body include_forward include_reply invoke_mta is_text_plain
+	make_reference_headers mutt_add_to_reference_headers
+	mutt_bounce_message mutt_default_from mutt_encode_descriptions
+	mutt_fetch_recips mutt_fix_reply_recipients mutt_fqdn mutt_gen_msgid
+	mutt_invoke_sendmail mutt_make_file_attach mutt_make_message_attach
+	mutt_make_multipart mutt_message_to_7bit mutt_prepare_envelope
+	mutt_remove_multipart mutt_resend_message mutt_rfc822_write_header
+	mutt_send_list_subscribe mutt_send_list_unsubscribe mutt_send_message
+	mutt_set_followup_to mutt_smtp_send mutt_unprepare_envelope
+	mutt_update_encoding mutt_write_fcc mutt_write_mime_body
+	mutt_write_mime_header mutt_write_multiple_fcc postpone_message
+	process_user_recips remove_user save_fcc send_simple_email set_encoding
+	smtp_data smtp_fill_account smtp_get_resp smtp_helo smtp_open
+	smtp_rcpt_to transform_to_7bit
+
+	node [ fillcolor="#ffffff" ]
+	abort_for_missing_attachments -> is_text_plain
+	add_args -> add_args_one
+	alias_dialog -> mutt_send_message
+	attach_forward_bodies -> mutt_send_message
+	attach_forward_msgs -> mutt_send_message
+	bounce_message -> mutt_gen_msgid
+	bounce_message -> mutt_invoke_sendmail
+	bounce_message -> mutt_smtp_send
+	envelope_defaults -> make_reference_headers
+	envelope_defaults -> mutt_fetch_recips
+	generate_body -> include_forward
+	generate_body -> include_reply
+	generate_body -> mutt_make_message_attach
+	invoke_mta -> mutt_invoke_sendmail
+	invoke_mta -> mutt_rfc822_write_header
+	invoke_mta -> mutt_smtp_send
+	invoke_mta -> mutt_write_mime_body
+	main -> mutt_send_message
+	make_reference_headers -> mutt_add_to_reference_headers
+	mutt_attach_mail_sender -> mutt_send_message
+	mutt_attach_reply -> mutt_send_message
+	mutt_bounce_message -> bounce_message
+	mutt_bounce_message -> mutt_default_from
+	mutt_bounce_message -> mutt_fqdn
+	mutt_default_from -> mutt_fqdn
+	mutt_fetch_recips -> default_to
+	mutt_fix_reply_recipients -> remove_user
+	mutt_invoke_sendmail -> add_args
+	mutt_invoke_sendmail -> add_args_one
+	mutt_make_file_attach -> mutt_update_encoding
+	mutt_make_message_attach -> mutt_update_encoding
+	mutt_message_to_7bit -> mutt_write_mime_body
+	mutt_message_to_7bit -> mutt_write_mime_header
+	mutt_message_to_7bit -> transform_to_7bit
+	mutt_prepare_envelope -> mutt_gen_msgid
+	mutt_prepare_envelope -> mutt_set_followup_to
+	mutt_resend_message -> mutt_send_message
+	mutt_rfc822_write_header -> mutt_write_mime_header
+	mutt_send_list_subscribe -> send_simple_email
+	mutt_send_list_unsubscribe -> send_simple_email
+	mutt_send_message -> abort_for_missing_attachments
+	mutt_send_message -> decode_descriptions
+	mutt_send_message -> edit_envelope
+	mutt_send_message -> envelope_defaults
+	mutt_send_message -> generate_body
+	mutt_send_message -> invoke_mta
+	mutt_send_message -> is_text_plain
+	mutt_send_message -> mutt_default_from
+	mutt_send_message -> mutt_encode_descriptions
+	mutt_send_message -> mutt_fix_reply_recipients
+	mutt_send_message -> mutt_gen_msgid
+	mutt_send_message -> mutt_make_multipart
+	mutt_send_message -> mutt_prepare_envelope
+	mutt_send_message -> mutt_remove_multipart
+	mutt_send_message -> mutt_unprepare_envelope
+	mutt_send_message -> mutt_update_encoding
+	mutt_send_message -> postpone_message
+	mutt_send_message -> process_user_recips
+	mutt_send_message -> save_fcc
+	mutt_set_followup_to -> mutt_default_from
+	mutt_set_followup_to -> remove_user
+	mutt_smtp_send -> mutt_fqdn
+	mutt_smtp_send -> smtp_data
+	mutt_smtp_send -> smtp_fill_account
+	mutt_smtp_send -> smtp_get_resp
+	mutt_smtp_send -> smtp_open
+	mutt_smtp_send -> smtp_rcpt_to
+	mutt_update_encoding -> set_encoding
+	mutt_write_fcc -> mutt_rfc822_write_header
+	mutt_write_fcc -> mutt_write_mime_body
+	mutt_write_mime_body -> mutt_write_mime_header
+	mutt_write_mime_header -> mutt_rfc822_write_header
+	mutt_write_multiple_fcc -> mutt_write_fcc
+	op_compose_to_sender -> mutt_send_message
+	op_forward_message -> mutt_send_message
+	op_group_reply -> mutt_send_message
+	op_list_reply -> mutt_send_message
+	op_mail -> mutt_send_message
+	op_mail_key -> mutt_send_message
+	op_post -> mutt_send_message
+	op_recall_message -> mutt_send_message
+	op_reply -> mutt_send_message
+	postpone_message -> decode_descriptions
+	postpone_message -> mutt_encode_descriptions
+	postpone_message -> mutt_make_multipart
+	postpone_message -> mutt_prepare_envelope
+	postpone_message -> mutt_remove_multipart
+	postpone_message -> mutt_unprepare_envelope
+	postpone_message -> mutt_write_fcc
+	query_index -> mutt_send_message
+	save_fcc -> mutt_write_multiple_fcc
+	send_simple_email -> mutt_send_message
+	set_encoding -> mutt_message_to_7bit
+	smtp_data -> smtp_get_resp
+	smtp_helo -> smtp_get_resp
+	smtp_open -> smtp_get_resp
+	smtp_open -> smtp_helo
+	smtp_rcpt_to -> smtp_get_resp
+	transform_to_7bit -> mutt_message_to_7bit
+	transform_to_7bit -> mutt_update_encoding
+
+}
+

@@ -1,0 +1,56 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// red ● AttachCtx
+
+	node [ color="#00ff00" ]
+	// Attach - attach/dlg_attach.c
+	dlg_select_attachment      [ label=<dlg_select_attachment <font color="red">●</font> > ]
+	// Compose - compose/functions.c
+	op_print                   [ label=<op_print <font color="red">●</font> > ]
+
+	// Attach - attach/recvattach.c
+	node [ color="#0000ff" ]
+	mutt_print_attachment_list [ label=<mutt_print_attachment_list <font color="red">●</font> > ]
+	pipe_attachment
+	print_attachment_list      [ label=<print_attachment_list <font color="red">●</font> > ]
+
+	// Attach - attach/mutt_attach.c
+	node [ color="#ff0000" ]
+	mutt_decode_save_attachment
+	mutt_pipe_attachment
+	mutt_print_attachment
+	mutt_save_attachment
+
+	node [ color="#000000" ]
+	dlg_select_attachment -> mutt_print_attachment_list
+	mutt_print_attachment -> mutt_decode_save_attachment
+	mutt_print_attachment -> mutt_pipe_attachment
+	mutt_print_attachment -> mutt_save_attachment
+	mutt_print_attachment_list -> print_attachment_list
+	op_print -> mutt_print_attachment_list
+	print_attachment_list -> mutt_decode_save_attachment
+	print_attachment_list -> mutt_print_attachment
+	print_attachment_list -> pipe_attachment
+
+}

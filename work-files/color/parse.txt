@@ -1,0 +1,181 @@
+Text
+	100 Lines
+	................
+	.............
+	...............
+	............
+
+Parse
+	Screen 10 rows, 40 cols
+	Read up to 10 lines
+	∀ line
+		∀ colour
+			apply_colour(line)
+
+Read lines
+	read_lines(lines, start, number)
+		fixed number (n)
+		to first blank line (-1)
+		to end of file (-2)
+	retval num lines read
+		0 eof?
+		n number
+		-1 error
+
+Apply Colour
+	Weed (hiding/reordering)? How?
+	Headers (only at row 0)
+		hdrdefault MT_COLOR_HDRDEFAULT
+		header     MT_COLOR_HEADER
+	Attachment
+		attachment MT_COLOR_ATTACHMENT
+	ANSI
+		raw colours
+	Backspace
+		bold       MT_COLOR_BOLD
+		underline  MT_COLOR_UNDERLINE
+	Quoted (categorising/hiding)
+		quotedN    MT_COLOR_QUOTED
+	Signature
+		signature  MT_COLOR_SIGNATURE
+	config - `color`
+		body       MT_COLOR_BODY
+	search
+		search     MT_COLOR_SEARCH
+
+Wrap line
+	Split line at screen width
+		markers    MT_COLOR_MARKERS
+		tilde      MT_COLOR_TILDE
+
+SigWinch
+	Drop all cont lines
+	Squash array
+	Rewrap
+
+Data
+	Line[] lines
+		top_line
+		bot_line
+	populate(lines, top, bot)
+
+----------------------------------------
+
+Priv
+	Menu            *menu
+	MuttWindow      *win_pbar
+	PagerView       *pview
+	int              has_types
+	int              index_size
+	int              indicator
+	bool             force_redraw
+	MenuRedrawFlags  redraw
+	Notify          *notify
+
+Search
+	PagerFlags       search_flag
+	char             search_str[256]
+	bool             search_compiled
+	regex_t          search_re
+	bool             search_back
+
+Quote
+	QClass          *quote_list
+	int              q_level
+	PagerFlags       hide_quoted
+
+PagerFile
+	FILE            *fp
+	stat             st
+	LOFF_T           bytes_read
+	LineArray        lines
+
+PagerFileView
+	int              cur_line
+	int              old_top_line
+	int              win_height
+	int              top_line
+
+TextSyntax
+	AttrColor *color
+	int        first
+	int        last
+
+AnsiAttr
+	AnsiFlags  attr
+	int        fg
+	int        bg
+	int        pair
+
+QClass
+	int        quote_n (level)
+	AttrColor *color
+	char       *prefix
+	size_t     prefix_len
+	QClass     *prev, *next
+	QClass     *up, *down
+
+Line
+	int         offset
+	char       *text (raw/processed)
+	AttrColor  *color (default line colour)
+	TextSyntax  syntax (array)
+	TextSyntax  search (array)
+	uint16_t    flags
+	QClass     *quote (tree)
+
+----------------------------------------
+
+Flags
+	HIDDEN
+	QUOTED
+	ATTACH
+	PROCESSED
+	RAW
+	HEADER
+	HEADER_CONTINUATION
+	SIGNATURE
+	BLANK
+	ANSI
+	CONTINUATION
+	TODO
+
+----------------------------------------
+
+attachment MT_COLOR_ATTACHMENT
+body       MT_COLOR_BODY
+bold       MT_COLOR_BOLD
+hdrdefault MT_COLOR_HDRDEFAULT
+header     MT_COLOR_HEADER
+markers    MT_COLOR_MARKERS
+normal     MT_COLOR_NORMAL
+quoted     MT_COLOR_QUOTED
+search     MT_COLOR_SEARCH
+signature  MT_COLOR_SIGNATURE
+tilde      MT_COLOR_TILDE
+underline  MT_COLOR_UNDERLINE
+
+----------------------------------------
+
+allow_ansi                # Allow ANSI colour codes in rich text messages
+header_color_partial      # Only colour the part of the header matching the regex
+markers                   # Display a '+' at the beginning of wrapped lines in the pager
+quote_regex               # Regex to match quoted text in a reply
+reply_regex               # Regex to match message reply subjects like 're: '
+smart_wrap                # Wrap text at word boundaries
+smileys                   # Regex to match smileys to prevent mistakes when quoting text
+tilde                     # Character to pad blank lines in the pager
+toggle_quoted_show_levels # Number of quote levels to show with toggle-quoted
+wrap                      # Width to wrap text in the pager
+
+-------------------
+Devel config?
+
+max_color_matches       # => all movement would need recalc
+max_search_matches      # => all movement would need recalc
+squash_rgb_colors       # rgb -> palette
+squash_blank_lines      # final filter
+merge_all_colors        # default => transparent ∀ colours
+highlight_hidden_quoted # mark previous line with underlines
+
+----------------------------------------

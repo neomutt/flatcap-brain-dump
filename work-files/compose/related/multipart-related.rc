@@ -1,0 +1,23 @@
+
+# run from build directory:
+#   ./neomutt -n -F multipart-related.rc
+
+unset record
+unset signature
+
+set editor = "echo '![Neomutt Logo](cid:neomutt-256.png)' >> %s"
+set from = "john.doe@example.com"
+set help = no
+set postpone = no
+set postponed = "postponed.mbox"
+set realname = "John Doe"
+set recall=no
+set spoolfile = "inbox.mbox"
+
+macro index   <F1> "<mail>John Doe <john.doe@example.com><enter>test<enter>"
+macro compose <F2> "<attach-file>contrib/logo/neomutt-256.png<enter>"
+macro compose <F3> "<attach-file>html-part.html<enter>"
+macro compose <F4> "<toggle-disposition><tag-entry>1<enter><tag-entry><group-alternatives>"
+macro compose <F5> "<tag-entry>4<enter><tag-entry><group-related>"
+
+# vim: syn=neomuttrc

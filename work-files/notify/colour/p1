@@ -1,0 +1,22 @@
+# vim: syn=neomuttrc
+
+set allow_ansi = yes
+reset index_format
+set sidebar_visible = no
+set help = no
+
+color normal color46 color225
+
+# hdrdefault
+# header
+
+# attachment
+# attach_headers
+# quoted, quoted{0..9}
+# body
+# markers
+# signature
+# search
+# bold
+# underline
+

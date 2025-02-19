@@ -1,0 +1,126 @@
+alias/dlg_alias.c:348:12:          window_redraw(NULL);
+alias/dlg_alias.c:371:10:          window_redraw(NULL);
+alias/dlg_query.c:424:12:          window_redraw(NULL);
+alias/dlg_query.c:447:10:          window_redraw(NULL);
+alias/functions.c:179:10:          window_redraw(NULL);
+attach/dlg_attach.c:516:12:        window_redraw(NULL);
+attach/recvattach.c:462:16:        menu_redraw(menu);
+autocrypt/dlg_autocrypt.c:343:12:  window_redraw(NULL);
+browser/dlg_browser.c:1499:12:     window_redraw(NULL);
+color/quoted.c:384:16:             *force_redraw = true;
+color/quoted.c:488:22:             *force_redraw = true;
+compose/dlg_compose.c:352:12:      window_redraw(NULL);
+conn/connaccount.c:66:22:          mutt_need_hard_redraw();
+conn/connaccount.c:145:22:         mutt_need_hard_redraw();
+conn/connaccount.c:229:20:         mutt_need_hard_redraw();
+conn/dlg_verifycert.c:244:12:      window_redraw(NULL);
+enter/functions.c:104:10:          wdata->redraw = ENTER_REDRAW_LINE;
+enter/functions.c:126:10:          wdata->redraw = ENTER_REDRAW_INIT;
+enter/functions.c:154:10:          wdata->redraw = ENTER_REDRAW_INIT;
+enter/functions.c:246:10:          wdata->redraw = ENTER_REDRAW_INIT;
+enter/functions.c:318:12:          window_redraw(NULL);
+enter/functions.c:358:10:          window_redraw(NULL);
+enter/window.c:206:16:             if (wdata->redraw == ENTER_REDRAW_INIT)
+enter/window.c:307:10:             window_redraw(win);
+enter/window.c:315:11:             wdata.redraw = ENTER_REDRAW_INIT;
+enter/window.c:319:11:             wdata.redraw = ENTER_REDRAW_LINE;
+enter/window.c:329:17:             if (wdata.redraw != ENTER_REDRAW_NONE)
+enter/window.c:332:14:             window_redraw(NULL);
+enter/window.c:369:13:             wdata.redraw = ENTER_REDRAW_LINE;
+external.c:628:10:                 window_redraw(NULL);
+flags.c:472:10:                    window_redraw(win);
+flags.c:477:12:                    window_redraw(NULL);
+gui/curs_lib.c:169:10:             window_redraw(NULL);
+gui/curs_lib.c:446:10:             window_redraw(win);
+gui/curs_lib.c:453:14:             window_redraw(win);
+gui/global.c:62:10:                window_redraw(NULL);
+gui/global.c:74:10:                window_redraw(NULL);
+gui/msgcont.c:82:10:               window_redraw(NULL);
+gui/msgcont.c:104:10:              window_redraw(NULL);
+history/dlg_history.c:156:12:      window_redraw(NULL);
+index/dlg_index.c:1240:12:         window_redraw(NULL);
+index/dlg_index.c:1268:12:         window_redraw(NULL);
+index/index.c:313:9:               menu->redraw = MENU_REDRAW_FULL;
+index/index.c:337:9:               ConfigRedrawFlags flags = cdef->type & R_REDRAW_MASK;
+index/index.c:548:13:              if (menu->redraw & MENU_REDRAW_FULL)
+index/index.c:549:10:              menu_redraw_full(menu);
+index/index.c:566:9:               menu->redraw = MENU_REDRAW_INDEX;
+index/index.c:574:15:              if (menu->redraw & MENU_REDRAW_INDEX)
+index/index.c:576:12:              menu_redraw_index(menu);
+index/index.c:578:20:              else if (menu->redraw & MENU_REDRAW_MOTION)
+index/index.c:580:12:              menu_redraw_motion(menu);
+index/index.c:582:20:              else if (menu->redraw & MENU_REDRAW_CURRENT)
+index/index.c:584:12:              menu_redraw_current(menu);
+index/index.c:588:9:               menu->redraw = MENU_REDRAW_NO_FLAGS;
+keymap.c:1841:10:                  window_redraw(win);
+keymap.c:1874:16:                  window_redraw(NULL);
+keymap.c:1890:12:                  window_redraw(NULL);
+main.c:1375:12:                    window_redraw(NULL);
+mixmaster/dlg_mixmaster.c:213:12:  window_redraw(NULL);
+mutt_logging.c:163:10:             window_redraw(msgwin_get_window());
+ncrypt/crypt_gpgme.c:125:20:       mutt_need_hard_redraw();
+ncrypt/crypt_gpgme.c:819:3:        redraw_if_needed(ctx);
+ncrypt/crypt_gpgme.c:943:3:        redraw_if_needed(ctx);
+ncrypt/crypt_gpgme.c:1576:3:       redraw_if_needed(ctx);
+ncrypt/crypt_gpgme.c:1771:5:       redraw_if_needed(ctx);
+ncrypt/crypt_gpgme.c:1782:3:       redraw_if_needed(ctx);
+ncrypt/crypt_gpgme.c:2527:9:       redraw_if_needed(ctx);
+ncrypt/dlg_gpgme.c:750:12:         window_redraw(NULL);
+ncrypt/dlg_pgp.c:641:12:           window_redraw(NULL);
+ncrypt/dlg_smime.c:240:12:         window_redraw(NULL);
+ncrypt/pgp.c:662:28:               mutt_need_hard_redraw();
+ncrypt/pgp.c:1104:20:              mutt_need_hard_redraw();
+pager/display.c:371:39:            bool *force_redraw, bool q_classify)
+pager/display.c:438:22:            *force_redraw = true;
+pager/display.c:481:53:            force_redraw, q_level);
+pager/display.c:1016:30:           bool *force_redraw, regex_t *search_re,
+pager/display.c:1090:48:           quote_list, q_level, force_redraw, flags & MUTT_SHOWCOLOR);
+pager/display.c:1129:47:           force_redraw, q_level);
+pager/display.c:1184:42:           if ((flags & MUTT_SHOWCOLOR) && *force_redraw && ((*lines)[line_num + 1].offset > 0))
+pager/display.h:68:76:             struct QuoteStyle **quote_list, int *q_level, bool *force_redraw,
+pager/dlg_pager.c:132:18:void      pager_queue_redraw(struct PagerPrivateData *priv, PagerRedrawFlags redraw)
+pager/dlg_pager.c:134:9:           priv->redraw |= redraw;
+pager/dlg_pager.c:291:15:          priv->pager_redraw = false;
+pager/dlg_pager.c:376:15:          pager_queue_redraw(priv, PAGER_REDRAW_PAGER);
+pager/dlg_pager.c:377:10:          window_redraw(NULL);
+pager/dlg_pager.c:382:17:          pager_queue_redraw(priv, PAGER_REDRAW_PAGER);
+pager/dlg_pager.c:384:12:          window_redraw(NULL);
+pager/dlg_pager.c:419:23:          pager_queue_redraw(priv, PAGER_REDRAW_PAGER);
+pager/dlg_pager.c:444:23:          pager_queue_redraw(priv, PAGER_REDRAW_PAGER);
+pager/dlg_pager.c:467:21:          if (priv->pager_redraw)
+pager/dlg_pager.c:469:19:          priv->pager_redraw = false;
+pager/dlg_pager.c:474:19:          pager_queue_redraw(priv, PAGER_REDRAW_FLOW);
+pager/dlg_pager.c:522:19:          priv->pager_redraw = true;
+pager/functions.c:117:71:          &priv->quote_list, &priv->q_level, &priv->force_redraw,
+pager/functions.c:204:17:          pager_queue_redraw(priv, PAGER_REDRAW_PAGER);
+pager/functions.c:382:73:          &priv->quote_list, &priv->q_level, &priv->force_redraw,
+pager/functions.c:439:15:          pager_queue_redraw(priv, PAGER_REDRAW_PAGER);
+pager/functions.c:565:65:          &priv->q_level, &priv->force_redraw, &priv->search_re,
+pager/functions.c:609:67:          &priv->q_level, &priv->force_redraw, &priv->search_re,
+pager/functions.c:627:67:          &priv->q_level, &priv->force_redraw, &priv->search_re,
+pager/functions.c:650:67:          &priv->q_level, &priv->force_redraw, &priv->search_re,
+pager/functions.c:667:67:          &priv->q_level, &priv->force_redraw, &priv->search_re,
+pager/functions.c:722:15:          pager_queue_redraw(priv, PAGER_REDRAW_PAGER);
+pager/functions.c:735:17:          pager_queue_redraw(priv, PAGER_REDRAW_PAGER);
+pager/functions.c:757:15:          pager_queue_redraw(priv, PAGER_REDRAW_PAGER);
+pager/pager.c:143:14:              if ((priv->redraw & PAGER_REDRAW_FLOW) || repopulate)
+pager/pager.c:179:54:              &priv->q_level, &priv->force_redraw, &priv->search_re,
+pager/pager.c:192:14:              if ((priv->redraw & PAGER_REDRAW_PAGER) || (priv->top_line != priv->old_top_line))
+pager/pager.c:200:19:              priv->force_redraw = false;
+pager/pager.c:212:55:              &priv->q_level, &priv->force_redraw, &priv->search_re,
+pager/pager.c:220:26:              } while (priv->force_redraw);
+pager/pager.c:235:9:               priv->redraw = PAGER_REDRAW_NO_FLAGS;
+pager/pager.c:314:31:              if (priv && pview && (priv->redraw & PAGER_REDRAW_FLOW) && (pview->flags & MUTT_PAGER_RETWINCH))
+pager/pager.c:350:17:              priv->pager_redraw = true;
+pager/private_data.h:68:14:        bool force_redraw;
+pager/private_data.h:69:8:         PagerRedrawFlags redraw;
+pager/private_data.h:78:14:        bool pager_redraw;
+pattern/dlg_pattern.c:357:12:      window_redraw(NULL);
+postpone/dlg_postpone.c:237:12:    window_redraw(NULL);
+progress/progress.c:83:12:         window_redraw(win);
+question/question.c:112:10:        window_redraw(win);
+question/question.c:123:14:        window_redraw(NULL);
+question/question.c:255:10:        window_redraw(NULL);
+question/question.c:261:14:        window_redraw(NULL);
+question/question.c:306:14:        window_redraw(NULL);
+send/sendmail.c:434:20:            mutt_need_hard_redraw();

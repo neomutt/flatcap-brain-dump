@@ -1,0 +1,49 @@
+Each Expando Definition, defines a number of expandos.
+The single-letter expandos have been joined into a single line.
+
+AliasFormatDef (arrow, padding)
+	acfnrtY
+AttachFormatDef (arrow, padding)
+	cCdDefFImMnQstTuX
+AutocryptFormatDef (arrow, padding)
+	aknps
+ComposeFormatDef (padding)
+	ahlv
+CompressFormatDef
+	ft
+FolderFormatDef (arrow, padding)
+	aCdDfFgilmnNpstu
+	[fmt]
+GreetingFormatDef
+	nuv
+GroupIndexFormatDef (arrow, padding)
+	aCdfMnNps
+HistoryFormatDef (arrow, padding)
+	Cs
+IndexFormatDef (arrow, padding)
+	aAbBcCdDeEfFgHiIJKlLmMnNOPqrRsStTuvWxXyYZ
+	cr Fp Gx zc zs zt
+	@name@
+	(fmt)
+	[fmt]
+	{fmt}
+MixFormatDef (arrow, padding)
+	acns
+NntpFormatDef
+	apPsSu
+PatternFormatDef (arrow, padding)
+	den
+PgpCommandFormatDef
+	afprs
+PgpEntryFormatDef (arrow, padding)
+	aAcCfFiIkKlLnptu
+	[fmt]
+QueryFormatDef (arrow, padding)
+	acentY
+SidebarFormatDef (padding)
+	!aBdDFLnNoprStZ
+SmimeCommandFormatDef
+	acCdfiks
+StatusFormatDef (padding)
+	bdDfFhlLmMnopPrRsStTuvV
+

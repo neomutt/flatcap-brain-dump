@@ -1,0 +1,71 @@
+color attach_headers  $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color attach_headers  $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color attach_headers  $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color attach_headers  $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color body            $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color body            $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color body            $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color body            $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color header          $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color header          $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color header          $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color header          $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color index           $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color index           $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color index           $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color index           $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color index_author    $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color index_author    $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color index_author    $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color index_author    $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color index_collapsed $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color index_collapsed $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color index_collapsed $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color index_collapsed $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color index_date      $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color index_date      $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color index_date      $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color index_date      $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color index_flags     $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color index_flags     $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color index_flags     $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color index_flags     $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color index_label     $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color index_label     $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color index_label     $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color index_label     $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color index_number    $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color index_number    $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color index_number    $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color index_number    $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color index_size      $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color index_size      $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color index_size      $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color index_size      $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color index_subject   $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color index_subject   $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color index_subject   $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color index_subject   $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color index_tag       $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color index_tag       $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color index_tag       $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color index_tag       $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+color index_tags      $my_attrs1 $my_fg1 $my_bg1 "ap*le"
+color index_tags      $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color index_tags      $my_attrs3 $my_fg3 $my_bg3 "cher*y"
+color index_tags      $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
+
+# vim: syn=neomuttrc

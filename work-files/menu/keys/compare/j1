@@ -1,0 +1,18 @@
+macro attach ^B "<enter-command> set my_pipe_decode=$pipe_decode pipe_decode<Enter><pipe-message> urlview<Enter><enter-command> set pipe_decode=$my_pipe_decode; unset my_pipe_decode<Enter>" "call urlview to extract URLs out of a message"
+
+macro compose ^B "<enter-command> set my_pipe_decode=$pipe_decode pipe_decode<Enter><pipe-message> urlview<Enter><enter-command> set pipe_decode=$my_pipe_decode; unset my_pipe_decode<Enter>" "call urlview to extract URLs out of a message"
+
+macro index ,n "T~N\n;WN;t"
+macro index ,o "T~O\n;WO;t"
+macro index <Esc>C ":set weed = no\n;<decode-copy>=\n:set weed = yes\n"
+macro index <Esc>S ":set weed = no\n;<decode-save>=\n:set weed = yes\n"
+macro index <Esc>b "<search>~b " "search in message bodies"
+macro index <Esc>i "c~/mail/inbox.empty<enter>" "open empty inbox"
+macro index <Esc>j ":set confirm_append = no\n;<tag-prefix-cond><clear-flag>n<tag-prefix-cond><save-message>=junk\n<sync-mailbox>:set confirmappend = no\n"
+macro index <F1> "<mail>rich@flatcap.org<enter>test<enter>"
+macro index ^B "<enter-command> set my_pipe_decode=$pipe_decode pipe_decode<Enter><pipe-message> urlview<Enter><enter-command> set pipe_decode=$my_pipe_decode; unset my_pipe_decode<Enter>" "call urlview to extract URLs out of a message"
+
+macro pager <Esc>i "c~/mail/inbox.empty<enter>" "open empty inbox"
+macro pager <F1> "<mail>rich@flatcap.org<enter>test<enter>"
+macro pager ^B "<enter-command> set my_pipe_decode=$pipe_decode pipe_decode<Enter><pipe-message> urlview<Enter><enter-command> set pipe_decode=$my_pipe_decode; unset my_pipe_decode<Enter>" "call urlview to extract URLs out of a message"
+

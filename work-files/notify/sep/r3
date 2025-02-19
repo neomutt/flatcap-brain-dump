@@ -1,0 +1,27 @@
+Functions using $resolve
+
+menu/tagging.c:107:54:     OP_TAG
+
+index/functions.c:219:56:  OP_DELETE
+index/functions.c:277:54:  OP_DELETE_THREAD
+index/functions.c:523:56:  OP_FLAG_MESSAGE
+index/functions.c:1166:56: OP_MAIN_MODIFY_TAGS
+index/functions.c:1512:56: OP_MAIN_READ_THREAD
+index/functions.c:1571:56: OP_MAIN_SET_FLAG
+index/functions.c:2085:56: OP_SAVE
+index/functions.c:2213:54: OP_TAG
+index/functions.c:2243:56: OP_TAG_THREAD
+index/functions.c:2297:56: OP_TOGGLE_NEW
+index/functions.c:2355:56: OP_UNDELETE
+index/functions.c:2394:56: OP_UNDELETE_THREAD
+
+pager/functions.c:894:57:  OP_COPY_MESSAGE
+pager/functions.c:952:55:  OP_DELETE
+pager/functions.c:1000:55: OP_DELETE_THREAD
+pager/functions.c:1107:55: OP_FLAG_MESSAGE
+pager/functions.c:1264:55: OP_MAIN_SET_FLAG
+pager/functions.c:1497:55: OP_TAG
+pager/functions.c:1528:55: OP_TOGGLE_NEW
+pager/functions.c:1555:55: OP_UNDELETE
+pager/functions.c:1592:57: OP_UNDELETE_THREAD
+

@@ -1,0 +1,88 @@
+digraph callgraph {
+	// maildir 2023-10-31
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// Maildir MxOps
+	subgraph cluster_mailbox
+	{
+		fontcolor="black"
+		color="#c00000"
+		fillcolor="white"
+		style="dashed"
+
+		node [ fillcolor="#c0ffc0" ]
+		maildir_mbox_check
+		maildir_mbox_check_stats
+		maildir_mbox_close
+		maildir_mbox_open
+		maildir_mbox_open_append
+		maildir_mbox_sync
+	}
+
+	subgraph cluster_message
+	{
+		fontcolor="black"
+		color="#c00000"
+		fillcolor="white"
+		style="dashed"
+
+		node [ fillcolor="#ffffc0" ]
+		maildir_msg_close
+		maildir_msg_commit
+		maildir_msg_open
+		maildir_msg_open_new
+		maildir_msg_save_hcache
+	}
+
+	// Used by Notmuch
+	node [ fillcolor="#c0ffff" ]
+	maildir_email_new
+	maildir_open_find_message
+	maildir_parse_message
+	maildir_parse_stream
+	maildir_sync_mailbox_message
+
+	node [ fillcolor="#ffffff" ]
+	maildir_check                 -> maildir_delayed_parsing
+	maildir_check                 -> maildir_move_to_mailbox
+	maildir_check                 -> maildir_parse_dir
+	maildir_delayed_parsing       -> maildir_parse_message
+	maildir_mbox_check            -> maildir_check
+	maildir_mbox_check_stats      -> maildir_check_dir
+	maildir_mbox_open             -> maildir_read_dir
+	maildir_mbox_sync             -> maildir_check
+	maildir_mbox_sync             -> maildir_sync_mailbox_message
+	maildir_mbox_sync             -> maildir_update_mtime
+	maildir_msg_commit            -> maildir_commit_message
+	maildir_msg_open              -> maildir_open_find_message
+	maildir_open_find_message     -> maildir_open_find_message_dir
+	maildir_parse_dir             -> maildir_email_new
+	maildir_parse_message         -> maildir_parse_stream
+	maildir_read_dir              -> maildir_delayed_parsing
+	maildir_read_dir              -> maildir_move_to_mailbox
+	maildir_read_dir              -> maildir_parse_dir
+	maildir_rewrite_message       -> maildir_commit_message
+	maildir_sync_mailbox_message  -> maildir_sync_message
+	maildir_sync_message          -> maildir_rewrite_message
+
+}

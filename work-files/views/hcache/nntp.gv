@@ -1,0 +1,141 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ffc0c0" ]
+	active_get_cache
+	cache_expand
+	nntp_active_save_cache
+	nntp_bcache_delete
+	nntp_bcache_update
+	nntp_clear_cache
+	nntp_delete_group_cache
+	nntp_hcache_namer
+	nntp_hcache_open
+	nntp_hcache_update
+
+	node [ fillcolor="#ffffff" ]
+	active_get_cache         -> cache_expand
+	active_get_cache         -> nntp_add_group
+	check_mailbox            -> nntp_active_save_cache
+	check_mailbox            -> nntp_article_status
+	check_mailbox            -> nntp_fetch_headers
+	check_mailbox            -> nntp_group_poll
+	check_mailbox            -> nntp_hcache_open
+	check_mailbox            -> nntp_hcache_update
+	check_mailbox            -> nntp_newsrc_close
+	check_mailbox            -> nntp_newsrc_parse
+	check_mailbox            -> nntp_parse_xref
+	get_description          -> fetch_description
+	get_description          -> nntp_fetch_lines
+	nntp_active_fetch        -> get_description
+	nntp_active_fetch        -> nntp_active_save_cache
+	nntp_active_fetch        -> nntp_add_group
+	nntp_active_fetch        -> nntp_date
+	nntp_active_fetch        -> nntp_delete_group_cache
+	nntp_active_fetch        -> nntp_fetch_lines
+	nntp_active_save_cache   -> cache_expand
+	nntp_active_save_cache   -> update_file
+	nntp_add_group           -> nntp_group_unread_stat
+	nntp_attempt_features    -> nntp_connect_error
+	nntp_auth                -> nntp_log_binbuf
+	nntp_bcache_update       -> nntp_bcache_delete
+	nntp_capabilities        -> nntp_connect_error
+	nntp_check_children      -> fetch_children
+	nntp_check_children      -> nntp_fetch_headers
+	nntp_check_children      -> nntp_fetch_lines
+	nntp_check_children      -> nntp_hcache_open
+	nntp_check_msgid         -> fetch_tempfile
+	nntp_check_msgid         -> nntp_fetch_lines
+	nntp_check_msgid         -> nntp_parse_xref
+	nntp_check_msgid         -> nntp_query
+	nntp_check_new_groups    -> get_description
+	nntp_check_new_groups    -> nntp_active_save_cache
+	nntp_check_new_groups    -> nntp_add_group
+	nntp_check_new_groups    -> nntp_date
+	nntp_check_new_groups    -> nntp_fetch_lines
+	nntp_check_new_groups    -> nntp_group_poll
+	nntp_clear_cache         -> cache_expand
+	nntp_clear_cache         -> nntp_delete_group_cache
+	nntp_date                -> nntp_query
+	nntp_delete_group_cache  -> cache_expand
+	nntp_delete_group_cache  -> nntp_bcache_delete
+	nntp_delete_group_cache  -> nntp_hcache_namer
+	nntp_fetch_headers       -> fetch_numbers
+	nntp_fetch_headers       -> fetch_tempfile
+	nntp_fetch_headers       -> nntp_article_status
+	nntp_fetch_headers       -> nntp_fetch_lines
+	nntp_fetch_headers       -> nntp_parse_xref
+	nntp_fetch_headers       -> parse_overview_line
+	nntp_fetch_lines         -> nntp_query
+	nntp_group_poll          -> nntp_group_unread_stat
+	nntp_group_poll          -> nntp_query
+	nntp_hcache_open         -> nntp_hcache_namer
+	nntp_log_binbuf          -> nntp_memchr
+	nntp_mbox_check          -> check_mailbox
+	nntp_mbox_check          -> nntp_newsrc_close
+	nntp_mbox_open           -> get_description
+	nntp_mbox_open           -> nntp_active_save_cache
+	nntp_mbox_open           -> nntp_bcache_update
+	nntp_mbox_open           -> nntp_delete_group_cache
+	nntp_mbox_open           -> nntp_fetch_headers
+	nntp_mbox_open           -> nntp_hcache_open
+	nntp_mbox_open           -> nntp_hcache_update
+	nntp_mbox_open           -> nntp_newsrc_close
+	nntp_mbox_open           -> nntp_newsrc_update
+	nntp_mbox_open           -> nntp_query
+	nntp_mbox_open           -> nntp_select_server
+	nntp_mbox_sync           -> check_mailbox
+	nntp_mbox_sync           -> nntp_hcache_open
+	nntp_mbox_sync           -> nntp_newsrc_close
+	nntp_mbox_sync           -> nntp_newsrc_gen_entries
+	nntp_mbox_sync           -> nntp_newsrc_update
+	nntp_msg_open            -> fetch_tempfile
+	nntp_msg_open            -> nntp_fetch_lines
+	nntp_newsrc_parse        -> nntp_group_unread_stat
+	nntp_newsrc_parse        -> nntp_newsrc_close
+	nntp_newsrc_update       -> update_file
+	nntp_open_connection     -> nntp_attempt_features
+	nntp_open_connection     -> nntp_auth
+	nntp_open_connection     -> nntp_capabilities
+	nntp_open_connection     -> nntp_connect_error
+	nntp_parse_xref          -> nntp_article_status
+	nntp_post                -> nntp_connect_error
+	nntp_post                -> nntp_query
+	nntp_post                -> nntp_select_server
+	nntp_query               -> nntp_connect_error
+	nntp_query               -> nntp_open_connection
+	nntp_select_server       -> active_get_cache
+	nntp_select_server       -> cache_expand
+	nntp_select_server       -> nntp_active_fetch
+	nntp_select_server       -> nntp_check_new_groups
+	nntp_select_server       -> nntp_clear_cache
+	nntp_select_server       -> nntp_format_str
+	nntp_select_server       -> nntp_get_field
+	nntp_select_server       -> nntp_hcache_open
+	nntp_select_server       -> nntp_newsrc_close
+	nntp_select_server       -> nntp_newsrc_parse
+	nntp_select_server       -> nntp_open_connection
+	parse_overview_line      -> nntp_article_status
+	parse_overview_line      -> nntp_parse_xref
+
+}

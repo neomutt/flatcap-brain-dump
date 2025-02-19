@@ -1,0 +1,31 @@
+| Variable                | Description                                        |
+| :---------------------- | :------------------------------------------------- |
+| sidebar_short_path      | Abbreviate the paths using $folder                 |
+| sidebar_folder_indent   | Indent nested folders                              |
+| sidebar_delim_chars     | Characters that separate nested folders            |
+| sidebar_component_depth | Strip leading path components from sidebar folders |
+| sidebar_indent_string   | Indent nested folders using this string            |
+
+1. Start with a Mailbox.
+   If it has a name, use that, goto step 4)
+
+2. Is **`$sidebar_short_path`** set?
+   If NOT, goto step 4)
+
+3. Is **`$folder`** set?
+   1. Yes, abbreviate the path using **`$folder`**
+   2. No, abbreviate the path using heuristics
+      Strip the host part (or database part for notmuch)
+
+4. Is **`$sidebar_folder_indent`** set?
+   If NOT, goto step 7)
+
+5. Calculate the depth of the path, using **`$sidebar_delim_chars`**
+   (and remember the last component of the path)
+
+6. Is **`$sidebar_component_depth`** set?
+   Yes, reduce the depth by this amount
+
+7. Display the **`$sidebar_indent_string`** depth times
+
+8. Display the saved short path

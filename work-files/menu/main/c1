@@ -1,0 +1,38 @@
+m2.c:138:  config_set_initial(cs, "hostname",          fqdn);
+m2.c:170:  config_set_initial(cs, "color_directcolor", "yes");
+m2.c:182:  config_set_initial(cs, "spool_file",        p);
+m2.c:197:  config_set_initial(cs, "from",              p);
+m2.c:201:  config_set_initial(cs, "mailcap_path",      env_mc);
+m2.c:205:  config_set_initial(cs, "tmp_dir",           env_tmp);
+m2.c:212:  config_set_initial(cs, "editor",            env_ed);
+m2.c:215:  config_set_initial(cs, "charset",           charset);
+m2.c:229:  config_set_initial(cs, "real_name",         c_real_name);
+m2.c:232:  config_set_initial(cs, "suspend",           "no");
+m2.c:627:  config_set_initial(cs, "shell",             shell);
+m2.c:878:  config_set_initial(cs, "debug_file",        dfile);
+m2.c:889:  config_set_initial(cs, "debug_level",       dlevel);
+m2.c:964:  config_set_initial(cs, "news_server",       cli_nntp);
+m2.c:968:  config_set_initial(cs, "mbox_type",         new_type);
+
+reset_tilde()
+	{ "folder", "mbox", "postponed", "record" };
+localise_config()
+	{ "attribution_intro", "compose_format", "forward_attribution_intro", "forward_attribution_trailer", "reply_regex", "status_format", "ts_icon_format", "ts_status_format", };
+
+m2.c:119:  fqdn = getmailname();
+m2.c:251:  char *config = find_cfg(HomeDir, xdg_cfg_home);
+m2.c:324:  if (execute_commands(commands) != 0)
+m2.c:327:  if (!get_hostname(cs))
+m2.c:710:  init_locale();
+m2.c:826:  if (usage())
+m2.c:871:  if (!get_user_info(cs))
+m2.c:874:  reset_tilde(cs);
+m2.c:875:  localise_config(cs);
+m2.c:894:  log_translation();
+m2.c:931:  int crc = start_curses();
+m2.c:942:  log_gui();
+m2.c:945:  int rc2 = mutt_init(cs, dlevel, dfile, flags & MUTT_CLI_NOSYSRC, &commands);
+m2.c:991:  rc = get_elem_queries(&queries, &hea);
+m2.c:1075: notify_observer_add(NeoMutt->notify, NT_TIMEOUT, main_timeout_observer, NULL);
+m2.c:1518: notify_observer_remove(NeoMutt->notify, main_timeout_observer, NULL);
+m2.c:1535: mutt_opts_cleanup();

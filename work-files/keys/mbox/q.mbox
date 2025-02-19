@@ -1,0 +1,137 @@
+From rich@flatcap.org Tue Mar 26 01:16:17 2024
+Date: Tue, 26 Mar 2024 01:16:17 +0000
+From: Richard Russon <rich@flatcap.org>
+To: rich@flatcap.org
+Subject: [1;31mapple[0m
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Mutt-Fcc: 
+Status: RO
+Content-Length: 18
+Lines: 1
+
+apple apple apple
+
+From rich@flatcap.org Tue Mar 26 01:16:26 2024
+Date: Tue, 26 Mar 2024 01:16:26 +0000
+From: Richard Russon <rich@flatcap.org>
+To: rich@flatcap.org
+Subject: [1;32mbanana[0m
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Mutt-Fcc: 
+Status: RO
+Content-Length: 21
+Lines: 1
+
+banana banana banana
+
+From rich@flatcap.org Tue Mar 26 01:17:26 2024
+Date: Tue, 26 Mar 2024 01:17:26 +0000
+From: Richard Russon <rich@flatcap.org>
+To: rich@flatcap.org
+Subject: [1;33mcherry[0m
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Mutt-Fcc: 
+Status: RO
+Content-Length: 21
+Lines: 1
+
+cherry cherry cherry
+
+From rich@flatcap.org Tue Nov 15 02:06:22 2016
+Date: Tue, 15 Nov 2016 02:06:22 +0000
+From: Richard Russon <rich@flatcap.org>
+To: =?iso-8859-1?Q?Andr=E9?= Berger <ab@andreberger.eu>,
+	Andy Spiegl <neomutt.Andy@spiegl.de>
+Subject: [1;36mdamson[0m
+Message-ID: <20161115020622.go77c7he56ar3mmt@laptop.flatcap.org>
+MIME-Version: 1.0
+Content-Disposition: inline
+User-Agent: NeoMutt/20161104 (1.7.1)
+Status: RO
+Content-Length: 53968
+
+Hi Andr=E9 and Andy,
+
+You've both offered to translate NeoMutt into German.
+
+Thank you.
+
+You're my guinea pigs for this.  I *think* the job will be fairly easy.
+But, if in doubt, ask.  I'm never far from my email or our IRC channel
+(#neomutt on irc.freenode.net)
+
+NeoMutt builds upon Mutt, so we've inherited its translations.
+Mutt hasn't changed much (in years), so most of them are still correct.
+
+    1270 : Total number of strings to be translated
+    1073 : Already translated
+     122 : Fuzzy -- need checking by a human
+      75 : To do -- need translating
+
+Some of the 'gettext' docs may interest you:
+
+    https://www.gnu.org/software/gettext/manual/gettext.html#Concepts
+    https://www.gnu.org/software/gettext/manual/gettext.html#PO-Files
+    https://www.gnu.org/software/gettext/manual/gettext.html#c_002dformat-F=
+lag
+
+I've attached the 'po' file.  If you just want to work with that and
+send me updated copies that's fine.
+
+However, if you'd prefer to work with git, you can get the latest
+version from the "devel/translate" branch of the NeoMutt repository.
+
+    git clone -b devel/translate https://github.com/neomutt/neomutt.git
+
+There are plenty of tools to help you with the translation.
+I've had a play about with "poedit" and it seems pretty good.
+
+If you wish to leave comments in the translation, prefix them with "# "
+If you think that the comment should apply to ALL translations, let me
+know and I'll update the source.
+
+If you'd like to organise the work amongst yourselves, great.
+If not:
+    Andr=E9 take the first  half of the file
+    Andy  take the second half of the file
+
+Thank you again,
+    Rich / FlatCap
+
+PS Andy, I've already included the changes you sent me.
+
+
+From rich@flatcap.org Thu Aug  8 10:45:40 2019
+Date: Thu, 8 Aug 2019 10:45:40 +0100
+From: Richard Russon <rich@flatcap.org>
+To: 日本語 <wdebenedetti@gmail.com>
+Subject: [1;35melderberry[0m
+Message-ID: <20190808094540.rxsuwbr3faojfpnd@laptop.flatcap.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+User-Agent: NeoMutt/20180716
+Status: RO
+Content-Length: 205
+
+Hi William,
+
+> William DeBenedetti sent you =A350.00=A0GBP.
+
+That's very generous.
+Thank you very much.
+
+> Keep up the good work.=20
+
+I will.  Lots more goodies coming soon :-)
+
+Cheers,
+    Rich / FlatCap
+

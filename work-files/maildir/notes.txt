@@ -1,0 +1,107 @@
+notmuch refactor
+
+demote notmuch to 2nd-class citizen
+stop using Mailbox->mdata
+use custom Mailbox->notmuch_info (like compress)
+
+this will allow Maildir to use Mailbox->mdata (as it should)
+
+ideally, notmuch/compress should be stacked upon maildir/mbox (respectively)
+
+--------------------------------------------------------------------------------
+
+compress opens file.mbox.gz
+decompressed to /tmp/file.mbox
+
+Mailbox (Compressed) file.mbox.gz
+	Emails (e1, e2, e3, ...) (fake pass-through)
+
+	mdata = CompressMdata
+		Source
+			Mailbox (mbox) /tmp/file.mbox
+
+Mailbox (Mbox) /tmp/file.mbox
+	Emails (e1, e2, e3, ...)
+
+this is easy, we know that 'e1' belongs to the _single_ source Mailbox
+
+--------------------------------------------------------------------------------
+
+notmuch opens query: q=neomutt
+matches folders: =neo.devel, =neo.users
+
+Mailbox (Notmuch) q=neomutt
+	Emails (e1, e2, e3, ...) as normal
+
+	mdata = NotmuchMdata
+		List of sources:
+			Mailbox (Maildir) =neo.devel
+			Mailbox (Maildir) =neo.users
+
+Mailbox (Maildir) =neo.devel
+	Emails (e1, e3, e5, ...)
+
+Mailbox (Maildir) =neo.users
+	Emails (e2, e4, e6, ...)
+
+User acts on 'e1', how do we know which Mailbox to delegate to?
+Can't use edata, because that belongs to the Mailbox (Maildir)
+Do we have a set of fake Emails?
+	Email (Notmuch)
+		edata == NotmuchEmailData
+		NotmuchEmailData
+			copy of Maildir edata
+			plus pointer to original in Mailbox (Maildir)
+
+--------------------------------------------------------------------------------
+
+Each backend can store private data on an Email in the `edata` member.
+
+The Maildir backend only has one item to store, `maildir_flags` (flags that it can't decode),
+however it stores this data in the Email.
+
+Meanwhile the Notmuch backend hijacks the Maildir backend and uses `Email->edata` for its own purposes.
+
+--------------------------------------------------------------------------------
+
+Move the Notmuch private Email data into a custom member.
+
+Currently, Maildir only has one private Email data member, `maildir_flags`.
+This is stored in a custom member on `struct Email`.
+
+The backend gets a list of `Email`s from the Notmuch database.
+`struct Email` holds most of the data and any private Notmuch data is stored in `struct NmEmailData`.
+The `NmEmailData` is attached to `Email->edata`.
+
+- notmuch: hide details of edata
+- notmuch: move edata to `Email->nm_edata`
+- maildir: add `MaildirEmailData`
+- maildir: use `MaildirEmailData`
+
+allow us to refactor Maildir to work like the other backends
+
+--------------------------------------------------------------------------------
+
+Let Maildir use `Email.data` instead of Notmuch.
+
+This PR works, but probably needs some discussion before merging.
+
+The backends can store backend-specific Email data in `Email.edata`.
+e.g. Imap `UID`, Pop `refno`, Nntp `article_num`
+
+Maildir doesn't use `edata`, it's used instead by Notmuch.
+Maildir has to store its data in `Email` (shared by all backends).
+
+- 00d0d2b068 notmuch: hide details of edata
+  Use a function to hide the location of edata
+
+- 725eaa5ab1 notmuch: move edata to Email->nm_edata
+  
+
+- c09215272a maildir: add MaildirEmailData
+- a2bd521ffe maildir: use MaildirEmailData
+
+## Future
+
+For a while, I've been thinking of how to structure the Notmuch backend (Compressed too).
+

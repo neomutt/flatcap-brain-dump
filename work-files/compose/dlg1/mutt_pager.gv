@@ -1,0 +1,41 @@
+digraph pager
+{
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.75"
+	];
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		style="solid"
+		height="0.2"
+		penwidth="1.0"
+		color=black
+	];
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	];
+
+	// dlg_select_pgp_key  [ label=<dlg_select_pgp_key<BR/><FONT POINT-SIZE="8">&lt;verify-key&gt;</FONT>> ]
+
+	op_show_log_messages -> mutt_do_pager
+	mutt_view_attachment -> mutt_do_pager
+	mutt_view_attachment -> mutt_display_message [ label="???" fontsize="10" fontcolor="#a0a0a0" color="#a0a0a0" style="dashed" ]
+	// icmd_bind            -> mutt_do_pager
+	// icmd_set             -> mutt_do_pager
+	// icmd_version         -> mutt_do_pager
+	mutt_display_message -> mutt_pager
+	mutt_do_pager        -> mutt_pager
+	// mutt_help            -> mutt_do_pager
+	op_display_message   -> external_pager
+	op_display_message   -> mutt_display_message
+	// mutt_invoke_sendmail -> mutt_do_pager
+	// mutt_pager           -> display_line
+	// verify_key           -> mutt_do_pager
+	// dlg_select_pgp_key   -> mutt_do_pager
+
+}

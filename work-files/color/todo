@@ -1,0 +1,236 @@
+Colours
+
+rgb #000000 - #000007 are unusable
+
+check behaviour/support of
+	39	Default foreground color
+	49	Default background color
+
+support?
+	22	Normal intensity (turn off bold)
+		1 bold
+	23	Neither italic, nor blackletter
+		3 italic
+	24	Not underlined, Neither singly nor doubly underlined
+		4 underline
+	25	Not blinking, Turn blinking off
+		5 blink
+	27	Not reversed
+		7 reverse
+
+CursesColor
+AttrColor
+AnsiColor
+RegexColor
+
+true color vs not
+
+merge COLOR_DEFAULT/COLOR_UNSET?
+
+color/command.c:1127: color tree
+
+drop (COLORS >= 16) checks?
+just put log/checks in at startup
+	dump lots of ncurses info
+	int use_default_colors() rc
+	TERM, COLORTERM
+
+should
+	color [missing] red green
+overwrite attrs, or merge them?
+vs
+	color none red green
+given that you can't set *just* the fg or *just* the bg
+	color [missing] red green
+should be equivalent to
+	color none red green
+
+		config		ansi
+------------------------------------------------
+named		red		31m
+color		color86		38;5;86,
+rgb		#112233		38;2;17;34;51m
+
+where are they created?
+when do we convert?
+
+equivalence
+	31 == 38;5 == 38;2;128;0;0
+	ONE curses colour
+
+need to differentiate between
+	palette 86 and (0,0,86)
+need enum of scope => can rebuild original color command
+including "bright", etc
+
+dump in user's orig form, e.g. "red"
+	but suffix with a comment
+	# equiv to color1
+	# equiv to #800000
+
+mutt_parse_color()
+parse_color_pair()
+parse_color_name()
+
+parse_attr_spec()
+	bold		A_BOLD
+	italic		A_ITALIC
+	none		A_NORMAL == 0
+	normal		A_NORMAL
+	reverse		A_REVERSE
+	standout	A_STANDOUT
+	underline	A_UNDERLINE
+
+mutt_parse_mono()
+	parse_attr_spec()
+
+parse_color_prefix()
+	alert
+		A_BOLD
+		A_BLINK
+	light
+		fg,bg
+			(col<8) -> col+=8
+	bright
+		fg
+			A_BOLD
+		bg
+			(col<8) -> col+=8
+modify_color_by_prefix()
+
+parse_color_namedcolor()
+	conversion happens here
+	name - prefix + ColorNames
+ColorNames
+	black		#000000
+	blue		#000080
+	cyan		#008080
+	green		#008000
+	magenta		#800080
+	red		#800000
+	white		#808080
+	yellow		#808000
+	default		COLOR_DEFAULT == -1
+
+parse_color_colornnn()
+	conversion happens here
+	colornnn - prefix + colorNNN
+
+parse_color_rrggbb()
+	messes with values < 8
+	(col<8) -> col=8
+	rgb - #112233
+
+parse_color()
+	MoreArgs() etc for patterns
+	regex_colors_parse_color_list (cid, buf->data, fg, bg, attrs, &rc, err)
+	quoted_colors_parse_color     (cid,            fg, bg, attrs, q_level, &rc, err)
+	regex_colors_parse_status_list(cid, buf->data, fg, bg, attrs, match, err)
+	simple_color_set              (cid,            fg, bg, attrs)
+
+AttrColor *ac = simple_color_get(cid);
+CursesColor *cc = curses_color_new(fg, bg);
+
+allow [attrs] to be empty to allow "$my_attrs" to be empty
+	need to extend into extract_token() / MoreArgs()
+
+translate "colours"
+	"# Compose Colors\n"
+	"# Quoted Colors\n"
+	"# Regex Color %s\n"
+	"# Simple Colors\n"
+	"# Status Colors\n"
+	"Saved to: %s"
+
+make the :color page *live*
+	changes to colours cause page to be recalculated
+
+to fix
+
+ansi rgb fg/bg
+dump colours * n
+debug speed
+ColorElement ∀
+
+tests for ANSI, fuzz ANSI?  Isolate A_* constants
+when does a bad ANSI seq end?
+dup, desc capabilities to color/lib.h
+
+preserve *alert*, etc.  how?
+mono only allows ONE attr!
+
+tests for curses colours, merged colours, quoted, simple, regex
+all fairly self-contained
+
+testing limitations
+
+#ifdef DIRECT_COLOR }- move out to parse_color()
+$color_directcolor  }
+
+extract token, libparse
+A_* symbols - dupe/reexport?
+COLORS, OptNoCurses
+dry_run, where?
+uncolor * -> simple_color_init()
+
+parse_single() -> ARRAY(1,2,3) + "m"
+then apply(ARRAY) if "m" else skip
+
+future: pager is *all* ANSI, preprocessed colouring inserted by caller
+if (allow_ansi == no) -> caller strips sequences
+=> other filers could stlil apply *their* colours, e.g. headers, signature, stripes?
+linewise colours are easy, anything else might affect search!
+
+Pager *email* -> headers/quoting
+check batch sending + colour config + true colour
+
++truecolor -> ChangeLog
+
+find a way to fuzz pager: pass file of junk / bad ansi
+render to a file?
+do we need full render, just fuzz ansi parsers
+ansi_color_parse() -> AnsiColor
+dependencies for color/ansi.c? - few
+test ansi: simple, palette, rgb, then mixes of all + attrs
+	mixed + broken
+
+(simple|palette|rgb), (light,bright,alert), (attrs)
+
+
+Regex		Ansi		Attr		Curses
+--------------------------------------------------------------------------------
+ac->		ac->		fg		fg
+pattern*2	attrs(7m)	bg		bg
+regex		fg(38m)		attrs		index
+match		bg(48m)		cc->		ref_count
+entries				ref_count	entries
+				entries
+--------------------------------------------------------------------------------
+as is		Type*2		Type*2		full 24-bit expansion
+		not nec?	configured	+ bright modification
+
+<esc>[31;4;48;5;123m
+	ANSI: fg(1/simple), bg(123/palette), undeline -> Curses: #800000, #87ffff
+
+<esc>[1;38;5;1;48;2;135;255;255m
+	ANSI: fg(1/palette), bg(#87ffff/rgb), bold -> Curses: #800000, #87ffff
+
+build ansi list from AttrList
+
+Eliminate A_* from pager/*
+ansi colours - bold, underline, italic can be overridden
+	useful for neomutt colours, but possibly a bad idea for ansi colours
+
+A_NO_ATTRS = 0, or use A_NORMAL?
+	for `if`s, etc
+	check all attrs uses
+	it's a curses define => dependencies!
+
+strip `mono` from themes?
+	update docs -> deprecated
+	equiv to `color [attrs] default default`
+
+on color_dump() log text too
+
+macro color_debug() so that it dumps correct function name, not "color_debug"
+

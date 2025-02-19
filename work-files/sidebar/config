@@ -1,0 +1,24 @@
+Global
+  ascii_chars                    C_AsciiChars
+  sidebar_divider_char           C_SidebarDividerChar
+  sidebar_next_new_wrap          C_SidebarNextNewWrap
+  sidebar_on_right               C_SidebarOnRight
+  sidebar_sort_method            C_SidebarSortMethod
+  sidebar_visible                C_SidebarVisible
+  sidebar_width                  C_SidebarWidth
+
+\v<(C_AsciiChars|C_SidebarDividerChar|C_SidebarNextNewWrap|C_SidebarOnRight|C_SidebarSortMethod|C_SidebarVisible|C_SidebarWidth)>
+
+Account-specific
+  folder                         C_Folder
+  spoolfile                      C_Spoolfile
+  sidebar_component_depth        C_SidebarComponentDepth
+  sidebar_delim_chars            C_SidebarDelimChars
+  sidebar_folder_indent          C_SidebarFolderIndent
+  sidebar_format                 C_SidebarFormat
+  sidebar_indent_string          C_SidebarIndentString
+  sidebar_new_mail_only          C_SidebarNewMailOnly
+  sidebar_non_empty_mailbox_only C_SidebarNonEmptyMailboxOnly
+  sidebar_short_path             C_SidebarShortPath
+
+\v<(C_Folder|C_SidebarComponentDepth|C_SidebarDelimChars|C_SidebarFolderIndent|C_SidebarFormat|C_SidebarIndentString|C_SidebarNewMailOnly|C_SidebarNonEmptyMailboxOnly|C_SidebarShortPath|C_Spoolfile)>

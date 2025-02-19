@@ -1,0 +1,113 @@
+R_INDEX
+	ascii_chars
+	crypt_chars
+	duplicate_threads
+	flag_chars
+	from_chars
+	group_index_format
+	hide_limited
+	hide_missing
+	hide_thread_subject
+	hide_top_limited
+	hide_top_missing
+	imap_headers
+	index_format
+	mark_old
+	mbox
+	narrow_tree
+	postponed
+	real_name
+	reply_regex
+	reverse_alias
+	reverse_name
+	reverse_real_name
+	sort_aux
+	sort_re
+	sort
+	status_chars
+	status_format
+	strict_threads
+	thread_received
+	to_chars
+	ts_enabled
+	ts_icon_format
+	ts_status_format
+	vfolder_format
+
+R_MENU
+	arrow_cursor
+	autocrypt_acct_format
+	compose_format
+	date_format
+	folder_format
+	idn_decode
+	idn_encode
+	size_show_bytes
+	size_show_fractions
+	size_show_mb
+	size_units_on_left
+
+R_PAGER
+	ascii_chars
+	crypt_chars
+	display_filter
+	flag_chars
+	from_chars
+	group_index_format
+	index_format
+	mark_old
+	mbox
+	pager_format
+	pager_index_lines
+	quote_regex
+	real_name
+	reverse_alias
+	reverse_name
+	reverse_real_name
+	smileys
+	status_chars
+	status_format
+	tilde
+	to_chars
+	ts_enabled
+	ts_icon_format
+	ts_status_format
+	wrap_headers
+
+R_PAGER_FLOW
+	header_color_partial
+	markers
+	smart_wrap
+	wrap
+
+R_REFLOW
+	help
+	pager_index_lines
+	status_on_top
+
+R_RESORT
+	duplicate_threads
+	reply_regex
+	sort_aux
+	sort_re
+	sort
+	strict_threads
+	thread_received
+
+R_RESORT_INIT
+	duplicate_threads
+	sort_re
+	strict_threads
+	thread_received
+
+R_RESORT_SUB
+	sort_aux
+
+R_TREE
+	hide_limited
+	hide_missing
+	hide_thread_subject
+	hide_top_limited
+	hide_top_missing
+	narrow_tree
+

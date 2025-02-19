@@ -1,0 +1,61 @@
+<table>
+  <tr> <th><th align="left">Config Option             <th align="left">Expando Definition    <th align="left">Config Type / Flags
+  <tr> <th rowspan="8" align="left" valign="top">need newline
+  <tr> <td><code>attribution_intro</code>             <td><code>IndexFormatDef</code>        <td><code>DT_EXPANDO|D_L10N_STRING</code>
+  <tr> <td><code>attribution_trailer</code>           <td><code>IndexFormatDef</code>        <td><code>DT_EXPANDO</code>
+  <tr> <td><code>forward_attribution_intro</code>     <td><code>IndexFormatDef</code>        <td><code>DT_EXPANDO|D_L10N_STRING</code>
+  <tr> <td><code>forward_attribution_trailer</code>   <td><code>IndexFormatDef</code>        <td><code>DT_EXPANDO|D_L10N_STRING</code>
+  <tr> <td><code>forward_format</code>                <td><code>IndexFormatDef</code>        <td><code>DT_EXPANDO|D_NOT_EMPTY</code>
+  <tr> <td><code>greeting</code>                      <td><code>GreetingFormatDef</code>     <td><code>DT_EXPANDO</code>
+  <tr> <td><code>indent_string</code>                 <td><code>IndexFormatDef</code>        <td><code>DT_EXPANDO</code>
+  <tr> <th rowspan="14" align="left" valign="top">menu
+  <tr> <td><code>alias_format</code>                  <td><code>AliasFormatDef</code>        <td><code>DT_EXPANDO|D_NOT_EMPTY</code>
+  <tr> <td><code>attach_format</code>                 <td><code>AttachFormatDef</code>       <td><code>DT_EXPANDO|D_NOT_EMPTY</code>
+  <tr> <td><code>autocrypt_acct_format</code>         <td><code>AutocryptFormatDef</code>    <td><code>DT_EXPANDO</code>
+  <tr> <td><code>folder_format</code>                 <td><code>FolderFormatDef</code>       <td><code>DT_EXPANDO|D_NOT_EMPTY</code>
+  <tr> <td><code>group_index_format</code>            <td><code>GroupIndexFormatDef</code>   <td><code>DT_EXPANDO|D_NOT_EMPTY</code>
+  <tr> <td><code>history_format</code>                <td><code>HistoryFormatDef</code>      <td><code>DT_EXPANDO</code>
+  <tr> <td><code>index_format</code>                  <td><code>IndexFormatDef</code>        <td><code>DT_EXPANDO|D_NOT_EMPTY</code>
+  <tr> <td><code>mailbox_folder_format</code>         <td><code>FolderFormatDef</code>       <td><code>DT_EXPANDO|D_NOT_EMPTY</code>
+  <tr> <td><code>message_format</code>                <td><code>IndexFormatDef</code>        <td><code>DT_EXPANDO|D_NOT_EMPTY</code>
+  <tr> <td><code>mix_entry_format</code>              <td><code>MixFormatDef</code>          <td><code>DT_EXPANDO|D_NOT_EMPTY</code>
+  <tr> <td><code>pattern_format</code>                <td><code>PatternFormatDef</code>      <td><code>DT_EXPANDO</code>
+  <tr> <td><code>pgp_entry_format</code>              <td><code>PgpEntryFormatDef</code>     <td><code>DT_EXPANDO|D_NOT_EMPTY</code>
+  <tr> <td><code>query_format</code>                  <td><code>QueryFormatDef</code>        <td><code>DT_EXPANDO|D_NOT_EMPTY</code>
+  <tr> <th rowspan="4" align="left" valign="top">status bar
+  <tr> <td><code>compose_format</code>                <td><code>ComposeFormatDef</code>      <td><code>DT_EXPANDO|D_L10N_STRING</code>
+  <tr> <td><code>pager_format</code>                  <td><code>IndexFormatDef</code>        <td><code>DT_EXPANDO</code>
+  <tr> <td><code>status_format</code>                 <td><code>StatusFormatDef</code>       <td><code>DT_EXPANDO|D_L10N_STRING</code>
+  <tr> <th rowspan="2" align="left" valign="top">custom
+  <tr> <td><code>sidebar_format</code>                <td><code>SidebarFormatDef</code>      <td><code>DT_EXPANDO|D_NOT_EMPTY</code>
+  <tr> <th rowspan="4" align="left" valign="top">external
+  <tr> <td><code>newsrc</code>                        <td><code>NntpFormatDef</code>         <td><code>DT_EXPANDO|D_PATH_FILE</code>
+  <tr> <td><code>ts_icon_format</code>                <td><code>StatusFormatDef</code>       <td><code>DT_EXPANDO|D_L10N_STRING</code>
+  <tr> <td><code>ts_status_format</code>              <td><code>StatusFormatDef</code>       <td><code>DT_EXPANDO|D_L10N_STRING</code>
+  <tr> <th rowspan="26" align="left" valign="top">commands
+  <tr> <td><code>inews</code>                         <td><code>NntpFormatDef</code>         <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>new_mail_command</code>              <td><code>StatusFormatDef</code>       <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_clear_sign_command</code>        <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_decode_command</code>            <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_decrypt_command</code>           <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_encrypt_only_command</code>      <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_encrypt_sign_command</code>      <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_export_command</code>            <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_get_keys_command</code>          <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_import_command</code>            <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_list_pubring_command</code>      <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_list_secring_command</code>      <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_sign_command</code>              <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_verify_command</code>            <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>pgp_verify_key_command</code>        <td><code>PgpCommandFormatDef</code>   <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>smime_decrypt_command</code>         <td><code>SmimeCommandFormatDef</code> <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>smime_encrypt_command</code>         <td><code>SmimeCommandFormatDef</code> <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>smime_get_cert_command</code>        <td><code>SmimeCommandFormatDef</code> <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>smime_get_cert_email_command</code>  <td><code>SmimeCommandFormatDef</code> <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>smime_get_signer_cert_command</code> <td><code>SmimeCommandFormatDef</code> <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>smime_import_cert_command</code>     <td><code>SmimeCommandFormatDef</code> <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>smime_pk7out_command</code>          <td><code>SmimeCommandFormatDef</code> <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>smime_sign_command</code>            <td><code>SmimeCommandFormatDef</code> <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>smime_verify_command</code>          <td><code>SmimeCommandFormatDef</code> <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+  <tr> <td><code>smime_verify_opaque_command</code>   <td><code>SmimeCommandFormatDef</code> <td><code>DT_EXPANDO|D_STRING_COMMAND</code>
+</table>

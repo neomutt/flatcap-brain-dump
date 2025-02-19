@@ -1,0 +1,82 @@
+Dialogs - mutt_menu_new(MENU_*)
+	compose/compose.c:1550:23:       mutt_compose_menu()            MENU_COMPOSE
+		menu->custom_redraw = compose_custom_redraw
+		menu->redraw_data = struct ComposeRedrawData
+	index.c:1206:23:                 mutt_index_menu()              MENU_MAIN
+		menu->custom_redraw = index_custom_redraw
+		Context
+	pager/pager.c:2040:20:           pager_custom_redraw()          MENU_MAIN                                 // pager index lines
+		menu->custom_redraw = pager_custom_redraw
+		menu->redraw_data = struct PagerRedrawData
+		Context
+	pager/pager.c:2326:16:           mutt_pager()                   MENU_PAGER
+		menu->custom_redraw = pager_custom_redraw
+		menu->redraw_data = struct PagerRedrawData
+		Context
+
+menu->mdata
+Simple Index Dialogs - mutt_menu_new(MENU_*), dialog_create_simple_index(WT_DLG_*)
+	alias/dlgalias.c:195:28:         dlg_select_alias()             MENU_ALIAS            WT_DLG_ALIAS
+		struct AliasMenuData *
+	alias/dlgquery.c:320:28:         dlg_select_query()             MENU_QUERY            WT_DLG_QUERY
+		struct AliasMenuData *
+	autocrypt/dlgautocrypt.c:272:28: dlg_select_autocrypt_account() MENU_AUTOCRYPT_ACCT   WT_DLG_AUTOCRYPT
+		struct AccountEntry *
+	autocrypt/dlgautocrypt.c:292:15: dlg_select_autocrypt_account() MENU_AUTOCRYPT_ACCT   WT_DLG_AUTOCRYPT
+		struct AccountEntry *
+	autocrypt/dlgautocrypt.c:315:17: dlg_select_autocrypt_account() MENU_AUTOCRYPT_ACCT   WT_DLG_AUTOCRYPT
+		struct AccountEntry *
+	browser.c:1348:28:               mutt_buffer_select_file()      MENU_FOLDER           WT_DLG_BROWSER
+		struct BrowserStateEntry **
+	conn/dlgverifycert.c:72:28:      dlg_verify_certificate()       MENU_GENERIC          WT_DLG_CERTIFICATE  // display cert, ask (y/n)
+		custom -- mutt_menu_add_dialog_row
+	history/dlghistory.c:104:28:     dlg_select_history()           MENU_GENERIC          WT_DLG_HISTORY      // list of plain strings (history)
+		char **
+	ncrypt/dlggpgme.c:1261:28:       dlg_select_gpgme_key()         MENU_KEY_SELECT_PGP   WT_DLG_CRYPT_GPGME
+		struct CryptKeyInfo **
+	ncrypt/dlggpgme.c:1261:28:       dlg_select_gpgme_key()         MENU_KEY_SELECT_SMIME WT_DLG_CRYPT_GPGME
+		struct CryptKeyInfo **
+	ncrypt/dlgpgp.c:537:28:          dlg_select_pgp_key()           MENU_PGP              WT_DLG_PGP
+		struct PgpUid **
+	ncrypt/dlgsmime.c:183:28:        dlg_select_smime_key()         MENU_SMIME            WT_DLG_SMIME
+		struct SmimeKey **
+	pattern/dlgpattern.c:268:28:     dlg_select_pattern()           MENU_GENERIC          WT_DLG_PATTERN      // list of plain strings (pattern help)
+		struct PatternEntry **
+	postpone.c:230:28:               dlg_select_postponed_email()   MENU_POSTPONE         WT_DLG_POSTPONE
+		struct Context *
+	recvattach.c:1560:28:            dlg_select_attachment()        MENU_ATTACH           WT_DLG_ATTACH
+		struct AttachCtx *
+	remailer.c:616:28:               dlg_select_mixmaster_chain()   MENU_MIX              WT_DLG_REMAILER
+		struct Remailer **
+
+--------------------------------------------------------------------------------
+
+All Dialogs
+	Simple Dialog
+		Simple Index
+		Simple Bar
+
+Simple Index
+	type = WT_SIMPLE_INDEX
+	recalc()
+	repaint()
+	wdata = Menu
+		mdata = data
+	wdata_free()
+		pop Menu
+		free Menu
+
+Simple Bar
+	type = WT_SIMPLE_BAR
+	recalc()
+		nop
+	repaint()
+		display coloured string from wdata
+	color_observer()
+		WA_REPAINT
+	wdata = title string
+	wdata_free()
+		frees wdata
+	simple_set_title()
+		dup string
+

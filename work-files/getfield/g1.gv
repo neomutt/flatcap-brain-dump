@@ -1,0 +1,47 @@
+digraph enter_field
+{
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		style="rounded"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ color="#00ffff" ]
+
+	buffer_enter_fname      [ label="#buffer_enter_fname" ]
+	buffer_get_field        [ label="#buffer_get_field" ]
+	get_field               [ label="#get_field" ]
+	get_password            [ label="#get_password" ]
+
+	node [ color="#000000" ]
+
+	buffer_enter_fname      -> buffer_enter_fname_full
+	buffer_enter_fname_full -> buffer_get_field_full
+	buffer_enter_fname_full -> buffer_select_file
+	buffer_get_field        -> buffer_get_field_full
+	buffer_get_field_full   -> enter_string_full
+	enter_string            -> enter_string_full
+	enter_string_full       -> select_file
+	get_field               -> get_field_full
+	get_password            -> get_field_unbuffered
+	get_field_full          -> buffer_get_field_full
+	get_field_unbuffered    -> get_field
+	select_file             -> buffer_select_file
+
+}
+

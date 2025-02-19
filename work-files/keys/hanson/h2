@@ -1,0 +1,1 @@
+set index_format="%2M %<Gk?%Gk&%<Gs?%Gs&%<Gd?%Gd&%1Gi>>> %S %<[y?%<[m?%<[d?%[%-5H:%M]&%[(%-1a)%2d日]>&%[%-5b%2d日]>&%[%y年%b]> %-20.20n %<GA?%GA&%<GG?%GG&%<Gg?%Gg&%<Gy?%Gy&%<Gc?%Gc&%<GR?%GR&%<Gz?%Gz&%Gl>>>>>>>%<Ge?%Ge&%<GS?%GS&%1Ga>>  %s"

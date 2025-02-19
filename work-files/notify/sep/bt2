@@ -1,0 +1,8 @@
+main.c:1380:            main()
+index/dlg_index.c:1342: mutt_index_menu()           
+index/functions.c:3018: index_function_dispatcher() 
+index/functions.c:350:  op_display_message()        
+pager/message.c:439:    mutt_display_message()      
+pager/dlg_pager.c:853:  mutt_pager()                
+index/functions.c:3018: index_function_dispatcher() 
+index/functions.c:1790: op_next_entry()             

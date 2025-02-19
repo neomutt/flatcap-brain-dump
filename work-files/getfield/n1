@@ -1,0 +1,144 @@
+conn/connaccount.c:71:       mutt_get_password(prompt, cac->pass, sizeof(cac->pass)))
+ncrypt/pgp.c:36:             mutt_get_password(_("Enter PGP passphrase:"), PgpPass, sizeof(PgpPass)) == 0)
+ncrypt/smime.c:109:          mutt_get_password(_("Enter S/MIME passphrase:"), SmimePass, sizeof(SmimePass)) == 0)
+	plain text, hidden
+	no history
+
+commands.c:329:              mutt_get_field(prompt, buf, sizeof(buf), MUTT_ALIAS);
+compose.c:712:               mutt_get_field(_(Prompts[field]), buf, sizeof(buf), MUTT_ALIAS) == 0)
+recvcmd.c:118:               mutt_get_field(prompt, buf, sizeof(buf), MUTT_ALIAS) || (buf[0] == '\0'))
+send.c:118:                  mutt_get_field(field, buf, sizeof(buf), MUTT_ALIAS) != 0)
+	MUTT_ALIAS: plain text
+	<tab> launches address book
+	<ctrl-t> launches query command
+	history (HC_ALIAS)
+
+alias.c:252:                 mutt_get_field(_("Alias as: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS) != 0) ||
+alias.c:291:                 mutt_get_field(_("Address: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS) != 0) ||
+alias.c:314:                 mutt_get_field(_("Personal name: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS) != 0)
+browser.c:1550:              mutt_get_field(_("File Mask: "), buf->data, buf->dsize, MUTT_COMP_NO_FLAGS) != 0)
+commands.c:1054:             mutt_get_field("Content-Type: ", buf, sizeof(buf), MUTT_COMP_NO_FLAGS) != 0) ||
+compose.c:1196:              mutt_get_field(Prompts[HDR_NEWSGROUPS], buf, sizeof(buf), MUTT_COMP_NO_FLAGS) == 0)
+compose.c:1210:              mutt_get_field(Prompts[HDR_FOLLOWUPTO], buf, sizeof(buf), MUTT_COMP_NO_FLAGS) == 0)
+compose.c:1224:              mutt_get_field(Prompts[HDR_XCOMMENTTO], buf, sizeof(buf), MUTT_COMP_NO_FLAGS) == 0)
+compose.c:1237:              mutt_get_field(Prompts[HDR_SUBJECT], buf, sizeof(buf), MUTT_COMP_NO_FLAGS) == 0)
+compose.c:1757:              mutt_get_field("Description: ", buf, sizeof(buf), MUTT_COMP_NO_FLAGS) == 0)
+compose.c:1809:              mutt_get_field("Content-Language: ", buf, sizeof(buf), MUTT_COMP_NO_FLAGS) == 0)
+compose.c:1955:              mutt_get_field("Content-Type: ", type, sizeof(type), MUTT_COMP_NO_FLAGS) != 0) ||
+conn/sasl.c:505:             mutt_get_field(prompt, resp, sizeof(resp), MUTT_COMP_NO_FLAGS))
+imap/imap.c:1898:            mutt_get_field("Tags: ", buf, buflen, MUTT_COMP_NO_FLAGS) != 0)
+index.c:1356:                mutt_get_field(_("Jump to message: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS) != 0) ||
+menu.c:501:                  mutt_get_field(_("Jump to: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS) == 0) && buf[0])
+ncrypt/smime.c:1136:         mutt_get_field(_("Label for certificate: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS) != 0) ||
+query.c:257:                 mutt_get_field(_("Query: "), buf, buflen, MUTT_COMP_NO_FLAGS) == 0) &&
+query.c:341:                 mutt_get_field(_("Query: "), buf, buflen, MUTT_COMP_NO_FLAGS) != 0) ||
+send.c:145:                  mutt_get_field("Newsgroups: ", buf, sizeof(buf), MUTT_COMP_NO_FLAGS) != 0)
+send.c:155:                  mutt_get_field("Followup-To: ", buf, sizeof(buf), MUTT_COMP_NO_FLAGS) != 0))
+send.c:167:                  mutt_get_field("X-Comment-To: ", buf, sizeof(buf), MUTT_COMP_NO_FLAGS) != 0))
+send.c:213:                  mutt_get_field(_("Subject: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS) != 0) ||
+compose.c:1823:              mutt_get_field("Content-Transfer-Encoding: ", buf, sizeof(buf),
+index.c:1191:                mutt_get_field(_("Enter Message-Id: "), buf, sizeof(buf),
+index.c:3313:                mutt_get_field(_("Enter macro stroke: "), buf2, sizeof(buf2), MUTT_CLEAR) &&
+ncrypt/crypt_gpgme.c:4319:   mutt_get_field(tag, resp, sizeof(resp), MUTT_CLEAR) != 0)
+ncrypt/pgpkey.c:678:         mutt_get_field(tag, resp, sizeof(resp), MUTT_CLEAR) != 0)
+ncrypt/smime.c:749:          mutt_get_field(prompt, resp, sizeof(resp), MUTT_CLEAR) != 0)
+menu.c:887:                  mutt_get_field(((op == OP_SEARCH) || (op == OP_SEARCH_NEXT)) ?
+pager.c:2250:                mutt_get_field(((ch == OP_SEARCH) || (ch == OP_SEARCH_NEXT)) ?
+conn/connaccount.c:21:       mutt_get_field_unbuffered(prompt, cac->user, sizeof(cac->user), MUTT_COMP_NO_FLAGS))
+	MUTT_COMP_NO_FLAGS: plain text
+	MUTT_CLEAR: clear selection on letter-press
+	<tab>, <space>, <ctrl-t>: literal
+	history (HC_OTHER)
+
+edit.c:213:                  mutt_enter_string(tmp, sizeof(tmp), 4, MUTT_COMP_NO_FLAGS) == 0)
+edit.c:235:                  mutt_enter_string(tmp, sizeof(tmp), 9, MUTT_COMP_NO_FLAGS) == 0)
+edit.c:246:                  mutt_enter_string(tmp, sizeof(tmp), 4, MUTT_COMP_NO_FLAGS) == 0)
+edit.c:267:                  mutt_enter_string(tmp, sizeof(tmp), 5, MUTT_COMP_NO_FLAGS) == 0)
+edit.c:303:                  mutt_enter_string(tmp, sizeof(tmp), 0, MUTT_COMP_NO_FLAGS) == -1)
+	MUTT_COMP_NO_FLAGS: plain text
+	<tab>, <space>, <ctrl-t>: literal
+	history (HC_OTHER)
+
+commands.c:682:              mutt_get_field(_("Shell command: "), buf, sizeof(buf), MUTT_CMD) != 0)
+commands.c:559:              mutt_buffer_get_field(_("Pipe to command: "), buf, MUTT_CMD) != 0)
+recvattach.c:717:            mutt_buffer_get_field((filter ? _("Filter through: ") : _("Pipe to: ")),
+	MUTT_CMD: plain text
+	<tab> completes local files
+	history (HC_CMD)
+
+commands.c:706:              mutt_get_field(":", buf, sizeof(buf), MUTT_COMMAND) != 0) || !buf[0])
+	MUTT_COMMAND: plain text
+	<tab> completes mutt commands (at the beginning of the line)
+	history (HC_COMMAND)
+
+index.c:1970:                mutt_get_field("Query: ", buf, sizeof(buf), MUTT_NM_QUERY) != 0) || !buf[0])
+	MUTT_NM_QUERY: plain text
+	<tab> completes notmuch tags
+	history (HC_OTHER)
+
+mutt_header.c:69:            mutt_get_field("Label: ", buf, sizeof(buf), MUTT_LABEL /* | MUTT_CLEAR */) != 0)
+	MUTT_LABEL: plain text
+	<tab> completes labels
+	history (HC_OTHER)
+
+notmuch/mutt_notmuch.c:1887: mutt_get_field("Add/remove labels: ", buf, buflen, MUTT_NM_TAG) != 0)
+	MUTT_NM_TAG: plain text
+	<tab> completes notmuch tags
+	history (HC_OTHER)
+
+pattern.c:2174:              mutt_get_field(((op == OP_SEARCH) || (op == OP_SEARCH_NEXT)) ?
+pattern.c:2046:              mutt_buffer_get_field(prompt, buf, MUTT_PATTERN | MUTT_CLEAR) != 0) ||
+	MUTT_PATTERN:
+	<tab>, <space>, <ctrl-t>: literal
+	history (HC_PATTERN)
+
+browser.c:1869:              mutt_buffer_get_field(tmp2, buf, MUTT_COMP_NO_FLAGS) != 0) ||
+	plain text
+	<tab>, <space>, <ctrl-t>: literal
+	history (HC_OTHER)
+
+alias.c:334:                 mutt_get_field(_("Save to file: "), buf, sizeof(buf), MUTT_FILE) != 0)
+browser.c:1482:              mutt_buffer_get_field(_("Chdir to: "), buf, MUTT_FILE);
+browser.c:1730:              mutt_buffer_get_field(_("New file name: "), buf, MUTT_FILE) == 0)
+compose.c:1253:              mutt_buffer_get_field(Prompts[HDR_FCC], &fname, MUTT_FILE | MUTT_CLEAR) == 0)
+compose.c:1908:              mutt_buffer_get_field(_("Send attachment with name: "), &fname, MUTT_FILE);
+compose.c:1921:              mutt_buffer_get_field(_("Rename to: "), &fname, MUTT_FILE) == 0) &&
+compose.c:1947:              mutt_buffer_get_field(_("New file: "), &fname, MUTT_FILE) != 0) ||
+imap/browse.c:296:           mutt_get_field(_("Create mailbox: "), name, sizeof(name), MUTT_FILE) < 0)
+imap/browse.c:340:           mutt_get_field(buf, newname, sizeof(newname), MUTT_FILE) < 0)
+muttlib.c:553:               mutt_buffer_get_field(_("File under directory: "), tmp, MUTT_FILE | MUTT_CLEAR) != 0) ||
+recvattach.c:412:            mutt_buffer_get_field(prompt, buf, MUTT_FILE | MUTT_CLEAR) != 0) ||
+recvattach.c:541:            mutt_buffer_get_field(_("Save to file: "), buf, MUTT_FILE | MUTT_CLEAR) != 0) ||
+	MUTT_FILE: local filename
+	<tab> completes local files/dirs
+	<tab> opens browser
+	history (HC_FILE)
+
+main.c:987:                  mutt_buffer_select_file(&folder, MUTT_SEL_FOLDER | MUTT_SEL_MAILBOX, NULL, NULL);
+	no input
+	browser select file/dir/mailbox
+
+autocrypt/autocrypt.c:706:   mutt_buffer_enter_fname(_("Scan mailbox"), folderbuf, true)) &&
+commands.c:866:              mutt_buffer_enter_fname(prompt, buf, false) == -1)
+compose.c:1540:              mutt_buffer_enter_fname_full(prompt, &fname, false, true, &files,
+compose.c:1611:              mutt_buffer_enter_fname(prompt, &fname, true) == -1) ||
+compose.c:2111:              mutt_buffer_enter_fname(_("Write message to mailbox"), &fname, true) != -1) &&
+index.c:2095:                mutt_buffer_enter_fname(cp, folderbuf, true) == -1)
+index.c:2166:                mutt_buffer_enter_fname(cp, folderbuf, true) == -1)
+send.c:1319:                 mutt_buffer_enter_fname(_("Fcc mailbox"), fcc, true);
+	plain text
+	<tab> completes local files/dirs
+	<tab> opens browser
+	history (HC_MBOX)
+
+
+MUTT_FILE    HC_FILE
+MUTT_EFILE   HC_MBOX
+MUTT_CMD     HC_CMD
+MUTT_ALIAS   HC_ALIAS
+MUTT_COMMAND HC_COMMAND
+MUTT_PATTERN HC_PATTERN
+*            HC_OTHER
+
+list all functions that are tag-friendly
+

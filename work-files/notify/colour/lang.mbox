@@ -1,0 +1,54 @@
+From rich@flatcap.org Sat Jun 13 17:18:54 2020
+Return-Path: <rich@flatcap.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 0CA72E7D
+	for <flatcap-mail@flatcap.org>; Sat, 13 Jun 2020 17:18:54 +0100 (BST)
+X-Virus-Scanned: amavisd-new at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id nitdaY9iaXgP for <flatcap-mail@flatcap.org>;
+	Sat, 13 Jun 2020 17:18:53 +0100 (BST)
+Received: from laptop.flatcap.org (vpn10.flatcap.org [10.8.0.10])
+	by flatcap.org (Postfix) with ESMTP id 48263737
+	for <rich@flatcap.org>; Sat, 13 Jun 2020 17:18:53 +0100 (BST)
+Date: Sat, 13 Jun 2020 17:18:48 +0100
+From: mutt@laptop.flatcap.org
+To: rich@flatcap.org
+Subject: lang1
+Message-Id: <20200613161848.jgkdsox2oh72s6hw@flatcap.org>
+MIME-Version: 1.0
+Content-Type: multipart/multilingual; boundary="3fgkwgz4schcdmlc"
+Content-Description: Multilingual part for "/tmp/neomutt-laptop-1001-136242-12179346754319556289"
+Content-Disposition: inline
+Content-Transfer-Encoding: x-unknown
+Status: RO
+Content-Length: 455
+Lines: 24
+
+
+--3fgkwgz4schcdmlc
+Content-Type: text/plain; charset=us-ascii
+Content-Language: en
+Content-Disposition: inline
+
+this is in english
+
+--3fgkwgz4schcdmlc
+Content-Type: text/plain; charset=us-ascii
+Content-Language: de
+Content-Disposition: inline
+
+das ist auf Deutsch
+
+--3fgkwgz4schcdmlc
+Content-Type: text/plain; charset=iso-8859-1
+Content-Language: fr
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+
+ceci est en Français
+
+--3fgkwgz4schcdmlc--
+

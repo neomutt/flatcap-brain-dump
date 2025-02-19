@@ -1,0 +1,10 @@
+# vim: syn=neomuttrc
+set sidebar_visible=no
+set help=no
+set pager_index_lines=0
+
+macro index,pager <F5> '<enter-command>set resolve=yes pager_stop=yes<enter><enter-command>set status_format="R=$resolve, PS=$pager_stop"<enter><enter-command>set pager_format=$status_format<enter>'
+macro index,pager <F6> '<enter-command>set resolve=yes pager_stop=no<enter><enter-command>set status_format="R=$resolve, PS=$pager_stop"<enter><enter-command>set pager_format=$status_format<enter>'
+macro index,pager <F7> '<enter-command>set resolve=no pager_stop=no<enter><enter-command>set status_format="R=$resolve, PS=$pager_stop"<enter><enter-command>set pager_format=$status_format<enter>'
+macro index,pager <F8> '<enter-command>set resolve=no pager_stop=yes<enter><enter-command>set status_format="R=$resolve, PS=$pager_stop"<enter><enter-command>set pager_format=$status_format<enter>'
+

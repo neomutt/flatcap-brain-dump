@@ -1,0 +1,84 @@
+As prompted by @flatcap in <https://github.com/neomutt/neomutt/pull/4249#issuecomment-2053593979>, here goes a global overview of what's in my head.
+
+I used ASCII art; I hope it's detailed enough.
+
+```mail
+Date: Sat, 30 Mar 2024 12:22:13 +0100
+From: Alejandro Colomar <alx@kernel.es>                                      *10
+Reply-To: evil@example.com                                                   *10
+To: alx@kernel.es
+Cc: bob@example.com                                                          *10
+Subject: ...
+
+[-- Begin encryption information --]                                                 \
+Recipient: RSA key, ID 1234123412341234                                              |
+Recipient: RSA key, ID 5678567856785678                                              }-----  Hide: $crypt_encryption_info = no
+Recipient: RSA key, ID 0000000000000000                                      *7      |
+[-- End encryption information --]                                                   /
+
+[-- Warning: owner of RSA key, ID 1234123412341234 is not a recepient --]    *1
+[-- Warning: recipient <bob@example.com> cannot decrypt the message --]      *2
+
+[-- Begin signature information --]
+Good signature from: Alejandro Colomar <alx@alejandro-colomar.es>
+                aka: Alejandro Colomar <alx@kernel.org>
+                aka: Alejandro Colomar Andres <alx.manpages@gmail.com>
+            created: Sat Mar 30 12:22:13 2024
+[-- End signature information --]
+
+[-- Warning: the header field 'Reply-To' has been tampered with --]          *11
+[-- Warning: the header field 'Sender' has been tampered with --]
+[-- Warning: the header field 'Mail-Followup-To' has been tampered with --]
+[-- Warning: the header field 'X-Original-To has been tampered with --]
+[-- Warning: the header field 'To' has been tampered with --]
+[-- Warning: the header field 'In-Reply-To' has been tampered with --]
+
+[-- The following data is PGP/MIME signed and encrypted --]                  *3
+From: Alejandro Colomar <alx@kernel.es>                                      *8      \    \
+Sender: foo@foo.com                                                                  |    |
+Reply-to: foo@foo.com                                                                }----|--{-  Weed: weed && &crypt_protected_headers_weed = yes
+Mail-Followup-To: foo@foo.com                                                        |    |   \- *6
+X-Original-To: foo@foo.com                                                           |    |
+To: foo@foo.com                                                                      |    |
+Cc: bob@example.com                                                                  |    }----  Hide: $crypt_protected_headers_read = no
+Subject: Foo                                                                         |    |
+In-Reply-To: <...>                                                           *9      /    |
+                                                                             *4           /
+Body body
+body body body
+body
+[-- End of PGP/MIME signed and encrypted data --]                            *3
+```
+
+*1:	The warning above would happen if a recipient does not apear in
+	an AddressList.  This would imply knowing the owner, which is
+	complex, and as you said slow, so we probably don't want it.
+
+*2:	The warning above would happen if an AddressList element cannot
+	decrypt the message.  This would be similarly slow and complex,
+	so we probably don't want it.
+
+*3:	No gratuituous blanks after the begining or before the ending [-- ... --] markers.
+
+*4:	Blank line is part of this block.  This one is meaningful, and
+	should be printed if the header area is printed; even if the
+	header area has 0 fields!
+
+*6:  We should always protect these fields in outbound email.
+       Not doing so is a security risk with no benefits (other than maybe repudiating one's own signed mail).
+       Edit:
+       I feel like relaxing this, to just document that users shouldn't let headers unprotected.  Silently ignoring `$crypt_protected_headers_write` might be more problematic than keeping it around.
+
+*7:  BCCs should be hidden recipients.
+
+*8:  AddressLists should be protected.
+
+*9:  In-Reply-To should be protected.
+
+*10:  Unprotected fields should be trusted when replying.  (EDIT: I obviously meant `should NOT`)
+
+*11:  This warning should be relatively easy to implement, I think.
+
+Cc: @flatcap 
+Cc: @gahr 
+Cc: @nabijaczleweli 

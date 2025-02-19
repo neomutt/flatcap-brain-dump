@@ -1,0 +1,34 @@
+digraph callgraph {
+	// path() tidy now depends on NeoMutt->home_dir
+	// (this used to be a global variable)
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+	node [ fillcolor="#ffff00" ]
+	path_tidy
+
+	node [ fillcolor="#ffffff" ]
+	path_has_been_set -> path_tidy
+	path_native_set -> path_tidy
+	path_reset -> path_tidy
+	path_string_set -> path_tidy
+
+}

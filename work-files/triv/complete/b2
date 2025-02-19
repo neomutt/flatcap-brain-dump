@@ -1,0 +1,53 @@
+browser/functions.c:266:40:    mdata = mutt_newsgroup_catchup(priv->mailbox, CurrentNewsSrv, ff->name);
+browser/functions.c:268:42:    mdata = mutt_newsgroup_uncatchup(priv->mailbox, CurrentNewsSrv, ff->name);
+browser/functions.c:342:47:    init_menu(&priv->state, priv->menu, priv->mailbox, priv->sbar);
+browser/functions.c:371:37:    if (examine_directory(priv->mailbox, priv->menu, &priv->state,
+browser/functions.c:379:39:    if (examine_directory(priv->mailbox, priv->menu, &priv->state,
+browser/functions.c:387:51:    init_menu(&priv->state, priv->menu, priv->mailbox, priv->sbar);
+browser/functions.c:429:43:    init_menu(&priv->state, priv->menu, priv->mailbox, priv->sbar);
+browser/functions.c:454:39:    if (mutt_str_equal(mailbox_path(priv->mailbox), ff->name))
+browser/functions.c:467:31:    if (imap_delete_mailbox(priv->mailbox, ff->name) != 0)
+browser/functions.c:479:43:    init_menu(&priv->state, priv->menu, priv->mailbox, priv->sbar);
+browser/functions.c:530:45:    init_menu(&priv->state, priv->menu, priv->mailbox, priv->sbar);
+browser/functions.c:534:33:    if (examine_directory(priv->mailbox, priv->menu, &priv->state,
+browser/functions.c:537:45:    init_menu(&priv->state, priv->menu, priv->mailbox, priv->sbar);
+browser/functions.c:725:35:    if (examine_directory(priv->mailbox, priv->menu, &priv->state,
+browser/functions.c:730:37:    if (examine_directory(priv->mailbox, priv->menu, &priv->state,
+browser/functions.c:744:47:    init_menu(&priv->state, priv->menu, priv->mailbox, priv->sbar);
+browser/functions.c:799:27:    examine_mailboxes(priv->mailbox, priv->menu, &priv->state);
+browser/functions.c:803:31:    if (examine_directory(priv->mailbox, priv->menu, &priv->state, NULL, NULL) == -1)
+browser/functions.c:806:43:    init_menu(&priv->state, priv->menu, priv->mailbox, priv->sbar);
+browser/functions.c:845:43:    init_menu(&priv->state, priv->menu, priv->mailbox, priv->sbar);
+browser/functions.c:991:45:    init_menu(&priv->state, priv->menu, priv->mailbox, priv->sbar);
+browser/functions.c:1054:27:   examine_mailboxes(priv->mailbox, priv->menu, &priv->state);
+browser/functions.c:1067:34:   else if (examine_directory(priv->mailbox, priv->menu, &priv->state,
+browser/functions.c:1073:43:   init_menu(&priv->state, priv->menu, priv->mailbox, priv->sbar);
+
+browser/dlg_browser.c:758:60:  if (mutt_str_equal(buf_string(buf), mailbox_path(np->mailbox)))
+browser/dlg_browser.c:762:59:  if (np && m && m->poll_new_mail && mutt_str_equal(np->mailbox->realpath, m->realpath))
+browser/dlg_browser.c:764:11:  np->mailbox->msg_count = m->msg_count;
+browser/dlg_browser.c:765:11:  np->mailbox->msg_unread = m->msg_unread;
+browser/dlg_browser.c:767:69:  browser_add_folder(menu, state, de->d_name, NULL, &st, np ? np->mailbox : NULL, NULL);
+browser/dlg_browser.c:830:14:  if (!np->mailbox)
+browser/dlg_browser.c:833:53:  if (m && m->poll_new_mail && mutt_str_equal(np->mailbox->realpath, m->realpath))
+browser/dlg_browser.c:835:11:  np->mailbox->msg_count = m->msg_count;
+browser/dlg_browser.c:836:11:  np->mailbox->msg_unread = m->msg_unread;
+browser/dlg_browser.c:839:42:  buf_strcpy(mailbox, mailbox_path(np->mailbox));
+browser/dlg_browser.c:843:17:  switch (np->mailbox->type)
+browser/dlg_browser.c:848:32:  np->mailbox->name, NULL, np->mailbox, NULL);
+browser/dlg_browser.c:852:58:  browser_add_folder(menu, state, mailbox_path(np->mailbox),
+browser/dlg_browser.c:853:32:  np->mailbox->name, NULL, np->mailbox, NULL);
+browser/dlg_browser.c:859:32:  if (lstat(mailbox_path(np->mailbox), &st) == -1)
+browser/dlg_browser.c:865:13:  if (np->mailbox->type == MUTT_MAILDIR)
+browser/dlg_browser.c:869:49:  buf_printf(md, "%s/new", mailbox_path(np->mailbox));
+browser/dlg_browser.c:872:49:  buf_printf(md, "%s/cur", mailbox_path(np->mailbox));
+browser/dlg_browser.c:879:62:  browser_add_folder(menu, state, buf_string(mailbox), np->mailbox->name,
+browser/dlg_browser.c:880:33:  &st, np->mailbox, NULL);
+browser/dlg_browser.c:1162:29: struct Mailbox *m = ev_m->mailbox;
+
+browser/dlg_browser.c:1254:7:  priv->mailbox = m;
+
+browser/complete.c:57:28:      mutt_mailbox_next(wdata->mailbox, wdata->buffer);
+browser/complete.c:81:22:      cdata->mailbox, cdata->files, cdata->numfiles);
+browser/complete.c:128:56:     dlg_browser(wdata->buffer, MUTT_SEL_NO_FLAGS, wdata->mailbox, NULL, NULL);
+

@@ -1,0 +1,20 @@
+use cache
+
+Mailbox /home/mutt/mail/linode/neo/travis
+MemAllocCount = 6591
+MemFreeCount  = 8270
+MemAllocCount = +264
+MemFreeCount  = +106
+-----------------------
+6 emails, 161 allocs (26/email)
+-----------------------
+
+Mailbox /home/mail/mail
+MemAllocCount = 7260
+MemFreeCount  = 8872
+MemAllocCount = +3303095
+MemFreeCount  = +1105009
+-----------------------
+54569 emails, 2198089 allocs (40/email)
+-----------------------
+

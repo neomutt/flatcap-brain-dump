@@ -1,0 +1,4 @@
+set use_threads = "threads"
+set index_format = 'AAA%<M?\<BBB\>&{CCC}>DDD'
+set collapse_all = yes
+

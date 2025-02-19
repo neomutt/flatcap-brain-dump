@@ -1,0 +1,11 @@
+mutt_enter_command
+parse_rc_line
+parse_rc_buffer
+parse_set
+command_set_query
+	set_dump(CS_DUMP_ONLY_CHANGED)
+	set_dump(CS_DUMP_NO_FLAGS)
+set_dump
+	hea = ALL CONFIG
+dump_config
+	∀ hea (filtered)

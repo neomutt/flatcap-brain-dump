@@ -1,0 +1,97 @@
+alias/dlg_alias.c:299:    op = km_dokey(MENU_ALIAS, GETCH_NO_FLAGS);
+alias/dlg_alias.c:305:      km_error_key(MENU_ALIAS);
+alias/dlg_query.c:369:    op = km_dokey(MENU_QUERY, GETCH_NO_FLAGS);
+alias/dlg_query.c:375:      km_error_key(MENU_QUERY);
+attach/dlg_attach.c:256:    op = km_dokey(MENU_ATTACHMENT, GETCH_NO_FLAGS);
+attach/dlg_attach.c:262:      km_error_key(MENU_ATTACHMENT);
+attach/functions.c:170:    mutt_flushinp();
+attach/functions.c:187:    mutt_flushinp();
+attach/functions.c:274:    mutt_flushinp();
+attach/functions.c:281:    mutt_flushinp();
+autocrypt/dlg_autocrypt.c:279:    op = km_dokey(MENU_AUTOCRYPT, GETCH_NO_FLAGS);
+autocrypt/dlg_autocrypt.c:285:      km_error_key(MENU_AUTOCRYPT);
+browser/dlg_browser.c:1090:    op = km_dokey(MENU_FOLDER, GETCH_NO_FLAGS);
+browser/dlg_browser.c:1096:      km_error_key(MENU_FOLDER);
+browser/functions.c:249:  mutt_unget_op(OP_CHECK_NEW);
+commands.c:111:    const struct MenuFuncOp *fns = km_get_table(MenuNames[i].value);
+commands.c:1686:  { "bind",                parse_bind,             0 },
+commands.c:1690:  { "exec",                parse_exec,             0 },
+commands.c:1698:  { "macro",               parse_macro,            1 },
+commands.c:1706:  { "push",                parse_push,             0 },
+commands.c:1723:  { "unbind",              parse_unbind,           MUTT_UNBIND },
+commands.c:1729:  { "unmacro",             parse_unbind,           MUTT_UNMACRO },
+complete/helpers.c:237:    const struct MenuFuncOp *funcs = km_get_table(mtype);
+compose/dlg_compose.c:443:    op = km_dokey(MENU_COMPOSE, GETCH_NO_FLAGS);
+compose/dlg_compose.c:449:      km_error_key(MENU_COMPOSE);
+conn/dlg_verifycert.c:83:  struct KeyEvent event = mutt_getch(GETCH_IGNORE_MACRO);
+conn/dlg_verifycert.c:100:    mutt_unget_ch(event.ch);
+conn/dlg_verifycert.c:102:    mutt_unget_op(event.op);
+conn/dlg_verifycert.c:251:      op = km_dokey(MENU_DIALOG, GETCH_IGNORE_MACRO);
+debug/keymap.c:56:    fn_name = mutt_get_func(OpGeneric, map->op);
+debug/keymap.c:63:    const struct MenuFuncOp *funcs = km_get_table(menu);
+debug/keymap.c:67:    fn_name = mutt_get_func(funcs, map->op);
+debug/keymap.c:131:    km_expand_key(map, binding);
+editor/functions.c:399:    event = mutt_getch(GETCH_NO_FLAGS);
+editor/window.c:163:    mutt_flushinp();
+editor/window.c:330:      struct KeyEvent event = km_dokey_event(MENU_EDITOR, flags);
+flags.c:477:    event = mutt_getch(GETCH_NO_FLAGS);
+gui/curs_lib.c:140:  mutt_flushinp();
+gui/curs_lib.c:264:    event = mutt_getch(GETCH_NO_FLAGS);
+gui/curs_lib.c:292:      mutt_unget_ch(event.ch);
+gui/curs_lib.c:294:      mutt_unget_op(event.op);
+gui/curs_lib.c:511:  km_keyname(AbortKey, key);
+gui/curs_lib.c:563:    km_keyname(ch, key);
+gui/curs_lib.h:53:void         mutt_flushinp(void);
+gui/curs_lib.h:54:struct KeyEvent mutt_getch(GetChFlags flags);
+gui/curs_lib.h:57:void         mutt_push_macro_event(int ch, int op);
+gui/curs_lib.h:63:void         mutt_unget_ch(int ch);
+gui/curs_lib.h:64:void         mutt_unget_op(int op);
+gui/curs_lib.h:65:void         mutt_unget_string(const char *s);
+handler.c:1798:      if (km_expand_key(km_find_func(MENU_PAGER, OP_VIEW_ATTACHMENTS), keystroke))
+help.c:79:  const struct MenuFuncOp *funcs = km_get_table(menu);
+help.c:176:    km_expand_key(map, buf);
+help.c:361:  const struct MenuFuncOp *funcs = km_get_table(menu);
+helpbar/helpbar.c:91:  if (km_expand_key(km_find_func(menu, op), buf) ||
+helpbar/helpbar.c:92:      km_expand_key(km_find_func(MENU_GENERIC, op), buf))
+history/dlg_history.c:144:    op = km_dokey(MENU_DIALOG, GETCH_NO_FLAGS);
+history/dlg_history.c:150:      km_error_key(MENU_GENERIC);
+imap/message.c:507:  mutt_flushinp();
+index/dlg_index.c:1300:    op = km_dokey(MENU_INDEX, GETCH_NO_FLAGS);
+index/dlg_index.c:1347:          mutt_flush_macro_to_endcond();
+index/dlg_index.c:1384:      km_error_key(MENU_INDEX);
+index/functions.c:912:    mutt_unget_ch('0' + digit);
+index/functions.c:1996:      km_bind(str, MENU_INDEX, OP_MACRO, macro, _("message hotkey"));
+index/functions.c:3106:    mutt_flushinp();
+main.c:844:  km_init(); /* must come before mutt_init */
+main.c:863:  init_extended_keys();
+main.c:1371:  mutt_init_abort_key();
+main.c:1503:  notify_observer_add(NeoMutt->sub->notify, NT_CONFIG, main_config_observer, NULL);
+main.c:1509:      mutt_flushinp();
+main.c:1529:      mutt_flushinp();
+main.c:1982:    notify_observer_remove(NeoMutt->sub->notify, main_config_observer, NULL);
+main.c:2039:  mutt_keys_cleanup();
+main.c:2047:  mutt_keys_cleanup();
+menu/functions.c:251:    mutt_unget_ch('0' + digit);
+menu/tagging.c:180:    mutt_flush_macro_to_endcond();
+mx.c:920:    if (km_expand_key(km_find_func(MENU_INDEX, OP_TOGGLE_WRITE), buf))
+ncrypt/dlg_gpgme.c:279:    op = km_dokey(menu_to_use, GETCH_NO_FLAGS);
+ncrypt/dlg_gpgme.c:285:      km_error_key(menu_to_use);
+ncrypt/dlg_pgp.c:259:    op = km_dokey(MENU_PGP, GETCH_NO_FLAGS);
+ncrypt/dlg_pgp.c:265:      km_error_key(MENU_PGP);
+ncrypt/dlg_smime.c:228:    op = km_dokey(MENU_SMIME, GETCH_NO_FLAGS);
+ncrypt/dlg_smime.c:234:      km_error_key(MENU_SMIME);
+pager/dlg_pager.c:482:    // km_dokey() reads not only user's key strokes, but also a MacroBuffer
+pager/dlg_pager.c:489:    op = km_dokey(MENU_PAGER, GETCH_NO_FLAGS);
+pager/dlg_pager.c:491:    // km_dokey() can block, so recheck the timer.
+pager/dlg_pager.c:513:      km_error_key(MENU_PAGER);
+pager/dlg_pager.c:538:      mutt_flushinp();
+pager/functions.c:344:  mutt_flushinp();
+pager/message.c:340:    mutt_unget_ch(mutt_any_key_to_continue(_("Command: ")));
+pager/message.c:341:    rc = km_dokey(MENU_PAGER, GETCH_NO_FLAGS);
+pattern/dlg_pattern.c:314:    op = km_dokey(MENU_DIALOG, GETCH_NO_FLAGS);
+pattern/dlg_pattern.c:320:      km_error_key(MENU_GENERIC);
+postpone/dlg_postpone.c:247:    op = km_dokey(MENU_POSTPONED, GETCH_NO_FLAGS);
+postpone/dlg_postpone.c:253:      km_error_key(MENU_POSTPONED);
+question/question.c:113:    event = mutt_getch(GETCH_NO_FLAGS);
+question/question.c:156: * @param flags  mutt_getch Flags, e.g. #GETCH_IGNORE_MACRO
+question/question.c:253:    event = mutt_getch(flags);

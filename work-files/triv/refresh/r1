@@ -1,0 +1,13 @@
+envelope/functions.c:134:10: mutt_refresh();
+gui/curs_lib.c:146:46:       if (!ARRAY_EMPTY(&MacroEvents) && !OptForceRefresh)
+gui/curs_lib.c:150:3:        refresh();
+gui/curs_lib.c:342:8:        mutt_refresh();
+gui/curs_lib.c:457:8:        mutt_refresh();
+gui/mutt_window.c:646:8:     mutt_refresh();
+index/dlg_index.c:1266:10:   mutt_refresh();
+index/dlg_index.c:1277:12:   mutt_refresh();
+mx.c:369:11:                 OptForceRefresh = true;
+mx.c:414:11:                 OptForceRefresh = false;
+pager/dlg_pager.c:401:10:    mutt_refresh();
+question/question.c:262:12:  mutt_refresh();
+question/question.c:307:12:  mutt_refresh();

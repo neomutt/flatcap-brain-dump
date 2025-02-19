@@ -1,0 +1,7 @@
+op_main_change_folder
+op_main_change_group
+mutt_autocrypt_scan_mailboxes
+save_fcc
+mutt_compose_menu
+	case OP_COMPOSE_ATTACH_MESSAGE:
+	case OP_COMPOSE_WRITE_MESSAGE:

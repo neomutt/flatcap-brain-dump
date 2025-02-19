@@ -1,0 +1,80 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ color="#ff0000" ]
+
+	mutt_attach_resend
+
+	node [ color="#00ff00" ]
+
+	attach_forward_bodies
+	attach_forward_msgs
+	attach_include_reply
+	include_header
+	mutt_attach_forward
+	mutt_attach_reply
+
+	node [ color="#d0d0d0" fontcolor="#b0b0b0" ]
+
+	attach_reply_envelope_defaults
+	check_all_msg
+	check_can_decode
+	check_msg
+	copy_problematic_attachments
+	count_tagged
+	count_tagged_children
+	find_common_parent
+	find_parent
+	is_parent
+	mutt_attach_bounce
+	mutt_attach_mail_sender
+
+	attach_forward_bodies -> include_header
+	mutt_attach_forward -> attach_forward_bodies
+	mutt_attach_forward -> attach_forward_msgs
+	mutt_attach_reply -> attach_include_reply
+	mutt_attach_reply -> include_header
+
+	edge [ color="#d0d0d0" ]
+
+	attach_forward_bodies -> check_can_decode
+	attach_forward_bodies -> copy_problematic_attachments
+	attach_forward_bodies -> find_parent
+	check_all_msg -> check_msg
+	find_common_parent -> count_tagged_children
+	find_parent -> find_common_parent
+	find_parent -> is_parent
+	mutt_attach_bounce -> check_all_msg
+	mutt_attach_bounce -> count_tagged
+	mutt_attach_forward -> check_all_msg
+	mutt_attach_forward -> count_tagged
+	mutt_attach_mail_sender -> check_all_msg
+	mutt_attach_reply -> attach_reply_envelope_defaults
+	mutt_attach_reply -> check_all_msg
+	mutt_attach_reply -> check_can_decode
+	mutt_attach_reply -> copy_problematic_attachments
+	mutt_attach_reply -> count_tagged
+	mutt_attach_reply -> find_parent
+	mutt_attach_resend -> check_all_msg
+
+}

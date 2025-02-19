@@ -1,0 +1,17 @@
+#. L10N: Show the algorithm and key ID of the encryption recipients, e.g
+#.       Recipient: RSA key, ID 1111111111111111
+#: ncrypt/crypt_gpgme.c:1424
+#, c-format
+msgid "Recipient: %s key, ID %s\n"
+msgstr ""
+
+#: ncrypt/crypt_gpgme.c:1437
+msgid "[-- Begin encryption information --]\n"
+msgstr ""
+
+#: ncrypt/crypt_gpgme.c:1442
+msgid ""
+"[-- End encryption information --]\n"
+"\n"
+msgstr ""
+

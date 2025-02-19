@@ -1,0 +1,16 @@
+imap://apple@flatcap.org:143/INBOX
+imap://apple@flatcap.org:143/abbot
+imap://apple@flatcap.org:143/abbot.achebe
+imap://apple@flatcap.org:143/abbot.awlinson
+imap://banana@flatcap.org/INBOX
+imap://banana@flatcap.org/banker
+imap://banana@flatcap.org/banker.butterworth
+imap://banana@flatcap.org/banker.byrum
+imaps://cherry@flatcap.org:993/INBOX
+imaps://cherry@flatcap.org:993/cabell
+imaps://cherry@flatcap.org:993/cabell.chalker
+imaps://cherry@flatcap.org:993/cabell.cross
+imaps://damson@flatcap.org/INBOX
+imaps://damson@flatcap.org/dsouza
+imaps://damson@flatcap.org/dsouza.dumas
+imaps://damson@flatcap.org/dsouza.dunne

@@ -1,0 +1,43 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ffc0c0" ]
+	dump_config
+	dump_config_neo
+	mutt_query_variables
+	set_dump
+
+	node [ fillcolor="#ffffff" ]
+	command_set_query     -> pretty_var
+	command_set_query     -> set_dump
+	dump_config           -> dump_config_neo
+	dump_config           -> pretty_var
+	main                  -> dump_config
+	main                  -> mutt_query_variables
+	mutt_query_variables  -> dump_config_neo
+	mutt_query_variables  -> pretty_var
+	parse_set             -> command_set_query
+	pretty_var            -> escape_string
+	set_dump              -> dump_config
+
+}

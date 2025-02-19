@@ -1,0 +1,27 @@
+Commands with no specific notification
+
+alternative_order
+unalternative_order
+auto_view
+unauto_view
+hdr_order
+unhdr_order
+ignore
+unignore
+lists
+unlists
+subscribe
+unsubscribe
+mailto_allow
+unmailto_allow
+mime_lookup
+unmime_lookup
+score
+unscore
+setenv
+unsetenv
+sidebar_whitelist
+unsidebar_whitelist
+spam
+nospam
+

@@ -1,0 +1,47 @@
+digraph callgraph {
+	// 2023-06-21 op_editor_complete()
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	complete_command       -> mutt_command_complete
+	complete_command       -> mutt_var_value_complete
+	complete_file_mbox     -> mutt_complete
+	complete_file_simple   -> mutt_complete
+	complete_label         -> mutt_label_complete
+	complete_nm_query      -> mutt_nm_query_complete
+	complete_nm_tag        -> mutt_nm_tag_complete
+	complete_pattern       -> mutt_label_complete
+	mutt_complete          -> imap_complete
+	mutt_complete          -> nntp_complete
+	mutt_nm_query_complete -> complete_all_nm_tags
+	mutt_nm_tag_complete   -> complete_all_nm_tags
+	op_editor_complete     -> complete_alias_complete
+	op_editor_complete     -> complete_alias_query
+	op_editor_complete     -> complete_command
+	op_editor_complete     -> complete_file_mbox
+	op_editor_complete     -> complete_file_simple
+	op_editor_complete     -> complete_label
+	op_editor_complete     -> complete_nm_query
+	op_editor_complete     -> complete_nm_tag
+	op_editor_complete     -> complete_pattern
+
+}

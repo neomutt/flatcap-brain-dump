@@ -1,0 +1,8 @@
+text/html; links -dump-width ${COLUMNS:-80} -dump %s; nametemplate=%s.html; print=cat; copiousoutput
+# text/html; rev %s; nametemplate=%s.html; print=cat; copiousoutput
+text/plain; rev %s; nametemplate=%s.html; print=cat; copiousoutput
+# text/wibble; rev %s; nametemplate=%s.html; print=cat; copiousoutput
+# text/wibble; links -dump-width ${COLUMNS:-80} -dump %s; nametemplate=%s.html; print=cat; copiousoutput
+text/wibble; links -dump-width ${COLUMNS:-80} -dump %s; copiousoutput
+# text/plain; links -dump-width ${COLUMNS:-80} -dump %s; nametemplate=%s.html; print=cat; copiousoutput
+# text/plain; fmt -w $COLUMNS %s; edit=nvim; compose=seq 10 > %s; copiousoutput

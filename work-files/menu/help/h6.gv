@@ -1,0 +1,58 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// Red   ● - Print
+	// Green ★ - Array
+
+	binding_sort       [ label=<binding_sort <font color="green">★</font>> ]
+	colon_bind         [ label=<colon_bind <font color="red">●</font>> ]
+	colon_macro        [ label=<colon_macro <font color="red">●</font>> ]
+	dump_message_flags [ label=<dump_message_flags <font color="red">●</font>> ]
+	gather_menu        [ label=<gather_menu <font color="green">★</font>> ]
+	gather_unbound     [ label=<gather_unbound <font color="green">★</font>> ]
+	is_bound           [ label=<is_bound> ]
+	measure_column     [ label=<measure_column <font color="green">★</font>> ]
+	mutt_help          [ label=<mutt_help <font color="red">●</font>> ]
+	print_bind         [ label=<print_bind <font color="red">●</font>> ]
+	print_macro        [ label=<print_macro <font color="red">●</font>> ]
+
+	colon_bind           -> print_bind
+	colon_macro          -> print_macro
+	gather_menu          -> escape_macro
+	gather_menu          -> help_lookup_function
+	gather_unbound       -> is_bound
+	help_lookup_function -> mutt_get_func
+	mutt_help            -> binding_sort
+	mutt_help            -> dump_message_flags
+	mutt_help            -> gather_menu
+	mutt_help            -> gather_unbound
+	mutt_help            -> measure_column
+	print_bind           -> binding_sort
+	print_bind           -> gather_menu
+	print_bind           -> measure_column
+	print_macro          -> binding_sort
+	print_macro          -> gather_menu
+	print_macro          -> measure_column
+
+}
+

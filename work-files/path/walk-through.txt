@@ -1,0 +1,35 @@
+Here's a walk-through of <save-message>
+
+1   s -- <save-message> / OP_SAVE
+
+2   Ask user for a location: L
+
+3   Search all Mailboxes for a M->path->desc that matches L
+    Priority is given to the Mailboxes on the current Account.
+    If successful, go to Step 9
+
+4   Resolve L into a Path P
+    Resolve NeoMutt shortcuts, such as +, ^, !, ...
+    Probe P to determine its Mailbox type
+    Tidy P using the API function: path_tidy()
+
+5   Find an existing Mailbox by Path P
+    Search all Mailboxes, for a match
+    Use the API function path_compare() for comparisons
+    If successful, go to Step 9
+
+6   Does the path exist?
+    Use the API function path_exists()
+
+7   Create the path? (if necessary)
+    Use the API function path_create()
+
+8   Create a new Mailbox M
+    The new Mailbox wraps and takes ownership of P
+
+9   Open the Mailbox
+    Use the API function mbox_open()
+
+10  Create a new Context (if necessary)
+    The new Context wraps and takes ownership of M
+

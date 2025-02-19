@@ -1,0 +1,34 @@
+Create a separate libwinenv
+
+no compose references
+
+window.c
+functions.c
+data.c
+
+create a generic function list struct
+
+These belong in compose/functions.c
+	op_compose_edit_message()
+	op_envelope_edit_headers()
+
+Move "Not available in this menu" out
+	move it to the caller
+
+Create an Envelope notification
+	eliminate the Compose notifications
+
+IWYU ∀ compose/* winenv/*
+
+do the same for sidebar -> libwinsidebar
+	sidebar/functions + dispatcher
+
+always follows notify_send()
+	mutt_message_hook(NULL, shared->email, MUTT_SEND2_HOOK);
+
+no config use, so no sub needed
+
+follows changes to: from, to, cc, bcc
+	needs flags for env field that changed
+	update_crypt_info(shared);
+

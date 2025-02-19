@@ -1,0 +1,55 @@
+attach/recvattach.c:138:50:        *s++ = (actx->idx[rindex]->body->next) ? MUTT_TREE_LTEE : MUTT_TREE_LLCORNER;
+attach/recvattach.c:139:16:        *s++ = MUTT_TREE_HLINE;
+attach/recvattach.c:140:16:        *s++ = MUTT_TREE_RARROW;
+attach/recvattach.c:163:48:      *s++ = (actx->idx[rindex]->body->next) ? MUTT_TREE_VLINE : MUTT_TREE_SPACE;
+attach/recvattach.c:164:14:      *s++ = MUTT_TREE_SPACE;
+
+expando/format.c:142:32:    else if (arboreal && (wc < MUTT_TREE_MAX))
+
+expando/helpers.c:106:19:    else if (*p < MUTT_TREE_MAX)
+
+gui/curs_lib.c:417:69:    else if ((cw < 0) && (cl == 1) && (src[0] != '\0') && (src[0] < MUTT_TREE_MAX))
+
+menu/draw.c:122:14:    if (*s < MUTT_TREE_MAX)
+menu/draw.c:128:26:      while (*s && (*s < MUTT_TREE_MAX))
+menu/draw.c:132:16:          case MUTT_TREE_LLCORNER:
+menu/draw.c:145:16:          case MUTT_TREE_ULCORNER:
+menu/draw.c:158:16:          case MUTT_TREE_LTEE:
+menu/draw.c:171:16:          case MUTT_TREE_HLINE:
+menu/draw.c:184:16:          case MUTT_TREE_VLINE:
+menu/draw.c:197:16:          case MUTT_TREE_TTEE:
+menu/draw.c:210:16:          case MUTT_TREE_BTEE:
+menu/draw.c:223:16:          case MUTT_TREE_SPACE:
+menu/draw.c:226:16:          case MUTT_TREE_RARROW:
+menu/draw.c:229:16:          case MUTT_TREE_STAR:
+menu/draw.c:232:16:          case MUTT_TREE_HIDDEN:
+menu/draw.c:235:16:          case MUTT_TREE_EQUALS:
+menu/draw.c:238:16:          case MUTT_TREE_MISSING:
+
+mutt_thread.c:387:19: * are the macros MUTT_TREE_* defined in mutt.h.
+mutt_thread.c:397:36:  enum TreeChar corner = reverse ? MUTT_TREE_ULCORNER : MUTT_TREE_LLCORNER;
+mutt_thread.c:398:34:  enum TreeChar vtee = reverse ? MUTT_TREE_BTEE : MUTT_TREE_TTEE;
+mutt_thread.c:418:33:        myarrow[0] = nextdisp ? MUTT_TREE_LTEE : corner;
+mutt_thread.c:420:22:        myarrow[0] = MUTT_TREE_HIDDEN;
+mutt_thread.c:422:22:        myarrow[0] = MUTT_TREE_MISSING;
+mutt_thread.c:427:31:        myarrow[1] = pseudo ? MUTT_TREE_STAR :
+mutt_thread.c:428:57:                              (tree->duplicate_thread ? MUTT_TREE_EQUALS : MUTT_TREE_HLINE);
+mutt_thread.c:432:26:        myarrow[width] = MUTT_TREE_RARROW;
+mutt_thread.c:451:29:      mypfx[0] = nextdisp ? MUTT_TREE_VLINE : MUTT_TREE_SPACE;
+mutt_thread.c:453:20:        mypfx[1] = MUTT_TREE_SPACE;
+
+mutt_thread.h:58:3:  MUTT_TREE_LLCORNER = 1, ///< Lower left corner
+mutt_thread.h:59:3:  MUTT_TREE_ULCORNER,     ///< Upper left corner
+mutt_thread.h:60:3:  MUTT_TREE_LTEE,         ///< Left T-piece
+mutt_thread.h:61:3:  MUTT_TREE_HLINE,        ///< Horizontal line
+mutt_thread.h:62:3:  MUTT_TREE_VLINE,        ///< Vertical line
+mutt_thread.h:63:3:  MUTT_TREE_SPACE,        ///< Blank space
+mutt_thread.h:64:3:  MUTT_TREE_RARROW,       ///< Right arrow
+mutt_thread.h:65:3:  MUTT_TREE_STAR,         ///< Star character (for threads)
+mutt_thread.h:66:3:  MUTT_TREE_HIDDEN,       ///< Ampersand character (for threads)
+mutt_thread.h:67:3:  MUTT_TREE_EQUALS,       ///< Equals (for threads)
+mutt_thread.h:68:3:  MUTT_TREE_TTEE,         ///< Top T-piece
+mutt_thread.h:69:3:  MUTT_TREE_BTEE,         ///< Bottom T-piece
+mutt_thread.h:70:3:  MUTT_TREE_MISSING,      ///< Question mark
+mutt_thread.h:71:3:  MUTT_TREE_MAX,
+mutt_thread.h:73:24:  MUTT_SPECIAL_INDEX = MUTT_TREE_MAX, ///< Colour indicator

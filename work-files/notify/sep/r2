@@ -1,0 +1,46 @@
+OP_TAG
+menu/tagging.c:107:54:     const bool c_resolve = cs_subset_bool(sub, "resolve");
+
+OP_DELETE
+index/functions.c:219:56:  const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_DELETE_THREAD
+index/functions.c:277:54:  const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_FLAG_MESSAGE
+index/functions.c:523:56:  const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_MAIN_MODIFY_TAGS
+index/functions.c:1166:56: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_MAIN_READ_THREAD
+index/functions.c:1512:56: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_MAIN_SET_FLAG
+index/functions.c:1571:56: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_SAVE
+index/functions.c:2085:56: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_TAG
+index/functions.c:2213:54: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_TAG_THREAD
+index/functions.c:2243:56: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_TOGGLE_NEW
+index/functions.c:2297:56: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_UNDELETE
+index/functions.c:2355:56: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_UNDELETE_THREAD
+index/functions.c:2394:56: const bool c_resolve = cs_subset_bool(sub, "resolve");
+
+OP_COPY_MESSAGE
+pager/functions.c:894:57:  const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_DELETE
+pager/functions.c:952:55:  const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_DELETE_THREAD
+pager/functions.c:1000:55: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_FLAG_MESSAGE
+pager/functions.c:1107:55: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_MAIN_SET_FLAG
+pager/functions.c:1264:55: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_TAG
+pager/functions.c:1497:55: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_TOGGLE_NEW
+pager/functions.c:1528:55: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_UNDELETE
+pager/functions.c:1555:55: const bool c_resolve = cs_subset_bool(sub, "resolve");
+OP_UNDELETE_THREAD
+pager/functions.c:1592:57: const bool c_resolve = cs_subset_bool(sub, "resolve")

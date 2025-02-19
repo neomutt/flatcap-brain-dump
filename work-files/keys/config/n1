@@ -1,0 +1,121 @@
+Subject: Re: [neomutt-devel] New Release next week
+Date: Thu, 21 Dec 2023 21:08:12 +0100
+To: Neomutt Developers <neomutt-devel@neomutt.org>
+From: наб <nabijaczleweli@nabijaczleweli.xyz>
+User-Agent: NeoMutt/20231103
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+
+On Tue, Dec 19, 2023 at 04:58:04AM +0100, наб wrote:
+> On Tue, Dec 19, 2023 at 04:13:20AM +0100, наб wrote:
+> > On Wed, Dec 13, 2023 at 11:49:46AM +0000, Richard Russon wrote:
+> > > If you have a chance, please can you give the build a test.
+> > Works, but I just noticed that when replying, neomutt always wants to
+> > add another "Re:". Even if there's one or two already there.
+> This sure looks like applying $reply_regex just broke
+> (looks like that's how real_subj is derived).
+> 
+> It looks like reopening the mailbox fixed it?
+It didn't, but changing it did maybe. In ltrace on 20231221 I see
+  $ grep -i re.aw ll
+  neomutt->regcomp(0x555e1ce6be20, "^((re|aw|sv)(\\[[0-9]+\\])*:[ \t]*)"..., 0b1) = REG_OK
+  neomutt->regcomp(0x555e1d0550c0, "^((Re|aw|sv)(\\[[0-9]+\\])*:[ \t]*)"..., 0b1) = REG_OK
+
+And setting the latter, with the capitalised "Re", explicitly works
+(well, except for messages that have a RE: prefix).
+REG_ICASE is clearly supposed to be applied when compiling,
+but just isn't (it's bit 0b10).
+
+This is controlled by
+  if (((flags & DT_REGEX_MATCH_CASE) == 0) && mutt_mb_is_lower(str))
+    rflags |= REG_ICASE;
+(this same snippet appears twice, i.a. in regex_new()).
+
+Clearly, this isn't being set, that would be ridiculous,
+it never would've worked. Indeed:
+  { "reply_regex", DT_REGEX|R_INDEX|R_RESORT, IP "^((re|aw|sv)(\\[[0-9]+\\])*:[ \t]*)*", 0, NULL,
+    "Regex to match message reply subjects like 're: '"
+  },
+
+Consulting regex3.h which defines this:
+  /* ... DT_REGEX */
+  /* Note: To save space, sets of config variable flags are packed into a uint32_t.
+   * When adding flags, check all config variables to ensure there are no overlaps of values */
+  #define DT_REGEX_MATCH_CASE (1 << 17)  ///< Case-sensitive matching
+  #define DT_REGEX_ALLOW_NOT  (1 << 18)  ///< Regex can begin with '!'
+  #define DT_REGEX_NOSUB      (1 << 19)  ///< Do not report what was matched (REG_NOSUB)
+
+So no issues right?
+Impervious encoding scheme?
+Of course:
+  $ git grep -E 'define.*(DT_REGEX_MATCH_CASE|DT_REGEX|R_INDEX|R_RESORT)\b'
+  config/types.h:#define DT_REGEX    10  ///< regular expressions
+  config/types.h:#define R_INDEX           (1 << 17) ///< Redraw the index menu (MENU_INDEX)
+  config/types.h:#define R_RESORT          (1 << 18) ///< Resort the mailbox
+  mutt/regex3.h:#define DT_REGEX_MATCH_CASE (1 << 17)  ///< Case-sensitive matching
+
+Blaming types.h goes back >2100 commits. Blaming regex3.h goes to
+  $ git show 863019552 mutt/regex3.h
+  commit 86301955255fc8bcb55a9e3ce5a9ba0d624feb6a
+  Author: Richard Russon (@flatcap) <rich@flatcap.org>
+  Date:   Wed Dec 6 15:10:36 2023 +0000
+  
+      config: fix flag overlaps
+  
+  diff --git a/mutt/regex3.h b/mutt/regex3.h
+  index a611f514..9fd81eb2 100644
+  --- a/mutt/regex3.h
+  +++ b/mutt/regex3.h
+  @@ -32,9 +32,11 @@
+   struct Buffer;
+  
+   /* ... DT_REGEX */
+  -#define DT_REGEX_MATCH_CASE (1 << 6)  ///< Case-sensitive matching
+  -#define DT_REGEX_ALLOW_NOT  (1 << 7)  ///< Regex can begin with '!'
+  -#define DT_REGEX_NOSUB      (1 << 8)  ///< Do not report what was matched (REG_NOSUB)
+  +/* Note: To save space, sets of config variable flags are packed into a uint32_t.
+  + * When adding flags, check all config variables to ensure there are no overlaps of values */
+  +#define DT_REGEX_MATCH_CASE (1 << 17)  ///< Case-sensitive matching
+  +#define DT_REGEX_ALLOW_NOT  (1 << 18)  ///< Regex can begin with '!'
+  +#define DT_REGEX_NOSUB      (1 << 19)  ///< Do not report what was matched (REG_NOSUB)
+  
+   /* This is a non-standard option supported by Solaris 2.5.x
+    * which allows patterns of the form \<...\> */
+and
+  $ git tag --contains 86301955255fc8bcb55a9e3ce5a9ba0d624feb6a
+  20231221
+so. idk. revert that maybe?
+or somehow make sure the flags actually don't overlap,
+since these are, in order R_INDEX, R_RESORT, R_RESORT_SUB,
+but they used to be DT_ON_STARTUP, DT_NOT_EMPTY, DT_NOT_NEGATIVE.
+
+Allocating these as 1<<16 (unused AFAICT), 1<<31 (likewise), DT_NOT_NEGATIVE
+probably makes the most sense.
+
+Not that that makes it work, of course, since this regex simply isn't
+used when reading IMAP mailboxes, and you need to manually trigger the
+reassessment by running
+  :set reply_regex="^((Re|aw|sv)(\\[[0-9]+\\])*:[ \t]*)*"
+  :set reply_regex="^((re|aw|sv)(\\[[0-9]+\\])*:[ \t]*)*"
+so index.c#config_reply_regex() can re-parse real_subj.
+
+diff --git a/mutt/regex3.h b/mutt/regex3.h
+index 9fd81eb2..f67719a1 100644
+--- a/mutt/regex3.h
++++ b/mutt/regex3.h
+@@ -34,9 +34,9 @@ struct Buffer;
+ /* ... DT_REGEX */
+ /* Note: To save space, sets of config variable flags are packed into a uint32_t.
+  * When adding flags, check all config variables to ensure there are no overlaps of values */
+-#define DT_REGEX_MATCH_CASE (1 << 17)  ///< Case-sensitive matching
+-#define DT_REGEX_ALLOW_NOT  (1 << 18)  ///< Regex can begin with '!'
+-#define DT_REGEX_NOSUB      (1 << 19)  ///< Do not report what was matched (REG_NOSUB)
++#define DT_REGEX_MATCH_CASE (1 << 16)  ///< Case-sensitive matching
++#define DT_REGEX_ALLOW_NOT  (1 << 31)  ///< Regex can begin with '!'
++#define DT_REGEX_NOSUB      DT_NOT_NEGATIVE  ///< Do not report what was matched (REG_NOSUB)
+ 
+ /* This is a non-standard option supported by Solaris 2.5.x
+  * which allows patterns of the form \<...\> */
+
+

@@ -1,0 +1,23 @@
+# vim: syn=neomuttrc
+
+set allow_ansi = yes
+
+color quoted0 color196 default
+color quoted1 color208 default
+color quoted2 color226 default
+color quoted3 color46  default
+color quoted4 color75  default
+color quoted5 color21  default
+color quoted6 color207 default
+color quoted7 color63  default
+color quoted8 color15  default
+
+color signature red     green
+color status    blue    yellow
+color search    black   red
+color body      yellow  magenta "3[0-9]"
+
+color prompt    default default
+color tilde     default default
+color tree      yellow  default
+color indicator default blue

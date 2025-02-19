@@ -1,0 +1,44 @@
+attach/attach.c:64:34:       void       mutt_actx_add_attach            (AttachCtx *actx, AttachPtr *attach)
+attach/attach.c:90:34:       void       mutt_actx_ins_attach            (AttachCtx *actx, AttachPtr *attach, int aidx)
+attach/attach.c:120:30:      void       mutt_actx_add_fp                (AttachCtx *actx, FILE *fp_new)
+attach/attach.c:141:32:      void       mutt_actx_add_body              (AttachCtx *actx, Body *new_body)
+attach/attach.c:161:36:      void       mutt_actx_entries_free          (AttachCtx *actx)
+attach/attach.c:188:8:       AttachCtx *mutt_actx_new                   (void)
+attach/attach.c:197:28:      void       mutt_actx_free                  (AttachCtx **ptr)
+attach/dlg_attach.c:111:36:  void       attach_collapse                 (AttachCtx *actx, Menu *menu)
+attach/dlg_attach.c:511:48:  void       recvattach_extract_pgp_keys     (AttachCtx *actx, Menu *menu)
+attach/dlg_attach.c:538:52:  int        recvattach_pgp_check_traditional(AttachCtx *actx, Menu *menu)
+attach/recvattach.c:67:45:   AttachPtr *current_attachment              (AttachCtx *actx, Menu *menu)
+attach/recvattach.c:81:36:   void       mutt_update_v2r                 (AttachCtx *actx)
+attach/recvattach.c:110:30:  void       mutt_update_tree                (AttachCtx *actx)
+attach/recvattach.c:412:39:  void       mutt_save_attachment_list       (AttachCtx *actx, FILE *fp, bool tag,
+attach/recvattach.c:673:62:  void       pipe_attachment_list            (char *command, AttachCtx *actx,
+attach/recvattach.c:705:39:  void       mutt_pipe_attachment_list       (AttachCtx *actx, FILE *fp, bool tag,
+attach/recvattach.c:754:30:  bool       can_print                       (AttachCtx *actx, Body *top, bool tag)
+attach/recvattach.c:794:42:  void       print_attachment_list           (AttachCtx *actx, FILE *fp, bool tag,
+attach/recvattach.c:864:40:  void       mutt_print_attachment_list      (AttachCtx *actx, FILE *fp, bool tag, Body *top)
+attach/recvattach.c:910:42:  void       recvattach_edit_content_type    (AttachCtx *actx, Menu *menu, Email *e)
+attach/recvattach.c:1045:43: void       mutt_generate_recvattach_list   (AttachCtx *actx, Email *e,
+attach/recvattach.c:1152:30: void       mutt_attach_init                (AttachCtx *actx)
+attach/recvattach.c:1178:41: void       mutt_update_recvattach_menu     (AttachCtx *actx, Menu *menu, bool init)
+compose/compose.c:284:36:    void       gen_attach_list                 (AttachCtx *actx, Body *m, int parent_type, int level)
+compose/compose.c:308:25:    void       update_menu                     (AttachCtx *actx, Menu *menu, bool init)
+compose/functions.c:98:32:   bool       check_count                     (AttachCtx *actx)
+compose/functions.c:345:37:  int        check_attachments               (AttachCtx *actx, ConfigSubset *sub)
+compose/functions.c:450:37:  int        delete_attachment               (AttachCtx *actx, int aidx)
+compose/functions.c:524:50:  void       update_idx                      (Menu *menu, AttachCtx *actx, AttachPtr *ap)
+compose/functions.c:549:57:  void       compose_attach_swap             (Email *e, AttachCtx *actx, int first, int second)
+recvcmd.c:85:34:             bool       check_all_msg                   (AttachCtx *actx, Body *cur, bool err)
+recvcmd.c:109:37:            bool       check_can_decode                (AttachCtx *actx, Body *cur)
+recvcmd.c:126:34:            short      count_tagged                    (AttachCtx *actx)
+recvcmd.c:142:43:            short      count_tagged_children           (AttachCtx *actx, short i)
+recvcmd.c:161:61:            void       mutt_attach_bounce              (Mailbox *m, FILE *fp, AttachCtx *actx, Body *cur)
+recvcmd.c:302:61:            void       mutt_attach_resend              (FILE *fp, Mailbox *m, AttachCtx *actx, Body *cur)
+recvcmd.c:329:52:            AttachPtr *find_common_parent              (AttachCtx *actx, short nattach)
+recvcmd.c:363:38:            int        is_parent                       (short i, AttachCtx *actx, Body *cur)
+recvcmd.c:384:45:            AttachPtr *find_parent                     (AttachCtx *actx, Body *cur, short nattach)
+recvcmd.c:479:69:            void       attach_forward_bodies           (FILE *fp, Email *e, AttachCtx *actx,
+recvcmd.c:662:50:            void       attach_forward_msgs             (FILE *fp, AttachCtx *actx,
+recvcmd.c:792:60:            void       mutt_attach_forward             (FILE *fp, Email *e, AttachCtx *actx,
+recvcmd.c:823:72:            int        attach_reply_envelope_defaults  (Envelope *env, AttachCtx *actx,
+recvcmd.c:1121:37:           void       mutt_attach_mail_sender         (AttachCtx *actx, Body *cur)

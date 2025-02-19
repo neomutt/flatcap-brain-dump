@@ -1,0 +1,28 @@
+imap/command.c:897:36:    $mail_check_recent
+imap/imap.c:959:32:       $sort
+imap/imap.c:969:7:        $sort
+imap/imap.c:999:5:        $sort
+imap/imap.c:1660:32:      $sort
+imap/imap.c:1669:7:       $sort
+imap/imap.c:1686:5:       $sort
+imap/message.c:1807:33:   $delete_untag
+
+maildir/maildir.c:100:36: $mail_check_recent
+maildir/mh.c:198:36:      $mail_check_recent
+maildir/mh.c:673:32:      $sort
+
+mbox/mbox.c:558:32:       $sort
+mbox/mbox.c:561:5:        $sort
+mbox/mbox.c:563:5:        $sort
+mbox/mbox.c:868:36:       $mail_check_recent
+mbox/mbox.c:1189:32:      $sort
+mbox/mbox.c:1190:39:      $use_threads
+mbox/mbox.c:1193:5:       $sort
+mbox/mbox.c:1194:5:       $use_threads
+mbox/mbox.c:1196:5:       $sort
+mbox/mbox.c:1197:5:       $use_threads
+mbox/mbox.c:1818:38:      $mail_check_recent
+
+nntp/newsrc.c:309:32:     $sort
+nntp/newsrc.c:312:5:      $sort
+nntp/newsrc.c:380:5:      $sort

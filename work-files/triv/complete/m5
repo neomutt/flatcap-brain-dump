@@ -1,0 +1,18 @@
+attach/recvattach.c:731:7:   mw_get_field(MUTT_COMP_FILE_SIMPLE,            false, NULL, NULL, NULL, &CompleteFileOps, NULL) != 0)
+external.c:431:7:            mw_get_field(MUTT_COMP_FILE_SIMPLE,            false, NULL, NULL, NULL, &CompleteFileOps, NULL) != 0)
+external.c:601:7:            mw_get_field(MUTT_COMP_FILE_SIMPLE,            false, NULL, NULL, NULL, &CompleteFileOps, NULL) != 0)
+
+alias/alias.c:497:7:         mw_get_field(MUTT_COMP_FILE,                   false, NULL, NULL, NULL, &CompleteMailboxOps, NULL) != 0)
+attach/recvattach.c:303:10:  mw_get_field(MUTT_COMP_FILE,                   false, NULL, NULL, NULL, &CompleteMailboxOps, NULL) != 0) ||
+attach/recvattach.c:484:16:  mw_get_field(MUTT_COMP_FILE,                   false, NULL, NULL, NULL, &CompleteMailboxOps, NULL) != 0) ||
+browser/functions.c:100:18:  mw_get_field(MUTT_COMP_FILE,                   false, NULL, NULL, NULL, &CompleteMailboxOps, NULL);
+browser/functions.c:314:14:  mw_get_field(MUTT_COMP_FILE,                   false, NULL, NULL, NULL, &CompleteMailboxOps, NULL);
+compose/functions.c:1310:8:  mw_get_field(MUTT_COMP_FILE,                   false, NULL, NULL, NULL, &CompleteMailboxOps, NULL) != 0) ||
+compose/functions.c:1420:12: mw_get_field(MUTT_COMP_FILE,                   false, NULL, NULL, NULL, &CompleteMailboxOps, NULL);
+compose/functions.c:1752:8:  mw_get_field(MUTT_COMP_FILE,                   false, NULL, NULL, NULL, &CompleteMailboxOps, NULL) == 0) &&
+envelope/functions.c:230:7:  mw_get_field(MUTT_COMP_FILE,                   false, NULL, NULL, NULL, &CompleteMailboxOps, NULL) != 0)
+imap/browse.c:410:7:         mw_get_field(MUTT_COMP_FILE,                   false, NULL, NULL, NULL, &CompleteMailboxOps, NULL) != 0)
+imap/browse.c:469:7:         mw_get_field(MUTT_COMP_FILE,                   false, NULL, NULL, NULL, &CompleteMailboxOps, NULL) != 0)
+muttlib.c:624:10:            mw_get_field(MUTT_COMP_FILE,                   false, NULL, NULL, NULL, &CompleteMailboxOps, NULL) != 0) ||
+
+gui/curs_lib.c:490:9:        mw_get_field((mailbox ? MUTT_COMP_FILE_MBOX : MUTT_COMP_FILE), multiple, m, files, numfiles, &CompleteMailboxOps, &cdata) != 0)

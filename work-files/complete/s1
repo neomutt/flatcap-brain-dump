@@ -1,0 +1,145 @@
+Hi Simon,
+
+Sorry for the slow reply.
+I've read your email and your code, now.
+
+> getting a list of possible completions
+
+In the future, we might want to display a menu, but for now I think the caller
+only cares about the current match.
+
+> - if the caller decides to use the latter option, there are options to:
+>   - cycle through the options
+>   - add a few letters to the typed text, to refine the list
+
+I think what we need here is a state machine.
+The caller will:
+
+    comp = comp_new(flags)
+        Completion object { str, stem_len, len, flags, state, cur_match, items[] }
+
+    comp_add(comp, string)
+        items += "apfel"
+        items += "apples"
+        items += "apply"
+        items += "banana"
+        CompItem item { string, data, is_match } // optional data
+
+    comp_set_entry(comp, "a")
+        A typed character, saved to 'str', 'len'
+        This will put the completion into state INITIAL
+
+    comp_calc(comp)
+        User presses <tab>
+        state is INITIAL
+            str = "a", len = 1
+            foreach item: does item match str?
+                set item.is_match
+                find common stem
+            common stem is "ap"
+            str = "ap", len = 2, stem_len = 2
+        state = COMMON
+
+    comp_calc(comp)
+        User presses <tab> for second time
+        state is COMMON, so starting at cur_match, find first match
+            str = "apfel", len = 5, cur_match = "apfel"
+        state = MATCH
+
+    comp_calc(comp)
+        User presses <tab> for third time
+        state is MATCH, so starting at cur_match, find first match
+            str = "apples", len = 6, cur_match = "apples"
+        state = MATCH
+
+    comp_calc(comp)
+        User presses <tab> for fourth time
+        state is MATCH, so starting at cur_match, find first match
+            str = "apply", len = 5, cur_match = "apply"
+        state = MATCH
+
+    comp_calc(comp)
+        User presses <tab> for fifth time
+        state is MATCH, so starting at cur_match, find first match
+            no more matches
+        str = "a", len = stem_len, cur_match = NULL
+        state = COMMON
+
+    comp_free(comp)
+        Clean up
+
+If the user changed their text, then comp_set() is called again and the state
+is set back to INITIAL.
+
+> - after the caller is done, there is a cleanup function, which frees the
+>   list and contents accordingly
+
+Yep
+
+> Implementation:
+
+> - I think that having one data list (which I changed to a double linked
+>   list instead of an array)
+
+That'll work, but I think we'll probably want to sort the list at some point.
+Doing that with a linked list will be messy!
+
+@gahr's created an ARRAY class (will be merged soon) that makes things simple.
+
+>   I don't know yet, how to do the "backspacing"
+>   (widening the possible completions) in a smart way...
+
+I think that you comp_set() the new shorter string, which will cause the
+completion to update itself.  All the items are still the same.
+
+> - I haven't looked into the code of neomutt where completion is used at
+>   the moment
+
+A simple case would be :set <tab>  for config variables.
+I'll have a think how to make it simple to debug.
+
+>   so I don't know whether a simple string representation of
+>   a completion term is sufficient...?
+
+I _think_ so.
+Adding a data field to the items would be useful for the caller, too.
+
+> - I haven't looked at how to call external programs (abook, notmuch,
+>   etc) for completion lists.
+
+They shouldn't be your problem.  The caller passes you the data.
+
+> - What about unicode...? I have no idea how to work with unicode strings
+
+I've just had a read up on this.
+To compare two chars we need to know how many bytes they're using.
+The first byte, of a multibyte sequence tells us how many bytes are used.
+
+    https://en.wikipedia.org/wiki/UTF-8#Description
+
+We don't really care about what type of character it is.
+If the lengths match and the bytes match, it's a match.
+
+> - When doing string copying, I noticed that strcpy/strncpy are not
+>   buffer-overflow safe, so I started using strlcpy (BSD) instead.
+
+Oh!  We've implemented our own version in mutt_str_copy().
+Perhaps we should start copying over library functions.
+
+> what linters/code analysis tools do we use
+
+I frequently run clang-format on all the .c files, but not the .h
+The header files tend to benefit from having whitespace for alignment.
+Copy the .clang-format config file from the neomutt repo to your home.
+
+    clang-format -i *.c
+
+Also, I often build with the Address Sanitizer (libasan).
+This detects memory leaks, buffer overruns, use-after-free, etc
+After install, 
+    gcc -fsanitize=address -fno-sanitize-recover=address ...
+
+See also: https://neomutt.org/dev/analysis
+
+Cheers,
+    Rich

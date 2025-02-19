@@ -1,0 +1,6 @@
+compose/attach.c:169:3:  mutt_draw_statusline(win->state.cols, attach_data->compose_format,
+compose/cbar.c:194:3:    mutt_draw_statusline(win, win->state.cols, cbar_data->compose_format,
+index/ibar.c:154:3:      mutt_draw_statusline(win, win->state.cols, ibar_data->status_format,
+pager/dlg_pager.c:521:7: mutt_draw_statusline(priv->pview->win_pbar,
+pager/dlg_pager.c:528:7: mutt_draw_statusline(priv->pview->win_pbar,
+pager/pbar.c:159:3:      mutt_draw_statusline(win, win->state.cols, pbar_data->pager_format,

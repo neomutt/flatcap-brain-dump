@@ -1,0 +1,8 @@
+autocrypt/autocrypt.c:938:11: if ((!mutt_buffer_enter_fname(_("Scan mailbox"), folderbuf, true, m_cur,
+commands.c:887:7:             if (mutt_buffer_enter_fname(prompt, buf, false, NULL, false, NULL, NULL,
+compose/functions.c:597:8:    if ((mutt_buffer_enter_fname(prompt, fname, false, NULL, true, &files,
+compose/functions.c:713:8:    if ((mutt_buffer_enter_fname(prompt, fname, true, shared->mailbox, false,
+compose/functions.c:1834:8:   if ((mutt_buffer_enter_fname(_("Write message to mailbox"), fname, true,
+index/functions.c:855:7:      if (mutt_buffer_enter_fname(cp, folderbuf, true, shared->mailbox, false, NULL,
+index/functions.c:2508:7:     if (mutt_buffer_enter_fname(cp, folderbuf, true, shared->mailbox, false, NULL,
+send/send.c:1889:16:          rc = mutt_buffer_enter_fname(_("Fcc mailbox"), fcc, true, m, false,

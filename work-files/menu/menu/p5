@@ -1,0 +1,5 @@
+attach/recvattach.c:465:11:          menu_redraw(menu);
+index/index.c:602:5:    menu_redraw_full(menu);
+index/index.c:629:7:      menu_redraw_index(menu);
+index/index.c:633:7:      menu_redraw_motion(menu);
+index/index.c:637:7:      menu_redraw_current(menu);

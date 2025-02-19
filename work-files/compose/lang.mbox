@@ -1,0 +1,43 @@
+From rich@flatcap.org Mon Jan  3 02:49:10 2022
+Date: Mon, 3 Jan 2022 02:49:10 +0000
+From: Richard Russon <rich@flatcap.org>
+To: rich@flatcap.org
+Subject: test
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="omahr2wluh5xk3kf"
+Content-Disposition: inline
+User-Agent: NeoMutt/20211029-202-dd195e
+Status: RO
+Content-Length: 85865
+Lines: 3180
+
+--omahr2wluh5xk3kf
+Content-Type: multipart/multilingual; boundary="2zbf6ii77ihlj72c"
+Content-Description: Translations
+Content-Disposition: attachment
+
+--2zbf6ii77ihlj72c
+Content-Type: text/plain; charset=us-ascii
+Content-Language: de
+Content-Disposition: attachment
+
+GERMAN
+
+--2zbf6ii77ihlj72c
+Content-Type: text/plain; charset=us-ascii
+Content-Language: en
+Content-Disposition: attachment
+
+ENGLISH
+
+--2zbf6ii77ihlj72c
+Content-Type: text/plain; charset=us-ascii
+Content-Language: fr
+Content-Disposition: attachment
+
+FRENCH
+
+--2zbf6ii77ihlj72c--
+
+--omahr2wluh5xk3kf--
+

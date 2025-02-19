@@ -1,0 +1,12 @@
+set record = no
+set postpone = no
+set editor="lorem 1 | fmt >> %s"
+
+set sendmail="sendmail.sh"
+set smtp_url=""
+
+macro index,pager <F1> "mrich@flatcap.org<enter>test<enter>"
+macro compose     <F2> "abrowser.c<enter>abrowser.h<enter>acommands.c<enter>acommands.h<enter>aenriched.c<enter>aenriched.h<enter>"
+macro compose     <F3> "HjTjTjT"
+
+# vim: syn=neomuttrc

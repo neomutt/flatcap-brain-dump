@@ -1,0 +1,92 @@
+digraph maildir
+{
+	graph [
+		rankdir="LR"
+		overlap="false"
+		splines="true"
+	]
+
+	node [
+		shape="box"
+		fontsize="12"
+		style="rounded"
+		height="0.2"
+		penwidth="1.0"
+		color="#000000"
+	]
+
+	edge [
+		penwidth="1.0"
+		color="#000000"
+		arrowsize="0.5"
+	]
+
+	// Functions using "struct Maildir"
+	node [ color="#ff0000" ]
+
+	maildir_delayed_parsing
+	maildir_entry_free
+	maildir_entry_new
+	maildir_free
+	maildir_ins_sort
+	maildir_merge_lists
+	maildir_move_to_mailbox
+	maildir_parse_dir
+	maildir_sort
+	md_cmp_inode
+	md_cmp_path
+	mh_read_dir
+	mh_sort_natural
+	mh_update_maildir
+	skip_duplicates
+
+	node [ color="#c0c0c0" ]
+
+	mx_alloc_memory
+	mh_umask
+	mh_valid_message
+	mhs_sequences_free
+	mh_read_sequences
+	maildir_mdata_free
+	maildir_mdata_new
+	maildir_parse_flags
+	maildir_parse_stream
+	maildir_parse_message
+	maildir_mdata_get
+	maildir_update_mtime
+	mhs_check
+
+	maildir_delayed_parsing -> maildir_sort
+	maildir_delayed_parsing -> mh_sort_natural
+	maildir_delayed_parsing -> skip_duplicates
+	maildir_free            -> maildir_entry_free
+	maildir_move_to_mailbox -> maildir_free
+	maildir_parse_dir       -> maildir_entry_new
+	maildir_sort            -> maildir_ins_sort
+	maildir_sort            -> maildir_merge_lists
+	maildir_sort            -> md_cmp_inode
+	maildir_sort            -> md_cmp_path
+	mh_read_dir             -> maildir_delayed_parsing
+	mh_read_dir             -> maildir_free
+	mh_read_dir             -> maildir_move_to_mailbox
+	mh_read_dir             -> maildir_parse_dir
+	mh_read_dir             -> mh_update_maildir
+	mh_sort_natural         -> maildir_sort
+
+	maildir_move_to_mailbox -> mx_alloc_memory
+	mh_read_dir             -> mh_umask
+	mh_read_dir             -> mhs_sequences_free
+	maildir_parse_dir       -> mh_valid_message
+	mh_read_dir             -> mh_read_sequences
+	mh_read_dir             -> maildir_mdata_free
+	mh_read_dir             -> maildir_mdata_new
+	maildir_parse_stream    -> maildir_parse_flags
+	maildir_parse_dir       -> maildir_parse_flags
+	maildir_delayed_parsing -> maildir_parse_flags
+	maildir_parse_message   -> maildir_parse_stream
+	maildir_delayed_parsing -> maildir_parse_message
+	maildir_update_mtime    -> maildir_mdata_get
+	mh_read_dir             -> maildir_mdata_get
+	mh_read_dir             -> maildir_update_mtime
+	mh_update_maildir       -> mhs_check
+}

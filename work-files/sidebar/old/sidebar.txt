@@ -1,0 +1,27 @@
+| Without patch, short_path = no                  | With patch, short_path = no                          | With patch, short_path = yes                    |
+| ----------------------------------------------- | -----------------------------------------------      | ----------------------------------------------- |
+| imaps://imap.1und1.de/                          | imaps://imap.1und1.de/                               | imaps://imap.1und1.de/                          |
+| imaps://imap.1und1.de/filteredINBOX             |     imaps://imap.1und1.de/filteredINBOX              |     filteredINBOX                               |
+| imaps://imap.1und1.de/OpenBSD                   |     imaps://imap.1und1.de/OpenBSD                    |     OpenBSD                                     |
+| imaps://imap.1und1.de/OpenBSD/hackers           |         imaps://imap.1und1.de/OpenBSD/hackers        |         hackers                                 |
+| imaps://imap.1und1.de/OpenBSD/misc              |         imaps://imap.1und1.de/OpenBSD/misc           |         misc                                    |
+| imaps://imap.1und1.de/OpenBSD/ports             |         imaps://imap.1und1.de/OpenBSD/ports          |         ports                                   |
+| imaps://imap.1und1.de/OpenBSD/ports-changes     |         imaps://imap.1und1.de/OpenBSD/ports-changes  |         ports-changes                           |
+| imaps://imap.1und1.de/OpenBSD/source-changes    |         imaps://imap.1und1.de/OpenBSD/source-changes |         source-changes                          |
+| imaps://imap.1und1.de/OpenBSD/tech              |         imaps://imap.1und1.de/OpenBSD/tech           |         tech                                    |
+| OpenBSD                                         | +OpenBSD                                             | +OpenBSD                                        |
+|     OpenBSD/hackers                             |     +OpenBSD/hackers                                 |     hackers                                     |
+|     OpenBSD/misc                                |     +OpenBSD/misc                                    |     misc                                        |
+|     OpenBSD/ports                               |     +OpenBSD/ports                                   |     ports                                       |
+|     OpenBSD/ports-changes                       |     +OpenBSD/ports-changes                           |     ports-changes                               |
+|     OpenBSD/source-changes                      |     +OpenBSD/source-changes                          |     source-changes                              |
+| /                                               | /                                                    | /                                               |
+| /a                                              |     /a                                               |     a                                           |
+| a                                               | a                                                    | a                                               |
+| a/                                              | a/                                                   | a/                                              |
+| a/c                                             |     a/c                                              |     c                                           |
+| a/b/d                                           |     a/b/d                                            |     b/d                                         |
+| a/c/e                                           |     a/c/e                                            |     c/e                                         |
+| b                                               | b                                                    | b                                               |
+| b/c                                             |     b/c                                              |     c                                           |
+| b/a/b/c                                         |     b/a/b/c                                          |     a/b/c                                       |

@@ -1,0 +1,7 @@
+GreetingFormatData greeting_format_str
+
+struct Envelope
+	n	to				real-name		string
+	u	to				user-name		string
+	v	to				first-name		string
+

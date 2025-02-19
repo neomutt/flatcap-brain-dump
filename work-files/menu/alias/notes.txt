@@ -1,0 +1,42 @@
+Alias / Query
+
+A/Q don't store their addresses consistently
+A/Q expandos don't align
+
+A stores Address (Name, Email)
+Q stores Name, Address (NULL, Email)
+
+%n	Num			number
+%f, %f	Flags, Tagged		flags, tagged
+%a	Alias (empty for Q)	alias
+%N	Name			name
+%E	Email Address		email
+%A	Name <Email> address	address
+%c	Comment			comment
+%Y	Tags			tags
+
+All expando callbacks from
+	domain_X (letter)
+to	domain_member
+for better introspection
+
+auto-conversion of old expandos
+	HOW?
+
+Q use PREX to parse query results
+
+new sort methods
+unify expando callbacks
+
+eliminate query_format?
+	HOW?
+
+set alias_format = "%3i %f%t %-15a %-56A | %C%> %Y"
+set query_format = "%3i %t %-25N %-25E | %C%> %Y"
+
+set query_format = "%3i %<a?%f>%t %<a?%-15a >%-25N %-25E | %C%> %Y"
+NO %a always exists, it contains the old Name
+
+need docs for Alias *Tags*
+unify alias tags and groups
+

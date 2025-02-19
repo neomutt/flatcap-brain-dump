@@ -1,0 +1,37 @@
+# "Unknown expando: %%%.*s"
+set index_format = "%<Q?aaa&bbb>"
+
+# "Invalid number: %s"
+set index_format = "%<[99999y?aaa&bbb>"
+
+# "Invalid time period: '%c', must be one of 'ymwdHM'"
+set index_format = "%<[X?aaa&bbb>"
+
+# "Invalid number: %s"
+set index_format = "%99999C"
+
+# "Number is expected"
+set index_format = "%4.C"
+
+# "Invalid number: %s"
+set index_format = "%4.99999C"
+
+# "Unknown expando: %%%.*s"
+set index_format = "%Q"
+
+# "Expando is missing terminator: '%c'"
+set index_format = "%[%a"
+
+# "Padding cannot be used as a condition"
+set index_format = "%<*?aaa&bbb>"
+
+# "Conditional expando is missing '?'"
+set index_format = "%<Maaa&bbb>"
+
+# "Conditional expando is missing '&' or '%c'"
+set index_format = "%<M?aaa"
+
+# "Conditional expando is missing '%c'"
+set index_format = "%<M?aaa&bbb"
+
+# vim: syn=neomuttrc

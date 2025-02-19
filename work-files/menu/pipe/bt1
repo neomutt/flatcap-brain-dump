@@ -1,0 +1,16 @@
+
+- `op_attachment_save()`
+- `mutt_save_attachment_list()`
+- `query_save_attachment()`
+- `mw_get_field("Save to file: ")` -> `buf`
+
+- `AttachFormatDef[]`
+   - stripped down
+   - add expando for `$attach_save_dir`
+
+- `expando_parse(buf, AttachFormatDef)` -> `exp`
+- `expando_render(exp, AttachRenderCallbacks)` -> `path`
+
+- `save_attachment_flowed_helper(path)`
+- `mutt_save_attachment(path)`
+

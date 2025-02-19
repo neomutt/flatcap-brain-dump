@@ -1,0 +1,9 @@
+color header bold      blue    yellow  apple
+color header underline blue    yellow  banana
+color header reverse   default default cherry
+color header underline red     green   damson
+
+uncolor header cherry
+uncolor header banana
+uncolor header apple
+

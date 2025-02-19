@@ -1,0 +1,173 @@
+FgBgAttr(int) - Colors.defs
+mutt_curses_set_color(MT_COLOR_ERROR)
+	-> Colors.defs[MT_COLOR_ERROR] -> FgBgAttr
+	bkgdset(FgBgAttr) OR attrset(FgBgAttr)
+Colours:
+	attachment        index 1  BOLD
+	error             index 3  BOLD
+	hdrdefault        index 5  
+	indicator         index 27 
+	markers           index 2  BOLD
+	message           index 2  BOLD
+	progress          index 16 
+	quoted            index 17 
+	search            index 7  
+	sidebar_divider   index 15 
+	sidebar_highlight index 14 
+	sidebar_new       index 17 
+	status            index 18 
+	tilde             index 12 
+	tree              index 1  
+	underline         index 8  BOLD
+	warning           index 4  BOLD
+
+
+ColorLineList, ColorLine
+	fg(int)
+	bg(int)
+	pair(FgBgAttr)
+List body:
+	Line:
+		Pattern: (@[-a-zA-Z0-9_]+)
+		fg:	  2
+		bg:	  -2
+		pair:	index 8, 
+	Line:
+		Pattern: `[^`]+`
+		fg:	  7
+		bg:	  8
+		pair:	index 13, BOLD 
+	Line:
+		Pattern: /\<\S+\>/
+		fg:	  3
+		bg:	  -2
+		pair:	index 4, BOLD 
+	Line:
+		Pattern: \*\<\S+\>\*
+		fg:	  3
+		bg:	  -2
+		pair:	index 4, BOLD 
+	Line:
+		Pattern: \<_\S+_\>
+		fg:	  3
+		bg:	  -2
+		pair:	index 4, BOLD 
+	Line:
+		Pattern: ^ *[0-9]+\. 
+		fg:	  1
+		bg:	  -2
+		pair:	index 3, BOLD 
+	Line:
+		Pattern: ^ *[-*+] 
+		fg:	  1
+		bg:	  -2
+		pair:	index 3, BOLD 
+	Line:
+		Pattern: ^#\+ .*
+		fg:	  6
+		bg:	  -2
+		pair:	index 2, BOLD 
+	Line:
+		Pattern: <*[-a-z_0-9.]+@[-a-z_0-9.]+>*
+		fg:	  6
+		bg:	  -2
+		pair:	index 2, 
+	Line:
+		Pattern: (ftp|http|https)://[^ ]+
+		fg:	  6
+		bg:	  -2
+		pair:	index 2, 
+List header:
+	Line:
+		Pattern: ^(From|Subject):
+		fg:	  6
+		bg:	  -2
+		pair:	index 2, BOLD 
+List index:
+	Line:
+		Pattern: ~D
+		fg:	  -2
+		bg:	  1
+		pair:	index 10, 
+	Line:
+		Pattern: ~T
+		fg:	  6
+		bg:	  -2
+		pair:	index 2, 
+	Line:
+		Pattern: ~O
+		fg:	  2
+		bg:	  -2
+		pair:	index 8, 
+	Line:
+		Pattern: ~F
+		fg:	  7
+		bg:	  1
+		pair:	index 9, 
+	Line:
+		Pattern: ~N
+		fg:	  2
+		bg:	  -2
+		pair:	index 8, 
+	Line:
+		Pattern: ~v~(~O)
+		fg:	  2
+		bg:	  -2
+		pair:	index 8, BOLD 
+	Line:
+		Pattern: ~v~(~N)
+		fg:	  2
+		bg:	  -2
+		pair:	index 8, BOLD 
+
+
+FgBgAttr(int) - Colors.quotes
+Quotes:
+	level 0: index 17, 
+	level 1: index 19, 
+	level 2: index 20, 
+	level 3: index 21, 
+	level 4: index 22, 
+	level 5: index 23, 
+	level 6: index 24, 
+	level 7: index 25, 
+	level 8: index 26, 
+
+
+ColorList
+	uint32_t fg
+	uint32_t bg
+	short    index -- result of init_pair()
+	short    ref_count
+	# bool ansi
+	# bool overlay
+User:
+	INDEX FG  BG
+	1     5   -2
+	2     6   -2
+	3     1   -2
+	4     3   -2
+	5     79  -2
+	6     4   -2
+	7     -2  2
+	8     2   -2
+	9     7   1
+	10    -2  1
+	11    -2  17
+	12    235 -2
+	13    7   8
+	14    7   238
+	15    8   -2
+	16    7   5
+	17    196 -2
+	18    7   237
+	19    208 -2
+	20    226 -2
+	21    46  -2
+	22    75  -2
+	23    21  -2
+	24    207 -2
+	25    63  -2
+	26    15  -2
+	27    -2  207
+

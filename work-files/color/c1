@@ -1,0 +1,19 @@
+mutt_color_attachments
+mutt_color_body
+mutt_color_headers
+mutt_color_index
+mutt_color_index_author
+mutt_color_index_flags
+mutt_color_index_subject
+mutt_color_index_tags
+mutt_color_status_line
+
+MT_COLOR_ATTACH_HEADERS mutt_color_attachments
+MT_COLOR_BODY           mutt_color_body
+MT_COLOR_HEADER         mutt_color_headers
+MT_COLOR_INDEX          mutt_color_index
+MT_COLOR_INDEX_AUTHOR   mutt_color_index_author
+MT_COLOR_INDEX_FLAGS    mutt_color_index_flags
+MT_COLOR_INDEX_SUBJECT  mutt_color_index_subject
+MT_COLOR_INDEX_TAG      mutt_color_index_tags
+MT_COLOR_STATUS         mutt_color_status_line

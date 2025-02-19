@@ -1,0 +1,6 @@
+Refactor Help Page
+
+The user's unlikely to resize the screen during its use,
+so don't work so hard to keep it perfectly laid out.
+
+Rather than reformat it, minimise the column widths and allow normal wrapping.

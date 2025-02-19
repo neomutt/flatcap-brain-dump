@@ -1,0 +1,57 @@
+IndexFormatData index_format_str
+
+struct Mailbox
+	b	m				mailbox-name		string
+	m	msg_count			message-count		number
+	P	pager_progress			percentage		string
+
+struct Envelope
+	A	reply_to			reply-to		string
+	I	from				initials		string
+	a	from				from			string
+	B	to				list-address		string	optional
+	K	to				list-empty		string	optional
+	H	spam				spam			string	optional
+	i	message_id			message-id		string
+	q	newsgroups			newsgroup		string
+	s	subject				subject			string
+	r	to				to-all			string	optional
+	R	cc				cc-all			string	optional
+	t	to				to			string
+	f	from				from-full		string
+	F	from				sender			string	optional
+	n	from				name			string
+	u	from				username		string
+	v	from				first-name		string
+	W	organization			organization		string	optional
+	x	x_comment_to			x-comment-to		string	optional
+	y	x_label				x-label			string	optional
+	Y	thread				thread-x-label		string
+
+struct Email
+	c	email_size()			size			string
+	C	msgno				number			number
+	d	date_sent			date-format		string
+	D	date_sent			date-format-local	string
+	{	date_sent			-			string		date
+	[	date_sent			-			string		date-local
+	(	received			-			string		date-received-local
+	e	e				thread-number		number
+	E	e				thread-count		number	optional
+	g	tags				tags			string	optional
+	G	tags				tags-transformed	string	optional
+	J	thread				thread-tags		string
+	l	lines				lines			number	optional
+	L	e				from-list		string	optional
+	M	num_hidden			thread-hidden-count	number	optional
+	N	score				score			number	optional
+	O	e				save-folder		string	optional
+	S	e				status-flags		string
+	T	e				to-chars		string
+	X	e				attachment-count	number
+	zs	e				status-flags		string
+	zc	e				crypto-flags		string
+	zt	e				message-flags		string
+	Z	e				combined-flags		string
+	@	e				-			string		dynamic
+

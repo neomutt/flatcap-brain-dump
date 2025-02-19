@@ -1,0 +1,37 @@
+color attachment         $my_attrs $my_fg $my_bg
+color bold               $my_attrs $my_fg $my_bg
+color error              $my_attrs $my_fg $my_bg
+color hdrdefault         $my_attrs $my_fg $my_bg
+color indicator          $my_attrs $my_fg $my_bg
+color italic             $my_attrs $my_fg $my_bg
+color markers            $my_attrs $my_fg $my_bg
+color message            $my_attrs $my_fg $my_bg
+color normal             $my_attrs $my_fg $my_bg
+color options            $my_attrs $my_fg $my_bg
+color progress           $my_attrs $my_fg $my_bg
+color prompt             $my_attrs $my_fg $my_bg
+color search             $my_attrs $my_fg $my_bg
+color sidebar_background $my_attrs $my_fg $my_bg
+color sidebar_divider    $my_attrs $my_fg $my_bg
+color sidebar_flagged    $my_attrs $my_fg $my_bg
+color sidebar_highlight  $my_attrs $my_fg $my_bg
+color sidebar_indicator  $my_attrs $my_fg $my_bg
+color sidebar_new        $my_attrs $my_fg $my_bg
+color sidebar_ordinary   $my_attrs $my_fg $my_bg
+color sidebar_spool_file $my_attrs $my_fg $my_bg
+color sidebar_unread     $my_attrs $my_fg $my_bg
+color signature          $my_attrs $my_fg $my_bg
+color stripe_even        $my_attrs $my_fg $my_bg
+color stripe_odd         $my_attrs $my_fg $my_bg
+color tilde              $my_attrs $my_fg $my_bg
+color tree               $my_attrs $my_fg $my_bg
+color underline          $my_attrs $my_fg $my_bg
+color warning            $my_attrs $my_fg $my_bg
+
+color compose header           $my_attrs $my_fg $my_bg
+color compose security_encrypt $my_attrs $my_fg $my_bg
+color compose security_sign    $my_attrs $my_fg $my_bg
+color compose security_both    $my_attrs $my_fg $my_bg
+color compose security_none    $my_attrs $my_fg $my_bg
+
+# vim: syn=neomuttrc

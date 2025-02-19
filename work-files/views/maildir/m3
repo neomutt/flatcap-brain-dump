@@ -1,0 +1,12 @@
+notmuch/notmuch.c:779:      e = maildir_parse_message(MUTT_MAILDIR, path, false, NULL);
+notmuch/notmuch.c:788:        FILE *fp = maildir_open_find_message(folder, path, &newpath);
+notmuch/notmuch.c:791:          e = maildir_parse_stream(MUTT_MAILDIR, fp, newpath, false, NULL);
+notmuch/notmuch.c:1231:  maildir_gen_flags(suffix, sizeof(suffix), e);
+notmuch/notmuch.c:2160:      e_tmp.edata = maildir_edata_new();
+notmuch/notmuch.c:2161:      maildir_parse_flags(&e_tmp, new_file);
+notmuch/notmuch.c:2163:      maildir_update_flags(m, e, &e_tmp);
+notmuch/notmuch.c:2164:      maildir_edata_free(&e_tmp.edata);
+notmuch/notmuch.c:2267:    bool ok = maildir_sync_mailbox_message(m, e, h);
+notmuch/notmuch.c:2281:        ok = maildir_sync_mailbox_message(m, e, h);
+notmuch/notmuch.c:2361:    msg->fp = maildir_open_find_message(folder, e->path, NULL);
+notmuch/notmuch.c:2492:  .msg_open_new     = maildir_msg_open_new,

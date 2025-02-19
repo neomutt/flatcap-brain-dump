@@ -1,0 +1,79 @@
+Text Expansion / Replacement
+
+Backing file needs to be original text (might not be ours)
+On text_add() or initial read need to measure text
+	taking into account replacements/expansions
+
+Expansions / Replacements -- format_line()
+
+tab -> spaces
+ansi -> stripped, custom markup
+bad chars -> replacement char
+[backspace, underscore]? -> underline/bold?
+unicode spaces -> space
+control chars -> "^a"
+misc unprintable -> \000
+
+64KiB cache is *expanded* text, rest on demand
+flags for which expansions to perform
+config changes could invalidate cache, e.g. $tab_width
+if cache is *expanded*, but could be invalidated
+	then we *always* need the backing file
+on pf_new_file(fp) -- process, cache first 64KiB
+
+---
+
+Apply to
+
+Version
+- neomutt -v
+- :version
+
+Dump
+- neomutt -D
+- neomutt -Q
+- :set [all]
+
+---
+
+neomutt -Q [-O] -> hea, flags
+neomutt -D [-O] -> hea, flags
+	=> dump_config(fp)
+add_ansi/mt_color dependent
+flag for write_ansi?
+url -> custom ansi
+mt_color + additional anso
+
+set_dump(hea, pf, flags)
+	hea (all|changed)
+	flags: none, mt_color is automatic
+
+main
+	hea, pf(stdout)
+	flags: ansi|url dependent on tty
+
+separate flags, GUI might need url but not ansi colours
+
+flat for mt_color -> ansi automatic?
+only need ansi colour for version extras, e.g. urls
+
+---
+
+set_dump(ALL)
+	hea = ALL
+	flags = NONE
+	pf = pf_new(NULL)
+	dump_config(hea, flags, pf)
+	spager(pf)
+
+set_dump(CHANGED)
+	hea = CHANGED
+	flags = NONE
+	pf = pf_new(NULL)
+	dump_config(hea, flags, pf)
+	spager(pf)
+
+dump_config(hea, flags, pf)
+	∀ hea
+	dump_config_neo(he, value, initial, flags, fp)
+

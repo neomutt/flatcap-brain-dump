@@ -1,0 +1,17 @@
+missing from analysis:
+	crypt_format_str()
+	compress_format_str()
+		open-hook
+		close-hook
+		append-hook
+
+new $to_chars vars for
+	TrustFlags
+	mix_format_caps()
+
+alternative to conditional expandos?
+	first-match
+	reduces need for all the various "email from" expandos
+	%{first}              %{next}            %{next}         %{end}
+	         %{full-name}         %{address}         unknown
+

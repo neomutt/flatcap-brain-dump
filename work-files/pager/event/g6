@@ -1,0 +1,20 @@
+  1   NT_ACCOUNT, ///< Account has changed,         #NotifyAccount, #EventAccount
+  2   NT_ALIAS,   ///< Alias has changed,           #NotifyAlias,   #EventAlias
+  3   NT_ALTERN,  ///< Alternates command changed,  #NotifyAlternates
+  4   NT_ATTACH,  ///< Attachment command changed,  #NotifyAttach
+  5   NT_BINDING, ///< Key binding has changed,     #NotifyBinding, #EventBinding
+  6   NT_COLOR,   ///< Colour has changed,          #NotifyColor,   #EventColor
+  7   NT_COMMAND, ///< A Command has been executed, #Command
+  8   NT_COMPOSE, ///< Compose data has changed,    #NotifyCompose
+  9   NT_CONFIG,  ///< Config has changed,          #NotifyConfig,  #EventConfig
+ 10   NT_CONTEXT, ///< Context has changed,         #NotifyContext, #EventContext
+ 11   NT_EMAIL,   ///< Email has changed,           #NotifyEmail,   #EventEmail
+ 12   NT_GLOBAL,  ///< Not object-related,          #NotifyGlobal
+ 13   NT_HEADER,  ///< A header has changed,        #NotifyHeader   #EventHeader
+ 14   NT_INDEX,   ///< Index data has changed,      #NotifyIndex,   #IndexSharedData
+ 15   NT_MAILBOX, ///< Mailbox has changed,         #NotifyMailbox, #EventMailbox
+ 16   NT_MENU,    ///< Menu has changed,
+ 17   NT_PAGER,   ///< Pager data has changed,      #NotifyPager,   #IndexSharedData
+ 18   NT_SCORE,   ///< Email scoring has changed
+ 19   NT_SUBJRX,  ///< Subject Regex has changed,   #NotifySubjRx
+ 20   NT_WINDOW,  ///< MuttWindow has changed,      #NotifyWindow,  #EventWindow

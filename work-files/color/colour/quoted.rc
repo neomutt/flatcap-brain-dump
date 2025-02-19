@@ -1,0 +1,12 @@
+color quoted0 $my_attrs $my_fg $my_bg
+color quoted1 $my_attrs $my_fg $my_bg
+color quoted2 $my_attrs $my_fg $my_bg
+color quoted3 $my_attrs $my_fg $my_bg
+color quoted4 $my_attrs $my_fg $my_bg
+color quoted5 $my_attrs $my_fg $my_bg
+color quoted6 $my_attrs $my_fg $my_bg
+color quoted7 $my_attrs $my_fg $my_bg
+color quoted8 $my_attrs $my_fg $my_bg
+color quoted9 $my_attrs $my_fg $my_bg
+
+# vim: syn=neomuttrc

@@ -1,0 +1,102 @@
+OP_SHOW_LOG_MESSAGES
+	pdata.fname = tempfile;
+	pview.banner = "messages";
+	pview.flags = MUTT_PAGER_LOGS;
+	pview.mode = PAGER_MODE_OTHER;
+
+verify_key()
+	pdata.fname = mutt_buffer_string(&tempfile);
+	pview.banner = title;
+	pview.flags = MUTT_PAGER_NO_FLAGS;
+	pview.mode = PAGER_MODE_OTHER;
+
+dlg_select_pgp_key()
+	pdata.fname = mutt_buffer_string(tempfile);
+	pview.banner = title;
+	pview.flags = MUTT_PAGER_NO_FLAGS;
+	pview.mode = PAGER_MODE_OTHER;
+
+icmd_bind()
+	pdata.fname = tempfile;
+	pview.banner = (bind) ? "bind" : "macro";
+	pview.flags = MUTT_PAGER_NO_FLAGS;
+	pview.mode = PAGER_MODE_OTHER;
+
+icmd_set()
+	pdata.fname = tempfile;
+	pview.banner = "set";
+	pview.flags = MUTT_PAGER_NO_FLAGS;
+	pview.mode = PAGER_MODE_OTHER;
+
+icmd_version()
+	pdata.fname = tempfile;
+	pview.banner = "version";
+	pview.flags = MUTT_PAGER_NO_FLAGS;
+	pview.mode = PAGER_MODE_OTHER;
+
+mutt_help()
+	pdata.fname = mutt_buffer_string(&t);
+	pview.banner = banner;
+	pview.mode = PAGER_MODE_HELP;
+	pview.flags = MUTT_PAGER_RETWINCH | MUTT_PAGER_MARKER | MUTT_PAGER_NSKIP | MUTT_PAGER_NOWRAP;
+
+mutt_invoke_sendmail()
+	pdata.fname = childout;
+	pview.banner = _("Output of the delivery process");
+	pview.flags = MUTT_PAGER_NO_FLAGS;
+	pview.mode = PAGER_MODE_OTHER;
+
+mutt_view_attachment()
+	pdata.fname = mutt_buffer_string(pagerfile);
+	pview.banner = desc;
+	pview.flags = MUTT_PAGER_ATTACHMENT | (is_message ? MUTT_PAGER_MESSAGE : MUTT_PAGER_NO_FLAGS) | ((use_mailcap && entry->xneomuttnowrap) ? MUTT_PAGER_NOWRAP : MUTT_PAGER_NO_FLAGS);
+	pview.mode = PAGER_MODE_ATTACH;
+
+mutt_view_attachment()
+	pdata.ctx = Context;
+	pdata.email = e;
+
+	pdata.actx = actx;
+	pdata.body = a;
+	pdata.fp = fp;
+
+mutt_display_message()
+	pdata.fname = mutt_buffer_string(tempfile);
+	pview.mode = PAGER_MODE_EMAIL;
+	pview.banner = NULL;
+	pview.flags = MUTT_PAGER_MESSAGE | (e->body->nowrap ? MUTT_PAGER_NOWRAP : 0);
+
+mutt_display_message()
+	pdata.ctx = Context;
+	pdata.email = e;
+
+	pview.win_ibar = win_ibar;
+	pview.win_index = win_index;
+	pview.win_pbar = win_pbar;
+	pview.win_pager = win_pager;
+
+PagerData
+PagerView
+
+ctD   25
+emaiD 55
+
+actD  10
+fD    11
+	case OP_BOUNCE_MESSAGE:
+	case OP_RESEND:
+	case OP_COMPOSE_TO_SENDER:
+	case OP_PIPE:
+	case OP_PRINT:
+	case OP_FORWARD_TO_GROUP:
+	case OP_FOLLOWUP:
+	case OP_REPLY:
+	case OP_GROUP_REPLY:
+	case OP_GROUP_CHAT_REPLY:
+	case OP_LIST_REPLY:
+	case OP_FORWARD_MESSAGE:
+	case OP_SAVE:
+bodD  18
+	case OP_CREATE_ALIAS:
+	case OP_DISPLAY_ADDRESS:
+

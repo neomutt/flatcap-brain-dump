@@ -1,0 +1,65 @@
+  * a4837454b NOTES (z2)
+  * 9adfe2b91 add AutoComplete param
+  * 0b64b0d8d unused
+  * 6c76b409f WIP enter
+  * 4af0c8dec notify
+  * 711241b8c use debugging
+  * fe3cbf0b5 enter: add debugging
+  * 245b8d517 enter: ensure buffer is nul-terminated
+  * 5ec8d67cb enter: drop EnterWindowData.first
+  * d02b67fc0 enter: move EnterState.begin
+  * 8ef8f6cd8 enter: move EnterWindow.mbstate
+  * 24ce09e84 buffer: convert mutt_mb_wcstombs()
+ /
+| * 64a1b650d WIP (z1)
+| * aec69397a allow fe0f
+| * 60aaff32d WIP enter
+| * 0e4c3670f --------------------
+| * f1b49febe notify
+| * 5ea43f4bf use debugging
+| * eba345300 enter: add debugging
+| * b8052b7e6 enter: ensure buffer is nul-terminated
+| * b4a9a820c enter: drop EnterWindowData.first
+| * 8c265f1ca enter: move EnterState.begin
+| * 1b6a50ba7 enter: move EnterWindow.mbstate
+|/
+| * 8c2bdc864 buffer: convert mutt_mb_wcstombs() (m1)
+|/
+*   1651e51ab merge: tidy code
+
+aa6c6b346 maildir: fix error with <sync-mailbox> mbsync
+
+... 797 commits
+
+84e3cf83d menu: allow the user to quit generic menus
+
+2b2579144 enter: factor out functions
+992db44c5 enter: factor out self_insert
+07db02ff5 enter: use wdata
+18dab2982 enter: create wdata
+c2b469324 enter: add functions dispatcher
+
+  * 24f574047 WIP mutt_mb_wcstombs (e1)
+  * 49f6e283e imap_complete: Buffer param
+  * b5c479ffa nntp_complete: Buffer param
+  * 3738ae5bf mutt_complete: Buffer param
+  * 48fef9f25 mutt_command_complete: Buffer param
+  * a01e32f8a mutt_var_value_complete: Buffer param
+  * a5cc24064 dlg_select_history: Buffer param
+  * 898161c8e mutt_hist_complete: Buffer param
+  * d531cb623 mutt_nm_tag_complete: Buffer param
+  * 74aad2c2d mutt_nm_query_complete: Buffer param
+  * 13c81051f mutt_label_complete: Buffer param
+  * 710f43a0d dlg_select_pattern: Buffer param
+  * de48128fe alias_complete: Buffer param
+  * 23f13e61e alias_complete: Buffer bestname
+  * 4a6e5a66d alias_complete: single exit
+  * ab0b7cd1c rename functions for clarity
+  * f60522e9c refactor mutt_enter_string_full()
+  * 9a5e9fc78 refactor mutt_select_file()
+ /
+| * 31f5ed5e5 conv2 (e2)
+| * 6b1f65633 WIP mutt_mb_wcstombs
+| * 285482364 buffer: convert mutt_enter_string_full()
+|/
+* d60b4ed70 tidy code

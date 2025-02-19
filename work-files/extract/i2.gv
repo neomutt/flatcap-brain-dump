@@ -1,0 +1,42 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+	node [ fillcolor="#ffc0c0" ]
+	parse_set
+
+	node [ fillcolor="#ffffff" ]
+	execute_commands -> mutt_parse_rc_line
+	mutt_extract_token -> myvar_get
+	mutt_init -> execute_commands
+	mutt_init -> source_rc
+	mutt_parse_rc_buffer -> mutt_extract_token
+	mutt_parse_rc_buffer -> parse_set
+	mutt_parse_rc_buffer -> parse_source
+	mutt_parse_rc_line -> mutt_parse_rc_buffer
+	mutt_parse_rc_line_cwd -> mutt_parse_rc_line
+	parse_set -> mutt_extract_token
+	parse_set -> set_dump
+	parse_source -> mutt_extract_token
+	parse_source -> source_rc
+	source_rc -> mutt_parse_rc_buffer
+
+}

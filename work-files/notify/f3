@@ -1,0 +1,18 @@
+char *                buf
+size_t                buflen
+int                   col
+CompletionFlags       flags
+bool                  multiple
+struct Mailbox *      m
+char ***              files
+int *                 numfiles
+struct EnterState *   state
+
+enum EnterRedrawFlags redraw
+bool                  pass
+bool                  first
+int                   ch
+enum HistoryClass     hclass
+wchar_t *             tempbuf
+size_t                templen
+

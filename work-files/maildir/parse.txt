@@ -1,0 +1,67 @@
+
+maildir_mbox_open()
+	maildir_read_dir(new)
+	maildir_read_dir(cur)
+
+maildir_read_dir()
+	maildir_parse_dir()
+	maildir_delayed_parsing()
+	maildir_move_to_mailbox()
+
+maildir_parse_dir()
+	∀ file
+		email_new()
+		maildir_parse_flags()
+		ARRAY_ADD() -> EA
+
+maildir_delayed_parsing()
+	∀ EA
+		gen hcache key
+		mutt_hcache_fetch()
+		maildir_parse_flags()
+	or
+		maildir_parse_message()
+		mutt_hcache_store()
+
+maildir_move_to_mailbox()
+	∀ EA
+		E -> M->emails[]
+		free(EA)
+
+maildir_mbox_check_stats()
+	maildir_check_dir(new)
+	maildir_check_dir(cur)
+
+maildir_check_dir()
+	∀ file
+		maildir_parse_flags()
+		update M
+
+maildir_mbox_check()
+	check timestame new
+	check timestame cur
+	EA += maildir_parse_dir(new)
+	EA += maildir_parse_dir(cur)
+	∀ EA
+		maildir_canon_filename()
+		hash(path)
+	∀ M->emails[]
+		maildir_update_flags()
+	maildir_delayed_parsing()
+	maildir_move_to_mailbox()
+
+maildir_mbox_sync()
+	maildir_mbox_check()
+	∀ M->emails[]
+		maildir_sync_mailbox_message()
+
+maildir_sync_mailbox_message()
+	del -> mutt_hcache_delete_record()
+	changed -> maildir_sync_message()
+	changed -> mutt_hcache_store()
+
+maildir_sync_message()
+	changed -> maildir_rewrite_message()
+	or
+	rename/move file
+

@@ -1,0 +1,8 @@
+hcache_open
+hcache_close
+hcache_fetch
+hcache_store
+hcache_delete_record
+
+header_cache
+maildir_header_cache_verify

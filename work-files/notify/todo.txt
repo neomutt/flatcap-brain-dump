@@ -1,0 +1,51 @@
+notify
+
+change the observers to list what they want to listen for
+this will reduce the amount of stray notifications
+
+	notify_observer_add(N->notify, NT_ANY, NT_SUB_ANY)
+
+is filtering the subtype TOO specific? YES
+
+is this worthwhile?
+
+won't most observers be listening for several types?
+18 observers
+	alias_data_observer            NT_ALIAS
+	ctx_mailbox_observer           NT_MAILBOX
+	debug_notify_observer          NT_ALL
+	dialog_config_observer         NT_CONFIG
+	helpbar_observer               NT_BINDING|NT_COLOR|NT_CONFIG|NT_WINDOW
+	mailbox_index_observer         NT_MAILBOX
+	mutt_abort_key_config_observer NT_CONFIG
+	mutt_dlgindex_observer         NT_CONFIG
+	mutt_dlg_compose_observer      NT_CONFIG
+	mutt_dlg_dopager_observer      NT_CONFIG
+	mutt_dlg_rootwin_observer      NT_CONFIG
+	mutt_hist_observer             NT_CONFIG
+	mutt_log_observer              NT_CONFIG
+	mutt_menu_color_observer       NT_CONFIG
+	mutt_menu_config_observer      NT_CONFIG
+	mutt_reply_observer            NT_CONFIG
+	sb_insertion_observer          NT_WINDOW
+	sb_observer                    NT_COLOR|NT_COMMAND|NT_CONFIG|NT_MAILBOX|NT_WINDOW
+
+use a bitfield instead
+limits number of top-level types to 32?
+probably enough
+currently 11 top-levels
+	NT_ACCOUNT
+	NT_ALIAS
+	NT_BINDING
+	NT_COLOR
+	NT_COMMAND
+	NT_CONFIG
+	NT_CONTEXT
+	NT_EMAIL
+	NT_GLOBAL
+	NT_MAILBOX
+	NT_WINDOW
+
+alternatively, the backends register *many* observers
+one for each top-level type
+

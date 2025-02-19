@@ -1,0 +1,24 @@
+" Ref: pgp_command_format_str() in ncrypt/pgpinvoke.c
+call s:escapesConditionals('PgpCommandFormat', '[afprs]', 0, 1)
+" Defines: muttrcPgpCommandFormatEscapes, muttrcPgpCommandFormatConditionals
+
+syntax region muttrcPgpCommandFormatString contained skipwhite keepend start=+"+ skip=+\\"+ end=+"+ contains=muttrcPgpCommandFormatEscapes,muttrcPgpCommandFormatConditionals,muttrcVariable,muttrcFormatErrors nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+syntax region muttrcPgpCommandFormatString contained skipwhite keepend start=+'+ skip=+\\'+ end=+'+ contains=muttrcPgpCommandFormatEscapes,muttrcPgpCommandFormatConditionals,muttrcVariable,muttrcFormatErrors nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+
+syntax match muttrcVarEqualsPgpCommandFormat contained skipwhite "=" nextgroup=muttrcPgpCommandFormatString
+
+syntax keyword muttrcVarString contained skipwhite
+	\ pgp_clear_sign_command pgp_decode_command pgp_decrypt_command pgp_encrypt_only_command
+	\ pgp_encrypt_sign_command pgp_export_command pgp_get_keys_command pgp_import_command
+	\ pgp_list_pubring_command pgp_list_secring_command pgp_sign_command pgp_verify_command
+	\ pgp_verify_key_command
+	\ nextgroup=muttrcVarEqualsPgpCommandFormat
+
+highlight def link muttrcPgpCommandFormatConditionals muttrcFormatConditionals2
+highlight def link muttrcPgpCommandFormatEscapes      muttrcEscape
+highlight def link muttrcPgpCommandFormatString       muttrcString
+
+" config             base-name        conditionals                       escapes                       format-string                var-equals
+" pgp_command_format PgpCommandFormat muttrcPgpCommandFormatConditionals muttrcPgpCommandFormatEscapes muttrcPgpCommandFormatString muttrcVarEqualsPgpCommandFormat
+
+" vim: syntax=vim

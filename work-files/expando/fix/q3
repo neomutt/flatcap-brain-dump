@@ -1,0 +1,3 @@
+set collapse_all = yes
+set sort = threads
+set index_format = '%<M?\<%03M\>&XXXXX>'

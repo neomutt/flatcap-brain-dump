@@ -1,0 +1,60 @@
+## sidebar_short_path=NO sidebar_folder_indent=NO
+
+```
+| MASTER                                        | SIDEBAR
+
+| INBOX                                         | imap://apple@flatcap.org:143/INBOX
+| abbot                                         | imap://apple@flatcap.org:143/abbot
+| abbot.achebe                                  | imap://apple@flatcap.org:143/abbot.achebe
+| abbot.awlinson                                | imap://apple@flatcap.org:143/abbot.awlinson
+| imap://banana@flatcap.org/INBOX               | imap://banana@flatcap.org/INBOX
+| imap://banana@flatcap.org/banker              | imap://banana@flatcap.org/banker
+| imap://banana@flatcap.org/banker.butterworth  | imap://banana@flatcap.org/banker.butterworth
+| imap://banana@flatcap.org/banker.byrum        | imap://banana@flatcap.org/banker.byrum
+```
+
+## sidebar_short_path=NO sidebar_folder_indent=YES
+
+```
+| MASTER                                        | SIDEBAR
+
+| INBOX                                         | imap://apple@flatcap.org:143/INBOX
+| abbot                                         | imap://apple@flatcap.org:143/abbot
+|   abbot.achebe                                |   imap://apple@flatcap.org:143/abbot.achebe
+|   abbot.awlinson                              |   imap://apple@flatcap.org:143/abbot.awlinson
+| imap://banana@flatcap.org/INBOX               | imap://banana@flatcap.org/INBOX
+| imap://banana@flatcap.org/banker              | imap://banana@flatcap.org/banker
+| imap://banana@flatcap.org/banker.butterworth  |   imap://banana@flatcap.org/banker.butterworth
+| imap://banana@flatcap.org/banker.byrum        |   imap://banana@flatcap.org/banker.byrum
+```
+
+## sidebar_short_path=YES sidebar_folder_indent=NO
+
+```
+| MASTER       | SIDEBAR
+
+| INBOX        | INBOX
+| abbot        | abbot
+| achebe       | achebe
+| awlinson     | awlinson
+| INBOX        | INBOX
+| banker       | banker
+| butterworth  | butterworth
+| byrum        | byrum
+```
+
+## sidebar_short_path=YES sidebar_folder_indent=YES
+
+```
+| MASTER       | SIDEBAR
+
+| INBOX        | INBOX
+| abbot        | abbot
+|   achebe     |   achebe
+|   awlinson   |   awlinson
+| INBOX        | INBOX
+| banker       | banker
+| butterworth  |   butterworth
+| byrum        |   byrum
+```
+

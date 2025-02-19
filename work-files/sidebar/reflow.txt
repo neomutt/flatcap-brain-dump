@@ -1,0 +1,38 @@
+Window Reflowing
+
+  A─(fix)───────────────────────────────────────────────────────────┐
+  │                                                                 │
+  │  B─(min)───────────────────┐  C─(fix)───────┐  D─(max)───────┐  │
+  │  │                         │  │             │  │             │  │
+  │  │  E─(fix)─┐  F─(fix)──┐  │  │  G─(fix)─┐  │  │  H─(fix)─┐  │  │
+  │  │  │       │  │ CHANGE │  │  │  │       │  │  │  │       │  │  │
+  │  │  │       │  │ INVIS  │  │  │  │       │  │  │  │       │  │  │
+
+
+if (F) becomes invisible, then:
+- (B) shrinks
+- (C), (G) move
+- (D) expands
+
+Reflowing a Window doesn't change the window itself, just its children
+(F) changes, so need to reflow from (A)
+Recurse tree, depth first.  Return `true` if WA_REFLOW or MIN
+Stop ascending at FIX or MAX (their size is determined by their parents)
+(A)'s parents cannot be affected by changes to (F)
+
+
+
+
+
+
+
+
+
+
+
+
+
+syn match grey "\v<(min|fix|max)>"
+syn match green "[─│┐]"
+
+

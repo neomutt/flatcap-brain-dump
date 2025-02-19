@@ -1,0 +1,31 @@
+StatusFormatData status_format_str
+
+Global
+	h	ShortHostname			hostname		string	optional
+	s	sort				sort			string
+	S	sort_aux			sort-aux		string
+	T	use_threads			use-threads		string
+	v	mutt_make_version()		version			string
+
+struct MenuStatusLineData
+	P	menu->top			percentage		number
+
+struct IndexSharedData
+	b	mutt_mailbox_check()		unread-count		number	optional
+	d	m->msg_deleted			deleted-count		number	optional
+	D	m->name				description		string
+	f	m->realpath			mailbox-path		string
+	F	m->msg_flagged			flagged-count		number	optional
+	l	m->size				mailbox-size		number	optional
+	L	mv->vsize			limit-size		number	optional
+	m	m->msg_count			message-count		number	optional
+	M	m->vcount			limit-count		number	optional
+	n	m->msg_new			new-count		number	optional
+	o	m->unread			old-count		number	optional
+	p	mutt_num_postponed()		postponed-count		number	optional
+	r	m->readonly			readonly		number	bool,optional
+	R	m->msg_count			read-count		number	optional
+	t	m->msg_tagged			tagged-count		number	optional
+	u	m->msg_unread			unread-count		number	optional
+	V	mv->pattern			limit-pattern		string	optional
+

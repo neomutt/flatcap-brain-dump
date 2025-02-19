@@ -1,0 +1,69 @@
+Colours
+
+General
+    existing
+        stripe_odd
+        stripe_even
+    new
+        comment
+        debug          log level, etc
+        enum            bool, enum, menu name
+        function        function, command
+        heading         :version, verify certificate	(default bold)
+        identifier      config option, colour object
+        number          number
+        operator        =, +=, keybinding
+        string          "string", 'c'
+
+Log Messages
+    debug
+    message     existing
+    warning     existing
+    error       existing
+    timestamp?
+
+Version
+    version             ansi cyan
+    heading (bold)
+    enabled             ansi green
+    disabled            ansi red
+
+Set
+    comment
+    function    command / function
+    identifier  config-option
+    operator    equals, etc
+    string
+    enum
+    number
+
+Bind
+    function    bind
+    enum        menu
+    operator    keybinding
+    function    command / function
+    comment     description
+
+Macro
+    function    macro
+    enum        menu
+    operator    keybinding
+    string      macro-text
+    string      description
+
+Help
+    bind:  same as Bind  (without leading "bind  [menu]")
+    macro: same as Macro (without leading "macro [menu]")
+    unbound: same as Bind (without leading "bind [menu] keybinding")
+    message flags: same as Set, plus
+        string  character
+        string  description?
+
+Colour
+    comment
+    function        color
+    identifier      colour object
+    ???             attributes
+    ???             color (simple, palette, rgb)
+    ansi            swatch
+

@@ -1,0 +1,15 @@
+add abort to history dialog?
+	pattern
+	:bind et al?
+	any others?
+timeout clear msgwin?
+alloc/free dialog priv data
+	=> separate file?
+	no internal allocs, so no
+	just calloc/free
+	or let Menu free it
+		means creating a mdata_free function
+
+factor 1000 out of
+	3 * timeout(1000)?
+

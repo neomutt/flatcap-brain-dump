@@ -1,0 +1,10 @@
+commands.c:890:7:             mutt_enter_fname(prompt,                     buf,       false, NULL,            false, NULL,   NULL,      MUTT_SEL_NO_FLAGS)
+
+compose/functions.c:420:8:    mutt_enter_fname(prompt,                     fname,     false, NULL,            true,  &files, &numfiles, MUTT_SEL_MULTI)
+
+autocrypt/autocrypt.c:968:11: mutt_enter_fname("Scan mailbox",             folderbuf, true,  m,               false, NULL,   NULL,      MUTT_SEL_NO_FLAGS)
+compose/functions.c:535:8:    mutt_enter_fname(prompt,                     fname,     true,  shared->mailbox, false, NULL,   NULL,      MUTT_SEL_NO_FLAGS)
+compose/functions.c:1646:8:   mutt_enter_fname("Write message to mailbox", fname,     true,  shared->mailbox, false, NULL,   NULL,      MUTT_SEL_NO_FLAGS)
+index/functions.c:844:7:      mutt_enter_fname(cp,                         folderbuf, true,  shared->mailbox, false, NULL,   NULL,      MUTT_SEL_NO_FLAGS)
+index/functions.c:2817:7:     mutt_enter_fname(cp,                         folderbuf, true,  shared->mailbox, false, NULL,   NULL,      MUTT_SEL_NO_FLAGS)
+send/send.c:1897:16:          mutt_enter_fname("Fcc mailbox",              fcc,       true,  m,               false, NULL,   NULL,      MUTT_SEL_NO_FLAGS)

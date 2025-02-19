@@ -1,0 +1,47 @@
+Expando Requirements
+
+Definition
+	CondBool, CondDate, Expando, Padding
+
+DID/UID
+	CondBool, CondDate, Expando
+
+Format
+	Container, Expando
+
+Start/End
+	CondBool	Expando letter/string		Not nec
+	CondDate	NO
+	Condition	NO
+	Container	NO
+	Expando		Expando letter/string		dates/hooks
+	Padding		Pad string			required
+	Text		Text				required
+
+Private Data
+	CondDate	count, period			NodeCondDatePrivate
+	Expando		color, has_tree			NodeExpandoPrivate
+	Padding		pad_type			NodePaddingPrivate
+
+Children
+	Condition	cond, true, false
+	Container	n
+	Padding		left, right
+
+New
+	node_condition_new()
+	node_condbool_new()
+	node_conddate_new()
+	node_container_new()
+	node_expando_new()
+	node_padding_new()
+	node_text_new()
+
+Parse
+	node_condbool_parse()
+	node_conddate_parse()
+	node_condition_parse()
+	node_expando_parse()
+	node_padding_parse()
+	node_text_parse()
+

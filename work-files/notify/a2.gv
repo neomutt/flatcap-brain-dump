@@ -1,0 +1,140 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ff0000" color="#ffffff" ]
+	mutt_getch
+	mutt_getch_timeout
+	km_dokey
+
+	node [ fillcolor="#ffffff" color="#000000" ]
+	EIGHT -> mutt_buffer_enter_fname
+	FIFTY_TWO -> mutt_buffer_get_field
+	TWENTY_SEVEN -> mutt_any_key_to_continue
+	external_pager -> km_dokey
+	external_pager -> mutt_unget_event
+	format_line -> mutt_addwch
+	generic_tokenize_push_string -> km_get_table
+	help_lookup_function -> km_get_table
+	is_function -> km_get_table
+	km_bind -> km_bind_err
+	km_bind_err -> km_expand_key
+	km_dokey -> generic_tokenize_push_string
+	km_dokey -> imap_keepalive
+	km_dokey -> km_get_table
+	km_dokey -> mutt_getch
+	km_dokey -> mutt_getch_timeout
+	km_dokey -> mutt_get_func
+	km_dokey -> mutt_unget_event
+	km_dokey -> mutt_unget_string
+	km_dokey -> retry_generic
+	km_error_key -> km_dokey
+	km_error_key -> km_expand_key
+	km_error_key -> km_find_func
+	km_error_key -> mutt_flush_unget_to_endcond
+	km_error_key -> mutt_unget_event
+	km_expand_key -> km_keyname
+	make_help -> km_expand_key
+	make_help -> km_find_func
+	menu_dialog_dokey -> mutt_getch
+	menu_dialog_dokey -> mutt_unget_event
+	menu_jump -> mutt_unget_event
+	menu_loop -> km_dokey
+	menu_loop -> km_error_key
+	menu_loop -> mutt_flush_macro_to_endcond
+	menu_loop -> mutt_what_key
+	mutt_account_getpass -> mutt_get_field_unbuffered
+	mutt_account_getuser -> mutt_get_field_unbuffered
+	mutt_any_key_to_continue -> mutt_clear_error
+	mutt_body_handler -> km_expand_key
+	mutt_body_handler -> km_find_func
+	mutt_buffer_enter_fname -> mutt_buffer_select_file
+	mutt_buffer_enter_fname -> mutt_getch
+	mutt_buffer_enter_fname -> mutt_unget_event
+	mutt_buffer_get_field -> mutt_enter_state_free
+	mutt_buffer_get_field -> mutt_enter_state_new
+	mutt_buffer_get_field -> mutt_enter_string_full
+	mutt_buffer_get_field -> mutt_resize_screen
+	mutt_buffer_select_file -> mutt_unget_event
+	mutt_change_flag -> mutt_getch
+	mutt_command_complete -> km_get_table
+	mutt_enter_string_full -> km_dokey
+	mutt_enter_string_full -> mutt_getch
+	mutt_getch -> mutt_query_exit
+	mutt_getch -> mutt_unget_event
+	mutt_get_field_unbuffered -> mutt_buffer_get_field
+	mutt_help -> km_get_table
+	mutt_index_menu -> km_dokey
+	mutt_index_menu -> km_error_key
+	mutt_index_menu -> mutt_flush_macro_to_endcond
+	mutt_init_abort_key -> parsekeys
+	mutt_keys_free -> mutt_keymaplist_free
+	mutt_multi_choice -> mutt_getch
+	mutt_multi_choice -> mutt_getch_timeout
+	mutt_opts_free -> mutt_keys_free
+	mutt_pager -> km_dokey
+	mutt_pager -> km_error_key
+	mutt_parse_bind -> get_op
+	mutt_parse_bind -> km_bindkey
+	mutt_parse_bind -> km_expand_key_string
+	mutt_parse_bind -> km_get_table
+	mutt_parse_bind -> mutt_extract_token
+	mutt_parse_bind -> parse_keymap
+	mutt_parse_bind -> try_bind
+	mutt_parse_exec -> get_op
+	mutt_parse_exec -> km_get_table
+	mutt_parse_exec -> menu_get_current_type
+	mutt_parse_exec -> mutt_extract_token
+	mutt_parse_exec -> mutt_push_macro_event
+	mutt_parse_macro -> km_bind
+	mutt_parse_macro -> km_expand_key_string
+	mutt_parse_macro -> mutt_extract_token
+	mutt_parse_macro -> parse_keymap
+	mutt_parse_push -> generic_tokenize_push_string
+	mutt_parse_push -> mutt_extract_token
+	mutt_parse_unbind -> km_bindkey
+	mutt_parse_unbind -> km_expand_key_string
+	mutt_parse_unbind -> km_unbind_all
+	mutt_parse_unbind -> mutt_extract_token
+	mutt_parse_unbind -> parse_menu
+	mutt_query_exit -> mutt_clear_error
+	mutt_query_exit -> mutt_getch_timeout
+	mutt_query_exit -> mutt_yesorno
+	mutt_unget_string -> mutt_unget_event
+	mutt_what_key -> km_keyname
+	mutt_what_key -> mutt_clear_error
+	mutt_yesorno -> mutt_getch
+	mutt_yesorno -> mutt_getch_timeout
+	mx_mbox_sync -> km_expand_key
+	mx_mbox_sync -> km_find_func
+	my_addwch -> mutt_addwch
+	op_jump -> mutt_unget_event
+	op_mark_msg -> km_bind
+	op_what_key -> mutt_what_key
+	pgp_class_valid_passphrase -> mutt_get_field_unbuffered
+	raw_socket_poll -> mutt_query_exit
+	retry_generic -> km_dokey
+	retry_generic -> mutt_unget_event
+	smime_class_valid_passphrase -> mutt_get_field_unbuffered
+
+}
+

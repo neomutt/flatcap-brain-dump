@@ -1,0 +1,34 @@
+expand options for simplicity
+
+"PGP/M(i)ME"
+"(i)nline"
+
+"PGP (s)ign, sign (a)s, %s format, (c)lear, or (o)ppenc mode off?"
+"saico"
+
+"PGP (e)ncrypt, (s)ign, sign (a)s, (b)oth, %s format, (c)lear, or (o)ppenc mode?"
+"esabico"
+
+"PGP (e)ncrypt, (s)ign, sign (a)s, (b)oth, %s format, or (c)lear?"
+"esabic"
+
+--------------------------------------------------------------------------------
+
+"PGP (s)ign, sign (a)s, PGP/M(i)ME format, (c)lear, or (o)ppenc mode off?"
+"saico"
+
+"PGP (e)ncrypt, (s)ign, sign (a)s, (b)oth, PGP/M(i)ME format, (c)lear, or (o)ppenc mode?"
+"esabico"
+
+"PGP (e)ncrypt, (s)ign, sign (a)s, (b)oth, PGP/M(i)ME format, or (c)lear?"
+"esabic"
+
+"PGP (s)ign, sign (a)s, (i)nline format, (c)lear, or (o)ppenc mode off?"
+"saico"
+
+"PGP (e)ncrypt, (s)ign, sign (a)s, (b)oth, (i)nline format, (c)lear, or (o)ppenc mode?"
+"esabico"
+
+"PGP (e)ncrypt, (s)ign, sign (a)s, (b)oth, (i)nline format, or (c)lear?"
+"esabic"
+

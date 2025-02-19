@@ -1,0 +1,9 @@
+set postpone = no
+set postponed = "p.mbox"
+set recall = yes
+# set recall = ask-yes
+set debug_file = "~/.neomuttdebug"
+set debug_level = 2
+set editor = false
+
+# vim: syn=neomuttrc

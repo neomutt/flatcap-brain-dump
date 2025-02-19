@@ -1,0 +1,10 @@
+AliasFormatData alias_format_str
+
+struct AliasView
+	a	alias->name			name			string
+	c	alias->comment			comment			string
+	f	is_deleted			flags			string
+	n	num				number			number
+	r	alias->addr			address			string
+	t	is_tagged			tagged			string	bool
+

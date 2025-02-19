@@ -1,0 +1,50 @@
+ncrypt/dlg_gpgme.c:739:5: mutt_qsort_r(key_table, i, sizeof(struct CryptKeyInfo *), f, &sort_reverse);
+	crypt_compare_address_qsort
+	crypt_compare_date_qsort
+	crypt_compare_keyid_qsort
+	crypt_compare_trust_qsort
+	c_pgp_sort_keys / bool
+
+ncrypt/dlg_pgp.c:661:5:   mutt_qsort_r(key_table, i, sizeof(struct PgpUid *), f, &sort_reverse);
+	pgp_compare_address_qsort
+	pgp_compare_date_qsort
+	pgp_compare_keyid_qsort
+	pgp_compare_trust_qsort
+	c_pgp_sort_keys / bool
+
+alias/sort.c:172:3:       ARRAY_SORT(ava, alias_get_sort_function(c_sort_alias), &sort_reverse);
+	alias_sort_address
+	alias_sort_name
+	alias_sort_unsort
+	RSORT / SortAlias / bool
+
+sidebar/sort.c:197:3:     ARRAY_SORT(&wdata->entries, fn, &sort_reverse);
+	sb_sort_count
+	sb_sort_desc
+	sb_sort_flagged
+	sb_sort_order
+	sb_sort_path
+	sb_sort_unread
+	SbSortReverse / bool
+
+mutt_thread.c:866:9:      mutt_qsort_r((void *) array, i, sizeof(struct MuttThread *), compare_threads, tctx);
+	compare_threads
+	struct ThreadsContext *tctx
+
+sort.c:416:5:             mutt_qsort_r((void *) m->emails, m->msg_count, sizeof(struct Email *),
+	compare_email_shim
+	struct EmailCompare *cmp
+
+browser/sort.c:216:3:     ARRAY_SORT(&state->entry, browser_compare, &c_sort_browser);
+	browser_compare
+		$browser_sort_dirs_first
+		$sort_browser
+	browser_sort_count
+	browser_sort_count_new
+	browser_sort_date
+	browser_sort_desc
+	browser_sort_order
+	browser_sort_size
+	browser_sort_subject
+	c_sort_browser / bool
+

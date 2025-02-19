@@ -1,0 +1,407 @@
+bind alias <Space>  tag-entry           # tag the current entry
+bind alias d        delete-entry        # delete the current entry
+bind alias l        limit               # show only messages matching a pattern
+bind alias m        mail                # compose a new mail message
+bind alias o        sort-alias          # sort messages
+bind alias O        sort-alias-reverse  # sort messages in reverse order
+bind alias q        exit                # exit this menu
+bind alias T        tag-pattern         # tag non-hidden messages matching a pattern
+bind alias u        undelete-entry      # undelete the current entry
+bind alias ^T       untag-pattern       # untag non-hidden messages matching a pattern
+
+bind attach <Enter>        view-attach            # view attachment using mailcap entry if necessary
+bind attach <Esc>e         resend-message         # use the current message as a template for a new one
+bind attach <Esc>P         check-traditional-pgp  # check for classic PGP
+bind attach <KeypadEnter>  view-attach            # view attachment using mailcap entry if necessary
+bind attach <Return>       view-attach            # view attachment using mailcap entry if necessary
+bind attach b              bounce-message         # remail a message to another user
+bind attach d              delete-entry           # delete the current entry
+bind attach f              forward-message        # forward a message with comments
+bind attach g              group-reply            # reply to all recipients
+bind attach h              display-toggle-weed    # display message and toggle header weeding
+bind attach L              list-reply             # reply to specified mailing list
+bind attach m              view-mailcap           # force viewing of attachment using mailcap
+bind attach p              print-entry            # print the current entry
+bind attach q              exit                   # exit this menu
+bind attach r              reply                  # reply to a message
+bind attach s              save-entry             # save message/attachment to a mailbox/file
+bind attach T              view-text              # view attachment as text
+bind attach u              undelete-entry         # undelete the current entry
+bind attach v              collapse-parts         # toggle display of subparts
+bind attach ^E             edit-type              # edit attachment content type
+bind attach ^F             forget-passphrase      # wipe passphrases from memory
+bind attach ^K             extract-keys           # extract supported public keys
+bind attach |              pipe-entry             # pipe message/attachment to a shell command
+
+bind autocrypt a  toggle-active          # toggle the current account active/inactive
+bind autocrypt c  create-account         # create a new autocrypt account
+bind autocrypt D  delete-account         # delete the current account
+bind autocrypt p  toggle-prefer-encrypt  # toggle the current account prefer-encrypt flag
+bind autocrypt q  exit                   # exit this menu
+
+bind compose #              ungroup-attachment   # ungroup 'multipart' attachment
+bind compose %              group-related        # group tagged attachments as 'multipart/related'
+bind compose &              group-alternatives   # group tagged attachments as 'multipart/alternative'
+bind compose +              move-down            # move an attachment down in the attachment list
+bind compose -              move-up              # move an attachment up in the attachment list
+bind compose <Enter>        view-attach          # view attachment using mailcap entry if necessary
+bind compose <Esc>e         edit-file            # edit the file to be attached
+bind compose <Esc>f         edit-from            # edit the from field
+bind compose <Esc>i         edit-content-id      # edit the 'Content-ID' of the attachment
+bind compose <Esc>k         attach-key           # attach a PGP public key
+bind compose <KeypadEnter>  view-attach          # view attachment using mailcap entry if necessary
+bind compose <PageDown>     preview-page-down    # show the next page of the message
+bind compose <PageUp>       preview-page-up      # show the previous page of the message
+bind compose <Return>       view-attach          # view attachment using mailcap entry if necessary
+bind compose a              attach-file          # attach files to this message
+bind compose A              attach-message       # attach messages to this message
+bind compose b              edit-bcc             # edit the BCC list
+bind compose C              copy-file            # save message/attachment to a mailbox/file
+bind compose c              edit-cc              # edit the CC list
+bind compose D              detach-file          # delete the current entry
+bind compose d              edit-description     # edit attachment description
+bind compose E              edit-headers         # edit the message with headers
+bind compose e              edit-message         # edit the message
+bind compose f              edit-fcc             # enter a file to save a copy of this message in
+bind compose F              filter-entry         # filter attachment through a shell command
+bind compose G              get-attachment       # get a temporary copy of an attachment
+bind compose h              display-toggle-weed  # display message and toggle header weeding
+bind compose i              ispell               # run ispell on the message
+bind compose l              print-entry          # print the current entry
+bind compose m              edit-mime            # edit attachment using mailcap entry
+bind compose n              new-mime             # compose new attachment using mailcap entry
+bind compose o              autocrypt-menu       # show autocrypt compose menu options
+bind compose p              pgp-menu             # show PGP options
+bind compose P              postpone-message     # save this message to send later
+bind compose q              exit                 # exit this menu
+bind compose r              edit-reply-to        # edit the Reply-To field
+bind compose R              rename-file          # rename/move an attached file
+bind compose s              edit-subject         # edit the subject of this message
+bind compose S              smime-menu           # show S/MIME options
+bind compose t              edit-to              # edit the TO list
+bind compose T              tag-entry            # tag the current entry
+bind compose u              toggle-unlink        # toggle whether to delete file after sending it
+bind compose U              update-encoding      # update an attachment's encoding info
+bind compose w              write-fcc            # write the message to a folder
+bind compose y              send-message         # send the message
+bind compose ^              group-multilingual   # group tagged attachments as 'multipart/multilingual'
+bind compose ^D             toggle-disposition   # toggle disposition between inline/attachment
+bind compose ^E             edit-encoding        # edit attachment transfer-encoding
+bind compose ^F             forget-passphrase    # wipe passphrases from memory
+bind compose ^L             redraw-screen        # clear and redraw the screen
+bind compose ^O             rename-attachment    # send attachment with a different name
+bind compose ^T             edit-type            # edit attachment content type
+bind compose |              pipe-entry           # pipe message/attachment to a shell command
+
+bind dialog q  (null)  # save changes to mailbox and quit
+
+bind editor <BackSpace>  backspace        # delete the char in front of the cursor
+bind editor <Delete>     delete-char      # delete the char under the cursor
+bind editor <Down>       history-down     # scroll down through the history list
+bind editor <End>        eol              # jump to the end of the line
+bind editor <Esc>?       help             # this screen
+bind editor <Esc>b       backward-word    # move the cursor to the beginning of the word
+bind editor <Esc>c       capitalize-word  # capitalize the word
+bind editor <Esc>d       kill-eow         # delete chars from the cursor to the end of the word
+bind editor <Esc>f       forward-word     # move the cursor to the end of the word
+bind editor <Esc>l       downcase-word    # convert the word to lower case
+bind editor <Esc>u       upcase-word      # convert the word to upper case
+bind editor <Home>       bol              # jump to the beginning of the line
+bind editor <Left>       backward-char    # move the cursor one character to the left
+bind editor <Right>      forward-char     # move the cursor one character to the right
+bind editor <Space>      mailbox-cycle    # cycle among incoming mailboxes
+bind editor <Tab>        complete         # complete filename or alias
+bind editor <Up>         history-up       # scroll up through the history list
+bind editor ^?           backspace        # delete the char in front of the cursor
+bind editor ^A           bol              # jump to the beginning of the line
+bind editor ^B           backward-char    # move the cursor one character to the left
+bind editor ^D           delete-char      # delete the char under the cursor
+bind editor ^E           eol              # jump to the end of the line
+bind editor ^F           forward-char     # move the cursor one character to the right
+bind editor ^H           backspace        # delete the char in front of the cursor
+bind editor ^K           kill-eol         # delete chars from cursor to end of line
+bind editor ^L           redraw-screen    # clear and redraw the screen
+bind editor ^N           history-down     # scroll down through the history list
+bind editor ^P           history-up       # scroll up through the history list
+bind editor ^R           history-search   # search through the history list
+bind editor ^T           complete-query   # complete address with query
+bind editor ^U           kill-line        # delete chars from cursor to beginning the line
+bind editor ^V           quote-char       # quote the next typed key
+bind editor ^W           kill-word        # delete the word in front of the cursor
+
+bind browser .        mailbox-list       # list mailboxes with new mail
+bind browser <Space>  view-file          # view file
+bind browser <Tab>    toggle-mailboxes   # toggle whether to browse mailboxes or all files
+bind browser =        goto-folder        # swap the current folder position with $folder if it exists
+bind browser @        display-filename   # display the currently selected file's name
+bind browser c        change-dir         # change directories
+bind browser C        create-mailbox     # create a new mailbox (IMAP only)
+bind browser d        delete-mailbox     # delete the current mailbox (IMAP only)
+bind browser m        enter-mask         # enter a file mask
+bind browser N        select-new         # select a new file in this directory
+bind browser o        sort               # sort messages
+bind browser O        sort-reverse       # sort messages in reverse order
+bind browser p        goto-parent        # go to parent directory
+bind browser q        exit               # exit this menu
+bind browser r        rename-mailbox     # rename the current mailbox (IMAP only)
+bind browser s        subscribe          # subscribe to current mbox (IMAP/NNTP only)
+bind browser T        toggle-subscribed  # toggle view all/subscribed mailboxes (IMAP only)
+bind browser u        unsubscribe        # unsubscribe from current mbox (IMAP/NNTP only)
+
+bind generic !              shell-escape    # invoke a command in a subshell
+bind generic *              last-entry      # move to the last entry
+bind generic /              search          # search for a regular expression
+bind generic 1              jump            # jump to an index number
+bind generic 2              jump            # jump to an index number
+bind generic 3              jump            # jump to an index number
+bind generic 4              jump            # jump to an index number
+bind generic 5              jump            # jump to an index number
+bind generic 6              jump            # jump to an index number
+bind generic 7              jump            # jump to an index number
+bind generic 8              jump            # jump to an index number
+bind generic 9              jump            # jump to an index number
+bind generic :              enter-command   # enter a neomuttrc command
+bind generic ;              tag-prefix      # apply next function to tagged messages
+bind generic <              previous-line   # scroll up one line
+bind generic <Down>         next-entry      # move to the next entry
+bind generic <End>          last-entry      # move to the last entry
+bind generic <Enter>        select-entry    # select the current entry
+bind generic <Esc>/         search-reverse  # search backwards for a regular expression
+bind generic <Home>         first-entry     # move to the first entry
+bind generic <KeypadEnter>  select-entry    # select the current entry
+bind generic <Left>         previous-page   # move to the previous page
+bind generic <PageDown>     next-page       # move to the next page
+bind generic <PageUp>       previous-page   # move to the previous page
+bind generic <Return>       select-entry    # select the current entry
+bind generic <Right>        next-page       # move to the next page
+bind generic <Up>           previous-entry  # move to the previous entry
+bind generic =              first-entry     # move to the first entry
+bind generic >              next-line       # scroll down one line
+bind generic ?              help            # this screen
+bind generic H              top-page        # move to the top of the page
+bind generic j              next-entry      # move to the next entry
+bind generic k              previous-entry  # move to the previous entry
+bind generic L              bottom-page     # move to the bottom of the page
+bind generic M              middle-page     # move to the middle of the page
+bind generic n              search-next     # search for next match
+bind generic Q              exit            # exit this menu
+bind generic t              tag-entry       # tag the current entry
+bind generic V              show-version    # show the NeoMutt version number and date
+bind generic z              next-page       # move to the next page
+bind generic Z              previous-page   # move to the previous page
+bind generic [              half-up         # scroll up 1/2 page
+bind generic ]              half-down       # scroll down 1/2 page
+bind generic ^L             redraw-screen   # clear and redraw the screen
+
+bind key_select_pgp %  view-name   # view the key's user id
+bind key_select_pgp c  verify-key  # verify a PGP public key
+bind key_select_pgp q  exit        # exit this menu
+
+bind key_select_smime %  view-name   # view the key's user id
+bind key_select_smime c  verify-key  # verify a PGP public key
+bind key_select_smime q  exit        # exit this menu
+
+bind index #              break-thread              # break the thread in two
+bind index $              sync-mailbox              # save changes to mailbox
+bind index %              toggle-write              # toggle whether the mailbox will be rewritten
+bind index &              link-threads              # link tagged message to the current one
+bind index .              mailbox-list              # list mailboxes with new mail
+bind index <Down>         next-undeleted            # move to the next undeleted message
+bind index <Enter>        display-message           # display a message
+bind index <Esc><Tab>     previous-new-then-unread  # jump to the previous new or unread message
+bind index <Esc>c         change-folder-readonly    # open a different folder in read only mode
+bind index <Esc>d         delete-subthread          # delete all messages in subthread
+bind index <Esc>e         resend-message            # use the current message as a template for a new one
+bind index <Esc>k         mail-key                  # mail a PGP public key
+bind index <Esc>l         show-limit                # show currently active limit pattern
+bind index <Esc>n         next-subthread            # jump to the next subthread
+bind index <Esc>P         check-traditional-pgp     # check for classic PGP
+bind index <Esc>p         previous-subthread        # jump to previous subthread
+bind index <Esc>r         read-subthread            # mark the current subthread as read
+bind index <Esc>s         decode-save               # make decoded copy (text/plain) and delete
+bind index <Esc>t         tag-thread                # tag the current thread
+bind index <Esc>u         undelete-subthread        # undelete all messages in subthread
+bind index <Esc>V         collapse-all              # collapse/uncollapse all threads
+bind index <Esc>v         collapse-thread           # collapse/uncollapse current thread
+bind index <KeypadEnter>  display-message           # display a message
+bind index <Return>       display-message           # display a message
+bind index <Space>        display-message           # display a message
+bind index <Tab>          next-new-then-unread      # jump to the next new or unread message
+bind index <Up>           previous-undeleted        # move to the previous undeleted message
+bind index @              display-address           # display full address of sender
+bind index A              alias-dialog              # open the aliases dialog
+bind index a              create-alias              # create an alias from a message sender
+bind index b              bounce-message            # remail a message to another user
+bind index c              change-folder             # open a different folder
+bind index C              copy-message              # copy a message to a file/mailbox
+bind index d              delete-message            # delete the current entry
+bind index D              delete-pattern            # delete non-hidden messages matching a pattern
+bind index e              edit-or-view-raw-message  # edit the raw message if the mailbox is not read-only, otherwise view it
+bind index F              flag-message              # toggle a message's 'important' flag
+bind index f              forward-message           # forward a message with comments
+bind index G              imap-fetch-mail           # force retrieval of mail from IMAP server
+bind index gg             check-stats               # calculate message statistics for all mailboxes
+bind index h              display-toggle-weed       # display message and toggle header weeding
+bind index i              change-newsgroup          # open a different newsgroup
+bind index J              next-entry                # move to the next entry
+bind index j              next-entry                # move to the next entry
+bind index K              previous-entry            # move to the previous entry
+bind index k              previous-entry            # move to the previous entry
+bind index l              limit                     # show only messages matching a pattern
+bind index L              list-reply                # reply to specified mailing list
+bind index m              mail                      # compose a new mail message
+bind index M              show-log-messages         # show log (and debug) messages
+bind index N              toggle-new                # toggle a message's 'new' flag
+bind index o              sort-mailbox              # sort messages
+bind index O              sort-reverse              # sort messages in reverse order
+bind index P              parent-message            # jump to parent message in thread
+bind index p              print-message             # print the current entry
+bind index q              exit                      # exit this menu
+bind index Q              query                     # query external program for addresses
+bind index R              recall-message            # recall a postponed message
+bind index r              reply                     # reply to a message
+bind index s              save-message              # save message/attachment to a mailbox/file
+bind index T              tag-pattern               # tag non-hidden messages matching a pattern
+bind index u              undelete-message          # undelete the current entry
+bind index U              undelete-pattern          # undelete non-hidden messages matching a pattern
+bind index v              view-attachments          # show MIME attachments
+bind index W              clear-flag                # clear a status flag from a message
+bind index w              set-flag                  # set a status flag on a message
+bind index x              exit                      # exit this menu
+bind index Y              edit-label                # add, change, or delete a message's label
+bind index ^D             delete-thread             # delete all messages in thread
+bind index ^E             edit-type                 # edit attachment content type
+bind index ^F             forget-passphrase         # wipe passphrases from memory
+bind index ^K             extract-keys              # extract supported public keys
+bind index ^N             sidebar-next              # move the highlight to next mailbox
+bind index ^O             sidebar-open              # open highlighted mailbox
+bind index ^P             sidebar-prev              # move the highlight to previous mailbox
+bind index ^R             read-thread               # mark the current thread as read
+bind index ^T             untag-pattern             # untag non-hidden messages matching a pattern
+bind index ^U             undelete-thread           # undelete all messages in thread
+bind index |              pipe-entry                # pipe message/attachment to a shell command
+bind index ~              mark-message              # create a hotkey macro for the current message
+
+bind pager !              shell-escape              # invoke a command in a subshell
+bind pager #              break-thread              # break the thread in two
+bind pager $              sync-mailbox              # save changes to mailbox
+bind pager %              toggle-write              # toggle whether the mailbox will be rewritten
+bind pager &              link-threads              # link tagged message to the current one
+bind pager -              previous-page             # move to the previous page
+bind pager .              mailbox-list              # list mailboxes with new mail
+bind pager /              search                    # search for a regular expression
+bind pager 1              jump                      # jump to an index number
+bind pager 2              jump                      # jump to an index number
+bind pager 3              jump                      # jump to an index number
+bind pager 4              jump                      # jump to an index number
+bind pager 5              jump                      # jump to an index number
+bind pager 6              jump                      # jump to an index number
+bind pager 7              jump                      # jump to an index number
+bind pager 8              jump                      # jump to an index number
+bind pager 9              jump                      # jump to an index number
+bind pager :              enter-command             # enter a neomuttrc command
+bind pager <BackSpace>    previous-line             # scroll up one line
+bind pager <Down>         next-undeleted            # move to the next undeleted message
+bind pager <End>          bottom                    # jump to the bottom of the message
+bind pager <Enter>        next-line                 # scroll down one line
+bind pager <Esc>/         search-reverse            # search backwards for a regular expression
+bind pager <Esc>c         change-folder-readonly    # open a different folder in read only mode
+bind pager <Esc>C         decode-copy               # make decoded (text/plain) copy
+bind pager <Esc>d         delete-subthread          # delete all messages in subthread
+bind pager <Esc>e         resend-message            # use the current message as a template for a new one
+bind pager <Esc>k         mail-key                  # mail a PGP public key
+bind pager <Esc>n         next-subthread            # jump to the next subthread
+bind pager <Esc>P         check-traditional-pgp     # check for classic PGP
+bind pager <Esc>p         previous-subthread        # jump to previous subthread
+bind pager <Esc>r         read-subthread            # mark the current subthread as read
+bind pager <Esc>s         decode-save               # make decoded copy (text/plain) and delete
+bind pager <Esc>u         undelete-subthread        # undelete all messages in subthread
+bind pager <Home>         top                       # jump to the top of the message
+bind pager <KeypadEnter>  next-line                 # scroll down one line
+bind pager <Left>         previous-undeleted        # move to the previous undeleted message
+bind pager <PageDown>     next-page                 # move to the next page
+bind pager <PageUp>       previous-page             # move to the previous page
+bind pager <Return>       next-line                 # scroll down one line
+bind pager <Right>        next-undeleted            # move to the next undeleted message
+bind pager <Space>        next-page                 # move to the next page
+bind pager <Tab>          next-new-then-unread      # jump to the next new or unread message
+bind pager <Up>           previous-undeleted        # move to the previous undeleted message
+bind pager ?              help                      # this screen
+bind pager @              display-address           # display full address of sender
+bind pager a              create-alias              # create an alias from a message sender
+bind pager b              bounce-message            # remail a message to another user
+bind pager c              change-folder             # open a different folder
+bind pager C              copy-message              # copy a message to a file/mailbox
+bind pager d              delete-message            # delete the current entry
+bind pager e              edit-or-view-raw-message  # edit the raw message if the mailbox is not read-only, otherwise view it
+bind pager F              flag-message              # toggle a message's 'important' flag
+bind pager f              forward-message           # forward a message with comments
+bind pager g              group-reply               # reply to all recipients
+bind pager h              display-toggle-weed       # display message and toggle header weeding
+bind pager H              skip-headers              # jump to first line after headers
+bind pager i              exit                      # exit this menu
+bind pager J              next-entry                # move to the next entry
+bind pager j              next-entry                # move to the next entry
+bind pager K              previous-entry            # move to the previous entry
+bind pager k              previous-entry            # move to the previous entry
+bind pager L              list-reply                # reply to specified mailing list
+bind pager m              mail                      # compose a new mail message
+bind pager N              mark-as-new               # toggle a message's 'new' flag
+bind pager n              search-next               # search for next match
+bind pager o              sort-mailbox              # sort messages
+bind pager O              sort-reverse              # sort messages in reverse order
+bind pager P              parent-message            # jump to parent message in thread
+bind pager p              print-message             # print the current entry
+bind pager q              exit                      # exit this menu
+bind pager Q              quit                      # save changes to mailbox and quit
+bind pager R              recall-message            # recall a postponed message
+bind pager r              reply                     # reply to a message
+bind pager s              save-message              # save message/attachment to a mailbox/file
+bind pager S              skip-quoted               # skip beyond quoted text
+bind pager t              tag-message               # tag the current entry
+bind pager T              toggle-quoted             # toggle display of quoted text
+bind pager u              undelete-message          # undelete the current entry
+bind pager V              show-version              # show the NeoMutt version number and date
+bind pager v              view-attachments          # show MIME attachments
+bind pager W              clear-flag                # clear a status flag from a message
+bind pager w              set-flag                  # set a status flag on a message
+bind pager x              exit                      # exit this menu
+bind pager Y              edit-label                # add, change, or delete a message's label
+bind pager \              search-toggle             # toggle search pattern coloring
+bind pager ^              top                       # jump to the top of the message
+bind pager ^D             delete-thread             # delete all messages in thread
+bind pager ^E             edit-type                 # edit attachment content type
+bind pager ^F             forget-passphrase         # wipe passphrases from memory
+bind pager ^K             extract-keys              # extract supported public keys
+bind pager ^L             redraw-screen             # clear and redraw the screen
+bind pager ^N             sidebar-next              # move the highlight to next mailbox
+bind pager ^O             sidebar-open              # open highlighted mailbox
+bind pager ^P             sidebar-prev              # move the highlight to previous mailbox
+bind pager ^R             read-thread               # mark the current thread as read
+bind pager ^U             undelete-thread           # undelete all messages in thread
+bind pager |              pipe-entry                # pipe message/attachment to a shell command
+
+bind pgp %  view-name   # view the key's user id
+bind pgp c  verify-key  # verify a PGP public key
+bind pgp q  exit        # exit this menu
+
+bind postpone d  delete-entry    # delete the current entry
+bind postpone q  exit            # exit this menu
+bind postpone u  undelete-entry  # undelete the current entry
+
+bind query <Space>  tag-entry      # tag the current entry
+bind query a        create-alias   # create an alias from a message sender
+bind query A        query-append   # append new query results to current results
+bind query l        limit          # show only messages matching a pattern
+bind query m        mail           # compose a new mail message
+bind query o        sort           # sort messages
+bind query O        sort-reverse   # sort messages in reverse order
+bind query q        exit           # exit this menu
+bind query Q        query          # query external program for addresses
+bind query T        tag-pattern    # tag non-hidden messages matching a pattern
+bind query ^T       untag-pattern  # untag non-hidden messages matching a pattern
+
+bind smime %  view-name   # view the key's user id
+bind smime c  verify-key  # verify a PGP public key
+bind smime q  exit        # exit this menu
+

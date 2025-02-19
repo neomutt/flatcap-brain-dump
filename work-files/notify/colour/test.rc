@@ -1,0 +1,3 @@
+color hdrdefault black      white   
+color header     brightcyan default "^(From|Subject):"
+color header     default    red     "^From:"

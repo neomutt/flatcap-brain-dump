@@ -1,0 +1,9 @@
+color error     bold      blue    yellow
+color progress  underline blue    yellow
+color tilde     reverse   default default
+color signature underline red     green
+
+uncolor tilde
+uncolor error
+uncolor progress
+

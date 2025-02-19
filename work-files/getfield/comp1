@@ -1,0 +1,32 @@
+mutt_get_field() calls that use completion
+
+alias/alias.c:503:7:         mutt_get_field("Save to file: ", buf, MUTT_COMP_FILE,
+attach/recvattach.c:292:10:  mutt_get_field(prompt, buf, MUTT_COMP_FILE, false,
+attach/recvattach.c:447:16:  mutt_get_field("Save to file: ", buf, MUTT_COMP_FILE,
+attach/recvattach.c:718:7:   mutt_get_field("Pipe to: "), buf, MUTT_COMP_FILE_SIMPLE, false, NULL, NULL, NULL)
+browser/browser.c:1703:21:   mutt_get_field("Chdir to: ", buf, MUTT_COMP_FILE, false,
+browser/browser.c:2000:13:   mutt_get_field("New file name: ", buf, MUTT_COMP_FILE, false,
+browser/browser.c:2149:18:   mutt_get_field(tmp2, buf, MUTT_COMP_PATTERN, false, NULL, NULL, NULL)
+commands.c:121:8:            mutt_get_field(mutt_buffer_string(prompt), buf, MUTT_COMP_ALIAS, false,
+commands.c:431:7:            mutt_get_field("Pipe to command: ", buf, MUTT_COMP_FILE_SIMPLE, false,
+commands.c:612:7:            mutt_get_field("Shell command: ", buf, MUTT_COMP_FILE_SIMPLE, false,
+commands.c:656:8:            mutt_get_field(":", buf, MUTT_COMP_COMMAND, false, NULL, NULL, NULL)
+compose/functions.c:277:7:   mutt_get_field(_(Prompts[field]), new_list, MUTT_COMP_ALIAS, false, NULL,
+compose/functions.c:773:7:   mutt_get_field(Prompts[HDR_FCC], fname, MUTT_COMP_FILE,
+compose/functions.c:1276:8:  mutt_get_field("New file: ", fname, MUTT_COMP_FILE, false, NULL, NULL, NULL)
+compose/functions.c:1417:13: mutt_get_field("Send attachment with name: ", fname, MUTT_COMP_FILE, false, NULL, NULL, NULL)
+compose/functions.c:1441:8:  mutt_get_field("Rename to: ", fname, MUTT_COMP_FILE, false, NULL, NULL, NULL)
+gui/curs_lib.c:541:9:        mutt_get_field(pc, fname, (mailbox ? MUTT_COMP_FILE_MBOX : MUTT_COMP_FILE),
+imap/browse.c:404:7:         mutt_get_field("Create mailbox: ", name, MUTT_COMP_FILE, false, NULL, NULL, NULL)
+imap/browse.c:463:7:         mutt_get_field(mutt_buffer_string(buf), newname, MUTT_COMP_FILE, false,
+index/functions.c:2979:8:    mutt_get_field("Query: ", buf, MUTT_COMP_NM_QUERY, false, NULL, NULL, NULL)
+mutt_header.c:140:7:         mutt_get_field("Label: ", buf, MUTT_COMP_LABEL,
+muttlib.c:667:10:            mutt_get_field("File under directory: ", tmp, MUTT_COMP_FILE,
+notmuch/notmuch.c:2403:7:    mutt_get_field("Add/remove labels: ", buf, MUTT_COMP_NM_TAG, false, NULL,
+pager/functions.c:1270:7:    mutt_get_field("Reverse search for: ", buf, MUTT_COMP_PATTERN, false, NULL, NULL, NULL)
+pattern/pattern.c:252:10:    mutt_get_field(prompt, buf, MUTT_COMP_PATTERN, false,
+pattern/pattern.c:358:10:    mutt_get_field(prompt, buf, MUTT_COMP_PATTERN, false,
+pattern/pattern.c:507:10:    mutt_get_field("Reverse search for: ", buf, MUTT_COMP_PATTERN, false, NULL, NULL, NULL)
+pattern/pattern.c:667:10:    mutt_get_field("Reverse search for: ", buf, MUTT_COMP_PATTERN, false, NULL, NULL, NULL)
+recvcmd.c:206:7:             mutt_get_field(mutt_buffer_string(prompt), buf, MUTT_COMP_ALIAS, false, NULL, NULL, NULL)
+send/send.c:188:9:           mutt_get_field(field, buf, MUTT_COMP_ALIAS, false, NULL, NULL, NULL)

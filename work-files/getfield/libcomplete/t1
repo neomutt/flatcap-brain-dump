@@ -1,0 +1,6 @@
+mutt_command_complete
+mutt_complete
+mutt_label_complete
+mutt_nm_query_complete
+mutt_nm_tag_complete
+mutt_var_value_complete

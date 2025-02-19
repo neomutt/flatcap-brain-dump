@@ -1,0 +1,127 @@
+
+add a `bool recalc` on each PagedLine?
+
+--------------------------------------------------------------------------------
+
+colour
+
+which colours end at $, which at eol?
+
+quoted isn't a *line* colour, but extends to eol
+need flags on colour defs?
+
+or when applying colour, flag it
+
+if search is applied mid-pattern, or at $
+	colour still fills to eol
+
+or add marker at eol
+	add_text() * n
+	add_eol_color()
+	add_nl()
+or
+	add_nl(color)
+
+for text "apple\n"
+	  01234 5
+
+color  0-2 green
+color  3-4 red
+search 1-4 blue
+
+colouring \n implies it'll never get matched by search
+
+what else need this besides quoted*?
+	hdrdefault
+	header if not $header_color_partial
+
+--------------------------------------------------------------------------------
+
+when adding ansi escape sequences
+	do they get committed to the file?
+	e.g. colours, urls
+	:help
+		use MT_COLOR or ansi
+		file is plain text
+	:set
+		use MT_COLOR
+		file is plain text
+	:bind
+		use MT_COLOR
+		file is plain text
+	:macro
+		use MT_COLOR
+		file is plain text
+	<show-log-messages>
+		use MT_COLOR
+		file is plain text
+	:version
+		use MT_COLOR or ansi
+		file is plain text
+	:color
+		wants the ansi in the file
+		use MT_COLOR_* for swatch markup
+		SAVE the ansi colours to the file
+	[email]
+		use MT_COLOR or ansi
+		file is *decoded* email
+		not weeded
+		cached data may be different
+		e.g. headers re-wrapped
+
+repurpose swatch generator to create a
+	mt_color_to_ansi() function
+	`neomutt -D` can use user's colours
+
+cache char widths ∀ chars in cached string
+	on get_line() measure every character
+	need to store the number of bytes per "character" too
+	if the user resizes we can quickly decide where to wrap
+	1 char per "character"
+	pack cell-width and num-bytes into 1 char
+
+--------------------------------------------------------------------------------
+
+neomutt -D	all	format	url?	MT_COLOR	ANSI?	docs?	stdout
+neomutt -DD	changed	format	url?	MT_COLOR	ANSI?	docs?	stdout
+neomutt -Q	set1	format	url?	MT_COLOR	ANSI?	docs?	stdout
+neomutt -Q -Q	set2	format	url?	MT_COLOR	ANSI?	docs?	stdout
+:set		changed	format	-	MT_COLOR	-	-	tmp
+:set all	all	format	-	MT_COLOR	-	-	tmp
+
+---
+
+:set [hea,flags,pf]; gen_pf(); spager(pf)
+main [hea,flags,pf]; gen_pf(); done
+
+flags: ansi, url, format
+
+gen_pf()
+	∀ hea collect [name,value,docs]; measure (if format)
+	∀ hea write to pf
+		mt_color always
+		ansi/url/format flag
+	
+ansi => mt_color -> ansi conversion
+
+---
+
+:version needs *actual* ansi => pf_add_raw_text() straight to file
+does pf *ever* need ansi support?
+	yes, urls
+
+--------------------------------------------------------------------------------
+
+<toggle-wrap> -> left/right movement
+	easy to impl if spager function dispatcher comes before index's
+	index function dispatcher uses left/right for next/prev undeleted
+	need to know the max line length (to avoid scrolling too far)
+
+spbar.[ch] not used -- expando?
+	use devel_spager_format
+
+BUG: non-color after colour bleeds
+
+ansi - who creates the colours? *caller*
+	likewise man page overtype highlighting
+

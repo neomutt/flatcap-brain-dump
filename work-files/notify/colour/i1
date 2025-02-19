@@ -1,0 +1,54 @@
+# vim: syn=neomuttrc
+
+set allow_ansi = yes
+# set index_format="%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) [%GR] %s"
+# set index_format="%Z %{%b %d} %-15.15L (%?l?%4l&%4c?) [%GR] %s"
+reset index_format
+
+# index_number               # %C
+# index_flags                # %S %zc %zs %zt %Z
+# index_collapsed            # %M
+# index_size                 # %c %l
+# index_author               # %a %A %I %F %L %n
+# index_label                # %y %Y
+# index_tags                 # %g %J
+# index_tag                  # %G*
+# index_date                 # %d %D %{} %[] %() %<>
+# index_subject              # %s
+# tree                       # (%s)
+# indicator                  # TOP
+# set index_format="[%4C] [%Z] [%zc] [%zs] [%zt] [%M] [%S] %{%b %d} %-15.15L (%?l?%4l&%4c?) [%GR] %s [%c] [%l]"
+# set index_format="%Z %{%b %d} %-15.15L y[%y] Y[%Y] g[%g] J[%J] %s"
+# set index_format="%Z {|%{%b %d}| [|%[%b %d]| (|%(%b %d)| d|%d|  D|%D|  %-15.15L [%GR] %s"
+
+set sidebar_visible = no
+set help = no
+
+color normal color46 color225
+
+# color index         red     default "~s neomutt"
+# color index         default green   "~s donation"
+
+# color index_author  red     default "~s neomutt"
+# color index_author  default green   "~s donation"
+
+# color index_flags   red     default "~s neomutt"
+# color index_flags   default green   "~s donation"
+
+color index_subject red     default "~s neomutt"
+color index_subject default yellow  "~s donation"
+
+# color index_tag     blue    default ""
+# color index_tag     default yellow  "blue"
+tag-transforms "blue" ""
+tag-formats    "blue" "GR"
+
+# color index_collapsed blue default
+# color index_date      blue default
+# color index_label     blue default
+# color index_number    blue default
+# color index_size      blue default
+# color index_tags      blue default
+# color tree            blue default
+# color indicator       default black
+

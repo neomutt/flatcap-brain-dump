@@ -1,0 +1,7 @@
+function p() {
+	cp .git/files/q.mbox p.mbox
+	grep '^Subject' p.mbox
+	echo
+	./neomutt -d3 -n -F p1 -f empty -e "push '<mail><enter><exit><exit>'"
+	grep '^Subject' p.mbox
+}

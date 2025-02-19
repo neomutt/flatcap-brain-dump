@@ -1,0 +1,71 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ color="#ff0000" ]
+	mutt_ch_get_default_charset    mutt_ch_get_default_charset    [ label=<mutt_ch_get_default_charset<BR/>assumed_charset> ]
+	mutt_ch_convert_nonmime_string mutt_ch_convert_nonmime_string [ label=<mutt_ch_convert_nonmime_string<BR/>assumed_charset, charset> ]
+
+	node [ color="#00c000" ]
+	rfc2047_decode            // assumed_charset, charset
+	rfc2231_decode_parameters // assumed_charset, charset
+	mutt_decode_attachment    // assumed_charset
+	mutt_parse_content_type   // assumed_charset
+
+	node [ color="#000000" ]
+	mutt_ch_convert_nonmime_string   -> mutt_ch_get_default_charset
+	mutt_decode_attachment           -> mutt_ch_get_default_charset
+	mutt_parse_content_type          -> mutt_ch_get_default_charset
+	rfc2047_decode                   -> mutt_ch_convert_nonmime_string
+	rfc2231_decode_parameters        -> mutt_ch_convert_nonmime_string
+
+	decode_descriptions       -> rfc2047_decode
+	mutt_copy_hdr             -> rfc2047_decode
+	mutt_extract_message_id   -> rfc2047_decode
+	mutt_read_mime_header     -> rfc2047_decode
+	mutt_rfc822_parse_line    -> rfc2047_decode
+	mutt_unprepare_envelope   -> rfc2047_decode
+	rfc2047_decode_addrlist   -> rfc2047_decode
+	rfc2047_decode_envelope   -> rfc2047_decode
+	rfc2231_decode_parameters -> rfc2047_decode
+
+
+	create_tmp_files_for_attachments -> mutt_decode_attachment
+	mutt_edit_content_type           -> mutt_parse_content_type
+	mutt_pipe_attachment             -> mutt_decode_attachment
+	mutt_read_mime_header            -> mutt_parse_content_type
+	mutt_rfc822_parse_line           -> mutt_parse_content_type
+	mutt_save_attachment             -> mutt_decode_attachment
+	mutt_send_message                -> mutt_parse_content_type
+	mutt_view_attachment             -> mutt_decode_attachment
+	pgp_class_decrypt_mime           -> mutt_decode_attachment
+	pgp_gpgme_decrypt_mime           -> mutt_decode_attachment
+	pipe_attachment                  -> mutt_decode_attachment
+	run_decode_and_handler           -> mutt_decode_attachment
+	run_mime_type_query              -> mutt_parse_content_type
+	send_simple_email                -> mutt_parse_content_type
+	smime_class_decrypt_mime         -> mutt_decode_attachment
+	smime_class_verify_one           -> mutt_decode_attachment
+	smime_gpgme_decrypt_mime         -> mutt_decode_attachment
+	transform_to_7bit                -> mutt_decode_attachment
+
+}

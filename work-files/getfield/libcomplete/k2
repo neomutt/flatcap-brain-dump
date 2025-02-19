@@ -1,0 +1,97 @@
+init.c:99:  if (current <= (MatchesListsize - 2))
+init.c:103:  int extra_space = MatchesListsize - base_space;
+init.c:106:  mutt_mem_realloc(&Matches, space * sizeof(char *));
+init.c:107:  memset(&Matches[current + 1], 0, space - current);
+init.c:108:  MatchesListsize = space;
+init.c:128:  matches_ensure_morespace(NumMatched);
+init.c:129:  Matches[NumMatched++] = src;
+init.c:155:  NumMatched = 0;
+init.c:156:  mutt_str_copy(UserTyped, pt, sizeof(UserTyped));
+init.c:157:  memset(Matches, 0, MatchesListsize);
+init.c:158:  memset(Completed, 0, sizeof(Completed));
+init.c:167:  if (nm_tags)
+init.c:169:    for (int i = 0; nm_tags[i]; i++)
+init.c:170:      FREE(&nm_tags[i]);
+init.c:171:    FREE(&nm_tags);
+init.c:174:  nm_tags = mutt_mem_malloc((tag_count_1 + 1) * sizeof(char *));
+init.c:175:  nm_tags[tag_count_1] = NULL;
+init.c:178:  if (nm_get_all_tags(m_cur, nm_tags, &tag_count_2) || (tag_count_1 != tag_count_2))
+init.c:180:    FREE(&nm_tags);
+init.c:181:    nm_tags = NULL;
+init.c:189:    candidate(UserTyped, nm_tags[num], Completed, sizeof(Completed));
+init.c:192:  matches_ensure_morespace(NumMatched);
+init.c:193:  Matches[NumMatched++] = UserTyped;
+init.c:811:  Matches = mutt_mem_calloc(MatchesListsize, sizeof(char *));
+init.c:1146:      NumMatched = 0;
+init.c:1147:      mutt_str_copy(UserTyped, pt, sizeof(UserTyped));
+init.c:1148:      memset(Matches, 0, MatchesListsize);
+init.c:1149:      memset(Completed, 0, sizeof(Completed));
+init.c:1153:        candidate(UserTyped, c[num].name, Completed, sizeof(Completed));
+init.c:1154:      matches_ensure_morespace(NumMatched);
+init.c:1155:      Matches[NumMatched++] = UserTyped;
+init.c:1159:      if (UserTyped[0] == '\0')
+init.c:1163:    if ((Completed[0] == '\0') && (UserTyped[0] != '\0'))
+init.c:1168:    if ((numtabs == 1) && (NumMatched == 2))
+init.c:1169:      snprintf(Completed, sizeof(Completed), "%s", Matches[0]);
+init.c:1170:    else if ((numtabs > 1) && (NumMatched > 2))
+init.c:1173:      snprintf(Completed, sizeof(Completed), "%s", Matches[(numtabs - 2) % NumMatched]);
+init.c:1177:    strncpy(buf, Completed, buflen - spaces);
+init.c:1201:      NumMatched = 0;
+init.c:1202:      mutt_str_copy(UserTyped, pt, sizeof(UserTyped));
+init.c:1203:      memset(Matches, 0, MatchesListsize);
+init.c:1204:      memset(Completed, 0, sizeof(Completed));
+init.c:1216:        candidate(UserTyped, he->key.strkey, Completed, sizeof(Completed));
+init.c:1222:        candidate(UserTyped, myv->name, Completed, sizeof(Completed));
+init.c:1224:      matches_ensure_morespace(NumMatched);
+init.c:1225:      Matches[NumMatched++] = UserTyped;
+init.c:1229:      if (UserTyped[0] == '\0')
+init.c:1233:    if ((Completed[0] == 0) && UserTyped[0])
+init.c:1238:    if ((numtabs == 1) && (NumMatched == 2))
+init.c:1239:      snprintf(Completed, sizeof(Completed), "%s", Matches[0]);
+init.c:1240:    else if ((numtabs > 1) && (NumMatched > 2))
+init.c:1243:      snprintf(Completed, sizeof(Completed), "%s", Matches[(numtabs - 2) % NumMatched]);
+init.c:1246:    strncpy(pt, Completed, buf + buflen - pt - spaces);
+init.c:1259:      NumMatched = 0;
+init.c:1260:      mutt_str_copy(UserTyped, pt, sizeof(UserTyped));
+init.c:1261:      memset(Matches, 0, MatchesListsize);
+init.c:1262:      memset(Completed, 0, sizeof(Completed));
+init.c:1264:        candidate(UserTyped, funcs[num].name, Completed, sizeof(Completed));
+init.c:1270:          candidate(UserTyped, funcs[num].name, Completed, sizeof(Completed));
+init.c:1272:      matches_ensure_morespace(NumMatched);
+init.c:1273:      Matches[NumMatched++] = UserTyped;
+init.c:1277:      if (UserTyped[0] == '\0')
+init.c:1281:    if ((Completed[0] == '\0') && (UserTyped[0] != '\0'))
+init.c:1286:    if ((numtabs == 1) && (NumMatched == 2))
+init.c:1287:      snprintf(Completed, sizeof(Completed), "%s", Matches[0]);
+init.c:1288:    else if ((numtabs > 1) && (NumMatched > 2))
+init.c:1291:      snprintf(Completed, sizeof(Completed), "%s", Matches[(numtabs - 2) % NumMatched]);
+init.c:1294:    strncpy(pt, Completed, buf + buflen - pt - spaces);
+init.c:1328:    NumMatched = 0;
+init.c:1329:    mutt_str_copy(UserTyped, buf, sizeof(UserTyped));
+init.c:1330:    memset(Matches, 0, MatchesListsize);
+init.c:1331:    memset(Completed, 0, sizeof(Completed));
+init.c:1333:      candidate(UserTyped, entry->key.strkey, Completed, sizeof(Completed));
+init.c:1334:    matches_ensure_morespace(NumMatched);
+init.c:1335:    qsort(Matches, NumMatched, sizeof(char *), (sort_t) mutt_istr_cmp);
+init.c:1336:    Matches[NumMatched++] = UserTyped;
+init.c:1340:    if (UserTyped[0] == '\0')
+init.c:1344:  if ((Completed[0] == '\0') && (UserTyped[0] != '\0'))
+init.c:1349:  if ((numtabs == 1) && (NumMatched == 2))
+init.c:1350:    snprintf(Completed, sizeof(Completed), "%s", Matches[0]);
+init.c:1351:  else if ((numtabs > 1) && (NumMatched > 2))
+init.c:1354:    snprintf(Completed, sizeof(Completed), "%s", Matches[(numtabs - 2) % NumMatched]);
+init.c:1358:  strncpy(buf, Completed, buflen - spaces);
+init.c:1394:      if (UserTyped[0] == '\0')
+init.c:1398:    if ((Completed[0] == '\0') && (UserTyped[0] != '\0'))
+init.c:1403:    if ((numtabs == 1) && (NumMatched == 2))
+init.c:1404:      snprintf(Completed, sizeof(Completed), "%s", Matches[0]);
+init.c:1405:    else if ((numtabs > 1) && (NumMatched > 2))
+init.c:1408:      snprintf(Completed, sizeof(Completed), "%s", Matches[(numtabs - 2) % NumMatched]);
+init.c:1412:    strncpy(pt, Completed, buf + buflen - pt - spaces);
+init.c:1455:    if (UserTyped[0] == '\0')
+init.c:1459:  if ((Completed[0] == '\0') && (UserTyped[0] != '\0'))
+init.c:1464:  if ((numtabs == 1) && (NumMatched == 2))
+init.c:1465:    snprintf(Completed, sizeof(Completed), "%s", Matches[0]);
+init.c:1466:  else if ((numtabs > 1) && (NumMatched > 2))
+init.c:1469:    snprintf(Completed, sizeof(Completed), "%s", Matches[(numtabs - 2) % NumMatched]);
+init.c:1473:  strncpy(pt, Completed, buf + buflen - pt);

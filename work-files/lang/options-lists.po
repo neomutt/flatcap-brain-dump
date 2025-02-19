@@ -1,0 +1,288 @@
+# Option lists to be translated
+
+#. L10N: The highlighted letters must match the "Sort" options
+#: browser.c:1871
+msgid "Reverse sort by (d)ate, (a)lpha, si(z)e, d(e)scription, (c)ount, ne(w) count, or do(n)'t sort? "
+msgstr ""
+
+#. L10N: The highlighted letters must match the "Reverse Sort" options
+#: browser.c:1874
+msgid "Sort by (d)ate, (a)lpha, si(z)e, d(e)scription, (c)ount, ne(w) count, or do(n)'t sort? "
+msgstr ""
+
+#. L10N: These must match the highlighted letters from "Sort" and "Reverse Sort"
+#: browser.c:1877
+msgid "dazecwn"
+msgstr ""
+
+#. L10N: The highlighted letters must match the "Sort" options
+#: commands.c:536
+msgid "Rev-Sort (d)ate/(f)rm/(r)ecv/(s)ubj/t(o)/(t)hread/(u)nsort/si(z)e/s(c)ore/s(p)am/(l)abel?: "
+msgstr ""
+
+#. L10N: The highlighted letters must match the "Rev-Sort" options
+#: commands.c:540
+msgid "Sort (d)ate/(f)rm/(r)ecv/(s)ubj/t(o)/(t)hread/(u)nsort/si(z)e/s(c)ore/s(p)am/(l)abel?: "
+msgstr ""
+
+#. L10N: These must match the highlighted letters from "Sort" and "Rev-Sort"
+#: commands.c:544
+msgid "dfrsotuzcpl"
+msgstr ""
+
+#. L10N:
+#. * These four letters correspond to the choices in the next four strings:
+#. * (r)eject, accept (o)nce, (a)ccept always, (s)kip.
+#. * These prompts are the interactive certificate confirmation prompts for
+#. * an OpenSSL connection.
+#.
+#: conn/ssl.c:1027
+msgid "roas"
+msgstr ""
+
+#: conn/ssl.c:1031
+msgid "(r)eject, accept (o)nce, (a)ccept always, (s)kip"
+msgstr ""
+
+#: conn/ssl.c:1033 conn/ssl_gnutls.c:775
+msgid "(r)eject, accept (o)nce, (a)ccept always"
+msgstr ""
+
+#: conn/ssl.c:1038
+msgid "(r)eject, accept (o)nce, (s)kip"
+msgstr ""
+
+#: conn/ssl.c:1040 conn/ssl_gnutls.c:786
+msgid "(r)eject, accept (o)nce"
+msgstr ""
+
+#. L10N:
+#. * These three letters correspond to the choices in the string:
+#. * (r)eject, accept (o)nce, (a)ccept always.
+#. * This is an interactive certificate confirmation prompt for
+#. * a GNUTLS connection.
+#.
+#: conn/ssl_gnutls.c:782
+msgid "roa"
+msgstr ""
+
+#. L10N:
+#. * These two letters correspond to the choices in the string:
+#. * (r)eject, accept (o)nce.
+#. * These is an interactive certificate confirmation prompt for
+#. * a GNUTLS connection.
+#.
+#: conn/ssl_gnutls.c:793
+msgid "ro"
+msgstr ""
+
+#. L10N:
+#. Means "The path you specified as the destination file is a directory."
+#. See the msgid "Save to file: " (alias.c, recvattach.c)
+#: muttlib.c:650
+msgid "File is a directory, save under it? [(y)es, (n)o, (a)ll]"
+msgstr ""
+
+#: muttlib.c:650
+msgid "yna"
+msgstr ""
+
+#: muttlib.c:684
+msgid "File exists, (o)verwrite, (a)ppend, or (c)ancel?"
+msgstr ""
+
+#: muttlib.c:684
+msgid "oac"
+msgstr ""
+
+#: ncrypt/crypt_gpgme.c:4884
+msgid "S/MIME (s)ign, sign (a)s, (p)gp, (c)lear, or (o)ppenc mode off? "
+msgstr ""
+
+#. L10N: S/MIME options (opportunistic encryption is on)
+#: ncrypt/crypt_gpgme.c:4886
+msgid "sapco"
+msgstr ""
+
+#: ncrypt/crypt_gpgme.c:4893
+msgid "PGP (s)ign, sign (a)s, s/(m)ime, (c)lear, or (o)ppenc mode off? "
+msgstr ""
+
+#. L10N: PGP options (opportunistic encryption is on)
+#: ncrypt/crypt_gpgme.c:4895
+msgid "samco"
+msgstr ""
+
+#. L10N: S/MIME options (opportunistic encryption is off)
+#: ncrypt/crypt_gpgme.c:4908
+msgid "S/MIME (e)ncrypt, (s)ign, sign (a)s, (b)oth, (p)gp, (c)lear, or (o)ppenc mode? "
+msgstr ""
+
+#. L10N: S/MIME options (opportunistic encryption is off)
+#: ncrypt/crypt_gpgme.c:4911
+msgid "esabpco"
+msgstr ""
+
+#. L10N: PGP options (opportunistic encryption is off)
+#: ncrypt/crypt_gpgme.c:4917
+msgid "PGP (e)ncrypt, (s)ign, sign (a)s, (b)oth, s/(m)ime, (c)lear, or (o)ppenc mode? "
+msgstr ""
+
+#. L10N: PGP options (opportunistic encryption is off)
+#: ncrypt/crypt_gpgme.c:4920
+msgid "esabmco"
+msgstr ""
+
+#: ncrypt/crypt_gpgme.c:4933
+msgid "S/MIME (e)ncrypt, (s)ign, sign (a)s, (b)oth, (p)gp or (c)lear? "
+msgstr ""
+
+#. L10N: S/MIME options
+#: ncrypt/crypt_gpgme.c:4935
+msgid "esabpc"
+msgstr ""
+
+#: ncrypt/crypt_gpgme.c:4942
+msgid "PGP (e)ncrypt, (s)ign, sign (a)s, (b)oth, s/(m)ime or (c)lear? "
+msgstr ""
+
+#. L10N: PGP options
+#: ncrypt/crypt_gpgme.c:4944
+msgid "esabmc"
+msgstr ""
+
+#. L10N: The next string MUST have the same highlighted letter
+#. One of them will appear in each of the three strings marked "(inline"), below.
+#: ncrypt/pgp.c:1680
+msgid "PGP/M(i)ME"
+msgstr ""
+
+#. L10N: The previous string MUST have the same highlighted letter
+#. One of them will appear in each of the three strings marked "(inline"), below.
+#: ncrypt/pgp.c:1686
+msgid "(i)nline"
+msgstr ""
+
+#. L10N: PGP options (inline) (opportunistic encryption is on)
+#: ncrypt/pgp.c:1700
+#, c-format
+msgid "PGP (s)ign, sign (a)s, %s format, (c)lear, or (o)ppenc mode off? "
+msgstr ""
+
+#. L10N: PGP options (inline) (opportunistic encryption is on)
+#. The 'i' is from the "PGP/M(i)ME" or "(i)nline", above.
+#: ncrypt/pgp.c:1706
+msgid "saico"
+msgstr ""
+
+#. L10N: PGP options (opportunistic encryption is on)
+#: ncrypt/pgp.c:1712
+msgid "PGP (s)ign, sign (a)s, (c)lear, or (o)ppenc mode off? "
+msgstr ""
+
+#. L10N: PGP options (opportunistic encryption is on)
+#: ncrypt/pgp.c:1714
+msgid "saco"
+msgstr ""
+
+#. L10N: PGP options (inline) (opportunistic encryption is off)
+#: ncrypt/pgp.c:1731
+#, c-format
+msgid "PGP (e)ncrypt, (s)ign, sign (a)s, (b)oth, %s format, (c)lear, or (o)ppenc mode? "
+msgstr ""
+
+#. L10N: PGP options (inline) (opportunistic encryption is off)
+#. The 'i' is from the "PGP/M(i)ME" or "(i)nline", above.
+#: ncrypt/pgp.c:1737
+msgid "esabico"
+msgstr ""
+
+#. L10N: PGP options (opportunistic encryption is off)
+#: ncrypt/pgp.c:1743
+msgid "PGP (e)ncrypt, (s)ign, sign (a)s, (b)oth, (c)lear, or (o)ppenc mode? "
+msgstr ""
+
+#. L10N: PGP options (opportunistic encryption is off)
+#: ncrypt/pgp.c:1746
+msgid "esabco"
+msgstr ""
+
+#. L10N: PGP options (inline)
+#: ncrypt/pgp.c:1759
+#, c-format
+msgid "PGP (e)ncrypt, (s)ign, sign (a)s, (b)oth, %s format, or (c)lear? "
+msgstr ""
+
+#. L10N: PGP options (inline)
+#. The 'i' is from the "PGP/M(i)ME" or "(i)nline", above.
+#: ncrypt/pgp.c:1765
+msgid "esabic"
+msgstr ""
+
+#. L10N: PGP options
+#: ncrypt/pgp.c:1771
+msgid "PGP (e)ncrypt, (s)ign, sign (a)s, (b)oth, or (c)lear? "
+msgstr ""
+
+#. L10N: PGP options
+#: ncrypt/pgp.c:1773
+msgid "esabc"
+msgstr ""
+
+#. L10N: S/MIME options (opportunistic encryption is on)
+#: ncrypt/smime.c:2048
+msgid "S/MIME (s)ign, encrypt (w)ith, sign (a)s, (c)lear, or (o)ppenc mode off? "
+msgstr ""
+
+#. L10N: S/MIME options (opportunistic encryption is on)
+#: ncrypt/smime.c:2051
+msgid "swaco"
+msgstr ""
+
+#. L10N: S/MIME options (opportunistic encryption is off)
+#: ncrypt/smime.c:2061
+msgid "S/MIME (e)ncrypt, (s)ign, encrypt (w)ith, sign (a)s, (b)oth, (c)lear, or (o)ppenc mode? "
+msgstr ""
+
+#. L10N: S/MIME options (opportunistic encryption is off)
+#: ncrypt/smime.c:2064
+msgid "eswabco"
+msgstr ""
+
+#. L10N: S/MIME options
+#: ncrypt/smime.c:2073
+msgid "S/MIME (e)ncrypt, (s)ign, encrypt (w)ith, sign (a)s, (b)oth, or (c)lear? "
+msgstr ""
+
+#. L10N: S/MIME options
+#: ncrypt/smime.c:2076
+msgid "eswabc"
+msgstr ""
+
+#: ncrypt/smime.c:2096
+msgid "Choose algorithm family: 1: DES, 2: RC2, 3: AES, or (c)lear? "
+msgstr ""
+
+#: ncrypt/smime.c:2099
+msgid "123c"
+msgstr ""
+
+#: ncrypt/smime.c:2102
+msgid "12"
+msgstr ""
+
+#: ncrypt/smime.c:2102
+msgid "1: DES, 2: Triple-DES "
+msgstr ""
+
+#: ncrypt/smime.c:2115
+msgid "123"
+msgstr ""
+
+#: ncrypt/smime.c:2115
+msgid "1: RC2-40, 2: RC2-64, 3: RC2-128 "
+msgstr ""
+
+#: ncrypt/smime.c:2131
+msgid "1: AES128, 2: AES192, 3: AES256 "
+msgstr ""

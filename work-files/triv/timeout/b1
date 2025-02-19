@@ -1,0 +1,12 @@
+main.c:1360:            main                     (argc=1, argv=0x7ffcbc5b99b8, envp=0x7ffcbc5b99d8)
+index/dlg_index.c:1150: dlg_index                (dlg=0x13cfab0, m_init=0x1387540)
+mx.c:1137:              mx_mbox_check            (m=0x1387540)
+maildir/maildir.c:1378: maildir_mbox_check       (m=0x1387540)
+
+main.c:1360:            main                     (argc=1, argv=0x7ffcbc5b99b8, envp=0x7ffcbc5b99d8)
+index/dlg_index.c:1220: dlg_index                (dlg=0x13cfab0, m_init=0x1387540)
+mutt_mailbox.c:222:     mutt_mailbox_check       (m_cur=0x1387540, flags=2 '\002')
+mutt_mailbox.c:134:     mailbox_check            (m_cur=0x1387540, m_check=0x1381060, st_cur=0x7ffcbc5b8c00, flags=2 '\002')
+mx.c:1818:              mx_mbox_check_stats      (m=0x1381060, flags=2 '\002')
+maildir/maildir.c:1387: maildir_mbox_check_stats (m=0x1381060, flags=2 '\002')
+

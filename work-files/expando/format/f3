@@ -1,0 +1,37 @@
+echo '%05d'; printf "|%05d|\n", 42; printf "|%05d|\n", -42
+echo '%05.8d'; printf "|%05.8d|\n" 42; printf "|%05.8d|\n" -42
+echo '%05.d'; printf "|%05.d|\n" 42; printf "|%05.d|\n" -42
+echo '%08d'; printf "|%08d|\n" 42; printf "|%08d|\n" -42
+echo '%0d'; printf "|%0d|\n" 42; printf "|%0d|\n" -42
+echo '%0.8d'; printf "|%0.8d|\n" 42; printf "|%0.8d|\n" -42
+echo '%0.d'; printf "|%0.d|\n" 42; printf "|%0.d|\n" -42
+echo '%5d'; printf "|%5d|\n" 42; printf "|%5d|\n" -42
+echo '%5.8d'; printf "|%5.8d|\n" 42; printf "|%5.8d|\n" -42
+echo '%5.d'; printf "|%5.d|\n" 42; printf "|%5.d|\n" -42
+echo '%8d'; printf "|%8d|\n" 42; printf "|%8d|\n" -42
+echo '%.8d'; printf "|%.8d|\n" 42; printf "|%.8d|\n" -42
+echo '%.d'; printf "|%.d|\n" 42; printf "|%.d|\n" -42
+echo '%-05d'; printf "|%-05d|\n" 42; printf "|%-05d|\n" -42
+echo '%-05.8d'; printf "|%-05.8d|\n" 42; printf "|%-05.8d|\n" -42
+echo '%-05.d'; printf "|%-05.d|\n" 42; printf "|%-05.d|\n" -42
+echo '%-08d'; printf "|%-08d|\n" 42; printf "|%-08d|\n" -42
+echo '%-0d'; printf "|%-0d|\n" 42; printf "|%-0d|\n" -42
+echo '%-0.8d'; printf "|%-0.8d|\n" 42; printf "|%-0.8d|\n" -42
+echo '%-0.d'; printf "|%-0.d|\n" 42; printf "|%-0.d|\n" -42
+echo '%-5d'; printf "|%-5d|\n" 42; printf "|%-5d|\n" -42
+echo '%-5.8d'; printf "|%-5.8d|\n" 42; printf "|%-5.8d|\n" -42
+echo '%-5.d'; printf "|%-5.d|\n" 42; printf "|%-5.d|\n" -42
+echo '%-8d'; printf "|%-8d|\n" 42; printf "|%-8d|\n" -42
+echo '%-d'; printf "|%-d|\n" 42; printf "|%-d|\n" -42
+echo '%-.8d'; printf "|%-.8d|\n" 42; printf "|%-.8d|\n" -42
+echo '%-.d'; printf "|%-.d|\n" 42; printf "|%-.d|\n" -42
+
+echo '%05.0d'; printf "|%05.0d|\n" 0
+echo '%0.0d'; printf "|%0.0d|\n" 0
+echo '%5.0d'; printf "|%5.0d|\n" 0
+echo '%.0d'; printf "|%.0d|\n" 0
+echo '%-05.0d'; printf "|%-05.0d|\n" 0
+echo '%-0.0d'; printf "|%-0.0d|\n" 0
+echo '%-5.0d'; printf "|%-5.0d|\n" 0
+echo '%-.0d'; printf "|%-.0d|\n" 0
+

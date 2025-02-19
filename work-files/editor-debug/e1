@@ -1,0 +1,8 @@
+test/enter/editor_backspace.c:86:     Check editor_buffer_get_lastchar(es) == 2... failed
+test/enter/editor_backspace.c:87:     Check editor_buffer_get_cursor(es) == 2... failed
+test/enter/editor_backward_char.c:87: Check editor_buffer_get_cursor(es) == 2... failed
+test/enter/editor_delete_char.c:88:   Check editor_buffer_get_lastchar(es) == 2... failed
+test/enter/editor_forward_char.c:88:  Check editor_buffer_get_cursor(es) == 4... failed
+test/enter/editor_kill_eow.c:76:      Check editor_buffer_get_lastchar(es) == 13... failed
+test/enter/editor_kill_word.c:87:     Check editor_buffer_get_lastchar(es) == 12... failed
+test/enter/editor_kill_word.c:88:     Check editor_buffer_get_cursor(es) == 6... failed

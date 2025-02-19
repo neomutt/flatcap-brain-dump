@@ -1,0 +1,7 @@
+PatternFormatData pattern_format_str
+
+struct PatternEntry
+	d	desc				description		string
+	e	expr				expresion		string
+	n	num				number			number
+

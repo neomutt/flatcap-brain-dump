@@ -1,0 +1,23 @@
+POSSIBLE REPAINT (menu_* all 3)
+	menu_context
+	menu_move_off
+	menu_scroll
+
+PROBABLE REPAINT (arrow_* all 2)
+	arrow_cursor
+	arrow_string
+
+NO REPAINT
+	resolve
+	auto_tag
+	wrap_search
+	braille_friendly (handled in event loop)
+
+UNKNOWN
+	ascii_chars (only needed by complex painting, not simple)
+
+do we need a "simple" menu?
+	no fancy painting of lines
+	just plain, indicator
+	currently allows users to upgrade the display
+

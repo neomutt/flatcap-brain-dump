@@ -1,0 +1,33 @@
+"TERM"
+"COLORTERM"
+	single use
+"MAIL"
+"MAILDIR"
+	$spool_file
+"REPLYTO"
+	UserHeader
+"EMAIL"
+	$from
+"MAILCAPS"
+	$mailcap_path
+"TMPDIR"
+	$tmp_dir
+"TMPDIR"
+"VISUAL"
+"EDITOR"
+	$editor
+"XDG_CONFIG_HOME"
+	single use
+"SHELL"
+	$shell
+"NNTPSERVER"
+	$news_server
+"LANG"
+"LC_ALL"
+"LC_CTYPE"
+	single use
+"USER"
+	Username
+"HOME"
+	HomeDir
+

@@ -1,0 +1,5 @@
+color status $my_attrs1 $my_fg1 $my_bg1
+color status $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
+color status $my_attrs3 $my_fg3 $my_bg3 "cher*y" 1
+
+# vim: syn=neomuttrc

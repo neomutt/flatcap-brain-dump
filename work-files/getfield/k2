@@ -1,0 +1,88 @@
+gui/curs_lib.c:302:        ret = mutt_enter_string_full(buf->data, buf->dsize, col, complete, multiple,
+
+enter/enter.c:507:         mutt_select_file(buf, buflen,
+enter/enter.c:637:         mutt_select_file(buf, buflen,
+
+browser/browser.c:2266:    mutt_buffer_select_file(f_buf, flags, m, files, numfiles);
+gui/curs_lib.c:557:        mutt_buffer_select_file(fname, flags, m, files, numfiles);
+main.c:1300:               mutt_buffer_select_file(&folder, MUTT_SEL_FOLDER | MUTT_SEL_MAILBOX,
+
+conn/connaccount.c:67:     if (mutt_get_field_unbuffered(prompt, cac->user, sizeof(cac->user), MUTT_COMP_NO_FLAGS))
+conn/connaccount.c:129:    if (mutt_get_field_unbuffered(prompt, cac->pass, sizeof(cac->pass), MUTT_COMP_PASS))
+ncrypt/pgp.c:98:           if (mutt_get_field_unbuffered(_("Enter PGP passphrase:"), PgpPass,
+ncrypt/smime.c:178:        if (mutt_get_field_unbuffered(_("Enter S/MIME passphrase:"), SmimePass,
+
+autocrypt/autocrypt.c:968: if ((!mutt_buffer_enter_fname(_("Scan mailbox"), folderbuf, true, m, false,
+commands.c:876:            if (mutt_buffer_enter_fname(prompt, buf, false, NULL, false, NULL, NULL,
+compose/functions.c:412:   if ((mutt_buffer_enter_fname(prompt, fname, false, NULL, true, &files,
+compose/functions.c:527:   if ((mutt_buffer_enter_fname(prompt, fname, true, shared->mailbox, false,
+compose/functions.c:1619:  if ((mutt_buffer_enter_fname(_("Write message to mailbox"), fname, true,
+index/functions.c:833:     if (mutt_buffer_enter_fname(cp, folderbuf, true, shared->mailbox, false, NULL,
+index/functions.c:2776:    if (mutt_buffer_enter_fname(cp, folderbuf, true, shared->mailbox, false, NULL,
+send/send.c:1880:          rc = mutt_buffer_enter_fname(_("Fcc mailbox"), fcc, true, m, false,
+
+attach/recvattach.c:292:   if ((mutt_buffer_get_field(prompt, buf, MUTT_COMP_FILE | MUTT_COMP_CLEAR,
+attach/recvattach.c:447:   if ((mutt_buffer_get_field(_("Save to file: "), buf, MUTT_COMP_FILE | MUTT_COMP_CLEAR,
+attach/recvattach.c:718:   if (mutt_buffer_get_field((filter ? _("Filter through: ") : _("Pipe to: ")), buf,
+browser/browser.c:1703:    int ret = mutt_buffer_get_field(_("Chdir to: "), buf, MUTT_COMP_FILE,
+browser/browser.c:2000:    if (mutt_buffer_get_field(_("New file name: "), buf, MUTT_COMP_FILE,
+browser/browser.c:2150:    if ((mutt_buffer_get_field(tmp2, buf, MUTT_COMP_PATTERN, false,
+commands.c:424:            if (mutt_buffer_get_field(_("Pipe to command: "), buf, MUTT_COMP_FILE_SIMPLE,
+compose/functions.c:754:   if (mutt_buffer_get_field(Prompts[HDR_FCC], fname, MUTT_COMP_FILE | MUTT_COMP_CLEAR,
+compose/functions.c:1246:  if ((mutt_buffer_get_field(_("New file: "), fname, MUTT_COMP_FILE, false,
+compose/functions.c:1389:  int ret = mutt_buffer_get_field(_("Send attachment with name: "), fname,
+compose/functions.c:1413:  if ((mutt_buffer_get_field(_("Rename to: "), fname, MUTT_COMP_FILE, false,
+gui/curs_lib.c:346:        return mutt_buffer_get_field(field, &tmp, complete, multiple, NULL, files, numfiles);
+gui/curs_lib.c:570:        if (mutt_buffer_get_field(pc, fname, (mailbox ? MUTT_COMP_FILE_MBOX : MUTT_COMP_FILE) | MUTT_COMP_CLEAR,
+muttlib.c:667:             if ((mutt_buffer_get_field(_("File under directory: "), tmp, MUTT_COMP_FILE | MUTT_COMP_CLEAR,
+pattern/pattern.c:252:     if ((mutt_buffer_get_field(prompt, buf, MUTT_COMP_PATTERN | MUTT_COMP_CLEAR,
+pattern/pattern.c:358:     if ((mutt_buffer_get_field(prompt, buf, MUTT_COMP_PATTERN | MUTT_COMP_CLEAR,
+
+alias/alias.c:397:         if ((mutt_get_field(_("Alias as: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS,
+alias/alias.c:438:         if ((mutt_get_field(_("Address: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS,
+alias/alias.c:462:         if (mutt_get_field(_("Personal name: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS,
+alias/alias.c:471:         if (mutt_get_field(_("Comment: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS,
+alias/alias.c:500:         if (mutt_get_field(_("Save to file: "), buf, sizeof(buf),
+alias/dlgquery.c:440:      if ((mutt_get_field(_("Query: "), buf, buflen, MUTT_COMP_NO_FLAGS,
+alias/dlgquery.c:744:      if ((mutt_get_field(_("Query: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS, false,
+browser/browser.c:1796:    if (mutt_get_field(_("File Mask: "), buf->data, buf->dsize,
+commands.c:120:            rc = mutt_get_field(prompt, buf, sizeof(buf), MUTT_COMP_ALIAS, false, NULL, NULL);
+commands.c:605:            if (mutt_get_field(_("Shell command: "), buf, sizeof(buf),
+commands.c:642:            if ((mutt_get_field(":", buf, sizeof(buf), MUTT_COMP_COMMAND, false, NULL, NULL) != 0) ||
+commands.c:1128:           if ((mutt_get_field("Content-Type: ", buf, sizeof(buf), MUTT_COMP_NO_FLAGS,
+compose/functions.c:273:   if (mutt_get_field(_(Prompts[field]), buf, sizeof(buf), MUTT_COMP_ALIAS,
+compose/functions.c:695:   if (mutt_get_field("Description: ", buf, sizeof(buf), MUTT_COMP_NO_FLAGS,
+compose/functions.c:720:   if ((mutt_get_field("Content-Transfer-Encoding: ", buf, sizeof(buf),
+compose/functions.c:854:   if (mutt_get_field("Content-Language: ", buf, sizeof(buf), MUTT_COMP_NO_FLAGS,
+compose/functions.c:935:   if (mutt_get_field(Prompts[HDR_SUBJECT], buf, sizeof(buf), MUTT_COMP_NO_FLAGS,
+compose/functions.c:1257:  if ((mutt_get_field("Content-Type: ", type, sizeof(type), MUTT_COMP_NO_FLAGS,
+compose/functions.c:1848:  if (mutt_get_field(Prompts[HDR_FOLLOWUPTO], buf, sizeof(buf),
+compose/functions.c:1867:  if (mutt_get_field(Prompts[HDR_NEWSGROUPS], buf, sizeof(buf),
+compose/functions.c:1887:  if (mutt_get_field(Prompts[HDR_XCOMMENTTO], buf, sizeof(buf),
+conn/sasl.c:712:           if (OptNoCurses || mutt_get_field(prompt, resp, sizeof(resp),
+gui/curs_lib.c:368:        int rc = mutt_get_field(msg, buf, buflen, flags, false, NULL, NULL);
+imap/browse.c:404:         if (mutt_get_field(_("Create mailbox: "), name, sizeof(name), MUTT_COMP_FILE,
+imap/browse.c:459:         if (mutt_get_field(buf, newname, sizeof(newname), MUTT_COMP_FILE, false, NULL, NULL) < 0)
+imap/imap.c:2270:          if (mutt_get_field("Tags: ", buf, buflen, MUTT_COMP_NO_FLAGS, false, NULL, NULL) != 0)
+index/functions.c:647:     if ((mutt_get_field(_("Jump to message: "), buf, sizeof(buf),
+index/functions.c:1738:    if (!mutt_get_field(_("Enter macro stroke: "), buf2, sizeof(buf2),
+index/functions.c:2675:    if ((mutt_get_field(_("Enter Message-Id: "), buf, sizeof(buf),
+index/functions.c:2936:    if ((mutt_get_field("Query: ", buf, sizeof(buf), MUTT_COMP_NM_QUERY, false, NULL, NULL) != 0) ||
+menu/menu.c:73:            if ((mutt_get_field(_("Jump to: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS,
+menu/menu.c:154:           if ((mutt_get_field(((op == OP_SEARCH) || (op == OP_SEARCH_NEXT)) ?
+mutt_header.c:139:         if (mutt_get_field("Label: ", buf, sizeof(buf),
+ncrypt/crypt_gpgme.c:3798: if (mutt_get_field(tag, resp, sizeof(resp), MUTT_COMP_NO_FLAGS, false, NULL, NULL) != 0)
+ncrypt/pgpkey.c:205:       if (mutt_get_field(tag, resp, sizeof(resp), MUTT_COMP_NO_FLAGS, false, NULL, NULL) != 0)
+ncrypt/smime.c:725:        if (mutt_get_field(prompt, resp, sizeof(resp), MUTT_COMP_NO_FLAGS, false, NULL, NULL) != 0)
+ncrypt/smime.c:1181:       if ((mutt_get_field(_("Label for certificate: "), buf, sizeof(buf),
+notmuch/notmuch.c:2401:    if (mutt_get_field("Add/remove labels: ", buf, buflen, MUTT_COMP_NM_TAG,
+pager/functions.c:1268:    if (mutt_get_field(
+pattern/pattern.c:506:     if ((mutt_get_field(
+pattern/pattern.c:664:     if ((mutt_get_field(
+recvcmd.c:210:             if (mutt_get_field(prompt, buf, sizeof(buf), MUTT_COMP_ALIAS, false, NULL, NULL) ||
+send/send.c:186:           if (mutt_get_field(field, buf, sizeof(buf), MUTT_COMP_ALIAS, false, NULL, NULL) != 0)
+send/send.c:221:           if (mutt_get_field("Newsgroups: ", buf, sizeof(buf), MUTT_COMP_NO_FLAGS,
+send/send.c:235:           if (c_ask_follow_up && (mutt_get_field("Followup-To: ", buf, sizeof(buf),
+send/send.c:251:           (mutt_get_field("X-Comment-To: ", buf, sizeof(buf), MUTT_COMP_NO_FLAGS,
+send/send.c:317:           if ((mutt_get_field(_("Subject: "), buf, sizeof(buf), MUTT_COMP_NO_FLAGS,
+

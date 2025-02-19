@@ -1,0 +1,105 @@
+From SRS0=Nusu=LN=alejandro-colomar.es=alx@kernel.org Mon Apr  8 13:48:56 2024
+Return-Path: <SRS0=Nusu=LN=alejandro-colomar.es=alx@kernel.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 7C45780A
+	for <flatcap-mail@flatcap.org>; Mon,  8 Apr 2024 13:48:56 +0100 (BST)
+X-Virus-Scanned: amavis at flatcap.org
+Received: from flatcap.org ([127.0.0.1])
+ by localhost (flatcap.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id LAwj-tDvkYA7 for <flatcap-mail@flatcap.org>;
+ Mon,  8 Apr 2024 13:48:51 +0100 (BST)
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id 64B8D60D
+	for <rich@flatcap.org>; Mon,  8 Apr 2024 13:48:51 +0100 (BST)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sin.source.kernel.org (Postfix) with ESMTP id 7E56DCE1256;
+	Mon,  8 Apr 2024 12:48:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA18EC433C7;
+	Mon,  8 Apr 2024 12:48:42 +0000 (UTC)
+Date: Mon, 8 Apr 2024 14:48:40 +0200
+From: Alejandro Colomar <alx@alejandro-colomar.es>
+To: alx@alejandro-colomar.es
+Cc: alx@alejandro-colomar.es
+Subject: ...
+Message-ID: <4t5q75afgmxwr2zmpkxaxlfkonbtmx3p7fe4ck75n3xuctxn3f@ysamvmflyupg>
+Reply-To: alx@kernel.org
+MIME-Version: 1.0
+Content-Type: multipart/encrypted; protocol="application/pgp-encrypted";
+	boundary="fbbaikzs5myel3tf"
+Content-Disposition: inline
+Status: RO
+Content-Length: 3432
+Lines: 66
+
+
+--fbbaikzs5myel3tf
+Content-Type: application/pgp-encrypted
+Content-Disposition: attachment
+
+Version: 1
+
+--fbbaikzs5myel3tf
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="msg.asc"
+
+-----BEGIN PGP MESSAGE-----
+
+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
+6Ro8XVXvwzw=
+=ycb8
+-----END PGP MESSAGE-----
+
+--fbbaikzs5myel3tf--
+

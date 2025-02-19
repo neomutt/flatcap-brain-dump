@@ -1,0 +1,60 @@
+digraph index
+{
+	// Red: Users of Global Context
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+		fontsize="8"
+		fontcolor="#0000ff"
+	]
+
+	node [ shape="box" ]
+
+	MENU
+	EVENT
+
+	node [ shape="Mrecord" ]
+	node [ color="#ff0000" ]
+
+	change_folder_mailbox
+	config_pager_index_lines
+	config_reply_regex
+	index_color
+	index_custom_redraw
+	index_make_entry
+	mutt_index_menu
+
+	node [ color="#000000" ]
+
+	MENU -> index_color      [ label="color()"      ]
+	MENU -> index_make_entry [ label="make_entry()" ]
+
+	EVENT -> index_config_observer [ label="NT_CONFIG" ]
+
+	change_folder_notmuch -> change_folder_mailbox
+	change_folder_string -> change_folder_mailbox
+	index_config_observer -> config_pager_index_lines
+	index_config_observer -> config_reply_regex
+	mutt_index_menu -> change_folder_mailbox [ label="OP_MAIN_CHANGE_FOLDER\lOP_MAIN_CHANGE_GROUP\lOP_MAIN_NEXT_UNREAD_MAILBOX\lOP_SIDEBAR_OPEN\l" ]
+	mutt_index_menu -> change_folder_notmuch
+	mutt_index_menu -> change_folder_string
+	mutt_index_menu -> index_custom_redraw
+
+}

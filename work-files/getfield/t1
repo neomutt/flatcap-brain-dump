@@ -1,0 +1,7 @@
+conn/connaccount.c:66:       mutt_get_field_unbuffered(prompt, cac->user, sizeof(cac->user), MUTT_COMP_NO_FLAGS))
+menu.c:1171:                 mutt_get_field(((op == OP_SEARCH) || (op == OP_SEARCH_NEXT)) ?
+ncrypt/crypt_gpgme.c:5216:   mutt_get_field(tag, resp, sizeof(resp), MUTT_CLEAR) != 0)
+ncrypt/pgpkey.c:900:         mutt_get_field(tag, resp, sizeof(resp), MUTT_CLEAR) != 0)
+ncrypt/smime.c:989:          mutt_get_field(prompt, resp, sizeof(resp), MUTT_CLEAR) != 0)
+pager.c:2666:                mutt_get_field(((ch == OP_SEARCH) || (ch == OP_SEARCH_NEXT)) ?
+pattern.c:2704:              mutt_get_field(((op == OP_SEARCH) || (op == OP_SEARCH_NEXT)) ?

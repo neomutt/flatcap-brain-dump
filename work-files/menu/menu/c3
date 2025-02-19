@@ -1,0 +1,39 @@
+config used by libmenu
+
+menu/draw.c:290:               const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+menu/draw.c:328:               const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+menu/draw.c:399:               const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+menu/draw.c:455:               const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+menu/window.c:103:             const bool c_arrow_cursor = cs_subset_bool(menu->sub, "arrow_cursor");
+
+menu/draw.c:293:               const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+menu/draw.c:329:               const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+menu/draw.c:403:               const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+menu/draw.c:459:               const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+menu/window.c:109:             const char *const c_arrow_string = cs_subset_string(menu->sub, "arrow_string");
+
+menu/draw.c:119:               const bool c_ascii_chars = cs_subset_bool(sub, "ascii_chars");
+
+menu/tagging.c:46:             const bool c_auto_tag = cs_subset_bool(menu->sub, "auto_tag");
+menu/tagging.c:88:             const bool c_auto_tag = cs_subset_bool(menu->sub, "auto_tag");
+
+menu/window.c:104:             const bool c_braille_friendly = cs_subset_bool(menu->sub, "braille_friendly");
+
+menu/move.c:118:               short c_menu_context = cs_subset_number(menu->sub, "menu_context");
+menu/move.c:166:               short c_menu_context = cs_subset_number(menu->sub, "menu_context");
+menu/move.c:199:               short c_menu_context = cs_subset_number(menu->sub, "menu_context");
+menu/move.c:258:               short c_menu_context = cs_subset_number(menu->sub, "menu_context");
+menu/move.c:451:               short c_menu_context = cs_subset_number(menu->sub, "menu_context");
+menu/move.c:472:               short c_menu_context = cs_subset_number(menu->sub, "menu_context");
+menu/move.c:492:               short c_menu_context = cs_subset_number(menu->sub, "menu_context");
+
+menu/move.c:148:               const bool c_menu_move_off = cs_subset_bool(menu->sub, "menu_move_off");
+menu/move.c:214:               const bool c_menu_move_off = cs_subset_bool(menu->sub, "menu_move_off");
+menu/move.c:256:               const bool c_menu_move_off = cs_subset_bool(menu->sub, "menu_move_off");
+
+menu/move.c:121:               const bool c_menu_scroll = cs_subset_bool(menu->sub, "menu_scroll");
+
+menu/tagging.c:112:            const bool c_resolve = cs_subset_bool(menu->sub, "resolve");
+
+menu/functions.c:120:          const bool c_wrap_search = cs_subset_bool(menu->sub, "wrap_search");
+

@@ -1,0 +1,120 @@
+From rich@flatcap.org Wed Jan 19 01:22:25 2022
+Return-Path: <rich@flatcap.org>
+X-Original-To: flatcap-mail@flatcap.org
+Delivered-To: flatcap-mail@flatcap.org
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id AC5961513
+	for <flatcap-mail@flatcap.org>; Wed, 19 Jan 2022 01:22:25 +0000 (GMT)
+X-Virus-Scanned: amavisd-new at flatcap.org
+X-Spam-Flag: NO
+X-Spam-Score: 2.531
+X-Spam-Level: **
+X-Spam-Status: No, score=2.531 tagged_above=2 required=6.2
+	tests=[BAYES_00=-1.9, ENCRYPTED_MESSAGE=-1, KHOP_HELO_FCRDNS=0.322,
+	PDS_RDNS_DYNAMIC_FP=0.01, RCVD_IN_PBL=3.335, RCVD_IN_SORBS_DUL=0.001,
+	RDNS_DYNAMIC=0.982, SPF_HELO_NONE=0.001, SPF_NEUTRAL=0.779,
+	TO_EQ_FM_DIRECT_MX=0.001] autolearn=no autolearn_force=no
+Received: from flatcap.org ([127.0.0.1])
+	by localhost (flatcap.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id eIQqRy4cCYaB for <flatcap-mail@flatcap.org>;
+	Wed, 19 Jan 2022 01:22:24 +0000 (GMT)
+Received: from laptop.flatcap.org (cpc88896-oxfd27-2-0-cust5.4-3.cable.virginm.net [82.41.96.6])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by flatcap.org (Postfix) with ESMTPS id 558981512
+	for <rich@flatcap.org>; Wed, 19 Jan 2022 01:22:24 +0000 (GMT)
+Date: Wed, 19 Jan 2022 01:22:24 +0000
+From: Richard Russon <rich@flatcap.org>
+To: Richard Russon <rich@flatcap.org>
+Subject: test sign + encrypt
+Message-Id: <20220119012224.tam7dgjyzon2z2dm@flatcap.org>
+MIME-Version: 1.0
+Content-Type: multipart/encrypted; protocol="application/pgp-encrypted";
+	boundary="y4pxauic2l4nmh2r"
+Content-Disposition: inline
+Autocrypt: addr=rich@flatcap.org; prefer-encrypt=mutual; keydata=
+	mDMEYZfIXRYJKwYBBAHaRw8BAQdAOU+5VQe8reYpbu7543eOmDteaoKwFnydlfC+MiZ4R7K0IVJ
+	pY2hhcmQgUnVzc29uIDxyaWNoQGZsYXRjYXAub3JnPoiUBBMWCgA8FiEEBTXr3ZNroaLVnxBwY7
+	zzNBK8W8gFAmGXyF0CGwMFCwkIBwIDIgIBBhUKCQgLAgQWAgMBAh4HAheAAAoJEGO88zQSvFvIx
+	yYBANLPQPqNCE/J7Q5gJxAMnC4MfsPu4bXh9Lpxg68PNMJCAP9li0dAeEX/Hel7leEg71AhfH/h
+	OCe24HUWpZ1PJdo0Abg4BGGXyF0SCisGAQQBl1UBBQEBB0DclQU0T/axODTef2L7DQMz4e97ls8
+	NIbVXLq5gKqQTWQMBCAeIeAQYFgoAIBYhBAU1692Ta6Gi1Z8QcGO88zQSvFvIBQJhl8hdAhsMAA
+	oJEGO88zQSvFvIfI0BAKBELeaQHtF4dIzJtxkP30w3NEqiQIza42mnIoRxTd7TAP96j2WgyksFU
+	oC24wpTAk+gUSWAXnWoiIDJdY2pQaekCA==
+User-Agent: NeoMutt/20211029-224-e2e658
+Status: RO
+Content-Length: 3732
+Lines: 70
+
+
+--y4pxauic2l4nmh2r
+Content-Type: application/pgp-encrypted
+Content-Disposition: attachment
+
+Version: 1
+
+--y4pxauic2l4nmh2r
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hkdie766ajdujnfd"
+Content-Disposition: inline
+
+
+--hkdie766ajdujnfd
+Content-Type: multipart/mixed; boundary="at3telosfrgqnu5r"
+Content-Disposition: inline
+
+
+--at3telosfrgqnu5r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+abristle sowan sennits roseal neftgil rootling arusha batteaux catskill
+forelimb clucked frenne mahaly aorta zonally keeks acousma modeller
+rebathe quadriad fantail mountie gobbles strix agamete cartages goggle
+generals lumen huffed politist illuder araliad agarita blksize rollejee
+eunuch subsists thripple annuler abutter acoelous tushery gibbose
+grownup ubiety zoeaform araby skats spewer swashway tidesman gansa
+bodgie wooziest levies docents untown mandora fletton ranches vulcan
+beeve runghead uncaking eviller phacella palates episomes dauke resonant
+plume tenured adjiga curiums blood wideband bigbury swallo giving trial
+stoit jelab revigour abrogate zabtie dying mirly unerased jaspe sorosil
+marezzo envine tittie canzos barrack roseroot menhir sumpweed griffado
+
+--at3telosfrgqnu5r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="A.txt"
+
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+--at3telosfrgqnu5r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="B.txt"
+
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+--at3telosfrgqnu5r--
+
+--hkdie766ajdujnfd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEaa0dY2rCkuggZYwW68FQ5LXaY98FAmHnZ84ACgkQ68FQ5LXa
+Y9/V6BAAr9XiNjZQplIzKNUD+1+nGXYElM40rnJmJQbFkUwTvahyZ148w2ChFUep
+iA5SL3KCiCt63q8hTODTNksYc9AOWVvvVBC1wIP6aYPHP/bHdIjzmcjkhg98f3CU
+6c0QmoyASXJBPXfJQF2iIh+Zheu4ERQla0cb6hJwMYbTSzVoWl8GaAL9b8soQ71s
+qeFcMGV9e1NEn/3LdkFo+LqVMvD05WITVN94ITpnGQvwKcNTSFg8Gsh7MTh1yKQi
+AzvEOehYNbqq5VM5ovhpYBSU4oXuKu1YTnOKhXmy0yM0hbsfuz9GYsMdYVAvqrxJ
+ZBG5IBqN4njT1INzJS9VginZlo2yhJnlweW9ounH3GljTwmmQRJdJbl2Rizu5siT
+C3j/s5VnEeYUUZj2UBaQDm6qfAJDDYR7QRYrC6fEkAtzScK3T0P6+QFR7H881xvy
+eAUTki6hsMkS4lwTOn/2CwtwHD5rbOiY/FplCkH6evmMUIghGsKVpHYVb5iKJJoX
+iiNl0NBbSxk5iL8c5vjmApsMeX7ejUao0dfoM0MtKQl2n0xfjxAtLpM1KIYxz3CU
+wivbIv6wg5aRbal40mYLy7e0gzC9pFN6piv3GqGUfkMUlZX2huhJy27CgeZR6QW4
+jIAtIANQxE9X6vuIRcmikgS3RKCb54jB2xIPKsc4ZH4lz/9TP5E=
+=x4Tw
+-----END PGP SIGNATURE-----
+
+--hkdie766ajdujnfd--
+--y4pxauic2l4nmh2r--
+

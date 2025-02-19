@@ -1,0 +1,12 @@
+set imap_user  = "dev-mail"
+set imap_pass  = "piuJohPhaopiu6ye"
+unset record
+
+set sleep_time = 0
+
+set folder    = imaps://flatcap.org/
+set spoolfile = "+INBOX"
+
+set imap_check_subscribed = yes
+
+# vim: syn=neomuttrc

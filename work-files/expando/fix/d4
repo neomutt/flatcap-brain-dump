@@ -1,0 +1,63 @@
+need newline
+	attribution_intro             IndexFormatDef        DT_EXPANDO|D_L10N_STRING	# Message to start a reply, 'On DATE, PERSON wrote:'
+	attribution_trailer           IndexFormatDef        DT_EXPANDO	                # Suffix message to add after reply text
+	forward_attribution_intro     IndexFormatDef        DT_EXPANDO|D_L10N_STRING	# Prefix message for forwarded messages
+	forward_attribution_trailer   IndexFormatDef        DT_EXPANDO|D_L10N_STRING	# Suffix message for forwarded messages
+	greeting                      GreetingFormatDef     DT_EXPANDO	                # Greeting string added to the top of all messages
+	indent_string                 IndexFormatDef        DT_EXPANDO	                # String used to indent 'reply' text
+
+menu
+	alias_format                  AliasFormatDef        DT_EXPANDO|D_NOT_EMPTY	# printf-like format string for the alias menu
+	attach_format                 AttachFormatDef       DT_EXPANDO|D_NOT_EMPTY	# printf-like format string for the attachment menu
+	autocrypt_acct_format         AutocryptFormatDef    DT_EXPANDO	                # Format of the autocrypt account menu
+	folder_format                 FolderFormatDef       DT_EXPANDO|D_NOT_EMPTY	# printf-like format string for the browser's display of folders
+	group_index_format            GroupIndexFormatDef   DT_EXPANDO|D_NOT_EMPTY	# (nntp) printf-like format string for the browser's display of newsgroups
+	history_format                HistoryFormatDef      DT_EXPANDO	                # printf-like format string for the history menu
+	index_format                  IndexFormatDef        DT_EXPANDO|D_NOT_EMPTY	# printf-like format string for the index menu (emails)
+	mailbox_folder_format         FolderFormatDef       DT_EXPANDO|D_NOT_EMPTY	# printf-like format string for the browser's display of mailbox folders
+	message_format                IndexFormatDef        DT_EXPANDO|D_NOT_EMPTY	# printf-like format string for listing attached messages
+	pattern_format                PatternFormatDef      DT_EXPANDO	                # printf-like format string for the pattern completion menu
+	pgp_entry_format              PgpEntryFormatDef     DT_EXPANDO|D_NOT_EMPTY	# printf-like format string for the PGP key selection menu
+	query_format                  QueryFormatDef        DT_EXPANDO|D_NOT_EMPTY	# printf-like format string for the query menu (address book)
+
+status bar
+	compose_format                ComposeFormatDef      DT_EXPANDO|D_L10N_STRING	# printf-like format string for the Compose panel's status bar
+	pager_format                  IndexFormatDef        DT_EXPANDO	                # printf-like format string for the pager's status bar
+	status_format                 StatusFormatDef       DT_EXPANDO|D_L10N_STRING	# printf-like format string for the index's status line
+
+custom
+	forward_format                IndexFormatDef        DT_EXPANDO|D_NOT_EMPTY	# printf-like format string to control the subject when forwarding a message
+	sidebar_format                SidebarFormatDef      DT_EXPANDO|D_NOT_EMPTY	# (sidebar) printf-like format string for the sidebar panel
+
+external
+	newsrc                        NntpFormatDef         DT_EXPANDO|D_PATH_FILE	# (nntp) File containing list of subscribed newsgroups
+	ts_icon_format                StatusFormatDef       DT_EXPANDO|D_L10N_STRING	# printf-like format string for the terminal's icon title
+	ts_status_format              StatusFormatDef       DT_EXPANDO|D_L10N_STRING	# printf-like format string for the terminal's status (window title)
+
+commands
+	inews                         NntpFormatDef         DT_EXPANDO|D_STRING_COMMAND	# (nntp) External command to post news articles
+	new_mail_command              StatusFormatDef       DT_EXPANDO|D_STRING_COMMAND	# External command to run when new mail arrives
+	pgp_clear_sign_command        PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to inline-sign a message
+	pgp_decode_command            PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to decode a PGP attachment
+	pgp_decrypt_command           PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to decrypt a PGP message
+	pgp_encrypt_only_command      PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to encrypt, but not sign a message
+	pgp_encrypt_sign_command      PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to encrypt and sign a message
+	pgp_export_command            PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to export a public key from the user's keyring
+	pgp_get_keys_command          PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to download a key for an email address
+	pgp_import_command            PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to import a key into the user's keyring
+	pgp_list_pubring_command      PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to list the public keys in a user's keyring
+	pgp_list_secring_command      PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to list the private keys in a user's keyring
+	pgp_sign_command              PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to create a detached PGP signature
+	pgp_verify_command            PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to verify PGP signatures
+	pgp_verify_key_command        PgpCommandFormatDef   DT_EXPANDO|D_STRING_COMMAND	# (pgp) External command to verify key information
+	smime_decrypt_command         SmimeCommandFormatDef DT_EXPANDO|D_STRING_COMMAND	# (smime) External command to decrypt an SMIME message
+	smime_encrypt_command         SmimeCommandFormatDef DT_EXPANDO|D_STRING_COMMAND	# (smime) External command to encrypt a message
+	smime_get_cert_command        SmimeCommandFormatDef DT_EXPANDO|D_STRING_COMMAND	# (smime) External command to extract a certificate from a message
+	smime_get_cert_email_command  SmimeCommandFormatDef DT_EXPANDO|D_STRING_COMMAND	# (smime) External command to get a certificate for an email
+	smime_get_signer_cert_command SmimeCommandFormatDef DT_EXPANDO|D_STRING_COMMAND	# (smime) External command to extract a certificate from an email
+	smime_import_cert_command     SmimeCommandFormatDef DT_EXPANDO|D_STRING_COMMAND	# (smime) External command to import a certificate
+	smime_pk7out_command          SmimeCommandFormatDef DT_EXPANDO|D_STRING_COMMAND	# (smime) External command to extract a public certificate
+	smime_sign_command            SmimeCommandFormatDef DT_EXPANDO|D_STRING_COMMAND	# (smime) External command to sign a message
+	smime_verify_command          SmimeCommandFormatDef DT_EXPANDO|D_STRING_COMMAND	# (smime) External command to verify a signed message
+	smime_verify_opaque_command   SmimeCommandFormatDef DT_EXPANDO|D_STRING_COMMAND	# (smime) External command to verify a signature
+

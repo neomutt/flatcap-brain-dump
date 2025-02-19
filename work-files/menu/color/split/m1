@@ -1,0 +1,36 @@
+color/command.c:263:15:  if ((cid == MT_COLOR_STATUS) && !MoreArgs(s))
+color/command.c:383:49:  if (def && (def->flags & CF_REGEX) && (cid != MT_COLOR_STATUS))
+color/command.c:396:30:  if (MoreArgs(s) && (cid != MT_COLOR_STATUS))
+color/command.c:409:20:  else if ((cid == MT_COLOR_STATUS) && MoreArgs(s))
+color/regex.c:194:10:    case MT_COLOR_ATTACH_HEADERS:
+color/regex.c:196:10:    case MT_COLOR_BODY:
+color/regex.c:198:10:    case MT_COLOR_HEADER:
+color/regex.c:200:10:    case MT_COLOR_INDEX:
+color/regex.c:202:10:    case MT_COLOR_INDEX_AUTHOR:
+color/regex.c:204:10:    case MT_COLOR_INDEX_COLLAPSED:
+color/regex.c:206:10:    case MT_COLOR_INDEX_DATE:
+color/regex.c:208:10:    case MT_COLOR_INDEX_FLAGS:
+color/regex.c:210:10:    case MT_COLOR_INDEX_LABEL:
+color/regex.c:212:10:    case MT_COLOR_INDEX_NUMBER:
+color/regex.c:214:10:    case MT_COLOR_INDEX_SIZE:
+color/regex.c:216:10:    case MT_COLOR_INDEX_SUBJECT:
+color/regex.c:218:10:    case MT_COLOR_INDEX_TAG:
+color/regex.c:220:10:    case MT_COLOR_INDEX_TAGS:
+color/regex.c:222:10:    case MT_COLOR_STATUS:
+color/regex.c:304:32:    struct EventColor ev_c = { MT_COLOR_INDEX, NULL };
+color/regex.c:326:14:  if (cid == MT_COLOR_STATUS)
+color/regex.c:336:10:    case MT_COLOR_ATTACH_HEADERS:
+color/regex.c:337:10:    case MT_COLOR_BODY:
+color/regex.c:339:10:    case MT_COLOR_HEADER:
+color/regex.c:341:10:    case MT_COLOR_INDEX:
+color/regex.c:342:10:    case MT_COLOR_INDEX_AUTHOR:
+color/regex.c:343:10:    case MT_COLOR_INDEX_COLLAPSED:
+color/regex.c:344:10:    case MT_COLOR_INDEX_DATE:
+color/regex.c:345:10:    case MT_COLOR_INDEX_FLAGS:
+color/regex.c:346:10:    case MT_COLOR_INDEX_LABEL:
+color/regex.c:347:10:    case MT_COLOR_INDEX_NUMBER:
+color/regex.c:348:10:    case MT_COLOR_INDEX_SIZE:
+color/regex.c:349:10:    case MT_COLOR_INDEX_SUBJECT:
+color/regex.c:350:10:    case MT_COLOR_INDEX_TAG:
+color/regex.c:351:10:    case MT_COLOR_INDEX_TAGS:
+color/regex.c:386:14:  if (cid != MT_COLOR_STATUS)

@@ -1,0 +1,133 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// Use config
+	node [ color="#ff0000" ]
+	calc_fit_selection_to_view
+	calc_move_view
+	menu_current_bottom
+	menu_current_middle
+	menu_current_top
+	menu_drag_view
+	menu_move_view_relative
+	menu_pad_string
+	menu_redraw_current
+	menu_redraw_index
+	menu_redraw_motion
+	menu_repaint
+	menu_set_prefix
+	op_tag
+	print_enriched_string
+	search
+
+	// Called from outside of libmenu
+	// menu_adjust
+	// menu_current_middle
+	// menu_redraw
+	// menu_redraw_current
+	// menu_redraw_full
+	// menu_redraw_index
+	// menu_redraw_motion
+	// menu_set_index
+	// menu_tagging_dispatcher
+	// menu_window_new
+
+	node [ color="#000000" ]
+
+	menu_abort              -> menu_set_prefix
+	menu_adjust             -> calc_move_view
+	menu_adjust             -> menu_drag_view
+	menu_adjust             -> menu_set_and_notify
+	menu_bottom_page        -> menu_move_selection
+	menu_config_observer    -> menu_adjust
+	menu_current_bottom     -> menu_move_view_relative
+	menu_current_middle     -> menu_move_view_relative
+	menu_current_top        -> menu_move_view_relative
+	menu_first_entry        -> menu_move_selection
+	menu_half_down          -> menu_move_view_relative
+	menu_half_up            -> menu_move_view_relative
+	menu_last_entry         -> menu_move_selection
+	menu_middle_page        -> menu_move_selection
+	menu_movement           -> menu_bottom_page
+	menu_movement           -> menu_current_bottom
+	menu_movement           -> menu_current_middle
+	menu_movement           -> menu_current_top
+	menu_movement           -> menu_first_entry
+	menu_movement           -> menu_half_down
+	menu_movement           -> menu_half_up
+	menu_movement           -> menu_last_entry
+	menu_movement           -> menu_middle_page
+	menu_movement           -> menu_next_entry
+	menu_movement           -> menu_next_line
+	menu_movement           -> menu_next_page
+	menu_movement           -> menu_prev_entry
+	menu_movement           -> menu_prev_line
+	menu_movement           -> menu_prev_page
+	menu_movement           -> menu_top_page
+	menu_move_selection     -> menu_drag_view
+	menu_move_selection     -> menu_set_and_notify
+	menu_move_view_relative -> calc_fit_selection_to_view
+	menu_move_view_relative -> menu_set_and_notify
+	menu_new                -> default_color
+	menu_new                -> generic_search
+	menu_new                -> menu_add_observers
+	menu_next_entry         -> menu_move_selection
+	menu_next_line          -> menu_move_view_relative
+	menu_next_page          -> menu_move_view_relative
+	menu_other              -> menu_set_prefix
+	menu_prev_entry         -> menu_move_selection
+	menu_prev_line          -> menu_move_view_relative
+	menu_prev_page          -> menu_move_view_relative
+	menu_redraw             -> menu_redraw_current
+	menu_redraw             -> menu_redraw_full
+	menu_redraw             -> menu_redraw_index
+	menu_redraw             -> menu_redraw_motion
+	menu_redraw_current     -> menu_pad_string
+	menu_redraw_current     -> print_enriched_string
+	menu_redraw_index       -> menu_pad_string
+	menu_redraw_index       -> print_enriched_string
+	menu_redraw_motion      -> menu_pad_string
+	menu_redraw_motion      -> print_enriched_string
+	menu_repaint            -> menu_redraw
+	menu_search             -> menu_set_index
+	menu_search             -> search
+	menu_set_index          -> menu_move_selection
+	menu_tagging_dispatcher -> menu_abort
+	menu_tagging_dispatcher -> menu_other
+	menu_tagging_dispatcher -> menu_timeout
+	menu_tagging_dispatcher -> op_end_cond
+	menu_tagging_dispatcher -> op_tag
+	menu_tagging_dispatcher -> op_tag_prefix
+	menu_tagging_dispatcher -> op_tag_prefix_cond
+	menu_timeout            -> menu_set_prefix
+	menu_top_page           -> menu_move_selection
+	menu_wdata_free         -> menu_free
+	menu_window_new         -> menu_new
+	op_end_cond             -> menu_set_prefix
+	op_jump                 -> menu_set_index
+	op_tag                  -> menu_set_index
+	op_tag_prefix           -> menu_set_prefix
+	op_tag_prefix_cond      -> menu_set_prefix
+	print_enriched_string   -> get_color
+
+}

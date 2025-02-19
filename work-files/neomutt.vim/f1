@@ -1,0 +1,60 @@
+alias_format          AliasFormat         muttrcAliasFormatConditionals         muttrcAliasFormatEscapes         muttrcAliasFormatString         muttrcVarEqualsAliasFormat
+attach_format         AttachFormat        muttrcAttachFormatConditionals        muttrcAttachFormatEscapes        muttrcAttachFormatString        muttrcVarEqualsAttachFormat
+autocrypt_acct_format AutocryptAcctFormat muttrcAutocryptAcctFormatConditionals muttrcAutocryptAcctFormatEscapes muttrcAutocryptAcctFormatString muttrcVarEqualsAutocryptAcctFormat
+compose_format        ComposeFormat       muttrcComposeFormatConditionals       muttrcComposeFormatEscapes       muttrcComposeFormatString       muttrcVarEqualsComposeFormat
+folder_format         FolderFormat        muttrcFolderFormatConditionals        muttrcFolderFormatEscapes        muttrcFolderFormatString        muttrcVarEqualsFolderFormat
+index_format          IndexFormat         muttrcIndexFormatConditionals         muttrcIndexFormatEscapes         muttrcIndexFormatString         muttrcVarEqualsIndexFormat
+group_index_format    GroupIndexFormat    muttrcGroupIndexFormatConditionals    muttrcGroupIndexFormatEscapes    muttrcGroupIndexFormatString    muttrcVarEqualsGroupIndexFormat
+mix_entry_format      MixEntryFormat      muttrcMixEntryFormatConditionals      muttrcMixEntryFormatEscapes      muttrcMixEntryFormatString      muttrcVarEqualsMixEntryFormat
+pattern_format        PatternFormat       muttrcPatternFormatConditionals       muttrcPatternFormatEscapes       muttrcPatternFormatString       muttrcVarEqualsPatternFormat
+pgp_command_format    PgpCommandFormat    muttrcPgpCommandFormatConditionals    muttrcPgpCommandFormatEscapes    muttrcPgpCommandFormatString    muttrcVarEqualsPgpCommandFormat
+pgp_entry_format      PgpEntryFormat      muttrcPgpEntryFormatConditionals      muttrcPgpEntryFormatEscapes      muttrcPgpEntryFormatString      muttrcVarEqualsPgpEntryFormat
+query_format          QueryFormat         muttrcQueryFormatConditionals         muttrcQueryFormatEscapes         muttrcQueryFormatString         muttrcVarEqualsQueryFormat
+sidebar_format        SidebarFormat       muttrcSidebarFormatConditionals       muttrcSidebarFormatEscapes       muttrcSidebarFormatString       muttrcVarEqualsSidebarFormat
+smime_command_format  SmimeCommandFormat  muttrcSmimeCommandFormatConditionals  muttrcSmimeCommandFormatEscapes  muttrcSmimeCommandFormatString  muttrcVarEqualsSmimeCommandFormat
+status_format         StatusFormat        muttrcStatusFormatConditionals        muttrcStatusFormatEscapes        muttrcStatusFormatString        muttrcVarEqualsStatusFormat
+
+\v<(alias_format|AliasFormat|muttrcAliasFormatConditionals|muttrcAliasFormatEscapes|muttrcAliasFormatString|muttrcVarEqualsAliasFormat)>
+\v<(attach_format|AttachFormat|muttrcAttachFormatConditionals|muttrcAttachFormatEscapes|muttrcAttachFormatString|muttrcVarEqualsAttachFormat)>
+\v<(autocrypt_acct_format|AutocryptAcctFormat|muttrcAutocryptAcctFormatConditionals|muttrcAutocryptAcctFormatEscapes|muttrcAutocryptAcctFormatString|muttrcVarEqualsAutocryptAcctFormat)>
+\v<(compose_format|ComposeFormat|muttrcComposeFormatConditionals|muttrcComposeFormatEscapes|muttrcComposeFormatString|muttrcVarEqualsComposeFormat)>
+\v<(folder_format|FolderFormat|muttrcFolderFormatConditionals|muttrcFolderFormatEscapes|muttrcFolderFormatString|muttrcVarEqualsFolderFormat)>
+\v<(index_format|IndexFormat|muttrcIndexFormatConditionals|muttrcIndexFormatEscapes|muttrcIndexFormatString|muttrcVarEqualsIndexFormat)>
+\v<(group_index_format|GroupIndexFormat|muttrcGroupIndexFormatConditionals|muttrcGroupIndexFormatEscapes|muttrcGroupIndexFormatString|muttrcVarEqualsGroupIndexFormat)>
+\v<(mix_entry_format|MixEntryFormat|muttrcMixEntryFormatConditionals|muttrcMixEntryFormatEscapes|muttrcMixEntryFormatString|muttrcVarEqualsMixEntryFormat)>
+\v<(pattern_format|PatternFormat|muttrcPatternFormatConditionals|muttrcPatternFormatEscapes|muttrcPatternFormatString|muttrcVarEqualsPatternFormat)>
+\v<(pgp_command_format|PgpCommandFormat|muttrcPgpCommandFormatConditionals|muttrcPgpCommandFormatEscapes|muttrcPgpCommandFormatString|muttrcVarEqualsPgpCommandFormat)>
+\v<(pgp_entry_format|PgpEntryFormat|muttrcPgpEntryFormatConditionals|muttrcPgpEntryFormatEscapes|muttrcPgpEntryFormatString|muttrcVarEqualsPgpEntryFormat)>
+\v<(query_format|QueryFormat|muttrcQueryFormatConditionals|muttrcQueryFormatEscapes|muttrcQueryFormatString|muttrcVarEqualsQueryFormat)>
+\v<(sidebar_format|SidebarFormat|muttrcSidebarFormatConditionals|muttrcSidebarFormatEscapes|muttrcSidebarFormatString|muttrcVarEqualsSidebarFormat)>
+\v<(smime_command_format|SmimeCommandFormat|muttrcSmimeCommandFormatConditionals|muttrcSmimeCommandFormatEscapes|muttrcSmimeCommandFormatString|muttrcVarEqualsSmimeCommandFormat)>
+\v<(status_format|StatusFormat|muttrcStatusFormatConditionals|muttrcStatusFormatEscapes|muttrcStatusFormatString|muttrcVarEqualsStatusFormat)>
+
+Fmt Format
+Grp Group
+Idx Index
+PGP Pgp
+Sdb Sidebar
+
+muttrcAliasFormatStr           muttrcAliasFormatString
+muttrcAttachFormatStr          muttrcAttachFormatString
+muttrcComposeFormatStr         muttrcComposeFormatString
+muttrcFolderFormatStr          muttrcFolderFormatString
+muttrcGroupIndexFormatStr      muttrcGroupIndexFormatString
+muttrcIndexFormatStr           muttrcIndexFormatString
+muttrcMixFormatStr             muttrcMixFormatString
+muttrcPatternFormatStr         muttrcPatternFormatString
+muttrcPgpCmdFormatStr          muttrcPgpCmdFormatString
+muttrcPgpFormatStr             muttrcPgpFormatString
+muttrcQueryFormatStr           muttrcQueryFormatString
+muttrcSidebarFormatStr         muttrcSidebarFormatString
+muttrcSmimeFormatStr           muttrcSmimeFormatString
+muttrcStatusFormatStr          muttrcStatusFormatString
+muttrcStrftimeFormatStr        muttrcStrftimeFormatString
+muttrcVarDeprecatedStr         muttrcVarDeprecatedString
+muttrcVarStr                   muttrcVarString
+
+MixFormat    MixEntryFormat
+PgpCmdFormat PgpCommandFormat
+PgpFormat    PgpEntryFormat
+SmimeFormat  SmimeCommandFormat

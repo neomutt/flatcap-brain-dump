@@ -1,0 +1,156 @@
+digraph callgraph {
+	// split-up browser 2021-12-04
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// Called by the menu
+	node [ color="#00ff00" ]
+	file_tag
+	folder_format_str
+	folder_make_entry
+	select_file_search
+
+	// User operations
+	node [ color="red" ]
+	op_browser_new_file
+	op_browser_subscribe
+	op_browser_tell
+	op_browser_toggle_lsub
+	op_browser_view_file
+	op_catchup
+	op_change_directory
+	op_create_mailbox
+	op_delete_mailbox
+	op_enter_mask
+	op_exit
+	op_generic_select_entry
+	op_load_active
+	op_mailbox_list
+	op_rename_mailbox
+	op_sort
+	op_toggle_mailboxes
+
+	node [ color="black" ]
+	// hide for simplicity
+	// browser_compare -> browser_compare_count
+	// browser_compare -> browser_compare_count_new
+	// browser_compare -> browser_compare_date
+	// browser_compare -> browser_compare_desc
+	// browser_compare -> browser_compare_order
+	// browser_compare -> browser_compare_size
+	// browser_compare -> browser_compare_subject
+	// browser_sort -> browser_compare
+	// mutt_select_file -> mutt_buffer_select_file
+	// browser_config_observer -> mutt_buffer_select_file [style=dashed]
+	// browser_window_observer -> mutt_buffer_select_file [style=dashed]
+	// mutt_browser_cleanup -> mutt_buffer_select_file [style=dashed]
+	// mutt_buffer_select_file -> browser_private_data_free
+	// mutt_buffer_select_file -> browser_private_data_new
+
+	browser_function_dispatcher -> op_browser_new_file
+	browser_function_dispatcher -> op_browser_subscribe
+	browser_function_dispatcher -> op_browser_tell
+	browser_function_dispatcher -> op_browser_toggle_lsub
+	browser_function_dispatcher -> op_browser_view_file
+	browser_function_dispatcher -> op_catchup
+	browser_function_dispatcher -> op_change_directory
+	browser_function_dispatcher -> op_create_mailbox
+	browser_function_dispatcher -> op_delete_mailbox
+	browser_function_dispatcher -> op_enter_mask
+	browser_function_dispatcher -> op_exit
+	browser_function_dispatcher -> op_generic_select_entry
+	browser_function_dispatcher -> op_load_active
+	browser_function_dispatcher -> op_mailbox_list
+	browser_function_dispatcher -> op_rename_mailbox
+	browser_function_dispatcher -> op_sort
+	browser_function_dispatcher -> op_toggle_mailboxes
+	examine_directory -> browser_add_folder
+	examine_directory -> browser_sort
+	examine_directory -> init_state
+	examine_mailboxes -> browser_add_folder
+	examine_mailboxes -> browser_sort
+	examine_mailboxes -> init_state
+	file_tag -> link_is_dir
+	folder_make_entry -> folder_format_str
+	init_menu -> browser_highlight_default
+	mutt_browser_select_dir -> init_lastdir
+	mutt_buffer_select_file -> browser_function_dispatcher
+	mutt_buffer_select_file -> browser_sort
+	mutt_buffer_select_file -> examine_directory
+	mutt_buffer_select_file -> examine_mailboxes
+	mutt_buffer_select_file -> file_tag
+	mutt_buffer_select_file -> folder_make_entry
+	mutt_buffer_select_file -> init_lastdir
+	mutt_buffer_select_file -> init_menu
+	mutt_buffer_select_file -> init_state
+	mutt_buffer_select_file -> mutt_browser_select_dir
+	mutt_buffer_select_file -> select_file_search
+	op_browser_subscribe -> browser_add_folder
+	op_browser_subscribe -> init_menu
+	op_browser_view_file -> link_is_dir
+	op_change_directory -> browser_highlight_default
+	op_change_directory -> browser_sort
+	op_change_directory -> destroy_state
+	op_change_directory -> examine_directory
+	op_change_directory -> init_menu
+	op_change_directory -> init_state
+	op_create_mailbox -> browser_highlight_default
+	op_create_mailbox -> browser_sort
+	op_create_mailbox -> destroy_state
+	op_create_mailbox -> init_menu
+	op_create_mailbox -> init_state
+	op_delete_mailbox -> init_menu
+	op_enter_mask -> browser_sort
+	op_enter_mask -> destroy_state
+	op_enter_mask -> examine_directory
+	op_enter_mask -> init_menu
+	op_enter_mask -> init_state
+	mutt_buffer_select_file -> destroy_state
+	op_generic_select_entry -> browser_highlight_default
+	op_generic_select_entry -> browser_sort
+	op_generic_select_entry -> destroy_state
+	op_generic_select_entry -> examine_directory
+	op_generic_select_entry -> init_menu
+	op_generic_select_entry -> init_state
+	op_generic_select_entry -> link_is_dir
+	op_generic_select_entry -> op_exit
+	op_load_active -> destroy_state
+	op_load_active -> examine_directory
+	op_load_active -> examine_mailboxes
+	op_load_active -> init_menu
+	op_rename_mailbox -> browser_highlight_default
+	op_rename_mailbox -> browser_sort
+	op_rename_mailbox -> destroy_state
+	op_rename_mailbox -> init_menu
+	op_rename_mailbox -> init_state
+	op_sort -> browser_highlight_default
+	op_sort -> browser_sort
+	op_toggle_mailboxes -> browser_sort
+	op_toggle_mailboxes -> destroy_state
+	op_toggle_mailboxes -> examine_directory
+	op_toggle_mailboxes -> examine_mailboxes
+	op_toggle_mailboxes -> init_menu
+	op_toggle_mailboxes -> init_state
+
+	{ rank=same op_browser_new_file op_browser_subscribe op_browser_tell op_browser_toggle_lsub op_browser_view_file op_catchup op_change_directory op_create_mailbox op_delete_mailbox op_enter_mask op_exit op_generic_select_entry op_load_active op_mailbox_list op_rename_mailbox op_sort op_toggle_mailboxes }
+
+}

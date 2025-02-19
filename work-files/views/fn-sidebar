@@ -1,0 +1,11 @@
+<sidebar-first>          OP_SIDEBAR_FIRST          move the highlight to the first mailbox
+<sidebar-last>           OP_SIDEBAR_LAST           move the highlight to the last mailbox
+<sidebar-next-new>       OP_SIDEBAR_NEXT_NEW       move the highlight to next mailbox with new mail
+<sidebar-next>           OP_SIDEBAR_NEXT           move the highlight to next mailbox
+<sidebar-open>           OP_SIDEBAR_OPEN           open highlighted mailbox
+<sidebar-page-down>      OP_SIDEBAR_PAGE_DOWN      scroll the sidebar down 1 page
+<sidebar-page-up>        OP_SIDEBAR_PAGE_UP        scroll the sidebar up 1 page
+<sidebar-prev-new>       OP_SIDEBAR_PREV_NEW       move the highlight to previous mailbox with new mail
+<sidebar-prev>           OP_SIDEBAR_PREV           move the highlight to previous mailbox
+<sidebar-toggle-virtual> OP_SIDEBAR_TOGGLE_VIRTUAL toggle between mailboxes and virtual mailboxes
+<sidebar-toggle-visible> OP_SIDEBAR_TOGGLE_VISIBLE make the sidebar (in)visible

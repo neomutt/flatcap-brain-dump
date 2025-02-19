@@ -1,0 +1,150 @@
+From rich@flatcap.org Tue Mar 19 15:19:43 2024
+Date: Tue, 19 Mar 2024 15:19:43 +0000
+From: Richard Russon <rich@flatcap.org>
+To: asdf@flatcap.org
+Subject: asdf
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="gsonfz2sn272ub3a"
+Content-Disposition: inline; filename="apple"
+Content-Transfer-Encoding: 8bit
+Mutt-Fcc: 
+Status: RO
+Content-Length: 288785
+Lines: 10339
+
+
+--gsonfz2sn272ub3a
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline; filename="banana"
+
+asdf
+
+--gsonfz2sn272ub3a
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="cherry"
+
+/**
+ * @file
+ * Alternate address handling
+ *
+ * @authors
+ * Copyright (C) 2021-2023 Richard Russon <rich@flatcap.org>
+
+--gsonfz2sn272ub3a
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: attachment; filename="damson"
+Content-Transfer-Encoding: 8bit
+
+/**
+ * @file
+ * Functions to parse commands in a config file
+ *
+ * @authors
+ * Copyright (C) 2019-2023 Richard Russon <rich@flatcap.org>
+
+--gsonfz2sn272ub3a
+Content-Type: multipart/related; boundary="whg5jhvlcvuoaytu"
+Content-Disposition: attachment; filename="elderberry"
+
+
+--whg5jhvlcvuoaytu
+Content-Type: text/plain; charset=us-ascii
+Content-ID: <gawqm7exh4hfgn6x>
+Content-Disposition: attachment; filename="fig"
+
+ unsigned char cc_cflags[] = {
+  0x2d, 0x66, 0x6e, 0x6f, 0x2d, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x2d, 
+  0x6e, 0x75, 0x6c, 0x6c, 0x2d, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x65, 0x72, 
+
+--whg5jhvlcvuoaytu
+Content-Type: text/plain; charset=iso-8859-1
+Content-ID: <x3t4nthi64ax6nfl>
+Content-Disposition: attachment; filename="guava"
+Content-Transfer-Encoding: 8bit
+
+/**
+ * @file
+ * Duplicate the structure of an entire email
+ *
+ * @authors
+ * Copyright (C) 2017-2024 Richard Russon <rich@flatcap.org>
+
+--whg5jhvlcvuoaytu
+Content-Type: multipart/related; boundary="tzmm6jjrorhct2qf"
+Content-Disposition: attachment; filename="hawthorn"
+
+
+--tzmm6jjrorhct2qf
+Content-Type: text/plain; charset=us-ascii
+Content-ID: <y4lkg76spfkrbfwe>
+Content-Disposition: attachment; filename="ilama"
+
+/**
+ * @file
+ * Prepare an email to be edited
+ *
+ * @authors
+ * Copyright (C) 2019-2022 Pietro Cerutti <gahr@gahr.ch>
+
+--tzmm6jjrorhct2qf
+Content-Type: text/plain; charset=us-ascii
+Content-ID: <kx4sckzgio6mhroa>
+Content-Disposition: attachment; filename="jackfruit"
+
+/**
+ * @file
+ * Rich text handler
+ *
+ * @authors
+ * Copyright (C) 2018-2023 Richard Russon <rich@flatcap.org>
+ *
+
+--tzmm6jjrorhct2qf
+Content-Type: text/plain; charset=us-ascii
+Content-ID: <vvuxvmpnw3cxk3ja>
+Content-Disposition: attachment; filename="kumquat"
+
+/**
+ * @file
+ * Manage where the email is piped to external commands
+ *
+ * @authors
+ * Copyright (C) 2017-2023 Richard Russon <rich@flatcap.org>
+
+--tzmm6jjrorhct2qf--
+
+--whg5jhvlcvuoaytu
+Content-Type: text/plain; charset=us-ascii
+Content-ID: <juncimo7qv5vlj6z>
+Content-Disposition: attachment; filename="lemon"
+
+/**
+ * @file
+ * Manipulate the flags in an email header
+ *
+ * @authors
+ * Copyright (C) 1996-2000 Michael R. Elkins <me@mutt.org>
+
+--whg5jhvlcvuoaytu
+Content-Type: text/plain; charset=us-ascii
+Content-ID: <kj7plfw2xdupf4i5>
+Content-Disposition: attachment; filename="mango"
+
+const char *GitVer = "-58-0e0d7c-dirty";
+
+--whg5jhvlcvuoaytu
+Content-Type: text/plain; charset=us-ascii
+Content-ID: <e6siqrclbt57hsms>
+Content-Disposition: attachment; filename="nectarine"
+
+/**
+ * @file
+ * Global variables
+ *
+ * @authors
+ * Copyright (C) 2023 Richard Russon <rich@flatcap.org>
+
+--whg5jhvlcvuoaytu--
+
+--gsonfz2sn272ub3a
+

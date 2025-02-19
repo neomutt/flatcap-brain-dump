@@ -1,0 +1,58 @@
+Event loops
+
+enter.c:701: 
+	mutt_enter_string_full()
+	case OP_EDITOR_QUOTE_CHAR:
+	(wait after Ctrl-V)
+	doesn't DO anything - just waiting for a char after Ctrl-V
+
+flags.c:461: 
+	mutt_change_flag() NONE
+	wait for one char, only loop on timeout
+	SIGWINCH ignored
+
+gui/curs_lib.c:479: 
+	mutt_yesorno() - NONE
+	wait for one char, loop on timeout, wrong char
+	SIGWINCH handled
+
+gui/curs_lib.c:707: 
+	mutt_buffer_enter_fname()
+	wait for one char, only loop on timeout
+	doesn't DO anything - just waiting for '?' to be pressed
+
+gui/curs_lib.c:943: 
+	mutt_multi_choice() NONE
+	wait for one char, loop on timeout, wrong char
+	SIGWINCH handled
+
+keymap.c:665: 
+keymap.c:684: 
+	km_dokey()
+	SIGWINCH returned to caller
+
+menu/menu.c:253: 
+	menu_dialog_dokey() only called by menu_loop()
+	wait for one char, only loop on timeout
+
+commands.c:414: 
+	mutt_display_message()
+	$prompt_after
+	handled by caller - mutt_index_menu()
+
+enter.c:235: 
+	mutt_enter_string_full
+	handled by caller - mutt_buffer_get_field()
+
+index/index.c:1372: 
+	mutt_index_menu()
+	handled by caller
+
+menu/menu.c:329: 
+	menu_loop()
+	handled by caller
+
+pager/pager.c:2669: 
+	mutt_pager()
+	handled by caller
+

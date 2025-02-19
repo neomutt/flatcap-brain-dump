@@ -1,0 +1,131 @@
+# vim: syn=neomuttrc
+
+set weed       = yes
+set allow_ansi = yes
+set smart_wrap = no
+set sort       = threads
+set resolve    = yes
+
+set history             = 100
+set history_file        = "~/.mutthistory"
+set history_remove_dups = yes
+set save_history        = 100
+
+ignore *
+unignore from: subject to cc date x-mailer x-url user-agent
+hdr_order date from to cc subject
+
+color signature underline red green
+color status blue yellow
+color search black red
+color body underline yellow  magenta "3[0-9]"
+# color body underline red     blue    "3[0-9]"
+# color body           default default "3[0-9]"
+
+color prompt default default
+color options bold underline default default
+color tree yellow default
+color indicator default blue
+
+color index red green "apple"
+
+color hdrdefault red default
+color header brightred default "^(From|Subject):"
+
+color quoted0                                 color196 default
+color quoted1 bold                            color208 default
+color quoted2      reverse                    color226 default
+color quoted3              standout           color46  default
+color quoted4                       underline color75  default
+color quoted5      reverse          underline color21  default
+color quoted6 bold reverse standout           color207 default
+color quoted7                                 color63  default
+color quoted8                                 color75  default
+
+color status red   default "threads"
+color status green default "date"
+color status blue  default "msgs"
+
+# macro index,pager <f5> "<enter-command> color quoted2 underline red     yellow<enter>"
+# macro index,pager <f6> "<enter-command> color quoted2 bold      green   blue<enter>"
+# macro index,pager <f7> "<enter-command> color quoted2           default default<enter>"
+# macro index,pager <f8> "<enter-command> uncolor quoted2<enter>"
+
+# macro index,pager <f3> "<enter-command> color status yellow green date<enter>"
+# macro index,pager <f4> "<enter-command> uncolor status date<enter>"
+# macro index,pager <f5> "<enter-command> color status underline red     yellow<enter>"
+# macro index,pager <f6> "<enter-command> color status bold      green   blue<enter>"
+# macro index,pager <f7> "<enter-command> color status           default default<enter>"
+# macro index,pager <f8> "<enter-command> uncolor status<enter>"
+
+# macro index,pager <f1>  "<enter-command> color body color23  color153 '10'<enter>"
+# macro index,pager <f2>  "<enter-command> color body color28  color233 '11'<enter>"
+# macro index,pager <f3>  "<enter-command> color body color228 color137 '12'<enter>"
+# macro index,pager <f4>  "<enter-command> color body color70  color182 '13'<enter>"
+# macro index,pager <f5>  "<enter-command> color body color51  color34  '14'<enter>"
+# macro index,pager <f6>  "<enter-command> color body color74  color199 '15'<enter>"
+# macro index,pager <f7>  "<enter-command> color body color178 color247 '16'<enter>"
+# macro index,pager <f8>  "<enter-command> color body color195 color125 '17'<enter>"
+# macro index,pager <f9>  "<enter-command> color body color128 color4   '18'<enter>"
+# macro index,pager <f10> "<enter-command> color body color176 color179 '19'<enter>"
+
+# macro index,pager <f13> "<enter-command> uncolor body '10'<enter>"
+# macro index,pager <f14> "<enter-command> uncolor body '11'<enter>"
+# macro index,pager <f15> "<enter-command> uncolor body '12'<enter>"
+# macro index,pager <f16> "<enter-command> uncolor body '13'<enter>"
+# macro index,pager <f17> "<enter-command> uncolor body '14'<enter>"
+# macro index,pager <f18> "<enter-command> uncolor body '15'<enter>"
+# macro index,pager <f19> "<enter-command> uncolor body '16'<enter>"
+# macro index,pager <f20> "<enter-command> uncolor body '17'<enter>"
+# macro index,pager <f21> "<enter-command> uncolor body '18'<enter>"
+# macro index,pager <f22> "<enter-command> uncolor body '19'<enter>"
+
+# macro index,pager <f1> "<enter-command> uncolor quoted0'<enter>"
+# macro index,pager <f2> "<enter-command> uncolor quoted1'<enter>"
+# macro index,pager <f3> "<enter-command> uncolor quoted2'<enter>"
+# macro index,pager <f4> "<enter-command> uncolor quoted3'<enter>"
+# macro index,pager <f5> "<enter-command> uncolor quoted4'<enter>"
+# macro index,pager <f6> "<enter-command> uncolor quoted5'<enter>"
+# macro index,pager <f7> "<enter-command> uncolor quoted6'<enter>"
+# macro index,pager <f8> "<enter-command> uncolor quoted7'<enter>"
+# macro index,pager <f9> "<enter-command> uncolor quoted8'<enter>"
+
+# # color normal             color105 color89  
+# color sidebar_indicator  color201 color160 
+# color prompt             color30  color164 
+# color sidebar_divider    color154 color70  
+# color underline          color155 color123 
+# color sidebar_spoolfile  color16  color128 
+# color options            color237 color108 
+# color index_size         color199 color76  
+# color hdrdefault         color107 color7   
+# color sidebar_spool_file color246 color115 
+# color bold               color177 color42  
+# color sidebar_unread     color221 color161 
+# color progress           color201 color202 
+# color index_date         color140 color164 
+# color tilde              color51  color89  
+# color warning            color148 color20  
+# color sidebar_flagged    color52  color172 
+# color message            color168 color243 
+# color error              color239 color255 
+# color index_tags         color120 color142 
+# color attachment         color85  color204 
+# color tree               color64  color134 
+# color sidebar_highlight  color192 color160 
+# color sidebar_ordinary   color144 color95  
+# color index_collapsed    color78  color223 
+# color status             color226 color28  
+# color index_label        color7   color190 
+# color markers            color32  color165 
+# color search             color171 color21  
+# color signature          color116 color25  
+# color quoted             color76  color192 
+# color index_number       color203 color159 
+# color sidebar_new        color130 color218 
+# color indicator          color165 color62  
+
+unset record
+unset postpone
+set editor="shuf -n 100 /usr/share/dict/words | fmt >> %s"
+macro index,pager <F1> "mrich@flatcap.org<enter>test<enter>"

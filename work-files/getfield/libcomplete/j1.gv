@@ -1,0 +1,138 @@
+digraph callgraph {
+	// 2022-06-21 main
+	// libenter, libcomplete
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// Red: users of global variables
+	node [ color="#ff0000" ]
+	candidate
+	complete_all_nm_tags
+	matches_ensure_morespace
+	mutt_command_complete
+	mutt_complete
+	mutt_label_complete
+	mutt_nm_query_complete
+	mutt_nm_tag_complete
+
+	// Green: EnterWindowData
+	node [ color="#00ff00" ]
+	complete_file_simple
+	complete_alias_complete
+	complete_label
+	complete_pattern
+	complete_alias_query
+	complete_command
+	complete_file_mbox
+	complete_nm_query
+	complete_nm_tag
+	op_editor_complete
+
+	node [ color="#000000" ]
+	candidate -> matches_ensure_morespace
+	complete_all_nm_tags -> candidate
+	complete_all_nm_tags -> matches_ensure_morespace
+	complete_command -> mutt_command_complete
+	complete_command -> mutt_var_value_complete
+	complete_file_mbox -> mutt_complete
+	complete_file_simple -> mutt_complete
+	complete_label -> mutt_label_complete
+	complete_nm_query -> mutt_nm_query_complete
+	complete_nm_tag -> mutt_nm_tag_complete
+	complete_pattern -> mutt_label_complete
+	enter_function_dispatcher -> op_editor_complete
+	enter_function_dispatcher -> op_editor_mailbox_cycle
+	mutt_buffer_get_field -> enter_function_dispatcher
+	mutt_command_complete -> candidate
+	mutt_command_complete -> matches_ensure_morespace
+	mutt_label_complete -> candidate
+	mutt_label_complete -> matches_ensure_morespace
+	mutt_nm_query_complete -> complete_all_nm_tags
+	mutt_nm_tag_complete -> complete_all_nm_tags
+	op_editor_complete -> complete_alias_complete
+	op_editor_complete -> complete_alias_query
+	op_editor_complete -> complete_command
+	op_editor_complete -> complete_file_mbox
+	op_editor_complete -> complete_file_simple
+	op_editor_complete -> complete_label
+	op_editor_complete -> complete_nm_query
+	op_editor_complete -> complete_nm_tag
+	op_editor_complete -> complete_pattern
+	op_editor_mailbox_cycle -> op_editor_complete
+
+	// enter_function_dispatcher -> op_editor_backspace
+	// enter_function_dispatcher -> op_editor_backward_char
+	// enter_function_dispatcher -> op_editor_backward_word
+	// enter_function_dispatcher -> op_editor_bol
+	// enter_function_dispatcher -> op_editor_capitalize_word
+	// enter_function_dispatcher -> op_editor_delete_char
+	// enter_function_dispatcher -> op_editor_eol
+	// enter_function_dispatcher -> op_editor_forward_char
+	// enter_function_dispatcher -> op_editor_forward_word
+	// enter_function_dispatcher -> op_editor_kill_eol
+	// enter_function_dispatcher -> op_editor_kill_eow
+	// enter_function_dispatcher -> op_editor_kill_line
+	// enter_function_dispatcher -> op_editor_kill_whole_line
+	// enter_function_dispatcher -> op_editor_kill_word
+	// enter_function_dispatcher -> op_editor_transpose_chars
+	// enter_state_new -> enter_state_resize
+	// mutt_buffer_get_field -> enter_state_free
+	// mutt_buffer_get_field -> enter_state_new
+	// mutt_buffer_get_field -> my_addwch
+	// op_editor_backspace -> editor_backspace
+	// op_editor_backspace -> editor_buffer_is_empty
+	// op_editor_backward_char -> editor_backward_char
+	// op_editor_backward_word -> editor_backward_word
+	// op_editor_bol -> editor_bol
+	// op_editor_capitalize_word -> editor_case_word
+	// op_editor_delete_char -> editor_delete_char
+	// op_editor_eol -> editor_eol
+	// op_editor_forward_char -> editor_forward_char
+	// op_editor_forward_word -> editor_forward_word
+	// op_editor_kill_eol -> editor_kill_eol
+	// op_editor_kill_eow -> editor_kill_eow
+	// op_editor_kill_line -> editor_kill_line
+	// op_editor_kill_whole_line -> editor_kill_whole_line
+	// op_editor_kill_word -> editor_kill_word
+	// op_editor_transpose_chars -> editor_transpose_chars
+
+	// complete_alias_complete -> replace_part
+	// complete_alias_query -> replace_part
+	// complete_command -> replace_part
+	// complete_file_mbox -> replace_part
+	// complete_file_simple -> replace_part
+	// complete_label -> replace_part
+	// complete_nm_query -> replace_part
+	// complete_nm_tag -> replace_part
+	// complete_pattern -> replace_part
+	// op_editor_history_down -> replace_part
+	// op_editor_history_search -> replace_part
+	// op_editor_history_up -> replace_part
+	// mutt_buffer_get_field -> self_insert
+	// op_editor_quote_char -> self_insert
+	// enter_function_dispatcher -> op_editor_quote_char
+	// enter_function_dispatcher -> op_editor_history_down
+	// enter_function_dispatcher -> op_editor_history_search
+	// enter_function_dispatcher -> op_editor_history_up
+
+}
+

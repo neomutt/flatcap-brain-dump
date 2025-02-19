@@ -1,0 +1,50 @@
+commands.c:121:8:            mutt_buffer_get_field(MUTT_COMP_ALIAS,       false,    NULL, NULL,  NULL)
+envelope/functions.c:120:7:  mutt_buffer_get_field(MUTT_COMP_ALIAS,       false,    NULL, NULL,  NULL)
+recvcmd.c:208:8:             mutt_buffer_get_field(MUTT_COMP_ALIAS,       false,    NULL, NULL,  NULL)
+send/send.c:191:9:           mutt_buffer_get_field(MUTT_COMP_ALIAS,       false,    NULL, NULL,  NULL)
+
+commands.c:648:8:            mutt_buffer_get_field(MUTT_COMP_COMMAND,     false,    NULL, NULL,  NULL)
+
+alias/alias.c:504:7:         mutt_buffer_get_field(MUTT_COMP_FILE,        false,    NULL, NULL,  NULL)
+attach/recvattach.c:293:10:  mutt_buffer_get_field(MUTT_COMP_FILE,        false,    NULL, NULL,  NULL)
+attach/recvattach.c:447:16:  mutt_buffer_get_field(MUTT_COMP_FILE,        false,    NULL, NULL,  NULL)
+browser/functions.c:99:18:   mutt_buffer_get_field(MUTT_COMP_FILE,        false,    NULL, NULL,  NULL)
+browser/functions.c:307:14:  mutt_buffer_get_field(MUTT_COMP_FILE,        false,    NULL, NULL,  NULL)
+compose/functions.c:1313:8:  mutt_buffer_get_field(MUTT_COMP_FILE,        false,    NULL, NULL,  NULL)
+compose/functions.c:1425:12: mutt_buffer_get_field(MUTT_COMP_FILE,        false,    NULL, NULL,  NULL)
+compose/functions.c:1757:8:  mutt_buffer_get_field(MUTT_COMP_FILE,        false,    NULL, NULL,  NULL)
+envelope/functions.c:229:7:  mutt_buffer_get_field(MUTT_COMP_FILE,        false,    NULL, NULL,  NULL)
+imap/browse.c:402:7:         mutt_buffer_get_field(MUTT_COMP_FILE,        false,    NULL, NULL,  NULL)
+imap/browse.c:462:7:         mutt_buffer_get_field(MUTT_COMP_FILE,        false,    NULL, NULL,  NULL)
+muttlib.c:663:10:            mutt_buffer_get_field(MUTT_COMP_FILE,        false,    NULL, NULL,  NULL)
+
+attach/recvattach.c:718:7:   mutt_buffer_get_field(MUTT_COMP_FILE_SIMPLE, false,    NULL, NULL,  NULL)
+commands.c:429:7:            mutt_buffer_get_field(MUTT_COMP_FILE_SIMPLE, false,    NULL, NULL,  NULL)
+commands.c:604:7:            mutt_buffer_get_field(MUTT_COMP_FILE_SIMPLE, false,    NULL, NULL,  NULL)
+
+mutt_header.c:140:7:         mutt_buffer_get_field(MUTT_COMP_LABEL,       false,    NULL, NULL,  NULL)
+
+index/functions.c:2741:8:    mutt_buffer_get_field(MUTT_COMP_NM_QUERY,    false,    NULL, NULL,  NULL)
+
+notmuch/notmuch.c:2382:7:    mutt_buffer_get_field(MUTT_COMP_NM_TAG,      false,    NULL, NULL,  NULL)
+
+browser/functions.c:942:8:   mutt_buffer_get_field(MUTT_COMP_PATTERN,     false,    NULL, NULL,  NULL)
+pager/functions.c:314:7:     mutt_buffer_get_field(MUTT_COMP_PATTERN,     false,    NULL, NULL,  NULL)
+pattern/pattern.c:252:10:    mutt_buffer_get_field(MUTT_COMP_PATTERN,     false,    NULL, NULL,  NULL)
+pattern/pattern.c:358:10:    mutt_buffer_get_field(MUTT_COMP_PATTERN,     false,    NULL, NULL,  NULL)
+pattern/pattern.c:505:10:    mutt_buffer_get_field(MUTT_COMP_PATTERN,     false,    NULL, NULL,  NULL)
+pattern/pattern.c:666:10:    mutt_buffer_get_field(MUTT_COMP_PATTERN,     false,    NULL, NULL,  NULL)
+
+gui/curs_lib.c:505:9:        mutt_buffer_get_field(MUTT_COMP_FILE,        multiple, m,    files, numfiles)
+gui/curs_lib.c:505:9:        mutt_buffer_get_field(MUTT_COMP_FILE_MBOX,   multiple, m,    files, numfiles)
+
+ 13 MUTT_COMP_FILE
+  6 MUTT_COMP_PATTERN
+  4 MUTT_COMP_ALIAS
+  3 MUTT_COMP_FILE_SIMPLE
+  1 MUTT_COMP_NM_TAG
+  1 MUTT_COMP_NM_QUERY
+  1 MUTT_COMP_LABEL
+  1 MUTT_COMP_FILE_MBOX
+  1 MUTT_COMP_COMMAND
+

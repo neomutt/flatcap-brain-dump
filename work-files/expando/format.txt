@@ -1,0 +1,376 @@
+alias/config.c:96:21: alias_format AliasFormatData AliasRenderData alias_make_entry()
+	%a  Alias name
+	%c  Comment
+	%f  Flags
+	%n  Index number
+	%r  Address
+	%t  Tagged char
+	%Y  Tags
+	%>X HARD
+	%|X EOL
+	%*X SOFT
+	%^  ARROW
+
+alias/config.c:105:21: query_format QueryFormatData QueryRenderData query_make_entry()
+	%a  Address
+	%c  Index number
+	%e  Extra information
+	%n  Name
+	%t  Tagged char
+	%Y  Tags
+	%>X HARD
+	%|X EOL
+	%*X SOFT
+	%^  ARROW
+
+autocrypt/config.c:66:30: autocrypt_acct_format AutocryptFormatData AutocryptRenderData autocrypt_make_entry()
+	%a  Address
+	%k  GPG Key
+	%n  Index number
+	%p  Prefer-encrypt flag
+	%s  Status flag
+	%>X HARD
+	%|X EOL
+	%*X SOFT
+	%^  ARROW
+
+browser/config.c:124:22: folder_format FolderFormatData FolderRenderData folder_make_entry()
+	%C     Index number
+	%d     Last modified
+	%D     Last modified ($date_format)
+	%f     Filename
+	%F     File permissions
+	%g     Group name
+	%i     Description
+	%l     Hard links
+	%m     Number of messages
+	%n     Number of unread messages
+	%N     New mail flag
+	%s     Size in bytes
+	%t     Is Tagged
+	%u     Owner name
+	%[fmt] Last modified (strftime)
+	%>X    HARD
+	%|X    EOL
+	%*X    SOFT
+	%^     ARROW
+
+browser/config.c:127:27: group_index_format GroupIndexFormatData GroupIndexRenderData folder_make_entry()
+	%C  Index number
+	%d  Description
+	%f  Newsgroup name
+	%M  Moderated flag
+	%N  New flag
+	%n  Number of new articles
+	%s  Number of unread articles
+	%>X HARD
+	%|X EOL
+	%*X SOFT
+	%^  ARROW
+
+browser/config.c:130:30: mailbox_folder_format FolderFormatData FolderRenderData folder_make_entry()
+	$folder_format
+
+compose/config.c:62:23: compose_format ComposeFormatData ComposeRenderData cbar_recalc()
+	%a  Number of attachments
+	%h  Hostname
+	%l  Size in bytes
+	%v  Version
+	%>X HARD
+	%|X EOL
+	%*X SOFT
+
+history/config.c:61:23: history_format HistoryFormatData HistoryRenderData history_make_entry()
+	%C  Index number
+	%s  History match
+	%>X HARD
+	%|X EOL
+	%*X SOFT
+	%^  ARROW
+
+mutt_config.c:339:22: attach_format AttachFormatData AttachRenderData attach_make_entry() compose_make_entry()
+	%C  Charset
+	%c  Requires conversion flag
+	%D  Deleted
+	%d  Descripion
+	%e  MIME type
+	%f  Filename
+	%F  Filename in header
+	%I  Disposition flag
+	%m  Major MIME type
+	%M  MIME subtype
+	%n  Index number
+	%Q  Attachment counting
+	%s  Size
+	%T  Tree characters
+	%t  Is Tagged
+	%u  Unlink flag
+	%X  Number of MIME parts
+	%>X HARD
+	%|X EOL
+	%*X SOFT
+	%^  ARROW
+
+mutt_config.c:498:21: index_format IndexFormatData IndexRenderData mutt_make_string() post_make_entry()
+	%a      Author Address
+	%A      Reply-to address
+	%b      Filename
+	%B      Email list
+	%C      Index number
+	%c      Number of bytes
+	%cr     Number of raw bytes
+	%D      Local Date and time
+	%d      Senders Date and time
+	%e      Thread index number
+	%E      Number of messages thread
+	%F      Author name
+	%Fp     Plain author name
+	%f      Sender
+	%g      Newsgroup name
+	%g      Tags
+	%Gx     Individual tag
+	%H      Spam attributes
+	%I      Initials of author
+	%i      Message-id
+	%J      Tags
+	%K      Mailing list
+	%L      List address
+	%l      Number of lines
+	%M      Number of hidden messages
+	%m      Total number of message
+	%N      Message score
+	%n      Author's real name
+	%O      Original save folder
+	%P      Progress indicator
+	%q      Newsgroup name
+	%R      Cc recipients
+	%r      To recipients
+	%S      Status flag
+	%s      Subject
+	%T      $to_chars flag
+	%t      To field
+	%u      User name
+	%v      First name
+	%W      Organization
+	%x      X-Comment-To
+	%X      Number of MIME attachments
+	%Y      X-Label (if different)
+	%y      X-Label
+	%Z      Status flags
+	%zc     Message crypto flags
+	%zs     Message status flags
+	%zt     Message tag flags
+	%@name@ index-format-hook
+	%{fmt}  Sender's date and time
+	%[fmt]  Local date and time
+	%(fmt)  Local received date and time
+	%>X     HARD
+	%|X     EOL
+	%*X     SOFT
+	%^      ARROW
+
+mutt_config.c:543:23: message_format IndexFormatData IndexRenderData mutt_make_string()
+	$index_format
+
+mutt_config.c:564:25: new_mail_command StatusFormatData StatusRenderData menu_status_line()
+	$status_format
+
+mutt_config.c:708:22: status_format StatusFormatData StatusRenderData menu_status_line()
+	%b  Number of mailboxes with new mail
+	%d  Number of deleted messages
+	%D  Description of the mailbox
+	%f  pathname of the mailbox
+	%F  Number of flagged messages
+	%h  Local hostname
+	%l  Size of the current mailbox
+	%L  Size of the messages
+	%m  Number of messages in the mailbox
+	%M  Number of messages
+	%n  Number of new messages
+	%o  Number of old messages
+	%p  Number of postponed messages
+	%P  Percentage through index
+	%r  Modified/read-only flag
+	%R  Number of read messages
+	%s  Sorting mode
+	%S  Aux sorting method
+	%t  Number of tagged messages
+	%T  Current threading mode
+	%u  Number of unread messages
+	%v  Version string
+	%V  Active limit pattern
+	%>X HARD
+	%|X EOL
+	%*X SOFT
+
+mutt_config.c:744:23: ts_icon_format StatusFormatData StatusRenderData menu_status_line()
+	$status_format
+
+mutt_config.c:747:25: ts_status_format StatusFormatData StatusRenderData menu_status_line()
+	$status_format
+
+mutt_config.c:831:25: mix_entry_format MixFormatData MixRenderData mix_make_entry()
+	%a  Email address
+	%c  Capabilities
+	%n  Index number
+	%s  Short name
+	%>X HARD
+	%|X EOL
+	%*X SOFT
+	%^  ARROW
+
+ncrypt/config.c:126:25: pgp_entry_format PgpEntryFormatData PgpEntryGpgmeRenderData crypt_make_entry() PgpEntryRenderData pgp_make_entry()
+	%a  Algorithm
+	%c  Capabilities
+	%f  Flags
+	%i  Key fingerprint
+	%k  Key id
+	%l  Key length
+	%n  Index number
+	%p  Protocol
+	%t  Trust/validity
+	%u  User id
+	%[] Date of the key
+	%>X HARD
+	%|X EOL
+	%*X SOFT
+	%^  ARROW
+
+ncrypt/config.c:286:31: pgp_clear_sign_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	$pgp_decode_command
+
+ncrypt/config.c:289:27: pgp_decode_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	%a $pgp_sign_as or $$pgp_default_key.
+	%f Filename of message
+	%p PGPPASSFD=0 when a pass phrase is needed
+	%r key IDs
+	%s Filename of signature
+
+ncrypt/config.c:292:28: pgp_decrypt_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	$pgp_decode_command
+
+ncrypt/config.c:298:33: pgp_encrypt_only_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	$pgp_decode_command
+
+ncrypt/config.c:301:33: pgp_encrypt_sign_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	$pgp_decode_command
+
+ncrypt/config.c:304:27: pgp_export_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	$pgp_decode_command
+
+ncrypt/config.c:307:29: pgp_get_keys_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	$pgp_decode_command
+
+ncrypt/config.c:313:27: pgp_import_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	$pgp_decode_command
+
+ncrypt/config.c:316:33: pgp_list_pubring_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	$pgp_decode_command
+
+ncrypt/config.c:319:33: pgp_list_secring_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	$pgp_decode_command
+
+ncrypt/config.c:322:25: pgp_sign_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	$pgp_decode_command
+
+ncrypt/config.c:331:27: pgp_verify_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	$pgp_decode_command
+
+ncrypt/config.c:334:31: pgp_verify_key_command PgpCommandFormatData PgpCommandRenderData mutt_pgp_command()
+	$pgp_decode_command
+
+ncrypt/config.c:359:30: smime_decrypt_command SmimeCommandFormatData SmimeCommandRenderData smime_command()
+	%f Expands to the name of a file containing a message.
+	%s Expands to the name of a file containing the signature part of a \fCmultipart/signed\fP attachment when verifying it.
+	%k The key-pair specified with $$smime_default_key
+	%i Intermediate certificates
+	%c One or more certificate IDs.
+	%a The algorithm used for encryption.
+	%d The message digest algorithm specified with $$smime_sign_digest_alg.
+	%C CA location: Depending on whether $$smime_ca_location points to a directory or file, this expands to "-CApath $$smime_ca_location" or "-CAfile $$smime_ca_location".
+
+ncrypt/config.c:365:30: smime_encrypt_command SmimeCommandFormatData SmimeCommandRenderData smime_command()
+	$smime_decrypt_command
+
+ncrypt/config.c:368:31: smime_get_cert_command SmimeCommandFormatData SmimeCommandRenderData smime_command()
+	$smime_decrypt_command
+
+ncrypt/config.c:371:37: smime_get_cert_email_command SmimeCommandFormatData SmimeCommandRenderData smime_command()
+	$smime_decrypt_command
+
+ncrypt/config.c:374:38: smime_get_signer_cert_command SmimeCommandFormatData SmimeCommandRenderData smime_command()
+	$smime_decrypt_command
+
+ncrypt/config.c:377:34: smime_import_cert_command SmimeCommandFormatData SmimeCommandRenderData smime_command()
+	$smime_decrypt_command
+
+ncrypt/config.c:383:29: smime_pk7out_command SmimeCommandFormatData SmimeCommandRenderData smime_command()
+	$smime_decrypt_command
+
+ncrypt/config.c:386:27: smime_sign_command SmimeCommandFormatData SmimeCommandRenderData smime_command()
+	$smime_decrypt_command
+
+ncrypt/config.c:395:29: smime_verify_command SmimeCommandFormatData SmimeCommandRenderData smime_command()
+	$smime_decrypt_command
+
+ncrypt/config.c:398:36: smime_verify_opaque_command SmimeCommandFormatData SmimeCommandRenderData smime_command()
+	$smime_decrypt_command
+
+nntp/config.c:70:15: newsrc NntpFormatData NntpRenderData nntp_select_server()
+	%a Account url
+	%p Port
+	%P Port if specified
+	%s News server name
+	%S Url schema
+	%u Username
+
+pager/config.c:60:21: pager_format IndexFormatData IndexRenderData mutt_make_string()
+	$index_format
+
+pattern/config.c:59:23: pattern_format PatternFormatData PatternRenderData make_pattern_entry()
+	%d  pattern description
+	%e  pattern expression
+	%n  Index number
+	%>X HARD
+	%|X EOL
+	%*X SOFT
+	%^  ARROW
+
+send/config.c:165:26: attribution_intro IndexFormatData IndexRenderData mutt_make_string()
+	$index_format
+
+send/config.c:171:28: attribution_trailer IndexFormatData IndexRenderData mutt_make_string()
+	$index_format
+
+send/config.c:231:34: forward_attribution_intro IndexFormatData IndexRenderData mutt_make_string()
+	$index_format
+
+send/config.c:234:36: forward_attribution_trailer IndexFormatData IndexRenderData mutt_make_string()
+	$index_format
+
+send/config.c:243:23: forward_format IndexFormatData IndexRenderData mutt_make_string()
+	$index_format
+
+send/config.c:249:17: greeting GreetingFormatData GreetingRenderData mutt_make_greeting()
+	%n Real name
+	%u Login name
+	%v First name
+
+sidebar/config.c:102:23: sidebar_format SidebarFormatData SidebarRenderData make_sidebar_entry()
+	%B  Name of the mailbox
+	%d  Number of deleted messages
+	%D  Descriptive name
+	%F  Number of flagged messages
+	%L  Number of limited messages
+	%n  New mail flag
+	%N  Number of unread messages
+	%o  Number of old messages
+	%r  Number of read messages
+	%S  number of messages
+	%t  Number of tagged messages
+	%Z  Number of new messages
+	%!  Flagged flags
+	%>X HARD
+	%|X EOL
+	%*X SOFT
+

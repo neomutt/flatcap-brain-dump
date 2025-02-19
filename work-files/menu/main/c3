@@ -1,0 +1,17 @@
+Config set at startup
+
+charset
+color_directcolor
+debug_file
+debug_level
+editor
+from
+hostname
+mailcap_path
+mbox_type
+news_server
+real_name
+shell
+spool_file
+suspend
+tmp_dir

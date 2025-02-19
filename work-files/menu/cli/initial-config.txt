@@ -1,0 +1,116 @@
+neomutt_init()
+
+------------------------------
+init_env()
+	Environment
+		HomeDir
+			"HOME"
+		Username
+			"USER"
+		EnvList
+			all
+	Deps: NONE
+
+------------------------------
+init_locale()
+
+------------------------------
+init_config()
+	localise_config()
+		"attribution_intro"
+		"compose_format"
+		"forward_attribution_intro"
+		"forward_attribution_trailer"
+		"reply_regex"
+		"status_format"
+		"ts_icon_format"
+		"ts_status_format"
+	reset_tilde()
+		"folder"
+		"mbox"
+		"postponed"
+		"record"
+
+------------------------------
+init_commands()
+
+------------------------------
+init_modules()
+	PRE-CONFIG
+
+init_logging()
+	"debug_file"
+	"debug_level"
+
+get_user_info()
+	"shell"
+
+mutt_init()
+	(mutt_config)
+	"color_directcolor"
+		"TERM"
+		"COLORTERM"
+	"spool_file"
+		"MAIL"
+		"MAILDIR"
+	UserHeader
+		"REPLYTO"
+	"from"
+		"EMAIL"
+	"mailcap_path"
+		"MAILCAPS"
+	"tmp_dir"
+		"TMPDIR"
+	"editor"
+		"TMPDIR"
+		"VISUAL"
+		"EDITOR"
+	"charset"
+		locale
+	"real_name"
+		system
+	"suspend"
+		system
+
+------------------------------
+READ-CONFIG
+	system-file
+	user-file(s)
+
+------------------------------
+POST-CONFIG
+
+set
+	"alias_file" (alias/config)
+		set value
+		needs CLI!
+		CLI/internal
+
+get_hostname()
+	"hostname"
+	ShortHostname
+		system (slow)
+
+reset
+	"debug_level"
+	"debug_file"
+
+main()
+	"mbox_type"
+		might apply to saving fcc:
+
+------------------------------
+PRE-GUI
+
+main()
+	"spool_file" (notmuch, value)
+
+init_nntp()
+	"news_server"
+		"NNTPSERVER"
+
+EXECUTE COMMANDS
+	do these always apply to the GUI?
+	interactive GUI == NeoMutt
+	less-interactive == Compose
+

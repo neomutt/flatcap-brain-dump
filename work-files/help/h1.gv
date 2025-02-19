@@ -1,0 +1,49 @@
+digraph windows
+{
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// use C_HelpDocDir
+	node [ color="#ff0000" ]
+	help_file_type
+	help_path_transpose
+	help_doc_from
+	help_doclist_init
+	help_doclist_parse
+	help_mbox_open
+
+	node [ color="#d0d0d0" ]
+	help_doc_subject   -> help_file_hdr_find
+	help_doc_from      -> help_file_type
+	help_doc_from      -> help_file_header
+	help_doc_from      -> help_doc_msg_id
+	help_doc_from      -> help_doc_subject
+	help_doclist_init  -> scan_dir
+	help_doclist_init  -> help_doc_from
+	help_doclist_init  -> help_doc_type_cmp
+	help_doclist_init  -> help_doc_uplink
+	help_doclist_parse -> help_doclist_init
+	help_doclist_parse -> help_path_transpose
+	help_mbox_open     -> help_doclist_parse
+	scan_dir           -> add_file
+
+}

@@ -1,0 +1,12 @@
+index/dlg_index.c:954:5: mutt_curses_set_attr(syntax[i].color);
+menu/draw.c:131:9:       mutt_curses_set_attr(mutt_color_combine(mutt_color(MT_COLOR_TREE), attr));
+menu/draw.c:255:9:       mutt_curses_set_attr(attr);
+menu/draw.c:264:11:      mutt_curses_set_attr(attr);
+menu/draw.c:270:13:      mutt_curses_set_attr(attr);
+menu/draw.c:272:13:      mutt_curses_set_attr(color);
+menu/draw.c:383:7:       mutt_curses_set_attr(attr);
+menu/draw.c:396:11:      mutt_curses_set_attr(attr);
+menu/draw.c:440:3:       mutt_curses_set_attr(old_color);
+menu/draw.c:503:5:       mutt_curses_set_attr(attr);
+pager/display.c:237:8:   mutt_curses_set_attr(color);
+pager/display.c:1667:8:  mutt_curses_set_attr(def_color);

@@ -1,0 +1,34 @@
+Config referenced in main()
+
+Set initial:
+	autocrypt
+	auto_edit
+	crypt_protected_headers_read
+	folder
+	hostname
+	imap_passive
+	news_server
+	read_only
+	real_name
+	resume_edited_draft_files
+	spool_file
+	timeout
+	tmp_dir
+	virtual_spool_file
+
+Reset tilde:
+	folder
+	mbox
+	postponed
+	record
+
+Localise:
+	attribution_intro
+	compose_format
+	forward_attribution_intro
+	forward_attribution_trailer
+	reply_regex
+	status_format
+	ts_icon_format
+	ts_status_format
+

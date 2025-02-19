@@ -1,0 +1,19 @@
+" Ref: autocrypt_format_str() in autocrypt/dlg_autocrypt.c
+call s:escapesConditionals('AutocryptAcctFormat', '[CdfMNns]', 1, 0)
+" Defines: muttrcAutocryptAcctFormatEscapes, muttrcAutocryptAcctFormatConditionals
+
+syntax region muttrcAutocryptAcctFormatString contained skipwhite keepend start=+"+ skip=+\\"+ end=+"+ contains=muttrcAutocryptAcctFormatEscapes,muttrcAutocryptAcctFormatConditionals,muttrcFormatErrors,muttrcTimeEscapes nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+syntax region muttrcAutocryptAcctFormatString contained skipwhite keepend start=+'+ skip=+\\'+ end=+'+ contains=muttrcAutocryptAcctFormatEscapes,muttrcAutocryptAcctFormatConditionals,muttrcFormatErrors,muttrcTimeEscapes nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+
+syntax match muttrcVarEqualsAutocryptAcctFormat contained skipwhite "=" nextgroup=muttrcAutocryptAcctFormatString
+
+syntax keyword muttrcVarString contained skipwhite autocrypt_acct_format nextgroup=muttrcVarEqualsAutocryptAcctFormat
+
+highlight def link muttrcAutocryptAcctFormatConditionals muttrcFormatConditionals2
+highlight def link muttrcAutocryptAcctFormatEscapes      muttrcEscape
+highlight def link muttrcAutocryptAcctFormatString       muttrcString
+
+" config                base-name           conditionals                          escapes                          format-string                   var-equals
+" autocrypt_acct_format AutocryptAcctFormat muttrcAutocryptAcctFormatConditionals muttrcAutocryptAcctFormatEscapes muttrcAutocryptAcctFormatString muttrcVarEqualsAutocryptAcctFormat
+
+" vim: syntax=vim

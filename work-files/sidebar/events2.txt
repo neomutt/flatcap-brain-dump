@@ -1,0 +1,274 @@
+Data/View Change ---------------------------------------------------------------
+
+Account change
+	what changes?
+
+Account View change
+	what changes?
+
+Mailbox changed
+	e.g. stats
+
+MailboxView changed
+	Number of messages after limiting
+	Number of tagged messages
+
+A
+	| %B | Name of the Account
+	|    | Account Type
+
+AV
+	|    | Visible
+
+M
+	| %! | 'n!' Flagged messages
+	| %B | Name of the mailbox
+	| %D | Description of the mailbox
+	| %d | Number of deleted messages
+	| %F | Number of Flagged messages in the mailbox
+	| %n | N if mailbox has new mail, blank otherwise
+	| %N | Number of unread messages in the mailbox
+	| %o | Number of old messages in the mailbox (unread, seen)
+	| %r | Number of read messages in the mailbox (read, seen)
+	| %S | Size of mailbox (total number of messages)
+	| %Z | Number of new messages in the mailbox (unread, unseen)
+
+MV
+	| %L | Number of messages after limiting
+	| %t | Number of tagged messages
+
+Config -------------------------------------------------------------------------
+
+Global
+	sidebar_divider_char
+	sidebar_on_right
+	sidebar_sort_method
+	sidebar_visible
+	sidebar_width
+
+Account-specific
+	sidebar_component_depth
+	sidebar_delim_chars
+	sidebar_folder_indent
+	sidebar_format
+	sidebar_indent_string
+	sidebar_new_mail_only
+	sidebar_non_empty_mailbox_only
+	sidebar_short_path
+	sidebar_next_new_wrap
+
+Functions ----------------------------------------------------------------------
+
+sidebar-first
+sidebar-last
+sidebar-next
+sidebar-next-new
+sidebar-open
+sidebar-page-down
+sidebar-page-up
+sidebar-prev
+sidebar-prev-new
+sidebar-toggle-virtual
+sidebar-toggle-visible
+
+Commands -----------------------------------------------------------------------
+
+sidebar_whitelist
+unsidebar_whitelist
+
+Colours ------------------------------------------------------------------------
+
+enum ColorId
+
+sidebar_divider   MT_COLOR_SIDEBAR_DIVIDER
+sidebar_flagged   MT_COLOR_SIDEBAR_FLAGGED
+sidebar_highlight MT_COLOR_SIDEBAR_HIGHLIGHT
+sidebar_indicator MT_COLOR_SIDEBAR_INDICATOR
+sidebar_new       MT_COLOR_SIDEBAR_NEW
+sidebar_ordinary  MT_COLOR_SIDEBAR_ORDINARY
+sidebar_spoolfile MT_COLOR_SIDEBAR_SPOOLFILE
+sidebar_unread    MT_COLOR_SIDEBAR_UNREAD
+
+MT_COLOR_INDICATOR
+MT_COLOR_NORMAL
+
+Sidebar Data -------------------------------------------------------------------
+
+int EntryCount
+int EntryLen
+struct SbEntry **Entries (AV,MV?)
+int TopIndex
+int OpnIndex
+int HilIndex
+int BotIndex
+int DividerScreenCols
+
+SV { type, ptr, visible, text, colour}
+
+enum ObjectType { Account, Mailbox, Label }
+
+Data { type, ptr, visible }
+	void *object
+		struct Account
+		struct Mailbox
+		struct Label
+	short display_index
+	enum ObjectType type
+	bool visible
+	bool current?
+
+DisplayLine { text, colour }
+	char *text[width + divider]
+	enum ColorId colour
+
+visibility:
+	C_SidebarNewMailOnly
+	C_SidebarNonEmptyMailboxOnly
+	spool directories
+	SidebarWhitelist
+	current mailbox
+
+Walkthrough --------------------------------------------------------------------
+
+main_loop:
+	user_action
+	redraw
+
+user_action:
+	:set sidebar_width = 20
+	triggers NT_CONFIG notification
+
+NT_CONFIG: sb_config_observer
+	set window.req_cols = 20
+	set window.parent.flags = WA_REFLOW
+
+redraw:
+	reflow
+	recalc
+	repaint
+
+reflow:
+	sidebar window changed
+	triggers NT_WINDOW notification
+
+NT_WINDOW: sb_window_observer
+	width has changes
+	set window.flags = WA_RECALC
+
+recalc: sb_recalc
+	regenerate data
+	set window.flags = WA_REPAINT
+
+repaint: sb_repaint:
+	draw to window
+
+Walkthrough --------------------------------------------------------------------
+
+main_loop:
+	user_action
+	redraw
+
+user_action:
+	:color sidebar_indicator
+	triggers NT_COLOR notification
+
+NT_COLOR: sb_color_observer
+	set window.flags = WA_RECALC
+
+
+redraw:
+	reflow
+	recalc
+	repaint
+
+reflow:
+	nothing sidebar-related
+
+
+
+
+
+
+recalc: sb_recalc
+	regenerate data
+	set window.flags = WA_REPAINT
+
+repaint: sb_repaint:
+	draw to window
+
+Walkthrough --------------------------------------------------------------------
+
+main_loop:
+	user_action
+	redraw
+
+user_action:
+	:toggle sidebar_on_right
+	triggers NT_CONFIG notification
+
+NT_CONFIG: sb_config_observer
+	reorganise windows
+	set window.parent.flags = WA_REFLOW
+
+redraw:
+	reflow
+	recalc
+	repaint
+
+reflow:
+	sidebar window moved (no other changes)
+	set window.flags = WA_REPAINT
+
+
+
+
+
+recalc:
+	nothing sidebar-related
+
+
+repaint: sb_repaint:
+	draw to window
+
+Generate -----------------------------------------------------------------------
+
+int TopIndex = -1;
+int OpnIndex = -1;
+int HilIndex = -1;
+int BotIndex = -1;
+
+int EntryCount = -1;
+int EntryLen = -1;
+
+char *DividerString = NULL;
+int DividerScreenCols = -1
+enum ColorId DividerColour;
+
+calc_visibility
+	C_SidebarNewMailOnly
+	C_SidebarNonEmptyMailboxOnly
+	spool directories
+	SidebarWhitelist
+	current mailbox
+
+init (on first calc)
+	∀ Account
+	∀ Mailbox
+	generate data array
+	calc_visibility ∀
+	set window at [0]
+
+recalc
+	if !init, init
+	resort data
+	validate_window
+	calc_visibility
+	generate_string
+	calc_colour
+
+repaint
+	∀ rows
+	move
+	set colour; draw row
+	set colour; draw divider
+

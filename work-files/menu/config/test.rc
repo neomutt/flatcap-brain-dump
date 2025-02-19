@@ -1,0 +1,15 @@
+set assumed_charset = "ascii:utf-8"                        # slist
+set attach_format = "attach"                               # expando
+set attach_save_dir = "save-dir"                           # path
+set editor = "nano"                                        # string
+set envelope_from_address = "John Smith <js@example.com>"  # address
+set flag_chars = "abcdefghijk"                             # mbtable
+set mbox_type = maildir                                    # enum
+set pgp_timeout = 1234                                     # long
+set print = yes                                            # quad
+set quote_regex = "|"                                      # regex
+set sidebar_visible = yes                                  # bool
+set sleep_time = 99                                        # number
+set sort_aux = "label"                                     # sort
+
+# vim: syn=neomuttrc

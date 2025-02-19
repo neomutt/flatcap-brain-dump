@@ -1,0 +1,15 @@
+set sidebar_visible = yes
+set sidebar_short_path = yes
+set sidebar_delim_chars = "/"
+set sidebar_width  = 10
+
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
+mailboxes a.mbox
+mailboxes b.mbox
+mailboxes c.mbox
+mailboxes d.mbox
+
+# vim: syn=neomuttrc

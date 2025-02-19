@@ -1,0 +1,18 @@
+callers of wcwidth()
+
+editor_backspace
+editor_backward_char
+editor_delete_char
+editor_forward_char
+my_addwch
+format_string
+format_string
+mutt_paddstr
+mutt_wstr_trunc
+mutt_strnwidth
+measure
+escape_macro
+mutt_mb_charlen
+mutt_mb_width
+mutt_mb_wcwidth
+format_line

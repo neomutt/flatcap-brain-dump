@@ -1,0 +1,22 @@
+
+color sidebar_new yellow default
+color attachment    magenta white
+color body          magenta white "(ftp|http|https|news|nntp|rsync)://[^ ]+" # point out URLs
+color body          magenta white [-a-z_0-9.]+@[-a-z_0-9.]+    # e-mail addresses
+color bold          brightblue white
+color error         red white
+color header        red white From:
+color header        blue white To:
+color header        magenta white Subject:
+color hdrdefault    black white
+color indicator     white blue
+color markers       brightgreen white
+color message       blue white
+color normal        blue white
+color quoted        red white
+color search        white red
+color signature     yellow white
+color status        brightyellow blue
+color tilde         green white
+color tree          red white
+color underline     white blue

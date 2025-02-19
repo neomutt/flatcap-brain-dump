@@ -1,0 +1,33 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	execute_commands -> mutt_parse_rc_line
+	get_hostname -> getmailname
+	mutt_init -> execute_commands
+	mutt_init -> find_cfg
+	mutt_init -> get_hostname
+	mutt_init -> mailbox_path
+	mutt_parse_rc_buffer -> mutt_extract_token
+	mutt_parse_rc_line -> mutt_parse_rc_buffer
+
+}

@@ -1,0 +1,193 @@
+digraph sidebar
+{
+	// Sidebar 2020-08-29
+	// Blue club - Sidebar config that is global
+	// Red circle - Sidebar config that will be Account-specific (soon)
+
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// Public functions
+	node [ color="#ff0000" ]
+	sb_change_mailbox
+
+	// Window API
+	node [ color="#00ff00" ]
+	sb_recalc
+	sb_repaint
+
+	// Observer API
+	node [ color="#2020ff" ]
+	sb_account_observer
+	sb_config_observer
+	sb_insertion_observer
+	sb_mailbox_observer
+	sb_window_observer
+
+	node [ color="#000000" ]
+
+	subgraph cluster_functions
+	{
+		fontcolor="black"
+		color="#ff8080"
+		fillcolor="#ffcccc"
+		style="filled"
+		label=<<b>functions.c</b>>
+		labeljust="left"
+
+		next_new                  [ label=<next_new > ]
+		prev_new                  [ label=<prev_new > ]
+		select_last               [ label=<select_last > ]
+		select_next               [ label=<select_next > ]
+		select_prev               [ label=<select_prev > ]
+		select_first              [ label=<select_first > ]
+		select_page_up            [ label=<select_page_up > ]
+		select_next_new           [ label=<select_next_new > ]
+		select_prev_new           [ label=<select_prev_new > ]
+		select_page_down          [ label=<select_page_down > ]
+		sb_change_mailbox         [ label=<sb_change_mailbox<font color="blue">♣</font> > ]
+
+		sb_change_mailbox     -> select_first
+		sb_change_mailbox     -> select_last
+		sb_change_mailbox     -> select_next
+		sb_change_mailbox     -> select_next_new
+		sb_change_mailbox     -> select_page_down
+		sb_change_mailbox     -> select_page_up
+		sb_change_mailbox     -> select_prev
+		sb_change_mailbox     -> select_prev_new
+		select_first          -> select_next
+		select_last           -> select_prev
+		select_next_new       -> next_new
+		select_page_down      -> select_next
+		select_page_down      -> select_prev
+		select_page_up        -> select_next
+		select_page_up        -> select_prev
+		select_prev_new       -> prev_new
+	}
+
+	subgraph cluster_sort
+	{
+		fontcolor="black"
+		color="#d0d070"
+		fillcolor="#ffffa0"
+		style="filled"
+		label=<<b>sort.c</b>>
+		labeljust="left"
+
+		sb_sort_count    [ label=<sb_sort_count > ]
+		sb_sort_desc     [ label=<sb_sort_desc > ]
+		sb_sort_entries  [ label=<sb_sort_entries > ]
+		sb_sort_flagged  [ label=<sb_sort_flagged > ]
+		sb_sort_path     [ label=<sb_sort_path > ]
+		sb_sort_unread   [ label=<sb_sort_unread > ]
+		sb_sort_unsorted [ label=<sb_sort_unsorted > ]
+
+		sb_sort_entries -> sb_sort_count
+		sb_sort_entries -> sb_sort_desc
+		sb_sort_entries -> sb_sort_flagged
+		sb_sort_entries -> sb_sort_path
+		sb_sort_entries -> sb_sort_unread
+		sb_sort_entries -> sb_sort_unsorted
+	}
+
+	subgraph cluster_window
+	{
+		fontcolor="black"
+		color="#60d060"
+		fillcolor="#ccffcc"
+		style="filled"
+		label=<<b>window.c</b>>
+		labeljust="left"
+
+		abbrev_folder             [ label=<abbrev_folder <font color="red">●</font> > ]
+		abbrev_url                [ label=<abbrev_url > ]
+		add_indent                [ label=<add_indent <font color="red">●</font> > ]
+		calc_color                [ label=<calc_color <font color="red">●</font> > ]
+		calc_path_depth           [ label=<calc_path_depth > ]
+		draw_divider              [ label=<draw_divider <font color="blue">♣</font> > ]
+		fill_empty_space          [ label=<fill_empty_space <font color="blue">♣</font> > ]
+		imap_is_prefix            [ label=<imap_is_prefix > ]
+		make_sidebar_entry        [ label=<make_sidebar_entry <font color="red">●</font> > ]
+		prepare_sidebar           [ label=<prepare_sidebar <font color="blue">♣</font> <font color="red">●</font> > ]
+		sb_recalc                 [ label=<sb_recalc <font color="red">●</font> > ]
+		sb_repaint                [ label=<sb_repaint <font color="blue">♣</font> > ]
+		sidebar_format_str        [ label=<sidebar_format_str > ]
+		update_entries_visibility [ label=<update_entries_visibility <font color="red">●</font> > ]
+
+		abbrev_folder         -> imap_is_prefix
+		make_sidebar_entry    -> sidebar_format_str
+		prepare_sidebar       -> select_next
+		prepare_sidebar       -> update_entries_visibility
+		sb_recalc             -> abbrev_folder
+		sb_recalc             -> abbrev_url
+		sb_recalc             -> add_indent
+		sb_recalc             -> calc_color
+		sb_recalc             -> calc_path_depth
+		sb_recalc             -> make_sidebar_entry
+		sb_recalc             -> prepare_sidebar
+		sb_repaint            -> draw_divider
+		sb_repaint            -> fill_empty_space
+		sidebar_format_str    -> add_indent
+	}
+
+	subgraph cluster_observer
+	{
+		fontcolor="black"
+		color="#8080ff"
+		fillcolor="#ccccff"
+		style="filled"
+		label=<<b>observer.c</b>>
+		labeljust="left"
+
+		calc_divider              [ label=<calc_divider <font color="blue">♣</font> > ]
+		sb_account_observer       [ label=<sb_account_observer > ]
+		sb_config_observer        [ label=<sb_config_observer <font color="blue">♣</font> > ]
+		sb_init_data              [ label=<sb_init_data > ]
+		sb_insertion_observer     [ label=<sb_insertion_observer > ]
+		sb_mailbox_observer       [ label=<sb_mailbox_observer > ]
+		sb_window_observer        [ label=<sb_window_observer > ]
+		sb_win_add_observers      [ label=<sb_win_add_observers > ]
+		sb_win_init               [ label=<sb_win_init <font color="blue">♣</font> > ]
+		sb_win_remove_observers   [ label=<sb_win_remove_observers > ]
+
+		sb_config_observer      -> calc_divider
+		sb_insertion_observer   -> sb_init_data
+		sb_insertion_observer   -> sb_win_init
+		sb_insertion_observer   -> sb_win_remove_observers
+		sb_window_observer      -> sb_win_remove_observers
+		sb_win_init             -> calc_divider
+		sb_win_init             -> sb_win_add_observers
+
+		{ rank=same sb_account_observer sb_config_observer sb_insertion_observer sb_window_observer }
+	}
+
+
+	prepare_sidebar     -> sb_sort_entries
+	sb_account_observer -> sb_add_mailbox
+	sb_init_data        -> sb_add_mailbox
+	sb_mailbox_observer -> sb_add_mailbox
+	sb_mailbox_observer -> sb_remove_mailbox
+	sb_mailbox_observer -> sb_set_current_mailbox
+	sb_remove_mailbox   -> select_next
+	sb_remove_mailbox   -> select_prev
+
+}

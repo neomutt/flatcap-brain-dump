@@ -1,0 +1,6 @@
+init.h:38:int                   mutt_command_complete  (char *buf, size_t buflen, int pos, int numtabs);
+init.h:42:int                   mutt_label_complete    (char *buf, size_t buflen, int numtabs);
+init.h:43:bool                  mutt_nm_query_complete (char *buf, size_t buflen, int pos, int numtabs);
+init.h:44:bool                  mutt_nm_tag_complete   (char *buf, size_t buflen, int numtabs);
+init.h:49:int                   mutt_var_value_complete(char *buf, size_t buflen, int pos);
+protos.h:69:int mutt_complete(char *buf, size_t buflen);

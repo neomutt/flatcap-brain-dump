@@ -1,0 +1,107 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ color="#ff0000" ]
+	do_uncolor
+	get_colorid_name
+	mutt_parse_color
+	mutt_parse_mono
+	mutt_parse_uncolor
+	mutt_parse_unmono
+	parse_attr_spec
+	parse_color
+	parse_color_name
+	parse_color_pair
+	parse_object
+	parse_uncolor
+
+	node [ color="#00ff00" ]
+	attr_color_clear
+
+	node [ color="#0000ff" ]
+	curses_color_free
+	curses_color_init
+	curses_color_new
+
+	node [ color="#ff00ff" ]
+	regex_color_free
+	regex_color_new
+
+	node [ color="#000000" ]
+
+	add_pattern -> color_line_free
+	add_pattern -> color_line_new
+	add_pattern -> mutt_color_alloc
+	add_pattern -> mutt_color_free
+	add_pattern2 -> fgbgattr_to_cc
+	add_pattern2 -> regex_color_free
+	add_pattern2 -> regex_color_new
+	attr_color_clear -> curses_color_free
+	colors_clear -> color_line_list_clear
+	colors_clear -> color_list_free
+	colors_clear -> defs_clear
+	colors_clear -> quotes_clear
+	color_line_free -> mutt_color_free
+	color_line_list_clear -> color_line_free
+	curses_color_new -> curses_color_init
+	do_uncolor -> color_line_free
+	do_uncolor -> color_line_list_clear
+	fgbgattr_to_cc -> curses_color_new
+	fgbgattr_to_color -> mutt_color_alloc
+	mutt_colors_cleanup -> colors_clear
+	mutt_colors_init -> defs_init
+	mutt_colors_init -> quotes_init
+	mutt_color_combine -> mutt_color_alloc
+	mutt_color_combine -> mutt_lookup_color
+	mutt_parse_color -> parse_color
+	mutt_parse_mono -> parse_color
+	mutt_parse_uncolor -> parse_uncolor
+	mutt_parse_unmono -> parse_uncolor
+	parse_color -> add_pattern
+	parse_color -> add_pattern2
+	parse_color -> fgbgattr_to_cc
+	parse_color -> fgbgattr_to_color
+	parse_color -> get_colorid_name
+	parse_color -> mutt_color_get_list
+	parse_color -> parse_attr_spec
+	parse_color -> parse_color_pair
+	parse_color -> parse_object
+	parse_color_pair -> parse_color_name
+	parse_uncolor -> attr_color_clear
+	parse_uncolor -> colors_clear
+	parse_uncolor -> do_uncolor
+	parse_uncolor -> get_colorid_name
+	parse_uncolor -> mutt_color_get_list
+	parse_uncolor -> parse_object
+	regex_color_free -> attr_color_clear
+
+	mutt_color_quotes_used
+	parse_attr_spec
+	mutt_color_quote
+	mutt_color_is_header
+	mutt_color_observer_add
+	mutt_color_observer_remove
+	mutt_color2
+	mutt_color
+
+}

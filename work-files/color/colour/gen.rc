@@ -1,0 +1,49 @@
+set my_attrs = "underline"
+set my_fg    = "cyan"
+set my_bg    = "green"
+
+# set my_attrs = ""
+# set my_fg    = "default"
+# set my_bg    = "default"
+
+source simple.rc
+
+set my_attrs = "bold"
+set my_fg    = "magenta"
+set my_bg    = "yellow"
+
+source quoted.rc
+
+set my_attrs1 = "italic"
+set my_fg1    = "red"
+set my_bg1    = "yellow"
+
+set my_attrs2 = "underline"
+set my_fg2    = "blue"
+set my_bg2    = "yellow"
+
+set my_attrs3 = "underline"
+set my_fg3    = "red"
+set my_bg3    = "cyan"
+
+set my_attrs4 = ""
+set my_fg4    = "default"
+set my_bg4    = "default"
+
+source regex.rc
+
+set my_attrs1 = "italic"
+set my_fg1    = "red"
+set my_bg1    = "yellow"
+
+set my_attrs2 = "underline"
+set my_fg2    = "blue"
+set my_bg2    = "yellow"
+
+set my_attrs3 = "underline"
+set my_fg3    = "red"
+set my_bg3    = "cyan"
+
+source status.rc
+
+# vim: syn=neomuttrc

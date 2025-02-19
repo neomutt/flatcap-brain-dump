@@ -1,0 +1,26 @@
+set folder="/home/mutt/work/expando"
+set sidebar_visible = yes
+# set sidebar_format="%B%* [%4.0S]"
+set sidebar_format="%4.0S"
+set sidebar_short_path = yes
+set sidebar_delim_chars = "/"
+
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
+mailboxes empty.mbox
+mailboxes mail.mbox
+
+set help = no
+set mail_check_stats = yes
+set mail_check_stats_interval = 2
+set status_format = ""
+set sidebar_width=20
+set sidebar_divider_char = ""
+
+color status default default
+
+set spool_file = "empty.mbox"
+
+# vim: syn=neomuttrc

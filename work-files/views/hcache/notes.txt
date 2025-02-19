@@ -1,0 +1,82 @@
+Maildir
+
+open, check, sync
+
+open
+	2*scan
+	parse
+	populate
+	notify
+hcache?
+progress?
+
+$maildir_header_cache_verify => stat each file
+
+progress:
+	scan 0 -> n
+	(hcache) read: 0 -> a
+	(file)   read: a+1 -> n
+
+MdEmail
+	cur/filename
+	is_old / is_new
+
+Email has "cur/filename"
+Key for hcache begins with '/' ?!
+parse flags
+
+
+open: progress("scan")
+p = mailbox_path(m)
+
+scan(p, "new", progress, mda)
+∀ mark new
+scan(p, "old", progress, mda)
+re-progress(n, "read")
+
+scan:
+p = "path/sub"
+loop readdir(p)
+	array_add(sub/name)
+	progress++
+
+EA=() hcache_read(mda, ea, progress)
+∀ find(mda, key)
+new email
+	transfer path, key/len
+
+parse(mda, ea, progress)
+∀ read file header
+new email
+transfer path, key/len
+
+if mda.str => bad file
+
+--------------------------------------------------------------------------------
+
+check for new mail
+
+Mailbox
+	emails[]
+
+check cur/ new/
+
+if new/ changed
+	scan new/
+if cur/ changed
+	scan cur/
+
+HashTable (key -> Email)
+	foreach(Emails)
+
+scan -> FilenameArray
+	array reserve (m->msg_count)
+
+results
+	same
+	new
+	deleted
+	changed
+		moved
+		diff flags
+

@@ -1,0 +1,16 @@
+# Global                                |  # Window                              |  # Menu                                |  # Draw Data
+                                        |                                        |                                        |
+colour `NT_COLOR`                       |  resize, etc                           |  cursor move                           |  new data
+config `NT_CONFIG`                      |  visibility                            |  repaging                              |  deleted data
+    |                                   |      |                                 |      |                                 |      |
+    V                                   |      V                                 |      V                                 |      V
+needed by BOTH Menu and Wrapper         |  `NT_WINDOW`                           |  `NT_MENU`                             |  custom `NT_XXX`
+                                        |      |                                 |      |                                 |
+Menu observes colour,                   |      V                                 |      V                                 |  need to inform Menu
+but wrapper might use other colours     |  Menu observes                         |  IBar/PBar                             |  wrapper observes and manipulates Menu
+                                        |                                        |                                        |
+same for config                         |                                        |  ------------                          |
+                                        |                                        |                                        |
+                                        |                                        |  recalc()                              |
+                                        |                                        |  repaint()                             |
+                                        |                                        |                                        |

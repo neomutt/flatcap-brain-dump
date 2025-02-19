@@ -1,0 +1,55 @@
+There are 51 config variables.
+Each maps to one of the 18 format functions.
+This table shows the Expando Definition for each.
+
+alias_format                  AliasFormatDef
+attach_format                 AttachFormatDef
+attribution_intro             IndexFormatDef
+attribution_trailer           IndexFormatDef
+autocrypt_acct_format         AutocryptFormatDef
+compose_format                ComposeFormatDef
+folder_format                 FolderFormatDef
+forward_attribution_intro     IndexFormatDef
+forward_attribution_trailer   IndexFormatDef
+forward_format                IndexFormatDef
+greeting                      GreetingFormatDef
+group_index_format            GroupIndexFormatDef
+history_format                HistoryFormatDef
+index_format                  IndexFormatDef
+inews                         NntpFormatDef
+mailbox_folder_format         FolderFormatDef
+message_format                IndexFormatDef
+mix_entry_format              MixFormatDef
+newsrc                        NntpFormatDef
+new_mail_command              StatusFormatDef
+pager_format                  IndexFormatDef
+pattern_format                PatternFormatDef
+pgp_clear_sign_command        PgpCommandFormatDef
+pgp_decode_command            PgpCommandFormatDef
+pgp_decrypt_command           PgpCommandFormatDef
+pgp_encrypt_only_command      PgpCommandFormatDef
+pgp_encrypt_sign_command      PgpCommandFormatDef
+pgp_entry_format              PgpEntryFormatDef
+pgp_export_command            PgpCommandFormatDef
+pgp_get_keys_command          PgpCommandFormatDef
+pgp_import_command            PgpCommandFormatDef
+pgp_list_pubring_command      PgpCommandFormatDef
+pgp_list_secring_command      PgpCommandFormatDef
+pgp_sign_command              PgpCommandFormatDef
+pgp_verify_command            PgpCommandFormatDef
+pgp_verify_key_command        PgpCommandFormatDef
+query_format                  QueryFormatDef
+sidebar_format                SidebarFormatDef
+smime_decrypt_command         SmimeCommandFormatDef
+smime_encrypt_command         SmimeCommandFormatDef
+smime_get_cert_command        SmimeCommandFormatDef
+smime_get_cert_email_command  SmimeCommandFormatDef
+smime_get_signer_cert_command SmimeCommandFormatDef
+smime_import_cert_command     SmimeCommandFormatDef
+smime_pk7out_command          SmimeCommandFormatDef
+smime_sign_command            SmimeCommandFormatDef
+smime_verify_command          SmimeCommandFormatDef
+smime_verify_opaque_command   SmimeCommandFormatDef
+status_format                 StatusFormatDef
+ts_icon_format                StatusFormatDef
+ts_status_format              StatusFormatDef

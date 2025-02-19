@@ -1,0 +1,74 @@
+"chars" config
+
+$from_chars
+	default = ""
+	enum FieldType
+		DISP_TO,    ///< To: string
+		DISP_CC,    ///< Cc: string
+		DISP_BCC,   ///< Bcc: string
+		DISP_FROM,  ///< From: string
+		DISP_PLAIN, ///< Empty string
+	no separate expando for this string/char
+	used by make_from() in index_F(), index_Fp(), index_L()
+
+$flag_chars
+	default = "*!DdrONon- "
+	enum FlagChars
+		FLAG_CHAR_TAGGED,           ///< Character denoting a tagged email
+		FLAG_CHAR_IMPORTANT,        ///< Character denoting a important (flagged) email
+		FLAG_CHAR_DELETED,          ///< Character denoting a deleted email
+		FLAG_CHAR_DELETED_ATTACH,   ///< Character denoting a deleted attachment
+		FLAG_CHAR_REPLIED,          ///< Character denoting an email that has been replied to
+		FLAG_CHAR_OLD,              ///< Character denoting an email that has been read
+		FLAG_CHAR_NEW,              ///< Character denoting an unread email
+		FLAG_CHAR_OLD_THREAD,       ///< Character denoting a thread of emails that has been read
+		FLAG_CHAR_NEW_THREAD,       ///< Character denoting a thread containing at least one new email
+		FLAG_CHAR_SEMPTY,           ///< Character denoting a read email, $index_format %S expando
+		FLAG_CHAR_ZEMPTY,           ///< Character denoting a read email, $index_format %Z expando
+	used by index_S(), index_zs(), index_zt(), index_Z()
+
+$crypt_chars
+	default = "SPsK "
+	enum CryptChars
+		FLAG_CHAR_CRYPT_GOOD_SIGN,      ///< Character denoting a message signed with a verified key
+		FLAG_CHAR_CRYPT_ENCRYPTED,      ///< Character denoting a message is PGP-encrypted
+		FLAG_CHAR_CRYPT_SIGNED,         ///< Character denoting a message is signed
+		FLAG_CHAR_CRYPT_CONTAINS_KEY,   ///< Character denoting a message contains a PGP key
+		FLAG_CHAR_CRYPT_NO_CRYPTO,      ///< Character denoting a message has no cryptography information
+	used by index_Z(), index_zc()
+
+$status_chars
+	default = "-*%A"
+	0-3: no enum
+	used by status_r()
+
+$to_chars
+	default = " +TCFLR"
+	enum ToChars
+		FLAG_CHAR_TO_NOT_IN_THE_LIST,   ///< Character denoting that the user is not in list
+		FLAG_CHAR_TO_UNIQUE,            ///< Character denoting that the user is unique recipient
+		FLAG_CHAR_TO_TO,                ///< Character denoting that the user is in the TO list
+		FLAG_CHAR_TO_CC,                ///< Character denoting that the user is in the CC list
+		FLAG_CHAR_TO_ORIGINATOR,        ///< Character denoting that the user is originator
+		FLAG_CHAR_TO_SUBSCRIBED_LIST,   ///< Character denoting that the message is sent to a subscribed mailing list
+		FLAG_CHAR_TO_REPLY_TO,          ///< Character denoting that the user is in the Reply-To list
+	used by index_T(), index_zt(), index_Z()
+
+could be enum
+	attach_c              Attachment: Requires conversion flag
+	attach_I              Attachment: Disposition flag
+	group_index_M         NNTP: Moderated flag
+	group_index_N         NNTP: New flag
+	index_S               Index: Status flag
+	index_T               Index: $to_chars flag
+	index_zc              Index: Message crypto flags
+	index_zs              Index: Message status flags
+	pgp_entry_gpgme_t     GPGME: Trust/validity
+	status_r              Status: Modified/read-only flag
+	status_S              Status: Aux sorting method
+	status_s              Status: Sorting mode
+	status_T              Status: Current threading mode
+
+could be bool
+	attach_d              Attachment: Descripion
+

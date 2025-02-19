@@ -1,0 +1,49 @@
+struct MbTable?
+	└ E2 94 94  \342 \224 \224  "\342\224\224\0"  `  "`\0\0\0"  MUTT_TREE_LLCORNER - U+2514 - Box Drawings Light Up and Right
+	┌ E2 94 8C  \342 \224 \214  "\342\224\214\0"  ,  ",\0\0\0"  MUTT_TREE_ULCORNER - U+250C - Box Drawings Light Down and Right
+	├ E2 94 9C  \342 \224 \234  "\342\224\234\0"  |  "|\0\0\0"  MUTT_TREE_LTEE     - U+251C - Box Drawings Light Vertical and Right
+	─ E2 94 80  \342 \224 \200  "\342\224\200\0"  -  "-\0\0\0"  MUTT_TREE_HLINE    - U+2500 - Box Drawings Light Horizontal
+	│ E2 94 82  \342 \224 \202  "\342\224\202\0"  |  "|\0\0\0"  MUTT_TREE_VLINE    - U+2502 - Box Drawings Light Vertical
+	┬ E2 94 AC  \342 \224 \254  "\342\224\254\0"  -  "-\0\0\0"  MUTT_TREE_TTEE     - U+252C - Box Drawings Light Down and Horizontal
+	┴ E2 94 B4  \342 \224 \264  "\342\224\264\0"  -  "-\0\0\0"  MUTT_TREE_BTEE     - U+2534 - Box Drawings Light Up and Horizontal
+	  20        \40             " \0\0\0"            " \0\0\0"  MUTT_TREE_SPACE    - U+0020 - Space
+	> 3E        \76             ">\0\0\0"         >  ">\0\0\0"  MUTT_TREE_RARROW   - U+003E - Greater-Than Sign
+	* 2A        \52             "*\0\0\0"         *  "*\0\0\0"  MUTT_TREE_STAR     - U+002A - Asterisk
+	& 26        \46             "&\0\0\0"         &  "&\0\0\0"  MUTT_TREE_HIDDEN   - U+0026 - Ampersand
+	= 3D        \75             "=\0\0\0"         =  "=\0\0\0"  MUTT_TREE_EQUALS   - U+003D - Equals Sign
+	? 3F        \77             "?\0\0\0"         ?  "?\0\0\0"  MUTT_TREE_MISSING  - U+003F - Question Mark
+
+// clang-format off
+// Tree chars (UTF-8) -- Each padded to 4 chars with NULs
+static const char *tree_utf8 =
+  "\342\224\224\0"   //  └  U+2514 - Box Drawings Light Up and Right
+  "\342\224\214\0"   //  ┌  U+250C - Box Drawings Light Down and Right
+  "\342\224\234\0"   //  ├  U+251C - Box Drawings Light Vertical and Right
+  "\342\224\200\0"   //  ─  U+2500 - Box Drawings Light Horizontal
+  "\342\224\202\0"   //  │  U+2502 - Box Drawings Light Vertical
+  "\342\224\254\0"   //  ┬  U+252C - Box Drawings Light Down and Horizontal
+  "\342\224\264\0"   //  ┴  U+2534 - Box Drawings Light Up and Horizontal
+  " \0\0\0"          //     U+0020 - Space
+  ">\0\0\0"          //  >  U+003E - Greater-Than Sign
+  "*\0\0\0"          //  *  U+002A - Asterisk
+  "&\0\0\0"          //  &  U+0026 - Ampersand
+  "=\0\0\0"          //  =  U+003D - Equals Sign
+  "?\0\0\0";         //  ?  U+003F - Question Mark
+
+// Tree chars (ASCII) -- Each padded to 4 chars with NULs
+static const char *tree_ascii =
+  "`\0\0\0"          //  `  U+0060 - Grave Accent
+  ",\0\0\0"          //  ,  U+002C - Comma
+  "|\0\0\0"          //  |  U+007C - Vertical Line
+  "-\0\0\0"          //  -  U+002D - Hyphen-Minus
+  "|\0\0\0"          //  |  U+007C - Vertical Line
+  "-\0\0\0"          //  -  U+002D - Hyphen-Minus
+  "-\0\0\0"          //  -  U+002D - Hyphen-Minus
+  " \0\0\0"          //     U+0020 - Space
+  ">\0\0\0"          //  >  U+003E - Greater-Than Sign
+  "*\0\0\0"          //  *  U+002A - Asterisk
+  "&\0\0\0"          //  &  U+0026 - Ampersand
+  "=\0\0\0"          //  =  U+003D - Equals Sign
+  "?\0\0\0";         //  ?  U+003F - Question Mark
+// clang-format off
+

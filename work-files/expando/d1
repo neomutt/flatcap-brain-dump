@@ -1,0 +1,24 @@
+There are 18 expando formatting functions.
+Each has been given an Expando Definition.
+
+alias/config.c:58:14:     AliasFormatDef        alias_format_str         alias/dlg_alias.c
+alias/config.c:81:14:     QueryFormatDef        query_format_str         alias/dlg_query.c
+autocrypt/config.c:48:14: AutocryptFormatDef    autocrypt_format_str     autocrypt/dlg_autocrypt.c
+browser/config.c:83:14:   FolderFormatDef       folder_format_str        browser/dlg_browser.c
+browser/config.c:116:14:  GroupIndexFormatDef   group_index_format_str   nntp/browse.c
+compmbox/compress.c:81:7: CompressFormatDef     compress-hooks           compmbox/compress.c
+compose/config.c:47:14:   ComposeFormatDef      compose_format_str       compose/cbar.c
+history/config.c:43:14:   HistoryFormatDef      history_format_str       history/dlg_history.c
+mutt_config.c:130:14:     AttachFormatDef       attach_format_str        attach/dlg_attach.c
+mutt_config.c:245:7:      IndexFormatDef        index_format_str         hdrline.c
+mutt_config.c:317:14:     StatusFormatDef       status_format_str        status.c
+mutt_config.c:852:14:     MixFormatDef          mix_format_str           mixmaster/win_hosts.c
+ncrypt/config.c:82:14:    PgpEntryFormatDef     crypt_format_str         ncrypt/dlg_gpgme.c
+ncrypt/config.c:82:14:    PgpEntryFormatDef     pgp_entry_format_str     ncrypt/dlg_pgp.c
+ncrypt/config.c:246:14:   PgpCommandFormatDef   pgp_command_format_str   ncrypt/pgpinvoke.c
+ncrypt/config.c:274:14:   SmimeCommandFormatDef smime_command_format_str ncrypt/smime.c
+nntp/config.c:44:7:       NntpFormatDef         nntp_format_str          nntp/newsrc.c
+pattern/config.c:43:14:   PatternFormatDef      pattern_format_str       pattern/dlg_pattern.c
+send/config.c:125:14:     GreetingFormatDef     greeting_format_str      send/send.c
+sidebar/config.c:64:14:   SidebarFormatDef      sidebar_format_str       sidebar/window.c
+

@@ -1,0 +1,51 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="rounded,filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ffc0c0" ]
+
+	mutt_enter_string_full
+
+	node [ fillcolor="#c0ffc0" ]
+
+	op_main_change_folder
+	op_main_change_group
+	mutt_autocrypt_scan_mailboxes
+	save_fcc
+	mutt_compose_menu
+
+	node [ fillcolor="#ffffff" ]
+	node [ color="#000000" ]
+
+	mutt_buffer_enter_fname
+	mutt_buffer_enter_fname
+	mutt_buffer_get_field
+
+	mutt_autocrypt_scan_mailboxes -> mutt_buffer_enter_fname
+	mutt_buffer_enter_fname       -> mutt_buffer_get_field
+	mutt_buffer_get_field         -> mutt_enter_string_full
+	mutt_compose_menu             -> mutt_buffer_enter_fname
+	op_main_change_folder         -> mutt_buffer_enter_fname
+	op_main_change_group          -> mutt_buffer_enter_fname
+	save_fcc                      -> mutt_buffer_enter_fname
+
+}

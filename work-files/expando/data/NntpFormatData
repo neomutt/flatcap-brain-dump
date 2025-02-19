@@ -1,0 +1,10 @@
+NntpFormatData nntp_format_str
+
+struct ConnAccount
+	a	mutt_account_tourl()		account			string
+	p	port				port			number
+	P	port				port-if			number
+	s	host				server			string
+	S	mutt_account_tourl()		schema			string
+	u	user				username		string
+

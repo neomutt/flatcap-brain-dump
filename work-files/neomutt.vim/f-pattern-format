@@ -1,0 +1,19 @@
+" Ref: pattern_format_str() in pattern/dlg_pattern.c
+call s:escapesConditionals('PatternFormat', '[den]', 1, 0)
+" Defines: muttrcPatternFormatEscapes, muttrcPatternFormatConditionals
+
+syntax region muttrcPatternFormatString contained skipwhite keepend start=+"+ skip=+\\"+ end=+"+ contains=muttrcPatternFormatEscapes,muttrcPatternFormatConditionals,muttrcFormatErrors nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+syntax region muttrcPatternFormatString contained skipwhite keepend start=+'+ skip=+\\'+ end=+'+ contains=muttrcPatternFormatEscapes,muttrcPatternFormatConditionals,muttrcFormatErrors nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+
+syntax match muttrcVarEqualsPatternFormat contained skipwhite "=" nextgroup=muttrcPatternFormatString
+
+syntax keyword muttrcVarString contained skipwhite pattern_format nextgroup=muttrcVarEqualsPatternFormat
+
+highlight def link muttrcPatternFormatConditionals muttrcFormatConditionals2
+highlight def link muttrcPatternFormatEscapes      muttrcEscape
+highlight def link muttrcPatternFormatString       muttrcString
+
+" config         base-name     conditionals                    escapes                    format-string             var-equals
+" pattern_format PatternFormat muttrcPatternFormatConditionals muttrcPatternFormatEscapes muttrcPatternFormatString muttrcVarEqualsPatternFormat
+
+" vim: syntax=vim

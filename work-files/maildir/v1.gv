@@ -1,0 +1,46 @@
+digraph sidebar
+{
+	// Sidebar 2020-08-29
+	// Blue club - Sidebar config that is global
+	// Red circle - Sidebar config that will be Account-specific (soon)
+
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	maildir_delayed_parsing2 -> email_sort_path
+	maildir_delayed_parsing2 -> maildir_parse_flags
+	maildir_delayed_parsing2 -> maildir_parse_message
+	maildir_parse_dir2       -> maildir_parse_flags
+	maildir_parse_dir2       -> mh_valid_message
+	maildir_parse_message    -> maildir_parse_stream
+	maildir_parse_stream     -> maildir_parse_flags
+	main                     -> mh_read_dir
+	mh_read_dir              -> maildir_delayed_parsing2
+	mh_read_dir              -> maildir_move_to_mailbox
+	mh_read_dir              -> maildir_parse_dir2
+	mh_read_dir              -> maildir_update_mtime
+	mh_read_dir              -> mh_read_sequences
+	mh_read_dir              -> mh_umask
+	mh_read_dir              -> mh_update_maildir
+	mh_update_maildir        -> mhs_check
+
+}

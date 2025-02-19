@@ -1,0 +1,23 @@
+globals used in libraries
+
+CurrentFolder
+EnvList
+GitVer
+HomeDir
+LastFolder
+MimeLookupList
+OptAutocryptGpgme
+OptDontHandlePgpKeys
+OptForceRefresh
+OptKeepQuiet
+OptNeedResort
+OptNews
+OptNewsSend
+OptNoCurses
+OptPgpCheckTrust
+OptResortInit
+OptSortSubthreads
+ShortHostname
+TempAttachmentsList
+UserHeader
+Username

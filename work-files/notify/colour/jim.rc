@@ -1,0 +1,2 @@
+color index_author cyan  default '~r >5d'
+color index_author green default '~r >10d'

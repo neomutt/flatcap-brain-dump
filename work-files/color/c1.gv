@@ -1,0 +1,100 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	parse_color_pair -> parse_color_name
+	mutt_color_index -> get_color_line_list
+	mutt_color_index_author -> get_color_line_list
+	mutt_color_index_tags -> get_color_line_list
+	mutt_color_index_subject -> get_color_line_list
+	mutt_color_status_line -> get_color_line_list
+	fgbgattr_to_color -> mutt_color_alloc
+	mutt_color_index_flags -> get_color_line_list
+	do_uncolor -> color_line_free
+	do_uncolor -> color_line_list_clear
+	mutt_parse_mono -> parse_color
+	mutt_color_headers -> get_color_line_list
+	mutt_color_body -> get_color_line_list
+	mutt_parse_color -> parse_color
+	mutt_colors_init -> quotes_init
+	mutt_colors_init -> defs_init
+	mutt_parse_unmono -> parse_uncolor
+	mutt_parse_uncolor -> parse_uncolor
+	color_line_free -> mutt_color_free
+	parse_uncolor -> colors_clear
+	parse_uncolor -> get_colorid_name
+	parse_uncolor -> mutt_color_index_tags
+	parse_uncolor -> mutt_color_index_subject
+	parse_uncolor -> mutt_color_status_line
+	parse_uncolor -> do_uncolor
+	parse_uncolor -> mutt_color_index_flags
+	parse_uncolor -> mutt_color_index
+	parse_uncolor -> mutt_color_index_author
+	parse_uncolor -> mutt_color_body
+	parse_uncolor -> parse_object
+	parse_uncolor -> mutt_color_headers
+	parse_uncolor -> mutt_color_attachments
+	add_pattern -> mutt_color_free
+	add_pattern -> mutt_color_alloc
+	add_pattern -> color_line_new
+	add_pattern -> color_line_free
+	mutt_color_attachments -> get_color_line_list
+	color_line_list_clear -> color_line_free
+	parse_color -> mutt_color_attachments
+	parse_color -> mutt_color_headers
+	parse_color -> parse_object
+	parse_color -> mutt_color_body
+	parse_color -> mutt_color_index_flags
+	parse_color -> fgbgattr_to_color
+	parse_color -> add_pattern
+	parse_color -> mutt_color_index_tags
+	parse_color -> mutt_color_index_subject
+	parse_color -> mutt_color_status_line
+	parse_color -> get_colorid_name
+	parse_color -> mutt_color_index_author
+	parse_color -> mutt_color_index
+	colors_clear -> mutt_color_index_tags
+	colors_clear -> mutt_color_index_subject
+	colors_clear -> mutt_color_status_line
+	colors_clear -> mutt_color_index_flags
+	colors_clear -> quotes_clear
+	colors_clear -> mutt_color_index
+	colors_clear -> defs_clear
+	colors_clear -> mutt_color_headers
+	colors_clear -> mutt_color_attachments
+	colors_clear -> mutt_color_index_author
+	colors_clear -> mutt_color_body
+	colors_clear -> color_line_list_clear
+	colors_clear -> color_list_free
+	mutt_colors_cleanup -> colors_clear
+	mutt_color_combine -> mutt_lookup_color
+	mutt_color_combine -> mutt_color_alloc
+
+	mutt_color_quotes_used
+	mutt_color_quote
+	parse_attr_spec
+	mutt_color_is_header
+	mutt_color_observer_remove
+	mutt_color_observer_add
+	mutt_color
+
+}

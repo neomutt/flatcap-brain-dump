@@ -1,0 +1,76 @@
+# Envelope
+autocrypt-menu      OP_COMPOSE_AUTOCRYPT_MENU
+edit-bcc            OP_COMPOSE_EDIT_BCC
+edit-cc             OP_COMPOSE_EDIT_CC
+edit-fcc            OP_COMPOSE_EDIT_FCC
+edit-followup-to    OP_COMPOSE_EDIT_FOLLOWUP_TO
+edit-from           OP_COMPOSE_EDIT_FROM
+edit-headers        OP_COMPOSE_EDIT_HEADERS
+edit-newsgroups     OP_COMPOSE_EDIT_NEWSGROUPS
+edit-reply-to       OP_COMPOSE_EDIT_REPLY_TO
+edit-subject        OP_COMPOSE_EDIT_SUBJECT
+edit-to             OP_COMPOSE_EDIT_TO
+edit-x-comment-to   OP_COMPOSE_EDIT_X_COMMENT_TO
+pgp-menu            OP_COMPOSE_PGP_MENU
+smime-menu          OP_COMPOSE_SMIME_MENU
+
+# Misc
+forget-passphrase   OP_FORGET_PASSPHRASE
+mix                 OP_COMPOSE_MIX
+
+# Message actions
+edit-message        OP_COMPOSE_EDIT_MESSAGE
+postpone-message    OP_COMPOSE_POSTPONE_MESSAGE
+send-message        OP_COMPOSE_SEND_MESSAGE
+write-fcc           OP_COMPOSE_WRITE_MESSAGE
+
+# Attachment manipulation
+attach-file         OP_COMPOSE_ATTACH_FILE
+attach-key          OP_COMPOSE_ATTACH_KEY
+attach-message      OP_COMPOSE_ATTACH_MESSAGE
+attach-news-message OP_COMPOSE_ATTACH_NEWS_MESSAGE
+detach-file         OP_DELETE
+	don't use generic OP code
+get-attachment      OP_COMPOSE_GET_ATTACHMENT
+group-alternatives  OP_COMPOSE_GROUP_ALTS
+group-multilingual  OP_COMPOSE_GROUP_LINGUAL
+group-related       OP_COMPOSE_GROUP_RELATED
+move-down           OP_COMPOSE_MOVE_DOWN
+move-up             OP_COMPOSE_MOVE_UP
+new-mime            OP_COMPOSE_NEW_MIME
+ungroup-attachment  OP_COMPOSE_UNGROUP_ATTACHMENT
+
+# Attachment actions
+copy-file           OP_SAVE
+display-toggle-weed OP_DISPLAY_HEADERS
+edit-file           OP_COMPOSE_EDIT_FILE
+filter-entry        OP_FILTER
+	overwrites ORIGINAL!
+	pipe to tmp file?
+ispell              OP_COMPOSE_ISPELL
+	actually only runs on fundamental
+pipe-entry          OP_PIPE
+print-entry         OP_PRINT
+rename-file         OP_COMPOSE_RENAME_FILE
+	renames ORIGINAL!
+view-attach         OP_VIEW_ATTACH
+
+# Attachment properties
+edit-content-id     OP_COMPOSE_EDIT_CONTENT_ID
+edit-description    OP_COMPOSE_EDIT_DESCRIPTION
+edit-encoding       OP_COMPOSE_EDIT_ENCODING
+edit-language       OP_COMPOSE_EDIT_LANGUAGE
+edit-mime           OP_COMPOSE_EDIT_MIME
+edit-type           OP_EDIT_TYPE
+rename-attachment   OP_COMPOSE_RENAME_ATTACHMENT
+toggle-disposition  OP_COMPOSE_TOGGLE_DISPOSITION
+toggle-recode       OP_COMPOSE_TOGGLE_RECODE
+toggle-unlink       OP_COMPOSE_TOGGLE_UNLINK
+update-encoding     OP_COMPOSE_UPDATE_ENCODING
+
+# Missing?
+OP_ATTACH_COLLAPSE
+OP_ATTACH_VIEW_MAILCAP
+OP_ATTACH_VIEW_PAGER
+OP_ATTACH_VIEW_TEXT
+

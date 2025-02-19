@@ -1,0 +1,1 @@
+macro attach,pager <f5> "<pipe-entry>urlview<enter>"

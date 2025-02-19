@@ -1,0 +1,14 @@
+✓[0,0] FIX-V [33mWT_ROOT[0m (191,45)
+    ✗[30m[0,0] FIX-V [33mWT_HELP_BAR[0m (191,1)[0m
+    ✓[0,0] MAX-V [33mWT_ALL_DIALOGS[0m (191,44)
+        ✓[0,0] MAX-H [33mWT_DLG_INDEX[0m (191,44)
+            ✓[0,0] FIX-H [33mWT_SIDEBAR[0m (20,44)
+            ✓[20,0] MAX-V [33mWT_CONTAINER[0m (171,44)
+                ✓[20,0] MIN-V [33mWT_INDEX[0m (171,11)
+                    ✓[20,0] FIX-V [33mWT_MENU[0m (171,10)
+                    ✓[20,10] FIX-V [33mWT_STATUS_BAR[0m (171,1)
+                ✓[20,11] MAX-V [33mWT_PAGER[0m (171,33)
+                    ✓[20,11] MAX-V [33mWT_CUSTOM[0m (171,32) <-- [31mFOCUS[0m
+                    ✓[20,43] FIX-V [33mWT_STATUS_BAR[0m (171,1)
+    ✓[0,44] MIN-V [33mWT_CONTAINER[0m (191,1)
+        ✓[0,44] FIX-V [33mWT_MESSAGE[0m (191,1)

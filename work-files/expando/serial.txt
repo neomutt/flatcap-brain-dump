@@ -1,0 +1,49 @@
+%<[12m?%<[7d?%<[12H?%[%H:%M ]&%[%a-%d]>&%[%d-%b]>&%[%b-%y]> %Z %-25.25F %<M?+%M) & >%s %* %<M?&(%c)>
+
+<COND:<DATE:(EMAIL,STRF_LOCAL):12:m:2592000>|<COND:<DATE:(EMAIL,STRF_LOCAL):7:d:86400>|<COND:<DATE:(EMAIL,STRF_LOCAL):12:H:3600>|<TEXT:'%H:%M '>|<TEXT:'%a-%d'>>|<TEXT:'%d-%b'>>|<TEXT:'%b-%y'>><TEXT:' '><EXP:'Z'(EMAIL,COMBINED_FLAGS)><TEXT:' '><EXP:'F'(ENVELOPE,SENDER):{25,25,LEFT,' ',-25.25}><TEXT:' '><COND:<EXP:'M'(EMAIL,THREAD_HIDDEN_COUNT)>|<TEXT:'+'><EXP:'M'(EMAIL,THREAD_HIDDEN_COUNT)><TEXT:') '>|<TEXT:' '>><EXP:'s'(ENVELOPE,SUBJECT)><TEXT:' '><PAD:SOFT:' '><COND:<EXP:'M'(EMAIL,THREAD_HIDDEN_COUNT)>|<EMPTY>|<TEXT:'('><EXP:'c'(EMAIL,SIZE)><TEXT:')'>>
+
+<COND:
+	<DATE:(EMAIL,STRF_LOCAL):12:m:2592000>
+	|
+	<COND:
+		<DATE:(EMAIL,STRF_LOCAL):7:d:86400>
+		|
+		<COND:
+			<DATE:(EMAIL,STRF_LOCAL):12:H:3600>
+			|
+			<TEXT:'%H:%M '>
+			|
+			<TEXT:'%a-%d'>
+		>
+		|
+		<TEXT:'%d-%b'>
+	>
+	|
+	<TEXT:'%b-%y'>
+>
+<TEXT:' '>
+<EXP:'Z'(EMAIL,COMBINED_FLAGS)>
+<TEXT:' '>
+<EXP:'F'(ENVELOPE,SENDER):{25,25,LEFT,' ',-25.25}>
+<TEXT:' '>
+<COND:
+	<EXP:'M'(EMAIL,THREAD_HIDDEN_COUNT)>
+	|
+	<TEXT:'+'>
+	<EXP:'M'(EMAIL,THREAD_HIDDEN_COUNT)>
+	<TEXT:') '>
+	|
+	<TEXT:' '>
+>
+<EXP:'s'(ENVELOPE,SUBJECT)>
+<TEXT:' '>
+<PAD:SOFT:' '>
+<COND:
+	<EXP:'M'(EMAIL,THREAD_HIDDEN_COUNT)>
+	|
+	<EMPTY>
+	|
+	<TEXT:'('>
+	<EXP:'c'(EMAIL,SIZE)>
+	<TEXT:')'>
+>

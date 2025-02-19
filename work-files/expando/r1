@@ -1,0 +1,281 @@
+arrows
+alias/dlg_alias.c:115:55:         alias_arrow_num           ED_GLOBAL    ED_MEN_ARROW               Alias: Arrow Cursor                              get_number
+alias/dlg_alias.c:125:51:         alias_arrow               ED_GLOBAL    ED_MEN_ARROW               Alias: Arrow Cursor                              get_string
+alias/dlg_query.c:144:55:         query_arrow_num           ED_GLOBAL    ED_MEN_ARROW               Query: Arrow Cursor                              get_number
+alias/dlg_query.c:154:51:         query_arrow               ED_GLOBAL    ED_MEN_ARROW               Query: Arrow Cursor                              get_string
+attach/dlg_attach.c:134:61:       attach_arrow_num          ED_GLOBAL    ED_MEN_ARROW               Attachment: Arrow Cursor                         get_number
+attach/dlg_attach.c:143:57:       attach_arrow              ED_GLOBAL    ED_MEN_ARROW               Attachment: Arrow Cursor                         get_string
+autocrypt/dlg_autocrypt.c:116:63: autocrypt_arrow_num       ED_GLOBAL    ED_MEN_ARROW               Autocrypt: Arrow Cursor                          get_number
+autocrypt/dlg_autocrypt.c:125:59: autocrypt_arrow           ED_GLOBAL    ED_MEN_ARROW               Autocrypt: Arrow Cursor                          get_string
+browser/dlg_browser.c:247:58:     folder_arrow_num          ED_GLOBAL    ED_MEN_ARROW               Browser: Arrow Cursor                            get_number
+browser/dlg_browser.c:256:54:     folder_arrow              ED_GLOBAL    ED_MEN_ARROW               Browser: Arrow Cursor                            get_string
+hdrline.c:1889:55:                index_arrow_num           ED_GLOBAL    ED_MEN_ARROW               Index: Arrow cursor                              get_number
+hdrline.c:1898:51:                index_arrow               ED_GLOBAL    ED_MEN_ARROW               Index: Arrow cursor                              get_string
+history/dlg_history.c:87:59:      history_arrow_num         ED_GLOBAL    ED_MEN_ARROW               History: Arrow Cursor                            get_number
+history/dlg_history.c:96:55:      history_arrow             ED_GLOBAL    ED_MEN_ARROW               History: Arrow Cursor                            get_string
+mixmaster/win_hosts.c:110:57:     mix_arrow_num             ED_GLOBAL    ED_MEN_ARROW               Mixmaster: Arrow Cursor                          get_number
+mixmaster/win_hosts.c:119:53:     mix_arrow                 ED_GLOBAL    ED_MEN_ARROW               Mixmaster: Arrow Cursor                          get_string
+ncrypt/dlg_gpgme.c:288:65:        pgp_entry_gpgme_arrow_num ED_GLOBAL    ED_MEN_ARROW               GPGME: Arrow Cursor                              get_number
+ncrypt/dlg_gpgme.c:300:61:        pgp_entry_gpgme_arrow     ED_GLOBAL    ED_MEN_ARROW               GPGME: Arrow Cursor                              get_string
+ncrypt/dlg_pgp.c:254:61:          pgp_entry_pgp_arrow_num   ED_GLOBAL    ED_MEN_ARROW               PGP: Arrow Cursor                                get_number
+ncrypt/dlg_pgp.c:267:57:          pgp_entry_pgp_arrow       ED_GLOBAL    ED_MEN_ARROW               PGP: Arrow Cursor                                get_string
+pattern/dlg_pattern.c:99:59:      pattern_arrow_num         ED_GLOBAL    ED_MEN_ARROW               Pattern: Arrow Cursor                            get_number
+pattern/dlg_pattern.c:108:55:     pattern_arrow             ED_GLOBAL    ED_MEN_ARROW               Pattern: Arrow Cursor                            get_string
+
+pretty numbers
+attach/dlg_attach.c:397:49:       attach_s_num              ED_BODY      ED_BOD_FILE_SIZE           Attachment: Size                                 get_number
+attach/dlg_attach.c:410:45:       attach_s                  ED_BODY      ED_BOD_FILE_SIZE           Attachment: Size                                 get_string
+browser/dlg_browser.c:596:55:     folder_s_num              ED_FOLDER    ED_FOL_FILE_SIZE           Browser: Size in bytes                           get_number
+browser/dlg_browser.c:605:51:     folder_s                  ED_FOLDER    ED_FOL_FILE_SIZE           Browser: Size in bytes                           get_string
+compose/cbar.c:119:56:            compose_l_num             ED_COMPOSE   ED_COM_ATTACH_SIZE         Compose: Size in bytes                           get_number
+compose/cbar.c:128:52:            compose_l                 ED_COMPOSE   ED_COM_ATTACH_SIZE         Compose: Size in bytes                           get_string
+hdrline.c:630:54:                 index_c_num               ED_EMAIL     ED_EMA_SIZE                Index: Number of bytes                           get_number
+hdrline.c:645:50:                 index_c                   ED_EMAIL     ED_EMA_SIZE                Index: Number of bytes                           get_string
+status.c:285:68:                  status_l_num              ED_INDEX     ED_IND_MAILBOX_SIZE        Status: Size of the current mailbox              get_number
+status.c:299:64:                  status_l                  ED_INDEX     ED_IND_MAILBOX_SIZE        Status: Size of the current mailbox              get_string
+status.c:361:65:                  status_P_num              ED_MENU      ED_MEN_PERCENTAGE          Status: Percentage through index                 get_number
+status.c:377:61:                  status_P                  ED_MENU      ED_MEN_PERCENTAGE          Status: Percentage through index                 get_string
+status.c:426:61:                  status_L_num              ED_INDEX     ED_IND_LIMIT_SIZE          Status: Size of the messages                     get_number
+status.c:440:57:                  status_L                  ED_INDEX     ED_IND_LIMIT_SIZE          Status: Size of the messages                     get_string
+
+dates
+browser/dlg_browser.c:193:69:     folder_date_num           ED_FOLDER    ED_FOL_STRF                Browser: Last modified (strftime)                get_number
+browser/dlg_browser.c:206:65:     folder_date               ED_FOLDER    ED_FOL_STRF                Browser: Last modified (strftime)                get_string
+browser/dlg_browser.c:287:55:     folder_d_num              ED_FOLDER    ED_FOL_DATE                Browser: Last modified                           get_number
+browser/dlg_browser.c:299:51:     folder_d                  ED_FOLDER    ED_FOL_DATE                Browser: Last modified                           get_string
+browser/dlg_browser.c:323:70:     folder_D_num              ED_FOLDER    ED_FOL_DATE_FORMAT         Browser: Last modified ($date_format)            get_number
+browser/dlg_browser.c:335:66:     folder_D                  ED_FOLDER    ED_FOL_DATE_FORMAT         Browser: Last modified ($date_format)            get_string
+hdrline.c:309:81:                 index_date_recv_local_num ED_EMAIL     ED_EMA_STRF_RECV_LOCAL     Index: Local received date and time              get_number
+hdrline.c:322:77:                 index_date_recv_local     ED_EMAIL     ED_EMA_STRF_RECV_LOCAL     Index: Local received date and time              get_string
+hdrline.c:367:67:                 index_date_local_num      ED_EMAIL     ED_EMA_STRF_LOCAL          Index: Local date and time                       get_number
+hdrline.c:380:63:                 index_date_local          ED_EMAIL     ED_EMA_STRF_LOCAL          Index: Local date and time                       get_string
+hdrline.c:425:64:                 index_date_num            ED_EMAIL     ED_EMA_STRF                Index: Sender's date and time                    get_number
+hdrline.c:438:60:                 index_date                ED_EMAIL     ED_EMA_STRF                Index: Sender's date and time                    get_string
+hdrline.c:705:60:                 index_d_num               ED_EMAIL     ED_EMA_DATE_FORMAT         Index: Senders Date and time                     get_number
+hdrline.c:718:56:                 index_d                   ED_EMAIL     ED_EMA_DATE_FORMAT         Index: Senders Date and time                     get_string
+hdrline.c:765:58:                 index_D_num               ED_EMAIL     ED_EMA_DATE_FORMAT_LOCAL   Index: Local Date and time                       get_number
+hdrline.c:778:54:                 index_D                   ED_EMAIL     ED_EMA_DATE_FORMAT_LOCAL   Index: Local Date and time                       get_string
+ncrypt/dlg_gpgme.c:314:67:        pgp_entry_gpgme_date_num  ED_PGP_KEY   ED_PGK_DATE                GPGME: Date of the key                           get_number
+ncrypt/dlg_gpgme.c:327:63:        pgp_entry_gpgme_date      ED_PGP_KEY   ED_PGK_DATE                GPGME: Date of the key                           get_string
+ncrypt/dlg_pgp.c:282:63:          pgp_entry_pgp_date_num    ED_PGP_KEY   ED_PGK_DATE                PGP: Date of the key                             get_number
+ncrypt/dlg_pgp.c:297:59:          pgp_entry_pgp_date        ED_PGP_KEY   ED_PGK_DATE                PGP: Date of the key                             get_string
+
+bools "X" or "Y"
+alias/dlg_alias.c:167:44:         alias_f_num               ED_ALIAS     ED_ALI_FLAGS               Alias: Flags                                     get_number
+alias/dlg_alias.c:176:40:         alias_f                   ED_ALIAS     ED_ALI_FLAGS               Alias: Flags                                     get_string
+alias/dlg_alias.c:215:50:         alias_t_num               ED_ALIAS     ED_ALI_TAGGED              Alias: Tagged char                               get_number
+alias/dlg_alias.c:224:46:         alias_t                   ED_ALIAS     ED_ALI_TAGGED              Alias: Tagged char                               get_string
+alias/dlg_query.c:223:50:         query_t_num               ED_ALIAS     ED_ALI_TAGGED              Query: Tagged char                               get_number
+alias/dlg_query.c:232:46:         query_t                   ED_ALIAS     ED_ALI_TAGGED              Query: Tagged char                               get_string
+attach/dlg_attach.c:224:52:       attach_D_num              ED_BODY      ED_BOD_DELETED             Attachment: Deleted                              get_number
+attach/dlg_attach.c:233:48:       attach_D                  ED_BODY      ED_BOD_DELETED             Attachment: Deleted                              get_string
+attach/dlg_attach.c:373:64:       attach_Q_num              ED_BODY      ED_BOD_ATTACH_QUALIFIES    Attachment: Attachment counting                  get_number
+attach/dlg_attach.c:382:60:       attach_Q                  ED_BODY      ED_BOD_ATTACH_QUALIFIES    Attachment: Attachment counting                  get_string
+attach/dlg_attach.c:436:54:       attach_t_num              ED_BODY      ED_BOD_TAGGED              Attachment: Is Tagged                            get_number
+attach/dlg_attach.c:445:50:       attach_t                  ED_BODY      ED_BOD_TAGGED              Attachment: Is Tagged                            get_string
+attach/dlg_attach.c:474:56:       attach_u_num              ED_BODY      ED_BOD_UNLINK              Attachment: Unlink flag                          get_number
+attach/dlg_attach.c:483:52:       attach_u                  ED_BODY      ED_BOD_UNLINK              Attachment: Unlink flag                          get_string
+browser/dlg_browser.c:562:55:     folder_N_num              ED_FOLDER    ED_FOL_NEW_MAIL            Browser: New mail flag                           get_number
+browser/dlg_browser.c:571:51:     folder_N                  ED_FOLDER    ED_FOL_NEW_MAIL            Browser: New mail flag                           get_string
+browser/dlg_browser.c:621:51:     folder_t_num              ED_FOLDER    ED_FOL_TAGGED              Browser: Is Tagged                               get_number
+browser/dlg_browser.c:630:47:     folder_t                  ED_FOLDER    ED_FOL_TAGGED              Browser: Is Tagged                               get_string
+sidebar/window.c:466:56:          sidebar_n_num             ED_SIDEBAR   ED_SID_NEW_MAIL            Sidebar: New mail flag                           get_number
+sidebar/window.c:478:52:          sidebar_n                 ED_SIDEBAR   ED_SID_NEW_MAIL            Sidebar: New mail flag                           get_string
+
+bools 0 or 1
+browser/dlg_browser.c:267:60:     folder_a_num              ED_FOLDER    ED_FOL_NOTIFY              Browser: Alert for new mail                      get_number
+browser/dlg_browser.c:586:59:     folder_p_num              ED_FOLDER    ED_FOL_POLL                Browser: Poll for new mail                       get_number
+nntp/browse.c:44:62:              group_index_a_num         ED_FOLDER    ED_FOL_NOTIFY              NNTP: Alert for new mail                         get_number
+nntp/browse.c:173:61:             group_index_p_num         ED_FOLDER    ED_FOL_POLL                NNTP: Poll for new mail                          get_number
+sidebar/window.c:362:61:          sidebar_a_num             ED_SIDEBAR   ED_SID_NOTIFY              Sidebar: Alert for new mail                      get_number
+sidebar/window.c:519:60:          sidebar_p_num             ED_SIDEBAR   ED_SID_POLL                Sidebar: Poll for new mail                       get_number
+
+number or nothing
+browser/dlg_browser.c:478:52:     folder_l_num              ED_FOLDER    ED_FOL_HARD_LINKS          Browser: Hard links                              get_number
+browser/dlg_browser.c:491:48:     folder_l                  ED_FOLDER    ED_FOL_HARD_LINKS          Browser: Hard links                              get_string
+browser/dlg_browser.c:506:60:     folder_m_num              ED_FOLDER    ED_FOL_MESSAGE_COUNT       Browser: Number of messages                      get_number
+browser/dlg_browser.c:519:56:     folder_m                  ED_FOLDER    ED_FOL_MESSAGE_COUNT       Browser: Number of messages                      get_string
+browser/dlg_browser.c:534:67:     folder_n_num              ED_FOLDER    ED_FOL_UNREAD_COUNT        Browser: Number of unread messages               get_number
+browser/dlg_browser.c:547:63:     folder_n                  ED_FOLDER    ED_FOL_UNREAD_COUNT        Browser: Number of unread messages               get_string
+nntp/newsrc.c:958:56:             nntp_P_num                ED_NNTP      ED_NTP_PORT_IF             Newsrc: Port if specified                        get_number
+nntp/newsrc.c:972:52:             nntp_P                    ED_NNTP      ED_NTP_PORT_IF             Newsrc: Port if specified                        get_string
+
+plain numbers
+alias/dlg_alias.c:191:51:         alias_n_num               ED_ALIAS     ED_ALI_NUMBER              Alias: Index number                              get_number
+alias/dlg_query.c:183:51:         query_c_num               ED_ALIAS     ED_ALI_NUMBER              Query: Index number                              get_number
+attach/dlg_attach.c:363:57:       attach_n_num              ED_ATTACH    ED_ATT_NUMBER              Attachment: Index number                         get_number
+attach/dlg_attach.c:498:65:       attach_X_num              ED_BODY      ED_BOD_ATTACH_COUNT        Attachment: Number of MIME parts                 get_number
+autocrypt/dlg_autocrypt.c:163:59: autocrypt_n_num           ED_AUTOCRYPT ED_AUT_NUMBER              Autocrypt: Index number                          get_number
+browser/dlg_browser.c:277:54:     folder_C_num              ED_FOLDER    ED_FOL_NUMBER              Browser: Index number                            get_number
+compose/cbar.c:97:64:             compose_a_num             ED_COMPOSE   ED_COM_ATTACH_COUNT        Compose: Number of attachments                   get_number
+hdrline.c:689:51:                 index_C_num               ED_EMAIL     ED_EMA_NUMBER              Index: Index number                              get_number
+hdrline.c:818:58:                 index_e_num               ED_EMAIL     ED_EMA_THREAD_NUMBER       Index: Thread index number                       get_number
+hdrline.c:830:64:                 index_E_num               ED_EMAIL     ED_EMA_THREAD_COUNT        Index: Number of messages thread                 get_number
+hdrline.c:1084:54:                index_l_num               ED_EMAIL     ED_EMA_LINES               Index: Number of lines                           get_number
+hdrline.c:1122:62:                index_m_num               ED_MAILBOX   ED_MBX_MESSAGE_COUNT       Index: Total number of message                   get_number
+hdrline.c:1168:64:                index_M_num               ED_EMAIL     ED_EMA_THREAD_HIDDEN_COUNT Index: Number of hidden messages                 get_number
+hdrline.c:1217:52:                index_N_num               ED_EMAIL     ED_EMA_SCORE               Index: Message score                             get_number
+hdrline.c:1577:65:                index_X_num               ED_EMAIL     ED_EMA_ATTACHMENT_COUNT    Index: Number of MIME attachments                get_number
+history/dlg_history.c:107:55:     history_C_num             ED_HISTORY   ED_HIS_NUMBER              History: Index number                            get_number
+mixmaster/win_hosts.c:158:53:     mix_n_num                 ED_MIXMASTER ED_MIX_NUMBER              Mixmaster: Index number                          get_number
+ncrypt/dlg_gpgme.c:378:61:        pgp_entry_gpgme_n_num     ED_PGP       ED_PGP_NUMBER              GPGME: Index number                              get_number
+ncrypt/dlg_gpgme.c:566:59:        pgp_entry_gpgme_l_num     ED_PGP_KEY   ED_PGK_KEY_LENGTH          GPGME: Key length                                get_number
+ncrypt/dlg_pgp.c:340:57:          pgp_entry_pgp_n_num       ED_PGP       ED_PGP_NUMBER              PGP: Index number                                get_number
+ncrypt/dlg_pgp.c:540:55:          pgp_entry_pgp_l_num       ED_PGP_KEY   ED_PGK_KEY_LENGTH          PGP: Key length                                  get_number
+ncrypt/dlg_pgp.c:556:65:          pgp_entry_pgp_L_num       ED_PGP_KEY   ED_PGK_PKEY_LENGTH         PGP: Principal Key length                        get_number
+nntp/browse.c:54:56:              group_index_C_num         ED_FOLDER    ED_FOL_NUMBER              NNTP: Index number                               get_number
+nntp/browse.c:130:66:             group_index_n_num         ED_FOLDER    ED_FOL_NEW_COUNT           NNTP: Number of new articles                     get_number
+nntp/browse.c:183:69:             group_index_s_num         ED_FOLDER    ED_FOL_UNREAD_COUNT        NNTP: Number of unread articles                  get_number
+nntp/newsrc.c:947:43:             nntp_p_num                ED_NNTP      ED_NTP_PORT                Newsrc: Port                                     get_number
+pattern/dlg_pattern.c:147:55:     pattern_n_num             ED_PATTERN   ED_PAT_NUMBER              Pattern: Index number                            get_number
+sidebar/window.c:394:69:          sidebar_d_num             ED_SIDEBAR   ED_SID_DELETED_COUNT       Sidebar: Number of deleted messages              get_number
+sidebar/window.c:438:69:          sidebar_F_num             ED_SIDEBAR   ED_SID_FLAGGED_COUNT       Sidebar: Number of flagged messages              get_number
+sidebar/window.c:450:69:          sidebar_L_num             ED_SIDEBAR   ED_SID_LIMITED_COUNT       Sidebar: Number of limited messages              get_number
+sidebar/window.c:495:68:          sidebar_N_num             ED_SIDEBAR   ED_SID_UNREAD_COUNT        Sidebar: Number of unread messages               get_number
+sidebar/window.c:507:65:          sidebar_o_num             ED_SIDEBAR   ED_SID_OLD_COUNT           Sidebar: Number of old messages                  get_number
+sidebar/window.c:531:66:          sidebar_r_num             ED_SIDEBAR   ED_SID_READ_COUNT          Sidebar: Number of read messages                 get_number
+sidebar/window.c:543:61:          sidebar_S_num             ED_SIDEBAR   ED_SID_MESSAGE_COUNT       Sidebar: number of messages                      get_number
+sidebar/window.c:555:68:          sidebar_t_num             ED_SIDEBAR   ED_SID_TAGGED_COUNT        Sidebar: Number of tagged messages               get_number
+sidebar/window.c:571:65:          sidebar_Z_num             ED_SIDEBAR   ED_SID_UNSEEN_COUNT        Sidebar: Number of new messages                  get_number
+status.c:177:59:                  status_M_num              ED_INDEX     ED_IND_LIMIT_COUNT         Status: Number of messages                       get_number
+status.c:189:74:                  status_m_num              ED_INDEX     ED_IND_MESSAGE_COUNT       Status: Number of messages in the mailbox        get_number
+status.c:201:63:                  status_n_num              ED_INDEX     ED_IND_NEW_COUNT           Status: Number of new messages                   get_number
+status.c:213:63:                  status_o_num              ED_INDEX     ED_IND_OLD_COUNT           Status: Number of old messages                   get_number
+status.c:225:67:                  status_d_num              ED_INDEX     ED_IND_DELETED_COUNT       Status: Number of deleted messages               get_number
+status.c:237:67:                  status_F_num              ED_INDEX     ED_IND_FLAGGED_COUNT       Status: Number of flagged messages               get_number
+status.c:249:66:                  status_t_num              ED_INDEX     ED_IND_TAGGED_COUNT        Status: Number of tagged messages                get_number
+status.c:261:69:                  status_p_num              ED_INDEX     ED_IND_POSTPONED_COUNT     Status: Number of postponed messages             get_number
+status.c:273:74:                  status_b_num              ED_INDEX     ED_IND_UNREAD_MAILBOXES    Status: Number of mailboxes with new mail        get_number
+status.c:459:64:                  status_R_num              ED_INDEX     ED_IND_READ_COUNT          Status: Number of read messages                  get_number
+status.c:471:66:                  status_u_num              ED_INDEX     ED_IND_UNREAD_COUNT        Status: Number of unread messages                get_number
+
+just text
+alias/dlg_alias.c:137:45:         alias_a                   ED_ALIAS     ED_ALI_NAME                Alias: Alias name                                get_string
+alias/dlg_alias.c:152:42:         alias_c                   ED_ALIAS     ED_ALI_COMMENT             Alias: Comment                                   get_string
+alias/dlg_alias.c:201:42:         alias_r                   ED_ALIAS     ED_ALI_ADDRESS             Alias: Address                                   get_string
+alias/dlg_alias.c:239:39:         alias_Y                   ED_ALIAS     ED_ALI_TAGS                Alias: Tags                                      get_string
+alias/dlg_query.c:166:42:         query_a                   ED_ALIAS     ED_ALI_ADDRESS             Query: Address                                   get_string
+alias/dlg_query.c:193:52:         query_e                   ED_ALIAS     ED_ALI_COMMENT             Query: Extra information                         get_string
+alias/dlg_query.c:208:39:         query_n                   ED_ALIAS     ED_ALI_NAME                Query: Name                                      get_string
+alias/dlg_query.c:247:39:         query_Y                   ED_ALIAS     ED_ALI_TAGS                Query: Tags                                      get_string
+attach/dlg_attach.c:154:65:       attach_c                  ED_BODY      ED_BOD_CHARSET_CONVERT     Attachment: Requires conversion flag             get_string
+attach/dlg_attach.c:169:48:       attach_C                  ED_ATTACH    ED_ATT_CHARSET             Attachment: Charset                              get_string
+attach/dlg_attach.c:187:51:       attach_d                  ED_BODY      ED_BOD_DESCRIPTION         Attachment: Descripion                           get_string
+attach/dlg_attach.c:248:50:       attach_e                  ED_BODY      ED_BOD_MIME_ENCODING       Attachment: MIME type                            get_string
+attach/dlg_attach.c:262:49:       attach_f                  ED_BODY      ED_BOD_FILE                Attachment: Filename                             get_string
+attach/dlg_attach.c:288:59:       attach_F                  ED_BODY      ED_BOD_FILE_DISPOSITION    Attachment: Filename in header                   get_string
+attach/dlg_attach.c:308:57:       attach_I                  ED_BODY      ED_BOD_DISPOSITION         Attachment: Disposition flag                     get_string
+attach/dlg_attach.c:335:56:       attach_m                  ED_BODY      ED_BOD_MIME_MAJOR          Attachment: Major MIME type                      get_string
+attach/dlg_attach.c:349:53:       attach_M                  ED_BODY      ED_BOD_MIME_MINOR          Attachment: MIME subtype                         get_string
+attach/dlg_attach.c:460:56:       attach_T                  ED_ATTACH    ED_ATT_TREE                Attachment: Tree characters                      get_string
+autocrypt/dlg_autocrypt.c:136:50: autocrypt_a               ED_AUTOCRYPT ED_AUT_ADDRESS             Autocrypt: Address                               get_string
+autocrypt/dlg_autocrypt.c:149:50: autocrypt_k               ED_AUTOCRYPT ED_AUT_KEYID               Autocrypt: GPG Key                               get_string
+autocrypt/dlg_autocrypt.c:173:62: autocrypt_p               ED_AUTOCRYPT ED_AUT_PREFER_ENCRYPT      Autocrypt: Prefer-encrypt flag                   get_string
+autocrypt/dlg_autocrypt.c:198:54: autocrypt_s               ED_AUTOCRYPT ED_AUT_ENABLED             Autocrypt: Status flag                           get_string
+browser/dlg_browser.c:370:46:     folder_f                  ED_FOLDER    ED_FOL_FILENAME            Browser: Filename                                get_string
+browser/dlg_browser.c:392:54:     folder_F                  ED_FOLDER    ED_FOL_FILE_MODE           Browser: File permissions                        get_string
+browser/dlg_browser.c:429:48:     folder_g                  ED_FOLDER    ED_FOL_FILE_GROUP          Browser: Group name                              get_string
+browser/dlg_browser.c:452:49:     folder_i                  ED_FOLDER    ED_FOL_DESCRIPTION         Browser: Description                             get_string
+browser/dlg_browser.c:645:48:     folder_u                  ED_FOLDER    ED_FOL_FILE_OWNER          Browser: Owner name                              get_string
+compmbox/compress.c:286:54:       compress_f                ED_COMPRESS  ED_CMP_FROM                Compress: From filename                          get_string
+compmbox/compress.c:302:52:       compress_t                ED_COMPRESS  ED_CMP_TO                  Compress: To filename                            get_string
+compose/cbar.c:107:47:            compose_h                 ED_GLOBAL    ED_GLO_HOSTNAME            Compose: Hostname                                get_string
+compose/cbar.c:144:46:            compose_v                 ED_GLOBAL    ED_GLO_VERSION             Compose: Version                                 get_string
+hdrline.c:489:62:                 index_format_hook         ED_EMAIL     ED_EMA_INDEX_HOOK          Index: index-format-hook                         get_string
+hdrline.c:516:49:                 index_a                   ED_ENVELOPE  ED_ENV_FROM                Index: Author Address                            get_string
+hdrline.c:542:51:                 index_A                   ED_ENVELOPE  ED_ENV_REPLY_TO            Index: Reply-to address                          get_string
+hdrline.c:569:43:                 index_b                   ED_MAILBOX   ED_MBX_MAILBOX_NAME        Index: Filename                                  get_string
+hdrline.c:605:45:                 index_B                   ED_ENVELOPE  ED_ENV_LIST_ADDRESS        Index: Email list                                get_string
+hdrline.c:667:55:                 index_cr                  ED_EMAIL     ED_EMA_BODY_CHARACTERS     Index: Number of raw bytes                       get_string
+hdrline.c:842:41:                 index_f                   ED_ENVELOPE  ED_ENV_FROM_FULL           Index: Sender                                    get_string
+hdrline.c:858:46:                 index_F                   ED_ENVELOPE  ED_ENV_SENDER              Index: Author name                               get_string
+hdrline.c:881:53:                 index_Fp                  ED_ENVELOPE  ED_ENV_SENDER_PLAIN        Index: Plain author name                         get_string
+hdrline.c:904:47:                 index_g                   ED_EMAIL     ED_EMA_TAGS                Index: Message tags                              get_string
+hdrline.c:922:49:                 index_G                   ED_EMAIL     ED_EMA_TAGS_TRANSFORMED    Index: Individual tag                            get_string
+hdrline.c:952:50:                 index_H                   ED_ENVELOPE  ED_ENV_SPAM                Index: Spam attributes                           get_string
+hdrline.c:968:45:                 index_i                   ED_ENVELOPE  ED_ENV_MESSAGE_ID          Index: Message-id                                get_string
+hdrline.c:985:53:                 index_I                   ED_ENVELOPE  ED_ENV_INITIALS            Index: Initials of author                        get_string
+hdrline.c:1014:39:                index_J                   ED_EMAIL     ED_EMA_THREAD_TAGS         Index: Tags                                      get_string
+hdrline.c:1062:47:                index_K                   ED_ENVELOPE  ED_ENV_LIST_EMPTY          Index: Mailing list                              get_string
+hdrline.c:1100:47:                index_L                   ED_EMAIL     ED_EMA_FROM_LIST           Index: List address                              get_string
+hdrline.c:1136:60:                index_M                   ED_EMAIL     ED_EMA_THREAD_HIDDEN_COUNT Index: Number of hidden messages                 get_string
+hdrline.c:1195:53:                index_n                   ED_ENVELOPE  ED_ENV_NAME                Index: Author's real name                        get_string
+hdrline.c:1230:59:                index_O                   ED_EMAIL     ED_EMA_LIST_OR_SAVE_FOLDER Index: List Name or Save folder                  get_string
+hdrline.c:1256:53:                index_P                   ED_MAILBOX   ED_MBX_PERCENTAGE          Index: Progress indicator                        get_string
+hdrline.c:1270:49:                index_q                   ED_ENVELOPE  ED_ENV_NEWSGROUP           Index: Newsgroup name                            get_string
+hdrline.c:1287:48:                index_r                   ED_ENVELOPE  ED_ENV_TO_ALL              Index: To recipients                             get_string
+hdrline.c:1303:48:                index_R                   ED_ENVELOPE  ED_ENV_CC_ALL              Index: Cc recipients                             get_string
+hdrline.c:1319:42:                index_s                   ED_ENVELOPE  ED_ENV_SUBJECT             Index: Subject                                   get_string
+hdrline.c:1369:46:                index_S                   ED_EMAIL     ED_EMA_FLAG_CHARS          Index: Status flag                               get_string
+hdrline.c:1409:43:                index_t                   ED_ENVELOPE  ED_ENV_TO                  Index: To field                                  get_string
+hdrline.c:1443:49:                index_T                   ED_EMAIL     ED_EMA_TO_CHARS            Index: $to_chars flag                            get_string
+hdrline.c:1466:44:                index_u                   ED_ENVELOPE  ED_ENV_USERNAME            Index: User name                                 get_string
+hdrline.c:1496:45:                index_v                   ED_ENVELOPE  ED_ENV_FIRST_NAME          Index: First name                                get_string
+hdrline.c:1543:47:                index_W                   ED_ENVELOPE  ED_ENV_ORGANIZATION        Index: Organization                              get_string
+hdrline.c:1560:47:                index_x                   ED_ENVELOPE  ED_ENV_X_COMMENT_TO        Index: X-Comment-To                              get_string
+hdrline.c:1598:42:                index_y                   ED_ENVELOPE  ED_ENV_X_LABEL             Index: X-Label                                   get_string
+hdrline.c:1618:57:                index_Y                   ED_ENVELOPE  ED_ENV_THREAD_X_LABEL      Index: X-Label (if different)                    get_string
+hdrline.c:1666:56:                index_zc                  ED_EMAIL     ED_EMA_CRYPTO_FLAGS        Index: Message crypto flags                      get_string
+hdrline.c:1708:56:                index_zs                  ED_EMAIL     ED_EMA_STATUS_FLAGS        Index: Message status flags                      get_string
+hdrline.c:1770:53:                index_zt                  ED_EMAIL     ED_EMA_MESSAGE_FLAGS       Index: Message tag flags                         get_string
+hdrline.c:1805:47:                index_Z                   ED_EMAIL     ED_EMA_COMBINED_FLAGS      Index: Status flags                              get_string
+history/dlg_history.c:117:52:     history_s                 ED_HISTORY   ED_HIS_MATCH               History: History match                           get_string
+mixmaster/win_hosts.c:130:50:     mix_a                     ED_MIXMASTER ED_MIX_ADDRESS             Mixmaster: Email address                         get_string
+mixmaster/win_hosts.c:144:49:     mix_c                     ED_MIXMASTER ED_MIX_CAPABILITIES        Mixmaster: Capabilities                          get_string
+mixmaster/win_hosts.c:168:47:     mix_s                     ED_MIXMASTER ED_MIX_SHORT_NAME          Mixmaster: Short name                            get_string
+ncrypt/dlg_gpgme.c:391:53:        pgp_entry_gpgme_p         ED_PGP_KEY   ED_PGK_PROTOCOL            GPGME: Protocol                                  get_string
+ncrypt/dlg_gpgme.c:408:59:        pgp_entry_gpgme_t         ED_PGP       ED_PGP_TRUST               GPGME: Trust/validity                            get_string
+ncrypt/dlg_gpgme.c:455:52:        pgp_entry_gpgme_u         ED_PGP       ED_PGP_USER_ID             GPGME: User id                                   get_string
+ncrypt/dlg_gpgme.c:472:58:        pgp_entry_gpgme_a         ED_PGP_KEY   ED_PGK_KEY_ALGORITHM       GPGME: Key Algorithm                             get_string
+ncrypt/dlg_gpgme.c:494:61:        pgp_entry_gpgme_c         ED_PGP_KEY   ED_PGK_KEY_CAPABILITIES    GPGME: Key Capabilities                          get_string
+ncrypt/dlg_gpgme.c:511:54:        pgp_entry_gpgme_f         ED_PGP_KEY   ED_PGK_KEY_FLAGS           GPGME: Key Flags                                 get_string
+ncrypt/dlg_gpgme.c:528:60:        pgp_entry_gpgme_i         ED_PGP_KEY   ED_PGK_KEY_FINGERPRINT     GPGME: Key fingerprint                           get_string
+ncrypt/dlg_gpgme.c:547:51:        pgp_entry_gpgme_k         ED_PGP_KEY   ED_PGK_KEY_ID              GPGME: Key id                                    get_string
+ncrypt/dlg_pgp.c:353:55:          pgp_entry_pgp_t           ED_PGP       ED_PGP_TRUST               PGP: Trust/validity                              get_string
+ncrypt/dlg_pgp.c:369:48:          pgp_entry_pgp_u           ED_PGP       ED_PGP_USER_ID             PGP: User id                                     get_string
+ncrypt/dlg_pgp.c:386:54:          pgp_entry_pgp_a           ED_PGP_KEY   ED_PGK_KEY_ALGORITHM       PGP: Key Algorithm                               get_string
+ncrypt/dlg_pgp.c:404:64:          pgp_entry_pgp_A           ED_PGP_KEY   ED_PGK_PKEY_ALGORITHM      PGP: Principal Key Algorithm                     get_string
+ncrypt/dlg_pgp.c:423:57:          pgp_entry_pgp_c           ED_PGP_KEY   ED_PGK_KEY_CAPABILITIES    PGP: Key Capabilities                            get_string
+ncrypt/dlg_pgp.c:443:67:          pgp_entry_pgp_C           ED_PGP_KEY   ED_PGK_PKEY_CAPABILITIES   PGP: Principal Key Capabilities                  get_string
+ncrypt/dlg_pgp.c:464:50:          pgp_entry_pgp_f           ED_PGP_KEY   ED_PGK_KEY_FLAGS           PGP: Key Flags                                   get_string
+ncrypt/dlg_pgp.c:483:60:          pgp_entry_pgp_F           ED_PGP_KEY   ED_PGK_PKEY_FLAGS          PGP: Principal Key Flags                         get_string
+ncrypt/dlg_pgp.c:503:47:          pgp_entry_pgp_k           ED_PGP_KEY   ED_PGK_KEY_ID              PGP: Key id                                      get_string
+ncrypt/dlg_pgp.c:521:57:          pgp_entry_pgp_K           ED_PGP_KEY   ED_PGK_PKEY_ID             PGP: Principal Key id                            get_string
+ncrypt/pgpinvoke.c:58:79:         pgp_command_a             ED_PGP_CMD   ED_PGC_SIGN_AS             PGP Command: $pgp_sign_as or $pgp_default_key    get_string
+ncrypt/pgpinvoke.c:72:66:         pgp_command_f             ED_PGP_CMD   ED_PGC_FILE_MESSAGE        PGP Command: Filename of message                 get_string
+ncrypt/pgpinvoke.c:86:82:         pgp_command_p             ED_PGP_CMD   ED_PGC_NEED_PASS           PGP Command: PGPPASSFD=0 if passphrase is needed get_string
+ncrypt/pgpinvoke.c:100:54:        pgp_command_r             ED_PGP_CMD   ED_PGC_KEY_IDS             PGP Command: key IDs                             get_string
+ncrypt/pgpinvoke.c:114:68:        pgp_command_s             ED_PGP_CMD   ED_PGC_FILE_SIGNATURE      PGP Command: Filename of signature               get_string
+ncrypt/smime.c:201:60:            smime_command_a           ED_SMIME_CMD ED_SMI_ALGORITHM           Smime Command: algorithm                         get_string
+ncrypt/smime.c:217:66:            smime_command_c           ED_SMIME_CMD ED_SMI_CERTIFICATE_IDS     Smime Command: certificate IDs                   get_string
+ncrypt/smime.c:233:62:            smime_command_C           ED_GLOBAL    ED_GLO_CERTIFICATE_PATH    Smime Command: CA location                       get_string
+ncrypt/smime.c:270:75:            smime_command_d           ED_SMIME_CMD ED_SMI_DIGEST_ALGORITHM    Smime Command: Message digest algorithm          get_string
+ncrypt/smime.c:286:70:            smime_command_f           ED_SMIME_CMD ED_SMI_MESSAGE_FILE        Smime Command: Filename of message               get_string
+ncrypt/smime.c:302:76:            smime_command_i           ED_SMIME_CMD ED_SMI_INTERMEDIATE_IDS    Smime Command: Intermediate certificates         get_string
+ncrypt/smime.c:318:59:            smime_command_k           ED_SMIME_CMD ED_SMI_KEY                 Smime Command: Key-pair                          get_string
+ncrypt/smime.c:334:72:            smime_command_s           ED_SMIME_CMD ED_SMI_SIGNATURE_FILE      Smime Command: Filename of signature             get_string
+nntp/browse.c:64:51:              group_index_d             ED_FOLDER    ED_FOL_DESCRIPTION         NNTP: Description                                get_string
+nntp/browse.c:92:54:              group_index_f             ED_FOLDER    ED_FOL_NEWSGROUP           NNTP: Newsgroup name                             get_string
+nntp/browse.c:106:54:             group_index_M             ED_FOLDER    ED_FOL_FLAGS               NNTP: Moderated flag                             get_string
+nntp/browse.c:149:48:             group_index_N             ED_FOLDER    ED_FOL_FLAGS2              NNTP: New flag                                   get_string
+nntp/newsrc.c:922:46:             nntp_a                    ED_NNTP      ED_NTP_ACCOUNT             Newsrc: Account url                              get_string
+nntp/newsrc.c:989:51:             nntp_s                    ED_NNTP      ED_NTP_SERVER              Newsrc: News server name                         get_string
+nntp/newsrc.c:1008:45:            nntp_S                    ED_NNTP      ED_NTP_SCHEMA              Newsrc: Url schema                               get_string
+nntp/newsrc.c:1033:43:            nntp_u                    ED_NNTP      ED_NTP_USERNAME            Newsrc: Username                                 get_string
+pattern/dlg_pattern.c:119:58:     pattern_d                 ED_PATTERN   ED_PAT_DESCRIPTION         Pattern: pattern description                     get_string
+pattern/dlg_pattern.c:133:57:     pattern_e                 ED_PATTERN   ED_PAT_EXPRESION           Pattern: pattern expression                      get_string
+send/send.c:680:50:               greeting_n                ED_ENVELOPE  ED_ENV_REAL_NAME           Greeting: Real name                              get_string
+send/send.c:695:51:               greeting_u                ED_ENVELOPE  ED_ENV_USER_NAME           Greeting: Login name                             get_string
+send/send.c:721:51:               greeting_v                ED_ENVELOPE  ED_ENV_FIRST_NAME          Greeting: First name                             get_string
+sidebar/window.c:332:55:          sidebar_bang              ED_SIDEBAR   ED_SID_FLAGGED             Sidebar: Flagged flags                           get_string
+sidebar/window.c:374:58:          sidebar_B                 ED_SIDEBAR   ED_SID_NAME                Sidebar: Name of the mailbox                     get_string
+sidebar/window.c:410:55:          sidebar_D                 ED_SIDEBAR   ED_SID_DESCRIPTION         Sidebar: Descriptive name                        get_string
+status.c:83:60:                   status_r                  ED_INDEX     ED_IND_READONLY            Status: Modified/read-only flag                  get_string
+status.c:118:63:                  status_D                  ED_INDEX     ED_IND_DESCRIPTION         Status: Description of the mailbox               get_string
+status.c:141:60:                  status_f                  ED_INDEX     ED_IND_MAILBOX_PATH        Status: pathname of the mailbox                  get_string
+status.c:318:59:                  status_T                  ED_GLOBAL    ED_GLO_USE_THREADS         Status: Current threading mode                   get_string
+status.c:331:49:                  status_s                  ED_GLOBAL    ED_GLO_SORT                Status: Sorting mode                             get_string
+status.c:346:55:                  status_S                  ED_GLOBAL    ED_GLO_SORT_AUX            Status: Aux sorting method                       get_string
+status.c:414:51:                  status_h                  ED_GLOBAL    ED_GLO_HOSTNAME            Status: Local hostname                           get_string
+status.c:483:51:                  status_v                  ED_GLOBAL    ED_GLO_VERSION             Status: Version string                           get_string
+status.c:495:57:                  status_V                  ED_INDEX     ED_IND_LIMIT_PATTERN       Status: Active limit pattern                     get_string

@@ -1,0 +1,19 @@
+" Ref: sidebar_format_str() in sidebar/window.c
+call s:escapesConditionals('SidebarFormat', '[!BDdFLNnorStZ]', 1, 1)
+" Defines: muttrcSidebarFormatEscapes, muttrcSidebarFormatConditionals
+
+syntax region muttrcSidebarFormatString contained skipwhite keepend start=+"+ skip=+\\"+ end=+"+ contains=muttrcSidebarFormatEscapes,muttrcSidebarFormatConditionals,muttrcFormatErrors,muttrcTimeEscapes nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+syntax region muttrcSidebarFormatString contained skipwhite keepend start=+'+ skip=+\\'+ end=+'+ contains=muttrcSidebarFormatEscapes,muttrcSidebarFormatConditionals,muttrcFormatErrors,muttrcTimeEscapes nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+
+syntax match muttrcVarEqualsSidebarFormat contained skipwhite "=" nextgroup=muttrcSidebarFormatString
+
+syntax keyword muttrcVarString contained skipwhite sidebar_format nextgroup=muttrcVarEqualsSidebarFormat
+
+highlight def link muttrcSidebarFormatConditionals muttrcFormatConditionals2
+highlight def link muttrcSidebarFormatEscapes      muttrcEscape
+highlight def link muttrcSidebarFormatString       muttrcString
+
+" config         base-name     conditionals                    escapes                    format-string             var-equals
+" sidebar_format SidebarFormat muttrcSidebarFormatConditionals muttrcSidebarFormatEscapes muttrcSidebarFormatString muttrcVarEqualsSidebarFormat
+
+" vim: syntax=vim

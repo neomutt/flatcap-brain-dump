@@ -1,0 +1,14 @@
+
+op_attachment_pipe()
+mutt_pipe_attachment_list()
+mw_get_field("Pipe to: ") -> buf
+
+AttachFormatDef[]
+	stripped down
+	add expando for $attach_save_dir
+
+expando_parse(buf, AttachFormatDef) -> exp
+expando_render(exp, AttachRenderCallbacks) -> path
+
+pipe_attachment_list(path)
+

@@ -1,0 +1,42 @@
+Vertical Slice from Ctrl-L to a string being prepared
+-----------------------------------------------------
+
+// window_redraw - Reflow, recalc and repaint a tree of Windows
+void window_redraw(struct MuttWindow *win)
+
+// window_repaint - Repaint a tree of Windows
+void window_repaint(struct MuttWindow *win)
+  win->repaint()
+
+// menu_repaint - Repaint the Window
+int menu_repaint(struct MuttWindow *win)
+
+// menu_redraw - Redraw the parts of the screen that have been flagged to be redrawn
+int menu_redraw(struct Menu *menu)
+
+// menu_redraw_current - Redraw the current menu
+void menu_redraw_current(struct Menu *menu)
+  menu->make_entry()
+
+// index_make_entry - Format an Email for the Menu
+void index_make_entry(struct Menu *menu, int line, struct Buffer *buf)
+
+// mutt_make_string - Create formatted strings using mailbox expandos
+void mutt_make_string(struct Buffer *buf, int cols, const char *s, struct Mailbox *m, int inpgr, struct Email *e, MuttFormatFlags flags, const char *progress)
+  mutt_expando_format(index_format_str)
+
+// mutt_expando_format - Expand expandos (%x) in a string
+void mutt_expando_format(char *buf, size_t buflen, size_t col, int cols, const char *src, format_t callback, intptr_t data, MuttFormatFlags flags)
+  callback()
+
+// index_format_str - Format a string for the index list
+const char *index_format_str(char *buf, size_t buflen, size_t col, int cols, char op, const char *src, const char *prec, const char *if_str, const char *else_str, intptr_t data, MuttFormatFlags flags)
+  case 'i': mutt_format()
+
+// mutt_format - Format a string like snprintf()
+void mutt_format(char *buf, size_t buflen, const char *prec, const char *s, bool arboreal)
+
+// mutt_simple_format - Format a string, like snprintf()
+void mutt_simple_format(char *buf, size_t buflen, int min_width, int max_width, enum FormatJustify justify, char pad_char, const char *s, size_t n, bool arboreal)
+
+// vim: syn=c

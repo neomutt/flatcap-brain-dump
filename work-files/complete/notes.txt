@@ -1,0 +1,26 @@
+Completion
+
+limit to 1000?
+
+:set <tab>    => all config
+     m<tab>   => m config
+<del><tab>    => all config
+
+on <tab> comp_new() ∀ config comp_add()
+  new + flags
+comp_set_entry(""), comp_calcalate()
+user types => set_entry("m") + cursor posn
+calc() flags matches, complete common root
+states:
+  initial (no tabs)
+  common (shared root)
+  menu + n (match)
+set() -> initial
+calc() -> common -> menu0 -> ... ->menuN -> common
+comp_free(comp, free_fn)
+
+comp_gui(comp, win)
+  anchor to win location
+  menu of matches in sub-window
+  selection manipulates comp obj, notifies caller to refresh its win
+

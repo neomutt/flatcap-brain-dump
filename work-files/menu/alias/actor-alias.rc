@@ -1,0 +1,320 @@
+unalias *
+alias rebecca     Rebecca Romijn-Stamos  <rrs@ugli.com>       # tags:
+alias ray         Ray Milland            <rm@ziziphus.com>    # tags:oscar blue
+alias adam        Adam Sandler           <as@banana.com>      # tags: blue
+alias clark       Clark Gable            <cg@ugli.com>        # tags:oscar
+alias shirleym    Shirley MacLaine       <sml@jackfruit.com>  # tags:oscar
+alias colin       Colin Firth            <cf@papaya.com>      # red green tags:oscar blue yellow
+alias liv         Liv Tyler              <lt@quince.com>      # tags:
+alias jodie       Jodie Foster           <jf@yew.com>         # red green tags:oscar blue yellow
+alias martinc     Martin Charnin         <mc@olive.com>       # green tags:emmy,grammy,tony
+alias maureen     Maureen Stapleton      <ms@wolfberry.com>   # red tags:emmy,oscar,tony yellow
+alias jacka       Jack Albertson         <ja@olive.com>       # tags:emmy,oscar,tony
+alias lin         Lin-Manuel Miranda     <lmm@vanilla.com>    # tags:emmy,grammy,tony yellow
+alias marvin      Marvin Hamlisch        <mh@olive.com>       # tags:emmy,grammy,oscar,tony
+alias rdeniro     Robert De Niro         <rdn@jackfruit.com>  # red tags:oscar yellow
+alias maryk       Mary-Kate Olsen        <mko@hawthorn.com>   # yellow
+alias lindsay     Lindsay Lohan          <ll@quince.com>      # blue tags:
+alias rosario     Rosario Dawson         <rd@jackfruit.com>   # tags: blue
+alias randy       Randy Newman           <rn@damson.com>      # tags:emmy,grammy,oscar yellow
+alias ingrid      Ingrid Bergman         <ib@quince.com>      # red tags:emmy,oscar,tony
+alias jeff        Jeff Bridges           <jb@mango.com>       # red tags:oscar blue
+alias natalie     Natalie Portman        <np@banana.com>      # red green tags:oscar blue
+alias keanu       Keanu Reeves           <kr@wolfberry.com>   # yellow
+alias tony        Tony Walton            <tw@olive.com>       # tags:emmy,oscar,tony
+alias rdonat      Robert Donat           <rd@banana.com>      # tags:oscar yellow
+alias jim         Jim Carrey             <jc@raspberry.com>   # yellow tags:
+alias elton       Elton John             <ej@kumquat.com>     # red tags:grammy,oscar,tony
+alias whurt       William Hurt           <wh@tangerine.com>   # tags:oscar blue yellow
+alias rex         Rex Harrison           <rh@raspberry.com>   # tags:oscar blue
+alias geraldine   Geraldine Page         <gp@elderberry.com>  # red tags:oscar blue
+alias justin      Justin Paul            <jp@papaya.com>      # tags:grammy,oscar,tony yellow
+alias ralph       Ralph Burns            <rb@raspberry.com>   # tags:emmy,oscar,tony
+alias louise      Louise Fletcher        <lf@apple.com>       # red tags:oscar
+alias meg         Meg Ryan               <mr@ilama.com>       # tags:
+alias victor      Victor McLaglen        <vml@strawberry.com> # tags:oscar blue
+alias cameron     Cameron Diaz           <cd@jackfruit.com>   # blue
+alias jule        Jule Styne             <js@ziziphus.com>    # red green tags:grammy,oscar,tony blue
+alias joanf       Joan Fontaine          <jf@raspberry.com>   # green tags:oscar yellow
+alias holly       Holly Hunter           <hh@mango.com>       # red tags:oscar yellow
+alias frances     Frances McDormand      <fmd@hawthorn.com>   # green tags:emmy,oscar,tony yellow
+alias heath       Heath Ledger           <hl@tangerine.com>   # tags:
+alias danny       Danny Devito           <dd@ugli.com>        # tags:
+alias jackie      Jackie Chan            <jc@mango.com>       # yellow
+alias jerry       Jerry Bock             <jb@tangerine.com>   # green tags:emmy,grammy,tony yellow
+alias jessical    Jessica Lange          <jl@raspberry.com>   # tags:emmy,oscar,tony
+alias fredric     Fredric March          <fm@strawberry.com>  # red green tags:oscar
+alias micheller   Michelle Rodriguez     <mr@xigua.com>       # tags:
+alias spencer     Spencer Tracy          <st@cherry.com>      # red tags:oscar
+alias gene        Gene Hackman           <gh@guava.com>       # tags:oscar yellow
+alias al          Al Pacino              <ap@mango.com>       # tags:emmy,oscar,tony
+alias angelina    Angelina Jolie         <aj@nectarine.com>   # tags: blue
+alias shirleyb    Shirley Booth          <sb@guava.com>       # tags:emmy,oscar,tony blue
+alias juliec      Julie Christie         <jc@elderberry.com>  # red tags:oscar yellow
+alias andrew      Andrew Lloyd Webber    <alw@elderberry.com> # tags:emmy,grammy,oscar,tony
+alias vivien      Vivien Leigh           <vl@mango.com>       # tags:oscar
+alias jamese      James Earl Jones       <jej@fig.com>        # tags:emmy,grammy,tony
+alias silvester   Silvester Stallone     <ss@damson.com>      #
+alias mary        Mary Pickford          <mp@ilama.com>       # red tags:oscar
+alias jackb       Jack Black             <jb@ugli.com>        # yellow
+alias anthony     Anthony Hopkins        <ah@fig.com>         # tags:oscar blue
+alias cate        Cate Blanchett         <cb@elderberry.com>  # green tags:oscar
+alias marilyn     Marilyn Bergman        <mb@cherry.com>      # tags:emmy,grammy,oscar blue yellow
+alias marlon      Marlon Brando          <mb@hawthorn.com>    # red green tags:oscar blue
+alias bruce       Bruce Willis           <bw@wolfberry.com>   # tags:
+alias rita        Rita Moreno            <rm@ugli.com>        # red tags:emmy,grammy,oscar,tony blue yellow
+alias scott       Scott Rudin            <sr@ziziphus.com>    # tags:emmy,grammy,oscar,tony
+alias caitrin     Caitrin Rogers         <cr@fig.com>         # tags:emmy,grammy,oscar
+alias kevins      Kevin Spacey           <ks@guava.com>       # green tags:oscar yellow
+alias pauls       Paul Scofield          <ps@lemon.com>       # red tags:emmy,oscar,tony blue
+alias jeremy      Jeremy Irons           <ji@papaya.com>      # green tags:emmy,oscar,tony
+alias cynthian    Cynthia Nixon          <cn@nectarine.com>   # green tags:emmy,grammy,tony
+alias leslie      Leslie Nielsen         <ln@apple.com>       # tags:
+alias jessicaa    Jessica Alba           <ja@ziziphus.com>    # tags:
+alias laurence    Laurence Olivier       <lo@banana.com>      # tags:oscar yellow
+alias joaquin     Joaquin Phoenix        <jp@mango.com>       # red tags:oscar
+alias anna        Anna Magnani           <am@nectarine.com>   # red green tags:oscar blue
+alias cuba        Cuba Jr Gooding        <cjg@nectarine.com>  # tags: blue yellow
+alias andie       Andie MacDowell        <amd@raspberry.com>  # blue tags:
+alias hhayes      Helen Hayes            <hh@quince.com>      # red green tags:emmy,grammy,oscar,tony yellow
+alias cher        Cher                   <c@nectarine.com>    # green tags:emmy,grammy,oscar yellow
+alias bens        Ben Stiller            <bs@raspberry.com>   # tags: yellow
+alias audrey      Audrey Hepburn         <ah@lemon.com>       # tags:emmy,grammy,oscar,tony
+alias sally       Sally Field            <sf@yew.com>         # red green tags:oscar
+alias keira       Keira Knightley        <kk@nectarine.com>   # tags:
+alias joanne      Joanne Woodward        <jw@apple.com>       # tags:oscar yellow
+alias garyo       Gary Oldman            <go@lemon.com>       # red tags:oscar yellow
+alias harry       Harry Belafonte        <hb@hawthorn.com>    # green tags:emmy,grammy,tony
+alias forest      Forest Whitaker        <fw@quince.com>      # red tags:oscar
+alias jackl       Jack Lemmon            <jl@mango.com>       # tags:oscar blue
+alias samuel      Samuel L Jackson       <slj@raspberry.com>  # blue tags:
+alias hugh        Hugh Jackman           <hj@guava.com>       # tags:emmy,grammy,tony blue
+alias eva         Eva Mendes             <em@kumquat.com>     # tags:
+alias juliea      Julie Andrews          <ja@tangerine.com>   # tags:emmy,grammy,oscar blue
+alias melvyn      Melvyn Douglas         <md@fig.com>         # tags:emmy,oscar,tony blue yellow
+alias georgeb     George Burns           <gb@nectarine.com>   # green tags:emmy,grammy,oscar
+alias morgann     Morgan Neville         <mn@lemon.com>       # red tags:emmy,grammy,oscar
+alias janet       Janet Gaynor           <jg@jackfruit.com>   # tags:oscar yellow
+alias grace       Grace Kelly            <gk@strawberry.com>  # tags:oscar
+alias seanp       Sean Penn              <sp@yew.com>         # tags:oscar blue
+alias benj        Benj Pasek             <bp@apple.com>       # tags:grammy,oscar,tony blue
+alias adrien      Adrien Brody           <ab@apple.com>       # green tags:oscar
+alias jamesm      James Moll             <jm@jackfruit.com>   # green tags:emmy,grammy,oscar
+alias leonardo    Leonardo DiCaprio      <ldc@elderberry.com> # red tags:oscar
+alias martin      Martin Scorsese        <ms@banana.com>      # green tags:emmy,grammy,oscar blue
+alias denzel      Denzel Washington      <dw@nectarine.com>   # tags:oscar
+alias jwayne      John Wayne             <jw@mango.com>       # tags:oscar blue
+alias seanc       Sean Connery           <sc@ugli.com>        # tags:
+alias cristina    Cristina Ricci         <cr@jackfruit.com>   # blue tags:
+alias christopher Christopher Plummer    <cp@vanilla.com>     # green tags:emmy,oscar,tony blue yellow
+alias jonathan    Jonathan Tunick        <jt@raspberry.com>   # green tags:emmy,grammy,oscar,tony blue
+alias humphrey    Humphrey Bogart        <hb@quince.com>      # tags:oscar yellow
+alias gwyneth     Gwyneth Paltrow        <gp@wolfberry.com>   # green tags:oscar yellow
+alias stephen     Stephen Sondheim       <ss@ziziphus.com>    # tags:grammy,oscar,tony yellow
+alias diane       Diane Keaton           <dk@vanilla.com>     # tags:oscar blue yellow
+alias garyc       Gary Cooper            <gc@ilama.com>       # tags:oscar blue
+alias marie       Marie Dressler         <md@olive.com>       # red tags:oscar yellow
+alias sharon      Sharon Stone           <ss@hawthorn.com>    # tags:
+alias alicia      Alicia Silverstone     <as@quince.com>      # tags:
+alias emil        Emil Jannings          <ej@vanilla.com>     # red green tags:oscar
+alias michael     Michael J Fox          <mjf@kumquat.com>    # tags: blue
+alias sid         Sid Ramin              <sr@ilama.com>       # red tags:emmy,grammy,oscar yellow
+alias marion      Marion Cotillard       <mc@tangerine.com>   # tags:oscar
+alias matthew     Matthew McConaughey    <mmc@hawthorn.com>   # green tags:oscar blue
+alias ron         Ron Howard             <rh@mango.com>       # tags:emmy,grammy,oscar blue
+alias johnk       John Kander            <jk@xigua.com>       # tags:emmy,grammy,tony blue yellow
+alias daniel      Daniel Day-Lewis       <ddl@guava.com>      # red tags:oscar
+alias oliviad     Olivia de Havilland    <oh@papaya.com>      # tags:oscar blue
+alias katharine   Katharine Hepburn      <kh@yew.com>         # tags:oscar
+alias philip      Philip Seymour Hoffman <psh@nectarine.com>  # tags:oscar
+alias pauln       Paul Newman            <pn@hawthorn.com>    # tags:oscar
+alias melb        Mel Brooks             <mb@vanilla.com>     # green tags:emmy,grammy,oscar,tony
+alias quincy      Quincy Jones           <qj@cherry.com>      # tags:emmy,grammy,tony
+alias cy          Cy Coleman             <cc@damson.com>      # red tags:emmy,grammy,tony yellow
+alias marlee      Marlee Matlin          <mm@kumquat.com>     # red tags:oscar
+alias wholden     William Holden         <wh@damson.com>      # tags:oscar
+alias janef       Jane Fonda             <jf@damson.com>      # red green tags:oscar blue
+alias cyndi       Cyndi Lauper           <cl@tangerine.com>   # tags:emmy,grammy,tony blue yellow
+alias sissy       Sissy Spacek           <ss@lemon.com>       # tags:oscar yellow
+alias whoopi      Whoopi Goldberg        <wg@guava.com>       # red tags:emmy,grammy,oscar,tony
+alias jonb        Jon Blair              <jb@wolfberry.com>   # green tags:emmy,grammy,oscar blue
+alias ginger      Ginger Rogers          <gr@wolfberry.com>   # green tags:oscar
+alias penelope    Penelope Cruz          <pc@vanilla.com>     # tags:
+alias rod         Rod Steiger            <rs@olive.com>       # tags:oscar blue
+alias georgea     George Arliss          <ga@cherry.com>      # green tags:oscar
+alias frank       Frank Loesser          <fl@strawberry.com>  # green tags:grammy,oscar,tony blue
+alias jamie       Jamie Foxx             <jf@fig.com>         # red tags:oscar
+alias salma       Salma Hayek            <sh@vanilla.com>     # tags:
+alias aishwarya   Aishwarya Rai          <ar@kumquat.com>     # tags:
+alias andre       Andre De Shields       <ads@cherry.com>     # green tags:emmy,grammy,tony blue
+alias milla       Milla Jovovich         <mj@fig.com>         # tags:
+alias richardd    Richard Dreyfuss       <rd@fig.com>         # tags:oscar
+alias ewan        Ewan McGregor          <emg@nectarine.com>  # tags:
+alias luise       Luise Rainer           <lr@hawthorn.com>    # green tags:oscar
+alias cliff       Cliff Robertson        <cr@nectarine.com>   # green tags:oscar
+alias jennifera   Jennifer Aniston       <ja@elderberry.com>  # tags: yellow
+alias bettem      Bette Midler           <bm@vanilla.com>     # green tags:emmy,grammy,tony yellow
+alias winona      Winona Ryder           <wr@strawberry.com>  # tags:
+alias zooey       Zooey Deschanel        <zd@quince.com>      # tags: blue
+alias hildur      Hildur Gudnadottir     <hg@jackfruit.com>   # tags:emmy,grammy,oscar
+alias glenda      Glenda Jackson         <gj@damson.com>      # green tags:emmy,oscar,tony blue
+alias tim         Tim Rice               <tr@ziziphus.com>    # red tags:emmy,grammy,oscar,tony
+alias jamesc      James Cagney           <jc@damson.com>      # tags:oscar
+alias elizabeth   Elizabeth Taylor       <et@jackfruit.com>   # tags:oscar blue yellow
+alias thomas      Thomas Mitchell        <tm@elderberry.com>  # green tags:emmy,oscar,tony
+alias paulm       Paul Muni              <pm@hawthorn.com>    # tags:oscar blue
+alias robertl     Robert Lopez           <rl@kumquat.com>     # green tags:emmy,grammy,oscar,tony
+alias sandra      Sandra Bullock         <sb@nectarine.com>   # red tags:oscar
+alias maggie      Maggie Smith           <ms@papaya.com>      # red tags:emmy,oscar,tony blue
+alias alan        Alan Menken            <am@mango.com>       # green tags:grammy,oscar,tony blue yellow
+alias ronald      Ronald Colman          <rc@xigua.com>       # red tags:oscar blue yellow
+alias leonard     Leonard Bernstein      <lb@ugli.com>        # tags:emmy,grammy,tony blue yellow
+alias greer       Greer Garson           <gg@xigua.com>       # tags:oscar
+alias charlize    Charlize Theron        <ct@elderberry.com>  # green tags:oscar
+alias jennifer    Jennifer Lawrence      <jl@quince.com>      # green tags:oscar
+alias michaelg    Michael Giacchino      <mg@kumquat.com>     # red tags:emmy,grammy,oscar
+alias scarlett    Scarlett Johansson     <sj@ugli.com>        # blue
+alias casey       Casey Affleck          <ca@strawberry.com>  # tags:oscar yellow
+alias owen        Owen Wilson            <ow@olive.com>       #
+alias rami        Rami Malek             <rm@papaya.com>      # tags:oscar yellow
+alias tomc        Tom Cruise             <tc@ilama.com>       # tags: blue
+alias common      Common                 <c@damson.com>       # green tags:emmy,grammy,oscar yellow
+alias jonv        Jon Voight             <jv@cherry.com>      # red tags:oscar blue
+alias renee       Renee Zellweger        <rez@jackfruit.com>  # red tags:oscar blue
+alias burtl       Burt Lancaster         <bl@cherry.com>      # tags:oscar
+alias sienna      Sienna Guillory        <sg@kumquat.com>     # blue yellow
+alias kim         Kim Basinger           <kb@ugli.com>        #
+alias johna       John Addison           <ja@banana.com>      # red tags:emmy,grammy,oscar
+alias alanj       Alan Jay Lerner        <ajl@guava.com>      # green tags:grammy,oscar,tony blue
+alias cynthiae    Cynthia Erivo          <ce@lemon.com>       # tags:emmy,grammy,tony blue yellow
+alias patricia    Patricia Neal          <pn@elderberry.com>  # green tags:oscar blue
+alias brendan     Brendan Fraser         <bf@fig.com>         # tags:
+alias norma       Norma Shearer          <ns@lemon.com>       # tags:oscar yellow
+alias alec        Alec Guinness          <ag@banana.com>      # tags:oscar yellow
+alias wills       Will Smith             <ws@jackfruit.com>   # blue tags:
+alias stevem      Steve Martin           <sm@cherry.com>      # tags:
+alias stevec      Steve Carrell          <sc@damson.com>      #
+alias katew       Kate Winslet           <kw@strawberry.com>  # tags:emmy,grammy,oscar blue
+alias hilary      Hilary Swank           <hs@vanilla.com>     # tags:oscar yellow
+alias audra       Audra McDonald         <amd@fig.com>        # tags:emmy,grammy,tony blue
+alias oscar       Oscar Hammerstein      <oh@ilama.com>       # tags:grammy,oscar,tony
+alias nicole      Nicole Kidman          <nk@mango.com>       # green tags:oscar
+alias nicholas    Nicholas Cage          <nc@olive.com>       # tags:oscar
+alias jwilliams   John Williams          <jw@wolfberry.com>   # green tags:emmy,grammy,oscar
+alias brie        Brie Larson            <bl@tangerine.com>   # red green tags:oscar
+alias jackn       Jack Nicholson         <jn@guava.com>       # tags:oscar
+alias jose        Jose Ferrer            <jef@yew.com>        # tags:oscar
+alias katrina     Katrina Lenk           <kl@ilama.com>       # red tags:emmy,grammy,tony blue
+alias richardg    Richard Gere           <rg@guava.com>       # blue tags:
+alias melg        Mel Gibson             <mg@ugli.com>        # tags:
+alias harrison    Harrison Ford          <hf@damson.com>      # tags:
+alias lucy        Lucy Liu               <ll@ilama.com>       # tags: blue yellow
+alias matt        Matt Damon             <md@hawthorn.com>    # tags:
+alias brian       Brian Grazer           <bg@quince.com>      # tags:emmy,grammy,oscar
+alias alanb       Alan Bergman           <ab@jackfruit.com>   # green tags:emmy,grammy,oscar
+alias paull       Paul Lukas             <pl@kumquat.com>     # tags:oscar
+alias geoffrey    Geoffrey Rush          <gr@ilama.com>       # red green tags:emmy,oscar,tony blue
+alias julie       Julie Harris           <jh@banana.com>      # tags:emmy,grammy,tony yellow
+alias alexg       Alex Gibson            <ag@quince.com>      # tags:emmy,grammy,oscar
+alias vanessa     Vanessa Redgrave       <vr@mango.com>       # tags:emmy,oscar,tony yellow
+alias judy        Judy Holliday          <jh@apple.com>       # red tags:oscar blue
+alias mikem       Mike Myers             <mm@ziziphus.com>    # yellow tags:
+alias stella      Stella Warren          <sw@xigua.com>       # tags:
+alias jean        Jean Dujardin          <jd@olive.com>       # green tags:oscar
+alias betted      Bette Davis            <bd@yew.com>         # red tags:oscar
+alias vin         Vin Diesel             <vd@jackfruit.com>   # yellow tags:
+alias miken       Mike Nichols           <mn@raspberry.com>   # green tags:emmy,grammy,oscar,tony
+alias martinl     Martin Lawrence        <ml@cherry.com>      # tags:
+alias emmat       Emma Thompson          <et@xigua.com>       # tags:oscar
+alias clint       Clint Eastwood         <ce@hawthorn.com>    # tags:
+alias demi        Demi Moore             <dm@yew.com>         # blue yellow
+alias drew        Drew Barrymore         <db@banana.com>      # tags:
+alias maximilian  Maximilian Schell      <ms@lemon.com>       # red tags:oscar blue yellow
+alias hhunt       Helen Hunt             <hh@olive.com>       # tags:oscar
+alias kateb       Kate Beckinsale        <kb@mango.com>       # tags:
+alias anneb       Anne Bancroft          <ab@elderberry.com>  # red tags:emmy,oscar,tony yellow
+alias simone      Simone Signoret        <ss@guava.com>       # red tags:oscar yellow
+alias brad        Brad Pitt              <bp@elderberry.com>  # blue yellow tags:
+alias orlando     Orlando Bloom          <ob@xigua.com>       # tags:
+alias morganf     Morgan Freeman         <mf@tangerine.com>   #
+alias broderick   Broderick Crawford     <bc@ugli.com>        # tags:oscar yellow
+alias susans      Susan Sarandon         <ss@fig.com>         # tags:oscar blue yellow
+alias fred        Fred Ebb               <fe@ugli.com>        # red green tags:emmy,grammy,tony
+alias lee         Lee Marvin             <lm@fig.com>         # red green tags:oscar blue yellow
+alias art         Art Carney             <ac@yew.com>         # red tags:oscar
+alias yul         Yul Brynner            <yb@papaya.com>      # tags:oscar
+alias roberto     Roberto Benigni        <rb@apple.com>       # tags:oscar blue yellow
+alias anneg       Anne Garefino          <ag@ziziphus.com>    # red tags:emmy,grammy,tony blue
+alias megan       Megan Fox              <mf@quince.com>      # yellow tags:
+alias rduvall     Robert Duvall          <rd@strawberry.com>  # green tags:oscar yellow
+alias claudette   Claudette Colbert      <cc@guava.com>       # red green tags:oscar yellow
+alias meryl       Meryl Streep           <ms@mango.com>       # green tags:oscar blue yellow
+alias charles     Charles Laughton       <cl@jackfruit.com>   # red tags:oscar
+alias catherine   Catherine Zeta Jones   <czj@damson.com>     # tags: blue yellow
+alias oliviac     Olivia Colman          <oc@papaya.com>      # green tags:oscar
+alias tomh        Tom Hanks              <th@guava.com>       # tags:oscar blue
+alias arnold      Arnold Schwarzenegger  <as@elderberry.com>  # yellow tags:
+alias warner      Warner Baxter          <wb@lemon.com>       # red green tags:oscar blue yellow
+alias kirsten     Kirsten Dunst          <kd@ilama.com>       # yellow tags:
+alias robertr     Robert Redford         <rr@kumquat.com>     # tags:
+alias ellen       Ellen Burstyn          <eb@nectarine.com>   # red green tags:emmy,oscar,tony
+alias jason       Jason Robards          <jr@quince.com>      # green tags:emmy,oscar,tony
+alias eddier      Eddie Redmayne         <er@xigua.com>       # green tags:oscar
+alias johnny      Johnny Depp            <jd@damson.com>      # tags: yellow
+alias elijah      Elijah Wood            <ew@apple.com>       # tags:
+alias sidney      Sidney Poitier         <sp@papaya.com>      # tags:oscar yellow
+alias murray      Murray Abraham         <ma@yew.com>         # red green tags:oscar
+alias russell     Russell Crowe          <rc@quince.com>      # green tags:oscar
+alias rachelm     Rachel McAdams         <rma@raspberry.com>  # blue tags:
+alias julia       Julia Roberts          <jr@hawthorn.com>    # green tags:oscar yellow
+alias robin       Robin Williams         <rw@wolfberry.com>   # green tags:emmy,grammy,oscar
+alias trey        Trey Parker            <tp@kumquat.com>     # tags:emmy,grammy,tony blue
+alias wallace     Wallace Beery          <wb@cherry.com>      # green tags:oscar
+alias lionel      Lionel Barrymore       <lb@cherry.com>      # tags:oscar
+alias benk        Ben Kingsley           <bk@papaya.com>      # tags:oscar blue yellow
+alias kathy       Kathy Bates            <kb@yew.com>         # red green tags:oscar blue
+alias charlton    Charlton Heston        <ch@raspberry.com>   # red tags:oscar blue
+alias amanda      Amanda Bynes           <ab@fig.com>         # tags: blue yellow
+alias joanc       Joan Crawford          <jc@quince.com>      # tags:oscar
+alias bob         Bob Fosse              <bf@guava.com>       # tags:emmy,oscar,tony yellow
+alias jessicat    Jessica Tandy          <jt@ilama.com>       # green tags:emmy,oscar,tony yellow
+alias richardr    Richard Rodgers        <rr@nectarine.com>   # tags:emmy,grammy,oscar,tony
+alias rachelb     Rachel Bay Jones       <rbj@cherry.com>     # green tags:emmy,grammy,tony
+alias loretta     Loretta Young          <ly@fig.com>         # tags:oscar
+alias viola       Viola Davis            <vd@fig.com>         # red tags:emmy,oscar,tony blue
+alias gregory     Gregory Peck           <gp@ziziphus.com>    # red tags:oscar yellow
+alias jamess      James Stewart          <js@olive.com>       # red tags:oscar yellow
+alias johnl       John Legend            <jl@papaya.com>      # tags:emmy,grammy,oscar,tony
+alias ernest      Ernest Borgnine        <eb@banana.com>      # red green tags:oscar
+alias georgec     George Clooney         <gc@olive.com>       # tags:
+alias halle       Halle Berry            <hb@apple.com>       # tags:oscar yellow
+alias michaeld    Michael Douglas        <md@mango.com>       # tags:oscar blue
+alias reese       Reese Witherspoon      <rw@xigua.com>       # red tags:oscar
+alias sarah       Sarah Michelle Geller  <smg@xigua.com>      # tags:
+alias johng       John Gielgud           <jg@cherry.com>      # tags:emmy,grammy,oscar,tony yellow
+alias carla       Carla Gugino           <cg@xigua.com>       # tags: blue
+alias henry       Henry Fonda            <hf@elderberry.com>  # tags:grammy,oscar,tony yellow
+alias susanh      Susan Hayward          <sh@tangerine.com>   # red green tags:oscar yellow
+alias bing        Bing Crosby            <bc@apple.com>       # tags:oscar yellow
+alias kevinc      Kevin Costner          <kc@lemon.com>       # tags: blue
+alias faye        Faye Dunaway           <fd@ilama.com>       # green tags:oscar
+alias michellep   Michelle Pfeiffer      <mp@apple.com>       # tags:
+alias janew       Jane Wyman             <jw@ziziphus.com>    # red tags:oscar
+alias emmas       Emma Stone             <es@wolfberry.com>   # tags:oscar blue
+alias carmen      Carmen Electra         <ce@olive.com>       # yellow tags:
+alias monica      Monica Bellucci        <mb@yew.com>         # tags:
+alias willf       Will Ferrell           <wf@ugli.com>        # yellow tags:
+alias peter       Peter Ustinov          <pu@ziziphus.com>    # green tags:emmy,grammy,oscar
+alias jenniferj   Jennifer Jones         <jj@ugli.com>        # tags:oscar blue yellow
+alias eddiem      Eddie Murphy           <em@wolfberry.com>   # tags: yellow
+alias david       David Niven            <dn@elderberry.com>  # tags:oscar blue yellow
+alias liza        Liza Minnelli          <lm@jackfruit.com>   # tags:emmy,oscar,tony
+alias dustin      Dustin Hoffman         <dh@yew.com>         # tags:oscar yellow
+alias sophia      Sophia Loren           <sl@apple.com>       # green tags:oscar
+alias burtb       Burt Bacharach         <bb@damson.com>      # green tags:emmy,grammy,oscar blue
+alias julianne    Julianne Moore         <jm@kumquat.com>     # tags:oscar yellow
+alias barbra      Barbra Streisand       <bs@ugli.com>        # tags:emmy,grammy,oscar
+alias georgeg     George Grizzard        <gg@tangerine.com>   # tags:emmy,grammy,tony
+alias alexl       Alex Lacamoire         <al@tangerine.com>   # tags:emmy,grammy,tony blue
+alias jessicab    Jessica Biel           <jb@damson.com>      # blue tags:
+alias helen       Helen Mirren           <hm@damson.com>      # tags:emmy,oscar,tony

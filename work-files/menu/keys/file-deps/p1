@@ -1,0 +1,60 @@
+dump_bind                    dump
+dump_macro                   dump
+dump_all_binds               dump
+dump_all_macros              dump
+dump_bind_macro              dump
+
+array_add                    get
+array_pop                    get
+array_to_endcond             get
+generic_tokenize_push_string get
+km_dokey                     get
+km_dokey_event               get
+km_error_key                 get
+mutt_flushinp                get
+mutt_flush_macro_to_endcond  get
+mutt_getch                   get
+mutt_monitor_getch           get
+mutt_push_macro_event        get
+mutt_unget_ch                get
+mutt_unget_op                get
+mutt_unget_string            get
+retry_generic                get
+
+km_init                      init
+find_ext_name                init
+create_bindings              init
+mutt_keys_cleanup            init
+init_extended_keys           init
+mutt_init_abort_key          init
+main_config_observer         init
+mutt_keymaplist_free         init
+
+get_op                       lib
+parsekeys                    lib
+alloc_keys                   lib
+km_keyname                   lib
+parse_fkey                   lib
+km_find_func                 lib
+km_get_table                 lib
+km_expand_key                lib
+mutt_get_func                lib
+parse_keycode                lib
+km_compare_keys              lib
+mutt_keymap_free             lib
+km_expand_key_string         lib
+
+km_bind                      parse
+try_bind                     parse
+km_bindkey                   parse
+parse_bind                   parse
+parse_exec                   parse
+parse_menu                   parse
+parse_push                   parse
+km_bind_err                  parse
+parse_macro                  parse
+parse_keymap                 parse
+parse_unbind                 parse
+km_unbind_all                parse
+km_bindkey_err               parse
+

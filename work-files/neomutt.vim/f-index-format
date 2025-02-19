@@ -1,0 +1,22 @@
+" Ref: index_format_str() in hdrline.c
+call s:escapesConditionals('IndexFormat', '[AaBbCDdEefgHIiJKLlMmNnOPqRrSsTtuvWXxYyZ(<[{]\|@\i\+@\|G[a-zA-Z]\+\|Fp\=\|z[cst]\|cr\=', 1, 1)
+" Defines: muttrcIndexFormatEscapes, muttrcIndexFormatConditionals
+
+syntax region muttrcIndexFormatString contained skipwhite keepend start=+"+ skip=+\\"+ end=+"+ contains=muttrcIndexFormatEscapes,muttrcIndexFormatConditionals,muttrcFormatErrors,muttrcTimeEscapes nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+syntax region muttrcIndexFormatString contained skipwhite keepend start=+'+ skip=+\\'+ end=+'+ contains=muttrcIndexFormatEscapes,muttrcIndexFormatConditionals,muttrcFormatErrors,muttrcTimeEscapes nextgroup=muttrcVPrefix,muttrcVarBool,muttrcVarQuad,muttrcVarNum,muttrcVarString
+
+syntax match muttrcVarEqualsIndexFormat contained skipwhite "=" nextgroup=muttrcIndexFormatString
+
+syntax keyword muttrcVarString contained skipwhite
+	\ attribution_intro attribution_trailer forward_attribution_intro forward_attribution_trailer
+	\ forward_format indent_string index_format message_format pager_format
+	\ nextgroup=muttrcVarEqualsIndexFormat
+
+highlight def link muttrcIndexFormatConditionals muttrcFormatConditionals2
+highlight def link muttrcIndexFormatEscapes      muttrcEscape
+highlight def link muttrcIndexFormatString       muttrcString
+
+" config       base-name   conditionals                  escapes                  format-string           var-equals
+" index_format IndexFormat muttrcIndexFormatConditionals muttrcIndexFormatEscapes muttrcIndexFormatString muttrcVarEqualsIndexFormat
+
+" vim: syntax=vim

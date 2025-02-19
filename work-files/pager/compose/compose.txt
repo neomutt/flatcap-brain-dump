@@ -1,0 +1,100 @@
+Compose
+
+dialog.c
+	dlg = dlg_create()
+		env_create()
+		attach_create()
+		cbar_create()
+	dlg_run(dlg)
+		setup
+			Email template, Buffer fcc, Email cur, flags, sub
+		main loop
+		cleanup
+	dlg_extract()
+		extract result
+	dlg_destroy(dlg)
+		env_destroy()
+		attach_destroy()
+		cbar_destroy()
+
+---------------------------------------------
+
+envelope.c
+	env_create()
+		create win
+		attach data
+	env_destroy()
+		free data
+		destroy win
+	recalc()
+		generate display
+	repaint()
+		draw display
+	config_observer()
+	color_observer()
+	envelope_observer()
+
+---------------------------------------------
+
+attachments.c
+	attach_create()
+		create win
+		attach data
+	attach_destroy()
+		free data
+		destroy win
+	recalc()
+		generate display
+	repaint()
+		draw display
+	config_observer()
+	color_observer()
+	attach_observer()
+
+---------------------------------------------
+
+cbar.c
+	struct CBarPrivateData {}
+	cbar_create()
+		create win
+		attach data
+	cbar_destroy()
+		free data
+		destroy win
+	recalc()
+		generate display
+	repaint()
+		draw display
+	config_observer()
+	color_observer()
+	envelope_observer()
+	attach_observer()
+
+---------------------------------------------
+
+functions.c
+	dispatcher()
+	op_compose_attach_file()
+	op_compose_attach_key()
+	...
+
+---------------------------------------------
+
+private.h
+	struct EnvelopePrivateData {}
+	struct AttachPrivateData {}
+
+---------------------------------------------
+
+lib.h
+	flags
+	dlg_create()
+	dlg_run()
+	dlg_destroy()
+
+---------------------------------------------
+
+QuickhlManualAdd! \v<re(calc|paint)>
+QuickhlManualAdd! \v<\i+_observer>
+QuickhlManualAdd! \v<\i+_(create|destroy)>
+QuickhlManualAdd! \v<op_\i+>

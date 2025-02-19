@@ -1,0 +1,7 @@
+set trash="+neo.travis"
+
+macro index,pager y "<save-message>=neo.lang<enter>" "Archive"
+macro index,pager d "<save-message>=neo.travis<enter>" "Bin"
+
+# vim: syn=neomuttrc
+

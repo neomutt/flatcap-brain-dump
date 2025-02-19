@@ -1,0 +1,25 @@
+factor out sort_reverse
+- `browser_sort_count()`
+- `browser_sort_count_new()`
+- `browser_sort_date()`
+- `browser_sort_desc()`
+- `browser_sort_order()`
+- `browser_sort_size()`
+- `browser_sort_subject()`
+
+mutt_numeric_cmp()
+- `alias_sort_unsort()`
+- `browser_sort_count()`
+- `browser_sort_count_new()`
+- `browser_sort_date()`
+- `browser_sort_order()`
+- `browser_sort_size()`
+- `sb_sort_count()`
+- `sb_sort_flagged()`
+- `sb_sort_order()`
+- `sb_sort_unread()`
+
+add @ingroup sort_api
+- `mutt_compare_emails()`
+- `mutt_inbox_cmp()`
+

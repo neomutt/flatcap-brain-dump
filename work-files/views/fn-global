@@ -1,0 +1,9 @@
+Global functions
+
+<check-stats>       OP_CHECK_STATS       calculate message statistics for all mailboxes
+<enter-command>     OP_ENTER_COMMAND     enter a neomuttrc command
+<refresh>           OP_REDRAW            clear and redraw the screen
+<shell-escape>      OP_SHELL_ESCAPE      invoke a command in a subshell
+<show-log-messages> OP_SHOW_LOG_MESSAGES show log (and debug) messages
+<show-version>      OP_VERSION           show the NeoMutt version number and date
+<what-key>          OP_WHAT_KEY          display the keycode for a key press

@@ -1,0 +1,40 @@
+Display a preview window in the Index Dialog
+(like the opposite of pager_index_lines)
+
+pager_index_lines shows the Index, but the focus is on the Pager
+index_preview_lines shows a mini-Pager, but the focus is on the Index
+
+optionally, don't mark emails as read when peeked at
+	marking emails as 'read' meaning being non-passive
+	updating email and notifying the index
+
+OP_DISPLAY_MESSAGE works as normal, opening the Pager (real)
+
+Preview window won't display headers
+Needs options:
+- abbreviate the usual intro text, "Hi Bob,\n\n", etc
+- hide quoted text?
+- abbreviate good/bad signature info
+- abbreviate attachment info
+- fold/compress all lines
+- elide blank links / empty quoted "> "
+- preview_bar (format string)
+
+docs: strongly recommend enabling message cache
+
+can we save a line by using background colour to separate?
+
+perhaps no preview_bar -- most info is already available in the index/index_bar
+
+should we re-use the pager/pager_bar or insert our own
+probably insert our own -- completely independent
+
+where to insert it?
+in PanelIndex at end after Index,IndexBar
+need to tweak status_on_top checks/manipulations
+
+need Index/Dialog-level notifications of:
+- "current" Email
+- focussed Window (Index or Pager)
+  general change-focus notification (from dialog_push?)
+

@@ -1,0 +1,5 @@
+c1 all curses functions
+c2 all neomutt uses of curses functions
+c3 curses functions used by neomutt
+c4 other curses symbols used by neomutt
+c5 symbols in neomutt code

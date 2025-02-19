@@ -1,0 +1,31 @@
+imap/message.c:1562:16:    progress = progress_new(MUTT_PROGRESS_NET,   len);
+pop/lib.c:622:35:          progress = progress_new(MUTT_PROGRESS_NET,   0);
+pop/pop.c:1045:33:         progress = progress_new(MUTT_PROGRESS_NET,   e->body->length + e->body->offset - 1);
+send/smtp.c:258:14:        progress = progress_new(MUTT_PROGRESS_NET,   size);
+
+imap/message.c:1152:16:    progress = progress_new(MUTT_PROGRESS_READ,  msn_end);
+imap/message.c:689:16:     progress = progress_new(MUTT_PROGRESS_READ,  msn_end);
+imap/message.c:919:16:     progress = progress_new(MUTT_PROGRESS_READ,  msn_end);
+maildir/maildir.c:780:16:  progress = progress_new(MUTT_PROGRESS_READ,  0);
+maildir/maildir.c:800:16:  progress = progress_new(MUTT_PROGRESS_READ,  ARRAY_SIZE(&mda));
+mbox/mbox.c:215:16:        progress = progress_new(MUTT_PROGRESS_READ,  0);
+mbox/mbox.c:384:16:        progress = progress_new(MUTT_PROGRESS_READ,  0);
+mh/mh.c:673:16:            progress = progress_new(MUTT_PROGRESS_READ,  0);
+mh/mh.c:695:16:            progress = progress_new(MUTT_PROGRESS_READ,  ARRAY_SIZE(&mha));
+nntp/nntp.c:1252:19:       progress = progress_new(MUTT_PROGRESS_READ,  last - first + 1);
+nntp/nntp.c:2134:35:       progress = progress_new(MUTT_PROGRESS_READ,  adata->groups_num - i);
+nntp/nntp.c:810:18:        progress = progress_new(MUTT_PROGRESS_READ,  0);
+notmuch/notmuch.c:680:21:  progress = progress_new(MUTT_PROGRESS_READ,  mdata->oldmsgcount);
+pattern/pattern.c:233:14:  progress = progress_new(MUTT_PROGRESS_READ,  ARRAY_SIZE(&mdata->ava));
+pattern/pattern.c:332:14:  progress = progress_new(MUTT_PROGRESS_READ,  (op == MUTT_LIMIT) ? m->msg_count : m->vcount);
+pattern/pattern.c:504:14:  progress = progress_new(MUTT_PROGRESS_READ,  m->vcount);
+pattern/pattern.c:660:14:  progress = progress_new(MUTT_PROGRESS_READ,  ARRAY_SIZE(ava));
+pop/pop.c:371:16:          progress = progress_new(MUTT_PROGRESS_READ,  new_count - old_count);
+
+external.c:972:33:         progress = progress_new(MUTT_PROGRESS_WRITE, msg_count);
+index/functions.c:1507:18: progress = progress_new(MUTT_PROGRESS_WRITE, m->msg_tagged);
+maildir/maildir.c:1549:16: progress = progress_new(MUTT_PROGRESS_WRITE, m->msg_count);
+mbox/mbox.c:1176:16:       progress = progress_new(MUTT_PROGRESS_WRITE, m->msg_count);
+mh/mh.c:1079:16:           progress = progress_new(MUTT_PROGRESS_WRITE, m->msg_count);
+notmuch/notmuch.c:2232:16: progress = progress_new(MUTT_PROGRESS_WRITE, m->msg_count);
+pop/pop.c:890:18:          progress = progress_new(MUTT_PROGRESS_WRITE, num_deleted);

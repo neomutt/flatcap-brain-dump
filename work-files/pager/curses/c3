@@ -1,0 +1,13 @@
+addch
+addnstr
+addstr
+attrset
+bkgdset
+clearok
+clrtoeol
+getch
+getyx
+move
+mvaddstr
+refresh
+timeout

@@ -1,0 +1,12 @@
+op_delete
+op_delete_thread
+op_flag_message
+op_main_modify_tags
+op_main_read_thread
+op_main_set_flag
+op_save
+op_tag
+op_tag_thread
+op_toggle_new
+op_undelete
+op_undelete_thread

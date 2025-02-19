@@ -1,0 +1,22 @@
+PgpEntryFormatData pgp_entry_format_str
+
+struct PgpEntry
+	n	num				number			number	optional
+	t	uid->trust			trust			string	optional
+	u	uid->addr			user-id			string	optional
+
+struct PgpKeyInfo
+	a	algorithm			key-algorithm		string	optional
+	c	pgp_key_abilities()		key-capabilities	string	optional
+	f	pgp_flags()			key-flags		string	optional
+	k	pgp_this_keyid()		key-id			string	optional
+	l	keylen				key-length		number	optional
+	[	gen_time			date			string	optional
+
+struct PgpKeyInfo
+	A	algorithm			pkey-algorithm		string	optional
+	C	pgp_key_abilities()		pkey-capabilities	string	optional
+	F	pgp_flags()			pkey-flags		string	optional
+	K	pgp_this_keyid()		pkey-id			string	optional
+	L	keylen				pkey-length		number	optional
+

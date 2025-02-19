@@ -1,0 +1,122 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ffffc0" ]
+	append_signature decode_descriptions default_to edit_envelope
+	envelope_defaults find_mailing_lists fix_end_of_file generate_body
+	generate_multipart_alternative has_attach_keyword has_recips
+	include_forward include_reply inline_forward_attachments invoke_mta
+	is_reply mutt_addrcmp mutt_addrsrc mutt_add_to_reference_headers
+	mutt_default_from mutt_edit_address mutt_encode_descriptions
+	mutt_fetch_recips mutt_fix_reply_recipients mutt_forward_intro
+	mutt_forward_trailer mutt_inline_forward mutt_make_attribution
+	mutt_make_forward_subject mutt_make_misc_reply_headers
+	mutt_make_post_indent mutt_make_references mutt_make_reference_headers
+	mutt_remove_xrefs mutt_resend_message mutt_send_message
+	mutt_send_message_resume mutt_set_followup_to postpone_message
+	process_user_header process_user_recips remove_user save_fcc
+	save_fcc_mailbox_part scope_restore scope_save
+	send_message_resume_compose_menu send_message_resume_first_edit
+	send_message_setup set_reverse_name
+
+	node [ fillcolor="#ffffff" ]
+	attach_forward_bodies -> mutt_forward_intro
+	attach_forward_bodies -> mutt_forward_trailer
+	attach_forward_bodies -> mutt_make_forward_subject
+	attach_forward_msgs -> mutt_forward_intro
+	attach_forward_msgs -> mutt_forward_trailer
+	attach_forward_msgs -> mutt_make_forward_subject
+	attach_include_reply -> mutt_make_attribution
+	attach_include_reply -> mutt_make_post_indent
+	attach_reply_envelope_defaults -> mutt_add_to_reference_headers
+	attach_reply_envelope_defaults -> mutt_fetch_recips
+	attach_reply_envelope_defaults -> mutt_fix_reply_recipients
+	attach_reply_envelope_defaults -> mutt_make_misc_reply_headers
+	main -> mutt_encode_descriptions
+	mutt_attach_mail_sender -> mutt_fetch_recips
+	mutt_attach_reply -> mutt_make_attribution
+	mutt_attach_reply -> mutt_make_post_indent
+	mutt_attach_resend -> mutt_resend_message
+	mutt_background_compose_menu -> mutt_send_message_resume
+	mutt_bounce_message -> mutt_default_from
+	mutt_index_menu -> mutt_resend_message
+	mutt_pager -> mutt_resend_message
+	mutt_prepare_envelope -> mutt_set_followup_to
+
+	default_to -> mutt_addrcmp
+	default_to -> mutt_addrsrc
+	edit_envelope -> mutt_edit_address
+	envelope_defaults -> mutt_fetch_recips
+	envelope_defaults -> mutt_make_forward_subject
+	envelope_defaults -> mutt_make_misc_reply_headers
+	envelope_defaults -> mutt_make_reference_headers
+	generate_body -> include_reply
+	generate_body -> mutt_inline_forward
+	include_forward -> mutt_forward_intro
+	include_forward -> mutt_forward_trailer
+	include_reply -> mutt_make_attribution
+	include_reply -> mutt_make_post_indent
+	mutt_addrsrc -> mutt_addrcmp
+	mutt_add_to_reference_headers -> mutt_make_references
+	mutt_fetch_recips -> default_to
+	mutt_fetch_recips -> find_mailing_lists
+	mutt_fix_reply_recipients -> mutt_remove_xrefs
+	mutt_fix_reply_recipients -> remove_user
+	mutt_inline_forward -> include_forward
+	mutt_inline_forward -> inline_forward_attachments
+	mutt_make_reference_headers -> mutt_add_to_reference_headers
+	mutt_remove_xrefs -> mutt_addrcmp
+	mutt_send_message -> mutt_send_message_resume
+	mutt_send_message -> send_message_setup
+	mutt_send_message_resume -> scope_restore
+	mutt_send_message_resume -> scope_save
+	mutt_send_message_resume -> send_message_resume_compose_menu
+	mutt_send_message_resume -> send_message_resume_first_edit
+	mutt_set_followup_to -> mutt_default_from
+	mutt_set_followup_to -> remove_user
+	postpone_message -> decode_descriptions
+	postpone_message -> mutt_encode_descriptions
+	save_fcc -> save_fcc_mailbox_part
+	send_message_resume_compose_menu -> decode_descriptions
+	send_message_resume_compose_menu -> generate_multipart_alternative
+	send_message_resume_compose_menu -> has_attach_keyword
+	send_message_resume_compose_menu -> has_recips
+	send_message_resume_compose_menu -> invoke_mta
+	send_message_resume_compose_menu -> is_reply
+	send_message_resume_compose_menu -> mutt_encode_descriptions
+	send_message_resume_compose_menu -> postpone_message
+	send_message_resume_compose_menu -> save_fcc
+	send_message_resume_first_edit -> fix_end_of_file
+	send_message_resume_first_edit -> mutt_default_from
+	send_message_setup -> append_signature
+	send_message_setup -> edit_envelope
+	send_message_setup -> envelope_defaults
+	send_message_setup -> generate_body
+	send_message_setup -> mutt_default_from
+	send_message_setup -> mutt_fix_reply_recipients
+	send_message_setup -> process_user_header
+	send_message_setup -> process_user_recips
+	send_message_setup -> set_reverse_name
+
+}
+

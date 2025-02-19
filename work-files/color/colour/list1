@@ -1,0 +1,64 @@
+attachment
+bold
+error
+hdrdefault
+indicator
+italic
+markers
+message
+normal
+options
+progress
+prompt
+search
+sidebar_background
+sidebar_divider
+sidebar_flagged
+sidebar_highlight
+sidebar_indicator
+sidebar_new
+sidebar_ordinary
+sidebar_spool_file
+sidebar_unread
+signature
+status
+stripe_even
+stripe_odd
+tilde
+tree
+underline
+warning
+
+compose header
+compose security_encrypt
+compose security_sign
+compose security_both
+compose security_none
+
+quoted0
+quoted1
+quoted2
+quoted3
+quoted4
+quoted5
+quoted6
+quoted7
+quoted8
+quoted9
+
+attach_headers
+body
+header
+index
+index_author
+index_collapsed
+index_date
+index_flags
+index_label
+index_number
+index_size
+index_subject
+index_tag
+index_tags
+
+status

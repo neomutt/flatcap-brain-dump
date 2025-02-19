@@ -1,0 +1,78 @@
+Goals
+
+eliminate Context global
+eliminate C_* -> NeoMutt->sub
+eliminate NeoMutt->sub? pass N->sub,A->sub,M->sub throughout?
+IndexData: Index, Pager, Sidebar, IBar, PBar
+Separation of IBar, PBar
+Split up Index's `case`s
+Split up Pager's `case`s
+	Compose too?
+
+reduce scope of observers: *an* object, rather than NeoMutt
+create new objects to reduce notification scopes
+
+------------------------------------------------------------
+
+libmenu
+	wrap in window
+	no redraws, only flags and repaing
+move mutt_do_pager() -> pager/
+	rename to simple_pager()
+merge ibar, pbar, cbar, sidebar
+window-ise index, pager, compose
+	recalc, repaint
+function-ise
+	index, pager, compose
+
+------------------------------------------------------------
+
+shared: add observers
+thread: pass mailbox as parameter
+mx: change close functions to take Mailbox**
+
+menu: make observers menu-specific
+window: refactor simple dialogs
+index: move private data to panel
+menu: add mdata_free()
+
+------------------------------------------------------------
+
+menu notifications
+	Menu->mdata = draw data
+	Window->wdata = Menu
+	recalc
+	repaint
+	eliminate current menu global
+	eliminate menu stack
+
+index bar + shared
+	status: eliminate Context
+	refactor to ibar.c
+
+pager bar + shared
+	use shared
+	refactor to pbar.c
+
+sidebar + shared
+	sidebar: eliminate Context
+	refactor
+
+pager
+	convert to use shared ptr
+
+leaks
+	fix memory leaks
+	refactor change_folder()
+
+simple dialogs
+	refactor
+
+------------------------------------------------------------
+
+index: add function dispatcher
+index: refactor functions
+
+get_tagged_emails
+resolve next email
+

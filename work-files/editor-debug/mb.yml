@@ -1,0 +1,6 @@
+    - name: Test mb
+      run: |
+        locale
+        gcc -o mb mb.c
+        ./mb
+

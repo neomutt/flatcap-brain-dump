@@ -1,0 +1,41 @@
+digraph enter_field
+{
+	// enter/enter.c 2021-12-21
+	graph [
+		rankdir="LR"
+		nodesep="0.0"
+		ranksep="0.0"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		style="rounded"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	subgraph cluster_key
+	{
+		fontcolor="black"
+		color="#8080ff"
+		fillcolor="#ccccff"
+		style="filled"
+		node [ color="invis" nodesep="0.0" ranksep="0.0" ]
+		edge [ style="invis" ]
+
+		ArrayOfFiles    [ label=<<font color="red">●</font> ArrayOfFiles> ]
+		CompletionFlags [ label=<<font color="blue">♣</font> CompletionFlags> ]
+		Mailbox         [ label=<<font color="magenta">▼</font> Mailbox> ]
+		Multiple        [ label=<<font color="#00c000">★</font> Multiple> ]
+
+		CompletionFlags -> ArrayOfFiles -> Mailbox -> Multiple
+	}
+}

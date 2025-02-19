@@ -1,0 +1,47 @@
+digraph callgraph {
+	// mutt_autocrypt_init() calls that query the user
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	mutt_autocrypt_init [ fillcolor="#ff8080" ]
+
+	// Message Windows
+	node [ fillcolor="#ffe8ff" ]
+	mw_enter_fname
+	mw_multi_choice
+	mw_yesorno
+
+	node [ fillcolor="#ffffff" ]
+	autocrypt_dir_init -> mw_yesorno
+	mutt_autocrypt_account_init -> mutt_autocrypt_gpgme_select_or_create_key
+	mutt_autocrypt_account_init -> mw_yesorno
+	mutt_autocrypt_db_init -> mutt_autocrypt_account_init
+	mutt_autocrypt_db_init -> mutt_autocrypt_scan_mailboxes
+	mutt_autocrypt_gpgme_select_or_create_key -> mw_multi_choice
+	mutt_autocrypt_gpgme_select_or_create_key -> mw_yesorno
+	mutt_autocrypt_init -> autocrypt_dir_init
+	mutt_autocrypt_init -> mutt_autocrypt_db_init
+	mutt_autocrypt_init -> mutt_autocrypt_gpgme_init
+	mutt_autocrypt_scan_mailboxes -> mw_enter_fname
+	mutt_autocrypt_scan_mailboxes -> mw_yesorno
+
+}

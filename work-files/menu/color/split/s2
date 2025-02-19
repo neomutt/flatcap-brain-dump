@@ -1,0 +1,18 @@
+color index  red      yellow
+color index  blue     green    "one"
+color index  cyan     magenta  "two"
+color index  color207 color165 "th(r)ee"
+
+color status red      yellow
+color status blue     green    "one"
+color status cyan     magenta  "two"
+color status color207 color165 "th(r)ee" 1
+
+color body   red      yellow
+color body   blue     green    "one"
+color body   cyan     magenta  "two"
+color body   color207 color165 "th(r)ee"
+
+macro index <f5> "<enter-command>color<enter>"
+
+# vim: syn=neomuttrc

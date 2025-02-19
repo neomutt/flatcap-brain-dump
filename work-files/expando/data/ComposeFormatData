@@ -1,0 +1,10 @@
+ComposeFormatData compose_format_str
+
+Global
+	h	ShortHostname			hostname		string
+	v	mutt_make_version()		version			string
+
+struct ComposeSharedData
+	a	num_attachments()		attach-count		string
+	l	cum_attachs_size()		attach-size		string
+

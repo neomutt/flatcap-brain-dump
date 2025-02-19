@@ -1,0 +1,35 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	dump_bound         -> dump_menu
+	dump_bound         -> escape_macro
+	dump_menu          -> help_lookup_function
+	dump_message_flags -> show_flag_if_present
+	dump_unbound       -> dump_unbound_menu
+	dump_unbound       -> help_sort_alpha
+	dump_unbound_menu  -> is_bound
+	mutt_help          -> dump_bound
+	mutt_help          -> dump_message_flags
+	mutt_help          -> dump_unbound
+
+}

@@ -1,0 +1,76 @@
+NotifyAccount
+	NT_ACCOUNT_ADD
+	NT_ACCOUNT_DELETE
+	NT_ACCOUNT_CHANGE
+
+NotifyAlias
+	NT_ALIAS_ADD		alias X
+	NT_ALIAS_DELETE		unalias X
+	NT_ALIAS_DELETE_ALL	unalias *
+	NT_ALIAS_CHANGE
+
+NotifyAlternates
+	NT_ALTERN_ADD		alternates X
+	NT_ALTERN_DELETE	unalternates X
+	NT_ALTERN_DELETE_ALL	unalternates *
+
+NotifyAttach
+	NT_ATTACH_ADD		attachments X
+	NT_ATTACH_DELETE	unattachments X
+	NT_ATTACH_DELETE_ALL	unattachments *
+
+NotifyBinding
+	NT_BINDING_ADD		bind X
+	NT_BINDING_DELETE	unbind X
+	NT_BINDING_DELETE_ALL	unbind *
+
+	NT_MACRO_ADD		macro X
+	NT_MACRO_DELETE		unmacro X
+	NT_MACRO_DELETE_ALL	unmacro *
+
+NotifyEmail
+	NT_EMAIL_ADD
+	NT_EMAIL_DELETE
+
+NotifyHeader
+	NT_HEADER_ADD		my_hdr X
+	NT_HEADER_DELETE	unmy_hdr X
+	NT_HEADER_CHANGE	unmy_hdr *
+
+NotifyMailbox
+	NT_MAILBOX_ADD		mailboxes X
+	NT_MAILBOX_DELETE	unmailboxes X
+	NT_MAILBOX_DELETE_ALL	unmailboxes *
+	NT_MAILBOX_CHANGE
+
+NotifySubjRx
+	NT_SUBJRX_ADD		subjectrx X
+	NT_SUBJRX_DELETE	unsubjectrx X
+	NT_SUBJRX_DELETE_ALL	unsubjectrx *
+
+NotifyWindow
+	NT_WINDOW_ADD
+	NT_WINDOW_DELETE
+	NT_WINDOW_STATE
+	NT_WINDOW_DIALOG
+	NT_WINDOW_FOCUS
+
+NotifyColor
+	NT_COLOR_SET		color X
+	NT_COLOR_RESET		uncolor X
+	NT_COLOR_RESET_ALL	uncolor *
+
+NotifyConfig
+	NT_CONFIG_SET		set X
+	NT_CONFIG_RESET		unset X
+	NT_CONFIG_INITIAL_SET
+
+NotifyContext
+	NT_CONTEXT_OPEN
+	NT_CONTEXT_CLOSE
+
+NotifyGlobal
+	NT_GLOBAL_STARTUP
+	NT_GLOBAL_SHUTDOWN
+	NT_GLOBAL_TIMEOUT
+

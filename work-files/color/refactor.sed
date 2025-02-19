@@ -1,0 +1,9 @@
+s/mutt_color_attachments()/mutt_color_get_list(MT_COLOR_ATTACH_HEADERS)/g
+s/mutt_color_body()/mutt_color_get_list(MT_COLOR_BODY)/g
+s/mutt_color_headers()/mutt_color_get_list(MT_COLOR_HEADER)/g
+s/mutt_color_index()/mutt_color_get_list(MT_COLOR_INDEX)/g
+s/mutt_color_index_author()/mutt_color_get_list(MT_COLOR_INDEX_AUTHOR)/g
+s/mutt_color_index_flags()/mutt_color_get_list(MT_COLOR_INDEX_FLAGS)/g
+s/mutt_color_index_subject()/mutt_color_get_list(MT_COLOR_INDEX_SUBJECT)/g
+s/mutt_color_index_tags()/mutt_color_get_list(MT_COLOR_INDEX_TAG)/g
+s/mutt_color_status_line()/mutt_color_get_list(MT_COLOR_STATUS)/g

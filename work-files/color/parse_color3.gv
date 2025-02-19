@@ -1,0 +1,90 @@
+digraph callgraph {
+	// 2023-10-14 mutt_parse_color()
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	// Call curses_color_new()
+	node [ fillcolor="#ffc0c0" ]
+	ansi_color_list_add
+	attr_color_overwrite
+
+	// Conversion
+	node [ fillcolor="#c0ffc0" ]
+	color_xterm256_to_24bit
+	modify_color_by_prefix
+
+	node [ fillcolor="#ffffff" ]
+
+	subgraph cluster_parse_ansi
+	{
+		label="Test Parse Ansi"
+		fontcolor="black"
+		color="#c00000"
+		style="dashed"
+
+		ansi_color_parse_single -> ansi_color_reset
+		ansi_color_parse_single -> ansi_color_seq_length
+		ansi_color_parse_single -> ansi_is_end_char
+		ansi_color_parse_single -> ansi_skip_sequence
+		ansi_skip_sequence      -> ansi_is_end_char
+	}
+
+	subgraph cluster_parse_color
+	{
+		label="Test Parse Color"
+		fontcolor="black"
+		color="#c00000"
+		style="dashed"
+
+		parse_color_colornnn   -> parse_color_prefix
+		parse_color_name       -> parse_color_colornnn
+		parse_color_name       -> parse_color_namedcolor
+		parse_color_name       -> parse_color_rrggbb
+		parse_color_namedcolor -> parse_color_prefix
+		parse_color_pair       -> parse_color_name
+	}
+
+	add_pattern                    -> attr_color_overwrite
+	ansi_color_list_add            -> attr_color_list_find
+	ansi_color_list_add            -> color_xterm256_to_24bit
+	ansi_color_list_add            -> simple_color_get
+	ansi_color_parse               -> ansi_color_list_add
+	ansi_color_parse               -> ansi_color_parse_single
+	attr_color_overwrite           -> color_xterm256_to_24bit
+	attr_color_overwrite           -> modify_color_by_prefix
+	format_line                    -> ansi_color_parse
+	mutt_parse_color               -> parse_color
+	mutt_parse_mono                -> parse_color
+	parse_color                    -> parse_attr_spec
+	parse_color                    -> parse_color_pair
+	parse_color                    -> quoted_colors_parse_color
+	parse_color                    -> regex_colors_parse_color_list
+	parse_color                    -> regex_colors_parse_status_list
+	parse_color                    -> simple_color_set
+	quoted_colors_parse_color      -> attr_color_overwrite
+	quoted_colors_parse_color      -> simple_color_get
+	regex_colors_parse_color_list  -> add_pattern
+	regex_colors_parse_status_list -> add_pattern
+	simple_color_set               -> attr_color_overwrite
+	simple_color_set               -> simple_color_get
+
+}

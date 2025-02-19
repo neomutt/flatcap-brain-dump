@@ -1,0 +1,128 @@
+Eliminating Timeout
+
+## Current State
+
+NeoMutt uses `getch()` to get a keypress from the user.
+`$timeout` determines how long ncurses should wait for a response.
+
+If that timeout is reached, then `OP_TIMEOUT` is returned to the caller, e.g. Index.
+The Index's Event Loop can now do some background tasks, like checking for new mail.
+
+But... there are lots of dialogs.
+
+NeoMutt wants to check for new mail in the Index, Pager and Browser, created duplicated code.
+Also, IMAP doesn't want its connection to timeout -- more important than the new mail checks.
+To make sure that this happens, wherever the user happens to be, means some _real_ ugliness.
+
+<img src="https://flatcap.org/mutt/keys/g3-min2.svg">
+
+**Source**: [graphviz](https://flatcap.org/mutt/keys/g3-min2.gv) [svg](https://flatcap.org/mutt/keys/g3-min2.svg)
+
+From **left** to **right**:
+
+- `dlg_index()` - Index Event Loop wants an event
+- `km_dokey_event()` - It will be interpreted using `MENU_INDEX`
+- `mutt_getch()` - Check for queued keys/macros
+- `getch()` - Get a character from the user (ncurses)
+
+`mutt_getch()` has a lot to do.
+
+It handles the key and macro queue, `SIGINT` (Ctrl-C) and the Abort Key (Ctrl-G).
+If inotify is enabled (Linux only), then it's given a chance to poll for updates.
+
+inotify doesn't belong here.
+
+`km_dokey_event()` has a lot to do, too.
+
+Its main job is to convert keys <kbd>d</kbd> into functions `<delete>`.
+This involves a looking in global tables (see also #3916).
+There's also some magic to lookup macros.
+
+$timeout is handled here.
+It determines how long ncurses blocks waiting for a keypress.
+
+It also calls `imap_keep_alive()`.
+This **really** doesn't belong here.
+
+## Who Needs the Timeout?
+
+There are four users that need a timeout.
+They need to be called regardless of which dialog the user is in.
+Ideally, they want to be called when nothing else is happening.
+
+- Imap keep alive
+- `timeout-hook`
+- Checking for new mail / stats
+- inotify
+
+Anything else, like redrawing the screen should be triggered by other events.
+
+## A Global Solution
+
+My solution is a global timeout notification.
+In `mutt_getch()`, the curses timeout would be set to 1 second.
+If ncurses returns `ERR` (no key waiting), then a notification gets sent.
+
+Each recipient would register an observer.
+
+IMAP can handle its own timing for the keep alive message.
+
+Checking for new mail currently happens in the Index, Pager and Browser.
+Making it happen globally, means changing the `new_mail_command` to respond to events.
+
+The `timeout-hook` already happens at a global level -- unaware of the current Mailbox.
+
+inotify doesn't involve the keys and communicates via global variables, so using an observer is easy.
+
+
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+
+km_dokey_event() -> mutt_getch_timeout() -> mutt_getch()
+($timeout)
+                    retry_generic -> mutt_getch()
+                    (no timeout)
+
+mutt_query_exit() called by mutt_getch()
+    mw_yesorno()
+
+set_timeout()
+    mutt_getch_timeout()
+    mw_what_key()
+    mutt_query_exit()
+
+MuttGetchTimeout used by 2*monitor fns
+
+Interrupts:
+    keys
+    monitor events,
+    signals (INT, WINCH)
+
+Recipients
+    event loops -- they shouldn't need it
+    new mail -- they should rely on new mail event on Mailbox
+    imap keep alive
+    redraw -- no, should be triggered by Mailbox changes, etc
+    check stats
+    timeout-hook (actually needs $timeout for interval)
+
+mutt_mailbox_check(NO_FLAGS) - it checks timeout val
+    -> triggers new mail command in Index/Pager
+    -> needs notification on M
+    -> also triggers "New mail in X Y Z"
+
+mx_mbox_check(m_cur) - check for new mail in this mailbox in Index/Pager
+    -> notify on M
+
+imap_check_mailbox()
+imap/imap.c:1063:87:  if ((force || ((adata->state != IMAP_IDLE) && (mutt_date_now() >= adata->lastread + c_timeout))) &&
+
+mutt_query_exit()
+gui/curs_lib.c:349:7:  if (c_timeout != 0)
+
+km_dokey_event()
+keymap.c:654:7:  if (c_timeout == 0)
+keymap.c:655:5:    c_timeout = 60;
+keymap.c:661:48:    if ((event.op == OP_TIMEOUT) && (++count < c_timeout))
+

@@ -1,0 +1,9 @@
+color compose header        bold      blue    yellow
+color compose security_sign underline blue    yellow
+color compose security_both reverse   default default
+color compose security_none underline red     green
+
+uncolor compose security_both
+uncolor compose security_sign
+uncolor compose header
+

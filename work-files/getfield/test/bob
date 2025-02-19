@@ -1,0 +1,1 @@
+gcc -o test/neomutt-test $(cat o1) $(cat a1) $(cat l1)

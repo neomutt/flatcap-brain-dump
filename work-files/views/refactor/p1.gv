@@ -1,0 +1,60 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ffc0c0" ]
+	eat_message_range
+	eat_range_by_regex
+	match_threadcomplete
+	mutt_pattern_comp
+	mutt_pattern_exec
+	mutt_search_command
+	pattern_exec
+	perform_and
+	perform_or
+	scan_range_num
+	scan_range_slot
+
+	node [ fillcolor="#ffffff" ]
+	eat_message_range       -> eat_range_by_regex
+	eat_range_by_regex      -> is_menu_available
+	eat_range_by_regex      -> scan_range_slot
+	match_threadchildren    -> mutt_pattern_exec
+	match_threadcomplete    -> mutt_pattern_exec
+	match_threadparent      -> mutt_pattern_exec
+	mutt_pattern_comp       -> eat_message_range
+	mutt_pattern_exec       -> pattern_exec
+	mutt_pattern_exec       -> pattern_needs_msg
+	mutt_pattern_func       -> mutt_pattern_comp
+	mutt_pattern_func       -> mutt_pattern_exec
+	mutt_search_command     -> mutt_pattern_comp
+	mutt_search_command     -> mutt_pattern_exec
+	pattern_exec            -> match_threadchildren
+	pattern_exec            -> match_threadcomplete
+	pattern_exec            -> match_threadparent
+	pattern_exec            -> perform_and
+	pattern_exec            -> perform_or
+	perform_and             -> pattern_exec
+	perform_or              -> pattern_exec
+	scan_range_slot         -> scan_range_num
+
+}

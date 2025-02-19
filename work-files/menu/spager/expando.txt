@@ -1,0 +1,44 @@
+banner
+
+num_lines       Number of real lines
+num_vlines      Number of virtual lines (including wrapping)
+
+top_row         Top real line visible
+top_vrow        Top virtual line visible
+
+bytes_pos       Byte offset in the file
+bytes_total     Size of the file in bytes
+
+bytes_short_pos       abbreviate using config
+bytes_short_total     abbreviate using config
+
+percentage-num  num% (0-100%)
+percentage      Top, All, Bot or 50%
+
+search_rows     How many rows contain search matches
+search_matches  How many search matches in total
+search direction
+	B F	(if ascii_chars is set)
+	^ v	(language agnostic)
+	↑ ↓
+	⇧ ⇩
+	🡅 🡇
+	⬆️ ⬇️
+
+search string
+search current
+search vcurrent
+search wrap 'W' (only on first wrapped movement)
+
+padding-soft
+padding-hard
+padding-eol
+
+DEBUG
+
+filename
+file descriptor
+
+screen width
+screen height
+

@@ -1,0 +1,76 @@
+set help              = yes
+set imap_pass         = "secret"
+set markers           = yes
+set pager_index_lines = 0
+set sidebar_visible   = no
+set tilde             = yes
+
+set my_fruit          = "apple"
+
+# color body             #c0c080 default
+color indicator        #8080ff #ffff00
+color markers bold     #0000ff #ffffff
+color normal           default #006060
+color search underline default #383838
+
+color error   #000000 #ff0000
+color warning #000000 #ffff00
+color message #000000 #00ffff
+color debug   #404040 #c0c0c0
+
+color stripe_odd  underline default default
+color stripe_even bold      default default
+
+color comment            #00ff00 default
+color enum               #ff80ff default
+color function           #00ffff default
+color heading       bold #ffffff default
+color identifier    bold #ffffff default
+color number             #8080ff default
+color operator      bold #80ffff default
+color string             #ffff00 default
+
+color quoted0 color196 default
+color quoted1 color202 default
+color quoted2 color226 default
+color quoted3 color46  default
+color quoted4 color75  default
+color quoted5 color21  default
+color quoted6 color207 default
+color quoted7 color63  default
+color quoted8 color168 default
+color quoted9 color178 default
+
+bind pager <Up>   previous-line
+bind pager <Down> next-line
+
+bind pager k      previous-line
+bind pager j      next-line
+
+bind pager \ce    next-line
+bind pager \cy    previous-line
+
+bind pager [      half-up
+bind pager ]      half-down
+
+bind pager \cu    half-up
+bind pager \cd    half-down
+
+bind pager \cf    next-page
+bind pager \cb    previous-page
+
+bind pager n      search-next
+bind pager N      search-opposite
+
+bind pager /      search
+bind pager ?      search-reverse
+
+bind pager g      noop
+bind pager gg     top
+bind pager G      bottom
+
+macro pager w '<enter-command> set wrap=60<enter><enter-command> echo wrap=60<enter>'   "Wrap to 60 chars"
+macro pager W '<enter-command> set wrap=-20<enter><enter-command> echo wrap=-20<enter>'
+macro pager q '<exit><exit>'
+
+# vim: syn=neomuttrc

@@ -1,0 +1,25 @@
+
+## sidebar_short_path=NO sidebar_folder_indent=NO
+
+| master  | sidebar |
+| :------ | :------ |
+| `INBOX`<br>`abbot`<br>`abbot.achebe`<br>`abbot.awlinson`<br>`imap://banana@flatcap.org/INBOX`<br>`imap://banana@flatcap.org/banker`<br>`imap://banana@flatcap.org/banker.butterworth`<br>`imap://banana@flatcap.org/banker.byrum` | `imap://apple@flatcap.org:143/INBOX`<br>`imap://apple@flatcap.org:143/abbot`<br>`imap://apple@flatcap.org:143/abbot.achebe`<br>`imap://apple@flatcap.org:143/abbot.awlinson`<br>`imap://banana@flatcap.org/INBOX`<br>`imap://banana@flatcap.org/banker`<br>`imap://banana@flatcap.org/banker.butterworth`<br>`imap://banana@flatcap.org/banker.byrum` |
+
+## sidebar_short_path=NO sidebar_folder_indent=YES
+
+| master  | sidebar |
+| :------ | :------ |
+| `INBOX`<br>`abbot`<br>`  abbot.achebe`<br>`  abbot.awlinson`<br>`imap://banana@flatcap.org/INBOX`<br>`imap://banana@flatcap.org/banker`<br>`imap://banana@flatcap.org/banker.butterworth`<br>`imap://banana@flatcap.org/banker.byrum` | `imap://apple@flatcap.org:143/INBOX`<br>`imap://apple@flatcap.org:143/abbot`<br>`  imap://apple@flatcap.org:143/abbot.achebe`<br>`  imap://apple@flatcap.org:143/abbot.awlinson`<br>`imap://banana@flatcap.org/INBOX`<br>`imap://banana@flatcap.org/banker`<br>`  imap://banana@flatcap.org/banker.butterworth`<br>`  imap://banana@flatcap.org/banker.byrum` |
+
+## sidebar_short_path=YES sidebar_folder_indent=NO
+
+| master  | sidebar |
+| :------ | :------ |
+| `INBOX`<br>`abbot`<br>`achebe`<br>`awlinson`<br>`INBOX`<br>`banker`<br>`butterworth`<br>`byrum` | `INBOX`<br>`abbot`<br>`achebe`<br>`awlinson`<br>`INBOX`<br>`banker`<br>`butterworth`<br>`byrum` |
+
+## sidebar_short_path=YES sidebar_folder_indent=YES
+
+| master  | sidebar |
+| :------ | :------ |
+| `INBOX`<br>`abbot`<br>`  achebe`<br>`  awlinson`<br>`INBOX`<br>`banker`<br>`butterworth`<br>`byrum` | | `INBOX`<br>`abbot`<br>`  achebe`<br>`  awlinson`<br>`INBOX`<br>`banker`<br>`  butterworth`<br>`  byrum` |
+

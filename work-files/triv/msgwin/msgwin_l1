@@ -1,0 +1,62 @@
+text	apple Ελληνικά banana Українська cherry 한국어 elderberry हिन्दी fig Русский hawthorn 日本語 jackfruit lemon 🍏🍯🍝🍃🍒🌲🍡🍐🍩🍣🌽 中文 kumquat
+width	11111111111111111111111111111111111111112 2 2 1111111111111111111111111111111111111112 2 2 111111111111111112 2 2 2 2 2 2 2 2 2 2 12 2 11111111
+bytes	11111122222222111111112222222222111111113 3 3 1111111111113333311111222222211111111113 3 3 111111111111111114 4 4 4 4 4 4 4 4 4 4 13 3 11111111
+colour	AAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDEEEEEEEEEEEEEEEEEFFFFFFFFFFFFFFFFFFFFFFFGGGGGGGGGGGG
+
+--------------------------------------------------------------------------------
+
+text	apple Ελληνικά banana Українська cherry 한국어 elderberr
+width	11111111111111111111111111111111111111112 2 2 1111111111
+bytes	11111122222222111111112222222222111111113 3 3 1111111111
+colour	AAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCC
+
+	Offset	Bytes	Width	Colour
+	------------------------------
+	0	30	22	A
+	22	37	24	B
+	46	10	10	C
+
+text	y हिन्दी fig Русский hawthorn 日本語 jackfruit lemon 🍏🍯
+width	111111111111111111111111111112 2 2 111111111111111112 2
+bytes	113333311111222222211111111113 3 3 111111111111111114 4
+colour	CCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDEEEEEEEEEEEEEEEEEFFFF
+
+	Offset	Bytes	Width	Colour
+	------------------------------
+	56	21	11	C
+	67	34	24	D
+	91	17	17	E
+	108	8	4	F
+
+text	🍣🌽 中文 kumquat
+width	2 2 12 2 11111111
+bytes	4 4 13 3 11111111
+colour	FFFFFGGGGGGGGGGGG
+
+	Offset	Bytes	Width	Colour
+	------------------------------
+	112	9	5	F
+	117	14	12	G
+
+--------------------------------------------------------------------------------
+
+ROW1
+	Offset	Bytes	Colour
+	----------------------
+	0	30	A
+	22	37	B
+	46	10	C
+
+ROW2
+	Offset	Bytes	Colour
+	----------------------
+	56	21	C
+	67	34	D
+	91	17	E
+	108	8	F
+
+	Offset	Bytes	Colour
+	----------------------
+	112	9	F
+	117	14	G
+
