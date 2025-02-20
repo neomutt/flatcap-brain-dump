@@ -24,3 +24,19 @@ source! -- no fail
 and/or
 source *dir*  ∀ *.rc withing (alpha sorted)
 
+
+if theme contains
+	color x rgb     rgb
+	color x palette palette
+	color x simple  simple
+and all three domains are supported
+what happens when the user does?
+	color x palette palette
+result?
+	overwrite just the palette?
+	overwrite all?
+		because it's interactive?
+does DT_STARTUP allow stacking of colours?
+then runtime if colour domain is allowed, overwrite all
+what if the user sources a theme again?
+

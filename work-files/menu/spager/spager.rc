@@ -21,14 +21,7 @@ color debug   #404040 #c0c0c0
 color stripe_odd  underline default default
 color stripe_even bold      default default
 
-color comment            #00ff00 default
-color enum               #ff80ff default
-color function           #00ffff default
-color heading       bold #ffffff default
-color identifier    bold #ffffff default
-color number             #8080ff default
-color operator      bold #80ffff default
-color string             #ffff00 default
+source "colour1.rc"
 
 color quoted0 color196 default
 color quoted1 color202 default
@@ -40,6 +33,40 @@ color quoted6 color207 default
 color quoted7 color63  default
 color quoted8 color168 default
 color quoted9 color178 default
+
+color status #000000 #ffffc0
+color status #ffffff #ff0000 "L[0-9]+" 2
+color status brightblack   default   '<0>'
+color status brightwhite   default   '<[1-9][0-9]*>'
+color status brightblack   default   '(Msgs|New|Old|Unread|Del|Tag):0'
+color status brightmagenta default   'Msgs:[1-9][0-9]*'
+color status brightgreen   default   'New:[1-9][0-9]*'
+color status brightyellow  default   'Old:[1-9][0-9]*'
+color status brightcyan    default   'Unread:[1-9][0-9]*'
+color status default       brightred 'Del:[1-9][0-9]*'
+color status default       cyan      'Tag:[1-9][0-9]*'
+
+color body   cyan     default "(ftp|http|https)://[^ ]+"
+color body   cyan     default "[-a-z_0-9.]+@[-a-z_0-9.]+"
+color body   color228 default '/\<\S+\>/'
+color body   color228 default '\*\<\S+\>\*'
+color body   color228 default '\<_\S+_\>'
+color body   green    yellow  "Content-Description: junk.bin"
+color body   green    yellow  "Content-Disposition: attachment; filename=.*"
+color body   green    yellow  "Content-Transfer-Encoding: base64"
+color body   green    yellow  "Content-Type: application/octet-stream"
+
+color index  black    red     "~N~X1" # new AND attachment
+color index  color119 default "~N" # New
+color index  color119 default "~O" # Old
+color index  color237 default "~d>30d" # Over a month old
+color index  color240 default "~D" # Deleted
+color index  default  cyan    "~T"
+color index  green    default "~v~(~N)" # collapsed thread with New
+color index  green    default "~v~(~O)" # collapsed thread with New
+color index  red      default "~v~(~F)~(!~N)" # collapsed thread with Flagged but no New
+color index  white    red     "~F" # Flagged
+color index  yellow   default "~v~(!~N)~(!~F)" # collapsed thread with no New or Flagged
 
 bind pager <Up>   previous-line
 bind pager <Down> next-line
@@ -72,5 +99,8 @@ bind pager G      bottom
 macro pager w '<enter-command> set wrap=60<enter><enter-command> echo wrap=60<enter>'   "Wrap to 60 chars"
 macro pager W '<enter-command> set wrap=-20<enter><enter-command> echo wrap=-20<enter>'
 macro pager q '<exit><exit>'
+
+macro index,pager <f5> "<enter-command>source .git/files/spager/colour1.rc<enter>"
+macro index,pager <f6> "<enter-command>source .git/files/spager/colour2.rc<enter>"
 
 # vim: syn=neomuttrc
