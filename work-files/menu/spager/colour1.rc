@@ -1,10 +1,13 @@
-color comment            #00ff00 default
-color enum               #ff80ff default
-color function           #00ffff default
-color heading       bold #ffffff default
-color identifier    bold #ffffff default
-color number             #8080ff default
-color operator      bold #80ffff default
-color string             #ffff00 default
+color attribute  italic    default default
+color color                #1245FE default
+color comment              #00ff00 default
+color enum                 #ff80ff default
+color function             #00ffff default
+color heading    bold      #ffffff default
+color identifier bold      #ffffff default
+color number               #8080ff default
+color operator   bold      #80ffff default
+color string               #ffff00 default
+color url        underline default default
 
 # vim: syn=neomuttrc

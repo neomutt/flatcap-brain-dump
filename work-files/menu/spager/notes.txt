@@ -101,7 +101,7 @@ gen_pf()
 	∀ hea write to pf
 		mt_color always
 		ansi/url/format flag
-	
+
 ansi => mt_color -> ansi conversion
 
 ---
@@ -124,4 +124,8 @@ BUG: non-color after colour bleeds
 
 ansi - who creates the colours? *caller*
 	likewise man page overtype highlighting
+
+lua plugin for colouring, etc
+	should define it own colours and *register* them
+	(and be given a colour domain for them)
 

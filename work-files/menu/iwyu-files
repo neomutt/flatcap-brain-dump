@@ -835,6 +835,7 @@ subjectrx.c
 subjectrx.h
 system.c
 timegm.c
+usage.c
 version.c
 version.h
 wcscasecmp.c

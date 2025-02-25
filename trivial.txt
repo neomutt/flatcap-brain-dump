@@ -438,8 +438,6 @@ expando for a divider character
 
 old notebook: type up
 
-migrate neo-file -> brain-dump
-
 colour setting
 	if rgb but not truecolor => error, unless...
 	if colour is already set, don't error, but log
@@ -451,7 +449,7 @@ e.g. same object, but increasing colour depth
 	color object #aabbcc  #112233
 increasing subtlety!
 
-rebase *
+rebase * / archive
 
 filter synonyms and deprecated out of get_elem_list()
 	so that the callers don't have to
@@ -462,4 +460,27 @@ test CLI params of "" (which mutt_strdup() will turn into NULL)
 
 pass Keymaps[] to km_init() and all children?
 	where else is it used?
+
+weechat logs to private repo
+	new org/user: flatcap-neomutt
+	daily auto-commit
+
+nntp feature request
+	Currently, neomutt downloads newsgroup descriptions from the server only. Would
+	there be a chance these descriptions could be saved to a file? This could then
+	be used to display descriptions sent by the server (and stored locally) OR not
+	sent by the server, in case one wanted to add their own descriptions or even
+	change the current ones.
+	For example, slrn, by default, adds the descriptions to a .jnewsrc.dsc file
+	(basically whatever you name the newsrc file, with a '.dsc' extension and
+	resides in the same directory you configure for your .jnewsrc file), in this
+	format: <newsgroup>:<description>
+	tin, by default, uses a file called 'newsgroups' in the account folder, which
+	uses this format: <newsgroup><space><description>
+
+repaint()
+	fprintf(stderr, "\033[s\033[9;24H\033[1;48;2;0;96;96m\033]8;id=1;https://neomutt.org/guide/reference#alias-file\007alias_\033]8;;\007\033[0m\033[u");
+	fprintf(stderr, "\033[s\033[15;24H\033[1;48;2;0;96;96m\033]8;id=1;https://neomutt.org/guide/reference#alias-file\007file\033]8;;\007\033[0m\033[u");
+
+sort out z-sort (579)
 
