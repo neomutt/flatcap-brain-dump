@@ -1,5 +1,0 @@
-syn match green "\[K\]\S\+"
-syn match yellow "\[D\].*"
-syn match magenta "\[U\].*"
-syn match cyan "\[M\].*"
-syn match red "^\S\+"

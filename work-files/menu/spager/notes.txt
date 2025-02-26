@@ -128,4 +128,9 @@ ansi - who creates the colours? *caller*
 lua plugin for colouring, etc
 	should define it own colours and *register* them
 	(and be given a colour domain for them)
+first examples: diff, markdown
+	some diff filters modify the output
+	markdown will need to hide some markers, e.g. '*'
+effects should be toggle-able
+	keep modifications separately in PagedFile/Line
 

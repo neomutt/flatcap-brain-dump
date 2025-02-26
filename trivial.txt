@@ -5,9 +5,6 @@ comment to avoid warning
 https://github.com/autozimu/LanguageClient-neovim
 https://people.freebsd.org/~gahr/lc.vim
 
-move *.rc to ~/.mutt/
-move *.mbox to ~/mail/
-
 parse_tags_transformed - Parse a custom expando of the form, "%G?" where '?' is an alphabetic character.
   	test '?' is [A-Za-z]?
 
@@ -179,16 +176,6 @@ bisect
 
 update gfx repo compose screenshots/etc with preview window
 	check docs/website/etc
-
-change help page headings from:
-	$flag_chars:
-	$crypt_chars:
-	$to_chars:
-to
-	set flag_chars = "*!DdrONon- "
-	set crypt_chars = "SPsK "
-	set to_chars = " +TCFLR"
-need to "fix" the help file column layout first
 
 flatcap/vim-cpp -> neomutt/vim-neomutt-source ?
 
@@ -419,10 +406,6 @@ find clean/dirty strwidth() / wcwidth() uses
 
 release: commit count
 
-coverity defects
-	array (now using int)
-	menu_get that could fail
-
 docs for %{name} expandos
 
 fold lines that don't match the search pattern
@@ -458,7 +441,7 @@ https://www.linuxlinks.com/best-free-open-source-console-email-clients/
 
 test CLI params of "" (which mutt_strdup() will turn into NULL)
 
-pass Keymaps[] to km_init() and all children?
+pass Keymaps to km_init() and all children?
 	where else is it used?
 
 weechat logs to private repo
