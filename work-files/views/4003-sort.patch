@@ -1,0 +1,50 @@
+From 96da122a3a47e7c5fe5ada9d9c26dc764603d36d Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Wed, 10 May 2023 01:10:55 +0100
+Subject: [PATCH 3/3] sort
+
+---
+ sort.c | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
+
+diff --git a/sort.c b/sort.c
+index dc764e499..130a77ee8 100644
+--- a/sort.c
++++ b/sort.c
+@@ -60,8 +60,8 @@ struct EmailCompare
+ 
+ /**
+  * compare_email_shim - qsort_r() comparator to drive mutt_compare_emails
+- * @param a   Pointer to first email
+- * @param b   Pointer to second email
++ * @param a   Pointer to first Email view
++ * @param b   Pointer to second Email view
+  * @param arg EmailCompare with needed context
+  * @retval <0 a precedes b
+  * @retval  0 a identical to b (should not happen in practice)
+@@ -69,10 +69,13 @@ struct EmailCompare
+  */
+ static int compare_email_shim(const void *a, const void *b, void *arg)
+ {
+-  const struct Email *ea = *(struct Email const *const *) a;
+-  const struct Email *eb = *(struct Email const *const *) b;
++  const struct EmailView *ev_a = *(struct EmailView const *const *) a;
++  const struct EmailView *ev_b = *(struct EmailView const *const *) b;
++
++  const struct Email *e_a = ev_a->email;
++  const struct Email *e_b = ev_b->email;
+   const struct EmailCompare *cmp = arg;
+-  return mutt_compare_emails(ea, eb, cmp->type, cmp->sort, cmp->sort_aux);
++  return mutt_compare_emails(e_a, e_b, cmp->type, cmp->sort, cmp->sort_aux);
+ }
+ 
+ /**
+@@ -409,7 +412,7 @@ void mutt_sort_headers(struct MailboxView *mv, bool init)
+     cmp.type = mx_type(m);
+     cmp.sort = cs_subset_sort(NeoMutt->sub, "sort");
+     cmp.sort_aux = cs_subset_sort(NeoMutt->sub, "sort_aux");
+-    mutt_qsort_r((void *) m->emails, m->msg_count, sizeof(struct Email *),
++    mutt_qsort_r((void *) m->v2r, m->vcount, sizeof(struct EmailView *),
+                  compare_email_shim, &cmp);
+   }
+ 

@@ -1,0 +1,144 @@
+From 92322ccfaf469a262e04ea1765e4ce1c3a1a0367 Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Sat, 22 Feb 2020 14:15:50 -0800
+Subject: [PATCH] Confirm exiting if background edit processes exist.
+
+This prompt is in addition to the $quit prompt.  A bit annoying, but I
+believe necessary to combat muscle memory and avoid losing compose
+sessions.
+---
+ background.c |  5 +++++
+ background.h |  1 +
+ curs_lib.c   | 11 +++++++++--
+ curs_main.c  | 20 ++++++++++++++++++++
+ init.h       |  6 ++++++
+ mutt.h       |  1 +
+ 6 files changed, 42 insertions(+), 2 deletions(-)
+
+diff --git a/background.c b/background.c
+index c6b5e6cf..c017806d 100644
+--- a/background.c
++++ b/background.c
+@@ -89,6 +89,11 @@ static void process_list_remove (BACKGROUND_PROCESS *process)
+   }
+ }
+ 
++int mutt_background_has_backgrounded (void)
++{
++  return ProcessList ? 1 : 0;
++}
++
+ /* Returns 0 if no processes were updated to finished.
+  *         1 if one or more processes finished
+  */
+diff --git a/background.h b/background.h
+index 34352452..b43cec03 100644
+--- a/background.h
++++ b/background.h
+@@ -19,6 +19,7 @@
+ #ifndef _BACKGROUND_H
+ #define _BACKGROUND_H 1
+ 
++int mutt_background_has_backgrounded (void);
+ int mutt_background_process_waitpid (void);
+ int mutt_background_edit_file (SEND_CONTEXT *sctx, const char *editor,
+                                const char *filename);
+diff --git a/curs_lib.c b/curs_lib.c
+index a11dc1bc..12db97f8 100644
+--- a/curs_lib.c
++++ b/curs_lib.c
+@@ -26,6 +26,7 @@
+ #include "mutt_curses.h"
+ #include "pager.h"
+ #include "mbyte.h"
++#include "background.h"
+ #ifdef USE_INOTIFY
+ #include "monitor.h"
+ #endif
+@@ -465,8 +466,14 @@ void mutt_query_exit (void)
+     mutt_getch_timeout (-1); /* restore blocking operation */
+   if (mutt_yesorno (_("Exit Mutt?"), MUTT_YES) == MUTT_YES)
+   {
+-    endwin ();
+-    exit (1);
++    if (!(mutt_background_has_backgrounded () &&
++          option (OPTBACKGROUNDCONFIRMQUIT) &&
++          mutt_yesorno (_("There are $background_edit sessions. Really quit Mutt?"),
++                        MUTT_NO) == MUTT_NO))
++    {
++      endwin ();
++      exit (1);
++    }
+   }
+   mutt_clear_error();
+   mutt_curs_set (-1);
+diff --git a/curs_main.c b/curs_main.c
+index e6972618..32a69f60 100644
+--- a/curs_main.c
++++ b/curs_main.c
+@@ -1052,6 +1052,18 @@ int mutt_index_menu (void)
+ 	{
+ 	  int check;
+ 
++          if (mutt_background_has_backgrounded () &&
++              option (OPTBACKGROUNDCONFIRMQUIT) &&
++              /* L10N:
++                 Prompt when trying to quit Mutt while there are backgrounded
++                 compose sessions in process.
++              */
++              mutt_yesorno (_("There are $background_edit sessions. Really quit Mutt?"),
++                            MUTT_NO) == MUTT_NO)
++          {
++            break;
++          }
++
+ 	  oldcount = Context ? Context->msgcount : 0;
+ 
+ 	  if (!Context || (check = mx_close_mailbox (Context, &index_hint)) == 0)
+@@ -1468,6 +1480,14 @@ int mutt_index_menu (void)
+ 	    && (query_quadoption (OPT_QUIT,
+ 				  _("Exit Mutt without saving?")) == MUTT_YES))
+ 	{
++          if (mutt_background_has_backgrounded () &&
++              option (OPTBACKGROUNDCONFIRMQUIT) &&
++              mutt_yesorno (_("There are $background_edit sessions. Really quit Mutt?"),
++                            MUTT_NO) == MUTT_NO)
++          {
++            break;
++          }
++
+ 	  if (Context)
+ 	  {
+ 	    mx_fastclose_mailbox (Context);
+diff --git a/init.h b/init.h
+index db6e10fa..0e0267f0 100644
+--- a/init.h
++++ b/init.h
+@@ -379,6 +379,12 @@ struct option_t MuttVars[] = {
+   ** .pp
+   ** ADD DOCUMENTATION.
+   */
++  { "background_confirm_quit", DT_BOOL, R_NONE, {.l=OPTBACKGROUNDCONFIRMQUIT}, {.l=1} },
++  /*
++  ** .pp
++  ** When set, if there are any background edit sessions, you will be prompted
++  ** to confirm exiting Mutt, in addition to the $$quit prompt.
++  */
+   { "background_format", DT_STR, R_MENU, {.p=&BackgroundFormat}, {.p="%5p %10S %s"} },
+   /*
+   ** .pp
+diff --git a/mutt.h b/mutt.h
+index 776c2dd9..f710d94d 100644
+--- a/mutt.h
++++ b/mutt.h
+@@ -391,6 +391,7 @@ enum
+   OPTAUTOTAG,
+   OPTBEEP,
+   OPTBACKGROUNDEDIT,
++  OPTBACKGROUNDCONFIRMQUIT,
+   OPTBEEPNEW,
+   OPTBOUNCEDELIVERED,
+   OPTCHANGEFOLDERNEXT,
+-- 
+2.26.2
+

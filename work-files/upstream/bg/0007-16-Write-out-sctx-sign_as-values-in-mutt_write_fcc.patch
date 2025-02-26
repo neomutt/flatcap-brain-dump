@@ -1,0 +1,166 @@
+From a77dd2ca714766f3848389795b143898da088fd4 Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Mon, 3 Feb 2020 13:25:30 -0800
+Subject: [PATCH 07/11] 16 Write out sctx sign_as values in mutt_write_fcc()
+
+Upstream-commit: https://gitlab.com/muttmua/mutt/commit/9defa202e35a2445405170255c95d3682ae5b065
+Co-authored-by: Richard Russon <rich@flatcap.org>
+---
+ compose/compose.c |  2 +-
+ send/send.c    |  6 +++---
+ send/sendlib.c | 24 +++++++++++++-----------
+ send/sendlib.h |  5 +++--
+ 4 files changed, 20 insertions(+), 17 deletions(-)
+
+diff --git a/compose/compose.c b/compose/compose.c
+index 7ccb5081b..99f1cc4a1 100644
+--- a/compose/compose.c
++++ b/compose/compose.c
+@@ -2454,7 +2454,7 @@ int mutt_compose_menu(struct SendContext *sctx)
+           if (e->content->next)
+             e->content = mutt_make_multipart(e->content);
+ 
+-          if (mutt_write_fcc(mutt_b2s(&fname), e, NULL, false, NULL, NULL) == 0)
++          if (mutt_write_fcc(mutt_b2s(&fname), sctx, NULL, false, NULL, NULL) == 0)
+             mutt_message(_("Message written"));
+ 
+           e->content = mutt_remove_multipart(e->content);
+diff --git a/send/send.c b/send/send.c
+index 39c4cc9d2..786af8c09 100644
+--- a/send/send.c
++++ b/send/send.c
+@@ -1685,7 +1685,7 @@ full_fcc:
+      * the From_ line contains the current time instead of when the
+      * message was first postponed.  */
+     e->received = mutt_date_epoch();
+-    rc = mutt_write_multiple_fcc(mutt_b2s(fcc), e, NULL, false, NULL, finalpath);
++    rc = mutt_write_multiple_fcc(mutt_b2s(fcc), sctx, NULL, false, NULL, finalpath);
+     while (rc && !(flags & SEND_BATCH))
+     {
+       mutt_clear_error();
+@@ -1713,7 +1713,7 @@ full_fcc:
+           /* fall through */
+ 
+         case 1: /* (r)etry */
+-          rc = mutt_write_multiple_fcc(mutt_b2s(fcc), e, NULL, false, NULL, finalpath);
++          rc = mutt_write_multiple_fcc(mutt_b2s(fcc), sctx, NULL, false, NULL, finalpath);
+           break;
+ 
+         case -1: /* abort */
+@@ -1834,7 +1834,7 @@ static int postpone_message(struct SendContext *sctx)
+   mutt_prepare_envelope(e_post->env, false);
+   mutt_env_to_intl(e_post->env, NULL, NULL); /* Handle bad IDNAs the next time. */
+ 
+-  if (mutt_write_fcc(NONULL(C_Postponed), e_post,
++  if (mutt_write_fcc(NONULL(C_Postponed), sctx,
+                      (e_cur && (flags & SEND_REPLY)) ? e_cur->env->message_id : NULL,
+                      true, fcc, NULL) < 0)
+   {
+diff --git a/send/sendlib.c b/send/sendlib.c
+index 6b9a841dd..7b063e716 100644
+--- a/send/sendlib.c
++++ b/send/sendlib.c
+@@ -3215,8 +3215,8 @@ static void set_noconv_flags(struct Body *b, bool flag)
+  * @retval  0 Success
+  * @retval -1 Failure
+  */
+-int mutt_write_multiple_fcc(const char *path, struct Email *e, const char *msgid,
+-                            bool post, char *fcc, char **finalpath)
++int mutt_write_multiple_fcc(const char *path, struct SendContext *sctx,
++                            const char *msgid, bool post, char *fcc, char **finalpath)
+ {
+   char fcc_tok[PATH_MAX];
+   char fcc_expanded[PATH_MAX];
+@@ -3229,7 +3229,7 @@ int mutt_write_multiple_fcc(const char *path, struct Email *e, const char *msgid
+ 
+   mutt_debug(LL_DEBUG1, "Fcc: initial mailbox = '%s'\n", tok);
+   /* mutt_expand_path already called above for the first token */
+-  int status = mutt_write_fcc(tok, e, msgid, post, fcc, finalpath);
++  int status = mutt_write_fcc(tok, sctx, msgid, post, fcc, finalpath);
+   if (status != 0)
+     return status;
+ 
+@@ -3243,7 +3243,7 @@ int mutt_write_multiple_fcc(const char *path, struct Email *e, const char *msgid
+     mutt_str_strfcpy(fcc_expanded, tok, sizeof(fcc_expanded));
+     mutt_expand_path(fcc_expanded, sizeof(fcc_expanded));
+     mutt_debug(LL_DEBUG1, "     Additional mailbox expanded = '%s'\n", fcc_expanded);
+-    status = mutt_write_fcc(fcc_expanded, e, msgid, post, fcc, finalpath);
++    status = mutt_write_fcc(fcc_expanded, sctx, msgid, post, fcc, finalpath);
+     if (status != 0)
+       return status;
+   }
+@@ -3262,7 +3262,7 @@ int mutt_write_multiple_fcc(const char *path, struct Email *e, const char *msgid
+  * @retval  0 Success
+  * @retval -1 Failure
+  */
+-int mutt_write_fcc(const char *path, struct Email *e, const char *msgid,
++int mutt_write_fcc(const char *path, struct SendContext *sctx, const char *msgid,
+                    bool post, const char *fcc, char **finalpath)
+ {
+   struct Message *msg = NULL;
+@@ -3274,6 +3274,8 @@ int mutt_write_fcc(const char *path, struct Email *e, const char *msgid,
+   char buf[128];
+   MsgOpenFlags onm_flags;
+ 
++  struct Email *e = sctx->e_templ;
++
+   if (post)
+     set_noconv_flags(e->content, true);
+ 
+@@ -3358,8 +3360,8 @@ int mutt_write_fcc(const char *path, struct Email *e, const char *msgid,
+     if (e->security & SEC_SIGN)
+     {
+       fputc('S', msg->fp);
+-      if (C_PgpSignAs)
+-        fprintf(msg->fp, "<%s>", C_PgpSignAs);
++      if (sctx->pgp_sign_as)
++        fprintf(msg->fp, "<%s>", sctx->pgp_sign_as);
+     }
+     if (e->security & SEC_INLINE)
+       fputc('I', msg->fp);
+@@ -3379,16 +3381,16 @@ int mutt_write_fcc(const char *path, struct Email *e, const char *msgid,
+     if (e->security & SEC_ENCRYPT)
+     {
+       fputc('E', msg->fp);
+-      if (C_SmimeEncryptWith)
+-        fprintf(msg->fp, "C<%s>", C_SmimeEncryptWith);
++      if (sctx->smime_crypt_alg)
++        fprintf(msg->fp, "C<%s>", sctx->smime_crypt_alg);
+     }
+     if (e->security & SEC_OPPENCRYPT)
+       fputc('O', msg->fp);
+     if (e->security & SEC_SIGN)
+     {
+       fputc('S', msg->fp);
+-      if (C_SmimeSignAs)
+-        fprintf(msg->fp, "<%s>", C_SmimeSignAs);
++      if (sctx->smime_default_key)
++        fprintf(msg->fp, "<%s>", sctx->smime_default_key);
+     }
+     if (e->security & SEC_INLINE)
+       fputc('I', msg->fp);
+diff --git a/send/sendlib.h b/send/sendlib.h
+index 2da9f05a5..562fb6b3b 100644
+--- a/send/sendlib.h
++++ b/send/sendlib.h
+@@ -32,6 +32,7 @@
+ struct AddressList;
+ struct ListHead;
+ struct Mailbox;
++struct SendContext;
+ 
+ /* These Config Variables are only used in sendlib.c */
+ extern bool  C_Allow8bit;
+@@ -82,10 +83,10 @@ void            mutt_stamp_attachment(struct Body *a);
+ void            mutt_unprepare_envelope(struct Envelope *env);
+ void            mutt_update_encoding(struct Body *a);
+ void            mutt_write_addrlist(struct AddressList *addr, FILE *fp, int linelen, bool display);
+-int             mutt_write_fcc(const char *path, struct Email *e, const char *msgid, bool post, const char *fcc, char **finalpath);
++int             mutt_write_fcc(const char *path, struct SendContext *sctx, const char *msgid, bool post, const char *fcc, char **finalpath);
+ int             mutt_write_mime_body(struct Body *a, FILE *fp);
+ int             mutt_write_mime_header(struct Body *a, FILE *fp);
+-int             mutt_write_multiple_fcc(const char *path, struct Email *e, const char *msgid, bool post, char *fcc, char **finalpath);
++int             mutt_write_multiple_fcc(const char *path, struct SendContext *sctx, const char *msgid, bool post, char *fcc, char **finalpath);
+ int             mutt_write_one_header(FILE *fp, const char *tag, const char *value, const char *pfx, int wraplen, CopyHeaderFlags chflags);
+ void            mutt_write_references(const struct ListHead *r, FILE *fp, size_t trim);
+ 

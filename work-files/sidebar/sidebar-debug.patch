@@ -1,0 +1,41 @@
+From 8b6ebf2719b84b97bf6c76398d45cbeda3baeeb0 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Thu, 13 Aug 2020 00:27:55 +0100
+Subject: [PATCH] debug
+
+---
+ sidebar/window.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/sidebar/window.c b/sidebar/window.c
+index 3772b5d3a..93939c4cb 100644
+--- a/sidebar/window.c
++++ b/sidebar/window.c
+@@ -45,6 +45,9 @@
+ #include "mutt_globals.h"
+ #include "muttlib.h"
+ 
++static int calc_count = 0;
++static int paint_count = 0;
++
+ /**
+  * imap_is_prefix - Check if folder matches the beginning of mbox
+  * @param folder Folder
+@@ -709,6 +712,7 @@ int sb_recalc(struct MuttWindow *win)
+     row++;
+   }
+ 
++  calc_count++;
+   win->actions |= WA_REPAINT;
+   return 0;
+ }
+@@ -831,5 +835,9 @@ int sb_repaint(struct MuttWindow *win)
+                    num_cols - wdata->divider_width);
+   draw_divider(wdata, win, num_rows, num_cols);
+ 
++  paint_count++;
++  mutt_window_move(win, 0, num_rows - 1);
++  mutt_curses_set_color(MT_COLOR_NORMAL);
++  mutt_window_printf("C%d,P%d", calc_count, paint_count);
+   return 0;
+ }

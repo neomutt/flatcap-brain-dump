@@ -1,0 +1,27 @@
+From 862ed68bf2c1ea39b9140716c80c61a4b075d8ee Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Tue, 3 Mar 2020 11:10:22 -0800
+Subject: [PATCH] Fix for $recall part 2.
+
+Fix the sctx->flags check further below too.  Now that
+SENDBACKGROUNDEDIT is added, a direct comparison is incorrect.
+---
+ send.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/send.c b/send.c
+index a40dfd1f..156c6084 100644
+--- a/send.c
++++ b/send.c
+@@ -1785,7 +1785,7 @@ static int send_message_setup (SEND_CONTEXT *sctx, const char *tempfile,
+   {
+     sctx->msg = mutt_new_header ();
+ 
+-    if (sctx->flags == SENDPOSTPONED)
++    if (sctx->flags & SENDPOSTPONED)
+     {
+       if (mutt_get_postponed (ctx, sctx) < 0)
+ 	goto cleanup;
+-- 
+2.26.2
+

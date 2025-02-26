@@ -1,0 +1,36 @@
+From 2e7d25eaadfea33f88dc47b08e731934f6291b56 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Sat, 11 May 2024 22:39:14 +0100
+Subject: [PATCH] expando: node parent
+
+---
+ expando/node.c | 3 +++
+ expando/node.h | 1 +
+ 2 files changed, 4 insertions(+)
+
+diff --git a/expando/node.c b/expando/node.c
+index e71fd82ac..a83561a03 100644
+--- a/expando/node.c
++++ b/expando/node.c
+@@ -78,6 +78,9 @@ void node_add_child(struct ExpandoNode *node, struct ExpandoNode *child)
+   if (!node)
+     return;
+ 
++  if (child)
++    child->parent = node;
++
+   ARRAY_ADD(&node->children, child);
+ }
+ 
+diff --git a/expando/node.h b/expando/node.h
+index 0ef50b8c9..08750a00b 100644
+--- a/expando/node.h
++++ b/expando/node.h
+@@ -72,6 +72,7 @@ struct ExpandoNode
+   struct ExpandoFormat     *format;      ///< Formatting info
+   const char               *text;        ///< Node-specific text
+ 
++  struct ExpandoNode       *parent;      ///< Parent Node
+   struct ExpandoNodeArray   children;    ///< Children nodes
+ 
+   void  *ndata;                          ///< Private node data

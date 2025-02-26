@@ -1,0 +1,208 @@
+From f99eda0db60604ddc0b057eb7b57fc5d6a724554 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Fri, 17 Nov 2023 18:12:07 +0000
+Subject: [PATCH] progress: TESTING
+
+1. Unknown amount - Read
+2. Unknown amount - Write
+3. Unknown amount - Net
+4. Fixed amount - Read
+5. Fixed amount - Write
+6. Fixed amount - Net
+7. Percentage - Read
+8. Percentage - Write
+9. Percentage - Net
+---
+ index/functions.c | 179 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 179 insertions(+)
+
+diff --git a/index/functions.c b/index/functions.c
+index d3edcbd16..8ea6c9ccf 100644
+--- a/index/functions.c
++++ b/index/functions.c
+@@ -906,6 +906,185 @@ static int op_group_reply(struct IndexSharedData *shared,
+  */
+ static int op_jump(struct IndexSharedData *shared, struct IndexPrivateData *priv, int op)
+ {
++  switch (op)
++  {
++    case OP_JUMP_1: // read unknown
++    {
++      int sec = 5;
++      int num = 12345;
++      int wait = (sec * 1000000) / num;
++      int c_read_inc = cs_subset_number(NeoMutt->sub, "read_inc");
++      int c_time_inc = cs_subset_number(NeoMutt->sub, "time_inc");
++      struct Progress *p = progress_new(MUTT_PROGRESS_READ, 0);
++      progress_set_message(p, "<Reading %d, read_inc = %d, time_inc = %d>", num,
++                           c_read_inc, c_time_inc);
++      for (int i = 0; i <= num; i++)
++      {
++        progress_update(p, i, -1);
++        usleep(wait);
++      }
++      progress_free(&p);
++      break;
++    }
++
++    case OP_JUMP_2: // write unknown
++    {
++      int sec = 5;
++      int num = 12345;
++      int wait = (sec * 1000000) / num;
++      int c_write_inc = cs_subset_number(NeoMutt->sub, "write_inc");
++      int c_time_inc = cs_subset_number(NeoMutt->sub, "time_inc");
++      struct Progress *p = progress_new(MUTT_PROGRESS_WRITE, 0);
++      progress_set_message(p, "<Writing %d, write_inc = %d, time_inc = %d>",
++                           num, c_write_inc, c_time_inc);
++      for (int i = 0; i <= num; i++)
++      {
++        progress_update(p, i, -1);
++        usleep(wait);
++      }
++      progress_free(&p);
++      break;
++    }
++
++    case OP_JUMP_3: // net unknown
++    {
++      int sec = 5;
++      int num = 5123453;
++      int steps = 500;
++      int wait = (sec * 1000000) / steps;
++      int c_net_inc = cs_subset_number(NeoMutt->sub, "net_inc");
++      int c_time_inc = cs_subset_number(NeoMutt->sub, "time_inc");
++      struct Progress *p = progress_new(MUTT_PROGRESS_NET, 0);
++      progress_set_message(p, "<net %d, net_inc = %d, time_inc = %d>", num,
++                           c_net_inc, c_time_inc);
++      for (int i = 0; i <= num; i += (num / steps))
++      {
++        progress_update(p, i, -1);
++        usleep(wait);
++      }
++      progress_free(&p);
++      break;
++    }
++
++    case OP_JUMP_4: // read num
++    {
++      int sec = 5;
++      int num = 500;
++      int wait = (sec * 1000000) / num;
++      int c_read_inc = cs_subset_number(NeoMutt->sub, "read_inc");
++      int c_time_inc = cs_subset_number(NeoMutt->sub, "time_inc");
++      struct Progress *p = progress_new(MUTT_PROGRESS_READ, num);
++      progress_set_message(p, "<Reading %d, read_inc = %d, time_inc = %d>", num,
++                           c_read_inc, c_time_inc);
++      for (int i = 0; i <= num; i++)
++      {
++        progress_update(p, i, -1);
++        usleep(wait);
++      }
++      progress_free(&p);
++      break;
++    }
++
++    case OP_JUMP_5: // write num
++    {
++      int sec = 5;
++      int num = 500;
++      int wait = (sec * 1000000) / num;
++      int c_write_inc = cs_subset_number(NeoMutt->sub, "write_inc");
++      int c_time_inc = cs_subset_number(NeoMutt->sub, "time_inc");
++      struct Progress *p = progress_new(MUTT_PROGRESS_WRITE, num);
++      progress_set_message(p, "<writing %d, write_inc = %d, time_inc = %d>",
++                           num, c_write_inc, c_time_inc);
++      for (int i = 0; i <= num; i++)
++      {
++        progress_update(p, i, -1);
++        usleep(wait);
++      }
++      progress_free(&p);
++      break;
++    }
++
++    case OP_JUMP_6: // net num
++    {
++      int sec = 5;
++      int num = 5000000;
++      int steps = 500;
++      int wait = (sec * 1000000) / steps;
++      int c_net_inc = cs_subset_number(NeoMutt->sub, "net_inc");
++      int c_time_inc = cs_subset_number(NeoMutt->sub, "time_inc");
++      struct Progress *p = progress_new(MUTT_PROGRESS_NET, num);
++      progress_set_message(p, "<net %d, net_inc = %d, time_inc = %d>", num,
++                           c_net_inc, c_time_inc);
++      for (int i = 0; i <= num; i += (num / steps))
++      {
++        progress_update(p, i, -1);
++        usleep(wait);
++      }
++      progress_free(&p);
++      break;
++    }
++
++    case OP_JUMP_7: // read percent
++    {
++      int sec = 5;
++      int num = 500;
++      int wait = (sec * 1000000) / num;
++      int c_read_inc = cs_subset_number(NeoMutt->sub, "read_inc");
++      int c_time_inc = cs_subset_number(NeoMutt->sub, "time_inc");
++      struct Progress *p = progress_new(MUTT_PROGRESS_READ, 0);
++      progress_set_message(p, "<Reading %d, read_inc = %d, time_inc = %d>", num,
++                           c_read_inc, c_time_inc);
++      for (int i = 0; i <= num; i++)
++      {
++        progress_update(p, i, (100 * i) / num);
++        usleep(wait);
++      }
++      progress_free(&p);
++      break;
++    }
++
++    case OP_JUMP_8: // write percent
++    {
++      int sec = 5;
++      int num = 500;
++      int wait = (sec * 1000000) / num;
++      int c_write_inc = cs_subset_number(NeoMutt->sub, "write_inc");
++      int c_time_inc = cs_subset_number(NeoMutt->sub, "time_inc");
++      struct Progress *p = progress_new(MUTT_PROGRESS_WRITE, 0);
++      progress_set_message(p, "<writing %d, write_inc = %d, time_inc = %d>",
++                           num, c_write_inc, c_time_inc);
++      for (int i = 0; i <= num; i++)
++      {
++        progress_update(p, i, (100 * i) / num);
++        usleep(wait);
++      }
++      progress_free(&p);
++      break;
++    }
++
++    case OP_JUMP_9: // net percent
++    {
++      int sec = 5;
++      int num = 5000000;
++      int steps = 500;
++      int wait = (sec * 1000000) / steps;
++      int c_net_inc = cs_subset_number(NeoMutt->sub, "net_inc");
++      int c_time_inc = cs_subset_number(NeoMutt->sub, "time_inc");
++      struct Progress *p = progress_new(MUTT_PROGRESS_NET, 0);
++      progress_set_message(p, "<net %d, net_inc = %d, time_inc = %d>", num,
++                           c_net_inc, c_time_inc);
++      for (int i = 0; i <= num; i += (num / steps))
++      {
++        progress_update(p, i, (100 * i) / num);
++        usleep(wait);
++      }
++      progress_free(&p);
++      break;
++    }
++  }
++
++  return FR_SUCCESS;
++
+   int rc = FR_ERROR;
+   struct Buffer *buf = buf_pool_get();
+ 

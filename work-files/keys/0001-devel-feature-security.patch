@@ -1,0 +1,43 @@
+From 66cd51a3c6e35ec7216121587dd798e77f2a8c28 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Mon, 29 Apr 2024 09:37:53 +0100
+Subject: [PATCH] devel: feature security
+
+---
+ docs/config.c | 7 +++++++
+ mutt_config.c | 4 ++++
+ 2 files changed, 11 insertions(+)
+
+diff --git a/docs/config.c b/docs/config.c
+index a8040e631..d5d926332 100644
+--- a/docs/config.c
++++ b/docs/config.c
+@@ -1063,6 +1063,13 @@
+ ** or when you save it to another folder.
+ */
+ 
++{ "devel_security", DT_BOOL, false },
++/*
++** .pp
++** If this option is \fIset\fP, NeoMutt will enable the \fBSecurity\fP development features.
++** See: https://github.com/neomutt/neomutt/discussions/4251
++*/
++
+ { "digest_collapse", DT_BOOL, true },
+ /*
+ ** .pp
+diff --git a/mutt_config.c b/mutt_config.c
+index 2fbbb55e0..8258357aa 100644
+--- a/mutt_config.c
++++ b/mutt_config.c
+@@ -906,6 +906,10 @@ static struct ConfigDef MainVars[] = {
+   { "xterm_set_titles",          DT_SYNONYM, IP "ts_enabled",                 IP "2021-03-21" },
+   { "xterm_title",               DT_SYNONYM, IP "ts_status_format",           IP "2021-03-21" },
+ 
++  { "devel_security", DT_BOOL, false, 0, NULL,
++    "Devel feature: Security -- https://github.com/neomutt/neomutt/discussions/4251"
++  },
++
+   { NULL },
+   // clang-format on
+ };

@@ -1,0 +1,64 @@
+From 6cd4b86b7724acd59faeb4de2f08780476930a15 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Wed, 9 Mar 2022 02:57:06 +0000
+Subject: [PATCH 1/2] debug: dialog
+
+---
+ index/functions.c | 26 ++++++++++++++------------
+ 1 file changed, 14 insertions(+), 12 deletions(-)
+
+diff --git a/index/functions.c b/index/functions.c
+index d25a56b0b..6c1f9928b 100644
+--- a/index/functions.c
++++ b/index/functions.c
+@@ -89,6 +89,9 @@
+ static const char *Not_available_in_this_menu =
+     N_("Not available in this menu");
+ 
++int dlg_verify_certificate(const char *title, struct ListHead *list,
++                           bool allow_always, bool allow_skip);
++
+ /// Lookup for function results
+ const struct Mapping RetvalNames[] = {
+   // clang-format off
+@@ -1964,21 +1967,20 @@ static int op_prev_entry(struct IndexSharedData *shared, struct IndexPrivateData
+  */
+ static int op_print(struct IndexSharedData *shared, struct IndexPrivateData *priv, int op)
+ {
+-  struct EmailList el = STAILQ_HEAD_INITIALIZER(el);
+-  el_add_tagged(&el, shared->ctx, shared->email, priv->tag);
+-  mutt_print_message(shared->mailbox, &el);
+-  emaillist_clear(&el);
++  struct ListHead list = STAILQ_HEAD_INITIALIZER(list);
+ 
+-#ifdef USE_IMAP
+-  /* in an IMAP folder index with imap_peek=no, printing could change
+-   * new or old messages status to read. Redraw what's needed.  */
+-  const bool c_imap_peek = cs_subset_bool(shared->sub, "imap_peek");
+-  if ((shared->mailbox->type == MUTT_IMAP) && !c_imap_peek)
++  struct Buffer *buf = mutt_buffer_pool_get();
++
++  for (int i = 0; i < 250; i++)
+   {
+-    menu_queue_redraw(priv->menu, (priv->tag ? MENU_REDRAW_INDEX : MENU_REDRAW_CURRENT));
++    mutt_buffer_printf(buf, "This is number %d", i);
++    mutt_list_insert_tail(&list, mutt_buffer_strdup(buf));
+   }
+-#endif
+ 
++  dlg_verify_certificate("title", &list, true, true);
++
++  mutt_list_free(&list);
++  mutt_buffer_pool_release(&buf);
+   return IR_SUCCESS;
+ }
+ 
+@@ -3287,7 +3289,7 @@ struct IndexFunction IndexFunctions[] = {
+   { OP_PREV_ENTRY,                          op_prev_entry,                        CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE },
+   { OP_PREV_LINE,                           op_menu_move,                         CHECK_NO_FLAGS },
+   { OP_PREV_PAGE,                           op_menu_move,                         CHECK_NO_FLAGS },
+-  { OP_PRINT,                               op_print,                             CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE },
++  { OP_PRINT,                               op_print,                             CHECK_NO_FLAGS },
+   { OP_PURGE_MESSAGE,                       op_delete,                            CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE },
+   { OP_PURGE_THREAD,                        op_delete_thread,                     CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE },
+   { OP_QUERY,                               op_query,                             CHECK_ATTACH },

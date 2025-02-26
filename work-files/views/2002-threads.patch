@@ -1,0 +1,163 @@
+From 28f0d11467bba23626b75aae3f2381b76b027eaa Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Tue, 9 May 2023 13:28:47 +0100
+Subject: [PATCH 2/2] threads
+
+---
+ index/dlg_index.c   | 18 ++++++++++--------
+ index/functions.c   |  5 +++--
+ index/index.c       |  6 +++---
+ index/shared_data.c |  9 ++++++---
+ index/shared_data.h |  2 +-
+ mutt_thread.c       |  3 ++-
+ 6 files changed, 25 insertions(+), 18 deletions(-)
+
+diff --git a/index/dlg_index.c b/index/dlg_index.c
+index 1b1d78e3d..2840d3a0e 100644
+--- a/index/dlg_index.c
++++ b/index/dlg_index.c
+@@ -820,7 +820,6 @@ void index_make_entry(struct Menu *menu, char *buf, size_t buflen, int line)
+     return;
+ 
+   MuttFormatFlags flags = MUTT_FORMAT_ARROWCURSOR | MUTT_FORMAT_INDEX;
+-  struct MuttThread *tmp = NULL;
+ 
+   const enum UseThreads c_threads = mutt_thread_style();
+   if ((c_threads > UT_FLAT) && e->tree && e->thread)
+@@ -837,29 +836,31 @@ void index_make_entry(struct Menu *menu, char *buf, size_t buflen, int line)
+       if (reverse)
+       {
+         if (menu->top + menu->page_len > menu->max)
+-          edgemsgno = m->v2r[menu->max - 1]->email->msgno;
++          edgemsgno = m->v2r[menu->max - 1]->msgno;
+         else
+-          edgemsgno = m->v2r[menu->top + menu->page_len - 1]->email->msgno;
++          edgemsgno = m->v2r[menu->top + menu->page_len - 1]->msgno;
+       }
+       else
+       {
+-        edgemsgno = m->v2r[menu->top]->email->msgno;
++        edgemsgno = m->v2r[menu->top]->msgno;
+       }
+ 
++      struct MuttThread *tmp = NULL;
+       for (tmp = e->thread->parent; tmp; tmp = tmp->parent)
+       {
+         if (!tmp->message)
+           continue;
+ 
+-        /* if no ancestor is visible on current screen, provisionally force
+-         * subject... */
++        /* if no ancestor is visible on current screen, provisionally force subject... */
+         if (reverse ? (tmp->message->msgno > edgemsgno) : (tmp->message->msgno < edgemsgno))
+         {
+           flags |= MUTT_FORMAT_FORCESUBJ;
+           break;
+         }
+         else if (tmp->message->vnum >= 0)
++        {
+           break;
++        }
+       }
+       if (flags & MUTT_FORMAT_FORCESUBJ)
+       {
+@@ -1211,8 +1212,9 @@ struct Mailbox *mutt_index_menu(struct MuttWindow *dlg, struct Mailbox *m_init)
+         OptSearchInvalid = true;
+       }
+ 
+-      index_shared_data_set_email(shared, mutt_get_virt_email(shared->mailbox,
+-                                                              menu_get_index(priv->menu)));
++      const int idx = menu_get_index(priv->menu);
++      struct EmailView *ev = shared->mailbox->v2r[idx];
++      index_shared_data_set_eview(shared, ev);
+     }
+ 
+     if (!priv->attach_msg)
+diff --git a/index/functions.c b/index/functions.c
+index 63b4f7596..6c9e5e0af 100644
+--- a/index/functions.c
++++ b/index/functions.c
+@@ -405,8 +405,9 @@ static int op_display_message(struct IndexSharedData *shared,
+       menu_queue_redraw(priv->menu, MENU_REDRAW_FULL);
+     emaillist_clear(&el);
+   }
+-  const int index = menu_get_index(priv->menu);
+-  index_shared_data_set_email(shared, mutt_get_virt_email(shared->mailbox, index));
++  const int idx = menu_get_index(priv->menu);
++  struct EmailView *ev = shared->mailbox->v2r[idx];
++  index_shared_data_set_eview(shared, ev);
+ 
+   const char *const c_pager = pager_get_pager(NeoMutt->sub);
+   if (c_pager)
+diff --git a/index/index.c b/index/index.c
+index 48d4c72b3..e8e47392b 100644
+--- a/index/index.c
++++ b/index/index.c
+@@ -430,9 +430,9 @@ static int index_menu_observer(struct NotifyCallback *nc)
+   struct IndexSharedData *shared = dlg->wdata;
+   struct Menu *menu = win->wdata;
+ 
+-  const int index = menu_get_index(menu);
+-  struct Email *e = mutt_get_virt_email(shared->mailbox, index);
+-  index_shared_data_set_email(shared, e);
++  const int idx = menu_get_index(menu);
++  struct EmailView *ev = shared->mailbox->v2r[idx];
++  index_shared_data_set_eview(shared, ev);
+ 
+   return 0;
+ }
+diff --git a/index/shared_data.c b/index/shared_data.c
+index b00f9020f..3edd73a84 100644
+--- a/index/shared_data.c
++++ b/index/shared_data.c
+@@ -90,18 +90,21 @@ void index_shared_data_set_mview(struct IndexSharedData *shared, struct MailboxV
+ }
+ 
+ /**
+- * index_shared_data_set_email - Set the current Email for the Index and friends
++ * index_shared_data_set_eview - Set the current Email view for the Index and friends
+  * @param shared Shared Index data
+- * @param e      Current Email, may be NULL
++ * @param ev     Current EmailView, may be NULL
+  */
+-void index_shared_data_set_email(struct IndexSharedData *shared, struct Email *e)
++void index_shared_data_set_eview(struct IndexSharedData *shared, struct EmailView *ev)
+ {
+   if (!shared)
+     return;
+ 
++  struct Email *e = ev ? ev->email : NULL;
+   size_t seq = e ? e->sequence : 0;
++
+   if ((shared->email != e) || (shared->email_seq != seq))
+   {
++    shared->email_view = ev;index_shared_data_set_email
+     shared->email = e;
+     shared->email_seq = seq;
+ 
+diff --git a/index/shared_data.h b/index/shared_data.h
+index 21c427684..804e60025 100644
+--- a/index/shared_data.h
++++ b/index/shared_data.h
+@@ -50,6 +50,6 @@ struct IndexSharedData *index_shared_data_new (void);
+ 
+ bool index_shared_data_is_cur_email(const struct IndexSharedData *shared, const struct Email *e);
+ void index_shared_data_set_mview   (struct IndexSharedData *shared, struct MailboxView *mv);
+-void index_shared_data_set_email   (struct IndexSharedData *shared, struct Email *e);
++void index_shared_data_set_eview   (struct IndexSharedData *shared, struct EmailView *ev);
+ 
+ #endif /* MUTT_INDEX_SHARED_DATA_H */
+diff --git a/mutt_thread.c b/mutt_thread.c
+index 6eec6b58d..b8f1539e1 100644
+--- a/mutt_thread.c
++++ b/mutt_thread.c
+@@ -974,7 +974,8 @@ static void check_subjects(struct MailboxView *mv, bool init)
+   struct Mailbox *m = mv->mailbox;
+   for (int i = 0; i < m->msg_count; i++)
+   {
+-    struct Email *e = m->emails[i];
++    struct EmailView *ev = m->v2r[i];
++    struct Email *e = ev->email;
+     if (!e || !e->thread)
+       continue;
+ 

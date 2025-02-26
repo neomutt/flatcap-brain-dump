@@ -1,0 +1,310 @@
+From 7d242c7bdd6c817900e130e63f4d0a40d3538229 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Tue, 14 Jan 2020 15:36:31 +0000
+Subject: [PATCH 16/29] refactor: move C_Folder out of mx.c
+
+These functions don't have an Account:
+- `mx_mbox_find2()`
+- `mx_path_resolve()`
+
+This means that in the future, they wouldn't be able to lookup the
+correct value for `$folder`.
+---
+ autocrypt/autocrypt.c |  2 +-
+ commands.c            |  2 +-
+ compose.c             |  2 +-
+ editmsg.c             |  2 +-
+ imap/imap.c           |  4 ++--
+ index.c               |  8 ++++----
+ main.c                |  2 +-
+ mutt_attach.c         |  2 +-
+ mx.c                  | 20 +++++++++++---------
+ mx.h                  |  4 ++--
+ pop/pop.c             |  2 +-
+ postpone.c            |  4 ++--
+ send/sendlib.c             |  2 +-
+ 13 files changed, 29 insertions(+), 27 deletions(-)
+
+diff --git a/autocrypt/autocrypt.c b/autocrypt/autocrypt.c
+index 250f01bc2..8382be80b 100644
+--- a/autocrypt/autocrypt.c
++++ b/autocrypt/autocrypt.c
+@@ -891,7 +891,7 @@ void mutt_autocrypt_scan_mailboxes(void)
+         (!mutt_buffer_is_empty(folderbuf)))
+     {
+       mutt_buffer_expand_path_regex(folderbuf, false);
+-      struct Mailbox *m = mx_path_resolve(mutt_b2s(folderbuf));
++      struct Mailbox *m = mx_path_resolve(mutt_b2s(folderbuf), C_Folder);
+       /* NOTE: I am purposely *not* executing folder hooks here,
+        * as they can do all sorts of things like push into the getch() buffer.
+        * Authentication should be in account-hooks. */
+diff --git a/commands.c b/commands.c
+index 62c67ca32..4f3d364ea 100644
+--- a/commands.c
++++ b/commands.c
+@@ -1131,7 +1131,7 @@ int mutt_save_message(struct Mailbox *m, struct EmailList *el,
+ #endif
+ 
+   mutt_file_resolve_symlink(buf);
+-  struct Mailbox *m_save = mx_path_resolve(mutt_b2s(buf));
++  struct Mailbox *m_save = mx_path_resolve(mutt_b2s(buf), C_Folder);
+   bool old_append = m_save->append;
+   struct Context *ctx_save = mx_mbox_open(m_save, MUTT_NEWFOLDER);
+   if (!ctx_save)
+diff --git a/compose.c b/compose.c
+index b1b0c09b2..5a4694a0c 100644
+--- a/compose.c
++++ b/compose.c
+@@ -1951,7 +1951,7 @@ int mutt_compose_menu(struct Email *e, struct Buffer *fcc, struct Email *e_cur,
+ 
+         menu->redraw = REDRAW_FULL;
+ 
+-        struct Mailbox *m = mx_path_resolve(mutt_b2s(&fname));
++        struct Mailbox *m = mx_path_resolve(mutt_b2s(&fname), C_Folder);
+         bool old_readonly = m->readonly;
+         struct Context *ctx = mx_mbox_open(m, MUTT_READONLY);
+         if (!ctx)
+diff --git a/editmsg.c b/editmsg.c
+index 680287909..dd4c5f045 100644
+--- a/editmsg.c
++++ b/editmsg.c
+@@ -69,7 +69,7 @@ static int ev_message(enum EvMessage action, struct Mailbox *m, struct Email *e)
+   enum MailboxType otype = C_MboxType;
+   C_MboxType = MUTT_MBOX;
+ 
+-  struct Mailbox *m_fname = mx_path_resolve(mutt_b2s(fname));
++  struct Mailbox *m_fname = mx_path_resolve(mutt_b2s(fname), C_Folder);
+   struct Context *ctx_tmp = mx_mbox_open(m_fname, MUTT_NEWFOLDER);
+ 
+   C_MboxType = otype;
+diff --git a/imap/imap.c b/imap/imap.c
+index 777635e9c..66ce81e45 100644
+--- a/imap/imap.c
++++ b/imap/imap.c
+@@ -1187,7 +1187,7 @@ static int imap_mbox_check_stats(struct Mailbox *m, int flags)
+  */
+ int imap_path_status(const char *path, bool queue)
+ {
+-  struct Mailbox *m = mx_mbox_find2(path);
++  struct Mailbox *m = mx_mbox_find2(path, C_Folder);
+   if (m)
+     return imap_mailbox_status(m, queue);
+ 
+@@ -1911,7 +1911,7 @@ static int imap_mbox_open(struct Mailbox *m)
+   }
+ 
+   /* pipeline the postponed count if possible */
+-  struct Mailbox *m_postponed = mx_mbox_find2(C_Postponed);
++  struct Mailbox *m_postponed = mx_mbox_find2(C_Postponed, C_Folder);
+   struct ImapAccountData *postponed_adata = imap_adata_get(m_postponed);
+   if (postponed_adata &&
+       imap_account_match(&postponed_adata->conn->account, &adata->conn->account))
+diff --git a/index.c b/index.c
+index 54ed0030a..a2ecf5daa 100644
+--- a/index.c
++++ b/index.c
+@@ -791,7 +791,7 @@ static struct Mailbox *change_folder_notmuch(struct Menu *menu, char *buf, int b
+     return NULL;
+   }
+ 
+-  struct Mailbox *m_query = mx_path_resolve(buf);
++  struct Mailbox *m_query = mx_path_resolve(buf, C_Folder);
+   change_folder_mailbox(menu, m_query, oldcount, index_hint, read_only);
+   return m_query;
+ }
+@@ -840,7 +840,7 @@ static void change_folder_string(struct Menu *menu, char *buf, size_t buflen, in
+   /* past this point, we don't return to the pager on error */
+   *pager_return = false;
+ 
+-  struct Mailbox *m = mx_path_resolve(buf);
++  struct Mailbox *m = mx_path_resolve(buf, C_Folder);
+   change_folder_mailbox(menu, m, oldcount, index_hint, read_only);
+ }
+ 
+@@ -2450,7 +2450,7 @@ int mutt_index_menu(struct MuttWindow *dlg)
+           goto changefoldercleanup;
+         }
+ 
+-        struct Mailbox *m = mx_mbox_find2(mutt_b2s(folderbuf));
++        struct Mailbox *m = mx_mbox_find2(mutt_b2s(folderbuf), C_Folder);
+         if (m)
+         {
+           change_folder_mailbox(menu, m, &oldcount, &index_hint, read_only);
+@@ -2521,7 +2521,7 @@ int mutt_index_menu(struct MuttWindow *dlg)
+           goto changefoldercleanup2;
+         }
+ 
+-        struct Mailbox *m = mx_mbox_find2(mutt_b2s(folderbuf));
++        struct Mailbox *m = mx_mbox_find2(mutt_b2s(folderbuf), C_Folder);
+         if (m)
+         {
+           change_folder_mailbox(menu, m, &oldcount, &index_hint, read_only);
+diff --git a/main.c b/main.c
+index aecd2843b..c84cb758f 100644
+--- a/main.c
++++ b/main.c
+@@ -1204,7 +1204,7 @@ int main(int argc, char *argv[], char *envp[])
+     notify_send(NeoMutt->notify, NT_GLOBAL, NT_GLOBAL_STARTUP, NULL);
+ 
+     repeat_error = true;
+-    struct Mailbox *m = mx_path_resolve(mutt_b2s(&folder));
++    struct Mailbox *m = mx_path_resolve(mutt_b2s(&folder), C_Folder);
+     Context = mx_mbox_open(m, ((flags & MUTT_CLI_RO) || C_ReadOnly) ? MUTT_READONLY : MUTT_OPEN_NO_FLAGS);
+     if (!Context)
+     {
+diff --git a/mutt_attach.c b/mutt_attach.c
+index 8a8ed772e..029166dd4 100644
+--- a/mutt_attach.c
++++ b/mutt_attach.c
+@@ -855,7 +855,7 @@ int mutt_save_attachment(FILE *fp, struct Body *m, const char *path,
+         return -1;
+       if (!fgets(buf, sizeof(buf), fp))
+         return -1;
+-      struct Mailbox *m_att = mx_path_resolve(path);
++      struct Mailbox *m_att = mx_path_resolve(path, C_Folder);
+       struct Context *ctx = mx_mbox_open(m_att, MUTT_APPEND | MUTT_QUIET);
+       if (!ctx)
+       {
+diff --git a/mx.c b/mx.c
+index 28670a7be..a263aafc7 100644
+--- a/mx.c
++++ b/mx.c
+@@ -552,7 +552,7 @@ static int trash_append(struct Mailbox *m)
+   }
+ #endif
+ 
+-  struct Mailbox *m_trash = mx_path_resolve(C_Trash);
++  struct Mailbox *m_trash = mx_path_resolve(C_Trash, C_Folder);
+   const bool old_append = m_trash->append;
+   struct Context *ctx_trash = mx_mbox_open(m_trash, MUTT_APPEND);
+   if (ctx_trash)
+@@ -757,7 +757,7 @@ int mx_mbox_close(struct Context **ptr)
+     else /* use regular append-copy mode */
+ #endif
+     {
+-      struct Mailbox *m_read = mx_path_resolve(mutt_b2s(mbox));
++      struct Mailbox *m_read = mx_path_resolve(mutt_b2s(mbox), C_Folder);
+       struct Context *ctx_read = mx_mbox_open(m_read, MUTT_APPEND);
+       if (!ctx_read)
+       {
+@@ -1637,18 +1637,19 @@ done:
+ 
+ /**
+  * mx_mbox_find2 - Find a Mailbox on an Account
+- * @param path Path to find
++ * @param path   Path to find
++ * @param folder Root mailbox path
+  * @retval ptr  Mailbox
+  * @retval NULL No match
+  */
+-struct Mailbox *mx_mbox_find2(const char *path)
++struct Mailbox *mx_mbox_find2(const char *path, const char *folder)
+ {
+   if (!path)
+     return NULL;
+ 
+   char buf[PATH_MAX];
+   mutt_str_copy(buf, path, sizeof(buf));
+-  mx_path_canon(buf, sizeof(buf), C_Folder, NULL);
++  mx_path_canon(buf, sizeof(buf), folder, NULL);
+ 
+   struct Account *np = NULL;
+   TAILQ_FOREACH(np, &NeoMutt->accounts, entries)
+@@ -1663,24 +1664,25 @@ struct Mailbox *mx_mbox_find2(const char *path)
+ 
+ /**
+  * mx_path_resolve - Get a Mailbox for a path
+- * @param path Mailbox path
++ * @param path   Mailbox path
++ * @param folder Root mailbox path
+  * @retval ptr Mailbox
+  *
+  * If there isn't a Mailbox for the path, one will be created.
+  */
+-struct Mailbox *mx_path_resolve(const char *path)
++struct Mailbox *mx_path_resolve(const char *path, const char *folder)
+ {
+   if (!path)
+     return NULL;
+ 
+-  struct Mailbox *m = mx_mbox_find2(path);
++  struct Mailbox *m = mx_mbox_find2(path, folder);
+   if (m)
+     return m;
+ 
+   m = mailbox_new(NULL);
+   m->flags = MB_HIDDEN;
+   mutt_str_replace(&m->path->orig, path);
+-  mx_path_canon2(m, C_Folder);
++  mx_path_canon2(m, folder);
+ 
+   return m;
+ }
+diff --git a/mx.h b/mx.h
+index 529063017..844845018 100644
+--- a/mx.h
++++ b/mx.h
+@@ -456,13 +456,13 @@ int             mx_path_canon2     (struct Mailbox *m, const char *folder);
+ int             mx_path_parent     (char *buf, size_t buflen);
+ int             mx_path_pretty     (char *buf, size_t buflen, const char *folder);
+ enum MailboxType mx_path_probe     (const char *path);
+-struct Mailbox *mx_path_resolve    (const char *path);
++struct Mailbox *mx_path_resolve    (const char *path, const char *folder);
+ int             mx_tags_commit     (struct Mailbox *m, struct Email *e, char *tags);
+ int             mx_tags_edit       (struct Mailbox *m, const char *tags, char *buf, size_t buflen);
+ 
+ struct Account *mx_ac_find   (struct Mailbox *m);
+ struct Mailbox *mx_mbox_find (struct Account *a, const char *path);
+-struct Mailbox *mx_mbox_find2(const char *path);
++struct Mailbox *mx_mbox_find2(const char *path, const char *folder);
+ int             mx_ac_add    (struct Account *a, struct Mailbox *m);
+ int             mx_ac_remove (struct Mailbox *m);
+ 
+diff --git a/pop/pop.c b/pop/pop.c
+index 332bd01ea..3e1e7cfe0 100644
+--- a/pop/pop.c
++++ b/pop/pop.c
+@@ -643,7 +643,7 @@ void pop_fetch_mail(void)
+     goto finish;
+   }
+ 
+-  struct Mailbox *m_spool = mx_path_resolve(C_Spoolfile);
++  struct Mailbox *m_spool = mx_path_resolve(C_Spoolfile, C_Folder);
+   struct Context *ctx = mx_mbox_open(m_spool, MUTT_OPEN_NO_FLAGS);
+   if (!ctx)
+   {
+diff --git a/postpone.c b/postpone.c
+index 0e362b2d6..4901da19a 100644
+--- a/postpone.c
++++ b/postpone.c
+@@ -171,7 +171,7 @@ int mutt_num_postponed(struct Mailbox *m, bool force)
+     if (optnews)
+       OptNews = false;
+ #endif
+-    struct Mailbox *m_post = mx_path_resolve(C_Postponed);
++    struct Mailbox *m_post = mx_path_resolve(C_Postponed, C_Folder);
+     struct Context *ctx = mx_mbox_open(m_post, MUTT_NOSORT | MUTT_QUIET);
+     if (ctx)
+     {
+@@ -341,7 +341,7 @@ int mutt_get_postponed(struct Context *ctx, struct Email *hdr,
+   const char *p = NULL;
+   struct Context *ctx_post = NULL;
+ 
+-  struct Mailbox *m = mx_path_resolve(C_Postponed);
++  struct Mailbox *m = mx_path_resolve(C_Postponed, C_Folder);
+   if (ctx && (ctx->mailbox == m))
+     ctx_post = ctx;
+   else
+diff --git a/send/sendlib.c b/send/sendlib.c
+index 4959fb530..ab7442685 100644
+--- a/send/sendlib.c
++++ b/send/sendlib.c
+@@ -3278,7 +3278,7 @@ int mutt_write_fcc(const char *path, struct Email *e, const char *msgid,
+ #ifdef RECORD_FOLDER_HOOK
+   mutt_folder_hook(path, NULL);
+ #endif
+-  struct Mailbox *m_fcc = mx_path_resolve(path);
++  struct Mailbox *m_fcc = mx_path_resolve(path, C_Folder);
+   bool old_append = m_fcc->append;
+   struct Context *ctx_fcc = mx_mbox_open(m_fcc, MUTT_APPEND | MUTT_QUIET);
+   if (!ctx_fcc)

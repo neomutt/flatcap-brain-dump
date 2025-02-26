@@ -1,0 +1,206 @@
+From 331772558d86aaf342895e2cff1c029b198483fa Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Mon, 17 Feb 2020 14:40:57 -0800
+Subject: [PATCH] Save and restore a subset of config variables when
+ backgrounding.
+
+Save all the booleans, quadoptions, along with:
+  $record
+  $postponed
+  $envelope_from_address
+  $from
+  $sendmail
+  $smtp_url
+  $pgp_sign_as
+  $smime_sign_as
+  $smime_encrypt_with
+
+This is to prevent multiple background compose sessions from
+interfering with each other, along with account/folder changes made
+while in the index menu.
+---
+ send.c | 103 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ send.h |  25 ++++++++++++++
+ 2 files changed, 128 insertions(+)
+
+diff --git a/send.c b/send.c
+index 061e7c50..b380b6a0 100644
+--- a/send.c
++++ b/send.c
+@@ -1619,6 +1619,91 @@ static int postpone_message (SEND_CONTEXT *sctx)
+   return 0;
+ }
+ 
++static SEND_SCOPE *scope_new (void)
++{
++  SEND_SCOPE *scope;
++
++  scope = safe_calloc (1, sizeof(SEND_SCOPE));
++
++  return scope;
++}
++
++static void scope_free (SEND_SCOPE **pscope)
++{
++  SEND_SCOPE *scope;
++
++  if (!pscope || !*pscope)
++    return;
++
++  scope = *pscope;
++
++  FREE (&scope->outbox);
++  FREE (&scope->postponed);
++  rfc822_free_address (&scope->env_from);
++  rfc822_free_address (&scope->from);
++  FREE (&scope->sendmail);
++#if USE_SMTP
++  FREE (&scope->smtp_url);
++#endif
++  FREE (&scope->pgp_sign_as);
++  FREE (&scope->smime_sign_as);
++  FREE (&scope->smime_crypt_alg);
++
++  FREE (pscope);      /* __FREE_CHECKED__ */
++}
++
++static SEND_SCOPE *scope_save (void)
++{
++  SEND_SCOPE *scope;
++
++  scope = scope_new ();
++
++  memcpy (scope->options, Options, sizeof(scope->options));
++  memcpy (scope->quadoptions, QuadOptions, sizeof(scope->quadoptions));
++
++  scope->outbox = safe_strdup (Outbox);
++  scope->postponed = safe_strdup (Postponed);
++
++  scope->env_from = rfc822_cpy_adr (EnvFrom, 0);
++  scope->from = rfc822_cpy_adr (From, 0);
++
++  scope->sendmail = safe_strdup (Sendmail);
++#if USE_SMTP
++  scope->smtp_url = safe_strdup (SmtpUrl);
++#endif
++  scope->pgp_sign_as = safe_strdup (PgpSignAs);
++  scope->smime_sign_as = safe_strdup (SmimeSignAs);
++  scope->smime_crypt_alg = safe_strdup (SmimeCryptAlg);
++
++  return scope;
++}
++
++static void scope_restore (SEND_SCOPE *scope)
++{
++  if (!scope)
++    return;
++
++  memcpy (Options, scope->options, sizeof(scope->options));
++  memcpy (QuadOptions, scope->quadoptions, sizeof(scope->quadoptions));
++
++  mutt_str_replace (&Outbox, scope->outbox);
++  mutt_str_replace (&Postponed, scope->postponed);
++
++  rfc822_free_address (&EnvFrom);
++  EnvFrom = rfc822_cpy_adr (scope->env_from, 0);
++
++  rfc822_free_address (&From);
++  From = rfc822_cpy_adr (scope->from, 0);
++
++  mutt_str_replace (&Sendmail, scope->sendmail);
++#if USE_SMTP
++  mutt_str_replace (&SmtpUrl, scope->smtp_url);
++#endif
++  mutt_str_replace (&PgpSignAs, scope->pgp_sign_as);
++  mutt_str_replace (&SmimeSignAs, scope->smime_sign_as);
++  mutt_str_replace (&SmimeCryptAlg, scope->smime_crypt_alg);
++}
++
+ static SEND_CONTEXT *send_ctx_new (void)
+ {
+   SEND_CONTEXT *sendctx;
+@@ -1644,6 +1729,9 @@ static void send_ctx_free (SEND_CONTEXT **psctx)
+   FREE (&sctx->cur_message_id);
+   FREE (&sctx->ctx_realpath);
+ 
++  scope_free (&sctx->global_scope);
++  scope_free (&sctx->local_scope);
++
+   FREE (&sctx->pgp_sign_as);
+   FREE (&sctx->smime_sign_as);
+   FREE (&sctx->smime_crypt_alg);
+@@ -2454,6 +2542,13 @@ int mutt_send_message_resume (SEND_CONTEXT *sctx)
+ {
+   int rv;
+ 
++  if (sctx->local_scope)
++  {
++    sctx->global_scope = scope_save ();
++    scope_restore (sctx->local_scope);
++    scope_free (&sctx->local_scope);
++  }
++
+   if (sctx->state <= SEND_STATE_FIRST_EDIT_HEADERS)
+   {
+     rv = send_message_resume_first_edit (sctx);
+@@ -2464,6 +2559,14 @@ int mutt_send_message_resume (SEND_CONTEXT *sctx)
+   rv = send_message_resume_compose_menu (sctx);
+ 
+ cleanup:
++  if (rv == 2)
++    sctx->local_scope = scope_save ();
++  if (sctx->global_scope)
++  {
++    scope_restore (sctx->global_scope);
++    scope_free (&sctx->global_scope);
++  }
++
+   if (rv != 2)
+     send_ctx_free (&sctx);
+ 
+diff --git a/send.h b/send.h
+index 6ef0a3cf..09b4a669 100644
+--- a/send.h
++++ b/send.h
+@@ -27,6 +27,27 @@ enum
+   SEND_STATE_COMPOSE_EDIT_HEADERS
+ };
+ 
++typedef struct send_scope
++{
++  unsigned char options[(OPTMAX + 7)/8];
++  unsigned char quadoptions[(OPT_MAX*2 + 7) / 8];
++
++  char *outbox;
++  char *postponed;
++  ADDRESS *env_from;
++  ADDRESS *from;
++  char *sendmail;
++#if USE_SMTP
++  char *smtp_url;
++#endif
++
++  /* We store these because if the send menu isn't altered, we
++   * want to preserve the original scope fallback values. */
++  char *pgp_sign_as;
++  char *smime_sign_as;
++  char *smime_crypt_alg;
++} SEND_SCOPE;
++
+ typedef struct send_ctx
+ {
+   int flags;
+@@ -49,6 +70,10 @@ typedef struct send_ctx
+ 
+   pid_t background_pid;
+ 
++  SEND_SCOPE *global_scope;
++  SEND_SCOPE *local_scope;
++
++  /* These store the values set from the send menu */
+   char *pgp_sign_as;
+   char *smime_sign_as;
+   char *smime_crypt_alg;
+-- 
+2.26.2
+

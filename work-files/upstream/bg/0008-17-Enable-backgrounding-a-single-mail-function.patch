@@ -1,0 +1,1172 @@
+From 5f70ac848151b976d039af3e7e0746652ec97e7e Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Tue, 28 Jan 2020 15:51:57 -0800
+Subject: [PATCH 08/11] 17 Enable backgrounding a single <mail> function
+
+Backgrounding exits to the index menu.  Re-invoking <mail> will resume
+the backgrounded session, if one exists, otherwise start a new
+session.
+
+This is just to get basic support going.  Multiple background edits, a
+landing page, a background compose menu list will be added next.
+
+Upstream-commit: https://gitlab.com/muttmua/mutt/commit/4af5c934cdcff0366580f96e7bc7ac1f41721a97
+Co-authored-by: Richard Russon <rich@flatcap.org>
+---
+ Makefile.autosetup |   2 +-
+ compose/background.c       | 104 +++++++++++++++
+ compose/background.h       |  28 ++++
+ compose/compose.c          |  51 +++++++-
+ mutt_globals.h          |   1 +
+ index.c            |  21 ++-
+ main.c             |   1 +
+ mutt_config.c      |   5 +
+ mutt_header.c      | 314 ++++++++++++++++++++++++---------------------
+ mutt_header.h      |   2 +-
+ send/send.c             | 230 ++++++++++++++++++++++-----------
+ send/lib.h             |  24 +++-
+ 13 files changed, 559 insertions(+), 226 deletions(-)
+ create mode 100644 compose/background.c
+ create mode 100644 compose/background.h
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index bfa3e4cab..e17d414d9 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -63,7 +63,7 @@ default:	all
+ ###############################################################################
+ # neomutt
+ NEOMUTT=	neomutt$(EXEEXT)
+-NEOMUTTOBJS=	browser.o commands.o command_parse.o \
++NEOMUTTOBJS=	background.o browser.o commands.o command_parse.o \
+ 		complete.o compose.o conststrings.o context.o copy.o edit.o \
+ 		editmsg.o enriched.o enter.o flags.o functions.o git_ver.o \
+ 		handler.o hdrline.o help.o hook.o icommands.o index.o init.o \
+diff --git a/compose/background.c b/compose/background.c
+new file mode 100644
+index 000000000..740b40016
+--- /dev/null
++++ b/compose/background.c
+@@ -0,0 +1,104 @@
++/*
++ * Copyright(C) 1996-2000,2013 Michael R. Elkins <me@mutt.org>
++ * Copyright(C) 2020 Kevin J. McCarthy <kevin@8t8.us>
++ *
++ *     This program is free software; you can redistribute it and/or modify
++ *     it under the terms of the GNU General Public License as published by
++ *     the Free Software Foundation; either version 2 of the License, or
++ *    (at your option) any later version.
++ *
++ *     This program is distributed in the hope that it will be useful,
++ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ *     GNU General Public License for more details.
++ *
++ *     You should have received a copy of the GNU General Public License
++ *     along with this program; if not, write to the Free Software
++ *     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
++ */
++
++#include "config.h"
++#include <signal.h>
++#include <stdlib.h>
++#include <string.h>
++#include <sys/wait.h>
++#include <unistd.h>
++#include "mutt.h"
++#include "compose/background.h"
++#include "send/lib.h"
++
++struct SendContext *BackgroundProcess = NULL;
++
++static pid_t mutt_background_run(const char *cmd)
++{
++  struct sigaction act;
++  pid_t thepid;
++  int fd;
++
++  if (!cmd || !*cmd)
++    return (0);
++
++  /* must ignore SIGINT and SIGQUIT */
++  mutt_sig_block_system();
++
++  if ((thepid = fork()) == 0)
++  {
++    /* give up controlling terminal */
++    setsid();
++
++    /* this ensures the child can't use stdin to take control of the
++     * terminal */
++#if defined(OPEN_MAX)
++    for (fd = 0; fd < OPEN_MAX; fd++)
++      close(fd);
++#elif defined(_POSIX_OPEN_MAX)
++    for (fd = 0; fd < _POSIX_OPEN_MAX; fd++)
++      close(fd);
++#else
++    close(0);
++    close(1);
++    close(2);
++#endif
++
++    /* reset signals for the child; not really needed, but... */
++    mutt_sig_unblock_system(0);
++    act.sa_handler = SIG_DFL;
++    act.sa_flags = 0;
++    sigemptyset(&act.sa_mask);
++    sigaction(SIGTERM, &act, NULL);
++    sigaction(SIGTSTP, &act, NULL);
++    sigaction(SIGCONT, &act, NULL);
++
++    execle(EXEC_SHELL, "sh", "-c", cmd, NULL, mutt_envlist_getlist());
++    _exit(127); /* execl error */
++  }
++
++  /* reset SIGINT, SIGQUIT and SIGCHLD */
++  mutt_sig_unblock_system(1);
++
++  return (thepid);
++}
++
++int mutt_background_edit_file(struct SendContext *sctx, const char *editor, const char *filename)
++{
++  int rc = -1;
++
++  struct Buffer *cmd = mutt_buffer_pool_get();
++
++  mutt_buffer_file_expand_fmt_quote(cmd, editor, filename);
++  pid_t pid = mutt_background_run(mutt_b2s(cmd));
++  if (pid <= 0)
++  {
++    mutt_error(_("Error running \"%s\"!"), mutt_b2s(cmd));
++    goto cleanup;
++  }
++
++  sctx->background_pid = pid;
++  BackgroundProcess = sctx;
++
++  rc = 0;
++
++cleanup:
++  mutt_buffer_pool_release(&cmd);
++  return rc;
++}
+diff --git a/compose/background.h b/compose/background.h
+new file mode 100644
+index 000000000..2bd9820d4
+--- /dev/null
++++ b/compose/background.h
+@@ -0,0 +1,28 @@
++/*
++ * Copyright(C) 2020 Kevin J. McCarthy <kevin@8t8.us>
++ *
++ *     This program is free software; you can redistribute it and/or modify
++ *     it under the terms of the GNU General Public License as published by
++ *     the Free Software Foundation; either version 2 of the License, or
++ *    (at your option) any later version.
++ *
++ *     This program is distributed in the hope that it will be useful,
++ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ *     GNU General Public License for more details.
++ *
++ *     You should have received a copy of the GNU General Public License
++ *     along with this program; if not, write to the Free Software
++ *     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
++ */
++
++#ifndef _BACKGROUND_H
++#define _BACKGROUND_H 1
++
++struct SendContext;
++
++extern struct SendContext *BackgroundProcess;
++
++int mutt_background_edit_file(struct SendContext *sctx, const char *editor, const char *filename);
++
++#endif
+diff --git a/compose/compose.c b/compose/compose.c
+index 99f1cc4a1..580119dde 100644
+--- a/compose/compose.c
++++ b/compose/compose.c
+@@ -47,6 +47,7 @@
+ #include "gui/lib.h"
+ #include "mutt.h"
+ #include "compose/lib.h"
++#include "compose/background.h"
+ #include "browser.h"
+ #include "commands.h"
+ #include "context.h"
+@@ -1318,6 +1319,7 @@ static int mutt_dlg_compose_observer(struct NotifyCallback *nc)
+  * @param fcc    Buffer to save FCC
+  * @param e_cur  Current message
+  * @param flags  Flags, e.g. #MUTT_COMPOSE_NOFREEHEADER
++ * @retval  2 Edit was backgrounded
+  * @retval  1 Message should be postponed
+  * @retval  0 Normal exit
+  * @retval -1 Abort message
+@@ -1429,6 +1431,18 @@ int mutt_compose_menu(struct SendContext *sctx)
+   /* Since this is rather long lived, we don't use the pool */
+   struct Buffer fname = mutt_buffer_make(PATH_MAX);
+ 
++  /* Another alternative would be to create a resume op and:
++   *   mutt_unget_event(0, OP_COMPOSE_EDIT_MESSAGE_RESUME);
++   */
++  if (sctx->state)
++  {
++    if (sctx->state == SEND_STATE_COMPOSE_EDIT)
++      goto edit_message_resume;
++    if (sctx->state == SEND_STATE_COMPOSE_EDIT_HEADERS)
++      goto edit_headers_resume;
++    sctx->state = 0;
++  }
++
+   bool redraw_env = false;
+   while (loop)
+   {
+@@ -1572,7 +1586,21 @@ int mutt_compose_menu(struct SendContext *sctx)
+         if (C_Editor && (mutt_str_strcmp("builtin", C_Editor) != 0) && !C_EditHeaders)
+         {
+           mutt_rfc3676_space_unstuff(e);
+-          mutt_edit_file(C_Editor, e->content->filename);
++
++          if ((sctx->flags & SEND_BACKGROUND_EDIT) && C_BackgroundEdit)
++          {
++            if (mutt_background_edit_file(sctx, C_Editor, e->content->filename) == 0)
++            {
++              sctx->state = SEND_STATE_COMPOSE_EDIT;
++              loop = false;
++              rc = 2;
++              break;
++            }
++          }
++          else
++            mutt_edit_file(C_Editor, e->content->filename);
++        edit_message_resume:
++          sctx->state = 0;
+           mutt_rfc3676_space_stuff(e);
+           mutt_update_encoding(e->content);
+           menu->redraw = REDRAW_FULL;
+@@ -1589,7 +1617,26 @@ int mutt_compose_menu(struct SendContext *sctx)
+           const char *tag = NULL;
+           char *err = NULL;
+           mutt_env_to_local(e->env);
+-          mutt_edit_headers(NONULL(C_Editor), sctx);
++
++          if ((sctx->flags & SEND_BACKGROUND_EDIT) && C_BackgroundEdit)
++          {
++            if (mutt_edit_headers(NONULL(C_Editor), sctx, MUTT_EDIT_HEADERS_BACKGROUND) == 2)
++            {
++              sctx->state = SEND_STATE_COMPOSE_EDIT_HEADERS;
++              loop = 0;
++              rc = 2;
++              break;
++            }
++          }
++          else
++            mutt_edit_headers(NONULL(C_Editor), sctx, 0);
++
++        edit_headers_resume:
++          if (sctx->state == SEND_STATE_COMPOSE_EDIT_HEADERS)
++          {
++            mutt_edit_headers(NONULL(C_Editor), sctx, MUTT_EDIT_HEADERS_RESUME);
++            sctx->state = 0;
++          }
+           if (mutt_env_to_intl(e->env, &tag, &err))
+           {
+             mutt_error(_("Bad IDN in '%s': '%s'"), tag, err);
+diff --git a/mutt_globals.h b/mutt_globals.h
+index fe030ffbe..da0560533 100644
+--- a/mutt_globals.h
++++ b/mutt_globals.h
+@@ -198,6 +198,7 @@ WHERE bool C_AutocryptReply;                 ///< Config: Replying to an autocry
+ WHERE bool C_Autoedit;                       ///< Config: Skip the initial compose menu and edit the email
+ WHERE bool C_AutoTag;                        ///< Config: Automatically apply actions to all tagged messages
+ WHERE bool C_Beep;                           ///< Config: Make a noise when an error occurs
++WHERE bool C_BackgroundEdit;                 ///< Config: Enable background editing
+ WHERE bool C_BeepNew;                        ///< Config: Make a noise when new mail arrives
+ WHERE bool C_BrailleFriendly;                ///< Config: Move the cursor to the beginning of the line
+ WHERE bool C_CheckMboxSize;                  ///< Config: (mbox,mmdf) Use mailbox size as an indicator of new mail
+diff --git a/index.c b/index.c
+index 32a9303f6..023ac0b39 100644
+--- a/index.c
++++ b/index.c
+@@ -34,6 +34,8 @@
+ #include <stdint.h>
+ #include <stdio.h>
+ #include <string.h>
++#include <sys/types.h>
++#include <sys/wait.h>
+ #include "mutt/lib.h"
+ #include "config/lib.h"
+ #include "email/lib.h"
+@@ -44,6 +46,7 @@
+ #include "mutt.h"
+ #include "debug/lib.h"
+ #include "index.h"
++#include "compose/background.h"
+ #include "browser.h"
+ #include "commands.h"
+ #include "context.h"
+@@ -3538,7 +3541,23 @@ int mutt_index_menu(struct MuttWindow *dlg)
+       case OP_MAIL:
+         if (!prereq(Context, menu, CHECK_ATTACH))
+           break;
+-        mutt_send_message(SEND_NO_FLAGS, NULL, NULL, Context, NULL);
++        if (BackgroundProcess)
++        {
++          struct SendContext *sctx = BackgroundProcess;
++          BackgroundProcess = NULL;
++          /* this is a quick hack for now */
++          mutt_message(_("Waiting for editor to exit"));
++          waitpid(sctx->background_pid, NULL, 0);
++          mutt_clear_error();
++
++          if (mutt_send_message_resume(sctx) == 2)
++            mutt_message(_("Editing backgrounded.  Hit m to restart"));
++        }
++        else
++        {
++          if (mutt_send_message(SEND_NO_FLAGS, NULL, NULL, Context, NULL) == 2)
++            mutt_message(_("Editing backgrounded.  Hit m to restart"));
++        }
+         menu->redraw = REDRAW_FULL;
+         break;
+ 
+diff --git a/main.c b/main.c
+index 398adc384..ccd60930b 100644
+--- a/main.c
++++ b/main.c
+@@ -54,6 +54,7 @@
+ #include "conn/lib.h"
+ #include "gui/lib.h"
+ #include "debug/lib.h"
++#include "compose/background.h"
+ #include "browser.h"
+ #include "commands.h"
+ #include "context.h"
+diff --git a/mutt_config.c b/mutt_config.c
+index 692a0a8d2..49bf0c64c 100644
+--- a/mutt_config.c
++++ b/mutt_config.c
+@@ -451,6 +451,11 @@ struct ConfigDef MuttVars[] = {
+   ** .pp
+   ** Also see $$fast_reply.
+   */
++  { "background_edit", DT_BOOL, &C_BackgroundEdit, false },
++  /*
++  ** .pp
++  ** ADD DOCUMENTATION.
++  */
+   { "beep", DT_BOOL, &C_Beep, true },
+   /*
+   ** .pp
+diff --git a/mutt_header.c b/mutt_header.c
+index d447e81da..2be322847 100644
+--- a/mutt_header.c
++++ b/mutt_header.c
+@@ -40,6 +40,7 @@
+ #include "gui/lib.h"
+ #include "mutt.h"
+ #include "mutt_header.h"
++#include "compose/background.h"
+ #include "index.h"
+ #include "muttlib.h"
+ #include "options.h"
+@@ -165,195 +166,220 @@ int mutt_label_message(struct Mailbox *m, struct EmailList *el)
+  * @param body   File containing message body
+  * @param e      Email
+  * @param fcc    Buffer for the fcc field
++ * Returns 0 on normal exit
++ *        -1 on error
++ *         2 if edit headers is backgrounded.
+  */
+-void mutt_edit_headers(const char *editor, struct SendContext *sctx)
++int mutt_edit_headers(const char *editor, struct SendContext *sctx, int flags)
+ {
+-  char buf[1024];
+-  const char *p = NULL;
+-  int i;
+-  struct Envelope *n = NULL;
+-  time_t mtime;
++  FILE *fp_in = NULL, *fp_out = NULL;
+   struct stat st;
++  int rc = -1;
+ 
+-  struct Email *e = sctx->e_templ;
+-  const char *filename = e->content->filename;
++  const char *filename = sctx->e_templ->content->filename;
+ 
+-  struct Buffer *path = mutt_buffer_pool_get();
+-  mutt_buffer_mktemp(path);
+-  FILE *fp_out = mutt_file_fopen(mutt_b2s(path), "w");
+-  if (!fp_out)
++  if (flags != MUTT_EDIT_HEADERS_RESUME)
+   {
+-    mutt_perror(mutt_b2s(path));
+-    goto cleanup;
+-  }
++    mutt_buffer_alloc(&sctx->tempfile, 1024);
++    mutt_buffer_mktemp(&sctx->tempfile);
++    fp_out = mutt_file_fopen(mutt_b2s(&sctx->tempfile), "w");
++    if (!fp_out)
++    {
++      mutt_perror(mutt_b2s(&sctx->tempfile));
++      goto cleanup;
++    }
+ 
+-  mutt_env_to_local(e->env);
+-  mutt_rfc822_write_header(fp_out, e->env, NULL, MUTT_WRITE_HEADER_EDITHDRS, false, false);
+-  fputc('\n', fp_out); /* tie off the header. */
++    mutt_env_to_local(sctx->e_templ->env);
++    mutt_rfc822_write_header(fp_out, sctx->e_templ->env, NULL, MUTT_WRITE_HEADER_EDITHDRS, false, false);
++    fputc('\n', fp_out); /* tie off the header. */
+ 
+-  /* now copy the body of the message. */
+-  FILE *fp_in = fopen(filename, "r");
+-  if (!fp_in)
+-  {
+-    mutt_perror(filename);
++    /* now copy the body of the message. */
++    fp_in = fopen(filename, "r");
++    if (!fp_in)
++    {
++      mutt_perror(filename);
++      mutt_file_fclose(&fp_out);
++      goto cleanup;
++    }
++
++    mutt_file_copy_stream(fp_in, fp_out);
++
++    mutt_file_fclose(&fp_in);
+     mutt_file_fclose(&fp_out);
+-    goto cleanup;
+-  }
+ 
+-  mutt_file_copy_stream(fp_in, fp_out);
++    if (stat(mutt_b2s(&sctx->tempfile), &st) == -1)
++    {
++      mutt_perror(mutt_b2s(&sctx->tempfile));
++      goto cleanup;
++    }
+ 
+-  mutt_file_fclose(&fp_in);
+-  mutt_file_fclose(&fp_out);
++    sctx->tempfile_mtime = mutt_file_decrease_mtime(mutt_b2s(&sctx->tempfile), &st);
+ 
+-  if (stat(mutt_b2s(path), &st) == -1)
+-  {
+-    mutt_perror(mutt_b2s(path));
+-    goto cleanup;
++    if (flags == MUTT_EDIT_HEADERS_BACKGROUND)
++    {
++      if (mutt_background_edit_file(sctx, editor, mutt_b2s(&sctx->tempfile)) == 0)
++      {
++        sctx->state = SEND_STATE_FIRST_EDIT_HEADERS;
++        return 2;
++      }
++      flags = 0; /* fall through on error */
++    }
++    else
++      mutt_edit_file(editor, mutt_b2s(&sctx->tempfile));
+   }
+ 
+-  mtime = mutt_file_decrease_mtime(mutt_b2s(path), &st);
+-
+-  mutt_edit_file(editor, mutt_b2s(path));
+-  stat(mutt_b2s(path), &st);
+-  if (mtime == st.st_mtime)
++  if (flags != MUTT_EDIT_HEADERS_BACKGROUND)
+   {
+-    mutt_debug(LL_DEBUG1, "temp file was not modified\n");
+-    /* the file has not changed! */
+-    mutt_file_unlink(mutt_b2s(path));
+-    goto cleanup;
+-  }
++    char buf[1024];
++    const char *p = NULL;
++    int i;
++    struct Envelope *n = NULL;
+ 
+-  mutt_file_unlink(filename);
+-  mutt_list_free(&e->env->userhdrs);
++    stat(mutt_b2s(&sctx->tempfile), &st);
++    if (sctx->tempfile_mtime == st.st_mtime)
++    {
++      mutt_debug(LL_DEBUG1, "temp file was not modified\n");
++      /* the file has not changed! */
++      mutt_file_unlink(mutt_b2s(&sctx->tempfile));
++      goto cleanup;
++    }
+ 
+-  /* Read the temp file back in */
+-  fp_in = fopen(mutt_b2s(path), "r");
+-  if (!fp_in)
+-  {
+-    mutt_perror(mutt_b2s(path));
+-    goto cleanup;
+-  }
++    mutt_file_unlink(filename);
++    mutt_list_free(&sctx->e_templ->env->userhdrs);
+ 
+-  fp_out = mutt_file_fopen(filename, "w");
+-  if (!fp_out)
+-  {
+-    /* intentionally leak a possible temporary file here */
++    /* Read the temp file back in */
++    fp_in = fopen(mutt_b2s(&sctx->tempfile), "r");
++    if (!fp_in)
++    {
++      mutt_perror(mutt_b2s(&sctx->tempfile));
++      goto cleanup;
++    }
++
++    fp_out = mutt_file_fopen(filename, "w");
++    if (!fp_out)
++    {
++      /* intentionally leak a possible temporary file here */
++      mutt_file_fclose(&fp_in);
++      mutt_perror(filename);
++      goto cleanup;
++    }
++
++    n = mutt_rfc822_read_header(fp_in, NULL, true, false);
++    while ((i = fread(buf, 1, sizeof(buf), fp_in)) > 0)
++      fwrite(buf, 1, i, fp_out);
++    mutt_file_fclose(&fp_out);
+     mutt_file_fclose(&fp_in);
+-    mutt_perror(filename);
+-    goto cleanup;
+-  }
++    mutt_file_unlink(mutt_b2s(&sctx->tempfile));
+ 
+-  n = mutt_rfc822_read_header(fp_in, NULL, true, false);
+-  while ((i = fread(buf, 1, sizeof(buf), fp_in)) > 0)
+-    fwrite(buf, 1, i, fp_out);
+-  mutt_file_fclose(&fp_out);
+-  mutt_file_fclose(&fp_in);
+-  mutt_file_unlink(mutt_b2s(path));
+-
+-  /* in case the user modifies/removes the In-Reply-To header with
+-   * $edit_headers set, we remove References: as they're likely invalid;
+-   * we can simply compare strings as we don't generate References for
+-   * multiple Message-Ids in IRT anyways */
++    /* in case the user modifies/removes the In-Reply-To header with
++     * $edit_headers set, we remove References: as they're likely invalid;
++     * we can simply compare strings as we don't generate References for
++     * multiple Message-Ids in IRT anyways */
+ #ifdef USE_NNTP
+-  if (!OptNewsSend)
++    if (!OptNewsSend)
+ #endif
+-  {
+-    if (!STAILQ_EMPTY(&e->env->in_reply_to) &&
+-        (STAILQ_EMPTY(&n->in_reply_to) ||
+-         (mutt_str_strcmp(STAILQ_FIRST(&n->in_reply_to)->data,
+-                          STAILQ_FIRST(&e->env->in_reply_to)->data) != 0)))
+     {
+-      mutt_list_free(&e->env->references);
++      if (!STAILQ_EMPTY(&sctx->e_templ->env->in_reply_to) &&
++          (STAILQ_EMPTY(&n->in_reply_to) ||
++          (mutt_str_strcmp(STAILQ_FIRST(&n->in_reply_to)->data,
++                            STAILQ_FIRST(&sctx->e_templ->env->in_reply_to)->data) != 0)))
++      {
++        mutt_list_free(&sctx->e_templ->env->references);
++      }
+     }
+-  }
+-
+-  /* restore old info. */
+-  mutt_list_free(&n->references);
+-  STAILQ_SWAP(&n->references, &e->env->references, ListNode);
+ 
+-  mutt_env_free(&e->env);
+-  e->env = n;
+-  n = NULL;
++    /* restore old info. */
++    mutt_list_free(&n->references);
++    STAILQ_SWAP(&n->references, &sctx->e_templ->env->references, ListNode);
+ 
+-  mutt_expand_aliases_env(e->env);
++    mutt_env_free(&sctx->e_templ->env);
++    sctx->e_templ->env = n;
++    n = NULL;
+ 
+-  /* search through the user defined headers added to see if
+-   * fcc: or attach: or pgp: was specified */
++    mutt_expand_aliases_env(sctx->e_templ->env);
+ 
+-  struct ListNode *np = NULL, *tmp = NULL;
+-  STAILQ_FOREACH_SAFE(np, &e->env->userhdrs, entries, tmp)
+-  {
+-    bool keep = true;
+-    size_t plen;
++    /* search through the user defined headers added to see if
++     * fcc: or attach: or pgp: was specified */
+ 
+-    if ((plen = mutt_str_startswith(np->data, "fcc:", CASE_IGNORE)))
++    struct ListNode *np = NULL, *tmp = NULL;
++    STAILQ_FOREACH_SAFE(np, &sctx->e_templ->env->userhdrs, entries, tmp)
+     {
+-      p = mutt_str_skip_email_wsp(np->data + plen);
+-      if (*p)
++      bool keep = true;
++      size_t plen;
++
++      if ((plen = mutt_str_startswith(np->data, "fcc:", CASE_IGNORE)))
+       {
+-        mutt_buffer_strcpy(&sctx->fcc, p);
+-        mutt_buffer_pretty_mailbox(&sctx->fcc);
++        p = mutt_str_skip_email_wsp(np->data + plen);
++        if (*p)
++        {
++          mutt_buffer_strcpy(&sctx->fcc, p);
++          mutt_buffer_pretty_mailbox(&sctx->fcc);
++        }
++        keep = false;
+       }
+-      keep = false;
+-    }
+-    else if ((plen = mutt_str_startswith(np->data, "attach:", CASE_IGNORE)))
+-    {
+-      struct Body *body2 = NULL;
+-      struct Body *parts = NULL;
+-
+-      p = mutt_str_skip_email_wsp(np->data + plen);
+-      if (*p)
++      else if ((plen = mutt_str_startswith(np->data, "attach:", CASE_IGNORE)))
+       {
+-        mutt_buffer_reset(path);
+-        for (; (p[0] != '\0') && (p[0] != ' ') && (p[0] != '\t'); p++)
++        struct Body *body2 = NULL;
++        struct Body *parts = NULL;
++
++        p = mutt_str_skip_email_wsp(np->data + plen);
++        if (*p)
+         {
+-          if (p[0] == '\\')
++          struct Buffer *path = mutt_buffer_pool_get();
++          for (; (p[0] != '\0') && (p[0] != ' ') && (p[0] != '\t'); p++)
+           {
+-            if (p[1] == '\0')
+-              break;
+-            p++;
++            if (p[0] == '\\')
++            {
++              if (p[1] == '\0')
++                break;
++              p++;
++            }
++            mutt_buffer_addch(path, *p);
+           }
+-          mutt_buffer_addch(path, *p);
+-        }
+-        p = mutt_str_skip_email_wsp(p);
++          p = mutt_str_skip_email_wsp(p);
+ 
+-        mutt_buffer_expand_path(path);
+-        body2 = mutt_make_file_attach(mutt_b2s(path));
+-        if (body2)
+-        {
+-          body2->description = mutt_str_strdup(p);
+-          for (parts = e->content; parts->next; parts = parts->next)
+-            ; // do nothing
++          mutt_buffer_expand_path(path);
++          body2 = mutt_make_file_attach(mutt_b2s(path));
++          if (body2)
++          {
++            body2->description = mutt_str_strdup(p);
++            for (parts = sctx->e_templ->content; parts->next; parts = parts->next)
++              ; // do nothing
+ 
+-          parts->next = body2;
+-        }
+-        else
+-        {
+-          mutt_buffer_pretty_mailbox(path);
+-          mutt_error(_("%s: unable to attach file"), mutt_b2s(path));
++            parts->next = body2;
++          }
++          else
++          {
++            mutt_buffer_pretty_mailbox(path);
++            mutt_error(_("%s: unable to attach file"), mutt_b2s(path));
++          }
++          mutt_buffer_pool_release(&path);
+         }
++        keep = false;
++      }
++      else if (((WithCrypto & APPLICATION_PGP) != 0) &&
++              (plen = mutt_str_startswith(np->data, "pgp:", CASE_IGNORE)))
++      {
++        sctx->e_templ->security = mutt_parse_crypt_hdr(np->data + plen, false, APPLICATION_PGP, sctx);
++        if (sctx->e_templ->security)
++          sctx->e_templ->security |= APPLICATION_PGP;
++        keep = false;
+       }
+-      keep = false;
+-    }
+-    else if (((WithCrypto & APPLICATION_PGP) != 0) &&
+-             (plen = mutt_str_startswith(np->data, "pgp:", CASE_IGNORE)))
+-    {
+-      e->security = mutt_parse_crypt_hdr(np->data + plen, false, APPLICATION_PGP, sctx);
+-      if (e->security)
+-        e->security |= APPLICATION_PGP;
+-      keep = false;
+-    }
+ 
+-    if (!keep)
+-    {
+-      STAILQ_REMOVE(&e->env->userhdrs, np, ListNode, entries);
+-      FREE(&np->data);
+-      FREE(&np);
++      if (!keep)
++      {
++        STAILQ_REMOVE(&sctx->e_templ->env->userhdrs, np, ListNode, entries);
++        FREE(&np->data);
++        FREE(&np);
++      }
+     }
+   }
+ 
++  rc = 0;
++
+ cleanup:
+-  mutt_buffer_pool_release(&path);
++  mutt_buffer_dealloc(&sctx->tempfile);
++  return rc;
+ }
+ 
+ /**
+diff --git a/mutt_header.h b/mutt_header.h
+index 7d7800fcc..43e3a10f4 100644
+--- a/mutt_header.h
++++ b/mutt_header.h
+@@ -29,7 +29,7 @@ struct EmailList;
+ struct Mailbox;
+ struct SendContext;
+ 
+-void mutt_edit_headers(const char *editor, struct SendContext *sctx);
++int mutt_edit_headers(const char *editor, struct SendContext *sctx, int flags);
+ void mutt_label_hash_add(struct Mailbox *m, struct Email *e);
+ void mutt_label_hash_remove(struct Mailbox *m, struct Email *e);
+ int mutt_label_message(struct Mailbox *m, struct EmailList *el);
+diff --git a/send/send.c b/send/send.c
+index 786af8c09..f1e71f024 100644
+--- a/send/send.c
++++ b/send/send.c
+@@ -45,6 +45,7 @@
+ #include "gui/lib.h"
+ #include "mutt.h"
+ #include "send/lib.h"
++#include "compose/background.h"
+ #include "compose/lib.h"
+ #include "context.h"
+ #include "copy.h"
+@@ -142,6 +143,7 @@ static struct SendContext *send_ctx_new(void)
+   struct SendContext *sctx = mutt_mem_calloc(1, sizeof(struct SendContext));
+ 
+   sctx->fcc = mutt_buffer_make(1024);
++  sctx->tempfile = mutt_buffer_make(1024);
+ 
+   return sctx;
+ }
+@@ -159,6 +161,9 @@ static void send_ctx_free(struct SendContext **ptr)
+   if (!(sctx->flags & SEND_NO_FREE_HEADER))
+     email_free(&sctx->e_templ);
+   mutt_buffer_dealloc(&sctx->fcc);
++  mutt_buffer_dealloc(&sctx->tempfile);
++
++  FREE(&sctx->cur_message_id);
+   FREE(&sctx->ctx_realpath);
+ 
+   FREE(&sctx->pgp_sign_as);
+@@ -1861,6 +1866,11 @@ static int postpone_message(struct SendContext *sctx)
+ /**
+  * send_message_setup - XXX
+  */
++/* Pre-initial edit message setup.
++ *
++ * Returns 0 if this part of the process finished normally
++ *        -1 if an error occured or the process was aborted
++ */
+ static int send_message_setup(struct SendContext *sctx, const char *tempfile,
+                               struct Context *ctx)
+ {
+@@ -2171,6 +2181,12 @@ cleanup:
+ /**
+  * send_message_resume_first_edit - XXX
+  */
++/* Initial pre-compose menu edit, and actions before the compose menu.
++ *
++ * Returns 0 if this part of the process finished normally
++ *        -1 if an error occured or the process was aborted
++ *         2 if the initial edit was backgrounded
++ */
+ static int send_message_resume_first_edit(struct SendContext *sctx)
+ {
+   int rc = -1;
+@@ -2183,57 +2199,103 @@ static int send_message_resume_first_edit(struct SendContext *sctx)
+   else if (!(sctx->flags & SEND_BATCH))
+   {
+     struct stat st;
+-    time_t mtime = mutt_file_decrease_mtime(sctx->e_templ->content->filename, NULL);
+-
+-    mutt_update_encoding(sctx->e_templ->content);
+-
+-    /* Select whether or not the user's editor should be called now.  We
+-     * don't want to do this when:
+-     * 1) we are sending a key/cert
+-     * 2) we are forwarding a message and the user doesn't want to edit it.
+-     *    This is controlled by the quadoption $forward_edit.  However, if
+-     *    both $edit_headers and $autoedit are set, we want to ignore the
+-     *    setting of $forward_edit because the user probably needs to add the
+-     *    recipients.  */
+-    if (!(sctx->flags & SEND_KEY) &&
+-        (((sctx->flags & SEND_FORWARD) == 0) || (C_EditHeaders && C_Autoedit) ||
+-         (query_quadoption(C_ForwardEdit, _("Edit forwarded message?")) == MUTT_YES)))
+-    {
+-      /* If the this isn't a text message, look for a mailcap edit command */
+-      if (mutt_needs_mailcap(sctx->e_templ->content))
++    /* Resume background editing */
++    if (sctx->state)
++    {
++      if (sctx->state == SEND_STATE_FIRST_EDIT)
+       {
+-        if (!mutt_edit_attachment(sctx->e_templ->content))
+-          goto cleanup;
++        if (stat(sctx->e_templ->content->filename, &st) == 0)
++        {
++          if (sctx->mtime != st.st_mtime)
++            fix_end_of_file(sctx->e_templ->content->filename);
++        }
++        else
++          mutt_perror(sctx->e_templ->content->filename);
+       }
+-      else if (!C_Editor || (mutt_str_strcmp("builtin", C_Editor) == 0))
+-        mutt_builtin_editor(sctx);
+-      else if (C_EditHeaders)
++      else if (sctx->state == SEND_STATE_FIRST_EDIT_HEADERS)
+       {
+-        mutt_env_to_local(sctx->e_templ->env);
+-        mutt_edit_headers(C_Editor, sctx);
++        mutt_edit_headers(C_Editor, sctx, MUTT_EDIT_HEADERS_RESUME);
+         mutt_env_to_intl(sctx->e_templ->env, NULL, NULL);
+       }
+-      else
++      sctx->state = 0;
++    }
++    else
++    {
++      sctx->mtime = mutt_file_decrease_mtime(sctx->e_templ->content->filename, NULL);
++      mutt_update_encoding(sctx->e_templ->content);
++
++      /*
++       * Select whether or not the user's editor should be called now.  We
++       * don't want to do this when:
++       * 1) we are sending a key/cert
++       * 2) we are forwarding a message and the user doesn't want to edit it.
++       *    This is controlled by the quadoption $forward_edit.  However, if
++       *    both $edit_headers and $autoedit are set, we want to ignore the
++       *    setting of $forward_edit because the user probably needs to add the
++       *    recipients.
++       */
++      if (!(sctx->flags & SEND_KEY) &&
++          ((sctx->flags & SEND_FORWARD) == 0 || (C_EditHeaders && C_Autoedit) ||
++           query_quadoption(C_ForwardEdit, _("Edit forwarded message?")) == MUTT_YES))
+       {
+-        mutt_edit_file(C_Editor, sctx->e_templ->content->filename);
+-        if (stat(sctx->e_templ->content->filename, &st) == 0)
++        int background_edit = (sctx->flags & SEND_BACKGROUND_EDIT) && C_BackgroundEdit;
++
++        /* If the this isn't a text message, look for a mailcap edit command */
++        if (mutt_needs_mailcap(sctx->e_templ->content))
+         {
+-          if (mtime != st.st_mtime)
+-            fix_end_of_file(sctx->e_templ->content->filename);
++          if (!mutt_edit_attachment(sctx->e_templ->content))
++            goto cleanup;
++        }
++        else if (!C_Editor || mutt_str_strcmp("builtin", C_Editor) == 0)
++          mutt_builtin_editor(sctx);
++        else if (C_EditHeaders)
++        {
++          mutt_env_to_local(sctx->e_templ->env);
++          if (background_edit)
++          {
++            if (mutt_edit_headers(C_Editor, sctx, MUTT_EDIT_HEADERS_BACKGROUND) == 2)
++            {
++              sctx->state = SEND_STATE_FIRST_EDIT_HEADERS;
++              return 2;
++            }
++          }
++          else
++            mutt_edit_headers(C_Editor, sctx, 0);
++
++          mutt_env_to_intl(sctx->e_templ->env, NULL, NULL);
+         }
+         else
+-          mutt_perror(sctx->e_templ->content->filename);
+-      }
++        {
++          if (background_edit)
++          {
++            if (mutt_background_edit_file(sctx, C_Editor, sctx->e_templ->content->filename) == 0)
++            {
++              sctx->state = SEND_STATE_FIRST_EDIT;
++              return 2;
++            }
++          }
++          else
++            mutt_edit_file(C_Editor, sctx->e_templ->content->filename);
+ 
+-      mutt_message_hook(NULL, sctx->e_templ, MUTT_SEND2_HOOK);
++          if (stat(sctx->e_templ->content->filename, &st) == 0)
++          {
++            if (sctx->mtime != st.st_mtime)
++              fix_end_of_file(sctx->e_templ->content->filename);
++          }
++          else
++            mutt_perror(sctx->e_templ->content->filename);
++        }
++      }
+     }
+ 
++    mutt_message_hook(NULL, sctx->e_templ, MUTT_SEND2_HOOK);
++
+     if (!(sctx->flags & (SEND_POSTPONED | SEND_FORWARD | SEND_KEY | SEND_RESEND | SEND_DRAFT_FILE)))
+     {
+       if (stat(sctx->e_templ->content->filename, &st) == 0)
+       {
+         /* if the file was not modified, bail out now */
+-        if ((mtime == st.st_mtime) && !sctx->e_templ->content->next &&
++        if ((sctx->mtime == st.st_mtime) && !sctx->e_templ->content->next &&
+             (query_quadoption(C_AbortUnmodified,
+                               _("Abort unmodified message?")) == MUTT_YES))
+         {
+@@ -2393,6 +2455,13 @@ cleanup:
+ /**
+  * send_message_resume_compose_menu - XXX
+  */
++/* Compose menu and post-compose menu sending
++ *
++ * Returns 0 if the message was successfully sent
++ *        -1 if the message was aborted or an error occurred
++ *         1 if the message was postponed
++ *         2 if the message editing was backgrounded
++ */
+ static int send_message_resume_compose_menu(struct SendContext *sctx)
+ {
+   int rc = -1;
+@@ -2429,6 +2498,11 @@ static int send_message_resume_compose_menu(struct SendContext *sctx)
+       rc = 1;
+       goto cleanup;
+     }
++    else if (i == 2)
++    {
++      rc = 2;
++      goto cleanup;
++    }
+   }
+ 
+ #ifdef USE_NNTP
+@@ -2618,10 +2692,8 @@ static int send_message_resume_compose_menu(struct SendContext *sctx)
+ 
+   /* TODO: this needs to be fixed up to use sctx values,
+    * compare the context realpath.  open if the mailbox has
+-   * changed.
+-   *
+-   * Perhaps we can store cur in sctx but NULL it out if the
+-   * editing is backgrounded. */
++   * changed?
++   */
+   if (sctx->flags & SEND_REPLY)
+   {
+     if (!(sctx->flags & SEND_POSTPONED) && sctx->mailbox)
+@@ -2647,20 +2719,28 @@ cleanup:
+  * backgroundable and resumable part of the send process.
+  *
+  * need to define a "backgrounded" return value.
++ *
++ * Returns 0 if the message was successfully sent
++ *        -1 if the message was aborted or an error occurred
++ *         1 if the message was postponed
++ *         2 if the message editing was backgrounded
+  */
+ int mutt_send_message_resume(struct SendContext *sctx)
+ {
+-  int rv = send_message_resume_first_edit(sctx);
+-  if (rv < 0)
+-    goto cleanup;
++  int rv;
+ 
+-  rv = send_message_resume_compose_menu(sctx);
+-  if (rv < 0)
+-    goto cleanup;
++  if (sctx->state <= SEND_STATE_FIRST_EDIT_HEADERS)
++  {
++    rv = send_message_resume_first_edit(sctx);
++    if (rv != 0)
++      goto cleanup;
++  }
+ 
+-  rv = 0;
++  rv = send_message_resume_compose_menu(sctx);
+ 
+ cleanup:
++  if (rv != 2)
++    send_ctx_free(&sctx);
+   return rv;
+ }
+ 
+@@ -2674,17 +2754,20 @@ cleanup:
+  * @retval  0 Message was successfully sent
+  * @retval -1 Message was aborted or an error occurred
+  * @retval  1 Message was postponed
++ * @retval  2 if the message editing was backgrounded
+  */
+ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfile,
+                       struct Context *ctx, struct EmailList *el)
+ {
+   int rv = -1;
+-  int resume_rc;
+ 
+   struct SendContext *sctx = send_ctx_new();
+   sctx->flags = flags;
+   sctx->e_templ = e_templ;
+   sctx->el = el;
++  /* TODO:
++   * grab cur fields here? see TODO below.
++   */
+   if (ctx)
+   {
+     sctx->ctx_realpath = mutt_str_strdup(mailbox_path(ctx->mailbox));
+@@ -2698,41 +2781,40 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+     sctx->e_cur = STAILQ_NEXT(en, entries) ? NULL : en->email;
+ 
+   /* NOTE:
+-   * if e_templ is passed in, this function is *supposed* to free it
+-   * unless flag SEND_NO_FREE_HEADER is set.
+-   * That is only done by main.  And for that case we want
+-   * to make sure NO_BACKGROUND is set.
++   * we still need to check other callers as we allow them, to make
++   * sure the components of the msg header don't disappear after
++   * returning!!!
+    */
+ 
++  if (send_message_setup(sctx, tempfile, ctx) < 0)
++  {
++    send_ctx_free(&sctx);
++    return -1;
++  }
++
+   /* TODO:
+    * cur can't be stored in sctx for a backgroundable.
+-   * see if we can store just the components of cur we need
+-   * and regrab the actual header when persisting replied flag.
++   * so if background flag is set, grab and store needed fields in sctx.
++   *
++   * Ideally we would do this here.  However, postponed message may
++   * be resumed in another mailbox, preventing the cur from being used
++   * outside the context of open/closing the context.
++   *
++   * Perhaps instead we need to do so above *and* in postpone/resume via a
++   * function.
+    */
+ 
+-  /* NOTE:
+-   * we still need to check other callers to make sure the components
+-   * of the e_templ header don't disappear after returning!!!
++  /* Note: mutt_send_message_resume() takes care of freeing
++   * the sctx if appropriate, and also adds to the background edit
++   * list.
+    */
++  rv = mutt_send_message_resume(sctx);
++  if (rv == 2)
++  {
++    /* TODO:
++     * NULL out cur if message is backgrounded.
++     */
++  }
+ 
+-  if (send_message_setup(sctx, tempfile, ctx) < 0)
+-    goto cleanup;
+-
+-  resume_rc = mutt_send_message_resume(sctx);
+-  if (resume_rc < 0)
+-    goto cleanup;
+-
+-  /* TODO: if rc is backgroundable, stuff in background list and pass along
+-   * backgrounded rc value.  Should this be
+-   * done inside mutt_send_message_resume so we don't have the logic
+-   * everywhere? */
+-
+-  /* TODO: until we code up the background list menu, we can support
+-   * a single backgrounded via a global, just to make testing easier */
+-
+-  rv = 0;
+-
+-cleanup:
+-  send_ctx_free(&sctx);
+   return rv;
+ }
+diff --git a/send/lib.h b/send/lib.h
+index ecf59d956..892c40bc7 100644
+--- a/send/lib.h
++++ b/send/lib.h
+@@ -84,6 +84,14 @@ extern char *        C_Signature;
+ extern bool          C_SigOnTop;
+ extern bool          C_UseFrom;
+ 
++enum
++{
++  SEND_STATE_FIRST_EDIT = 1,
++  SEND_STATE_FIRST_EDIT_HEADERS,
++  SEND_STATE_COMPOSE_EDIT,
++  SEND_STATE_COMPOSE_EDIT_HEADERS
++};
++
+ /**
+  * struct SendContext - XXX
+  */
+@@ -94,6 +102,10 @@ struct SendContext
+ 
+   struct Email *e_templ;
+   struct Mailbox *mailbox;
++  struct Buffer fcc;
++  struct Buffer tempfile;
++  time_t mtime;
++  time_t tempfile_mtime;
+ 
+   /* Note: e_cur can't be stored in the send_context when
+    * background editing is added.  This is here for now
+@@ -101,10 +113,13 @@ struct SendContext
+    */
+   struct Email *e_cur;
+   struct EmailList *el;
+-  struct Buffer fcc;
+ 
++  unsigned int cur_security;
++  char *cur_message_id;
+   char *ctx_realpath;
+ 
++  pid_t background_pid;
++
+   char *pgp_sign_as;
+   char *smime_default_key;
+   char *smime_crypt_alg;
+@@ -127,7 +142,12 @@ typedef uint16_t SendFlags;             ///< Flags for mutt_send_message(), e.g.
+ #define SEND_DRAFT_FILE       (1 << 11) ///< Used by the -H flag
+ #define SEND_TO_SENDER        (1 << 12) ///< Compose new email to sender
+ #define SEND_GROUP_CHAT_REPLY (1 << 13) ///< Reply to all recipients preserving To/Cc
+-#define SEND_NEWS             (1 << 14) ///< Reply to a news article
++#define SEND_BACKGROUND_EDIT  (1 << 14) ///< Allow background editing
++#define SEND_NEWS             (1 << 15) ///< Reply to a news article
++
++/* flags for mutt_edit_headers() */
++#define MUTT_EDIT_HEADERS_BACKGROUND  1
++#define MUTT_EDIT_HEADERS_RESUME      2
+ 
+ int             mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfile, struct Context *ctx, struct EmailList *el);
+ void            mutt_add_to_reference_headers(struct Envelope *env, struct Envelope *curenv);

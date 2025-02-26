@@ -1,0 +1,42 @@
+#!/bin/bash
+
+WATCH="jim.c"
+STAMP_THIS=$(mktemp)
+STAMP_CODE=$(mktemp)
+WAIT=1
+
+touch "$STAMP_THIS"
+touch -d "1 year ago" "$STAMP_CODE"
+
+while :; do
+	NEWER=0
+	for i in $WATCH; do
+		if [ $i -nt "$STAMP_CODE" ]; then
+			NEWER=1
+			break;
+		fi
+	done
+	if [ $NEWER = 1 ]; then
+		sleep 0.5
+		touch "$STAMP_CODE"
+		clear
+		gcc -I. -fsanitize=address -o jim jim.c libmutt.a -lpcre2-8 || continue
+		./jim \
+			'apple Ελληνικά' \
+			'banana ♥️ Українська' \
+			'cherry 한국어' \
+			'elderberry हिन्दी' \
+			'fig Русский' \
+			'hawthorn 日本語' \
+			'jackfruit' \
+			'lemon 🍏🍯🍝🍃🍒' \
+			'🌲🍡🍐🍩🍣🌽' \
+			'中文 kumquat' | side
+		echo "done"
+	fi
+
+	[ "$0" -nt "$STAMP_THIS" ] && exec "$0"
+
+	sleep $WAIT
+done
+

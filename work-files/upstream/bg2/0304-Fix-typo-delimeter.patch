@@ -1,0 +1,39 @@
+From 883ccfdfd1728c372b18c5b3622dbf148b2ba8a1 Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Sat, 21 Mar 2020 14:57:52 -0700
+Subject: [PATCH] Fix typo "delimeter".
+
+---
+ doc/manual.xml.head | 2 +-
+ pgp.c               | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/doc/manual.xml.head b/doc/manual.xml.head
+index e5f452e6..5e10bbf9 100644
+--- a/doc/manual.xml.head
++++ b/doc/manual.xml.head
+@@ -5271,7 +5271,7 @@ how the numbers are displayed.
+ 
+ <para>
+   These variables also affect size display in a few other places, such
+-  as progress indicators and attachment delimeters in the pager.
++  as progress indicators and attachment delimiters in the pager.
+ </para>
+ </sect2>
+ 
+diff --git a/pgp.c b/pgp.c
+index 92cf6101..a3095a9f 100644
+--- a/pgp.c
++++ b/pgp.c
+@@ -280,7 +280,7 @@ static int pgp_check_pgp_decryption_okay_regexp (FILE *fpin)
+  *   1 - no patterns were matched (if delegated to decryption_okay_regexp)
+  *   0 - DECRYPTION_OKAY was seen, with no PLAINTEXT outside.
+  *  -1 - No decryption status codes were encountered
+- *  -2 - PLAINTEXT was encountered outside of DECRYPTION delimeters.
++ *  -2 - PLAINTEXT was encountered outside of DECRYPTION delimiters.
+  *  -3 - DECRYPTION_FAILED was encountered
+  */
+ static int pgp_check_decryption_okay (FILE *fpin)
+-- 
+2.26.2
+

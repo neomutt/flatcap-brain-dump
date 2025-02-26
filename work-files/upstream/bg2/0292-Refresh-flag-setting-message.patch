@@ -1,0 +1,27 @@
+From c51e833adcacee742c7f7bcc91ee19b45723d519 Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Sun, 1 Mar 2020 14:22:26 -0800
+Subject: [PATCH] Refresh flag setting message.
+
+Despite MUTT_QUIET, there are still messages displayed by opening an
+IMAP mailbox, so refresh the message.
+---
+ send.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/send.c b/send.c
+index 7e1f7fd6..be477e7b 100644
+--- a/send.c
++++ b/send.c
+@@ -2533,6 +2533,8 @@ main_loop:
+           close_context = 1;
+           /* TODO: when IMAP_REOPEN_ALLOW setting is fixed this can be removed: */
+           mx_check_mailbox (ctx, NULL);
++          /* A few connection strings display despite MUTT_QUIET, so refresh. */
++          mutt_message _("Setting reply flags.");
+         }
+       }
+       if (ctx)
+-- 
+2.26.2
+

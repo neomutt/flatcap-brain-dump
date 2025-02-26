@@ -1,0 +1,126 @@
+From 9b920430c6c6b12c2d22aa8eea60f4397a2a0eaa Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Mon, 17 Feb 2020 16:18:03 +0000
+Subject: [PATCH 04/29] compare helper functions
+
+---
+ core/path.c | 40 ++++++++++++++++++++++++++++++++++++++++
+ core/path.h |  3 +++
+ email/url.c | 34 ++++++++++++++++++++++++++++++++++
+ email/url.h |  1 +
+ 4 files changed, 78 insertions(+)
+
+diff --git a/core/path.c b/core/path.c
+index c5449761a..adeb88579 100644
+--- a/core/path.c
++++ b/core/path.c
+@@ -62,3 +62,43 @@ struct Path *mutt_path_new(void)
+ {
+   return mutt_mem_calloc(1, sizeof(struct Path));
+ }
++
++/**
++ * path_partial_match_string - Compare two strings, allowing for missing values
++ * @param str1 First string
++ * @param str2 Second string
++ * @retval true Strings match
++ *
++ * @note If both strings are present, they must be identical.
++ *       If either one of the strings is missing, that is also a match.
++ */
++bool path_partial_match_string(const char *str1, const char *str2)
++{
++  if (str1 && (str1[0] == '\0'))
++    str1 = NULL;
++  if (str2 && (str2[0] == '\0'))
++    str2 = NULL;
++  if (!str1 && !str2) // both empty
++    return true;
++  if (!str1 ^ !str2) // one is empty, but not the other
++    return true;
++  return (mutt_str_strcmp(str1, str2) == 0);
++}
++
++/**
++ * path_partial_match_number - Compare two numbers, allowing for missing values
++ * @param num1 First number
++ * @param num2 Second number
++ * @retval true Numbers match
++ *
++ * @note If both numbers are non-zero, they must be identical.
++ *       If either one of the numbers is zero, that is also a match.
++ */
++bool path_partial_match_number(int num1, int num2)
++{
++  if ((num1 == 0) && (num2 == 0)) // both zero
++    return true;
++  if ((num1 == 0) ^ (num2 == 0)) // one is zero, but not the other
++    return true;
++  return (num1 == num2);
++}
+diff --git a/core/path.h b/core/path.h
+index 846074faa..b22404561 100644
+--- a/core/path.h
++++ b/core/path.h
+@@ -48,4 +48,7 @@ struct Path
+ void         mutt_path_free(struct Path **ptr);
+ struct Path *mutt_path_new(void);
+ 
++bool path_partial_match_string(const char *str1, const char *str2);
++bool path_partial_match_number(int num1, int num2);
++
+ #endif /* MUTT_CORE_PATH_H */
+diff --git a/email/url.c b/email/url.c
+index 5e39e9906..ababe79a5 100644
+--- a/email/url.c
++++ b/email/url.c
+@@ -430,3 +430,37 @@ int url_tostring(struct Url *url, char *dest, size_t len, int flags)
+ 
+   return retval;
+ }
++
++/**
++ * url_query_strings_match - Are two Url Query Lists identical?
++ * @param qs1 First Query List
++ * @param qs2 Second Query List
++ * @retval true If the Query Lists match
++ *
++ * To match, the Query Lists must:
++ * - Have the same number of entries
++ * - Be in the same order
++ * - All names match
++ * - All values match
++ */
++bool url_query_strings_match(const struct UrlQueryList *qs1, const struct UrlQueryList *qs2)
++{
++  struct UrlQuery *q1 = STAILQ_FIRST(qs1);
++  struct UrlQuery *q2 = STAILQ_FIRST(qs2);
++
++  while (q1 && q2)
++  {
++    if (mutt_str_strcmp(q1->name, q2->name) != 0)
++      return false;
++    if (mutt_str_strcmp(q1->value, q2->value) != 0)
++      return false;
++
++    q1 = STAILQ_NEXT(q1, entries);
++    q2 = STAILQ_NEXT(q2, entries);
++  }
++
++  if (q1 || q2)
++    return false;
++
++  return true;
++}
+diff --git a/email/url.h b/email/url.h
+index 15083f133..72c668c08 100644
+--- a/email/url.h
++++ b/email/url.h
+@@ -80,6 +80,7 @@ void           url_free        (struct Url **ptr);
+ struct Url    *url_parse       (const char *src);
+ int            url_pct_decode  (char *s);
+ void           url_pct_encode  (char *buf, size_t buflen, const char *src);
++bool           url_query_strings_match(const struct UrlQueryList *qs1, const struct UrlQueryList *qs2);
+ int            url_tobuffer    (struct Url *url, struct Buffer *dest, int flags);
+ int            url_tostring    (struct Url *url, char *buf, size_t buflen, int flags);
+ 

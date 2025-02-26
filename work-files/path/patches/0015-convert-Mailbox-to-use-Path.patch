@@ -1,0 +1,973 @@
+From 6b459ef83c4519ce25f7cd52282c2f99618f64e2 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Fri, 7 Feb 2020 14:38:17 +0000
+Subject: [PATCH 15/29] convert Mailbox to use Path
+
+---
+ browser.c                             | 10 +++++-----
+ command_parse.c                       | 12 ++++++------
+ commands.c                            |  2 +-
+ compmbox/compress.c                   | 24 +++++++++++------------
+ core/mailbox.c                        | 21 ++++++++++++--------
+ core/mailbox.h                        | 10 +++++-----
+ debug/graphviz.c                      | 28 +++++++++++++--------------
+ imap/imap.c                           | 14 +++++++-------
+ index.c                               | 17 +++++++---------
+ main.c                                |  2 +-
+ mbox/mbox.c                           |  2 +-
+ monitor.c                             |  6 +++---
+ mutt_mailbox.c                        |  9 ++++++---
+ mx.c                                  | 18 ++++++++---------
+ nntp/nntp.c                           |  2 +-
+ notmuch/notmuch.c                     |  6 +++---
+ pager.c                               |  2 +-
+ pop/pop.c                             |  6 +++---
+ postpone.c                            |  2 +-
+ sidebar/sidebar.c                             | 25 ++++++++++++------------
+ status.c                              | 14 +++++++-------
+ test/account/account_mailbox_add.c    |  2 +-
+ test/account/account_mailbox_remove.c |  2 +-
+ test/mailbox/mailbox_new.c            |  4 +++-
+ test/mailbox/mailbox_size_add.c       |  2 +-
+ test/mailbox/mailbox_size_sub.c       |  2 +-
+ 26 files changed, 126 insertions(+), 118 deletions(-)
+
+diff --git a/browser.c b/browser.c
+index 392086d84..a29e79203 100644
+--- a/browser.c
++++ b/browser.c
+@@ -809,7 +809,7 @@ static int examine_directory(struct Menu *menu, struct BrowserState *state,
+       }
+ 
+       if (np && Context && Context->mailbox &&
+-          mutt_str_equal(np->mailbox->realpath, Context->mailbox->realpath))
++          mutt_str_equal(np->mailbox->path->canon, Context->mailbox->path->canon))
+       {
+         np->mailbox->msg_count = Context->mailbox->msg_count;
+         np->mailbox->msg_unread = Context->mailbox->msg_unread;
+@@ -876,7 +876,7 @@ static int examine_mailboxes(struct Menu *menu, struct BrowserState *state)
+         continue;
+ 
+       if (Context && Context->mailbox &&
+-          mutt_str_equal(np->mailbox->realpath, Context->mailbox->realpath))
++          mutt_str_equal(np->mailbox->path->canon, Context->mailbox->path->canon) == 0)
+       {
+         np->mailbox->msg_count = Context->mailbox->msg_count;
+         np->mailbox->msg_unread = Context->mailbox->msg_unread;
+@@ -890,12 +890,12 @@ static int examine_mailboxes(struct Menu *menu, struct BrowserState *state)
+       {
+         case MUTT_IMAP:
+         case MUTT_POP:
+-          add_folder(menu, state, mutt_b2s(mailbox), np->mailbox->name, NULL,
++          add_folder(menu, state, mutt_b2s(mailbox), np->mailbox->path->desc, NULL,
+                      np->mailbox, NULL);
+           continue;
+         case MUTT_NOTMUCH:
+         case MUTT_NNTP:
+-          add_folder(menu, state, mailbox_path(np->mailbox), np->mailbox->name,
++          add_folder(menu, state, mailbox_path(np->mailbox), np->mailbox->path->desc,
+                      NULL, np->mailbox, NULL);
+           continue;
+         default: /* Continue */
+@@ -922,7 +922,7 @@ static int examine_mailboxes(struct Menu *menu, struct BrowserState *state)
+           s.st_mtime = st2.st_mtime;
+       }
+ 
+-      add_folder(menu, state, mutt_b2s(mailbox), np->mailbox->name, &s, np->mailbox, NULL);
++      add_folder(menu, state, mutt_b2s(mailbox), np->mailbox->path->desc, &s, np->mailbox, NULL);
+     }
+     neomutt_mailboxlist_clear(&ml);
+   }
+diff --git a/command_parse.c b/command_parse.c
+index 4b6855a7f..c27f4e2ee 100644
+--- a/command_parse.c
++++ b/command_parse.c
+@@ -887,14 +887,14 @@ enum CommandResult parse_mailboxes(struct Buffer *buf, struct Buffer *s,
+ {
+   while (MoreArgs(s))
+   {
+-    struct Mailbox *m = mailbox_new();
++    struct Mailbox *m = mailbox_new(NULL);
+ 
+     if (data & MUTT_NAMED)
+     {
+       mutt_extract_token(buf, s, MUTT_TOKEN_NO_FLAGS);
+       if (buf->data && (*buf->data != '\0'))
+       {
+-        m->name = mutt_str_dup(buf->data);
++        mutt_str_replace(&m->path->desc, buf->data);
+       }
+       else
+       {
+@@ -911,12 +911,12 @@ enum CommandResult parse_mailboxes(struct Buffer *buf, struct Buffer *s,
+       continue;
+     }
+ 
+-    mutt_buffer_strcpy(&m->pathbuf, buf->data);
++    mutt_str_replace(&m->path->orig, buf->data);
+     /* int rc = */ mx_path_canon2(m, C_Folder);
+ 
+     if (m->type <= MUTT_UNKNOWN)
+     {
+-      mutt_error("Unknown Mailbox: %s", m->realpath);
++      mutt_error("Unknown Mailbox: %s", m->path->canon);
+       mailbox_free(&m);
+       return MUTT_CMD_ERROR;
+     }
+@@ -932,7 +932,7 @@ enum CommandResult parse_mailboxes(struct Buffer *buf, struct Buffer *s,
+ 
+     if (!new_account)
+     {
+-      struct Mailbox *m_old = mx_mbox_find(a, m->realpath);
++      struct Mailbox *m_old = mx_mbox_find(a, m->path->canon);
+       if (m_old)
+       {
+         if (m_old->flags == MB_HIDDEN)
+@@ -1966,7 +1966,7 @@ enum CommandResult parse_unmailboxes(struct Buffer *buf, struct Buffer *s,
+       /* Compare against path or desc? Ensure 'buf' is valid */
+       if (!clear_all && tmp_valid &&
+           !mutt_istr_equal(mutt_b2s(buf), mailbox_path(np->mailbox)) &&
+-          !mutt_istr_equal(mutt_b2s(buf), np->mailbox->name))
++          !mutt_istr_equal(mutt_b2s(buf), np->mailbox->path->desc))
+       {
+         continue;
+       }
+diff --git a/commands.c b/commands.c
+index 97e6caf37..62c67ca32 100644
+--- a/commands.c
++++ b/commands.c
+@@ -1147,7 +1147,7 @@ int mutt_save_message(struct Mailbox *m, struct EmailList *el,
+   struct Mailbox *m_comp = NULL;
+   if (ctx_save->mailbox->compress_info)
+   {
+-    m_comp = mailbox_find(ctx_save->mailbox->realpath);
++    m_comp = mailbox_find(ctx_save->mailbox->path->canon);
+   }
+   /* We probably haven't been opened yet */
+   if (m_comp && (m_comp->msg_count == 0))
+diff --git a/compmbox/compress.c b/compmbox/compress.c
+index ca7d6a364..46ea757f5 100644
+--- a/compmbox/compress.c
++++ b/compmbox/compress.c
+@@ -74,12 +74,12 @@ static bool lock_realpath(struct Mailbox *m, bool excl)
+     return true;
+ 
+   if (excl)
+-    ci->fp_lock = fopen(m->realpath, "a");
++    ci->fp_lock = fopen(m->path->canon, "a");
+   else
+-    ci->fp_lock = fopen(m->realpath, "r");
++    ci->fp_lock = fopen(m->path->canon, "r");
+   if (!ci->fp_lock)
+   {
+-    mutt_perror(m->realpath);
++    mutt_perror(m->path->canon);
+     return false;
+   }
+ 
+@@ -134,12 +134,12 @@ static int setup_paths(struct Mailbox *m)
+     return -1;
+ 
+   /* Setup the right paths */
+-  mutt_str_replace(&m->realpath, mailbox_path(m));
++  mutt_str_replace(&m->path->canon, mailbox_path(m));
+ 
+   /* We will uncompress to /tmp */
+   struct Buffer *buf = mutt_buffer_pool_get();
+   mutt_buffer_mktemp(buf);
+-  mutt_buffer_copy(&m->pathbuf, buf);
++  mutt_str_replace(&m->path->orig, mutt_b2s(buf));
+   mutt_buffer_pool_release(&buf);
+ 
+   FILE *fp = mutt_file_fopen(mailbox_path(m), "w");
+@@ -163,7 +163,7 @@ static void store_size(const struct Mailbox *m)
+ 
+   struct CompressInfo *ci = m->compress_info;
+ 
+-  ci->size = mutt_file_get_size(m->realpath);
++  ci->size = mutt_file_get_size(m->path->canon);
+ }
+ 
+ /**
+@@ -246,7 +246,7 @@ static const char *compress_format_str(char *buf, size_t buflen, size_t col, int
+   {
+     case 'f':
+       /* Compressed file */
+-      mutt_buffer_quote_filename(quoted, m->realpath, false);
++      mutt_buffer_quote_filename(quoted, m->path->canon, false);
+       snprintf(buf, buflen, "%s", mutt_b2s(quoted));
+       break;
+     case 't':
+@@ -303,7 +303,7 @@ static int execute_command(struct Mailbox *m, const char *command, const char *p
+     return 0;
+ 
+   if (m->verbose)
+-    mutt_message(progress, m->realpath);
++    mutt_message(progress, m->path->canon);
+ 
+   int rc = 1;
+   char sys_cmd[STR_COMMAND];
+@@ -513,7 +513,7 @@ static int comp_mbox_open_append(struct Mailbox *m, OpenMailboxFlags flags)
+   }
+ 
+   /* Open the existing mailbox, unless we are appending */
+-  if (!ci->cmd_append && (mutt_file_get_size(m->realpath) > 0))
++  if (!ci->cmd_append && (mutt_file_get_size(m->path->canon) > 0))
+   {
+     int rc = execute_command(m, ci->cmd_open, _("Decompressing %s"));
+     if (rc == 0)
+@@ -581,7 +581,7 @@ static int comp_mbox_check(struct Mailbox *m, int *index_hint)
+   if (!ops)
+     return -1;
+ 
+-  int size = mutt_file_get_size(m->realpath);
++  int size = mutt_file_get_size(m->path->canon);
+   if (size == ci->size)
+     return 0;
+ 
+@@ -681,7 +681,7 @@ static int comp_mbox_close(struct Mailbox *m)
+     const char *msg = NULL;
+ 
+     /* The file exists and we can append */
+-    if ((access(m->realpath, F_OK) == 0) && ci->cmd_append)
++    if ((access(m->path->canon, F_OK) == 0) && ci->cmd_append)
+     {
+       append = ci->cmd_append;
+       msg = _("Compressed-appending to %s...");
+@@ -708,7 +708,7 @@ static int comp_mbox_close(struct Mailbox *m)
+     /* If the file was removed, remove the compressed folder too */
+     if ((access(mailbox_path(m), F_OK) != 0) && !C_SaveEmpty)
+     {
+-      remove(m->realpath);
++      remove(m->path->canon);
+     }
+     else
+     {
+diff --git a/core/mailbox.c b/core/mailbox.c
+index 6a68dbfc4..c38ab915b 100644
+--- a/core/mailbox.c
++++ b/core/mailbox.c
+@@ -34,21 +34,28 @@
+ #include "email/lib.h"
+ #include "mailbox.h"
+ #include "neomutt.h"
++#include "path.h"
+ 
+ /**
+  * mailbox_new - Create a new Mailbox
++ * @param path Path to use (OPTIONAL)
+  * @retval ptr New Mailbox
++ *
++ * @note If a path is supplied, the Mailbox will take ownership of it.
+  */
+-struct Mailbox *mailbox_new(void)
++struct Mailbox *mailbox_new(struct Path *path)
+ {
+   struct Mailbox *m = mutt_mem_calloc(1, sizeof(struct Mailbox));
+ 
+-  mutt_buffer_init(&m->pathbuf);
+-  m->notify = notify_new();
++  if (path)
++    m->path = path;
++  else
++    m->path = mutt_path_new();
+ 
+   m->email_max = 25;
+   m->emails = mutt_mem_calloc(m->email_max, sizeof(struct Email *));
+   m->v2r = mutt_mem_calloc(m->email_max, sizeof(int));
++  m->notify = notify_new();
+ 
+   return m;
+ }
+@@ -72,10 +79,8 @@ void mailbox_free(struct Mailbox **ptr)
+   for (size_t i = 0; i < m->email_max; i++)
+     email_free(&m->emails[i]);
+ 
+-  mutt_buffer_dealloc(&m->pathbuf);
+   cs_subset_free(&m->sub);
+-  FREE(&m->name);
+-  FREE(&m->realpath);
++  mutt_path_free(&m->path);
+   FREE(&m->emails);
+   FREE(&m->v2r);
+   notify_free(&m->notify);
+@@ -136,7 +141,7 @@ struct Mailbox *mailbox_find_name(const char *name)
+   struct Mailbox *m = NULL;
+   STAILQ_FOREACH(np, &ml, entries)
+   {
+-    if (mutt_str_equal(np->mailbox->name, name))
++    if (mutt_str_equal(np->mailbox->path->desc, name))
+     {
+       m = np->mailbox;
+       break;
+@@ -211,7 +216,7 @@ bool mailbox_set_subset(struct Mailbox *m, struct ConfigSubset *sub)
+   if (!m || m->sub || !sub)
+     return false;
+ 
+-  m->sub = cs_subset_new(m->name, sub, m->notify);
++  m->sub = cs_subset_new(m->path->desc, sub, m->notify);
+   m->sub->scope = SET_SCOPE_MAILBOX;
+   return true;
+ }
+diff --git a/core/mailbox.h b/core/mailbox.h
+index 1092efbb2..7185cdf24 100644
+--- a/core/mailbox.h
++++ b/core/mailbox.h
+@@ -30,6 +30,8 @@
+ #include <sys/types.h>
+ #include <time.h>
+ #include "mutt/lib.h"
++#include "config/lib.h"
++#include "path.h"
+ 
+ struct ConfigSubset;
+ struct Email;
+@@ -80,9 +82,7 @@ typedef uint16_t AclFlags;          ///< Flags, e.g. #MUTT_ACL_ADMIN
+  */
+ struct Mailbox
+ {
+-  struct Buffer pathbuf;
+-  char *realpath;                     ///< Used for duplicate detection, context comparison, and the sidebar
+-  char *name;                         ///< A short name for the Mailbox
++  struct Path *path;                  ///< Path representing the Mailbox
+   struct ConfigSubset *sub;           ///< Inherited config items
+   off_t size;                         ///< Size of the Mailbox
+   bool has_new;                       ///< Mailbox has new mail
+@@ -180,7 +180,7 @@ void            mailbox_changed   (struct Mailbox *m, enum NotifyMailbox action)
+ struct Mailbox *mailbox_find      (const char *path);
+ struct Mailbox *mailbox_find_name (const char *name);
+ void            mailbox_free      (struct Mailbox **ptr);
+-struct Mailbox *mailbox_new       (void);
++struct Mailbox *mailbox_new       (struct Path *path);
+ bool            mailbox_set_subset(struct Mailbox *m, struct ConfigSubset *sub);
+ void            mailbox_size_add  (struct Mailbox *m, const struct Email *e);
+ void            mailbox_size_sub  (struct Mailbox *m, const struct Email *e);
+@@ -193,7 +193,7 @@ void            mailbox_update    (struct Mailbox *m);
+  */
+ static inline const char *mailbox_path(const struct Mailbox *m) // LCOV_EXCL_LINE
+ {
+-  return mutt_b2s(&m->pathbuf); // LCOV_EXCL_LINE
++  return m->path->orig; // LCOV_EXCL_LINE
+ }
+ 
+ #endif /* MUTT_CORE_MAILBOX_H */
+diff --git a/debug/graphviz.c b/debug/graphviz.c
+index 3541e56de..1aa762eae 100644
+--- a/debug/graphviz.c
++++ b/debug/graphviz.c
+@@ -587,21 +587,21 @@ static void dot_mailbox(FILE *fp, struct Mailbox *m, struct ListHead *links)
+ 
+   dot_object_header(fp, m, "Mailbox", "#80ff80");
+   dot_mailbox_type(fp, "type", m->type);
+-  dot_type_string(fp, "name", m->name, false);
++  dot_type_string(fp, "path-&gt;desc", m->path->desc, false);
+ 
+   if ((m->type == MUTT_IMAP) || (m->type == MUTT_POP))
+   {
+-    dot_path_imap(buf, sizeof(buf), mutt_b2s(&m->pathbuf));
+-    dot_type_string(fp, "pathbuf", buf, true);
+-    dot_path_imap(buf, sizeof(buf), m->realpath);
+-    dot_type_string(fp, "realpath", buf, true);
++    dot_path_imap(buf, sizeof(buf), m->path->orig);
++    dot_type_string(fp, "path-&gt;orig", buf, false);
++    dot_path_imap(buf, sizeof(buf), m->path->canon);
++    dot_type_string(fp, "path-&gt;canon", buf, false);
+   }
+   else
+   {
+-    dot_path_fs(buf, sizeof(buf), mutt_b2s(&m->pathbuf));
+-    dot_type_string(fp, "pathbuf", buf, true);
+-    dot_path_fs(buf, sizeof(buf), m->realpath);
+-    dot_type_string(fp, "realpath", buf, true);
++    dot_path_fs(buf, sizeof(buf), m->path->orig);
++    dot_type_string(fp, "path-&gt;orig", buf, false);
++    dot_path_fs(buf, sizeof(buf), m->path->canon);
++    dot_type_string(fp, "path-&gt;canon", buf, false);
+   }
+ 
+ #ifdef GV_HIDE_MDATA
+@@ -652,10 +652,10 @@ static void dot_mailbox(FILE *fp, struct Mailbox *m, struct ListHead *links)
+   }
+ 
+ #ifndef GV_HIDE_CONFIG
+-  if (m->name)
++  if (m->path->desc)
+   {
+-    dot_config(fp, m->name, DT_INHERIT_MBOX, m->sub, links);
+-    dot_add_link(links, m, m->name, "Mailbox Config", false, NULL);
++    dot_config(fp, m->path->desc, DT_INHERIT_MBOX, m->sub, links);
++    dot_add_link(links, m, m->path->desc, "Mailbox Config", false, NULL);
+   }
+ #endif
+ }
+@@ -689,9 +689,9 @@ static void dot_mailbox_node(FILE *fp, struct MailboxNode *mn, struct ListHead *
+ #endif
+ 
+ #ifndef GV_HIDE_CONFIG
+-  if (mn->mailbox->name)
++  if (mn->mailbox->path->desc)
+   {
+-    dot_ptr_name(name, sizeof(name), mn->mailbox->name);
++    dot_ptr_name(name, sizeof(name), mn->mailbox->path->desc);
+     mutt_buffer_add_printf(&buf, "%s ", name);
+   }
+ #endif
+diff --git a/imap/imap.c b/imap/imap.c
+index 9e0b69298..777635e9c 100644
+--- a/imap/imap.c
++++ b/imap/imap.c
+@@ -1729,7 +1729,7 @@ static int imap_ac_add(struct Account *a, struct Mailbox *m)
+       return -1;
+     }
+ 
+-    mutt_account_hook(m->realpath);
++    mutt_account_hook(m->path->orig);
+ 
+     if (imap_login(adata) < 0)
+     {
+@@ -1749,8 +1749,8 @@ static int imap_ac_add(struct Account *a, struct Mailbox *m)
+     /* fixup path and realpath, mainly to replace / by /INBOX */
+     char buf[1024];
+     imap_qualify_path(buf, sizeof(buf), &adata->conn->account, mdata->name);
+-    mutt_buffer_strcpy(&m->pathbuf, buf);
+-    mutt_str_replace(&m->realpath, mailbox_path(m));
++    mutt_str_replace(&m->path->orig, buf);
++    mutt_str_replace(&m->path->canon, mailbox_path(m));
+ 
+     m->mdata = mdata;
+     m->mdata_free = imap_mdata_free;
+@@ -1884,8 +1884,8 @@ static int imap_mbox_open(struct Mailbox *m)
+   struct ImapAccountData *adata = imap_adata_get(m);
+   struct ImapMboxData *mdata = imap_mdata_get(m);
+ 
+-  mutt_debug(LL_DEBUG3, "opening %s, saving %s\n", m->pathbuf.data,
+-             (adata->mailbox ? adata->mailbox->pathbuf.data : "(none)"));
++  mutt_debug(LL_DEBUG3, "opening %s, saving %s\n", m->path->orig,
++             (adata->mailbox ? adata->mailbox->path->orig : "(none)"));
+   adata->prev_mailbox = adata->mailbox;
+   adata->mailbox = m;
+ 
+@@ -2157,8 +2157,8 @@ static int imap_mbox_close(struct Mailbox *m)
+       adata->state = IMAP_AUTHENTICATED;
+     }
+ 
+-    mutt_debug(LL_DEBUG3, "closing %s, restoring %s\n", m->pathbuf.data,
+-               (adata->prev_mailbox ? adata->prev_mailbox->pathbuf.data : "(none)"));
++    mutt_debug(LL_DEBUG3, "closing %s, restoring %s\n", m->path->orig,
++               (adata->prev_mailbox ? adata->prev_mailbox->path->orig: "(none)"));
+     adata->mailbox = adata->prev_mailbox;
+     imap_mbox_select(adata->prev_mailbox);
+     imap_mdata_cache_reset(m->mdata);
+diff --git a/index.c b/index.c
+index 718ada3a3..54ed0030a 100644
+--- a/index.c
++++ b/index.c
+@@ -685,7 +685,7 @@ static void change_folder_mailbox(struct Menu *menu, struct Mailbox *m,
+     return;
+ 
+   /* keepalive failure in mutt_enter_fname may kill connection. */
+-  if (Context && Context->mailbox && (mutt_buffer_is_empty(&Context->mailbox->pathbuf)))
++  if (Context && Context->mailbox && !Context->mailbox->path->orig)
+     ctx_free(&Context);
+ 
+   if (Context && Context->mailbox)
+@@ -728,7 +728,7 @@ static void change_folder_mailbox(struct Menu *menu, struct Mailbox *m,
+   notify_observer_add(m->notify, mailbox_index_observer, &m);
+   char *dup_path = mutt_str_dup(mailbox_path(m));
+ 
+-  mutt_folder_hook(mailbox_path(m), m ? m->name : NULL);
++  mutt_folder_hook(mailbox_path(m), m->path->desc);
+   if (m)
+   {
+     /* `m` is still valid, but we won't need the observer again before the end
+@@ -1230,7 +1230,7 @@ int mutt_index_menu(struct MuttWindow *dlg)
+       int check = mx_mbox_check(Context->mailbox, &index_hint);
+       if (check < 0)
+       {
+-        if (!Context->mailbox || (mutt_buffer_is_empty(&Context->mailbox->pathbuf)))
++        if (!Context->mailbox || !Context->mailbox->path->orig)
+         {
+           /* fatal error occurred */
+           ctx_free(&Context);
+@@ -2086,8 +2086,7 @@ int mutt_index_menu(struct MuttWindow *dlg)
+         }
+ 
+         /* check for a fatal error, or all messages deleted */
+-        if (Context && Context->mailbox &&
+-            mutt_buffer_is_empty(&Context->mailbox->pathbuf))
++        if (Context && Context->mailbox && !Context->mailbox->path->orig)
+           ctx_free(&Context);
+ 
+         /* if we were in the pager, redisplay the message */
+@@ -2328,7 +2327,7 @@ int mutt_index_menu(struct MuttWindow *dlg)
+                                   (op == OP_MAIN_VFOLDER_FROM_QUERY_READONLY));
+         if (m_query)
+         {
+-          m_query->name = query_unencoded;
++          m_query->path->desc = query_unencoded;
+           query_unencoded = NULL;
+         }
+         else
+@@ -2431,8 +2430,7 @@ int mutt_index_menu(struct MuttWindow *dlg)
+           read_only = false;
+         }
+ 
+-        if (C_ChangeFolderNext && Context && Context->mailbox &&
+-            !mutt_buffer_is_empty(&Context->mailbox->pathbuf))
++        if (C_ChangeFolderNext && Context && Context->mailbox)
+         {
+           mutt_buffer_strcpy(folderbuf, mailbox_path(Context->mailbox));
+           mutt_buffer_pretty_mailbox(folderbuf);
+@@ -2496,8 +2494,7 @@ int mutt_index_menu(struct MuttWindow *dlg)
+           read_only = false;
+         }
+ 
+-        if (C_ChangeFolderNext && Context && Context->mailbox &&
+-            !mutt_buffer_is_empty(&Context->mailbox->pathbuf))
++        if (C_ChangeFolderNext && Context && Context->mailbox)
+         {
+           mutt_buffer_strcpy(folderbuf, mailbox_path(Context->mailbox));
+           mutt_buffer_pretty_mailbox(folderbuf);
+diff --git a/main.c b/main.c
+index 2d87b8f18..aecd2843b 100644
+--- a/main.c
++++ b/main.c
+@@ -1162,7 +1162,7 @@ int main(int argc, char *argv[], char *envp[])
+         // Check if C_Spoolfile corresponds a mailboxes' description.
+         struct Mailbox *m_desc = mailbox_find_name(C_Spoolfile);
+         if (m_desc)
+-          mutt_buffer_strcpy(&folder, m_desc->realpath);
++          mutt_buffer_strcpy(&folder, m_desc->path->canon);
+         else
+           mutt_buffer_strcpy(&folder, C_Spoolfile);
+       }
+diff --git a/mbox/mbox.c b/mbox/mbox.c
+index 13beb4d8b..5ceebea56 100644
+--- a/mbox/mbox.c
++++ b/mbox/mbox.c
+@@ -1556,7 +1556,7 @@ static int mbox_mbox_close(struct Mailbox *m)
+   mutt_file_fclose(&adata->fp);
+ 
+   /* fix up the times so mailbox won't get confused */
+-  if (m->peekonly && !mutt_buffer_is_empty(&m->pathbuf) &&
++  if (m->peekonly && m->path->orig &&
+       (mutt_file_timespec_compare(&m->mtime, &adata->atime) > 0))
+   {
+ #ifdef HAVE_UTIMENSAT
+diff --git a/monitor.c b/monitor.c
+index dda612711..c93443e87 100644
+--- a/monitor.c
++++ b/monitor.c
+@@ -334,12 +334,12 @@ static enum ResolveResult monitor_resolve(struct MonitorInfo *info, struct Mailb
+   if (m)
+   {
+     info->type = m->type;
+-    info->path = m->realpath;
++    info->path = m->path->canon;
+   }
+   else if (Context && Context->mailbox)
+   {
+     info->type = Context->mailbox->type;
+-    info->path = Context->mailbox->realpath;
++    info->path = Context->mailbox->path->canon;
+   }
+   else
+   {
+@@ -554,7 +554,7 @@ int mutt_monitor_remove(struct Mailbox *m)
+     }
+     else
+     {
+-      if (mailbox_find(Context->mailbox->realpath))
++      if (mailbox_find(Context->mailbox->path->canon))
+       {
+         rc = 1;
+         goto cleanup;
+diff --git a/mutt_mailbox.c b/mutt_mailbox.c
+index f00534234..decf4bcaf 100644
+--- a/mutt_mailbox.c
++++ b/mutt_mailbox.c
+@@ -100,7 +100,7 @@ static void mailbox_check(struct Mailbox *m_cur, struct Mailbox *m_check,
+   }
+ 
+   /* check to see if the folder is the currently selected folder before polling */
+-  if (!m_cur || mutt_buffer_is_empty(&m_cur->pathbuf) ||
++  if (!m_cur || !m_cur->path->orig ||
+       (((m_check->type == MUTT_IMAP) || (m_check->type == MUTT_NNTP) ||
+         (m_check->type == MUTT_NOTMUCH) || (m_check->type == MUTT_POP)) ?
+            !mutt_str_equal(mailbox_path(m_check), mailbox_path(m_cur)) :
+@@ -120,7 +120,7 @@ static void mailbox_check(struct Mailbox *m_cur, struct Mailbox *m_check,
+       default:; /* do nothing */
+     }
+   }
+-  else if (C_CheckMboxSize && m_cur && mutt_buffer_is_empty(&m_cur->pathbuf))
++  else if (C_CheckMboxSize && m_cur && !m_cur->path->orig)
+     m_check->size = (off_t) sb.st_size; /* update the size of current folder */
+ 
+ #ifdef USE_SIDEBAR
+@@ -335,7 +335,10 @@ struct Mailbox *mutt_mailbox_next(struct Mailbox *m_cur, struct Buffer *s)
+       {
+         if (np->mailbox->type == MUTT_NOTMUCH) /* only match real mailboxes */
+           continue;
+-        mutt_buffer_expand_path(&np->mailbox->pathbuf);
++        char buf[PATH_MAX];
++        mutt_str_strfcpy(buf, np->mailbox->path->orig, sizeof(buf));
++        mutt_expand_path(buf, sizeof(buf));
++        mutt_str_replace(&np->mailbox->path->orig, buf);
+         if ((found || (pass > 0)) && np->mailbox->has_new)
+         {
+           mutt_buffer_strcpy(s, mailbox_path(np->mailbox));
+diff --git a/mx.c b/mx.c
+index 91416303d..28670a7be 100644
+--- a/mx.c
++++ b/mx.c
+@@ -1479,19 +1479,19 @@ int mx_path_canon2(struct Mailbox *m, const char *folder)
+ 
+   char buf[PATH_MAX];
+ 
+-  if (m->realpath)
+-    mutt_str_copy(buf, m->realpath, sizeof(buf));
++  if (m->path->canon)
++    mutt_str_copy(buf, m->path->canon, sizeof(buf));
+   else
+     mutt_str_copy(buf, mailbox_path(m), sizeof(buf));
+ 
+   int rc = mx_path_canon(buf, sizeof(buf), folder, &m->type);
+ 
+-  mutt_str_replace(&m->realpath, buf);
++  mutt_str_replace(&m->path->canon, buf);
+ 
+   if (rc >= 0)
+   {
+     m->mx_ops = mx_get_ops(m->type);
+-    mutt_buffer_strcpy(&m->pathbuf, m->realpath);
++    mutt_str_replace(&m->path->orig, m->path->canon);
+   }
+ 
+   return rc;
+@@ -1566,7 +1566,7 @@ struct Account *mx_ac_find(struct Mailbox *m)
+     if (np->type != m->type)
+       continue;
+ 
+-    if (m->mx_ops->ac_find(np, m->realpath))
++    if (m->mx_ops->ac_find(np, m->path->canon))
+       return np;
+   }
+ 
+@@ -1600,13 +1600,13 @@ struct Mailbox *mx_mbox_find(struct Account *a, const char *path)
+   {
+     if (!use_url)
+     {
+-      if (mutt_str_equal(np->mailbox->realpath, path))
++      if (mutt_str_equal(np->mailbox->path->canon, path))
+         return np->mailbox;
+       continue;
+     }
+ 
+     url_free(&url_a);
+-    url_a = url_parse(np->mailbox->realpath);
++    url_a = url_parse(np->mailbox->path->canon);
+     if (!url_a)
+       continue;
+ 
+@@ -1677,9 +1677,9 @@ struct Mailbox *mx_path_resolve(const char *path)
+   if (m)
+     return m;
+ 
+-  m = mailbox_new();
++  m = mailbox_new(NULL);
+   m->flags = MB_HIDDEN;
+-  mutt_buffer_strcpy(&m->pathbuf, path);
++  mutt_str_replace(&m->path->orig, path);
+   mx_path_canon2(m, C_Folder);
+ 
+   return m;
+diff --git a/nntp/nntp.c b/nntp/nntp.c
+index 65f374f53..0df411eab 100644
+--- a/nntp/nntp.c
++++ b/nntp/nntp.c
+@@ -2448,7 +2448,7 @@ static int nntp_mbox_open(struct Mailbox *m)
+   url->path = strchr(url->path, '\0');
+   url_tostring(url, server, sizeof(server), 0);
+ 
+-  mutt_account_hook(m->realpath);
++  mutt_account_hook(m->path->canon);
+   struct NntpAccountData *adata = m->account->adata;
+   if (!adata)
+   {
+diff --git a/notmuch/notmuch.c b/notmuch/notmuch.c
+index 0f0db5735..c9af949ae 100644
+--- a/notmuch/notmuch.c
++++ b/notmuch/notmuch.c
+@@ -2381,10 +2381,10 @@ static int nm_mbox_sync(struct Mailbox *m, int *index_hint)
+     else
+       email_get_fullpath(e, old_file, sizeof(old_file));
+ 
+-    mutt_buffer_strcpy(&m->pathbuf, edata->folder);
++    mutt_str_replace(&m->path->orig, edata->folder);
+     m->type = edata->type;
+     rc = mh_sync_mailbox_message(m, i, h);
+-    mutt_buffer_strcpy(&m->pathbuf, url);
++    mutt_str_replace(&m->path->orig, url);
+     m->type = MUTT_NOTMUCH;
+ 
+     if (rc)
+@@ -2404,7 +2404,7 @@ static int nm_mbox_sync(struct Mailbox *m, int *index_hint)
+     FREE(&edata->oldpath);
+   }
+ 
+-  mutt_buffer_strcpy(&m->pathbuf, url);
++  mutt_str_replace(&m->path->orig, url);
+   m->type = MUTT_NOTMUCH;
+ 
+   nm_db_release(m);
+diff --git a/pager.c b/pager.c
+index d29fa9d43..4c215a3a9 100644
+--- a/pager.c
++++ b/pager.c
+@@ -2357,7 +2357,7 @@ int mutt_pager(const char *banner, const char *fname, PagerFlags flags, struct P
+       int check = mx_mbox_check(Context->mailbox, &index_hint);
+       if (check < 0)
+       {
+-        if (!Context->mailbox || mutt_buffer_is_empty(&Context->mailbox->pathbuf))
++        if (!Context->mailbox || !Context->mailbox->path->orig)
+         {
+           /* fatal error occurred */
+           ctx_free(&Context);
+diff --git a/pop/pop.c b/pop/pop.c
+index 837a121f6..332bd01ea 100644
+--- a/pop/pop.c
++++ b/pop/pop.c
+@@ -824,8 +824,8 @@ static int pop_mbox_open(struct Mailbox *m)
+   url.path = NULL;
+   url_tostring(&url, buf, sizeof(buf), 0);
+ 
+-  mutt_buffer_strcpy(&m->pathbuf, buf);
+-  mutt_str_replace(&m->realpath, mailbox_path(m));
++  mutt_str_replace(&m->path->orig, buf);
++  mutt_str_replace(&m->path->canon, mailbox_path(m));
+ 
+   struct PopAccountData *adata = m->account->adata;
+   if (!adata)
+@@ -845,7 +845,7 @@ static int pop_mbox_open(struct Mailbox *m)
+   }
+ 
+   if (conn->fd < 0)
+-    mutt_account_hook(m->realpath);
++    mutt_account_hook(m->path->canon);
+ 
+   if (pop_open_connection(adata) < 0)
+     return -1;
+diff --git a/postpone.c b/postpone.c
+index 5bba9dd98..0e362b2d6 100644
+--- a/postpone.c
++++ b/postpone.c
+@@ -108,7 +108,7 @@ int mutt_num_postponed(struct Mailbox *m, bool force)
+     return 0;
+ 
+   // We currently are in the C_Postponed mailbox so just pick the current status
+-  if (m && mutt_str_equal(C_Postponed, m->realpath))
++  if (m && mutt_str_equal(C_Postponed, m->path->canon))
+   {
+     PostCount = m->msg_count - m->msg_deleted;
+     return PostCount;
+diff --git a/sidebar/sidebar.c b/sidebar/sidebar.c
+index 70eaa06f5..335cb0942 100644
+--- a/sidebar/sidebar.c
++++ b/sidebar/sidebar.c
+@@ -133,7 +133,7 @@ static const char *sidebar_format_str(char *buf, size_t buflen, size_t col, int
+     return src;
+ 
+   bool c = Context && Context->mailbox &&
+-           mutt_str_equal(Context->mailbox->realpath, m->realpath);
++           mutt_str_equal(Context->mailbox->path->canon, m->path->canon);
+ 
+   bool optional = (flags & MUTT_FORMAT_OPTIONAL);
+ 
+@@ -154,8 +154,8 @@ static const char *sidebar_format_str(char *buf, size_t buflen, size_t col, int
+       break;
+ 
+     case 'D':
+-      if (sbe->mailbox->name)
+-        mutt_format_s(buf, buflen, prec, sbe->mailbox->name);
++      if (sbe->mailbox->path)
++        mutt_format_s(buf, buflen, prec, sbe->mailbox->path->desc);
+       else
+         mutt_format_s(buf, buflen, prec, sbe->box);
+       break;
+@@ -356,7 +356,7 @@ static int cb_qsort_sbe(const void *a, const void *b)
+         rc = (m2->msg_unread - m1->msg_unread);
+       break;
+     case SORT_DESC:
+-      rc = mutt_str_cmp(m1->name, m2->name);
++      rc = mutt_str_cmp(m1->path->desc, m2->path->desc);
+       break;
+     case SORT_FLAGGED:
+       if (m2->msg_flagged == m1->msg_flagged)
+@@ -413,14 +413,15 @@ static void update_entries_visibility(void)
+ 
+     sbe->is_hidden = false;
+ 
+-    if (Context && mutt_str_equal(sbe->mailbox->realpath, Context->mailbox->realpath))
++    if (Context &&
++        mutt_str_equal(sbe->mailbox->path->canon, Context->mailbox->path->canon))
+     {
+       /* Spool directories are always visible */
+       continue;
+     }
+ 
+     if (mutt_list_find(&SidebarWhitelist, mailbox_path(sbe->mailbox)) ||
+-        mutt_list_find(&SidebarWhitelist, sbe->mailbox->name))
++        mutt_list_find(&SidebarWhitelist, sbe->mailbox->path->desc))
+     {
+       /* Explicitly asked to be visible */
+       continue;
+@@ -1088,8 +1089,8 @@ static void draw_sidebar(struct MuttWindow *win, int num_rows, int num_cols, int
+       col = div_width;
+ 
+     mutt_window_move(win, col, row);
+-    if (Context && Context->mailbox && (Context->mailbox->realpath[0] != '\0') &&
+-        mutt_str_equal(m->realpath, Context->mailbox->realpath))
++    if (Context && Context->mailbox && (Context->mailbox->path->canon[0] != '\0') &&
++        mutt_str_equal(m->path->canon, Context->mailbox->path->canon))
+     {
+       m->msg_unread = Context->mailbox->msg_unread;
+       m->msg_count = Context->mailbox->msg_count;
+@@ -1097,11 +1098,11 @@ static void draw_sidebar(struct MuttWindow *win, int num_rows, int num_cols, int
+     }
+ 
+     const char *full_path = mailbox_path(m);
+-    display = m->name;
++    display = m->path->desc;
+     if (!display)
+       display = full_path;
+ 
+-    const char *abbr = m->name;
++    const char *abbr = m->path->desc;
+     if (!abbr)
+       abbr = abbrev_folder(display, C_Folder, m->type);
+     if (!abbr)
+@@ -1286,7 +1287,7 @@ void sb_set_open_mailbox(struct Mailbox *m)
+ 
+   for (int entry = 0; entry < EntryCount; entry++)
+   {
+-    if (mutt_str_equal(Entries[entry]->mailbox->realpath, m->realpath))
++    if (mutt_str_equal(Entries[entry]->mailbox->path->canon, m->path->canon))
+     {
+       OpnIndex = entry;
+       HilIndex = entry;
+@@ -1329,7 +1330,7 @@ void sb_notify_mailbox(struct Mailbox *m, bool created)
+     if (BotIndex < 0)
+       BotIndex = EntryCount;
+     if ((OpnIndex < 0) && Context &&
+-        mutt_str_equal(m->realpath, Context->mailbox->realpath))
++        mutt_str_equal(m->path->canon, Context->mailbox->path->canon))
+     {
+       OpnIndex = EntryCount;
+     }
+diff --git a/status.c b/status.c
+index 8ae09c7b0..1b3be3e48 100644
+--- a/status.c
++++ b/status.c
+@@ -129,9 +129,9 @@ static const char *status_format_str(char *buf, size_t buflen, size_t col, int c
+     {
+       struct Mailbox *m = Context ? Context->mailbox : NULL;
+       // If there's a descriptive name, use it. Otherwise, fall-through
+-      if (m && m->name)
++      if (m && m->path->desc)
+       {
+-        mutt_str_copy(tmp, m->name, sizeof(tmp));
++        mutt_str_copy(tmp, m->path->desc, sizeof(tmp));
+         snprintf(fmt, sizeof(fmt), "%%%ss", prec);
+         snprintf(buf, buflen, fmt, tmp);
+         break;
+@@ -143,18 +143,18 @@ static const char *status_format_str(char *buf, size_t buflen, size_t col, int c
+       struct Mailbox *m = Context ? Context->mailbox : NULL;
+ 
+ #ifdef USE_COMP_MBOX
+-      if (m && m->compress_info && (m->realpath[0] != '\0'))
++      if (m && m->compress_info && (m->path->canon[0] != '\0'))
+       {
+-        mutt_str_copy(tmp, m->realpath, sizeof(tmp));
++        mutt_str_copy(tmp, m->path->canon, sizeof(tmp));
+         mutt_pretty_mailbox(tmp, sizeof(tmp));
+       }
+       else
+ #endif
+-          if (m && (m->type == MUTT_NOTMUCH) && m->name)
++          if (m && (m->type == MUTT_NOTMUCH) && m->path->desc)
+       {
+-        mutt_str_copy(tmp, m->name, sizeof(tmp));
++        mutt_str_copy(tmp, m->path->desc, sizeof(tmp));
+       }
+-      else if (m && !mutt_buffer_is_empty(&m->pathbuf))
++      else if (m && m->path->orig)
+       {
+         mutt_str_copy(tmp, mailbox_path(m), sizeof(tmp));
+         mutt_pretty_mailbox(tmp, sizeof(tmp));
+diff --git a/test/account/account_mailbox_add.c b/test/account/account_mailbox_add.c
+index 19ca14102..3ecb0b8bd 100644
+--- a/test/account/account_mailbox_add.c
++++ b/test/account/account_mailbox_add.c
+@@ -76,7 +76,7 @@ void test_account_mailbox_add(void)
+     struct Account *a = account_new("dummy", sub);
+     TEST_CHECK(a != NULL);
+ 
+-    struct Mailbox *m = mailbox_new();
++    struct Mailbox *m = mailbox_new(NULL);
+ 
+     TEST_CHECK(account_mailbox_add(a, m) == true);
+ 
+diff --git a/test/account/account_mailbox_remove.c b/test/account/account_mailbox_remove.c
+index bdf631dcd..ee43e983c 100644
+--- a/test/account/account_mailbox_remove.c
++++ b/test/account/account_mailbox_remove.c
+@@ -56,7 +56,7 @@ void test_account_mailbox_remove(void)
+     struct Account *a = account_new("dummy", sub);
+     TEST_CHECK(a != NULL);
+ 
+-    struct Mailbox *m = mailbox_new();
++    struct Mailbox *m = mailbox_new(NULL);
+ 
+     TEST_CHECK(account_mailbox_add(a, m) == true);
+ 
+diff --git a/test/mailbox/mailbox_new.c b/test/mailbox/mailbox_new.c
+index 84584587f..49253477b 100644
+--- a/test/mailbox/mailbox_new.c
++++ b/test/mailbox/mailbox_new.c
+@@ -31,7 +31,9 @@ void test_mailbox_new(void)
+   // struct Mailbox *mailbox_new(void);
+ 
+   {
+-    struct Mailbox *m = mailbox_new();
++    struct Path *p = mutt_path_new();
++    p->orig = mutt_str_strdup("/home/mutt/mail");
++    struct Mailbox *m = mailbox_new(p);
+     TEST_CHECK(m != NULL);
+ 
+     TEST_CHECK(mailbox_path(m) != NULL);
+diff --git a/test/mailbox/mailbox_size_add.c b/test/mailbox/mailbox_size_add.c
+index b56f9d684..1e5837e02 100644
+--- a/test/mailbox/mailbox_size_add.c
++++ b/test/mailbox/mailbox_size_add.c
+@@ -31,7 +31,7 @@ void test_mailbox_size_add(void)
+   // void mailbox_size_add(struct Mailbox *m, const struct Email *e);
+ 
+   {
+-    struct Mailbox m = { { 0 } };
++    struct Mailbox m = { 0 };
+     mailbox_size_add(&m, NULL);
+     TEST_CHECK_(1, "mailbox_size_add(&m, NULL)");
+   }
+diff --git a/test/mailbox/mailbox_size_sub.c b/test/mailbox/mailbox_size_sub.c
+index b3abf0f8a..6545a0548 100644
+--- a/test/mailbox/mailbox_size_sub.c
++++ b/test/mailbox/mailbox_size_sub.c
+@@ -31,7 +31,7 @@ void test_mailbox_size_sub(void)
+   // void mailbox_size_sub(struct Mailbox *m, const struct Email *e);
+ 
+   {
+-    struct Mailbox m = { { 0 } };
++    struct Mailbox m = { 0 };
+     mailbox_size_sub(&m, NULL);
+     TEST_CHECK_(1, "mailbox_size_sub(&m, NULL)");
+   }

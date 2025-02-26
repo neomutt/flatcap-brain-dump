@@ -1,0 +1,113 @@
+From d7cf94c29f252ff4ba7b5b96da2fc76065cbed82 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Sun, 30 Apr 2023 18:49:28 +0100
+Subject: [PATCH 2/3] get mview from aview
+
+---
+ gui/aview.c       | 18 ++++++++++++++++++
+ gui/aview.h       |  2 ++
+ gui/nview.c       | 18 ++++++++++++++++++
+ gui/nview.h       |  2 ++
+ index/dlg_index.c |  8 ++++++--
+ 5 files changed, 46 insertions(+), 2 deletions(-)
+
+diff --git a/gui/aview.c b/gui/aview.c
+index 622b5bb7e..76dc40bb7 100644
+--- a/gui/aview.c
++++ b/gui/aview.c
+@@ -135,3 +135,21 @@ struct AccountView *aview_new(struct Account *a, struct Notify *parent)
+ 
+   return av;
+ }
++
++/**
++ * aview_get_mview - XXX
++ */
++struct MailboxView *aview_get_mview(struct AccountView *av, struct Mailbox *m)
++{
++  if (!av || !m)
++    return NULL;
++
++  // struct MailboxView **mvp = NULL;
++  // ARRAY_FOREACH(mvp, &av->mva)
++  // {
++  //   if ((*mvp)->mailbox == m)
++  //     return *mvp;
++  // }
++
++  return mview_new(m, av->notify);
++}
+diff --git a/gui/aview.h b/gui/aview.h
+index 7c24c91a4..3fda48b57 100644
+--- a/gui/aview.h
++++ b/gui/aview.h
+@@ -54,4 +54,6 @@ enum NotifyAccountView
+ void                aview_free(struct AccountView **ptr);
+ struct AccountView *aview_new (struct Account *a, struct Notify *parent);
+ 
++struct MailboxView *aview_get_mview(struct AccountView *av, struct Mailbox *m);
++
+ #endif /* MUTT_GUI_AVIEW_H */
+diff --git a/gui/nview.c b/gui/nview.c
+index 89381c1bd..12d3b2ed3 100644
+--- a/gui/nview.c
++++ b/gui/nview.c
+@@ -200,3 +200,21 @@ struct NeoMuttView *nview_new(struct NeoMutt *n)
+ 
+   return nv;
+ }
++
++/**
++ * nview_get_aview - XXX
++ */
++struct AccountView *nview_get_aview(struct NeoMuttView *nv, struct Account *a)
++{
++  if (!nv || !a)
++    return NULL;
++
++  struct AccountView **avp = NULL;
++  ARRAY_FOREACH(avp, &nv->ava)
++  {
++    if ((*avp)->account == a)
++      return *avp;
++  }
++
++  return NULL;
++}
+diff --git a/gui/nview.h b/gui/nview.h
+index 2b9267600..20b181080 100644
+--- a/gui/nview.h
++++ b/gui/nview.h
+@@ -53,4 +53,6 @@ enum NotifyNeoMuttView
+ void                nview_free(struct NeoMuttView **ptr);
+ struct NeoMuttView *nview_new (struct NeoMutt *n);
+ 
++struct AccountView *nview_get_aview(struct NeoMuttView *nv, struct Account *a);
++
+ #endif /* MUTT_GUI_NVIEW_H */
+diff --git a/index/dlg_index.c b/index/dlg_index.c
+index 5196e0ecb..1b1d78e3d 100644
+--- a/index/dlg_index.c
++++ b/index/dlg_index.c
+@@ -697,7 +697,8 @@ void change_folder_mailbox(struct Menu *menu, struct Mailbox *m, int *oldcount,
+   const OpenMailboxFlags flags = read_only ? MUTT_READONLY : MUTT_OPEN_NO_FLAGS;
+   if (mx_mbox_open(m, flags))
+   {
+-    struct MailboxView *mv = mview_new(m, NeoMutt->notify);
++    struct AccountView *av = nview_get_aview(NeoMuttView, m->account);
++    struct MailboxView *mv = aview_get_mview(av, m);
+     index_shared_data_set_mview(shared, mv);
+ 
+     menu->max = m->msg_count;
+@@ -1065,7 +1066,10 @@ struct Mailbox *mutt_index_menu(struct MuttWindow *dlg, struct Mailbox *m_init)
+   index_adjust_sort_threads(NeoMutt->sub);
+ 
+   struct IndexSharedData *shared = dlg->wdata;
+-  index_shared_data_set_mview(shared, mview_new(m_init, NeoMutt->notify));
++
++  struct AccountView *av = nview_get_aview(NeoMuttView, m_init->account);
++  struct MailboxView *mv = aview_get_mview(av, m_init);
++  index_shared_data_set_mview(shared, mv);
+ 
+   struct MuttWindow *panel_index = window_find_child(dlg, WT_INDEX);
+ 

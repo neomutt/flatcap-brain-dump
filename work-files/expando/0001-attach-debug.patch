@@ -1,0 +1,88 @@
+From 2919ab4c7102cdea3c0cce2d2f6eb599f49b5688 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Wed, 20 Mar 2024 10:29:37 +0000
+Subject: [PATCH] attach-debug
+
+---
+ attach/recvattach.c | 51 ++++++++++++++++++++++-----------------------
+ 1 file changed, 25 insertions(+), 26 deletions(-)
+
+diff --git a/attach/recvattach.c b/attach/recvattach.c
+index e47143901..88b54bf63 100644
+--- a/attach/recvattach.c
++++ b/attach/recvattach.c
+@@ -121,7 +121,7 @@ static void mutt_update_v2r(struct AttachCtx *actx)
+  */
+ void mutt_update_tree(struct AttachCtx *actx)
+ {
+-  char buf[256] = { 0 };
++  struct Buffer *buf = buf_pool_get();
+   char *s = NULL;
+ 
+   mutt_update_v2r(actx);
+@@ -129,41 +129,40 @@ void mutt_update_tree(struct AttachCtx *actx)
+   for (int vindex = 0; vindex < actx->vcount; vindex++)
+   {
+     const int rindex = actx->v2r[vindex];
+-    actx->idx[rindex]->num = vindex;
+-    if ((2 * (actx->idx[rindex]->level + 2)) < sizeof(buf))
+-    {
+-      if (actx->idx[rindex]->level)
+-      {
+-        s = buf + 2 * (actx->idx[rindex]->level - 1);
+-        *s++ = (actx->idx[rindex]->body->next) ? MUTT_TREE_LTEE : MUTT_TREE_LLCORNER;
+-        *s++ = MUTT_TREE_HLINE;
+-        *s++ = MUTT_TREE_RARROW;
+-      }
+-      else
+-      {
+-        s = buf;
+-      }
+-      *s = '\0';
+-    }
++    struct AttachPtr *att = actx->idx[rindex];
++    att->num = vindex;
+ 
+-    if (actx->idx[rindex]->tree)
++    if (att->level > 0)
+     {
+-      if (!mutt_str_equal(actx->idx[rindex]->tree, buf))
+-        mutt_str_replace(&actx->idx[rindex]->tree, buf);
++      s = buf->data + 2 * (att->level - 1);
++      *s++ = (att->body->next) ? 'T' : 'L'; //MUTT_TREE_LTEE : MUTT_TREE_LLCORNER;
++      *s++ = '-';//MUTT_TREE_HLINE;
++      *s++ = '>';//MUTT_TREE_RARROW;
+     }
+     else
+     {
+-      actx->idx[rindex]->tree = mutt_str_dup(buf);
++      s = buf->data;
++    }
++    *s = '\0';
++
++    if (att->tree)
++    {
++      if (!mutt_str_equal(att->tree, buf_string(buf)))
++        mutt_str_replace(&att->tree, buf_string(buf));
++    }
++    else
++    {
++      att->tree = buf_strdup(buf);
+     }
+ 
+-    if (((2 * (actx->idx[rindex]->level + 2)) < sizeof(buf)) &&
+-        actx->idx[rindex]->level)
++    if (att->level > 0)
+     {
+-      s = buf + 2 * (actx->idx[rindex]->level - 1);
+-      *s++ = (actx->idx[rindex]->body->next) ? MUTT_TREE_VLINE : MUTT_TREE_SPACE;
+-      *s++ = MUTT_TREE_SPACE;
++      s = buf->data + 2 * (att->level - 1);
++      *s++ = (att->body->next) ? '|' : '.'; //MUTT_TREE_VLINE : MUTT_TREE_SPACE;
++      *s++ = '.';//MUTT_TREE_SPACE;
+     }
+   }
++  buf_pool_release(&buf);
+ }
+ 
+ /**

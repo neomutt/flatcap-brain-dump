@@ -1,0 +1,158 @@
+From 3ff2a35952df22fdb9e18704bf7ba6d7576e2ba7 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Thu, 31 Aug 2023 17:08:36 +0100
+Subject: [PATCH] TIMEOUT debugging
+
+---
+ editor/functions.c  | 2 ++
+ flags.c             | 2 ++
+ gui/curs_lib.c      | 2 ++
+ gui/rootwin.c       | 1 +
+ key/get.c           | 1 +
+ maildir/maildir.c   | 4 ++++
+ monitor.c           | 6 ++++--
+ mutt_signal.c       | 1 +
+ question/question.c | 2 ++
+ 9 files changed, 19 insertions(+), 2 deletions(-)
+
+diff --git a/editor/functions.c b/editor/functions.c
+index a8d59f3e0..e7b3cb0c8 100644
+--- a/editor/functions.c
++++ b/editor/functions.c
+@@ -397,6 +397,8 @@ static int op_editor_quote_char(struct EnterWindowData *wdata, int op)
+   {
+     window_redraw(NULL);
+     event = mutt_getch(GETCH_NO_FLAGS);
++    mutt_debug(LL_DEBUG1, "op_editor_quote_char: EVENT(%d,%d) %s\n", event.ch,
++               event.op, (event.op == OP_REPAINT) ? "REPAINT" : "");
+   } while ((event.op == OP_TIMEOUT) || (event.op == OP_REPAINT));
+ 
+   if (event.op != OP_ABORT)
+diff --git a/flags.c b/flags.c
+index 301b3f253..466b61a59 100644
+--- a/flags.c
++++ b/flags.c
+@@ -475,6 +475,8 @@ int mw_change_flag(struct Mailbox *m, struct EmailArray *ea, bool bf)
+   {
+     window_redraw(NULL);
+     event = mutt_getch(GETCH_NO_FLAGS);
++    mutt_debug(LL_DEBUG1, "mw_change_flag: EVENT(%d,%d) %s\n", event.ch,
++               event.op, (event.op == OP_REPAINT) ? "REPAINT" : "");
+   } while ((event.op == OP_TIMEOUT) || (event.op == OP_REPAINT));
+ 
+   win = msgcont_pop_window();
+diff --git a/gui/curs_lib.c b/gui/curs_lib.c
+index e3600890e..bee33119c 100644
+--- a/gui/curs_lib.c
++++ b/gui/curs_lib.c
+@@ -275,6 +275,8 @@ int mw_enter_fname(const char *prompt, struct Buffer *fname, bool mailbox,
+   {
+     window_redraw(NULL);
+     event = mutt_getch(GETCH_NO_FLAGS);
++    mutt_debug(LL_DEBUG1, "mw_enter_fname: EVENT(%d,%d) %s\n", event.ch,
++               event.op, (event.op == OP_REPAINT) ? "REPAINT" : "");
+   } while ((event.op == OP_TIMEOUT) || (event.op == OP_REPAINT));
+ 
+   mutt_refresh();
+diff --git a/gui/rootwin.c b/gui/rootwin.c
+index 77a334756..afa074978 100644
+--- a/gui/rootwin.c
++++ b/gui/rootwin.c
+@@ -157,6 +157,7 @@ static int rootwin_resize_observer(struct NotifyCallback *nc)
+   if (!nc->global_data)
+     return -1;
+ 
++  mutt_debug(LL_DEBUG1, "QWQ start rootwin_resize_observer\n");
+   window_invalidate_all();
+   mutt_resize_screen();
+ 
+diff --git a/key/get.c b/key/get.c
+index 13ee2fbbd..ddaf4d1dc 100644
+--- a/key/get.c
++++ b/key/get.c
+@@ -242,6 +242,7 @@ struct KeyEvent mutt_getch(GetChFlags flags)
+   SigInt = false;
+   mutt_sig_allow_interrupt(true);
+   timeout(1000); // 1 second
++  // mutt_debug(LL_DEBUG1, "waiting for a char\n");
+ #ifdef USE_INOTIFY
+   ch = mutt_monitor_getch();
+ #else
+diff --git a/maildir/maildir.c b/maildir/maildir.c
+index ef5bff411..f60db75c1 100644
+--- a/maildir/maildir.c
++++ b/maildir/maildir.c
+@@ -1375,6 +1375,8 @@ static enum MxStatus maildir_check(struct Mailbox *m)
+  */
+ static enum MxStatus maildir_mbox_check(struct Mailbox *m)
+ {
++  mutt_debug(LL_DEBUG1, "\n");
++  mutt_debug(LL_DEBUG1, "\033[1;31mmaildir_mbox_check\033[0m - %s\n", mailbox_path(m));
+   return maildir_check(m);
+ }
+ 
+@@ -1384,6 +1386,8 @@ static enum MxStatus maildir_mbox_check(struct Mailbox *m)
+ static enum MxStatus maildir_mbox_check_stats(struct Mailbox *m, uint8_t flags)
+ {
+   bool check_stats = flags & MUTT_MAILBOX_CHECK_FORCE_STATS;
++  mutt_debug(LL_DEBUG1, "\033[1;32mmaildir_mbox_check_stats\033[0m - %s %s\n",
++             check_stats ? "FORCE" : "noforce", mailbox_path(m));
+   bool check_new = true;
+ 
+   if (check_stats)
+diff --git a/monitor.c b/monitor.c
+index cf49e53b3..4ddc75693 100644
+--- a/monitor.c
++++ b/monitor.c
+@@ -417,6 +417,7 @@ int mutt_monitor_poll(void)
+     else
+     {
+       bool input_ready = false;
++      mutt_debug(LL_DEBUG1, "%zu events\n", PollFdsCount);
+       for (int i = 0; fds && (i < PollFdsCount); i++)
+       {
+         if (PollFds[i].revents)
+@@ -449,7 +450,7 @@ int mutt_monitor_poll(void)
+               while (ptr < (buf + len))
+               {
+                 event = (const struct inotify_event *) ptr;
+-                mutt_debug(LL_DEBUG3, "+ detail: descriptor=%d mask=0x%x\n",
++                mutt_debug(LL_DEBUG3, "\033[1;32m+ detail: descriptor=%d mask=0x%x\033[0m\n",
+                            event->wd, event->mask);
+                 if (event->mask & IN_IGNORED)
+                   monitor_handle_ignore(event->wd);
+@@ -501,7 +502,8 @@ int mutt_monitor_add(struct Mailbox *m)
+     goto cleanup;
+   }
+ 
+-  mutt_debug(LL_DEBUG3, "inotify_add_watch descriptor=%d for '%s'\n", desc, info.path);
++  mutt_debug(LL_DEBUG3, "\033[1;31minotify_add_watch descriptor=%d for '%s'\033[0m\n",
++             desc, info.path);
+   if (!m)
+     MonitorContextDescriptor = desc;
+ 
+diff --git a/mutt_signal.c b/mutt_signal.c
+index 567dccd6c..fddcd603c 100644
+--- a/mutt_signal.c
++++ b/mutt_signal.c
+@@ -80,6 +80,7 @@ static void curses_signal_handler(int sig)
+ 
+     case SIGWINCH:
+       SigWinch = true;
++      mutt_debug(LL_DEBUG1, "QWQ curses_signal_handler() RESIZE\n");
+       break;
+ 
+     case SIGINT:
+diff --git a/question/question.c b/question/question.c
+index 6981b11ff..e747f283f 100644
+--- a/question/question.c
++++ b/question/question.c
+@@ -254,6 +254,8 @@ static enum QuadOption mw_yesorno(const char *prompt, enum QuadOption def,
+   while (true)
+   {
+     event = mutt_getch(GETCH_NO_FLAGS);
++    mutt_debug(LL_DEBUG1, "mw_yesorno: EVENT(%d,%d) %s\n", event.ch, event.op,
++               (event.op == OP_REPAINT) ? "REPAINT" : "");
+     if ((event.op == OP_TIMEOUT) || (event.op == OP_REPAINT))
+     {
+       window_redraw(NULL);

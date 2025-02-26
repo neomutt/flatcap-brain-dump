@@ -1,0 +1,25 @@
+From 14752ae2adb110624ad73bd4718d70275c2ae017 Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Sun, 1 Mar 2020 12:09:17 -0800
+Subject: [PATCH] Use -1, not WAIT_ANY for waitpid() portability.
+
+---
+ background.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/background.c b/background.c
+index 044f65b4..3d8af3c0 100644
+--- a/background.c
++++ b/background.c
+@@ -106,7 +106,7 @@ int mutt_background_process_waitpid (void)
+   if (!ProcessList)
+     return 0;
+ 
+-  while ((pid = waitpid (WAIT_ANY, NULL, WNOHANG)) > 0)
++  while ((pid = waitpid (-1, NULL, WNOHANG)) > 0)
+   {
+     process = ProcessList;
+     while (process)
+-- 
+2.26.2
+

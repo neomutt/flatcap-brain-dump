@@ -1,0 +1,47 @@
+From e8343a97403016f1884312329de1ce64da803825 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Wed, 9 Mar 2022 04:20:01 +0000
+Subject: [PATCH 2/2] debug: verify
+
+---
+ conn/dlg_verifycert.c | 19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
+
+diff --git a/conn/dlg_verifycert.c b/conn/dlg_verifycert.c
+index 5a5de21b7..ffc10ba5b 100644
+--- a/conn/dlg_verifycert.c
++++ b/conn/dlg_verifycert.c
+@@ -245,19 +245,28 @@ int dlg_verify_certificate(const char *title, struct ListHead *list,
+       case -1:         // Abort: Ctrl-G
+       case OP_EXIT:    // Q)uit
+       case OP_MAX + 1: // R)eject
+-        rc = 1;
++        // rc = 1;
++        sbar_set_title(sbar, "ABORT/QUIT/REJECT");
++        window_redraw(sbar);
+         break;
+       case OP_MAX + 2: // O)nce
+-        rc = 2;
++        // rc = 2;
++        sbar_set_title(sbar, "ONCE");
++        window_redraw(sbar);
+         break;
+       case OP_MAX + 3: // A)lways / S)kip
+-        rc = 3;
++        // rc = 3;
++        sbar_set_title(sbar, "ALWAYS/SKIP");
++        window_redraw(sbar);
+         break;
+       case OP_MAX + 4: // S)kip
+-        rc = 4;
++        // rc = 4;
++        sbar_set_title(sbar, "SKIP");
++        window_redraw(sbar);
+         break;
+     }
+-  } while (rc != IR_DONE);
++  } while (true);
++  // while (rc != IR_DONE);
+   // ---------------------------------------------------------------------------
+ 
+   OptIgnoreMacroEvents = old_ime;

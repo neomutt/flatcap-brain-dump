@@ -1,0 +1,21 @@
+From 290e25e9a444db2130a0992e8a359681781f7349 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Tue, 12 May 2020 11:52:32 +0100
+Subject: [PATCH 29/29] fix debug build
+
+---
+ Makefile.autosetup | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index 1f5500877..178137265 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -245,7 +245,6 @@ $(PWD)/core:
+ 
+ ###############################################################################
+ # libdebug
+-LIBDEBUG=	libdebug.a
+ @if USE_DEBUG_ACCOUNT
+ LIBDEBUGOBJS+=	debug/account.o debug/subset.o
+ @endif

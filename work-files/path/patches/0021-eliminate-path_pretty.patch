@@ -1,0 +1,331 @@
+From c9631b5b28cefa749bb97670bad0059fb25d76f8 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Sat, 29 Feb 2020 16:36:48 +0000
+Subject: [PATCH 21/29] eliminate path_pretty
+
+---
+ compmbox/compress.c | 18 ------------------
+ imap/imap.c         | 13 -------------
+ maildir/maildir.c   |  1 -
+ maildir/mh.c        |  1 -
+ maildir/shared.c    | 17 -----------------
+ mbox/mbox.c         | 19 -------------------
+ mx.c                | 25 -------------------------
+ mx.h                | 11 -----------
+ nntp/nntp.c         | 10 ----------
+ notmuch/notmuch.c   | 10 ----------
+ pop/pop.c           | 10 ----------
+ 11 files changed, 135 deletions(-)
+
+diff --git a/compmbox/compress.c b/compmbox/compress.c
+index 46ea757f5..bc480aae4 100644
+--- a/compmbox/compress.c
++++ b/compmbox/compress.c
+@@ -890,23 +890,6 @@ static int comp_path_canon(char *buf, size_t buflen)
+   return 0;
+ }
+ 
+-/**
+- * comp_path_pretty - Abbreviate a Mailbox path - Implements MxOps::path_pretty()
+- */
+-static int comp_path_pretty(char *buf, size_t buflen, const char *folder)
+-{
+-  if (!buf)
+-    return -1;
+-
+-  if (mutt_path_abbr_folder(buf, buflen, folder))
+-    return 0;
+-
+-  if (mutt_path_pretty(buf, buflen, HomeDir, false))
+-    return 0;
+-
+-  return -1;
+-}
+-
+ /**
+  * comp_path_parent - Find the parent of a Mailbox path - Implements MxOps::path_parent()
+  */
+@@ -956,7 +939,6 @@ struct MxOps MxCompOps = {
+   .tags_commit      = comp_tags_commit,
+   .path_probe       = comp_path_probe,
+   .path_canon       = comp_path_canon,
+-  .path_pretty      = comp_path_pretty,
+   .path_parent      = comp_path_parent,
+   .path2_canon      = comp_path2_canon,
+   .path2_compare    = comp_path2_compare,
+diff --git a/imap/imap.c b/imap/imap.c
+index 66ce81e45..ccb5c6496 100644
+--- a/imap/imap.c
++++ b/imap/imap.c
+@@ -2401,18 +2401,6 @@ int imap_expand_path(struct Buffer *buf)
+   return imap_path_canon(buf->data, PATH_MAX);
+ }
+ 
+-/**
+- * imap_path_pretty - Abbreviate a Mailbox path - Implements MxOps::path_pretty()
+- */
+-static int imap_path_pretty(char *buf, size_t buflen, const char *folder)
+-{
+-  if (!buf || !folder)
+-    return -1;
+-
+-  imap_pretty_mailbox(buf, buflen, folder);
+-  return 0;
+-}
+-
+ /**
+  * imap_path_parent - Find the parent of a Mailbox path - Implements MxOps::path_parent()
+  */
+@@ -2531,7 +2519,6 @@ struct MxOps MxImapOps = {
+   .tags_commit      = imap_tags_commit,
+   .path_probe       = imap_path_probe,
+   .path_canon       = imap_path_canon,
+-  .path_pretty      = imap_path_pretty,
+   .path_parent      = imap_path_parent,
+   .path2_canon      = imap_path2_canon_wrapper,
+   .path2_compare    = imap_path2_compare,
+diff --git a/maildir/maildir.c b/maildir/maildir.c
+index 6993f20d6..65cf5c62d 100644
+--- a/maildir/maildir.c
++++ b/maildir/maildir.c
+@@ -729,7 +729,6 @@ struct MxOps MxMaildirOps = {
+   .tags_commit      = NULL,
+   .path_probe       = maildir_path_probe,
+   .path_canon       = maildir_path_canon,
+-  .path_pretty      = maildir_path_pretty,
+   .path_parent      = maildir_path_parent,
+   .path2_canon      = maildir_path2_canon,
+   .path2_compare    = maildir_path2_compare,
+diff --git a/maildir/mh.c b/maildir/mh.c
+index bfb531bc9..462cd1b13 100644
+--- a/maildir/mh.c
++++ b/maildir/mh.c
+@@ -830,7 +830,6 @@ struct MxOps MxMhOps = {
+   .tags_commit      = NULL,
+   .path_probe       = mh_path_probe,
+   .path_canon       = maildir_path_canon,
+-  .path_pretty      = maildir_path_pretty,
+   .path_parent      = maildir_path_parent,
+   .path2_canon      = maildir_path2_canon,
+   .path2_compare    = maildir_path2_compare,
+diff --git a/maildir/shared.c b/maildir/shared.c
+index 15e643477..06ec9e358 100644
+--- a/maildir/shared.c
++++ b/maildir/shared.c
+@@ -1652,23 +1652,6 @@ int maildir_path_canon(char *buf, size_t buflen)
+   return 0;
+ }
+ 
+-/**
+- * maildir_path_pretty - Abbreviate a Mailbox path - Implements MxOps::path_pretty()
+- */
+-int maildir_path_pretty(char *buf, size_t buflen, const char *folder)
+-{
+-  if (!buf)
+-    return -1;
+-
+-  if (mutt_path_abbr_folder(buf, buflen, folder))
+-    return 0;
+-
+-  if (mutt_path_pretty(buf, buflen, HomeDir, false))
+-    return 0;
+-
+-  return -1;
+-}
+-
+ /**
+  * maildir_path_parent - Find the parent of a Mailbox path - Implements MxOps::path_parent()
+  */
+diff --git a/mbox/mbox.c b/mbox/mbox.c
+index 5ceebea56..b6be0c06e 100644
+--- a/mbox/mbox.c
++++ b/mbox/mbox.c
+@@ -1731,23 +1731,6 @@ static int mbox_path_canon(char *buf, size_t buflen)
+   return 0;
+ }
+ 
+-/**
+- * mbox_path_pretty - Abbreviate a Mailbox path - Implements MxOps::path_pretty()
+- */
+-static int mbox_path_pretty(char *buf, size_t buflen, const char *folder)
+-{
+-  if (!buf)
+-    return -1;
+-
+-  if (mutt_path_abbr_folder(buf, buflen, folder))
+-    return 0;
+-
+-  if (mutt_path_pretty(buf, buflen, HomeDir, false))
+-    return 0;
+-
+-  return -1;
+-}
+-
+ /**
+  * mbox_path_parent - Find the parent of a Mailbox path - Implements MxOps::path_parent()
+  */
+@@ -1873,7 +1856,6 @@ struct MxOps MxMboxOps = {
+   .tags_commit      = NULL,
+   .path_probe       = mbox_path_probe,
+   .path_canon       = mbox_path_canon,
+-  .path_pretty      = mbox_path_pretty,
+   .path_parent      = mbox_path_parent,
+   .path2_canon      = mbox_path2_canon,
+   .path2_compare    = mbox_path2_compare,
+@@ -1908,7 +1890,6 @@ struct MxOps MxMmdfOps = {
+   .tags_commit      = NULL,
+   .path_probe       = mbox_path_probe,
+   .path_canon       = mbox_path_canon,
+-  .path_pretty      = mbox_path_pretty,
+   .path_parent      = mbox_path_parent,
+   .path2_canon      = mbox_path2_canon,
+   .path2_compare    = mbox_path2_compare,
+diff --git a/mx.c b/mx.c
+index bbc0fbbc7..a1f3bb4b4 100644
+--- a/mx.c
++++ b/mx.c
+@@ -1500,31 +1500,6 @@ int mx_path_canon2(struct Mailbox *m, const char *folder)
+   return rc;
+ }
+ 
+-/**
+- * mx_path_pretty - Abbreviate a mailbox path - Wrapper for MxOps::path_pretty()
+- */
+-int mx_path_pretty(char *buf, size_t buflen, const char *folder)
+-{
+-  enum MailboxType type = mx_path_probe(buf);
+-  const struct MxOps *ops = mx_get_ops(type);
+-  if (!ops)
+-    return -1;
+-
+-  if (!ops->path_canon)
+-    return -1;
+-
+-  if (ops->path_canon(buf, buflen) < 0)
+-    return -1;
+-
+-  if (!ops->path_pretty)
+-    return -1;
+-
+-  if (ops->path_pretty(buf, buflen, folder) < 0)
+-    return -1;
+-
+-  return 0;
+-}
+-
+ /**
+  * mx_path_parent - Find the parent of a mailbox path - Wrapper for MxOps::path_parent()
+  */
+diff --git a/mx.h b/mx.h
+index caed708d1..618dcd44b 100644
+--- a/mx.h
++++ b/mx.h
+@@ -274,16 +274,6 @@ struct MxOps
+    */
+   int (*path_canon)      (char *buf, size_t buflen);
+ 
+-  /**
+-   * path_pretty - Abbreviate a Mailbox path
+-   * @param buf    Path to modify
+-   * @param buflen Length of buffer
+-   * @param folder Base path for '=' substitution
+-   * @retval  0 Success
+-   * @retval -1 Failure
+-   */
+-  int (*path_pretty)     (char *buf, size_t buflen, const char *folder);
+-
+   /**
+    * path_parent - Find the parent of a Mailbox path
+    * @param buf    Path to modify
+@@ -454,7 +444,6 @@ int             mx_save_hcache     (struct Mailbox *m, struct Email *e);
+ int             mx_path_canon      (char *buf, size_t buflen, const char *folder, enum MailboxType *type);
+ int             mx_path_canon2     (struct Mailbox *m, const char *folder);
+ int             mx_path_parent     (char *buf, size_t buflen);
+-int             mx_path_pretty     (char *buf, size_t buflen, const char *folder);
+ enum MailboxType mx_path_probe     (const char *path);
+ struct Mailbox *mx_path_resolve    (const char *path, const char *folder);
+ int             mx_tags_commit     (struct Mailbox *m, struct Email *e, char *tags);
+diff --git a/nntp/nntp.c b/nntp/nntp.c
+index 0df411eab..64a742e6b 100644
+--- a/nntp/nntp.c
++++ b/nntp/nntp.c
+@@ -2859,15 +2859,6 @@ static int nntp_path_canon(char *buf, size_t buflen)
+   return 0;
+ }
+ 
+-/**
+- * nntp_path_pretty - Abbreviate a Mailbox path - Implements MxOps::path_pretty()
+- */
+-static int nntp_path_pretty(char *buf, size_t buflen, const char *folder)
+-{
+-  /* Succeed, but don't do anything, for now */
+-  return 0;
+-}
+-
+ /**
+  * nntp_path_parent - Find the parent of a Mailbox path - Implements MxOps::path_parent()
+  */
+@@ -2989,7 +2980,6 @@ struct MxOps MxNntpOps = {
+   .tags_commit      = NULL,
+   .path_probe       = nntp_path_probe,
+   .path_canon       = nntp_path_canon,
+-  .path_pretty      = nntp_path_pretty,
+   .path_parent      = nntp_path_parent,
+   .path2_canon      = nntp_path2_canon_wrapper,
+   .path2_compare    = nntp_path2_compare,
+diff --git a/notmuch/notmuch.c b/notmuch/notmuch.c
+index c9af949ae..07fe81287 100644
+--- a/notmuch/notmuch.c
++++ b/notmuch/notmuch.c
+@@ -2554,15 +2554,6 @@ static int nm_path_canon(char *buf, size_t buflen)
+   return 0;
+ }
+ 
+-/**
+- * nm_path_pretty - Abbreviate a Mailbox path - Implements MxOps::path_pretty()
+- */
+-static int nm_path_pretty(char *buf, size_t buflen, const char *folder)
+-{
+-  /* Succeed, but don't do anything, for now */
+-  return 0;
+-}
+-
+ /**
+  * nm_path_parent - Find the parent of a Mailbox path - Implements MxOps::path_parent()
+  */
+@@ -2598,7 +2589,6 @@ struct MxOps MxNotmuchOps = {
+   .tags_commit      = nm_tags_commit,
+   .path_probe       = nm_path_probe,
+   .path_canon       = nm_path_canon,
+-  .path_pretty      = nm_path_pretty,
+   .path_parent      = nm_path_parent,
+   .path2_canon      = nm_path2_canon,
+   .path2_compare    = nm_path2_compare,
+diff --git a/pop/pop.c b/pop/pop.c
+index 3e1e7cfe0..338ac305d 100644
+--- a/pop/pop.c
++++ b/pop/pop.c
+@@ -1253,15 +1253,6 @@ static int pop_path_canon(char *buf, size_t buflen)
+   return 0;
+ }
+ 
+-/**
+- * pop_path_pretty - Abbreviate a Mailbox path - Implements MxOps::path_pretty()
+- */
+-static int pop_path_pretty(char *buf, size_t buflen, const char *folder)
+-{
+-  /* Succeed, but don't do anything, for now */
+-  return 0;
+-}
+-
+ /**
+  * pop_path_parent - Find the parent of a Mailbox path - Implements MxOps::path_parent()
+  */
+@@ -1347,7 +1338,6 @@ struct MxOps MxPopOps = {
+   .tags_commit      = NULL,
+   .path_probe       = pop_path_probe,
+   .path_canon       = pop_path_canon,
+-  .path_pretty      = pop_path_pretty,
+   .path_parent      = pop_path_parent,
+   .path2_canon      = pop_path2_canon_wrapper,
+   .path2_compare    = pop_path2_compare,

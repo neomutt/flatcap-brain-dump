@@ -1,0 +1,22 @@
+From cee46fa2ed3804d33a001bb851c560718e2573bf Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Mon, 20 Apr 2020 17:41:09 +0100
+Subject: [PATCH 25/29] notes
+
+---
+ mx.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/mx.c b/mx.c
+index a1f3bb4b4..c3ee639e7 100644
+--- a/mx.c
++++ b/mx.c
+@@ -1363,6 +1363,8 @@ enum MailboxType mx_path_probe(const char *path)
+   {
+     if (!(*ops)->is_local)
+       continue;
++    if (!(*ops)->path_probe)
++      continue;
+     rc = (*ops)->path_probe(path, &st);
+     if (rc != MUTT_UNKNOWN)
+       return rc;

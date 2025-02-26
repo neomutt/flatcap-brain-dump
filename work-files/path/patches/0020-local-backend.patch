@@ -1,0 +1,253 @@
+From 573e9dfa708827b181d0ee4d1a59cccedf7ca2f7 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Thu, 5 Mar 2020 17:52:05 +0000
+Subject: [PATCH 20/29] local backend
+
+---
+ Makefile.autosetup |   2 +-
+ core/mailbox.h     |   2 +
+ local.c            | 148 +++++++++++++++++++++++++++++++++++++++++++++
+ local.h            |  31 ++++++++++
+ mx.c               |   3 +
+ 5 files changed, 185 insertions(+), 1 deletion(-)
+ create mode 100644 local.c
+ create mode 100644 local.h
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index ab43f4e54..1f5500877 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -67,7 +67,7 @@ NEOMUTTOBJS=	browser.o commands.o command_parse.o \
+ 		complete.o compose.o conststrings.o context.o copy.o edit.o \
+ 		editmsg.o enriched.o enter.o flags.o functions.o git_ver.o \
+ 		handler.o hdrline.o help.o hook.o icommands.o index.o init.o \
+-		keymap.o mailcap.o maillist.o main.o menu.o muttlib.o mutt_account.o \
++		keymap.o local.o mailcap.o maillist.o main.o menu.o muttlib.o mutt_account.o \
+ 		mutt_attach.o mutt_body.o mutt_commands.o mutt_config.o \
+ 		mutt_header.o mutt_history.o mutt_logging.o mutt_mailbox.o \
+ 		mutt_parse.o mutt_signal.o mutt_socket.o mutt_thread.o mx.o \
+diff --git a/core/mailbox.h b/core/mailbox.h
+index 7185cdf24..9e4b0252d 100644
+--- a/core/mailbox.h
++++ b/core/mailbox.h
+@@ -56,6 +56,8 @@ enum MailboxType
+   MUTT_NOTMUCH,            ///< 'Notmuch' (virtual) Mailbox type
+   MUTT_POP,                ///< 'POP3' Mailbox type
+   MUTT_COMPRESSED,         ///< Compressed file Mailbox type
++  MUTT_LOCAL_FILE,         ///< Local filesystem file
++  MUTT_LOCAL_DIR,          ///< Local filesystem directory
+ };
+ 
+ /**
+diff --git a/local.c b/local.c
+new file mode 100644
+index 000000000..a033c2252
+--- /dev/null
++++ b/local.c
+@@ -0,0 +1,148 @@
++/**
++ * @file
++ * Fake mailbox backend for local files and directories
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++/**
++ * @page local Fake mailbox backend for local files and directories
++ *
++ * Fake mailbox backend for local files and directories
++ */
++
++#include "config.h"
++#include "mx.h"
++
++/**
++ * local_path2_canon - Canonicalise a Mailbox path - Implements MxOps::path2_canon
++ */
++int local_path2_canon(struct Path *path)
++{
++  return -1;
++}
++
++/**
++ * local_path2_compare - Compare two Mailbox paths - Implements MxOps::path2_compare
++ */
++int local_path2_compare(struct Path *path1, struct Path *local_path2)
++{
++  return -1;
++}
++
++/**
++ * local_path2_parent - Find the parent of a Mailbox path - Implements MxOps::path2_parent
++ */
++int local_path2_parent(const struct Path *path, struct Path **parent)
++{
++  return -1;
++}
++
++/**
++ * local_path2_pretty - Abbreviate a Mailbox path - Implements MxOps::path2_pretty
++ */
++int local_path2_pretty(struct Path *path, const char *folder)
++{
++  return -1;
++}
++
++/**
++ * local_path2_probe - Does this Mailbox type recognise this path? - Implements MxOps::path2_probe
++ */
++int local_path2_probe(struct Path *path, const struct stat *st)
++{
++  return -1;
++}
++
++/**
++ * local_path2_tidy - Tidy a Mailbox path - Implements MxOps::path2_tidy
++ */
++int local_path2_tidy(struct Path *path)
++{
++  return -1;
++}
++
++// clang-format on
++/**
++ * MxLocalFileOps - Local File - Implements ::MxOps
++ */
++struct MxOps MxLocalFileOps = {
++  .type             = MUTT_LOCAL_FILE,
++  .name             = "file",
++  .is_local         = true,
++  .ac_find          = NULL,
++  .ac_add           = NULL,
++  .mbox_open        = NULL,
++  .mbox_open_append = NULL,
++  .mbox_check       = NULL,
++  .mbox_check_stats = NULL,
++  .mbox_sync        = NULL,
++  .mbox_close       = NULL,
++  .msg_open         = NULL,
++  .msg_open_new     = NULL,
++  .msg_commit       = NULL,
++  .msg_close        = NULL,
++  .msg_padding_size = NULL,
++  .msg_save_hcache  = NULL,
++  .tags_edit        = NULL,
++  .tags_commit      = NULL,
++  .path_probe       = NULL,
++  .path_canon       = NULL,
++  .path_parent      = NULL,
++  .path2_canon      = local_path2_canon,
++  .path2_compare    = local_path2_compare,
++  .path2_parent     = local_path2_parent,
++  .path2_pretty     = local_path2_pretty,
++  .path2_probe      = local_path2_probe,
++  .path2_tidy       = local_path2_tidy,
++};
++
++/**
++ * MxLocalDirOps - Local Directory - Implements ::MxOps
++ */
++struct MxOps MxLocalDirOps = {
++  .type             = MUTT_LOCAL_DIR,
++  .name             = "directory",
++  .is_local         = true,
++  .ac_find          = NULL,
++  .ac_add           = NULL,
++  .mbox_open        = NULL,
++  .mbox_open_append = NULL,
++  .mbox_check       = NULL,
++  .mbox_check_stats = NULL,
++  .mbox_sync        = NULL,
++  .mbox_close       = NULL,
++  .msg_open         = NULL,
++  .msg_open_new     = NULL,
++  .msg_commit       = NULL,
++  .msg_close        = NULL,
++  .msg_padding_size = NULL,
++  .msg_save_hcache  = NULL,
++  .tags_edit        = NULL,
++  .tags_commit      = NULL,
++  .path_probe       = NULL,
++  .path_canon       = NULL,
++  .path_parent      = NULL,
++  .path2_canon      = local_path2_canon,
++  .path2_compare    = local_path2_compare,
++  .path2_parent     = local_path2_parent,
++  .path2_pretty     = local_path2_pretty,
++  .path2_probe      = local_path2_probe,
++  .path2_tidy       = local_path2_tidy,
++};
++// clang-format on
+diff --git a/local.h b/local.h
+new file mode 100644
+index 000000000..75b17fe79
+--- /dev/null
++++ b/local.h
+@@ -0,0 +1,31 @@
++/**
++ * @file
++ * Fake mailbox backend for local files and directories
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef MUTT_LOCAL_H
++#define MUTT_LOCAL_H
++
++#include "mx.h"
++
++extern struct MxOps MxLocalFileOps;
++extern struct MxOps MxLocalDirOps;
++
++#endif /* MUTT_LOCAL_H */
+diff --git a/mx.c b/mx.c
+index f08886acc..bbc0fbbc7 100644
+--- a/mx.c
++++ b/mx.c
+@@ -50,6 +50,7 @@
+ #include "hook.h"
+ #include "init.h"
+ #include "keymap.h"
++#include "local.h"
+ #include "mutt_header.h"
+ #include "mutt_logging.h"
+ #include "mutt_mailbox.h"
+@@ -130,6 +131,8 @@ const struct MxOps *mx_ops[] = {
+ #ifdef USE_COMP_MBOX
+   &MxCompOps,
+ #endif
++  &MxLocalFileOps,
++  &MxLocalDirOps,
+   NULL,
+ };
+ 

@@ -1,0 +1,548 @@
+From 24e7021928b95d8bd36c042e05f9edd3f9e0d661 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Mon, 29 Jan 2024 12:28:57 +0000
+Subject: debug/expando.c
+
+---
+ Makefile.autosetup         |   5 +-
+ auto.def                   |   9 +-
+ debug/expando.c            | 316 +++++++++++++++++++++++++++++++++++++
+ debug/lib.h                |   7 +
+ expando/config_type.c      |   3 +-
+ expando/debug.h            |   2 +
+ expando/format_callbacks.c |   2 +-
+ index/functions.c          |  11 ++
+ main.c                     |  12 +-
+ 9 files changed, 357 insertions(+), 10 deletions(-)
+ create mode 100644 debug/expando.c
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index 8c06c6220..7cfdea49f 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -351,6 +351,9 @@ LIBDEBUGOBJS+=	debug/pager.o
+ @if USE_DEBUG_EMAIL
+ LIBDEBUGOBJS+=	debug/email.o
+ @endif
++@if USE_DEBUG_EXPANDO
++LIBDEBUGOBJS+=	debug/expando.o
++@endif
+ @if USE_DEBUG_GRAPHVIZ
+ LIBDEBUGOBJS+=	debug/graphviz.o
+ @endif
+@@ -366,7 +369,7 @@ LIBDEBUGOBJS+=	debug/notify.o
+ @if USE_DEBUG_WINDOW
+ LIBDEBUGOBJS+=	debug/window.o
+ @endif
+-@if USE_DEBUG_BACKTRACE || USE_DEBUG_COLOR || USE_DEBUG_EMAIL || USE_DEBUG_GRAPHVIZ || USE_DEBUG_KEYMAP || USE_DEBUG_LOGGING || USE_DEBUG_NAMES || USE_DEBUG_NOTIFY || USE_DEBUG_WINDOW
++@if USE_DEBUG_BACKTRACE || USE_DEBUG_COLOR || USE_DEBUG_EMAIL || USE_DEBUG_EXPANDO || USE_DEBUG_GRAPHVIZ || USE_DEBUG_KEYMAP || USE_DEBUG_LOGGING || USE_DEBUG_NAMES || USE_DEBUG_NOTIFY || USE_DEBUG_WINDOW
+ LIBDEBUGOBJS+=	debug/common.o debug/names.o
+ LIBDEBUG=	libdebug.a
+ CLEANFILES+=	$(LIBDEBUG) $(LIBDEBUGOBJS)
+diff --git a/auto.def b/auto.def
+index 1f0cf0265..aeee51762 100644
+--- a/auto.def
++++ b/auto.def
+@@ -123,6 +123,7 @@ set valid_options {
+   with-backtrace:path       => "Location of libunwind"
+   debug-color=0             => "DEBUG: Enable Color dump"
+   debug-email=0             => "DEBUG: Enable Email dump"
++  debug-expando=0           => "DEBUG: Enable Expando dump"
+   debug-graphviz=0          => "DEBUG: Enable Graphviz dump"
+   debug-keymap=0            => "DEBUG: Enable Key mappings dump"
+   debug-logging=0           => "DEBUG: Enable Debug logging"
+@@ -173,7 +174,7 @@ if {1} {
+   # Keep sorted, please.
+   foreach opt {
+     asan autocrypt bdb compile-commands coverage debug-backtrace debug-color
+-    debug-email debug-graphviz debug-keymap debug-logging debug-names
++    debug-email debug-expando debug-graphviz debug-keymap debug-logging debug-names
+     debug-notify debug-queue debug-window doc everything fmemopen full-doc
+     fuzzing gdbm gnutls gpgme gsasl gss homespool idn2 include-path-in-cflags
+     inotify kyotocabinet lmdb locales-fix lua lz4 mixmaster nls notmuch pcre2
+@@ -1038,6 +1039,12 @@ if {[get-define want-debug-email]} {
+   define debug_build 1
+ }
+ 
++# Expando dump
++if {[get-define want-debug-expando]} {
++  define USE_DEBUG_EXPANDO 1
++  define debug_build 1
++}
++
+ # Graphviz dump
+ if {[get-define want-debug-graphviz]} {
+   define USE_DEBUG_GRAPHVIZ 1
+diff --git a/debug/expando.c b/debug/expando.c
+new file mode 100644
+index 000000000..2202f0ad1
+--- /dev/null
++++ b/debug/expando.c
+@@ -0,0 +1,316 @@
++/**
++ * @file
++ * Dump the details of an Expando Tree
++ *
++ * @authors
++ * Copyright (C) 2024 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++/**
++ * @page debug_expando Dump an Expando
++ *
++ * Dump the details of an Expando Tree
++ */
++
++#include "config.h"
++#include <assert.h>
++#include "mutt/lib.h"
++#include "lib.h"
++#include "expando/lib.h"
++
++#define USE_COLOUR
++
++static void dump_node(const struct ExpandoNode *node, struct Buffer *buf);
++
++/**
++ * insert_colour - XXX
++ */
++void insert_colour(struct Buffer *buf, int col)
++{
++#ifdef USE_COLOUR
++  if (col > 0)
++    buf_add_printf(buf, "\033[1;%dm", col);
++  else
++    buf_addstr(buf, "\033[0m");
++#endif
++}
++
++/**
++ * dump_did_uid - XXX
++ */
++static void dump_did_uid(const struct ExpandoNode *node, struct Buffer *buf)
++{
++#if 0
++  const char *did = name_expando_domain(node->did);
++  const char *uid = name_expando_uid(node->did, node->uid);
++  buf_add_printf(buf, "(%s,%s)", did + 3, uid + 7);
++#endif
++}
++
++/**
++ * dump_node_condition - XXX
++ */
++static void dump_node_condition(const struct ExpandoNode *node, struct Buffer *buf)
++{
++  insert_colour(buf, 31); // Bright Red
++  buf_addstr(buf, "<COND");
++
++  // assert(node->start);
++  // assert(node->end);
++  // int len = node->end - node->start;
++  // buf_add_printf(buf, ":'%.*s':", len, node->start);
++
++  // dump_did_uid(node, buf);
++
++  // These shouldn't happen
++  if (node->start)
++    buf_add_printf(buf, ",start=%p", node->start);
++  if (node->end)
++    buf_add_printf(buf, ",end=%p", node->end);
++
++  assert(node->ndata);
++  assert(node->ndata_free);
++  struct ExpandoConditionPrivate *priv = node->ndata;
++
++  assert(priv->condition);
++  assert(priv->if_true_tree);
++  assert(priv->if_false_tree);
++  buf_addstr(buf, ":");
++  insert_colour(buf, 0); // End colour
++  dump_node(priv->condition, buf);
++  buf_addstr(buf, "|");
++  dump_node(priv->if_true_tree, buf);
++  buf_addstr(buf, "|");
++  dump_node(priv->if_false_tree, buf);
++  insert_colour(buf, 32); // Bright Green
++
++  buf_addstr(buf, ">");
++  insert_colour(buf, 0); // End colour
++}
++
++/**
++ * dump_node_conditional_date - XXX
++ */
++static void dump_node_conditional_date(const struct ExpandoNode *node, struct Buffer *buf)
++{
++  insert_colour(buf, 32); // Bright Green
++  buf_addstr(buf, "<DATE:");
++
++  // assert(node->start);
++  // assert(node->end);
++  // int len = node->end - node->start;
++  // buf_add_printf(buf, ":'%.*s':", len, node->start);
++
++  dump_did_uid(node, buf);
++
++  assert(node->ndata);
++  assert(node->ndata_free);
++  struct ExpandoConditionalDatePrivate *priv = node->ndata;
++  buf_add_printf(buf, ":%d:%c:%zu", priv->count, priv->period, priv->multiplier);
++
++  // These shouldn't happen
++  if (node->start)
++    buf_add_printf(buf, ",start=%p", node->start);
++  if (node->end)
++    buf_add_printf(buf, ",end=%p", node->end);
++
++  buf_addstr(buf, ">");
++  insert_colour(buf, 0); // End colour
++}
++
++/**
++ * dump_node_empty - XXX
++ */
++static void dump_node_empty(const struct ExpandoNode *node, struct Buffer *buf)
++{
++  insert_colour(buf, 34); // Bright Blue
++  buf_addstr(buf, "<EMPTY");
++
++  // These shouldn't happen
++  if (node->did != 0)
++    buf_add_printf(buf, ",did=%d", node->did);
++  if (node->uid != 0)
++    buf_add_printf(buf, ",uid=%d", node->uid);
++  if (node->start)
++    buf_add_printf(buf, ",start=%p", node->start);
++  if (node->end)
++    buf_add_printf(buf, ",end=%p", node->end);
++  if (node->ndata)
++    buf_add_printf(buf, ",ndata=%p", node->ndata);
++  if (node->ndata_free)
++    buf_add_printf(buf, ",ndata_free=%p", (void *) (intptr_t) node->ndata_free);
++
++  buf_addstr(buf, ">");
++  insert_colour(buf, 0); // End colour
++}
++
++/**
++ * dump_node_expando - XXX
++ */
++static void dump_node_expando(const struct ExpandoNode *node, struct Buffer *buf)
++{
++  insert_colour(buf, 32); // Bright Yellow
++  buf_addstr(buf, "<EXP:");
++
++  assert(node->start);
++  assert(node->end);
++  int len = node->end - node->start;
++  buf_add_printf(buf, "'%.*s'", len, node->start);
++
++  assert(node->did != 0);
++  assert(node->uid != 0);
++  dump_did_uid(node, buf);
++
++  // assert(node->ndata);
++  // assert(node->ndata_free);
++  struct ExpandoFormatPrivate *priv = node->ndata;
++  if (priv)
++  {
++    len = priv->end - priv->start;
++    const char *just = name_format_justify(priv->justification);
++    buf_add_printf(buf, ":{%d,%d,%s,'%c',%.*s}", priv->min, priv->max, just + 8,
++                   priv->leader, len, priv->start);
++  }
++
++  // These shouldn't happen
++  // if (node->ndata)
++  //   buf_add_printf(buf, ",ndata=%p", node->ndata);
++  // if (node->ndata_free)
++  //   buf_add_printf(buf, ",ndata_free=%p", (void *) (intptr_t) node->ndata_free);
++
++  buf_addstr(buf, ">");
++  insert_colour(buf, 0); // End colour
++}
++
++/**
++ * dump_node_pad - XXX
++ */
++static void dump_node_pad(const struct ExpandoNode *node, struct Buffer *buf)
++{
++  insert_colour(buf, 35); // Bright Magenta
++  buf_addstr(buf, "<PAD:");
++
++  assert(node->ndata);
++  assert(node->ndata_free);
++  struct ExpandoPadPrivate *priv = node->ndata;
++
++  switch (priv->pad_type)
++  {
++    case EPT_FILL_EOL:
++      buf_addstr(buf, "EOL:");
++      break;
++    case EPT_HARD_FILL:
++      buf_addstr(buf, "HARD:");
++      break;
++    case EPT_SOFT_FILL:
++      buf_addstr(buf, "SOFT:");
++      break;
++    default:
++      assert(false);
++  }
++
++  assert(node->start);
++  assert(node->end);
++  int len = node->end - node->start;
++  if (len > 0)
++    buf_add_printf(buf, "'%.*s'", len, node->start);
++
++  // buf_add_printf(buf, ":(%s,%zu)", priv->buffer_start, priv->buffer_len);
++
++  // These shouldn't happen
++  // if (node->did != 0)
++  //   buf_add_printf(buf, ",did=%d", node->did);
++  // if (node->uid != 0)
++  //   buf_add_printf(buf, ",uid=%d", node->uid);
++
++  buf_addstr(buf, ">");
++  insert_colour(buf, 0); // End colour
++}
++
++/**
++ * dump_node_text - XXX
++ */
++static void dump_node_text(const struct ExpandoNode *node, struct Buffer *buf)
++{
++  insert_colour(buf, 36); // Bright Cyan
++  buf_addstr(buf, "<TEXT:");
++
++  assert(node->start);
++  assert(node->end);
++  int len = node->end - node->start;
++  buf_add_printf(buf, "'%.*s'", len, node->start);
++
++  // These shouldn't happen
++  // if (node->did != 0)
++  //   buf_add_printf(buf, ",did=%d", node->did);
++  // if (node->uid != 0)
++  //   buf_add_printf(buf, ",uid=%d", node->uid);
++  if (node->ndata)
++    buf_add_printf(buf, ",ndata=%p", node->ndata);
++  if (node->ndata_free)
++    buf_add_printf(buf, ",ndata_free=%p", (void *) (intptr_t) node->ndata_free);
++
++  buf_addstr(buf, ">");
++  insert_colour(buf, 0); // End colour
++}
++
++/**
++ * dump_node - XXX
++ */
++static void dump_node(const struct ExpandoNode *node, struct Buffer *buf)
++{
++  if (!node || !buf)
++    return;
++
++  for (; node; node = node->next)
++  {
++    switch (node->type)
++    {
++      case ENT_CONDITION:
++        dump_node_condition(node, buf);
++        break;
++      case ENT_CONDITIONAL_DATE:
++        dump_node_conditional_date(node, buf);
++        break;
++      case ENT_EMPTY:
++        dump_node_empty(node, buf);
++        break;
++      case ENT_EXPANDO:
++        dump_node_expando(node, buf);
++        break;
++      case ENT_PAD:
++        dump_node_pad(node, buf);
++        break;
++      case ENT_TEXT:
++        dump_node_text(node, buf);
++        break;
++      default:
++        assert(false);
++    }
++  }
++}
++
++/**
++ * expando_serialise - XXX
++ */
++void expando_serialise(const struct Expando *exp, struct Buffer *buf)
++{
++  if (!exp || !buf)
++    return;
++
++  dump_node(exp->tree, buf);
++}
+diff --git a/debug/lib.h b/debug/lib.h
+index 4990111e3..b8ce63f19 100644
+--- a/debug/lib.h
++++ b/debug/lib.h
+@@ -30,6 +30,7 @@
+  * | debug/backtrace.c   | @subpage debug_backtrace   |
+  * | debug/common.c      | @subpage debug_common      |
+  * | debug/email.c       | @subpage debug_email       |
++ * | debug/expando.c     | @subpage debug_expando     |
+  * | debug/graphviz.c    | @subpage debug_graphviz    |
+  * | debug/keymap.c      | @subpage debug_keymap      |
+  * | debug/logging.c     | @subpage debug_logging     |
+@@ -47,11 +48,13 @@
+ #include "mutt/lib.h"
+ #include "email/lib.h"
+ #include "core/lib.h"
++#include "expando/lib.h"
+ #include "menu/lib.h"
+ 
+ struct AddressList;
+ struct AttachCtx;
+ struct AttachPtr;
++struct Expando;
+ struct MailboxView;
+ struct MuttWindow;
+ struct PagerPrivateData;
+@@ -74,6 +77,9 @@ void        dump_envelope          (const struct Envelope *env);
+ void        dump_list_head         (const struct ListHead *list, const char *name);
+ void        dump_param_list        (const struct ParameterList *pl);
+ 
++// Expando
++void        expando_serialise(const struct Expando *exp, struct Buffer *buf);
++
+ // Graphviz
+ void        dump_graphviz           (const char *title, struct MailboxView *mv);
+ void        dump_graphviz_attach_ctx(struct AttachCtx *actx);
+@@ -94,6 +100,7 @@ extern int log_disp_debug           (time_t stamp, const char *file, int line, c
+ const char *name_content_disposition(enum ContentDisposition disp);
+ const char *name_content_encoding   (enum ContentEncoding enc);
+ const char *name_content_type       (enum ContentType type);
++const char *name_format_justify     (enum FormatJustify just);
+ const char *name_mailbox_type       (enum MailboxType type);
+ const char *name_menu_type          (enum MenuType mt);
+ const char *name_notify_config      (int id);
+diff --git a/expando/config_type.c b/expando/config_type.c
+index 100a95c3e..8eab2e6b5 100644
+--- a/expando/config_type.c
++++ b/expando/config_type.c
+@@ -180,7 +180,8 @@ static int expando_native_set(const struct ConfigSet *cs, void *var,
+ 
+   if (exp_value)
+   {
+-    const struct ExpandoDefinition *defs = (const struct ExpandoDefinition *) cdef->data;
++    const struct ExpandoDefinition *defs = (const struct ExpandoDefinition *)
++                                               cdef->data;
+     exp_copy = expando_parse(exp_value->string, defs, err);
+   }
+ 
+diff --git a/expando/debug.h b/expando/debug.h
+index ca44a9908..ddaf57695 100644
+--- a/expando/debug.h
++++ b/expando/debug.h
+@@ -23,6 +23,8 @@
+ #ifndef MUTT_EXPANDO_DEBUG_H
+ #define MUTT_EXPANDO_DEBUG_H
+ 
++#include <stdio.h>
++
+ struct ExpandoNode;
+ 
+ void expando_tree_print(FILE *fp, struct ExpandoNode **root, int indent);
+diff --git a/expando/format_callbacks.c b/expando/format_callbacks.c
+index aa3e6d33a..d51cb4479 100644
+--- a/expando/format_callbacks.c
++++ b/expando/format_callbacks.c
+@@ -32,10 +32,10 @@
+ #include <string.h>
+ #include "mutt/lib.h"
+ #include "gui/lib.h"
++#include "format_callbacks.h"
+ #include "color/lib.h"
+ #include "domain.h"
+ #include "expando.h"
+-#include "format_callbacks.h"
+ #include "helpers.h"
+ #include "mutt_thread.h"
+ #include "node.h"
+diff --git a/index/functions.c b/index/functions.c
+index bccdd4208..b937ac33e 100644
+--- a/index/functions.c
++++ b/index/functions.c
+@@ -84,6 +84,7 @@
+ #include <libintl.h>
+ #endif
+ #endif
++// #include "debug/lib.h"
+ 
+ /// Error message for unavailable functions
+ static const char *Not_available_in_this_menu = N_("Not available in this menu");
+@@ -2078,6 +2079,16 @@ static int op_prev_entry(struct IndexSharedData *shared, struct IndexPrivateData
+  */
+ static int op_print(struct IndexSharedData *shared, struct IndexPrivateData *priv, int op)
+ {
++#if 0
++  const struct Expando *c_index_format = cs_subset_expando(shared->sub, "index_format");
++  struct Buffer *buf = buf_pool_get();
++  mutt_debug(LL_DEBUG1, "\n%s\n\n", c_index_format->string);
++  expando_serialise(c_index_format, buf);
++  mutt_debug(LL_DEBUG1, "%s\n\n", buf_string(buf));
++  buf_pool_release(&buf);
++  return FR_SUCCESS;
++#endif
++
+   struct EmailArray ea = ARRAY_HEAD_INITIALIZER;
+   ea_add_tagged(&ea, shared->mailbox_view, shared->email, priv->tag_prefix);
+   mutt_print_message(shared->mailbox, &ea);
+diff --git a/main.c b/main.c
+index 3c3dfd991..005068f3c 100644
+--- a/main.c
++++ b/main.c
+@@ -713,7 +713,7 @@ main
+       goto main_curses;
+   }
+ 
+-  if (string_to_parse != NULL)
++  if (string_to_parse)
+   {
+     printf("`%s`\n", string_to_parse);
+ 
+@@ -722,16 +722,16 @@ main
+ 
+     expando_tree_parse(&root, &string_to_parse, NULL, &error);
+ 
+-    if (error.position == NULL)
+-    {
+-      expando_tree_print(stdout, &root, 0);
+-    }
+-    else
++    if (error.position)
+     {
+       int location = mutt_strwidth_nonnull(string_to_parse, error.position);
+       printf("%*s^\n", location, "");
+       printf("Parsing error: %s\n", error.message);
+     }
++    else
++    {
++      expando_tree_print(stdout, &root, 0);
++    }
+ 
+     expando_tree_free(&root);
+     FREE(&string_to_parse);

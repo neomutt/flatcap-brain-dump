@@ -1,0 +1,73 @@
+From 0b9713059729f45cc465af30fe512c57f51aac63 Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Mon, 16 Mar 2020 14:59:43 -0700
+Subject: [PATCH] Add $folder to send scope.
+
+It's hard to know where to draw the line on scope variables, but
+$folder seems likely to change across "account switches" and will
+affect Fcc pretty_mailbox and expansion.  The user can also manually
+change Fcc from the compose menu.
+
+If spoolfile or infile complaints come in, I can add that, but I'm not
+convinced those will commonly be an issue for sending emails.
+---
+ doc/manual.xml.head | 1 +
+ send.c              | 3 +++
+ send.h              | 1 +
+ 3 files changed, 5 insertions(+)
+
+diff --git a/doc/manual.xml.head b/doc/manual.xml.head
+index 82204e2e..56073c1f 100644
+--- a/doc/manual.xml.head
++++ b/doc/manual.xml.head
+@@ -1812,6 +1812,7 @@ fo-table</literal> for details.
+ <para>
+   Mutt will save all <literal>boolean</literal> and
+   <literal>quadoption</literal> configuration variables, along with
++  <link linkend="folder">$folder</link>,
+   <link linkend="record">$record</link>,
+   <link linkend="postponed">$postponed</link>,
+   <link linkend="envelope-from-address">$envelope_from_address</link>,
+diff --git a/send.c b/send.c
+index 156c6084..eaadb90b 100644
+--- a/send.c
++++ b/send.c
+@@ -1636,6 +1636,7 @@ static void scope_free (SEND_SCOPE **pscope)
+ 
+   scope = *pscope;
+ 
++  FREE (&scope->maildir);
+   FREE (&scope->outbox);
+   FREE (&scope->postponed);
+   rfc822_free_address (&scope->env_from);
+@@ -1660,6 +1661,7 @@ static SEND_SCOPE *scope_save (void)
+   memcpy (scope->options, Options, sizeof(scope->options));
+   memcpy (scope->quadoptions, QuadOptions, sizeof(scope->quadoptions));
+ 
++  scope->maildir = safe_strdup (Maildir);
+   scope->outbox = safe_strdup (Outbox);
+   scope->postponed = safe_strdup (Postponed);
+ 
+@@ -1685,6 +1687,7 @@ static void scope_restore (SEND_SCOPE *scope)
+   memcpy (Options, scope->options, sizeof(scope->options));
+   memcpy (QuadOptions, scope->quadoptions, sizeof(scope->quadoptions));
+ 
++  mutt_str_replace (&Maildir, scope->maildir);
+   mutt_str_replace (&Outbox, scope->outbox);
+   mutt_str_replace (&Postponed, scope->postponed);
+ 
+diff --git a/send.h b/send.h
+index 8e9eb076..77c49434 100644
+--- a/send.h
++++ b/send.h
+@@ -32,6 +32,7 @@ typedef struct send_scope
+   unsigned char options[(OPTMAX + 7)/8];
+   unsigned char quadoptions[(OPT_MAX*2 + 7) / 8];
+ 
++  char *maildir;  /* $folder */
+   char *outbox;
+   char *postponed;
+   ADDRESS *env_from;
+-- 
+2.26.2
+

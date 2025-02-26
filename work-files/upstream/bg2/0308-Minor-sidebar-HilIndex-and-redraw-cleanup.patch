@@ -1,0 +1,67 @@
+From 1e9ab8b67e50f512bed61f204cdc99c6ca76ba54 Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Tue, 24 Mar 2020 19:42:43 -0700
+Subject: [PATCH] Minor sidebar HilIndex and redraw cleanup.
+
+Ensure HilIndex is reset to -1 if all mailboxes are hidden, preventing
+<sidebar-open> from opening a hidden mailbox in that case.
+
+Previously, draw_sidebar() would still be triggered in that case,
+causing an empty loop to run and trailing space to be drawn.  But with
+this change TopIndex and BottomIndex will still be -1 in that case.
+
+Change the prepare_sidebar() return value to check if HilIndex is set,
+and if mutt_sb_draw() to clear out in that case.
+---
+ sidebar.c | 19 ++++++++-----------
+ 1 file changed, 8 insertions(+), 11 deletions(-)
+
+diff --git a/sidebar.c b/sidebar.c
+index b78cea91..be2133b9 100644
+--- a/sidebar.c
++++ b/sidebar.c
+@@ -420,8 +420,10 @@ static int prepare_sidebar (int page_size)
+     else
+     {
+       HilIndex = 0;
++      /* Note is_hidden will only be set when OPTSIDEBARNEWMAILONLY */
+       if (Entries[HilIndex]->is_hidden)
+-        select_next ();
++        if (!select_next ())
++          HilIndex = -1;
+     }
+   }
+ 
+@@ -457,7 +459,8 @@ static int prepare_sidebar (int page_size)
+     BotIndex = EntryCount - 1;
+ 
+   PreviousSort = SidebarSortMethod;
+-  return 1;
++
++  return (HilIndex >= 0);
+ }
+ 
+ /**
+@@ -801,16 +804,10 @@ void mutt_sb_draw (void)
+   if (div_width < 0)
+     return;
+ 
+-  if (!Incoming)
+-  {
+-    fill_empty_space (0, num_rows, SidebarWidth - div_width);
+-    return;
+-  }
+-
+   if (!prepare_sidebar (num_rows))
+-    return;
+-
+-  draw_sidebar (num_rows, num_cols, div_width);
++    fill_empty_space (0, num_rows, SidebarWidth - div_width);
++  else
++    draw_sidebar (num_rows, num_cols, div_width);
+ }
+ 
+ /**
+-- 
+2.26.2
+

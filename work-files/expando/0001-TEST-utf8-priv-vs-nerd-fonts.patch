@@ -1,0 +1,32 @@
+From cdfc0bfa297e69ff827659236fb6fe5cc6f18d81 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Sun, 17 Mar 2024 18:24:30 +0000
+Subject: [PATCH] TEST utf8 priv vs nerd fonts
+
+---
+ main.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/main.c b/main.c
+index 135cee8a3..df9957d8a 100644
+--- a/main.c
++++ b/main.c
+@@ -939,6 +939,18 @@ main
+ 
+   if (batch_mode)
+   {
++    wchar_t wstr[10] = { 0 };
++    struct Buffer *buf = buf_pool_get();
++    // for (int j = 0xE000; j < 0xF8FF; j++)
++    for (int j = 0xF0000; j < 0xF0100; j++)
++    {
++      wstr[0] = j;
++      buf_reset(buf);
++      buf_mb_wcstombs(buf, wstr, 1);
++      printf("%x %s \n", j, buf_string(buf));
++    }
++    buf_pool_release(&buf);
++
+ #ifdef USE_DEBUG_GRAPHVIZ
+     const struct Expando *c_index_format = cs_subset_expando(NeoMutt->sub, "index_format");
+     dump_graphviz_expando_node(c_index_format->tree);

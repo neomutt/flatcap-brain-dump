@@ -1,0 +1,651 @@
+From 6fe9b1d5c526b0497b17ef340d058fb1537e7da0 Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Wed, 19 Feb 2020 16:34:05 -0800
+Subject: [PATCH] Add background compose menu and $background_format config
+ var.
+
+List the backgrounded sessions.  Allow the user to resume one, or exit
+the menu.
+
+Bind to 'B' by default in the index and pager menus.
+
+Remove the "<mail>" function autoresuming functionality, instead
+invoke the menu to resume backgrounded sessions.
+---
+ OPS          |   1 +
+ background.c | 357 ++++++++++++++++++++++++++++++++++++++++++++++++++-
+ background.h |   4 +-
+ curs_main.c  |  25 +---
+ functions.h  |   2 +
+ globals.h    |   2 +
+ init.h       |  14 ++
+ menu.c       |   3 +
+ mutt_menu.h  |   4 +
+ pager.c      |   5 +
+ send.h       |   2 -
+ signal.c     |   6 +-
+ 12 files changed, 397 insertions(+), 28 deletions(-)
+
+diff --git a/OPS b/OPS
+index 0ebb773d..8070a189 100644
+--- a/OPS
++++ b/OPS
+@@ -8,6 +8,7 @@ OP_AUTOCRYPT_CREATE_ACCT "create a new autocrypt account"
+ OP_AUTOCRYPT_DELETE_ACCT "delete the current account"
+ OP_AUTOCRYPT_TOGGLE_ACTIVE "toggle the current account active/inactive"
+ OP_AUTOCRYPT_TOGGLE_PREFER "toggle the current account prefer-encrypt flag"
++OP_BACKGROUND_COMPOSE_MENU "list and select backgrounded compose sessions"
+ OP_BOTTOM_PAGE "move to the bottom of the page"
+ OP_BOUNCE_MESSAGE "remail a message to another user"
+ OP_BROWSER_NEW_FILE "select a new file in this directory"
+diff --git a/background.c b/background.c
+index 4fa49f1b..ef27a9f8 100644
+--- a/background.c
++++ b/background.c
+@@ -33,6 +33,91 @@
+ #include <unistd.h>
+ #include <errno.h>
+ 
++typedef struct background_process
++{
++  pid_t pid;
++  unsigned int finished;
++  SEND_CONTEXT *sctx;
++
++  struct background_process *next;
++} BACKGROUND_PROCESS;
++
++static BACKGROUND_PROCESS *ProcessList = NULL;
++
++static BACKGROUND_PROCESS *bg_process_new (pid_t pid, SEND_CONTEXT *sctx)
++{
++  BACKGROUND_PROCESS *process;
++
++  process = safe_calloc (1, sizeof(BACKGROUND_PROCESS));
++  process->pid = pid;
++  process->sctx = sctx;
++
++  return process;
++}
++
++static void bg_process_free (BACKGROUND_PROCESS **process)
++{
++  if (!process || !*process)
++    return;
++
++  /* The SEND_CONTEXT is managed independently of the process.
++   * Don't free it here */
++  FREE (process);   /* __FREE_CHECKED__ */
++}
++
++static void process_list_add (BACKGROUND_PROCESS *process)
++{
++  process->next = ProcessList;
++  ProcessList = process;
++}
++
++static void process_list_remove (BACKGROUND_PROCESS *process)
++{
++  BACKGROUND_PROCESS *cur = ProcessList;
++  BACKGROUND_PROCESS **plast = &ProcessList;
++
++  while (cur)
++  {
++    if (cur == process)
++    {
++      *plast = cur->next;
++      cur->next = NULL;
++      break;
++    }
++    plast = &cur->next;
++    cur = cur->next;
++  }
++}
++
++/* Returns 0 if no processes were updated to finished.
++ *         1 if one or more processes finished
++ */
++int mutt_background_process_waitpid (void)
++{
++  BACKGROUND_PROCESS *process;
++  pid_t pid;
++  int has_finished = 0;
++
++  if (!ProcessList)
++    return 0;
++
++  while ((pid = waitpid (WAIT_ANY, NULL, WNOHANG)) > 0)
++  {
++    process = ProcessList;
++    while (process)
++    {
++      if (process->pid == pid)
++      {
++        process->finished = 1;
++        has_finished = 1;
++        break;
++      }
++      process = process->next;
++    }
++  }
++
++  return has_finished;
++}
+ 
+ static pid_t mutt_background_run (const char *cmd)
+ {
+@@ -91,6 +176,9 @@ static const struct mapping_t LandingHelp[] = {
+   { NULL,	 0 }
+ };
+ 
++
++/* Landing Page */
++
+ static void landing_redraw (MUTTMENU *menu)
+ {
+   menu_redraw (menu);
+@@ -176,6 +264,7 @@ static int background_edit_landing_page (pid_t bg_pid)
+   return rc;
+ }
+ 
++
+ /* Runs editor in the background.
+  *
+  * After backgrounding the process, the background landing page will
+@@ -198,6 +287,7 @@ int mutt_background_edit_file (SEND_CONTEXT *sctx, const char *editor,
+   BUFFER *cmd;
+   pid_t pid;
+   int rc = -1;
++  BACKGROUND_PROCESS *process;
+ 
+   cmd = mutt_buffer_pool_get ();
+ 
+@@ -213,11 +303,274 @@ int mutt_background_edit_file (SEND_CONTEXT *sctx, const char *editor,
+   rc = background_edit_landing_page (pid);
+   if (rc == 2)
+   {
+-    sctx->background_pid = pid;
+-    BackgroundProcess = sctx;
++    process = bg_process_new (pid, sctx);
++    process_list_add (process);
+   }
+ 
+ cleanup:
+   mutt_buffer_pool_release (&cmd);
+   return rc;
+ }
++
++
++/* Background Compose Menu */
++
++typedef struct entry
++{
++  int num;
++  BACKGROUND_PROCESS *process;
++} BG_ENTRY;
++
++static const struct mapping_t BgComposeHelp[] = {
++  { N_("Exit"),   OP_EXIT },
++  /* L10N: Background Compose Menu Help line:
++     resume composing the mail
++  */
++  { N_("Resume"),   OP_GENERIC_SELECT_ENTRY },
++  { N_("Help"),   OP_HELP },
++  { NULL,	  0 }
++};
++
++static const char *bg_format_str (char *dest, size_t destlen, size_t col,
++                                  int cols, char op, const char *src,
++                                  const char *fmt, const char *ifstring,
++                                  const char *elsestring,
++                                  unsigned long data, format_flag flags)
++{
++  BG_ENTRY *entry = (BG_ENTRY *)data;
++  HEADER *hdr = entry->process->sctx->msg;
++  char tmp[SHORT_STRING];
++  char buf[LONG_STRING];
++  int optional = (flags & MUTT_FORMAT_OPTIONAL);
++
++  switch (op)
++  {
++    case 'n':
++      snprintf (tmp, sizeof (tmp), "%%%sd", fmt);
++      snprintf (dest, destlen, tmp, entry->num);
++      break;
++    case 'p':
++      snprintf (tmp, sizeof (tmp), "%%%sd", fmt);
++      snprintf (dest, destlen, tmp, entry->process->pid);
++      break;
++    case 'r':
++      buf[0] = 0;
++      rfc822_write_address(buf, sizeof(buf), hdr->env->to, 1);
++      if (optional && buf[0] == '\0')
++        optional = 0;
++      mutt_format_s (dest, destlen, fmt, buf);
++      break;
++    case 'R':
++      buf[0] = 0;
++      rfc822_write_address(buf, sizeof(buf), hdr->env->cc, 1);
++      if (optional && buf[0] == '\0')
++        optional = 0;
++      mutt_format_s (dest, destlen, fmt, buf);
++      break;
++    case 's':
++      mutt_format_s (dest, destlen, fmt, NONULL (hdr->env->subject));
++      break;
++    case 'S':
++      if (!optional)
++      {
++        if (entry->process->finished)
++          /* L10N:
++             Background Compose menu
++             flag that indicates the editor process has finished.
++          */
++          mutt_format_s (dest, destlen, fmt, _("finished"));
++        else
++          /* L10N:
++             Background Compose menu
++             flag that indicates the editor process is still running.
++          */
++          mutt_format_s (dest, destlen, fmt, _("running"));
++      }
++      else if (!entry->process->finished)
++        optional = 0;
++      break;
++  }
++
++  if (optional)
++    mutt_FormatString (dest, destlen, col, cols, ifstring, bg_format_str, (unsigned long) entry, flags);
++  else if (flags & MUTT_FORMAT_OPTIONAL)
++    mutt_FormatString (dest, destlen, col, cols, elsestring, bg_format_str, (unsigned long) entry, flags);
++
++  return (src);
++}
++
++static void make_bg_entry (char *s, size_t slen, MUTTMENU *m, int num)
++{
++  BG_ENTRY *entry = &((BG_ENTRY *) m->data)[num];
++
++  mutt_FormatString (s, slen, 0, MuttIndexWindow->cols,
++                     NONULL (BackgroundFormat),
++                     bg_format_str,
++		     (unsigned long) entry, MUTT_FORMAT_ARROWCURSOR);
++}
++
++static void update_bg_menu (MUTTMENU *menu)
++{
++  if (SigChld)
++  {
++    SigChld = 0;
++    if (mutt_background_process_waitpid ())
++      menu->redraw |= REDRAW_INDEX;
++  }
++}
++
++static MUTTMENU *create_bg_menu ()
++{
++  MUTTMENU *menu = NULL;
++  BACKGROUND_PROCESS *process;
++  BG_ENTRY *entries = NULL;
++  int num_entries = 0, i;
++  char *helpstr;
++
++  process = ProcessList;
++  while (process)
++  {
++    num_entries++;
++    process = process->next;
++  }
++
++  menu = mutt_new_menu (MENU_GENERIC);
++  menu->make_entry = make_bg_entry;
++  menu->custom_menu_update = update_bg_menu;
++
++  /* L10N:
++     Background Compose Menu title
++  */
++  menu->title = _("Background Compose Menu");
++  helpstr = safe_malloc (STRING);
++  menu->help = mutt_compile_help (helpstr, STRING, MENU_GENERIC,
++                                  BgComposeHelp);
++
++  menu->data = entries = safe_calloc (num_entries, sizeof(BG_ENTRY));
++  menu->max = num_entries;
++
++  process = ProcessList;
++  i = 0;
++  while (process)
++  {
++    entries[i].num = i + 1;
++    entries[i].process = process;
++
++    process = process->next;
++    i++;
++  }
++
++  mutt_push_current_menu (menu);
++
++  return menu;
++}
++
++static void free_bg_menu (MUTTMENU **menu)
++{
++  mutt_pop_current_menu (*menu);
++  FREE (&(*menu)->data);
++  FREE (&(*menu)->help);
++  mutt_menuDestroy (menu);
++}
++
++void mutt_background_compose_menu (void)
++{
++  MUTTMENU *menu;
++  int done = 0, op;
++  BG_ENTRY *entry;
++  BACKGROUND_PROCESS *process;
++  SEND_CONTEXT *sctx;
++  char msg[SHORT_STRING];
++
++  if (!ProcessList)
++  {
++    /* L10N:
++       Background Compose Menu:
++       displayed if there are no background processes and the
++       user tries to bring up the background compose menu
++    */
++    mutt_message _("No backgrounded editing sessions.");
++    return;
++  }
++
++  /* Force a rescan, just in case somehow the signal was missed. */
++  SigChld = 1;
++  mutt_background_process_waitpid ();
++
++  /* If there is only one process and it's finished, skip the menu */
++  if (!ProcessList->next && ProcessList->finished)
++  {
++    process = ProcessList;
++    sctx = process->sctx;
++    process_list_remove (process);
++    bg_process_free (&process);
++    if (mutt_send_message_resume (sctx) == 2)
++    {
++      /* L10N:
++         Message displayed when the user chooses to background
++         editing from the landing page.
++      */
++      mutt_message _("Editing backgrounded.");
++    }
++    return;
++  }
++
++  menu = create_bg_menu ();
++  while (!done)
++  {
++    switch ((op = mutt_menuLoop (menu)))
++    {
++      case OP_EXIT:
++        done = 1;
++        break;
++
++      case OP_GENERIC_SELECT_ENTRY:
++        if (menu->data)
++        {
++          entry = (BG_ENTRY *)(menu->data) + menu->current;
++          process = entry->process;
++          sctx = process->sctx;
++
++          if (!process->finished)
++          {
++            snprintf (msg, sizeof(msg),
++                      /* L10N:
++                         Background Compose menu:
++                         Confirms if an unfinished process is selected
++                         to continue.
++                      */
++                      _("Process is still running. Really select?"));
++            if (mutt_yesorno (msg, MUTT_NO) != MUTT_YES)
++              break;
++            mutt_message _("Waiting for editor to exit");
++            waitpid (process->pid, NULL, 0);
++            mutt_clear_error ();
++          }
++
++          process_list_remove (process);
++          bg_process_free (&process);
++
++          if (mutt_send_message_resume (sctx) == 2)
++          {
++            /* L10N:
++               Message displayed when the user chooses to background
++               editing from the landing page.
++            */
++            mutt_message _("Editing backgrounded.");
++          }
++
++          if (!ProcessList)
++          {
++            done = 1;
++            break;
++          }
++
++          free_bg_menu (&menu);
++          menu = create_bg_menu ();
++        }
++        break;
++    }
++  }
++
++  free_bg_menu (&menu);
++}
+diff --git a/background.h b/background.h
+index afdde808..34352452 100644
+--- a/background.h
++++ b/background.h
+@@ -19,9 +19,9 @@
+ #ifndef _BACKGROUND_H
+ #define _BACKGROUND_H 1
+ 
+-WHERE SEND_CONTEXT *BackgroundProcess;
+-
++int mutt_background_process_waitpid (void);
+ int mutt_background_edit_file (SEND_CONTEXT *sctx, const char *editor,
+                                const char *filename);
++void mutt_background_compose_menu (void);
+ 
+ #endif
+diff --git a/curs_main.c b/curs_main.c
+index e3e584c8..e6972618 100644
+--- a/curs_main.c
++++ b/curs_main.c
+@@ -2237,27 +2237,16 @@ int mutt_index_menu (void)
+ 	}
+ 	break;
+ 
++      case OP_BACKGROUND_COMPOSE_MENU:
++        mutt_background_compose_menu ();
++        break;
++
+       case OP_MAIL:
+ 
+ 	CHECK_ATTACH;
+-        if (BackgroundProcess)
+-        {
+-          SEND_CONTEXT *sctx = BackgroundProcess;
+-          BackgroundProcess = NULL;
+-          /* this is a quick hack for now */
+-          mutt_message _("Waiting for editor to exit");
+-          waitpid (sctx->background_pid, NULL, 0);
+-          mutt_clear_error ();
+-
+-          if (mutt_send_message_resume (sctx) == 2)
+-            mutt_message _("Editing backgrounded.  Hit m to restart");
+-        }
+-        else
+-        {
+-          if (mutt_send_message (SENDBACKGROUNDEDIT, NULL, NULL,
+-                                 Context, NULL) == 2)
+-            mutt_message _("Editing backgrounded.  Hit m to restart");
+-        }
++        if (mutt_send_message (SENDBACKGROUNDEDIT, NULL, NULL,
++                               Context, NULL) == 2)
++          mutt_message _("Editing backgrounded.");
+ 	menu->redraw = REDRAW_FULL;
+ 	break;
+ 
+diff --git a/functions.h b/functions.h
+index 3f52225c..8d13b6c7 100644
+--- a/functions.h
++++ b/functions.h
+@@ -89,6 +89,7 @@ const struct binding_t OpMain[] = { /* map: index */
+ #ifdef USE_AUTOCRYPT
+   { "autocrypt-acct-menu",	OP_AUTOCRYPT_ACCT_MENU,		"A" },
+ #endif
++  { "background-compose-menu",  OP_BACKGROUND_COMPOSE_MENU,     "B" },
+   { "bounce-message",		OP_BOUNCE_MESSAGE,		"b" },
+   { "break-thread",		OP_MAIN_BREAK_THREAD,		"#" },
+   { "browse-mailboxes",		OP_MAIN_BROWSE_MAILBOXES,	"y" },
+@@ -196,6 +197,7 @@ const struct binding_t OpMain[] = { /* map: index */
+ };
+ 
+ const struct binding_t OpPager[] = { /* map: pager */
++  { "background-compose-menu",  OP_BACKGROUND_COMPOSE_MENU,     "B" },
+   { "break-thread",	OP_MAIN_BREAK_THREAD,		"#" },
+   { "browse-mailboxes",	OP_MAIN_BROWSE_MAILBOXES,	"y" },
+   { "browse-mailboxes-readonly", OP_MAIN_BROWSE_MAILBOXES_READONLY, NULL },
+diff --git a/globals.h b/globals.h
+index d99b0cc6..5beee5d5 100644
+--- a/globals.h
++++ b/globals.h
+@@ -46,6 +46,7 @@ WHERE char *AutocryptDir;
+ WHERE char *AutocryptSignAs;  /* This is used in crypt-gpgme.c */
+ WHERE char *AutocryptDefaultKey;  /* Used for postponing messages */
+ #endif
++WHERE char *BackgroundFormat;
+ WHERE char *Charset;
+ WHERE char *ComposeFormat;
+ WHERE char *ConfigCharset;
+@@ -257,6 +258,7 @@ WHERE short ImapPollTimeout;
+ WHERE SIG_ATOMIC_VOLATILE_T SigAlrm;
+ WHERE SIG_ATOMIC_VOLATILE_T SigInt;
+ WHERE SIG_ATOMIC_VOLATILE_T SigWinch;
++WHERE SIG_ATOMIC_VOLATILE_T SigChld;
+ 
+ WHERE int CurrentMenu;
+ 
+diff --git a/init.h b/init.h
+index b10a59e1..db6e10fa 100644
+--- a/init.h
++++ b/init.h
+@@ -379,6 +379,20 @@ struct option_t MuttVars[] = {
+   ** .pp
+   ** ADD DOCUMENTATION.
+   */
++  { "background_format", DT_STR, R_MENU, {.p=&BackgroundFormat}, {.p="%5p %10S %s"} },
++  /*
++  ** .pp
++  ** This variable describes the format of the ``background compose''
++  ** menu.  The following \fCprintf(3)\fP-style sequences are
++  ** understood:
++  ** .dl
++  ** .dt %n .dd the running number on the menu
++  ** .dt %p .dd pid of the $$editor process
++  ** .dt %r .dd comma separated list of ``To:'' recipients
++  ** .dt %R .dd comma separated list of ``Cc:'' recipients
++  ** .dt %s .dd subject of the message
++  ** .dt %S .dd status of the $$editor process: running/finished
++  */
+   { "beep",		DT_BOOL, R_NONE, {.l=OPTBEEP}, {.l=1} },
+   /*
+   ** .pp
+diff --git a/menu.c b/menu.c
+index e567bc2a..969fff19 100644
+--- a/menu.c
++++ b/menu.c
+@@ -1020,6 +1020,9 @@ int mutt_menuLoop (MUTTMENU *menu)
+ 
+     mutt_curs_set (0);
+ 
++    if (menu->custom_menu_update)
++      menu->custom_menu_update (menu);
++
+     if (menu_redraw (menu) == OP_REDRAW)
+       return OP_REDRAW;
+ 
+diff --git a/mutt_menu.h b/mutt_menu.h
+index 41b0e5f3..e20dfed5 100644
+--- a/mutt_menu.h
++++ b/mutt_menu.h
+@@ -80,6 +80,10 @@ typedef struct menu_t
+   void (*custom_menu_redraw) (struct menu_t *);
+   void *redraw_data;
+ 
++  /* these are used for out-of-band menu data updates,
++   * such as background process list updates */
++  void (*custom_menu_update) (struct menu_t *);
++
+   /* color pair to be used for the requested element
+    * (default function returns ColorDefs[MT_COLOR_NORMAL])
+    */
+diff --git a/pager.c b/pager.c
+index ae0a3705..1a034c23 100644
+--- a/pager.c
++++ b/pager.c
+@@ -32,6 +32,7 @@
+ #include "sort.h"
+ #include "buffy.h"
+ #include "send.h"
++#include "background.h"
+ 
+ #ifdef USE_SIDEBAR
+ #include "sidebar.h"
+@@ -2650,6 +2651,10 @@ search_next:
+ 	  mutt_print_message (extra->hdr);
+ 	break;
+ 
++      case OP_BACKGROUND_COMPOSE_MENU:
++        mutt_background_compose_menu ();
++        break;
++
+       case OP_MAIL:
+ 	CHECK_MODE(IsHeader (extra) && !IsAttach (extra));
+         CHECK_ATTACH;
+diff --git a/send.h b/send.h
+index 09b4a669..05be1aa5 100644
+--- a/send.h
++++ b/send.h
+@@ -68,8 +68,6 @@ typedef struct send_ctx
+   char *cur_message_id;
+   char *ctx_realpath;
+ 
+-  pid_t background_pid;
+-
+   SEND_SCOPE *global_scope;
+   SEND_SCOPE *local_scope;
+ 
+diff --git a/signal.c b/signal.c
+index 77190c05..f32de176 100644
+--- a/signal.c
++++ b/signal.c
+@@ -96,7 +96,7 @@ static void exit_handler (int sig)
+ 
+ static void chld_handler (int sig)
+ {
+-  /* empty */
++  SigChld = 1;
+ }
+ 
+ static void sighandler (int sig)
+@@ -184,9 +184,7 @@ void mutt_signal_init (void)
+   sigaction (SIGWINCH, &act, NULL);
+ #endif
+ 
+-  /* POSIX doesn't allow us to ignore SIGCHLD,
+-   * so we just install a dummy handler for it
+-   */
++  /* Handle SIGCHLD.  Tracked for background editing processes. */
+   act.sa_handler = chld_handler;
+   /* don't need to block any other signals here */
+   sigemptyset (&act.sa_mask);
+-- 
+2.26.2
+

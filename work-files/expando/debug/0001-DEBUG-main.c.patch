@@ -1,0 +1,340 @@
+From 788c369e3ea1b251723bbf43684feb7b4dfe7f2b Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Tue, 27 Feb 2024 12:08:05 +0000
+Subject: [PATCH 1/2] DEBUG: main.c
+
+---
+ main.c | 313 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 313 insertions(+)
+
+diff --git a/main.c b/main.c
+index 135cee8a3..d402e0c60 100644
+--- a/main.c
++++ b/main.c
+@@ -498,6 +498,318 @@ done:
+   return 0;
+ }
+ 
++/**
++ * struct TestData - XXX
++ */
++struct TestData
++{
++  bool apple;
++  bool banana;
++  bool cherry;
++  bool damson;
++  bool endive;
++};
++
++/**
++ * test_apple - XXX
++ */
++void test_apple(const struct ExpandoNode *node, void *data,
++                MuttFormatFlags flags, int max_width, struct Buffer *buf)
++{
++  printf("test_apple\n");
++
++  struct TestData *td = data;
++  buf_printf(buf, "%s", td->apple ? "APPLE" : "apple");
++}
++
++/**
++ * test_apple_num - XXX
++ */
++long test_apple_num(const struct ExpandoNode *node, void *data, MuttFormatFlags flags)
++{
++  printf("test_apple_num\n");
++
++  struct TestData *td = data;
++  return td->apple;
++}
++
++/**
++ * test_banana - XXX
++ */
++void test_banana(const struct ExpandoNode *node, void *data,
++                 MuttFormatFlags flags, int max_width, struct Buffer *buf)
++{
++  printf("test_banana\n");
++
++  struct TestData *td = data;
++  buf_printf(buf, "%s", td->banana ? "BANANA" : "banana");
++}
++
++/**
++ * test_banana_num - XXX
++ */
++long test_banana_num(const struct ExpandoNode *node, void *data, MuttFormatFlags flags)
++{
++  printf("test_banana_num\n");
++
++  struct TestData *td = data;
++  return td->banana;
++}
++
++/**
++ * test_cherry - XXX
++ */
++void test_cherry(const struct ExpandoNode *node, void *data,
++                 MuttFormatFlags flags, int max_width, struct Buffer *buf)
++{
++  printf("test_cherry\n");
++
++  struct TestData *td = data;
++  buf_printf(buf, "%s", td->cherry ? "CHERRY" : "cherry");
++}
++
++/**
++ * test_cherry_num - XXX
++ */
++long test_cherry_num(const struct ExpandoNode *node, void *data, MuttFormatFlags flags)
++{
++  printf("test_cherry_num\n");
++
++  struct TestData *td = data;
++  return td->cherry;
++}
++
++/**
++ * test_damson - XXX
++ */
++void test_damson(const struct ExpandoNode *node, void *data,
++                 MuttFormatFlags flags, int max_width, struct Buffer *buf)
++{
++  printf("test_damson\n");
++
++  struct TestData *td = data;
++  buf_printf(buf, "%s", td->damson ? "DAMSON" : "damson");
++}
++
++/**
++ * test_damson_num - XXX
++ */
++long test_damson_num(const struct ExpandoNode *node, void *data, MuttFormatFlags flags)
++{
++  printf("test_damson_num\n");
++
++  struct TestData *td = data;
++  return td->damson;
++}
++
++/**
++ * test_endive - XXX
++ */
++void test_endive(const struct ExpandoNode *node, void *data,
++                 MuttFormatFlags flags, int max_width, struct Buffer *buf)
++{
++  printf("test_endive\n");
++
++  struct TestData *td = data;
++  buf_printf(buf, "%s", td->endive ? "ENDIVE" : "endive");
++}
++
++/**
++ * test_endive_num - XXX
++ */
++long test_endive_num(const struct ExpandoNode *node, void *data, MuttFormatFlags flags)
++{
++  printf("test_endive_num\n");
++
++  struct TestData *td = data;
++  return td->endive;
++}
++
++/**
++ * test_parse_cherry - XXX
++ */
++struct ExpandoNode *test_parse_cherry(const char *s, const char **parsed_until,
++                                      int did, int uid, ExpandoParserFlags flags,
++                                      struct ExpandoParseError *error)
++{
++  printf("test_parse_cherry\n");
++  struct ExpandoNode *node = node_new();
++
++  node->did = did;
++  node->uid = uid;
++
++  if (flags & EP_CONDITIONAL)
++  {
++    node->type = ENT_CONDBOOL;
++    node->render = node_condbool_render;
++  }
++  else
++  {
++    node->type = ENT_EXPANDO;
++    node->render = node_expando_render;
++  }
++
++  node->start = s;
++  node->end = s + 1;
++
++  (*parsed_until) = s + 1;
++
++  return node;
++}
++
++/**
++ * test_parse_damson - XXX
++ */
++struct ExpandoNode *test_parse_damson(const char *s, const char **parsed_until,
++                                      int did, int uid, ExpandoParserFlags flags,
++                                      struct ExpandoParseError *error)
++{
++  printf("test_parse_damson\n");
++  struct ExpandoNode *node = node_new();
++
++  if (flags & EP_CONDITIONAL)
++  {
++    node->type = ENT_CONDBOOL;
++    node->render = node_condbool_render;
++  }
++  else
++  {
++    node->type = ENT_EXPANDO;
++    node->render = node_expando_render;
++  }
++
++  node->did = did;
++  node->uid = uid;
++
++  node->start = s;
++  node->end = s + 1;
++
++  (*parsed_until) = s + 1;
++
++  return node;
++}
++
++/**
++ * test_render_endive - XXX
++ */
++int test_render_endive(const struct ExpandoNode *node,
++                       const struct ExpandoRenderData *rdata, char *buf,
++                       int buflen, int cols_len, void *data, MuttFormatFlags flags)
++{
++  size_t len = node->end - node->start;
++  char str[64] = { 0 };
++  mutt_strn_copy(str, node->start, len, sizeof(str));
++  mutt_str_upper(str);
++
++  return snprintf(buf, buflen, "++%s++", str);
++}
++
++/**
++ * test_parse_endive - XXX
++ */
++struct ExpandoNode *test_parse_endive(const char *s, const char **parsed_until,
++                                      int did, int uid, ExpandoParserFlags flags,
++                                      struct ExpandoParseError *error)
++{
++  printf("test_parse_endive\n");
++
++  struct ExpandoNode *node = NULL;
++  if (flags & EP_CONDITIONAL)
++  {
++    const char *qm = strchr(s, '?');
++
++    node = node_new();
++    node->type = ENT_CONDBOOL;
++    node->render = node_condbool_render;
++
++    node->did = did;
++    node->uid = uid;
++
++    node->start = s + 1;
++    node->end = qm;
++
++    *parsed_until = qm;
++  }
++  else
++  {
++    node = node_expando_parse_enclosure(s, parsed_until, did, uid, ']', error);
++    node->type = ENT_EXPANDO;
++    node->render = test_render_endive;
++  }
++
++  return node;
++}
++
++/**
++ * test_expando - XXX
++ */
++void test_expando(void)
++{
++  static const struct ExpandoDefinition TestFormatData[] = {
++    // clang-format off
++    { "a",  "apple",  1, 1, E_TYPE_STRING, NULL },
++    { "b",  "banana", 1, 2, E_TYPE_NUMBER, NULL },
++    { "c",  "cherry", 1, 3, E_TYPE_STRING, test_parse_cherry },
++    { "d",  "damson", 1, 4, E_TYPE_NUMBER, test_parse_damson },
++    { "[",  "endive", 1, 5, E_TYPE_STRING, test_parse_endive },
++    { NULL, NULL, 0, -1, -1, NULL },
++    // clang-format on
++  };
++
++  static const struct ExpandoRenderData TestRenderData[] = {
++    // clang-format off
++    { 1, 1, test_apple,  test_apple_num  },
++    { 1, 2, test_banana, test_banana_num },
++    { 1, 3, test_cherry, test_cherry_num },
++    { 1, 4, test_damson, test_damson_num },
++    { 1, 5, test_endive, test_endive_num },
++    { -1, -1, NULL, NULL },
++    // clang-format on
++  };
++
++  static const char *str =
++      // "%a%b%c%d"
++      // " "
++      // "%<a?AAA&aaa>"
++      // "%<a?AAA&aaa>%<b?BBB&bbb>"
++      // "%<c?CCC&ccc>"
++      // "%<a?AAA&aaa>%<b?BBB&bbb>%<c?CCC&ccc>%<d?DDD&ddd>"
++      // " "
++      "%[hello]"
++      " "
++      "%<[world?EEE&eee>";
++  struct Buffer *err = buf_pool_get();
++
++  struct Expando *exp = expando_parse(str, TestFormatData, err);
++  dump_graphviz_expando_node(exp->tree);
++
++  struct Buffer *buf = buf_pool_get();
++
++  struct TestData data = { 0 };
++  int i = 0;
++  // for (int i = 0; i < 32; i++)
++  {
++    data.apple = (i & (1 << 0));
++    data.banana = (i & (1 << 1));
++    data.cherry = (i & (1 << 2));
++    data.damson = (i & (1 << 3));
++    data.endive = (i & (1 << 4));
++
++    printf("%s\n", str);
++
++    expando_render(exp, TestRenderData, &data, MUTT_FORMAT_NO_FLAGS, buf->dsize, buf);
++
++    printf("%c%c%c%c%c: ", data.apple ? '1' : '0', data.banana ? '1' : '0',
++           data.cherry ? '1' : '0', data.damson ? '1' : '0', data.endive ? '1' : '0');
++    printf("%s\n", buf_string(buf));
++    printf("\n");
++  }
++
++  buf_pool_release(&buf);
++  expando_free(&exp);
++  buf_pool_release(&err);
++}
++
+ /**
+  * main - Start NeoMutt
+  * @param argc Number of command line arguments
+@@ -939,6 +1251,7 @@ main
+ 
+   if (batch_mode)
+   {
++    // test_expando();
+ #ifdef USE_DEBUG_GRAPHVIZ
+     const struct Expando *c_index_format = cs_subset_expando(NeoMutt->sub, "index_format");
+     dump_graphviz_expando_node(c_index_format->tree);

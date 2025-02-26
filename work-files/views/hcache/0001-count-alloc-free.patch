@@ -1,0 +1,112 @@
+From 88014eb006a48c72444efa43ce8b1b7c2db4d93e Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Fri, 3 Nov 2023 16:05:56 +0000
+Subject: [PATCH] count alloc/free
+
+---
+ maildir/maildir.c | 14 ++++++++++++++
+ mutt/memory.c     | 10 ++++++++++
+ mutt/memory.h     |  3 +++
+ 3 files changed, 27 insertions(+)
+
+diff --git a/maildir/maildir.c b/maildir/maildir.c
+index 13872e7d7..def2a4ab4 100644
+--- a/maildir/maildir.c
++++ b/maildir/maildir.c
+@@ -1302,6 +1302,12 @@ static bool maildir_ac_add(struct Account *a, struct Mailbox *m)
+ static enum MxOpenReturns maildir_mbox_open(struct Mailbox *m)
+ {
+   mutt_sig_allow_interrupt(true);
++  int a = MemAllocCount;
++  int f = MemFreeCount;
++
++  mutt_debug(LL_DEBUG1, "QWQ Mailbox %s\n", mailbox_path(m));
++  mutt_debug(LL_DEBUG1, "QWQ MemAllocCount = %d\n", MemAllocCount);
++  mutt_debug(LL_DEBUG1, "QWQ MemFreeCount  = %d\n", MemFreeCount);
+ 
+   enum MxOpenReturns rc = MX_OPEN_ERROR;
+ 
+@@ -1389,6 +1395,14 @@ static enum MxOpenReturns maildir_mbox_open(struct Mailbox *m)
+   notify_send(m->notify, NT_MAILBOX, NT_MAILBOX_CHANGE, &ev_m);
+   ARRAY_FREE(&ev_m.ea_new);
+ 
++  mutt_debug(LL_DEBUG1, "QWQ MemAllocCount = +%d\n", MemAllocCount - a);
++  mutt_debug(LL_DEBUG1, "QWQ MemFreeCount  = +%d\n", MemFreeCount - f);
++  mutt_debug(LL_DEBUG1, "QWQ -----------------------\n");
++  int num = ((MemAllocCount - a) - (MemFreeCount - f));
++  mutt_debug(LL_DEBUG1, "QWQ %d emails, %d allocs (%d/email)\n", m->msg_count,
++             num, num / m->msg_count);
++  mutt_debug(LL_DEBUG1, "QWQ -----------------------\n");
++
+   mutt_sig_allow_interrupt(false);
+   return rc;
+ }
+diff --git a/mutt/memory.c b/mutt/memory.c
+index f44272f29..60215e3d1 100644
+--- a/mutt/memory.c
++++ b/mutt/memory.c
+@@ -36,6 +36,9 @@
+ #include "logging2.h"
+ #include "message.h"
+ 
++int MemAllocCount = 0;
++int MemFreeCount = 0;
++
+ /**
+  * mutt_mem_calloc - Allocate zeroed memory on the heap
+  * @param nmemb Number of blocks
+@@ -58,6 +61,7 @@ void *mutt_mem_calloc(size_t nmemb, size_t size)
+     mutt_error(_("Out of memory")); // LCOV_EXCL_LINE
+     mutt_exit(1);                   // LCOV_EXCL_LINE
+   }
++  MemAllocCount++;
+   return p;
+ }
+ 
+@@ -72,6 +76,7 @@ void mutt_mem_free(void *ptr)
+   void **p = (void **) ptr;
+   if (*p)
+   {
++    MemFreeCount++;
+     free(*p);
+     *p = NULL;
+   }
+@@ -98,6 +103,7 @@ void *mutt_mem_malloc(size_t size)
+     mutt_error(_("Out of memory")); // LCOV_EXCL_LINE
+     mutt_exit(1);                   // LCOV_EXCL_LINE
+   }
++  MemAllocCount++;
+   return p;
+ }
+ 
+@@ -122,6 +128,7 @@ void mutt_mem_realloc(void *ptr, size_t size)
+   {
+     if (*p)
+     {
++      MemFreeCount++;
+       free(*p);
+       *p = NULL;
+     }
+@@ -135,5 +142,8 @@ void mutt_mem_realloc(void *ptr, size_t size)
+     mutt_exit(1);                   // LCOV_EXCL_LINE
+   }
+ 
++  if (!*p)
++    MemAllocCount++;
++
+   *p = r;
+ }
+diff --git a/mutt/memory.h b/mutt/memory.h
+index 2a0b7b15f..7c2a33ea4 100644
+--- a/mutt/memory.h
++++ b/mutt/memory.h
+@@ -37,6 +37,9 @@
+ 
+ #define mutt_array_size(x) (sizeof(x) / sizeof((x)[0]))
+ 
++extern int MemAllocCount;
++extern int MemFreeCount;
++
+ void *mutt_mem_calloc(size_t nmemb, size_t size);
+ void  mutt_mem_free(void *ptr);
+ void *mutt_mem_malloc(size_t size);

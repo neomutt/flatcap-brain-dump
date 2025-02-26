@@ -1,0 +1,290 @@
+From 9099380c4ed05c9475db486932dc126154ef6f27 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Thu, 5 Mar 2020 15:16:09 +0000
+Subject: [PATCH 19/29] path: convert CurrentFolder, LastFolder
+
+---
+ browser.c   |  8 ++++----
+ core/path.c | 21 +++++++++++++++++++++
+ core/path.h |  1 +
+ mutt_globals.h   |  4 ++--
+ index.c     | 14 ++++----------
+ init.c      |  5 +++--
+ main.c      | 12 ++++++++++--
+ muttlib.c   |  6 +++---
+ mx.c        |  6 +++---
+ mx_path.c   |  6 +++---
+ 10 files changed, 54 insertions(+), 29 deletions(-)
+
+diff --git a/browser.c b/browser.c
+index a29e79203..5485ae269 100644
+--- a/browser.c
++++ b/browser.c
+@@ -1323,7 +1323,7 @@ void mutt_buffer_select_file(struct Buffer *file, SelectFileFlags flags,
+         {
+           /* If browsing in "local"-mode, than we chose to define LastDir to
+            * MailDir */
+-          switch (mx_path_probe(CurrentFolder))
++          switch (CurrentFolder->type)
+           {
+             case MUTT_IMAP:
+             case MUTT_MAILDIR:
+@@ -1336,13 +1336,13 @@ void mutt_buffer_select_file(struct Buffer *file, SelectFileFlags flags,
+                 mutt_browser_select_dir(C_Spoolfile);
+               break;
+             default:
+-              mutt_browser_select_dir(CurrentFolder);
++              mutt_browser_select_dir(CurrentFolder->orig);
+               break;
+           }
+         }
+-        else if (!mutt_str_equal(CurrentFolder, mutt_b2s(&LastDirBackup)))
++        else if (!mutt_str_equal(CurrentFolder->orig, mutt_b2s(&LastDirBackup)))
+         {
+-          mutt_browser_select_dir(CurrentFolder);
++          mutt_browser_select_dir(CurrentFolder->orig);
+         }
+       }
+ 
+diff --git a/core/path.c b/core/path.c
+index adeb88579..2d40c8ab7 100644
+--- a/core/path.c
++++ b/core/path.c
+@@ -63,6 +63,27 @@ struct Path *mutt_path_new(void)
+   return mutt_mem_calloc(1, sizeof(struct Path));
+ }
+ 
++/**
++ * mutt_path_dup - Duplicate a Path
++ * @param p Path
++ * @retval ptr New Path
++ */
++struct Path *mutt_path_dup(struct Path *p)
++{
++  if (!p)
++    return NULL;
++
++  struct Path *p_new = mutt_path_new();
++
++  p_new->desc = mutt_str_strdup(p->desc);
++  p_new->orig = mutt_str_strdup(p->orig);
++  p_new->canon = mutt_str_strdup(p->canon);
++  p_new->type = p->type;
++  p_new->flags = p->flags;
++
++  return p_new;
++}
++
+ /**
+  * path_partial_match_string - Compare two strings, allowing for missing values
+  * @param str1 First string
+diff --git a/core/path.h b/core/path.h
+index b22404561..79d9fb0a5 100644
+--- a/core/path.h
++++ b/core/path.h
+@@ -47,6 +47,7 @@ struct Path
+ 
+ void         mutt_path_free(struct Path **ptr);
+ struct Path *mutt_path_new(void);
++struct Path *mutt_path_dup(struct Path *p);
+ 
+ bool path_partial_match_string(const char *str1, const char *str2);
+ bool path_partial_match_number(int num1, int num2);
+diff --git a/mutt_globals.h b/mutt_globals.h
+index fe030ffbe..d60848f30 100644
+--- a/mutt_globals.h
++++ b/mutt_globals.h
+@@ -52,8 +52,8 @@ WHERE char *ShortHostname; ///< Short version of the hostname
+ 
+ WHERE char *Username; ///< User's login name
+ 
+-WHERE char *CurrentFolder; ///< Currently selected mailbox
+-WHERE char *LastFolder;    ///< Previously selected mailbox
++WHERE struct Path *CurrentFolder; ///< Currently selected mailbox
++WHERE struct Path *LastFolder;    ///< Previously selected mailbox
+ 
+ extern const char *GitVer;
+ 
+diff --git a/index.c b/index.c
+index a3a2f24ca..14c96d569 100644
+--- a/index.c
++++ b/index.c
+@@ -690,16 +690,10 @@ static void change_folder_mailbox(struct Menu *menu, struct Mailbox *m,
+ 
+   if (Context && Context->mailbox)
+   {
+-    char *new_last_folder = NULL;
+ #ifdef USE_INOTIFY
+     int monitor_remove_rc = mutt_monitor_remove(NULL);
+ #endif
+-#ifdef USE_COMP_MBOX
+-    if (Context->mailbox->compress_info && (Context->mailbox->realpath[0] != '\0'))
+-      new_last_folder = mutt_str_dup(Context->mailbox->realpath);
+-    else
+-#endif
+-      new_last_folder = mutt_str_dup(mailbox_path(Context->mailbox));
++    struct Path *new_last_folder = mutt_path_dup(Context->mailbox->path);
+     *oldcount = Context->mailbox->msg_count;
+ 
+     int check = mx_mbox_close(&Context);
+@@ -712,15 +706,15 @@ static void change_folder_mailbox(struct Menu *menu, struct Mailbox *m,
+       if ((check == MUTT_NEW_MAIL) || (check == MUTT_REOPENED))
+         update_index(menu, Context, check, *oldcount, *index_hint);
+ 
+-      FREE(&new_last_folder);
++      mutt_path_free(&new_last_folder);
+       OptSearchInvalid = true;
+       menu->redraw |= REDRAW_INDEX | REDRAW_STATUS;
+       return;
+     }
+-    FREE(&LastFolder);
++    mutt_path_free(&LastFolder);
+     LastFolder = new_last_folder;
+   }
+-  mutt_str_replace(&CurrentFolder, mailbox_path(m));
++  mutt_str_replace(&CurrentFolder->orig, mailbox_path(m));
+ 
+   /* If the `folder-hook` were to call `unmailboxes`, then the Mailbox (`m`)
+    * could be deleted, leaving `m` dangling. */
+diff --git a/init.c b/init.c
+index 89833b8b4..fb83fe565 100644
+--- a/init.c
++++ b/init.c
+@@ -692,12 +692,13 @@ void mutt_opts_free(void)
+ 
+   mutt_colors_free(&Colors);
+ 
+-  FREE(&CurrentFolder);
+   FREE(&HomeDir);
+-  FREE(&LastFolder);
+   FREE(&ShortHostname);
+   FREE(&Username);
+ 
++  mutt_path_free(&CurrentFolder);
++  mutt_path_free(&LastFolder);
++
+   mutt_replacelist_free(&SpamList);
+   mutt_replacelist_free(&SubjectRegexList);
+ 
+diff --git a/main.c b/main.c
+index 07e8709e6..9f4f50c3b 100644
+--- a/main.c
++++ b/main.c
+@@ -664,6 +664,9 @@ int main(int argc, char *argv[], char *envp[])
+     mutt_window_set_root(COLS, LINES);
+   }
+ 
++  CurrentFolder = mutt_path_new();
++  LastFolder = mutt_path_new();
++
+   /* set defaults and read init files */
+   int rc2 = mutt_init(cs, flags & MUTT_CLI_NOSYSRC, &commands);
+   mutt_list_free(&commands);
+@@ -1186,8 +1189,13 @@ int main(int argc, char *argv[], char *envp[])
+ #endif
+       mutt_buffer_expand_path(&folder);
+ 
+-    mutt_str_replace(&CurrentFolder, mutt_b2s(&folder));
+-    mutt_str_replace(&LastFolder, mutt_b2s(&folder));
++    mutt_path_free(&CurrentFolder);
++    CurrentFolder = mutt_path_new();
++    CurrentFolder->orig = mutt_buffer_strdup(&folder);
++    mx_path2_probe(CurrentFolder);
++
++    mutt_path_free(&LastFolder);
++    LastFolder = mutt_path_dup(CurrentFolder);
+ 
+     if (flags & MUTT_CLI_IGNORE)
+     {
+diff --git a/muttlib.c b/muttlib.c
+index b1f1ea637..663585e0f 100644
+--- a/muttlib.c
++++ b/muttlib.c
+@@ -263,7 +263,7 @@ void mutt_buffer_expand_path_regex(struct Buffer *buf, bool regex)
+       {
+         if (s[1] == '!')
+         {
+-          mutt_buffer_strcpy(p, LastFolder);
++          mutt_buffer_strcpy(p, LastFolder->orig);
+           tail = s + 2;
+         }
+         else
+@@ -276,14 +276,14 @@ void mutt_buffer_expand_path_regex(struct Buffer *buf, bool regex)
+ 
+       case '-':
+       {
+-        mutt_buffer_strcpy(p, LastFolder);
++        mutt_buffer_strcpy(p, LastFolder->orig);
+         tail = s + 1;
+         break;
+       }
+ 
+       case '^':
+       {
+-        mutt_buffer_strcpy(p, CurrentFolder);
++        mutt_buffer_strcpy(p, CurrentFolder->orig);
+         tail = s + 1;
+         break;
+       }
+diff --git a/mx.c b/mx.c
+index 4b454e82b..f08886acc 100644
+--- a/mx.c
++++ b/mx.c
+@@ -1383,7 +1383,7 @@ int mx_path_canon(char *buf, size_t buflen, const char *folder, enum MailboxType
+     {
+       if (((buf[2] == '/') || (buf[2] == '\0')))
+       {
+-        mutt_str_inline_replace(buf, buflen, 2, LastFolder);
++        mutt_str_inline_replace(buf, buflen, 2, LastFolder->orig);
+       }
+     }
+     else if ((buf[0] == '+') || (buf[0] == '='))
+@@ -1407,7 +1407,7 @@ int mx_path_canon(char *buf, size_t buflen, const char *folder, enum MailboxType
+       }
+       else if (buf[0] == '-')
+       {
+-        mutt_str_inline_replace(buf, buflen, 1, LastFolder);
++        mutt_str_inline_replace(buf, buflen, 1, LastFolder->orig);
+       }
+       else if (buf[0] == '<')
+       {
+@@ -1419,7 +1419,7 @@ int mx_path_canon(char *buf, size_t buflen, const char *folder, enum MailboxType
+       }
+       else if (buf[0] == '^')
+       {
+-        mutt_str_inline_replace(buf, buflen, 1, CurrentFolder);
++        mutt_str_inline_replace(buf, buflen, 1, CurrentFolder->orig);
+       }
+       else if (buf[0] == '~')
+       {
+diff --git a/mx_path.c b/mx_path.c
+index f90b414fe..d68000288 100644
+--- a/mx_path.c
++++ b/mx_path.c
+@@ -100,7 +100,7 @@ static int path2_resolve(struct Path *path, const char *folder)
+     {
+       if (((buf[2] == '/') || (buf[2] == '\0')))
+       {
+-        mutt_str_inline_replace(buf, sizeof(buf), 2, LastFolder);
++        mutt_str_inline_replace(buf, sizeof(buf), 2, LastFolder->orig);
+       }
+     }
+     else if ((buf[0] == '+') || (buf[0] == '='))
+@@ -124,7 +124,7 @@ static int path2_resolve(struct Path *path, const char *folder)
+       }
+       else if (buf[0] == '-')
+       {
+-        mutt_str_inline_replace(buf, sizeof(buf), 1, LastFolder);
++        mutt_str_inline_replace(buf, sizeof(buf), 1, LastFolder->orig);
+       }
+       else if (buf[0] == '<')
+       {
+@@ -136,7 +136,7 @@ static int path2_resolve(struct Path *path, const char *folder)
+       }
+       else if (buf[0] == '^')
+       {
+-        mutt_str_inline_replace(buf, sizeof(buf), 1, CurrentFolder);
++        mutt_str_inline_replace(buf, sizeof(buf), 1, CurrentFolder->orig);
+       }
+     }
+     else if (buf[0] == '@')

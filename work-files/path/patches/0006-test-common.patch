@@ -1,0 +1,136 @@
+From 58eadeaeb8a2f9c31a9c6d59151e7543006d0123 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Fri, 21 Feb 2020 01:46:40 +0000
+Subject: [PATCH 06/29] test: common
+
+---
+ test/Makefile.autosetup |  5 ++++-
+ test/common.c           |  6 +++---
+ test/main.c             |  1 +
+ test/mx_path/common.h   | 35 +++++++++++++++++++++++++++++++++++
+ test/test_common.h      |  1 +
+ 5 files changed, 44 insertions(+), 4 deletions(-)
+ create mode 100644 test/mx_path/common.h
+
+diff --git a/test/Makefile.autosetup b/test/Makefile.autosetup
+index ef4b12950..0a25cae54 100644
+--- a/test/Makefile.autosetup
++++ b/test/Makefile.autosetup
+@@ -340,6 +340,8 @@ NOTIFY_OBJS	= test/notify/notify_free.o \
+ 		  test/notify/notify_send.o \
+ 		  test/notify/notify_set_parent.o
+ 
++MX_PATH_OBJS	= 
++
+ PARAMETER_OBJS	= test/parameter/mutt_param_cmp_strict.o \
+ 		  test/parameter/mutt_param_delete.o \
+ 		  test/parameter/mutt_param_free.o \
+@@ -547,7 +549,7 @@ BUILD_DIRS	= $(PWD)/test/account $(PWD)/test/address $(PWD)/test/attach \
+ 		  $(PWD)/test/regex $(PWD)/test/rfc2047 $(PWD)/test/rfc2231 \
+ 		  $(PWD)/test/signal $(PWD)/test/slist $(PWD)/test/store \
+ 		  $(PWD)/test/string $(PWD)/test/tags $(PWD)/test/thread \
+-		  $(PWD)/test/url
++		  $(PWD)/test/url $(PWD)/test/mx_path
+ 
+ TEST_OBJS	= test/main.o test/common.o \
+ 		  $(ACCOUNT_OBJS) \
+@@ -578,6 +580,7 @@ TEST_OBJS	= test/main.o test/common.o \
+ 		  $(MBYTE_OBJS) \
+ 		  $(MD5_OBJS) \
+ 		  $(MEMORY_OBJS) \
++		  $(MX_PATH_OBJS) \
+ 		  $(NEOMUTT_OBJS) \
+ 		  $(NOTIFY_OBJS) \
+ 		  $(PARAMETER_OBJS) \
+diff --git a/test/common.c b/test/common.c
+index 6bfdfcad6..8988073fb 100644
+--- a/test/common.c
++++ b/test/common.c
+@@ -31,19 +31,19 @@
+ 
+ #define TEST_DIR "NEOMUTT_TEST_DIR"
+ 
+-static const char *get_test_dir(void)
++const char *test_get_test_dir(void)
+ {
+   return mutt_str_getenv(TEST_DIR);
+ }
+ 
+ void test_gen_path(char *buf, size_t buflen, const char *fmt)
+ {
+-  snprintf(buf, buflen, NONULL(fmt), NONULL(get_test_dir()));
++  snprintf(buf, buflen, NONULL(fmt), NONULL(test_get_test_dir()));
+ }
+ 
+ void test_init(void)
+ {
+-  const char *path = get_test_dir();
++  const char *path = test_get_test_dir();
+   bool success = false;
+ 
+   TEST_CASE("Common setup");
+diff --git a/test/main.c b/test/main.c
+index 3f796006a..3fa6a2d47 100644
+--- a/test/main.c
++++ b/test/main.c
+@@ -25,6 +25,7 @@
+ #include "test_common.h"
+ #define TEST_INIT test_init()
+ #include "acutest.h"
++#include "config.h"
+ 
+ /******************************************************************************
+  * Add your test cases to this list.
+diff --git a/test/mx_path/common.h b/test/mx_path/common.h
+new file mode 100644
+index 000000000..64ce1e3ed
+--- /dev/null
++++ b/test/mx_path/common.h
+@@ -0,0 +1,35 @@
++/**
++ * @file
++ * Shared code for the MxOps Path functions
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef TEST_MX_PATH_COMMON_H
++#define TEST_MX_PATH_COMMON_H
++
++extern const char *HomeDir;
++
++struct TestValue
++{
++  char *first;
++  char *second;
++  int retval;
++};
++
++#endif /* TEST_MX_PATH_COMMON_H */
+diff --git a/test/test_common.h b/test/test_common.h
+index b06e11e33..28633b082 100644
+--- a/test/test_common.h
++++ b/test/test_common.h
+@@ -26,6 +26,7 @@
+ #include <stdio.h>
+ #include "mutt/lib.h"
+ 
++const char *test_get_test_dir(void);
+ void test_gen_path(char *buf, size_t buflen, const char *fmt);
+ void test_init(void);
+ 

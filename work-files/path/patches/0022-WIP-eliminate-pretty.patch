@@ -1,0 +1,403 @@
+From e52d17370117201fa63bc39467351702928a880b Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Sun, 1 Mar 2020 14:12:33 +0000
+Subject: [PATCH 22/29] WIP eliminate pretty
+
+---
+ command_parse.c | 28 ++++++++++++++++++++++++----
+ compmbox/path.c |  2 ++
+ config/dump.c   | 26 +++++++++++++++++++++++---
+ copy.c          | 19 ++++++++++++-------
+ enter.c         |  8 ++++++++
+ imap/imap.c     |  1 +
+ init.c          |  3 +++
+ main.c          | 12 ++++--------
+ mx.h            |  2 +-
+ mx_path.c       | 19 ++++++++++++++-----
+ notmuch/path.c  | 28 ++++++++++++++++------------
+ sidebar/sidebar.c       |  4 ++--
+ status.c        | 25 ++++++++-----------------
+ 13 files changed, 118 insertions(+), 59 deletions(-)
+
+diff --git a/command_parse.c b/command_parse.c
+index b0a8af86f..9e391b95f 100644
+--- a/command_parse.c
++++ b/command_parse.c
+@@ -1306,9 +1306,19 @@ enum CommandResult parse_set(struct Buffer *buf, struct Buffer *s,
+             mutt_buffer_addstr(err, buf->data);
+             return MUTT_CMD_ERROR;
+           }
++          char *pretty = NULL;
++          //JKJ Always a filesystem path (file/dir)
+           if (DTYPE(he->type) == DT_PATH)
+-            mutt_pretty_mailbox(buf->data, buf->dsize);
+-          pretty_var(buf->data, err);
++            mutt_path2_pretty(buf->data, HomeDir, &pretty);
++          if (pretty)
++          {
++            pretty_var(pretty, err);
++            FREE(&pretty);
++          }
++          else
++          {
++            pretty_var(buf->data, err);
++          }
+         }
+         else
+         {
+@@ -1409,9 +1419,19 @@ enum CommandResult parse_set(struct Buffer *buf, struct Buffer *s,
+               mutt_buffer_addstr(err, buf->data);
+               return MUTT_CMD_ERROR;
+             }
++            char *pretty = NULL;
++            //JKJ Always a filesystem path (file/dir)
+             if (DTYPE(he->type) == DT_PATH)
+-              mutt_pretty_mailbox(buf->data, buf->dsize);
+-            pretty_var(buf->data, err);
++              mutt_path2_pretty(buf->data, HomeDir, &pretty);
++            if (pretty)
++            {
++              pretty_var(pretty, err);
++              FREE(&pretty);
++            }
++            else
++            {
++              pretty_var(buf->data, err);
++            }
+           }
+           else
+           {
+diff --git a/compmbox/path.c b/compmbox/path.c
+index 36c7cbf5a..44e2604d9 100644
+--- a/compmbox/path.c
++++ b/compmbox/path.c
+@@ -73,6 +73,8 @@ int comp_path2_parent(const struct Path *path, struct Path **parent)
+ 
+ /**
+  * comp_path2_pretty - Abbreviate a Mailbox path - Implements MxOps::path2_pretty()
++ *
++ * @note Use the canon path, because that describes the compressed file.
+  */
+ int comp_path2_pretty(struct Path *path, const char *folder)
+ {
+diff --git a/config/dump.c b/config/dump.c
+index ddeb9b09a..262e2753e 100644
+--- a/config/dump.c
++++ b/config/dump.c
+@@ -35,7 +35,7 @@
+ #include "subset.h"
+ #include "types.h"
+ 
+-void mutt_pretty_mailbox(char *buf, size_t buflen);
++extern char *HomeDir;
+ 
+ /**
+  * escape_string - Write a string to a buffer, escaping special characters
+@@ -206,7 +206,17 @@ bool dump_config(struct ConfigSet *cs, ConfigDumpFlags flags, FILE *fp)
+         }
+ 
+         if (((type == DT_PATH) || IS_MAILBOX(he)) && (value.data[0] == '/'))
+-          mutt_pretty_mailbox(value.data, value.dsize);
++        {
++          //JKJ Always a filesystem path (file/dir)
++          // mailbox code path needs separating
++          char *pretty = NULL;
++          mutt_path2_pretty(value.data, HomeDir, &pretty);
++          if (pretty)
++          {
++            mutt_buffer_strcpy(&value, pretty);
++            FREE(&pretty);
++          }
++        }
+ 
+         if ((type != DT_BOOL) && (type != DT_NUMBER) && (type != DT_LONG) &&
+             (type != DT_QUAD) && !(flags & CS_DUMP_NO_ESCAPING))
+@@ -228,7 +238,17 @@ bool dump_config(struct ConfigSet *cs, ConfigDumpFlags flags, FILE *fp)
+         }
+ 
+         if (((type == DT_PATH) || IS_MAILBOX(he)) && !(he->type & DT_MAILBOX))
+-          mutt_pretty_mailbox(initial.data, initial.dsize);
++        {
++          //JKJ Always a filesystem path (file/dir)
++          // mailbox code path needs separating
++          char *pretty = NULL;
++          mutt_path2_pretty(initial.data, HomeDir, &pretty);
++          if (pretty)
++          {
++            mutt_buffer_strcpy(&initial, pretty);
++            FREE(&pretty);
++          }
++        }
+ 
+         if ((type != DT_BOOL) && (type != DT_NUMBER) && (type != DT_LONG) &&
+             (type != DT_QUAD) && !(flags & CS_DUMP_NO_ESCAPING))
+diff --git a/copy.c b/copy.c
+index ac91c9743..1aa393f4c 100644
+--- a/copy.c
++++ b/copy.c
+@@ -481,13 +481,18 @@ int mutt_copy_header(FILE *fp_in, struct Email *e, FILE *fp_out,
+     char *folder = nm_email_get_folder(e);
+     if (folder && !(C_Weed && mutt_matches_ignore("folder")))
+     {
+-      char buf[1024];
+-      mutt_str_copy(buf, folder, sizeof(buf));
+-      mutt_pretty_mailbox(buf, sizeof(buf));
+-
+-      fputs("Folder: ", fp_out);
+-      fputs(buf, fp_out);
+-      fputc('\n', fp_out);
++      char *pretty = NULL;
++      //JKJ Always a filesystem path (maildir dir)
++      mutt_path2_pretty(folder, HomeDir, &pretty);
++      if (pretty)
++      {
++        fprintf(fp_out, "Folder: %s\n", pretty);
++        FREE(&pretty);
++      }
++      else
++      {
++        fprintf(fp_out, "Folder: %s\n", folder);
++      }
+     }
+   }
+ #endif
+diff --git a/enter.c b/enter.c
+index 0afe362c9..c4470d036 100644
+--- a/enter.c
++++ b/enter.c
+@@ -662,6 +662,14 @@ int mutt_enter_string_full(char *buf, size_t buflen, int col,
+                                files, numfiles);
+               if (buf[0] != '\0')
+               {
++                char *pretty = NULL;
++                mutt_path2_pretty(buf, HomeDir, &pretty);
++                if (pretty)
++                {
++                  mutt_str_strfcpy(buf, pretty, buflen);
++                  FREE(&pretty);
++                }
++                //JKJ this could be a file/dir or a mailbox!
+                 mutt_pretty_mailbox(buf, buflen);
+                 if (!pass)
+                   mutt_hist_add(hclass, buf, true);
+diff --git a/imap/imap.c b/imap/imap.c
+index ccb5c6496..ded6c6f34 100644
+--- a/imap/imap.c
++++ b/imap/imap.c
+@@ -1345,6 +1345,7 @@ int imap_complete(char *buf, size_t buflen, const char *path)
+   {
+     /* reformat output */
+     imap_qualify_path(buf, buflen, &adata->conn->account, completion);
++    //JKJ imap mailbox only
+     mutt_pretty_mailbox(buf, buflen);
+     return 0;
+   }
+diff --git a/init.c b/init.c
+index fb83fe565..42f0ed21f 100644
+--- a/init.c
++++ b/init.c
+@@ -1091,7 +1091,10 @@ int mutt_query_variables(struct ListHead *queries)
+ 
+     int type = DTYPE(he->type);
+     if (type == DT_PATH)
++    {
++      //JKJ local file/dir only
+       mutt_pretty_mailbox(value.data, value.dsize);
++    }
+ 
+     if ((type != DT_BOOL) && (type != DT_NUMBER) && (type != DT_LONG) && (type != DT_QUAD))
+     {
+diff --git a/main.c b/main.c
+index 9f4f50c3b..45694b3ed 100644
+--- a/main.c
++++ b/main.c
+@@ -783,14 +783,10 @@ int main(int argc, char *argv[], char *envp[])
+ 
+     mutt_buffer_strcpy(fpath, C_Folder);
+     mutt_buffer_expand_path(fpath);
+-    bool skip = false;
+-#ifdef USE_IMAP
+-    /* we're not connected yet - skip mail folder creation */
+-    skip |= (imap_path_probe(mutt_b2s(fpath), NULL) == MUTT_IMAP);
+-#endif
+-#ifdef USE_NNTP
+-    skip |= (nntp_path_probe(mutt_b2s(fpath), NULL) == MUTT_NNTP);
+-#endif
++    enum MailboxType type = mx_path_probe(mutt_b2s(fpath));
++    //QWQ use MxOps.is_local
++    //QWQ or drop create completely
++    bool skip = (type == MUTT_IMAP) || (type == MUTT_NNTP) || (type == MUTT_NOTMUCH);
+     if (!skip && (stat(mutt_b2s(fpath), &sb) == -1) && (errno == ENOENT))
+     {
+       char msg2[256];
+diff --git a/mx.h b/mx.h
+index 618dcd44b..03d1175ff 100644
+--- a/mx.h
++++ b/mx.h
+@@ -465,7 +465,7 @@ bool                mx_tags_is_supported(struct Mailbox *m);
+ int              mx_path2_canon  (struct Path *path);
+ int              mx_path2_compare(struct Path *path1, struct Path *path2);
+ int              mx_path2_parent (const struct Path *path, struct Path **parent);
+-int              mx_path2_pretty (struct Path *path, const char *folder);
++int              mx_path2_pretty (struct Path *path, const char *folder, bool use_desc);
+ enum MailboxType mx_path2_probe  (struct Path *path);
+ int              mx_path2_resolve(struct Path *path, const char *folder);
+ struct Mailbox * mx_path2_find   (struct Path *path);
+diff --git a/mx_path.c b/mx_path.c
+index d68000288..40b64928e 100644
+--- a/mx_path.c
++++ b/mx_path.c
+@@ -240,10 +240,14 @@ int mx_path2_parent(const struct Path *path, struct Path **parent)
+ 
+ /**
+  * mx_path2_pretty - Abbreviate a Mailbox path - Wrapper for MxOps::path2_pretty()
+- *
+- * @note The caller must free the returned string
++ * @param[in]  path     Mailbox path
++ * @param[in]  folder   Folder string to abbreviate with
++ * @param[in]  use_desc If true, use the Path's description (if available)
++ * @retval  1 Success, Path abbreviated
++ * @retval  0 Failure, No change possible (orig path returned)
++ * @retval -1 Error
+  */
+-int mx_path2_pretty(struct Path *path, const char *folder)
++int mx_path2_pretty(struct Path *path, const char *folder, bool use_desc)
+ {
+   // Contract for MxOps::path2_pretty
+   if (!path || !path->orig || (path->type <= MUTT_UNKNOWN) ||
+@@ -252,7 +256,7 @@ int mx_path2_pretty(struct Path *path, const char *folder)
+     return -1;
+   }
+ 
+-  if (path->desc)
++  if (use_desc && path->desc)
+   {
+     path->pretty = mutt_str_strdup(path->desc);
+     return 2;
+@@ -262,7 +266,12 @@ int mx_path2_pretty(struct Path *path, const char *folder)
+   if (!ops || !ops->path2_pretty)
+     return -1;
+ 
+-  return ops->path2_pretty(path, folder);
++  int rc = ops->path2_pretty(path, folder);
++  if (rc == 1)
++    return rc;
++
++  path->pretty = mutt_str_strdup(path->orig);
++  return 0;
+ }
+ 
+ /**
+diff --git a/notmuch/path.c b/notmuch/path.c
+index d344fa56e..a275d293d 100644
+--- a/notmuch/path.c
++++ b/notmuch/path.c
+@@ -202,9 +202,10 @@ done:
+  *
+  * **Tests**
+  * - Path must begin "notmuch://"
+- * - Database path must exist
+- * - Database path must be a directory
+- * - Database path must contain a subdirectory `.notmuch`
++ * - If supplied:
++ *   - Database path must exist
++ *   - Database path must be a directory
++ *   - Database path must contain a subdirectory `.notmuch`
+  *
+  * @note The case of the URL scheme is ignored
+  */
+@@ -218,16 +219,19 @@ int nm_path2_probe(struct Path *path, const struct stat *st)
+   if (url->scheme != U_NOTMUCH)
+     goto done;
+ 
+-  // We stat the dir because NeoMutt can't parse the database path itself.
+-  struct stat std = { 0 };
+-  if ((stat(url->path, &std) != 0) || !S_ISDIR(std.st_mode))
+-    goto done;
++  if (url->path)
++  {
++    // We stat the dir because NeoMutt can't parse the database path itself.
++    struct stat std = { 0 };
++    if ((stat(url->path, &std) != 0) || !S_ISDIR(std.st_mode))
++      goto done;
+ 
+-  char buf[PATH_MAX];
+-  snprintf(buf, sizeof(buf), "%s/.notmuch", url->path);
+-  memset(&std, 0, sizeof(std));
+-  if ((stat(buf, &std) != 0) || !S_ISDIR(std.st_mode))
+-    goto done;
++    char buf[PATH_MAX];
++    snprintf(buf, sizeof(buf), "%s/.notmuch", url->path);
++    memset(&std, 0, sizeof(std));
++    if ((stat(buf, &std) != 0) || !S_ISDIR(std.st_mode))
++      goto done;
++  }
+ 
+   path->type = MUTT_NOTMUCH;
+   rc = 0;
+diff --git a/sidebar/sidebar.c b/sidebar/sidebar.c
+index 335cb0942..d78133f22 100644
+--- a/sidebar/sidebar.c
++++ b/sidebar/sidebar.c
+@@ -1089,8 +1089,8 @@ static void draw_sidebar(struct MuttWindow *win, int num_rows, int num_cols, int
+       col = div_width;
+ 
+     mutt_window_move(win, col, row);
+-    if (Context && Context->mailbox && (Context->mailbox->path->canon[0] != '\0') &&
+-        mutt_str_equal(m->path->canon, Context->mailbox->path->canon))
++    if (Context && Context->mailbox && (Context->mailbox->path->orig[0] != '\0') &&
++        mutt_str_equal(m->path->orig, Context->mailbox->path->orig))
+     {
+       m->msg_unread = Context->mailbox->msg_unread;
+       m->msg_count = Context->mailbox->msg_count;
+diff --git a/status.c b/status.c
+index 1b3be3e48..9019f6c69 100644
+--- a/status.c
++++ b/status.c
+@@ -41,6 +41,7 @@
+ #include "mutt_mailbox.h"
+ #include "mutt_menu.h"
+ #include "muttlib.h"
++#include "mx.h"
+ #include "options.h"
+ #include "protos.h"
+ #include "sort.h"
+@@ -141,31 +142,21 @@ static const char *status_format_str(char *buf, size_t buflen, size_t col, int c
+     case 'f':
+     {
+       struct Mailbox *m = Context ? Context->mailbox : NULL;
++      if (m)
++        mx_path2_pretty(m->path, C_Folder, (op == 'D'));
+ 
+-#ifdef USE_COMP_MBOX
+-      if (m && m->compress_info && (m->path->canon[0] != '\0'))
++      snprintf(fmt, sizeof(fmt), "%%%ss", prec);
++      if (m->path->pretty)
+       {
+-        mutt_str_copy(tmp, m->path->canon, sizeof(tmp));
+-        mutt_pretty_mailbox(tmp, sizeof(tmp));
++        snprintf(buf, buflen, fmt, m->path->pretty);
+       }
+       else
+-#endif
+-          if (m && (m->type == MUTT_NOTMUCH) && m->path->desc)
+-      {
+-        mutt_str_copy(tmp, m->path->desc, sizeof(tmp));
+-      }
+-      else if (m && m->path->orig)
+       {
+-        mutt_str_copy(tmp, mailbox_path(m), sizeof(tmp));
+-        mutt_pretty_mailbox(tmp, sizeof(tmp));
++        snprintf(buf, buflen, fmt, _("(no mailbox)"));
+       }
+-      else
+-        mutt_str_copy(tmp, _("(no mailbox)"), sizeof(tmp));
+-
+-      snprintf(fmt, sizeof(fmt), "%%%ss", prec);
+-      snprintf(buf, buflen, fmt, tmp);
+       break;
+     }
++
+     case 'F':
+       if (!optional)
+       {

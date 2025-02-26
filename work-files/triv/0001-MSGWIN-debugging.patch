@@ -1,0 +1,418 @@
+From 276ea89aab172506ffa83b062ddf40ce5b31b0c9 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Sat, 9 Sep 2023 10:29:27 +0100
+Subject: [PATCH] debug
+
+---
+ enter/window.c    | 32 ++++++++++++++--
+ gui/curs_lib.c    |  1 +
+ gui/msgwin.c      | 93 ++++++++++++++++++++++++++++++++++++++++++++++-
+ gui/mutt_window.c |  3 ++
+ index/functions.c | 16 ++++++--
+ keymap.c          |  2 +-
+ monitor.c         |  1 +
+ 7 files changed, 138 insertions(+), 10 deletions(-)
+
+diff --git a/enter/window.c b/enter/window.c
+index 2212acf79..a267292f7 100644
+--- a/enter/window.c
++++ b/enter/window.c
+@@ -164,6 +164,9 @@ bool self_insert(struct EnterWindowData *wdata, int ch)
+     mutt_flushinp();
+     mutt_beep(false);
+   }
++  mutt_debug(LL_DEBUG1, "buf %p, len %zu, lastchar %zu, curpos %zu, begin %zu\n",
++             (void *) wdata->state->wbuf, wdata->state->wbuflen,
++             wdata->state->lastchar, wdata->state->curpos, wdata->state->begin);
+ 
+   return false;
+ }
+@@ -176,7 +179,7 @@ bool self_insert(struct EnterWindowData *wdata, int ch)
+ static int enter_recalc(struct MuttWindow *win)
+ {
+   win->actions |= WA_REPAINT;
+-  mutt_debug(LL_DEBUG1, "recalc done, request WA_REPAINT\n");
++  mutt_debug(LL_DEBUG1, "\033[1;33mrecalc done, request WA_REPAINT\033[0m\n");
+ 
+   return 0;
+ }
+@@ -193,17 +196,20 @@ static int enter_repaint(struct MuttWindow *win)
+ 
+   window_set_focus(win);
+ 
++  mutt_debug(LL_DEBUG1, "START outer\n");
+   mutt_window_clearline(win, 0);
+   mutt_curses_set_normal_backed_color_by_id(MT_COLOR_PROMPT);
+   mutt_window_addstr(win, wdata->prompt);
+   mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+   mutt_refresh();
+   mutt_window_get_coords(win, &wdata->col, NULL);
++  mutt_debug(LL_DEBUG1, "COL = %d\n", wdata->col);
+ 
+   int width = win->state.cols - wdata->col - 1;
+ 
+   if (!wdata->pass)
+   {
++    mutt_debug(LL_DEBUG1, "\033[1;33mpaint\033[0m\n");
+     if (wdata->redraw == ENTER_REDRAW_INIT)
+     {
+       /* Go to end of line */
+@@ -220,6 +226,9 @@ static int enter_repaint(struct MuttWindow *win)
+           wdata->state->wbuf, wdata->state->lastchar,
+           mutt_mb_wcswidth(wdata->state->wbuf, wdata->state->curpos) - (width / 2));
+     }
++    mutt_debug(LL_DEBUG1, "buf %p, len %zu, lastchar %zu, curpos %zu, begin %zu\n",
++               (void *) wdata->state->wbuf, wdata->state->wbuflen,
++               wdata->state->lastchar, wdata->state->curpos, wdata->state->begin);
+     mutt_window_move(win, wdata->col, 0);
+     int w = 0;
+     for (size_t i = wdata->state->begin; i < wdata->state->lastchar; i++)
+@@ -237,7 +246,13 @@ static int enter_repaint(struct MuttWindow *win)
+                      0);
+   }
+ 
+-  mutt_debug(LL_DEBUG1, "repaint done\n");
++  // // Restore the cursor position after drawing the screen
++  // int r = 0, c = 0;
++  // mutt_window_get_coords(win, &c, &r);
++  // window_redraw(NULL);
++  // mutt_window_move(win, c, r);
++
++  mutt_debug(LL_DEBUG1, "\033[1;32mrepaint done\033[0m\n");
+ 
+   return 0;
+ }
+@@ -314,6 +329,7 @@ int mw_get_field(const char *prompt, struct Buffer *buf, CompletionFlags complet
+ 
+     do
+     {
++      mutt_debug(LL_DEBUG1, "START inner\n");
+       if (wdata.redraw != ENTER_REDRAW_NONE)
+         win->actions |= WA_REPAINT;
+ 
+@@ -327,6 +343,7 @@ int mw_get_field(const char *prompt, struct Buffer *buf, CompletionFlags complet
+       if (event.op == OP_ABORT)
+       {
+         rc = -1;
++        mutt_debug(LL_DEBUG1, "\033[1;31mNULL %d\033[0m\n", rc);
+         goto bye;
+       }
+ 
+@@ -339,9 +356,11 @@ int mw_get_field(const char *prompt, struct Buffer *buf, CompletionFlags complet
+ 
+         if (self_insert(&wdata, event.ch))
+         {
++          mutt_debug(LL_DEBUG1, "\033[1;31mself_insert 1 true\033[0m\n");
+           rc = 0;
+           goto bye;
+         }
++        mutt_debug(LL_DEBUG1, "key continue\n");
+         win->actions |= WA_REPAINT;
+         continue;
+       }
+@@ -362,12 +381,14 @@ int mw_get_field(const char *prompt, struct Buffer *buf, CompletionFlags complet
+         {
+           if (self_insert(&wdata, event.ch))
+           {
++            mutt_debug(LL_DEBUG1, "\033[1;31mself_insert 2 true\033[0m\n");
+             rc = 0;
+             goto bye;
+           }
+           break;
+         }
+         case FR_CONTINUE: // repaint
++          mutt_debug(LL_DEBUG1, "\033[1;31mFR_CONTINUE\033[0m\n");
+           rc = 1;
+           goto bye;
+ 
+@@ -379,13 +400,16 @@ int mw_get_field(const char *prompt, struct Buffer *buf, CompletionFlags complet
+         default:
+           mutt_beep(false);
+       }
+-    } while (!wdata.done);
++    } while (!wdata.done); // inner do
++    mutt_debug(LL_DEBUG1, "\033[1;31mdone true\033[0m\n");
+ 
+   bye:
++    mutt_debug(LL_DEBUG1, "bye\n");
+     mutt_hist_reset_state(wdata.hclass);
+     FREE(&wdata.tempbuf);
+     completion_data_free(&wdata.cd);
+-  } while (rc == 1);
++  } while (rc == 1); // outer do
++  mutt_debug(LL_DEBUG1, "rc 1\n");
+ 
+   mutt_curses_set_cursor(old_cursor);
+ 
+diff --git a/gui/curs_lib.c b/gui/curs_lib.c
+index 30279a8f6..19c48d232 100644
+--- a/gui/curs_lib.c
++++ b/gui/curs_lib.c
+@@ -250,6 +250,7 @@ struct KeyEvent mutt_getch(GetChFlags flags)
+     timeout(0);
+     while ((ch = getch()) == KEY_RESIZE)
+     {
++      mutt_debug(LL_DEBUG1, "QWQ mutt_getch() RESIZE\n");
+       // do nothing
+     }
+   }
+diff --git a/gui/msgwin.c b/gui/msgwin.c
+index 2d602efaa..24581d00d 100644
+--- a/gui/msgwin.c
++++ b/gui/msgwin.c
+@@ -256,16 +256,22 @@ static int msgwin_repaint(struct MuttWindow *win)
+ 
+   if (win->actions & WA_REPAINT)
+   {
++    mutt_debug(LL_DEBUG1, "\033[7mSTRING: %zu, %s\033[0m\n",
++               buf_len(wdata->text), buf_string(wdata->text));
++
+     const char *str = buf_string(wdata->text);
+     for (int i = 0; i < MSGWIN_MAX_ROWS; i++)
+     {
+       mutt_window_move(win, 0, i);
+       if (ARRAY_EMPTY(&wdata->rows[i]))
+         break;
++      mutt_debug(LL_DEBUG1, "ROW %d\n", i + 1);
+ 
+       struct MwChunk *chunk = NULL;
+       ARRAY_FOREACH(chunk, &wdata->rows[i])
+       {
++        mutt_debug(LL_DEBUG1, "    offset %d, bytes %d, width %d, color %p\n",
++                   chunk->offset, chunk->bytes, chunk->width, (void *) chunk->ac_color);
+         mutt_curses_set_color(chunk->ac_color);
+         mutt_window_addnstr(win, str + chunk->offset, chunk->bytes);
+       }
+@@ -278,10 +284,13 @@ static int msgwin_repaint(struct MuttWindow *win)
+     if (wdata->interactive)
+     {
+       mutt_window_get_coords(win, &wdata->col, &wdata->row);
++      mutt_debug(LL_DEBUG1, "coords: [%d,%d]\n", wdata->row, wdata->col);
+     }
+   }
+   else if (wdata->interactive)
+   {
++    mutt_debug(LL_DEBUG1, "\033[7mNONE\033[0m %s\n", wdata->interactive ? "INTERACTIVE" : "");
++    mutt_debug(LL_DEBUG1, "restore cursor to: [%d,%d]\n", wdata->col, wdata->row);
+     mutt_window_move(win, wdata->col, wdata->row);
+   }
+ 
+@@ -310,6 +319,8 @@ void msgwin_set_rows(struct MuttWindow *win, short rows)
+   if (rows != win->state.rows)
+   {
+     win->req_rows = rows;
++    mutt_debug(LL_DEBUG1, "\033[7;1;31mRESIZE from %d to %d rows\033[0m\n",
++               win->state.rows, rows);
+     mutt_window_reflow(NULL);
+   }
+ }
+@@ -338,6 +349,7 @@ static int msgwin_window_observer(struct NotifyCallback *nc)
+   {
+     if (ev_w->flags & WN_HIDDEN)
+     {
++      mutt_debug(LL_DEBUG1, "\033[1;7;32mWINDOW HIDDEN\033[0m\n");
+       msgwin_clear_text(win);
+     }
+ 
+@@ -352,7 +364,7 @@ static int msgwin_window_observer(struct NotifyCallback *nc)
+     {
+       win->actions |= WA_REPAINT;
+     }
+-    mutt_debug(LL_DEBUG1, "window state done, request WA_RECALC\n");
++    mutt_debug(LL_DEBUG1, "\033[1;36mwindow state done, request WA_RECALC\033[0m\n");
+   }
+   else if (nc->event_subtype == NT_WINDOW_DELETE)
+   {
+@@ -408,6 +420,82 @@ const char *msgwin_get_text(struct MuttWindow *win)
+   return buf_string(wdata->text);
+ }
+ 
++/**
++ * dump_rows - Log the chars, rows and chunks
++ * @param wdata Window data
++ */
++void dump_rows(struct MsgWinWindowData *wdata)
++{
++  struct Buffer *buf = buf_pool_get();
++
++  struct MwChar *mwc = NULL;
++  ARRAY_FOREACH(mwc, &wdata->chars)
++  {
++    buf_add_printf(buf, "%*d", -mwc->width, mwc->width);
++  }
++  mutt_debug(LL_DEBUG1, "%s\n", buf_string(buf));
++  buf_reset(buf);
++
++  ARRAY_FOREACH(mwc, &wdata->chars)
++  {
++    buf_add_printf(buf, "%*d", -mwc->width, mwc->bytes);
++  }
++  mutt_debug(LL_DEBUG1, "%s\n", buf_string(buf));
++  buf_reset(buf);
++
++  char ch = 'A' - 1;
++  const struct AttrColor *ac_old = NULL;
++  ARRAY_FOREACH(mwc, &wdata->chars)
++  {
++    if (mwc->ac_color != ac_old)
++    {
++      ac_old = mwc->ac_color;
++      ch++;
++    }
++    buf_add_printf(buf, "%*c", -mwc->width, ch);
++  }
++  mutt_debug(LL_DEBUG1, "%s\n", buf_string(buf));
++  buf_reset(buf);
++
++  for (int i = 0; i < MSGWIN_MAX_ROWS; i++)
++  {
++    if (ARRAY_EMPTY(&wdata->rows[i]))
++      break;
++
++    int width = 0;
++    int bytes = 0;
++    mutt_debug(LL_DEBUG1, "ROW %d\n", i + 1);
++    mutt_debug(LL_DEBUG1, "        Off, Bytes, Width, Colour\n");
++    mutt_debug(LL_DEBUG1, "        ------------------------\n");
++    struct MwChunk *chunk = NULL;
++    ARRAY_FOREACH(chunk, &wdata->rows[i])
++    {
++      mutt_debug(LL_DEBUG1, "        %3d,  %3d,    %3d, %p\n", chunk->offset,
++                 chunk->bytes, chunk->width, (void *) chunk->ac_color);
++      bytes += chunk->bytes;
++      width += chunk->width;
++    }
++    mutt_debug(LL_DEBUG1, "        ------------------------\n");
++    mutt_debug(LL_DEBUG1, "              %3d,    %3d\n", bytes, width);
++    mutt_debug(LL_DEBUG1, "\n");
++  }
++
++  int color = 0;
++  for (int i = 0; i < MSGWIN_MAX_ROWS; i++)
++  {
++    buf_reset(buf);
++    struct MwChunk *chunk = NULL;
++    ARRAY_FOREACH(chunk, &wdata->rows[i])
++    {
++      buf_add_printf(buf, "\033[1;%dm%.*s\033[0m", 41 + color, chunk->bytes,
++                     buf_string(wdata->text) + chunk->offset);
++      color = 1 - color;
++    }
++    mutt_debug(LL_DEBUG1, "%s\n", buf_string(buf));
++  }
++  buf_pool_release(&buf);
++}
++
+ /**
+  * msgwin_add_text - Add text to the Message Window
+  * @param win      Message Window
+@@ -435,6 +523,7 @@ void msgwin_add_text(struct MuttWindow *win, const char *text, const struct Attr
+     int rows = msgwin_calc_rows(wdata, win->state.cols, buf_string(wdata->text));
+     msgwin_set_rows(win, rows);
+     win->actions |= WA_RECALC;
++    dump_rows(wdata);
+   }
+ }
+ 
+@@ -468,6 +557,7 @@ void msgwin_add_text_n(struct MuttWindow *win, const char *text, int bytes,
+     int rows = msgwin_calc_rows(wdata, win->state.cols, buf_string(wdata->text));
+     msgwin_set_rows(win, rows);
+     win->actions |= WA_RECALC;
++    dump_rows(wdata);
+   }
+ }
+ 
+@@ -502,6 +592,7 @@ void msgwin_set_text(struct MuttWindow *win, const char *text, enum ColorId colo
+   int rows = msgwin_calc_rows(wdata, win->state.cols, buf_string(wdata->text));
+   msgwin_set_rows(win, rows);
+   win->actions |= WA_RECALC;
++  dump_rows(wdata);
+ }
+ 
+ /**
+diff --git a/gui/mutt_window.c b/gui/mutt_window.c
+index 3fc59105c..2f0124fe2 100644
+--- a/gui/mutt_window.c
++++ b/gui/mutt_window.c
+@@ -350,12 +350,15 @@ void mutt_window_reflow(struct MuttWindow *win)
+   if (!win)
+     win = RootWindow;
+ 
++  mutt_debug(LL_DEBUG1, "entering reflow/notify 1\n");
+   window_reflow(win);
+   window_notify_all(win);
+ 
+   // Allow Windows to resize themselves based on the first reflow
++  mutt_debug(LL_DEBUG1, "entering reflow/notify 2\n");
+   window_reflow(win);
+   window_notify_all(win);
++  mutt_debug(LL_DEBUG1, "entering reflow/notify DONE\n");
+ 
+ #ifdef USE_DEBUG_WINDOW
+   debug_win_dump();
+diff --git a/index/functions.c b/index/functions.c
+index 110502907..15c5f2215 100644
+--- a/index/functions.c
++++ b/index/functions.c
+@@ -357,9 +357,13 @@ static int op_delete_thread(struct IndexSharedData *shared,
+ static int op_display_address(struct IndexSharedData *shared,
+                               struct IndexPrivateData *priv, int op)
+ {
+-  if (!shared->email)
+-    return FR_NO_ACTION;
+-  mutt_display_address(shared->email->env);
++  enum QuadOption ans = query_quadoption(MUTT_ASKYES, "How many roads must a man walk down, before they call him a man?");
++
++  mutt_message("response: %s", (ans < 0) ? "ABORT" : QuadValues[ans]);
++
++  // if (!shared->email)
++  //   return FR_NO_ACTION;
++  // mutt_display_address(shared->email->env);
+ 
+   return FR_SUCCESS;
+ }
+@@ -1789,7 +1793,8 @@ static int op_next_entry(struct IndexSharedData *shared, struct IndexPrivateData
+   const int index = menu_get_index(priv->menu) + 1;
+   if (index >= shared->mailbox->vcount)
+   {
+-    mutt_message(_("You are on the last message"));
++    // mutt_message("apple Ελληνικά banana Українська cherry 한국어\nelderberry हिन्दी fig\nРусский hawthorn 日本語 jackfruit 中文 kumquat");
++    mutt_message("apple Ελληνικά banana ♥️ Українська cherry 한국어 elderberry हिन्दी fig Русский hawthorn 日本語 jackfruit lemon 🍏🍯🍝🍃🍒🌲🍡🍐🍩🍣🌽 中文 kumquat");
+     notify_send(shared->notify, NT_INDEX, NT_INDEX_EMAIL, NULL);
+     return FR_ERROR;
+   }
+@@ -1841,6 +1846,9 @@ static int op_prev_entry(struct IndexSharedData *shared, struct IndexPrivateData
+  */
+ static int op_print(struct IndexSharedData *shared, struct IndexPrivateData *priv, int op)
+ {
++  int choice = mw_multi_choice("(a)pple, (b)anana, (fake), (c)herry, (d)amson?", "abcd");
++  mutt_message("Selection: %d", choice);
++  return FR_SUCCESS;
+   struct EmailArray ea = ARRAY_HEAD_INITIALIZER;
+   ea_add_tagged(&ea, shared->mailbox_view, shared->email, priv->tag_prefix);
+   mutt_print_message(shared->mailbox, &ea);
+diff --git a/keymap.c b/keymap.c
+index 825779fe8..a3ca19880 100644
+--- a/keymap.c
++++ b/keymap.c
+@@ -1884,7 +1884,7 @@ void mw_what_key(void)
+     }
+ 
+     msgwin_clear_text(win);
+-    snprintf(keys, sizeof(keys), _("Char = %s, Octal = %o, Decimal = %d\n"),
++    snprintf(keys, sizeof(keys), _("Char = %s,🍏🍯Octal = %o,🍒🌲\n🍡🍐Decimal = %d\n"),
+              km_keyname(ch), ch, ch);
+     msgwin_add_text(win, keys, ac_normal);
+     msgwin_add_text(win, prompt, ac_prompt);
+diff --git a/monitor.c b/monitor.c
+index cf49e53b3..a3242ca50 100644
+--- a/monitor.c
++++ b/monitor.c
+@@ -417,6 +417,7 @@ int mutt_monitor_poll(void)
+     else
+     {
+       bool input_ready = false;
++      // mutt_debug(LL_DEBUG1, "%zu events\n", PollFdsCount);
+       for (int i = 0; fds && (i < PollFdsCount); i++)
+       {
+         if (PollFds[i].revents)

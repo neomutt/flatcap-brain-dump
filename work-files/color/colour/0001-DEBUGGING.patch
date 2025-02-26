@@ -1,0 +1,99 @@
+From b6b34485da554e4b939c98fd91fc51da6d037285 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Mon, 16 Oct 2023 02:38:58 +0100
+Subject: [PATCH] DEBUGGING
+
+---
+ main.c | 44 ++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 42 insertions(+), 2 deletions(-)
+
+diff --git a/main.c b/main.c
+index 2658d65c0..53a076ed7 100644
+--- a/main.c
++++ b/main.c
+@@ -191,6 +191,11 @@
+ #include "debug/lib.h"
+ #endif
+ 
++void quoted_colors_dump(struct Buffer *buf);
++void regex_colors_dump(struct Buffer *buf);
++void simple_colors_dump(struct Buffer *buf);
++void status_colors_dump(struct Buffer *buf);
++
+ bool StartupComplete = false; ///< When the config has been read
+ 
+ // clang-format off
+@@ -519,6 +524,10 @@ main
+ #endif
+ (int argc, char *argv[], char *envp[])
+ {
++#if 0
++  setenv("COLUMNS", "80", 1);
++  setenv("LINES", "24", 1);
++#endif
+   char *subject = NULL;
+   char *include_file = NULL;
+   char *draft_file = NULL;
+@@ -781,7 +790,7 @@ main
+   if (!isatty(0) || !STAILQ_EMPTY(&queries) || !STAILQ_EMPTY(&alias_queries) ||
+       dump_variables || batch_mode)
+   {
+-    OptNoCurses = true;
++    // OptNoCurses = true;
+     sendflags = SEND_BATCH;
+     MuttLogger = log_disp_terminal;
+     log_queue_flush(log_disp_terminal);
+@@ -906,7 +915,7 @@ main
+     clear();
+     MuttLogger = log_disp_curses;
+     log_queue_flush(log_disp_curses);
+-    log_queue_set_max_size(100);
++    // log_queue_set_max_size(100);
+   }
+ 
+ #ifdef USE_AUTOCRYPT
+@@ -952,6 +961,13 @@ main
+ 
+   if (batch_mode)
+   {
++    struct Buffer *buf = buf_pool_get();
++    simple_colors_dump(buf);
++    quoted_colors_dump(buf);
++    status_colors_dump(buf);
++    regex_colors_dump(buf);
++    printf("%s", buf_string(buf));
++    buf_pool_release(&buf);
+     goto main_ok; // TEST22: neomutt -B
+   }
+   StartupComplete = true;
+@@ -1380,6 +1396,30 @@ main
+     mutt_debug(LL_NOTIFY, "NT_GLOBAL_STARTUP\n");
+     notify_send(NeoMutt->notify, NT_GLOBAL, NT_GLOBAL_STARTUP, NULL);
+ 
++#if 0
++    {
++      void log_multiline_full(enum LogLevel level, const char *str, const char *file, int line, const char *func);
++
++      const char *tests[] = {
++        NULL,
++        "",
++        "\n",
++        "apple",
++        "apple\n",
++        "apple banana\ncherry\n\ndamson",
++        "apple banana\ncherry\n\ndamson\n",
++      };
++
++      mutt_debug(LL_DEBUG1, "--------------------------\n");
++      for (int i = 0; i < mutt_array_size(tests); i++)
++      {
++        log_multiline_full(LL_DEBUG1, tests[i], __FILE__, __LINE__, __func__);
++        mutt_debug(LL_DEBUG1, "--------------------------\n");
++      }
++      goto main_ok;
++    }
++#endif
++
+     notify_send(NeoMutt->notify_resize, NT_RESIZE, 0, NULL);
+     window_redraw(NULL);
+ 

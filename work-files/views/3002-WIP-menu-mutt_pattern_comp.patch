@@ -1,0 +1,150 @@
+From d38991667d8f8c8ba12cc714e612c2f7ff3cf865 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Sat, 13 May 2023 20:11:52 +0100
+Subject: [PATCH 2/2] WIP: menu: mutt_pattern_comp()
+
+---
+ color/regex.c     |  3 +--
+ hook.c            |  6 ++----
+ pattern/compile.c | 10 ++++------
+ pattern/lib.h     |  2 +-
+ pattern/pattern.c |  6 +++---
+ score.c           |  3 +--
+ 6 files changed, 12 insertions(+), 18 deletions(-)
+
+diff --git a/color/regex.c b/color/regex.c
+index 0eb9ea2d2..d5fc657d1 100644
+--- a/color/regex.c
++++ b/color/regex.c
+@@ -280,8 +280,7 @@ static enum CommandResult add_pattern(struct RegexColorList *rcl, const char *s,
+       const char *const c_simple_search = cs_subset_string(NeoMutt->sub, "simple_search");
+       mutt_check_simple(buf, NONULL(c_simple_search));
+       struct MailboxView *mv_cur = get_current_mailbox_view();
+-      struct Menu *menu = get_current_menu();
+-      rcol->color_pattern = mutt_pattern_comp(mv_cur, menu, buf->data, MUTT_PC_FULL_MSG, err);
++      rcol->color_pattern = mutt_pattern_comp(mv_cur, buf->data, MUTT_PC_FULL_MSG, err);
+       buf_pool_release(&buf);
+       if (!rcol->color_pattern)
+       {
+diff --git a/hook.c b/hook.c
+index bf34bdb29..740c2eb5d 100644
+--- a/hook.c
++++ b/hook.c
+@@ -305,8 +305,7 @@ enum CommandResult mutt_parse_hook(struct Buffer *buf, struct Buffer *s,
+       comp_flags = MUTT_PC_FULL_MSG;
+ 
+     struct MailboxView *mv_cur = get_current_mailbox_view();
+-    struct Menu *menu = get_current_menu();
+-    pat = mutt_pattern_comp(mv_cur, menu, buf_string(pattern), comp_flags, err);
++    pat = mutt_pattern_comp(mv_cur, buf_string(pattern), comp_flags, err);
+     if (!pat)
+       goto cleanup;
+   }
+@@ -478,8 +477,7 @@ static enum CommandResult mutt_parse_idxfmt_hook(struct Buffer *buf, struct Buff
+    * used for date ranges, and they need to be evaluated relative to "now", not
+    * the hook compilation time.  */
+   struct MailboxView *mv_cur = get_current_mailbox_view();
+-  struct Menu *menu = get_current_menu();
+-  struct PatternList *pat = mutt_pattern_comp(mv_cur, menu, buf_string(pattern),
++  struct PatternList *pat = mutt_pattern_comp(mv_cur, buf_string(pattern),
+                                               MUTT_PC_FULL_MSG | MUTT_PC_PATTERN_DYNAMIC,
+                                               err);
+   if (!pat)
+diff --git a/pattern/compile.c b/pattern/compile.c
+index fe0a0fad9..a222db18c 100644
+--- a/pattern/compile.c
++++ b/pattern/compile.c
+@@ -890,15 +890,13 @@ static struct Pattern *attach_new_leaf(struct PatternList **curlist)
+ /**
+  * mutt_pattern_comp - Create a Pattern
+  * @param mv    Mailbox view
+- * @param menu  Current Menu
+  * @param s     Pattern string
+  * @param flags Flags, e.g. #MUTT_PC_FULL_MSG
+  * @param err   Buffer for error messages
+  * @retval ptr Newly allocated Pattern
+  */
+-struct PatternList *mutt_pattern_comp(struct MailboxView *mv, struct Menu *menu,
+-                                      const char *s, PatternCompFlags flags,
+-                                      struct Buffer *err)
++struct PatternList *mutt_pattern_comp(struct MailboxView *mv, const char *s,
++                                      PatternCompFlags flags, struct Buffer *err)
+ {
+   /* curlist when assigned will always point to a list containing at least one node
+    * with a Pattern value.  */
+@@ -1003,7 +1001,7 @@ struct PatternList *mutt_pattern_comp(struct MailboxView *mv, struct Menu *menu,
+           is_alias = false;
+           /* compile the sub-expression */
+           buf = mutt_strn_dup(ps.dptr + 1, p - (ps.dptr + 1));
+-          leaf->child = mutt_pattern_comp(mv, menu, buf, flags, err);
++          leaf->child = mutt_pattern_comp(mv, buf, flags, err);
+           if (!leaf->child)
+           {
+             FREE(&buf);
+@@ -1096,7 +1094,7 @@ struct PatternList *mutt_pattern_comp(struct MailboxView *mv, struct Menu *menu,
+         }
+         /* compile the sub-expression */
+         buf = mutt_strn_dup(ps.dptr + 1, p - (ps.dptr + 1));
+-        struct PatternList *sub = mutt_pattern_comp(mv, menu, buf, flags, err);
++        struct PatternList *sub = mutt_pattern_comp(mv, buf, flags, err);
+         FREE(&buf);
+         if (!sub)
+           goto cleanup;
+diff --git a/pattern/lib.h b/pattern/lib.h
+index 58d306391..6698b4a40 100644
+--- a/pattern/lib.h
++++ b/pattern/lib.h
+@@ -180,7 +180,7 @@ bool mutt_pattern_exec(struct Pattern *pat, PatternExecFlags flags, struct Mailb
+ bool mutt_pattern_alias_exec(struct Pattern *pat, PatternExecFlags flags,
+                              struct AliasView *av, struct PatternCache *cache);
+ 
+-struct PatternList *mutt_pattern_comp(struct MailboxView *mv, struct Menu *menu, const char *s, PatternCompFlags flags, struct Buffer *err);
++struct PatternList *mutt_pattern_comp(struct MailboxView *mv, const char *s, PatternCompFlags flags, struct Buffer *err);
+ void mutt_check_simple(struct Buffer *s, const char *simple);
+ void mutt_pattern_free(struct PatternList **pat);
+ bool dlg_select_pattern(char *buf, size_t buflen);
+diff --git a/pattern/pattern.c b/pattern/pattern.c
+index cb64f07f7..104791d46 100644
+--- a/pattern/pattern.c
++++ b/pattern/pattern.c
+@@ -309,7 +309,7 @@ int mutt_pattern_func(struct MailboxView *mv, int op, char *prompt)
+   const bool match_all = mutt_str_equal(pbuf, "~A");
+ 
+   err = buf_pool_get();
+-  struct PatternList *pat = mutt_pattern_comp(mv, mv->menu, buf->data, MUTT_PC_FULL_MSG, err);
++  struct PatternList *pat = mutt_pattern_comp(mv, buf->data, MUTT_PC_FULL_MSG, err);
+   if (!pat)
+   {
+     mutt_error("%s", buf_string(err));
+@@ -401,7 +401,7 @@ int mutt_pattern_func(struct MailboxView *mv, int op, char *prompt)
+     {
+       mv->pattern = simple;
+       simple = NULL; /* don't clobber it */
+-      mv->limit_pattern = mutt_pattern_comp(mv, mv->menu, buf->data, MUTT_PC_FULL_MSG, err);
++      mv->limit_pattern = mutt_pattern_comp(mv, buf->data, MUTT_PC_FULL_MSG, err);
+     }
+   }
+ 
+@@ -465,7 +465,7 @@ int mutt_search_command(struct MailboxView *mv, int cur, int op)
+       mutt_pattern_free(&SearchPattern);
+       err.dsize = 256;
+       err.data = mutt_mem_malloc(err.dsize);
+-      SearchPattern = mutt_pattern_comp(mv, mv->menu, tmp->data, MUTT_PC_FULL_MSG, &err);
++      SearchPattern = mutt_pattern_comp(mv, tmp->data, MUTT_PC_FULL_MSG, &err);
+       if (!SearchPattern)
+       {
+         buf_pool_release(&buf);
+diff --git a/score.c b/score.c
+index b59c68131..8658a6f18 100644
+--- a/score.c
++++ b/score.c
+@@ -113,8 +113,7 @@ enum CommandResult mutt_parse_score(struct Buffer *buf, struct Buffer *s,
+   if (!ptr)
+   {
+     struct MailboxView *mv_cur = get_current_mailbox_view();
+-    struct Menu *menu = get_current_menu();
+-    struct PatternList *pat = mutt_pattern_comp(mv_cur, menu, pattern, MUTT_PC_NO_FLAGS, err);
++    struct PatternList *pat = mutt_pattern_comp(mv_cur, pattern, MUTT_PC_NO_FLAGS, err);
+     if (!pat)
+     {
+       FREE(&pattern);

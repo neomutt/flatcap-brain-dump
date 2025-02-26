@@ -1,0 +1,134 @@
+From d33ce26fe26633f59be4aacf8c131049a677be9b Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Mon, 14 Oct 2024 00:28:21 +0100
+Subject: [PATCH] graphviz dump
+
+---
+ index/functions.c |  8 ++++++
+ main.c            | 66 ++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 73 insertions(+), 1 deletion(-)
+
+diff --git a/index/functions.c b/index/functions.c
+index 17c7ef355..a858b93b3 100644
+--- a/index/functions.c
++++ b/index/functions.c
+@@ -46,6 +46,7 @@
+ #include "attach/lib.h"
+ #include "browser/lib.h"
+ #include "editor/lib.h"
++#include "expando/lib.h"
+ #include "history/lib.h"
+ #include "imap/lib.h"
+ #include "key/lib.h"
+@@ -83,6 +84,7 @@
+ #include <libintl.h>
+ #endif
+ #endif
++#include "debug/lib.h"
+ 
+ /// Error message for unavailable functions
+ static const char *Not_available_in_this_menu = N_("Not available in this menu");
+@@ -2077,6 +2079,12 @@ static int op_prev_entry(struct IndexSharedData *shared, struct IndexPrivateData
+  */
+ static int op_print(struct IndexSharedData *shared, struct IndexPrivateData *priv, int op)
+ {
++#ifdef USE_DEBUG_GRAPHVIZ
++  const struct Expando *c_index_format = cs_subset_expando(shared->sub, "index_format");
++  dump_graphviz_expando_node(c_index_format->node);
++  return FR_SUCCESS;
++#endif
++
+   struct EmailArray ea = ARRAY_HEAD_INITIALIZER;
+   ea_add_tagged(&ea, shared->mailbox_view, shared->email, priv->tag_prefix);
+   mutt_print_message(shared->mailbox, &ea);
+diff --git a/main.c b/main.c
+index a093e15e1..7472a1f41 100644
+--- a/main.c
++++ b/main.c
+@@ -155,6 +155,7 @@
+ #include "attach/lib.h"
+ #include "browser/lib.h"
+ #include "color/lib.h"
++#include "expando/lib.h"
+ #include "history/lib.h"
+ #include "imap/lib.h"
+ #include "index/lib.h"
+@@ -185,7 +186,7 @@
+ #ifdef USE_AUTOCRYPT
+ #include "autocrypt/lib.h"
+ #endif
+-#if defined(USE_DEBUG_NOTIFY) || defined(USE_DEBUG_BACKTRACE)
++#if defined(USE_DEBUG_NOTIFY) || defined(USE_DEBUG_BACKTRACE) || defined(USE_DEBUG_GRAPHVIZ)
+ #include "debug/lib.h"
+ #endif
+ 
+@@ -984,6 +985,69 @@ main
+ 
+   if (batch_mode)
+   {
++#ifdef USE_DEBUG_GRAPHVIZ
++    const struct Expando *c_index_format = cs_subset_expando(NeoMutt->sub, "index_format");
++    if (c_index_format)
++      dump_graphviz_expando_node(c_index_format->node);
++#endif
++#if 0
++    printf("Input: `%s`\n", argv[1]);
++    printf("Term:  `%s`\n", argv[2]);
++
++    const char *parsed_until = NULL;
++    struct ExpandoNode *node = node_text_parse(argv[1], argv[2], &parsed_until);
++
++    if (node)
++    {
++      printf("Result: `%s`\n", node->text);
++      printf("End:    `%s`\n", NONULL(parsed_until));
++    }
++    else
++    {
++      printf("Result: -\n");
++    }
++
++    node_free(&node);
++#endif
++#if 0
++    time_t cutoff_number(char period, int count);
++    time_t cutoff_this(char period);
++
++    time_t t = 0;
++    time_t now = time(NULL);
++    static const char *plist = "ymwdHM";
++    struct Buffer *buf = buf_pool_get();
++
++    mutt_date_make_imap(buf, now);
++#endif
++
++#if 0
++    printf("NOW       %s\n", buf_string(buf));
++    for (int j = 0; plist[j] != '\0'; j++)
++    {
++      t = cutoff_this(plist[j]);
++      mutt_date_make_imap(buf, t);
++      printf("%c         %s\n", plist[j], buf_string(buf));
++    }
++    printf("\n");
++#endif
++
++#if 0
++    for (int j = 0; plist[j] != '\0'; j++)
++    {
++      printf("NOW       %s\n", buf_string(buf));
++      for (int k = 1; k <= 6; k++)
++      {
++        t = cutoff_number(plist[j], k);
++        mutt_date_make_imap(buf, t);
++        printf("%d %c       %s\n", k, plist[j], buf_string(buf));
++      }
++      printf("\n");
++    }
++#endif
++
++    // buf_pool_release(&buf);
++
+     goto main_ok; // TEST22: neomutt -B
+   }
+   StartupComplete = true;

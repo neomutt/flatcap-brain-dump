@@ -1,0 +1,140 @@
+From 60a4c1b87f2edf4dedf94a52e7d3907c73cb35b4 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Sun, 21 Jun 2020 01:02:44 +0100
+Subject: [PATCH 11/11] WIP compose/background.c
+
+---
+ compose/background.c | 34 +++++++++++++++++++++++-----------
+ compose/background.h | 33 ++++++++++++++++++---------------
+ 2 files changed, 41 insertions(+), 26 deletions(-)
+
+diff --git a/compose/background.c b/compose/background.c
+index a705e337c..adcb66e42 100644
+--- a/compose/background.c
++++ b/compose/background.c
+@@ -38,6 +38,16 @@
+ 
+ struct SendContext *BackgroundProcess = NULL;
+ 
++static const struct Mapping LandingHelp[] = {
++  { N_("Exit"), OP_EXIT },
++  { N_("Redraw"), OP_REDRAW },
++  { N_("Help"), OP_HELP },
++  { NULL, 0 },
++};
++
++/**
++ * mutt_background_run - XXX
++ */
+ static pid_t mutt_background_run(const char *cmd)
+ {
+   struct sigaction act;
+@@ -88,13 +98,9 @@ static pid_t mutt_background_run(const char *cmd)
+   return (thepid);
+ }
+ 
+-static const struct Mapping LandingHelp[] = {
+-  { N_("Exit"), OP_EXIT },
+-  { N_("Redraw"), OP_REDRAW },
+-  { N_("Help"), OP_HELP },
+-  { NULL, 0 },
+-};
+-
++/**
++ * landing_redraw - XXX
++ */
+ static void landing_redraw(struct Menu *menu)
+ {
+   menu_redraw(menu);
+@@ -102,14 +108,18 @@ static void landing_redraw(struct Menu *menu)
+   mutt_window_mvaddstr(MuttIndexWindow, 1, 0, _("Hit <exit> to background editor."));
+ }
+ 
+-/* Displays the "waiting for editor" page.
++/**
++ * background_edit_landing_page - Display the "waiting for editor" page
++ * @param
++ *
+  * Returns:
+  *   2 if the the menu is exited, leaving the process backgrounded
+  *   0 when the waitpid() indicates the process has exited
+  */
+ static int background_edit_landing_page(pid_t bg_pid)
+ {
+-  int done = 0, rc = 0, op;
++  bool done = false;
++  int rc = 0, op;
+   short orig_timeout;
+   pid_t wait_rc;
+   struct Menu *menu;
+@@ -158,7 +168,7 @@ static int background_edit_landing_page(pid_t bg_pid)
+ 
+       case OP_EXIT:
+         rc = 2;
+-        done = 1;
++        done = true;
+         break;
+ 
+       case OP_REDRAW:
+@@ -176,7 +186,9 @@ static int background_edit_landing_page(pid_t bg_pid)
+   return rc;
+ }
+ 
+-/* Runs editor in the background.
++/**
++ * mutt_background_edit_file - Run editor in the background
++ * @param
+  *
+  * After backgrounding the process, the background landing page will
+  * be displayed.  The user will have the opportunity to "quit" the
+diff --git a/compose/background.h b/compose/background.h
+index 2bd9820d4..5cd460ec9 100644
+--- a/compose/background.h
++++ b/compose/background.h
+@@ -1,23 +1,26 @@
+-/*
++/**
++ * @file
++ *
++ * @authors
+  * Copyright(C) 2020 Kevin J. McCarthy <kevin@8t8.us>
+  *
+- *     This program is free software; you can redistribute it and/or modify
+- *     it under the terms of the GNU General Public License as published by
+- *     the Free Software Foundation; either version 2 of the License, or
+- *    (at your option) any later version.
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
+  *
+- *     This program is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
+  *
+- *     You should have received a copy of the GNU General Public License
+- *     along with this program; if not, write to the Free Software
+- *     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
+-#ifndef _BACKGROUND_H
+-#define _BACKGROUND_H 1
++#ifndef MUTT_BACKGROUND_H
++#define MUTT_BACKGROUND_H
+ 
+ struct SendContext;
+ 
+@@ -25,4 +28,4 @@ extern struct SendContext *BackgroundProcess;
+ 
+ int mutt_background_edit_file(struct SendContext *sctx, const char *editor, const char *filename);
+ 
+-#endif
++#endif /* MUTT_BACKGROUND_H */

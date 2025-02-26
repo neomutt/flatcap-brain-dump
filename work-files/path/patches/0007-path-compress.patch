@@ -1,0 +1,576 @@
+From 9e3bf3d59f6e8ef272c4c14acf4df76397089c74 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Fri, 21 Feb 2020 01:07:24 +0000
+Subject: [PATCH 07/29] path: compress
+
+---
+ Makefile.autosetup      |   6 +-
+ compmbox/compress.c     |   7 +
+ compmbox/lib.h          |   1 +
+ compmbox/path.c         | 124 ++++++++++++++++++
+ compmbox/path.h         |  36 ++++++
+ po/POTFILES.in          |   1 +
+ test/Makefile.autosetup |   2 +-
+ test/main.c             |   8 ++
+ test/mx_path/compmbox.c | 274 ++++++++++++++++++++++++++++++++++++++++
+ 9 files changed, 456 insertions(+), 3 deletions(-)
+ create mode 100644 compmbox/path.c
+ create mode 100644 compmbox/path.h
+ create mode 100644 test/mx_path/compmbox.c
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index 924d393fd..9c7ddb155 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -151,7 +151,7 @@ $(PWD)/bcache:
+ ###############################################################################
+ # libcompmbox
+ LIBCOMPMBOX=	libcompmbox.a
+-LIBCOMPMBOXOBJS=compmbox/compress.o
++LIBCOMPMBOXOBJS=compmbox/compress.o compmbox/path.o
+ CLEANFILES+=	$(LIBCOMPMBOX) $(LIBCOMPMBOXOBJS)
+ ALLOBJS+=	$(LIBCOMPMBOXOBJS)
+ 
+@@ -613,7 +613,9 @@ coverage: all test
+ 	  --directory core \
+ 	  --directory email \
+ 	  --directory mutt \
+-	  --directory store
++	  --directory store \
++	  --directory compmbox \
++
+ 	-genhtml --output-directory lcov --frames lcov.info
+ 	lcov --list lcov.info
+ @endif
+diff --git a/compmbox/compress.c b/compmbox/compress.c
+index c1a70fb71..ca7d6a364 100644
+--- a/compmbox/compress.c
++++ b/compmbox/compress.c
+@@ -47,6 +47,7 @@
+ #include "hook.h"
+ #include "muttlib.h"
+ #include "mx.h"
++#include "path.h"
+ #include "protos.h"
+ 
+ struct Email;
+@@ -957,5 +958,11 @@ struct MxOps MxCompOps = {
+   .path_canon       = comp_path_canon,
+   .path_pretty      = comp_path_pretty,
+   .path_parent      = comp_path_parent,
++  .path2_canon      = comp_path2_canon,
++  .path2_compare    = comp_path2_compare,
++  .path2_parent     = comp_path2_parent,
++  .path2_pretty     = comp_path2_pretty,
++  .path2_probe      = comp_path2_probe,
++  .path2_tidy       = comp_path2_tidy,
+ };
+ // clang-format on
+diff --git a/compmbox/lib.h b/compmbox/lib.h
+index b766aac35..cd77ecbd6 100644
+--- a/compmbox/lib.h
++++ b/compmbox/lib.h
+@@ -37,6 +37,7 @@
+ #include <stdbool.h>
+ #include <stdio.h>
+ #include "mx.h"
++#include "path.h"
+ 
+ struct Mailbox;
+ 
+diff --git a/compmbox/path.c b/compmbox/path.c
+new file mode 100644
+index 000000000..36c7cbf5a
+--- /dev/null
++++ b/compmbox/path.c
+@@ -0,0 +1,124 @@
++/**
++ * @file
++ * Compress path manipulations
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++/**
++ * @page comp_path Mbox path manipulations
++ *
++ * Mbox path manipulations
++ */
++
++#include "config.h"
++#include <string.h>
++#include <sys/stat.h>
++#include "config/lib.h"
++#include "email/lib.h"
++#include "core/lib.h"
++#include "lib.h"
++#include "mutt_globals.h"
++
++extern char *HomeDir;
++
++/**
++ * comp_path2_canon - Canonicalise a Mailbox path - Implements MxOps::path2_canon()
++ */
++int comp_path2_canon(struct Path *path)
++{
++  if (!mutt_path_canon2(path->orig, &path->canon))
++    return -1;
++
++  path->flags |= MPATH_CANONICAL;
++  return 0;
++}
++
++/**
++ * comp_path2_compare - Compare two Mailbox paths - Implements MxOps::path2_compare()
++ */
++int comp_path2_compare(struct Path *path1, struct Path *path2)
++{
++  int rc = mutt_str_strcmp(path1->canon, path2->canon);
++  if (rc < 0)
++    return -1;
++  if (rc > 0)
++    return 1;
++  return 0;
++}
++
++/**
++ * comp_path2_parent - Find the parent of a Mailbox path - Implements MxOps::path2_parent()
++ * @retval -1 Compressed mailbox doesn't have a parent
++ */
++int comp_path2_parent(const struct Path *path, struct Path **parent)
++{
++  return -1;
++}
++
++/**
++ * comp_path2_pretty - Abbreviate a Mailbox path - Implements MxOps::path2_pretty()
++ */
++int comp_path2_pretty(struct Path *path, const char *folder)
++{
++  if (mutt_path2_abbr_folder(path->canon, folder, &path->pretty))
++    return 1;
++
++  if (mutt_path2_pretty(path->canon, HomeDir, &path->pretty))
++    return 1;
++
++  path->pretty = mutt_str_strdup(path->canon);
++  return 0;
++}
++
++/**
++ * comp_path2_probe - Does this Mailbox type recognise this path? - Implements MxOps::path2_probe()
++ *
++ * **Tests**
++ * - Path must exist
++ * - Path must be a file
++ * - Path must match an 'open-hook'
++ */
++int comp_path2_probe(struct Path *path, const struct stat *st)
++{
++  if (!S_ISREG(st->st_mode))
++    return -1;
++
++  if (!mutt_comp_can_read(path->orig))
++    return -1;
++
++  path->type = MUTT_COMPRESSED;
++  return 0;
++}
++
++/**
++ * comp_path2_tidy - Tidy a Mailbox path - Implements MxOps::path2_tidy()
++ */
++int comp_path2_tidy(struct Path *path)
++{
++  char *tidy = mutt_path_tidy2(path->orig, false);
++  if (!tidy)
++    return -1; // LCOV_EXCL_LINE
++
++  FREE(&path->orig);
++  path->orig = tidy;
++  tidy = NULL;
++
++  path->flags |= MPATH_TIDY;
++  return 0;
++}
+diff --git a/compmbox/path.h b/compmbox/path.h
+new file mode 100644
+index 000000000..ba1e3dd25
+--- /dev/null
++++ b/compmbox/path.h
+@@ -0,0 +1,36 @@
++/**
++ * @file
++ * Compress path manipulations
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef MUTT_COMPRESS_PATH_H
++#define MUTT_COMPRESS_PATH_H
++
++struct Path;
++struct stat;
++
++int comp_path2_canon  (struct Path *path);
++int comp_path2_compare(struct Path *path1, struct Path *path2);
++int comp_path2_parent (const struct Path *path, struct Path **parent);
++int comp_path2_pretty (struct Path *path, const char *folder);
++int comp_path2_probe  (struct Path *path, const struct stat *st);
++int comp_path2_tidy   (struct Path *path);
++
++#endif /* MUTT_COMPRESS_PATH_H */
+diff --git a/po/POTFILES.in b/po/POTFILES.in
+index b55424461..ec1c6c96a 100644
+--- a/po/POTFILES.in
++++ b/po/POTFILES.in
+@@ -18,6 +18,7 @@ commands.c
+ command_parse.c
+ complete.c
+ compmbox/compress.c
++compmbox/path.c
+ compose.c
+ compress/compress.c
+ compress/lz4.c
+diff --git a/test/Makefile.autosetup b/test/Makefile.autosetup
+index 0a25cae54..f7c484dc4 100644
+--- a/test/Makefile.autosetup
++++ b/test/Makefile.autosetup
+@@ -340,7 +340,7 @@ NOTIFY_OBJS	= test/notify/notify_free.o \
+ 		  test/notify/notify_send.o \
+ 		  test/notify/notify_set_parent.o
+ 
+-MX_PATH_OBJS	= 
++MX_PATH_OBJS	= test/mx_path/compmbox.o \
+ 
+ PARAMETER_OBJS	= test/parameter/mutt_param_cmp_strict.o \
+ 		  test/parameter/mutt_param_delete.o \
+diff --git a/test/main.c b/test/main.c
+index 3fa6a2d47..10a95700d 100644
+--- a/test/main.c
++++ b/test/main.c
+@@ -133,6 +133,14 @@
+   NEOMUTT_TEST_ITEM(test_mutt_ch_lookup_remove)                                \
+   NEOMUTT_TEST_ITEM(test_mutt_ch_set_charset)                                  \
+                                                                                \
++  /* compmbox */                                                               \
++  NEOMUTT_TEST_ITEM(test_comp_path2_canon)                                     \
++  NEOMUTT_TEST_ITEM(test_comp_path2_compare)                                   \
++  NEOMUTT_TEST_ITEM(test_comp_path2_parent)                                    \
++  NEOMUTT_TEST_ITEM(test_comp_path2_pretty)                                    \
++  NEOMUTT_TEST_ITEM(test_comp_path2_probe)                                     \
++  NEOMUTT_TEST_ITEM(test_comp_path2_tidy)                                      \
++                                                                               \
+   /* config */                                                                 \
+   NEOMUTT_TEST_ITEM(test_config_account)                                       \
+   NEOMUTT_TEST_ITEM(test_config_address)                                       \
+diff --git a/test/mx_path/compmbox.c b/test/mx_path/compmbox.c
+new file mode 100644
+index 000000000..ed260e65b
+--- /dev/null
++++ b/test/mx_path/compmbox.c
+@@ -0,0 +1,274 @@
++/**
++ * @file
++ * Test code for the Compressed MxOps Path functions
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#define TEST_NO_MAIN
++#include "config.h"
++#include "acutest.h"
++#include <stdbool.h>
++#include <string.h>
++#include <sys/stat.h>
++#include "mutt/lib.h"
++#include "core/lib.h"
++#include "common.h"
++#include "compmbox/path.h"
++#include "test_common.h"
++
++bool mutt_comp_can_read(const char *path)
++{
++  static const char *suffix = ".gz";
++  size_t len = strlen(path);
++
++  return (strcmp(path + len - 3, suffix) == 0);
++}
++
++void test_comp_path2_canon(void)
++{
++  // clang-format off
++  static const struct TestValue tests[] = {
++    { "%s/compress/apple.gz",         "%s/compress/apple.gz",  0 }, // Real path
++    { "%s/compress/symlink/apple.gz", "%s/compress/apple.gz",  0 }, // Symlink
++    { "%s/compress/missing",          NULL,                   -1 }, // Missing
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++  char second[256] = { 0 };
++
++  struct Path path = { 0 };
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++    test_gen_path(second, sizeof(second), tests[i].second);
++
++    path.orig = first;
++    TEST_CASE(path.orig);
++    path.type = MUTT_COMPRESSED;
++    path.flags = MPATH_RESOLVED | MPATH_TIDY;
++
++    rc = comp_path2_canon(&path);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(path.flags & MPATH_CANONICAL);
++      TEST_CHECK(path.canon != NULL);
++      TEST_CHECK(mutt_str_strcmp(path.canon, second) == 0);
++    }
++    FREE(&path.canon);
++  }
++}
++
++void test_comp_path2_compare(void)
++{
++  // clang-format off
++  static const struct TestValue tests[] = {
++    { "%s/compress/apple.gz",  "%s/compress/apple.gz",   0 }, // Match
++    { "%s/compress/apple.gz",  "%s/compress/orange.gz", -1 }, // Differ
++    { "%s/compress/orange.gz", "%s/compress/apple.gz",   1 }, // Differ
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++  char second[256] = { 0 };
++
++  struct Path path1 = {
++    .type = MUTT_COMPRESSED,
++    .flags = MPATH_RESOLVED | MPATH_TIDY | MPATH_CANONICAL,
++  };
++  struct Path path2 = {
++    .type = MUTT_COMPRESSED,
++    .flags = MPATH_RESOLVED | MPATH_TIDY | MPATH_CANONICAL,
++  };
++
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++    test_gen_path(second, sizeof(second), tests[i].second);
++
++    path1.canon = first;
++    TEST_CASE(path1.canon);
++
++    path2.canon = second;
++    TEST_CASE(path2.canon);
++
++    rc = comp_path2_compare(&path1, &path2);
++    TEST_CHECK(rc == tests[i].retval);
++  }
++}
++
++void test_comp_path2_parent(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "%s/compress/apple.gz", NULL, -1 },
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++  char second[256] = { 0 };
++
++  struct Path path = {
++    .type = MUTT_COMPRESSED,
++    .flags = MPATH_RESOLVED | MPATH_TIDY,
++  };
++
++  struct Path *parent = NULL;
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++    test_gen_path(second, sizeof(second), tests[i].second);
++
++    path.orig = first;
++    TEST_CASE(path.orig);
++
++    rc = comp_path2_parent(&path, &parent);
++    TEST_CHECK(rc == tests[i].retval);
++    TEST_CHECK(mutt_str_strcmp(parent ? parent->orig : NULL, second) == 0);
++  }
++}
++
++void test_comp_path2_pretty(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "%s/compress/apple.gz",         "+compress/apple.gz",         1 },
++    { "%s/compress/symlink/apple.gz", "+compress/symlink/apple.gz", 1 },
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++  char second[256] = { 0 };
++  char folder[256] = { 0 };
++
++  test_gen_path(folder, sizeof(folder), "%s");
++
++  struct Path path = {
++    .type = MUTT_COMPRESSED,
++    .flags = MPATH_RESOLVED | MPATH_TIDY,
++  };
++
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++    test_gen_path(second, sizeof(second), tests[i].second);
++
++    path.orig = first;
++    path.canon = first;
++    TEST_CASE(path.orig);
++
++    rc = comp_path2_pretty(&path, folder);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc >= 0)
++    {
++      TEST_CHECK(path.pretty != NULL);
++      TEST_CHECK(mutt_str_strcmp(path.pretty, second) == 0);
++    }
++  }
++
++  test_gen_path(first, sizeof(first),  "%s/compress/apple.gz");
++  test_gen_path(second, sizeof(second), "~/compress/apple.gz");
++  path.orig = first;
++  HomeDir = test_get_test_dir();
++  rc = comp_path2_pretty(&path, "nowhere");
++  TEST_CHECK(rc == 1);
++  TEST_CHECK(path.pretty != NULL);
++  TEST_CHECK(mutt_str_strcmp(path.pretty, second) == 0);
++
++  test_gen_path(first, sizeof(first), tests[0].first);
++  test_gen_path(second, sizeof(second), tests[0].first);
++  path.orig = first;
++  HomeDir = "/home/another";
++  rc = comp_path2_pretty(&path, "nowhere");
++  TEST_CHECK(rc == 0);
++  TEST_CHECK(path.pretty != NULL);
++  TEST_CHECK(mutt_str_strcmp(path.pretty, second) == 0);
++}
++
++void test_comp_path2_probe(void)
++{
++  // clang-format off
++  static const struct TestValue tests[] = {
++    { "%s/compress/apple.gz",  NULL,  0 }, // Accepted
++    { "%s/compress/banana.gz", NULL, -1 }, // Directory
++    { "%s/compress/cherry.xz", NULL, -1 }, // Not accepted
++    { "%s/compress/damson.gz", NULL, -1 }, // Missing
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++
++  struct Path path = { 0 };
++  struct stat st;
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++
++    path.orig = first;
++    TEST_CASE(path.orig);
++    path.type = MUTT_UNKNOWN;
++    path.flags = MPATH_RESOLVED | MPATH_TIDY;
++    memset(&st, 0, sizeof(st));
++    stat(path.orig, &st);
++    rc = comp_path2_probe(&path, &st);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(path.type > MUTT_UNKNOWN);
++    }
++  }
++}
++
++void test_comp_path2_tidy(void)
++{
++  // clang-format off
++  static const struct TestValue tests[] = {
++    { "%s/./compress/../compress///apple.gz", "%s/compress/apple.gz", 0 },
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++  char second[256] = { 0 };
++
++  struct Path path = {
++    .type = MUTT_COMPRESSED,
++    .flags = MPATH_RESOLVED,
++  };
++
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++    test_gen_path(second, sizeof(second), tests[i].second);
++
++    path.orig = mutt_str_strdup(first);
++    rc = comp_path2_tidy(&path);
++    TEST_CHECK(rc == 0);
++    TEST_CHECK(path.orig != NULL);
++    TEST_CHECK(path.flags & MPATH_TIDY);
++    TEST_CHECK(strcmp(path.orig, second) == 0);
++    FREE(&path.orig);
++  }
++}

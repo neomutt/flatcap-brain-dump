@@ -1,0 +1,353 @@
+From cb2aa03094a80dee5a8e2bb93c5749d37e978654 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Wed, 29 Mar 2023 00:17:48 +0100
+Subject: [PATCH 2/2] debug threads
+
+---
+ Makefile.autosetup |  2 +-
+ debug/email.c      | 94 ++++++++++++++++++++++++++++++++++++++++++++++
+ debug/lib.h        |  5 +++
+ debug/names.c      | 87 ++++++++++++++++++++++++++++++++++++++++++
+ index/functions.c  |  8 ++++
+ main.c             | 16 ++++----
+ mutt_thread.c      | 10 +++++
+ 7 files changed, 213 insertions(+), 9 deletions(-)
+ create mode 100644 debug/names.c
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index 44debaa91..5865242f3 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -358,7 +358,7 @@ LIBDEBUGOBJS+=	debug/notify.o
+ LIBDEBUGOBJS+=	debug/window.o
+ @endif
+ @if HAVE_LIBUNWIND || USE_DEBUG_COLOR || USE_DEBUG_EMAIL || USE_DEBUG_GRAPHVIZ || USE_DEBUG_NOTIFY || USE_DEBUG_WINDOW
+-LIBDEBUGOBJS+=	debug/common.o
++LIBDEBUGOBJS+=	debug/common.o debug/names.o
+ LIBDEBUG=	libdebug.a
+ CLEANFILES+=	$(LIBDEBUG) $(LIBDEBUGOBJS)
+ ALLOBJS+=	$(LIBDEBUGOBJS)
+diff --git a/debug/email.c b/debug/email.c
+index b0dd11518..aae617a8e 100644
+--- a/debug/email.c
++++ b/debug/email.c
+@@ -36,6 +36,100 @@
+ #include "lib.h"
+ #include "attach/lib.h"
+ #include "ncrypt/lib.h"
++#include "mutt_thread.h"
++
++const char *email_desc(const struct Email *e)
++{
++  if (!e)
++    return "NONE";
++
++  if (!e->env)
++    return "NOENV";
++
++  if (!e->env->subject)
++    return "NOSUBJECT";
++
++  return e->env->subject;
++}
++
++void dump_thread_tree(const struct MuttThread *thread, int indent)
++{
++  for (; thread; thread = thread->next)
++  {
++    mutt_debug(LL_DEBUG1, "obj_%p [label=<%d>]\n", thread, thread->message->msgno + 1);
++    if (thread->child)
++    {
++      mutt_debug(LL_DEBUG1, "obj_%p -> obj_%p // [label=<child>]\n", thread,
++                 thread->child);
++      dump_thread_tree(thread->child, indent + 1);
++    }
++
++    if (thread->next)
++    {
++      mutt_debug(LL_DEBUG1, "obj_%p -> obj_%p // [label=<next>]\n", thread,
++                 thread->next);
++      mutt_debug(LL_DEBUG1, "{ rank=same obj_%p obj_%p }\n", thread, thread->next);
++    }
++  }
++}
++
++#if 0
++void dump_thread_tree(const struct MuttThread *thread, int indent)
++{
++  mutt_debug(LL_DEBUG1, "%*sthread %p\n", indent*4, "", thread);
++  for (; thread; thread = thread->next)
++  {
++    mutt_debug(LL_DEBUG1, "%*s  parent %p\n", indent*4, "", thread->parent);
++    mutt_debug(LL_DEBUG1, "%*s  child  %p\n", indent*4, "", thread->child);
++    if (thread->child)
++    {
++      mutt_debug(LL_DEBUG1, "%p -> %p\n", thread, thread->child);
++      dump_thread_tree(thread->child, indent+1);
++    }
++    mutt_debug(LL_DEBUG1, "%*s  next   %p\n", indent*4, "", thread->next);
++    mutt_debug(LL_DEBUG1, "%*s  prev   %p\n", indent*4, "", thread->prev);
++    mutt_debug(LL_DEBUG1, "%*s  E message     %s\n", indent*4, "", email_desc(thread->message));
++    mutt_debug(LL_DEBUG1, "%*s  E sort thread %s\n", indent*4, "", email_desc(thread->sort_thread_key));
++    mutt_debug(LL_DEBUG1, "%*s  E sort aux    %s\n", indent*4, "", email_desc(thread->sort_aux_key));
++
++  }
++}
++#endif
++
++void dump_thread(const struct ThreadsContext *tctx)
++{
++  if (!tctx || !tctx->hash)
++    return;
++
++  mutt_debug(LL_DEBUG1, "Mailbox: %s\n", mailbox_path(tctx->mailbox));
++  mutt_debug(LL_DEBUG1, "HashTable: %d entries\n", tctx->hash->num_elems);
++
++  struct HashWalkState walk = { 0 };
++  struct HashElem *he = NULL;
++
++  int count = 0;
++  while ((he = mutt_hash_walk(tctx->hash, &walk)))
++  {
++    struct MuttThread *thread = he->data;
++    struct Email *e = thread->message;
++    if (!thread || !e || !e->env)
++      continue;
++    // mutt_debug(LL_DEBUG1, "    %p %s\n", e, he->key.strkey);
++    const char *id = e->env->message_id;
++    mutt_debug(LL_DEBUG1, "    %p %s\n", e, NONULL(id));
++    if (count++ > 10)
++      break;
++  }
++
++  mutt_debug(LL_DEBUG1, "sort = %s\n", dump_name_sort_type(tctx->c_sort));
++  mutt_debug(LL_DEBUG1, "saux = %s\n", dump_name_sort_type(tctx->c_sort_aux));
++
++  // struct MuttThread *tree; ///< Top of thread tree
++  const struct MuttThread *thread = tctx->tree;
++  mutt_debug(LL_DEBUG1, "\ndigraph thread\n{\n");
++  dump_thread_tree(thread, 0);
++  mutt_debug(LL_DEBUG1, "}\n");
++}
+ 
+ void dump_addr_list(char *buf, size_t buflen, const struct AddressList *al, const char *name)
+ {
+diff --git a/debug/lib.h b/debug/lib.h
+index 066badbed..596918379 100644
+--- a/debug/lib.h
++++ b/debug/lib.h
+@@ -52,6 +52,7 @@ struct ListHead;
+ struct MailboxView;
+ struct NotifyCallback;
+ struct PagerPrivateData;
++struct ThreadsContext;
+ 
+ // Common
+ void        add_flag               (struct Buffer *buf, bool is_set, const char *name);
+@@ -74,6 +75,7 @@ void        dump_email             (const struct Email *e);
+ void        dump_envelope          (const struct Envelope *env);
+ void        dump_list_head         (const struct ListHead *list, const char *name);
+ void        dump_param_list        (const struct ParameterList *pl);
++void        dump_thread            (const struct ThreadsContext *tctx);
+ const char *get_content_disposition(enum ContentDisposition disp);
+ const char *get_content_encoding   (enum ContentEncoding enc);
+ const char *get_content_type       (enum ContentType type);
+@@ -88,6 +90,9 @@ const char *get_content_disposition(enum ContentDisposition disp);
+ const char *get_content_encoding   (enum ContentEncoding enc);
+ const char *get_content_type       (enum ContentType type);
+ 
++// Names
++const char *dump_name_sort_type(int sort);
++
+ // Notify
+ int debug_all_observer(struct NotifyCallback *nc);
+ const char *get_mailbox_type(enum MailboxType type);
+diff --git a/debug/names.c b/debug/names.c
+new file mode 100644
+index 000000000..4a5d5e69d
+--- /dev/null
++++ b/debug/names.c
+@@ -0,0 +1,87 @@
++/**
++ * @file
++ * Convert constants to strings
++ *
++ * @authors
++ * Copyright (C) 2023 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#include "config.h"
++#include <stdbool.h>
++#include <stdio.h>
++#include "mutt/lib.h"
++#include "config/lib.h"
++
++static const struct Mapping SortTypeNames[] = {
++  // clang-format off
++  { "address",  SORT_ADDRESS  },
++  { "alias",    SORT_ALIAS    },
++  { "count",    SORT_COUNT    },
++  { "date",     SORT_DATE     },
++  { "desc",     SORT_DESC     },
++  { "flagged",  SORT_FLAGGED  },
++  { "from",     SORT_FROM     },
++  { "keyid",    SORT_KEYID    },
++  { "label",    SORT_LABEL    },
++  { "order",    SORT_ORDER    },
++  { "path",     SORT_PATH     },
++  { "received", SORT_RECEIVED },
++  { "score",    SORT_SCORE    },
++  { "size",     SORT_SIZE     },
++  { "spam",     SORT_SPAM     },
++  { "subject",  SORT_SUBJECT  },
++  { "threads",  SORT_THREADS  },
++  { "to",       SORT_TO       },
++  { "trust",    SORT_TRUST    },
++  { "unread",   SORT_UNREAD   },
++  // clang-format on
++  { NULL, 0 },
++};
++
++const char *dump_name_sort_type(int sort)
++{
++  static char name[128] = { 0 };
++
++  const bool last = (sort & SORT_LAST);
++  const bool rev = (sort & SORT_REVERSE);
++
++  sort &= ~(SORT_LAST | SORT_REVERSE);
++
++  size_t chars = 0;
++  size_t size = sizeof(name);
++
++  const char *type = mutt_map_get_name(sort, SortTypeNames);
++  if (type)
++    chars += snprintf(name, size, "%s", type);
++  else
++    chars += snprintf(name, size, "unknown:%d", sort);
++
++  size -= chars;
++
++  if (last)
++  {
++    chars += snprintf(name + chars, size, "|last");
++    size -= chars;
++  }
++
++  if (rev)
++  {
++    snprintf(name + chars, size, "|reverse");
++  }
++
++  return name;
++}
+diff --git a/index/functions.c b/index/functions.c
+index 63b4f7596..04c03026b 100644
+--- a/index/functions.c
++++ b/index/functions.c
+@@ -38,6 +38,7 @@
+ #include "alias/lib.h"
+ #include "gui/lib.h"
+ #include "mutt.h"
++#include "debug/lib.h"
+ #include "functions.h"
+ #include "lib.h"
+ #include "attach/lib.h"
+@@ -1834,6 +1835,13 @@ static int op_prev_entry(struct IndexSharedData *shared, struct IndexPrivateData
+  */
+ static int op_print(struct IndexSharedData *shared, struct IndexPrivateData *priv, int op)
+ {
++#ifdef USE_DEBUG_EMAIL
++  struct MailboxView *mv = shared->mailbox_view;
++  struct ThreadsContext *tctx = mv->threads;
++  dump_thread(tctx);
++  return FR_SUCCESS;
++#endif
++
+   struct EmailList el = STAILQ_HEAD_INITIALIZER(el);
+   el_add_tagged(&el, shared->mailbox_view, shared->email, priv->tag);
+   mutt_print_message(shared->mailbox, &el);
+diff --git a/main.c b/main.c
+index 39e54db78..b323fa6b5 100644
+--- a/main.c
++++ b/main.c
+@@ -51,14 +51,14 @@
+  * @ref lib_address, @ref lib_alias, @ref lib_attach, @ref lib_autocrypt,
+  * @ref lib_bcache, @ref lib_browser, @ref lib_color, @ref lib_complete,
+  * @ref lib_compmbox, @ref lib_compose, @ref lib_compress, @ref lib_config,
+- * @ref lib_conn, @ref lib_convert, @ref lib_core, @ref lib_email,
+- * @ref lib_enter, @ref lib_envelope, @ref lib_gui, @ref lib_hcache,
+- * @ref lib_helpbar, @ref lib_history, @ref lib_imap, @ref lib_index,
+- * @ref lib_maildir, @ref lib_mbox, @ref lib_menu, @ref lib_mixmaster,
+- * @ref lib_mutt, @ref lib_ncrypt, @ref lib_nntp, @ref lib_notmuch,
+- * @ref lib_pager, @ref lib_parse, @ref lib_pattern, @ref lib_pop,
+- * @ref lib_postpone, @ref lib_progress, @ref lib_question, @ref lib_send,
+- * @ref lib_sidebar, @ref lib_store.
++ * @ref lib_conn, @ref lib_convert, @ref lib_core, @ref lib_debug,
++ * @ref lib_email, @ref lib_enter, @ref lib_envelope, @ref lib_gui,
++ * @ref lib_hcache, @ref lib_helpbar, @ref lib_history, @ref lib_imap,
++ * @ref lib_index, @ref lib_maildir, @ref lib_mbox, @ref lib_menu,
++ * @ref lib_mixmaster, @ref lib_mutt, @ref lib_ncrypt, @ref lib_nntp,
++ * @ref lib_notmuch, @ref lib_pager, @ref lib_parse, @ref lib_pattern,
++ * @ref lib_pop, @ref lib_postpone, @ref lib_progress, @ref lib_question,
++ * @ref lib_send, @ref lib_sidebar, @ref lib_store.
+  *
+  * ## Miscellaneous files
+  *
+diff --git a/mutt_thread.c b/mutt_thread.c
+index 65b403446..f25724eaa 100644
+--- a/mutt_thread.c
++++ b/mutt_thread.c
+@@ -613,13 +613,18 @@ static struct HashTable *make_subj_hash(struct Mailbox *m)
+ 
+   struct HashTable *hash = mutt_hash_new(m->msg_count * 2, MUTT_HASH_ALLOW_DUPS);
+ 
++  mutt_debug(LL_DEBUG1, "MAKE SUBJECT HASH\n");
+   for (int i = 0; i < m->msg_count; i++)
+   {
+     struct Email *e = m->emails[i];
+     if (!e || !e->env)
+       continue;
+     if (e->env->real_subj)
++    {
+       mutt_hash_insert(hash, e->env->real_subj, e);
++      if (i < 10)
++        mutt_debug(LL_DEBUG1, "    %p %s\n", e, e->env->real_subj);
++    }
+   }
+ 
+   return hash;
+@@ -1667,6 +1672,7 @@ struct HashTable *mutt_make_id_hash(struct Mailbox *m)
+ {
+   struct HashTable *hash = mutt_hash_new(m->msg_count * 2, MUTT_HASH_NO_FLAGS);
+ 
++  mutt_debug(LL_DEBUG1, "MAKE ID HASH\n");
+   for (int i = 0; i < m->msg_count; i++)
+   {
+     struct Email *e = m->emails[i];
+@@ -1674,7 +1680,11 @@ struct HashTable *mutt_make_id_hash(struct Mailbox *m)
+       continue;
+ 
+     if (e->env->message_id)
++    {
+       mutt_hash_insert(hash, e->env->message_id, e);
++      if (i < 10)
++        mutt_debug(LL_DEBUG1, "    %p %s\n", e, e->env->message_id);
++    }
+   }
+ 
+   return hash;

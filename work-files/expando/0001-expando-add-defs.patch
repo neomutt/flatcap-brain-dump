@@ -1,0 +1,47 @@
+From 5754ba37ea88b2e66b5daf71c781855a93a2cae6 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Sat, 11 May 2024 22:36:04 +0100
+Subject: [PATCH] expando: add defs
+
+---
+ expando/expando.c | 3 +++
+ expando/expando.h | 5 +++--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/expando/expando.c b/expando/expando.c
+index beb4b6839..885e9f39c 100644
+--- a/expando/expando.c
++++ b/expando/expando.c
+@@ -74,6 +74,8 @@ void expando_free(struct Expando **ptr)
+  * @param defs Data defining Expando
+  * @param err  Buffer for error messages
+  * @retval ptr New Expando
++ *
++ * @note The definitions must exist as long as the Expando
+  */
+ struct Expando *expando_parse(const char *str, const struct ExpandoDefinition *defs,
+                               struct Buffer *err)
+@@ -82,6 +84,7 @@ struct Expando *expando_parse(const char *str, const struct ExpandoDefinition *d
+     return NULL;
+ 
+   struct Expando *exp = expando_new(str);
++  exp->defs = defs;
+ 
+   struct ExpandoParseError error = { 0 };
+ 
+diff --git a/expando/expando.h b/expando/expando.h
+index c3fb222d2..1a5e00c1a 100644
+--- a/expando/expando.h
++++ b/expando/expando.h
+@@ -39,8 +39,9 @@ struct ExpandoDefinition;
+  */
+ struct Expando
+ {
+-  const char         *string;  ///< Pointer to the parsed string
+-  struct ExpandoNode *node;    ///< Parsed tree
++  const struct ExpandoDefinition *defs;    ///< Data defining Expando
++  const char                     *string;  ///< Pointer to the parsed string
++  struct ExpandoNode             *node;    ///< Parsed tree
+ };
+ 
+ void            expando_free(struct Expando **ptr);

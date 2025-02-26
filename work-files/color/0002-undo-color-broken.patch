@@ -1,0 +1,104 @@
+From 40f28f64e041a1eeb5dfb09ff4c7f40c91b06995 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Mon, 20 Sep 2021 16:03:18 +0100
+Subject: [PATCH 2/2] undo color broken
+
+---
+ pager/display.c | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+diff --git a/pager/display.c b/pager/display.c
+index eb037f2493..1109068d13 100644
+--- a/pager/display.c
++++ b/pager/display.c
+@@ -117,7 +117,7 @@ static void resolve_color(struct MuttWindow *win, struct Line *lines, int line_n
+                           int cnt, PagerFlags flags, int special, struct AnsiColor *ansi)
+ {
+   struct AttrColor *def_color = NULL; /* color without syntax highlight */
+-  struct AttrColor color = { 0 };     /* final color */
++  struct AttrColor *color = NULL;     /* final color */
+   static struct AttrColor last_color = { 0 }; /* last color set */
+   bool search = false;
+   int m;
+@@ -136,7 +136,7 @@ static void resolve_color(struct MuttWindow *win, struct Line *lines, int line_n
+     {
+       mutt_curses_set_color_by_id(MT_COLOR_MARKERS);
+       mutt_window_addch(win, '+');
+-      last_color = *simple_colors_get(MT_COLOR_MARKERS);
++      last_color = attr_color_copy(simple_colors_get(MT_COLOR_MARKERS));
+     }
+     m = (lines[line_num].syntax)[0].first;
+     cnt += (lines[line_num].syntax)[0].last;
+@@ -145,7 +145,7 @@ static void resolve_color(struct MuttWindow *win, struct Line *lines, int line_n
+     m = line_num;
+   if (flags & MUTT_PAGER_LOGS)
+   {
+-    def_color = (lines[line_num].syntax[0].attr_color);
++    def_color = lines[line_num].syntax[0].attr_color;
+   }
+   else if (!(flags & MUTT_SHOWCOLOR))
+     def_color = simple_colors_get(MT_COLOR_NORMAL);
+@@ -170,7 +170,7 @@ static void resolve_color(struct MuttWindow *win, struct Line *lines, int line_n
+     }
+   }
+ 
+-  color = attr_color_copy(def_color);
++  color = def_color;
+   if ((flags & MUTT_SHOWCOLOR) && lines[m].syntax_arr_size)
+   {
+     matching_chunk = bsearch(&cnt, lines[m].syntax, lines[m].syntax_arr_size,
+@@ -178,7 +178,7 @@ static void resolve_color(struct MuttWindow *win, struct Line *lines, int line_n
+     if (matching_chunk && (cnt >= matching_chunk->first) &&
+         (cnt < matching_chunk->last))
+     {
+-      color = *matching_chunk->attr_color;
++      color = matching_chunk->attr_color;
+     }
+   }
+ 
+@@ -189,7 +189,7 @@ static void resolve_color(struct MuttWindow *win, struct Line *lines, int line_n
+     if (matching_chunk && (cnt >= matching_chunk->first) &&
+         (cnt < matching_chunk->last))
+     {
+-      color = *simple_colors_get(MT_COLOR_SEARCH);
++      color = simple_colors_get(MT_COLOR_SEARCH);
+       search = 1;
+     }
+   }
+@@ -198,28 +198,28 @@ static void resolve_color(struct MuttWindow *win, struct Line *lines, int line_n
+   if (special & A_BOLD)
+   {
+     if (simple_color_is_set(MT_COLOR_BOLD) && !search)
+-      color = *simple_colors_get(MT_COLOR_BOLD);
++      color = simple_colors_get(MT_COLOR_BOLD);
+     else
+-      color.attrs ^= A_BOLD;
++      color->attrs |= A_BOLD;
+   }
+   else if (special & A_UNDERLINE)
+   {
+     if (simple_color_is_set(MT_COLOR_UNDERLINE) && !search)
+-      color = *simple_colors_get(MT_COLOR_UNDERLINE);
++      color = simple_colors_get(MT_COLOR_UNDERLINE);
+     else
+-      color.attrs ^= A_UNDERLINE;
++      color->attrs |= A_UNDERLINE;
+   }
+   else if (ansi->attr_color)
+   {
+-    color = *ansi->attr_color;
++    color = ansi->attr_color;
+   }
+ 
+-  if ((color.curses_color != last_color.curses_color) || (color.attrs != last_color.attrs))
++  if ((color->curses_color != last_color.curses_color) || (color->attrs != last_color.attrs))
+   {
+     // mutt_curses_set_color(color);
+     //QWQ mutt_curses_set_color_by_id(def_color);
+-    mutt_curses_set_color(&color);
+-    last_color = color;
++    mutt_curses_set_color(color);
++    last_color = attr_color_copy(color);
+   }
+ }
+ 

@@ -1,0 +1,398 @@
+From 6ed915cbfb96d6a34cf658971c018b75ce5b8993 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?T=C3=B3th=20J=C3=A1nos?= <gomba007@gmail.com>
+Date: Fri, 21 Jul 2023 09:43:08 +0200
+Subject: [PATCH] expando: main debug code
+
+Debug code to test expandos from the command line.
+---
+ Makefile.autosetup |   2 +-
+ expando/debug.c    | 242 +++++++++++++++++++++++++++++++++++++++++++++
+ expando/debug.h    |  32 ++++++
+ expando/lib.h      |   1 +
+ main.c             |  32 +++++-
+ 5 files changed, 307 insertions(+), 2 deletions(-)
+ create mode 100644 expando/debug.c
+ create mode 100644 expando/debug.h
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index 5426924a9..8c06c6220 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -426,7 +426,7 @@ $(PWD)/envelope:
+ LIBEXPANDO=	libexpando.a
+ LIBEXPANDOOBJS=	expando/config_type.o expando/expando.o \
+ 		expando/format_callbacks.o expando/helpers.o expando/node.o \
+-		expando/parser.o expando/validation.o
++		expando/parser.o expando/validation.o expando/debug.o
+ CLEANFILES+=	$(LIBEXPANDO) $(LIBEXPANDOOBJS)
+ ALLOBJS+=	$(LIBEXPANDOOBJS)
+ 
+diff --git a/expando/debug.c b/expando/debug.c
+new file mode 100644
+index 000000000..1d7c73e17
+--- /dev/null
++++ b/expando/debug.c
+@@ -0,0 +1,242 @@
++#include "config.h"
++#include <assert.h>
++#include <stdio.h>
++#include "gui/lib.h"
++#include "lib.h"
++#include "mutt_thread.h"
++
++static void print_node(FILE *fp, const struct ExpandoNode *n, int indent);
++
++/**
++ * print_empty_node - XXX
++ * @param fp     XXX
++ * @param n      XXX
++ * @param indent XXX
++ */
++static void print_empty_node(FILE *fp, const struct ExpandoNode *n, int indent)
++{
++  fprintf(fp, "%*sEMPTY\n", indent, "");
++}
++
++/**
++ * print_text_node - XXX
++ * @param fp     XXX
++ * @param n      XXX
++ * @param indent XXX
++ */
++static void print_text_node(FILE *fp, const struct ExpandoNode *n, int indent)
++{
++  const int len = n->end - n->start;
++  fprintf(fp, "%*sTEXT: `%.*s`\n", indent, "", len, n->start);
++}
++
++/**
++ * print_expando_node - XXX
++ * @param fp     XXX
++ * @param n      XXX
++ * @param indent XXX
++ */
++static void print_expando_node(FILE *fp, const struct ExpandoNode *n, int indent)
++{
++  struct ExpandoFormatPrivate *f = n->ndata;
++  if (f)
++  {
++    const int elen = n->end - n->start;
++    fprintf(fp, "%*sEXPANDO: `%.*s`", indent, "", elen, n->start);
++
++    const char *just = NULL;
++
++    switch (f->justification)
++    {
++      case JUSTIFY_LEFT:
++        just = "LEFT";
++        break;
++
++      case JUSTIFY_CENTER:
++        just = "CENTER";
++        break;
++
++      case JUSTIFY_RIGHT:
++        just = "RIGHT";
++        break;
++
++      default:
++        assert(0 && "Unknown justification.");
++    }
++    fprintf(fp, " (did=%d, uid=%d) (min=%d, max=%d, just=%s, leader=`%c`)\n",
++            n->did, n->uid, f->min, f->max, just, f->leader);
++  }
++  else
++  {
++    const int len = n->end - n->start;
++    fprintf(fp, "%*sEXPANDO: `%.*s` (did=%d, uid=%d)\n", indent, "", len,
++            n->start, n->did, n->uid);
++  }
++}
++
++/**
++ * print_pad_node - XXX
++ * @param fp     XXX
++ * @param n      XXX
++ * @param indent XXX
++ */
++static void print_pad_node(FILE *fp, const struct ExpandoNode *n, int indent)
++{
++  assert(n->ndata);
++  struct ExpandoPadPrivate *p = n->ndata;
++
++  const char *pt = NULL;
++  switch (p->pad_type)
++  {
++    case EPT_FILL_EOL:
++      pt = "FILL_EOL";
++      break;
++
++    case EPT_HARD_FILL:
++      pt = "HARD_FILL";
++      break;
++
++    case EPT_SOFT_FILL:
++      pt = "SOFT_FILL";
++      break;
++
++    default:
++      assert(0 && "Unknown pad type.");
++  }
++
++  const int len = n->end - n->start;
++  fprintf(fp, "%*sPAD: `%.*s` (type=%s)\n", indent, "", len, n->start, pt);
++}
++
++/**
++ * print_condition_node - XXX
++ * @param fp
++ * @param n
++ * @param indent
++ */
++static void print_condition_node(FILE *fp, const struct ExpandoNode *n, int indent)
++{
++  assert(n->ndata);
++  struct ExpandoConditionPrivate *c = n->ndata;
++
++  fprintf(fp, "%*sCONDITION:\n", indent, "");
++  print_node(fp, c->condition, indent + 8);
++  fprintf(fp, "%*sIF TRUE :\n", indent + 4, "");
++  expando_tree_print(fp, &c->if_true_tree, indent + 8);
++
++  if (c->if_false_tree)
++  {
++    fprintf(fp, "%*sIF FALSE:\n", indent + 4, "");
++    expando_tree_print(fp, &c->if_false_tree, indent + 8);
++  }
++}
++
++/**
++ * print_conditional_date_node - XXX
++ * @param fp     XXX
++ * @param n      XXX
++ * @param indent XXX
++ */
++static void print_conditional_date_node(FILE *fp, const struct ExpandoNode *n, int indent)
++{
++  assert(n->ndata);
++  struct ExpandoConditionalDatePrivate *d = n->ndata;
++  fprintf(fp, "%*sCOND DATE: (did=%d, uid=%d)(period=`%c`, count=%d)\n", indent,
++          "", n->did, n->uid, d->period, d->count);
++}
++
++/**
++ * print_node - XXX
++ * @param fp     XXX
++ * @param n      XXX
++ * @param indent XXX
++ */
++static void print_node(FILE *fp, const struct ExpandoNode *n, int indent)
++{
++  if (!n)
++  {
++    fprintf(fp, "<null>\n");
++    return;
++  }
++
++  switch (n->type)
++  {
++    case ENT_EMPTY:
++    {
++      print_empty_node(fp, n, indent);
++    }
++    break;
++
++    case ENT_TEXT:
++    {
++      print_text_node(fp, n, indent);
++    }
++    break;
++
++    case ENT_EXPANDO:
++    {
++      print_expando_node(fp, n, indent);
++    }
++    break;
++
++    case ENT_PAD:
++    {
++      print_pad_node(fp, n, indent);
++    }
++    break;
++
++    case ENT_CONDITION:
++    {
++      print_condition_node(fp, n, indent);
++    }
++    break;
++
++    case ENT_CONDITIONAL_DATE:
++    {
++      print_conditional_date_node(fp, n, indent);
++    }
++    break;
++
++    default:
++      assert(0 && "Unknown node.");
++  }
++}
++
++/**
++ * expando_tree_print - XXX
++ * @param fp     XXX
++ * @param root   XXX
++ * @param indent XXX
++ */
++void expando_tree_print(FILE *fp, struct ExpandoNode **root, int indent)
++{
++  const struct ExpandoNode *n = *root;
++  while (n)
++  {
++    print_node(fp, n, indent);
++    n = n->next;
++  }
++}
++
++/**
++ * expando_print_color_string - XXX
++ * @param s XXX
++ */
++void expando_print_color_string(const char *s)
++{
++  while (*s)
++  {
++    if (*s == MUTT_SPECIAL_INDEX)
++    {
++      printf("SPEC %d ", *(s + 1));
++      s += 2;
++    }
++    else
++    {
++      printf("'%c' ", *s);
++      s++;
++    }
++  }
++
++  printf("\n");
++}
+diff --git a/expando/debug.h b/expando/debug.h
+new file mode 100644
+index 000000000..ca44a9908
+--- /dev/null
++++ b/expando/debug.h
+@@ -0,0 +1,32 @@
++/**
++ * @file
++ * Expando Data Domains
++ *
++ * @authors
++ * Copyright (C) 2023 Tóth János <gomba007@gmail.com>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef MUTT_EXPANDO_DEBUG_H
++#define MUTT_EXPANDO_DEBUG_H
++
++struct ExpandoNode;
++
++void expando_tree_print(FILE *fp, struct ExpandoNode **root, int indent);
++
++void expando_print_color_string(const char *s);
++
++#endif /* MUTT_EXPANDO_DEBUG_H */
+diff --git a/expando/lib.h b/expando/lib.h
+index f42e08f37..78efbadf5 100644
+--- a/expando/lib.h
++++ b/expando/lib.h
+@@ -40,6 +40,7 @@
+ #define MUTT_EXPANDO_LIB_H
+ 
+ // IWYU pragma: begin_keep
++#include "debug.h"
+ #include "domain.h"
+ #include "expando.h"
+ #include "format_callbacks.h"
+diff --git a/main.c b/main.c
+index b2520d365..3c3dfd991 100644
+--- a/main.c
++++ b/main.c
+@@ -154,6 +154,7 @@
+ #include "attach/lib.h"
+ #include "browser/lib.h"
+ #include "color/lib.h"
++#include "expando/lib.h"
+ #include "history/lib.h"
+ #include "imap/lib.h"
+ #include "index/lib.h"
+@@ -546,6 +547,7 @@ main
+   struct Buffer expanded_infile = buf_make(0);
+   struct Buffer tempfile = buf_make(0);
+   struct ConfigSet *cs = NULL;
++  const char *string_to_parse = NULL;
+ 
+   MuttLogger = log_disp_terminal;
+ 
+@@ -583,7 +585,7 @@ main
+         argv[nargc++] = argv[optind];
+     }
+ 
+-    i = getopt(argc, argv, "+A:a:Bb:F:f:Cc:Dd:l:Ee:g:GH:i:hm:nOpQ:RSs:TvxyzZ");
++    i = getopt(argc, argv, "+A:a:Bb:F:f:Cc:Dd:l:Ee:g:GH:i:hm:nOP:pQ:RSs:TvxyzZ");
+     if (i != EOF)
+     {
+       switch (i)
+@@ -653,6 +655,9 @@ main
+         case 'p':
+           sendflags |= SEND_POSTPONED;
+           break;
++        case 'P':
++          string_to_parse = mutt_str_dup(optarg);
++          break;
+         case 'Q':
+           mutt_list_insert_tail(&queries, mutt_str_dup(optarg));
+           break;
+@@ -708,6 +713,31 @@ main
+       goto main_curses;
+   }
+ 
++  if (string_to_parse != NULL)
++  {
++    printf("`%s`\n", string_to_parse);
++
++    struct ExpandoParseError error = { 0 };
++    struct ExpandoNode *root = NULL;
++
++    expando_tree_parse(&root, &string_to_parse, NULL, &error);
++
++    if (error.position == NULL)
++    {
++      expando_tree_print(stdout, &root, 0);
++    }
++    else
++    {
++      int location = mutt_strwidth_nonnull(string_to_parse, error.position);
++      printf("%*s^\n", location, "");
++      printf("Parsing error: %s\n", error.message);
++    }
++
++    expando_tree_free(&root);
++    FREE(&string_to_parse);
++    goto main_ok;
++  }
++
+   mutt_str_replace(&Username, mutt_str_getenv("USER"));
+   mutt_str_replace(&HomeDir, mutt_str_getenv("HOME"));
+ 

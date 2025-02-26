@@ -1,0 +1,24 @@
+From 3922489256adc9e689794ef241b5ba7c2ea4458e Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Sat, 29 Apr 2023 15:38:18 +0100
+Subject: [PATCH 1/2] MAIN force screen dimensions
+
+---
+ main.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/main.c b/main.c
+index f4f0e3c77..39e54db78 100644
+--- a/main.c
++++ b/main.c
+@@ -469,6 +469,10 @@ main
+ #endif
+ (int argc, char *argv[], char *envp[])
+ {
++#if 1
++  setenv("COLUMNS", "80", 1);
++  setenv("LINES", "24", 1);
++#endif
+   char *subject = NULL;
+   char *include_file = NULL;
+   char *draft_file = NULL;

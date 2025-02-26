@@ -1,0 +1,829 @@
+From dcba4c461babe8a2b4671e2cd034e701a5723536 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Fri, 21 Feb 2020 01:10:41 +0000
+Subject: [PATCH 08/29] path: imap
+
+---
+ Makefile.autosetup      |   3 +-
+ imap/imap.c             |  88 +++++++++++++
+ imap/lib.h              |   3 +
+ imap/path.c             | 278 ++++++++++++++++++++++++++++++++++++++++
+ imap/path.h             |  36 ++++++
+ imap/private.h          |   3 +
+ po/POTFILES.in          |   1 +
+ test/Makefile.autosetup |   1 +
+ test/main.c             |   8 ++
+ test/mx_path/imap.c     | 253 ++++++++++++++++++++++++++++++++++++
+ 10 files changed, 673 insertions(+), 1 deletion(-)
+ create mode 100644 imap/path.c
+ create mode 100644 imap/path.h
+ create mode 100644 test/mx_path/imap.c
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index 9c7ddb155..774d9970a 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -339,7 +339,7 @@ LIBIMAP=	libimap.a
+ LIBIMAPOBJS=	imap/auth.o \
+ 		imap/auth_login.o imap/auth_oauth.o imap/auth_plain.o imap/browse.o \
+ 		imap/command.o imap/imap.o imap/message.o imap/search.o \
+-		imap/utf7.o imap/util.o
++		imap/utf7.o imap/util.o imap/path.o
+ @if USE_GSS
+ LIBIMAPOBJS+=	imap/auth_gss.o
+ @endif
+@@ -615,6 +615,7 @@ coverage: all test
+ 	  --directory mutt \
+ 	  --directory store \
+ 	  --directory compmbox \
++	  --directory imap \
+ 
+ 	-genhtml --output-directory lcov --frames lcov.info
+ 	lcov --list lcov.info
+diff --git a/imap/imap.c b/imap/imap.c
+index db43fa33f..9e0b69298 100644
+--- a/imap/imap.c
++++ b/imap/imap.c
+@@ -54,6 +54,7 @@
+ #include "mutt_socket.h"
+ #include "muttlib.h"
+ #include "mx.h"
++#include "path.h"
+ #include "pattern.h"
+ #include "progress.h"
+ #include "sort.h"
+@@ -2424,6 +2425,86 @@ static int imap_path_parent(char *buf, size_t buflen)
+   return 0;
+ }
+ 
++/**
++ * imap_ac2_is_owner - Does this Account own this Path? - Implements MxOps::ac2_is_owner()
++ */
++static int imap_ac2_is_owner(struct Account *a, const struct Path *path)
++{
++  if (a->type != MUTT_IMAP)
++    return -1;
++
++  struct Url *url = url_parse(path->orig);
++  struct ImapAccountData *adata = a->adata;
++  struct ConnAccount *cac = &adata->conn->account;
++  int rc = -1;
++
++  if (mutt_str_strcasecmp(cac->host, url->host) != 0)
++    goto done;
++  if (!path_partial_match_string(cac->user, url->user))
++    goto done;
++  if (!path_partial_match_string(cac->pass, url->pass))
++    goto done;
++  if (!path_partial_match_number(cac->port, url->port))
++    goto done;
++
++  rc = 0;
++
++done:
++  url_free(&url);
++  return rc;
++}
++
++/**
++ * imap_path2_canon_wrapper - Canonicalise a Mailbox path - Implements MxOps::path2_canon()
++ */
++static int imap_path2_canon_wrapper(struct Path *path)
++{
++  struct Account *np = NULL;
++  TAILQ_FOREACH(np, &NeoMutt->accounts, entries)
++  {
++    if (imap_ac2_is_owner(np, path) == 0)
++      break;
++  }
++
++  if (!np)
++    return -1;
++
++  struct ImapAccountData *adata = np->adata;
++  struct ConnAccount *cac = &adata->conn->account;
++
++  return imap_path2_canon(path, cac->user, cac->port);
++}
++
++/**
++ * imap_path2_parent_wrapper - Find the parent of a Mailbox path - Implements MxOps::path2_parent()
++ */
++static int imap_path2_parent_wrapper(const struct Path *path, struct Path **parent)
++{
++  // Find the Account, then delegate
++  struct Account *np = NULL;
++  TAILQ_FOREACH(np, &NeoMutt->accounts, entries)
++  {
++    if (imap_ac2_is_owner(np, path) == 0)
++      break;
++  }
++
++  if (!np)
++    return -1;
++
++  struct ImapAccountData *adata = np->adata;
++  struct Path *tmp_parent = NULL;
++  int rc = imap_path2_parent(path, adata->delim, &tmp_parent);
++  if (rc != 0)
++    return -1;
++
++  // Check new path exists
++  if (!imap_ac_find(np, tmp_parent->orig))
++    return -1;
++
++  *parent = tmp_parent;
++  return 0;
++}
++
+ // clang-format off
+ /**
+  * MxImapOps - IMAP Mailbox - Implements ::MxOps
+@@ -2452,5 +2533,12 @@ struct MxOps MxImapOps = {
+   .path_canon       = imap_path_canon,
+   .path_pretty      = imap_path_pretty,
+   .path_parent      = imap_path_parent,
++  .path2_canon      = imap_path2_canon_wrapper,
++  .path2_compare    = imap_path2_compare,
++  .path2_parent     = imap_path2_parent_wrapper,
++  .path2_pretty     = imap_path2_pretty,
++  .path2_probe      = imap_path2_probe,
++  .path2_tidy       = imap_path2_tidy,
++  .ac2_is_owner     = imap_ac2_is_owner,
+ };
+ // clang-format on
+diff --git a/imap/lib.h b/imap/lib.h
+index 866142c65..0b63a9fd9 100644
+--- a/imap/lib.h
++++ b/imap/lib.h
+@@ -41,6 +41,7 @@
+  * | imap/browse.c     | @subpage imap_browse     |
+  * | imap/command.c    | @subpage imap_command    |
+  * | imap/message.c    | @subpage imap_message    |
++ * | imap/path.c       | @subpage imap_path       |
+  * | imap/search.c     | @subpage imap_search     |
+  * | imap/utf7.c       | @subpage imap_utf7       |
+  * | imap/util.c       | @subpage imap_util       |
+@@ -55,11 +56,13 @@
+ #include <sys/types.h>
+ #include "core/lib.h"
+ #include "mx.h"
++#include "path.h"
+ 
+ struct BrowserState;
+ struct Buffer;
+ struct ConnAccount;
+ struct EmailList;
++struct Path;
+ struct PatternList;
+ struct stat;
+ 
+diff --git a/imap/path.c b/imap/path.c
+new file mode 100644
+index 000000000..bd8ebe405
+--- /dev/null
++++ b/imap/path.c
+@@ -0,0 +1,278 @@
++/**
++ * @file
++ * IMAP path manipulations
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++/**
++ * @page imap_path IMAP path manipulations
++ *
++ * IMAP path manipulations
++ */
++
++#include "config.h"
++#include <string.h>
++#include "config/lib.h"
++#include "email/lib.h"
++#include "core/lib.h"
++#include "path.h"
++
++extern char *HomeDir;
++
++/**
++ * imap_path2_canon - Canonicalise a Mailbox path - Implements MxOps::path2_canon()
++ * @param path Path to canonicalise
++ * @param user Login username
++ * @param port Server port
++ * @retval  0 Success
++ * @retval -1 Failure
++ */
++int imap_path2_canon(struct Path *path, char *user, int port)
++{
++  struct Url *url = url_parse(path->orig);
++  if (!url)
++    return -1;
++
++  if (!url->user)
++    url->user = user;
++  if (url->port == 0)
++    url->port = port;
++  if (url->pass)
++    url->pass = NULL;
++
++  int rc = -1;
++  struct Buffer buf = mutt_buffer_make(256);
++  if (url_tobuffer(url, &buf, 0) != 0)
++    goto done; // LCOV_EXCL_LINE
++
++  mutt_str_replace(&path->canon, mutt_b2s(&buf));
++  path->flags |= MPATH_CANONICAL;
++  rc = 0;
++
++done:
++  url_free(&url);
++  mutt_buffer_dealloc(&buf);
++  return rc;
++}
++
++/**
++ * imap_path2_compare - Compare two Mailbox paths - Implements MxOps::path2_compare()
++ *
++ * **Tests**
++ * - scheme must match
++ * - host must match
++ * - user must match, or may be absent from one, or absent from both
++ * - pass must match, or may be absent from one, or absent from both
++ * - port must match, or may be absent from one, or absent from both
++ * - path must match
++ */
++int imap_path2_compare(struct Path *path1, struct Path *path2)
++{
++  struct Url *url1 = url_parse(path1->canon);
++  struct Url *url2 = url_parse(path2->canon);
++
++  int rc = url1->scheme - url2->scheme;
++  if (rc != 0)
++    goto done;
++
++  if (url1->user && url2->user)
++  {
++    rc = mutt_str_strcmp(url1->user, url2->user);
++    if (rc != 0)
++      goto done;
++  }
++
++  rc = mutt_str_strcasecmp(url1->host, url2->host);
++  if (rc != 0)
++    goto done;
++
++  if ((url1->port != 0) && (url2->port != 0))
++  {
++    rc = url1->port - url2->port;
++    if (rc != 0)
++      goto done;
++  }
++
++  bool i1 = (mutt_str_strcasecmp(url1->path, "INBOX") == 0);
++  bool i2 = (mutt_str_strcasecmp(url2->path, "INBOX") == 0);
++  if (i1 && !i2)
++  {
++    rc = -1;
++    goto done;
++  }
++  if (!i1 && i2)
++  {
++    rc = 1;
++    goto done;
++  }
++
++  rc = mutt_str_strcmp(url1->path, url2->path);
++
++done:
++  url_free(&url1);
++  url_free(&url2);
++  if (rc < 0)
++    return -1;
++  if (rc > 0)
++    return 1;
++  return 0;
++}
++
++/**
++ * imap_path2_parent - Find the parent of a Mailbox path - Implements MxOps::path2_parent()
++ * @param[in] path    Mailbox path
++ * @param[in] delim   Path delimiters
++ * @param[out] parent Parent of path
++ * @retval  0 Success, parent returned
++ * @retval -1 Failure, path is root, it has no parent
++ * @retval -2 Error
++ */
++int imap_path2_parent(const struct Path *path, char delim, struct Path **parent)
++{
++  int rc = -1;
++  struct Buffer *buf = NULL;
++
++  struct Url *url = url_parse(path->orig);
++  if (!url)
++    return -2;
++
++  if ((url->path[0] == '\0') || (mutt_str_strcmp(url->path, "INBOX") == 0))
++    goto done;
++
++  char *split = strrchr(url->path, delim);
++  if (split)
++    split[0] = '\0';
++  else
++    url->path = NULL;
++
++  buf = mutt_buffer_pool_get();
++  if (url_tobuffer(url, buf, 0) < 0)
++    goto done; // LCOV_EXCL_LINE
++
++  *parent = mutt_path_new();
++  (*parent)->orig = mutt_str_strdup(mutt_b2s(buf));
++  (*parent)->type = path->type;
++  (*parent)->flags = MPATH_RESOLVED;
++  imap_path2_tidy(*parent);
++
++  rc = 0;
++
++done:
++  url_free(&url);
++  mutt_buffer_pool_release(&buf);
++  return rc;
++}
++
++/**
++ * imap_path2_pretty - Abbreviate a Mailbox path - Implements MxOps::path2_pretty()
++ *
++ * **Tests**
++ * - scheme must match
++ * - host must match
++ * - user must match, or may be absent from one, or absent from both
++ * - pass must match, or may be absent from one, or absent from both
++ * - port must match, or may be absent from one, or absent from both
++ */
++int imap_path2_pretty(struct Path *path, const char *folder)
++{
++  int rc = 0;
++  struct Url *url1 = url_parse(path->orig);
++  struct Url *url2 = url_parse(folder);
++
++  if (!url1 || !url2)
++    goto done;
++  if (url1->scheme != url2->scheme)
++    goto done;
++  if (mutt_str_strcasecmp(url1->host, url2->host) != 0)
++    goto done;
++  if (!path_partial_match_string(url1->user, url2->user))
++    goto done;
++  if (!path_partial_match_number(url1->port, url2->port))
++    goto done;
++  if (!mutt_path2_abbr_folder(url1->path, url2->path, &path->pretty))
++    goto done;
++
++  rc = 1;
++
++done:
++  url_free(&url1);
++  url_free(&url2);
++  return rc;
++}
++
++/**
++ * imap_path2_probe - Does this Mailbox type recognise this path? - Implements MxOps::path2_probe()
++ *
++ * **Tests**
++ * - Path may begin "imap://"
++ * - Path may begin "imaps://"
++ *
++ * @note The case of the URL scheme is ignored
++ */
++int imap_path2_probe(struct Path *path, const struct stat *st)
++{
++  if (!mutt_str_startswith(path->orig, "imap://", CASE_IGNORE) &&
++      !mutt_str_startswith(path->orig, "imaps://", CASE_IGNORE))
++  {
++    return -1;
++  }
++
++  path->type = MUTT_IMAP;
++  return 0;
++}
++
++/**
++ * imap_path2_tidy - Tidy a Mailbox path - Implements MxOps::path2_tidy()
++ * @param path Path to tidy
++ * @retval  0 Success
++ * @retval -1 Failure
++ *
++ * **Changes**
++ * - Lowercase the URL scheme
++ * - Replace empty path with "INBOX"
++ */
++int imap_path2_tidy(struct Path *path)
++{
++  struct Url *url = url_parse(path->orig);
++  if (!url)
++    return -1;
++
++  if (!url->path || (url->path[0] == '\0') ||
++      ((url->path[0] == '/') && (url->path[1] == '\0')) ||
++      (mutt_str_strcasecmp(url->path, "inbox") == 0))
++  {
++    url->path = "INBOX";
++  }
++
++  url->pass = NULL;
++
++  int rc = -1;
++  struct Buffer *buf = mutt_buffer_pool_get();
++  if (url_tobuffer(url, buf, 0) < 0)
++    goto done; // LCOV_EXCL_LINE
++
++  mutt_str_replace(&path->orig, mutt_b2s(buf));
++  path->flags |= MPATH_TIDY;
++  rc = 0;
++
++done:
++  url_free(&url);
++  mutt_buffer_pool_release(&buf);
++  return rc;
++}
+diff --git a/imap/path.h b/imap/path.h
+new file mode 100644
+index 000000000..0d3492d32
+--- /dev/null
++++ b/imap/path.h
+@@ -0,0 +1,36 @@
++/**
++ * @file
++ * IMAP path manipulations
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef MUTT_IMAP_PATH_H
++#define MUTT_IMAP_PATH_H
++
++struct Path;
++struct stat;
++
++int imap_path2_canon  (struct Path *path, char *user, int port);
++int imap_path2_compare(struct Path *path1, struct Path *path2);
++int imap_path2_parent (const struct Path *path, char delim, struct Path **parent);
++int imap_path2_pretty (struct Path *path, const char *folder);
++int imap_path2_probe  (struct Path *path, const struct stat *st);
++int imap_path2_tidy   (struct Path *path);
++
++#endif /* MUTT_IMAP_PATH_H */
+diff --git a/imap/private.h b/imap/private.h
+index 5ed3bfc85..9ff5fc383 100644
+--- a/imap/private.h
++++ b/imap/private.h
+@@ -32,6 +32,8 @@
+ #include <time.h>
+ #include "mutt/lib.h"
+ #include "config/lib.h"
++#include "core/lib.h"
++#include "conn/lib.h"
+ #include "hcache/lib.h"
+ 
+ struct Account;
+@@ -39,6 +41,7 @@ struct ConnAccount;
+ struct Email;
+ struct Mailbox;
+ struct Message;
++struct Path;
+ struct Progress;
+ 
+ #define IMAP_PORT     143  ///< Default port for IMAP
+diff --git a/po/POTFILES.in b/po/POTFILES.in
+index ec1c6c96a..559cfd913 100644
+--- a/po/POTFILES.in
++++ b/po/POTFILES.in
+@@ -109,6 +109,7 @@ imap/browse.c
+ imap/command.c
+ imap/imap.c
+ imap/message.c
++imap/path.c
+ imap/search.c
+ imap/utf7.c
+ imap/util.c
+diff --git a/test/Makefile.autosetup b/test/Makefile.autosetup
+index f7c484dc4..1257ec608 100644
+--- a/test/Makefile.autosetup
++++ b/test/Makefile.autosetup
+@@ -341,6 +341,7 @@ NOTIFY_OBJS	= test/notify/notify_free.o \
+ 		  test/notify/notify_set_parent.o
+ 
+ MX_PATH_OBJS	= test/mx_path/compmbox.o \
++		  test/mx_path/imap.o \
+ 
+ PARAMETER_OBJS	= test/parameter/mutt_param_cmp_strict.o \
+ 		  test/parameter/mutt_param_delete.o \
+diff --git a/test/main.c b/test/main.c
+index 10a95700d..3b5b3d8f8 100644
+--- a/test/main.c
++++ b/test/main.c
+@@ -305,6 +305,14 @@
+   NEOMUTT_TEST_ITEM(test_mutt_idna_print_version)                              \
+   NEOMUTT_TEST_ITEM(test_mutt_idna_to_ascii_lz)                                \
+                                                                                \
++  /* imap */                                                                   \
++  NEOMUTT_TEST_ITEM(test_imap_path2_canon)                                     \
++  NEOMUTT_TEST_ITEM(test_imap_path2_compare)                                   \
++  NEOMUTT_TEST_ITEM(test_imap_path2_parent)                                    \
++  NEOMUTT_TEST_ITEM(test_imap_path2_pretty)                                    \
++  NEOMUTT_TEST_ITEM(test_imap_path2_probe)                                     \
++  NEOMUTT_TEST_ITEM(test_imap_path2_tidy)                                      \
++                                                                               \
+   /* list */                                                                   \
+   NEOMUTT_TEST_ITEM(test_mutt_list_clear)                                      \
+   NEOMUTT_TEST_ITEM(test_mutt_list_compare)                                    \
+diff --git a/test/mx_path/imap.c b/test/mx_path/imap.c
+new file mode 100644
+index 000000000..5462f2396
+--- /dev/null
++++ b/test/mx_path/imap.c
+@@ -0,0 +1,253 @@
++/**
++ * @file
++ * Test code for the IMAP MxOps Path functions
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#define TEST_NO_MAIN
++#include "config.h"
++#include "acutest.h"
++#include <string.h>
++#include <sys/stat.h>
++#include "mutt/lib.h"
++#include "core/lib.h"
++#include "common.h"
++#include "imap/path.h"
++
++void test_imap_path2_canon(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "imap://user@example.com:123/INBOX",        "imap://user@example.com:123/INBOX",  0 },
++    { "junk://user@example.com:123/INBOX",        "junk://user@example.com:123/INBOX", -1 },
++    { "imap://example.com:123/INBOX",             "imap://user@example.com:123/INBOX",  0 },
++    { "imap://user@example.com/INBOX",            "imap://user@example.com:123/INBOX",  0 },
++    { "imap://user:secret@example.com:123/INBOX", "imap://user@example.com:123/INBOX",  0 },
++    { "imap://example.com/INBOX",                 "imap://user@example.com:123/INBOX",  0 },
++  };
++  // clang-format on
++
++  struct Path path = { 0 };
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    path.orig = (char *) tests[i].first;
++    TEST_CASE(path.orig);
++    path.type = MUTT_IMAP;
++    path.flags = MPATH_RESOLVED | MPATH_TIDY;
++
++    rc = imap_path2_canon(&path, "user", 123);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(path.flags & MPATH_CANONICAL);
++      TEST_CHECK(path.canon != NULL);
++      TEST_CHECK(mutt_str_strcmp(path.canon, tests[i].second) == 0);
++    }
++    FREE(&path.canon);
++  }
++}
++
++void test_imap_path2_compare(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "imap://user@example.com:123/INBOX",        "imap://user@example.com:123/INBOX",        0 }, // Match
++    { "imap://user@example.com:123/INBOX",        "imaps://user@example.com:123/INBOX",      -1 }, // Scheme differs
++    { "imaps://user@example.com:123/INBOX",       "imap://user@example.com:123/INBOX",        1 }, // Scheme differs
++    { "imap://adam@example.com:123/INBOX",        "imap://zach@example.com:123/INBOX",       -1 }, // User differs
++    { "imap://zach@example.com:123/INBOX",        "imap://adam@example.com:123/INBOX",        1 }, // User differs
++    { "imap://adam@example.com:123/INBOX",        "imap://example.com:123/INBOX",             0 }, // User missing
++    { "imap://adam:secret@example.com:123/INBOX", "imap://adam:magic@example.com:123/INBOX",  0 }, // Password ignored
++    { "imap://user@example.com:123/INBOX",        "imap://user@flatcap.org:123/INBOX",       -1 }, // Host differs
++    { "imap://user@flatcap.org:123/INBOX",        "imap://user@example.com:123/INBOX",        1 }, // Host differs
++    { "imap://user@example.com:123/INBOX",        "imap://user@example.com:456/INBOX",       -1 }, // Port differs
++    { "imap://user@example.com:456/INBOX",        "imap://user@example.com:123/INBOX",        1 }, // Port differs
++    { "imap://user@example.com:456/INBOX",        "imap://user@example.com/INBOX",            0 }, // Port missing
++    { "imap://user@example.com:123/INBOX",        "imap://user@example.com:123/junk",        -1 }, // Path differs
++    { "imap://user@example.com:123/junk",         "imap://user@example.com:123/INBOX",        1 }, // Path differs
++    { "imap://user@example.com:123/INBOX",        "imap://user@example.com:123/apple",       -1 }, // Inbox sorts first
++    { "imap://user@example.com:123/apple",        "imap://user@example.com:123/INBOX",        1 }, // Inbox sorts first
++  };
++  // clang-format on
++
++  struct Path path1 = {
++    .type = MUTT_IMAP,
++    .flags = MPATH_RESOLVED | MPATH_TIDY | MPATH_CANONICAL,
++  };
++  struct Path path2 = {
++    .type = MUTT_IMAP,
++    .flags = MPATH_RESOLVED | MPATH_TIDY | MPATH_CANONICAL,
++  };
++
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    path1.canon = (char *) tests[i].first;
++    TEST_CASE(path1.canon);
++
++    path2.canon = (char *) tests[i].second;
++    TEST_CASE(path2.canon);
++
++    rc = imap_path2_compare(&path1, &path2);
++    TEST_CHECK(rc == tests[i].retval);
++  }
++}
++
++void test_imap_path2_parent(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "imap://example.com/apple/banana/cherry", "imap://example.com/apple/banana",  0 },
++    { "imap://example.com/apple/banana",        "imap://example.com/apple",         0 },
++    { "imap://example.com/apple",               "imap://example.com/INBOX",         0 },
++    { "imap://example.com/",                    NULL,                              -1 },
++    { "imap://example.com/INBOX",               NULL,                              -1 },
++    { "junk://example.com/junk",                NULL,                              -2 },
++  };
++  // clang-format on
++
++  struct Path path = {
++    .type = MUTT_IMAP,
++    .flags = MPATH_RESOLVED | MPATH_TIDY,
++  };
++
++  struct Path *parent = NULL;
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    path.orig = (char *) tests[i].first;
++    TEST_CASE(path.orig);
++
++    rc = imap_path2_parent(&path, '/', &parent);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(parent != NULL);
++      TEST_CHECK(parent->orig != NULL);
++      TEST_CHECK(parent->type == path.type);
++      TEST_CHECK(parent->flags & MPATH_RESOLVED);
++      TEST_CHECK(parent->flags & MPATH_TIDY);
++      TEST_CHECK(mutt_str_strcmp(parent->orig, tests[i].second) == 0);
++      mutt_path_free(&parent);
++    }
++  }
++}
++
++void test_imap_path2_pretty(void)
++{
++  static const char *folder = "imap://user@example.com:123/";
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "imap://example.com/INBOX",         "+INBOX", 1 },
++    { "imaps://example.com/INBOX",        NULL,     0 }, // Scheme differs
++    { "imap://flatcap.org/INBOX",         NULL,     0 }, // Host differs
++    { "imap://another@example.com/INBOX", NULL,     0 }, // User differs
++    { "imap://example.com:456/INBOX",     NULL,     0 }, // Port differs
++    { "imap://example.com/",              NULL,     0 }, // Folder is entire path
++  };
++  // clang-format on
++
++  struct Path path = {
++    .type = MUTT_IMAP,
++    .flags = MPATH_RESOLVED | MPATH_TIDY,
++  };
++
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    path.orig = (char *) tests[i].first;
++    TEST_CASE(path.orig);
++
++    rc = imap_path2_pretty(&path, folder);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc > 0)
++    {
++      TEST_CHECK(path.pretty != NULL);
++      TEST_CHECK(mutt_str_strcmp(path.pretty, tests[i].second) == 0);
++    }
++  }
++}
++
++void test_imap_path2_probe(void)
++{
++  // clang-format off
++  static const struct TestValue tests[] = {
++    { "imap://example.com/",  NULL,  0 },
++    { "imaps://example.com/", NULL,  0 },
++    { "pop://example.com/",   NULL, -1 },
++  };
++  // clang-format on
++
++  struct Path path = { 0 };
++  struct stat st;
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    path.orig = (char *) tests[i].first;
++    TEST_CASE(path.orig);
++    path.type = MUTT_UNKNOWN;
++    path.flags = MPATH_NO_FLAGS;
++    memset(&st, 0, sizeof(st));
++    stat(path.orig, &st);
++    rc = imap_path2_probe(&path, &st);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(path.type > MUTT_UNKNOWN);
++    }
++  }
++}
++
++void test_imap_path2_tidy(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "imap://example.com/INBOX", "imap://example.com/INBOX",   0 },
++    { "IMAP://example.com/INBOX", "imap://example.com/INBOX",   0 },
++    { "imap://example.com/inbox", "imap://example.com/INBOX",   0 },
++    { "imap://example.com/",      "imap://example.com/INBOX",   0 },
++    { "imap://example.com",       "imap://example.com/INBOX",   0 },
++    { "imaps://example.com/",     "imaps://example.com/INBOX",  0 },
++    { "junk://example.com/",      "junk://example.com/",       -1 },
++  };
++  // clang-format on
++
++  struct Path path = {
++    .type = MUTT_IMAP,
++    .flags = MPATH_RESOLVED,
++  };
++
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    path.orig = mutt_str_strdup(tests[i].first);
++    TEST_CASE(path.orig);
++
++    rc = imap_path2_tidy(&path);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(path.orig != NULL);
++      TEST_CHECK(path.flags & MPATH_TIDY);
++      TEST_CHECK(mutt_str_strcmp(path.orig, tests[i].second) == 0);
++    }
++    FREE(&path.orig);
++  }
++}

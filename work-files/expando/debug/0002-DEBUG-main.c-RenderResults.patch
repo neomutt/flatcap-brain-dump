@@ -1,0 +1,38 @@
+From 71aa9ded4d652ddcfb1c32ef7ca9150bb54671d2 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Mon, 11 Mar 2024 15:05:26 +0000
+Subject: [PATCH 2/2] DEBUG: main.c RenderResults
+
+---
+ main.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/main.c b/main.c
+index d402e0c60..326cdba56 100644
+--- a/main.c
++++ b/main.c
+@@ -692,16 +692,20 @@ struct ExpandoNode *test_parse_damson(const char *s, const char **parsed_until,
+ /**
+  * test_render_endive - XXX
+  */
+-int test_render_endive(const struct ExpandoNode *node,
+-                       const struct ExpandoRenderData *rdata, char *buf,
+-                       int buflen, int cols_len, void *data, MuttFormatFlags flags)
++struct RenderResults test_render_endive(const struct ExpandoNode *node,
++                                        const struct ExpandoRenderData *rdata,
++                                        char *buf, int buflen, int cols_len,
++                                        void *data, MuttFormatFlags flags)
+ {
+   size_t len = node->end - node->start;
+   char str[64] = { 0 };
+   mutt_strn_copy(str, node->start, len, sizeof(str));
+   mutt_str_upper(str);
+ 
+-  return snprintf(buf, buflen, "++%s++", str);
++  int num = snprintf(buf, buflen, "++%s++", str);
++
++  struct RenderResults rr = { num, 0 };
++  return rr;
+ }
+ 
+ /**

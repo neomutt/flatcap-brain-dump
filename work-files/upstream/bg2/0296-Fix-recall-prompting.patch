@@ -1,0 +1,35 @@
+From 63cb4e9f3a26504b001309c69be2af041cf10d8b Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Tue, 3 Mar 2020 10:18:45 -0800
+Subject: [PATCH] Fix $recall prompting.
+
+The background-edit added a flag for the <mail> operation, so the
+previous test for !flags now always fails.
+
+I don't see a more elegant fix, other than changing it to match
+SENDBACKGROUNDEDIT, plus the existing test for sctx->msg being NULL.
+
+Add a comment because the flag test is confusing otherwise.
+---
+ send.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/send.c b/send.c
+index be477e7b..a40dfd1f 100644
+--- a/send.c
++++ b/send.c
+@@ -1755,7 +1755,10 @@ static int send_message_setup (SEND_CONTEXT *sctx, const char *tempfile,
+   char *ctype;
+   BUFFER *tmpbuffer;
+ 
+-  if (!sctx->flags && !sctx->msg && quadoption (OPT_RECALL) != MUTT_NO &&
++  /* Prompt only for the <mail> operation. */
++  if ((sctx->flags == SENDBACKGROUNDEDIT) &&
++      !sctx->msg &&
++      quadoption (OPT_RECALL) != MUTT_NO &&
+       mutt_num_postponed (1))
+   {
+     /* If the user is composing a new message, check to see if there
+-- 
+2.26.2
+

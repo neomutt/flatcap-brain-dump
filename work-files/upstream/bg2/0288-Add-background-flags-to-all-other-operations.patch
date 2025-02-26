@@ -1,0 +1,285 @@
+From 107f4334980e47ab04c3e0c453c20a9d120a5a3c Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Wed, 26 Feb 2020 15:07:00 -0800
+Subject: [PATCH] Add background flags to all other operations.
+
+- index and pager send operations.
+
+- query menu and resending.
+
+- recvattach operations.
+
+I initially thought there were complications, but the attachment menu
+decouples everything from the ATTACH_CONTEXT and doesn't free things
+before they are used.
+---
+ background.c | 18 ++----------------
+ curs_main.c  | 15 ++++++++-------
+ pager.c      | 13 ++++++++-----
+ query.c      |  2 +-
+ recvattach.c |  2 +-
+ recvcmd.c    | 12 +++++-------
+ send.c       | 20 +++++++++-----------
+ 7 files changed, 34 insertions(+), 48 deletions(-)
+
+diff --git a/background.c b/background.c
+index b14d5936..044f65b4 100644
+--- a/background.c
++++ b/background.c
+@@ -546,14 +546,7 @@ void mutt_background_compose_menu (void)
+     sctx = process->sctx;
+     process_list_remove (process);
+     bg_process_free (&process);
+-    if (mutt_send_message_resume (&sctx) == 2)
+-    {
+-      /* L10N:
+-         Message displayed when the user chooses to background
+-         editing from the landing page.
+-      */
+-      mutt_message _("Editing backgrounded.");
+-    }
++    mutt_send_message_resume (&sctx);
+     return;
+   }
+ 
+@@ -592,14 +585,7 @@ void mutt_background_compose_menu (void)
+           process_list_remove (process);
+           bg_process_free (&process);
+ 
+-          if (mutt_send_message_resume (&sctx) == 2)
+-          {
+-            /* L10N:
+-               Message displayed when the user chooses to background
+-               editing from the landing page.
+-            */
+-            mutt_message _("Editing backgrounded.");
+-          }
++          mutt_send_message_resume (&sctx);
+ 
+           if (!ProcessList)
+           {
+diff --git a/curs_main.c b/curs_main.c
+index 32a69f60..0527414e 100644
+--- a/curs_main.c
++++ b/curs_main.c
+@@ -2107,7 +2107,8 @@ int mutt_index_menu (void)
+ 	CHECK_ATTACH;
+ 	CHECK_MSGCOUNT;
+         CHECK_VISIBLE;
+-	mutt_send_message (SENDTOSENDER, NULL, NULL, Context, tag ? NULL : CURHDR);
++	mutt_send_message (SENDTOSENDER | SENDBACKGROUNDEDIT,
++                           NULL, NULL, Context, tag ? NULL : CURHDR);
+ 	menu->redraw = REDRAW_FULL;
+ 	break;
+ 
+@@ -2226,7 +2227,8 @@ int mutt_index_menu (void)
+ 	CHECK_ATTACH;
+ 	if (option (OPTPGPAUTODEC) && (tag || !(CURHDR->security & PGP_TRADITIONAL_CHECKED)))
+ 	  mutt_check_traditional_pgp (tag ? NULL : CURHDR, &menu->redraw);
+-	mutt_send_message (SENDFORWARD, NULL, NULL, Context, tag ? NULL : CURHDR);
++	mutt_send_message (SENDFORWARD | SENDBACKGROUNDEDIT,
++                           NULL, NULL, Context, tag ? NULL : CURHDR);
+ 	menu->redraw = REDRAW_FULL;
+ 	break;
+ 
+@@ -2264,9 +2266,7 @@ int mutt_index_menu (void)
+       case OP_MAIL:
+ 
+ 	CHECK_ATTACH;
+-        if (mutt_send_message (SENDBACKGROUNDEDIT, NULL, NULL,
+-                               Context, NULL) == 2)
+-          mutt_message _("Editing backgrounded.");
++        mutt_send_message (SENDBACKGROUNDEDIT, NULL, NULL, Context, NULL);
+ 	menu->redraw = REDRAW_FULL;
+ 	break;
+ 
+@@ -2410,7 +2410,8 @@ int mutt_index_menu (void)
+       case OP_RECALL_MESSAGE:
+ 
+ 	CHECK_ATTACH;
+-	mutt_send_message (SENDPOSTPONED, NULL, NULL, Context, NULL);
++	mutt_send_message (SENDPOSTPONED | SENDBACKGROUNDEDIT,
++                           NULL, NULL, Context, NULL);
+ 	menu->redraw = REDRAW_FULL;
+ 	break;
+ 
+@@ -2445,7 +2446,7 @@ int mutt_index_menu (void)
+ 	CHECK_MSGCOUNT;
+         CHECK_VISIBLE;
+ 
+-        replyflags = SENDREPLY |
++        replyflags = SENDREPLY | SENDBACKGROUNDEDIT |
+ 	  (op == OP_GROUP_REPLY ? SENDGROUPREPLY : 0) |
+ 	  (op == OP_GROUP_CHAT_REPLY ? SENDGROUPCHATREPLY : 0) |
+ 	  (op == OP_LIST_REPLY ? SENDLISTREPLY : 0);
+diff --git a/pager.c b/pager.c
+index 1a034c23..da5617cf 100644
+--- a/pager.c
++++ b/pager.c
+@@ -2509,7 +2509,8 @@ search_next:
+ 	  mutt_attach_mail_sender (extra->fp, extra->hdr, extra->actx,
+                                    extra->bdy);
+ 	else
+-	  mutt_send_message (SENDTOSENDER, NULL, NULL, extra->ctx, extra->hdr);
++	  mutt_send_message (SENDTOSENDER | SENDBACKGROUNDEDIT,
++                             NULL, NULL, extra->ctx, extra->hdr);
+ 	pager_menu->redraw = REDRAW_FULL;
+ 	break;
+ 
+@@ -2658,7 +2659,7 @@ search_next:
+       case OP_MAIL:
+ 	CHECK_MODE(IsHeader (extra) && !IsAttach (extra));
+         CHECK_ATTACH;
+-	mutt_send_message (0, NULL, NULL, extra->ctx, NULL);
++	mutt_send_message (SENDBACKGROUNDEDIT, NULL, NULL, extra->ctx, NULL);
+ 	pager_menu->redraw = REDRAW_FULL;
+ 	break;
+ 
+@@ -2672,7 +2673,7 @@ search_next:
+ 	CHECK_MODE(IsHeader (extra) || IsMsgAttach (extra));
+         CHECK_ATTACH;
+ 
+-        replyflags = SENDREPLY |
++        replyflags = SENDREPLY | SENDBACKGROUNDEDIT |
+ 	  (ch == OP_GROUP_REPLY ? SENDGROUPREPLY : 0) |
+ 	  (ch == OP_GROUP_CHAT_REPLY ? SENDGROUPCHATREPLY : 0) |
+ 	  (ch == OP_LIST_REPLY ? SENDLISTREPLY : 0);
+@@ -2689,7 +2690,8 @@ search_next:
+       case OP_RECALL_MESSAGE:
+ 	CHECK_MODE(IsHeader (extra) && !IsAttach(extra));
+         CHECK_ATTACH;
+-	mutt_send_message (SENDPOSTPONED, NULL, NULL, extra->ctx, extra->hdr);
++	mutt_send_message (SENDPOSTPONED | SENDBACKGROUNDEDIT,
++                           NULL, NULL, extra->ctx, extra->hdr);
+ 	pager_menu->redraw = REDRAW_FULL;
+ 	break;
+ 
+@@ -2700,7 +2702,8 @@ search_next:
+ 	  mutt_attach_forward (extra->fp, extra->hdr, extra->actx,
+ 			       extra->bdy);
+         else
+-	  mutt_send_message (SENDFORWARD, NULL, NULL, extra->ctx, extra->hdr);
++	  mutt_send_message (SENDFORWARD | SENDBACKGROUNDEDIT,
++                             NULL, NULL, extra->ctx, extra->hdr);
+ 	pager_menu->redraw = REDRAW_FULL;
+ 	break;
+ 
+diff --git a/query.c b/query.c
+index 7bd776a2..47ee1d3a 100644
+--- a/query.c
++++ b/query.c
+@@ -479,7 +479,7 @@ static void query_menu (char *buf, size_t buflen, QUERY *results, int retbuf)
+ 		rfc822_free_address (&a);
+ 	      }
+ 	  }
+-	  mutt_send_message (0, msg, NULL, Context, NULL);
++	  mutt_send_message (SENDBACKGROUNDEDIT, msg, NULL, Context, NULL);
+ 	  menu->redraw = REDRAW_FULL;
+ 	  break;
+ 
+diff --git a/recvattach.c b/recvattach.c
+index c29364d8..2f5b1652 100644
+--- a/recvattach.c
++++ b/recvattach.c
+@@ -1373,7 +1373,7 @@ void mutt_view_attachments (HEADER *hdr)
+ 
+         CHECK_ATTACH;
+ 
+-        flags = SENDREPLY |
++        flags = SENDREPLY | SENDBACKGROUNDEDIT |
+ 	  (op == OP_GROUP_REPLY ? SENDGROUPREPLY : 0) |
+ 	  (op == OP_GROUP_CHAT_REPLY ? SENDGROUPCHATREPLY : 0) |
+ 	  (op == OP_LIST_REPLY ? SENDLISTREPLY : 0);
+diff --git a/recvcmd.c b/recvcmd.c
+index 8f737126..e6fd0e67 100644
+--- a/recvcmd.c
++++ b/recvcmd.c
+@@ -553,13 +553,11 @@ static void attach_forward_bodies (FILE * fp, HEADER * hdr,
+   mutt_forward_trailer (Context, parent_hdr, tmpfp);
+ 
+   safe_fclose (&tmpfp);
+-  tmpfp = NULL;
+ 
+   /* now that we have the template, send it. */
+-  mutt_send_message (0, tmphdr, mutt_b2s (tmpbody), NULL, parent_hdr);
+-
+-  mutt_buffer_pool_release (&tmpbody);
+-  return;
++  mutt_send_message (SENDBACKGROUNDEDIT, tmphdr, mutt_b2s (tmpbody), NULL,
++                     parent_hdr);
++  tmphdr = NULL;  /* mutt_send_message frees this */
+ 
+ bail:
+   if (tmpfp)
+@@ -689,7 +687,7 @@ static void attach_forward_msgs (FILE * fp, HEADER * hdr,
+   else
+     mutt_free_header (&tmphdr);
+ 
+-  mutt_send_message (0, tmphdr,
++  mutt_send_message (SENDBACKGROUNDEDIT, tmphdr,
+                      mutt_buffer_len (tmpbody) ? mutt_b2s (tmpbody) : NULL,
+                      NULL, curhdr);
+   tmphdr = NULL;  /* mutt_send_message frees this */
+@@ -747,7 +745,7 @@ void mutt_attach_mail_sender (FILE *fp, HEADER *hdr, ATTACH_CONTEXT *actx,
+ 	return;
+     }
+   }
+-  mutt_send_message (0, tmphdr, NULL, NULL, NULL);
++  mutt_send_message (SENDBACKGROUNDEDIT, tmphdr, NULL, NULL, NULL);
+ }
+ 
+ 
+diff --git a/send.c b/send.c
+index dbbe4834..7e1f7fd6 100644
+--- a/send.c
++++ b/send.c
+@@ -1471,7 +1471,7 @@ int mutt_resend_message (FILE *fp, CONTEXT *ctx, HEADER *cur)
+     }
+   }
+ 
+-  return mutt_send_message (SENDRESEND, msg, NULL, ctx, cur);
++  return mutt_send_message (SENDRESEND | SENDBACKGROUNDEDIT, msg, NULL, ctx, cur);
+ }
+ 
+ static int is_reply (HEADER *reply, HEADER *orig)
+@@ -2636,6 +2636,14 @@ cleanup:
+ 
+   if (rv != 2)
+     send_ctx_free (psctx);
++  else
++  {
++    /* L10N:
++       Message displayed when the user chooses to background
++       editing from the landing page.
++    */
++    mutt_message _("Editing backgrounded.");
++  }
+ 
+   return rv;
+ }
+@@ -2679,22 +2687,12 @@ mutt_send_message (int flags,            /* send mode */
+       }
+   }
+ 
+-  /* NOTE:
+-   * we still need to check other callers as we allow them, to make
+-   * sure the components of the msg header don't disappear after
+-   * returning!!!
+-   */
+-
+   if (send_message_setup (sctx, tempfile, ctx) < 0)
+   {
+     send_ctx_free (&sctx);
+     return -1;
+   }
+ 
+-  /* Note: mutt_send_message_resume() takes care of freeing
+-   * the sctx if appropriate, and also adds to the background edit
+-   * list.
+-   */
+   rv = mutt_send_message_resume (&sctx);
+   if (rv == 2)
+   {
+-- 
+2.26.2
+

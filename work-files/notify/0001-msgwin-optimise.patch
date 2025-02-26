@@ -1,0 +1,23 @@
+From 2e9fc5dd15ec595a1f25f6d900c24bc9f8a35db9 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Wed, 2 Mar 2022 17:43:49 +0000
+Subject: [PATCH] msgwin: optimise
+
+---
+ gui/msgwin.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/gui/msgwin.c b/gui/msgwin.c
+index a88ad200d..cd8446199 100644
+--- a/gui/msgwin.c
++++ b/gui/msgwin.c
+@@ -225,6 +225,9 @@ void msgwin_set_text(enum ColorId cid, const char *text)
+ 
+   struct MsgWinPrivateData *priv = MessageWindow->wdata;
+ 
++  if ((priv->cid == cid) || mutt_str_equal(priv->text, text))
++    return;
++
+   priv->cid = cid;
+   mutt_str_replace(&priv->text, text);
+ 

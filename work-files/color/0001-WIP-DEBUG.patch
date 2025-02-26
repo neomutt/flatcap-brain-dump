@@ -1,0 +1,191 @@
+From b33b163b9ff6d28dedaa46fccee839f491457a30 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Thu, 19 Aug 2021 11:42:19 +0100
+Subject: [PATCH] WIP DEBUG
+
+---
+ attach/attachments.c |  1 -
+ color/notify.c       |  2 +-
+ command_parse.c      |  1 +
+ debug/notify.c       |  3 ---
+ init.c               |  3 ++-
+ main.c               | 63 +++++++++++++++++++++++++++++++++++++++++++-
+ po/POTFILES.in       |  2 ++
+ 7 files changed, 68 insertions(+), 7 deletions(-)
+
+diff --git a/attach/attachments.c b/attach/attachments.c
+index 22d13e9..71c6f48 100644
+--- a/attach/attachments.c
++++ b/attach/attachments.c
+@@ -40,7 +40,6 @@
+ #include "attachments.h"
+ #include "ncrypt/lib.h"
+ #include "init.h"
+-#include "mutt_commands.h"
+ 
+ /**
+  * struct AttachMatch - An attachment matching a regex for attachment counter
+diff --git a/color/notify.c b/color/notify.c
+index ef73afd..3a6ea39 100644
+--- a/color/notify.c
++++ b/color/notify.c
+@@ -28,7 +28,7 @@
+ 
+ #include "config.h"
+ #include "mutt/lib.h"
+-#include "lib.h"
++#include "core/lib.h"
+ 
+ struct Notify *ColorsNotify; ///< Notifications: #ColorId, #EventColor
+ 
+diff --git a/command_parse.c b/command_parse.c
+index 9197143..6cb7b5d 100644
+--- a/command_parse.c
++++ b/command_parse.c
+@@ -214,6 +214,7 @@ int source_rc(const char *rcfile_path, struct Buffer *err)
+     mutt_buffer_strcpy(linebuf, currentline);
+ 
+     mutt_buffer_reset(err);
++    mutt_debug(LL_DEBUG1, "QWQ line: %s\n", mutt_buffer_string(linebuf));
+     line_rc = mutt_parse_rc_buffer(linebuf, token, err);
+     if (line_rc == MUTT_CMD_ERROR)
+     {
+diff --git a/debug/notify.c b/debug/notify.c
+index 6cf0d07..aa13c86 100644
+--- a/debug/notify.c
++++ b/debug/notify.c
+@@ -37,9 +37,6 @@
+ #include "color/lib.h"
+ #include "context.h"
+ 
+-extern const struct Mapping ColorFields[];
+-extern const struct Mapping ComposeColorFields[];
+-
+ static const char *get_event_type(enum NotifyType type)
+ {
+   switch (type)
+diff --git a/init.c b/init.c
+index 960ede4..7e5dd89 100644
+--- a/init.c
++++ b/init.c
+@@ -910,6 +910,7 @@ int mutt_init(struct ConfigSet *cs, bool skip_sys_rc, struct ListHead *commands)
+   {
+     if (np->data)
+     {
++      mutt_debug(LL_DEBUG1, "QWQ source %s\n", np->data);
+       if (source_rc(np->data, &err) != 0)
+       {
+         mutt_error("%s", err.data);
+@@ -1015,7 +1016,7 @@ enum CommandResult mutt_parse_rc_buffer(struct Buffer *line,
+     {
+       if (mutt_str_equal(token->data, cmd[i].name))
+       {
+-        mutt_debug(LL_DEBUG1, "NT_COMMAND: %s\n", cmd[i].name);
++        mutt_debug(LL_DEBUG1, "QWQ NT_COMMAND: %s\n", cmd[i].name);
+         rc = cmd[i].parse(token, line, cmd[i].data, err);
+         if ((rc == MUTT_CMD_ERROR) || (rc == MUTT_CMD_FINISH))
+           goto finish; /* Propagate return code */
+diff --git a/main.c b/main.c
+index 960325a..b0cf8dd 100644
+--- a/main.c
++++ b/main.c
+@@ -351,6 +351,39 @@ static int start_curses(void)
+     mutt_error(_("Error initializing terminal"));
+     return 1;
+   }
++
++#if 0
++  start_color();
++  use_default_colors();
++
++  init_pair(1, 207, -1);
++  init_pair(2, -1, -1);
++  init_pair(3, 0, 0);
++  init_pair(4, -1, 96);
++
++  move(5, 5); bkgdset(COLOR_PAIR(1) | A_UNDERLINE | ' '); addstr("hello 1 world");
++  move(6, 5); bkgdset(COLOR_PAIR(2) | A_UNDERLINE | ' '); addstr("hello 2 world");
++  move(7, 5); bkgdset(COLOR_PAIR(0) | A_UNDERLINE | ' '); addstr("hello 0 world");
++  move(8, 5); bkgdset(COLOR_PAIR(3) | A_UNDERLINE | ' '); addstr("hello 3 world");
++  move(9, 5); bkgdset(COLOR_PAIR(4) | A_UNDERLINE | ' '); addstr("hello 4 world");
++
++  init_pair(5, 207, 0);
++  init_pair(6, 9, 0);
++  init_pair(7, 0, 96);
++
++  move(11, 5); bkgdset(COLOR_PAIR(5) | A_BOLD | ' '); addstr("hello 5 world");
++  move(12, 5); bkgdset(COLOR_PAIR(6) | A_BOLD | ' '); addstr("hello 6 world");
++  move(13, 5); bkgdset(COLOR_PAIR(7) | A_BOLD | ' '); addstr("hello 7 world");
++
++  move(23, 0);
++  refresh();
++  mutt_any_key_to_continue("press any key...");
++  erase();
++  refresh();
++
++  endwin();
++  exit(1);
++#endif
+   mutt_signal_init();
+   mutt_colors_init();
+   keypad(stdscr, true);
+@@ -949,10 +982,38 @@ main
+     mutt_buffer_pool_release(&fpath);
+   }
+ 
+-  if (batch_mode)
++#if 0
++  int cols[] = {
++    MT_COLOR_INDICATOR, MT_COLOR_SEARCH, MT_COLOR_SIGNATURE,
++    MT_COLOR_STATUS,    MT_COLOR_TREE,   0,
++  };
++
++  struct AttrColor *ac = simple_color_get(MT_COLOR_NORMAL);
++  mutt_curses_set_color(ac);
++  mutt_refresh();
++
++  for (int j = 0; cols[j] > 0; j++)
++  {
++    mutt_window_move(RootWindow, 0, j + 5);
++    ac = simple_color_get(cols[j]);
++    const char *name = mutt_map_get_name(cols[j], ColorFields);
++    mutt_curses_set_color(ac);
++    // attrset(COLOR_PAIR(ac->curses_color->index) | ac->attrs);
++    mutt_window_printf(RootWindow, "%3d %s (%d)", ac->curses_color->index, name, cols[j]);
++  }
++  ac = simple_color_get(MT_COLOR_NORMAL);
++  mutt_curses_set_color(ac);
++  mutt_window_move(RootWindow, 0, 15);
++  mutt_refresh();
++
++  // sleep(2);
++  // endwin();
++  return 0;
++  // if (batch_mode)
+   {
+     goto main_ok; // TEST22: neomutt -B
+   }
++#endif
+ 
+   notify_observer_add(NeoMutt->notify, NT_CONFIG, main_hist_observer, NULL);
+   notify_observer_add(NeoMutt->notify, NT_CONFIG, main_log_observer, NULL);
+diff --git a/po/POTFILES.in b/po/POTFILES.in
+index 677b76e..aa69ac0 100644
+--- a/po/POTFILES.in
++++ b/po/POTFILES.in
+@@ -33,6 +33,7 @@ color/attr.c
+ color/color.c
+ color/command.c
+ color/curses.c
++color/debug.c
+ color/merged.c
+ color/notify.c
+ color/quoted.c
+@@ -277,6 +278,7 @@ pager/display.c
+ pager/dlg_pager.c
+ pager/do_pager.c
+ pager/functions.c
++pager/line.c
+ pager/message.c
+ pager/pager.c
+ pager/pbar.c

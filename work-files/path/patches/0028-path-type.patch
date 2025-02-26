@@ -1,0 +1,87 @@
+From dc5c942e220f5c829de9c7a37d33adbef68b239d Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Mon, 27 Apr 2020 00:44:01 +0100
+Subject: [PATCH 28/29] path type
+
+---
+ core/mailbox.h | 12 +-----------
+ core/path.h    | 23 +++++++++++++++++------
+ 2 files changed, 18 insertions(+), 17 deletions(-)
+
+diff --git a/core/mailbox.h b/core/mailbox.h
+index 9e4b0252d..76cd5e29d 100644
+--- a/core/mailbox.h
++++ b/core/mailbox.h
+@@ -31,10 +31,10 @@
+ #include <time.h>
+ #include "mutt/lib.h"
+ #include "config/lib.h"
+-#include "path.h"
+ 
+ struct ConfigSubset;
+ struct Email;
++struct Path;
+ 
+ #define MB_NORMAL 0
+ #define MB_HIDDEN 1
+@@ -188,14 +188,4 @@ void            mailbox_size_add  (struct Mailbox *m, const struct Email *e);
+ void            mailbox_size_sub  (struct Mailbox *m, const struct Email *e);
+ void            mailbox_update    (struct Mailbox *m);
+ 
+-/**
+- * mailbox_path - Get the Mailbox's path string
+- * @param m Mailbox
+- * @retval ptr Path string
+- */
+-static inline const char *mailbox_path(const struct Mailbox *m) // LCOV_EXCL_LINE
+-{
+-  return m->path->orig; // LCOV_EXCL_LINE
+-}
+-
+ #endif /* MUTT_CORE_MAILBOX_H */
+diff --git a/core/path.h b/core/path.h
+index 79d9fb0a5..ec60ba4d7 100644
+--- a/core/path.h
++++ b/core/path.h
+@@ -24,6 +24,7 @@
+ #define MUTT_CORE_PATH_H
+ 
+ #include <stdint.h>
++#include "mailbox.h"
+ 
+ typedef uint8_t PathFlags;       ///< Flags for Path, e.g. #MPATH_RESOLVED
+ #define MPATH_NO_FLAGS        0  ///< No flags are set
+@@ -37,12 +38,12 @@ typedef uint8_t PathFlags;       ///< Flags for Path, e.g. #MPATH_RESOLVED
+  */
+ struct Path
+ {
+-  char *orig;      ///< User-entered path
+-  char *canon;     ///< Canonical path
+-  char *desc;      ///< Descriptive name
+-  char *pretty;    ///< Abbreviated version (for display)
+-  int type;        ///< Path type, enum MailboxType
+-  PathFlags flags; ///< Flags describing what's known about the path
++  char *orig;            ///< User-entered path
++  char *canon;           ///< Canonical path
++  char *desc;            ///< Descriptive name
++  char *pretty;          ///< Abbreviated version (for display)
++  enum MailboxType type; ///< Path type
++  PathFlags flags;       ///< Flags describing what's known about the path
+ };
+ 
+ void         mutt_path_free(struct Path **ptr);
+@@ -52,4 +53,14 @@ struct Path *mutt_path_dup(struct Path *p);
+ bool path_partial_match_string(const char *str1, const char *str2);
+ bool path_partial_match_number(int num1, int num2);
+ 
++/**
++ * mailbox_path - Get the Mailbox's path string
++ * @param m Mailbox
++ * @retval ptr Path string
++ */
++static inline const char *mailbox_path(const struct Mailbox *m) // LCOV_EXCL_LINE
++{
++  return m->path->orig; // LCOV_EXCL_LINE
++}
++
+ #endif /* MUTT_CORE_PATH_H */

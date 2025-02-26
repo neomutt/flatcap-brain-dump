@@ -1,0 +1,74 @@
+From 8e479263ae4c280373547b20cba1d9749f12db75 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Fri, 8 Sep 2023 01:58:33 +0100
+Subject: [PATCH] debug: query help
+
+---
+ index/functions.c   | 12 +++++++++---
+ question/question.c | 15 +++++++++++----
+ 2 files changed, 20 insertions(+), 7 deletions(-)
+
+diff --git a/index/functions.c b/index/functions.c
+index 90d0ab63e..698226ec7 100644
+--- a/index/functions.c
++++ b/index/functions.c
+@@ -357,9 +357,15 @@ static int op_delete_thread(struct IndexSharedData *shared,
+ static int op_display_address(struct IndexSharedData *shared,
+                               struct IndexPrivateData *priv, int op)
+ {
+-  if (!shared->email)
+-    return FR_NO_ACTION;
+-  mutt_display_address(shared->email->env);
++  // enum QuadOption ans = query_quadoption("How many roads must a man walk down, before they call him a man?", NeoMutt->sub, "quit");
++  enum QuadOption ans = query_yesorno_help("How many roads must a man walk down, before they call him a man?",
++                                           MUTT_YES, NeoMutt->sub, "confirm_append");
++
++  mutt_message("response: %s", (ans < 0) ? "ABORT" : QuadValues[ans]);
++
++  // if (!shared->email)
++  //   return FR_NO_ACTION;
++  // mutt_display_address(shared->email->env);
+ 
+   return FR_SUCCESS;
+ }
+diff --git a/question/question.c b/question/question.c
+index 24e2298d0..d5a95ca05 100644
+--- a/question/question.c
++++ b/question/question.c
+@@ -244,6 +244,13 @@ static enum QuadOption mw_yesorno(const char *prompt, enum QuadOption def,
+     }
+   }
+ 
++  mutt_debug(LL_DEBUG1, "\n");
++  mutt_debug(LL_DEBUG1, "YES-OR-NO: prompt:  %s\n", prompt);
++  mutt_debug(LL_DEBUG1, "YES-OR-NO: default: %s\n", (def == MUTT_YES) ? "YES" : "NO");
++  mutt_debug(LL_DEBUG1, "YES-OR-NO: config:  %s\n", cdef ? cdef->name : "-");
++  mutt_debug(LL_DEBUG1, "YES-OR-NO: help:    %s\n", cdef ? cdef->docs : "-");
++  mutt_debug(LL_DEBUG1, "\n");
++
+   bool show_help_prompt = cdef;
+ 
+   struct Buffer *text = buf_pool_get();
+@@ -293,18 +300,18 @@ static enum QuadOption mw_yesorno(const char *prompt, enum QuadOption def,
+     {
+       show_help_prompt = false;
+       msgwin_clear_text(win);
+-      buf_printf(text, "$%s - %s\n", cdef->name, cdef->docs);
++      buf_printf(text, "🍣🌽$%s - %s🍏🍯\n", cdef->name, cdef->docs);
+       bool c_help = cs_subset_bool(NeoMutt->sub, "help");
+       if (c_help)
+       {
+         char hyphen[128] = { 0 };
+         mutt_str_hyphenate(hyphen, sizeof(hyphen), cdef->name);
+-        buf_add_printf(text, "https://neomutt.org/guide/reference#%s\n", hyphen);
++        buf_add_printf(text, "🍝🍃https://neomutt.org/guide/reference#%s🍐🍩\n", hyphen);
+       }
+       msgwin_add_text(win, buf_string(text), simple_color_get(MT_COLOR_NORMAL));
+ 
+-      buf_printf(text, "%s ([%s]/%s): ", prompt, (def == MUTT_YES) ? yes : no,
+-                 (def == MUTT_YES) ? no : yes);
++      buf_printf(text, "🍒🌲%s ([%s]/%s): 🍡🍏", prompt,
++                 (def == MUTT_YES) ? yes : no, (def == MUTT_YES) ? no : yes);
+       msgwin_add_text(win, buf_string(text), simple_color_get(MT_COLOR_PROMPT));
+       msgwin_add_text(win, NULL, NULL);
+ 

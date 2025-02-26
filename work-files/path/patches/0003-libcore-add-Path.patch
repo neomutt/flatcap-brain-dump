@@ -1,0 +1,187 @@
+From 385f36504458461b5903602c910f3b62203a11b5 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Fri, 7 Feb 2020 17:17:06 +0000
+Subject: [PATCH 03/29] libcore: add Path
+
+---
+ Makefile.autosetup |  2 +-
+ core/lib.h         |  2 ++
+ core/path.c        | 64 ++++++++++++++++++++++++++++++++++++++++++++++
+ core/path.h        | 51 ++++++++++++++++++++++++++++++++++++
+ po/POTFILES.in     |  1 +
+ 5 files changed, 119 insertions(+), 1 deletion(-)
+ create mode 100644 core/path.c
+ create mode 100644 core/path.h
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index bfa3e4cab..924d393fd 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -233,7 +233,7 @@ $(PWD)/conn:
+ ###############################################################################
+ # libcore
+ LIBCORE=	libcore.a
+-LIBCOREOBJS=	core/account.o core/mailbox.o core/neomutt.o
++LIBCOREOBJS=	core/account.o core/mailbox.o core/neomutt.o core/path.o
+ CLEANFILES+=	$(LIBCORE) $(LIBCOREOBJS)
+ ALLOBJS+=	$(LIBCOREOBJS)
+ 
+diff --git a/core/lib.h b/core/lib.h
+index f5df15fb4..fe368ebef 100644
+--- a/core/lib.h
++++ b/core/lib.h
+@@ -30,6 +30,7 @@
+  * | core/account.c      | @subpage core_account      |
+  * | core/mailbox.c      | @subpage core_mailbox      |
+  * | core/neomutt.c      | @subpage core_neomutt      |
++ * | core/path.c         | @subpage core_path         |
+  */
+ 
+ #ifndef MUTT_CORE_LIB_H
+@@ -39,6 +40,7 @@
+ #include "account.h"
+ #include "mailbox.h"
+ #include "neomutt.h"
++#include "path.h"
+ // IWYU pragma: end_exports
+ 
+ #endif /* MUTT_CORE_LIB_H */
+diff --git a/core/path.c b/core/path.c
+new file mode 100644
+index 000000000..c5449761a
+--- /dev/null
++++ b/core/path.c
+@@ -0,0 +1,64 @@
++/**
++ * @file
++ * Mailbox path
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++/**
++ * @page core_path Mailbox path
++ *
++ * Mailbox path
++ */
++
++#include "config.h"
++#include "mutt/lib.h"
++#include "path.h"
++
++/**
++ * mutt_path_free - Free a Path
++ * @param ptr Path to free
++ *
++ * Some of the paths may be shared, so check for dupes before freeing.
++ */
++void mutt_path_free(struct Path **ptr)
++{
++  if (!ptr || !*ptr)
++    return;
++
++  struct Path *path = *ptr;
++
++  if ((path->desc != path->orig) && (path->desc != path->canon))
++    FREE(&path->desc);
++
++  if (path->orig != path->canon)
++    FREE(&path->orig);
++
++  FREE(&path->canon);
++  FREE(&path->pretty);
++  FREE(ptr);
++}
++
++/**
++ * mutt_path_new - Create a Path
++ * @retval ptr New Path
++ */
++struct Path *mutt_path_new(void)
++{
++  return mutt_mem_calloc(1, sizeof(struct Path));
++}
+diff --git a/core/path.h b/core/path.h
+new file mode 100644
+index 000000000..846074faa
+--- /dev/null
++++ b/core/path.h
+@@ -0,0 +1,51 @@
++/**
++ * @file
++ * Mailbox path
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef MUTT_CORE_PATH_H
++#define MUTT_CORE_PATH_H
++
++#include <stdint.h>
++
++typedef uint8_t PathFlags;       ///< Flags for Path, e.g. #MPATH_RESOLVED
++#define MPATH_NO_FLAGS        0  ///< No flags are set
++#define MPATH_RESOLVED  (1 << 0) ///< Path has been resolved, see mx_path_resolve()
++#define MPATH_TIDY      (1 << 1) ///< Path has been tidied, see MxOps::path_tidy()
++#define MPATH_CANONICAL (1 << 2) ///< Path is canonical, see MxOps::path_canon()
++#define MPATH_ROOT      (1 << 3) ///< Path is at the root of an Account (it has no parent)
++
++/**
++ * Path - A path to a Mailbox, file or directory
++ */
++struct Path
++{
++  char *orig;      ///< User-entered path
++  char *canon;     ///< Canonical path
++  char *desc;      ///< Descriptive name
++  char *pretty;    ///< Abbreviated version (for display)
++  int type;        ///< Path type, enum MailboxType
++  PathFlags flags; ///< Flags describing what's known about the path
++};
++
++void         mutt_path_free(struct Path **ptr);
++struct Path *mutt_path_new(void);
++
++#endif /* MUTT_CORE_PATH_H */
+diff --git a/po/POTFILES.in b/po/POTFILES.in
+index b8f5b95fd..b55424461 100644
+--- a/po/POTFILES.in
++++ b/po/POTFILES.in
+@@ -55,6 +55,7 @@ copy.c
+ core/account.c
+ core/mailbox.c
+ core/neomutt.c
++core/path.c
+ debug/backtrace.c
+ debug/common.c
+ debug/graphviz.c

@@ -1,0 +1,706 @@
+From 20d73ee6cac80a46b90ad72e5cfbe8d3798de10a Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Thu, 27 Apr 2023 21:40:18 +0100
+Subject: [PATCH 1/3] add view management
+
+---
+ Makefile.autosetup |   7 +-
+ gui/aview.c        | 137 ++++++++++++++++++++++++++++++
+ gui/aview.h        |  57 +++++++++++++
+ gui/lib.h          |   4 +
+ gui/nview.c        | 202 +++++++++++++++++++++++++++++++++++++++++++++
+ gui/nview.h        |  56 +++++++++++++
+ main.c             |   3 +
+ mutt/notify.c      |  10 +--
+ mutt/notify_type.h |   2 +
+ mview.c            |  48 +++++++++++
+ mview.h            |   9 ++
+ 11 files changed, 527 insertions(+), 8 deletions(-)
+ create mode 100644 gui/aview.c
+ create mode 100644 gui/aview.h
+ create mode 100644 gui/nview.c
+ create mode 100644 gui/nview.h
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index d4766a47f..30ce6dc4d 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -415,9 +415,10 @@ $(PWD)/envelope:
+ ###############################################################################
+ # libgui
+ LIBGUI=		libgui.a
+-LIBGUIOBJS=	gui/curs_lib.o gui/dialog.o gui/global.o gui/msgcont.o gui/msgwin.o \
+-		gui/mutt_curses.o gui/mutt_window.o gui/reflow.o gui/rootwin.o \
+-		gui/sbar.o gui/simple.o gui/terminal.o
++LIBGUIOBJS=	gui/aview.o gui/curs_lib.o gui/dialog.o gui/global.o \
++		gui/msgcont.o gui/msgwin.o gui/mutt_curses.o gui/nview.o \
++		gui/mutt_window.o gui/reflow.o gui/rootwin.o gui/sbar.o \
++		gui/simple.o gui/terminal.o
+ CLEANFILES+=	$(LIBGUI) $(LIBGUIOBJS)
+ ALLOBJS+=	$(LIBGUIOBJS)
+ 
+diff --git a/gui/aview.c b/gui/aview.c
+new file mode 100644
+index 000000000..622b5bb7e
+--- /dev/null
++++ b/gui/aview.c
+@@ -0,0 +1,137 @@
++/**
++ * @file
++ * View of an Account
++ *
++ * @authors
++ * Copyright (C) 2023 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++/**
++ * @page gui_aview View of an Account
++ *
++ * View of an Account
++ */
++
++#include "config.h"
++#include <stddef.h>
++#include "mutt/lib.h"
++#include "core/lib.h"
++#include "aview.h"
++
++/**
++ * aview_mailbox_delete - Remove a Mailbox View
++ * @param av Account View
++ * @param m  Mailbox to delete
++ */
++void aview_mailbox_delete(struct AccountView *av, struct Mailbox *m)
++{
++  if (!av)
++    return;
++
++  if (m)
++  {
++    struct MailboxView **mvp = NULL;
++    ARRAY_FOREACH(mvp, &av->mva)
++    {
++      if ((*mvp)->mailbox != m)
++        continue;
++
++      ARRAY_REMOVE(&av->mva, mvp);
++      mview_free(mvp);
++      break;
++    }
++  }
++  else
++  {
++    struct MailboxView **mvp = NULL;
++    while (!ARRAY_EMPTY(&av->mva))
++    {
++      mvp = ARRAY_FIRST(&av->mva);
++      struct MailboxView *mv = *mvp;
++      ARRAY_REMOVE(&av->mva, mvp);
++      mview_free(&mv);
++    }
++  }
++}
++
++/**
++ * aview_mailbox_observer - Notification that a Mailbox has changed - Implements ::observer_t - @ingroup observer_api
++ */
++int aview_mailbox_observer(struct NotifyCallback *nc)
++{
++  if (nc->event_type != NT_MAILBOX)
++    return 0;
++  if (!nc->global_data || !nc->event_data)
++    return -1;
++
++  struct AccountView *av = nc->global_data;
++  struct EventMailbox *ev_m = nc->event_data;
++  struct Mailbox *m = ev_m->mailbox;
++  if (!m)
++    return -1;
++
++  if (nc->event_subtype == NT_MAILBOX_DELETE)
++    aview_mailbox_delete(av, m);
++  else if (nc->event_subtype == NT_MAILBOX_DELETE_ALL)
++    aview_mailbox_delete(av, NULL);
++
++  mutt_debug(LL_DEBUG5, "mailbox done\n");
++  return 0;
++}
++
++/**
++ * aview_free - Free an Account View
++ */
++void aview_free(struct AccountView **ptr)
++{
++  if (!ptr || !*ptr)
++    return;
++
++  struct AccountView *av = *ptr;
++  mutt_debug(LL_DEBUG1, "QWQ AVIEW del %p\n", av);
++  notify_send(av->notify, NT_AVIEW, NT_AVIEW_DELETE, NULL);
++
++  struct Account *a = av->account;
++  notify_observer_remove(a->notify, aview_mailbox_observer, av);
++  notify_free(&av->notify);
++  ARRAY_FREE(&av->mva);
++
++  FREE(ptr);
++}
++
++/**
++ * aview_new - Create a new Account View
++ * @param a Account
++ * @retval ptr New Account View
++ */
++struct AccountView *aview_new(struct Account *a, struct Notify *parent)
++{
++  if (!a)
++    return NULL;
++
++  struct AccountView *av = mutt_mem_calloc(1, sizeof(struct AccountView));
++  mutt_debug(LL_DEBUG1, "QWQ AVIEW new %p\n", av);
++
++  av->account = a;
++  av->notify = notify_new();
++  notify_set_parent(av->notify, parent);
++  notify_send(av->notify, NT_AVIEW, NT_AVIEW_ADD, NULL);
++
++  notify_observer_add(a->notify, NT_MAILBOX, aview_mailbox_observer, av);
++
++  return av;
++}
+diff --git a/gui/aview.h b/gui/aview.h
+new file mode 100644
+index 000000000..7c24c91a4
+--- /dev/null
++++ b/gui/aview.h
+@@ -0,0 +1,57 @@
++/**
++ * @file
++ * View of an Account
++ *
++ * @authors
++ * Copyright (C) 2023 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef MUTT_GUI_AVIEW_H
++#define MUTT_GUI_AVIEW_H
++
++#include "mview.h"
++#include "mutt/lib.h"
++
++struct Account;
++struct Notify;
++
++/**
++ * struct AccountView - View of an Account
++ */
++struct AccountView
++{
++  struct Account *account;        ///< Account data
++  struct MailboxViewArray mva;    ///< All Mailbox Views
++  struct Notify *notify;          ///< Notifications: #NotifyAccountView
++};
++ARRAY_HEAD(AccountViewArray, struct AccountView *);
++
++/**
++ * enum NotifyAccountView - Types of Account Event
++ *
++ * Observers of #NT_AVIEW will not be passed any Event data.
++ */
++enum NotifyAccountView
++{
++  NT_AVIEW_ADD = 1,    ///< AccountView has been created
++  NT_AVIEW_DELETE,     ///< AccountView is about to be deleted
++};
++
++void                aview_free(struct AccountView **ptr);
++struct AccountView *aview_new (struct Account *a, struct Notify *parent);
++
++#endif /* MUTT_GUI_AVIEW_H */
+diff --git a/gui/lib.h b/gui/lib.h
+index 5724aa676..c538ee7bf 100644
+--- a/gui/lib.h
++++ b/gui/lib.h
+@@ -27,6 +27,7 @@
+  *
+  * | File                | Description                |
+  * | :------------------ | :------------------------- |
++ * | gui/aview.c         | @subpage gui_aview         |
+  * | gui/curs_lib.c      | @subpage gui_curs_lib      |
+  * | gui/dialog.c        | @subpage gui_dialog        |
+  * | gui/global.c        | @subpage gui_global        |
+@@ -34,6 +35,7 @@
+  * | gui/msgwin.c        | @subpage gui_msgwin        |
+  * | gui/mutt_curses.c   | @subpage gui_curses        |
+  * | gui/mutt_window.c   | @subpage gui_window        |
++ * | gui/nview.c         | @subpage gui_nview         |
+  * | gui/reflow.c        | @subpage gui_reflow        |
+  * | gui/rootwin.c       | @subpage gui_rootwin       |
+  * | gui/sbar.c          | @subpage gui_sbar          |
+@@ -45,6 +47,7 @@
+ #define MUTT_GUI_LIB_H
+ 
+ // IWYU pragma: begin_exports
++#include "aview.h"
+ #include "curs_lib.h"
+ #include "dialog.h"
+ #include "global.h"
+@@ -52,6 +55,7 @@
+ #include "msgwin.h"
+ #include "mutt_curses.h"
+ #include "mutt_window.h"
++#include "nview.h"
+ #include "reflow.h"
+ #include "rootwin.h"
+ #include "sbar.h"
+diff --git a/gui/nview.c b/gui/nview.c
+new file mode 100644
+index 000000000..89381c1bd
+--- /dev/null
++++ b/gui/nview.c
+@@ -0,0 +1,202 @@
++/**
++ * @file
++ * NeoMutt's GUI
++ *
++ * @authors
++ * Copyright (C) 2023 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++/**
++ * @page gui_nview NeoMutt's GUI
++ *
++ * NeoMutt's GUI
++ */
++
++#include "config.h"
++#include <stddef.h>
++#include "mutt/lib.h"
++#include "core/lib.h"
++#include "nview.h"
++
++struct NeoMuttView *NeoMuttView = NULL; ///< NeoMutt's GUI
++
++void dump_aviews(struct NeoMuttView *nv)
++{
++  if (!nv)
++    return;
++
++  mutt_debug(LL_DEBUG1, "QWQ NVIEW %p\n", nv);
++  struct AccountView **avp = NULL;
++  ARRAY_FOREACH(avp, &nv->ava)
++  {
++    struct Account *a = (*avp)->account;
++    mutt_debug(LL_DEBUG1, "QWQ     %p (%p)\n", *avp, a);
++  }
++}
++
++/**
++ * nview_account_add - Add an Account View
++ * @param nv NeoMutt View
++ * @param a  Account to add
++ */
++void nview_account_add(struct NeoMuttView *nv, struct Account *a)
++{
++  if (!nv || !a)
++    return;
++
++  mutt_debug(LL_DEBUG1, "QWQ NVIEW add ACCOUNT %p\n", a);
++  struct AccountView **avp = NULL;
++  ARRAY_FOREACH(avp, &nv->ava)
++  {
++    if ((*avp)->account == a)
++    {
++      mutt_debug(LL_DEBUG1, "QWQ       MATCH FOUND\n");
++      return;
++    }
++  }
++
++  struct AccountView *av = aview_new(a, nv->notify);
++  mutt_debug(LL_DEBUG1, "QWQ NVIEW add AVIEW %p\n", av);
++  ARRAY_ADD(&nv->ava, av);
++  dump_aviews(nv);
++}
++
++/**
++ * nview_account_delete - Remove an Account View
++ * @param nv NeoMutt View
++ * @param a  Account to delete
++ */
++void nview_account_delete(struct NeoMuttView *nv, struct Account *a)
++{
++  if (!nv)
++    return;
++
++  dump_aviews(nv);
++
++  if (a)
++  {
++    mutt_debug(LL_DEBUG1, "QWQ NVIEW del ACCOUNT %p\n", a);
++    struct AccountView **avp = NULL;
++    ARRAY_FOREACH(avp, &nv->ava)
++    {
++      if ((*avp)->account != a)
++        continue;
++
++      mutt_debug(LL_DEBUG1, "QWQ NVIEW del AVIEW %p\n", *avp);
++      ARRAY_REMOVE(&nv->ava, avp);
++      aview_free(avp);
++      break;
++    }
++  }
++  else
++  {
++    mutt_debug(LL_DEBUG1, "QWQ NVIEW del ACCOUNT %p\n", a);
++    struct AccountView **avp = NULL;
++    while (!ARRAY_EMPTY(&nv->ava))
++    {
++      avp = ARRAY_FIRST(&nv->ava);
++      struct AccountView *av = *avp;
++      mutt_debug(LL_DEBUG1, "QWQ NVIEW del AVIEW %p\n", *avp);
++      ARRAY_REMOVE(&nv->ava, avp);
++      aview_free(&av);
++    }
++  }
++
++  dump_aviews(nv);
++}
++
++/**
++ * nview_account_observer - Notification that an Account has changed - Implements ::observer_t - @ingroup observer_api
++ */
++int nview_account_observer(struct NotifyCallback *nc)
++{
++  if (nc->event_type != NT_ACCOUNT)
++    return 0;
++  if (!nc->global_data || !nc->event_data)
++    return -1;
++
++  struct NeoMuttView *nv = nc->global_data;
++  struct EventAccount *ev_a = nc->event_data;
++  struct Account *a = ev_a->account;
++  if (!a)
++    return -1;
++
++  switch (nc->event_subtype)
++  {
++    case NT_ACCOUNT_ADD:
++      nview_account_add(nv, a);
++      break;
++    case NT_ACCOUNT_DELETE:
++      nview_account_delete(nv, a);
++      break;
++    case NT_ACCOUNT_DELETE_ALL:
++      nview_account_delete(nv, NULL);
++      break;
++    case NT_ACCOUNT_CHANGE:
++    default:
++      return 0;
++  }
++
++  mutt_debug(LL_DEBUG5, "account done\n");
++  return 0;
++}
++
++/**
++ * nview_free - Free the NeoMutt GUI
++ * @param ptr NeoMuttView to free
++ */
++void nview_free(struct NeoMuttView **ptr)
++{
++  if (!ptr || !*ptr)
++    return;
++
++  struct NeoMuttView *nv = *ptr;
++  mutt_debug(LL_DEBUG1, "QWQ NVIEW del %p\n", nv);
++  notify_send(nv->notify, NT_NVIEW, NT_NVIEW_DELETE, NULL);
++
++  nview_account_delete(nv, NULL);
++  ARRAY_FREE(&nv->ava);
++
++  struct NeoMutt *n = nv->neomutt;
++  notify_observer_remove(n->notify, nview_account_observer, nv);
++  notify_free(&nv->notify);
++
++  FREE(ptr);
++}
++
++/**
++ * nview_new - Create a new NeoMutt GUI
++ * @param n NeoMutt
++ * @retval ptr New NeoMuttView
++ */
++struct NeoMuttView *nview_new(struct NeoMutt *n)
++{
++  if (!n)
++    return NULL;
++
++  struct NeoMuttView *nv = mutt_mem_calloc(1, sizeof(struct NeoMuttView));
++  mutt_debug(LL_DEBUG1, "QWQ NVIEW new %p\n", nv);
++
++  nv->neomutt = n;
++  nv->notify = notify_new();
++  notify_set_parent(nv->notify, n->notify);
++  notify_send(nv->notify, NT_NVIEW, NT_NVIEW_ADD, NULL);
++
++  notify_observer_add(n->notify, NT_ACCOUNT, nview_account_observer, nv);
++
++  return nv;
++}
+diff --git a/gui/nview.h b/gui/nview.h
+new file mode 100644
+index 000000000..2b9267600
+--- /dev/null
++++ b/gui/nview.h
+@@ -0,0 +1,56 @@
++/**
++ * @file
++ * NeoMutt's GUI
++ *
++ * @authors
++ * Copyright (C) 2023 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef MUTT_GUI_NVIEW_H
++#define MUTT_GUI_NVIEW_H
++
++#include "aview.h"
++
++struct NeoMutt;
++
++/**
++ * struct NeoMuttView - NeoMutt's GUI
++ */
++struct NeoMuttView
++{
++  struct NeoMutt *neomutt;        ///< NeoMutt data
++  struct AccountViewArray ava;    ///< All Account Views
++  struct Notify *notify;          ///< Notifications: #NotifyNeoMuttView
++};
++
++extern struct NeoMuttView *NeoMuttView;
++
++/**
++ * enum NotifyNeoMuttView - Types of NeoMutt Event
++ *
++ * Observers of #NT_NVIEW will not be passed any Event data.
++ */
++enum NotifyNeoMuttView
++{
++  NT_NVIEW_ADD = 1,    ///< NeoMuttView has been created
++  NT_NVIEW_DELETE,     ///< NeoMuttView is about to be deleted
++};
++
++void                nview_free(struct NeoMuttView **ptr);
++struct NeoMuttView *nview_new (struct NeoMutt *n);
++
++#endif /* MUTT_GUI_NVIEW_H */
+diff --git a/main.c b/main.c
+index f4f0e3c77..cfb994e79 100644
+--- a/main.c
++++ b/main.c
+@@ -676,6 +676,8 @@ main
+   attach_init();
+   alternates_init();
+ 
++  NeoMuttView = nview_new(NeoMutt);
++
+ #ifdef USE_DEBUG_NOTIFY
+   notify_observer_add(NeoMutt->notify, NT_ALL, debug_all_observer, NULL);
+ #endif
+@@ -1404,6 +1406,7 @@ main_exit:
+   mutt_keys_free();
+   mutt_prex_free();
+   config_cache_free();
++  nview_free(&NeoMuttView);
+   neomutt_free(&NeoMutt);
+   cs_free(&cs);
+   log_queue_flush(log_disp_terminal);
+diff --git a/mutt/notify.c b/mutt/notify.c
+index 559f1c59e..c1ee24f7c 100644
+--- a/mutt/notify.c
++++ b/mutt/notify.c
+@@ -37,11 +37,11 @@
+ /// Lookup table for NotifyType
+ /// Must be the same size and order as #NotifyType
+ static const char *NotifyTypeNames[] = {
+-  "NT_ALL",     "NT_ACCOUNT",  "NT_ALIAS",   "NT_ALTERN", "NT_ATTACH",
+-  "NT_BINDING", "NT_COLOR",    "NT_COMMAND", "NT_CONFIG", "NT_CONTEXT",
+-  "NT_EMAIL",   "NT_ENVELOPE", "NT_GLOBAL",  "NT_HEADER", "NT_INDEX",
+-  "NT_MAILBOX", "NT_MENU",     "NT_PAGER",   "NT_SCORE",  "NT_SUBJRX",
+-  "NT_WINDOW",
++  "NT_ALL",     "NT_ACCOUNT",  "NT_ALIAS",  "NT_ALTERN",  "NT_ATTACH",
++  "NT_AVIEW",   "NT_BINDING",  "NT_COLOR",  "NT_COMMAND", "NT_CONFIG",
++  "NT_EMAIL",   "NT_ENVELOPE", "NT_GLOBAL", "NT_HEADER",  "NT_INDEX",
++  "NT_MAILBOX", "NT_MVIEW",    "NT_MENU",   "NT_NVIEW",   "NT_PAGER",
++  "NT_SCORE",   "NT_SUBJRX",   "NT_WINDOW",
+ };
+ 
+ /**
+diff --git a/mutt/notify_type.h b/mutt/notify_type.h
+index f035c1014..1e6134a4a 100644
+--- a/mutt/notify_type.h
++++ b/mutt/notify_type.h
+@@ -37,6 +37,7 @@ enum NotifyType
+   NT_ALIAS,     ///< Alias has changed,             #NotifyAlias,     #EventAlias
+   NT_ALTERN,    ///< Alternates command changed,    #NotifyAlternates
+   NT_ATTACH,    ///< Attachment command changed,    #NotifyAttach
++  NT_AVIEW,     ///< AccountView has changed,       #NotifyMview,     #EventMview
+   NT_BINDING,   ///< Key binding has changed,       #NotifyBinding,   #EventBinding
+   NT_COLOR,     ///< Colour has changed,            #NotifyColor,     #EventColor
+   NT_COMMAND,   ///< A Command has been executed,   #Command
+@@ -49,6 +50,7 @@ enum NotifyType
+   NT_MAILBOX,   ///< Mailbox has changed,           #NotifyMailbox,   #EventMailbox
+   NT_MVIEW,     ///< MailboxView has changed,       #NotifyMview,     #EventMview
+   NT_MENU,      ///< Menu has changed,              #MenuRedrawFlags
++  NT_NVIEW,     ///< NeoMuttView has changed,       #NotifyNeoMuttView
+   NT_PAGER,     ///< Pager data has changed,        #NotifyPager,     #PagerPrivateData
+   NT_SCORE,     ///< Email scoring has changed
+   NT_SUBJRX,    ///< Subject Regex has changed,     #NotifySubjRx
+diff --git a/mview.c b/mview.c
+index b1f337476..642969940 100644
+--- a/mview.c
++++ b/mview.c
+@@ -447,6 +447,54 @@ struct Mailbox *mview_mailbox(struct MailboxView *mv)
+   return mv ? mv->mailbox : NULL;
+ }
+ 
++/**
++ * mview_delete - Delete Emails from a View
++ */
++void mview_delete(struct MailboxView *mv, struct EmailList *el)
++{
++  if (!mv || !el)
++    return;
++}
++
++/**
++ * mview_init - Set up a View from a Mailbox
++ */
++void mview_init(struct MailboxView *mv, struct Mailbox *m)
++{
++  if (!mv)
++    return;
++
++  // struct EmailList *el = mailbox_get_emails(m);
++  // mview_insert(mv, el);
++}
++
++/**
++ * mview_insert - Insert Emails into a View
++ */
++void mview_insert(struct MailboxView *mv, struct EmailList *el)
++{
++  if (!mv || !el)
++    return;
++}
++
++/**
++ * mview_limit - Limit the View of Emails
++ */
++void mview_limit(struct MailboxView *mv, const char *pattern)
++{
++  if (!mv || !pattern)
++    return;
++}
++
++/**
++ * mview_sort - Sort a View
++ */
++void mview_sort(struct MailboxView *mv, enum SortType sort)
++{
++  if (!mv)
++    return;
++}
++
+ /**
+  * top_of_thread - Find the first email in the current thread
+  * @param e Current Email
+diff --git a/mview.h b/mview.h
+index 5253e3e6d..787382e30 100644
+--- a/mview.h
++++ b/mview.h
+@@ -25,6 +25,8 @@
+ 
+ #include <stdbool.h>
+ #include <sys/types.h>
++#include "mutt/lib.h"
++#include "config/lib.h"
+ 
+ struct Email;
+ struct EmailList;
+@@ -50,6 +52,7 @@ struct MailboxView
+   struct Mailbox *mailbox;           ///< Current Mailbox
+   struct Notify *notify;             ///< Notifications: #NotifyMview, #EventMview
+ };
++ARRAY_HEAD(MailboxViewArray, struct MailboxView *);
+ 
+ /**
+  * enum NotifyMview - Types of MailboxView Event
+@@ -85,4 +88,10 @@ int el_add_tagged(struct EmailList *el, struct MailboxView *mv, struct Email *e,
+ 
+ bool mutt_limit_current_thread(struct MailboxView *mv, struct Email *e);
+ 
++void mview_delete(struct MailboxView *mv, struct EmailList *el);
++void mview_init  (struct MailboxView *mv, struct Mailbox *m);
++void mview_insert(struct MailboxView *mv, struct EmailList *el);
++void mview_limit (struct MailboxView *mv, const char *pattern);
++void mview_sort  (struct MailboxView *mv, enum SortType sort);
++
+ #endif /* MUTT_MVIEW_H */

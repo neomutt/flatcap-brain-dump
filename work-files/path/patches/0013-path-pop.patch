@@ -1,0 +1,728 @@
+From 6a4a24b2164f3d165fea0ce290a2ebf67435eba3 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Fri, 21 Feb 2020 01:18:32 +0000
+Subject: [PATCH 13/29] path: pop
+
+---
+ Makefile.autosetup      |   3 +-
+ po/POTFILES.in          |   1 +
+ pop/lib.h               |   2 +
+ pop/path.c              | 222 ++++++++++++++++++++++++++++++++++++
+ pop/path.h              |  36 ++++++
+ pop/pop.c               |  57 ++++++++++
+ pop/private.h           |   4 +
+ test/Makefile.autosetup |   1 +
+ test/main.c             |   8 ++
+ test/mx_path/pop.c      | 246 ++++++++++++++++++++++++++++++++++++++++
+ 10 files changed, 579 insertions(+), 1 deletion(-)
+ create mode 100644 pop/path.c
+ create mode 100644 pop/path.h
+ create mode 100644 test/mx_path/pop.c
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index 242740012..a25f67ddb 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -457,7 +457,7 @@ $(PWD)/notmuch:
+ ###############################################################################
+ # libpop
+ LIBPOP=		libpop.a
+-LIBPOPOBJS=	pop/pop.o pop/pop_auth.o pop/pop_lib.o
++LIBPOPOBJS=	pop/pop.o pop/pop_auth.o pop/pop_lib.o pop/path.o
+ CLEANFILES+=	$(LIBPOP) $(LIBPOPOBJS)
+ ALLOBJS+=	$(LIBPOPOBJS)
+ 
+@@ -620,6 +620,7 @@ coverage: all test
+ 	  --directory mbox \
+ 	  --directory nntp \
+ 	  --directory notmuch \
++	  --directory pop
+ 
+ 	-genhtml --output-directory lcov --frames lcov.info
+ 	lcov --list lcov.info
+diff --git a/po/POTFILES.in b/po/POTFILES.in
+index f77d4c1ea..b30d813e0 100644
+--- a/po/POTFILES.in
++++ b/po/POTFILES.in
+@@ -196,6 +196,7 @@ opcodes.h
+ pager.c
+ pattern.c
+ pgpewrap.c
++pop/path.c
+ pop/pop.c
+ pop/pop_auth.c
+ pop/pop_lib.c
+diff --git a/pop/lib.h b/pop/lib.h
+index 1724481fa..f48d27c20 100644
+--- a/pop/lib.h
++++ b/pop/lib.h
+@@ -27,6 +27,7 @@
+  *
+  * | File           | Description       |
+  * | :------------- | :---------------- |
++ * | pop/path.c     | @subpage pop_path |
+  * | pop/pop_auth.c | @subpage pop_auth |
+  * | pop/pop.c      | @subpage pop_pop  |
+  * | pop/pop_lib.c  | @subpage pop_lib  |
+@@ -38,6 +39,7 @@
+ #include <stdbool.h>
+ #include "core/lib.h"
+ #include "mx.h"
++#include "path.h"
+ 
+ struct stat;
+ 
+diff --git a/pop/path.c b/pop/path.c
+new file mode 100644
+index 000000000..1a4314867
+--- /dev/null
++++ b/pop/path.c
+@@ -0,0 +1,222 @@
++/**
++ * @file
++ * Pop path manipulations
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++/**
++ * @page pop_path Pop path manipulations
++ *
++ * Pop path manipulations
++ */
++
++#include "config.h"
++#include "config/lib.h"
++#include "email/lib.h"
++#include "core/lib.h"
++
++extern char *HomeDir;
++
++/**
++ * pop_path2_canon - Canonicalise a Mailbox path
++ * @param path Path to canonicalise
++ * @param user Login username
++ * @param port Server port
++ * @retval  0 Success
++ * @retval -1 Failure
++ */
++int pop_path2_canon(struct Path *path, char *user, int port)
++{
++  struct Url *url = url_parse(path->orig);
++  if (!url)
++    return -1;
++
++  if (!url->user)
++    url->user = user;
++  if (url->port == 0)
++    url->port = port;
++  if (url->pass)
++    url->pass = NULL;
++
++  int rc = -1;
++  struct Buffer buf = mutt_buffer_make(256);
++  if (url_tobuffer(url, &buf, 0) != 0)
++    goto done; // LCOV_EXCL_LINE
++
++  mutt_str_replace(&path->canon, mutt_b2s(&buf));
++  path->flags |= MPATH_CANONICAL;
++  rc = 0;
++
++done:
++  url_free(&url);
++  mutt_buffer_dealloc(&buf);
++  return rc;
++}
++
++/**
++ * pop_path2_compare - Compare two Mailbox paths - Implements MxOps::path2_compare()
++ *
++ * **Tests**
++ * - scheme must match
++ * - host must match
++ * - user must match, or may be absent from one, or absent from both
++ * - pass must match, or may be absent from one, or absent from both
++ * - port must match, or may be absent from one, or absent from both
++ * - path must match
++ */
++int pop_path2_compare(struct Path *path1, struct Path *path2)
++{
++  struct Url *url1 = url_parse(path1->canon);
++  struct Url *url2 = url_parse(path2->canon);
++
++  int rc = url1->scheme - url2->scheme;
++  if (rc != 0)
++    goto done;
++
++  if (url1->user && url2->user)
++  {
++    rc = mutt_str_strcmp(url1->user, url2->user);
++    if (rc != 0)
++      goto done;
++  }
++
++  rc = mutt_str_strcasecmp(url1->host, url2->host);
++  if (rc != 0)
++    goto done;
++
++  if ((url1->port != 0) && (url2->port != 0))
++  {
++    rc = url1->port - url2->port;
++    if (rc != 0)
++      goto done;
++  }
++
++  rc = mutt_str_strcmp(url1->path, url2->path);
++
++done:
++  url_free(&url1);
++  url_free(&url2);
++  if (rc < 0)
++    return -1;
++  if (rc > 0)
++    return 1;
++  return 0;
++}
++
++/**
++ * pop_path2_parent - Find the parent of a Mailbox path - Implements MxOps::path2_parent()
++ * @retval -1 Pop mailbox doesn't have a parent
++ */
++int pop_path2_parent(const struct Path *path, struct Path **parent)
++{
++  return -1;
++}
++
++/**
++ * pop_path2_pretty - Abbreviate a Mailbox path - Implements MxOps::path2_pretty()
++ *
++ * **Tests**
++ * - scheme must match
++ * - host must match
++ * - user must match, or may be absent from one, or absent from both
++ * - pass must match, or may be absent from one, or absent from both
++ * - port must match, or may be absent from one, or absent from both
++ */
++int pop_path2_pretty(struct Path *path, const char *folder)
++{
++  int rc = 0;
++  struct Url *url1 = url_parse(path->orig);
++  struct Url *url2 = url_parse(folder);
++
++  if (url1->scheme != url2->scheme)
++    goto done;
++  if (mutt_str_strcasecmp(url1->host, url2->host) != 0)
++    goto done;
++  if (!path_partial_match_string(url1->user, url2->user))
++    goto done;
++  if (!path_partial_match_number(url1->port, url2->port))
++    goto done;
++  if (!mutt_path2_abbr_folder(url1->path, url2->path, &path->pretty))
++    goto done;
++
++  rc = 1;
++
++done:
++  url_free(&url1);
++  url_free(&url2);
++  return rc;
++}
++
++/**
++ * pop_path2_probe - Does this Mailbox type recognise this path? - Implements MxOps::path2_probe()
++ *
++ * **Tests**
++ * - Path may begin "pop://"
++ * - Path may begin "pops://"
++ *
++ * @note The case of the URL scheme is ignored
++ */
++int pop_path2_probe(struct Path *path, const struct stat *st)
++{
++  if (!mutt_str_startswith(path->orig, "pop://", CASE_IGNORE) &&
++      !mutt_str_startswith(path->orig, "pops://", CASE_IGNORE))
++  {
++    return -1;
++  }
++
++  path->type = MUTT_POP;
++  return 0;
++}
++
++/**
++ * pop_path2_tidy - Tidy a Mailbox path - Implements MxOps::path2_tidy()
++ *
++ * **Changes**
++ * - Lowercase the URL scheme
++ * - Replace empty path with "INBOX"
++ */
++int pop_path2_tidy(struct Path *path)
++{
++  struct Url *url = url_parse(path->orig);
++  if (!url)
++    return -1;
++
++  if (!url->path || (url->path[0] == '\0') ||
++      ((url->path[0] == '/') && (url->path[1] == '\0')) ||
++      (mutt_str_strcasecmp(url->path, "inbox") == 0))
++  {
++    url->path = "INBOX";
++  }
++
++  url->pass = NULL;
++
++  int rc = -1;
++  struct Buffer *buf = mutt_buffer_pool_get();
++  if (url_tobuffer(url, buf, 0) < 0)
++    goto done; // LCOV_EXCL_LINE
++
++  mutt_str_replace(&path->orig, mutt_b2s(buf));
++  path->flags |= MPATH_TIDY;
++  rc = 0;
++
++done:
++  url_free(&url);
++  mutt_buffer_pool_release(&buf);
++  return rc;
++}
+diff --git a/pop/path.h b/pop/path.h
+new file mode 100644
+index 000000000..8fa609b9e
+--- /dev/null
++++ b/pop/path.h
+@@ -0,0 +1,36 @@
++/**
++ * @file
++ * Pop path manipulations
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef MUTT_POP_PATH_H
++#define MUTT_POP_PATH_H
++
++struct Path;
++struct stat;
++
++int pop_path2_canon  (struct Path *path, char *user, int port);
++int pop_path2_compare(struct Path *path1, struct Path *path2);
++int pop_path2_parent (const struct Path *path, struct Path **parent);
++int pop_path2_pretty (struct Path *path, const char *folder);
++int pop_path2_probe  (struct Path *path, const struct stat *st);
++int pop_path2_tidy   (struct Path *path);
++
++#endif /* MUTT_POP_PATH_H */
+diff --git a/pop/pop.c b/pop/pop.c
+index 96a4651aa..837a121f6 100644
+--- a/pop/pop.c
++++ b/pop/pop.c
+@@ -53,6 +53,7 @@
+ #include "mutt_socket.h"
+ #include "muttlib.h"
+ #include "mx.h"
++#include "path.h"
+ #include "progress.h"
+ #include "bcache/lib.h"
+ #include "ncrypt/lib.h"
+@@ -1270,6 +1271,56 @@ static int pop_path_parent(char *buf, size_t buflen)
+   return 0;
+ }
+ 
++/**
++ * pop_ac2_is_owner - Does this Account own this Path? - Implements MxOps::ac2_is_owner()
++ */
++static int pop_ac2_is_owner(struct Account *a, const struct Path *path)
++{
++  if (a->type != MUTT_POP)
++    return -1;
++
++  struct Url *url = url_parse(path->orig);
++  struct PopAccountData *adata = a->adata;
++  struct ConnAccount *cac = &adata->conn->account;
++  int rc = -1;
++
++  if (mutt_str_strcasecmp(cac->host, url->host) != 0)
++    goto done;
++  if (!path_partial_match_string(cac->user, url->user))
++    goto done;
++  if (!path_partial_match_string(cac->pass, url->pass))
++    goto done;
++  if (!path_partial_match_number(cac->port, url->port))
++    goto done;
++
++  rc = 0;
++
++done:
++  url_free(&url);
++  return rc;
++}
++
++/**
++ * pop_path2_canon_wrapper - Canonicalise a Mailbox path - Implements MxOps::path2_canon()
++ */
++static int pop_path2_canon_wrapper(struct Path *path)
++{
++  struct Account *np = NULL;
++  TAILQ_FOREACH(np, &NeoMutt->accounts, entries)
++  {
++    if (pop_ac2_is_owner(np, path) == 0)
++      break;
++  }
++
++  if (!np)
++    return -1;
++
++  struct PopAccountData *adata = np->adata;
++  struct ConnAccount *cac = &adata->conn->account;
++
++  return pop_path2_canon(path, cac->user, cac->port);
++}
++
+ // clang-format off
+ /**
+  * MxPopOps - POP Mailbox - Implements ::MxOps
+@@ -1298,5 +1349,11 @@ struct MxOps MxPopOps = {
+   .path_canon       = pop_path_canon,
+   .path_pretty      = pop_path_pretty,
+   .path_parent      = pop_path_parent,
++  .path2_canon      = pop_path2_canon_wrapper,
++  .path2_compare    = pop_path2_compare,
++  .path2_parent     = pop_path2_parent,
++  .path2_pretty     = pop_path2_pretty,
++  .path2_probe      = pop_path2_probe,
++  .path2_tidy       = pop_path2_tidy,
+ };
+ // clang-format on
+diff --git a/pop/private.h b/pop/private.h
+index 8e7f99161..5509a6ad2 100644
+--- a/pop/private.h
++++ b/pop/private.h
+@@ -27,11 +27,15 @@
+ #include <stdbool.h>
+ #include <time.h>
+ #include "mutt/lib.h"
++#include "core/lib.h"
+ #include "conn/lib.h"
+ 
+ struct Email;
+ struct Mailbox;
++struct Path;
+ struct Progress;
++struct stat;
++
+ 
+ #define POP_PORT 110
+ #define POP_SSL_PORT 995
+diff --git a/test/Makefile.autosetup b/test/Makefile.autosetup
+index bba1aaac4..2b5c4c313 100644
+--- a/test/Makefile.autosetup
++++ b/test/Makefile.autosetup
+@@ -345,6 +345,7 @@ MX_PATH_OBJS	= test/mx_path/compmbox.o \
+ 		  test/mx_path/maildir.o \
+ 		  test/mx_path/mbox.o \
+ 		  test/mx_path/nntp.o \
++		  test/mx_path/pop.o
+ 
+ @if USE_NOTMUCH
+ MX_PATH_OBJS+=	  test/mx_path/notmuch.o
+diff --git a/test/main.c b/test/main.c
+index 64d0d9f8d..39a998f54 100644
+--- a/test/main.c
++++ b/test/main.c
+@@ -479,6 +479,14 @@
+   NEOMUTT_TEST_ITEM(test_mutt_prex_capture)                                    \
+   NEOMUTT_TEST_ITEM(test_mutt_prex_free)                                       \
+                                                                                \
++  /* pop */                                                                    \
++  NEOMUTT_TEST_ITEM(test_pop_path2_canon)                                      \
++  NEOMUTT_TEST_ITEM(test_pop_path2_compare)                                    \
++  NEOMUTT_TEST_ITEM(test_pop_path2_parent)                                     \
++  NEOMUTT_TEST_ITEM(test_pop_path2_pretty)                                     \
++  NEOMUTT_TEST_ITEM(test_pop_path2_probe)                                      \
++  NEOMUTT_TEST_ITEM(test_pop_path2_tidy)                                       \
++                                                                               \
+   /* regex */                                                                  \
+   NEOMUTT_TEST_ITEM(test_mutt_regex_capture)                                   \
+   NEOMUTT_TEST_ITEM(test_mutt_regex_compile)                                   \
+diff --git a/test/mx_path/pop.c b/test/mx_path/pop.c
+new file mode 100644
+index 000000000..408ad1ea0
+--- /dev/null
++++ b/test/mx_path/pop.c
+@@ -0,0 +1,246 @@
++/**
++ * @file
++ * Test code for the POP MxOps Path functions
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#define TEST_NO_MAIN
++#include "config.h"
++#include "acutest.h"
++#include <string.h>
++#include <sys/stat.h>
++#include "mutt/lib.h"
++#include "core/lib.h"
++#include "common.h"
++#include "pop/path.h"
++
++void test_pop_path2_canon(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "pop://user@example.com:123/INBOX",        "pop://user@example.com:123/INBOX",   0 },
++    { "junk://user@example.com:123/INBOX",       "junk://user@example.com:123/INBOX", -1 },
++    { "pop://example.com:123/INBOX",             "pop://user@example.com:123/INBOX",   0 },
++    { "pop://user@example.com/INBOX",            "pop://user@example.com:123/INBOX",   0 },
++    { "pop://user:secret@example.com:123/INBOX", "pop://user@example.com:123/INBOX",   0 },
++    { "pop://example.com/INBOX",                 "pop://user@example.com:123/INBOX",   0 },
++  };
++  // clang-format on
++
++  struct Path path = { 0 };
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    path.orig = (char *) tests[i].first;
++    TEST_CASE(path.orig);
++    path.type = MUTT_POP;
++    path.flags = MPATH_RESOLVED | MPATH_TIDY;
++
++    rc = pop_path2_canon(&path, "user", 123);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(path.flags & MPATH_CANONICAL);
++      TEST_CHECK(path.canon != NULL);
++      TEST_CHECK(mutt_str_strcmp(path.canon, tests[i].second) == 0);
++    }
++    FREE(&path.canon);
++  }
++}
++
++void test_pop_path2_compare(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "pop://user@example.com:123/INBOX",        "pop://user@example.com:123/INBOX",        0 }, // Match
++    { "pop://user@example.com:123/INBOX",        "pops://user@example.com:123/INBOX",      -1 }, // Scheme differs
++    { "pops://user@example.com:123/INBOX",       "pop://user@example.com:123/INBOX",        1 }, // Scheme differs
++    { "pop://adam@example.com:123/INBOX",        "pop://zach@example.com:123/INBOX",       -1 }, // User differs
++    { "pop://zach@example.com:123/INBOX",        "pop://adam@example.com:123/INBOX",        1 }, // User differs
++    { "pop://adam@example.com:123/INBOX",        "pop://example.com:123/INBOX",             0 }, // User missing
++    { "pop://adam:secret@example.com:123/INBOX", "pop://adam:magic@example.com:123/INBOX",  0 }, // Password ignored
++    { "pop://user@example.com:123/INBOX",        "pop://user@flatcap.org:123/INBOX",       -1 }, // Host differs
++    { "pop://user@flatcap.org:123/INBOX",        "pop://user@example.com:123/INBOX",        1 }, // Host differs
++    { "pop://user@example.com:123/INBOX",        "pop://user@example.com:456/INBOX",       -1 }, // Port differs
++    { "pop://user@example.com:456/INBOX",        "pop://user@example.com:123/INBOX",        1 }, // Port differs
++    { "pop://user@example.com:456/INBOX",        "pop://user@example.com/INBOX",            0 }, // Port missing
++    { "pop://user@example.com:123/INBOX",        "pop://user@example.com:123/junk",        -1 }, // Path differs
++    { "pop://user@example.com:123/junk",         "pop://user@example.com:123/INBOX",        1 }, // Path differs
++  };
++  // clang-format on
++
++  struct Path path1 = {
++    .type = MUTT_POP,
++    .flags = MPATH_RESOLVED | MPATH_TIDY | MPATH_CANONICAL,
++  };
++  struct Path path2 = {
++    .type = MUTT_POP,
++    .flags = MPATH_RESOLVED | MPATH_TIDY | MPATH_CANONICAL,
++  };
++
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    path1.canon = (char *) tests[i].first;
++    TEST_CASE(path1.canon);
++
++    path2.canon = (char *) tests[i].second;
++    TEST_CASE(path2.canon);
++
++    rc = pop_path2_compare(&path1, &path2);
++    TEST_CHECK(rc == tests[i].retval);
++  }
++}
++
++void test_pop_path2_parent(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "pop://example.com/", NULL, -1 },
++  };
++  // clang-format on
++
++  struct Path path = {
++    .type = MUTT_POP,
++    .flags = MPATH_RESOLVED | MPATH_TIDY,
++  };
++
++  struct Path *parent = NULL;
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    path.orig = (char *) tests[i].first;
++    TEST_CASE(path.orig);
++
++    rc = pop_path2_parent(&path, &parent);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(parent != NULL);
++      TEST_CHECK(parent->orig != NULL);
++      TEST_CHECK(parent->type == path.type);
++      TEST_CHECK(parent->flags & MPATH_RESOLVED);
++      TEST_CHECK(parent->flags & MPATH_TIDY);
++      TEST_CHECK(mutt_str_strcmp(parent->orig, tests[i].second) == 0);
++      mutt_path_free(&parent);
++    }
++  }
++}
++
++void test_pop_path2_pretty(void)
++{
++  static const char *folder = "pop://user@example.com:123/";
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "pop://example.com/INBOX",         "+INBOX", 1 },
++    { "pops://example.com/INBOX",        NULL,     0 }, // Scheme differs
++    { "pop://flatcap.org/INBOX",         NULL,     0 }, // Host differs
++    { "pop://another@example.com/INBOX", NULL,     0 }, // User differs
++    { "pop://example.com:456/INBOX",     NULL,     0 }, // Port differs
++    { "pop://example.com/",              NULL,     0 }, // Folder is entire path
++  };
++  // clang-format on
++
++  struct Path path = {
++    .type = MUTT_POP,
++    .flags = MPATH_RESOLVED | MPATH_TIDY,
++  };
++
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    path.orig = (char *) tests[i].first;
++    TEST_CASE(path.orig);
++
++    rc = pop_path2_pretty(&path, folder);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc > 0)
++    {
++      TEST_CHECK(path.pretty != NULL);
++      TEST_CHECK(mutt_str_strcmp(path.pretty, tests[i].second) == 0);
++    }
++  }
++}
++
++void test_pop_path2_probe(void)
++{
++  // clang-format off
++  static const struct TestValue tests[] = {
++    { "pop://example.com/",  NULL,  0 },
++    { "pops://example.com/", NULL,  0 },
++    { "imap://example.com",  NULL, -1 },
++  };
++  // clang-format on
++
++  struct Path path = { 0 };
++  struct stat st;
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    path.orig = (char *) tests[i].first;
++    TEST_CASE(path.orig);
++    path.type = MUTT_UNKNOWN;
++    path.flags = MPATH_NO_FLAGS;
++    memset(&st, 0, sizeof(st));
++    stat(path.orig, &st);
++    rc = pop_path2_probe(&path, &st);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(path.type > MUTT_UNKNOWN);
++    }
++  }
++}
++
++void test_pop_path2_tidy(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "pop://example.com/INBOX", "pop://example.com/INBOX",   0 },
++    { "POP://example.com/INBOX", "pop://example.com/INBOX",   0 },
++    { "pop://example.com/inbox", "pop://example.com/INBOX",   0 },
++    { "pop://example.com/",      "pop://example.com/INBOX",   0 },
++    { "pop://example.com",       "pop://example.com/INBOX",   0 },
++    { "pops://example.com/",     "pops://example.com/INBOX",  0 },
++    { "junk://example.com/",     "junk://example.com/",      -1 },
++  };
++  // clang-format on
++
++  struct Path path = {
++    .type = MUTT_POP,
++    .flags = MPATH_RESOLVED,
++  };
++
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    path.orig = mutt_str_strdup(tests[i].first);
++    TEST_CASE(path.orig);
++
++    rc = pop_path2_tidy(&path);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(path.orig != NULL);
++      TEST_CHECK(path.flags & MPATH_TIDY);
++      TEST_CHECK(mutt_str_strcmp(path.orig, tests[i].second) == 0);
++    }
++    FREE(&path.orig);
++  }
++}

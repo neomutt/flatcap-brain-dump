@@ -1,0 +1,1063 @@
+From 5653a2373be9bd3ca7bcce8e169c08c22c999449 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Thu, 2 Jan 2020 11:55:32 +0000
+Subject: [PATCH 17/29] account command
+
+---
+ Makefile.autosetup |   2 +-
+ command_parse.c    | 131 ++++++++++++++++++----------
+ config/subset.c    |   6 +-
+ conn/sasl.c        |   3 +-
+ core/account.c     |  18 ++++
+ core/account.h     |   1 +
+ core/mailbox.c     |   5 ++
+ imap/private.h     |   2 +-
+ index.c            |  18 +++-
+ init.c             |   5 ++
+ main.c             |  17 +++-
+ mutt/hash.c        |   5 ++
+ mutt_account.c     |  59 +++++++++++++
+ mutt_account.h     |   7 ++
+ mutt_commands.c    |   4 +
+ mutt_config.c      |   6 +-
+ mx.c               |  52 +++++++++++
+ mx.h               |   4 +-
+ mx_path.c          |  17 ++--
+ tracker.c          | 210 +++++++++++++++++++++++++++++++++++++++++++++
+ tracker.h          |  37 ++++++++
+ 21 files changed, 542 insertions(+), 67 deletions(-)
+ create mode 100644 tracker.c
+ create mode 100644 tracker.h
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index ec514a18c..c7f85c1df 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -74,7 +74,7 @@ NEOMUTTOBJS=	browser.o commands.o command_parse.o \
+ 		mx_path.o myvar.o opcodes.o pager.o pattern.o postpone.o progress.o \
+ 		recvattach.o recvcmd.o resize.o rfc3676.o score.o \
+ 		send.o sendlib.o sidebar.o smtp.o sort.o state.o status.o \
+-		system.o version.o
++		system.o tracker.o version.o
+ 
+ @if !HAVE_WCSCASECMP
+ NEOMUTTOBJS+=	wcscasecmp.o
+diff --git a/command_parse.c b/command_parse.c
+index c27f4e2ee..b0a8af86f 100644
+--- a/command_parse.c
++++ b/command_parse.c
+@@ -57,6 +57,7 @@
+ #include "myvar.h"
+ #include "options.h"
+ #include "sidebar.h"
++#include "tracker.h"
+ #include "version.h"
+ #include "imap/lib.h"
+ #ifdef ENABLE_NLS
+@@ -476,6 +477,9 @@ int source_rc(const char *rcfile_path, struct Buffer *err)
+     return -1;
+   }
+ 
++  // printf("\033[1;32mfile: %s\033[0m\n", rcfile_path);
++  ct_push_top(); // Inherit the 'account' of the parent config file
++
+   token = mutt_buffer_pool_get();
+   linebuf = mutt_buffer_pool_get();
+ 
+@@ -559,6 +563,9 @@ int source_rc(const char *rcfile_path, struct Buffer *err)
+ 
+   mutt_buffer_pool_release(&token);
+   mutt_buffer_pool_release(&linebuf);
++
++  // printf("\033[1;32mend of file: %s\033[0m\n", rcfile_path);
++  ct_pop(); // The 'account' command stops at the end of the file
+   return rc;
+ }
+ 
+@@ -885,82 +892,102 @@ bail:
+ enum CommandResult parse_mailboxes(struct Buffer *buf, struct Buffer *s,
+                                    intptr_t data, struct Buffer *err)
+ {
++  // These won't change during this command
++  struct Account *a = ct_get_account();
++  struct ConfigSubset *sub = a ? a->sub : NeoMutt->sub;
++  struct Buffer *folder = mutt_buffer_pool_get();
++  cs_subset_str_string_get(sub, "folder", folder);
++
++  int rc = MUTT_CMD_ERROR;
++  struct Path *p = NULL;
++  struct Mailbox *m = NULL;
++
+   while (MoreArgs(s))
+   {
+-    struct Mailbox *m = mailbox_new(NULL);
++    p = mutt_path_new();
+ 
+     if (data & MUTT_NAMED)
+     {
+       mutt_extract_token(buf, s, MUTT_TOKEN_NO_FLAGS);
+-      if (buf->data && (*buf->data != '\0'))
+-      {
+-        mutt_str_replace(&m->path->desc, buf->data);
+-      }
+-      else
+-      {
+-        mailbox_free(&m);
+-        continue;
+-      }
++      p->desc = mutt_buffer_strdup(buf);
+     }
+ 
+     mutt_extract_token(buf, s, MUTT_TOKEN_NO_FLAGS);
+     if (mutt_buffer_is_empty(buf))
+     {
+-      /* Skip empty tokens. */
+-      mailbox_free(&m);
++      // Skip empty tokens
++      mutt_path_free(&p);
+       continue;
+     }
+ 
+-    mutt_str_replace(&m->path->orig, buf->data);
+-    /* int rc = */ mx_path_canon2(m, C_Folder);
++    p->orig = mutt_buffer_strdup(buf);
+ 
+-    if (m->type <= MUTT_UNKNOWN)
++    mx_path2_resolve(p, mutt_b2s(folder));
++    if (p->type <= MUTT_UNKNOWN)
+     {
+-      mutt_error("Unknown Mailbox: %s", m->path->canon);
+-      mailbox_free(&m);
+-      return MUTT_CMD_ERROR;
++      mutt_error("Unknown Mailbox: %s", p->orig);
++      goto done;
+     }
+ 
+-    bool new_account = false;
+-    struct Account *a = mx_ac_find(m);
+-    if (!a)
++    // printf("Path:\n\tDesc: %s\n\tOrig: %s\n", p->desc, p->orig);
++
++    struct Mailbox *m_old = mx_path2_find(p);
++    if (m_old)
+     {
+-      a = account_new(NULL, NeoMutt->sub);
+-      a->type = m->type;
+-      new_account = true;
++      if (m_old->flags == MB_HIDDEN)
++      {
++        m_old->flags = MB_NORMAL;
++        sb_notify_mailbox(m_old, true);
++      }
++      mutt_path_free(&p);
++      // printf("existing mailbox\n");
++      continue;
+     }
+ 
+-    if (!new_account)
++    bool new_account = false;
++    m = mailbox_new(p);
++    p = NULL; // The Mailbox has taken ownership of the Path
++    m->mx_ops = mx_get_ops(m->type);
++
++    if (a)
+     {
+-      struct Mailbox *m_old = mx_mbox_find(a, m->path->canon);
+-      if (m_old)
++      // Use Account from user-supplied 'account' command
++      if (mx_ac_add(a, m) == 0)
+       {
+-        if (m_old->flags == MB_HIDDEN)
+-        {
+-          m_old->flags = MB_NORMAL;
+-          sb_notify_mailbox(m_old, true);
+-        }
+-        mailbox_free(&m);
++        ct_set_mailbox(m);
++        sb_notify_mailbox(m, true);
++        m = NULL; // The Account has taken ownership of the Mailbox
+         continue;
+       }
++
++      // The Account doesn't accept the Mailbox
++      a = NULL;
++    }
++
++    // Find existing Account that accepts Path
++    a = mx_ac2_find(m->path);
++    if (!a)
++    {
++      // or create a new Account
++      a = account_new(NULL, NeoMutt->sub);
++      a->type = m->type;
++      new_account = true;
+     }
+ 
+     if (mx_ac_add(a, m) < 0)
+     {
+-      //error
+       mailbox_free(&m);
+       if (new_account)
+-      {
+-        cs_subset_free(&a->sub);
+-        FREE(&a->name);
+-        notify_free(&a->notify);
+-        FREE(&a);
+-      }
++        account_free(&a);
++
+       continue;
+     }
++
++    ct_set_account(a);
+     if (new_account)
+     {
+       neomutt_account_add(NeoMutt, a);
++      m->sub->cs = a->sub->cs; // Work around our lazy-allocation order
+     }
+ 
+ #ifdef USE_SIDEBAR
+@@ -969,8 +996,17 @@ enum CommandResult parse_mailboxes(struct Buffer *buf, struct Buffer *s,
+ #ifdef USE_INOTIFY
+     mutt_monitor_add(m);
+ #endif
++    ct_set_mailbox(m);
++    m = NULL; // The Account has taken ownership of the Mailbox
+   }
+-  return MUTT_CMD_SUCCESS;
++
++  rc = MUTT_CMD_SUCCESS;
++
++done:
++  mutt_path_free(&p);
++  mailbox_free(&m);
++  mutt_buffer_pool_release(&folder);
++  return rc;
+ }
+ 
+ /**
+@@ -1077,6 +1113,7 @@ enum CommandResult parse_set(struct Buffer *buf, struct Buffer *s,
+   static const char *set_commands[] = { "set", "toggle", "unset", "reset" };
+ 
+   int rc = 0;
++  struct ConfigSubset *sub = NeoMutt->sub;
+ 
+   while (MoreArgs(s))
+   {
+@@ -1130,7 +1167,8 @@ enum CommandResult parse_set(struct Buffer *buf, struct Buffer *s,
+     bool my = mutt_str_startswith(buf->data, "my_");
+     if (!my)
+     {
+-      he = cs_subset_lookup(NeoMutt->sub, buf->data);
++      sub = ct_get_sub();
++      he = cs_subset_create_inheritance(sub, buf->data);
+       if (!he)
+       {
+         if (reset && mutt_str_equal(buf->data, "all"))
+@@ -1339,7 +1377,8 @@ enum CommandResult parse_set(struct Buffer *buf, struct Buffer *s,
+           }
+           else
+           {
+-            rc = cs_subset_he_string_set(NeoMutt->sub, he, buf->data, err);
++            // printf("\033[1;32mSET: %s = %s\033[0m\n", he->key.strkey, buf->data);
++            rc = cs_subset_he_string_set(sub, he, buf->data, err);
+           }
+           if (CSR_RESULT(rc) != CSR_SUCCESS)
+             return MUTT_CMD_ERROR;
+@@ -1351,7 +1390,7 @@ enum CommandResult parse_set(struct Buffer *buf, struct Buffer *s,
+         if (bq)
+         {
+           // mutt_buffer_printf(err, "ACT23 set variable %s to 'yes'", buf->data);
+-          rc = cs_subset_he_native_set(NeoMutt->sub, he, true, err);
++          rc = cs_subset_he_native_set(sub, he, true, err);
+           if (CSR_RESULT(rc) != CSR_SUCCESS)
+             return MUTT_CMD_ERROR;
+           continue;
+@@ -1411,7 +1450,7 @@ enum CommandResult parse_set(struct Buffer *buf, struct Buffer *s,
+       else
+       {
+         // mutt_buffer_printf(err, "ACT26 UNSET bool/quad variable %s", buf->data);
+-        rc = cs_subset_he_native_set(NeoMutt->sub, he, false, err);
++        rc = cs_subset_he_native_set(sub, he, false, err);
+         if (CSR_RESULT(rc) != CSR_SUCCESS)
+           return MUTT_CMD_ERROR;
+       }
+@@ -1419,7 +1458,7 @@ enum CommandResult parse_set(struct Buffer *buf, struct Buffer *s,
+     }
+     else
+     {
+-      rc = cs_subset_he_string_set(NeoMutt->sub, he, NULL, err);
++      rc = cs_subset_he_string_set(sub, he, NULL, err);
+       if (CSR_RESULT(rc) != CSR_SUCCESS)
+         return MUTT_CMD_ERROR;
+     }
+diff --git a/config/subset.c b/config/subset.c
+index 7cde14886..6fe13cc48 100644
+--- a/config/subset.c
++++ b/config/subset.c
+@@ -107,10 +107,12 @@ void cs_subset_free(struct ConfigSubset **ptr)
+     struct HashElem **list = get_elem_list(sub->cs);
+     for (size_t i = 0; list[i]; i++)
+     {
+-      const char *item = list[i]->key.strkey;
+-      if (mutt_str_startswith(item, scope) != 0)
++      if (mutt_str_startswith(list[i]->key.strkey, scope) != 0)
+       {
++        // The search item may be used after the actual HashElem has been deleted
++        const char *item = mutt_str_strdup(list[i]->key.strkey);
+         cs_uninherit_variable(sub->cs, item);
++        FREE(&item);
+       }
+     }
+     FREE(&list);
+diff --git a/conn/sasl.c b/conn/sasl.c
+index 68baf06b7..2042fcd9a 100644
+--- a/conn/sasl.c
++++ b/conn/sasl.c
+@@ -569,8 +569,7 @@ static int mutt_sasl_conn_poll(struct Connection *conn, time_t wait_secs)
+  * @retval  0 Success
+  * @retval -1 Error
+  *
+- * which also sets various security properties. If this turns out to be fine
+- * for POP too we can probably stop exporting mutt_sasl_get_callbacks().
++ * which also sets various security properties.
+  */
+ int mutt_sasl_client_new(struct Connection *conn, sasl_conn_t **saslconn)
+ {
+diff --git a/core/account.c b/core/account.c
+index cd2d488b2..509ad8d18 100644
+--- a/core/account.c
++++ b/core/account.c
+@@ -140,3 +140,21 @@ void account_free(struct Account **ptr)
+ 
+   FREE(ptr);
+ }
++
++/**
++ * account_find - Find an Account by its name
++ * @param name Name to find
++ * @retval ptr  Matching Account
++ * @retval NULL None found
++ */
++struct Account *account_find(const char *name)
++{
++  struct Account *np = NULL;
++  TAILQ_FOREACH(np, &NeoMutt->accounts, entries)
++  {
++    if (mutt_str_strcmp(name, np->name) == 0)
++      return np;
++  }
++
++  return NULL;
++}
+diff --git a/core/account.h b/core/account.h
+index e74066c76..7bc66d0ed 100644
+--- a/core/account.h
++++ b/core/account.h
+@@ -65,6 +65,7 @@ struct EventAccount
+   struct Account *account; ///< The Account this Event relates to
+ };
+ 
++struct Account *account_find          (const char *name);
+ void            account_free          (struct Account **ptr);
+ bool            account_mailbox_add   (struct Account *a, struct Mailbox *m);
+ bool            account_mailbox_remove(struct Account *a, struct Mailbox *m);
+diff --git a/core/mailbox.c b/core/mailbox.c
+index c38ab915b..5c409ad3d 100644
+--- a/core/mailbox.c
++++ b/core/mailbox.c
+@@ -48,9 +48,14 @@ struct Mailbox *mailbox_new(struct Path *path)
+   struct Mailbox *m = mutt_mem_calloc(1, sizeof(struct Mailbox));
+ 
+   if (path)
++  {
+     m->path = path;
++    m->type = path->type;
++  }
+   else
++  {
+     m->path = mutt_path_new();
++  }
+ 
+   m->email_max = 25;
+   m->emails = mutt_mem_calloc(m->email_max, sizeof(struct Email *));
+diff --git a/imap/private.h b/imap/private.h
+index 9ff5fc383..02dd52211 100644
+--- a/imap/private.h
++++ b/imap/private.h
+@@ -208,7 +208,7 @@ struct ImapAccountData
+   char delim;
+   struct Mailbox *mailbox;      ///< Current selected mailbox
+   struct Mailbox *prev_mailbox; ///< Previously selected mailbox
+-  struct Account *account;      ///< Parent Account
++  struct Account *account;      ///< Account that owns this Mailbox
+ };
+ 
+ /**
+diff --git a/index.c b/index.c
+index a2ecf5daa..a3a2f24ca 100644
+--- a/index.c
++++ b/index.c
+@@ -916,8 +916,22 @@ void index_make_entry(char *buf, size_t buflen, struct Menu *menu, int line)
+     }
+   }
+ 
+-  mutt_make_string_flags(buf, buflen, menu->win_index->state.cols,
+-                         NONULL(C_IndexFormat), Context, Context->mailbox, e, flags);
++  // struct Account *a = Context->mailbox->account;
++  struct Mailbox *m = Context->mailbox;
++  if (m)
++  {
++    struct Buffer *value = mutt_buffer_pool_get();
++    cs_subset_str_string_get(m->sub, "index_format", value);
++
++    mutt_make_string_flags(buf, buflen, menu->win_index->state.cols,
++                           mutt_b2s(value), Context, m, e, flags);
++    mutt_buffer_pool_release(&value);
++  }
++  else
++  {
++    mutt_make_string_flags(buf, buflen, menu->win_index->state.cols,
++                           NONULL(C_IndexFormat), Context, Context->mailbox, e, flags);
++  }
+ }
+ 
+ /**
+diff --git a/init.c b/init.c
+index 51084b6a8..89833b8b4 100644
+--- a/init.c
++++ b/init.c
+@@ -65,6 +65,8 @@
+ #include "compress/lib.h"
+ #include "history/lib.h"
+ #include "store/lib.h"
++#include "tracker.h"
++#include "version.h"
+ #ifdef USE_HCACHE
+ #include "hcache/lib.h"
+ #endif
+@@ -205,6 +207,7 @@ static int execute_commands(struct ListHead *p)
+   int rc = 0;
+   struct Buffer *err = mutt_buffer_pool_get();
+ 
++  // printf("\033[1;32mstart of commands\033[0m\n");
+   struct ListNode *np = NULL;
+   STAILQ_FOREACH(np, p, entries)
+   {
+@@ -222,6 +225,7 @@ static int execute_commands(struct ListHead *p)
+   }
+   mutt_buffer_pool_release(&err);
+ 
++  // printf("\033[1;32mend of commands\033[0m\n");
+   return rc;
+ }
+ 
+@@ -986,6 +990,7 @@ enum CommandResult mutt_parse_rc_buffer(struct Buffer *line,
+   if (mutt_buffer_len(line) == 0)
+     return 0;
+ 
++  // printf("\033[1;33mRC: %s\033[0m\n", line);
+   int i;
+   enum CommandResult rc = MUTT_CMD_SUCCESS;
+ 
+diff --git a/main.c b/main.c
+index c84cb758f..10ab5e5ca 100644
+--- a/main.c
++++ b/main.c
+@@ -74,6 +74,7 @@
+ #include "protos.h"
+ #include "send.h"
+ #include "sendlib.h"
++#include "tracker.h"
+ #include "version.h"
+ #include "ncrypt/lib.h"
+ #ifdef ENABLE_NLS
+@@ -1204,7 +1205,21 @@ int main(int argc, char *argv[], char *envp[])
+     notify_send(NeoMutt->notify, NT_GLOBAL, NT_GLOBAL_STARTUP, NULL);
+ 
+     repeat_error = true;
+-    struct Mailbox *m = mx_path_resolve(mutt_b2s(&folder), C_Folder);
++    struct Path *path = mutt_path_new();
++    path->orig = mutt_buffer_strdup(&folder);
++    mx_path2_resolve(path, C_Folder);
++    struct Mailbox *m = mx_path2_find(path);
++    if (m)
++    {
++      mutt_path_free(&path);
++    }
++    else
++    {
++      m = mailbox_new(path);
++      m->mx_ops = mx_get_ops(m->type);
++      m->flags = MB_HIDDEN;
++      path = NULL;
++    }
+     Context = mx_mbox_open(m, ((flags & MUTT_CLI_RO) || C_ReadOnly) ? MUTT_READONLY : MUTT_OPEN_NO_FLAGS);
+     if (!Context)
+     {
+diff --git a/mutt/hash.c b/mutt/hash.c
+index db2bc001c..f40e61a02 100644
+--- a/mutt/hash.c
++++ b/mutt/hash.c
+@@ -227,9 +227,14 @@ static void union_hash_delete(struct HashTable *table, union HashKey key, const
+     {
+       *last = he->next;
+       if (table->hdata_free)
++      {
+         table->hdata_free(he->type, he->data, table->hdata);
++        he->data = NULL;
++      }
+       if (table->strdup_keys)
+         FREE(&he->key.strkey);
++      else
++        he->key.strkey = NULL;
+       FREE(&he);
+ 
+       he = *last;
+diff --git a/mutt_account.c b/mutt_account.c
+index 954c7dd0a..a3f43358a 100644
+--- a/mutt_account.c
++++ b/mutt_account.c
+@@ -30,8 +30,13 @@
+ #include <stdio.h>
+ #include "mutt/lib.h"
+ #include "email/lib.h"
++#include "core/lib.h"
+ #include "conn/lib.h"
+ #include "mutt_account.h"
++#include "mutt_globals.h"
++#include "init.h"
++#include "options.h"
++#include "tracker.h"
+ 
+ /**
+  * mutt_account_fromurl - Fill ConnAccount with information from url
+@@ -132,3 +137,57 @@ void mutt_account_tourl(struct ConnAccount *cac, struct Url *url)
+   if (cac->flags & MUTT_ACCT_PASS)
+     url->pass = cac->pass;
+ }
++
++/**
++ * mutt_parse_account - Parse the 'account' command - Implements Command::parse()
++ */
++enum CommandResult mutt_parse_account(struct Buffer *buf, struct Buffer *s,
++                                      intptr_t data, struct Buffer *err)
++{
++  /* Go back to the default account */
++  if (!MoreArgs(s))
++  {
++    ct_set_account(NULL);
++    return MUTT_CMD_SUCCESS;
++  }
++
++  mutt_extract_token(buf, s, MUTT_TOKEN_NO_FLAGS);
++
++  struct Account *a = account_find(buf->data);
++  if (!a)
++  {
++    a = account_new(buf->data, NeoMutt->sub);
++    neomutt_account_add(NeoMutt, a);
++  }
++
++  /* Set the current account, nothing more to do */
++  if (!MoreArgs(s))
++  {
++    ct_set_account(a);
++    return MUTT_CMD_SUCCESS;
++  }
++
++  /* Temporarily alter the current account */
++  ct_push_top();
++  ct_set_account(a);
++
++  /* Process the rest of the line */
++  enum CommandResult rc = mutt_parse_rc_line(s->dptr, err);
++  if (rc == MUTT_CMD_ERROR)
++    mutt_error("%s", err->data);
++
++  ct_pop(); // Restore the previous account
++  mutt_buffer_reset(s);
++
++  return rc;
++}
++
++/**
++ * mutt_parse_unaccount - Parse the 'unaccount' command - Implements Command::parse()
++ */
++enum CommandResult mutt_parse_unaccount(struct Buffer *buf, struct Buffer *s,
++                                        intptr_t data, struct Buffer *err)
++{
++  mutt_message("%s", s->data);
++  return MUTT_CMD_SUCCESS;
++}
+diff --git a/mutt_account.h b/mutt_account.h
+index 4362e0f0b..28500fff2 100644
+--- a/mutt_account.h
++++ b/mutt_account.h
+@@ -25,6 +25,10 @@
+ #ifndef MUTT_MUTT_ACCOUNT_H
+ #define MUTT_MUTT_ACCOUNT_H
+ 
++#include <stdbool.h>
++#include <stdint.h>
++#include "mutt_commands.h"
++
+ struct ConnAccount;
+ struct Url;
+ 
+@@ -43,4 +47,7 @@ enum AccountType
+ int   mutt_account_fromurl(struct ConnAccount *account, const struct Url *url);
+ void  mutt_account_tourl  (struct ConnAccount *account, struct Url *url);
+ 
++enum CommandResult mutt_parse_account  (struct Buffer *buf, struct Buffer *s, intptr_t data, struct Buffer *err);
++enum CommandResult mutt_parse_unaccount(struct Buffer *buf, struct Buffer *s, intptr_t data, struct Buffer *err);
++
+ #endif /* MUTT_MUTT_ACCOUNT_H */
+diff --git a/mutt_commands.c b/mutt_commands.c
+index a89d34071..c83013b78 100644
+--- a/mutt_commands.c
++++ b/mutt_commands.c
+@@ -38,6 +38,8 @@
+ #include "mutt_commands.h"
+ #include "command_parse.h"
+ #include "mutt_globals.h"
++#include "init.h"
++#include "mutt_account.h"
+ #include "hook.h"
+ #include "keymap.h"
+ #include "mutt_lua.h"
+@@ -46,6 +48,7 @@
+ // clang-format off
+ const struct Command Commands[] = {
+ #ifdef USE_SOCKET
++  { "account",             mutt_parse_account,     0 },
+   { "account-hook",        mutt_parse_hook,        MUTT_ACCOUNT_HOOK },
+ #endif
+   { "alias",               parse_alias,            0 },
+@@ -122,6 +125,7 @@ const struct Command Commands[] = {
+   { "tag-transforms",      parse_tag_transforms,   0 },
+   { "timeout-hook",        mutt_parse_hook,        MUTT_TIMEOUT_HOOK | MUTT_GLOBAL_HOOK },
+   { "toggle",              parse_set,              MUTT_SET_INV },
++  { "unaccount",           mutt_parse_unaccount,   0 },
+   { "unalias",             parse_unalias,          0 },
+   { "unalternates",        parse_unalternates,     0 },
+   { "unalternative_order", parse_unstailq,         IP &AlternativeOrderList },
+diff --git a/mutt_config.c b/mutt_config.c
+index b9078747e..e00687edd 100644
+--- a/mutt_config.c
++++ b/mutt_config.c
+@@ -1190,7 +1190,7 @@ struct ConfigDef MuttVars[] = {
+   ** .pp
+   ** If set, flagged messages can't be deleted.
+   */
+-  { "folder", DT_STRING|DT_MAILBOX, &C_Folder, IP "~/Mail" },
++  { "folder", DT_STRING|DT_MAILBOX|DT_INHERIT_ACC, &C_Folder, IP "~/Mail" },
+   /*
+   ** .pp
+   ** Specifies the default location of your mailboxes.  A "+" or "=" at the
+@@ -1869,7 +1869,7 @@ struct ConfigDef MuttVars[] = {
+   ** This option is a format string, please see the description of
+   ** $$index_format for supported \fCprintf(3)\fP-style sequences.
+   */
+-  { "index_format", DT_STRING|DT_NOT_EMPTY|R_INDEX|R_PAGER, &C_IndexFormat, IP "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s" },
++  { "index_format", DT_STRING|DT_NOT_EMPTY|R_INDEX|R_PAGER|DT_INHERIT_ACC|DT_INHERIT_MBOX, &C_IndexFormat, IP "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s" },
+   /*
+   ** .pp
+   ** This variable allows you to customize the message index display to
+@@ -4679,7 +4679,7 @@ struct ConfigDef MuttVars[] = {
+   ** When \fIset\fP, the internal-pager will pad blank lines to the bottom of the
+   ** screen with a tilde ("~").
+   */
+-  { "time_inc", DT_NUMBER|DT_NOT_NEGATIVE, &C_TimeInc, 0 },
++  { "time_inc", DT_NUMBER|DT_NOT_NEGATIVE|DT_INHERIT_ACC|DT_INHERIT_MBOX, &C_TimeInc, 0 },
+   /*
+   ** .pp
+   ** Along with $$read_inc, $$write_inc, and $$net_inc, this
+diff --git a/mx.c b/mx.c
+index a263aafc7..4b454e82b 100644
+--- a/mx.c
++++ b/mx.c
+@@ -1748,3 +1748,55 @@ int mx_save_hcache(struct Mailbox *m, struct Email *e)
+ 
+   return m->mx_ops->msg_save_hcache(m, e);
+ }
++
++/**
++ * mx_ac2_find - Find the Account owning a Mailbox Path
++ * @param path Mailbox Path
++ * @retval ptr  Account
++ * @retval NULL None found
++ */
++struct Account *mx_ac2_find(const struct Path *path)
++{
++  if (!path || !path->orig || (path->type <= MUTT_UNKNOWN) || !(path->flags & MPATH_RESOLVED))
++    return NULL;
++
++  const struct MxOps *ops = mx_get_ops(path->type);
++  if (!ops)
++    return NULL;
++
++  struct Account *np = NULL;
++  TAILQ_FOREACH(np, &NeoMutt->accounts, entries)
++  {
++    if (np->type != path->type)
++      continue;
++
++    if (ops->ac2_is_owner(np, path) == 0)
++      return np;
++  }
++
++  return NULL;
++}
++
++/**
++ * mx_path_find - Find a Mailbox by its Path
++ * XXX
++ */
++struct Mailbox *mx_path2_find(struct Path *path)
++{
++  struct MailboxList ml = STAILQ_HEAD_INITIALIZER(ml);
++  neomutt_mailboxlist_get_all(&ml, NeoMutt, path->type);
++  struct MailboxNode *np = NULL;
++  struct Mailbox *m = NULL;
++
++  STAILQ_FOREACH(np, &ml, entries)
++  {
++    if (mx_path2_compare(np->mailbox->path, path) == 0)
++    {
++      m = np->mailbox;
++      break;
++    }
++  }
++
++  neomutt_mailboxlist_clear(&ml);
++  return m;
++}
+diff --git a/mx.h b/mx.h
+index 844845018..caed708d1 100644
+--- a/mx.h
++++ b/mx.h
+@@ -478,6 +478,8 @@ int              mx_path2_compare(struct Path *path1, struct Path *path2);
+ int              mx_path2_parent (const struct Path *path, struct Path **parent);
+ int              mx_path2_pretty (struct Path *path, const char *folder);
+ enum MailboxType mx_path2_probe  (struct Path *path);
+-int              mx_path2_resolve(struct Path *path);
++int              mx_path2_resolve(struct Path *path, const char *folder);
++struct Mailbox * mx_path2_find   (struct Path *path);
++struct Account * mx_ac2_find     (const struct Path *path);
+ 
+ #endif /* MUTT_MX_H */
+diff --git a/mx_path.c b/mx_path.c
+index 8e9ae262e..f90b414fe 100644
+--- a/mx_path.c
++++ b/mx_path.c
+@@ -62,7 +62,8 @@ static int path2_tidy(struct Path *path)
+ 
+ /**
+  * path2_resolve - Resolve special strings in a Mailbox Path
+- * @param path Path to resolve
++ * @param path   Path to resolve
++ * @param folder Current $folder
+  * @retval  0 Success
+  * @retval -1 Failure
+  *
+@@ -83,7 +84,7 @@ static int path2_tidy(struct Path *path)
+  *
+  * @note Paths beginning with `~` will be expanded later by MxOps::path2_tidy()
+  */
+-static int path2_resolve(struct Path *path)
++static int path2_resolve(struct Path *path, const char *folder)
+ {
+   if (!path || !path->orig)
+     return -1;
+@@ -104,15 +105,15 @@ static int path2_resolve(struct Path *path)
+     }
+     else if ((buf[0] == '+') || (buf[0] == '='))
+     {
+-      size_t folder_len = mutt_str_strlen(C_Folder);
+-      if ((folder_len > 0) && (C_Folder[folder_len - 1] != '/'))
++      size_t folder_len = mutt_str_strlen(folder);
++      if ((folder_len > 0) && (folder[folder_len - 1] != '/'))
+       {
+         buf[0] = '/';
+-        mutt_str_inline_replace(buf, sizeof(buf), 0, C_Folder);
++        mutt_str_inline_replace(buf, sizeof(buf), 0, folder);
+       }
+       else
+       {
+-        mutt_str_inline_replace(buf, sizeof(buf), 1, C_Folder);
++        mutt_str_inline_replace(buf, sizeof(buf), 1, folder);
+       }
+     }
+     else if ((buf[1] == '/') || (buf[1] == '\0'))
+@@ -317,9 +318,9 @@ int mx_path2_probe(struct Path *path)
+ /**
+  * mx_path2_resolve - XXX
+  */
+-int mx_path2_resolve(struct Path *path)
++int mx_path2_resolve(struct Path *path, const char *folder)
+ {
+-  int rc = path2_resolve(path);
++  int rc = path2_resolve(path, folder);
+   if (rc < 0)
+     return rc;
+ 
+diff --git a/tracker.c b/tracker.c
+new file mode 100644
+index 000000000..fdffe488c
+--- /dev/null
++++ b/tracker.c
+@@ -0,0 +1,210 @@
++/**
++ * @file
++ * Keep track of the current Account and Mailbox
++ *
++ * @authors
++ * Copyright (C) 2019 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++/**
++ * @page tracker Keep track of the current Account and Mailbox
++ *
++ * When reading a config file, keep track of the current Account and Mailbox.
++ */
++
++#include "config.h"
++#include "mutt/lib.h"
++#include "core/lib.h"
++#include "tracker.h"
++
++/**
++ * struct ScopePair - A list of Account,Mailbox pairs
++ *
++ * This is used to keep track of the current 'account' or 'mailbox' command in
++ * the config file.
++ */
++struct ScopePair
++{
++  struct Account *account;
++  struct Mailbox *mailbox;
++  STAILQ_ENTRY(ScopePair) entries;
++};
++STAILQ_HEAD(ScopePairHead, ScopePair);
++
++struct ScopePairHead ConfigStack = STAILQ_HEAD_INITIALIZER(ConfigStack);
++
++/**
++ * ct_get_account - Get the current Account
++ * @retval ptr  An Account
++ * @retval NULL If no 'account' command in use
++ */
++struct Account *ct_get_account(void)
++{
++  struct ScopePair *sp = NULL;
++  STAILQ_FOREACH(sp, &ConfigStack, entries)
++  {
++    if (sp->account)
++      return sp->account;
++  }
++
++  return NULL;
++}
++
++/**
++ * ct_set_account - Set the current Account
++ * @param a Account
++ *
++ * The 'account' command will scope the following config commands.
++ */
++void ct_set_account(struct Account *a)
++{
++  // printf("\033[1;31mset account: %s\033[0m\n", a ? a->name : "[NONE]");
++  struct ScopePair *sp = STAILQ_FIRST(&ConfigStack);
++  if (!sp)
++  {
++    mutt_error("FAIL - stack empty1");
++    return;
++  }
++
++  if (!sp->account && !a)
++    mutt_error("WARN - no active account1");
++  else
++  {
++    sp->account = a;
++    sp->mailbox = NULL;
++  }
++  // ct_dump();
++}
++
++/**
++ * ct_get_mailbox - Get the current Mailbox
++ * @retval ptr  A Mailbox
++ * @retval NULL If no 'mailbox' command in use
++ */
++struct Mailbox *ct_get_mailbox(void)
++{
++  struct ScopePair *sp = NULL;
++  STAILQ_FOREACH(sp, &ConfigStack, entries)
++  {
++    if (sp->account)
++      return sp->mailbox;
++  }
++
++  return NULL;
++}
++
++/**
++ * ct_set_mailbox - Set the current Mailbox
++ * @param m Mailbox
++ *
++ * The 'mailbox' command will scope the following config commands.
++ */
++void ct_set_mailbox(struct Mailbox *m)
++{
++  // printf("\033[1;34mset mailbox: %s\033[0m\n", m ? m->path->desc : "[NONE]");
++  struct ScopePair *sp = STAILQ_FIRST(&ConfigStack);
++  if (!sp)
++    return;
++
++  if (sp->account)
++    sp->mailbox = m;
++  // ct_dump();
++}
++
++/**
++ * ct_push_top - Duplicate the top of the Account/Mailbox stack
++ *
++ * When a new config file is read, the 'account' or 'mailbox' commands are
++ * inherited.
++ */
++void ct_push_top(void)
++{
++  // printf("\033[1;31mpush top\033[0m\n");
++  struct ScopePair *sp_dup = mutt_mem_calloc(1, sizeof(*sp_dup));
++
++  struct ScopePair *sp = STAILQ_FIRST(&ConfigStack);
++  if (sp)
++  {
++    sp_dup->account = sp->account;
++    sp_dup->mailbox = sp->mailbox;
++  }
++
++  STAILQ_INSERT_HEAD(&ConfigStack, sp_dup, entries);
++  // ct_dump();
++}
++
++/**
++ * ct_pop - Pop the current Account/Mailbox from the stack
++ *
++ * When the end of a config file is reached, the current 'account' or 'mailbox'
++ * scope ends.
++ */
++void ct_pop(void)
++{
++  // printf("\033[1;31mpop\033[0m\n");
++  struct ScopePair *sp = STAILQ_FIRST(&ConfigStack);
++  if (!sp)
++  {
++    mutt_error("FAIL - stack empty2");
++    return;
++  }
++
++  STAILQ_REMOVE_HEAD(&ConfigStack, entries);
++  FREE(&sp);
++  // ct_dump();
++}
++
++/**
++ * ct_get_sub - Get the active Config Subset
++ * @retval ptr  Config Subset
++ *
++ * This will depend on any 'account' or 'mailbox' config commands.
++ * If none is active, then the global Subset (from NeoMutt) will be returned.
++ */
++struct ConfigSubset *ct_get_sub(void)
++{
++  struct ScopePair *sp = NULL;
++  STAILQ_FOREACH(sp, &ConfigStack, entries)
++  {
++    if (sp->mailbox)
++      return sp->mailbox->sub;
++    else if (sp->account)
++      return sp->account->sub;
++  }
++
++  return NeoMutt->sub;
++}
++
++/**
++ * ct_dump - Dump the tracker stack
++ */
++void ct_dump(void)
++{
++  size_t i = 0;
++  struct ScopePair *sp = NULL;
++  printf("tracker stack:");
++  STAILQ_FOREACH(sp, &ConfigStack, entries)
++  {
++    i++;
++    struct Account *a = sp->account;
++    const char *a_name = a ? a->name : "-";
++    struct Mailbox *m = sp->mailbox;
++    const char *m_name = m ? m->path->desc : "-";
++    printf(" (%s,%s)", a_name, m_name);
++  }
++  printf("\n");
++}
+diff --git a/tracker.h b/tracker.h
+new file mode 100644
+index 000000000..a113095bf
+--- /dev/null
++++ b/tracker.h
+@@ -0,0 +1,37 @@
++/**
++ * @file
++ * Keep track of the current Account and Mailbox
++ *
++ * @authors
++ * Copyright (C) 1996-2000,2010,2013 Michael R. Elkins <me@mutt.org>
++ * Copyright (C) 2019 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef MUTT_TRACKER_H
++#define MUTT_TRACKER_H
++
++struct Account *     ct_get_account(void);
++struct Mailbox *     ct_get_mailbox(void);
++struct ConfigSubset *ct_get_sub(void);
++void                 ct_pop(void);
++void                 ct_push_top(void);
++void                 ct_set_account(struct Account *a);
++void                 ct_set_mailbox(struct Mailbox *m);
++
++void ct_dump(void);
++
++#endif /* MUTT_TRACKER_H */

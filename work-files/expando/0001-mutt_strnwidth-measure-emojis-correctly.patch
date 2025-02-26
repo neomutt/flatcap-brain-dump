@@ -1,0 +1,26 @@
+From 3ef60a9d65d5ae6b83d2c47d29779b7d4e3466e9 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Fri, 16 Feb 2024 19:48:51 +0000
+Subject: [PATCH] mutt_strnwidth: measure emojis correctly
+
+---
+ gui/curs_lib.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/gui/curs_lib.c b/gui/curs_lib.c
+index 4028b8ca0..6f7205498 100644
+--- a/gui/curs_lib.c
++++ b/gui/curs_lib.c
+@@ -483,7 +483,11 @@ size_t mutt_strnwidth(const char *s, size_t n)
+     }
+     if (!IsWPrint(wc))
+       wc = '?';
+-    w += wcwidth(wc);
++
++    if (wc == 0xfe0f) // Emoji variation
++      w++;
++    else
++      w += wcwidth(wc);
+   }
+   return w;
+ }

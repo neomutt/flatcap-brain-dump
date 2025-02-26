@@ -1,0 +1,1238 @@
+From adef42f848cd8a32b687d9890e958edff7e6693a Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Sun, 24 May 2020 17:26:54 +0100
+Subject: [PATCH 01/11] 10 Refactor mutt_send_message() into multiple functions
+
+The functions are delineated by points of editing where we want to
+resume.
+
+Create SendContext to contain all the state logic.
+
+Upstream-commit: https://gitlab.com/muttmua/mutt/commit/2b6fc1b4512a678f5e5a9574d6f01c256cb20856
+Co-authored-by: Richard Russon <rich@flatcap.org>
+---
+ send/send.c | 669 +++++++++++++++++++++++++++++++++++----------------------
+ send/lib.h |  23 ++
+ 2 files changed, 432 insertions(+), 260 deletions(-)
+
+diff --git a/send/send.c b/send/send.c
+index 0e43e2b53..d5a496031 100644
+--- a/send/send.c
++++ b/send/send.c
+@@ -134,6 +134,36 @@ char *C_Signature; ///< Config: File containing a signature to append to all mai
+ bool C_SigOnTop;   ///< Config: Insert the signature before the quoted text
+ bool C_UseFrom;    ///< Config: Set the 'From' header for outgoing mail
+ 
++/**
++ * send_ctx_new - XXX
++ */
++static struct SendContext *send_ctx_new(void)
++{
++  struct SendContext *sctx = mutt_mem_calloc(1, sizeof(struct SendContext));
++
++  sctx->fcc = mutt_buffer_make(1024);
++
++  return sctx;
++}
++
++/**
++ * send_ctx_free - XXX
++ */
++static void send_ctx_free(struct SendContext **ptr)
++{
++  if (!ptr || !*ptr)
++    return;
++
++  struct SendContext *sctx = *ptr;
++
++  if (!(sctx->flags & SEND_NO_FREE_HEADER))
++    email_free(&sctx->e_templ);
++  mutt_buffer_dealloc(&sctx->fcc);
++  FREE(&sctx->ctx_realpath);
++
++  FREE(ptr);
++}
++
+ /**
+  * append_signature - Append a signature to an email
+  * @param fp File to write to
+@@ -1819,53 +1849,25 @@ static int postpone_message(struct Email *e_post, struct Email *e_cur,
+ }
+ 
+ /**
+- * mutt_send_message - Send an email
+- * @param flags    Send mode, see #SendFlags
+- * @param e_templ  Template to use for new message
+- * @param tempfile File specified by -i or -H
+- * @param ctx      Current mailbox
+- * @param el       List of Emails to send
+- * @retval  0 Message was successfully sent
+- * @retval -1 Message was aborted or an error occurred
+- * @retval  1 Message was postponed
++ * send_message_setup - XXX
+  */
+-int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfile,
+-                      struct Context *ctx, struct EmailList *el)
++static int send_message_setup(struct SendContext *sctx, const char *tempfile,
++                              struct Context *ctx, char **pgp_signas, char **smime_signas)
+ {
+-  char buf[1024];
+-  struct Buffer fcc = mutt_buffer_make(0); /* where to copy this message */
++  int rc = -1;
+   FILE *fp_tmp = NULL;
+   struct Body *pbody = NULL;
+-  int i;
+-  bool free_clear_content = false;
+-
+-  struct Body *clear_content = NULL;
+-  char *pgpkeylist = NULL;
+-  /* save current value of "pgp_sign_as"  and "smime_default_key" */
+-  char *pgp_signas = NULL;
+-  char *smime_signas = NULL;
+-  const char *tag = NULL;
+-  char *err = NULL;
+   char *ctype = NULL;
+-  char *finalpath = NULL;
+-  struct EmailNode *en = NULL;
+-  struct Email *e_cur = NULL;
+-
+-  if (el)
+-    en = STAILQ_FIRST(el);
+-  if (en)
+-    e_cur = STAILQ_NEXT(en, entries) ? NULL : en->email;
+-
+-  int rc = -1;
++  char buf[1024];
+ 
+ #ifdef USE_NNTP
+-  if (flags & SEND_NEWS)
++  if (sctx->flags & SEND_NEWS)
+     OptNewsSend = true;
+   else
+     OptNewsSend = false;
+ #endif
+ 
+-  if (!flags && !e_templ && (C_Recall != MUTT_NO) &&
++  if (!sctx->flags && !sctx->e_templ && (C_Recall != MUTT_NO) &&
+       mutt_num_postponed(ctx ? ctx->mailbox : NULL, true))
+   {
+     /* If the user is composing a new message, check to see if there
+@@ -1873,125 +1875,119 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+     enum QuadOption ans =
+         query_quadoption(C_Recall, _("Recall postponed message?"));
+     if (ans == MUTT_ABORT)
+-      return rc;
++      goto cleanup;
+ 
+     if (ans == MUTT_YES)
+-      flags |= SEND_POSTPONED;
++      sctx->flags |= SEND_POSTPONED;
+   }
+ 
+-  /* Allocate the buffer due to the long lifetime, but
+-   * pre-resize it to ensure there are no NULL data field issues */
+-  mutt_buffer_alloc(&fcc, 1024);
+-
+-  if (flags & SEND_POSTPONED)
++  if (sctx->flags & SEND_POSTPONED)
+   {
+     if (WithCrypto & APPLICATION_PGP)
+-      pgp_signas = mutt_str_strdup(C_PgpSignAs);
++      *pgp_signas = mutt_str_strdup(C_PgpSignAs);
+     if (WithCrypto & APPLICATION_SMIME)
+-      smime_signas = mutt_str_strdup(C_SmimeSignAs);
++      *smime_signas = mutt_str_strdup(C_SmimeSignAs);
+   }
+ 
+   /* Delay expansion of aliases until absolutely necessary--shouldn't
+    * be necessary unless we are prompting the user or about to execute a
+    * send-hook.  */
+ 
+-  if (!e_templ)
++  if (!sctx->e_templ)
+   {
+-    e_templ = email_new();
++    sctx->e_templ = email_new();
+ 
+-    if (flags == SEND_POSTPONED)
++    if (sctx->flags == SEND_POSTPONED)
+     {
+-      rc = mutt_get_postponed(ctx, e_templ, &e_cur, &fcc);
+-      if (rc < 0)
+-      {
+-        flags = SEND_POSTPONED;
++      int tmpflags = mutt_get_postponed(ctx, sctx->e_templ, &sctx->e_cur, &sctx->fcc);
++      if (tmpflags < 0)
+         goto cleanup;
+-      }
+-      flags = rc;
++      sctx->flags |= tmpflags;
+ #ifdef USE_NNTP
+       /* If postponed message is a news article, it have
+        * a "Newsgroups:" header line, then set appropriate flag.  */
+-      if (e_templ->env->newsgroups)
++      if (sctx->e_templ->env->newsgroups)
+       {
+-        flags |= SEND_NEWS;
++        sctx->flags |= SEND_NEWS;
+         OptNewsSend = true;
+       }
+       else
+       {
+-        flags &= ~SEND_NEWS;
++        sctx->flags &= ~SEND_NEWS;
+         OptNewsSend = false;
+       }
+ #endif
+     }
+ 
+-    if (flags & (SEND_POSTPONED | SEND_RESEND))
++    if (sctx->flags & (SEND_POSTPONED | SEND_RESEND))
+     {
+-      fp_tmp = mutt_file_fopen(e_templ->content->filename, "a+");
++      fp_tmp = mutt_file_fopen(sctx->e_templ->content->filename, "a+");
+       if (!fp_tmp)
+       {
+-        mutt_perror(e_templ->content->filename);
++        mutt_perror(sctx->e_templ->content->filename);
+         goto cleanup;
+       }
+     }
+ 
+-    if (!e_templ->env)
+-      e_templ->env = mutt_env_new();
++    if (!sctx->e_templ->env)
++      sctx->e_templ->env = mutt_env_new();
+   }
+ 
+   /* Parse and use an eventual list-post header */
+-  if ((flags & SEND_LIST_REPLY) && e_cur && e_cur->env && e_cur->env->list_post)
++  if ((sctx->flags & SEND_LIST_REPLY) && sctx->e_cur && sctx->e_cur->env &&
++      sctx->e_cur->env->list_post)
+   {
+     /* Use any list-post header as a template */
+-    mutt_parse_mailto(e_templ->env, NULL, e_cur->env->list_post);
++    mutt_parse_mailto(sctx->e_templ->env, NULL, sctx->e_cur->env->list_post);
+     /* We don't let them set the sender's address. */
+-    mutt_addrlist_clear(&e_templ->env->from);
++    mutt_addrlist_clear(&sctx->e_templ->env->from);
+   }
+ 
+-  if (!(flags & (SEND_KEY | SEND_POSTPONED | SEND_RESEND)))
++  if (!(sctx->flags & (SEND_KEY | SEND_POSTPONED | SEND_RESEND)))
+   {
+     /* When SEND_DRAFT_FILE is set, the caller has already
+      * created the "parent" body structure.  */
+-    if (!(flags & SEND_DRAFT_FILE))
++    if (!(sctx->flags & SEND_DRAFT_FILE))
+     {
+       pbody = mutt_body_new();
+-      pbody->next = e_templ->content; /* don't kill command-line attachments */
+-      e_templ->content = pbody;
++      pbody->next = sctx->e_templ->content; /* don't kill command-line attachments */
++      sctx->e_templ->content = pbody;
+ 
+       ctype = mutt_str_strdup(C_ContentType);
+       if (!ctype)
+         ctype = mutt_str_strdup("text/plain");
+-      mutt_parse_content_type(ctype, e_templ->content);
++      mutt_parse_content_type(ctype, sctx->e_templ->content);
+       FREE(&ctype);
+-      e_templ->content->unlink = true;
+-      e_templ->content->use_disp = false;
+-      e_templ->content->disposition = DISP_INLINE;
++      sctx->e_templ->content->unlink = true;
++      sctx->e_templ->content->use_disp = false;
++      sctx->e_templ->content->disposition = DISP_INLINE;
+ 
+       if (tempfile)
+       {
+         fp_tmp = mutt_file_fopen(tempfile, "a+");
+-        e_templ->content->filename = mutt_str_strdup(tempfile);
++        sctx->e_templ->content->filename = mutt_str_strdup(tempfile);
+       }
+       else
+       {
+         mutt_mktemp(buf, sizeof(buf));
+         fp_tmp = mutt_file_fopen(buf, "w+");
+-        e_templ->content->filename = mutt_str_strdup(buf);
++        sctx->e_templ->content->filename = mutt_str_strdup(buf);
+       }
+     }
+     else
+-      fp_tmp = mutt_file_fopen(e_templ->content->filename, "a+");
++      fp_tmp = mutt_file_fopen(sctx->e_templ->content->filename, "a+");
+ 
+     if (!fp_tmp)
+     {
+       mutt_debug(LL_DEBUG1, "can't create tempfile %s (errno=%d)\n",
+-                 e_templ->content->filename, errno);
+-      mutt_perror(e_templ->content->filename);
++                 sctx->e_templ->content->filename, errno);
++      mutt_perror(sctx->e_templ->content->filename);
+       goto cleanup;
+     }
+   }
+ 
+   /* this is handled here so that the user can match ~f in send-hook */
+-  if (e_cur && C_ReverseName && !(flags & (SEND_POSTPONED | SEND_RESEND)))
++  if (sctx->e_cur && C_ReverseName && !(sctx->flags & (SEND_POSTPONED | SEND_RESEND)))
+   {
+     /* We shouldn't have to worry about alias expansion here since we are
+      * either replying to a real or postponed message, therefore no aliases
+@@ -1999,63 +1995,65 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+      * addresses to the list.  We just have to ensure the postponed messages
+      * have their aliases expanded.  */
+ 
+-    if (!TAILQ_EMPTY(&e_templ->env->from))
++    if (!TAILQ_EMPTY(&sctx->e_templ->env->from))
+     {
+-      mutt_debug(LL_DEBUG5, "e_templ->env->from before set_reverse_name: %s\n",
+-                 TAILQ_FIRST(&e_templ->env->from)->mailbox);
+-      mutt_addrlist_clear(&e_templ->env->from);
++      mutt_debug(LL_DEBUG5, "sctx->e_templ->env->from before set_reverse_name: %s\n",
++                 TAILQ_FIRST(&sctx->e_templ->env->from)->mailbox);
++      mutt_addrlist_clear(&sctx->e_templ->env->from);
+     }
+-    set_reverse_name(&e_templ->env->from, e_cur->env);
++    set_reverse_name(&sctx->e_templ->env->from, sctx->e_cur->env);
+   }
+-  if (e_cur && C_ReplyWithXorig && !(flags & (SEND_POSTPONED | SEND_RESEND | SEND_FORWARD)))
++  if (sctx->e_cur && C_ReplyWithXorig &&
++      !(sctx->flags & (SEND_POSTPONED | SEND_RESEND | SEND_FORWARD)))
+   {
+-    /* We shouldn't have to worry about freeing 'e_templ->env->from' before
++    /* We shouldn't have to worry about freeing 'sctx->e_templ->env->from' before
+      * setting it here since this code will only execute when doing some
+      * sort of reply. The pointer will only be set when using the -H command
+      * line option.
+      *
+-     * If there is already a from address recorded in 'e_templ->env->from',
++     * If there is already a from address recorded in 'sctx->e_templ->env->from',
+      * then it theoretically comes from C_ReverseName handling, and we don't use
+      * the 'X-Orig-To header'.  */
+-    if (!TAILQ_EMPTY(&e_cur->env->x_original_to) && TAILQ_EMPTY(&e_templ->env->from))
++    if (!TAILQ_EMPTY(&sctx->e_cur->env->x_original_to) &&
++        TAILQ_EMPTY(&sctx->e_templ->env->from))
+     {
+-      mutt_addrlist_copy(&e_templ->env->from, &e_cur->env->x_original_to, false);
+-      mutt_debug(LL_DEBUG5, "e_templ->env->from extracted from X-Original-To: header: %s\n",
+-                 TAILQ_FIRST(&e_templ->env->from)->mailbox);
++      mutt_addrlist_copy(&sctx->e_templ->env->from, &sctx->e_cur->env->x_original_to, false);
++      mutt_debug(LL_DEBUG5, "sctx->e_templ->env->from extracted from X-Original-To: header: %s\n",
++                 TAILQ_FIRST(&sctx->e_templ->env->from)->mailbox);
+     }
+   }
+ 
+-  if (!(flags & (SEND_POSTPONED | SEND_RESEND)) &&
+-      !((flags & SEND_DRAFT_FILE) && C_ResumeDraftFiles))
++  if (!(sctx->flags & (SEND_POSTPONED | SEND_RESEND)) &&
++      !((sctx->flags & SEND_DRAFT_FILE) && C_ResumeDraftFiles))
+   {
+-    if ((flags & (SEND_REPLY | SEND_FORWARD | SEND_TO_SENDER)) && ctx &&
+-        (envelope_defaults(e_templ->env, ctx->mailbox, el, flags) == -1))
++    if ((sctx->flags & (SEND_REPLY | SEND_FORWARD | SEND_TO_SENDER)) && ctx &&
++        (envelope_defaults(sctx->e_templ->env, ctx->mailbox, sctx->el, sctx->flags) == -1))
+     {
+       goto cleanup;
+     }
+ 
+     if (C_Hdrs)
+-      process_user_recips(e_templ->env);
++      process_user_recips(sctx->e_templ->env);
+ 
+     /* Expand aliases and remove duplicates/crossrefs */
+-    mutt_expand_aliases_env(e_templ->env);
++    mutt_expand_aliases_env(sctx->e_templ->env);
+ 
+-    if (flags & SEND_REPLY)
+-      mutt_fix_reply_recipients(e_templ->env);
++    if (sctx->flags & SEND_REPLY)
++      mutt_fix_reply_recipients(sctx->e_templ->env);
+ 
+ #ifdef USE_NNTP
+-    if ((flags & SEND_NEWS) && ctx && (ctx->mailbox->type == MUTT_NNTP) &&
+-        !e_templ->env->newsgroups)
++    if ((sctx->flags & SEND_NEWS) && ctx && (ctx->mailbox->type == MUTT_NNTP) &&
++        !sctx->e_templ->env->newsgroups)
+     {
+-      e_templ->env->newsgroups =
++      sctx->e_templ->env->newsgroups =
+           mutt_str_strdup(((struct NntpMboxData *) ctx->mailbox->mdata)->group);
+     }
+ #endif
+ 
+-    if (!(flags & (SEND_MAILX | SEND_BATCH)) &&
+-        !(C_Autoedit && C_EditHeaders) && !((flags & SEND_REPLY) && C_FastReply))
++    if (!(sctx->flags & (SEND_MAILX | SEND_BATCH)) && !(C_Autoedit && C_EditHeaders) &&
++        !((sctx->flags & SEND_REPLY) && C_FastReply))
+     {
+-      if (edit_envelope(e_templ->env, flags) == -1)
++      if (edit_envelope(sctx->e_templ->env, sctx->flags) == -1)
+         goto cleanup;
+     }
+ 
+@@ -2064,45 +2062,45 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+      * patterns will work.  if $use_from is unset, the from address is killed
+      * after send-hooks are evaluated */
+ 
+-    const bool killfrom = TAILQ_EMPTY(&e_templ->env->from);
++    const bool killfrom = TAILQ_EMPTY(&sctx->e_templ->env->from);
+     if (killfrom)
+     {
+-      mutt_addrlist_append(&e_templ->env->from, mutt_default_from());
++      mutt_addrlist_append(&sctx->e_templ->env->from, mutt_default_from());
+     }
+ 
+-    if ((flags & SEND_REPLY) && e_cur)
++    if ((sctx->flags & SEND_REPLY) && sctx->e_cur)
+     {
+       /* change setting based upon message we are replying to */
+-      mutt_message_hook(ctx ? ctx->mailbox : NULL, e_cur, MUTT_REPLY_HOOK);
++      mutt_message_hook(ctx ? ctx->mailbox : NULL, sctx->e_cur, MUTT_REPLY_HOOK);
+ 
+       /* set the replied flag for the message we are generating so that the
+        * user can use ~Q in a send-hook to know when reply-hook's are also
+        * being used.  */
+-      e_templ->replied = true;
++      sctx->e_templ->replied = true;
+     }
+ 
+     /* change settings based upon recipients */
+ 
+-    mutt_message_hook(NULL, e_templ, MUTT_SEND_HOOK);
++    mutt_message_hook(NULL, sctx->e_templ, MUTT_SEND_HOOK);
+ 
+     /* Unset the replied flag from the message we are composing since it is
+      * no longer required.  This is done here because the FCC'd copy of
+      * this message was erroneously get the 'R'eplied flag when stored in
+      * a maildir-style mailbox.  */
+-    e_templ->replied = false;
++    sctx->e_templ->replied = false;
+ 
+     /* $use_from and/or $from might have changed in a send-hook */
+     if (killfrom)
+     {
+-      mutt_addrlist_clear(&e_templ->env->from);
+-      if (C_UseFrom && !(flags & (SEND_POSTPONED | SEND_RESEND)))
+-        mutt_addrlist_append(&e_templ->env->from, mutt_default_from());
++      mutt_addrlist_clear(&sctx->e_templ->env->from);
++      if (C_UseFrom && !(sctx->flags & (SEND_POSTPONED | SEND_RESEND)))
++        mutt_addrlist_append(&sctx->e_templ->env->from, mutt_default_from());
+     }
+ 
+     if (C_Hdrs)
+-      process_user_header(e_templ->env);
++      process_user_header(sctx->e_templ->env);
+ 
+-    if (flags & SEND_BATCH)
++    if (sctx->flags & SEND_BATCH)
+     {
+       if (mutt_file_copy_stream(stdin, fp_tmp) < 1)
+       {
+@@ -2112,20 +2110,21 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+       }
+     }
+ 
+-    if (C_SigOnTop && !(flags & (SEND_MAILX | SEND_KEY | SEND_BATCH)) &&
++    if (C_SigOnTop && !(sctx->flags & (SEND_MAILX | SEND_KEY | SEND_BATCH)) &&
+         C_Editor && (mutt_str_strcmp(C_Editor, "builtin") != 0))
+     {
+       append_signature(fp_tmp);
+     }
+ 
+     /* include replies/forwarded messages, unless we are given a template */
+-    if (!tempfile && (ctx || !(flags & (SEND_REPLY | SEND_FORWARD))) &&
+-        (generate_body(fp_tmp, e_templ, flags, ctx ? ctx->mailbox : NULL, el) == -1))
++    if (!tempfile && (ctx || !(sctx->flags & (SEND_REPLY | SEND_FORWARD))) &&
++        (generate_body(fp_tmp, sctx->e_templ, sctx->flags,
++                       ctx ? ctx->mailbox : NULL, sctx->el) == -1))
+     {
+       goto cleanup;
+     }
+ 
+-    if (!C_SigOnTop && !(flags & (SEND_MAILX | SEND_KEY | SEND_BATCH)) &&
++    if (!C_SigOnTop && !(sctx->flags & (SEND_MAILX | SEND_KEY | SEND_BATCH)) &&
+         C_Editor && (mutt_str_strcmp(C_Editor, "builtin") != 0))
+     {
+       append_signature(fp_tmp);
+@@ -2136,42 +2135,57 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+    * should respect the original email.
+    *
+    * This is set here so that send-hook can be used to turn the option on.  */
+-  if (!(flags & (SEND_KEY | SEND_POSTPONED | SEND_RESEND | SEND_DRAFT_FILE)))
++  if (!(sctx->flags & (SEND_KEY | SEND_POSTPONED | SEND_RESEND | SEND_DRAFT_FILE)))
+   {
+-    if (C_TextFlowed && (e_templ->content->type == TYPE_TEXT) &&
+-        (mutt_str_strcasecmp(e_templ->content->subtype, "plain") == 0))
++    if (C_TextFlowed && (sctx->e_templ->content->type == TYPE_TEXT) &&
++        (mutt_str_strcasecmp(sctx->e_templ->content->subtype, "plain") == 0))
+     {
+-      mutt_param_set(&e_templ->content->parameter, "format", "flowed");
++      mutt_param_set(&sctx->e_templ->content->parameter, "format", "flowed");
+     }
+   }
+ 
+   /* This hook is even called for postponed messages, and can, e.g., be
+    * used for setting the editor, the sendmail path, or the
+    * envelope sender.  */
+-  mutt_message_hook(NULL, e_templ, MUTT_SEND2_HOOK);
++  mutt_message_hook(NULL, sctx->e_templ, MUTT_SEND2_HOOK);
+ 
+   /* wait until now to set the real name portion of our return address so
+    * that $realname can be set in a send-hook */
+   {
+-    struct Address *from = TAILQ_FIRST(&e_templ->env->from);
+-    if (from && !from->personal && !(flags & (SEND_RESEND | SEND_POSTPONED)))
++    struct Address *from = TAILQ_FIRST(&sctx->e_templ->env->from);
++    if (from && !from->personal && !(sctx->flags & (SEND_RESEND | SEND_POSTPONED)))
+       from->personal = mutt_str_strdup(C_Realname);
+   }
+ 
+-  if (!(((WithCrypto & APPLICATION_PGP) != 0) && (flags & SEND_KEY)))
++  if (!(((WithCrypto & APPLICATION_PGP) != 0) && (sctx->flags & SEND_KEY)))
+     mutt_file_fclose(&fp_tmp);
+ 
+-  if (flags & SEND_MAILX)
++  rc = 0;
++
++cleanup:
++  mutt_file_fclose(&fp_tmp);
++  return rc;
++}
++
++/**
++ * send_message_resume_first_edit - XXX
++ */
++static int send_message_resume_first_edit(struct SendContext *sctx)
++{
++  int rc = -1;
++
++  if (sctx->flags & SEND_MAILX)
+   {
+-    if (mutt_builtin_editor(e_templ->content->filename, e_templ, e_cur) == -1)
++    if (mutt_builtin_editor(sctx->e_templ->content->filename, sctx->e_templ,
++                            sctx->e_cur) == -1)
+       goto cleanup;
+   }
+-  else if (!(flags & SEND_BATCH))
++  else if (!(sctx->flags & SEND_BATCH))
+   {
+     struct stat st;
+-    time_t mtime = mutt_file_decrease_mtime(e_templ->content->filename, NULL);
++    time_t mtime = mutt_file_decrease_mtime(sctx->e_templ->content->filename, NULL);
+ 
+-    mutt_update_encoding(e_templ->content);
++    mutt_update_encoding(sctx->e_templ->content);
+ 
+     /* Select whether or not the user's editor should be called now.  We
+      * don't want to do this when:
+@@ -2181,45 +2195,46 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+      *    both $edit_headers and $autoedit are set, we want to ignore the
+      *    setting of $forward_edit because the user probably needs to add the
+      *    recipients.  */
+-    if (!(flags & SEND_KEY) &&
+-        (((flags & SEND_FORWARD) == 0) || (C_EditHeaders && C_Autoedit) ||
++    if (!(sctx->flags & SEND_KEY) &&
++        (((sctx->flags & SEND_FORWARD) == 0) || (C_EditHeaders && C_Autoedit) ||
+          (query_quadoption(C_ForwardEdit, _("Edit forwarded message?")) == MUTT_YES)))
+     {
+       /* If the this isn't a text message, look for a mailcap edit command */
+-      if (mutt_needs_mailcap(e_templ->content))
++      if (mutt_needs_mailcap(sctx->e_templ->content))
+       {
+-        if (!mutt_edit_attachment(e_templ->content))
++        if (!mutt_edit_attachment(sctx->e_templ->content))
+           goto cleanup;
+       }
+       else if (!C_Editor || (mutt_str_strcmp("builtin", C_Editor) == 0))
+-        mutt_builtin_editor(e_templ->content->filename, e_templ, e_cur);
++        mutt_builtin_editor(sctx->e_templ->content->filename, sctx->e_templ, sctx->e_cur);
+       else if (C_EditHeaders)
+       {
+-        mutt_env_to_local(e_templ->env);
+-        mutt_edit_headers(C_Editor, e_templ->content->filename, e_templ, &fcc);
+-        mutt_env_to_intl(e_templ->env, NULL, NULL);
++        mutt_env_to_local(sctx->e_templ->env);
++        mutt_edit_headers(C_Editor, sctx->e_templ->content->filename,
++                          sctx->e_templ, &sctx->fcc);
++        mutt_env_to_intl(sctx->e_templ->env, NULL, NULL);
+       }
+       else
+       {
+-        mutt_edit_file(C_Editor, e_templ->content->filename);
+-        if (stat(e_templ->content->filename, &st) == 0)
++        mutt_edit_file(C_Editor, sctx->e_templ->content->filename);
++        if (stat(sctx->e_templ->content->filename, &st) == 0)
+         {
+           if (mtime != st.st_mtime)
+-            fix_end_of_file(e_templ->content->filename);
++            fix_end_of_file(sctx->e_templ->content->filename);
+         }
+         else
+-          mutt_perror(e_templ->content->filename);
++          mutt_perror(sctx->e_templ->content->filename);
+       }
+ 
+-      mutt_message_hook(NULL, e_templ, MUTT_SEND2_HOOK);
++      mutt_message_hook(NULL, sctx->e_templ, MUTT_SEND2_HOOK);
+     }
+ 
+-    if (!(flags & (SEND_POSTPONED | SEND_FORWARD | SEND_KEY | SEND_RESEND | SEND_DRAFT_FILE)))
++    if (!(sctx->flags & (SEND_POSTPONED | SEND_FORWARD | SEND_KEY | SEND_RESEND | SEND_DRAFT_FILE)))
+     {
+-      if (stat(e_templ->content->filename, &st) == 0)
++      if (stat(sctx->e_templ->content->filename, &st) == 0)
+       {
+         /* if the file was not modified, bail out now */
+-        if ((mtime == st.st_mtime) && !e_templ->content->next &&
++        if ((mtime == st.st_mtime) && !sctx->e_templ->content->next &&
+             (query_quadoption(C_AbortUnmodified,
+                               _("Abort unmodified message?")) == MUTT_YES))
+         {
+@@ -2228,13 +2243,13 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+         }
+       }
+       else
+-        mutt_perror(e_templ->content->filename);
++        mutt_perror(sctx->e_templ->content->filename);
+     }
+   }
+ 
+   /* Set the message security unless:
+    * 1) crypto support is not enabled (WithCrypto==0)
+-   * 2) pgp: header field was present during message editing with $edit_headers (e_templ->security != 0)
++   * 2) pgp: header field was present during message editing with $edit_headers (sctx->e_templ->security != 0)
+    * 3) we are resending a message
+    * 4) we are recalling a postponed message (don't override the user's saved settings)
+    * 5) we are in mailx mode
+@@ -2242,8 +2257,8 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+    *
+    * This is done after allowing the user to edit the message so that security
+    * settings can be configured with send2-hook and $edit_headers.  */
+-  if ((WithCrypto != 0) && (e_templ->security == 0) &&
+-      !(flags & (SEND_BATCH | SEND_MAILX | SEND_POSTPONED | SEND_RESEND)))
++  if ((WithCrypto != 0) && (sctx->e_templ->security == 0) &&
++      !(sctx->flags & (SEND_BATCH | SEND_MAILX | SEND_POSTPONED | SEND_RESEND)))
+   {
+     if (
+ #ifdef USE_AUTOCRYPT
+@@ -2251,33 +2266,33 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+ #else
+         0
+ #endif
+-        && e_cur && (e_cur->security & SEC_AUTOCRYPT))
++        && sctx->e_cur && (sctx->e_cur->security & SEC_AUTOCRYPT))
+     {
+-      e_templ->security |= (SEC_AUTOCRYPT | SEC_AUTOCRYPT_OVERRIDE | APPLICATION_PGP);
++      sctx->e_templ->security |= (SEC_AUTOCRYPT | SEC_AUTOCRYPT_OVERRIDE | APPLICATION_PGP);
+     }
+     else
+     {
+       if (C_CryptAutosign)
+-        e_templ->security |= SEC_SIGN;
++        sctx->e_templ->security |= SEC_SIGN;
+       if (C_CryptAutoencrypt)
+-        e_templ->security |= SEC_ENCRYPT;
+-      if (C_CryptReplyencrypt && e_cur && (e_cur->security & SEC_ENCRYPT))
+-        e_templ->security |= SEC_ENCRYPT;
+-      if (C_CryptReplysign && e_cur && (e_cur->security & SEC_SIGN))
+-        e_templ->security |= SEC_SIGN;
+-      if (C_CryptReplysignencrypted && e_cur && (e_cur->security & SEC_ENCRYPT))
+-        e_templ->security |= SEC_SIGN;
++        sctx->e_templ->security |= SEC_ENCRYPT;
++      if (C_CryptReplyencrypt && sctx->e_cur && (sctx->e_cur->security & SEC_ENCRYPT))
++        sctx->e_templ->security |= SEC_ENCRYPT;
++      if (C_CryptReplysign && sctx->e_cur && (sctx->e_cur->security & SEC_SIGN))
++        sctx->e_templ->security |= SEC_SIGN;
++      if (C_CryptReplysignencrypted && sctx->e_cur && (sctx->e_cur->security & SEC_ENCRYPT))
++        sctx->e_templ->security |= SEC_SIGN;
+       if (((WithCrypto & APPLICATION_PGP) != 0) &&
+-          ((e_templ->security & (SEC_ENCRYPT | SEC_SIGN)) || C_CryptOpportunisticEncrypt))
++          ((sctx->e_templ->security & (SEC_ENCRYPT | SEC_SIGN)) || C_CryptOpportunisticEncrypt))
+       {
+         if (C_PgpAutoinline)
+-          e_templ->security |= SEC_INLINE;
+-        if (C_PgpReplyinline && e_cur && (e_cur->security & SEC_INLINE))
+-          e_templ->security |= SEC_INLINE;
++          sctx->e_templ->security |= SEC_INLINE;
++        if (C_PgpReplyinline && sctx->e_cur && (sctx->e_cur->security & SEC_INLINE))
++          sctx->e_templ->security |= SEC_INLINE;
+       }
+     }
+ 
+-    if (e_templ->security || C_CryptOpportunisticEncrypt)
++    if (sctx->e_templ->security || C_CryptOpportunisticEncrypt)
+     {
+       /* When replying / forwarding, use the original message's
+        * crypto system.  According to the documentation,
+@@ -2286,35 +2301,35 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+        * Problem: At least with forwarding, this doesn't really
+        * make much sense. Should we have an option to completely
+        * disable individual mechanisms at run-time?  */
+-      if (e_cur)
++      if (sctx->e_cur)
+       {
+         if (((WithCrypto & APPLICATION_PGP) != 0) && C_CryptAutopgp &&
+-            (e_cur->security & APPLICATION_PGP))
++            (sctx->e_cur->security & APPLICATION_PGP))
+         {
+-          e_templ->security |= APPLICATION_PGP;
++          sctx->e_templ->security |= APPLICATION_PGP;
+         }
+         else if (((WithCrypto & APPLICATION_SMIME) != 0) && C_CryptAutosmime &&
+-                 (e_cur->security & APPLICATION_SMIME))
++                 (sctx->e_cur->security & APPLICATION_SMIME))
+         {
+-          e_templ->security |= APPLICATION_SMIME;
++          sctx->e_templ->security |= APPLICATION_SMIME;
+         }
+       }
+ 
+       /* No crypto mechanism selected? Use availability + smime_is_default
+        * for the decision.  */
+-      if (!(e_templ->security & (APPLICATION_SMIME | APPLICATION_PGP)))
++      if (!(sctx->e_templ->security & (APPLICATION_SMIME | APPLICATION_PGP)))
+       {
+         if (((WithCrypto & APPLICATION_SMIME) != 0) && C_CryptAutosmime && C_SmimeIsDefault)
+         {
+-          e_templ->security |= APPLICATION_SMIME;
++          sctx->e_templ->security |= APPLICATION_SMIME;
+         }
+         else if (((WithCrypto & APPLICATION_PGP) != 0) && C_CryptAutopgp)
+         {
+-          e_templ->security |= APPLICATION_PGP;
++          sctx->e_templ->security |= APPLICATION_PGP;
+         }
+         else if (((WithCrypto & APPLICATION_SMIME) != 0) && C_CryptAutosmime)
+         {
+-          e_templ->security |= APPLICATION_SMIME;
++          sctx->e_templ->security |= APPLICATION_SMIME;
+         }
+       }
+     }
+@@ -2325,63 +2340,84 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+       /* If something has already enabled encryption, e.g. C_CryptAutoencrypt
+        * or C_CryptReplyencrypt, then don't enable opportunistic encrypt for
+        * the message.  */
+-      if (!(e_templ->security & (SEC_ENCRYPT | SEC_AUTOCRYPT)))
++      if (!(sctx->e_templ->security & (SEC_ENCRYPT | SEC_AUTOCRYPT)))
+       {
+-        e_templ->security |= SEC_OPPENCRYPT;
+-        crypt_opportunistic_encrypt(e_templ);
++        sctx->e_templ->security |= SEC_OPPENCRYPT;
++        crypt_opportunistic_encrypt(sctx->e_templ);
+       }
+     }
+ 
+     /* No permissible mechanisms found.  Don't sign or encrypt. */
+-    if (!(e_templ->security & (APPLICATION_SMIME | APPLICATION_PGP)))
+-      e_templ->security = SEC_NO_FLAGS;
++    if (!(sctx->e_templ->security & (APPLICATION_SMIME | APPLICATION_PGP)))
++      sctx->e_templ->security = SEC_NO_FLAGS;
+   }
+ 
+   /* Deal with the corner case where the crypto module backend is not available.
+    * This can happen if configured without PGP/SMIME and with GPGME, but
+    * $crypt_use_gpgme is unset.  */
+-  if (e_templ->security && !crypt_has_module_backend(e_templ->security))
++  if (sctx->e_templ->security && !crypt_has_module_backend(sctx->e_templ->security))
+   {
+     mutt_error(_(
+         "No crypto backend configured.  Disabling message security setting."));
+-    e_templ->security = SEC_NO_FLAGS;
++    sctx->e_templ->security = SEC_NO_FLAGS;
+   }
+ 
+-  /* specify a default fcc.  if we are in batchmode, only save a copy of
++  /* specify a default sctx->fcc.  if we are in batchmode, only save a copy of
+    * the message if the value of $copy is yes or ask-yes */
+ 
+-  if (mutt_buffer_is_empty(&fcc) && !(flags & SEND_POSTPONED_FCC) &&
+-      (!(flags & SEND_BATCH) || (C_Copy & 0x1)))
++  if (mutt_buffer_is_empty(&sctx->fcc) && !(sctx->flags & SEND_POSTPONED_FCC) &&
++      (!(sctx->flags & SEND_BATCH) || (C_Copy & 0x1)))
+   {
+     /* set the default FCC */
+-    const bool killfrom = TAILQ_EMPTY(&e_templ->env->from);
++    const bool killfrom = TAILQ_EMPTY(&sctx->e_templ->env->from);
+     if (killfrom)
+     {
+-      mutt_addrlist_append(&e_templ->env->from, mutt_default_from());
++      mutt_addrlist_append(&sctx->e_templ->env->from, mutt_default_from());
+     }
+-    mutt_select_fcc(&fcc, e_templ);
++    mutt_select_fcc(&sctx->fcc, sctx->e_templ);
+     if (killfrom)
+     {
+-      mutt_addrlist_clear(&e_templ->env->from);
++      mutt_addrlist_clear(&sctx->e_templ->env->from);
+     }
+   }
+ 
+-  mutt_rfc3676_space_stuff(e_templ);
++  mutt_rfc3676_space_stuff(sctx->e_templ);
++
++  mutt_update_encoding(sctx->e_templ->content);
++
++  rc = 0;
+ 
+-  mutt_update_encoding(e_templ->content);
++cleanup:
++  return rc;
++}
+ 
+-  if (!(flags & (SEND_MAILX | SEND_BATCH)))
++/**
++ * send_message_resume_compose_menu - XXX
++ */
++static int send_message_resume_compose_menu(struct SendContext *sctx)
++{
++  int rc = -1;
++  int i;
++  int free_clear_content = 0;
++  const char *tag = NULL;
++  char *err = NULL;
++  char *pgpkeylist = NULL;
++  struct Body *clear_content = NULL;
++  char *finalpath = NULL;
++
++  if (!(sctx->flags & (SEND_MAILX | SEND_BATCH)))
+   {
+   main_loop:
+ 
+-    mutt_buffer_pretty_mailbox(&fcc);
+-    i = mutt_compose_menu(e_templ, &fcc, e_cur,
+-                          ((flags & SEND_NO_FREE_HEADER) ? MUTT_COMPOSE_NOFREEHEADER : 0));
++    mutt_buffer_pretty_mailbox(&sctx->fcc);
++    i = mutt_compose_menu(
++        sctx->e_templ, &sctx->fcc, sctx->e_cur,
++        ((sctx->flags & SEND_NO_FREE_HEADER) ? MUTT_COMPOSE_NOFREEHEADER : 0));
+     if (i == -1)
+     {
+ /* abort */
+ #ifdef USE_NNTP
+-      if (flags & SEND_NEWS)
++      if (sctx->flags & SEND_NEWS)
+         mutt_message(_("Article not posted"));
+       else
+ #endif
+@@ -2390,7 +2426,7 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+     }
+     else if (i == 1)
+     {
+-      if (postpone_message(e_templ, e_cur, mutt_b2s(&fcc), flags) != 0)
++      if (postpone_message(sctx->e_templ, sctx->e_cur, mutt_b2s(&sctx->fcc), sctx->flags) != 0)
+         goto main_loop;
+       mutt_message(_("Message postponed"));
+       rc = 1;
+@@ -2399,13 +2435,13 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+   }
+ 
+ #ifdef USE_NNTP
+-  if (!(flags & SEND_NEWS))
++  if (!(sctx->flags & SEND_NEWS))
+ #endif
+-    if ((mutt_addrlist_count_recips(&e_templ->env->to) == 0) &&
+-        (mutt_addrlist_count_recips(&e_templ->env->cc) == 0) &&
+-        (mutt_addrlist_count_recips(&e_templ->env->bcc) == 0))
++    if ((mutt_addrlist_count_recips(&sctx->e_templ->env->to) == 0) &&
++        (mutt_addrlist_count_recips(&sctx->e_templ->env->cc) == 0) &&
++        (mutt_addrlist_count_recips(&sctx->e_templ->env->bcc) == 0))
+     {
+-      if (flags & SEND_BATCH)
++      if (sctx->flags & SEND_BATCH)
+       {
+         puts(_("No recipients specified"));
+         goto cleanup;
+@@ -2415,16 +2451,16 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+       goto main_loop;
+     }
+ 
+-  if (mutt_env_to_intl(e_templ->env, &tag, &err))
++  if (mutt_env_to_intl(sctx->e_templ->env, &tag, &err))
+   {
+     mutt_error(_("Bad IDN in '%s': '%s'"), tag, err);
+     FREE(&err);
+-    if (flags & SEND_BATCH)
++    if (sctx->flags & SEND_BATCH)
+       goto cleanup;
+     goto main_loop;
+   }
+ 
+-  if (!e_templ->env->subject && !(flags & SEND_BATCH) &&
++  if (!sctx->e_templ->env->subject && !(sctx->flags & SEND_BATCH) &&
+       (query_quadoption(C_AbortNosubject, _("No subject, abort sending?")) != MUTT_NO))
+   {
+     /* if the abort is automatic, print an error message */
+@@ -2433,23 +2469,23 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+     goto main_loop;
+   }
+ #ifdef USE_NNTP
+-  if ((flags & SEND_NEWS) && !e_templ->env->subject)
++  if ((sctx->flags & SEND_NEWS) && !sctx->e_templ->env->subject)
+   {
+     mutt_error(_("No subject specified"));
+     goto main_loop;
+   }
+ 
+-  if ((flags & SEND_NEWS) && !e_templ->env->newsgroups)
++  if ((sctx->flags & SEND_NEWS) && !sctx->e_templ->env->newsgroups)
+   {
+     mutt_error(_("No newsgroup specified"));
+     goto main_loop;
+   }
+ #endif
+ 
+-  if (!(flags & SEND_BATCH) && (C_AbortNoattach != MUTT_NO) &&
+-      !e_templ->content->next && (e_templ->content->type == TYPE_TEXT) &&
+-      (mutt_str_strcasecmp(e_templ->content->subtype, "plain") == 0) &&
+-      search_attach_keyword(e_templ->content->filename) &&
++  if (!(sctx->flags & SEND_BATCH) && (C_AbortNoattach != MUTT_NO) &&
++      !sctx->e_templ->content->next && (sctx->e_templ->content->type == TYPE_TEXT) &&
++      (mutt_str_strcasecmp(sctx->e_templ->content->subtype, "plain") == 0) &&
++      search_attach_keyword(sctx->e_templ->content->filename) &&
+       (query_quadoption(C_AbortNoattach,
+                         _("No attachments, cancel sending?")) != MUTT_NO))
+   {
+@@ -2462,14 +2498,14 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+     goto main_loop;
+   }
+ 
+-  if (e_templ->content->next)
+-    e_templ->content = mutt_make_multipart(e_templ->content);
++  if (sctx->e_templ->content->next)
++    sctx->e_templ->content = mutt_make_multipart(sctx->e_templ->content);
+ 
+-  /* Ok, we need to do it this way instead of handling all fcc stuff in
++  /* Ok, we need to do it this way instead of handling all sctx->fcc stuff in
+    * one place in order to avoid going to main_loop with encoded "env"
+    * in case of error.  Ugh.  */
+ 
+-  mutt_encode_descriptions(e_templ->content, true);
++  mutt_encode_descriptions(sctx->e_templ->content, true);
+ 
+   /* Make sure that clear_content and free_clear_content are
+    * properly initialized -- we may visit this particular place in
+@@ -2481,25 +2517,25 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+ 
+   if (WithCrypto)
+   {
+-    if (e_templ->security & (SEC_ENCRYPT | SEC_SIGN | SEC_AUTOCRYPT))
++    if (sctx->e_templ->security & (SEC_ENCRYPT | SEC_SIGN | SEC_AUTOCRYPT))
+     {
+       /* save the decrypted attachments */
+-      clear_content = e_templ->content;
++      clear_content = sctx->e_templ->content;
+ 
+-      if ((crypt_get_keys(e_templ, &pgpkeylist, 0) == -1) ||
+-          (mutt_protect(e_templ, pgpkeylist, false) == -1))
++      if ((crypt_get_keys(sctx->e_templ, &pgpkeylist, 0) == -1) ||
++          (mutt_protect(sctx->e_templ, pgpkeylist, false) == -1))
+       {
+-        e_templ->content = mutt_remove_multipart(e_templ->content);
++        sctx->e_templ->content = mutt_remove_multipart(sctx->e_templ->content);
+ 
+         FREE(&pgpkeylist);
+ 
+-        decode_descriptions(e_templ->content);
++        decode_descriptions(sctx->e_templ->content);
+         goto main_loop;
+       }
+-      mutt_encode_descriptions(e_templ->content, false);
++      mutt_encode_descriptions(sctx->e_templ->content, false);
+     }
+ 
+-    /* at this point, e_templ->content is one of the following three things:
++    /* at this point, sctx->e_templ->content is one of the following three things:
+      * - multipart/signed.     In this case, clear_content is a child
+      * - multipart/encrypted.  In this case, clear_content exists independently
+      * - application/pgp.      In this case, clear_content exists independently
+@@ -2507,46 +2543,48 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+ 
+     /* This is ugly -- lack of "reporting back" from mutt_protect(). */
+ 
+-    if (clear_content && (e_templ->content != clear_content) &&
+-        (e_templ->content->parts != clear_content))
++    if (clear_content && (sctx->e_templ->content != clear_content) &&
++        (sctx->e_templ->content->parts != clear_content))
+       free_clear_content = true;
+   }
+ 
+-  if (!OptNoCurses && !(flags & SEND_MAILX))
++  if (!OptNoCurses && !(sctx->flags & SEND_MAILX))
+     mutt_message(_("Sending message..."));
+ 
+-  mutt_prepare_envelope(e_templ->env, true);
++  mutt_prepare_envelope(sctx->e_templ->env, true);
+ 
+   if (C_FccBeforeSend)
+-    save_fcc(e_templ, &fcc, clear_content, pgpkeylist, flags, &finalpath);
++    save_fcc(sctx->e_templ, &sctx->fcc, clear_content, pgpkeylist, sctx->flags, &finalpath);
+ 
+-  i = invoke_mta(e_templ);
++  i = invoke_mta(sctx->e_templ);
+   if (i < 0)
+   {
+-    if (!(flags & SEND_BATCH))
++    if (!(sctx->flags & SEND_BATCH))
+     {
+       if (!WithCrypto)
+         ; // do nothing
+-      else if ((e_templ->security & (SEC_ENCRYPT | SEC_AUTOCRYPT)) ||
+-               ((e_templ->security & SEC_SIGN) && (e_templ->content->type == TYPE_APPLICATION)))
++      else if ((sctx->e_templ->security & (SEC_ENCRYPT | SEC_AUTOCRYPT)) ||
++               ((sctx->e_templ->security & SEC_SIGN) &&
++                (sctx->e_templ->content->type == TYPE_APPLICATION)))
+       {
+-        if (e_templ->content != clear_content)
++        if (sctx->e_templ->content != clear_content)
+         {
+-          mutt_body_free(&e_templ->content); /* destroy PGP data */
+-          e_templ->content = clear_content;  /* restore clear text. */
++          mutt_body_free(&sctx->e_templ->content); /* destroy PGP data */
++          sctx->e_templ->content = clear_content;  /* restore clear text. */
+         }
+       }
+-      else if ((e_templ->security & SEC_SIGN) && (e_templ->content->type == TYPE_MULTIPART))
++      else if ((sctx->e_templ->security & SEC_SIGN) &&
++               (sctx->e_templ->content->type == TYPE_MULTIPART))
+       {
+-        mutt_body_free(&e_templ->content->parts->next); /* destroy sig */
+-        e_templ->content = mutt_remove_multipart(e_templ->content);
++        mutt_body_free(&sctx->e_templ->content->parts->next); /* destroy sig */
++        sctx->e_templ->content = mutt_remove_multipart(sctx->e_templ->content);
+       }
+ 
+       FREE(&pgpkeylist);
+-      mutt_env_free(&e_templ->content->mime_headers); /* protected headers */
+-      e_templ->content = mutt_remove_multipart(e_templ->content);
+-      decode_descriptions(e_templ->content);
+-      mutt_unprepare_envelope(e_templ->env);
++      mutt_env_free(&sctx->e_templ->content->mime_headers); /* protected headers */
++      sctx->e_templ->content = mutt_remove_multipart(sctx->e_templ->content);
++      decode_descriptions(sctx->e_templ->content);
++      mutt_unprepare_envelope(sctx->e_templ->env);
+       FREE(&finalpath);
+       goto main_loop;
+     }
+@@ -2558,16 +2596,16 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+   }
+ 
+   if (!C_FccBeforeSend)
+-    save_fcc(e_templ, &fcc, clear_content, pgpkeylist, flags, &finalpath);
++    save_fcc(sctx->e_templ, &sctx->fcc, clear_content, pgpkeylist, sctx->flags, &finalpath);
+ 
+-  if (!OptNoCurses && !(flags & SEND_MAILX))
++  if (!OptNoCurses && !(sctx->flags & SEND_MAILX))
+   {
+     mutt_message((i != 0) ? _("Sending in background") :
+-                            (flags & SEND_NEWS) ? _("Article posted") : /* USE_NNTP */
++                            (sctx->flags & SEND_NEWS) ? _("Article posted") : /* USE_NNTP */
+                                 _("Mail sent"));
+ #ifdef USE_NOTMUCH
+     if (C_NmRecord)
+-      nm_record_message(ctx ? ctx->mailbox : NULL, finalpath, e_cur);
++      nm_record_message(sctx->mailbox, finalpath, sctx->e_cur);
+ #endif
+     mutt_sleep(0);
+   }
+@@ -2580,23 +2618,138 @@ int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfi
+ 
+   /* set 'replied' flag only if the user didn't change/remove
+    * In-Reply-To: and References: headers during edit */
+-  if (flags & SEND_REPLY)
++
++  /* TODO: this needs to be fixed up to use sctx values,
++   * compare the context realpath.  open if the mailbox has
++   * changed.
++   *
++   * Perhaps we can store cur in sctx but NULL it out if the
++   * editing is backgrounded. */
++  if (sctx->flags & SEND_REPLY)
+   {
+-    if (!(flags & SEND_POSTPONED) && ctx && ctx->mailbox)
++    if (!(sctx->flags & SEND_POSTPONED) && sctx->mailbox)
+     {
+-      STAILQ_FOREACH(en, el, entries)
++      struct EmailNode *en = NULL;
++      STAILQ_FOREACH(en, sctx->el, entries)
+       {
+-        mutt_set_flag(ctx->mailbox, en->email, MUTT_REPLIED, is_reply(en->email, e_templ));
++        mutt_set_flag(sctx->mailbox, en->email, MUTT_REPLIED,
++                      is_reply(en->email, sctx->e_templ));
+       }
+     }
+   }
+ 
+   rc = 0;
++cleanup:
++  FREE(&finalpath);
++  return rc;
++}
++
++/**
++ * mutt_send_message_resume - XXX
++ *
++ * backgroundable and resumable part of the send process.
++ *
++ * need to define a "backgrounded" return value.
++ */
++int mutt_send_message_resume(struct SendContext *sctx)
++{
++  int rv = send_message_resume_first_edit(sctx);
++  if (rv < 0)
++    goto cleanup;
++
++  rv = send_message_resume_compose_menu(sctx);
++  if (rv < 0)
++    goto cleanup;
++
++  rv = 0;
+ 
+ cleanup:
+-  mutt_buffer_dealloc(&fcc);
++  return rv;
++}
++
++/**
++ * mutt_send_message - XXX
++ * @param flags    Send mode, see #SendFlags
++ * @param e_templ  Template to use for new message
++ * @param tempfile File specified by -i or -H
++ * @param ctx      Current mailbox
++ * @param el       List of Emails to send
++ * @retval  0 Message was successfully sent
++ * @retval -1 Message was aborted or an error occurred
++ * @retval  1 Message was postponed
++ */
++int mutt_send_message(SendFlags flags, struct Email *e_templ, const char *tempfile,
++                      struct Context *ctx, struct EmailList *el)
++{
++  char *pgp_signas = NULL;
++  char *smime_signas = NULL;
++  int rv = -1;
++  int resume_rc;
++
++  struct SendContext *sctx = send_ctx_new();
++  sctx->flags = flags;
++  sctx->e_templ = e_templ;
++  sctx->el = el;
++  if (ctx)
++  {
++    sctx->ctx_realpath = mutt_str_strdup(mailbox_path(ctx->mailbox));
++    sctx->mailbox = ctx->mailbox;
++  }
++
++  struct EmailNode *en = NULL;
++  if (el)
++    en = STAILQ_FIRST(el);
++  if (en)
++    sctx->e_cur = STAILQ_NEXT(en, entries) ? NULL : en->email;
++
++  /* NOTE:
++   * if e_templ is passed in, this function is *supposed* to free it
++   * unless flag SEND_NO_FREE_HEADER is set.
++   * That is only done by main.  And for that case we want
++   * to make sure NO_BACKGROUND is set.
++   */
++
++  /* TODO:
++   * cur can't be stored in sctx for a backgroundable.
++   * see if we can store just the components of cur we need
++   * and regrab the actual header when persisting replied flag.
++   */
++
++  /* NOTE:
++   * we still need to check other callers to make sure the components
++   * of the e_templ header don't disappear after returning!!!
++   */
++
++  /* TODO:
++   * mutt_get_postponed() and edit headers set C_PgpSignAs/C_SmimeSignAs.
++   * these need to be set in the sctx instead, and the globals swapped
++   * out around the "post-composemenu-send" function.  Note that edit
++   * headers and get_postponed have different behavior for an empty
++   * value.
++   */
++
++  if (send_message_setup(sctx, tempfile, ctx, &pgp_signas, &smime_signas) < 0)
++    goto cleanup;
++
++  resume_rc = mutt_send_message_resume(sctx);
++  if (resume_rc < 0)
++    goto cleanup;
+ 
+-  if (flags & SEND_POSTPONED)
++  /* TODO: if rc is backgroundable, stuff in background list and pass along
++   * backgrounded rc value.  Should this be
++   * done inside mutt_send_message_resume so we don't have the logic
++   * everywhere? */
++
++  /* TODO: until we code up the background list menu, we can support
++   * a single backgrounded via a global, just to make testing easier */
++
++  rv = 0;
++
++cleanup:
++  /* TODO: this should be based on sctx and moved around
++   * the resumable edit/compose/send function
++   */
++  if (sctx->flags & SEND_POSTPONED)
+   {
+     if (WithCrypto & APPLICATION_PGP)
+     {
+@@ -2610,10 +2763,6 @@ cleanup:
+     }
+   }
+ 
+-  mutt_file_fclose(&fp_tmp);
+-  if (!(flags & SEND_NO_FREE_HEADER))
+-    email_free(&e_templ);
+-
+-  FREE(&finalpath);
+-  return rc;
++  send_ctx_free(&sctx);
++  return rv;
+ }
+diff --git a/send/lib.h b/send/lib.h
+index de4ea3088..5b7b71b6c 100644
+--- a/send/lib.h
++++ b/send/lib.h
+@@ -26,6 +26,7 @@
+ #include <stdbool.h>
+ #include <stdint.h>
+ #include <stdio.h>
++#include "mutt/lib.h"
+ 
+ struct Address;
+ struct AddressList;
+@@ -83,6 +84,28 @@ extern char *        C_Signature;
+ extern bool          C_SigOnTop;
+ extern bool          C_UseFrom;
+ 
++/**
++ * struct SendContext - XXX
++ */
++struct SendContext
++{
++  int flags;
++  int state;
++
++  struct Email *e_templ;
++  struct Mailbox *mailbox;
++
++  /* Note: e_cur can't be stored in the send_context when
++   * background editing is added.  This is here for now
++   * just to ease refactoring.
++   */
++  struct Email *e_cur;
++  struct EmailList *el;
++  struct Buffer fcc;
++
++  char *ctx_realpath;
++};
++
+ typedef uint16_t SendFlags;             ///< Flags for mutt_send_message(), e.g. #SEND_REPLY
+ #define SEND_NO_FLAGS               0   ///< No flags are set
+ #define SEND_REPLY            (1 << 0)  ///< Reply to sender

@@ -1,0 +1,36 @@
+From 69df0d9b60d1a75ce8e3930a7a2af83eab38861c Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Fri, 6 Oct 2023 12:51:18 +0100
+Subject: [PATCH] color: main dump ncurses
+
+---
+ main.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/main.c b/main.c
+index 8a85fe5fc..31caa96ee 100644
+--- a/main.c
++++ b/main.c
+@@ -476,7 +476,7 @@ int main_timeout_observer(struct NotifyCallback *nc)
+   mutt_timeout_hook();
+ 
+ done:
+-  mutt_debug(LL_DEBUG5, "timeout done\n");
++  // mutt_debug(LL_DEBUG5, "timeout done\n");
+   return 0;
+ }
+ 
+@@ -1413,6 +1413,13 @@ main
+     // TEST43: neomutt (no change to mailbox)
+     // TEST44: neomutt (change mailbox)
+   }
++  int c = COLORS;
++  int cp = COLOR_PAIRS;
++  mutt_endwin();
++  printf("TERM: %s\n", mutt_str_getenv("TERM"));
++  printf("COLORTERM: %s\n", mutt_str_getenv("COLORTERM"));
++  printf("COLORS = %d\n", c);
++  printf("COLOR_PAIRS = %d\n", cp);
+ 
+ main_ok:
+   rc = 0;

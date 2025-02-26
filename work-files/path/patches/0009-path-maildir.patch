@@ -1,0 +1,805 @@
+From 74f107513556d544af69769c5094ba372952f896 Mon Sep 17 00:00:00 2001
+From: Richard Russon <rich@flatcap.org>
+Date: Fri, 21 Feb 2020 01:12:55 +0000
+Subject: [PATCH 09/29] path: maildir
+
+---
+ Makefile.autosetup      |   3 +-
+ maildir/lib.h           |   2 +
+ maildir/maildir.c       |   7 +
+ maildir/mh.c            |   7 +
+ maildir/path.c          | 215 ++++++++++++++++++++++++
+ maildir/path.h          |  37 +++++
+ maildir/private.h       |   2 +
+ po/POTFILES.in          |   1 +
+ test/Makefile.autosetup |   1 +
+ test/main.c             |  10 ++
+ test/mx_path/maildir.c  | 360 ++++++++++++++++++++++++++++++++++++++++
+ 11 files changed, 644 insertions(+), 1 deletion(-)
+ create mode 100644 maildir/path.c
+ create mode 100644 maildir/path.h
+ create mode 100644 test/mx_path/maildir.c
+
+diff --git a/Makefile.autosetup b/Makefile.autosetup
+index 774d9970a..424ed48a7 100644
+--- a/Makefile.autosetup
++++ b/Makefile.autosetup
+@@ -360,7 +360,7 @@ $(PWD)/imap:
+ ###############################################################################
+ # libmaildir
+ LIBMAILDIR=	libmaildir.a
+-LIBMAILDIROBJS=	maildir/maildir.o maildir/mh.o maildir/shared.o
++LIBMAILDIROBJS=	maildir/maildir.o maildir/mh.o maildir/path.o maildir/shared.o
+ CLEANFILES+=	$(LIBMAILDIR) $(LIBMAILDIROBJS)
+ ALLOBJS+=	$(LIBMAILDIROBJS)
+ 
+@@ -616,6 +616,7 @@ coverage: all test
+ 	  --directory store \
+ 	  --directory compmbox \
+ 	  --directory imap \
++	  --directory maildir \
+ 
+ 	-genhtml --output-directory lcov --frames lcov.info
+ 	lcov --list lcov.info
+diff --git a/maildir/lib.h b/maildir/lib.h
+index dff2c110d..1eb3fbcd8 100644
+--- a/maildir/lib.h
++++ b/maildir/lib.h
+@@ -29,6 +29,7 @@
+  * | :---------------- | :----------------------- |
+  * | maildir/maildir.c | @subpage maildir_maildir |
+  * | maildir/mh.c      | @subpage maildir_mh      |
++ * | maildir/path.c    | @subpage maildir_path    |
+  * | maildir/shared.c  | @subpage maildir_shared  |
+  */
+ 
+@@ -39,6 +40,7 @@
+ #include <stdio.h>
+ #include "core/lib.h"
+ #include "mx.h"
++#include "path.h"
+ #include "hcache/lib.h"
+ 
+ struct Email;
+diff --git a/maildir/maildir.c b/maildir/maildir.c
+index 5df573b35..6993f20d6 100644
+--- a/maildir/maildir.c
++++ b/maildir/maildir.c
+@@ -49,6 +49,7 @@
+ #include "monitor.h"
+ #include "muttlib.h"
+ #include "mx.h"
++#include "path.h"
+ #include "maildir/lib.h"
+ #ifdef USE_HCACHE
+ #include "hcache/lib.h"
+@@ -730,5 +731,11 @@ struct MxOps MxMaildirOps = {
+   .path_canon       = maildir_path_canon,
+   .path_pretty      = maildir_path_pretty,
+   .path_parent      = maildir_path_parent,
++  .path2_canon      = maildir_path2_canon,
++  .path2_compare    = maildir_path2_compare,
++  .path2_parent     = maildir_path2_parent,
++  .path2_pretty     = maildir_path2_pretty,
++  .path2_probe      = maildir_path2_probe,
++  .path2_tidy       = maildir_path2_tidy,
+ };
+ // clang-format on
+diff --git a/maildir/mh.c b/maildir/mh.c
+index d1c52b4d6..bfb531bc9 100644
+--- a/maildir/mh.c
++++ b/maildir/mh.c
+@@ -49,6 +49,7 @@
+ #include "mutt_globals.h"
+ #include "monitor.h"
+ #include "mx.h"
++#include "path.h"
+ 
+ /**
+  * mhs_alloc - Allocate more memory for sequences
+@@ -831,5 +832,11 @@ struct MxOps MxMhOps = {
+   .path_canon       = maildir_path_canon,
+   .path_pretty      = maildir_path_pretty,
+   .path_parent      = maildir_path_parent,
++  .path2_canon      = maildir_path2_canon,
++  .path2_compare    = maildir_path2_compare,
++  .path2_parent     = maildir_path2_parent,
++  .path2_pretty     = maildir_path2_pretty,
++  .path2_probe      = mh_path2_probe,
++  .path2_tidy       = maildir_path2_tidy,
+ };
+ // clang-format on
+diff --git a/maildir/path.c b/maildir/path.c
+new file mode 100644
+index 000000000..a6d7ef86e
+--- /dev/null
++++ b/maildir/path.c
+@@ -0,0 +1,215 @@
++/**
++ * @file
++ * Maildir path manipulations
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++/**
++ * @page maildir_path Maildir path manipulations
++ *
++ * Maildir path manipulations
++ */
++
++#include "config.h"
++#include <limits.h>
++#include <sys/stat.h>
++#include <sys/types.h>
++#include <unistd.h>
++#include "mutt/lib.h"
++#include "config/lib.h"
++#include "core/lib.h"
++
++extern char *HomeDir;
++
++/**
++ * mh_probe - Is this an mh Mailbox?
++ * @param path Path to examine
++ * @param st   stat buffer
++ * @retval  0 Success, mh Mailbox
++ * @retval -1 Path not recognised
++ *
++ * **Tests**
++ * - Path must exist
++ * - Path must be a directory
++ * - Path must have a subdirectory, one of:
++ *   - `.mh_sequences`
++ *   - `.xmhcache`
++ *   - `.mew_cache`
++ *   - `.mew-cache`
++ *   - `.sylpheed_cache`
++ *   - `.overview`
++ */
++static int mh_probe(const char *path, const struct stat *st)
++{
++  if (!S_ISDIR(st->st_mode))
++    return -1;
++
++  /* `.overview` isn't an mh folder, but it allows NeoMutt to read Usenet news
++   * from the spool.  */
++  static const char *tests[] = {
++    "%s/.mh_sequences", "%s/.xmhcache",       "%s/.mew_cache",
++    "%s/.mew-cache",    "%s/.sylpheed_cache", "%s/.overview",
++  };
++
++  char tmp[PATH_MAX];
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    snprintf(tmp, sizeof(tmp), tests[i], path);
++    if (access(tmp, F_OK) == 0)
++      return 0;
++  }
++
++  return -1;
++}
++
++/**
++ * maildir_probe - Is this a maildir Mailbox?
++ *
++ * **Tests**
++ * - Path must exist
++ * - Path must be a directory
++ * - Path must have a subdirectory `cur`
++ *
++ * @note `dir/new` and `dir/tmp` aren't checked
++ */
++static int maildir_probe(const char *path, const struct stat *st)
++{
++  if (!S_ISDIR(st->st_mode))
++    return -1;
++
++  char cur[PATH_MAX];
++  snprintf(cur, sizeof(cur), "%s/cur", path);
++
++  struct stat stc;
++  if ((stat(cur, &stc) != 0) || !S_ISDIR(stc.st_mode))
++    return -1;
++
++  return 0;
++}
++
++/**
++ * maildir_path2_canon - Canonicalise a Mailbox path - Implements MxOps::path2_canon()
++ */
++int maildir_path2_canon(struct Path *path)
++{
++  if (!mutt_path_canon2(path->orig, &path->canon))
++    return -1;
++
++  path->flags |= MPATH_CANONICAL;
++  return 0;
++}
++
++/**
++ * maildir_path2_compare - Compare two Mailbox paths - Implements MxOps::path2_compare()
++ */
++int maildir_path2_compare(struct Path *path1, struct Path *path2)
++{
++  int rc = mutt_str_strcmp(path1->canon, path2->canon);
++  if (rc < 0)
++    return -1;
++  if (rc > 0)
++    return 1;
++  return 0;
++}
++
++/**
++ * maildir_path2_parent - Find the parent of a Mailbox path - Implements MxOps::path2_parent()
++ */
++int maildir_path2_parent(const struct Path *path, struct Path **parent)
++{
++  if (path->orig[1] == '\0')
++    return -1;
++
++  char *par_dir = mutt_path_dirname(path->orig);
++
++  struct stat st = { 0 };
++  stat(par_dir, &st);
++  int rc;
++  if (path->type == MUTT_MAILDIR)
++    rc = maildir_probe(par_dir, &st);
++  else
++    rc = mh_probe(par_dir, &st);
++  if (rc != 0)
++  {
++    FREE(&par_dir);
++    return -1;
++  }
++
++  *parent = mutt_path_new();
++  (*parent)->orig = par_dir;
++  (*parent)->type = path->type;
++  (*parent)->flags = MPATH_RESOLVED | MPATH_TIDY;
++  return 0;
++}
++
++/**
++ * maildir_path2_pretty - Abbreviate a Mailbox path - Implements MxOps::path2_pretty()
++ */
++int maildir_path2_pretty(struct Path *path, const char *folder)
++{
++  if (mutt_path2_abbr_folder(path->orig, folder, &path->pretty))
++    return 1;
++
++  if (mutt_path2_pretty(path->orig, HomeDir, &path->pretty))
++    return 1;
++
++  path->pretty = mutt_str_strdup(path->orig);
++  return 0;
++}
++
++/**
++ * maildir_path2_probe - Does this Mailbox type recognise this path? - Implements MxOps::path2_probe()
++ */
++int maildir_path2_probe(struct Path *path, const struct stat *st)
++{
++  if (maildir_probe(path->orig, st) != 0)
++    return -1;
++
++  path->type = MUTT_MAILDIR;
++  return 0;
++}
++
++/**
++ * maildir_path2_tidy - Tidy a Mailbox path - Implements MxOps::path2_tidy()
++ */
++int maildir_path2_tidy(struct Path *path)
++{
++  char *tidy = mutt_path_tidy2(path->orig, true);
++  if (!tidy)
++    return -1; // LCOV_EXCL_LINE
++
++  FREE(&path->orig);
++  path->orig = tidy;
++  tidy = NULL;
++
++  path->flags |= MPATH_TIDY;
++  return 0;
++}
++
++/**
++ * mh_path2_probe - Does this Mailbox type recognise this path? - Implements MxOps::path2_probe()
++ */
++int mh_path2_probe(struct Path *path, const struct stat *st)
++{
++  if (mh_probe(path->orig, st) != 0)
++    return -1;
++
++  path->type = MUTT_MH;
++  return 0;
++}
+diff --git a/maildir/path.h b/maildir/path.h
+new file mode 100644
+index 000000000..524405a7b
+--- /dev/null
++++ b/maildir/path.h
+@@ -0,0 +1,37 @@
++/**
++ * @file
++ * Maildir path manipulations
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef MUTT_MAILDIR_PATH_H
++#define MUTT_MAILDIR_PATH_H
++
++struct Path;
++struct stat;
++
++int maildir_path2_canon  (struct Path *path);
++int maildir_path2_compare(struct Path *path1, struct Path *path2);
++int maildir_path2_parent (const struct Path *path, struct Path **parent);
++int maildir_path2_pretty (struct Path *path, const char *folder);
++int maildir_path2_probe  (struct Path *path, const struct stat *st);
++int maildir_path2_tidy   (struct Path *path);
++int mh_path2_probe       (struct Path *path, const struct stat *st);
++
++#endif /* MUTT_MAILDIR_PATH_H */
+diff --git a/maildir/private.h b/maildir/private.h
+index 6dca608f8..4b7d51608 100644
+--- a/maildir/private.h
++++ b/maildir/private.h
+@@ -28,12 +28,14 @@
+ #include <stdio.h>
+ #include <sys/types.h>
+ #include <time.h>
++#include "core/lib.h"
+ 
+ struct Account;
+ struct Buffer;
+ struct Email;
+ struct Mailbox;
+ struct Message;
++struct Path;
+ struct Progress;
+ 
+ /**
+diff --git a/po/POTFILES.in b/po/POTFILES.in
+index 559cfd913..a452ca9fd 100644
+--- a/po/POTFILES.in
++++ b/po/POTFILES.in
+@@ -119,6 +119,7 @@ keymap.c
+ mailcap.c
+ maildir/maildir.c
+ maildir/mh.c
++maildir/path.c
+ maildir/shared.c
+ maillist.c
+ main.c
+diff --git a/test/Makefile.autosetup b/test/Makefile.autosetup
+index 1257ec608..2ae9ca35f 100644
+--- a/test/Makefile.autosetup
++++ b/test/Makefile.autosetup
+@@ -342,6 +342,7 @@ NOTIFY_OBJS	= test/notify/notify_free.o \
+ 
+ MX_PATH_OBJS	= test/mx_path/compmbox.o \
+ 		  test/mx_path/imap.o \
++		  test/mx_path/maildir.o \
+ 
+ PARAMETER_OBJS	= test/parameter/mutt_param_cmp_strict.o \
+ 		  test/parameter/mutt_param_delete.o \
+diff --git a/test/main.c b/test/main.c
+index 3b5b3d8f8..3505e20ac 100644
+--- a/test/main.c
++++ b/test/main.c
+@@ -353,6 +353,16 @@
+   NEOMUTT_TEST_ITEM(test_mailbox_size_sub)                                     \
+   NEOMUTT_TEST_ITEM(test_mailbox_update)                                       \
+                                                                                \
++  /* maildir */                                                                \
++  NEOMUTT_TEST_ITEM(test_maildir_path2_canon)                                  \
++  NEOMUTT_TEST_ITEM(test_maildir_path2_compare)                                \
++  NEOMUTT_TEST_ITEM(test_maildir_path2_parent)                                 \
++  NEOMUTT_TEST_ITEM(test_mh_path2_parent)                                      \
++  NEOMUTT_TEST_ITEM(test_maildir_path2_pretty)                                 \
++  NEOMUTT_TEST_ITEM(test_maildir_path2_probe)                                  \
++  NEOMUTT_TEST_ITEM(test_mh_path2_probe)                                       \
++  NEOMUTT_TEST_ITEM(test_maildir_path2_tidy)                                   \
++                                                                               \
+   /* mapping */                                                                \
+   NEOMUTT_TEST_ITEM(test_mutt_map_get_name)                                    \
+   NEOMUTT_TEST_ITEM(test_mutt_map_get_value)                                   \
+diff --git a/test/mx_path/maildir.c b/test/mx_path/maildir.c
+new file mode 100644
+index 000000000..fa7a1b1f8
+--- /dev/null
++++ b/test/mx_path/maildir.c
+@@ -0,0 +1,360 @@
++/**
++ * @file
++ * Test code for the Maildir MxOps Path functions
++ *
++ * @authors
++ * Copyright (C) 2020 Richard Russon <rich@flatcap.org>
++ *
++ * @copyright
++ * This program is free software: you can redistribute it and/or modify it under
++ * the terms of the GNU General Public License as published by the Free Software
++ * Foundation, either version 2 of the License, or (at your option) any later
++ * version.
++ *
++ * This program is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
++ * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
++ * details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#define TEST_NO_MAIN
++#include "config.h"
++#include "acutest.h"
++#include <string.h>
++#include <sys/stat.h>
++#include "mutt/lib.h"
++#include "core/lib.h"
++#include "common.h"
++#include "maildir/path.h"
++#include "test_common.h"
++
++void test_maildir_path2_canon(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "%s/maildir/apple",         "%s/maildir/apple",  0 }, // Real path
++    { "%s/maildir/symlink/apple", "%s/maildir/apple",  0 }, // Symlink
++    { "%s/maildir/missing",       NULL,               -1 }, // Missing
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++  char second[256] = { 0 };
++
++  struct Path path = { 0 };
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++    test_gen_path(second, sizeof(second), tests[i].second);
++
++    path.orig = first;
++    TEST_CASE(path.orig);
++    path.type = MUTT_MAILDIR;
++    path.flags = MPATH_RESOLVED | MPATH_TIDY;
++
++    rc = maildir_path2_canon(&path);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(path.flags & MPATH_CANONICAL);
++      TEST_CHECK(path.canon != NULL);
++      TEST_CHECK(mutt_str_strcmp(path.canon, second) == 0);
++    }
++    FREE(&path.canon);
++  }
++}
++
++void test_maildir_path2_compare(void)
++{
++  // clang-format off
++  static const struct TestValue tests[] = {
++    { "%s/maildir/apple",  "%s/maildir/apple",   0 }, // Match
++    { "%s/maildir/apple",  "%s/maildir/orange", -1 }, // Differ
++    { "%s/maildir/orange", "%s/maildir/apple",   1 }, // Differ
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++  char second[256] = { 0 };
++
++  struct Path path1 = {
++    .type = MUTT_MAILDIR,
++    .flags = MPATH_RESOLVED | MPATH_TIDY | MPATH_CANONICAL,
++  };
++  struct Path path2 = {
++    .type = MUTT_MAILDIR,
++    .flags = MPATH_RESOLVED | MPATH_TIDY | MPATH_CANONICAL,
++  };
++
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++    test_gen_path(second, sizeof(second), tests[i].second);
++
++    path1.canon = first;
++    TEST_CASE(path1.canon);
++
++    path2.canon = second;
++    TEST_CASE(path2.canon);
++
++    rc = maildir_path2_compare(&path1, &path2);
++    TEST_CHECK(rc == tests[i].retval);
++  }
++}
++
++void test_maildir_path2_parent(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "%s/maildir/apple/child", "%s/maildir/apple",  0 },
++    { "%s/maildir/empty/child", NULL,               -1 },
++    { "/",                      NULL,               -1 },
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++  char second[256] = { 0 };
++
++  struct Path path = {
++    .type = MUTT_MAILDIR,
++    .flags = MPATH_RESOLVED | MPATH_TIDY,
++  };
++
++  struct Path *parent = NULL;
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++    test_gen_path(second, sizeof(second), tests[i].second);
++
++    path.orig = first;
++    TEST_CASE(path.orig);
++
++    rc = maildir_path2_parent(&path, &parent);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(parent != NULL);
++      TEST_CHECK(parent->orig != NULL);
++      TEST_CHECK(parent->type == path.type);
++      TEST_CHECK(parent->flags & MPATH_RESOLVED);
++      TEST_CHECK(parent->flags & MPATH_TIDY);
++      TEST_CHECK(mutt_str_strcmp(parent->orig, second) == 0);
++      mutt_path_free(&parent);
++    }
++  }
++}
++
++void test_mh_path2_parent(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "%s/maildir/mh2/child",   "%s/maildir/mh2",  0 },
++    { "%s/maildir/empty/child", NULL,             -1 },
++    { "/",                      NULL,             -1 },
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++  char second[256] = { 0 };
++
++  struct Path path = {
++    .type = MUTT_MH,
++    .flags = MPATH_RESOLVED | MPATH_TIDY,
++  };
++
++  struct Path *parent = NULL;
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++    test_gen_path(second, sizeof(second), tests[i].second);
++
++    path.orig = first;
++    TEST_CASE(path.orig);
++
++    rc = maildir_path2_parent(&path, &parent);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(parent != NULL);
++      TEST_CHECK(parent->orig != NULL);
++      TEST_CHECK(parent->type == path.type);
++      TEST_CHECK(parent->flags & MPATH_RESOLVED);
++      TEST_CHECK(parent->flags & MPATH_TIDY);
++      TEST_CHECK(mutt_str_strcmp(parent->orig, second) == 0);
++      mutt_path_free(&parent);
++    }
++  }
++}
++
++void test_maildir_path2_pretty(void)
++{
++  // clang-format off
++  static struct TestValue tests[] = {
++    { "%s/maildir/apple.maildir",         "+maildir/apple.maildir",         1 },
++    { "%s/maildir/symlink/apple.maildir", "+maildir/symlink/apple.maildir", 1 },
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++  char second[256] = { 0 };
++  char folder[256] = { 0 };
++
++  test_gen_path(folder, sizeof(folder), "%s");
++
++  struct Path path = {
++    .type = MUTT_MAILDIR,
++    .flags = MPATH_RESOLVED | MPATH_TIDY,
++  };
++
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++    test_gen_path(second, sizeof(second), tests[i].second);
++
++    path.orig = first;
++    TEST_CASE(path.orig);
++
++    rc = maildir_path2_pretty(&path, folder);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc > 0)
++    {
++      TEST_CHECK(path.pretty != NULL);
++      TEST_CHECK(mutt_str_strcmp(path.pretty, second) == 0);
++    }
++  }
++
++  test_gen_path(first, sizeof(first),  "%s/maildir/apple.maildir");
++  test_gen_path(second, sizeof(second), "~/maildir/apple.maildir");
++  path.orig = first;
++  HomeDir = test_get_test_dir();
++  rc = maildir_path2_pretty(&path, "nowhere");
++  TEST_CHECK(rc == 1);
++  TEST_CHECK(path.pretty != NULL);
++  TEST_CHECK(mutt_str_strcmp(path.pretty, second) == 0);
++
++  test_gen_path(first, sizeof(first), tests[0].first);
++  test_gen_path(second, sizeof(second), tests[0].first);
++  path.orig = first;
++  HomeDir = "/home/another";
++  rc = maildir_path2_pretty(&path, "nowhere");
++  TEST_CHECK(rc == 0);
++  TEST_CHECK(path.pretty != NULL);
++  TEST_CHECK(mutt_str_strcmp(path.pretty, second) == 0);
++}
++
++void test_maildir_path2_probe(void)
++{
++  // clang-format off
++  static const struct TestValue tests[] = {
++    { "%s/maildir/apple",          NULL,  0 }, // Normal, all 3 subdirs
++    { "%s/maildir/banana",         NULL,  0 }, // Normal, just 'cur' subdir
++    { "%s/maildir/symlink/banana", NULL,  0 }, // Symlink
++    { "%s/maildir/cherry",         NULL, -1 }, // No subdirs
++    { "%s/maildir/damson",         NULL, -1 }, // Unreadable
++    { "%s/maildir/endive",         NULL, -1 }, // File
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++
++  struct Path path = { 0 };
++  struct stat st;
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++
++    path.orig = first;
++    TEST_CASE(path.orig);
++    path.type = MUTT_UNKNOWN;
++    path.flags = MPATH_NO_FLAGS;
++    memset(&st, 0, sizeof(st));
++    stat(path.orig, &st);
++    rc = maildir_path2_probe(&path, &st);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(path.type > MUTT_UNKNOWN);
++    }
++  }
++}
++
++void test_mh_path2_probe(void)
++{
++  // clang-format off
++  static const struct TestValue tests[] = {
++    { "%s/maildir/mh1",         NULL,  0 }, // Contains .mh_sequences
++    { "%s/maildir/mh2",         NULL,  0 }, // Contains .xmhcache
++    { "%s/maildir/symlink/mh2", NULL,  0 }, // Symlink
++    { "%s/maildir/mh3",         NULL,  0 }, // Contains .mew_cache
++    { "%s/maildir/mh4",         NULL,  0 }, // Contains .mew-cache
++    { "%s/maildir/mh5",         NULL,  0 }, // Contains .sylpheed_cache
++    { "%s/maildir/mh6",         NULL,  0 }, // Contains .overview
++    { "%s/maildir/mh7",         NULL, -1 }, // Empty
++    { "%s/maildir/mh8",         NULL, -1 }, // File
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++
++  struct Path path = { 0 };
++  struct stat st;
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++
++    path.orig = first;
++    TEST_CASE(path.orig);
++    path.type = MUTT_UNKNOWN;
++    path.flags = MPATH_NO_FLAGS;
++    memset(&st, 0, sizeof(st));
++    stat(path.orig, &st);
++    rc = mh_path2_probe(&path, &st);
++    TEST_CHECK(rc == tests[i].retval);
++    if (rc == 0)
++    {
++      TEST_CHECK(path.type > MUTT_UNKNOWN);
++    }
++  }
++}
++
++void test_maildir_path2_tidy(void)
++{
++  // clang-format off
++  static const struct TestValue tests[] = {
++    { "%s/./maildir/../maildir///apple", "%s/maildir/apple", 0 },
++  };
++  // clang-format on
++
++  char first[256] = { 0 };
++  char second[256] = { 0 };
++
++  struct Path path = {
++    .type = MUTT_MAILDIR,
++    .flags = MPATH_RESOLVED,
++  };
++
++  int rc;
++  for (size_t i = 0; i < mutt_array_size(tests); i++)
++  {
++    test_gen_path(first, sizeof(first), tests[i].first);
++    test_gen_path(second, sizeof(second), tests[i].second);
++
++    path.orig = mutt_str_strdup(first);
++    rc = maildir_path2_tidy(&path);
++    TEST_CHECK(rc == 0);
++    TEST_CHECK(path.orig != NULL);
++    TEST_CHECK(path.flags & MPATH_TIDY);
++    TEST_CHECK(strcmp(path.orig, second) == 0);
++    FREE(&path.orig);
++  }
++}

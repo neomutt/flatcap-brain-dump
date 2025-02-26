@@ -1,0 +1,325 @@
+From 88e71e9777183cf1e3c9536b2ff2f06c613e95b3 Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Fri, 31 Jan 2020 15:06:20 -0800
+Subject: [PATCH 05/11] 14 Change mutt_protect() to use sctx signas values
+
+Pass the sctx into postpone_message() and save_fcc() to it can be
+passed to mutt_protect.
+
+Change compose menu to show the sctx values, but fall back to the
+globals.
+
+Upstream-commit: https://gitlab.com/muttmua/mutt/commit/093cc268e9e812ca647f6edfcf8028dff9b62650
+Co-authored-by: Richard Russon <rich@flatcap.org>
+---
+ compose/compose.c      | 12 ++++++----
+ ncrypt/crypt.c | 62 +++++++++++++++++++++++++++++++++++++++-----------
+ ncrypt/lib.h   |  3 ++-
+ send/send.c         | 24 +++++++++++--------
+ 4 files changed, 74 insertions(+), 27 deletions(-)
+
+diff --git a/compose/compose.c b/compose/compose.c
+index 0ca712ea8..c85fd3d91 100644
+--- a/compose/compose.c
++++ b/compose/compose.c
+@@ -567,22 +567,26 @@ static int redraw_crypt_lines(struct ComposeRedrawData *rd, int row)
+       (e->security & APPLICATION_PGP) && (e->security & SEC_SIGN))
+   {
+     draw_header(rd->win_envelope, row++, HDR_CRYPTINFO);
+-    mutt_window_printf("%s", sctx->pgp_sign_as ? sctx->pgp_sign_as : _("<default>"));
++    mutt_window_printf("%s", sctx->pgp_sign_as ?
++                                 sctx->pgp_sign_as :
++                                 (C_PgpSignAs ? C_PgpSignAs : _("<default>")));
+   }
+ 
+   if (((WithCrypto & APPLICATION_SMIME) != 0) &&
+       (e->security & APPLICATION_SMIME) && (e->security & SEC_SIGN))
+   {
+     draw_header(rd->win_envelope, row++, HDR_CRYPTINFO);
+-    mutt_window_printf("%s", sctx->smime_default_key ? sctx->smime_default_key :
+-                                                       _("<default>"));
++    mutt_window_printf("%s", sctx->smime_default_key ?
++                                 sctx->smime_default_key :
++                                 (C_SmimeSignAs ? C_SmimeSignAs : _("<default>")));
+   }
+ 
+   if (((WithCrypto & APPLICATION_SMIME) != 0) && (e->security & APPLICATION_SMIME) &&
+-      (e->security & SEC_ENCRYPT) && sctx->smime_crypt_alg)
++      (e->security & SEC_ENCRYPT) && (C_SmimeEncryptWith || sctx->smime_crypt_alg))
+   {
+     draw_floating(rd->win_envelope, 40, row - 1, _("Encrypt with: "));
+     mutt_window_printf("%s", NONULL(sctx->smime_crypt_alg));
++    mutt_window_printf("%s", sctx->smime_crypt_alg ? sctx->smime_crypt_alg : C_SmimeEncryptWith);
+   }
+ 
+ #ifdef USE_AUTOCRYPT
+diff --git a/ncrypt/crypt.c b/ncrypt/crypt.c
+index 4aacb893c..462445363 100644
+--- a/ncrypt/crypt.c
++++ b/ncrypt/crypt.c
+@@ -168,16 +168,22 @@ bool crypt_valid_passphrase(SecurityFlags flags)
+  * @retval  0 Success
+  * @retval -1 Error
+  */
+-int mutt_protect(struct Email *e, char *keylist, bool postpone)
++int mutt_protect(struct SendContext *sctx, char *keylist, bool postpone)
+ {
+   struct Body *pbody = NULL, *tmp_pbody = NULL;
+   struct Body *tmp_smime_pbody = NULL;
+   struct Body *tmp_pgp_pbody = NULL;
+   bool has_retainable_sig = false;
++  int rc = -1;
++  char *orig_pgp_sign_as = NULL;
++  char *orig_smime_sign_as = NULL;
++  char *orig_smime_crypt_alg = NULL;
+ 
+   if (!WithCrypto)
+     return -1;
+ 
++  struct Email *e = sctx->e_templ;
++
+   int security = e->security;
+   int sign = security & (SEC_AUTOCRYPT | SEC_SIGN);
+   if (postpone)
+@@ -192,6 +198,26 @@ int mutt_protect(struct Email *e, char *keylist, bool postpone)
+   if (sign && !(security & SEC_AUTOCRYPT) && !crypt_valid_passphrase(security))
+     return -1;
+ 
++  /* Override with sctx settings, if they are set.
++   * This can happen with the compose send_menus and when resuming a
++   * postponed message.
++   */
++  if (sctx->pgp_sign_as)
++  {
++    orig_pgp_sign_as = mutt_str_strdup(C_PgpSignAs);
++    mutt_str_replace(&C_PgpSignAs, sctx->pgp_sign_as);
++  }
++  if (sctx->smime_default_key)
++  {
++    orig_smime_sign_as = mutt_str_strdup(C_SmimeSignAs);
++    mutt_str_replace(&C_SmimeSignAs, sctx->smime_default_key);
++  }
++  if (sctx->smime_crypt_alg)
++  {
++    orig_smime_crypt_alg = mutt_str_strdup(C_SmimeEncryptWith);
++    mutt_str_replace(&C_SmimeEncryptWith, sctx->smime_crypt_alg);
++  }
++
+   if (((WithCrypto & APPLICATION_PGP) != 0) && !(security & SEC_AUTOCRYPT) &&
+       ((security & PGP_INLINE) == PGP_INLINE))
+   {
+@@ -204,7 +230,7 @@ int mutt_protect(struct Email *e, char *keylist, bool postpone)
+       {
+         mutt_error(
+             _("Mail not sent: inline PGP can't be used with attachments"));
+-        return -1;
++        goto cleanup;
+       }
+     }
+     else if (mutt_str_strcasecmp("flowed", mutt_param_get(&e->content->parameter, "format")) == 0)
+@@ -215,7 +241,7 @@ int mutt_protect(struct Email *e, char *keylist, bool postpone)
+       {
+         mutt_error(
+             _("Mail not sent: inline PGP can't be used with format=flowed"));
+-        return -1;
++        goto cleanup;
+       }
+     }
+     else
+@@ -230,7 +256,8 @@ int mutt_protect(struct Email *e, char *keylist, bool postpone)
+       if (pbody)
+       {
+         e->content = pbody;
+-        return 0;
++        rc = 0;
++        goto cleanup;
+       }
+ 
+       /* otherwise inline won't work...ask for revert */
+@@ -239,7 +266,7 @@ int mutt_protect(struct Email *e, char *keylist, bool postpone)
+               _("Message can't be sent inline.  Revert to using PGP/MIME?")) != MUTT_YES)
+       {
+         mutt_error(_("Mail not sent"));
+-        return -1;
++        goto cleanup;
+       }
+     }
+ 
+@@ -326,7 +353,7 @@ int mutt_protect(struct Email *e, char *keylist, bool postpone)
+     {
+       tmp_pbody = crypt_smime_sign_message(e->content, &e->env->from);
+       if (!tmp_pbody)
+-        goto bail;
++        goto cleanup;
+       pbody = tmp_pbody;
+       tmp_smime_pbody = tmp_pbody;
+     }
+@@ -336,7 +363,7 @@ int mutt_protect(struct Email *e, char *keylist, bool postpone)
+     {
+       tmp_pbody = crypt_pgp_sign_message(e->content, &e->env->from);
+       if (!tmp_pbody)
+-        goto bail;
++        goto cleanup;
+ 
+       has_retainable_sig = true;
+       sign = SEC_NO_FLAGS;
+@@ -358,7 +385,7 @@ int mutt_protect(struct Email *e, char *keylist, bool postpone)
+       if (!tmp_pbody)
+       {
+         /* signed ? free it! */
+-        goto bail;
++        goto cleanup;
+       }
+       /* free tmp_body if messages was signed AND encrypted ... */
+       if ((tmp_smime_pbody != e->content) && (tmp_smime_pbody != tmp_pbody))
+@@ -386,7 +413,7 @@ int mutt_protect(struct Email *e, char *keylist, bool postpone)
+           mutt_body_free(&tmp_pgp_pbody->next);
+         }
+ 
+-        goto bail;
++        goto cleanup;
+       }
+ 
+       // destroy temporary signature envelope when doing retainable signatures.
+@@ -401,12 +428,21 @@ int mutt_protect(struct Email *e, char *keylist, bool postpone)
+   if (pbody)
+   {
+     e->content = pbody;
+-    return 0;
++    rc = 0;
+   }
+ 
+-bail:
+-  mutt_env_free(&e->content->mime_headers);
+-  return -1;
++cleanup:
++  if (rc != 0)
++    mutt_env_free(&e->content->mime_headers);
++
++  if (sctx->pgp_sign_as)
++    mutt_str_replace(&C_PgpSignAs, orig_pgp_sign_as);
++  if (sctx->smime_default_key)
++    mutt_str_replace(&C_SmimeSignAs, orig_smime_sign_as);
++  if (sctx->smime_crypt_alg)
++    mutt_str_replace(&C_SmimeEncryptWith, orig_smime_crypt_alg);
++
++  return rc;
+ }
+ 
+ /**
+diff --git a/ncrypt/lib.h b/ncrypt/lib.h
+index 4ad7ab1d4..08cc1d1ee 100644
+--- a/ncrypt/lib.h
++++ b/ncrypt/lib.h
+@@ -61,6 +61,7 @@ struct Email;
+ struct EmailList;
+ struct Envelope;
+ struct Mailbox;
++struct SendContext;
+ struct State;
+ 
+ /* These Config Variables are only used in ncrypt/crypt.c */
+@@ -201,7 +202,7 @@ SecurityFlags mutt_is_malformed_multipart_pgp_encrypted(struct Body *b);
+ SecurityFlags mutt_is_multipart_encrypted(struct Body *b);
+ SecurityFlags mutt_is_multipart_signed(struct Body *b);
+ int          mutt_is_valid_multipart_pgp_encrypted(struct Body *b);
+-int          mutt_protect(struct Email *e, char *keylist, bool postpone);
++int          mutt_protect(struct SendContext *sctx, char *keylist, bool postpone);
+ int          mutt_protected_headers_handler(struct Body *m, struct State *s);
+ bool         mutt_should_hide_protected_subject(struct Email *e);
+ int          mutt_signed_handler(struct Body *a, struct State *s);
+diff --git a/send/send.c b/send/send.c
+index 56c931cb3..39c4cc9d2 100644
+--- a/send/send.c
++++ b/send/send.c
+@@ -1579,11 +1579,13 @@ static bool search_attach_keyword(char *filename)
+  * @retval  0 Success
+  * @retval -1 Error
+  */
+-static int save_fcc(struct Email *e, struct Buffer *fcc, struct Body *clear_content,
++static int save_fcc(struct SendContext *sctx, struct Body *clear_content,
+                     char *pgpkeylist, SendFlags flags, char **finalpath)
+ {
+   int rc = 0;
+   struct Body *save_content = NULL;
++  struct Email *e = sctx->e_templ;
++  struct Buffer *fcc = &sctx->fcc;
+ 
+   mutt_buffer_expand_path(fcc);
+ 
+@@ -1656,7 +1658,7 @@ static int save_fcc(struct Email *e, struct Buffer *fcc, struct Body *clear_cont
+           /* this means writing only the main part */
+           e->content = clear_content->parts;
+ 
+-          if (mutt_protect(e, pgpkeylist, false) == -1)
++          if (mutt_protect(sctx, pgpkeylist, false) == -1)
+           {
+             /* we can't do much about it at this point, so
+            * fallback to saving the whole thing to fcc */
+@@ -1759,8 +1761,7 @@ full_fcc:
+  * @retval  0 Success
+  * @retval -1 Error
+  */
+-static int postpone_message(struct Email *e_post, struct Email *e_cur,
+-                            const char *fcc, SendFlags flags)
++static int postpone_message(struct SendContext *sctx)
+ {
+   char *pgpkeylist = NULL;
+   char *encrypt_as = NULL;
+@@ -1772,6 +1773,11 @@ static int postpone_message(struct Email *e_post, struct Email *e_cur,
+     return -1;
+   }
+ 
++  struct Email *e_post = sctx->e_templ;
++  struct Email *e_cur = sctx->e_cur;
++  const char *fcc = mutt_b2s(&sctx->fcc);
++  int flags = sctx->flags;
++
+   if (e_post->content->next)
+     e_post->content = mutt_make_multipart(e_post->content);
+ 
+@@ -1805,7 +1811,7 @@ static int postpone_message(struct Email *e_post, struct Email *e_cur,
+     {
+       pgpkeylist = mutt_str_strdup(encrypt_as);
+       clear_content = e_post->content;
+-      if (mutt_protect(e_post, pgpkeylist, true) == -1)
++      if (mutt_protect(sctx, pgpkeylist, true) == -1)
+       {
+         FREE(&pgpkeylist);
+         e_post->content = mutt_remove_multipart(e_post->content);
+@@ -2417,7 +2423,7 @@ static int send_message_resume_compose_menu(struct SendContext *sctx)
+     }
+     else if (i == 1)
+     {
+-      if (postpone_message(sctx->e_templ, sctx->e_cur, mutt_b2s(&sctx->fcc), sctx->flags) != 0)
++      if (postpone_message(sctx) != 0)
+         goto main_loop;
+       mutt_message(_("Message postponed"));
+       rc = 1;
+@@ -2514,7 +2520,7 @@ static int send_message_resume_compose_menu(struct SendContext *sctx)
+       clear_content = sctx->e_templ->content;
+ 
+       if ((crypt_get_keys(sctx->e_templ, &pgpkeylist, 0) == -1) ||
+-          (mutt_protect(sctx->e_templ, pgpkeylist, false) == -1))
++          (mutt_protect(sctx, pgpkeylist, false) == -1))
+       {
+         sctx->e_templ->content = mutt_remove_multipart(sctx->e_templ->content);
+ 
+@@ -2545,7 +2551,7 @@ static int send_message_resume_compose_menu(struct SendContext *sctx)
+   mutt_prepare_envelope(sctx->e_templ->env, true);
+ 
+   if (C_FccBeforeSend)
+-    save_fcc(sctx->e_templ, &sctx->fcc, clear_content, pgpkeylist, sctx->flags, &finalpath);
++    save_fcc(sctx, clear_content, pgpkeylist, sctx->flags, &finalpath);
+ 
+   i = invoke_mta(sctx->e_templ);
+   if (i < 0)
+@@ -2587,7 +2593,7 @@ static int send_message_resume_compose_menu(struct SendContext *sctx)
+   }
+ 
+   if (!C_FccBeforeSend)
+-    save_fcc(sctx->e_templ, &sctx->fcc, clear_content, pgpkeylist, sctx->flags, &finalpath);
++    save_fcc(sctx, clear_content, pgpkeylist, sctx->flags, &finalpath);
+ 
+   if (!OptNoCurses && !(sctx->flags & SEND_MAILX))
+   {

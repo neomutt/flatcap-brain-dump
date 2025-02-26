@@ -1,0 +1,102 @@
+From fa8702ffe17af11dd7269755bb74c0b3e05de2dc Mon Sep 17 00:00:00 2001
+From: Kevin McCarthy <kevin@8t8.us>
+Date: Mon, 2 Mar 2020 14:05:49 -0800
+Subject: [PATCH] Add $status_format 'B' expando for backgrounded count.
+
+Add "%?B? Back:%B?" to the default $status_format.
+
+Rather than iterating ProcessList for each status bar refresh, just
+add a counter in background.c.
+---
+ background.c |  2 ++
+ background.h |  2 ++
+ init.h       |  3 ++-
+ status.c     | 11 +++++++++++
+ 4 files changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/background.c b/background.c
+index 3b115f14..ac813f23 100644
+--- a/background.c
++++ b/background.c
+@@ -69,6 +69,7 @@ static void process_list_add (BACKGROUND_PROCESS *process)
+ {
+   process->next = ProcessList;
+   ProcessList = process;
++  BackgroundProcessCount++;
+ }
+ 
+ static void process_list_remove (BACKGROUND_PROCESS *process)
+@@ -82,6 +83,7 @@ static void process_list_remove (BACKGROUND_PROCESS *process)
+     {
+       *plast = cur->next;
+       cur->next = NULL;
++      BackgroundProcessCount--;
+       break;
+     }
+     plast = &cur->next;
+diff --git a/background.h b/background.h
+index b43cec03..04eeedca 100644
+--- a/background.h
++++ b/background.h
+@@ -19,6 +19,8 @@
+ #ifndef _BACKGROUND_H
+ #define _BACKGROUND_H 1
+ 
++WHERE int BackgroundProcessCount;
++
+ int mutt_background_has_backgrounded (void);
+ int mutt_background_process_waitpid (void);
+ int mutt_background_edit_file (SEND_CONTEXT *sctx, const char *editor,
+diff --git a/init.h b/init.h
+index 9e9df5eb..13145b21 100644
+--- a/init.h
++++ b/init.h
+@@ -4064,7 +4064,7 @@ struct option_t MuttVars[] = {
+   ** message mode (Certain operations like composing a new mail, replying,
+   ** forwarding, etc. are not permitted in this mode).
+   */
+-  { "status_format",	DT_STR,	 R_BOTH, {.p=&Status}, {.p="-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"} },
++  { "status_format",	DT_STR,	 R_BOTH, {.p=&Status}, {.p="-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?B? Back:%B?%?l? %l?]---(%s/%S)-%>-(%P)---"} },
+   /*
+   ** .pp
+   ** Controls the format of the status line displayed in the ``index''
+@@ -4072,6 +4072,7 @@ struct option_t MuttVars[] = {
+   ** set of \fCprintf(3)\fP-like sequences:
+   ** .dl
+   ** .dt %b  .dd number of mailboxes with new mail *
++  ** .dt %B  .dd number of backgrounded editing sessions *
+   ** .dt %d  .dd number of deleted messages *
+   ** .dt %f  .dd the full pathname of the current mailbox
+   ** .dt %F  .dd number of flagged messages *
+diff --git a/status.c b/status.c
+index cccf7eca..5812dc82 100644
+--- a/status.c
++++ b/status.c
+@@ -28,6 +28,7 @@
+ #include "mapping.h"
+ #include "mx.h"
+ #include "buffy.h"
++#include "background.h"
+ 
+ #include <string.h>
+ #include <ctype.h>
+@@ -87,6 +88,16 @@ status_format_str (char *buf, size_t buflen, size_t col, int cols, char op, cons
+ 	optional = 0;
+       break;
+ 
++    case 'B':
++      if (!optional)
++      {
++	snprintf (fmt, sizeof (fmt), "%%%sd", prefix);
++	snprintf (buf, buflen, fmt, BackgroundProcessCount);
++      }
++      else if (!BackgroundProcessCount)
++	optional = 0;
++      break;
++
+     case 'd':
+       if (!optional)
+       {
+-- 
+2.26.2
+
