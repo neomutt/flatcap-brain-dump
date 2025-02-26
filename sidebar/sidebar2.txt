@@ -1,0 +1,45 @@
+index dlg data
+	current A, M, E
+	notify
+	functions to set current A, M, E
+
+sidebar
+	function for events (simple)
+
+init-windows -> sb_init(sb_win)
+shutdow-windows -> sb_shutdown(sb_win)
+
+sb_init - assume global N
+	generate SB_AV-MV tree
+	listen to:
+		N for A|M changes
+		N for config, colour, etc
+		Dlg for change to current A|M
+	flag: need_reflow, need_recalc, need_repaint
+
+is need_reflow a thing?
+	yes: if I change visibility
+
+after init, main loop
+
+reflow everything (force) - for initial run
+	reflow (sb_win) - dimensions change -> notify sb
+		sb already waiting for recalc, so do nothing
+
+recalc everything (force) - for initial run
+	sb_win.recalc() - generate format strings for on-screen lines
+		flag need_repaint (already set)
+
+repaint everything (force) - for initial run
+	sb_win.repaint() - format strings to screen
+
+change lists to arrays for sorting
+does list in clude A or just M?
+are A visible?  A displays spoolfile?
+does sort include A, or just sort with A-scope?
+deleting A/M offscreen won't affect display
+sb account line - empty or spoolfile or cumulative total ∀ M?
+A option - hidden, visible, collapsed?  new_only -> no visible M => no visible A?
+late introduction of sidebar -- need to change orientation of dlg
+sidebar integration: window, config, commands, colours, functions, sorts
+

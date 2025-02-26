@@ -1,0 +1,242 @@
+2025-02-26 All global variables (excluding static const)
+
+alias/alias.c:62:                    Aliases                                       struct AliasList Aliases = TAILQ_HEAD_INITIALIZER(Aliases);
+autocrypt/config.c:37:               AutocryptSignAs                               char *AutocryptSignAs = NULL;
+autocrypt/config.c:38:               AutocryptDefaultKey                           char *AutocryptDefaultKey = NULL;
+autocrypt/db.c:56:                   AutocryptDB                                   sqlite3 *AutocryptDB = NULL;
+browser/dlg_browser.c:136:           LastDir                                       struct Buffer LastDir = { 0 };
+browser/dlg_browser.c:138:           LastDirBackup                                 struct Buffer LastDirBackup = { 0 };
+color/curses.c:38:                   CursesColors                                  struct CursesColorList CursesColors;
+color/curses.c:39:                   NumCursesColors                               int NumCursesColors;
+color/merged.c:39:                   MergedColors                                  struct AttrColorList MergedColors;
+color/notify.c:36:                   ColorsNotify                                  struct Notify *ColorsNotify = NULL;
+color/regex.c:48:                    AttachList                                    struct RegexColorList AttachList;
+color/regex.c:49:                    BodyList                                      struct RegexColorList BodyList;
+color/regex.c:50:                    HeaderList                                    struct RegexColorList HeaderList;
+color/regex.c:51:                    IndexAuthorList                               struct RegexColorList IndexAuthorList;
+color/regex.c:52:                    IndexCollapsedList                            struct RegexColorList IndexCollapsedList;
+color/regex.c:53:                    IndexDateList                                 struct RegexColorList IndexDateList;
+color/regex.c:54:                    IndexFlagsList                                struct RegexColorList IndexFlagsList;
+color/regex.c:55:                    IndexLabelList                                struct RegexColorList IndexLabelList;
+color/regex.c:56:                    IndexList                                     struct RegexColorList IndexList;
+color/regex.c:57:                    IndexNumberList                               struct RegexColorList IndexNumberList;
+color/regex.c:58:                    IndexSizeList                                 struct RegexColorList IndexSizeList;
+color/regex.c:59:                    IndexSubjectList                              struct RegexColorList IndexSubjectList;
+color/regex.c:60:                    IndexTagList                                  struct RegexColorList IndexTagList;
+color/regex.c:61:                    IndexTagsList                                 struct RegexColorList IndexTagsList;
+color/regex.c:62:                    StatusList                                    struct RegexColorList StatusList;
+color/simple.c:42:                   SimpleColors                                  struct AttrColor SimpleColors[MT_COLOR_MAX];
+core/neomutt.c:43:                   NeoMutt                                       struct NeoMutt *NeoMutt = NULL;
+debug/logging.c:39:                  DebugLogColor                                 bool DebugLogColor = false;
+debug/logging.c:40:                  DebugLogLevel                                 bool DebugLogLevel = false;
+debug/logging.c:41:                  DebugLogTimestamp                             bool DebugLogTimestamp = false;
+docs/makedoc.c:73:                   Progname                                      char *Progname = NULL;
+docs/makedoc.c:74:                   Debug                                         short Debug = 0;
+docs/makedoc.c:75:                   fd_recurse                                    int fd_recurse = 0;
+docs/makedoc.c:160:                  types                                         struct VariableTypes types[] = {
+email/globals.c:36:                  AutoSubscribeCache                            struct HashTable *AutoSubscribeCache = NULL;
+email/globals.c:38:                  Ignore                                        struct ListHead Ignore = STAILQ_HEAD_INITIALIZER(Ignore);
+email/globals.c:40:                  MailLists                                     struct RegexList MailLists = STAILQ_HEAD_INITIALIZER(MailLists);
+email/globals.c:42:                  MailToAllow                                   struct ListHead MailToAllow = STAILQ_HEAD_INITIALIZER(MailToAllow);
+email/globals.c:44:                  NoSpamList                                    struct RegexList NoSpamList = STAILQ_HEAD_INITIALIZER(NoSpamList);
+email/globals.c:46:                  SpamList                                      struct ReplaceList SpamList = STAILQ_HEAD_INITIALIZER(SpamList);
+email/globals.c:48:                  SubscribedLists                               struct RegexList SubscribedLists = STAILQ_HEAD_INITIALIZER(SubscribedLists);
+email/globals.c:50:                  UnIgnore                                      struct ListHead UnIgnore = STAILQ_HEAD_INITIALIZER(UnIgnore);
+email/globals.c:52:                  UnMailLists                                   struct RegexList UnMailLists = STAILQ_HEAD_INITIALIZER(UnMailLists);
+email/globals.c:54:                  UnSubscribedLists                             struct RegexList UnSubscribedLists = STAILQ_HEAD_INITIALIZER(UnSubscribedLists);
+email/tags.c:41:                     TagTransforms                                 struct HashTable *TagTransforms = NULL;
+email/tags.c:42:                     TagFormats                                    struct HashTable *TagFormats = NULL;
+fuzz/address.c:14:                   StartupComplete                               bool StartupComplete = true;
+fuzz/date.c:8:                       StartupComplete                               bool StartupComplete = true;
+globals.c:34:                        ErrorBufMessage                               bool ErrorBufMessage;
+globals.c:35:                        ErrorBuf                                      char ErrorBuf[1024];
+globals.c:37:                        ShortHostname                                 char *ShortHostname = NULL;
+globals.c:39:                        CurrentFolder                                 char *CurrentFolder = NULL;
+globals.c:40:                        LastFolder                                    char *LastFolder = NULL;
+globals.c:44:                        AlternativeOrderList                          struct ListHead AlternativeOrderList = STAILQ_HEAD_INITIALIZER(AlternativeOrderList);
+globals.c:45:                        AutoViewList                                  struct ListHead AutoViewList = STAILQ_HEAD_INITIALIZER(AutoViewList);
+globals.c:46:                        HeaderOrderList                               struct ListHead HeaderOrderList = STAILQ_HEAD_INITIALIZER(HeaderOrderList);
+globals.c:47:                        MimeLookupList                                struct ListHead MimeLookupList = STAILQ_HEAD_INITIALIZER(MimeLookupList);
+globals.c:48:                        TempAttachmentsList                           struct ListHead TempAttachmentsList = STAILQ_HEAD_INITIALIZER(TempAttachmentsList);
+globals.c:49:                        UserHeader                                    struct ListHead UserHeader = STAILQ_HEAD_INITIALIZER(UserHeader);
+globals.c:55:                        OptAutocryptGpgme                             bool OptAutocryptGpgme;
+globals.c:57:                        OptDontHandlePgpKeys                          bool OptDontHandlePgpKeys;
+globals.c:58:                        OptForceRefresh                               bool OptForceRefresh;
+globals.c:59:                        OptKeepQuiet                                  bool OptKeepQuiet;
+globals.c:60:                        OptMsgErr                                     bool OptMsgErr;
+globals.c:61:                        OptNeedRescore                                bool OptNeedRescore;
+globals.c:62:                        OptNeedResort                                 bool OptNeedResort;
+globals.c:63:                        OptNews                                       bool OptNews;
+globals.c:64:                        OptNewsSend                                   bool OptNewsSend;
+globals.c:65:                        OptNoCurses                                   bool OptNoCurses;
+globals.c:66:                        OptPgpCheckTrust                              bool OptPgpCheckTrust;
+globals.c:67:                        OptResortInit                                 bool OptResortInit;
+globals.c:68:                        OptSortSubthreads                             bool OptSortSubthreads;
+gui/dialog.c:80:                     AllDialogsWindow                              struct MuttWindow *AllDialogsWindow = NULL;
+gui/msgcont.c:40:                    MessageContainer                              struct MuttWindow *MessageContainer = NULL;
+gui/rootwin.c:106:                   RootWindow                                    struct MuttWindow *RootWindow = NULL;
+gui/terminal.c:42:                   TsSupported                                   bool TsSupported;
+imap/msg_set.c:49:                   ImapMaxCmdlen                                 int ImapMaxCmdlen = 8192;
+key/get.c:49:                        MacroEvents                                   struct KeyEventArray MacroEvents = ARRAY_HEAD_INITIALIZER;
+key/lib.c:59:                        KeyNames                                      struct Mapping KeyNames[] = {
+key/lib.c:121:                       AbortKey                                      keycode_t AbortKey;
+key/lib.c:124:                       Keymaps                                       struct KeymapList Keymaps[MENU_MAX];
+main.c:201:                          StartupComplete                               bool StartupComplete = false;
+menu/menu.c:43:                      SearchBuffers                                 char *SearchBuffers[MENU_MAX];
+monitor.c:53:                        MonitorFilesChanged                           bool MonitorFilesChanged = false;
+monitor.c:55:                        MonitorCurMboxChanged                         bool MonitorCurMboxChanged = false;
+mutt/charset.c:61:                   ReplacementChar                               wchar_t ReplacementChar = '?';
+mutt/charset.c:66:                   CharsetIsUtf8                                 bool CharsetIsUtf8 = false;
+mutt/logging.c:53:                   MuttLogger                                    log_dispatcher_t MuttLogger = log_disp_terminal;
+mutt/mbyte.c:44:                     OptLocales                                    bool OptLocales;
+mutt/signal.c:67:                    OldSegvHandler                                sig_handler_t OldSegvHandler = NULL;
+mutt/signal.c:69:                    SigInt                                        volatile sig_atomic_t SigInt;
+mutt/signal.c:70:                    SigWinch                                      volatile sig_atomic_t SigWinch;
+ncrypt/gpgme_functions.c:55:         KeyInfoPadding                                int KeyInfoPadding[KIP_MAX] = { 0 };
+nntp/nntp.c:77:                      CurrentNewsSrv                                struct NntpAccountData *CurrentNewsSrv = NULL;
+pager/dlg_pager.c:68:                BrailleRow                                    int BrailleRow = -1;
+pager/dlg_pager.c:70:                BrailleCol                                    int BrailleCol = -1;
+pattern/pattern.c:65:                RangeRegexes                                  struct RangeRegex RangeRegexes[] = {
+postpone/postpone.c:58:              PostCount                                     short PostCount = 0;
+sidebar/sidebar.c:44:                SidebarPinned                                 struct ListHead SidebarPinned = STAILQ_HEAD_INITIALIZER(SidebarPinned);
+
+alias/config.c:111:                  AliasVars                                     static struct ConfigDef AliasVars[] = {
+autocrypt/config.c:64:               AutocryptVars                                 static struct ConfigDef AutocryptVars[] = {
+browser/config.c:138:                BrowserVars                                   static struct ConfigDef BrowserVars[] = {
+compose/config.c:65:                 ComposeVars                                   static struct ConfigDef ComposeVars[] = {
+conn/config.c:39:                    ConnVars                                      static struct ConfigDef ConnVars[] = {
+conn/config.c:66:                    ConnVarsSsl                                   static struct ConfigDef ConnVarsSsl[] = {
+conn/config.c:113:                   ConnVarsGnutls                                static struct ConfigDef ConnVarsGnutls[] = {
+conn/config.c:130:                   ConnVarsOpenssl                               static struct ConfigDef ConnVarsOpenssl[] = {
+conn/config.c:151:                   ConnVarsPartial                               static struct ConfigDef ConnVarsPartial[] = {
+conn/config.c:165:                   ConnVarsGetaddr                               static struct ConfigDef ConnVarsGetaddr[] = {
+email/config.c:38:                   EmailVars                                     static struct ConfigDef EmailVars[] = {
+hcache/config.c:124:                 HcacheVars                                    static struct ConfigDef HcacheVars[] = {
+hcache/config.c:140:                 HcacheVarsComp                                static struct ConfigDef HcacheVarsComp[] = {
+hcache/config.c:158:                 HcacheVarsComp2                               static struct ConfigDef HcacheVarsComp2[] = {
+hcache/config.c:170:                 HcacheVarsPage                                static struct ConfigDef HcacheVarsPage[] = {
+helpbar/config.c:37:                 HelpbarVars                                   static struct ConfigDef HelpbarVars[] = {
+history/config.c:56:                 HistoryVars                                   static struct ConfigDef HistoryVars[] = {
+imap/config.c:70:                    ImapVars                                      static struct ConfigDef ImapVars[] = {
+imap/config.c:146:                   ImapVarsZlib                                  static struct ConfigDef ImapVarsZlib[] = {
+index/config.c:82:                   IndexVars                                     static struct ConfigDef IndexVars[] = {
+maildir/config.c:69:                 MaildirVars                                   static struct ConfigDef MaildirVars[] = {
+maildir/config.c:91:                 MaildirVarsHcache                             static struct ConfigDef MaildirVarsHcache[] = {
+mbox/config.c:37:                    MboxVars                                      static struct ConfigDef MboxVars[] = {
+menu/config.c:37:                    MenuVars                                      static struct ConfigDef MenuVars[] = {
+mh/config.c:37:                      MhVars                                        static struct ConfigDef MhVars[] = {
+mutt_config.c:381:                   MainVars                                      static struct ConfigDef MainVars[] = {
+mutt_config.c:835:                   MainVarsIdn                                   static struct ConfigDef MainVarsIdn[] = {
+ncrypt/config.c:110:                 NcryptVars                                    static struct ConfigDef NcryptVars[] = {
+ncrypt/config.c:222:                 NcryptVarsGpgme                               static struct ConfigDef NcryptVarsGpgme[] = {
+ncrypt/config.c:301:                 NcryptVarsPgp                                 static struct ConfigDef NcryptVarsPgp[] = {
+ncrypt/config.c:371:                 NcryptVarsSmime                               static struct ConfigDef NcryptVarsSmime[] = {
+nntp/config.c:59:                    NntpVars                                      static struct ConfigDef NntpVars[] = {
+notmuch/config.c:105:                NotmuchVars                                   static struct ConfigDef NotmuchVars[] = {
+pager/config.c:43:                   PagerVars                                     static struct ConfigDef PagerVars[] = {
+pattern/config.c:57:                 PatternVars                                   static struct ConfigDef PatternVars[] = {
+pop/config.c:70:                     PopVars                                       static struct ConfigDef PopVars[] = {
+progress/config.c:37:                ProgressVars                                  static struct ConfigDef ProgressVars[] = {
+send/config.c:136:                   SendVars                                      static struct ConfigDef SendVars[] = {
+sidebar/config.c:93:                 SidebarVars                                   static struct ConfigDef SidebarVars[] = {
+
+address/group.c:43:                  Groups                                        static struct HashTable *Groups = NULL;
+alias/reverse.c:37:                  ReverseAliases                                static struct HashTable *ReverseAliases = NULL;
+alternates.c:42:                     Alternates                                    static struct RegexList Alternates = STAILQ_HEAD_INITIALIZER(Alternates);
+alternates.c:43:                     UnAlternates                                  static struct RegexList UnAlternates = STAILQ_HEAD_INITIALIZER(UnAlternates);
+alternates.c:44:                     AlternatesNotify                              static struct Notify *AlternatesNotify = NULL;
+attach/attachments.c:56:             AttachAllow                                   static struct ListHead AttachAllow = STAILQ_HEAD_INITIALIZER(AttachAllow);
+attach/attachments.c:57:             AttachExclude                                 static struct ListHead AttachExclude = STAILQ_HEAD_INITIALIZER(AttachExclude);
+attach/attachments.c:58:             InlineAllow                                   static struct ListHead InlineAllow = STAILQ_HEAD_INITIALIZER(InlineAllow);
+attach/attachments.c:59:             InlineExclude                                 static struct ListHead InlineExclude = STAILQ_HEAD_INITIALIZER(InlineExclude);
+attach/attachments.c:60:             AttachmentsNotify                             static struct Notify *AttachmentsNotify = NULL;
+autocrypt/db.c:45:                   AccountGetStmt                                static sqlite3_stmt *AccountGetStmt = NULL;
+autocrypt/db.c:46:                   AccountInsertStmt                             static sqlite3_stmt *AccountInsertStmt = NULL;
+autocrypt/db.c:47:                   AccountUpdateStmt                             static sqlite3_stmt *AccountUpdateStmt = NULL;
+autocrypt/db.c:48:                   AccountDeleteStmt                             static sqlite3_stmt *AccountDeleteStmt = NULL;
+autocrypt/db.c:49:                   PeerGetStmt                                   static sqlite3_stmt *PeerGetStmt = NULL;
+autocrypt/db.c:50:                   PeerInsertStmt                                static sqlite3_stmt *PeerInsertStmt = NULL;
+autocrypt/db.c:51:                   PeerUpdateStmt                                static sqlite3_stmt *PeerUpdateStmt = NULL;
+autocrypt/db.c:52:                   PeerHistoryInsertStmt                         static sqlite3_stmt *PeerHistoryInsertStmt = NULL;
+autocrypt/db.c:53:                   GossipHistoryInsertStmt                       static sqlite3_stmt *GossipHistoryInsertStmt = NULL;
+color/parse_color.c:59:              AttributeNames                                static struct Mapping AttributeNames[] = {
+color/quoted.c:37:                   NumQuotedColors                               static int NumQuotedColors = 0;
+commands.c:82:                       MuttrcStack                                   static struct ListHead MuttrcStack = STAILQ_HEAD_INITIALIZER(MuttrcStack);
+conn/gnutls.c:75:                    ProtocolPriority                              static int ProtocolPriority[] = { GNUTLS_TLS1_2, GNUTLS_TLS1_1, GNUTLS_TLS1, GNUTLS_SSL3, 0 };
+conn/gsasl.c:40:                     MuttGsaslCtx                                  static Gsasl *MuttGsaslCtx = NULL;
+conn/openssl.c:85:                   HostExDataIndex                               static int HostExDataIndex = -1;
+conn/openssl.c:89:                   SkipModeExDataIndex                           static int SkipModeExDataIndex = -1;
+conn/sasl.c:126:                     MuttSaslCallbacks                             static sasl_callback_t MuttSaslCallbacks[5];
+conn/sasl.c:129:                     SecretPtr                                     static sasl_secret_t *SecretPtr = NULL;
+core/config_cache.c:39:              CacheActive                                   static bool CacheActive = false;
+core/mailbox.c:290:                  GC                                            static struct EmailGarbageCollector GC = { 0 };
+debug/window.c:40:                   WinFocus                                      static struct MuttWindow *WinFocus = NULL;
+envelope/window.c:88:                HeaderPadding                                 static int HeaderPadding[HDR_ATTACH_TITLE] = { 0 };
+envelope/window.c:90:                MaxHeaderWidth                                static int MaxHeaderWidth = 0;
+external.c:75:                       LastSaveFolder                                static struct Buffer LastSaveFolder = { 0 };
+hcache/hcache.c:61:                  HcacheVer                                     static unsigned int HcacheVer = 0x0;
+history/history.c:101:               Histories                                     static struct History Histories[HC_MAX];
+history/history.c:104:               OldSize                                       static int OldSize = 0;
+hook.c:79:                           Hooks                                         static struct HookList Hooks = TAILQ_HEAD_INITIALIZER(Hooks);
+hook.c:82:                           IdxFmtHooks                                   static struct HashTable *IdxFmtHooks = NULL;
+hook.c:85:                           CurrentHookType                               static HookFlags CurrentHookType = MUTT_HOOK_NO_FLAGS;
+key/get.c:53:                        UngetKeyEvents                                static struct KeyEventArray UngetKeyEvents = ARRAY_HEAD_INITIALIZER;
+monitor.c:58:                        INotifyFd                                     static int INotifyFd = -1;
+monitor.c:60:                        Monitor                                       static struct Monitor *Monitor = NULL;
+monitor.c:62:                        PollFdsCount                                  static size_t PollFdsCount = 0;
+monitor.c:64:                        PollFdsLen                                    static size_t PollFdsLen = 0;
+monitor.c:66:                        PollFds                                       static struct pollfd *PollFds = NULL;
+monitor.c:68:                        MonitorCurMboxDescriptor                      static int MonitorCurMboxDescriptor = -1;
+mutt/charset.c:83:                   Lookups                                       static struct LookupList Lookups = TAILQ_HEAD_INITIALIZER(Lookups);
+mutt/charset.c:98:                   IconvCache                                    static struct IconvCacheEntry IconvCache[ICONV_CACHE_SIZE];
+mutt/charset.c:100:                  IconvCacheUsed                                static int IconvCacheUsed = 0;
+mutt/logging.c:55:                   LogFileFP                                     static FILE *LogFileFP = NULL;
+mutt/logging.c:56:                   LogFileName                                   static char *LogFileName = NULL;
+mutt/logging.c:57:                   LogFileLevel                                  static int LogFileLevel = 0;
+mutt/logging.c:58:                   LogFileVersion                                static char *LogFileVersion = NULL;
+mutt/logging.c:63:                   LogQueue                                      static struct LogLineList LogQueue = STAILQ_HEAD_INITIALIZER(LogQueue);
+mutt/logging.c:65:                   LogQueueCount                                 static int LogQueueCount = 0;
+mutt/logging.c:66:                   LogQueueMax                                   static int LogQueueMax = 0;
+mutt/pool.c:38:                      BufferPoolCount                               static size_t BufferPoolCount = 0;
+mutt/pool.c:40:                      BufferPoolLen                                 static size_t BufferPoolLen = 0;
+mutt/pool.c:46:                      BufferPool                                    static struct Buffer **BufferPool = NULL;
+mutt/qsort_r.c:38:                   GlobalCompar                                  static sort_t GlobalCompar = NULL;
+mutt/qsort_r.c:40:                   GlobalData                                    static void *GlobalData = NULL;
+mutt/random.c:46:                    FpRandom                                      static FILE *FpRandom = NULL;
+mutt/signal.c:42:                    Sigset                                        static sigset_t Sigset;
+mutt/signal.c:44:                    SigsetSys                                     static sigset_t SigsetSys;
+mutt/signal.c:47:                    SysOldInt                                     static struct sigaction SysOldInt;
+mutt/signal.c:49:                    SysOldQuit                                    static struct sigaction SysOldQuit;
+mutt/signal.c:53:                    SignalsBlocked                                static bool SignalsBlocked;
+mutt/signal.c:57:                    SysSignalsBlocked                             static bool SysSignalsBlocked;
+mutt/signal.c:60:                    SigHandler                                    static sig_handler_t SigHandler = mutt_sig_empty_handler;
+mutt/signal.c:62:                    ExitHandler                                   static sig_handler_t ExitHandler = mutt_sig_exit_handler;
+mutt/signal.c:64:                    SegvHandler                                   static sig_handler_t SegvHandler = mutt_sig_exit_handler;
+mutt_logging.c:47:                   LastError                                     static uint64_t LastError = 0;
+mutt_logging.c:49:                   CurrentFile                                   static char *CurrentFile = NULL;
+mutt_lua.c:57:                       LuaState                                      static lua_State *LuaState = NULL;
+mutt_mailbox.c:44:                   MailboxTime                                   static time_t MailboxTime = 0;
+mutt_mailbox.c:45:                   MailboxStatsTime                              static time_t MailboxStatsTime = 0;
+mutt_mailbox.c:46:                   MailboxCount                                  static short MailboxCount = 0;
+mutt_mailbox.c:47:                   MailboxNotify                                 static short MailboxNotify = 0;
+mutt_signal.c:45:                    IsEndwin                                      static int IsEndwin = 0;
+ncrypt/crypt_gpgme.c:92:             IdDefaults                                    static struct CryptCache *IdDefaults = NULL;
+ncrypt/crypt_gpgme.c:94:             SignatureKey                                  static gpgme_key_t SignatureKey = NULL;
+ncrypt/crypt_gpgme.c:96:             CurrentSender                                 static char *CurrentSender = NULL;
+ncrypt/crypt_mod.c:48:               CryptModules                                  static struct CryptModuleList CryptModules = STAILQ_HEAD_INITIALIZER(CryptModules);
+ncrypt/gnupgparse.c:76:              Charset                                       static char *Charset = NULL;
+ncrypt/pgp.c:69:                     PgpPass                                       static char PgpPass[1024];
+ncrypt/pgp.c:71:                     PgpExptime                                    static time_t PgpExptime = 0;
+ncrypt/pgpkey.c:74:                  IdDefaults                                    static struct PgpCache *IdDefaults = NULL;
+ncrypt/pgppacket.c:38:               PacketBuf                                     static unsigned char *PacketBuf = NULL;
+ncrypt/pgppacket.c:39:               PacketBufLen                                  static size_t PacketBufLen = 0;
+ncrypt/smime.c:67:                   SmimePass                                     static char SmimePass[256];
+ncrypt/smime.c:69:                   SmimeExpTime                                  static time_t SmimeExpTime = 0;
+ncrypt/smime.c:72:                   SmimeKeyToUse                                 static struct Buffer SmimeKeyToUse = { 0 };
+ncrypt/smime.c:74:                   SmimeCertToUse                                static struct Buffer SmimeCertToUse = { 0 };
+ncrypt/smime.c:76:                   SmimeIntermediateToUse                        static struct Buffer SmimeIntermediateToUse = { 0 };
+postpone/postpone.c:60:              UpdateNumPostponed                            static bool UpdateNumPostponed = false;
+score.c:61:                          ScoreList                                     static struct Score *ScoreList = NULL;
+send/sendmail.c:65:                  SigAlrm                                       static volatile sig_atomic_t SigAlrm;
+subjectrx.c:40:                      SubjectRegexList                              static struct ReplaceList SubjectRegexList = STAILQ_HEAD_INITIALIZER(SubjectRegexList);
+subjectrx.c:41:                      SubjRxNotify                                  static struct Notify *SubjRxNotify = NULL;

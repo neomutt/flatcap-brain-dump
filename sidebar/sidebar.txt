@@ -1,0 +1,32 @@
+sidebar events
+
+14 config variables
+	13 require repainting
+	sidebar_on_right => dialog repaint
+
+7 sidebar colours + indicator colour -> repaint
+
+Window resize / movement
+	e.g. "toggle help"
+
+new/deleted Mailbox
+
+update Mailbox stats
+
+Mailbox *View* changes, e.g. User flags/tags email
+
+Visibility changes
+	e.g. obscured by another dialog
+
+shutdown - window will be destroyed
+
+commands: (un)sidebar_whitelist
+	(un)subscribe -> new/del Mailbox
+
+simple functions - move cursor, pg up/down
+	toggle-visible -> repaint
+
+hard functions - sidebar-open
+
+change current Mailbox -> repaint
+

@@ -1,0 +1,11 @@
+makedoc2
+
+build neomutt
+neomutt -D! > config.txt
+parse config.nroff
+combine config.nroff & config.txt
+output:
+	nroff (neomuttrc.5)
+	docbook (manual.xml)
+	txt (neomuttrc)
+

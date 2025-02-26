@@ -1,0 +1,67 @@
+digraph windows
+{
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ color="#ff0000" ]
+	print_it
+	print_ref
+	print_confline
+	main
+
+	node [ color="#000000" ]
+
+	commit_buf          -> print_it
+	conf_char_to_escape -> char_to_escape
+	conf_print_strval   -> conf_char_to_escape
+	flush_doc           -> print_it
+	get_token           -> skip_ws
+	handle_confline     -> buf_to_type
+	handle_confline     -> get_token
+	handle_confline     -> pretty_default
+	handle_confline     -> print_confline
+	handle_docline      -> commit_buf
+	handle_docline      -> print_it
+	handle_docline      -> print_ref
+	handle_docline      -> skip_ws
+	main                -> makedoc
+	makedoc             -> flush_doc
+	makedoc             -> get_token
+	makedoc             -> handle_confline
+	makedoc             -> handle_docline
+	man_print_strval    -> conf_char_to_escape
+	print_confline      -> conf_print_strval
+	print_confline      -> man_print_strval
+	print_confline      -> sgml_fputs
+	print_confline      -> sgml_id_fputs
+	print_confline      -> sgml_print_strval
+	print_confline      -> type2human
+	print_it            -> sgml_fputc
+	print_it            -> sgml_fputs
+	print_ref           -> sgml_fputs
+	print_ref           -> sgml_id_fputs
+	sgml_fputs          -> sgml_fputc
+	sgml_print_strval   -> char_to_escape
+	sgml_print_strval   -> sgml_fputc
+	sgml_print_strval   -> sgml_fputs
+
+}
