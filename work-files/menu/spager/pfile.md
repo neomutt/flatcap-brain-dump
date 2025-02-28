@@ -12,49 +12,49 @@ Segments    (1-3), (7-9), (13-15)   file offsets
     cache 64KiB
     temp AttrColor
 
-# PLine
+# PRow
     file offset
 
 # Segments
-    relative to line
-    segs need to cover *every* char
+    relative to Row
+    Segments need to cover *every* char
 
 get_cache() -> "abcdefghi"  from cache or file
     extract text for screen
-    segs give attrs/colours     AttrColor
+    Segments give attrs/colours     AttrColor
     merge with search
 
 ------------------------------------------------------------
 
 # Segment Layers
 
-If Layer is NULL (no effect), it should use minimal memory/segs
-so tranfer of data is quick
+If Layer is NULL (no effect), it should use minimal memory/Segments
+so transfer of data is quick
 
 Layers *could* alter colour/attrs or default
 
 PFile       raw text
 L0 PRow     Segment1..m     assemble/colour parts of raw text
-L1 PRow     Segment1..n     assemble/colour parts of previous layer
-L2 PRow     Segment1..p     assemble/colour parts of previous layer
+L1 PRow     Segment1..n     assemble/colour parts of previous Layer
+L2 PRow     Segment1..p     assemble/colour parts of previous Layer
 
-L2 does L1.get_line(); apply Seg2
-L1.get_line() does L0.get_line(); apply Seg1
-L0.get_line() does read_file / get cache
+L2 does L1.get_row(); apply Segment2
+L1.get_row() does L0.get_row(); apply Segment1
+L0.get_row() does read_file / get cache
 
-Changing *any* layer => rebuild all layers
+Changing *any* Layer => rebuild all Layers
 
 ------------------------------------------------------------
 
 # Email Pager
 
-Multiple headers spread over many line
+Multiple headers spread over many Rows
 
 Header1 xyz abc pqr\n
 --> jkl vwx def
 
 File contains raw text
-Cache contains single line version
+Cache contains single Row version
 *newlines*/tabs/leading stripped
 
 Caller can mess with the order / visibility
@@ -64,7 +64,7 @@ Pager does normal wrapping -- acceptable?
 If we strip \n and <tab>, then we'll need to introduce a " " (space)
 Parsing a diff, we might want/need to replace @@.* with styled text
 => Segment might hold custom text
-=> get_cache() needs to assemble Segments (some cached, some in Seg)
+=> get_cache() needs to assemble Segments (some cached, some in Segment)
 
 What does search match against?
     *Has* to be **visible** text
@@ -73,55 +73,55 @@ OR regenerate cache after plugin as run (multiple plugins)
     => get_cache() is simple, so is searching (on modded text)
 
 hmm... this is irreversible; we can't generate *clean* text once plugins have run
-mods *could* be undone if they used a new *layer* of Segments
+mods *could* be undone if they used a new *Layer* of Segments
     keep the original cache
-    assemble the new segs on top
-    one layer of segs per plugin
+    assemble the new Segments on top
+    one Layer of Segments per plugin
 
 Enabling/disabling/reordering the plugins =>
     reapply them on top of original Segments
-How are multiple layers of Segments merged/applied?
+How are multiple Layers of Segments merged/applied?
 
 ------------------------------------------------------------
 
 # SPager Updates
 
 Colour: Simple, Regex, Search, etc (+uncolor)
-Visibility: hiding/showing lines, e.g. quoted_context, $weed
-Text Modifications by functions/plugins (or sub-line text visibility)
+Visibility: hiding/showing Rows, e.g. quoted_context, $weed
+Text Modifications by functions/plugins (or sub-Rows text visibility)
 
 ## Colour Simple
 
 Changes to AttrColors in-place => repaint
-Search - Spager nees to trap this and repaint
+Search - SPager needs to trap this and repaint
 
 ## Visibility
 
-Change conceal flag on some lines and invalidate them
+Change conceal flag on some Rows and invalidate them
     => recalc, repaint - might cause view to move
 
 ## Colour Regex
 
-Can affect many lines
+Can affect many Rows
 caller needs to find/reapply
 nightmare!
 only way - clear all Segments (and coalesce), then
-∀ colour reapply ∀ line, regen Segments (then reapply Layers)
+∀ colour reapply ∀ Row, regenerate Segments (then reapply Layers)
 Won't affect view
 
 ## Text Mods
 
-Start with an empty Layer -- no Lines, no Segments
-keep sparse array of PLines - need to be numbered
+Start with an empty Layer -- no Rows, no Segments
+keep sparse array of PRows - need to be numbered
 (ARRAY_BSEARCH()?  binary search)
 
 Markdown "\*\*word\*\*" from previous Layer (+pre, post-text)
 
-PLine(42): Seg1(pre, default); Seg2("word", bold); Seg3(post, default)
+PRow(42): Segment1(pre, default); Segment2("word", bold); Segment3(post, default)
 
-get_line(36) bypasses Layer; get_line(42) matches
+get_row(36) bypasses Layer; get_row(42) matches
 
-generates text from *previous* layer + *this* layer's 3 Segments
+generates text from *previous* Layer + *this* Layer's 3 Segments
 Layers could change visibility of previous Layers!
 
 Not quite so simple
@@ -131,15 +131,15 @@ Each Layer's Segments would be the merged Segments ∀ previous Layers
 
 # SPager Notes / PFile
 
-Each Layer needs to expose the number of rows it has
-    => allows Layer to add/remove rows
+Each Layer needs to expose the number of Rows it has
+    => allows Layer to add/remove Rows
     => markdown could summarise links at the bottom of the page
     => text/markdown could insert Table of Contents
 Complex markdown replace link inline [text](url) -> _text_
 
 # URL Overlay
 
-Markup can occur in any layer
+Markup can occur in any Layer
 Segment(s) need attribute flag that's preserved across merge
 Segment needs prefix, suffix strings (ANSI escape sequences)
 Splitting a Segment duplicates prefix/suffix, preserves attr
@@ -152,15 +152,15 @@ If a single char in a single Segment exists with URL attr, then apply
 => gen Results Layer
 is this distinct from the Search Segments?
 prob separate, search could change often
-expensive to recalc layers (how expensive?)
+expensive to recalc Layers (how expensive?)
 
 ## repaint()
 
-∀ line, ResultLayer.get_text() -> plain text
-∀ Seg (merge Search) render text to screen
-If Seg is URL, push Seg to UrlPaint[]
+∀ Row, ResultLayer.get_text() -> plain text
+∀ Segment (merge Search) render text to screen
+If Segment is URL, push Segment to UrlPaint[]
     need absolute Window Coords too
-    Seg contains (prefix, suffix, AttrColor, offset into line, num bytes)
+    Segment contains (prefix, suffix, AttrColor, offset into Row, num bytes)
 ∀ UrlPaint
     move cursor
     gen ANSI
@@ -176,7 +176,7 @@ At Markup time, apply MT_COLOR_URL too
 
 ------------------------------------------------------------
 
-Line Flag to affect wrapping?
+Row Flag to affect wrapping?
     [default, none, force marker, use tab, no marker]
 
 Multi-Layer - which are wrapped?
@@ -203,9 +203,9 @@ Caller generates text
 
 PLayer owns cache
     passes all chunks to PFile
-    or keep layers simple, put cache in file
+    or keep Layers simple, put cache in file
         NO doesn't work
-    **which** layer is magic and knows to ask for the cache?
+    **which** Layer is magic and knows to ask for the cache?
     same for backing file
 
 PFile   pf_get_row(n) -> search L3 -> L1
@@ -223,11 +223,11 @@ create_layer(pf, true)  -> L1(cache, file)
 create_layer(pf, false) -> L2(-, -)
 
 add_text(L1)    -> text -> cache, text -> file
-add_text(L1)    -> ? no layers only manipulate text
+add_text(L1)    -> ? no Layers only manipulate text
     => cache/file are in PFile
        add_text() ops on PFile
 
-Layers create mods upon **file**, or **layers**
+Layers create mods upon **file**, or **Layers**
     does PFile have Layer?
 **What** does a Layer work upon?  Markup
 
@@ -241,23 +241,23 @@ File
 
 Row 1   offset  0   4 bytes     }
     2   offset  4   10 bytes    } offsets into file
-    3   offset  14  4 bytes     } get_text(row) -> cached string
+    3   offset  14  4 bytes     } get_text(Row) -> cached string
 
 **Row** owns file, cache
 
 Can generate file/cache, but can't gen cache from file
 
-Markup includes plain text (for layer 1)
+Markup includes plain text (for Layer 1)
 
 Row 1   Markup  (0,3,plain)     } don't include line endings
     2   Markup  (3,3,RED)       } offsets into raw text
-    3   Markup  (0,3,plain)     } get_text(row), gen_string from (raw+markup)
+    3   Markup  (0,3,plain)     } get_text(Row), gen_string from (raw+markup)
                                 insert clean \n line endings
 
 ------------------------------------------------------------
 
-Layer: num_rows, row[]
-    layer 1 complete, others can be sparse?
+Layer: num_rows, Row[]
+    Layer 1 complete, others can be sparse?
 
 Search owned by Row - needs(first,last), (color, merged_color)
     => can't do multi-line searches
@@ -271,13 +271,13 @@ PFile holds Markup[] search_matches!
 
 # Searching
 
-Multiple layers, many rows, only search visible rows
+Multiple Layers, many Rows, only search visible Rows
 How do we search for <tab> if whitespace is transformed?
-Is <tab> preserved through layers?  just *rendered* wide, later?
+Is <tab> preserved through Layers?  just *rendered* wide, later?
 We want to search entire file, but rendered file could be huge
-Use rolling window, asking PFile for rows of text
-Need to remember Row num, offset into row, length
-What if match spans multiple rows?
+Use rolling window, asking PFile for Rows of text
+Need to remember Row num, offset into Row, length
+What if match spans multiple Rows?
 How greedy is "."?  -- VERY. it matches \n
     Test `.` against `\n` and `.*` against entire file!
 Start basic: Search => ∀ get_row(n), regex match
@@ -293,18 +293,18 @@ Does searching extend into attachments?  probably
 
 # Layers / Rows
 
-Layer 1 contains    Rows 1-10       Array: Row1..10
+Layer 1 contains Rows 1-10          Array: Row1..10
 Layer 2 deletes even Rows           Array: Row1,3,5,7,9
 Layer 3 inserts 2 Rows              Array: Row1,3,5,N,M,7,9
 
-Layers want to be indepdendent of each other => no pointers?
+Layers want to be independent of each other => no pointers?
     NO.  Need pointers or there's too much duplication
     => ARRAY of `Row *`
-    => don't need row numbers (each Layer is complete)
+    => don't need Row numbers (each Layer is complete)
 
 Layer2: dup_layer(L1); manipulate
 
-Could use layers for weeding / hdr_order
+Could use Layers for weeding / hdr_order
 When freeing Layer, need to know which Rows are ours?
     => ref count Rows
     => dup_layer() incs ref-count
@@ -318,8 +318,8 @@ Row: get_text() -> whoever owns Row shouldn't affect behaviour
 Row holds: raw offset, cache offset, bytes, markup
     Layer holds file, cache
 
-Row.get_text(row)
-    if cache_offset is in cache, return ptr into cache
+Row.get_text(Row)
+    if cache_offset is in cache, return pointer into cache
     else read file from raw_offset, bytes, then   NO
 
 Who translates raw file into cached file (that Markup uses)?
@@ -348,7 +348,7 @@ Layer2
 
 Do we end up with a 64KiB cache per Layer?
 OR Layer1 has file, LayerN has cache?
-(multiple layers could ahve caches for sundry text)
+(multiple Layers could have caches for sundry text)
 
 What's the min we need for hiding raw ansi?
 
@@ -373,11 +373,11 @@ Layer2, Row1: markup, same but with offsets into its *clean* text
 # Layer Translation 2
 
 Generating L2 benefits from L1 having a cache
-Keep a cache per layer which generating
-only keep last layer's cache?
-raw text won't change, but other layers may introduce
+Keep a cache per Layer which generating
+only keep last Layer's cache?
+raw text won't change, but other Layers may introduce
     config/configurable colours, functions, commands
-changes could affect layer and lower layers!
+changes could affect Layer and lower Layers!
 plugins should scan text to see if they're needed, or NULL
 Does each plugin **need** a separate Layer?  maybe not
 What does each plugin **do**?
@@ -394,10 +394,10 @@ weeding needs to happen before other "cleaning"
 it unifies by unwrapping, reordering, hiding
 Rows have a HEADER colour + markup for other header colours
 Is unwrapping wanted?  or just insert uniform <tab>?
-flag line as "don't wrap"?
+flag Row as "don't wrap"?
     preserve header formatting?
 
-Each layer is only caching the Rows it changes!
+Each Layer is only caching the Rows it changes!
     so weeding is only headers
     markdown is only body
 
@@ -408,7 +408,7 @@ When done, we can apply Layers on top for styling
 
 # Email Pager 2
 
-Raw email must be decoded first, else first layer is unusable
+Raw email must be decoded first, else first Layer is unusable
 What does caller do as it's writing the file?
 
 Header, Body, Attachment(s), [-- markers --]
@@ -432,16 +432,16 @@ Layer1: Header, Body
 Layer ∀ attachment: File -> raw file?
     or mailcap'd file
 
-How do diff/markdown layers work on them?
-    sub-layers?!
+How do diff/markdown Layers work on them?
+    sub-Layers?!
 
-Just use external colouriser and interprety ansi (Layer)
+Just use external colouriser and interpret ansi (Layer)
     does $allow_ansi affect attachment rendering?
         YES
     toggle_quoted, toggle_quoted_show_levels
         find and mark some Rows as **Conceal**
-    ideally it'd be a separate layer
-    in case some other layer was also doing concealing
+    ideally it'd be a separate Layer
+    in case some other Layer was also doing concealing
 
 LayerN gets raw from Layer N-1
 Layer1 gets raw from FILE

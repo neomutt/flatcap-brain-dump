@@ -7,15 +7,15 @@ Plugins may need to register (and possibly unregister)
 - config
 each needs (domain/uid)
 
-
 # Search Plugin (a la quickhl)
 
 define new colours (search_color_1..n)
 define functions <select_search_color_1>..n
     or parameterise.  HOW?
+    use commands:  `quickhl add pattern` (delete, reset, toggle)
 <show-search-color> -> echo using current colour
-<search-color> + reverse functino
-    or hijack existing fns (better), HOW?
+<search-color> + reverse function
+    or hijack existing functions (better), HOW?
 matches are coloured accordingly
 
 # Others
