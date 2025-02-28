@@ -727,8 +727,8 @@ pattern/search_state.h
 pfile/lib.h
 pfile/paged_file.c
 pfile/paged_file.h
-pfile/paged_line.c
-pfile/paged_line.h
+pfile/paged_row.c
+pfile/paged_row.h
 pfile/paged_text.c
 pfile/paged_text.h
 pgpewrap.c

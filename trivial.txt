@@ -390,6 +390,10 @@ Help Page Tabs
 		Mailbox Browser ╱ 1 Help ╲◢█2 Index█◣╱ 3 Pager ╲⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽
 		Mailbox Browser ╱ 1 Help ╲╱ 2 Index ╲◢█3 Pager█◣⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽
 		syntax match reverse "\d \i\+"
+	add page for patterns?
+		with examples
+	when key handling is refactored (so that 5j => 5 * <down>)
+		then 3? = open help, page 3!
 browser tabs?
 	help page first
 
@@ -465,5 +469,18 @@ repaint()
 	fprintf(stderr, "\033[s\033[9;24H\033[1;48;2;0;96;96m\033]8;id=1;https://neomutt.org/guide/reference#alias-file\007alias_\033]8;;\007\033[0m\033[u");
 	fprintf(stderr, "\033[s\033[15;24H\033[1;48;2;0;96;96m\033]8;id=1;https://neomutt.org/guide/reference#alias-file\007file\033]8;;\007\033[0m\033[u");
 
-sort out z-sort (579)
+sort out
+	z-sort (220)
+	bin (176)
+
+extract data from
+	site repo branches
+	docbook symlink instead
+	write-backup.git
+		extract and drop history?
+
+drop rfcs from website -- unused, unmaintained
+
+jindraj: gmail login, app passwords
+	The option to generate app passwords is hidden until 2FA is enabled.
 
