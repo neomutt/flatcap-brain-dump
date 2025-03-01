@@ -448,3 +448,65 @@ Layer1 gets raw from FILE
 
 ------------------------------------------------------------
 
+(Neo)Mutt how many fillbuf() file reads are required
+    for one <scroll-down> action?
+
+Only write file if cache is full!
+    => raw text cache
+
+<save> can dump raw cache
+
+ansi layer doesn't need much storage
+nor markdown layer
+    cache bold, end, etc sequences just once
+
+------------------------------------------------------------
+
+Layers
+    raw text
+    clean (ansi free)
+    tidy headers
+    do markdown
+    hide signature
+    toggle quoted
+    attachments * n
+    search
+
+This order implies that
+    markdown doesn't apply to attachments,
+    but search does
+
+needs to come later?
+what about ansi?
+    for colorisers of attachments
+
+apply ansi twice?
+does allow_ansi apply to attachments
+    yes, atm
+
+layers don't need a pointer to a parent *layer*
+they need a parent *cache* pointer
+    => PFile has a cache (file, cache)
+
+layer_ansi(LayerN) -> new layer
+    or LayerN of NULL
+
+search layer functions => search_layer_function_dispatcher()
+no search matches => NULL layer
+
+------------------------------------------------------------
+
+merge (cache & file)
+cache size set by layer
+cache overflow => write entire file
+
+many layers will need very little caching
+    let alone a file
+
+one layer per attach
+    cache or don't cache?
+    file (raw)
+    cache is mailcap'd text
+
+------------------------------------------------------------
+
