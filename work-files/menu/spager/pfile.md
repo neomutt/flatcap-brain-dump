@@ -450,6 +450,9 @@ Layer1 gets raw from FILE
 
 (Neo)Mutt how many fillbuf() file reads are required
     for one <scroll-down> action?
+    ANS: 1 for each line
+    worse still, the refresh is happening every timeout (1 sec)
+    (regardless of $timeout)
 
 Only write file if cache is full!
     => raw text cache
@@ -509,4 +512,26 @@ one layer per attach
     cache is mailcap'd text
 
 ------------------------------------------------------------
+
+# Email Pager 3
+
+When generating the file, which lines should the caller markup?
+
+Distinguish:
+- header        MT_COLOR_HDRDEFAULT
+- body          MT_COLOR_BODY
+- attachments   MT_COLOR_ATTACHMENT
+
+Leave everything else to plugins
+
+What about header visibility / order (weed/hdr_order)?
+
+To avoid rewriting the file, we want to dump all the headers,
+then *conceal* the ones we don't want.
+
+Which colours should apply to attachments?
+- body?
+- quotedN?
+- signature?
+currently these all do!
 

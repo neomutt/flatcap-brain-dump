@@ -7,46 +7,74 @@ Plugins may need to register (and possibly unregister)
 - config
 each needs (domain/uid)
 
-# Search Plugin (a la quickhl)
+## Pager Config
 
-define new colours (search_color_1..n)
-define functions <select_search_color_1>..n
-    or parameterise.  HOW?
-    use commands:  `quickhl add pattern` (delete, reset, toggle)
-<show-search-color> -> echo using current colour
-<search-color> + reverse function
-    or hijack existing functions (better), HOW?
-matches are coloured accordingly
+`set pager_body_plugins = "ansi,diff,markdown,url"`
+`set pager_attach_plugins = "ansi,url"`
 
-# Others
+## Plugins
+
+- tidy headers
+  - config `$weed` `$header_color_partial`
+  - command `hdr_order`
+  - colour `header` `hdrdefault`
+
+- body colours
+  - colour `body` `tilde`
+
+- quoted colours
+  - colour `quotedN`
+
+- toggle quoted
+  - function `<toggle_quoted>`
+  - config `$toggle_quoted_show_levels`
+
+- signature
+  - colouring
+  - hiding
+  - colour `signature`
+
+- attachments
+  - colour `attachment` `attach_headers`
+
+- ansi colours
+  - config `$allow_ansi`
 
 - diff
   - colouring
   - tidying
+  - colour `diff_add` `diff_change` `diff_delete` `diff_text`
 
 - markdown
   - colouring
   - abbrev
   - table of contents
   - summarise urls at end of file
-
-- signature
-  - colouring
-  - hiding
+  - colour `markdown_h1` `markdown_h2`...
 
 - url
   - colouring
   - ansi escape sequence
-  - summarise urls at end of file
-
-- url-abbreviator
-  - shorten url in-place
-  - use ansi seq for full url
-  - summarise urls at end of file
+  - tidying
+    - shorten url in-place
+    - use ansi seq for full url
+    - summarise urls at end of file
 
 - squeeze
   - squeeze blank lines
 
 - smilies
   - convert text smilies to unicode
+    (or vice versa)
+
+## Search Plugin (a la quickhl)
+
+define new colours (search_colour_1..n)
+define functions <select_search_colour_1>..n
+    or parameterise.  HOW?
+    use commands:  `quickhl add pattern` (delete, reset, toggle)
+<show-search-colour> -> echo using current colour
+<search-colour> + reverse function
+    or hijack existing functions (better), HOW?
+matches are coloured accordingly
 
