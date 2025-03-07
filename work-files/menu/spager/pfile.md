@@ -154,6 +154,11 @@ is this distinct from the Search Segments?
 prob separate, search could change often
 expensive to recalc Layers (how expensive?)
 
+NOTE: url overlay breaks if window moves
+    If window moves, but doesn't change, e.g. toggle sidebar_on_right,
+    then in a perfect world recalc() doesn't get called, just repaint().
+    Moving the window will mess up the absolute coords needed for the url.
+
 ## repaint()
 
 ∀ Row, ResultLayer.get_text() -> plain text
@@ -161,6 +166,8 @@ expensive to recalc Layers (how expensive?)
 If Segment is URL, push Segment to UrlPaint[]
     need absolute Window Coords too
     Segment contains (prefix, suffix, AttrColor, offset into Row, num bytes)
+    need to store **window-relative** coords PLUS window ptr in UrlPaint[]
+        so that moving the window doesn't cause problems
 ∀ UrlPaint
     move cursor
     gen ANSI
@@ -534,4 +541,10 @@ Which colours should apply to attachments?
 - quotedN?
 - signature?
 currently these all do!
+
+Need special wrapping for attachment markers
+    [-- xyz --]
+don't use $wrap, only wrap at screen width
+
+how does "$display_filter" fit in with layers, etc?
 

@@ -11,7 +11,7 @@ set my_fruit          = "apple"
 # color body             #c0c080 default
 color indicator        #8080ff #ffff00
 color markers bold     #0000ff #ffffff
-color normal           default #006060
+color normal           default #003030
 color search underline default #383838
 
 color error   #000000 #ff0000

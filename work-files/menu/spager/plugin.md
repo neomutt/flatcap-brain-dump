@@ -1,4 +1,4 @@
-# Plugins
+# Pager Plugins
 
 Plugins may need to register (and possibly unregister)
 - functions
@@ -12,38 +12,53 @@ each needs (domain/uid)
 `set pager_body_plugins = "ansi,diff,markdown,url"`
 `set pager_attach_plugins = "ansi,url"`
 
-## Plugins
+or use "all" for all possible plugins
+    which order would they be applied?
+    how much does order matter?
+    does `set pbp = 'all'` auto-expand to `pbp = 'ansi,diff,...'` ?
 
-- tidy headers
-  - config `$weed` `$header_color_partial`
-  - command `hdr_order`
-  - colour `header` `hdrdefault`
+## Plugin Usage
 
-- body colours
-  - colour `body` `tilde`
+- Headers Only
+  - tidy headers
 
-- quoted colours
-  - colour `quotedN`
+- Body Only
+  - body colours
+  - quoted colours
+  - toggle quoted
+  - signature
 
-- toggle quoted
-  - function `<toggle_quoted>`
-  - config `$toggle_quoted_show_levels`
+- Body or Attachments
+  - ansi colours
+  - diff
+  - markdown
+  - smilies
+  - squeeze
+  - url
 
-- signature
-  - colouring
-  - hiding
-  - colour `signature`
+- Attachments Only
+  - attachments
+  - mailcap
+
+## Plugin Details
+
+- ansi colours
+  - config `$allow_ansi`
 
 - attachments
   - colour `attachment` `attach_headers`
 
-- ansi colours
-  - config `$allow_ansi`
+- body colours
+  - colour `body` `tilde`
 
 - diff
   - colouring
   - tidying
   - colour `diff_add` `diff_change` `diff_delete` `diff_text`
+
+- mailcap
+  - transform file into text
+  - config `mailcap_path`
 
 - markdown
   - colouring
@@ -52,6 +67,30 @@ each needs (domain/uid)
   - summarise urls at end of file
   - colour `markdown_h1` `markdown_h2`...
 
+- quoted colours
+  - colour `quotedN`
+
+- signature
+  - colouring
+  - hiding
+  - colour `signature`
+
+- smilies
+  - convert text smilies to unicode
+    (or vice versa)
+
+- squeeze
+  - squeeze blank lines
+
+- tidy headers
+  - config `$weed` `$header_color_partial`
+  - command `hdr_order`
+  - colour `header` `hdrdefault`
+
+- toggle quoted
+  - function `<toggle_quoted>`
+  - config `$toggle_quoted_show_levels`
+
 - url
   - colouring
   - ansi escape sequence
@@ -59,13 +98,6 @@ each needs (domain/uid)
     - shorten url in-place
     - use ansi seq for full url
     - summarise urls at end of file
-
-- squeeze
-  - squeeze blank lines
-
-- smilies
-  - convert text smilies to unicode
-    (or vice versa)
 
 ## Search Plugin (a la quickhl)
 
