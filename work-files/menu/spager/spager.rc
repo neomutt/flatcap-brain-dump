@@ -52,22 +52,20 @@ color body        cyan     default "[-a-z_0-9.]+@[-a-z_0-9.]+"
 color body        color228 default '/\<\S+\>/'
 color body        color228 default '\*\<\S+\>\*'
 color body        color228 default '\<_\S+_\>'
-color body bold   green    yellow  "Content-Description: junk.bin"
-color body        green    yellow  "Content-Disposition: attachment; filename=.*"
 color body italic green    yellow  "Content-Transfer-Encoding: base64"
 color body        green    yellow  "Content-Type: application/octet-stream"
 
-color index      black    red     "~N~X1" # new AND attachment
-color index bold color119 default "~N" # New
-color index      color119 default "~O" # Old
-color index      color237 default "~d>30d" # Over a month old
-color index      color240 default "~D" # Deleted
+color index      black    red     "~N~X1"
+color index bold color119 default "~N"
+color index      color119 default "~O"
+color index      color237 default "~d>30d"
+color index      color240 default "~D"
 color index      default  cyan    "~T"
-color index bold green    default "~v~(~N)" # collapsed thread with New
-color index bold green    default "~v~(~O)" # collapsed thread with New
-color index      red      default "~v~(~F)~(!~N)" # collapsed thread with Flagged but no New
-color index      white    red     "~F" # Flagged
-color index      yellow   default "~v~(!~N)~(!~F)" # collapsed thread with no New or Flagged
+color index bold green    default "~v~(~N)"
+color index bold green    default "~v~(~O)"
+color index      red      default "~v~(~F)~(!~N)"
+color index      white    red     "~F"
+color index      yellow   default "~v~(!~N)~(!~F)"
 
 bind pager <Up>   previous-line
 bind pager <Down> next-line

@@ -544,7 +544,7 @@ currently these all do!
 
 Need special wrapping for attachment markers
     [-- xyz --]
-don't use $wrap, only wrap at screen width
+don't use $wrap, only wrap at screen width (or perhaps never wrap (they're special))
 
 how does "$display_filter" fit in with layers, etc?
 

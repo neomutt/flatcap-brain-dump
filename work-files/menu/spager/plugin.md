@@ -17,35 +17,68 @@ or use "all" for all possible plugins
     how much does order matter?
     does `set pbp = 'all'` auto-expand to `pbp = 'ansi,diff,...'` ?
 
-## Plugin Usage
+## Plugin Usage by Dialog
 
-- Headers Only
-  - tidy headers
+- Email Pager
+  - Headers
+    - tidy headers
+  - Body
+    - body colours
+    - quoted colours
+    - toggle quoted
+    - signature
+  - Body or Attachments
+    - ansi colours
+    - diff
+    - markdown
+    - smilies
+    - squeeze
+    - url
+  - Attachments
+    - attachment colour
+    - mailcap
 
-- Body Only
-  - body colours
-  - quoted colours
-  - toggle quoted
-  - signature
+- Compose
+  - Body
+    - body colours
+    - quoted colours
+    - signature
+  - Body or Attachments
+    - ansi colours
+    - diff
+    - markdown
+    - smilies
+    - squeeze
+    - url
+  - Attachments
+    - mailcap
 
-- Body or Attachments
+- View Attachments
+  - Attachments
+    - mailcap
+    - ansi colours
+    - diff
+    - markdown
+    - smilies
+    - squeeze
+    - url
+
+- Help Page
   - ansi colours
-  - diff
-  - markdown
-  - smilies
-  - squeeze
-  - url
 
-- Attachments Only
-  - attachments
-  - mailcap
+- Info Pages
+  - ansi colours
+
+- Log Messages
+  - log colours
+
 
 ## Plugin Details
 
 - ansi colours
   - config `$allow_ansi`
 
-- attachments
+- attachment colour
   - colour `attachment` `attach_headers`
 
 - body colours
@@ -55,6 +88,9 @@ or use "all" for all possible plugins
   - colouring
   - tidying
   - colour `diff_add` `diff_change` `diff_delete` `diff_text`
+
+- log colours
+  - colouring
 
 - mailcap
   - transform file into text
