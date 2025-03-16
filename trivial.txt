@@ -498,3 +498,16 @@ unbind would clear the flag
 
 mutt_debug(LL_DEBUG1, "FILE:%d, offset %ld, bytes_read %ld\n", fileno(fp), offset, *bytes_read);
 
+irc suggestion: re learning curve
+	personally what would make it less steep would be a "primer HOWTO" with things like
+	"How do I compose and send an email?"
+	"How do I browse folders?"
+	"How do I search in a folder/ in all folders?" and so on
+	basically a new user will want to (at least): read incoming email, mark
+	them as read/unread, move them to folders (or tag if using notmuch),
+	list (index) | directories compose a new message and send it
+
+color toggle object [pattern]
+	temporarily change the visibility of a colour
+	idea: temporarily highlight some part of the text
+

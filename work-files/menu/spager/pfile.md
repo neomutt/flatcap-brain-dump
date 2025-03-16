@@ -181,6 +181,8 @@ If Segment is URL, push Segment to UrlPaint[]
 At Markup time, apply MT_COLOR_URL too
     (can be overridden by Layers)
 
+when wrapping a URL, disable $marker for that line
+
 ------------------------------------------------------------
 
 Row Flag to affect wrapping?

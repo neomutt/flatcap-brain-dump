@@ -20,54 +20,59 @@ or use "all" for all possible plugins
 ## Plugin Usage by Dialog
 
 - Email Pager
-  - Headers
-    - tidy headers
-  - Body
-    - body colours
-    - quoted colours
-    - toggle quoted
-    - signature
-  - Body or Attachments
-    - ansi colours
-    - diff
-    - markdown
-    - smilies
-    - squeeze
-    - url
-  - Attachments
-    - attachment colour
-    - mailcap
+  - Manipulate Text
+    - ansi                .       body    attach
+    - diff                .       body    attach
+    - markdown            .       body    attach
+    - smilies             .       body    attach
+  - Colour Text
+    - attachment colour   .       .       attach
+    - body colours        .       body    .
+    - quoted colours      .       body    .
+    - signature colour    .       body    .
+    - url colour          .       body    .
+  - Hide/Show Text
+    - squeeze             .       body    attach
+    - tidy headers        header  .       .
+    - toggle quoted       .       body    .
+  - Special
+    - search colour       .       body    .
+    - url link            header  body    attach
 
 - Compose
-  - Body
-    - body colours
-    - quoted colours
-    - signature
-  - Body or Attachments
-    - ansi colours
-    - diff
-    - markdown
-    - smilies
-    - squeeze
-    - url
-  - Attachments
-    - mailcap
+  - Manipulate Text
+    - ansi                .       body    attach
+    - diff                .       body    attach
+    - markdown            .       body    attach
+    - smilies             .       body    attach
+  - Colour Text
+    - attachment colour   .       .       attach
+    - body colours        .       body    .
+    - quoted colours      .       body    .
+    - signature colour    .       body    .
+  - Hide/Show Text
+    - squeeze             .       body    attach
+  - Special
+    - search colour       .       body    .
+    - url                 .       body    attach
 
 - View Attachments
-  - Attachments
-    - mailcap
-    - ansi colours
-    - diff
-    - markdown
-    - smilies
-    - squeeze
-    - url
+  - Manipulate Text
+    - ansi                .       body    attach
+    - diff                .       body    attach
+    - markdown            .       body    attach
+    - smilies             .       body    attach
+  - Hide/Show Text
+    - squeeze             .       body    attach
+  - Special
+    - search colour       .       body    .
+    - url                 .       body    attach
 
 - Help Page
-  - ansi colours
+  - ansi
 
 - Info Pages
-  - ansi colours
+  - ansi
 
 - Log Messages
   - log colours
@@ -75,7 +80,7 @@ or use "all" for all possible plugins
 
 ## Plugin Details
 
-- ansi colours
+- ansi
   - config `$allow_ansi`
 
 - attachment colour
@@ -91,10 +96,6 @@ or use "all" for all possible plugins
 
 - log colours
   - colouring
-
-- mailcap
-  - transform file into text
-  - config `mailcap_path`
 
 - markdown
   - colouring
