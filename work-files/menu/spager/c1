@@ -1,0 +1,5 @@
+color attachment                    green      yellow
+color attach_headers  bold          brightred  white   ".*"
+color attach_headers  bold reverse  brightred  white   ".*Attachment.*"
+color body                          magenta    cyan    "[aeiou][bcdfghjklmnpqrstvwxyz][aeiou]"
+color header                        red        blue    ".*"
