@@ -397,8 +397,12 @@ Help Page Tabs
 		with examples
 	when key handling is refactored (so that 5j => 5 * <down>)
 		then 3? = open help, page 3!
+	how to show disabled tabs?
+		e.g. browser might always display file/mailboxes/subscribed
+		but only enable the relevant tabs
+		OR only display relevant tabs, but keep the numbering consistent?
 browser tabs?
-	help page first
+	implement tabbed-help-page first
 
 weekly build action with
 	-D_FORTIFY_SOURCE=1 or 2
@@ -510,4 +514,20 @@ irc suggestion: re learning curve
 color toggle object [pattern]
 	temporarily change the visibility of a colour
 	idea: temporarily highlight some part of the text
+
+pager markers broken (may be very historic)
+	https://gist.github.com/gahr/557a2e7fda9309a22e4656aa1d417ba4
+	bisect, check mutt
+
+<toggle-quoted> doesn't honour $toggle_quoted_show_levels correctly
+if there are two distinct quoting styles
+set toggle_quoted_show_levels = 2 only shows the first style
+i.e. `>` and `> >` but not `|` and `| |`
+	> 58 104 105 157 127 40 173
+	> > 87 1 50 92 44 16 195 33
+	> > > 177 156 31 187 29 65
+	4 79 150 45 118 113 9 180
+	| 46 162 13 14 158 183 81
+	| | 193 75 122 68 21 174
+	| | | 197 199 66 126 83 7
 
