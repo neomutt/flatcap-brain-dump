@@ -1,0 +1,34 @@
+Subject: test
+Date: Wed, 5 Mar 2025 10:28:29 +0000
+To: rich@flatcap.org
+From: Richard Russon <rich@flatcap.org>
+
+[-- Begin signature information --]
+Good signature from: Richard Russon (flatcap) <rich@flatcap.org>
+            created: Wed 05 Mar 2025 10:28:28 GMT
+[-- End signature information --]
+
+[-- The following data is signed --]
+Subject: test
+
+[-- Attachment #1 --]
+
+Cervus crotesco Eurygaea double-cross Leotine Cyprinoidea -plasm
+time-served Dreisch hypsibrachycephaly thyroiditis soothfastness
+...
+rheumily forty-sixth racialist figments islet predestinating Oncidium
+mostlings whiterump foreadvise pterodactyls Hemiramphidae labiose plottage
+
+[-- Attachments --]
+<no description>                                        [multipa/signed, 7bit, 229K]
+├─><no description>                                      [multipa/mixed, 7bit, 228K]
+│ ├─><no description>                             [text/plain, 7bit, us-ascii, 2.0K]
+│ ├─>apple.png                                              [image/png, base64, 68K]
+│ ├─>btc-neomutt.png                                       [image/png, base64, 5.1K]
+│ ├─>blunix-logo-dark.png                                   [image/png, base64, 11K]
+│ ├─>terminal_link.png                                      [image/png, base64, 10K]
+│ ├─>character_width.png                                   [image/png, base64, 7.1K]
+│ └─>banana.png                                            [image/png, base64, 122K]
+└─>signature.asc                                    [applica/pgp-signat, 7bit, 0.8K]
+
+[-- End of signed data --]

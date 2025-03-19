@@ -1,0 +1,59 @@
+Subject: test
+Date: Wed, 5 Mar 2025 10:28:29 +0000
+To: rich@flatcap.org
+From: Richard Russon <rich@flatcap.org>
+
+[-- Begin signature information --]
+Good signature from: Richard Russon (flatcap) <rich@flatcap.org>
+            created: Wed 05 Mar 2025 10:28:28 GMT
+[-- End signature information --]
+
+[-- The following data is signed --]
+Subject: test
+
+[-- Attachment #1 --]
+[-- Type: text/plain; charset=us-ascii, Encoding: 7bit, Size: 2.0K --]
+
+Cervus crotesco Eurygaea double-cross Leotine Cyprinoidea -plasm
+time-served Dreisch hypsibrachycephaly thyroiditis soothfastness
+...
+rheumily forty-sixth racialist figments islet predestinating Oncidium
+mostlings whiterump foreadvise pterodactyls Hemiramphidae labiose plottage
+
+[-- Attachment #2: apple.png --]
+[-- Type: image/png, Encoding: base64, Size: 68K --]
+
+[-- Autoview using identify '/tmp/mutt/apple.png' --]
+/tmp/mutt/apple.png PNG 236x250 236x250+0+0 8-bit sRGB 51926B 0.000u 0:00.000
+
+[-- Attachment #3: btc-neomutt.png --]
+[-- Type: image/png, Encoding: base64, Size: 5.1K --]
+
+[-- Autoview using identify '/tmp/mutt/btc-neomutt.png' --]
+/tmp/mutt/btc-neomutt.png PNG 175x175 175x175+0+0 8-bit sRGB 3879B 0.000u 0:00.000
+
+[-- Attachment #4: blunix-logo-dark.png --]
+[-- Type: image/png, Encoding: base64, Size: 11K --]
+
+[-- Autoview using identify '/tmp/mutt/blunix-logo-dark.png' --]
+/tmp/mutt/blunix-logo-dark.png PNG 400x400 400x400+0+0 8-bit sRGB 8875B 0.000u 0:00.000
+
+[-- Attachment #5: terminal_link.png --]
+[-- Type: image/png, Encoding: base64, Size: 10K --]
+
+[-- Autoview using identify '/tmp/mutt/terminal_link.png' --]
+/tmp/mutt/terminal_link.png PNG 297x367 297x367+0+0 8-bit sRGB 8004B 0.000u 0:00.000
+
+[-- Attachment #6: character_width.png --]
+[-- Type: image/png, Encoding: base64, Size: 7.1K --]
+
+[-- Autoview using identify '/tmp/mutt/character_width.png' --]
+/tmp/mutt/character_width.png PNG 509x46 509x46+0+0 8-bit sRGB 5367B 0.000u 0:00.000
+
+[-- Attachment #7: banana.png --]
+[-- Type: image/png, Encoding: base64, Size: 122K --]
+
+[-- Autoview using identify '/tmp/mutt/banana.png' --]
+/tmp/mutt/banana.png PNG 236x268 236x268+0+0 8-bit sRGB 92953B 0.000u 0:00.000
+
+[-- End of signed data --]
