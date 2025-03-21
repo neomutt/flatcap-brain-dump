@@ -1,0 +1,45 @@
+Todo
+
+:bind
+:macro
+:color		+ansi
+:version	+ansi
+help
+logs
+set		+ansi
+
+Bi-mode cli vs gui?
+	-D/-Q vs :set
+	-v vs :version
+	:color
+
+Key refactor
+	naming of functions, gv, gather()
+
+Paged Line/File
+	add_printf(...)
+	add_end_color()
+
+Spager
+	external  $marker
+	$wrap*
+	bottom flag
+
+Add temp AttrColorList to PagedFile for rendering
+
+theme `color` modifiers
+color+	multi-comain
+color!	overwrite all domains
+
+Separate PF(data) from colours (view)
+	how?
+
+status: expando, apply status color
+add_ac_text, add_cid_text
+
+:about?
+;help -> <help>
+
+PagedFile for -h/-v => tmp file!
+not if *stdout*-backed
+

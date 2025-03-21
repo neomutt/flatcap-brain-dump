@@ -1,0 +1,32 @@
+Lightweight Rows / Layers?
+
+If we have lots of Rows and many Layers, how much memory will be used?
+File of 5000 Rows, Cache raw text  (40KiB of Row ptrs)
+Each Row { offset, segments, etc }
+Each Layer  Row*[] which *reuses* many Rows
+Could squash Rows into a results Row - saving space, but
+Layers still need to exist to hold the in-use caches!
+
+
+A Row's offset is specific to the Layer's File/Cache
+If we merge Rows, we need to know which Row/offset refers to which Cache
+Row holds Layer ptr, Results Layer is unaltered Row from previous Layers
+
+
+						Parent		Data		Name
+
+Results Layer	->	Row	Segs[]		-> Layer	-> File Cache	raw
+
+				Segs[]		-> Layer	-> File Cache	headers
+
+				Segs[]		-> Layer	-> File Cache	body
+
+				Segs[]		-> Layer	-> File Cache	attach
+
+
+This doesn't work.  Can't reuse data from previous Layers because
+we don't track which offsets refers to which cache!
+
+
+If Row's Segs reuse prev Layer's cache, then insert some text from their
+own Layer's cache it fails

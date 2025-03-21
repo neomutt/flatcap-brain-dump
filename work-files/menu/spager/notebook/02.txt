@@ -1,0 +1,24 @@
+Cache
+
+Backing file, memory block, max size, close_fp
+add(text), get(offset, size), release(block), new, feww
+
+C*	cache_new(file, max_size)			file is optional
+	cache_free(ptr)
+	offset = cache_add(text)
+	ptr = cache_get(offset, size)			ptr or file read
+	cache_release(ptr)				NOP for cached
+
+if file's provided cache max possible file immediately
+if population doesn't exceed max_size, never write file
+add() should realloc in 4KiB chunks for efficiency
+if add() causes a realloc, any previous get()s are invalid!
+	=> two phases: build; use -> could enforce this
+who uses get()?  when?  how long?
+*window* holds data/render ∀ Rows; hold *View*
+View is (Row + text) * n (Rows could be non-contig if concealed)
+<half-down> => n/2 * text release, n/2 calls to get()
+View generated / refreshed in recalc() => repaint() is trivial
+
+
+could be tied into fmemopen()

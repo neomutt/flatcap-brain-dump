@@ -1,0 +1,32 @@
+Existing File
+
+View attachment : raw email -> mailcap -> file (could contain ANSI)
+Create PFile, Layer(file, 64KiB cache) = Source
+creating Rows -> reading entire file
+we start with zero knowledge
+how to we lazily read?
+	distinguish between EOF and as yet unread
+
+
+PFile has file size. NO
+Layer has 0 Rows, Layer has Source (file size)
+Display wants n Rows.  Layer.get_row(6) => 0-6 must exist
+get_row() => NULL if beyond EOF
+get_row(n) checks Row(n-1) offset, len => offsetN
+Source -> get_row(offset) fill 64KiB cache if nec
+can cache fulfil request?  yes, return, no read file, return
+
+Who applies Layers?  (ANSI)
+plugins act *upon* Layers, potentially multiple plugins/Layer
+caller, Layer(existing fp), ANSI(Layer)
+L2 = dup_layer(), BodyColours(Layer2)
+can plugins be limited to a range of Rows?
+	how to do this lazily?
+*Row*-wise to avoid re-reading file (lazily)
+Layer has array of plugins to apply automatically?
+	each with *state*
+How does header/weeding plugin row *Row*-wise?
+Email Pager needs to process entire Body immediately
+even if big.  attachment text can be left to parse lazily
+Email Pager has *file* - perhaps we populate the PFile manually
+

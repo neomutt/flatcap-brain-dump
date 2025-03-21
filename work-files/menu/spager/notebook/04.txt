@@ -1,0 +1,38 @@
+Data							Source
+
+Row.Markup(0, 100, plain)				(S1)	"Text...XYZ" (0-99)
+
+Row.M(0, 20, plain); M(0, 10, red); M(20, 80, plain)	(S2)	"insertion!"
+
+Row.M(...S1), M(...S2), M(...S1)
+
+
+Layer1		Row1(S1)	-> Source -> File	(S1)	Raw
+					  -> Cache
+		Row2(S1)
+		...
+		Row10(S1)
+
+Layer2		Row1(S2)	-> Source -> File	(S1)	Plugin
+					  -> Cache
+		Row2(S1)
+		...
+		Row10(S1)
+
+LayerR		Row1		-> Source NULL			Results
+		...
+		Row10
+
+
+∀ Row > width -> Segment[]		or all Rows?
+Resize -> recalc Segments
+append_layer()?  gen(header/body), (attach)*n separately and join up
+	signing/encrypting surrounds attachments!
+
+
+How to deal with BIG files?
+always cache      first 64KiB		(~1K lines)
+always read/parse first 256KiB		(~5K lines)
+lazily read/parse anything else		- unless added manually
+<End> => read/parse *all*
+

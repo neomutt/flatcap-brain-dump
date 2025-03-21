@@ -1,0 +1,36 @@
+Walkthrough2
+
+if any filter can manipulate of color of hide -> Layer per filter
+could share Layer ∀ Body colours (attach, body, quoted, sig, url)
+	toggle_quoted too (if last)
+
+Layer1 (ansi) => get_raw_text() + ansi strip + ansi colour
+	=> Markup + Text specific to *this* source
+
+layer_dupe() - does what?  need to squash Markup?
+	=> cache no good
+
+
+For any given Text+Markup - what actions can we perform?
+	Insert, Delete, Add Markup (Remove Markup)?
+Insert -> new cache
+Delete -> new working text
+Add Markup -> translate working text to raw text markup
+
+
+Each Markup has ptr to Source.  Layer owns Source
+Insert -> add to to Layer source -> ptr
+Split Markup if necessary. Insert new Markup(O, N, src2) Regen
+Delete => split 1st Markup, Last Markup if nec.  Delete Markup. Regen
+Add Markup -> Split 1st, Last Markup if nec, apply over all Markup
+
+| 0 1 2 3 4 | 5     XXX "apple" ZZZ	work text = "apple"
+		    012  34567  8910
+
+Markup is (3,5)
+Insert(2, "QQQ") => search Markup[] for posn 2 in M[0]
+Split => M:(3,2A),(5,3A)	B = source_new("QQQ")
+Insert => M:(3,2A),(0,3B),(5,3A) => "apQQQple"
+Delete(3) => Find 3rd char -> M:(0,3B) middle char, split
+	=> M:(3,2A),(0,1B),(2,1B),(5,3A) => "apQQple"
+

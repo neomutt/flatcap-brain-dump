@@ -1,0 +1,35 @@
+Generate vs File
+
+Gen: `:color`
+
+gen text, add MT_COLOR, add ANSI (swatch)
+create PFile, Layer (no file, empty cache) = Source
+new Row; add text; add_colored_text
+add_text(Row, text, len) - or add_colored_text()
+
+Row -> Layer -> Source -> add_text()
+Source adds to cache if possible, else writes to file (returns offset)
+Row adds Markup(offset, len, colour)
+
+When done, need to apply ANSI Layer
+PFile: Layer(raw), Row[], Source(nofile, cache)
+	each Row has Source ptr
+create new Layer -> layer_dup()
+	don't need Source, not changing text
+Layer(ANSI), Row[]
+
+∀ Row, get_text() -> "plain text"; new Row(old Source)
+∀ Markup if non-ANSI, copy to new Row
+if ANSI split up (plain prefix; parse colour; coloured text) repeat
+	add new Markups to new Row
+
+Display ∀ ViewRow get_text(Row) -> plain
+get_text() knows offset of start and offset of last char
+ask Source for entire range -> 1 file read, or strcpy() from cache
+∀ Markup assemble pieces into new plaintext string NO
+Markup contains offsets into File/cache, including ignored bits
+have Markup + raw text ∀ Markup display on screen
+How does search work?  use Markup + raw => plaintext OK
+how to translate plaintext offset to align with Markup?
+
+

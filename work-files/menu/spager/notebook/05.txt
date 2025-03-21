@@ -1,0 +1,24 @@
+Uses
+
+Info pages: version, colour, bind/macro, <help>, log messages, set
+Preview: compose, attach
+
+
+Info pages are all manually constructed, all small, no file needed
+Preview: all mailcap'd to a file, could be very large
+Info inset inline ANSI -> in cache (no file, so yes) => save => dump cache
+Init from file; cache, parse
+Only modification is ANSI colours - always enabled, as safe origin
+mailcap'd file could contain ANSI - no nec safe
+want cached plaintext for searching, need raw info
+=> Row + Markup -> text. still much quicker than reading file
+	we kmow how many bytes to alloc
+No Layers, 1 Cache (raw) Array [num, Row, text] ?
+View can cache *visible* Rows, minimise sizeof(Row)
+Data os File, cache, Rows, Markup, Search?
+
+
+Plugings need to be run in parallel -- don't read a bit file multiple times
+i.e. ∀ Row read text, ∀ plugin apply mods
+Each plugin could need state info
+Parallel even if multiple Layers are needed!

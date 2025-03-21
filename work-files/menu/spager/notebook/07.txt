@@ -1,0 +1,29 @@
+Raw vs Plain
+
+Markup[] lots of (offset,len) into "raw text"
+Markup[] + Row => "plain text"
+Search -> (offset, len) in plaintext could span raw bits -> gaps!
+offsets into plaintext align with screen perhaps we don't need to align to M
+
+Display M(0,3),(6,2),(18,3), S(2,5)
+	"abc"  "de"  "fgh"   "cdefh"
+∀ M screen col = 0, M 3 cols intersects with S(), split
+
+print	M "ab", S "c"		part *before* search, part in search
+	S "de", 		entirely within search
+	S "fg", M "h"		part *in* search, part *after* search
+
+
+Diff Plugin
+colours, config, functions
+<fold_more|less> like vim
+$fold_level, all fold cfg, etc, could be reused in Index
+<next|prev_chunk|file> for navigation
+(reg functions, if not already defined)
+(reg keybindings, if not already defined!)
+navigation functions open folds as necessary
+search needs to do the same HOW?
+plugin functions need priority over Pager
+unless search is fold-aware
+$fold_open = search?
+

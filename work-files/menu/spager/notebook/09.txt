@@ -1,0 +1,28 @@
+Walkthrough
+
+:version  dumped to a file
+
+pf = pfile_new()					+notify
+src = source_new(fp)		       (NULL)		+cache memory
+l1 = layer_new(sorce)		l2 new(NULL)		-
+f1 = filter_ansi_new()		f2 url_color_new()	state data
+	layer_add_filter(l1, f1)
+	pfile_add_layer(pf, l1)
+
+ansi needs state for sequences that span multiple rows
+url doesn't need state. always a single row
+
+display(pf) ∀ Row pf_get_row(n) -> Row
+pf_get_row(n) ∀ Layer get_row ∀ filter apply filter
+if not Layer[last].Row, gen rows
+∀ Layer get_raw_text(offset0, src) -> cache/file
+if offset within cache and \n or EOF also within cache -> (ptr, bytes)
+else fread() 1 line -> (ptr, bytes)
+
+text; ∀ Filter f.apply(text, Markup[]) -> text2
+src_release(text0)
+
+Filter2.apply(text2, Markup[])	highlights "bcgh"
+	a b c [d e f] g h i [j k l] m n o p q	(Text1)
+	[1,3], [7,3], [13,5] => "abcghimnopq"	highlight "bcgh"
+

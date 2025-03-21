@@ -1,0 +1,37 @@
+Caching
+
+Layer currently holds Source/Cache/File
+Could each Filter hold a cache?
+Which Filters even need a cache? -- those that *insert*
+
+diff (advanced) if it tidies
+markdown (adv) if it summarises
+tidy headers?  prob not, just a bit of whitespace
+	-> need custom free()
+url(adv) if modifying/marking urls
+
+Filters are great for manipulating text *within* Rows
+I need Layers to be able to manipulate *Rows* themselves
+Which Filters might manipulate Rows? (and insert/delete/reorder)
+	tidy headers - mostly conceal(for weed) + hdr_order
+turn off weeding => sort by file/cache offset, unconceal all
+turn on weeding => reorder, then conceal -> level 99?  always hidden (or -1)
+(need to observer (un)ignore, un)hdr_order too)
+
+some concealed items might want to be viewable - signature, text, etc
+plugins/filters should ID their work?
+	id42 => these are headers or signature, or [-- attach --] markers, etc
+plugin order defines priority
+=> if diff owns lines, markdown won't run
+plugins needn't ID their lines if further manipulatiion is allows
+how would C syntax look with diff syntax superimposed? (or any base lang first)
+
+
+Plugins need to register config, colour, commands, functions at startup
+must precede config reading / `-e` execution
+what happens of `set plugins = x,y,z` in config?
+	DT_STARTUP?  NO
+	it'd be nice to be able to reorder dynamically
+
+new command `register plugin X` => they're external
+
