@@ -1,0 +1,12 @@
+View can help PFile by bracketing its needs: I'll need Rows X-Y
+
+Row is cache-specific and gappy, get_row() assembles text, then
+Rescale	Row to 0..n (contiguous) for display
+
+View can cache/free *this* Row.
+VRow?  probably not
+
+Future cache uses fmemopen / mmap
+
+ViewRow *could* be made smaller that Row, but there are very few of them
+

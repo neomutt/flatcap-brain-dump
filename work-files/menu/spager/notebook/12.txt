@@ -1,0 +1,108 @@
+Caller
+
+Dump text + ANSI -> file
+pf = pfile_new()
+l = layer_new(file); pfile_add_layer(l)
+	source_new(file)
+layer_add_filter(l,ansi)
+spager(pf, flags)
+window(w,h)
+need h Rows
+
+r = pf_get_row(n)
+l = last_layer()
+r = get_row(n)
+
+if !exist row
+∀ Layer; read rawtext
+∀ Filter; manipulate text
+
+
+
+Multi-Layer
+pf = new_file()
+l1 = new_layer()
+l1.layer_add_filter(ansi)
+
+l2 = new_layer()
+l2.layer_add_filter(body)
+l2.layer_add_filter(header)
+	quoted, url, etc
+
+
+
+Header filter needs n Rows, until "^$"
+Signature filter needs up to 4 rows
+must have these requirements before other Rows/Filters are used
+ANSI needs Row to Row state
+
+Filters need to observer config/colour/etc
+How do they invalidate their Layer/PFile?
+Or does caller manage all notifications? NO
+caller can't undersatnd a plugin's requirements
+Plugin == Filter
+
+
+Notifier ∀ Filter, Layer, PFile
+Filter -> config changed etc
+	Filter reused Notify on StateData?
+
+f = filter_new(layer, notify, sub)
+filter_apply(f, layer, row)
+
+PFile.notify parent is spager_*win*
+
+Search and URL are by definition single Rows
+
+
+
+Does the *FILTER* own the *SOURCE* (cache/file)?
+still need a base cache
+how to chain the caches? up to the base layer
+	nec?
+
+
+
+     A         B           C
+|0 1 2 3 4|5 6 7 8 9|10 11 12 13 14|
+
+
+|0 1 2 3|4 5 6|7 8 9|
+
+
+Insert at 0,2,4,5,7,8,10, out of range, empty
+
+Delete
+	0-1, 0-3, 2-3
+	4-5, 4-6, 5-6
+	7-8, 7-9, 8-9
+
+	0-5, 2-5, 2-6
+	4-7, 5-7, 5-9
+	2-8, 0-9
+
+start, middle, end
+	SME(a) - SME(b)	(9)
+	SME(b) - SME(c)	(9)
+	SME(a) - SME(c)	(9)
+	S-M, S-E, M-E) ∀ ABC (9)
+	empty
+	out-of-range
+
+Overwrite
+	0-2, 0-3, 2-3
+	4-5, 4-6, 5-6,
+	7-8, 7-9, 8-9
+ditto delete
+
+Insert (start, middle, end)
+	SME ∀ ABC (9)
+	end
+	empty
+	out-of-range
+
+
+insert(Markup[], pos, insert, work_text)
+delete(Markup[], pos, bytes, work_text)
+overwrite(Markup[], pos, bytes, cid)
+
