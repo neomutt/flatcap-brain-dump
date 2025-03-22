@@ -1,0 +1,36 @@
+Url Plugin
+
+Just Markup each url with an  internal URL attribute (A_URL) (colour optional)
+attr means that Markup will be isolated for url
+using the normalised Markup + plain text, gui can easily
+	isolate any urls and gen colours + ansi markup
+	need coords, so need to honour Segment[]
+gui: ∀ visible Rows wrap -> Segment[]
+
+
+
+
+Search
+
+gui does search using Rows: results need to be in *Row*
+because they extend beyond the *View*
+∀ Row starting at the current position, match in Row
+	matches invalidate Row?
+
+cap search at 999 matches -- warn if more
+changing direction => re-search
+
+
+
+Notes
+
+<help> add "about" tab, with sponsorship info, get involved
+
+Scanning to <end> of file could be done quickly,
+	read 1 line at a time to find \n's but don't apply Filters
+	mark Row as needing recalc (Filters)
+
+Could be faster still - read 64KiB buffer and scan for \n -> gen Rows
+
+Rows only need offset, bytes in them initially
+

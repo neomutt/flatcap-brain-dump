@@ -1,0 +1,13 @@
+View
+
+PFile has Rows(raw) into Source(cache)
+	has Search(plain)  (plaintext may have only existed briefly)
+
+View wants normalised Markup
+	might as well merge Search, easier for gui to process
+get_row(n) -> Markup(nromal) + Text(plain)
+wrap() -> Segment[]
+scan for urls, might be multiple Markup per url
+	might be split by Segment too
+Each piece of Url needs Window coords
+

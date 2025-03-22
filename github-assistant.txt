@@ -12,6 +12,10 @@ Menu:
 	view all issues
 	mark as read (beacon) on sync-mailbox
 
+beacon
+	mshow -A text/html .github/cur/EMAIL | grep --color=never -o 'https://[^"]*beacon[^"]*'
+	curl -s -o /dev/null https://github.com/notifications/beacon/XXX.gif
+
 special treatment of
 	opened, closed, re-opened issue
 	add / remove label (not by email)
