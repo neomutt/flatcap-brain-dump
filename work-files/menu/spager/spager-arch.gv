@@ -1,0 +1,158 @@
+digraph neomutt
+{
+
+	graph [
+		rankdir="LR"
+		nodesep="0.5"
+		ranksep="0.5"
+	];
+
+	node [
+		shape="plain"
+	];
+
+	edge [
+		penwidth="1.5"
+		arrowsize="1.0"
+		color="#c0c0c0"
+	];
+
+	pfile [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top"><font color="#000000" point-size="16"><b>PFile</b></font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">Row[]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">Filter[]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">Source</td>
+		</tr>
+		</table>>
+	];
+
+	row [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top"><font color="#000000" point-size="16"><b>Row</b></font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">Markup[] (raw)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">Search[] (plain)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">refcount</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">repaint</td>
+		</tr>
+		</table>>
+	];
+
+	source [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top"><font color="#000000" point-size="16"><b>Source</b></font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">size</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">cache</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">file</td>
+		</tr>
+		</table>>
+	];
+
+	filter [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top"><font color="#000000" point-size="16"><b>Filter</b></font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">Source (extra)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fdata</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">fdata_free()</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">filter_apply(Row)</td>
+		</tr>
+		</table>>
+	];
+
+	vrow [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top"><font color="#000000" point-size="16"><b>ViewRow</b></font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">Row</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">Segment[]</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">plaintext</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">Url[]</td>
+		</tr>
+		</table>>
+	];
+
+	markup [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top"><font color="#000000" point-size="16"><b>Markup</b></font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">offset</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">len</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">Source</td>
+		</tr>
+		</table>>
+	];
+
+	url [
+		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+		<tr>
+			<td border="0" align="left" bgcolor="#80ffff" port="top"><font color="#000000" point-size="16"><b>Url</b></font></td>
+		</tr>
+		<tr>
+			<td border="0" align="left">address</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">Markup[] (address)</td>
+		</tr>
+		<tr>
+			<td border="0" align="left">coords[]</td>
+		</tr>
+		</table>>
+	];
+
+
+	pfile -> row
+	pfile -> filter
+	pfile -> source
+	row -> markup
+	filter -> source
+	vrow -> row
+	vrow -> url
+	markup -> source
+	url -> markup
+}
