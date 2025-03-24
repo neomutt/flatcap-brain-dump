@@ -11,3 +11,20 @@ scan for urls, might be multiple Markup per url
 	might be split by Segment too
 Each piece of Url needs Window coords
 
+
+
+Mailcap Filter
+
+file + mime type => new file (text)
+add rows
+	how does it know where to add them?
+	given a Row number?
+want [-- marker --] before text + blank line
+
+currently uses a min of 6 lines
+	[-- Attachment #2: apple.png --]
+	[-- Type: image/png, Encoding: base64, Size: 68K --]
+
+	[-- Autoview using identify '/tmp/mutt/apple.png' --]
+	/tmp/mutt/apple.png PNG 236x250 236x250+0+0 8-bit sRGB 51926B 0.000u 0:00.000
+
