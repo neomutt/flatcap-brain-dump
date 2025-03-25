@@ -28,3 +28,33 @@ currently uses a min of 6 lines
 	[-- Autoview using identify '/tmp/mutt/apple.png' --]
 	/tmp/mutt/apple.png PNG 236x250 236x250+0+0 8-bit sRGB 51926B 0.000u 0:00.000
 
+
+
+"eol" colour attribute - extend to end-of-line
+	e.g. comment, signature
+is this settable?  or fixed to a colour?
+where does it show up?
+	commants in info pages
+	log message
+	email headers
+	signature?
+	quoted?
+	normal (obv)
+	body (prob)
+	(sidebar_)indicator
+	status
+	stripe_(even|odd)
+	message|warning|error
+
+
+if config changes (or colours, commands, functions) - can the Filter invalidate *just* a few Rows?
+how would the Filter *know* which Rows?
+	which text would they be checking?  Raw? already-filtered?
+Does it matter?
+	invalidate all and View will recalc as necessary
+
+
+:version
+	drop MT_COLOR_BOLD and use ANSI bold instead -- simpler
+	don't wrap compile features?  simpler
+

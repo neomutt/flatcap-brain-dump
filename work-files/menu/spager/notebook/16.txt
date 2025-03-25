@@ -1,0 +1,51 @@
+Walkthrough 3
+
+:version
+	pf_new(), add ansi filter, add Rows with Markup
+	=> Row -> Markup -> Source -> "ansi text" (unfiltered/invalid)
+
+pass pf to SPager, Window (WxH) => need H VRows
+
+VRow (RowNum, RowOffset, cached text, NormalRow) ?
+or
+normalise(Row, bytes, cols) -> NormalRow(NormalMarkup, text, bytes) == Segment
+
+What if top row is wrapped text?
+
+Top row is Row(12), then <prev-line>, what?  need to fully parse Row(11)
+
+What if Row is long and Window is very narrow?
+What if Row is too long for entire Window?
+
+VRow(x) => we've read 0..(x-1) at some point
+	Keep all the VRows?
+
+
+Search scans all normalised, but wrapped, Rows
+	who caches?
+	who stores results?
+searching affects normalised Markup
+Frontend does ∀ Row.get_plaintext() & discard afterwards
+	Row.clear_searches(); ∀ match Row.add_search() => Row.invalid
+
+
+Wrap does what?
+	many Rows(offset, bytes, cols) => quick calc num of segments
+	can calc total VRows, for any VRow num, know which Row to use
+
+convert enough Rows -> VRows for  Window
+	know VRow *num* of rirst
+vrow_current >= vrow_array_top: VRow[]
+
+Movement -> vrow_current changes, locate in current VRow[]
+	add to end / insert at beginning as necessary, adjust indexes
+
+How / when do we check for invalid Rows?
+	or do we recalc completely each movement?
+	how expensive?
+
+Cost: find Row that contains VRow
+	∀ visible Row, normalise
+
+changing config will invalidate Rows, how does VRow know?
+

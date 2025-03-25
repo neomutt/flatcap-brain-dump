@@ -29,7 +29,7 @@ digraph neomutt
 			<td border="0" align="left">Filter[]</td>
 		</tr>
 		<tr>
-			<td border="0" align="left">Source</td>
+			<td border="0" align="left">Source (raw)</td>
 		</tr>
 		</table>>
 	];
@@ -46,13 +46,13 @@ digraph neomutt
 			<td border="0" align="left">Search[] (plain)</td>
 		</tr>
 		<tr>
-			<td border="0" align="left">refcount</td>
-		</tr>
-		<tr>
-			<td border="0" align="left">repaint</td>
+			<td border="0" align="left">valid</td>
 		</tr>
 		</table>>
 	];
+	// <tr>
+	// 	<td border="0" align="left">refcount</td>
+	// </tr>
 
 	source [
 		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
@@ -97,7 +97,7 @@ digraph neomutt
 			<td border="0" align="left" bgcolor="#80ffff" port="top"><font color="#000000" point-size="16"><b>ViewRow</b></font></td>
 		</tr>
 		<tr>
-			<td border="0" align="left">Row</td>
+			<td border="0" align="left">Row number</td>
 		</tr>
 		<tr>
 			<td border="0" align="left">Segment[]</td>
@@ -105,11 +105,11 @@ digraph neomutt
 		<tr>
 			<td border="0" align="left">plaintext</td>
 		</tr>
-		<tr>
-			<td border="0" align="left">Url[]</td>
-		</tr>
 		</table>>
 	];
+	// <tr>
+	// 	<td border="0" align="left">Url[]</td>
+	// </tr>
 
 	markup [
 		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
@@ -128,22 +128,22 @@ digraph neomutt
 		</table>>
 	];
 
-	url [
-		label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
-		<tr>
-			<td border="0" align="left" bgcolor="#80ffff" port="top"><font color="#000000" point-size="16"><b>Url</b></font></td>
-		</tr>
-		<tr>
-			<td border="0" align="left">address</td>
-		</tr>
-		<tr>
-			<td border="0" align="left">Markup[] (address)</td>
-		</tr>
-		<tr>
-			<td border="0" align="left">coords[]</td>
-		</tr>
-		</table>>
-	];
+	// url [
+	// 	label=<<table cellspacing="0" border="1" rows="*" color="#d0d0d0">
+	// 	<tr>
+	// 		<td border="0" align="left" bgcolor="#80ffff" port="top"><font color="#000000" point-size="16"><b>Url</b></font></td>
+	// 	</tr>
+	// 	<tr>
+	// 		<td border="0" align="left">address</td>
+	// 	</tr>
+	// 	<tr>
+	// 		<td border="0" align="left">Markup[] (address)</td>
+	// 	</tr>
+	// 	<tr>
+	// 		<td border="0" align="left">coords[]</td>
+	// 	</tr>
+	// 	</table>>
+	// ];
 
 
 	pfile -> row
@@ -152,7 +152,7 @@ digraph neomutt
 	row -> markup
 	filter -> source
 	vrow -> row
-	vrow -> url
+	// vrow -> url
 	markup -> source
-	url -> markup
+	// url -> markup
 }
