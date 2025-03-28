@@ -1,0 +1,42 @@
+Walkthrough 4
+
+Top VRow is 'n' (36),  Window width = 'w' cols
+∀ Row calc how many VRows required (inc $markers)
+Row r(T) is first needed, Segment s(T) is the n'th VRow (T=Top)
+continue to find last VRow: Row r(B), Seg s(B) (B=Bottom)
+
+∀ { Row,Seg } gen VRow into []
+
+If VRow gen is unidirectional (we'll recalc completely on update)
+	VRow (NormalMarkup, plaintext, bytes, cols)
+
+Row -> VRow
+	use Markup to assemble plaintext
+	normalise Markup (merge Search Markup)
+	copy bytes, cols				-- Filters missing
+
+VRow is independent
+Good until movement, sigwinch, config, colour, command, function, search
+
+movement (spager functions) - SPager does recalc/repaint
+sigwinch Spager recalc/repaint - try to keep "cursor position" stable
+search ∀ Row get_plain_text(), update Search[], move
+(config, colour, command, function) notify Filter -> notifies PFile
+
+PFile invalidates all Rows!
+	SPager notifies PFile
+	valid=false, clear Markup[]?, clear Search[]??
+	caller must recalc search!
+
+Row wrapping can't happen until Filters have been applied
+(they might conceal, reorder, insert, delete)
+	=> get_plaintext() -> ∀ Filter.apply(), assemble text -- if (!valid)
+	get_normal_markup() -> ∀ Markup rebase
+	copy bytes, cols -- nec in Row?
+		Markup has them -- calc in normalise()
+		shrink Row further
+
+get_plain(), normalise(), measure() all require !invalid
+	=> Filter.apply -- needs Row[], hence PFile
+apply() needs to create the Rows first
+

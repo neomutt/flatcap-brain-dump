@@ -531,3 +531,10 @@ i.e. `>` and `> >` but not `|` and `| |`
 	| | 193 75 122 68 21 174
 	| | | 197 199 66 126 83 7
 
+upstream check/merge
+
+update [release]
+
+merge translations
+	prompt translators
+
