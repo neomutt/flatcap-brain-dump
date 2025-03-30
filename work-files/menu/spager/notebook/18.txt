@@ -1,0 +1,24 @@
+Help Tabs
+
+If $help is set -- intro page -- You are Here
+	if !help still display tab, but default to tab 2 (bindings?)
+	give each tab a stable number for its content
+
+Bindings / Macros (set)
+Functions (all possible)
+Config - all relevant to current dialog - bold changed config
+Misc - e.g. Index flag config
+
+:bind [all|dialog]
+:macro [all|dialog]
+:color [all|dialog]
+:set [all|dialog]
+
+Some cfg/colours are global
+Could associate themselves with a Window
+If Win is visible then help is given?
+	=> sidebar_visible is global, but sidebar* is sidebar dependent
+
+Pager Filters would have to register their config / colours somehow
+	:cmd dialog    uses current focus
+
