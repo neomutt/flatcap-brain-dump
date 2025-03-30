@@ -37,9 +37,6 @@ Separate PF(data) from colours (view)
 status: expando, apply status color
 add_ac_text, add_cid_text
 
-:about?
-;help -> <help>
-
 PagedFile for -h/-v => tmp file!
 not if *stdout*-backed
 

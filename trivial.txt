@@ -209,20 +209,6 @@ not true, mutt/file.c
 	#define O_NOFOLLOW 0
 	#endif
 
-add :help global command to do <help>
-	how would it get the context for the functions?
-		however it works, this mechanism would be
-		needed for mouse click handling
-	use the focus?
-
-help page
-	sort option: binding, function
-	only applies to *bound* keys
-	unbound are always sorted
-
-add sponsorship info to `neomutt -v`
-	what about the <help> page too?
-
 colour notifications
 	might want more destinction for RegexColors
 	*which* RegexColor was added / removed
@@ -261,23 +247,6 @@ rule signature
 
 create "limit" rules for concealing emails?
 	muting conversations?
-
-IRC 2025-01-07
-	   gahr | I wonder if we should have different helps
-	   gahr | I only recently discovered that Message flags are there, at the bottom
-	   gahr | perhaps we should have a 'help functions', 'help macros', 'help flag_chars', ...
-	flatcap | yes, I've considered that. there are a couple of slight issues to work out first...
-	flatcap | first: the help page has hard-coded knowledge -- like those index flags
-	flatcap | we could do with a mechanism (API) to gather the help in a context-specific way
-	flatcap | second: `:help` would be a global command, so that's probably the same problem
-	flatcap | having the function <help> `?` is very accessible...
-	      * | flatcap wonders: what is the user searching for when they hit <help> ?
-	flatcap | perhaps: <help> gives you a context-specific description of *where* you are, *what* you're looking at, *what* you can do next
-	flatcap | from there it'd be nice if pressing a single key (1) Keybindings, (2) flag chars, etc  would take you to the next page
-	flatcap | (also directly accessible by `:help flag-chars`, etc
-	put those other pages in *tabs*!
-	Tabs: [1: Intro] [2: Keys] [3: Macros] [4: Unbound] [5: Flag Chars]
-		<Tab> or [12345] to switch between them
 
 close other repo discussions
 closed, locked, pinned issue:
@@ -370,39 +339,6 @@ colour - what happens if you set both (simple/palette) and truecolor?
 SimpleBar / ExpandoBar
 	are they compatible?
 	can they be merged?
-
-Help Page Tabs
-	do we need to implement actual Window tabs?
-	can we just fake it? (much simpler)
-		ideally want a PagedFile for each tab
-		=> separate windows would be simpler
-	navigate between pages with any of:
-		1..n
-		<Tab> / <Ctrl-Tab>
-		<Ctrl-PgUp> / <Ctrl-PgDown>
-	functions for <switch-to-tab-N> {1-10}
-		default mappings using '1'..'0'
-		function dispatcher runs before others
-	auto-generate table of contents
-	if ($use_nerd_fonts = yes)
-		we can use advanced chars to sculpt tabs
-		like vim airline status bar
-		nerd-font.rc sample?
-	Unicode:
-		Mailbox Browser ◢█1 Help█◣╱ 2 Index ╲╱ 3 Pager ╲⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽
-		Mailbox Browser ╱ 1 Help ╲◢█2 Index█◣╱ 3 Pager ╲⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽
-		Mailbox Browser ╱ 1 Help ╲╱ 2 Index ╲◢█3 Pager█◣⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽
-		syntax match reverse "\d \i\+"
-	add page for patterns?
-		with examples
-	when key handling is refactored (so that 5j => 5 * <down>)
-		then 3? = open help, page 3!
-	how to show disabled tabs?
-		e.g. browser might always display file/mailboxes/subscribed
-		but only enable the relevant tabs
-		OR only display relevant tabs, but keep the numbering consistent?
-browser tabs?
-	implement tabbed-help-page first
 
 weekly build action with
 	-D_FORTIFY_SOURCE=1 or 2
@@ -537,4 +473,7 @@ update [release]
 
 merge translations
 	prompt translators
+
+browser tabs?
+	implement tabbed-help-page first
 

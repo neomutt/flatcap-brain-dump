@@ -1,0 +1,90 @@
+Help Tabs
+
+If $help is set -- intro page -- You are Here
+	if !help still display tab, but default to tab 2 (bindings?)
+	give each tab a stable number for its content
+
+Bindings / Macros (set)
+Functions (all possible)
+Config - all relevant to current dialog - bold changed config
+Misc - e.g. Index flag config
+
+:bind [all|dialog]
+:macro [all|dialog]
+:color [all|dialog]
+:set [all|dialog]
+
+Some cfg/colours are global
+Could associate themselves with a Window
+If Win is visible then help is given?
+	=> sidebar_visible is global, but sidebar* is sidebar dependent
+
+Pager Filters would have to register their config / colours somehow
+	:cmd dialog    uses current focus
+
+:about?
+:help -> <help>
+
+<help> add "about" tab, with sponsorship info, get involved
+
+add :help global command to do <help>
+	how would it get the context for the functions?
+		however it works, this mechanism would be
+		needed for mouse click handling
+	use the focus?
+
+help page
+	sort option: binding, function
+	only applies to *bound* keys
+	unbound are always sorted
+
+add sponsorship info to `neomutt -v`
+	what about the <help> page too?
+
+IRC 2025-01-07
+	   gahr | I wonder if we should have different helps
+	   gahr | I only recently discovered that Message flags are there, at the bottom
+	   gahr | perhaps we should have a 'help functions', 'help macros', 'help flag_chars', ...
+	flatcap | yes, I've considered that. there are a couple of slight issues to work out first...
+	flatcap | first: the help page has hard-coded knowledge -- like those index flags
+	flatcap | we could do with a mechanism (API) to gather the help in a context-specific way
+	flatcap | second: `:help` would be a global command, so that's probably the same problem
+	flatcap | having the function <help> `?` is very accessible...
+	      * | flatcap wonders: what is the user searching for when they hit <help> ?
+	flatcap | perhaps: <help> gives you a context-specific description of *where* you are, *what* you're looking at, *what* you can do next
+	flatcap | from there it'd be nice if pressing a single key (1) Keybindings, (2) flag chars, etc  would take you to the next page
+	flatcap | (also directly accessible by `:help flag-chars`, etc
+	put those other pages in *tabs*!
+	Tabs: [1: Intro] [2: Keys] [3: Macros] [4: Unbound] [5: Flag Chars]
+		<Tab> or [12345] to switch between them
+
+do we need to implement actual Window tabs?
+can we just fake it? (much simpler)
+	ideally want a PagedFile for each tab
+	=> separate windows would be simpler
+navigate between pages with any of:
+	1..n
+	<Tab> / <Ctrl-Tab>
+	<Ctrl-PgUp> / <Ctrl-PgDown>
+functions for <switch-to-tab-N> {1-10}
+	default mappings using '1'..'0'
+	function dispatcher runs before others
+auto-generate table of contents
+if ($use_nerd_fonts = yes)
+	we can use advanced chars to sculpt tabs
+	like vim airline status bar
+	nerd-font.rc sample?
+Unicode:
+	Mailbox Browser ◢█1 Help█◣╱ 2 Index ╲╱ 3 Pager ╲⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽
+	Mailbox Browser ╱ 1 Help ╲◢█2 Index█◣╱ 3 Pager ╲⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽
+	Mailbox Browser ╱ 1 Help ╲╱ 2 Index ╲◢█3 Pager█◣⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽
+	syntax match reverse "\d \i\+"
+add page for patterns?
+	with examples
+when key handling is refactored (so that 5j => 5 * <down>)
+	then 3? = open help, page 3!
+how to show disabled tabs?
+	e.g. browser might always display file/mailboxes/subscribed
+	but only enable the relevant tabs
+	OR only display relevant tabs, but keep the numbering consistent?
+

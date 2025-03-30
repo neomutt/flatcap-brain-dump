@@ -24,8 +24,6 @@ changing direction => re-search
 
 Notes
 
-<help> add "about" tab, with sponsorship info, get involved
-
 Scanning to <end> of file could be done quickly,
 	read 1 line at a time to find \n's but don't apply Filters
 	mark Row as needing recalc (Filters)
