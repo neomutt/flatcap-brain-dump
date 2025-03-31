@@ -58,3 +58,6 @@ Does it matter?
 	drop MT_COLOR_BOLD and use ANSI bold instead -- simpler
 	don't wrap compile features?  simpler
 
+
+Row: limit first, bytes to 32-bit unsigned (4GiB) to reduce size
+

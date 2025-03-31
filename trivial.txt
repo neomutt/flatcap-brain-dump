@@ -477,3 +477,5 @@ merge translations
 browser tabs?
 	implement tabbed-help-page first
 
+git mailmap authors
+

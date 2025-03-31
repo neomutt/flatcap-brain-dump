@@ -1,0 +1,34 @@
+Recalc
+
+PagedFile
+Window (w*h)
+h Rows (and/or Segments)
+get_row(0..h) -> get_from_source(), apply Filters
+normalise -> plain text
+wrap Row -> VRow -- who owns the Segments
+VRow: plaintext, NormalMarkup -- who owns plaintext?  GUI
+Row,  Markup, RowText (owned by Source)
+
+VRow n   NormalMarkup, plain
+VRow n+1 NormalMarkup, plain + x?
+
+NormalRows[h]?  NormalMarkup + plain
+
+How do Segments fit in?
+Do we split NormalMarkup & remerge?  NO
+Is NormalMarkup[] a gui cache?  VRow[] display?
+
+max size of NormalRow array is 'h' for entirely short lines
+narrowing the Window will require fewer NormalRow
+
+Size of VRow[] is 'h' (fixed)
+for many wrapped rows, NRow size is << 'h'
+but <page-down> could change that to being 'h' => always cache 'h' rows
+
+Display
+
+Origin is Row x, Offset y  (of normalised Rows)
+Segment has measured *cols*, needs to be done at recalc time
+One NRow could be multiple VRow
+Segment (NRow num, offset, bytes)
+
