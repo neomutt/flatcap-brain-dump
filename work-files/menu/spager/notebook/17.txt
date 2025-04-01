@@ -40,3 +40,11 @@ get_plain(), normalise(), measure() all require !invalid
 	=> Filter.apply -- needs Row[], hence PFile
 apply() needs to create the Rows first
 
+
+
+Markup - insert, delete, apply
+
+insert - start, between, after, split
+delete - ∀ Markup - none, start, middle, all, end
+apply  - ∀ Markup - none, start, middle, all, end
+

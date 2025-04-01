@@ -57,3 +57,12 @@ move global data into private NeoMutt.X, pre Module breakup
 
 split NeoMutt.init() -> init + init_modules (post cli)
 
+
+debug globals, keep count of:
+	recalc, repaint, refresh? counts
+	file reads (count, bytes)
+	file opens, etc
+
+New Bar for debug counters
+	optional format string
+

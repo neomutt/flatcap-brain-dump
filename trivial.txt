@@ -471,11 +471,6 @@ upstream check/merge
 
 update [release]
 
-merge translations
-	prompt translators
-
 browser tabs?
 	implement tabbed-help-page first
-
-git mailmap authors
 

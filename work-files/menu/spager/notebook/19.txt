@@ -1,0 +1,52 @@
+When
+
+*Caller* creates PFile
+	PFile creates *empty* Row[], creates Source (file optional)
+
+Caller creates / adds Filters
+Caller adds text + markup -> Rows, Markup, Source.cache
+
+recalc()
+	Window (w*h)
+	∀ 0..h  get_row(n) -> Row
+		Row is invalid => apply Filters
+	normalise (Row) -> NRow (NMarkup[], plaintext, bytes, cols)
+	∀ 0..h  wrap(NRow) -> Segment[]
+
+repaint()
+	∀ 0..h use Segment[n] -> Markup + text
+	find correct starting NMarkup (first, bytes)
+	continue for Seg[n].bytes
+
+
+Row	0..999
+NRow	0..23
+
+Movement
+	Position: Top row, Top offset
+
+VRow (Markup[], plaintext, bytes, cols, Segment[])
+
+Pre-movement
+	NRow[0..23] -> Row[78..101]
+	Top Row is 78 (NR 0)
+
+After movement <half-down> Top Row will be 90
+NRows 90-101 Exists -> copy/move; free rest
+Rebuild empty NRows
+
+If <page-down><page-up>?  (e.g. macro)
+Movement can do calculations using Rows (maybe)
+	Using top Row, Top offset -- need Top *Col*
+	then calculate new position
+
+Moving *up* all Rows exist
+Moving *down* may need to get_row(n)
+
+Movement => recalculation of current position
+	may involve reading from Source
+	Current position is separate from VRow[] positiion
+	Moving -> recalc, but if <page-down><page-up> position hasn't changed
+	recalc rebuilds VRow[] if nec => repaint
+		if position is unchanged (down,up) no action, no repaint
+
