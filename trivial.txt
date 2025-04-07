@@ -474,3 +474,5 @@ update [release]
 browser tabs?
 	implement tabbed-help-page first
 
+terminal window focus in/out https://unix.stackexchange.com/a/480138
+

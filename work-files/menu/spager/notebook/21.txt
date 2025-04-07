@@ -1,0 +1,16 @@
+Row: Lifespan/Ownership
+
+Life: Always, On-Demand, View
+Owner: Row, VRow
+
+Colour: File, Row, Markup, Search
+
+	| Always	| On-Demand	| View
+--------+---------------+---------------+---------------
+Row	| valid		| offset	|
+	| 		| bytes		|
+--------+---------------+---------------+---------------
+VRow	| Search	| Markup	| NormalMarkup
+	| 		| cols (-1)	| text
+	| 		| cid/ac	| Segment
+

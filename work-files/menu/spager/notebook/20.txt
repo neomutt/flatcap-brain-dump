@@ -1,0 +1,20 @@
+get_plain()	Markup + Source -> text
+normalise()	Markup -> Markup(N)
+measure()	Markup -> num,num (bytes, cols)		nec?
+
+get_vrow()	plain, normalised markup, measure? (or copy Row)
+filter_apply()	Row -> Row
+		get_plain(), parse text, act on Markup
+		may need other Rows
+
+get_vrow()	get_filtered_text() -> NMarkup, plain, bytes, cols
+		if invalid, the Row get changed
+
+should the caller update_row() ∀ Rows (that it's interested in)?
+or should the PFile update the Rows on-demand?  YES
+caller can't know when to update, shouldn't know/care
+
+should Row be abstract?
+What does the caller *need*?
+	bytes,cols -> measure()?
+

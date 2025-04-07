@@ -1,0 +1,48 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	node [ fillcolor="#ffffc0" ]
+	fill_vrows
+	get_vrow
+	paged_file_apply_filters
+	paged_row_get_plain
+	paged_row_normalise2
+	source_get_text
+	win_spager_recalc
+
+	node [ fillcolor="#ffffff" ]
+	fill_vrows -> get_vrow
+	filter_ansi_apply -> paged_row_get_plain [ color="#ff0000" ]
+	get_vrow -> paged_row_get_plain
+	get_vrow -> paged_row_normalise2
+	paged_rows_wrap -> paged_row_wrap
+	paged_row_cache -> paged_row_get_plain
+	paged_row_get_plain -> paged_file_apply_filters
+	paged_file_apply_filters -> filter_ansi_apply
+	paged_row_get_plain -> source_get_text
+	paged_row_wrap -> paged_row_cache
+	spager_window_new -> win_spager_recalc
+	win_spager_recalc -> fill_vrows
+	win_spager_recalc -> paged_rows_wrap
+
+}
