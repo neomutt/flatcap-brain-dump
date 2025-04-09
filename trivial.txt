@@ -476,3 +476,8 @@ browser tabs?
 
 terminal window focus in/out https://unix.stackexchange.com/a/480138
 
+:hook info command to list all hooks
+
+dyk: file picker
+	https://github.com/neomutt/neomutt/discussions/4603#discussioncomment-12778215
+

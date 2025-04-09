@@ -5,12 +5,17 @@ Owner: Row, VRow
 
 Colour: File, Row, Markup, Search
 
-	| Always	| On-Demand	| View
---------+---------------+---------------+---------------
-Row	| valid		| offset	|
-	| 		| bytes		|
---------+---------------+---------------+---------------
-VRow	| Search	| Markup	| NormalMarkup
-	| 		| cols (-1)	| text
-	| 		| cid/ac	| Segment
+
+                Row             ViewRow
+
+Always          valid
+
+On-Demand       offset
+                num_bytes
+
+Filter          Markup[]        NormalMarkup[]
+                cid/ac          text
+                cols            Segment[]
+
+Search          Search[]
 
