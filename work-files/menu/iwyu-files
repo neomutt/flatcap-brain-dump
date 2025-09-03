@@ -520,6 +520,8 @@ mutt/buffer.c
 mutt/buffer.h
 mutt/charset.c
 mutt/charset.h
+mutt/ctype.c
+mutt/ctype2.h
 mutt/date.c
 mutt/date.h
 mutt/envlist.c

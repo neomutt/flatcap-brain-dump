@@ -481,3 +481,13 @@ terminal window focus in/out https://unix.stackexchange.com/a/480138
 dyk: file picker
 	https://github.com/neomutt/neomutt/discussions/4603#discussioncomment-12778215
 
+upstream: 0e32b9774
+	map to change-folder (DlgBrowser)
+	index/pager
+	{ "browse-mailboxes",	OP_MAIN_BROWSE_MAILBOXES,	"y" },
+	{ "browse-mailboxes-readonly", OP_MAIN_BROWSE_MAILBOXES_READONLY, NULL },
+
+irc: jxl: is there a way to list the flags currently set for the message under the cursor? something in the same vein as the what-key function?
+
+irc: rkta: I really would like mutt to warn me when I reply to an email and already have a draft which is a reply to the same message id.
+
