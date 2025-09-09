@@ -32,6 +32,8 @@ Search: Match (n of m)
 	even if wrapping around
 		how do you calculate which number that is?
 	if not wrapping, only see [here -> m]
+	if (num matches > $search_limit)
+		implies, search overflowed and was stopped
 
 set search_limit = 1000, 10000?
 	stop degenerate searches
@@ -73,7 +75,7 @@ search is stored linewise, not based on segments
 
 movement affects result of <next>
 	always relative to top_line
-multiple matches on one lnie are *one* <next>/<prev>
+multiple matches on one line are *one* <next>/<prev>
 
 top_line: [line num, seg num], search forw/back for different [line/seg]
 	3 line wrap = 3 * seg, cursor on 3, match on 2, search backwards

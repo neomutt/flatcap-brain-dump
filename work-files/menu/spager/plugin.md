@@ -16,6 +16,20 @@ or use "all" for all possible plugins
     which order would they be applied?
     how much does order matter?
     does `set pbp = 'all'` auto-expand to `pbp = 'ansi,diff,...'` ?
+        nice, but who does it, where?, how?
+
+config is a list of plugins, e.g. "ansi,markdown,url"
+    it supports += and -= to add/remove entries
+    how about != (toggle entry)?
+    :toggle pager_body_plugins markdown => "ansi,!markdown,url"
+    list would need extra attributes?
+    or caller would need to understand leading '!'
+    list has flag for toggle-able items - rest is up to caller
+    useful, because it preserves the order of the list items!
+    :toggle [config] all ?
+        how to do "all on" or "all off"? NO
+        separate config to control plugin usage
+        or save/restore config with my_vars
 
 ## Plugin Usage by Dialog
 
@@ -77,7 +91,6 @@ or use "all" for all possible plugins
 - Log Messages
   - log colours
 
-
 ## Plugin Details
 
 - ansi
@@ -93,6 +106,14 @@ or use "all" for all possible plugins
   - colouring
   - tidying
   - colour `diff_add` `diff_change` `diff_delete` `diff_text`
+
+- line numbers
+  - good for highlighting folded/concealed text
+  - needs to know original line numbers
+  - needs to insert text on every line?
+    every line, or 'toggle conceal' on other layers would need to notify this plugin
+  - needs to happen **after** the search plugin
+    (want text visible, but not searchable)
 
 - log colours
   - colouring
