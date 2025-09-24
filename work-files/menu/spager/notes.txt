@@ -134,3 +134,7 @@ first examples: diff, markdown
 effects should be toggle-able
 	keep modifications separately in PagedFile/Line
 
+
+use ANSI to support extra features:
+	(coloured) (double) undercurl
+

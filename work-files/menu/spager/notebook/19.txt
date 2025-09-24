@@ -45,7 +45,7 @@ Moving *down* may need to get_row(n)
 
 Movement => recalculation of current position
 	may involve reading from Source
-	Current position is separate from VRow[] positiion
+	Current position is separate from VRow[] position
 	Moving -> recalc, but if <page-down><page-up> position hasn't changed
 	recalc rebuilds VRow[] if nec => repaint
 		if position is unchanged (down,up) no action, no repaint

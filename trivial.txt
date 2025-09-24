@@ -491,3 +491,6 @@ irc: jxl: is there a way to list the flags currently set for the message under t
 
 irc: rkta: I really would like mutt to warn me when I reply to an email and already have a draft which is a reply to the same message id.
 
+dyk: use :toggle on int value and bool to toggle widescreen mode
+	macro index,pager <f5> "<enter-command>toggle sidebar_visible pager_index_lines<enter>"
+

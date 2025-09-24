@@ -18,7 +18,7 @@ View can cache *visible* Rows, minimise sizeof(Row)
 Data os File, cache, Rows, Markup, Search?
 
 
-Plugings need to be run in parallel -- don't read a bit file multiple times
+Pluging need to be run in parallel -- don't read a bit file multiple times
 i.e. ∀ Row read text, ∀ plugin apply mods
 Each plugin could need state info
 Parallel even if multiple Layers are needed!

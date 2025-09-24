@@ -5,7 +5,7 @@ PFile has Rows(raw) into Source(cache)
 
 View wants normalised Markup
 	might as well merge Search, easier for gui to process
-get_row(n) -> Markup(nromal) + Text(plain)
+get_row(n) -> Markup(normal) + Text(plain)
 wrap() -> Segment[]
 scan for urls, might be multiple Markup per url
 	might be split by Segment too
@@ -34,7 +34,7 @@ currently uses a min of 6 lines
 	e.g. comment, signature
 is this settable?  or fixed to a colour?
 where does it show up?
-	commants in info pages
+	commands in info pages
 	log message
 	email headers
 	signature?

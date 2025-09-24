@@ -1,7 +1,7 @@
 Cache
 
 Backing file, memory block, max size, close_fp
-add(text), get(offset, size), release(block), new, feww
+add(text), get(offset, size), release(block), new, few
 
 C*	cache_new(file, max_size)			file is optional
 	cache_free(ptr)

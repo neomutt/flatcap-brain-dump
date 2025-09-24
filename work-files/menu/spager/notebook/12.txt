@@ -39,7 +39,7 @@ ANSI needs Row to Row state
 Filters need to observer config/colour/etc
 How do they invalidate their Layer/PFile?
 Or does caller manage all notifications? NO
-caller can't undersatnd a plugin's requirements
+caller can't understand a plugin's requirements
 Plugin == Filter
 
 

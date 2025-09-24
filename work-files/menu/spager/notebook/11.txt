@@ -23,7 +23,7 @@ plugins/filters should ID their work?
 	id42 => these are headers or signature, or [-- attach --] markers, etc
 plugin order defines priority
 => if diff owns lines, markdown won't run
-plugins needn't ID their lines if further manipulatiion is allows
+plugins needn't ID their lines if further manipulation is allows
 how would C syntax look with diff syntax superimposed? (or any base lang first)
 
 

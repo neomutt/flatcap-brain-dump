@@ -28,7 +28,7 @@ Spager
 Add temp AttrColorList to PagedFile for rendering
 
 theme `color` modifiers
-color+	multi-comain
+color+	multi-domain
 color!	overwrite all domains
 
 Separate PF(data) from colours (view)
