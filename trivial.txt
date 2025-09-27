@@ -165,7 +165,7 @@ merge (almost identical)
 use to disable emojis?
 	set ascii_chars = no
 from irc
-	dmrz	is there a way to just turn of display of emoji in neomutt?
+	dmrz	is there a way to just turn of display off emoji in neomutt?
 	dmrz	emoji are displaying wrong for me, and i suspect fixing this would be somewhat complicated, so i'll like to just turn them off
 	dmrz	("displaying wrong" = covering multiple terminal lines)
 	turned out to be a font problem
@@ -210,7 +210,7 @@ not true, mutt/file.c
 	#endif
 
 colour notifications
-	might want more destinction for RegexColors
+	might want more distinction for RegexColors
 	*which* RegexColor was added / removed
 	e.g. { MT_COLOR_BODY, REGEX_ADDED, "http://..." }
 		or index into RegexColorList / Array
@@ -333,7 +333,7 @@ colour - what happens if you set both (simple/palette) and truecolor?
 	avoids the need for multiple theme files
 	AttrColor needs link to other AttrColors
 		need refcounting
-		or be able to surived the *linked* object disappearing
+		or be able to survive the *linked* object disappearing
 	Use linked colours to support truecolor -> simple fallbacks
 
 SimpleBar / ExpandoBar
@@ -469,8 +469,6 @@ i.e. `>` and `> >` but not `|` and `| |`
 
 upstream check/merge
 
-update [release]
-
 browser tabs?
 	implement tabbed-help-page first
 
@@ -493,4 +491,8 @@ irc: rkta: I really would like mutt to warn me when I reply to an email and alre
 
 dyk: use :toggle on int value and bool to toggle widescreen mode
 	macro index,pager <f5> "<enter-command>toggle sidebar_visible pager_index_lines<enter>"
+
+dynamically change format strings
+	need generic format string editor
+	cf htop config
 

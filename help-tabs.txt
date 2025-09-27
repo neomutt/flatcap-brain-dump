@@ -41,6 +41,8 @@ help page
 add sponsorship info to `neomutt -v`
 	what about the <help> page too?
 
+and credits
+
 IRC 2025-01-07
 	   gahr | I wonder if we should have different helps
 	   gahr | I only recently discovered that Message flags are there, at the bottom
