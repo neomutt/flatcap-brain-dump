@@ -68,6 +68,9 @@ Context-specific help:
 
 click on abbreviated status bar for a temporary enlargement
 
+config $devel_mouse
+	DT_BOOL | D_ON_STARTUP
+
 Add configurable Button Panels.  Where?
 	Bottom of Sidebar (or top)
 	Expando (right of) status bar
@@ -105,6 +108,8 @@ mouse wheel flick events will accelerate before dropping off
 
 change notification to Window->event()?
 	what other common events should supported?
+
+create a `what-mouse` command to check capabilities
 
 --------------------------------------------------------------------------------
 
@@ -164,6 +169,7 @@ Common Windows
 		double-click	Perform Action
 	Message Window
 		Message Window
+			click		Enter command
 			click		Open Message Log
 			double-click	Open Message Log
 		Text Entry
@@ -182,25 +188,20 @@ Compose
 		double-click	Edit field
 	Attachment Bar
 		NO ACTION
+		double-click	Attach File
 	Attachment View
 		click		View File
 		double-click	View File
 		scroll-up	Move view up
 		scroll-down	Move view down
-	Compose Bar
+	Preview Bar
 		NO ACTION
+		double-click	Edit File
 	Email Preview
 		double-click	Edit File
 		scroll-up	Move view up
 		scroll-down	Move view down
-
---------------------------------------------------------------------------------
-
-Pager
-	Pager
-		scroll-up	Move view up
-		scroll-down	Move view down
-	Pager Bar
+	Compose Bar
 		NO ACTION
 
 --------------------------------------------------------------------------------
@@ -217,18 +218,19 @@ Index
 
 --------------------------------------------------------------------------------
 
+Pager
+	Pager
+		scroll-up	Move view up
+		scroll-down	Move view down
+	Pager Bar
+		NO ACTION
+
+--------------------------------------------------------------------------------
+
 Complex Pager
-	index,compose,attach - OP_DISPLAY_HEADERS <display-toggle-weed>
-		op_display_message()
-			mutt_display_message()
-				dlg_pager()
-
-	index OP_DISPLAY_MESSAGE <display-message>
-		op_display_message()
-			mutt_display_message()
-				dlg_pager()
-
-	index OP_GENERIC_SELECT_ENTRY <select-entry>
+	index,compose,attach - OP_DISPLAY_HEADERS      <display-toggle-weed>
+	index                - OP_DISPLAY_MESSAGE      <display-message>
+	index                - OP_GENERIC_SELECT_ENTRY <select-entry>
 		op_display_message()
 			mutt_display_message()
 				dlg_pager()
@@ -236,11 +238,6 @@ Complex Pager
 --------------------------------------------------------------------------------
 
 Other ideas
-
-Sidebar
-	click		select & open
-	scroll up	scroll list up   1 line (no highlight)
-	scroll down	scroll list down 1 line (no highlight)
 
 Sidebar divider
 	click-drag	move divider
@@ -250,26 +247,20 @@ Sidebar scrollbar
 	click		page up/down
 	2-click		move to here
 
-Index
-	click		select & open
-	scroll up	scroll list up   1 line (no highlight)
-	scroll down	scroll list down 1 line (no highlight)
-
 Index divider
 	click-drag	move divider
 
 Pager
-	scroll up	scroll page up   1 line
-	scroll down	scroll page down 1 line
 	double-click	close pager
 
 Help
 	click		show menu
 
-Status bar
-	click		???
-
 Message window
 	click		(on error message)
 			show more help, more detail
+
+Tab Bar
+	click		Select Page
+	double-click	Select Page
 
