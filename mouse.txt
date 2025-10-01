@@ -6,6 +6,237 @@ Mouse
 	Add "buttons"
 		close button, top right [X]
 
+mouse support, change cursor to pointer, rather than I-beam
+
+click on divider - reduce sidebar to 1 char wide
+	click again to restore
+	two-click mode
+		1) click on minimised sidebar to display it
+		2) click on mailbox to open it
+		   this automatically minimises the sidebar
+	keyboard functions to perform minimisation too
+
+dlgalias: mouse
+	single-click = tag
+	double-click = select (all tagged)
+	+ sidebar support
+	functions to tag/untag
+	function to save
+	transform icons like notmuch (and colour)
+	support for tags/icons in index_format
+	column for tags
+	search pattern ∀ fields
+	functions for sidebar navigation
+
+how will non-curses UI detect mouse clicks etc?
+
+mouse scroll should move viewport (natural)
+	rather than focus
+	add $option?
+	should allow highlight and indicator to move offscreen
+	$devel_mouse = yes?
+
+Vim mappings:
+	:map <S-LeftMouse>     <RightMouse>
+	:map <S-LeftDrag>      <RightDrag>
+	:map <S-LeftRelease>   <RightRelease>
+	:map <2-S-LeftMouse>   <2-RightMouse>
+	:map <2-S-LeftDrag>    <2-RightDrag>
+	:map <2-S-LeftRelease> <2-RightRelease>
+	:map <3-S-LeftMouse>   <3-RightMouse>
+	:map <3-S-LeftDrag>    <3-RightDrag>
+	:map <3-S-LeftRelease> <3-RightRelease>
+	:map <4-S-LeftMouse>   <4-RightMouse>
+	:map <4-S-LeftDrag>    <4-RightDrag>
+	:map <4-S-LeftRelease> <4-RightRelease>
+
+	Mouse commands requiring the CTRL modifier can be simulated by typing
+	the "g" key before using the mouse:
+	    "g<LeftMouse>"  is "<C-LeftMouse>	(jump to tag under mouse click)
+	    "g<RightMouse>" is "<C-RightMouse>	("CTRL-T")
+
+unknown
+different arches, versions of ncurses, etc
+
+ideas:
+	header in index so I can change the sort fields
+	some kinda "quick limit" button such that if I click a particular author/sender, I see their emails
+
+Context-specific help:
+	<help-select> => Message: "Click on a Window for help..."
+	<click> -> Window.context_help();
+
+click on abbreviated status bar for a temporary enlargement
+
+Add configurable Button Panels.  Where?
+	Bottom of Sidebar (or top)
+	Expando (right of) status bar
+	Pager: right of Envelope
+		hmm... will scroll offscreen
+	Below Pager / Bottom of Index / Top of Screen
+		Top => Menu Bar
+
+Buttons:
+	Next unread
+	Delete
+	Archive
+	Label / Toggle
+Abbreviate / iconify (config)
+Colour buttons
+
+guug:
+	So yeah but in the "mouse support thing", my one wish would be some frequently
+	accessible things also accessible by mouse thus opening neomutt to non-power users.
+	e.g. the limit thing could be a tiny box [fi(l)ter: ] where user could
+	click to see this expand.
+
+In the index, the scroll wheel moves the cursor.
+At what level is the translation from mouse to cursor happening?
+If I don't process the mouse event, will the menu code process it later?
+(Or does `mousemask` preclude any freebies -- if we use it, we need to implement all behaviour)
+
+mousemask seems to stop all other mouse processing
+
+trap mouse 4/5 (scroll-wheel) and turn into standard Menu cursor up/down
+does this need to be configurable?
+
+mouse wheel flick events will accelerate before dropping off
+	should move *view*, but not the cursor/highlight
+
+change notification to Window->event()?
+	what other common events should supported?
+
+--------------------------------------------------------------------------------
+
+Simple Dialogs - simple_dialog_new()
+	Alias
+	Autocrypt Account
+	Browser
+	GPGME Key Selection
+	History
+	Pattern Selection
+	PGP Key Selection
+	Postponed Emails
+	Query
+	SMIME Key Selection
+	Verify Certificate
+	View Attachments
+
+Simple Dialog
+	Menu
+		click		Select
+		double-click	Select, Accept
+		shift-click	Select, Tag
+		scroll-up	Move view up
+		scroll-down	Move view down
+	Simple Bar
+		NO ACTION
+
+--------------------------------------------------------------------------------
+
+Simple Pager - mutt_do_pager() - dlg_pager()
+	color_dump()           - "color"
+	dump_bind_macro()      - "bind" or "macro"
+	mutt_help()            - "Help for %s"
+	mutt_invoke_sendmail() - "Output of the delivery process"
+	mutt_view_attachment() - "---Attachment: %s"
+	op_show_log_messages() - "messages"
+	op_verify_key()        - "Key ID: 0x%s"
+	parse_setenv()         - "setenv"
+	parse_version()        - "version"
+	set_dump()             - "set"
+
+Simple Pager
+	Pager
+		scroll-up	Move view up
+		scroll-down	Move view down
+	Pager Bar
+		NO ACTION
+
+--------------------------------------------------------------------------------
+
+Common Windows
+	Sidebar
+		click		Select, Open
+		double-click	Select, Open
+	Help Bar
+		click		Perform Action
+		double-click	Perform Action
+	Message Window
+		Message Window
+			click		Open Message Log
+			double-click	Open Message Log
+		Text Entry
+			click		Move cursor
+			double-click	Enter command
+		Progress Bar
+			NO ACTION
+	Simple Bar
+		NO ACTION
+
+--------------------------------------------------------------------------------
+
+Compose
+	Envelope View
+		click		Edit field
+		double-click	Edit field
+	Attachment Bar
+		NO ACTION
+	Attachment View
+		click		View File
+		double-click	View File
+		scroll-up	Move view up
+		scroll-down	Move view down
+	Compose Bar
+		NO ACTION
+	Email Preview
+		double-click	Edit File
+		scroll-up	Move view up
+		scroll-down	Move view down
+
+--------------------------------------------------------------------------------
+
+Pager
+	Pager
+		scroll-up	Move view up
+		scroll-down	Move view down
+	Pager Bar
+		NO ACTION
+
+--------------------------------------------------------------------------------
+
+Index
+	Index (menu)
+		click		Select Email
+		click		(Un)Collapse (Sub)Thread
+		double-click	View Email
+		scroll-up	Move view up
+		scroll-down	Move view down
+	Index Bar (status)
+		NO ACTION
+
+--------------------------------------------------------------------------------
+
+Complex Pager
+	index,compose,attach - OP_DISPLAY_HEADERS <display-toggle-weed>
+		op_display_message()
+			mutt_display_message()
+				dlg_pager()
+
+	index OP_DISPLAY_MESSAGE <display-message>
+		op_display_message()
+			mutt_display_message()
+				dlg_pager()
+
+	index OP_GENERIC_SELECT_ENTRY <select-entry>
+		op_display_message()
+			mutt_display_message()
+				dlg_pager()
+
+--------------------------------------------------------------------------------
+
+Other ideas
+
 Sidebar
 	click		select & open
 	scroll up	scroll list up   1 line (no highlight)
@@ -41,85 +272,4 @@ Status bar
 Message window
 	click		(on error message)
 			show more help, more detail
-
-mouse support, change cursor to pointer, rather than I-beam
-
-click on divider - reduce sidebar to 1 char wide
-	click again to restore
-	two-click mode
-		1) click on minimised sidebar to display it
-		2) click on mailbox to open it
-		   this automatically minimises the sidebar
-	keyboard functions to perform minimisation too
-
-dlgalias: mouse
-	single-click = tag
-	double-click = select (all tagged)
-	+ sidebar support
-	functions to tag/untag
-	function to save
-	transform icons like notmuch (and colour)
-	support for tags/icons in index_format
-	column for tags
-	search pattern ∀ fields
-	functions for sidebar navigation
-
-how will non-curses UI detect mouse clicks etc?
-
-mouse scroll should move viewport (natural)
-	rather than focus
-	add $option?
-	should allow highlight and indicator to move offscreen
-	$devel_mouse = yes?
-
-Vim mappings:
-	   :map <S-LeftMouse>     <RightMouse>
-	   :map <S-LeftDrag>      <RightDrag>
-	   :map <S-LeftRelease>   <RightRelease>
-	   :map <2-S-LeftMouse>   <2-RightMouse>
-	   :map <2-S-LeftDrag>    <2-RightDrag>
-	   :map <2-S-LeftRelease> <2-RightRelease>
-	   :map <3-S-LeftMouse>   <3-RightMouse>
-	   :map <3-S-LeftDrag>    <3-RightDrag>
-	   :map <3-S-LeftRelease> <3-RightRelease>
-	   :map <4-S-LeftMouse>   <4-RightMouse>
-	   :map <4-S-LeftDrag>    <4-RightDrag>
-	   :map <4-S-LeftRelease> <4-RightRelease>
-
-	Mouse commands requiring the CTRL modifier can be simulated by typing
-	the "g" key before using the mouse:
-	    "g<LeftMouse>"  is "<C-LeftMouse>	(jump to tag under mouse click)
-	    "g<RightMouse>" is "<C-RightMouse>	("CTRL-T")
-
-unknown
-different arches, versions of ncurses, etc
-
-ideas:
-	header in pager so I can change the sort fields
-	some kinda "quick limit" button such that if I click a particular author/sender, I see their emails
-
-Context-specific help:
-	<help-select> => Message: "Click on a Window for help..."
-	<click> -> Window.context_help();
-
-click on abbreviated status bar for a temporary enlargement
-
-Add configurable Button Panels.  Where?
-	Bottom of Sidebar (or top)
-	Expando (right of) status bar
-	Pager: right of Envelope
-		hmm... will scroll offscreen
-	Below Pager / Bottom of Index / Top of Screen
-		Top => Menu Bar
-
-Buttons:
-	Next unread
-	Delete
-	Archive
-	Label / Toggle
-Abbreviate / iconify (config)
-Colour buttons
-
-guug: So yeah but in the "mouse support thing", my one wish would be some frequently accessible things also accessible by mouse thus opening neomutt to non-power users.
-guug: e.g. the limit thing could be a tiny box [fi(l)ter: ] where user could click to see this expand.
 

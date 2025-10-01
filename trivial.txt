@@ -496,3 +496,6 @@ dynamically change format strings
 	need generic format string editor
 	cf htop config
 
+cli/objects.h
+	const char *?
+	ARRAY_HEAD(StringArray, char *);
