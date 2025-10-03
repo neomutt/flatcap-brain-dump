@@ -251,7 +251,7 @@ create "limit" rules for concealing emails?
 close other repo discussions
 closed, locked, pinned issue:
 enhancement/idea link / template -> discussions
-	"🛟 I Need Help", "💡 I Have Ideas" "♥️  I Want to Help"
+	"🛟 I Need Help", "💡 I Have Ideas" "♥️ I Want to Help"
 
 certificates
 	add relatives to timestamps (X ago, for Y)
@@ -280,7 +280,7 @@ add a new syntax to the `~i` pattern...
 	`~i TEXT`   -- text is regex
 	`~i <TEXT>` -- text is literal
 
-Commits as of 2025-01-11
+Commits as of 2025-10-03
 	Year	Mutt	NeoMutt
 	2016	 316	    788
 	2017	 272	   1615
@@ -291,7 +291,7 @@ Commits as of 2025-01-11
 	2022	 130	    714
 	2023	  20	   1123
 	2024	  10	    600
-	2025	   0	     30
+	2025	  15	    214
 
 drop 'i' (index?) binding for <quit>/<exit> for pager
 	non-intuitive
@@ -365,8 +365,6 @@ expando for a divider character
 		eol-padding isn't needed, %*X or %>* will do
 	better that raw | char, because it can be coloured
 		color sidebar_divider -> divider
-
-old notebook: type up
 
 colour setting
 	if rgb but not truecolor => error, unless...
@@ -499,3 +497,17 @@ dynamically change format strings
 cli/objects.h
 	const char *?
 	ARRAY_HEAD(StringArray, char *);
+	...
+	cli/objects.h:29:1:ARRAY_HEAD(StringArray, char *);
+	conn/ssl.h:34:1:ARRAY_HEAD(CertArray, const char *);
+	copy.c:65:1:ARRAY_HEAD(HeaderArray, char *);
+	history/functions.h:31:1:ARRAY_HEAD(HistoryArray, const char *);
+	notmuch/tag.h:29:1:ARRAY_HEAD(TagArray, char *);
+	send/sendmail.c:67:1:ARRAY_HEAD(SendmailArgArray, const char *);
+
+history: which constants are used in the history file?
+	MENU_INDEX enum?
+
+browser option to scan subdirs for {cur,new,tmp}
+	so that they can be highlighted as mailboxes
+
