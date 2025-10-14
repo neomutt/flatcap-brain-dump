@@ -107,6 +107,8 @@ color/parse_ansi.c
 color/parse_ansi.h
 color/parse_color.c
 color/parse_color.h
+color/pattern.c
+color/pattern.h
 color/qstyle.c
 color/qstyle.h
 color/quoted.c

@@ -494,20 +494,36 @@ dynamically change format strings
 	need generic format string editor
 	cf htop config
 
-cli/objects.h
-	const char *?
-	ARRAY_HEAD(StringArray, char *);
-	...
-	cli/objects.h:29:1:ARRAY_HEAD(StringArray, char *);
-	conn/ssl.h:34:1:ARRAY_HEAD(CertArray, const char *);
-	copy.c:65:1:ARRAY_HEAD(HeaderArray, char *);
-	history/functions.h:31:1:ARRAY_HEAD(HistoryArray, const char *);
-	notmuch/tag.h:29:1:ARRAY_HEAD(TagArray, char *);
-	send/sendmail.c:67:1:ARRAY_HEAD(SendmailArgArray, const char *);
-
 history: which constants are used in the history file?
 	MENU_INDEX enum?
 
 browser option to scan subdirs for {cur,new,tmp}
 	so that they can be highlighted as mailboxes
+
+regex_color_free() doesn't use `list` param
+
+dyk
+	set status_format = "<%b>  Msgs:%-2m  New:%-2n  Old:%-2o  Unread:%-2u  Del:%-2d  Tag:%-2t"
+	color status default default
+	color status brightblack   default   '<0>'
+	color status brightwhite   default   '<[1-9][0-9]*>'
+	color status brightblack   default   '(Msgs|New|Old|Unread|Del|Tag):0'
+	color status brightmagenta default   'Msgs:[1-9][0-9]*'
+	color status brightgreen   default   'New:[1-9][0-9]*'
+	color status brightyellow  default   'Old:[1-9][0-9]*'
+	color status brightcyan    default   'Unread:[1-9][0-9]*'
+	color status default       brightred 'Del:[1-9][0-9]*'
+	color status default       cyan      'Tag:[1-9][0-9]*'
+
+dyk
+	set help = no
+	set status_format = ""
+	color status default default
+
+idea
+	macro index,pager d "<clear-flag>n<clear-flag>o<clear-flag>f<delete-message>"
+	NOPE each <clear-flag> moves focus
+	macro index,pager d "<enter-command>set resolve=no<enter><clear-flag>n<clear-flag>o<clear-flag>!<enter-command>set resolve=yes<enter><delete-message>"
+	how could you "checkpoint" config?
+	<create-checkpoint>alter config; do stuff<restore-checkpoint>
 
