@@ -1,5 +1,0 @@
-uncolor *
-uncolor object
-uncolor pattern-object { pattern | * }
-uncolor regex-object   { regex   | * }
-uncolor status         { regex   | * }
