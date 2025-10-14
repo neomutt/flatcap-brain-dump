@@ -36,8 +36,7 @@ AliasNumber     "alias_number"              MT_COLOR_ALIAS_NUMBER             CF
 AliasTags       "alias_tags"                MT_COLOR_ALIAS_TAGS               CF_REGEX
 
 alias_simple_search: "~f %s | ~t %s | ~c %s"
-    ADD CONFIG?
-
+	ADD CONFIG?
 
 color sidebar (deprecate sidebar_background)
 	to match index, body, attachment?

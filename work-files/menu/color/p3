@@ -1,0 +1,101 @@
+MT_COLOR_ATTACH_HEADERS
+pager/color.c:61:37:    static const int cid_list[] = { MT_COLOR_ATTACH_HEADERS, MT_COLOR_BODY, MT_COLOR_HEADER };
+pager/display.c:601:27:    lines[line_num].cid = MT_COLOR_ATTACH_HEADERS;
+pager/display.c:648:30:  if (lines[line_num].cid == MT_COLOR_ATTACH_HEADERS)
+pager/display.c:657:56:    struct RegexColorList *rcl = regex_colors_get_list(MT_COLOR_ATTACH_HEADERS);
+
+MT_COLOR_BODY
+pager/color.c:61:62:    static const int cid_list[] = { MT_COLOR_ATTACH_HEADERS, MT_COLOR_BODY, MT_COLOR_HEADER };
+pager/display.c:163:37:      def_color = *simple_color_get(MT_COLOR_BODY);
+pager/display.c:255:78:    const struct AttrColor *ac_merge = merged_color_overlay(simple_color_get(MT_COLOR_BODY),
+pager/display.c:400:34:    head = regex_colors_get_list(MT_COLOR_BODY);
+pager/display.c:533:29:      lines[line_num].cid = MT_COLOR_BODY;
+pager/display.c:597:27:    lines[line_num].cid = MT_COLOR_BODY;
+pager/display.c:637:27:    lines[line_num].cid = MT_COLOR_BODY;
+pager/display.c:1146:59:        cur_line->syntax[0].attr_color = simple_color_get(MT_COLOR_BODY);
+pager/display.c:1170:34:        (*lines)[line_num].cid = MT_COLOR_BODY;
+pager/display.c:1350:58:      struct RegexColorList *rcl = regex_colors_get_list(MT_COLOR_BODY);
+pager/display.c:1388:58:    const struct AttrColor *ac_normal = simple_color_get(MT_COLOR_BODY);
+pager/display.c:1402:60:      const struct AttrColor *ac_normal = simple_color_get(MT_COLOR_BODY);
+
+MT_COLOR_HEADER
+pager/color.c:61:77:    static const int cid_list[] = { MT_COLOR_ATTACH_HEADERS, MT_COLOR_BODY, MT_COLOR_HEADER };
+pager/display.c:166:29:  else if ((lines[m].cid == MT_COLOR_HEADER) && lines[m].syntax[0].attr_color)
+pager/display.c:396:34:    head = regex_colors_get_list(MT_COLOR_HEADER);
+pager/display.c:502:18:  return (cid == MT_COLOR_HEADER) || (cid == MT_COLOR_HDRDEFAULT);
+pager/display.c:560:58:        STAILQ_FOREACH(color_line, regex_colors_get_list(MT_COLOR_HEADER), entries)
+pager/display.c:567:35:            lines[line_num].cid = MT_COLOR_HEADER;
+pager/display.c:610:30:            (lines[i].cid == MT_COLOR_HEADER)))
+pager/display.c:1370:28:    if ((*lines)[m].cid == MT_COLOR_HEADER)
+
+MT_COLOR_BOLD
+pager/display.c:229:29:    if (simple_color_is_set(MT_COLOR_BOLD) && !search)
+pager/display.c:230:33:      color = *simple_color_get(MT_COLOR_BOLD);
+
+MT_COLOR_ERROR
+pager/display.c:1144:59:        cur_line->syntax[0].attr_color = simple_color_get(MT_COLOR_ERROR);
+
+MT_COLOR_HDRDEFAULT
+pager/display.c:394:30:  if (lines[line_num].cid == MT_COLOR_HDRDEFAULT)
+pager/display.c:502:46:  return (cid == MT_COLOR_HEADER) || (cid == MT_COLOR_HDRDEFAULT);
+pager/display.c:552:31:        lines[line_num].cid = MT_COLOR_HDRDEFAULT;
+pager/display.c:570:55:                                     simple_color_get(MT_COLOR_HDRDEFAULT));
+pager/display.c:642:32:      ((lines[line_num].cid == MT_COLOR_HDRDEFAULT) && c_header_color_partial))
+
+MT_COLOR_ITALIC
+pager/display.c:243:29:    if (simple_color_is_set(MT_COLOR_ITALIC) && !search)
+pager/display.c:244:33:      color = *simple_color_get(MT_COLOR_ITALIC);
+
+MT_COLOR_MARKERS
+pager/display.c:140:49:      last_color = *mutt_curses_set_color_by_id(MT_COLOR_MARKERS);
+
+MT_COLOR_MESSAGE
+pager/display.c:1138:23:      cur_line->cid = MT_COLOR_MESSAGE_LOG;
+pager/display.c:1140:59:        cur_line->syntax[0].attr_color = simple_color_get(MT_COLOR_MESSAGE);
+
+MT_COLOR_NORMAL
+pager/pbar.c:163:31:  mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+pager/pbar.c:182:43:  if ((cid != MT_COLOR_STATUS) && (cid != MT_COLOR_NORMAL) && (cid != MT_COLOR_MAX))
+pager/pager.c:230:33:    mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+pager/display.c:609:30:           ((lines[i].cid == MT_COLOR_NORMAL) || COLOR_QUOTED(lines[i].cid) ||
+pager/display.c:641:31:  if ((lines[line_num].cid == MT_COLOR_NORMAL) || COLOR_QUOTED(lines[line_num].cid) ||
+pager/display.c:1349:41:      //QWQ mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+pager/display.c:1354:60:      const struct AttrColor *ac_normal = simple_color_get(MT_COLOR_NORMAL);
+pager/display.c:1414:33:    mutt_curses_set_color_by_id(MT_COLOR_NORMAL);
+
+MT_COLOR_QUOTED0
+pager/display.c:633:27:    lines[line_num].cid = MT_COLOR_QUOTED0;
+
+MT_COLOR_SEARCH
+pager/display.c:221:33:      color = *simple_color_get(MT_COLOR_SEARCH);
+
+MT_COLOR_SIGNATURE
+pager/display.h:52:62:  short cid;                 ///< Default line colour, e.g. #MT_COLOR_SIGNATURE
+pager/display.c:64:29:    if (info[offset].cid != MT_COLOR_SIGNATURE)
+pager/display.c:607:27:    lines[line_num].cid = MT_COLOR_SIGNATURE;
+pager/display.c:618:24:      lines[i++].cid = MT_COLOR_SIGNATURE;
+pager/display.c:623:27:    lines[line_num].cid = MT_COLOR_SIGNATURE;
+
+MT_COLOR_STATUS
+pager/pbar.c:157:45:  mutt_curses_set_normal_backed_color_by_id(MT_COLOR_STATUS);
+pager/pbar.c:182:15:  if ((cid != MT_COLOR_STATUS) && (cid != MT_COLOR_NORMAL) && (cid != MT_COLOR_MAX))
+
+MT_COLOR_STRIPE_EVEN
+pager/display.c:159:61:                                                            MT_COLOR_STRIPE_EVEN);
+pager/display.c:1331:76:    const enum ColorId cid = ((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD : MT_COLOR_STRIPE_EVEN;
+pager/display.c:1344:78:      const enum ColorId cid = ((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD : MT_COLOR_STRIPE_EVEN;
+pager/display.c:1401:78:      const enum ColorId cid = ((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD : MT_COLOR_STRIPE_EVEN;
+
+MT_COLOR_STRIPE_ODD
+pager/display.c:158:61:      def_color = *simple_color_get(((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD :
+pager/display.c:1331:54:    const enum ColorId cid = ((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD : MT_COLOR_STRIPE_EVEN;
+pager/display.c:1344:56:      const enum ColorId cid = ((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD : MT_COLOR_STRIPE_EVEN;
+pager/display.c:1401:56:      const enum ColorId cid = ((line_num % 2) == 0) ? MT_COLOR_STRIPE_ODD : MT_COLOR_STRIPE_EVEN;
+
+MT_COLOR_TILDE
+pager/pager.c:221:47:    mutt_curses_set_normal_backed_color_by_id(MT_COLOR_TILDE);
+
+MT_COLOR_UNDERLINE
+pager/display.c:236:29:    if (simple_color_is_set(MT_COLOR_UNDERLINE) && !search)
+pager/display.c:237:33:      color = *simple_color_get(MT_COLOR_UNDERLINE);
+

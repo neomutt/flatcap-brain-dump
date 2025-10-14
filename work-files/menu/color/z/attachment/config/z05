@@ -1,0 +1,11 @@
+uncolor normal
+
+color body #008000 #00ff00
+
+uncolor attach_headers
+
+uncolor attach_headers begin
+uncolor attach_headers end
+uncolor attach_headers information
+
+# vim: syn=neomuttrc

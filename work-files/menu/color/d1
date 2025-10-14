@@ -1,0 +1,67 @@
+core (1):
+	simple   1 bold
+	simple   2 error
+	simple   3 indicator
+	simple   4 italic
+	simple   5 message
+	simple   6 normal
+	simple   7 options
+	simple   8 progress
+	simple   9 prompt
+	regex   10 status (back-ref)
+	simple  11 stripe_even
+	simple  12 stripe_odd
+	simple  13 tree
+	simple  14 underline
+	simple  15 warning
+compose (2):
+	simple   1 compose_header
+	simple   2 compose_security_both
+	simple   3 compose_security_encrypt
+	simple   4 compose_security_none
+	simple   5 compose_security_sign
+index (3):
+	pattern  1 index
+	pattern  2 index_author
+	pattern  3 index_collapsed
+	pattern  4 index_date
+	pattern  5 index_flags
+	pattern  6 index_label
+	pattern  7 index_number
+	pattern  8 index_size
+	pattern  9 index_subject
+	pattern 10 index_tag
+	pattern 11 index_tags
+pager (4):
+	simple   1 attachment
+	regex    2 attach_headers
+	regex    3 body
+	simple   4 hdrdefault
+	regex    5 header
+	simple   6 markers
+	simple   7 search
+	simple   8 signature
+	simple   9 tilde
+quoted (5):
+	simple   1 quoted0
+	simple   1 quoted (synonym)
+	simple   2 quoted1
+	simple   3 quoted2
+	simple   4 quoted3
+	simple   5 quoted4
+	simple   6 quoted5
+	simple   7 quoted6
+	simple   8 quoted7
+	simple   9 quoted8
+	simple  10 quoted9
+sidebar (6):
+	simple   1 sidebar_background
+	simple   2 sidebar_divider
+	simple   3 sidebar_flagged
+	simple   4 sidebar_highlight
+	simple   5 sidebar_indicator
+	simple   6 sidebar_new
+	simple   7 sidebar_ordinary
+	simple   8 sidebar_spool_file
+	simple   8 sidebar_spoolfile (synonym)
+	simple   9 sidebar_unread

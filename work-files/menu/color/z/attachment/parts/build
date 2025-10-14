@@ -1,0 +1,16 @@
+cat a0 b0 c0 d0 > 0001
+cat a0 b0 c0 d1 > 0002
+cat a0 b0 c1 d0 > 0003
+cat a0 b0 c1 d1 > 0004
+cat a0 b1 c0 d0 > 0005
+cat a0 b1 c0 d1 > 0006
+cat a0 b1 c1 d0 > 0007
+cat a0 b1 c1 d1 > 0008
+cat a1 b0 c0 d0 > 0009
+cat a1 b0 c0 d1 > 0010
+cat a1 b0 c1 d0 > 0011
+cat a1 b0 c1 d1 > 0012
+cat a1 b1 c0 d0 > 0013
+cat a1 b1 c0 d1 > 0014
+cat a1 b1 c1 d0 > 0015
+cat a1 b1 c1 d1 > 0016

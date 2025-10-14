@@ -1,0 +1,35 @@
+# color quoted0 blue  default
+# color quoted1 green default
+# color quoted2 red   default
+# color quoted3 blue  default
+# color quoted4 green default
+# color quoted5 red   default
+# color quoted6 blue  default
+
+# color quoted0 color196 default
+# color quoted1 color208 default
+# color quoted2 color226 default
+# color quoted3 color46  default
+# color quoted4 color75  default
+# color quoted5 color21  default
+# color quoted6 color207 default
+# color quoted7 color63  default
+# color quoted8 color15  default
+
+color quoted0 color196 default
+color quoted1 color202 default
+color quoted2 color226 default
+color quoted3 color46  default
+color quoted4 color75  default
+color quoted5 color21  default
+color quoted6 color207 default
+color quoted7 color63  default
+color quoted8 color168 default
+color quoted9 color178 default
+
+macro index <f5> "<enter-command>color<enter>"
+
+set color_directcolor = yes
+set allow_ansi = yes
+
+# vim: syn=neomuttrc

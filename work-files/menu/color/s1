@@ -1,0 +1,11 @@
+set status_format = "<%b>  Msgs:%-2m  New:%-2n  Old:%-2o  Unread:%-2u  Del:%-2d  Tag:%-2t"
+color status default default
+color status brightblack   default   '<0>'
+color status brightwhite   default   '<[1-9][0-9]*>'
+color status brightblack   default   '(Msgs|New|Old|Unread|Del|Tag):0'
+color status brightmagenta default   'Msgs:[1-9][0-9]*'
+color status brightgreen   default   'New:[1-9][0-9]*'
+color status brightyellow  default   'Old:[1-9][0-9]*'
+color status brightcyan    default   'Unread:[1-9][0-9]*'
+color status default       brightred 'Del:[1-9][0-9]*'
+color status default       cyan      'Tag:[1-9][0-9]*'

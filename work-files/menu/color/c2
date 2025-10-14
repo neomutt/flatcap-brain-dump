@@ -1,0 +1,33 @@
+AttributeNames    	color/parse_color.c	struct:Mapping[]	file:
+
+ColorDefs         	color/command.c    	const struct ColorDefinition[]
+
+ColorNames        	color/parse_color.c	const struct Mapping[]
+
+ColorsNotify      	color/notify.c     	struct:Notify *
+
+CursesColors      	color/curses.c     	struct:CursesColorList
+
+MergedColors      	color/merged.c     	struct:AttrColorList
+
+SimpleColors      	color/simple.c     	struct:AttrColor[]
+
+NumCursesColors   	color/curses.c     	int
+NumQuotedColors   	color/quoted.c     	int    	file:
+
+AttachList        	color/regex.c      	struct:RegexColorList
+BodyList          	color/regex.c      	struct:RegexColorList
+HeaderList        	color/regex.c      	struct:RegexColorList
+IndexAuthorList   	color/regex.c      	struct:RegexColorList
+IndexCollapsedList	color/regex.c      	struct:RegexColorList
+IndexDateList     	color/regex.c      	struct:RegexColorList
+IndexFlagsList    	color/regex.c      	struct:RegexColorList
+IndexLabelList    	color/regex.c      	struct:RegexColorList
+IndexList         	color/regex.c      	struct:RegexColorList
+IndexNumberList   	color/regex.c      	struct:RegexColorList
+IndexSizeList     	color/regex.c      	struct:RegexColorList
+IndexSubjectList  	color/regex.c      	struct:RegexColorList
+IndexTagList      	color/regex.c      	struct:RegexColorList
+IndexTagsList     	color/regex.c      	struct:RegexColorList
+StatusList        	color/regex.c      	struct:RegexColorList
+

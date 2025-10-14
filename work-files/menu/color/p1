@@ -1,0 +1,23 @@
+# Pager
+
+color normal normal #ffc0c0 #ff0000
+uncolor normal
+
+color hdrdefault underline #008000 #00ff00
+uncolor hdrdefault
+
+color header #000080 #8080ff
+uncolor header
+
+color header #ffff40 default one
+color header #ff40ff default two
+color header #40ffff default three
+
+uncolor header one
+uncolor header two
+uncolor header three
+
+set header_color_partial = no
+set header_color_partial = yes
+
+# vim: syn=neomuttrc

@@ -1,0 +1,12 @@
+uncolor *
+
+color bold              default default
+color indicator         default default
+color italic            default default
+color markers           default default
+color search            default default
+color sidebar_highlight default default
+color stripe_even       default default
+color underline         default default
+color status            default default
+

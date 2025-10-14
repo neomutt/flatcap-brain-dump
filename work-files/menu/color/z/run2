@@ -1,0 +1,2 @@
+
+for i in z/tilde/config.min/z??; do (echo -en "\ec"; echo $i; echo; cat $i; echo) > /dev/pts/3; n0 -f a1.mbox -e "push <enter>" -e "macro pager q '<exit><exit>'" -e "set help = no" -F $i; done

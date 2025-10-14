@@ -1,0 +1,43 @@
+# Simple Colours
+color attachment                              color135         default          # XXXXXX
+color bold               bold                 default          default          # XXXXXX
+color error              bold                 brightred        default          # XXXXXX
+color hdrdefault                              color79          default          # XXXXXX
+color indicator                               default          color17          # XXXXXX
+color italic             italic               default          default          # XXXXXX
+color markers                                 color123         default          # XXXXXX
+color message                                 color123         default          # XXXXXX
+color progress                                white            red              # XXXXXX
+color search                                  default          green            # XXXXXX
+color sidebar_background                      default          color236         # XXXXXX
+color sidebar_highlight                       white            color238         # XXXXXX
+color sidebar_new                             color197         default          # XXXXXX
+color sidebar_unread                          color190         default          # XXXXXX
+color stripe_even                             default          color234         # XXXXXX
+color tilde                                   color235         default          # XXXXXX
+color tree                                    magenta          default          # XXXXXX
+color underline          bold                 brightgreen      default          # XXXXXX
+
+# Quoted Colours
+color quoted0                      color111         default          # XXXXXX
+
+# Status Colours
+color status                      default          color236                                        # XXXXXX
+
+# Regex Colour body
+color body                                  color159         default          "(ftp|http|https)://[^ ]+"     # XXXXXX
+color body                                  color159         default          "[-a-z_0-9.]+@[-a-z_0-9.]+"    # XXXXXX
+color body                                  color228         default          "\\<_\\S+_\\>"                 # XXXXXX
+color body                                  color228         default          "\\*\\<\\S+\\>\\*"             # XXXXXX
+color body                                  color228         default          "/\\<\\S+\\>/"                 # XXXXXX
+
+# Regex Colour header
+color header                                color123         default          "^(From|Subject):"             # XXXXXX
+
+# Regex Colour index
+color index                                 color119         default          "~N"                           # XXXXXX
+color index                                 white            red              "~F"                           # XXXXXX
+color index                                 color119         default          "~O"                           # XXXXXX
+color index                                 default          cyan             "~T"                           # XXXXXX
+
+vim: syn=conf

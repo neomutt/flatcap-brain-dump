@@ -1,114 +1,59 @@
 Colours
--------
 
-Colours applied in order
-	NORMAL
-	DEFAULT Colours, e.g. 'index'
-	COLUMN  Colours, e.g. 'index_subject'
-	CELL    Colours, e.g. 'index_subject regex'
-	LINE    Colours, e.g. 'index regex'
-	INDICATOR
+color [attrs] object fg bg [ pattern [ num ]]
 
-want to calculate the colours lazily
-colour cached in Email.attr_color
-	_which_ colours _are_ these?
+simple, regex (+backref)
+AttrColor, RegexColor(List)
+domains: core, compose, quoted?, sidebar, pager, index
+future: alias, browser, sidebar, attach? (+icons) => patterns ∀
 
-enum ColorId
-	MT_COLOR_INDICATOR         Selected item in list
-	MT_COLOR_NORMAL            Plain text
+lookup by "name", e.g. config, "id" in code
+completion needs list of "names"
+	would need
+	it would have to complete attrs
 
--------------------------------------------------------------------------------------------------------
+ARRAY of { name, id (or domain, id), type, flags, { AttrColor, RegexColorList }}
+array fixed at startup: all registered colours
+(unless plugin registers more)
+one array, sorted by domain/id => bsearch
+allow "name" lookup to be slow -- config only / command entry
 
-Index Colours
+array of { (domain, id), defn *, data * }
+	defn doesn't contain the domain (does contain the id)
+	abstract type for ColorId { domain, id }
+	NO, callers will need the domain and the id will be local to them
 
-Colour Name	RegexColorList		ColorId				Description
--------------------------------------------------------------------------------------------------------
-index		IndexList		MT_COLOR_INDEX			Default colour
-index_author	IndexAuthorList		MT_COLOR_INDEX_AUTHOR		Author field
-index_collapsed	IndexCollapsedList	MT_COLOR_INDEX_COLLAPSED	Number of messages in collapsed thread
-index_date	IndexDateList		MT_COLOR_INDEX_DATE		Date field
-index_flags	IndexFlagsList		MT_COLOR_INDEX_FLAGS		Flags field
-index_label	IndexLabelList		MT_COLOR_INDEX_LABEL		Label field
-index_number	IndexNumberList		MT_COLOR_INDEX_NUMBER		Index number
-index_size	IndexSizeList		MT_COLOR_INDEX_SIZE		Size field
-index_subject	IndexSubjectList	MT_COLOR_INDEX_SUBJECT		Subject field
-index_tag	IndexTagList		MT_COLOR_INDEX_TAG		Tag field (%G)
-index_tags	IndexTagsList		MT_COLOR_INDEX_TAGS		Tags field (%g, %J)
+ordering (least to most specific)
+	1 normal			- default for *neomutt*
+	2 index        (no pattern)	- default for index *window*
+	3 index_column (no pattern)	- highlight entire *column*
+	4 index_column   + pattern	- highlight some column *cells*
+	5 index          + pattern	- highlight entire *row*
 
-DEFAULT Colours
-	`color index     	fg bg`		Default colour
+what distinguishes 4,5? columns vs row
+which order should they be in?
+	which is more specific?
 
-COLUMN Colours
-	`color index_author     fg bg`		Author field
-	`color index_collapsed  fg bg`		Number of messages in collapsed thread
-	`color index_date       fg bg`		Date field
-	`color index_flags      fg bg`		Flags field
-	`color index_label      fg bg`		Label field
-	`color index_number     fg bg`		Index number
-	`color index_size       fg bg`		Size field
-	`color index_subject    fg bg`		Subject field
-	`color index_tag        fg bg`		Tag field (%G)
-	`color index_tags       fg bg`		Tags field (%g, %J)
+suggest using background colours for 1,2,3,4 and foreground colours for 5?
 
-CELL Colours
-	`color index_author     fg bg regex`	Author field
-	`color index_collapsed  fg bg regex`	Number of messages in collapsed thread
-	`color index_date       fg bg regex`	Date field
-	`color index_flags      fg bg regex`	Flags field
-	`color index_label      fg bg regex`	Label field
-	`color index_number     fg bg regex`	Index number
-	`color index_size       fg bg regex`	Size field
-	`color index_subject    fg bg regex`	Subject field
-	`color index_tag        fg bg regex`	Tag field (%G)
-	`color index_tags       fg bg regex`	Tags field (%g, %J)
+int did = register_domain("index", did/-1) -1 => generate, define const
+register_colors(did, colors[])
 
-LINE Colours
-	`color index            fg bg regex`	Line colour
+color simple           fg bg
+color simple attr      fg bg
+color simple attr attr fg bg
 
--------------------------------------------------------------------------------------------------------
+color regex            fg bg
+color regex attr       fg bg
+color regex attr attr  fg bg
 
-Alias Colours
+color regex            fg bg regex
+color regex attr       fg bg regex
+color regex attr attr  fg bg regex
 
-Colour Name	RegexColorList		ColorId				Description
--------------------------------------------------------------------------------------------------------
-alias		AliasAddressList	MT_COLOR_ALIAS			Default colour
-alias_address	AliasAliasList		MT_COLOR_ALIAS_ADDRESS		Full address %A
-alias_alias	AliasCommentList	MT_COLOR_ALIAS_ALIAS		Alias name %a
-alias_comment	AliasEmailList		MT_COLOR_ALIAS_COMMENT		Comment %C
-alias_email	AliasFlagsList		MT_COLOR_ALIAS_EMAIL		Email address %E
-alias_flags	AliasList		MT_COLOR_ALIAS_FLAGS		Flags %f %t
-alias_name	AliasNameList		MT_COLOR_ALIAS_NAME		Real name %N
-alias_number	AliasNumberList		MT_COLOR_ALIAS_NUMBER		Index number %i
-alias_tags	AliasTagsList		MT_COLOR_ALIAS_TAGS		Tags %Y
+color regex            fg bg regex 1
+color regex attr       fg bg regex 1
+color regex attr attr  fg bg regex 1
 
-DEFAULT Colours
-	`color alias         fg bg`		Default colour
-
-COLUMN Colours
-	`color alias_address fg bg`		Full address  %A  
-	`color alias_alias   fg bg`		Alias name    %a    
-	`color alias_comment fg bg`		Comment       %C       
-	`color alias_email   fg bg`		Email address %E 
-	`color alias_flags   fg bg`		Flags         %f %t      
-	`color alias_name    fg bg`		Real name     %N     
-	`color alias_number  fg bg`		Index number  %i  
-	`color alias_tags    fg bg`		Tags          %Y          
-
-CELL Colours
-	`color alias_address fg bg regex`	Full address  %A  
-	`color alias_alias   fg bg regex`	Alias name    %a    
-	`color alias_comment fg bg regex`	Comment       %C       
-	`color alias_email   fg bg regex`	Email address %E 
-	`color alias_flags   fg bg regex`	Flags         %f %t      
-	`color alias_name    fg bg regex`	Real name     %N     
-	`color alias_number  fg bg regex`	Index number  %i  
-	`color alias_tags    fg bg regex`	Tags          %Y          
-
-LINE Colours
-	`color alias         fg bg regex`	Line colour
-
--------------------------------------------------------------------------------------------------------
-
-rename / unify colour names, e.g.
-	headers vs hdrdefault
+afterwards compare dependencies of libcolor (#includes)
 

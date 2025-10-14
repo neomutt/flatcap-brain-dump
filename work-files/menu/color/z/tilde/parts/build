@@ -1,0 +1,8 @@
+cat a0 b0 c0 > z01
+cat a0 b0 c1 > z02
+cat a0 b1 c0 > z03
+cat a0 b1 c1 > z04
+cat a1 b0 c0 > z05
+cat a1 b0 c1 > z06
+cat a1 b1 c0 > z07
+cat a1 b1 c1 > z08

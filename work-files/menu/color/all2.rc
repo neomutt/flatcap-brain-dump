@@ -1,0 +1,116 @@
+# core colours
+color bold                      underline #b6e1ff #f09b4e
+color error                     italic    #3f3a1a #a9a185
+color indicator                 underline #a540dd #bfe276
+color italic                    italic    #4c703d #36d109
+color message                   underline #eeff9f #fa1bba
+color normal                    italic    #58fb7e #a15967
+color options                   underline #179c19 #67923d
+color progress                  italic    #ece933 #9036d9
+color prompt                    underline #70cb30 #733b08
+color stripe_even               italic    #7b1d46 #3f0dd5
+color stripe_odd                underline #29e021 #71bb93
+color tree                      italic    #2699ca #2b0bc3
+color underline                 underline #936536 #0a01f4
+color warning                   italic    #f9c608 #ecd4ef
+
+color status                    underline #307f8a #8f7d4d
+color status                    bold      #9ec107 #166ffa    "hello"
+color status                    italic    #e89c67 #c21727    "by(e)ee" 1
+
+# compose colours
+color compose_header            underline #15d278 #75420d
+color compose_security_both     italic    #9776b2 #e06a5e
+color compose_security_encrypt  underline #031d85 #cbd323
+color compose_security_none     italic    #afe210 #3cd961
+color compose_security_sign     underline #ae1d9c #922d10
+
+# index colours
+color index                     underline #6a779e #d61cd3
+color index                     bold      #b406ca #973e6d    "hello"
+color index                     italic    #1c9344 #375acd    "by(e)ee"
+
+color index_author              underline #b8a7c8 #404341
+color index_author              bold      #cb1c12 #a33e3a    "hello"
+color index_author              italic    #388179 #57af34    "by(e)ee"
+
+color index_collapsed           underline #49a7fb #9f4504
+color index_collapsed           bold      #04a635 #37fc41    "hello"
+color index_collapsed           italic    #c02814 #9551cc    "by(e)ee"
+
+color index_date                underline #88b85f #3cb908
+color index_date                bold      #951365 #76b342    "hello"
+color index_date                italic    #c07f65 #9214f9    "by(e)ee"
+
+color index_flags               underline #4a8cbd #5f0e70
+color index_flags               bold      #278dd1 #87afa7    "hello"
+color index_flags               italic    #68800d #a589d8    "by(e)ee"
+
+color index_label               underline #17c5f1 #8c5bf1
+color index_label               bold      #b1e0b5 #07e756    "hello"
+color index_label               italic    #a72145 #3f0819    "by(e)ee"
+
+color index_number              underline #813028 #b14ae0
+color index_number              bold      #b9da11 #aa5d04    "hello"
+color index_number              italic    #68be08 #479359    "by(e)ee"
+
+color index_size                underline #ff56c3 #3931e0
+color index_size                bold      #cbb8f9 #ac41ce    "hello"
+color index_size                italic    #9cf221 #db8c67    "by(e)ee"
+
+color index_subject             underline #4eddf4 #2c1412
+color index_subject             bold      #29fd11 #272256    "hello"
+color index_subject             italic    #acc874 #572207    "by(e)ee"
+
+color index_tag                 underline #69d20c #c9e2ee
+color index_tag                 bold      #59a9e3 #97249e    "hello"
+color index_tag                 italic    #8d6934 #3cbc1c    "by(e)ee"
+
+color index_tags                underline #154a58 #6c600c
+color index_tags                bold      #16fe14 #3b240a    "hello"
+color index_tags                italic    #9e53c8 #534bb0    "by(e)ee"
+
+# pager colours
+color attachment                underline #0eafc4 #e66dc0
+color hdrdefault                italic    #431df9 #457120
+color markers                   underline #c78af7 #f95bb2
+color search                    italic    #1e0ef8 #7e9261
+color signature                 underline #37be1d #dfa5db
+color tilde                     italic    #51c16c #ef6b24
+
+color attach_headers            underline #8b7e60 #16a3b6
+color attach_headers            bold      #6fe8a2 #681a95    "hello"
+color attach_headers            italic    #ce1a08 #341eff    "by(e)ee"
+
+color body                      underline #224d15 #4898b2
+color body                      bold      #56eec4 #f919c5    "hello"
+color body                      italic    #eb9ccb #b3a8b1    "by(e)ee"
+
+color header                    underline #1f79aa #b6cf89
+color header                    bold      #e30fa7 #8b9c12    "hello"
+color header                    italic    #6a4904 #275456    "by(e)ee"
+
+# quoted colours
+color quoted0                   italic    #2f5c00 #36613c
+color quoted1                   underline #1b5cad #4281e9
+color quoted2                   italic    #599585 #40b229
+color quoted3                   underline #3e0774 #2f8284
+color quoted4                   italic    #015858 #5f0be8
+color quoted5                   underline #faa4a3 #092450
+color quoted6                   italic    #c13aa2 #3fa1d8
+color quoted7                   underline #de8bfb #a294ef
+color quoted8                   italic    #036d1e #908dbf
+color quoted9                   underline #50f017 #1f0a84
+
+# sidebar colours
+color sidebar_background        italic    #e35923 #3a6f60
+color sidebar_divider           underline #adba21 #b07f9a
+color sidebar_flagged           italic    #564127 #a21804
+color sidebar_highlight         underline #c62970 #ec7134
+color sidebar_indicator         italic    #35762a #ba9c1c
+color sidebar_new               underline #33128a #44320d
+color sidebar_ordinary          italic    #177365 #e52fbd
+color sidebar_spool_file        underline #980f7c #89c969
+color sidebar_unread            italic    #5538fd #953dbf
+
+# vim: syn=neomuttrc

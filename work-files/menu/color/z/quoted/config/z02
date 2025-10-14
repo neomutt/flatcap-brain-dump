@@ -1,0 +1,13 @@
+uncolor normal
+
+uncolor body
+
+uncolor quoted0
+uncolor quoted1
+uncolor quoted2
+
+color body #ffff40 default one
+color body #ff40ff default two
+color body #40ffff default three
+
+# vim: syn=neomuttrc

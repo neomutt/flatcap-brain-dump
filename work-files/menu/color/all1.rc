@@ -1,0 +1,116 @@
+# core
+color bold                      underline   red   green
+color error                     italic      blue  yellow
+color indicator                 underline   red   green
+color italic                    italic      blue  yellow
+color message                   underline   red   green
+color normal                    italic      blue  yellow
+color options                   underline   red   green
+color progress                  italic      blue  yellow
+color prompt                    underline   red   green
+color stripe_even               italic      blue  yellow
+color stripe_odd                underline   red   green
+color tree                      italic      blue  yellow
+color underline                 underline   red   green
+color warning                   italic      blue  yellow
+
+color status                    underline   red   green
+color status                    underline   blue  yellow     "hello"
+color status                    underline   cyan  magenta    "by(e)ee" 1
+
+# compose
+color compose_header            underline   red   green
+color compose_security_both     italic      blue  yellow
+color compose_security_encrypt  underline   red   green
+color compose_security_none     italic      blue  yellow
+color compose_security_sign     underline   red   green
+
+# index
+color index                     underline   red   green
+color index                     underline   blue  yellow     "hello"
+color index                     underline   cyan  magenta    "by(e)ee"
+
+color index_author              underline   red   green
+color index_author              underline   blue  yellow     "hello"
+color index_author              underline   cyan  magenta    "by(e)ee"
+
+color index_collapsed           underline   red   green
+color index_collapsed           underline   blue  yellow     "hello"
+color index_collapsed           underline   cyan  magenta    "by(e)ee"
+
+color index_date                underline   red   green
+color index_date                underline   blue  yellow     "hello"
+color index_date                underline   cyan  magenta    "by(e)ee"
+
+color index_flags               underline   red   green
+color index_flags               underline   blue  yellow     "hello"
+color index_flags               underline   cyan  magenta    "by(e)ee"
+
+color index_label               underline   red   green
+color index_label               underline   blue  yellow     "hello"
+color index_label               underline   cyan  magenta    "by(e)ee"
+
+color index_number              underline   red   green
+color index_number              underline   blue  yellow     "hello"
+color index_number              underline   cyan  magenta    "by(e)ee"
+
+color index_size                underline   red   green
+color index_size                underline   blue  yellow     "hello"
+color index_size                underline   cyan  magenta    "by(e)ee"
+
+color index_subject             underline   red   green
+color index_subject             underline   blue  yellow     "hello"
+color index_subject             underline   cyan  magenta    "by(e)ee"
+
+color index_tag                 underline   red   green
+color index_tag                 underline   blue  yellow     "hello"
+color index_tag                 underline   cyan  magenta    "by(e)ee"
+
+color index_tags                underline   red   green
+color index_tags                underline   blue  yellow     "hello"
+color index_tags                underline   cyan  magenta    "by(e)ee"
+
+# pager
+color attachment                underline   red   green
+color hdrdefault                italic      blue  yellow
+color markers                   underline   red   green
+color search                    italic      blue  yellow
+color signature                 underline   red   green
+color tilde                     italic      blue  yellow
+
+color attach_headers            underline   red   green
+color attach_headers            underline   blue  yellow     "hello"
+color attach_headers            underline   cyan  magenta    "by(e)ee"
+
+color body                      underline   red   green
+color body                      underline   blue  yellow     "hello"
+color body                      underline   cyan  magenta    "by(e)ee"
+
+color header                    underline   red   green
+color header                    underline   blue  yellow     "hello"
+color header                    underline   cyan  magenta    "by(e)ee"
+
+# quoted
+color quoted0                   italic      blue  yellow
+color quoted1                   underline   red   green
+color quoted2                   italic      blue  yellow
+color quoted3                   underline   red   green
+color quoted4                   italic      blue  yellow
+color quoted5                   underline   red   green
+color quoted6                   italic      blue  yellow
+color quoted7                   underline   red   green
+color quoted8                   italic      blue  yellow
+color quoted9                   underline   red   green
+
+# sidebar
+color sidebar_background        italic      blue  yellow
+color sidebar_divider           underline   red   green
+color sidebar_flagged           italic      blue  yellow
+color sidebar_highlight         underline   red   green
+color sidebar_indicator         italic      blue  yellow
+color sidebar_new               underline   red   green
+color sidebar_ordinary          italic      blue  yellow
+color sidebar_spool_file        underline   red   green
+color sidebar_unread            italic      blue  yellow
+
+# vim: syn=neomuttrc

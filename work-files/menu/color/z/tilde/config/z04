@@ -1,0 +1,5 @@
+uncolor normal
+color tilde #008000 #00ff00
+set tilde = yes
+
+# vim: syn=neomuttrc

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for i in h/z??; do
+	(echo -en "\ec"; echo $i; echo; cat $i; echo) > /dev/pts/2
+	./neomutt -n -f a1.mbox -e "push <enter>" -e "macro pager q '<exit><exit>'" -e "set help = no" -F $i
+done
+

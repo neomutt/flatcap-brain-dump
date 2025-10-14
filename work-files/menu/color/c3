@@ -1,69 +1,67 @@
-add_pattern
-ansi_color_list_add
-ansi_color_parse
-ansi_color_parse_single
-ansi_color_reset
-ansi_color_seq_length
-ansi_is_end_char
-attr_color_clear
-attr_color_free
-attr_color_is_set
-attr_color_list_clear
-attr_color_list_find
-attr_color_new
-attr_color_overwrite
-colors_cleanup
-color_notify_cleanup
-color_notify_init
-color_xterm256_to_24bit
-curses_colors_find
-curses_colors_init
-curses_color_free
-curses_color_init
-curses_color_new
-find_highest_used
-get_colorid_name
-merged_colors_cleanup
-merged_colors_find
-merged_colors_init
-merged_color_overlay
-modify_color_by_prefix
-mutt_colors_cleanup
-mutt_colors_init
-mutt_color_has_pattern
-mutt_parse_color
-mutt_parse_mono
-mutt_parse_uncolor
-parse_attr_spec
-parse_color
-parse_color_colornnn
-parse_color_name
-parse_color_namedcolor
-parse_color_pair
-parse_color_prefix
-parse_color_rrggbb
-parse_object
-parse_uncolor
-qstyle_classify
-qstyle_free
-qstyle_free_tree
-qstyle_insert
-qstyle_new
-qstyle_recolor
-qstyle_recurse
-quoted_colors_cleanup
-quoted_colors_get
-quoted_colors_init
-quoted_colors_num_used
-quoted_colors_parse_color
-quoted_colors_parse_uncolor
-regex_colors_cleanup
-regex_colors_get_list
-regex_colors_init
-regex_colors_parse_color_list
-regex_colors_parse_status_list
-regex_colors_parse_uncolor
-regex_color_clear
-regex_color_free
-regex_color_list_clear
-regex_color_new
+core (1):
+	  1 bold
+	  2 error
+	  3 indicator
+	  4 italic
+	  5 message
+	  6 normal
+	  7 options
+	  8 progress
+	  9 prompt
+	 10 status (regex,back-ref)
+	 11 stripe_even
+	 12 stripe_odd
+	 13 tree
+	 14 underline
+	 15 warning
+compose (2):
+	  1 compose_header
+	  2 compose_security_both
+	  3 compose_security_encrypt
+	  4 compose_security_none
+	  5 compose_security_sign
+index (3):
+	  1 index (regex)
+	  2 index_author (regex)
+	  3 index_collapsed (regex)
+	  4 index_date (regex)
+	  5 index_flags (regex)
+	  6 index_label (regex)
+	  7 index_number (regex)
+	  8 index_size (regex)
+	  9 index_subject (regex)
+	 10 index_tag (regex)
+	 11 index_tags (regex)
+pager (4):
+	  1 attachment
+	  2 attach_headers (regex)
+	  3 body (regex)
+	  4 hdrdefault
+	  5 header (regex)
+	  6 markers
+	  7 search
+	  8 signature
+	  9 tilde
+quoted (5):
+	  1 quoted0
+	  1 quoted (synonym)
+	  2 quoted1
+	  3 quoted2
+	  4 quoted3
+	  5 quoted4
+	  6 quoted5
+	  7 quoted6
+	  8 quoted7
+	  9 quoted8
+	 10 quoted9
+sidebar (6):
+	  1 sidebar_background
+	  2 sidebar_divider
+	  3 sidebar_flagged
+	  4 sidebar_highlight
+	  5 sidebar_indicator
+	  6 sidebar_new
+	  7 sidebar_ordinary
+	  8 sidebar_spool_file
+	  8 sidebar_spoolfile (synonym)
+	  9 sidebar_unread

@@ -1,0 +1,18 @@
+set help    = no
+set markers = no
+set tilde   = yes
+
+color attach_headers red    green
+color attach_headers yellow blue    "signature"
+color attach_headers cyan   magenta "information.*"
+
+color body       color207 color237
+color normal     white    red
+color tilde      magenta  yellow
+color hdrdefault red      cyan
+color status     #ffffff  #8080ff
+
+ignore *
+unignore from: subject to cc date x-mailer x-url user-agent
+
+# vim: syn=neomuttrc

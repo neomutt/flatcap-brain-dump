@@ -1,0 +1,45 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="12"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.0"
+		arrowsize="0.5"
+	]
+
+	buf_strip_formatting -> check_attachment_marker
+	buf_strip_formatting -> check_protected_header_marker
+	check_attachment_marker -> check_marker
+	check_protected_header_marker -> check_marker
+	display_line -> append_line
+	display_line -> color_is_header
+	display_line -> fill_buffer
+	display_line -> format_line
+	display_line -> resolve_types
+	fill_buffer -> buf_strip_formatting
+	format_line -> check_attachment_marker
+	format_line -> check_protected_header_marker
+	format_line -> resolve_color
+	dlg_pager -> display_line
+	resolve_types -> check_attachment_marker
+	resolve_types -> check_protected_header_marker
+	resolve_types -> check_sig
+	resolve_types -> color_is_header
+	resolve_types -> match_body_patterns
+	resolve_types -> mutt_is_quote_line
+
+}

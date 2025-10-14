@@ -1,0 +1,35 @@
+compose_header           MT_COLOR_COMPOSE_HEADER           CF_SIMPLE
+compose_security_both    MT_COLOR_COMPOSE_SECURITY_BOTH    CF_SIMPLE
+compose_security_encrypt MT_COLOR_COMPOSE_SECURITY_ENCRYPT CF_SIMPLE
+compose_security_none    MT_COLOR_COMPOSE_SECURITY_NONE    CF_SIMPLE
+compose_security_sign    MT_COLOR_COMPOSE_SECURITY_SIGN    CF_SIMPLE
+
+quoted0                  MT_COLOR_QUOTED0                  CF_SIMPLE
+quoted1                  MT_COLOR_QUOTED1                  CF_SIMPLE
+quoted2                  MT_COLOR_QUOTED2                  CF_SIMPLE
+quoted3                  MT_COLOR_QUOTED3                  CF_SIMPLE
+quoted4                  MT_COLOR_QUOTED4                  CF_SIMPLE
+quoted5                  MT_COLOR_QUOTED5                  CF_SIMPLE
+quoted6                  MT_COLOR_QUOTED6                  CF_SIMPLE
+quoted7                  MT_COLOR_QUOTED7                  CF_SIMPLE
+quoted8                  MT_COLOR_QUOTED8                  CF_SIMPLE
+quoted9                  MT_COLOR_QUOTED9                  CF_SIMPLE
+
+quoted                   MT_COLOR_QUOTED0                  CF_SYNONYM
+
+attach_headers           MT_COLOR_ATTACH_HEADERS           CF_REGEX
+body                     MT_COLOR_BODY                     CF_REGEX
+header                   MT_COLOR_HEADER                   CF_REGEX
+status                   MT_COLOR_STATUS                   CF_REGEX | CF_BACK_REF
+
+index                    MT_COLOR_INDEX                    CF_REGEX
+index_author             MT_COLOR_INDEX_AUTHOR             CF_REGEX
+index_collapsed          MT_COLOR_INDEX_COLLAPSED          CF_REGEX
+index_date               MT_COLOR_INDEX_DATE               CF_REGEX
+index_flags              MT_COLOR_INDEX_FLAGS              CF_REGEX
+index_label              MT_COLOR_INDEX_LABEL              CF_REGEX
+index_number             MT_COLOR_INDEX_NUMBER             CF_REGEX
+index_size               MT_COLOR_INDEX_SIZE               CF_REGEX
+index_subject            MT_COLOR_INDEX_SUBJECT            CF_REGEX
+index_tag                MT_COLOR_INDEX_TAG                CF_REGEX
+index_tags               MT_COLOR_INDEX_TAGS               CF_REGEX

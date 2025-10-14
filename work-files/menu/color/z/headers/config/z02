@@ -1,0 +1,8 @@
+uncolor normal
+uncolor header
+uncolor header one
+uncolor header two
+uncolor header three
+set header_color_partial = yes
+
+# vim: syn=neomuttrc

@@ -1,0 +1,8 @@
+color attachment     red    green
+color attach_headers yellow blue    "signature"
+color attach_headers cyan   magenta "information.*"
+
+set help    = no
+set markers = no
+
+# vim: syn=neomuttrc

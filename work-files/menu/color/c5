@@ -1,0 +1,21 @@
+measure
+
+Simple
+	'color'
+	colour name	const
+	attr list	generated
+	fg colour	generated
+	bg colour	generated
+	# swatch
+
+Regex
+	'color'
+	colour name	const
+	attr list	generated
+	fg colour	generated
+	bg colour	generated
+	regex string	const
+	match number	const
+	# swatch
+
+sort by: domain, [regex], name

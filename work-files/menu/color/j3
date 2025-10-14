@@ -1,0 +1,97 @@
+MT_COLOR_BODY
+pager/color.c:61:62:    static const int cid_list[] = { MT_COLOR_ATTACH_HEADERS, MT_COLOR_BODY, MT_COLOR_HEADER };
+pager/display.c:390:34:    head = regex_colors_get_list(MT_COLOR_BODY);
+
+MT_COLOR_HEADER
+pager/color.c:61:77:    static const int cid_list[] = { MT_COLOR_ATTACH_HEADERS, MT_COLOR_BODY, MT_COLOR_HEADER };
+pager/display.c:166:29:  else if ((lines[m].cid == MT_COLOR_HEADER) && lines[m].syntax[0].attr_color)
+pager/display.c:386:34:    head = regex_colors_get_list(MT_COLOR_HEADER);
+pager/display.c:492:18:  return (cid == MT_COLOR_HEADER) || (cid == MT_COLOR_HDRDEFAULT);
+pager/display.c:550:58:        STAILQ_FOREACH(color_line, regex_colors_get_list(MT_COLOR_HEADER), entries)
+pager/display.c:557:35:            lines[line_num].cid = MT_COLOR_HEADER;
+pager/display.c:600:30:            (lines[i].cid == MT_COLOR_HEADER)))
+pager/display.c:1348:28:    if ((*lines)[m].cid == MT_COLOR_HEADER)
+
+MT_COLOR_STATUS
+color/simple.c:62:16:  SimpleColors[MT_COLOR_STATUS].attrs = A_REVERSE;
+compose/cbar.c:110:45:  mutt_curses_set_normal_backed_color_by_id(MT_COLOR_STATUS);
+compose/cbar.c:135:21:  if ((ev_c->cid != MT_COLOR_STATUS) && (ev_c->cid != MT_COLOR_NORMAL) &&
+gui/sbar.c:101:45:  mutt_curses_set_normal_backed_color_by_id(MT_COLOR_STATUS);
+gui/sbar.c:126:21:  if ((ev_c->cid != MT_COLOR_STATUS) && (ev_c->cid != MT_COLOR_NORMAL) &&
+helpbar/helpbar.c:185:45:  mutt_curses_set_normal_backed_color_by_id(MT_COLOR_STATUS);
+helpbar/helpbar.c:239:21:  if ((ev_c->cid != MT_COLOR_STATUS) && (ev_c->cid != MT_COLOR_NORMAL) &&
+index/color.c:243:11:    cid = MT_COLOR_STATUS;
+index/ibar.c:146:55:  struct RegexColorList *rcol = regex_colors_get_list(MT_COLOR_STATUS);
+index/ibar.c:185:21:  if ((ev_c->cid != MT_COLOR_STATUS) && (ev_c->cid != MT_COLOR_NORMAL) &&
+index/dlg_index.c:979:55:  struct RegexColorList *rcol = regex_colors_get_list(MT_COLOR_STATUS);
+pager/pbar.c:157:45:  mutt_curses_set_normal_backed_color_by_id(MT_COLOR_STATUS);
+pager/pbar.c:182:15:  if ((cid != MT_COLOR_STATUS) && (cid != MT_COLOR_NORMAL) && (cid != MT_COLOR_MAX))
+
+--------------------------------------------------------------------------------
+
+MT_COLOR_INDEX
+index/index.c:272:17:  if (!((cid == MT_COLOR_INDEX) || (cid == MT_COLOR_INDEX_AUTHOR) ||
+index/color.c:164:16:    for (cid = MT_COLOR_INDEX; cid <= MT_COLOR_INDEX_TAGS; cid++)
+index/color.c:340:30:  struct EventColor ev_c = { MT_COLOR_INDEX, NULL };
+index/dlg_index.c:1423:47:  STAILQ_FOREACH(color, regex_colors_get_list(MT_COLOR_INDEX), entries)
+menu/draw.c:253:17:      if (*s == MT_COLOR_INDEX)
+expando/node_expando.c:475:22:      add_color(buf, MT_COLOR_INDEX);
+
+MT_COLOR_INDEX_AUTHOR
+index/index.c:272:44:  if (!((cid == MT_COLOR_INDEX) || (cid == MT_COLOR_INDEX_AUTHOR) ||
+index/expando_index.c:709:34:    node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/expando_index.c:1216:34:    node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/expando_index.c:1252:36:      node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/expando_index.c:1333:34:    node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/expando_index.c:1385:36:      node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/expando_index.c:1410:34:    node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+index/expando_index.c:1429:34:    node_expando_set_color(node, MT_COLOR_INDEX_AUTHOR);
+
+MT_COLOR_INDEX_COLLAPSED
+index/index.c:273:17:        (cid == MT_COLOR_INDEX_COLLAPSED) || (cid == MT_COLOR_INDEX_DATE) ||
+index/expando_index.c:1021:36:      node_expando_set_color(node, MT_COLOR_INDEX_COLLAPSED);
+index/expando_index.c:1028:36:      node_expando_set_color(node, MT_COLOR_INDEX_COLLAPSED);
+index/expando_index.c:1051:36:      node_expando_set_color(node, MT_COLOR_INDEX_COLLAPSED);
+
+MT_COLOR_INDEX_DATE
+index/index.c:273:54:        (cid == MT_COLOR_INDEX_COLLAPSED) || (cid == MT_COLOR_INDEX_DATE) ||
+index/expando_index.c:372:34:    node_expando_set_color(node, MT_COLOR_INDEX_DATE);
+
+MT_COLOR_INDEX_FLAGS
+index/index.c:274:17:        (cid == MT_COLOR_INDEX_FLAGS) || (cid == MT_COLOR_INDEX_LABEL) ||
+index/expando_index.c:494:34:    node_expando_set_color(node, MT_COLOR_INDEX_FLAGS);
+index/expando_index.c:535:34:    node_expando_set_color(node, MT_COLOR_INDEX_FLAGS);
+index/expando_index.c:688:34:    node_expando_set_color(node, MT_COLOR_INDEX_FLAGS);
+index/expando_index.c:802:34:    node_expando_set_color(node, MT_COLOR_INDEX_FLAGS);
+index/expando_index.c:924:34:    node_expando_set_color(node, MT_COLOR_INDEX_FLAGS);
+
+MT_COLOR_INDEX_LABEL
+index/index.c:274:50:        (cid == MT_COLOR_INDEX_FLAGS) || (cid == MT_COLOR_INDEX_LABEL) ||
+index/expando_index.c:1531:34:    node_expando_set_color(node, MT_COLOR_INDEX_LABEL);
+index/expando_index.c:1641:34:    node_expando_set_color(node, MT_COLOR_INDEX_LABEL);
+
+MT_COLOR_INDEX_NUMBER
+index/index.c:275:17:        (cid == MT_COLOR_INDEX_NUMBER) || (cid == MT_COLOR_INDEX_SIZE) ||
+index/expando_index.c:817:34:    node_expando_set_color(node, MT_COLOR_INDEX_NUMBER);
+
+MT_COLOR_INDEX_SIZE
+index/index.c:275:51:        (cid == MT_COLOR_INDEX_NUMBER) || (cid == MT_COLOR_INDEX_SIZE) ||
+index/expando_index.c:411:34:    node_expando_set_color(node, MT_COLOR_INDEX_SIZE);
+index/expando_index.c:744:34:    node_expando_set_color(node, MT_COLOR_INDEX_SIZE);
+index/expando_index.c:849:34:    node_expando_set_color(node, MT_COLOR_INDEX_SIZE);
+
+MT_COLOR_INDEX_SUBJECT
+index/index.c:276:17:        (cid == MT_COLOR_INDEX_SUBJECT) || (cid == MT_COLOR_INDEX_TAG) ||
+index/expando_index.c:1465:34:    node_expando_set_color(node, MT_COLOR_INDEX_SUBJECT);
+
+MT_COLOR_INDEX_TAG
+index/index.c:276:52:        (cid == MT_COLOR_INDEX_SUBJECT) || (cid == MT_COLOR_INDEX_TAG) ||
+index/expando_index.c:988:34:    node_expando_set_color(node, MT_COLOR_INDEX_TAG);
+menu/draw.c:68:15:  if (type == MT_COLOR_INDEX_TAG)
+
+MT_COLOR_INDEX_TAGS
+index/index.c:277:17:        (cid == MT_COLOR_INDEX_TAGS) || (cid == MT_COLOR_MAX) ||
+index/expando_index.c:968:34:    node_expando_set_color(node, MT_COLOR_INDEX_TAGS);
+index/expando_index.c:1108:34:    node_expando_set_color(node, MT_COLOR_INDEX_TAGS);
+index/color.c:164:39:    for (cid = MT_COLOR_INDEX; cid <= MT_COLOR_INDEX_TAGS; cid++)
+

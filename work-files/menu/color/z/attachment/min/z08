@@ -1,0 +1,7 @@
+color body #008000 #00ff00
+
+color attach_headers #008000 #00ff00
+
+color attach_headers #ffff40 default begin
+color attach_headers #ff40ff default end
+color attach_headers #40ffff default information

@@ -1,0 +1,3 @@
+color attach_headers #ffff40 default one
+color attach_headers #ff40ff default two
+color attach_headers #40ffff default three

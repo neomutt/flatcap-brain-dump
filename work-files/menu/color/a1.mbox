@@ -1,0 +1,57 @@
+From neomutt-devel-bounces@neomutt.org Sat Jun  5 02:01:06 2021
+Return-Path: <neomutt-devel-bounces@neomutt.org>
+Received: from localhost (localhost [127.0.0.1])
+	by flatcap.org (Postfix) with ESMTP id 5F6D63DA0
+	for <flatcap-mail@flatcap.org>; Sat,  5 Jun 2021 02:01:06 +0100 (BST)
+Date: Sat, 5 Jun 2021 01:59:53 +0100
+From: Richard Russon <rich@flatcap.org>
+X-Apple: apple banana one cherry damson two elderberry three fig guava hawthorn
+To: Neomutt Developers <neomutt-devel@neomutt.org>
+MIME-Version: 1.0
+X-Banana: apple banana one cherry damson two elderberry three fig guava hawthorn
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="z7pwxf7bovahuz54"
+Content-Disposition: inline
+X-Cherry: apple banana one cherry damson two elderberry three fig guava hawthorn
+Subject: [neomutt-devel] Meaningless Milestone
+Status: RO
+Content-Length: 1224
+
+
+--z7pwxf7bovahuz54
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+A random bit of trivia...
+
+When NeoMutt split from Mutt, the repo contained ~6000 commits.
+
+Recently, the stats looked like:
+
+    Mutt     8000 (+2000)
+    NeoMutt 14000 (+8000)
+
+Rich / FlatCap
+
+--z7pwxf7bovahuz54
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEaa0dY2rCkuggZYwW68FQ5LXaY98FAmC6zIkACgkQ68FQ5LXa
+Y9/DdQ/+LWh9KrlpsNyxrtu6VZYn5YQHB8U5jAkA1lnsidmFfC7T+g+P6INIABaU
+UHWsaFmaCnnPHP61+Z1baSdYuY+qCoDb5W/uZZyLMXa533j/b2jYdH0BBFujQEqe
+74IOVn3J+M2m42S/JZvrZtb2DPZpML4M4Wfk09xA400ql54cvmn38uAtmucugcd5
+57voGv43aPiIoxcRoj+INZOMLZQGan7ynGgoTLWEukTkTmRkabpdRNl+BN3a+fpF
+LFFWnLJLdTgTYvVNSfHFkX8YTBqUQ6bfzlkzIGBXbZUsMkFs99jGX1LJKBjUJ8VV
+PMuWKOBriJ/1x6jABKOvQimKWBNh+OgppFubZqhqdRlbIiwkKt7ctiOhpBKnpeju
+DF952rXuAbBNjphNTAo6bfG+LDjqufR/fUF563EocEKN4tzHKECYUJDSqAGYKSu6
+njKccwKBm5d+y5C3S64e7JI9D/5YDDuh2F57V93LYMfhsjSAx8jUhb2i9urt0pvW
+ozgwm7z+OjULK8lXbq8NFUPsrz/pqejRalF4h9PYxiSfw7r4uSs0lL4P+kgrG1Ks
+DRpojhiEqFGDVeWG5nOBybgRF7OpI5JxLSEcBAPD+VYsxJfkC7PgWsB/a2k7xvmu
+hkorkudlhqjIKWR6D18cXPYJzF50PDElzFessYiL5x+YMeEnc6o=
+=UKQH
+-----END PGP SIGNATURE-----
+
+--z7pwxf7bovahuz54--
+

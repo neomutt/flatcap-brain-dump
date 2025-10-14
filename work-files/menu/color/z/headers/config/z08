@@ -1,0 +1,8 @@
+uncolor normal
+color header underline #008000 #00ff00
+color header #ffff40 default one
+color header #ff40ff default two
+color header #40ffff default three
+set header_color_partial = yes
+
+# vim: syn=neomuttrc

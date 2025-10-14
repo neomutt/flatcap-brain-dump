@@ -1,0 +1,16 @@
+cat a0 b0 c0 d0 > z01
+cat a0 b0 c0 d1 > z02
+cat a0 b0 c1 d0 > z03
+cat a0 b0 c1 d1 > z04
+cat a0 b1 c0 d0 > z05
+cat a0 b1 c0 d1 > z06
+cat a0 b1 c1 d0 > z07
+cat a0 b1 c1 d1 > z08
+cat a1 b0 c0 d0 > z09
+cat a1 b0 c0 d1 > z10
+cat a1 b0 c1 d0 > z11
+cat a1 b0 c1 d1 > z12
+cat a1 b1 c0 d0 > z13
+cat a1 b1 c0 d1 > z14
+cat a1 b1 c1 d0 > z15
+cat a1 b1 c1 d1 > z16
