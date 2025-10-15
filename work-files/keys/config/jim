@@ -1,2 +1,0 @@
-test/regex/mutt_regex_match.c:179:44: error: ‘line’ undeclared (first use in this function); did you mean ‘link’?
-test/regex/mutt_regex_match.c:179:44: note: each undeclared identifier is reported only once for each function it appears in

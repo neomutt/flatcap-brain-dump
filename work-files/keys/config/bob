@@ -1,5 +1,0 @@
-
-b config_check_sort
-b config_check_index
-b index/index.c:407
-b index/index.c:410

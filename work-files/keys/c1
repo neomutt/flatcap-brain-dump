@@ -1,8 +1,0 @@
-check ONE mailbox for new mail
-	index
-	pager
-	postpone
-
-index/dlg_index.c:1150:29: enum MxStatus check = mx_mbox_check(shared->mailbox);
-pager/dlg_pager.c:413:29:  enum MxStatus check = mx_mbox_check(shared->mailbox);
-postpone/postpone.c:688:3: mx_mbox_check(m);
