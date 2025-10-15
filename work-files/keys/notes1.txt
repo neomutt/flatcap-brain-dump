@@ -1,0 +1,26 @@
+Key / Mouse Handling
+
+Event loop manages the keys
+Calls dispatchers in turn looking for a match
+Responses: NO MATCH, LONGER, MATCH
+if queue contains a macro string, MATCH returns length
+
+dispatcher has (multiple) mapping table(s)
+translates 'x' to OP_ABC
+tables contain hard-coded defaults
+	configured bindings
+	configured macros
+	mouse bind/macros too
+
+Event contains
+	key(s)
+	mouse event + modifiers
+	focussed Window
+	mouse coords
+
+bind index x fn		uses Index table
+bind pager y fn		uses Pager table
+			(which is a superset of Index table)
+needs to be to allow config binding
+macro index Button1 <select><display-message>
+

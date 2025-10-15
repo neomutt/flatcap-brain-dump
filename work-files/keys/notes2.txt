@@ -1,0 +1,41 @@
+Self-Contained Window
+
+3 nested Windows: dlg_apple -> dlg_banana -> dlg_cherry
+
+main()
+{
+	dlg = A.new()
+	setup(dlg)
+	rc = dlg.run()
+	res = results(dlg)
+	free(dlg)
+}
+
+AppleWindow
+	wdata
+	recalc()
+	repaint()
+	reflow()
+	dispatcher()
+
+dlg.run() - event loop
+set focus()?  NO, dialog shold decide this
+loop until - what?
+	refresh all
+	get_ch() / mouse / timeout
+	offer event to Win.dispatcher()
+	(or parents/siblings?)
+	up to RootWindow
+
+user hits 'x' - who translates?  where?  how?
+
+DlgIndex
+	Sidebar
+	Index
+	Pager (focus)
+
+each Win has a dispatcher
+If Pager doesn't accept 'x', then
+parent DlgIndex gets asked
+DlgIndex is responsible for checking Index, Sidebar
+

@@ -1,0 +1,23 @@
+∀ Dialogs: register menu, functions
+uniq names, ids ∀?
+NO, names can be dupes, but not IDs
+
+specials:
+	generic -> Menu
+	simple dialog
+	sidebar -> registered by Index (AND Alias in future)
+
+multi-reg =>
+	bind index   x sidebar_next	is Index+Sidebar only
+	bind sidebar y sidebar_next	is Sidebar only
+		"Sidebar only" => any use of the Sidebar
+
+does Pager limit which Index functions are possible?  HOW?
+Which Index functions are *NOT* available?
+Can Index just ignore them?  probably
+
+register_fns("alias", ALIAS_FNS)
+register_fns("alias", SIDEBAR_FNS)
+	=> alias_dispatcher()
+	   sb_dispatcher()
+

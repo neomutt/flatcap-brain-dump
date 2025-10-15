@@ -1,0 +1,18 @@
+Menus
+
+MenuType        MenuNames[] km_get_table() km_init()
+
+MENU_ALIAS      "alias"     OpAlias        AliasDefaultBindings
+MENU_ATTACHMENT "attach"    OpAttachment   AttachmentDefaultBindings
+MENU_AUTOCRYPT  "autocrypt" OpAutocrypt    AutocryptDefaultBindings
+MENU_COMPOSE    "compose"   OpCompose      BrowserDefaultBindings
+MENU_DIALOG     "dialog"    OpDialog       ComposeDefaultBindings
+MENU_EDITOR     "editor"    OpEditor       DialogDefaultBindings
+MENU_FOLDER     "browser"   OpBrowser      EditorDefaultBindings
+MENU_GENERIC    "generic"   OpGeneric      GenericDefaultBindings
+MENU_INDEX      "index"     OpIndex        IndexDefaultBindings
+MENU_PAGER      "pager"     OpPager        PagerDefaultBindings
+MENU_PGP        "pgp"       OpPgp          PgpDefaultBindings
+MENU_POSTPONED  "postpone"  OpPostponed    PostponedDefaultBindings
+MENU_QUERY      "query"     OpQuery        QueryDefaultBindings
+MENU_SMIME      "smime"     OpSmime        SmimeDefaultBindings

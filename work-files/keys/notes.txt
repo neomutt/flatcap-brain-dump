@@ -1,0 +1,128 @@
+Keys 2
+
+.git/files/ke.gv
+.git/files/ks.gv
+
+number -> prefix (multicount)
+	number only if combi is empty
+	needs passing to fn dispatcher
+
+'a'	- no match
+'a'	- binding -> <fn>
+'a'	- macro -> push string
+'b'	- no match, multiple longer
+'ba'	- no match, fail
+'bb'	- match binding <fn>
+'bc'	- match macro, push string
+'bd'	- no match, longer still
+'bdd'	- match
+
+Features: display of typed key, count-repeat
+bind a, ab, <esc> distinct from Alt-X
+$key_timeout (ms)
+
+Alt-X -> <esc>X -- one event
+vs
+<esc>, X -> <esc>, X -- two events
+	unless bound?
+
+aim for <esc> as abort key
+
+------------------------------------------------------------
+
+If binds,
+	xyz
+	xyzb
+	xyzc
+
+the user types 'xyz'
+when does 'xyz' match?
+when is longer returned?
+
+
+------------------------------------------------------------
+
+dialog()				KE { [],    0.0 }
+
+mutt_getch()		KEY		KE { [x],   0.0 }
+
+dispatcher()		LONGER
+
+mutt_getch()		KEY		KE { [xy],  0.2 }
+
+dispatcher()		LONGER
+
+mutt_getch()		KEY		KE { [xyz], 0.3 }
+
+dispatcher()		LONGER | MATCH
+
+mutt_getch()				timeout(0.7) -- remaining time
+			TIMEOUT	
+			KEY
+
+
+what if there's a match with multiple dispatchers?
+	alias matches 'xyz', 'xyza', 'xyzb'
+	menu  matches 'xyz'
+
+what if a later dispatcher matches better?
+	alias matches 'xyza', 'xyzb'
+		LONGER
+	menu  matches 'xyz'
+		MATCH
+
+------------------------------------------------------------
+
+dialog() -> km_dokey_event() -> mutt_getch()
+
+KeyEvent = { 0 }
+km_dokey_event() adds to KE with timing, or number++
+mutt_getch() gets ONE cahr
+
+km_dokey_event() returns
+	COUNTER
+	KEYPRESS
+	ABORT
+
+multiple dispatchers:
+	alias, menu, global
+
+const KE passed to dispatcher
+	NO_MATCH  0  (flags)
+	LONGER	  1
+	MATCH     2
+
+NO_MATCH vs dispatchers => fail msg, clear KE
+MATCH => complete, clear KE
+LONGER => try again
+MATCH | LONGER => try again
+
+KeyMaps[MENU_ALIAS]
+KeyMaps[MENU_GENERIC]
+
+------------------------------------------------------------
+
+dispatchers A, B, C  ∀ test key combi
+
+on dlg startup merge bindings?
+	{  "abc", OP_ABC, dispatcher_X },
+dupe keystrings ignored, merge is *ordered*
+array ordered by alpha binding, then length
+binary search to find match(es)
+
+does merge fit in with Window-scoped dispatchers?
+	probabaly not
+
+need both match() and exec() fns
+
+win-dispatcher: Pager, Index, Sidebar, HelpBar, Global
+	each with dispatcher API
+
+if MATCH, remember dispatcher
+if any LONGER, match doesn't matter
+if any more MATCH, *first wins*
+
+timeout for multikey doesn't trigger TIMEOUT notifications
+what if $key_timeout > 1000ms?
+	no timeout during multikey?
+

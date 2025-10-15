@@ -1,0 +1,180 @@
+Functions by Dialog
+
+Simple Dialogs - simple_dialog_new()
+	Alias - dlg_alias()
+		menu_tagging_dispatcher()
+		km_dokey(MENU_ALIAS, GETCH_NO_FLAGS)
+		alias_function_dispatcher()
+		menu_function_dispatcher()
+		global_function_dispatcher()
+	Autocrypt Account - dlg_autocrypt()
+		menu_tagging_dispatcher()
+		km_dokey(MENU_AUTOCRYPT, GETCH_NO_FLAGS)
+		autocrypt_function_dispatcher()
+		menu_function_dispatcher()
+		global_function_dispatcher()
+	Browser - dlg_browser()
+		menu_tagging_dispatcher()
+		km_dokey(MENU_FOLDER, GETCH_NO_FLAGS)
+		browser_function_dispatcher()
+		menu_function_dispatcher()
+		global_function_dispatcher()
+	GPGME Key Selection dlg_gpgme()
+		menu_tagging_dispatcher()
+		km_dokey(menu_to_use, GETCH_NO_FLAGS)
+		gpgme_function_dispatcher()
+		menu_function_dispatcher()
+		global_function_dispatcher()
+	History - dlg_history()
+		menu_tagging_dispatcher()
+		km_dokey(MENU_DIALOG, GETCH_NO_FLAGS)
+		history_function_dispatcher()
+		menu_function_dispatcher()
+		global_function_dispatcher()
+	Pattern Selection - dlg_pattern()
+		menu_tagging_dispatcher()
+		km_dokey(MENU_DIALOG, GETCH_NO_FLAGS)
+		pattern_function_dispatcher()
+		menu_function_dispatcher()
+		global_function_dispatcher()
+	PGP Key Selection - dlg_pgp()
+		menu_tagging_dispatcher()
+		km_dokey(MENU_PGP, GETCH_NO_FLAGS)
+		pgp_function_dispatcher()
+		menu_function_dispatcher()
+		global_function_dispatcher()
+	Postponed Emails - dlg_postponed()
+		menu_tagging_dispatcher()
+		km_dokey(MENU_POSTPONED, GETCH_NO_FLAGS)
+		postpone_function_dispatcher()
+		menu_function_dispatcher()
+		global_function_dispatcher()
+	Query - dlg_query()
+		menu_tagging_dispatcher()
+		km_dokey(MENU_QUERY, GETCH_NO_FLAGS)
+		alias_function_dispatcher()
+		menu_function_dispatcher()
+		global_function_dispatcher()
+	SMIME Key Selection dlg_smime()
+		menu_tagging_dispatcher()
+		km_dokey(MENU_SMIME, GETCH_NO_FLAGS)
+		smime_function_dispatcher()
+		menu_function_dispatcher()
+		global_function_dispatcher()
+	Verify Certificate - dlg_certificate()
+		km_dokey(MENU_DIALOG, GETCH_IGNORE_MACRO)
+	View Attachments - dlg_attachment()
+		menu_tagging_dispatcher()
+		km_dokey(MENU_ATTACHMENT, GETCH_NO_FLAGS)
+		attach_function_dispatcher()
+		menu_function_dispatcher()
+		global_function_dispatcher()
+
+Simple Dialog
+	Menu
+		click		Select
+		double-click	Select, Accept
+		shift-click	Select, Tag
+		scroll-up	Move view up
+		scroll-down	Move view down
+	Simple Bar
+		NO ACTION
+
+--------------------------------------------------------------------------------
+
+Simple Pager - mutt_do_pager() - dlg_pager()
+	color_dump()           - "color"
+	dump_bind_macro()      - "bind" or "macro"
+	mutt_help()            - "Help for %s"
+	mutt_invoke_sendmail() - "Output of the delivery process"
+	mutt_view_attachment() - "---Attachment: %s"
+	op_show_log_messages() - "messages"
+	op_verify_key()        - "Key ID: 0x%s"
+	parse_setenv()         - "setenv"
+	parse_version()        - "version"
+	set_dump()             - "set"
+
+Simple Pager
+	Pager
+		scroll-up	Move view up
+		scroll-down	Move view down
+	Pager Bar
+		NO ACTION
+
+--------------------------------------------------------------------------------
+
+Common Windows
+	Sidebar
+		click		Select, Open
+		double-click	Select, Open
+	Help Bar
+		click		Perform Action
+		double-click	Perform Action
+	Message Window
+		Message Window
+			click		Enter command
+			click		Open Message Log
+			double-click	Open Message Log
+		Text Entry
+			click		Move cursor
+			double-click	Enter command
+		Progress Bar
+			NO ACTION
+	Simple Bar
+		NO ACTION
+
+--------------------------------------------------------------------------------
+
+Compose
+	Envelope View
+		click		Edit field
+		double-click	Edit field
+	Attachment Bar
+		NO ACTION
+		double-click	Attach File
+	Attachment View
+		click		View File
+		double-click	View File
+		scroll-up	Move view up
+		scroll-down	Move view down
+	Preview Bar
+		NO ACTION
+		double-click	Edit File
+	Email Preview
+		double-click	Edit File
+		scroll-up	Move view up
+		scroll-down	Move view down
+	Compose Bar
+		NO ACTION
+
+--------------------------------------------------------------------------------
+
+Index
+	Index (menu)
+		click		Select Email
+		click		(Un)Collapse (Sub)Thread
+		double-click	View Email
+		scroll-up	Move view up
+		scroll-down	Move view down
+	Index Bar (status)
+		NO ACTION
+
+--------------------------------------------------------------------------------
+
+Pager
+	Pager
+		scroll-up	Move view up
+		scroll-down	Move view down
+	Pager Bar
+		NO ACTION
+
+--------------------------------------------------------------------------------
+
+Complex Pager
+	index,compose,attach - OP_DISPLAY_HEADERS      <display-toggle-weed>
+	index                - OP_DISPLAY_MESSAGE      <display-message>
+	index                - OP_GENERIC_SELECT_ENTRY <select-entry>
+		op_display_message()
+			mutt_display_message()
+				dlg_pager()
+

@@ -1,0 +1,19 @@
+Mouse
+
+event loop -> get_ch() -> mouse event
+event could occur beyond current window
+	who checks?  who delegates?
+
+mouse event: raw, binding, macro
+	who expands?  when?
+
+raw -> window.mouse() - hard-coded response
+bind -> translation (dlg-specific) -> function
+macro -> translation (dlg-specific) -> string of fn
+
+universal event queue
+op code for every mouse combo?
+	S/C/A-Button(1-6) !
+	need modified flags S,C,A on events
+	event is a triple (modifier,button,event)
+

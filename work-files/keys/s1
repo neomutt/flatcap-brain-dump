@@ -1,0 +1,237 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +4 ~/work/keymaps/f1
+badd +1 ~/work/keymaps/f2
+badd +18 ~/work/keymaps/m1
+badd +1 ~/work/keymaps/m2
+badd +451 ~/work/keymaps/m3
+badd +1 ~/work/keymaps/f3
+badd +1 ~/work/keymaps/f4
+badd +24 ~/work/keymaps/m4.vim
+badd +266 ~/work/keymaps/alias/dlg_alias.c
+badd +18 ~/work/keymaps/d1
+argglobal
+%argdel
+$argadd ~/work/keymaps/d1
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
+edit ~/work/keymaps/f1
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+3wincmd h
+wincmd w
+wincmd w
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+wincmd =
+argglobal
+balt ~/work/keymaps/f2
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 019|
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/work/keymaps/f2", ":p")) | buffer ~/work/keymaps/f2 | else | edit ~/work/keymaps/f2 | endif
+if &buftype ==# 'terminal'
+  silent file ~/work/keymaps/f2
+endif
+balt ~/work/keymaps/f3
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 08|
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/work/keymaps/f3", ":p")) | buffer ~/work/keymaps/f3 | else | edit ~/work/keymaps/f3 | endif
+if &buftype ==# 'terminal'
+  silent file ~/work/keymaps/f3
+endif
+balt ~/work/keymaps/f4
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/work/keymaps/f4", ":p")) | buffer ~/work/keymaps/f4 | else | edit ~/work/keymaps/f4 | endif
+if &buftype ==# 'terminal'
+  silent file ~/work/keymaps/f4
+endif
+balt ~/work/keymaps/f3
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+wincmd =
+tabnext
+edit ~/work/keymaps/m1
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+3wincmd h
+wincmd w
+wincmd w
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+wincmd =
+argglobal
+balt ~/work/keymaps/m2
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/work/keymaps/m2", ":p")) | buffer ~/work/keymaps/m2 | else | edit ~/work/keymaps/m2 | endif
+if &buftype ==# 'terminal'
+  silent file ~/work/keymaps/m2
+endif
+balt ~/work/keymaps/m3
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 07|
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/work/keymaps/m3", ":p")) | buffer ~/work/keymaps/m3 | else | edit ~/work/keymaps/m3 | endif
+if &buftype ==# 'terminal'
+  silent file ~/work/keymaps/m3
+endif
+balt ~/work/keymaps/m4.vim
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 09|
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/work/keymaps/m4.vim", ":p")) | buffer ~/work/keymaps/m4.vim | else | edit ~/work/keymaps/m4.vim | endif
+if &buftype ==# 'terminal'
+  silent file ~/work/keymaps/m4.vim
+endif
+balt ~/work/keymaps/m3
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+wincmd =
+tabnext
+edit ~/work/keymaps/alias/dlg_alias.c
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+wincmd =
+argglobal
+balt ~/work/keymaps/d1
+let s:l = 295 - ((9 * winheight(0) + 23) / 46)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 295
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/work/keymaps/d1", ":p")) | buffer ~/work/keymaps/d1 | else | edit ~/work/keymaps/d1 | endif
+if &buftype ==# 'terminal'
+  silent file ~/work/keymaps/d1
+endif
+balt ~/work/keymaps/alias/dlg_alias.c
+let s:l = 23 - ((22 * winheight(0) + 23) / 46)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 23
+normal! 0
+wincmd w
+2wincmd w
+wincmd =
+tabnext 3
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=1
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

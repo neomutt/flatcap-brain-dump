@@ -1,0 +1,9 @@
+bind index ,s sidebar-start-search
+
+bind sidebar \CJ down
+bind sidebar \CK up
+
+bind sidebar \CP up
+bind sidebar \CN down
+
+# vim: syn=neomuttrc

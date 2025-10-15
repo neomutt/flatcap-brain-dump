@@ -1,0 +1,1661 @@
+Keybindings:
+Menu: alias
+    bind <Space>  <tag-entry>
+        op = 223 (OP_TAG)
+        eq = 0
+        keys: 32 
+    bind O        <sort-alias-reverse>
+        op = 221 (OP_SORT_REVERSE)
+        eq = 0
+        keys: 79 
+    bind d        <delete-entry>
+        op = 71 (OP_DELETE)
+        eq = 0
+        keys: 100 
+    bind l        <limit>
+        op = 156 (OP_MAIN_LIMIT)
+        eq = 0
+        keys: 108 
+    bind m        <mail>
+        op = 142 (OP_MAIL)
+        eq = 0
+        keys: 109 
+    bind o        <sort-alias>
+        op = 220 (OP_SORT)
+        eq = 0
+        keys: 111 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+    bind u        <undelete-entry>
+        op = 234 (OP_UNDELETE)
+        eq = 0
+        keys: 117 
+Menu: attach
+    macro ^B       "<enter-command> set my_pipe_decode=$pipe_decode pipe_decode<Enter><pipe-message> urlview<Enter><enter-command> set pipe_decode=$my_pipe_decode; unset my_pipe_decode<Enter>"
+        call urlview to extract URLs out of a message
+        op = 141
+        eq = 0
+        keys: 2 
+    bind ^E       <edit-type>
+        op = 12 (OP_ATTACHMENT_EDIT_TYPE)
+        eq = 0
+        keys: 5 
+    bind ^F       <forget-passphrase>
+        op = 245 (OP_FORGET_PASSPHRASE)
+        eq = 0
+        keys: 6 
+    bind <Enter>  <view-attach>
+        op = 31 (OP_ATTACHMENT_VIEW)
+        eq = 0
+        keys: 10 
+    bind ^K       <extract-keys>
+        op = 244 (OP_EXTRACT_KEYS)
+        eq = 0
+        keys: 11 
+    bind <Return> <view-attach>
+        op = 31 (OP_ATTACHMENT_VIEW)
+        eq = 0
+        keys: 13 
+    bind <Esc>P   <check-traditional-pgp>
+        op = 272 (OP_CHECK_TRADITIONAL)
+        eq = 1
+        keys: 27 80 
+    bind <Esc>e   <resend-message>
+        op = 211 (OP_RESEND)
+        eq = 0
+        keys: 27 101 
+    bind L        <list-reply>
+        op = 137 (OP_LIST_REPLY)
+        eq = 0
+        keys: 76 
+    bind T        <view-text>
+        op = 34 (OP_ATTACHMENT_VIEW_TEXT)
+        eq = 0
+        keys: 84 
+    bind b        <bounce-message>
+        op = 43 (OP_BOUNCE_MESSAGE)
+        eq = 0
+        keys: 98 
+    bind d        <delete-entry>
+        op = 5 (OP_ATTACHMENT_DELETE)
+        eq = 0
+        keys: 100 
+    bind f        <forward-message>
+        op = 113 (OP_FORWARD_MESSAGE)
+        eq = 0
+        keys: 102 
+    bind g        <group-reply>
+        op = 121 (OP_GROUP_REPLY)
+        eq = 0
+        keys: 103 
+    bind h        <display-toggle-weed>
+        op = 77 (OP_DISPLAY_HEADERS)
+        eq = 0
+        keys: 104 
+    bind m        <view-mailcap>
+        op = 32 (OP_ATTACHMENT_VIEW_MAILCAP)
+        eq = 0
+        keys: 109 
+    bind p        <print-entry>
+        op = 22 (OP_ATTACHMENT_PRINT)
+        eq = 0
+        keys: 112 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+    bind r        <reply>
+        op = 210 (OP_REPLY)
+        eq = 0
+        keys: 114 
+    bind s        <save-entry>
+        op = 24 (OP_ATTACHMENT_SAVE)
+        eq = 0
+        keys: 115 
+    bind u        <undelete-entry>
+        op = 28 (OP_ATTACHMENT_UNDELETE)
+        eq = 0
+        keys: 117 
+    bind v        <collapse-parts>
+        op = 4 (OP_ATTACHMENT_COLLAPSE)
+        eq = 0
+        keys: 118 
+    bind |        <pipe-entry>
+        op = 194 (OP_PIPE)
+        eq = 0
+        keys: 124 
+    bind <KeypadEnter> <view-attach>
+        op = 31 (OP_ATTACHMENT_VIEW)
+        eq = 0
+        keys: 343 
+Menu: autocrypt
+    bind D        <delete-account>
+        op = 37 (OP_AUTOCRYPT_DELETE_ACCT)
+        eq = 0
+        keys: 68 
+    bind a        <toggle-active>
+        op = 38 (OP_AUTOCRYPT_TOGGLE_ACTIVE)
+        eq = 0
+        keys: 97 
+    bind c        <create-account>
+        op = 36 (OP_AUTOCRYPT_CREATE_ACCT)
+        eq = 0
+        keys: 99 
+    bind p        <toggle-prefer-encrypt>
+        op = 39 (OP_AUTOCRYPT_TOGGLE_PREFER)
+        eq = 0
+        keys: 112 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+Menu: compose
+    macro ^B       "<enter-command> set my_pipe_decode=$pipe_decode pipe_decode<Enter><pipe-message> urlview<Enter><enter-command> set pipe_decode=$my_pipe_decode; unset my_pipe_decode<Enter>"
+        call urlview to extract URLs out of a message
+        op = 141
+        eq = 0
+        keys: 2 
+    bind ^D       <toggle-disposition>
+        op = 25 (OP_ATTACHMENT_TOGGLE_DISPOSITION)
+        eq = 0
+        keys: 4 
+    bind ^E       <edit-encoding>
+        op = 9 (OP_ATTACHMENT_EDIT_ENCODING)
+        eq = 0
+        keys: 5 
+    bind ^F       <forget-passphrase>
+        op = 245 (OP_FORGET_PASSPHRASE)
+        eq = 0
+        keys: 6 
+    bind <Enter>  <view-attach>
+        op = 31 (OP_ATTACHMENT_VIEW)
+        eq = 0
+        keys: 10 
+    bind ^L       <redraw-screen>
+        op = 207 (OP_REDRAW)
+        eq = 0
+        keys: 12 
+    bind <Return> <view-attach>
+        op = 31 (OP_ATTACHMENT_VIEW)
+        eq = 0
+        keys: 13 
+    bind ^O       <rename-attachment>
+        op = 23 (OP_ATTACHMENT_RENAME_ATTACHMENT)
+        eq = 0
+        keys: 15 
+    bind ^T       <edit-type>
+        op = 12 (OP_ATTACHMENT_EDIT_TYPE)
+        eq = 0
+        keys: 20 
+    bind <Esc>e   <edit-file>
+        op = 55 (OP_COMPOSE_EDIT_FILE)
+        eq = 1
+        keys: 27 101 
+    bind <Esc>f   <edit-from>
+        op = 250 (OP_ENVELOPE_EDIT_FROM)
+        eq = 1
+        keys: 27 102 
+    bind <Esc>i   <edit-content-id>
+        op = 7 (OP_ATTACHMENT_EDIT_CONTENT_ID)
+        eq = 1
+        keys: 27 105 
+    bind <Esc>k   <attach-key>
+        op = 271 (OP_ATTACHMENT_ATTACH_KEY)
+        eq = 0
+        keys: 27 107 
+    bind #        <ungroup-attachment>
+        op = 29 (OP_ATTACHMENT_UNGROUP)
+        eq = 0
+        keys: 35 
+    bind %        <group-related>
+        op = 17 (OP_ATTACHMENT_GROUP_RELATED)
+        eq = 0
+        keys: 37 
+    bind &        <group-alternatives>
+        op = 15 (OP_ATTACHMENT_GROUP_ALTS)
+        eq = 0
+        keys: 38 
+    bind +        <move-down>
+        op = 18 (OP_ATTACHMENT_MOVE_DOWN)
+        eq = 0
+        keys: 43 
+    bind -        <move-up>
+        op = 19 (OP_ATTACHMENT_MOVE_UP)
+        eq = 0
+        keys: 45 
+    bind A        <attach-message>
+        op = 2 (OP_ATTACHMENT_ATTACH_MESSAGE)
+        eq = 0
+        keys: 65 
+    bind C        <copy-file>
+        op = 24 (OP_ATTACHMENT_SAVE)
+        eq = 0
+        keys: 67 
+    bind D        <detach-file>
+        op = 6 (OP_ATTACHMENT_DETACH)
+        eq = 0
+        keys: 68 
+    bind E        <edit-headers>
+        op = 251 (OP_ENVELOPE_EDIT_HEADERS)
+        eq = 0
+        keys: 69 
+    bind F        <filter-entry>
+        op = 13 (OP_ATTACHMENT_FILTER)
+        eq = 0
+        keys: 70 
+    bind G        <get-attachment>
+        op = 14 (OP_ATTACHMENT_GET_ATTACHMENT)
+        eq = 0
+        keys: 71 
+    bind M        <mix>
+        op = 257 (OP_COMPOSE_MIX)
+        eq = 0
+        keys: 77 
+    bind P        <postpone-message>
+        op = 58 (OP_COMPOSE_POSTPONE_MESSAGE)
+        eq = 0
+        keys: 80 
+    bind R        <rename-file>
+        op = 59 (OP_COMPOSE_RENAME_FILE)
+        eq = 0
+        keys: 82 
+    bind S        <smime-menu>
+        op = 288 (OP_COMPOSE_SMIME_MENU)
+        eq = 0
+        keys: 83 
+    bind T        <tag-entry>
+        op = 223 (OP_TAG)
+        eq = 0
+        keys: 84 
+    bind U        <update-encoding>
+        op = 30 (OP_ATTACHMENT_UPDATE_ENCODING)
+        eq = 0
+        keys: 85 
+    bind ^        <group-multilingual>
+        op = 16 (OP_ATTACHMENT_GROUP_LINGUAL)
+        eq = 0
+        keys: 94 
+    bind a        <attach-file>
+        op = 1 (OP_ATTACHMENT_ATTACH_FILE)
+        eq = 0
+        keys: 97 
+    bind b        <edit-bcc>
+        op = 246 (OP_ENVELOPE_EDIT_BCC)
+        eq = 0
+        keys: 98 
+    bind c        <edit-cc>
+        op = 247 (OP_ENVELOPE_EDIT_CC)
+        eq = 0
+        keys: 99 
+    bind d        <edit-description>
+        op = 8 (OP_ATTACHMENT_EDIT_DESCRIPTION)
+        eq = 0
+        keys: 100 
+    bind e        <edit-message>
+        op = 56 (OP_COMPOSE_EDIT_MESSAGE)
+        eq = 0
+        keys: 101 
+    bind f        <edit-fcc>
+        op = 248 (OP_ENVELOPE_EDIT_FCC)
+        eq = 0
+        keys: 102 
+    bind h        <display-toggle-weed>
+        op = 77 (OP_DISPLAY_HEADERS)
+        eq = 0
+        keys: 104 
+    bind i        <ispell>
+        op = 57 (OP_COMPOSE_ISPELL)
+        eq = 0
+        keys: 105 
+    bind l        <print-entry>
+        op = 22 (OP_ATTACHMENT_PRINT)
+        eq = 0
+        keys: 108 
+    bind m        <edit-mime>
+        op = 11 (OP_ATTACHMENT_EDIT_MIME)
+        eq = 0
+        keys: 109 
+    bind n        <new-mime>
+        op = 20 (OP_ATTACHMENT_NEW_MIME)
+        eq = 0
+        keys: 110 
+    bind o        <autocrypt-menu>
+        op = 40 (OP_COMPOSE_AUTOCRYPT_MENU)
+        eq = 0
+        keys: 111 
+    bind p        <pgp-menu>
+        op = 273 (OP_COMPOSE_PGP_MENU)
+        eq = 0
+        keys: 112 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+    bind r        <edit-reply-to>
+        op = 253 (OP_ENVELOPE_EDIT_REPLY_TO)
+        eq = 0
+        keys: 114 
+    bind s        <edit-subject>
+        op = 254 (OP_ENVELOPE_EDIT_SUBJECT)
+        eq = 0
+        keys: 115 
+    bind t        <edit-to>
+        op = 255 (OP_ENVELOPE_EDIT_TO)
+        eq = 0
+        keys: 116 
+    bind u        <toggle-unlink>
+        op = 27 (OP_ATTACHMENT_TOGGLE_UNLINK)
+        eq = 0
+        keys: 117 
+    bind w        <write-fcc>
+        op = 62 (OP_COMPOSE_WRITE_MESSAGE)
+        eq = 0
+        keys: 119 
+    bind y        <send-message>
+        op = 60 (OP_COMPOSE_SEND_MESSAGE)
+        eq = 0
+        keys: 121 
+    bind |        <pipe-entry>
+        op = 194 (OP_PIPE)
+        eq = 0
+        keys: 124 
+    bind <KeypadEnter> <view-attach>
+        op = 31 (OP_ATTACHMENT_VIEW)
+        eq = 0
+        keys: 343 
+Menu: dialog
+    bind q        <(null)>
+        op = 204 (OP_QUIT)
+        eq = 0
+        keys: 113 
+Menu: editor
+    bind ^A       <bol>
+        op = 82 (OP_EDITOR_BOL)
+        eq = 0
+        keys: 1 
+    bind ^B       <backward-char>
+        op = 80 (OP_EDITOR_BACKWARD_CHAR)
+        eq = 0
+        keys: 2 
+    bind ^D       <delete-char>
+        op = 86 (OP_EDITOR_DELETE_CHAR)
+        eq = 0
+        keys: 4 
+    bind ^E       <eol>
+        op = 88 (OP_EDITOR_EOL)
+        eq = 0
+        keys: 5 
+    bind ^F       <forward-char>
+        op = 89 (OP_EDITOR_FORWARD_CHAR)
+        eq = 0
+        keys: 6 
+    bind ^H       <backspace>
+        op = 79 (OP_EDITOR_BACKSPACE)
+        eq = 0
+        keys: 8 
+    bind <Tab>    <complete>
+        op = 84 (OP_EDITOR_COMPLETE)
+        eq = 0
+        keys: 9 
+    bind ^K       <kill-eol>
+        op = 94 (OP_EDITOR_KILL_EOL)
+        eq = 0
+        keys: 11 
+    bind ^L       <redraw-screen>
+        op = 207 (OP_REDRAW)
+        eq = 0
+        keys: 12 
+    bind ^N       <history-down>
+        op = 91 (OP_EDITOR_HISTORY_DOWN)
+        eq = 0
+        keys: 14 
+    bind ^P       <history-up>
+        op = 93 (OP_EDITOR_HISTORY_UP)
+        eq = 0
+        keys: 16 
+    bind ^R       <history-search>
+        op = 92 (OP_EDITOR_HISTORY_SEARCH)
+        eq = 0
+        keys: 18 
+    bind ^T       <complete-query>
+        op = 85 (OP_EDITOR_COMPLETE_QUERY)
+        eq = 0
+        keys: 20 
+    bind ^U       <kill-line>
+        op = 96 (OP_EDITOR_KILL_LINE)
+        eq = 0
+        keys: 21 
+    bind ^V       <quote-char>
+        op = 100 (OP_EDITOR_QUOTE_CHAR)
+        eq = 0
+        keys: 22 
+    bind ^W       <kill-word>
+        op = 98 (OP_EDITOR_KILL_WORD)
+        eq = 0
+        keys: 23 
+    bind <Esc>?   <help>
+        op = 124 (OP_HELP)
+        eq = 1
+        keys: 27 63 
+    bind <Esc>b   <backward-word>
+        op = 81 (OP_EDITOR_BACKWARD_WORD)
+        eq = 1
+        keys: 27 98 
+    bind <Esc>c   <capitalize-word>
+        op = 83 (OP_EDITOR_CAPITALIZE_WORD)
+        eq = 1
+        keys: 27 99 
+    bind <Esc>d   <kill-eow>
+        op = 95 (OP_EDITOR_KILL_EOW)
+        eq = 1
+        keys: 27 100 
+    bind <Esc>f   <forward-word>
+        op = 90 (OP_EDITOR_FORWARD_WORD)
+        eq = 1
+        keys: 27 102 
+    bind <Esc>l   <downcase-word>
+        op = 87 (OP_EDITOR_DOWNCASE_WORD)
+        eq = 1
+        keys: 27 108 
+    bind <Esc>u   <upcase-word>
+        op = 102 (OP_EDITOR_UPCASE_WORD)
+        eq = 0
+        keys: 27 117 
+    bind <Space>  <mailbox-cycle>
+        op = 99 (OP_EDITOR_MAILBOX_CYCLE)
+        eq = 0
+        keys: 32 
+    bind ^?       <backspace>
+        op = 79 (OP_EDITOR_BACKSPACE)
+        eq = 0
+        keys: 127 
+    bind <Down>   <history-down>
+        op = 91 (OP_EDITOR_HISTORY_DOWN)
+        eq = 0
+        keys: 258 
+    bind <Up>     <history-up>
+        op = 93 (OP_EDITOR_HISTORY_UP)
+        eq = 0
+        keys: 259 
+    bind <Left>   <backward-char>
+        op = 80 (OP_EDITOR_BACKWARD_CHAR)
+        eq = 0
+        keys: 260 
+    bind <Right>  <forward-char>
+        op = 89 (OP_EDITOR_FORWARD_CHAR)
+        eq = 0
+        keys: 261 
+    bind <Home>   <bol>
+        op = 82 (OP_EDITOR_BOL)
+        eq = 0
+        keys: 262 
+    bind <BackSpace> <backspace>
+        op = 79 (OP_EDITOR_BACKSPACE)
+        eq = 0
+        keys: 263 
+    bind <Delete> <delete-char>
+        op = 86 (OP_EDITOR_DELETE_CHAR)
+        eq = 0
+        keys: 330 
+    bind <End>    <eol>
+        op = 88 (OP_EDITOR_EOL)
+        eq = 0
+        keys: 360 
+Menu: browser
+    bind <Tab>    <toggle-mailboxes>
+        op = 228 (OP_TOGGLE_MAILBOXES)
+        eq = 0
+        keys: 9 
+    bind <Space>  <view-file>
+        op = 50 (OP_BROWSER_VIEW_FILE)
+        eq = 0
+        keys: 32 
+    bind .        <mailbox-list>
+        op = 143 (OP_MAILBOX_LIST)
+        eq = 0
+        keys: 46 
+    bind =        <goto-folder>
+        op = 44 (OP_BROWSER_GOTO_FOLDER)
+        eq = 0
+        keys: 61 
+    bind @        <display-filename>
+        op = 47 (OP_BROWSER_TELL)
+        eq = 0
+        keys: 64 
+    bind C        <create-mailbox>
+        op = 65 (OP_CREATE_MAILBOX)
+        eq = 0
+        keys: 67 
+    bind N        <select-new>
+        op = 45 (OP_BROWSER_NEW_FILE)
+        eq = 0
+        keys: 78 
+    bind O        <sort-reverse>
+        op = 221 (OP_SORT_REVERSE)
+        eq = 0
+        keys: 79 
+    bind T        <toggle-subscribed>
+        op = 48 (OP_BROWSER_TOGGLE_LSUB)
+        eq = 0
+        keys: 84 
+    bind c        <change-dir>
+        op = 52 (OP_CHANGE_DIRECTORY)
+        eq = 0
+        keys: 99 
+    bind d        <delete-mailbox>
+        op = 72 (OP_DELETE_MAILBOX)
+        eq = 0
+        keys: 100 
+    bind m        <enter-mask>
+        op = 108 (OP_ENTER_MASK)
+        eq = 0
+        keys: 109 
+    bind o        <sort>
+        op = 220 (OP_SORT)
+        eq = 0
+        keys: 111 
+    bind p        <goto-parent>
+        op = 119 (OP_GOTO_PARENT)
+        eq = 0
+        keys: 112 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+    bind r        <rename-mailbox>
+        op = 209 (OP_RENAME_MAILBOX)
+        eq = 0
+        keys: 114 
+    bind s        <subscribe>
+        op = 46 (OP_BROWSER_SUBSCRIBE)
+        eq = 0
+        keys: 115 
+    bind u        <unsubscribe>
+        op = 49 (OP_BROWSER_UNSUBSCRIBE)
+        eq = 0
+        keys: 117 
+Menu: generic
+    bind <Enter>  <select-entry>
+        op = 115 (OP_GENERIC_SELECT_ENTRY)
+        eq = 0
+        keys: 10 
+    bind ^L       <redraw-screen>
+        op = 207 (OP_REDRAW)
+        eq = 0
+        keys: 12 
+    bind <Return> <select-entry>
+        op = 115 (OP_GENERIC_SELECT_ENTRY)
+        eq = 0
+        keys: 13 
+    bind <Esc>/   <search-reverse>
+        op = 216 (OP_SEARCH_REVERSE)
+        eq = 0
+        keys: 27 47 
+    bind !        <shell-escape>
+        op = 218 (OP_SHELL_ESCAPE)
+        eq = 0
+        keys: 33 
+    bind *        <last-entry>
+        op = 135 (OP_LAST_ENTRY)
+        eq = 0
+        keys: 42 
+    bind /        <search>
+        op = 213 (OP_SEARCH)
+        eq = 0
+        keys: 47 
+    bind 1        <jump>
+        op = 126 (OP_JUMP_1)
+        eq = 0
+        keys: 49 
+    bind 2        <jump>
+        op = 127 (OP_JUMP_2)
+        eq = 0
+        keys: 50 
+    bind 3        <jump>
+        op = 128 (OP_JUMP_3)
+        eq = 0
+        keys: 51 
+    bind 4        <jump>
+        op = 129 (OP_JUMP_4)
+        eq = 0
+        keys: 52 
+    bind 5        <jump>
+        op = 130 (OP_JUMP_5)
+        eq = 0
+        keys: 53 
+    bind 6        <jump>
+        op = 131 (OP_JUMP_6)
+        eq = 0
+        keys: 54 
+    bind 7        <jump>
+        op = 132 (OP_JUMP_7)
+        eq = 0
+        keys: 55 
+    bind 8        <jump>
+        op = 133 (OP_JUMP_8)
+        eq = 0
+        keys: 56 
+    bind 9        <jump>
+        op = 134 (OP_JUMP_9)
+        eq = 0
+        keys: 57 
+    bind :        <enter-command>
+        op = 107 (OP_ENTER_COMMAND)
+        eq = 0
+        keys: 58 
+    bind ;        <tag-prefix>
+        op = 224 (OP_TAG_PREFIX)
+        eq = 0
+        keys: 59 
+    bind <        <previous-line>
+        op = 197 (OP_PREV_LINE)
+        eq = 0
+        keys: 60 
+    bind =        <first-entry>
+        op = 110 (OP_FIRST_ENTRY)
+        eq = 0
+        keys: 61 
+    bind >        <next-line>
+        op = 187 (OP_NEXT_LINE)
+        eq = 0
+        keys: 62 
+    bind ?        <help>
+        op = 124 (OP_HELP)
+        eq = 0
+        keys: 63 
+    bind H        <top-page>
+        op = 232 (OP_TOP_PAGE)
+        eq = 0
+        keys: 72 
+    bind L        <bottom-page>
+        op = 42 (OP_BOTTOM_PAGE)
+        eq = 0
+        keys: 76 
+    bind M        <middle-page>
+        op = 185 (OP_MIDDLE_PAGE)
+        eq = 0
+        keys: 77 
+    bind Q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 81 
+    bind V        <show-version>
+        op = 238 (OP_VERSION)
+        eq = 0
+        keys: 86 
+    bind Z        <previous-page>
+        op = 198 (OP_PREV_PAGE)
+        eq = 0
+        keys: 90 
+    bind [        <half-up>
+        op = 123 (OP_HALF_UP)
+        eq = 0
+        keys: 91 
+    bind ]        <half-down>
+        op = 122 (OP_HALF_DOWN)
+        eq = 0
+        keys: 93 
+    bind j        <next-entry>
+        op = 186 (OP_NEXT_ENTRY)
+        eq = 0
+        keys: 106 
+    bind k        <previous-entry>
+        op = 196 (OP_PREV_ENTRY)
+        eq = 0
+        keys: 107 
+    bind n        <search-next>
+        op = 214 (OP_SEARCH_NEXT)
+        eq = 0
+        keys: 110 
+    bind t        <tag-entry>
+        op = 223 (OP_TAG)
+        eq = 0
+        keys: 116 
+    bind z        <next-page>
+        op = 188 (OP_NEXT_PAGE)
+        eq = 0
+        keys: 122 
+    bind <Down>   <next-entry>
+        op = 186 (OP_NEXT_ENTRY)
+        eq = 0
+        keys: 258 
+    bind <Up>     <previous-entry>
+        op = 196 (OP_PREV_ENTRY)
+        eq = 0
+        keys: 259 
+    bind <Left>   <previous-page>
+        op = 198 (OP_PREV_PAGE)
+        eq = 0
+        keys: 260 
+    bind <Right>  <next-page>
+        op = 188 (OP_NEXT_PAGE)
+        eq = 0
+        keys: 261 
+    bind <Home>   <first-entry>
+        op = 110 (OP_FIRST_ENTRY)
+        eq = 0
+        keys: 262 
+    bind <PageDown> <next-page>
+        op = 188 (OP_NEXT_PAGE)
+        eq = 0
+        keys: 338 
+    bind <PageUp> <previous-page>
+        op = 198 (OP_PREV_PAGE)
+        eq = 0
+        keys: 339 
+    bind <KeypadEnter> <select-entry>
+        op = 115 (OP_GENERIC_SELECT_ENTRY)
+        eq = 0
+        keys: 343 
+    bind <End>    <last-entry>
+        op = 135 (OP_LAST_ENTRY)
+        eq = 0
+        keys: 360 
+Menu: key_select_pgp
+    bind %        <view-name>
+        op = 276 (OP_VIEW_ID)
+        eq = 0
+        keys: 37 
+    bind c        <verify-key>
+        op = 275 (OP_VERIFY_KEY)
+        eq = 0
+        keys: 99 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+Menu: key_select_smime
+    bind %        <view-name>
+        op = 276 (OP_VIEW_ID)
+        eq = 0
+        keys: 37 
+    bind c        <verify-key>
+        op = 275 (OP_VERIFY_KEY)
+        eq = 0
+        keys: 99 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+Menu: index
+    macro ^B       "<enter-command> set my_pipe_decode=$pipe_decode pipe_decode<Enter><pipe-message> urlview<Enter><enter-command> set pipe_decode=$my_pipe_decode; unset my_pipe_decode<Enter>"
+        call urlview to extract URLs out of a message
+        op = 141
+        eq = 0
+        keys: 2 
+    bind ^D       <delete-thread>
+        op = 74 (OP_DELETE_THREAD)
+        eq = 0
+        keys: 4 
+    bind ^E       <edit-type>
+        op = 12 (OP_ATTACHMENT_EDIT_TYPE)
+        eq = 0
+        keys: 5 
+    bind ^F       <forget-passphrase>
+        op = 245 (OP_FORGET_PASSPHRASE)
+        eq = 0
+        keys: 6 
+    bind <Tab>    <next-new-then-unread>
+        op = 161 (OP_MAIN_NEXT_NEW_THEN_UNREAD)
+        eq = 0
+        keys: 9 
+    bind <Enter>  <display-message>
+        op = 78 (OP_DISPLAY_MESSAGE)
+        eq = 0
+        keys: 10 
+    bind ^K       <extract-keys>
+        op = 244 (OP_EXTRACT_KEYS)
+        eq = 0
+        keys: 11 
+    bind <Return> <display-message>
+        op = 78 (OP_DISPLAY_MESSAGE)
+        eq = 0
+        keys: 13 
+    bind ^N       <sidebar-next>
+        op = 279 (OP_SIDEBAR_NEXT)
+        eq = 0
+        keys: 14 
+    bind ^O       <sidebar-open>
+        op = 281 (OP_SIDEBAR_OPEN)
+        eq = 0
+        keys: 15 
+    bind ^P       <sidebar-prev>
+        op = 284 (OP_SIDEBAR_PREV)
+        eq = 0
+        keys: 16 
+    bind ^R       <read-thread>
+        op = 176 (OP_MAIN_READ_THREAD)
+        eq = 0
+        keys: 18 
+    bind ^T       <untag-pattern>
+        op = 183 (OP_MAIN_UNTAG_PATTERN)
+        eq = 0
+        keys: 20 
+    bind ^U       <undelete-thread>
+        op = 236 (OP_UNDELETE_THREAD)
+        eq = 0
+        keys: 21 
+    bind <Esc><Tab> <previous-new-then-unread>
+        op = 169 (OP_MAIN_PREV_NEW_THEN_UNREAD)
+        eq = 1
+        keys: 27 9 
+    macro <Esc>C   ":set weed = no\n;<decode-copy>=\n:set weed = yes\n"
+        op = 141
+        eq = 1
+        keys: 27 67 
+    bind <Esc>P   <check-traditional-pgp>
+        op = 272 (OP_CHECK_TRADITIONAL)
+        eq = 1
+        keys: 27 80 
+    macro <Esc>S   ":set weed = no\n;<decode-save>=\n:set weed = yes\n"
+        op = 141
+        eq = 1
+        keys: 27 83 
+    bind <Esc>V   <collapse-all>
+        op = 150 (OP_MAIN_COLLAPSE_ALL)
+        eq = 1
+        keys: 27 86 
+    macro <Esc>b   "<search>~b "
+        search in message bodies
+        op = 141
+        eq = 1
+        keys: 27 98 
+    bind <Esc>c   <change-folder-readonly>
+        op = 146 (OP_MAIN_CHANGE_FOLDER_READONLY)
+        eq = 1
+        keys: 27 99 
+    bind <Esc>d   <delete-subthread>
+        op = 73 (OP_DELETE_SUBTHREAD)
+        eq = 1
+        keys: 27 100 
+    bind <Esc>e   <resend-message>
+        op = 211 (OP_RESEND)
+        eq = 1
+        keys: 27 101 
+    macro <Esc>i   "c~/mail/inbox.empty<enter>"
+        open empty inbox
+        op = 141
+        eq = 1
+        keys: 27 105 
+    macro <Esc>j   ":set confirm_append = no\n;<tag-prefix-cond><clear-flag>n<tag-prefix-cond><save-message>=junk\n<sync-mailbox>:set confirmappend = no\n"
+        op = 141
+        eq = 1
+        keys: 27 106 
+    bind <Esc>k   <mail-key>
+        op = 274 (OP_MAIL_KEY)
+        eq = 1
+        keys: 27 107 
+    bind <Esc>l   <show-limit>
+        op = 179 (OP_MAIN_SHOW_LIMIT)
+        eq = 1
+        keys: 27 108 
+    bind <Esc>n   <next-subthread>
+        op = 162 (OP_MAIN_NEXT_SUBTHREAD)
+        eq = 1
+        keys: 27 110 
+    bind <Esc>p   <previous-subthread>
+        op = 170 (OP_MAIN_PREV_SUBTHREAD)
+        eq = 1
+        keys: 27 112 
+    bind <Esc>r   <read-subthread>
+        op = 175 (OP_MAIN_READ_SUBTHREAD)
+        eq = 1
+        keys: 27 114 
+    bind <Esc>s   <decode-save>
+        op = 70 (OP_DECODE_SAVE)
+        eq = 1
+        keys: 27 115 
+    bind <Esc>t   <tag-thread>
+        op = 227 (OP_TAG_THREAD)
+        eq = 1
+        keys: 27 116 
+    bind <Esc>u   <undelete-subthread>
+        op = 235 (OP_UNDELETE_SUBTHREAD)
+        eq = 1
+        keys: 27 117 
+    bind <Esc>v   <collapse-thread>
+        op = 151 (OP_MAIN_COLLAPSE_THREAD)
+        eq = 0
+        keys: 27 118 
+    bind <Space>  <display-message>
+        op = 78 (OP_DISPLAY_MESSAGE)
+        eq = 0
+        keys: 32 
+    bind #        <break-thread>
+        op = 144 (OP_MAIN_BREAK_THREAD)
+        eq = 0
+        keys: 35 
+    bind $        <sync-mailbox>
+        op = 180 (OP_MAIN_SYNC_FOLDER)
+        eq = 0
+        keys: 36 
+    bind %        <toggle-write>
+        op = 231 (OP_TOGGLE_WRITE)
+        eq = 0
+        keys: 37 
+    bind &        <link-threads>
+        op = 157 (OP_MAIN_LINK_THREADS)
+        eq = 0
+        keys: 38 
+    macro ,n       "T~N\n;WN;t"
+        op = 141
+        eq = 1
+        keys: 44 110 
+    macro ,o       "T~O\n;WO;t"
+        op = 141
+        eq = 0
+        keys: 44 111 
+    bind .        <mailbox-list>
+        op = 143 (OP_MAILBOX_LIST)
+        eq = 0
+        keys: 46 
+    bind @        <display-address>
+        op = 76 (OP_DISPLAY_ADDRESS)
+        eq = 0
+        keys: 64 
+    bind A        <alias-dialog>
+        op = 41 (OP_ALIAS_DIALOG)
+        eq = 0
+        keys: 65 
+    bind C        <copy-message>
+        op = 63 (OP_COPY_MESSAGE)
+        eq = 0
+        keys: 67 
+    bind D        <delete-pattern>
+        op = 152 (OP_MAIN_DELETE_PATTERN)
+        eq = 0
+        keys: 68 
+    bind F        <flag-message>
+        op = 111 (OP_FLAG_MESSAGE)
+        eq = 0
+        keys: 70 
+    bind G        <imap-fetch-mail>
+        op = 154 (OP_MAIN_IMAP_FETCH)
+        eq = 0
+        keys: 71 
+    bind J        <next-entry>
+        op = 186 (OP_NEXT_ENTRY)
+        eq = 0
+        keys: 74 
+    bind K        <previous-entry>
+        op = 196 (OP_PREV_ENTRY)
+        eq = 0
+        keys: 75 
+    bind L        <list-reply>
+        op = 137 (OP_LIST_REPLY)
+        eq = 0
+        keys: 76 
+    bind M        <show-log-messages>
+        op = 219 (OP_SHOW_LOG_MESSAGES)
+        eq = 0
+        keys: 77 
+    bind N        <toggle-new>
+        op = 229 (OP_TOGGLE_NEW)
+        eq = 0
+        keys: 78 
+    bind O        <sort-reverse>
+        op = 221 (OP_SORT_REVERSE)
+        eq = 0
+        keys: 79 
+    bind P        <parent-message>
+        op = 167 (OP_MAIN_PARENT_MESSAGE)
+        eq = 0
+        keys: 80 
+    bind Q        <query>
+        op = 202 (OP_QUERY)
+        eq = 0
+        keys: 81 
+    bind R        <recall-message>
+        op = 205 (OP_RECALL_MESSAGE)
+        eq = 0
+        keys: 82 
+    bind T        <tag-pattern>
+        op = 181 (OP_MAIN_TAG_PATTERN)
+        eq = 0
+        keys: 84 
+    bind U        <undelete-pattern>
+        op = 182 (OP_MAIN_UNDELETE_PATTERN)
+        eq = 0
+        keys: 85 
+    bind W        <clear-flag>
+        op = 149 (OP_MAIN_CLEAR_FLAG)
+        eq = 0
+        keys: 87 
+    bind Y        <edit-label>
+        op = 103 (OP_EDIT_LABEL)
+        eq = 0
+        keys: 89 
+    bind a        <create-alias>
+        op = 64 (OP_CREATE_ALIAS)
+        eq = 0
+        keys: 97 
+    bind b        <bounce-message>
+        op = 43 (OP_BOUNCE_MESSAGE)
+        eq = 0
+        keys: 98 
+    bind c        <change-folder>
+        op = 145 (OP_MAIN_CHANGE_FOLDER)
+        eq = 0
+        keys: 99 
+    bind d        <delete-message>
+        op = 71 (OP_DELETE)
+        eq = 0
+        keys: 100 
+    bind e        <edit-or-view-raw-message>
+        op = 104 (OP_EDIT_OR_VIEW_RAW_MESSAGE)
+        eq = 0
+        keys: 101 
+    bind f        <forward-message>
+        op = 113 (OP_FORWARD_MESSAGE)
+        eq = 0
+        keys: 102 
+    bind g        <group-reply>
+        op = 121 (OP_GROUP_REPLY)
+        eq = 0
+        keys: 103 
+    bind h        <display-toggle-weed>
+        op = 77 (OP_DISPLAY_HEADERS)
+        eq = 0
+        keys: 104 
+    bind i        <change-newsgroup>
+        op = 147 (OP_MAIN_CHANGE_GROUP)
+        eq = 0
+        keys: 105 
+    bind j        <next-entry>
+        op = 186 (OP_NEXT_ENTRY)
+        eq = 0
+        keys: 106 
+    bind k        <previous-entry>
+        op = 196 (OP_PREV_ENTRY)
+        eq = 0
+        keys: 107 
+    bind l        <limit>
+        op = 156 (OP_MAIN_LIMIT)
+        eq = 0
+        keys: 108 
+    bind m        <mail>
+        op = 142 (OP_MAIL)
+        eq = 0
+        keys: 109 
+    bind o        <sort-mailbox>
+        op = 220 (OP_SORT)
+        eq = 0
+        keys: 111 
+    bind p        <print-message>
+        op = 199 (OP_PRINT)
+        eq = 0
+        keys: 112 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+    bind r        <reply>
+        op = 210 (OP_REPLY)
+        eq = 0
+        keys: 114 
+    bind s        <save-message>
+        op = 212 (OP_SAVE)
+        eq = 0
+        keys: 115 
+    bind u        <undelete-message>
+        op = 234 (OP_UNDELETE)
+        eq = 0
+        keys: 117 
+    bind v        <view-attachments>
+        op = 239 (OP_VIEW_ATTACHMENTS)
+        eq = 0
+        keys: 118 
+    bind w        <set-flag>
+        op = 178 (OP_MAIN_SET_FLAG)
+        eq = 0
+        keys: 119 
+    bind x        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 120 
+    bind |        <pipe-entry>
+        op = 194 (OP_PIPE)
+        eq = 0
+        keys: 124 
+    bind ~        <mark-message>
+        op = 184 (OP_MARK_MSG)
+        eq = 0
+        keys: 126 
+    bind <Down>   <next-undeleted>
+        op = 164 (OP_MAIN_NEXT_UNDELETED)
+        eq = 0
+        keys: 258 
+    bind <Up>     <previous-undeleted>
+        op = 172 (OP_MAIN_PREV_UNDELETED)
+        eq = 0
+        keys: 259 
+    macro <F1>     "mrich@flatcap.org<enter>test<enter>"
+        op = 141
+        eq = 0
+        keys: 265 
+    bind <KeypadEnter> <display-message>
+        op = 78 (OP_DISPLAY_MESSAGE)
+        eq = 0
+        keys: 343 
+Menu: mix
+    bind <Enter>  <accept>
+        op = 263 (OP_MIX_USE)
+        eq = 0
+        keys: 10 
+    bind <Return> <accept>
+        op = 263 (OP_MIX_USE)
+        eq = 0
+        keys: 13 
+    bind <Space>  <select-entry>
+        op = 115 (OP_GENERIC_SELECT_ENTRY)
+        eq = 0
+        keys: 32 
+    bind a        <append>
+        op = 258 (OP_MIX_APPEND)
+        eq = 0
+        keys: 97 
+    bind d        <delete>
+        op = 261 (OP_MIX_DELETE)
+        eq = 0
+        keys: 100 
+    bind h        <chain-prev>
+        op = 260 (OP_MIX_CHAIN_PREV)
+        eq = 0
+        keys: 104 
+    bind i        <insert>
+        op = 262 (OP_MIX_INSERT)
+        eq = 0
+        keys: 105 
+    bind l        <chain-next>
+        op = 259 (OP_MIX_CHAIN_NEXT)
+        eq = 0
+        keys: 108 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+    bind <Left>   <chain-prev>
+        op = 260 (OP_MIX_CHAIN_PREV)
+        eq = 0
+        keys: 260 
+    bind <Right>  <chain-next>
+        op = 259 (OP_MIX_CHAIN_NEXT)
+        eq = 0
+        keys: 261 
+    bind <KeypadEnter> <accept>
+        op = 263 (OP_MIX_USE)
+        eq = 0
+        keys: 343 
+Menu: pager
+    macro ^B       "<enter-command> set my_pipe_decode=$pipe_decode pipe_decode<Enter><pipe-message> urlview<Enter><enter-command> set pipe_decode=$my_pipe_decode; unset my_pipe_decode<Enter>"
+        call urlview to extract URLs out of a message
+        op = 141
+        eq = 0
+        keys: 2 
+    bind ^D       <delete-thread>
+        op = 74 (OP_DELETE_THREAD)
+        eq = 0
+        keys: 4 
+    bind ^E       <edit-type>
+        op = 12 (OP_ATTACHMENT_EDIT_TYPE)
+        eq = 0
+        keys: 5 
+    bind ^F       <forget-passphrase>
+        op = 245 (OP_FORGET_PASSPHRASE)
+        eq = 0
+        keys: 6 
+    bind <Tab>    <next-new-then-unread>
+        op = 161 (OP_MAIN_NEXT_NEW_THEN_UNREAD)
+        eq = 0
+        keys: 9 
+    bind <Enter>  <next-line>
+        op = 187 (OP_NEXT_LINE)
+        eq = 0
+        keys: 10 
+    bind ^K       <extract-keys>
+        op = 244 (OP_EXTRACT_KEYS)
+        eq = 0
+        keys: 11 
+    bind ^L       <redraw-screen>
+        op = 207 (OP_REDRAW)
+        eq = 0
+        keys: 12 
+    bind <Return> <next-line>
+        op = 187 (OP_NEXT_LINE)
+        eq = 0
+        keys: 13 
+    bind ^N       <sidebar-next>
+        op = 279 (OP_SIDEBAR_NEXT)
+        eq = 0
+        keys: 14 
+    bind ^O       <sidebar-open>
+        op = 281 (OP_SIDEBAR_OPEN)
+        eq = 0
+        keys: 15 
+    bind ^P       <sidebar-prev>
+        op = 284 (OP_SIDEBAR_PREV)
+        eq = 0
+        keys: 16 
+    bind ^R       <read-thread>
+        op = 176 (OP_MAIN_READ_THREAD)
+        eq = 0
+        keys: 18 
+    bind ^U       <undelete-thread>
+        op = 236 (OP_UNDELETE_THREAD)
+        eq = 0
+        keys: 21 
+    bind <Esc>/   <search-reverse>
+        op = 216 (OP_SEARCH_REVERSE)
+        eq = 1
+        keys: 27 47 
+    bind <Esc>C   <decode-copy>
+        op = 69 (OP_DECODE_COPY)
+        eq = 1
+        keys: 27 67 
+    bind <Esc>P   <check-traditional-pgp>
+        op = 272 (OP_CHECK_TRADITIONAL)
+        eq = 1
+        keys: 27 80 
+    bind <Esc>c   <change-folder-readonly>
+        op = 146 (OP_MAIN_CHANGE_FOLDER_READONLY)
+        eq = 1
+        keys: 27 99 
+    bind <Esc>d   <delete-subthread>
+        op = 73 (OP_DELETE_SUBTHREAD)
+        eq = 1
+        keys: 27 100 
+    bind <Esc>e   <resend-message>
+        op = 211 (OP_RESEND)
+        eq = 1
+        keys: 27 101 
+    macro <Esc>i   "c~/mail/inbox.empty<enter>"
+        open empty inbox
+        op = 141
+        eq = 1
+        keys: 27 105 
+    bind <Esc>k   <mail-key>
+        op = 274 (OP_MAIL_KEY)
+        eq = 1
+        keys: 27 107 
+    bind <Esc>n   <next-subthread>
+        op = 162 (OP_MAIN_NEXT_SUBTHREAD)
+        eq = 1
+        keys: 27 110 
+    bind <Esc>p   <previous-subthread>
+        op = 170 (OP_MAIN_PREV_SUBTHREAD)
+        eq = 1
+        keys: 27 112 
+    bind <Esc>r   <read-subthread>
+        op = 175 (OP_MAIN_READ_SUBTHREAD)
+        eq = 1
+        keys: 27 114 
+    bind <Esc>s   <decode-save>
+        op = 70 (OP_DECODE_SAVE)
+        eq = 1
+        keys: 27 115 
+    bind <Esc>u   <undelete-subthread>
+        op = 235 (OP_UNDELETE_SUBTHREAD)
+        eq = 0
+        keys: 27 117 
+    bind <Space>  <next-page>
+        op = 188 (OP_NEXT_PAGE)
+        eq = 0
+        keys: 32 
+    bind !        <shell-escape>
+        op = 218 (OP_SHELL_ESCAPE)
+        eq = 0
+        keys: 33 
+    bind #        <break-thread>
+        op = 144 (OP_MAIN_BREAK_THREAD)
+        eq = 0
+        keys: 35 
+    bind $        <sync-mailbox>
+        op = 180 (OP_MAIN_SYNC_FOLDER)
+        eq = 0
+        keys: 36 
+    bind %        <toggle-write>
+        op = 231 (OP_TOGGLE_WRITE)
+        eq = 0
+        keys: 37 
+    bind &        <link-threads>
+        op = 157 (OP_MAIN_LINK_THREADS)
+        eq = 0
+        keys: 38 
+    bind -        <previous-page>
+        op = 198 (OP_PREV_PAGE)
+        eq = 0
+        keys: 45 
+    bind .        <mailbox-list>
+        op = 143 (OP_MAILBOX_LIST)
+        eq = 0
+        keys: 46 
+    bind /        <search>
+        op = 213 (OP_SEARCH)
+        eq = 0
+        keys: 47 
+    bind 1        <jump>
+        op = 126 (OP_JUMP_1)
+        eq = 0
+        keys: 49 
+    bind 2        <jump>
+        op = 127 (OP_JUMP_2)
+        eq = 0
+        keys: 50 
+    bind 3        <jump>
+        op = 128 (OP_JUMP_3)
+        eq = 0
+        keys: 51 
+    bind 4        <jump>
+        op = 129 (OP_JUMP_4)
+        eq = 0
+        keys: 52 
+    bind 5        <jump>
+        op = 130 (OP_JUMP_5)
+        eq = 0
+        keys: 53 
+    bind 6        <jump>
+        op = 131 (OP_JUMP_6)
+        eq = 0
+        keys: 54 
+    bind 7        <jump>
+        op = 132 (OP_JUMP_7)
+        eq = 0
+        keys: 55 
+    bind 8        <jump>
+        op = 133 (OP_JUMP_8)
+        eq = 0
+        keys: 56 
+    bind 9        <jump>
+        op = 134 (OP_JUMP_9)
+        eq = 0
+        keys: 57 
+    bind :        <enter-command>
+        op = 107 (OP_ENTER_COMMAND)
+        eq = 0
+        keys: 58 
+    bind ?        <help>
+        op = 124 (OP_HELP)
+        eq = 0
+        keys: 63 
+    bind @        <display-address>
+        op = 76 (OP_DISPLAY_ADDRESS)
+        eq = 0
+        keys: 64 
+    bind C        <copy-message>
+        op = 63 (OP_COPY_MESSAGE)
+        eq = 0
+        keys: 67 
+    bind F        <flag-message>
+        op = 111 (OP_FLAG_MESSAGE)
+        eq = 0
+        keys: 70 
+    bind H        <skip-headers>
+        op = 191 (OP_PAGER_SKIP_HEADERS)
+        eq = 0
+        keys: 72 
+    bind J        <next-entry>
+        op = 186 (OP_NEXT_ENTRY)
+        eq = 0
+        keys: 74 
+    bind K        <previous-entry>
+        op = 196 (OP_PREV_ENTRY)
+        eq = 0
+        keys: 75 
+    bind L        <list-reply>
+        op = 137 (OP_LIST_REPLY)
+        eq = 0
+        keys: 76 
+    bind N        <mark-as-new>
+        op = 229 (OP_TOGGLE_NEW)
+        eq = 0
+        keys: 78 
+    bind O        <sort-reverse>
+        op = 221 (OP_SORT_REVERSE)
+        eq = 0
+        keys: 79 
+    bind P        <parent-message>
+        op = 167 (OP_MAIN_PARENT_MESSAGE)
+        eq = 0
+        keys: 80 
+    bind Q        <quit>
+        op = 204 (OP_QUIT)
+        eq = 0
+        keys: 81 
+    bind R        <recall-message>
+        op = 205 (OP_RECALL_MESSAGE)
+        eq = 0
+        keys: 82 
+    bind S        <skip-quoted>
+        op = 192 (OP_PAGER_SKIP_QUOTED)
+        eq = 0
+        keys: 83 
+    bind T        <toggle-quoted>
+        op = 190 (OP_PAGER_HIDE_QUOTED)
+        eq = 0
+        keys: 84 
+    bind V        <show-version>
+        op = 238 (OP_VERSION)
+        eq = 0
+        keys: 86 
+    bind W        <clear-flag>
+        op = 149 (OP_MAIN_CLEAR_FLAG)
+        eq = 0
+        keys: 87 
+    bind Y        <edit-label>
+        op = 103 (OP_EDIT_LABEL)
+        eq = 0
+        keys: 89 
+    bind \\       <search-toggle>
+        op = 217 (OP_SEARCH_TOGGLE)
+        eq = 0
+        keys: 92 
+    bind ^        <top>
+        op = 193 (OP_PAGER_TOP)
+        eq = 0
+        keys: 94 
+    bind a        <create-alias>
+        op = 64 (OP_CREATE_ALIAS)
+        eq = 0
+        keys: 97 
+    bind b        <bounce-message>
+        op = 43 (OP_BOUNCE_MESSAGE)
+        eq = 0
+        keys: 98 
+    bind c        <change-folder>
+        op = 145 (OP_MAIN_CHANGE_FOLDER)
+        eq = 0
+        keys: 99 
+    bind d        <delete-message>
+        op = 71 (OP_DELETE)
+        eq = 0
+        keys: 100 
+    bind e        <edit-or-view-raw-message>
+        op = 104 (OP_EDIT_OR_VIEW_RAW_MESSAGE)
+        eq = 0
+        keys: 101 
+    bind f        <forward-message>
+        op = 113 (OP_FORWARD_MESSAGE)
+        eq = 0
+        keys: 102 
+    bind g        <group-reply>
+        op = 121 (OP_GROUP_REPLY)
+        eq = 0
+        keys: 103 
+    bind h        <display-toggle-weed>
+        op = 77 (OP_DISPLAY_HEADERS)
+        eq = 0
+        keys: 104 
+    bind i        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 105 
+    bind j        <next-entry>
+        op = 186 (OP_NEXT_ENTRY)
+        eq = 0
+        keys: 106 
+    bind k        <previous-entry>
+        op = 196 (OP_PREV_ENTRY)
+        eq = 0
+        keys: 107 
+    bind m        <mail>
+        op = 142 (OP_MAIL)
+        eq = 0
+        keys: 109 
+    bind n        <search-next>
+        op = 214 (OP_SEARCH_NEXT)
+        eq = 0
+        keys: 110 
+    bind o        <sort-mailbox>
+        op = 220 (OP_SORT)
+        eq = 0
+        keys: 111 
+    bind p        <print-message>
+        op = 199 (OP_PRINT)
+        eq = 0
+        keys: 112 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+    bind r        <reply>
+        op = 210 (OP_REPLY)
+        eq = 0
+        keys: 114 
+    bind s        <save-message>
+        op = 212 (OP_SAVE)
+        eq = 0
+        keys: 115 
+    bind t        <tag-message>
+        op = 223 (OP_TAG)
+        eq = 0
+        keys: 116 
+    bind u        <undelete-message>
+        op = 234 (OP_UNDELETE)
+        eq = 0
+        keys: 117 
+    bind v        <view-attachments>
+        op = 239 (OP_VIEW_ATTACHMENTS)
+        eq = 0
+        keys: 118 
+    bind w        <set-flag>
+        op = 178 (OP_MAIN_SET_FLAG)
+        eq = 0
+        keys: 119 
+    bind x        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 120 
+    bind |        <pipe-entry>
+        op = 194 (OP_PIPE)
+        eq = 0
+        keys: 124 
+    bind <Down>   <next-undeleted>
+        op = 164 (OP_MAIN_NEXT_UNDELETED)
+        eq = 0
+        keys: 258 
+    bind <Up>     <previous-undeleted>
+        op = 172 (OP_MAIN_PREV_UNDELETED)
+        eq = 0
+        keys: 259 
+    bind <Left>   <previous-undeleted>
+        op = 172 (OP_MAIN_PREV_UNDELETED)
+        eq = 0
+        keys: 260 
+    bind <Right>  <next-undeleted>
+        op = 164 (OP_MAIN_NEXT_UNDELETED)
+        eq = 0
+        keys: 261 
+    bind <Home>   <top>
+        op = 193 (OP_PAGER_TOP)
+        eq = 0
+        keys: 262 
+    bind <BackSpace> <previous-line>
+        op = 197 (OP_PREV_LINE)
+        eq = 0
+        keys: 263 
+    macro <F1>     "mrich@flatcap.org<enter>test<enter>"
+        op = 141
+        eq = 0
+        keys: 265 
+    bind <PageDown> <next-page>
+        op = 188 (OP_NEXT_PAGE)
+        eq = 0
+        keys: 338 
+    bind <PageUp> <previous-page>
+        op = 198 (OP_PREV_PAGE)
+        eq = 0
+        keys: 339 
+    bind <KeypadEnter> <next-line>
+        op = 187 (OP_NEXT_LINE)
+        eq = 0
+        keys: 343 
+    bind <End>    <bottom>
+        op = 189 (OP_PAGER_BOTTOM)
+        eq = 0
+        keys: 360 
+Menu: pgp
+    bind %        <view-name>
+        op = 276 (OP_VIEW_ID)
+        eq = 0
+        keys: 37 
+    bind c        <verify-key>
+        op = 275 (OP_VERIFY_KEY)
+        eq = 0
+        keys: 99 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+Menu: postpone
+    bind d        <delete-entry>
+        op = 71 (OP_DELETE)
+        eq = 0
+        keys: 100 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+    bind u        <undelete-entry>
+        op = 234 (OP_UNDELETE)
+        eq = 0
+        keys: 117 
+Menu: query
+    bind A        <query-append>
+        op = 203 (OP_QUERY_APPEND)
+        eq = 0
+        keys: 65 
+    bind O        <sort-reverse>
+        op = 221 (OP_SORT_REVERSE)
+        eq = 0
+        keys: 79 
+    bind Q        <query>
+        op = 202 (OP_QUERY)
+        eq = 0
+        keys: 81 
+    bind a        <create-alias>
+        op = 64 (OP_CREATE_ALIAS)
+        eq = 0
+        keys: 97 
+    bind l        <limit>
+        op = 156 (OP_MAIN_LIMIT)
+        eq = 0
+        keys: 108 
+    bind m        <mail>
+        op = 142 (OP_MAIL)
+        eq = 0
+        keys: 109 
+    bind o        <sort>
+        op = 220 (OP_SORT)
+        eq = 0
+        keys: 111 
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 
+Menu: smime
+    bind q        <exit>
+        op = 109 (OP_EXIT)
+        eq = 0
+        keys: 113 

@@ -1,0 +1,421 @@
+AliasFunctions
+	OP_CREATE_ALIAS                     op_create_alias
+	OP_DELETE                           op_delete
+	OP_EXIT                             op_exit
+	OP_GENERIC_SELECT_ENTRY             op_generic_select_entry
+	OP_MAIL                             op_generic_select_entry
+	OP_MAIN_LIMIT                       op_main_limit
+	OP_MAIN_TAG_PATTERN                 op_main_tag_pattern
+	OP_MAIN_UNTAG_PATTERN               op_main_untag_pattern
+	OP_QUERY                            op_query
+	OP_QUERY_APPEND                     op_query
+	OP_SEARCH                           op_search
+	OP_SEARCH_NEXT                      op_search
+	OP_SEARCH_OPPOSITE                  op_search
+	OP_SEARCH_REVERSE                   op_search
+	OP_SORT                             op_sort
+	OP_SORT_REVERSE                     op_sort
+	OP_UNDELETE                         op_delete
+
+AttachFunctions
+	OP_ATTACHMENT_COLLAPSE              op_attachment_collapse
+	OP_ATTACHMENT_DELETE                op_attachment_delete
+	OP_ATTACHMENT_EDIT_TYPE             op_attachment_edit_type
+	OP_PIPE                             op_attachment_pipe
+	OP_ATTACHMENT_PRINT                 op_attachment_print
+	OP_ATTACHMENT_SAVE                  op_attachment_save
+	OP_ATTACHMENT_UNDELETE              op_attachment_undelete
+	OP_ATTACHMENT_VIEW                  op_attachment_view
+	OP_ATTACHMENT_VIEW_MAILCAP          op_attachment_view_mailcap
+	OP_ATTACHMENT_VIEW_PAGER            op_attachment_view_pager
+	OP_ATTACHMENT_VIEW_TEXT             op_attachment_view_text
+	OP_BOUNCE_MESSAGE                   op_bounce_message
+	OP_CHECK_TRADITIONAL                op_check_traditional
+	OP_COMPOSE_TO_SENDER                op_compose_to_sender
+	OP_DISPLAY_HEADERS                  op_attachment_view
+	OP_EXIT                             op_exit
+	OP_EXTRACT_KEYS                     op_extract_keys
+	OP_FOLLOWUP                         op_followup
+	OP_FORGET_PASSPHRASE                op_forget_passphrase
+	OP_FORWARD_MESSAGE                  op_forward_message
+	OP_FORWARD_TO_GROUP                 op_forward_to_group
+	OP_GROUP_CHAT_REPLY                 op_reply
+	OP_GROUP_REPLY                      op_reply
+	OP_LIST_REPLY                       op_reply
+	OP_LIST_SUBSCRIBE                   op_list_subscribe
+	OP_LIST_UNSUBSCRIBE                 op_list_unsubscribe
+	OP_REPLY                            op_reply
+	OP_RESEND                           op_resend
+
+AutocryptFunctions
+	OP_AUTOCRYPT_CREATE_ACCT            op_autocrypt_create_acct
+	OP_AUTOCRYPT_DELETE_ACCT            op_autocrypt_delete_acct
+	OP_AUTOCRYPT_TOGGLE_ACTIVE          op_autocrypt_toggle_active
+	OP_AUTOCRYPT_TOGGLE_PREFER          op_autocrypt_toggle_prefer
+	OP_EXIT                             op_exit
+
+BrowserFunctions
+	OP_BROWSER_GOTO_FOLDER              op_toggle_mailboxes
+	OP_BROWSER_NEW_FILE                 op_browser_new_file
+	OP_BROWSER_SUBSCRIBE                op_browser_subscribe
+	OP_BROWSER_TELL                     op_browser_tell
+	OP_BROWSER_TOGGLE_LSUB              op_browser_toggle_lsub
+	OP_BROWSER_UNSUBSCRIBE              op_browser_subscribe
+	OP_BROWSER_VIEW_FILE                op_browser_view_file
+	OP_CATCHUP                          op_catchup
+	OP_CHANGE_DIRECTORY                 op_change_directory
+	OP_CHECK_NEW                        op_toggle_mailboxes
+	OP_CREATE_MAILBOX                   op_create_mailbox
+	OP_DELETE_MAILBOX                   op_delete_mailbox
+	OP_DESCEND_DIRECTORY                op_generic_select_entry
+	OP_ENTER_MASK                       op_enter_mask
+	OP_EXIT                             op_exit
+	OP_GENERIC_SELECT_ENTRY             op_generic_select_entry
+	OP_GOTO_PARENT                      op_change_directory
+	OP_LOAD_ACTIVE                      op_load_active
+	OP_MAILBOX_LIST                     op_mailbox_list
+	OP_RENAME_MAILBOX                   op_rename_mailbox
+	OP_SORT                             op_sort
+	OP_SORT_REVERSE                     op_sort
+	OP_SUBSCRIBE_PATTERN                op_subscribe_pattern
+	OP_TOGGLE_MAILBOXES                 op_toggle_mailboxes
+	OP_UNCATCHUP                        op_catchup
+	OP_UNSUBSCRIBE_PATTERN              op_subscribe_pattern
+
+ComposeFunctions
+	OP_ATTACHMENT_ATTACH_FILE           op_attachment_attach_file
+	OP_ATTACHMENT_ATTACH_KEY            op_attachment_attach_key
+	OP_ATTACHMENT_ATTACH_MESSAGE        op_attachment_attach_message
+	OP_ATTACHMENT_ATTACH_NEWS_MESSAGE   op_attachment_attach_message
+	OP_ATTACHMENT_DETACH                op_attachment_detach
+	OP_ATTACHMENT_EDIT_CONTENT_ID       op_attachment_edit_content_id
+	OP_ATTACHMENT_EDIT_DESCRIPTION      op_attachment_edit_description
+	OP_ATTACHMENT_EDIT_ENCODING         op_attachment_edit_encoding
+	OP_ATTACHMENT_EDIT_LANGUAGE         op_attachment_edit_language
+	OP_ATTACHMENT_EDIT_MIME             op_attachment_edit_mime
+	OP_ATTACHMENT_EDIT_TYPE             op_attachment_edit_type
+	OP_ATTACHMENT_FILTER                op_attachment_filter
+	OP_ATTACHMENT_GET_ATTACHMENT        op_attachment_get_attachment
+	OP_ATTACHMENT_GROUP_ALTS            op_attachment_group_alts
+	OP_ATTACHMENT_GROUP_LINGUAL         op_attachment_group_lingual
+	OP_ATTACHMENT_GROUP_RELATED         op_attachment_group_related
+	OP_ATTACHMENT_MOVE_DOWN             op_attachment_move_down
+	OP_ATTACHMENT_MOVE_UP               op_attachment_move_up
+	OP_ATTACHMENT_NEW_MIME              op_attachment_new_mime
+	OP_PIPE                             op_attachment_filter
+	OP_ATTACHMENT_PRINT                 op_attachment_print
+	OP_ATTACHMENT_RENAME_ATTACHMENT     op_attachment_rename_attachment
+	OP_ATTACHMENT_SAVE                  op_attachment_save
+	OP_ATTACHMENT_TOGGLE_DISPOSITION    op_attachment_toggle_disposition
+	OP_ATTACHMENT_TOGGLE_RECODE         op_attachment_toggle_recode
+	OP_ATTACHMENT_TOGGLE_UNLINK         op_attachment_toggle_unlink
+	OP_ATTACHMENT_UNGROUP               op_attachment_ungroup
+	OP_ATTACHMENT_UPDATE_ENCODING       op_attachment_update_encoding
+	OP_ATTACHMENT_VIEW                  op_display_headers
+	OP_ATTACHMENT_VIEW_MAILCAP          op_display_headers
+	OP_ATTACHMENT_VIEW_PAGER            op_display_headers
+	OP_ATTACHMENT_VIEW_TEXT             op_display_headers
+	OP_COMPOSE_EDIT_FILE                op_compose_edit_file
+	OP_COMPOSE_EDIT_MESSAGE             op_compose_edit_message
+	OP_COMPOSE_ISPELL                   op_compose_ispell
+	OP_COMPOSE_POSTPONE_MESSAGE         op_compose_postpone_message
+	OP_COMPOSE_RENAME_FILE              op_compose_rename_file
+	OP_COMPOSE_SEND_MESSAGE             op_compose_send_message
+	OP_COMPOSE_WRITE_MESSAGE            op_compose_write_message
+	OP_DISPLAY_HEADERS                  op_display_headers
+	OP_ENVELOPE_EDIT_HEADERS            op_envelope_edit_headers
+	OP_EXIT                             op_exit
+	OP_FORGET_PASSPHRASE                op_forget_passphrase
+
+EnterFunctions
+	OP_EDITOR_BACKSPACE                 op_editor_backspace
+	OP_EDITOR_BACKWARD_CHAR             op_editor_backward_char
+	OP_EDITOR_BACKWARD_WORD             op_editor_backward_word
+	OP_EDITOR_BOL                       op_editor_bol
+	OP_EDITOR_CAPITALIZE_WORD           op_editor_capitalize_word
+	OP_EDITOR_COMPLETE                  op_editor_complete
+	OP_EDITOR_COMPLETE_QUERY            op_editor_complete
+	OP_EDITOR_DELETE_CHAR               op_editor_delete_char
+	OP_EDITOR_DOWNCASE_WORD             op_editor_capitalize_word
+	OP_EDITOR_EOL                       op_editor_eol
+	OP_EDITOR_FORWARD_CHAR              op_editor_forward_char
+	OP_EDITOR_FORWARD_WORD              op_editor_forward_word
+	OP_EDITOR_HISTORY_DOWN              op_editor_history_down
+	OP_EDITOR_HISTORY_SEARCH            op_editor_history_search
+	OP_EDITOR_HISTORY_UP                op_editor_history_up
+	OP_EDITOR_KILL_EOL                  op_editor_kill_eol
+	OP_EDITOR_KILL_EOW                  op_editor_kill_eow
+	OP_EDITOR_KILL_LINE                 op_editor_kill_line
+	OP_EDITOR_KILL_WHOLE_LINE           op_editor_kill_whole_line
+	OP_EDITOR_KILL_WORD                 op_editor_kill_word
+	OP_EDITOR_MAILBOX_CYCLE             op_editor_complete
+	OP_EDITOR_QUOTE_CHAR                op_editor_quote_char
+	OP_EDITOR_TRANSPOSE_CHARS           op_editor_transpose_chars
+	OP_EDITOR_UPCASE_WORD               op_editor_capitalize_word
+	OP_HELP                             op_help
+	OP_REDRAW                           op_redraw
+
+EnvelopeFunctions
+	OP_COMPOSE_AUTOCRYPT_MENU           op_compose_autocrypt_menu
+	OP_COMPOSE_PGP_MENU                 op_compose_pgp_menu
+	OP_COMPOSE_SMIME_MENU               op_compose_smime_menu
+	OP_ENVELOPE_EDIT_BCC                op_envelope_edit_bcc
+	OP_ENVELOPE_EDIT_CC                 op_envelope_edit_cc
+	OP_ENVELOPE_EDIT_FCC                op_envelope_edit_fcc
+	OP_ENVELOPE_EDIT_FOLLOWUP_TO        op_envelope_edit_followup_to
+	OP_ENVELOPE_EDIT_FROM               op_envelope_edit_from
+	OP_ENVELOPE_EDIT_NEWSGROUPS         op_envelope_edit_newsgroups
+	OP_ENVELOPE_EDIT_REPLY_TO           op_envelope_edit_reply_to
+	OP_ENVELOPE_EDIT_SUBJECT            op_envelope_edit_subject
+	OP_ENVELOPE_EDIT_TO                 op_envelope_edit_to
+	OP_ENVELOPE_EDIT_X_COMMENT_TO       op_envelope_edit_x_comment_to
+
+GlobalFunctions
+	OP_CHECK_STATS                      op_check_stats
+	OP_ENTER_COMMAND                    op_enter_command
+	OP_REDRAW                           op_redraw
+	OP_SHELL_ESCAPE                     op_shell_escape
+	OP_SHOW_LOG_MESSAGES                op_show_log_messages
+	OP_VERSION                          op_version
+	OP_WHAT_KEY                         op_what_key
+
+GpgmeFunctions
+	OP_EXIT                             op_exit
+	OP_GENERIC_SELECT_ENTRY             op_generic_select_entry
+	OP_VERIFY_KEY                       op_verify_key
+	OP_VIEW_ID                          op_view_id
+
+HistoryFunctions
+	OP_GENERIC_SELECT_ENTRY             op_generic_select_entry
+	OP_QUIT                             op_quit
+
+IndexFunctions
+	OP_ALIAS_DIALOG                     op_alias_dialog CHECK_NO_FLAGS
+	OP_ATTACHMENT_EDIT_TYPE             op_attachment_edit_type CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_BOUNCE_MESSAGE                   op_bounce_message CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_CATCHUP                          op_catchup CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY
+	OP_CHECK_TRADITIONAL                op_check_traditional CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_COMPOSE_TO_SENDER                op_compose_to_sender CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_COPY_MESSAGE                     op_save CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_CREATE_ALIAS                     op_create_alias CHECK_NO_FLAGS
+	OP_DECODE_COPY                      op_save CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_DECODE_SAVE                      op_save CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_DECRYPT_COPY                     op_save CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_DECRYPT_SAVE                     op_save CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_DELETE                           op_delete CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_DELETE_SUBTHREAD                 op_delete_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_DELETE_THREAD                    op_delete_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_DISPLAY_ADDRESS                  op_display_address CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_DISPLAY_HEADERS                  op_display_message CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_DISPLAY_MESSAGE                  op_display_message CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_EDIT_LABEL                       op_edit_label CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_EDIT_OR_VIEW_RAW_MESSAGE         op_edit_raw_message CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_EDIT_RAW_MESSAGE                 op_edit_raw_message CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_END_COND                         op_end_cond CHECK_NO_FLAGS
+	OP_EXIT                             op_exit CHECK_NO_FLAGS
+	OP_EXTRACT_KEYS                     op_extract_keys CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_FLAG_MESSAGE                     op_flag_message CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_FOLLOWUP                         op_post CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_FORGET_PASSPHRASE                op_forget_passphrase CHECK_NO_FLAGS
+	OP_FORWARD_MESSAGE                  op_forward_message CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_FORWARD_TO_GROUP                 op_post CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_GET_CHILDREN                     op_get_children CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_GET_MESSAGE                      op_get_message CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_READONLY
+	OP_GET_PARENT                       op_get_message CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_GENERIC_SELECT_ENTRY             op_display_message CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_GROUP_CHAT_REPLY                 op_group_reply CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_GROUP_REPLY                      op_group_reply CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_JUMP                             op_jump CHECK_IN_MAILBOX
+	OP_JUMP_1                           op_jump CHECK_IN_MAILBOX
+	OP_JUMP_2                           op_jump CHECK_IN_MAILBOX
+	OP_JUMP_3                           op_jump CHECK_IN_MAILBOX
+	OP_JUMP_4                           op_jump CHECK_IN_MAILBOX
+	OP_JUMP_5                           op_jump CHECK_IN_MAILBOX
+	OP_JUMP_6                           op_jump CHECK_IN_MAILBOX
+	OP_JUMP_7                           op_jump CHECK_IN_MAILBOX
+	OP_JUMP_8                           op_jump CHECK_IN_MAILBOX
+	OP_JUMP_9                           op_jump CHECK_IN_MAILBOX
+	OP_LIMIT_CURRENT_THREAD             op_main_limit CHECK_IN_MAILBOX
+	OP_LIST_REPLY                       op_list_reply CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_LIST_SUBSCRIBE                   op_list_subscribe CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_LIST_UNSUBSCRIBE                 op_list_unsubscribe CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIL                             op_mail CHECK_ATTACH
+	OP_MAILBOX_LIST                     op_mailbox_list CHECK_NO_FLAGS
+	OP_MAIL_KEY                         op_mail_key CHECK_ATTACH
+	OP_MAIN_BREAK_THREAD                op_main_break_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_MAIN_CHANGE_FOLDER               op_main_change_folder CHECK_NO_FLAGS
+	OP_MAIN_CHANGE_FOLDER_READONLY      op_main_change_folder CHECK_NO_FLAGS
+	OP_MAIN_CHANGE_GROUP                op_main_change_group CHECK_NO_FLAGS
+	OP_MAIN_CHANGE_GROUP_READONLY       op_main_change_group CHECK_NO_FLAGS
+	OP_MAIN_CLEAR_FLAG                  op_main_set_flag CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_MAIN_COLLAPSE_ALL                op_main_collapse_all CHECK_IN_MAILBOX
+	OP_MAIN_COLLAPSE_THREAD             op_main_collapse_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_DELETE_PATTERN              op_main_delete_pattern CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_READONLY
+	OP_MAIN_FETCH_MAIL                  op_main_fetch_mail CHECK_ATTACH
+	OP_MAIN_IMAP_FETCH                  op_main_imap_fetch CHECK_NO_FLAGS
+	OP_MAIN_IMAP_LOGOUT_ALL             op_main_imap_logout_all CHECK_NO_FLAGS
+	OP_MAIN_LIMIT                       op_main_limit CHECK_IN_MAILBOX
+	OP_MAIN_LINK_THREADS                op_main_link_threads CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_MAIN_MODIFY_TAGS                 op_main_modify_tags CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_MAIN_MODIFY_TAGS_THEN_HIDE       op_main_modify_tags CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_MAIN_NEXT_NEW                    op_main_next_new CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_NEXT_NEW_THEN_UNREAD        op_main_next_new CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_NEXT_SUBTHREAD              op_main_next_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_NEXT_THREAD                 op_main_next_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_NEXT_UNDELETED              op_main_next_undeleted CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_NEXT_UNREAD                 op_main_next_new CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_NEXT_UNREAD_MAILBOX         op_main_next_unread_mailbox CHECK_IN_MAILBOX
+	OP_MAIN_PARENT_MESSAGE              op_main_root_message CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_PREV_NEW                    op_main_next_new CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_PREV_NEW_THEN_UNREAD        op_main_next_new CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_PREV_SUBTHREAD              op_main_next_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_PREV_THREAD                 op_main_next_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_PREV_UNDELETED              op_main_prev_undeleted CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_PREV_UNREAD                 op_main_next_new CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_QUASI_DELETE                op_main_quasi_delete CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_READ_SUBTHREAD              op_main_read_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_MAIN_READ_THREAD                 op_main_read_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_MAIN_ROOT_MESSAGE                op_main_root_message CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_SET_FLAG                    op_main_set_flag CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_MAIN_SHOW_LIMIT                  op_main_show_limit CHECK_IN_MAILBOX
+	OP_MAIN_SYNC_FOLDER                 op_main_sync_folder CHECK_NO_FLAGS
+	OP_MAIN_TAG_PATTERN                 op_main_tag_pattern CHECK_IN_MAILBOX
+	OP_MAIN_UNDELETE_PATTERN            op_main_undelete_pattern CHECK_IN_MAILBOX | CHECK_READONLY
+	OP_MAIN_UNTAG_PATTERN               op_main_untag_pattern CHECK_IN_MAILBOX
+	OP_MARK_MSG                         op_mark_msg CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_NEXT_ENTRY                       op_next_entry CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_PIPE                             op_pipe CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_POST                             op_post CHECK_ATTACH | CHECK_IN_MAILBOX
+	OP_PREV_ENTRY                       op_prev_entry CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_PRINT                            op_print CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_PURGE_MESSAGE                    op_delete CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_PURGE_THREAD                     op_delete_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_QUERY                            op_query CHECK_ATTACH
+	OP_QUIT                             op_quit CHECK_NO_FLAGS
+	OP_RECALL_MESSAGE                   op_recall_message CHECK_ATTACH
+	OP_RECONSTRUCT_THREAD               op_get_children CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_REPLY                            op_reply CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_RESEND                           op_resend CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_SAVE                             op_save CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_SEARCH                           op_search CHECK_IN_MAILBOX
+	OP_SEARCH_NEXT                      op_search CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_SEARCH_OPPOSITE                  op_search CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_SEARCH_REVERSE                   op_search CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_SORT                             op_sort CHECK_NO_FLAGS
+	OP_SORT_REVERSE                     op_sort CHECK_NO_FLAGS
+	OP_TAG                              op_tag CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_TAG_SUBTHREAD                    op_tag_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_TAG_THREAD                       op_tag_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_TOGGLE_NEW                       op_toggle_new CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_TOGGLE_READ                      op_main_limit CHECK_IN_MAILBOX
+	OP_TOGGLE_WRITE                     op_toggle_write CHECK_IN_MAILBOX
+	OP_UNDELETE                         op_undelete CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_UNDELETE_SUBTHREAD               op_undelete_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_UNDELETE_THREAD                  op_undelete_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_READONLY | CHECK_VISIBLE
+	OP_VIEW_ATTACHMENTS                 op_view_attachments CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_VIEW_RAW_MESSAGE                 op_edit_raw_message CHECK_ATTACH | CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_AUTOCRYPT_ACCT_MENU              op_autocrypt_acct_menu CHECK_NO_FLAGS
+	OP_MAIN_CHANGE_VFOLDER              op_main_change_folder CHECK_NO_FLAGS
+	OP_MAIN_ENTIRE_THREAD               op_main_entire_thread CHECK_IN_MAILBOX | CHECK_MSGCOUNT | CHECK_VISIBLE
+	OP_MAIN_VFOLDER_FROM_QUERY          op_main_vfolder_from_query CHECK_NO_FLAGS
+	OP_MAIN_VFOLDER_FROM_QUERY_READONLY op_main_vfolder_from_query CHECK_NO_FLAGS
+	OP_MAIN_WINDOWED_VFOLDER_BACKWARD   op_main_windowed_vfolder CHECK_IN_MAILBOX
+	OP_MAIN_WINDOWED_VFOLDER_FORWARD    op_main_windowed_vfolder CHECK_IN_MAILBOX
+	OP_MAIN_WINDOWED_VFOLDER_RESET      op_main_windowed_vfolder CHECK_IN_MAILBOX
+
+MenuFunctions
+	OP_BOTTOM_PAGE                      menu_movement
+	OP_CURRENT_BOTTOM                   menu_movement
+	OP_CURRENT_MIDDLE                   menu_movement
+	OP_CURRENT_TOP                      menu_movement
+	OP_FIRST_ENTRY                      menu_movement
+	OP_HALF_DOWN                        menu_movement
+	OP_HALF_UP                          menu_movement
+	OP_HELP                             op_help
+	OP_JUMP                             op_jump
+	OP_JUMP_1                           op_jump
+	OP_JUMP_2                           op_jump
+	OP_JUMP_3                           op_jump
+	OP_JUMP_4                           op_jump
+	OP_JUMP_5                           op_jump
+	OP_JUMP_6                           op_jump
+	OP_JUMP_7                           op_jump
+	OP_JUMP_8                           op_jump
+	OP_JUMP_9                           op_jump
+	OP_LAST_ENTRY                       menu_movement
+	OP_MIDDLE_PAGE                      menu_movement
+	OP_NEXT_ENTRY                       menu_movement
+	OP_NEXT_LINE                        menu_movement
+	OP_NEXT_PAGE                        menu_movement
+	OP_PREV_ENTRY                       menu_movement
+	OP_PREV_LINE                        menu_movement
+	OP_PREV_PAGE                        menu_movement
+	OP_SEARCH                           menu_search
+	OP_SEARCH_NEXT                      menu_search
+	OP_SEARCH_OPPOSITE                  menu_search
+	OP_SEARCH_REVERSE                   menu_search
+	OP_TOP_PAGE                         menu_movement
+
+PagerFunctions
+	OP_EXIT                             op_exit
+	OP_HALF_DOWN                        op_pager_half_down
+	OP_HALF_UP                          op_pager_half_up
+	OP_HELP                             op_help
+	OP_NEXT_LINE                        op_pager_next_line
+	OP_NEXT_PAGE                        op_pager_next_page
+	OP_PAGER_BOTTOM                     op_pager_bottom
+	OP_PAGER_HIDE_QUOTED                op_pager_hide_quoted
+	OP_PAGER_SKIP_HEADERS               op_pager_skip_headers
+	OP_PAGER_SKIP_QUOTED                op_pager_skip_quoted
+	OP_PAGER_TOP                        op_pager_top
+	OP_PREV_LINE                        op_pager_prev_line
+	OP_PREV_PAGE                        op_pager_prev_page
+	OP_SAVE                             op_save
+	OP_SEARCH                           op_pager_search
+	OP_SEARCH_REVERSE                   op_pager_search
+	OP_SEARCH_NEXT                      op_pager_search_next
+	OP_SEARCH_OPPOSITE                  op_pager_search_next
+	OP_SEARCH_TOGGLE                    op_search_toggle
+	OP_VIEW_ATTACHMENTS                 op_view_attachments
+
+PatternFunctions
+	OP_GENERIC_SELECT_ENTRY             op_generic_select_entry
+	OP_QUIT                             op_quit
+
+PgpFunctions
+	OP_EXIT                             op_exit
+	OP_GENERIC_SELECT_ENTRY             op_generic_select_entry
+	OP_VERIFY_KEY                       op_verify_key
+	OP_VIEW_ID                          op_view_id
+
+PostponeFunctions
+	OP_DELETE                           op_delete
+	OP_EXIT                             op_exit
+	OP_GENERIC_SELECT_ENTRY             op_generic_select_entry
+	OP_SEARCH                           op_search
+	OP_SEARCH_NEXT                      op_search
+	OP_SEARCH_OPPOSITE                  op_search
+	OP_SEARCH_REVERSE                   op_search
+	OP_UNDELETE                         op_delete
+
+PreviewFunctions
+	OP_PREVIEW_PAGE_DOWN                preview_page_down
+	OP_PREVIEW_PAGE_UP                  preview_page_up
+
+SidebarFunctions
+	OP_SIDEBAR_FIRST                    op_sidebar_first
+	OP_SIDEBAR_LAST                     op_sidebar_last
+	OP_SIDEBAR_NEXT                     op_sidebar_next
+	OP_SIDEBAR_NEXT_NEW                 op_sidebar_next_new
+	OP_SIDEBAR_OPEN                     op_sidebar_open
+	OP_SIDEBAR_PAGE_DOWN                op_sidebar_page_down
+	OP_SIDEBAR_PAGE_UP                  op_sidebar_page_up
+	OP_SIDEBAR_PREV                     op_sidebar_prev
+	OP_SIDEBAR_PREV_NEW                 op_sidebar_prev_new
+	OP_SIDEBAR_TOGGLE_VIRTUAL           op_sidebar_toggle_virtual
+	OP_SIDEBAR_TOGGLE_VISIBLE           op_sidebar_toggle_visible
+
+SmimeFunctions
+	OP_EXIT                             op_exit
+	OP_GENERIC_SELECT_ENTRY             op_generic_select_entry
+
