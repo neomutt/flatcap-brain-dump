@@ -1,0 +1,59 @@
+color-command			= "color" ( simple-object | pattern-object | regex-object | regex-backref-object )
+
+(* -------------------------------------------------------------------------------- *)
+
+number-0-255			= "0"
+				  | nonzero-digit
+				  | nonzero-digit digit
+				  | "1" digit digit
+				  | "2" digit-0-4 digit
+				  | "25" digit-0-5 ;
+
+digit				= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+nonzero-digit			= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+digit-0-4			= "0" | "1" | "2" | "3" | "4" ;
+digit-0-5			= "0" | "1" | "2" | "3" | "4" | "5" ;
+hex-digit			= digit | "A" | "a" | "B" | "b" | "C" | "c" | "D" | "d" | "E" | "e" | "F" | "f" ;
+
+(* -------------------------------------------------------------------------------- *)
+
+color-description		= "default" | simple-color | palette-color | rgb-color ;
+
+simple-color			= [ prefix ] basic-color ;
+
+prefix				= "alert" | "bright" | "light" ;
+
+basic-color			= "black" | "red" | "green" | "yellow" | "blue" | "magenta" | "cyan" | "white" ;
+
+palette-color			= "color", number-0-255 ;
+
+rgb-color			= "#" hex-digit hex-digit hex-digit hex-digit hex-digit hex-digit ;
+
+(* -------------------------------------------------------------------------------- *)
+
+attribute			= "blink" | "bold" | "italic" | "none" | "normal" | "reverse" | "standout" | "underline" ;
+
+(* -------------------------------------------------------------------------------- *)
+
+simple-object			= "attachment" | "bold" | "compose_header" | "compose_security_both" | "compose_security_encrypt" | "compose_security_none" | "compose_security_sign" | "error" | "hdrdefault" | "indicator" | "italic" | "markers" | "message" | "normal" | "options" | "progress" | "prompt" | "quoted0" | "quoted1" | "quoted2" | "quoted3" | "quoted4" | "quoted5" | "quoted6" | "quoted7" | "quoted8" | "quoted9" | "search" | "sidebar_background" | "sidebar_divider" | "sidebar_flagged" | "sidebar_highlight" | "sidebar_indicator" | "sidebar_new" | "sidebar_ordinary" | "sidebar_spool_file" | "sidebar_unread" | "signature" | "stripe_even" | "stripe_odd" | "tilde" | "tree" | "underline" | "warning" ;
+
+simple-object-color		= simple-object { attribute } color-description color-description ;
+
+(* -------------------------------------------------------------------------------- *)
+
+pattern-object			= "index" | "index_author" | "index_collapsed" | "index_date" | "index_flags" | "index_label" | "index_number" | "index_size" | "index_subject" | "index_tag" | "index_tags" ;
+
+pattern-object-color		= pattern-object { attribute } color-description color-description user-pattern ;
+
+(* -------------------------------------------------------------------------------- *)
+
+regex-object			= "attach_headers" | "body" | "header" ;
+
+regex-object-color		= regex-object { attribute } color-description color-description user-regex ;
+
+(* -------------------------------------------------------------------------------- *)
+
+regex-backref-object		= "status" ;
+
+regex-backref-object-color	= regex-backref-object { attribute } color-description color-description user-regex digit ;
+

@@ -1,0 +1,72 @@
+.TH NEOMUTT-COLOR 1 "October 2025" "NeoMutt" "Color Command Reference"
+.SH NAME
+neomutt-color
+- configure text colors for NeoMutt interface
+
+.SH SYNOPSIS
+.B color
+.RI simple-object|pattern-object|regex-object|regex-backref-object
+.RI { attribute } color-description color-description [user-pattern|user-regex|digit]
+
+.SH DESCRIPTION
+The
+.B color
+command in NeoMutt allows users to customize the appearance of the interface by setting foreground and background colors, along with optional text attributes such as bold or underline.
+
+NeoMutt supports different types of objects for colorization:
+
+.TP
+.B simple-object
+Basic elements of the interface such as message text, headers, markers, sidebar items, and prompts.
+
+.TP
+.B pattern-object
+Index line components like author, date, flags, labels, subjects, and tags. Can be further filtered by user-provided patterns.
+
+.TP
+.B regex-object
+Interface areas such as attach headers, message body, and headers. Colors can be applied using user-defined regular expressions.
+
+.TP
+.B regex-backref-object
+Special status areas where colors can be applied using regex with backreferences.
+
+.SH COLOR SPECIFICATION
+Colors can be specified as:
+.TP
+.B default
+Use the terminal default color.
+
+.TP
+.B simple-color
+A basic color with an optional prefix:
+.B alert, bright, light
+with one of:
+.B black, red, green, yellow, blue, magenta, cyan, white
+
+.TP
+.B palette-color
+A color from the terminal palette: color0 through color255.
+
+.TP
+.B rgb-color
+A six-digit RGB color in the form #RRGGBB.
+
+.SH ATTRIBUTES
+Text attributes may include:
+.B blink, bold, italic, none, normal, reverse, standout, underline
+
+.SH NUMBER RANGE
+Numbers are used for palette indexes or backreferences and must be in the range 0-255.
+
+.SH EXAMPLES
+color normal bold brightred default
+color quoted1 underline lightblue default
+color markers none alertyellow black
+color index_subject bold green default "Project X"
+color header bold blue default "/^Subject:/"
+color status bold yellow default "/FLAGGED/" 1
+
+.SH SEE ALSO
+neomutt(1)
+

@@ -1,5 +1,23 @@
+
+color simple-object  attrs fg bg
+
+color pattern-object attrs fg bg
+color pattern-object attrs fg bg pattern
+
+color regex-object   attrs fg bg
+color regex-object   attrs fg bg regex
+color regex-object   attrs fg bg regex num
+
+
 uncolor *
-uncolor object
-uncolor pattern-object [ pattern | * ]
-uncolor regex-object   [ regex   | * ]
-uncolor status         [ regex   | * ]
+
+uncolor simple-object
+
+uncolor pattern-object
+uncolor pattern-object pattern
+uncolor pattern-object *
+
+uncolor regex-object
+uncolor regex-object regex
+uncolor regex-object *
+
