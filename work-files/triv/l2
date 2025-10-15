@@ -1,6 +1,0 @@
-up/buffy.c:302:22:       mutt_buffy_add         nopoll = (*tmp)->nopoll;
-up/buffy.c:304:33:       mutt_buffy_add         if (new || (nopoll != (*tmp)->nopoll))
-up/buffy.c:306:13:       mutt_buffy_add         (*tmp)->nopoll = nopoll;
-up/buffy.c:351:19:       buffy_remove           if (!(*pbuffy)->nopoll)
-up/buffy.c:706:14:       mutt_buffy_check       if (tmp->nopoll)
-up/imap/imap.c:1925:18:  imap_buffy_check       if (mailbox->nopoll)
