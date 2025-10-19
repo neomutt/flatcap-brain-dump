@@ -27,17 +27,10 @@ digraph key_state_machine
 	need_more -> match     [ label="key"     fontcolor="#00c000" color="#00c000" ]
 	start     -> match     [ label="key"     fontcolor="#00c000" color="#00c000" ]
 	start     -> no_match  [ label="key"     fontcolor="#c00000" color="#c00000" ]
-	start     -> counter   [ label="digit"   fontcolor="#00c000" color="#00c000" ]
-	counter   -> no_match  [ label="key"     fontcolor="#c00000" color="#c00000" ]
-	counter   -> counter   [ label="digit"   fontcolor="#00c000" color="#00c000" ]
 	start     -> no_match  [ label="timeout" fontcolor="#c000c0" color="#c000c0" ]
-	counter   -> no_match  [ label="timeout" fontcolor="#c000c0" color="#c000c0" ]
-	counter   -> no_match  [ label="digit"   fontcolor="#c00000" color="#c00000" ]
-	counter   -> need_more [ label="key"     fontcolor="#00c000" color="#00c000" ]
 	need_more -> no_match  [ label="key"     fontcolor="#c00000" color="#c00000" ]
 	need_more -> no_match  [ label="timeout" fontcolor="#c000c0" color="#c000c0" ]
 	start     -> need_more [ label="key"     fontcolor="#00c000" color="#00c000" ]
 	need_more -> need_more [ label="key"     fontcolor="#00c000" color="#00c000" ]
-	counter   -> match     [ label="key"     fontcolor="#00c000" color="#00c000" ]
 
 }

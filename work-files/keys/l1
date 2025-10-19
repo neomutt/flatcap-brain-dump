@@ -1,4 +1,5 @@
 Keybindings:
+
 Menu: alias
     bind <Space>  <tag-entry>
         op = 223 (OP_TAG)
@@ -32,6 +33,7 @@ Menu: alias
         op = 234 (OP_UNDELETE)
         eq = 0
         keys: 117 
+
 Menu: attach
     macro ^B       "<enter-command> set my_pipe_decode=$pipe_decode pipe_decode<Enter><pipe-message> urlview<Enter><enter-command> set pipe_decode=$my_pipe_decode; unset my_pipe_decode<Enter>"
         call urlview to extract URLs out of a message
@@ -130,6 +132,7 @@ Menu: attach
         op = 31 (OP_ATTACHMENT_VIEW)
         eq = 0
         keys: 343 
+
 Menu: autocrypt
     bind D        <delete-account>
         op = 37 (OP_AUTOCRYPT_DELETE_ACCT)
@@ -151,6 +154,7 @@ Menu: autocrypt
         op = 109 (OP_EXIT)
         eq = 0
         keys: 113 
+
 Menu: compose
     macro ^B       "<enter-command> set my_pipe_decode=$pipe_decode pipe_decode<Enter><pipe-message> urlview<Enter><enter-command> set pipe_decode=$my_pipe_decode; unset my_pipe_decode<Enter>"
         call urlview to extract URLs out of a message
@@ -365,11 +369,13 @@ Menu: compose
         op = 31 (OP_ATTACHMENT_VIEW)
         eq = 0
         keys: 343 
+
 Menu: dialog
     bind q        <(null)>
         op = 204 (OP_QUIT)
         eq = 0
         keys: 113 
+
 Menu: editor
     bind ^A       <bol>
         op = 82 (OP_EDITOR_BOL)
@@ -503,6 +509,7 @@ Menu: editor
         op = 88 (OP_EDITOR_EOL)
         eq = 0
         keys: 360 
+
 Menu: browser
     bind <Tab>    <toggle-mailboxes>
         op = 228 (OP_TOGGLE_MAILBOXES)
@@ -576,6 +583,7 @@ Menu: browser
         op = 49 (OP_BROWSER_UNSUBSCRIBE)
         eq = 0
         keys: 117 
+
 Menu: generic
     bind <Enter>  <select-entry>
         op = 115 (OP_GENERIC_SELECT_ENTRY)
@@ -753,6 +761,7 @@ Menu: generic
         op = 135 (OP_LAST_ENTRY)
         eq = 0
         keys: 360 
+
 Menu: key_select_pgp
     bind %        <view-name>
         op = 276 (OP_VIEW_ID)
@@ -766,6 +775,7 @@ Menu: key_select_pgp
         op = 109 (OP_EXIT)
         eq = 0
         keys: 113 
+
 Menu: key_select_smime
     bind %        <view-name>
         op = 276 (OP_VIEW_ID)
@@ -779,6 +789,7 @@ Menu: key_select_smime
         op = 109 (OP_EXIT)
         eq = 0
         keys: 113 
+
 Menu: index
     macro ^B       "<enter-command> set my_pipe_decode=$pipe_decode pipe_decode<Enter><pipe-message> urlview<Enter><enter-command> set pipe_decode=$my_pipe_decode; unset my_pipe_decode<Enter>"
         call urlview to extract URLs out of a message
@@ -1139,6 +1150,7 @@ Menu: index
         op = 78 (OP_DISPLAY_MESSAGE)
         eq = 0
         keys: 343 
+
 Menu: mix
     bind <Enter>  <accept>
         op = 263 (OP_MIX_USE)
@@ -1188,6 +1200,7 @@ Menu: mix
         op = 263 (OP_MIX_USE)
         eq = 0
         keys: 343 
+
 Menu: pager
     macro ^B       "<enter-command> set my_pipe_decode=$pipe_decode pipe_decode<Enter><pipe-message> urlview<Enter><enter-command> set pipe_decode=$my_pipe_decode; unset my_pipe_decode<Enter>"
         call urlview to extract URLs out of a message
@@ -1595,6 +1608,7 @@ Menu: pager
         op = 189 (OP_PAGER_BOTTOM)
         eq = 0
         keys: 360 
+
 Menu: pgp
     bind %        <view-name>
         op = 276 (OP_VIEW_ID)
@@ -1608,6 +1622,7 @@ Menu: pgp
         op = 109 (OP_EXIT)
         eq = 0
         keys: 113 
+
 Menu: postpone
     bind d        <delete-entry>
         op = 71 (OP_DELETE)
@@ -1621,6 +1636,7 @@ Menu: postpone
         op = 234 (OP_UNDELETE)
         eq = 0
         keys: 117 
+
 Menu: query
     bind A        <query-append>
         op = 203 (OP_QUERY_APPEND)
@@ -1654,8 +1670,10 @@ Menu: query
         op = 109 (OP_EXIT)
         eq = 0
         keys: 113 
+
 Menu: smime
     bind q        <exit>
         op = 109 (OP_EXIT)
         eq = 0
         keys: 113 
+
