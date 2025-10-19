@@ -527,3 +527,40 @@ idea
 	how could you "checkpoint" config?
 	<create-checkpoint>alter config; do stuff<restore-checkpoint>
 
+use r.h.s of help-bar to display tabs of backgrounded compose sessions
+
+help page has too much blank space if a menu doesn't have any binding/macros
+	unbind *
+	unbind alias ?
+	unbind alias q
+	unbind attach ?
+	unbind attach q
+	unbind autocrypt ?
+	unbind autocrypt q
+	unbind browser ?
+	unbind browser q
+	unbind compose ?
+	unbind compose q
+	unbind dialog ?
+	unbind dialog q
+	unbind index ?
+	unbind index q
+	unbind pgp ?
+	unbind pgp q
+	unbind postpone ?
+	unbind postpone q
+	unbind query ?
+	unbind query q
+	unbind smime ?
+	unbind smime q
+	:bind
+
+verify-cert dialog
+	next/prev line don't seem to work
+
+drop mono command from the docs
+
+kill pager=builtin from the docs
+
+rebuild web docs
+
