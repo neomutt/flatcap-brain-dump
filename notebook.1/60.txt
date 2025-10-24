@@ -1,0 +1,34 @@
+EnterWindow	EnterWindowData
+-> EventLoop -> enter_function_dispatch()
+EnterState (Buffer)
+recalc(), repaint()
+history
+completion
+
+Actions: type chars, functions, history, completion(*n)
+Result: insert, manipulate, overwrite, insert
+Completing: one result, multiple results (delimited)
+
+Word actions
+
+|      |       |       |     |  word points for motion
+apple, banana, cherry, damsom
+|
+<word-left>, <word-right> move to prev/next point
+<kill-word> deletes from cursor to previous point
+
+alias complete: ric<tab> -> "R.Russon <r@f.o>, "
+allowing x<tab> y<tab> z<tab> without separators
+<kill-word> will erase an entire address
+
+word point is:
+	beginning of line
+	after comma [space*]
+	end of line
+
+popup - <complete-menu> fall back to <complete>
+z-order menu, scrollbar
+<left>, <right> move cursor <up>/<down> enter/exit dir
+<tab> next, <ctrl-y> select, <ctrl-e> *no* selection <enter> select
+formatted columns of text, e.g. alias full address
+

@@ -1,0 +1,62 @@
+	Loops		Funcs		Data		Win		Gfx Loop
+			Disp
+
+	Main								recalc()
+	  |						Index		repaint()
+	  |						Index		WIN_DELETE
+	  V		I1		Index		IBar
+	IndexDlg	I2		Data		Pager (focus)
+	  |		I3				Pager
+	  |						PBar
+	  V		P1		Pager
+	PagerDlg	P2		Data
+			P3
+				getter
+				setter
+				helpers
+
+	G1
+	G2	--->  Globals
+	...
+
+IndexDlg -> IndexData
+I1,I2,I3 -> IndexData
+IndexWin -> IndexData
+
+PagerDlg -> PagerData
+P1,P2,P3 -> PagerData
+PagerWin -> PagerData
+
+Data isn't complete, no sufficient in itself for recalc/repaint
+code need to relinquish *all* data.  window wdata_free() cleans up
+Rename IndexDlg code to Index*Loop* ∀?  Dialog is *gfx* side
+All data needs to be independent of code
+	needs setter/getter functions and locking (semaphores)
+	any config requires *sub* param (or stored in data)
+
+Can the dlg *own*all* the data?  what if it's passed in?
+	same data can't change without locks, repaint needs *all* data
+
+dlg = X_init(); set_data(dlg, Y); run_dlg(dlg); extract(dlg)
+
+--------------------------------------------------------------------------------
+
+Please try "master" before reporting an issue -> ISS_TEMPLATE!
+debug_notify - add text header to ever Event object (or obvious magic) (assert match)
+
+put build tops in .git/ have fns() to update/display
+
+for devel options, e.g. mouse have devel CLI arg =>
+	can build-in and distribute, but be backwards compatible
+
+new_message_hook to apply headers, tags, move it?  how?
+	string of commands <label>inbox<enter> / <move>+work<enter>
+	sequentially applied, follow email if moved. hook need pattern
+	all matching hooks executed in sequence / how to follow <move>?
+
+after `named-mailbox X +X' what will it take to accept 'X' as
+	a mailbox name in all functions/commands?  prob quite a lot
+
+DYK: test your command expansion, prefix with :echo
+	AND/OR LOG RAW command before execution -- security prob?
+

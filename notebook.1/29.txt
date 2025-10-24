@@ -1,0 +1,29 @@
+Attach GUI
+
+If we have a tree of AttachView, which A ops affect the tree?
+are there any ops that might cause the tree to get out of sync?
+
+Do any fns take a tree of Attachments?
+Which fns take a set of Attachments?
+How do we pass AttList without affecting TAILQ?
+Could any fns take a hetero list? *single* Atts and *tree* Atts?
+
+Emails tagged -> EmailList (EmailNode -> Email)
+Alternatively AttArray
+Isn't the EL immutable?  do we need the Lists *insert*ability?
+	prob NO => EL should be EA (array)
+
+What's at the base of the Attachment tree?
+One Body that owns all the other MIME parts?	(1)
+Body Head containing multiple MIME parts	(2)
+
+If fundamental is moveable, replaceable, then it's no different to its siblings (2)
+If so, who owns the boundary info for the top-level siblings?
+Body owns Parameters, does Email hold the "root" params?  NO
+
+
+Email -> Body
+Body -> TAILQ_HEAD(Body)
+AttachCtx -> AttachPrivateData use ARRAY x3 or 4
+AttachPtr -> AttachView or BodyView
+

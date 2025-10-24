@@ -1,0 +1,33 @@
+:set quad = <tab> => default value
+	<tab> again cycles through all possible
+bool, quad, enum, sort
+
+New mail: maildir - start (mbox_open), check_stats
+
+main: X = startup(), X_free(X)
+	startup ->
+
+config -F X		"" -> "./"
+cmd		:source X	./	cd ✓
+hook		`source X`
+sourceX		`source X`
+interactive :hook
+
+--------------------------------------------------------------------------------
+
+Index startup: mx_get_emails() - initial start
+(a)sync updates {new,changed,deleted}(pre_free())
+new - *insert* into index
+changed - flag for repaint
+deleted - remove all refs
+emails vs v2r wrt sorting, limiting
+need both num_emails and num_view_emails
+
+--------------------------------------------------------------------------------
+
+change file browser so that <tag-prefix> is needed like index,alias
+c<enter> fails with prefilled text
+setting $hide_thread_subject doesn't repaint index
+idea: temporarily highlight changed/new Emails in Index
+Bug: limit doesn't always cause status bar refresh
+

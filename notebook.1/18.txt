@@ -1,0 +1,54 @@
+UserColors
+
+AttrColor[] (MT_COLOR_NORMAL)
+
+AttrColor			CursesColors[]
+	CursesColor *-->	CursesColor[]
+	attrs (BOLD)			fg, bg
+					index *--->	curses
+					ref_count	0 fg bg
+					flags		1 fg bg
+                                			2 fg bg
+			        			...
+							init_pair()
+							(16384)
+
+"color simple attrs fg bg"
+simple -> ColorId, parse attrs, fg, bg
+UserColor[id].attrs = attrs
+find color (fg, bg) if color, UserColors.cc = color, cc++
+else new_color(fg, bg) -> cc, UC.cc = cc, cc = 1
+if (UC[id].cc == NULL) UserColors++, check against (COLOR_PAIRS)
+
+--------------------------------------------------------------------------------
+
+"uncolor simple"
+simple -> ColorId
+if !cc done, else release curses_color(cc)
+cc.ref--; if (ref==0) init_pair(0,0)? free(cc)
+UC[id].cc = NULL, attrs = 0
+if (free(cc)), UserColors--
+
+--------------------------------------------------------------------------------
+
+"color regex attrs fg bg pattern"
+regex -> list head, parse attrs, fg, bg
+find(pattern) -> RegexColor
+if (RC): release curses color (AC.cc), attrs=0
+
+RegexColor
+	AttrColor *--> cc
+	patter, regex, cache
+	flags?
+	next *-->
+
+--------------------------------------------------------------------------------
+
+"uncolor regex pattern"
+regex -> list head, find (list, pattern).
+if NULL done
+release(cc), unline, free(RC)
+
+set_color(id) -> UC(id) -> AC[attrs] -> CC(index)
+set_attr(AC) -> attrs, CC(index)
+

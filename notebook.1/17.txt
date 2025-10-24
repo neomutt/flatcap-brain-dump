@@ -1,0 +1,71 @@
+color [attr] object fg bg [regex [num]]
+
+color [ansi|overlay]
+
+∀ `color` cmd -> ColorAttr
+(for single objects)
+
+color regex -> ColorLine
+
+ColorAttr	∀ MT_COLOR_XYZ
+		∀ quotedN
+
+ColorLine	∀ regex object
+
+AnsiAttr	∀ pager
+
+overlays - tree chars, indicators
+
+set_color(ColorAttr)
+find(CA) -> CList
+
+------------------------------------------
+
+color *simple* -> fg, bg, attrs -> index
+	Color*Attr*	CC+1
+
+color *list* -> [ fg, bg, attrs -> index]
+	ColorAttr[]
+
+*ansi*		[ fg, bg, attr -> index]
+local ColorAttr[]?		(pager)
+
+*overlay*	[ fg, bg, attr -> index]
+	ColorAttr[] (local to Menu or global?)
+
+set_color(id) -> UserColors[i] -> ColAttr -> { attrs }
+	CursesColor {index}
+
+4 cases (simple (un)color; regex (un)color; ansi add/free; overlay add/free)
+
+ColorAttr index
+attrs(BOLD)
+
+ColorList of all curses colours
+	fg, bg
+	pair index -> curses
+	ref_count ?
+	ansi | overlay
+	next ->
+
+ColorLine
+	fg, bg
+	ColorAttr
+	pattern, regex, cache
+	flags
+	next ->
+
+AnsiAttr
+	fg, bg
+	attrs		BOLD
+	par index -> curses
+
+ColorAttr
+	curses *-->	CursesColor[]
+	attrs			fg, bg
+				index *--->	curses
+				ref_count	0 fg bg
+				flags		1 fg bg
+						2 fg bg
+						...
+

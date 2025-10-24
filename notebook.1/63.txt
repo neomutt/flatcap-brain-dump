@@ -1,0 +1,8 @@
+live limit feature: as you type, limit it recalc'd and reapplied
+if pattern isn't valid, no change, e.g. `~f john` typing ~ isn't valid
+enter = apply, <esc> = cancel
+
+union mailbox ∀ mailboxes + postponed => draft replies appear as replies
+view them as normal emails <recall> them to go to compose & editor
+<recall> on non-draft => normal recall route
+

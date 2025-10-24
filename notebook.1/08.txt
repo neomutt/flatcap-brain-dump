@@ -1,0 +1,62 @@
+Compose
+
+Dlg
+	Env
+	ABar
+	Attach <- -> Menu
+	CBar
+
+WinAttach <- -> Menu
+	-> m_recalc
+	X m_repaint
+	win_obs -> DEL
+
+cfg_observer
+col_observer
+win_observer
+!comp.menu_repaint
+
+
+Menu
+(DIAGRAMS)
+
+View
+
+mr_current => m->current only
+mr_motion  => m->oldcurrent, current
+mr_index   => all
+
+top
+pagelen
+current
+oldcurrent
+simple_move()
+set_index()
+redraw() ∀
+
+$menu_context
+$menu_move_off
+$menu_scroll
+
+overlap when pgup/down => margin?
+last item tied to bottom of screen?
+scroll by 1 line rather around index
+honouring $menu*
+
+MENU_REDRAW_MOTION -> SEL_CHANGE ? -> SELECTION
+
+--------------------------------------------------------------------------------
+
+add config option for '.mime.types' file location?
+
+move <check-stats> out of menu/generic
+	pointless if index/sidebar aren't on screen
+	implement in index/(pager?)
+
+repaint => visible => check for zero dimensions!
+
+thread shading alternately light/dark bgs %C num => need thread num?
+	like colorN for quoted levels
+
+create list of all N lists - which are sorted by which $vars
+

@@ -1,0 +1,35 @@
+Editor
+
+keys - plain
+<fn> - begin of line
+timeout - $timeout / $imap_keepalive
+abort - Ctrl-G / $abort_key / Ctrl-C
+resize - SigWinch
+
+word wrap - non-trivial for non-ASCII
+
+add_line
+add_colored_line() _text()
+set_text(coor, text) -- one colour
+
+(,h,),ello,\n(,w,),orld		8 pieces, 1 Buffer
+[{offset, bytes, colours}]
+calc() resplit, hide newlines
+convert to wide, ∀ char	NO
+convert on *add*_text() - preserve splitting
+need *width* of all chars, array of wchar
+
+str		"apple ♥️ banana"		measure()?
+widths		[111111211111111]
+bytes		[111111611111111]
+colours		[x.....yx.......]
+
+calc() above once, below every width change
+screen width = 20
+{ str offset, bytes, colour id, newlines }
+read each {w,b,c} => until `\n` or line full
+
+--------------------------------------------------------------------------------
+
+:color object -> [swatch] colour obj [attrs] fg bg [regex]
+

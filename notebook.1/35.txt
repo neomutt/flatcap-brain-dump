@@ -1,0 +1,35 @@
+NeoMutt/TUIL/TextPanel
+
+MuttWindow {x, y, w, h, flags} nested
+W.repaint() {set_color(); write_text() }
+
+TuilWindow {x,y,w,h,flags,rich_text[]} non-overlapping
+
+TUIL needs to define colours/attrs
+
+MW -> RT[] <- TW
+
+RT "The quick brown fox..."
+ + {red}      {blue}
+
+--------------------------------------------------------------------------------
+
+mutt_update_recvattach_menu()		murm()
+✓ dlg_select_attachment()			simple_dlg -> menu -> priv
+✗ op_attachment_collapse()			dlg -> menu -> priv
+✓ recvattach_edit_content_type()		param menu  ra_ect
+
+ra_ect()
+	op_attachment_edit_type()		 dlg->menu->priv
+	mutt_attach_display_loop()	param menu OP_ATT_ED_TYPE
+
+madl()
+	op_attachment_view()			dlg->menu->priv
+	op_display_headers() / compose		compose -> menu
+
+win_compose ^ dlg_compose -> wdata = shared->adata->menu
+
+ComposeAttachData    cf AttachPrivateData
+compose_attach_tag() cf attach_tag()
+compose_make_entry() cf attach_make_entry()
+

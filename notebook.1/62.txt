@@ -1,0 +1,28 @@
+Config 8 deprecated, 62 synonyms
+Command 7 deprecated
+Colour 1 deprecated
+| (or) OP_XYZ with OP_DEPRECATED (flag)
+39 cfg defs in 22 *files* + docs/config
+	file -> name, type (full), default, one-liner
+	docs -> name, type (simple), fulldocs
+	files -> syn, deprecated too
+27 cfg with tables
+
+--------------------------------------------------------------------------------
+
+Big refactors needed
+
+Colours in Pager
+libenter   }
+completion }
+compose/body unification
+backend emails[]
+make doc
+getch utf-8
+fix compress
+
+Features
+
+mouse
+directcolor
+

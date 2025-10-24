@@ -1,0 +1,38 @@
+Attachments / Body -- MimePart
+
+Email -> Body -> next, ->parts
+	->TAILQ -> children
+
+How different are compose/recv attachments?
+Cam they be merged?  Flag determines which fns are available
+Both display a tree of Attach
+Compose is mutable (recv can delete X mark as deleted)
+Recv needs decryption support
+
+What is AttachPtr?		} which modes need which?
+What is AttachCtx?k		} which is *view*info?  all of it?
+What's needed to display the tree?
+What's needed to pass params to attach_print() etc?
+What GUI info is needed?
+	tagged, level/depth (for convenience)
+When do we use v2r virtual ordering?
+	we don't sort or limit attachments
+	folding groups
+
+tree chars:
+	none	- Top level, no parent
+	├─>	child with next sibling
+	└─>	child with no next sibling
+	│	parent with next sibling		_	without
+	│ │	grand-parent has next sibling		_ _	without
+	│ │ │	great-grand-parent has next sibling	_ _ _	without
+
+Should attach *insert* at cursor location?  rather than append?
+It could insert into existing group (add -> append, insert is new fn)
+Is recv attach 'v' folding a group give v little feedback that more exist
+Folding attach group - later attach are renumbered, unlike emails
+	email jump to hidden -> auto-unfold, not the case for attach
+attach_chars: I(nline), A(ttachment) -> icons?
+attach_format %X? num children in fold (recv attach) - make default
+conditional %M [%M] and/or '+' tree char to show more exist
+

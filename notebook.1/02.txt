@@ -1,0 +1,39 @@
+Driving simple dialog
+
+Dialog	- s.o.t.
+Menu	- window, colour
+	-> XSimpleData, Menu members are *its* state info
+
+drive(), menu_loop(), redraw()
+functions.c a(), b(), c()...  OUR_dispatcher()
+
+drive2() km_dokey() -> OP
+function.c, menu_functions.c
+what about menu "dialog" OP translation?
+	try *our* OPS first
+	then call menu_dispatcher()
+
+is drive() now common to all dialogs?
+	pass in (data, dispatcher()
+	=> dlg_run()
+
+fns(), menu_fns()
+	manipulate OUT_data, MENU_data
+	menu changes => WA_RECALC, NT_MENU
+
+--------------------------------------------------------------------------------
+
+	focus		focus
+A	->	B	->	C
+Root
+
+
+
+dlg_push()	->	reflow(∀)	=> NT_WINDOW
+		->	*visible* VA	=> NT_WINDOW
+
+NT_WINDOW => WA_RECALC ∀
+
+Redraw => recalc(∀) -> WA_REPAINT
+	  repaint(∀) => paint
+

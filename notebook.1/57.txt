@@ -1,0 +1,26 @@
+Root, MsgCont [ MsgWin, EnterWin, etc]
+who controls height?
+only *questions*(msgs) are multiline and ephemeral
+reflowing *parent* not enough -- need to reflow grandparent (Root)
+
+push_z() -> reflow, might differe in size, pop_z() too
+∀ msg, yn, multi: does each need a wrapper?
+Yes, so each Window is trivial, wrapper handles z-order
+     so each win can be relocated
+
+can yn/quad/multi share a window? / code?
+	each currently has is own event loop
+
+(7) enter_string, change_flag, enter_fname, what-key, progress, multichoice, yesorno(?)
+
+Update: num(discrete), percent(continuous) + msg
+	(read|write|new)_inc, time_inc
+000-999	update checks inc -> calc
+	calc gens string -> paint (if diff)
+	paint draws string -> X
+
+0 -> 1MiB 1B at a time (oldpos - pos) > inc -> oldpos-pos, calc
+
+enter_string, change_flag, get_field(es)
+enter_fname, what_key, multichoice, yesorno
+

@@ -1,0 +1,39 @@
+Init		crypt_info	-> email	no notify, no hooks
+edit_hdrs	crypt_info	-> email	no notify, no hooks (called sep)
+pgp menu	crypt_info	-> email }
+smime menu	crypt_info	-> email } - notify EMAIL -> hook
+autocrypt menu	crypt_info	-> email }		  -> win_env update
+edit_to		crypt_info	-> email }   notify ENV   -> hook
+							  -> win_env update
+
+win env EMAIL or ENV => recalc|repaint
+
+edit_bcc|cc|to|from() -> crypt(), notify(ENV) -> hook, gui
+compose EMAIL or ENV -> hook
+edit_subject            -> notify(ENV) -> hook, gui
+pgp_menu(email)         -> crypt(), notify(EMAIL) -> hook, gui
+init, notify(EMAIL)     -> crypt()	later hook
+edit hdrs notify(EMAIL) -> crypt()	later hook
+win env EMAIL -> crypt(), gui
+	ENV -> gui
+
+<edit-to> edit crypt(), notify(ENV) -> env gui
+				    -> compose hook
+
+<edit-subject>	edit notify(ENV) -> env gui
+				 -> compose hook
+
+<pgp-menu> email	crypt(), notify(ENV) -> env gui
+				             -> compose hook
+
+init notify(EMAIL) -> env crypt(), gui
+		   -> compose NOP
+
+edit hdrs notify(EMAIL) -> env crypt(), gui
+		        -> compose NOP
+
+
+compose(ENV) -> hook, (EMAIL) -> NOP
+env(ENV) -> gui, (EMAIL) -> crypt()
+
+

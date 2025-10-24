@@ -1,0 +1,53 @@
+Alias completion
+
+[DIAGRAM]
+
+                 <mail>          <complete>
+	Index ------------> to: ------------> alias
+				------------> Subject:  ---->
+				  <enter>
+
+Index -> to (visible)
+Index -> via(to) -> alias (invisible)
+
+Alias cancel -> to(invis) -> Index directly
+Alias select -> to (->visible)
+
+Dlg selection (<mail>) handled externally
+if no then to -> alias -> to -> alias loop
+
+op_alias()  dlg_alias() -> 0, 1, many addr
+	0 => back to desc
+	1+ => to: (<complete> or <enter>)
+
+--------------------------------------------------------------------------------
+
+Dialogs
+
+just selection
+data provided (all, or subset)
+
+Test Q-Append with different sort methods
+dedupe appeded results
+
+∀ get data -> call dlg
+
+Alias: no filter/limit, limit
+	pass limit to dlg
+	pass *all* data, so unlimit works
+
+Query: filter/limit
+	pass limit; can *re*limit/unlimit
+	only show last limit/query
+	append - show new query (clear limit?)
+
+display queries (x+y) separate from limit
+	re-requery -> clear limit?
+
+keep queries as list/array - display as (x + y + z)
+
+"Limit:" -> "Limit", "Query: " -> "Query"
+
+
+tag prefix - only select visible entries!
+

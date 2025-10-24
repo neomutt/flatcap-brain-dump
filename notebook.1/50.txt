@@ -1,0 +1,36 @@
+Pager Loop
+
+op_display_message()
+mutt_display_message()
+mutt_pager()
+	loop: continue
+		quit -> index
+		reload -> mdp -> pager
+
+priv -> loop = continue
+	quit
+	reload
+
+pager ops	mostly no effect on priv->loop
+		op_quit -> quit
+		all IR_SUCCESS
+
+index ops	triv -> no effect	<toggle-write>
+		resolve -> notify(E) -> reload <tag><jump>
+			-> notify (NULL) -> quit (resolve @ end)
+		change folder -> notify(M) -> quit
+
+rc users	Pager need resolve	2		(next-undeleted)
+		index fn		11
+
+mutt_do_pager
+	mutt_view_attachment(), mutt_help()
+	mutt_display_attach_loop(), winch -> RELOAD
+
+--------------------------------------------------------------------------------
+
+`:set<space>` does nothing!
+
+dev web pages for cfg opts -- debug window, etc + example debug code
+	asciinema casts of logs
+

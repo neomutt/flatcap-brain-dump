@@ -1,0 +1,43 @@
+Priv -> quote_list - tree of QS -> *AttrColor*
+	-> Line[] -> quote -> QS -> AttrColor
+		  -> syntax -> TextSyntax[] -> AttrColor
+
+QuoteColors[] (AttrColor)			10
+SimpleColors[] (AttrColor)			~50
+RegexColorList -> RegexColor (AttrColor)	9
+
+Ansi ansi-list (priv)	(AttrColor)	lifespan (Email)
+MergedColors (list)	(AttrColor)	lifespan (Neo)
+
+--------------------------------------------------------------------------------
+
+Release
+
+colour
+account-hook
+compressed
+sidebar in compose
+imap subs - add to Acc directly
+menu sel movement on new mail
+
+editor <space> bind
+create "Mail"
+docs x_y
+doc egypt
+.vim x_y
+? on [Y/N] ?
+
+--------------------------------------------------------------------------------
+
+Pager flag to allow ansi - use for logs, convert index_colors to use ansi
+	fix colour enum to start at 1 (temp: index_colors use (n+50))
+
+$folder_format (IMAP) do we *know* which mboxes are *subscribed* '%S'?
+save to /new/new/nonexistent mailbox doesn't create *path* only *mbox*
+dyk - find mtime > 30 on msg cache! and folder-hook equiv
+add debug rtl config option & doc egypt
+
+trigger events on *release*?  doxy, coveralls, coverity?
+
+status regexes (colours) should be merged with simple colour
+

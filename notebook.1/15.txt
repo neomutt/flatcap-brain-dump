@@ -1,0 +1,58 @@
+pager behaviour on 'j' on last msg - stay in pager & "last msg"?
+s.a. $pager_stop = yes
+
+--------------------------------------------------------------------------------
+
+Index ?Menu Motion function => NO_ACTION if no change
+	=> allows Pager to decide stay/leave behaviour
+
+Separate OpPager for Pager sans Index, e.g. Help!
+wait until keymaps are attached to Window?
+	rather than hard-coded in keymap.c
+like HelpBar - start at focussed Window.
+is keymap part of pager or passed in?
+*passed* only caller knows if Index exists, for example
+how would parse ("bind pager X function") work?
+Pager supports sidebar functions & globals like <show-version>
+Index-Pager supports <bounce-message>, Help-Pager does not
+On command "bind..." what's allowed?  who decides?
+
+bind pager	X autocrypt-menu	allowed, never
+		Y next-line		always allowed
+		Z sidebar-next		allowed, but could be NOP if !visible
+		A version		allowed? but always delegated, to whom?
+		B bounce-msg		allowed in Index-Pager
+					not allowed in HelpPager
+
+who chooses key binding help for HelpBar?
+
+--------------------------------------------------------------------------------
+
+New layout?
++ widescreen
+
++------+---------------+
+| SB   | Index         |
+|      |               |
+|      |               |
++------+---------------+
+| Pager                |
+|                      |
+|                      |
+|                      |
++----------------------+
+
+Fix BUILD_DIR .build
+
+No clang-format off in *.h
+
+whitespace
+check POTFILE
+.github repo
+
+(shellcheck/codespell) link to docs *why*!
+check #include guards *.c, config.h FIRST!
+
+show gcc version
+use actions/checkout for both repos. leave jobs in wrong dir?
+

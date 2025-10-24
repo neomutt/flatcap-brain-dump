@@ -1,0 +1,37 @@
+Limit
+
+How should <limit> work?  who does the work?  who has the deps?
+Index limit using patterns (I-specific)
+two parts: compile and execute
+does *compile* need any I-specific knowledge? -> gen pattern tree
+needs to know if pattern takes args
+might need I-specific arg handler
+
+execute - traverse pattern tree
+	∀ elem, run test on (pat, arg, data)
+	combine results (AND/OR)
+
+domains: Email(Index), Address(Alias), Envelope, Body, EView(collapse, num), Thread(dupe)
+
+--------------------------------------------------------------------------------
+
+∀ Win  Focus, Cursor, Events
+	or save/restore cursor position?  whose??
+
+
+p - pager_new()		-> init()
+dlg_run(p)		- event loop
+extract(p)		- retrieve results
+free(p)
+
+
+dlg_run(win) ->
+	win needs list of dispatchers
+	flags for tagging?
+	or pre-list / post-list
+
+dlg_run_single()
+	km_dokey() external loop
+	then call dlg_run_single()
+		- same as, no loop
+

@@ -1,0 +1,30 @@
+add A (alias) function to match Q (query) in index
+decide on behaviour A/Q -> 'm' mail - after does focus
+*return* to index or A/Q list?  prob list
+alias tags search by text or icon!  need pattern/expando
+
+--------------------------------------------------------------------------------
+
+dialog vs complete, Alias vs Query
+
+Dialog starts in Index
+
+AD (AL, sub, NULL)   AL is all aliases
+AC (AL, sub, result) AL is subset of all alias
+QD (AL, sub, NULL)   AL is query result
+QC (AL, sub, result) AL is query result
+
+Index AD gen AL, call AD()
+      QD query, gen AL call QD()
+      QC query, gen AL call QD(buf)
+      AC (query/limit), gen AL, call AD(buf)
+
+Tag 3, select another
+<tp><enter>
+<tp><mail>
+-<enter>
+-<mail>
+
+Outcomes
+-> subject? -> compose
+-> to? -> subj -> compose

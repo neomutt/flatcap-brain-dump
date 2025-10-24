@@ -1,0 +1,20 @@
+[MORE MENU STUFF]
+
+NDEBUG => build warnings
+turn LL_DEBUG5 - "event handled" into build-dep macro (--debug-events)
+give validate access to *value* of changed var
+validators *need* subset for checking sibling config var
+
+--------------------------------------------------------------------------------
+
+pager, toggle strict_threads doesn't refresh index panel
+log disp curses, *pause* after *warnings* too - except macros?
+
+new mail cmd, pattern condition, e.g. "~s XYZ"
+have multiple new mail cmds, each with regex
+match *one* or all?
+separate new mail command (external), from X (internal <fns>) -> new mail hook?
+need expandos for from, to, subject, etc => one call for each match? too many?
+
+split out dlgs from complex src files - postpone, recvattach (and windows)
+

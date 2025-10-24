@@ -1,0 +1,54 @@
+AQ Tests
+
+Alias
+
+<mail><complete>	all (3)			<m>single<c> single, dlg
+<m>junk<c>		none(1)
+<m>some<c>		some(2)
+
+Dlg <enter>	sel.		<quit>
+	<tag>*n<enter>		sel
+	<tag>*n<prefix><enter>	multi-sel
+	<tag>*n<limit><enter>	sel
+	<t>n<l><p><enter>	multi-sel
+
+Direct
+	<alias><quit>	none
+	<alias><enter>	sel
+	same as above
+
+--------------------------------------------------------------------------------
+
+Dispatchers
+
+Win->wdata
+
+driver: w.get_curr_win()
+	[is_index(w)?]
+	disp_index(w, OP_X)
+
+DOM get_curr_neo(), curr_acc(), curr_m(), curr_e()
+	-> a sort of *data* focus
+
+DOM is better way to work
+Dispatchers for event loop
+
+get_emails -> array of handles
+get_subj(e) -> subject
+
+m = find_m_by_name(), or m = create_m()
+
+move_e(m, e)
+
+win -> dispatcher(), -> get_opcodes(), -> is_valid_opcode()
+opcodes need to include OP_EXIT
+win *needs*?  OpIndex[], OpDefaultIndex[] + overrides
+win has ptr to ops - compiled/maintained separately
+
+--------------------------------------------------------------------------------
+
+Limit junk, limit . => no selection, enter folder def to *last*
+Change <limit>just to error/warn but *not* display nothing!
+Bug: compmbox!
+Bug: open pager, sidebar open, pager still shows email 1!
+

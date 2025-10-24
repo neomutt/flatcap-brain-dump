@@ -1,0 +1,32 @@
+Completion API
+
+14 completion functions (or similar)
+pass:	EnterState *
+	PrivateData *
+
+use <tab> single/multiple, or <ctrl-d>?  for all matches
+	or show current value!
+
+functions
+	get_match()		First time, or input has changed
+	pass a token, responds with, "x<tab>" and *num* matches
+		NO_MATCH		NULL
+		ONE_MATCH		"xyz" full string
+		MULT_MATCH_EXTRA	"xy" -> "xyz", "xya", "xyb"
+		MULT_MATCH		"x" no extra completion (distinguish?)
+
+get_all_matches() second <tab> no changes to input
+	passed a token, responds with array of strings
+	construct TUI menu, or line menu above input
+	*flags*  Fixed sel, e.g. enum, Option + freeform, e.g. Label
+
+custom_select()
+	2nd <tab> (get_all_matches() no impl) or 3rd <tab>
+	passed a token, displays custom dlg
+	responds with new text for input
+	saves custom info to private data
+
+<shift-tab> reverse completion - previous match
+allow multi <tabs> to cycle through possibilities?
+config wildmode cf vim
+

@@ -1,0 +1,39 @@
+Key handling
+
+main -> start_curses -> km_init -> create_bindings (16) -> km_bindkey
+create_bindings(AliasDefaultBindings, MENU_ALIAS)
+AliasDefaultBindings(MenuOpSeq) { OP_DELETE, "d" }
+km_bindkey("d", MENU_ALIAS, OP_DELETE)
+seq can contain KeyNames, e.g. <Home> (KEY_HOME)
+	or parse_fkey() <F1>
+	or parse_keycode() <0123> (octal) to MAX_SEQ(8)
+
+--------------------------------------------------------------------------------
+
+km_init() -> alias_keys_init()
+create_bindings(map, MENU_ALIAS) map=AliasDefaultBindings
+need "alias" -> ? for bind/macro	OpAlias (all poss bindings)
+	     -> AliasDefaultBindings, MenuOpSeq[] actual bindings
+Help needs name "alias" for banner
+
+bindings are *modal*
+
+Global Keymaps[MENU_X] -> list of Keymap
+	register(MENU_ALIAS, OpAlias)
+	create_bindings(MENU_ALIAS, AliasDefaultBindings)
+
+Generic = Menu + Tagging + Global + OP_EXIT + OP_GENERIC_SELECT_ENTRY
+Index and VerifyCert don't use tagging_dispatcher()
+OP_VERSION in global_function_dispatcher(), but not in Generic
+	move 'V' to Generic
+
+docs: functions.c
+
+--------------------------------------------------------------------------------
+
+Discuss - Buffer opaque, Buf len, themes, editor/word ends, :changelog?
+split Op* bindings?
+
+pager repaint
+Addr book, Icon cmd, mouse, expando, bgedit, help sort
+

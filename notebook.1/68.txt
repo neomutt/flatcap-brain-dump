@@ -1,0 +1,11 @@
+mbox_open - does what for maildir?
+
+check dir and dir/{cur,new,tmp} exist
+mda = parse_dir(), dir -> entries
+	same data from filename, etc
+hcache populate(mda) - used existing data
+delayed_parsing(mda) - manually read file headers
+hcache_save(mda)
+move to mailbox(mda)
+notify_new()
+

@@ -1,0 +1,46 @@
+MsgWindow
+	IS *WA_RECALC* needed at all?
+
+enter_string_full()		(buffer_get_field())
+change_flag()
+yes_or_no()
+buffer_enter_fname() - doesn't take focus!
+multichoice()
+what_key() - needs focus
+menu_redraw_prompt() needs focus
+progress / message_bar() needs focus
+
+ask for msgwin()
+	should clear up after themselves
+	have own event loop
+
+mutt_show_error() (ErrorBuf)
+called from Index/Pager/Menu - to refresh
+Index "tag-" prefix
+Menu "tag-" prefix
+log_disp_curses()  error msgs etc
+\ mutt_error / warning / message()
+Ctrl-L => clear error msg
+mutt_clear_error() equiv to clear_line (msgwin) + error_pause()
+
+When opening "?" help, who clears the prev error or "tag-"?
+	Index!  clear_error()
+Passive: colour + string + clr_to_eol() (wrapping?)
+\n => newline, max of 3 lines.  use sparingly
+
+Active: manage window, clearing, painting, wrapping
+	as msgwin for resizing => reflow, event loop => redraw
+
+progress_update() needs WINCH check and reflow / repaint!
+
+Win events: will anyone be interested in STATE or DELETE of another win
+\ turn state, delete into callback functions
+----------------------------------------
+/ helpbar_set_text() custom text for temp situations on clear => normal help
+
+* Dynamic help "Yes:Y" (translate), No, Ctrl-G ($abort_key), Enter = Yes/No!
+MsgWin controls resizing to fit msg, not the caller. _clear() restores
+
+* need Y,N,Ctrl-G help for choice questions - how?
+
+

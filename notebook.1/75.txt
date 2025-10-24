@@ -1,0 +1,19 @@
+NeoMutt -> expando_table [55] (ExpandoRecord)
+parse_set(), command_set_set() -> expando_validate_string() ->
+	expando_tree_parse() -> ExpandoNode
+expando_table[EFMT_INDEX_FORMAT] = {"%x%y%z", node}
+
+tree parse (root node, "fmd", EFMT_INDEX_FORMAT, error)
+	+ parse_node(start, NO_COND, end, 0, INDEX_FMT, error)
+	+ append_node(node)
+
+Config
+	index_format, "%x%y%z", vdata (E.Validation), var, validator_fn
+
+struct Expando: fmt string
+		parse tree
+	
+{"row
+{"C", E_ROW, parser(optional), data?, flags?}
+
+

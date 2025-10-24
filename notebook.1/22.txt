@@ -1,0 +1,35 @@
+Pager
+
+mutt_view_attachmen() -> mutt_do_pager(view, e)
+
+browser		<space>		<view-file>	default => mailcap/text
+recv att	<enter>		<view-attach>	default => mailcap/text
+compose		<enter>		<view-attach>
+		m		<view-mailcap>
+		Y		<view-text>
+		NONE		<view-pager>
+
+AttachCtx[], AttachPtr {fp, body}, email, actx
+Browser, fp=NULL, body, email=NULL, NULL
+
+--------------------------------------------------------------------------------
+
+
+FILE		TYPES			GLOBALS
+ansi.c		*AnsiColor		none
+attr.c		AttrColor(list)		none
+color.c		none			ColorNames[]
+command.c	none			ColorFields[], ComposeColorFields[]
+curses.c	CursesColor(list)	*CursesColors*, NumCursesColors
+merged.c	none			*MergedColors*
+notify.c	none			ColorsNotify
+quoted.c	QStyle			*QuotedColors*, NumQuotedColors
+regex.c		*RegexColor(list)	*Attach,Body,Header,Status,Index(Author,Flags,Subject,Tag)*
+simple.c	none			SimpleColors[] ~= 47
+
+*AttrColor
+
+AC: Email, mutt_draw_status_line(), TextSyntax, QStyle
+resolve_color(), display_line(), print_enriched_string(),
+menu_redraw_index(), _motion(), _current()
+

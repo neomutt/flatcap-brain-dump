@@ -1,0 +1,17 @@
+[DEBUGGING OUTPUT]
+
+26 files A-Z
+or 52 a-z
+
+Recursive logger, initial is 0, might get deleted
+
+use <> to auto-populate?
+	where? how?
+	files/[A-Za-z]
+
+<fn> to get setup
+<fn> to dump <>
+set descs [A-Z]
+<> from desc if set
+msg <> results!
+

@@ -1,0 +1,37 @@
+notifications up and down?
+Mc -> Mu and Ac  does Au exist?
+
+	 Au
+	 |
+	 Mu
+       /  |  \
+     Mc1 Mc2 Mc2
+      |   |   |
+      E   E   E
+
+Au exists but is skipped in enums?
+	prevents dupe events at top-level
+Au doesn't propagate to N?
+
+OR no notification path from Mc -> Mu
+	Mu observes Mc explicitly -> Mc doesn't know about Mu
+	Au owns Mu - no notifications, no dupes?
+
+If Mu has homogeneous  children, does it live in Ac?
+If Mu has heterogeneous children, where does it live?
+
+New E - EventEmail(new)  E, Mc observed by Mu and re-emitted
+GUI observes Mu, sees new E
+
+Config lens-mailbox, my_inbox  imap://imbox  imap://sent
+lens_new()  M(LENS)
+lens_add(Inbox)	merge Emails[], hash table, etc
+lens_add(Sent)  merge Emails[], hash table, etc
+	need to know which E's belong to which M's (mdata)
+
+Mu is visible owned by Au
+Mc1, Mc2 are hidden, owned by Ai, unless explicitly mailboxes'd
+
+lens backend implements all MXAPI
+mdata store children
+

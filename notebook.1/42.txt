@@ -1,0 +1,31 @@
+Notify
+
+Menu - doesn't know its data
+Alias - fn_X() -> objs
+which objs - notifiable?  ownership?
+
+AMenuData (notify?) NT_ALIAS -> external cmd! (un)alias
+	AViewArray
+		AView
+			Alias
+				Address
+
+Dialog
+	MenuWin -> Menu -> mdata
+	Sbar
+
+--------------------------------------------------------------------------------
+
+Index Q			TPCur Y N
+Index m john<tab>	Y
+matches			N
+no matches
+new Q		o/n
+append A	o/n
+
+alias tags would apply to sidebar_auto_width, sep color?
+notify_debug() cf color_debug() - once working
+
+Global notification on endwin(), refresh(), e.g. alter extern cmd
+	RootWin trigger reflow, recalc, repaint ∀, same as WINCH
+

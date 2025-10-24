@@ -1,0 +1,45 @@
+Enter
+
+Data - buffer, cursor, notify
+Fns - insert_{ch,str}, left, right, kill-word, etc (readline)
+View - Window, functions (<ops>), draw, observer
+
+External: History, Completion - who? how?
+
+Completion <complete> (<tab>) -> what?  popups - how? <up>, <down>
+hit <tab> again, who's handling it?
+<tabs>(1) completes: entire symbol, partial, none
+<T2> -> first match <t3>2nd match, etc <Tn> -> orig string, repeat
+Ctrl-D -> show matches
+
+--------------------------------------------------------------------------------
+
+History: <up> prev etc, <down> first, 2nd, etc -> orig string, repeat
+Ctrl-D -> show matches?
+
+Completion *inserts* a string; History *replaces* everything
+	 (overwrites)
+
+Ops:
+	History: up, down, search -> history_set(text|NULL)
+
+replacement_set(text|NULL, word|line)
+replace_word()
+replace_line()
+
+Complete: complete (-query) -> completion_set(symbol|NULL)
+other OPS *fix* text / or commit() - who calls? all editor fns
+
+Completion: <complete_menu> -> enumerate option, zero or 1 done
+create popup, populate.  Enter has two Windows, call comp_disp()
+before hist_dup(), then enter_disp(), popup is Menu (custom colours)
+^v<> eaten by popup (transformed)
+
+<complete-list> - simple popup, max n line
+
+CompletionOps{}, new, free, init(symbol), advance(), count(), get()
+HistoryOps{} load()? (lazy), count(), get(n), unload()?
+	get_type(), release(), get_entry(n), count()
+Comp obj holds state
+Hist obj holds state
+

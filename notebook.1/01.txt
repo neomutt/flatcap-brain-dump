@@ -1,0 +1,33 @@
+window fn pass down top-level wins like MessageWindow
+Observer as little as possible: config, not Neo, this window not Neo, etc: Elim neo?
+\ need more 2nd-level object to observe -- for commonly-changing objects
+add Window.dtor() vs observing NT_WIN_DELETE for most Windows?
+Observers: common-changing isn't important  !neo _is_ being an aggregator!
+log all successful observations
+notify log macro - not compiled/run unless DEBUG?
+multiply log levels*10, LL_WINDOW=61, LL_NOTIFY=62
+link colours SB_INDICATOR -> INDICATOR, if SB_ isn't set, drop through
+add colours to browser, file, dir, folder, nested folder, parent?
+\ browser scan local fs for is_mbox, is_maildir, etc => mark and highlight
+notify: unify NEW vs ADD, FREE vs DELETE(D), _ALL
+DELETE_ALL allows observer to efficiently clear lists
+cbar, ibar, pbar -> WT_BAR -> status_op_top()
+DEL_ALL doesn't get sent to object, only  parent! - Doc where?
+should recalc/repaint ever be called if window isn't visible?  NO
+events affecting layout _must_ occur immediately, _unless_ reflow() + WA_FLOW
+\ in reflow() if WA_REFLOW, call win->reflow(), _then_ do reflowing
+\ => reflow() needs to figure out what to do
+Do we need to notify on set_visible()?  vis=false => no more notify
+\ set vis=true  notify?  NO?  who care?  notified after win_reflow()
+easy:  my command to show all my_vars (or does :set cover it?)
+medium: integrate my_vars into config system
+DYK: toggle string macro $real_name example, with echo
+easy: dsn_* config to enum/slist (comma)?
+can mutt_yesno() lookup op in generic map to catch Ctrl-L (OP_REDRAW)
+who does repaint for msg window?  if _my_ dlg is visible?
+old_focus = set_focus(X); do; set_focus(old_focus)?
+breadcrumbs: help>bind>pager>index>compose>pager>index (41 chars)
+\ share space with $help, or status bar (index) expand, share msg window
+quad, Y/N, multi - print choice, sleep (0.5s), clear - UNLESS macro. HOW?
+DON'T update web guide so it shows the old config names, sans "_"
+mutt_exit() should notify everyone to allow some cleanup, e.g. backends

@@ -1,0 +1,52 @@
+TreeOps
+
+Sibling append = child append
+sibling insert before
+child add or get_children(), sib append
+attach delete
+make group - move tagged, then make group
+break group
+swap siblings / move up/down
+promote/demote/move left/right
+delete group -> recursive break and delete
+(un)collapse group
+move attach to posn
+
+Body
+TQH(Body)children
+Body*parent
+
+Folded
+0	0
+1 }	1 (G)
+2 }G	4
+3 }
+4
+
+delete(2) -> business logic: min children in group
+	library att_del (body[v2r[2]])
+	view v_del(2)
+	renumber - recursive (view)
+
+AttachPtr
+	prev*,next* (siblings)		(B->next)
+	parent*
+	(children provided by Body?)
+	ARRAY children?			(B->parts)
+
+1 B
+2 B
+3 +-- B
+4 +-- B
+5 +-- B
+6 B
+7 B
+
+Traverse: X, children(X), X->next
+
+--------------------------------------------------------------------------------
+
+*check* save attach doesn't allow ../../etc/passwd!  it does!
+save attach x/y doesn't work if x/ doesn't exist, just waits
+rebuild -> update "number" & "level" -- nec? prob
+

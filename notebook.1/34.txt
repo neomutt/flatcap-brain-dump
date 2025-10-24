@@ -1,0 +1,15 @@
+all ansi colour seq covered?
+
+Att Dlgs
+
+Index/Pager <view-attachments> -> *dlg_select_attachment()*
+	menu of att. view, print, etc
+<view-attach> -> *mutt_attach_display_loop()*
+(compose too) view up, down, collapse
+-> mutt_view_attachment() -> mutt_do_pager()
+
+--------------------------------------------------------------------------------
+
+If we queue <search> how to we know its *not* '<', 's', 'e', ...
+	[SEQ]<search>[END-SEQ]text[SEQ]<enter>[END-SEQ]
+

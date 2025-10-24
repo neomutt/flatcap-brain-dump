@@ -1,0 +1,34 @@
+Enter String
+
+Caller: state, history, completion, dlg selection
+
+Function: state, window, keys, etc
+	retvals:
+		abort		- ctrl-g
+		success		- <enter> (with/without data)
+		winch		- resize (nec? surely other windows are notified already?)
+		complete	- <tab> details in state
+
+Caller - create/destroy state
+	add to history (if req)
+	repaint/restart (if nec)
+	complete - shoul dit clear the msgwin?
+		do all completions use a dialog?
+		do some completion in-place? (and use/update state)
+
+Function (state, flags)		or flags in state
+	focus msgwin
+	paint initial state
+	event loop - keys, cursors, fns, about, enter, tab
+	plug - treat <space> specially?  HOW? handled by getch()!
+		or on <mailbox-cycle> if !flag, enter binding literally!
+		or pass OP_X to caller to decode - means *every* caller
+		needs to know <mbox_cycle> might happen?!
+
+History
+	how do <up>, <down>, <search> work?  integrate?
+	needs to be integrated?  YES
+
+Complete
+	need to integrate or suffer Pager-Index-Pager prob
+

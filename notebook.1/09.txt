@@ -1,0 +1,36 @@
+sort	sort_aux	sort_subthread
+	sort_thread
+
+sort = X
+	threads, X
+	threads, X, Y
+
+sort = thr, aux=date	1 + 1
+sort = date, aux=addr	2
+
+use=Y	sort=thread	aux=date	1 + 1
+	sort=date	aux=addr	2
+
+use=N	sort=thread
+	sort=date	aux=addr	2
+
+(sort=threads deprecated use => more control
+sort field doesn't ened to be visible
+default	s:date, aux, date, e.g. Jan/Feb 123, Mar)
+s:from, aux:date	e.g. (AAABBCCD) + aux dates
+use=Y s:date, aux:date, e.g. std look
+-> see also hide_thread, strict_thread
+-> generally s:a : index_format
+
+list fields / or link to $sort (turn list into a table of options)
+	-> mention reverse-, last- previxes and meaning
+
+--------------------------------------------------------------------------------
+
+<jump-to-mark>x
+magic expando zerowidth if no marks! <clear-marks>
+[a-z] are local to this Mailbox, [A-Z] can span Accounts?!
+mark doesn't exist, just a magic macro.  put mark in MV?
+
+need index_format_str expando for "mark", like vim's sign column.  HOW?
+

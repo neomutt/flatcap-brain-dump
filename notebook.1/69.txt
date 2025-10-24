@@ -1,0 +1,6 @@
+mbox_check() - for new mail
+
+stat new, stat cur
+∀ parse_dir() -> mda		(names)
+gen hash (names)
+

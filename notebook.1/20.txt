@@ -1,0 +1,43 @@
+Colour questions
+
+signature + underline, fill width?
+normal bg set : error msg, red default, does def man merger normal?
+empty space after email "~" is it *normal* or default?
+only merge colours *if* indicator or if (setcchar/bkgrndset) => 2^16 colours
+can *all* colours take attributes?
+redefine colours { "name", id, regex[y/n/opt], list*, flags? }
+	what about "compose" prefix?
+config limits to number of TextSyntax for colouring/search matches?
+
+--------------------------------------------------------------------------------
+
+Priv -> Line[] -> TextSyntax[]
+
+display_message -> pager -> custom_redraw -> display_line
+display_line -> jump_to_bottom, search, skip quoted, skip headers
+next pager, prev page, next line, prev line, top, bottom, half up, half down
+hide quoted
+
+:devel -> page describing extra features or "no devel feature enabled"
+	OR always enable devel, $enable_devel_features = no (default)
+	neo -v	debug -> deve + (ENABLED) - log it too
+	#define COLOR(x,y,"desc") discard desc #ifndef DEBUG!
+
+squash rgb check for simple and greyscales first else map RGB to palette
+
+on search print "n matches" and/or "match n of m"
+	<search> + <next> behaves oddly w.r.t search context (top m matches)
+	<next> should just to *next*, not skip $search_context lines!
+
+use underline to show positions of hidden quoted text?
+	to length of first quoted line, max length?  fixed length?
+
+cache processed line for window (-window, +window) or (~100 centred on current position)
+
+add colour "text" for colouring plain attachments?  or use mime-type
+color mime-text-plain x y z
+or color mime TYPE PATTERH -- easier to parse
+
+toggle_quoted_show_levels doesn't honour 2nd *quoting style*
+toggle_quoted_show_levels doesn't work if quote aretn' coloured!
+

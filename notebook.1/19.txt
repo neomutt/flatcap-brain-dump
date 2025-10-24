@@ -1,0 +1,57 @@
+AnsiColor
+
+Parse text -> Ansi: basic, palette, RGB + attrs, $allow_rgb?
+	^H -> bold/underline. MT_COL
+	http://... (allow_ansi, regex cfg)
+
+AnsiColor
+	AttrColor *--> cc ++
+	flags?
+	next *-->o
+
+Line[]
+	quote *-->  AC	default
+	text_syntax[] *--> TextSyntax
+	search_syntax[] *--> TextSyntax
+
+Readline
+	if ^H lins TextSyntax to UNDERLINE, BOLD
+	if ANSI, search AnsiColors[]
+	if match link TextSyntax to AnsiColor
+	if !match new AnsiColor
+
+TextSyntax
+	first, last
+	AnsiColor *--> AnsiColors[]
+
+--------------------------------------------------------------------------------
+
+Overlays
+
+AttrColor[] *--> cc++
+Menu, Sidebar, Index
+Sidebar: (new/flagged/etc color) + (indicator/highlight)
+Index - (multiple colors) + indicator
+ColorAttr = color, merge (src, overlay)
+
+--------------------------------------------------------------------------------
+
+two-part parsing. cfg -> structs; init_pair() ∀ structs
+	allows checking and batch mode (dry_run)
+
+`color` adds [attrs+] colours to object `uncolor` removes both
+`mono` adds attrs to object, `unmono` removes attrs
+
+--------------------------------------------------------------------------------
+
+Curses flags (simple, palette, rgb)
+
+Quotes
+	AttrColor[] 0-9 -> quoted0-9
+	"color quotedN attrs fg bg"
+	same as simple
+	is quotes_used num entries, or highest used?
+
+QClass
+	AttrColor *--> cc++
+

@@ -1,0 +1,38 @@
+Incremental Search
+
+context config: num of lines surrounding match
+	could be "thread" for Index
+	likely domain specific
+
+Index, Address Book, Sidebar, Help
+add hidden keywords to Help page + translations
+They should be matched in search
+if translation search *both* keyword strings
+
+help_format rather than fixed?
+doesn't help with OP_SIGWINCH retval
+still uses pager
+means losing headers?
+if it uses the Index, then we need to turn off cursor
+	and turn <up> info <scroll-up> etc
+who else would use this feature?
+who else has paged formatted data?
+*this* data wouldn't need to be backed by a file
+
+inc-search - highlight match in line.  HOW?
+	fuzzy search does 'abc def' match independently?
+	are we looking for 'abc.*def' in *one* field, or
+	'abc' in *any* field and 'def' in *any* field
+libfuzzy needs search string + array of entire fields as string
+does Index match against fields that aren't in expando?
+
+--------------------------------------------------------------------------------
+
+Help - change ^X to Ctrl-X, <esc>X to Alt-X
+	or Mod-X depending on arch?
+	<what-key> too
+
+FIX DPTR
+	check path changes
+	check address changes
+

@@ -1,0 +1,36 @@
+Enum
+
+ExpandoFormatIndex	enum
+	EFMT_ALIAS_FORMAT
+ExpandoNodeType		enum
+	NT_DATE
+ExpandoPadType		PT_HARD_FILL
+HasTreeChars		HAS_TREE
+ExpandoDateType		DT_LOCAL_SEND_TIME
+ExpandoConfitionSTart	CON_START
+
+Struct
+
+ExpandoConditionPrivate	-> ENode * 3
+	DatePrivate	enum EDateType
+	FormatCallback	typedef expando format callback
+	FormatPrivate	-
+	Node		ENodetype, ENode to callback
+	PadPrivate	EPadType
+	ParseError
+	Record		string, ENode(tree)
+	Validation	string, EFormatCallaback * 2
+
+vars
+
+19 * EFormatCallback	alias_1 {"a", NULL}
+
+expando_format_callback		fn
+	(ENode, buffer, col, maxcol, data, flags)
+
+ExpandoValidation	expando_validation[55]
+	defs ∀ format string
+
+Neo -> ExpandoRecord[55]
+	parsed tree ∀ format string
+

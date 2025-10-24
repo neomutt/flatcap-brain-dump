@@ -1,0 +1,43 @@
+Extend compose view to include (partial) message?
+view = mutt : attach only, v=message: msg(focus), attach(unfocus)
+view = attach : attach(focus), msg (nofocus)
+function to page up/down *un*focussed window/list
+need *clear* focus indicator
+
+IndexSharedData
+Sub, Account, Mailbx, Context, Email
+Index, IBar, Pager, PBar, Sidebar
+
+Email*Add*: Index: insert into Email array, into virtual array
+	(sorted and filtered) When does this happen?  *immediately* or
+	cached, waiting for recalc? NO.  immediate -> macro could
+	cause Mailbox changed mid-action
+
+Email*Delete*: Index => object will be freed -> immediately
+	action required.  Who's observing?  IndexWindow (menu)
+	=> immediately, remove objects / refs in array / varray / view
+	-> WA_RECALC -> update index numbers, re/thread?  etc
+	View objs like thread - update them, but
+	leave them in place with NULL Email ptr, that way
+	recalc can update without losing open/closed state of folds
+
+Email*Change*: Index - flag EV as out-of-date => RECALC
+	Sidebar: Index Email - ignore.  Index Mailbox => what different
+	current Mailbox? or current Mailbox has internal changes? BOTH?
+	Who needs to know the difference?
+
+date struct date at each level
+rev_date ditto reversed
+last_date each level sorted by most recent (grand)childn
+rev_date ditto reversed
+
+n -F /dev/null => alias_file = /dev/null - prevent  HOW?
+
+ask translators about one-liner help
+add -O to :set to get one-liner help too
+
+Top devs Σ1-n (num/year^2) num commits / (age in years)^2
+	top 10 excluding flatcap
+	showing num too
+	or months to a lower powere 1.1?  CRON Sunday
+

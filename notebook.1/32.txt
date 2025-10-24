@@ -1,0 +1,43 @@
+Compse vs Recv  -> ONE top-level Body
+
+Email -> *Body* ->(next) Body ->(next) Body
+			  |
+			  V (parts)
+			Body ->(next) Body
+
+Start	E	add attach	E	add attach	E		send	E
+	|			|			|			|
+	V			V			V			V
+	B			B -> B			B -> B -> B		B -> B -> B
+
+Alt	E			E			E			E
+	B			B			B			B
+				BB			BBB			BBB
+
+Encrypting	E	->	E			msg = [BBB]
+		B		B [multi/enc]
+		BBB		B(ver) B(msg)
+
+Signing		E		E
+		B [mixed]	B [multi/signed]
+		BBB		B [mixed], B (signature)
+				BBB
+
+BOTH
+	E
+	B [enc]
+	B (ver) B[sign]
+		B[mix] B(sig)
+		BBB
+
+
+E		E			E
+BBB		|(Body*)		|
+		v			v
+		B0 -> B			B
+		      |			|  \
+		      V			V   \
+		      B1 -> B2		B0  B		0 -- 1
+		      			  / | \		   / | \
+					 B1 B2 B3          2 3 4
+

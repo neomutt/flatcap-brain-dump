@@ -1,0 +1,41 @@
+36 y/n, 43 quad, 16 multi
+
+what-key	prompt msg		\n?
+change-flag	prompt	[if $help, ('?' for help)]
+yesorno		prompt	or help1\n(help2\n) prompt
+multi		complex	(a)pple,(b)anana	'\0' to end
+fname		prompt + text
+getfield	custom
+
+set_text - one-off - calc rows, reflow?
+clear_text - one-off - calc_rows(1), reflow?
+add_text - multi, on NULL, calc rows, reflow?
+recalc - nop?!
+repaint - paint using calc'd rows
+winch width - calc rows, reflow?
+
+redraw
+
+reflow: descend to MsgWin, calc if width, return changes? check request is fulfilled?
+recalc: if req changes, retval WA_REFLOW
+repaint: run reflow again, error on second WA_REFLOW -> Window.reflow()
+
+--------------------------------------------------------------------------------
+
+Enter Window -> wdata -> EnterState
+fn editor, op_editor, history, complete
+do completion & history. need their own functions & dispatchers
+functions, no.  make bindings hard
+dispatchers, yes, but still need their private data.  HOW?
+
+{--  width                    --}
++-------------------------------+
+|field|                         |
++-------------------------------+
+|                               |
++-------------------------------+
+|                               |
++-------------------------------+
+
+width, field len, start row
+

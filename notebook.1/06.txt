@@ -1,0 +1,6 @@
+~/.mime.types
+
+tie-in with my_hdr?  how else to auto_add attachments?
+attach: fake header add mimetype field?  and/or description?
+newmail notify + named_mailbox -> "new mail in /dev/null" !
+

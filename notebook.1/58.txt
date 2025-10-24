@@ -1,0 +1,60 @@
+Freeform Question
+
+translated question
+window, cursor position
+responses[] {char, flag}
+event loop
+
+change-flag easy
+(cf isn't *prompt*-coloured)
+multi req complex drawing
+yesno req regex match
+what-key complex output
+
+--------------------------------------------------------------------------------
+
+Enter coverage
+66 get_field(), 31 no flags
+flags 12 clear, 4 unbuffered, 3 pass
+13 file, 6 pattern, 4 alias, 3 file simple, 1 nmtag, query, label, filembox
+
+--------------------------------------------------------------------------------
+
+punycode option for non-latin addrs, to prevent phishing
+or a *mix* of lating vs (e.g.) cyrillic!
+or colour non-latin chars red (or config)
+
+BUG: sort can't see into folded threads!
+transpose doesn't support combining chars
+editor W0 after every op
+editor rename/syn all fns to *readline* names
+
+upgrade mark-message:
+	~[a-z] (mailbox-specific)
+	~[A-Z] macro -> global
+
+libenter doc arch/workings
+"readline" readme, when done
+readline yank/paste; undo?  how! (just keep a few levels)
+need $foldopen: jump, search, mark?
+$narrow_tree doesn't force refresh of index - non-trivial
+Buffer fn conversions
+python code checks
+upstream patches - update, kill, 'p'ending
+raf: other upstream? -- invite?
+cull "mentor" project
+elshize: new mail
+moreka: easy mouse
+Jonthan: easy, compose multipart, nopoll, nonotify?
+
+mem_realloc_*zero*()
+
+Readline yank/past
+op_pipe() et al Email*List* to EamilArray
+
+neomutt -v -> bold keywords: at b.o.l. + log: version(stripped)
+
+competition for 1 sentence, 1 para, etc desc of NeoMutt
+
+or accept Ctrl-X, Alt-X.  how?  where?
+

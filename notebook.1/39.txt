@@ -1,0 +1,4 @@
+Colours: Index merge all in order;
+merge all sidebar colours too
+default colours(normal), line-wise colours, column-wise, segments, cursors
+

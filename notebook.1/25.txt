@@ -1,0 +1,24 @@
+Functions
+
+Functions, keybindings, dispatchers, windows, Keymaps[MENU]
+
+Combine?
+	EditorFunctions "Ctrl-E", OP_EDITOR_EOL, op_editor_eol()
+	OpEditor	"eol", OP_EDITOR_EOL
+	OPS_CORE	OP_EDITOR_EOL, "jump to ..."
+
+Move combined struct to libenter
+need to allow for synonyms (for old fn names)
+
+--------------------------------------------------------------------------------
+
+HOWTO refactor commits into tidy history - flatcap style
+	renaming, moving first, trivial {}, clang-format orig, rebase orig
+	build tests, unit tests, check master is clang-formatted
+
+sidebar - merge all possible colours, not just indicator/highlight?
+set attach_format doesn't refresh compose/attach menu
+buffer_cmp (bufa, bufb, compare_fn), etc mutt_istr_equal()
+
+Disabled config option - error: ./configure --xyz advice
+

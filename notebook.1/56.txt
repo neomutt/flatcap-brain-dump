@@ -1,0 +1,52 @@
+Message Window
+
+enter_field() takes focus (ownership)
+msgwin.data -> msg txt colour
+message(text) -> NOP if not focussed
+
+<mail> enter_field "To:" + <tab> enter_disp -> dlg_alias
+-> <limit> enter_field "pattern" "~" <tab> dlg_pattern '/'
+
+MsgWin data "last error"
+Enter.data "To:"
+Enter.data "Limit:"
+Enter.data "Search:"
+
+|
+|XXXSTATUSXXXXXXXXXXXXXXXXX
+| (1)
+| (2)
+| (3)
+| (4)
++--------------------------
+
+(1) Always possible to be seen
+(2),(3),(4) only visible when focussed
+container fixed size of 1 line
+what about setting window size for big errors?
+*no* big errors only big multi-choice, big yes/no, for now
+allow mutt_message/warn/error to use multiple lines?
+	ctrl-l will reset
+
+Any enter_field, will take focus and force height to 1 line
+z-order message, Enter1, Enter2, Enter3
+
+all 4 have text, E3 has focus		Render order
+message: not visible(z) -> nopaint		|
+Enter1,2 no focus, no paint			|	or find, focus
+Enter3: focus -> paint				V	or use last
+
+add z-order to glossary
+
+--------------------------------------------------------------------------------
+
+M1 normal window, fixed 1 high
+P1 (progress) z-window
+
+M1, E1, Dlg, M2		Dlg has focus
+
+MsgWin - container - *fixed* height - z-flag
+Window			}
+Multiple z-windows	} max, max, ignored in size calc
+			  z-flag => new calc/paint order
+

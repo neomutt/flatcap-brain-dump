@@ -1,0 +1,45 @@
+Index
+
+AD (all aliases) -> AL -> dlg(AL)	act -> A <enter>  -> mail1 } Subject: -> compose -> send     }
+					       B <mail>   -> mail1 }                     -> cancel   } -> AD -> quit -> Index
+					       C ;<enter> -> mail3 }          -> cancel              }
+					       D ;<mail>  -> mail3 } cancel                          }
+
+--------------------------------------------------------------------------------
+
+Index
+
+QD (query) -> AL -> dlg(AL)		act -> A <enter>  -> mail1 } Subject: -> compose -> send     }
+                                               B <mail>   -> mail1 }                     -> cancel   } -> QD -> quit -> Index
+                                               C ;<enter> -> mail3 }          -> cancel              }
+                                               D ;<mail>  -> mail3 } cancel                          }
+
+Dialog (Enter == Mail)
+
+--------------------------------------------------------------------------------
+
+To: AC (some aliases) -> AL -> dlg (AL, buf) ->	A -> add1 to buf } Exit -> To: -> Sub -> compose -> send   } -> Index
+						B -> add1 to buf }				 -> cancel }
+						C -> add3 to buf }                    -> cancel            }
+						D -> add3 to buf }	       -> cancel                   }
+
+Compose (Enter == Mail)
+
+--------------------------------------------------------------------------------
+
+To: QC (some aliases) -> AL -> dlg (AL, buf) -> A -> add1 to buf } Exit -> To: -> Sub -> compose -> send   } -> Index
+                                                B -> add1 to buf }				 -> cancel }
+                                                C -> add3 to buf }                    -> cancel            }
+                                                D -> add3 to buf }	       -> cancel                   }
+						E <quit> -> Index, To:
+
+--------------------------------------------------------------------------------
+
+(F) no aliases / queries
+Text tagged <tag-prefix> with other fns
+NeoMutt->sub!
+
+alias dlg - win dlg -> (wdata) menu -> mdata
+Menu ->(wdata) Menu
+sbar ->(wdata) sbar data
+

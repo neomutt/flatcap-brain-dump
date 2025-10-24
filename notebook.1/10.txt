@@ -1,0 +1,32 @@
+Index View Copy?
+
+Index has M + Ctx (MV)
+who owns the MV?  IndexWindow / Menu?
+When Index -> Compose -> Index we get a new MV
+	can we copy an exisitng MV.  from where?
+Exact copy: EL, selection, pattern of folding, limit?
+	search all_dialogs backwards looking for latest Index?
+
+
+Refactor Patterns to eliminate Context
+~m pattern needs Context to parse.  should encode values
+as relative/absolute without ref to Context
+it should only eval ranges, etc, when given a Mailbox
+
+
+Sort transition: $*s*ort, $sort_*a*ux, $use_*t*hreads
+defaults s=date,a=date,t=no
+use sort_validator for once_off or always warning
+s=thr,a=date (warning)	(config/hook)
+
+t=n	s=thr	a=date	thr	1st date	2nd date	levels
+n	~A~	~B~	n	~A~		~B~		2
+n	thr	~B~	y	~B~		~B~		1+1
+y	thr	~B~	y	~B~		~B~		1+1
+y	A	B	y	A		B		2
+
+mess with use_threads
+
+ot	t=y	s=date	a=date	Y	date	date	2
+ot	Y	?	B	Y	?	B	2 copy aux
+ot	Y	from	B	Y	from	B	2

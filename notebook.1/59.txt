@@ -1,0 +1,53 @@
+Enter
+
+EnterState(notify) + readline fns, replace fns
+EnterWindow. custom, create es, notify -> Neo
+	recalc, repaint(es)
+	functions -> readline -> notify -> recalc
+	history/completion -> replace -> notify -> recalc
+
+alpha, motion, history, completion
+
+prompt: default|   (cursor)
+
+--------------------------------------------------------------------------------
+
+New Mail	Mailbox m1, m2, m3, ..  <check-stats>
+X=init(), shutdown(X) - X opaque, observe(N), config?
+where do nopoll and nonotify fit in?  neomutt still needs them
+no need to search for Ms, just wait
+
+
+(lower ascii, upper unicode)          | (cursor)
+wide chars	|a|b|c|D|E|F|G|H|i|j|k|l|M|N|O|P|Q|R|s|t|u|v|w|x|y|z|
+mb count	 1 1 1 2 2 2 2 2 1 1 1 1 2 2 2 2 2 2 1 1 1 1 1 1 1 1
+				{  viewport        }
+<left>recalc widths from start
+
+--------------------------------------------------------------------------------
+
+$allow_emoji or $pager_features=ansi,emoji,etc
+pager_filter=:heart:->♥️, etc
+
+filter=plugin.so
+
+vim-characterize names 1320 chars
+
+macro|variable for current folder, user, email, etc.  how?  need DOM
+allow_andi=yes - `grep` adds `<esc>[K` <erase-in-line> need to filter it out
+Buffer: alloc() use step size to reduce num of reallocs
+Enter: work with a *copy*, only committed on success
+neo-bot - login
+idea: spell check subject - how?  add editor fn?
+
+DYK: command :dyk -> reads random from docs/dyk001.md?
+	or fn with mapping, pager would need mapping for "show-me-another"
+
+way to preserve X-headers when replying to email?
+Bug :exec what-key doesn't clear existing messages
+Enter: ctrl-v<enter> -> "\n" or "<enter>" same for fn keys
+attach: magic header - support wildcards? >10 -> menu "are you sure?"
+Bug msg win *should*log*msg, even if hidden
+
+
+

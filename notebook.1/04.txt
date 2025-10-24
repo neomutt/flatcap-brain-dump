@@ -1,0 +1,39 @@
+Enter field anywhere
+
+needs Window - needs to be real
+allow *enter* to resize win, with limits and reflow
+on WINCH parent & *enter* shouldn't need to be aware of each other
+popup win might have diff resize rules
+Compose - window for each env item?  how much extra code?
+\ would make in-place editing simple?  *
+
+<, >, markers to show text off-screen
+add sizes <40|       |16> num char off screen?  colour
+need focus colour, even if temp => 0.5s highlight
+
+* extra windows - small, don't need offsets, just win ptrs
+alternate: oversize popup, comma or \n separated, expand as necessary (downwards)
+
+AliasDlg - cfg status_on_top
+	Menu	colour, cfg, window	recalc, repaint
+	Bar	colour, window		recalc, repaint
+
+IndexPanel - container
+	config (win), window(delete)
+
+Menu
+	colour(index)		colour(bar)	(Inherit MainWindow)
+	cfg(index)		(base)
+	recalc(index)		Xrecalc (=>repaint)
+	repaint(Xindex)		repaint(base menu)
+	(ex-custom redraw)
+
+IBar (no inheritance) - should it?  prob NO
+	colour (rich)		X colour (sbar)
+	cfg(1)			X cfg (name)
+	recalc (cache)		X recalc (=>repaint)
+	repaint (display)	X repaint (show rich string)?
+
+Link wdata to win (doxy)
+
+

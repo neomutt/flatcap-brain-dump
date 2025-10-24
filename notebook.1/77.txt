@@ -1,0 +1,32 @@
+Monitor (inotify)
+
+Global fd for inotify
+1 x fd ∀ mailbox dir/file (array) + fd for stdin to catch keypresses
+slist of monitored mailboxes (used to check for existing monitors)
+use getch() timeout to trigger inotify check?  decouple
+
+add monitor:	mailboxes X
+		index - "current" mailbox
+
+remove monitor:	unmailboxes X
+		mailboxes -nopoll X
+		index change folder (if it wasn't monitored before)
+
+lazy alloc - on first local mailbox
+lazy dealloc - on last deleted mailbox
+owned by maildir/mbox
+	how do they get the -poll/-nopoll notification
+	mbox_set_flags() would need both POLL and NOPOLL?
+event on fd -> lookup Mailbox -> what?  callback?
+monitor_callback (mailbox, path, flags)
+
+fns	monitor_file() - decouple from mbox/maildir
+	monitor_dir()
+
+inotify config option to watch cur/ dir too?
+libmonitor - inotify.[ch], could add other backends
+
+timer -> global presence data, setup v.early before imap
+	but don't open main fd until we get a maildir/mbox folder
+
+

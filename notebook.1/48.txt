@@ -1,0 +1,48 @@
+Index/Pager split
+
+main -> index -> pager ->?  change email, folder
+main() -- init, create mailbox
+index(m) -> create shared ipriv, event loop, display_message()
+pager(shared), create ppriv, event loop -> next_email()
+	next_email(): change selection, notify(email)
+		NT_EMAIL -> Index : menu already updated, repaint
+			-> Pager: teardown ppriv, rebuild (recalc), repaint
+		End of mailbox? resolve fails, last email is still selected
+			send NULL selection?  or send 2 (NULL, last)
+			Pager will close on first
+			NULL: Pager
+
+--------------------------------------------------------------------------------
+
+index -> pager -> op_delete : [ index_fn_dispatcher() -> op_delete() ]
+
+✓ set flag on email NT_EMAIL (state)
+✗ resolve -> select next -> NT_INDEX(NT_EMAIL)
+
+Index(Menu) Mailbox, Email(s)
+select next -> [menu change -> NT_MENU, index observes]
+	fails => NT_INDEX(NT_EMAIL)???
+[IND(EMAIL), E] => change [NULL] => resolve failed (shared->email still set)
+[IND(M), M] => change, [NULL] => closed
+
+--------------------------------------------------------------------------------
+
+mutt_index_menu			Event loop
+index_function_dispatcher	Dispatcher
+op_display_message		pass(M,E)
+mutt_display_message					no shared!
+mutt_pager			Event loop
+	quit; no email, resolve
+	diff email - shared needed
+	resize, same email
+
+index_dispatcher()
+op_next_entry() -> notify(E) or (NULL)
+
+pager_index_observerA()
+	redraw = true? (E)
+	abort = true (NULL)
+
+compose, main (index, pager view attach, pager view), help
+calculate callstack + data!
+

@@ -1,0 +1,17 @@
+Read Dir (15)
+
+bcache                    name		ignore .,..
+browser                   name		. only
+complete                  name		.,..	filtering
+maildir_check_dir         name		.*	filtering
+maildir_parse_dir         name,inode	.*			progress
+maildir_open_fine_msg_dir name
+maildir_check_empty       name			filtering
+mh_check_empty            name			filtering
+mh_mbox_check_stats       name		.*	filtering
+mh_commit_msg             name			filtering
+mh_parse_dir              name			filtering	progress
+mutt_file_rm_tree         name		.,..	filtering
+nntp_clear_cache          name		.,..	filtering
+nntp_select_server        name			filtering
+

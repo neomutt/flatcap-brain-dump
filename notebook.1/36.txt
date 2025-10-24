@@ -1,0 +1,44 @@
+Compose/Attach
+
+Attach window (no bar)
+(Envelope window?) - doesn't seem to need mailbox, only email
+
+AttachWindow ->(wdata) Menu ->(mdata) AttachPrivateData
+req mailbox - some checks
+email, subset, flags (recv, compose) -> decompose to which actions are allowed
+create window - data(M,E,Att) owned by caller ref'd in Priv
+
+loop: getch()
+	compose_dispatcher()?  NO
+	attach_dispatcher()?   YES
+
+exit - destroy E,Att
+send -> send_message(), destroy
+view_exit -> no action
+
+REQ: top-level Attach
+
+--------------------------------------------------------------------------------
+
+Envelope window ->(wdata) Menu ->(mdata) -> EnvelopePrivateData
+req envelope
+    email
+
+create window data (E,Env) owned by caller, ref'd in Priv
+
+loop: getch()
+	env_dispatcher()? YES update screen & objs - notify
+exit - destrol E,Env
+send - send, destroy
+
+--------------------------------------------------------------------------------
+
+mutt_save_attachment_list()
+	attach(op_save), compose(op_save), pager(op_save)
+
+--------------------------------------------------------------------------------
+
+Compose *separate* Bodys, assembled @ end of fn before send()
+
+attach/config?
+

@@ -1,0 +1,20 @@
+missing fn OP_PREV_UNREAD_MAILBOX
+unify <version>, <show-version> (and many other pager fns)
+<modify-label> resolves, <edit-label> doesn't
+unify msgs for prev/next msg/mbox: "open" vs "move" vs "jump"
+doc $resolve behaviour ∀ fn - edit label!
+update dlg_select_postponed_email() to use resolve?
+Editor if <f1> (etc) isn't recognised expand to '<', 'f', '1', '>'
+update issue templates to libera's irc client
+	add issue(Tech), add Discussions link
+rel notes - mention old ncurses doesn't build
+mutt_mem_re*calloc*(), memset new mem to zero
+`:theme` would have to `uncolor *` safely (no args => list select!)
+add vim syntax to /etc/neomuttrc
+update all samples to new_under_score names
+turn QuotedN to n*Quoted (simple)?
+kill Opt* global referrring to sort/score/redraw
+mime forward email (which has attach) compose just shows 1-line!
+color precedence has changed used to be last match wins, now first match wins
+neomutt -Z doesn't support "$imap_check_subscribed" (can't)
+<whereami> uniq clear description of where, what, how?  how to exit!

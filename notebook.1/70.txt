@@ -1,0 +1,38 @@
+DT_PATTERN
+
+simple_search
+default_hook
+
+parse once on setting into *Pattern*
+
+NO. configs aren't patterns but *proto* patterns
+they need filling-in
+	~f smi | ~s smi
+	~f smit | ~s smit
+	~f smith | ~s smith
+
+--------------------------------------------------------------------------------
+
+Live Index Search
+
+<index-live-search> op_index_live_search()
+has its own event loop - based on libenter - buf_get_field()
+EnterState for string
+getch(); live_function_dispatcher(); enter_function_dispatcher()
+live() handles up/down - delegate to Menu/Index
+no auto-completion, no history
+will need to recycle some libenter gfx handling
+on each loop, call index_update(str)
+(3 live fns: start, update, stop())
+Index refilters using str + simple_search
+- no patterns initially, just text
+Index view is any existing <limit> ∩ filtering
+if changed: recalc
+main loop calls refresh()
+macros disabled
+<fix-limit>fn => lock the changes
+	limit = ~f ABC		live-search = ~s XYZ
+	=> limit = ~f ABC ~s XYX
+	and live search *ends*
+
+

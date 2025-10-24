@@ -1,0 +1,35 @@
+$read_delay_(secs) don't mark email read if viewed for fewer seconds
+src build / build doesn't mention test-files repo
+make check == make test synonym (for GNU compat)
+update config dev docs. NO VARS
+observer_remove (nc->current) !!! compare all add/remove
+
+Dialog running
+Wvin*win = dlg_new() - data where? - opaque ptr
+set_params (win, xyz) - or struct in new() - still opaque
+rc = dlg_run(win) - calls dlg_push/pop() => event loop somewhere
+	\ focussed window? prob
+	\ -> window.drive()
+extract_results(win, pqr)
+
+dlg_run(win) -> drive() exists, dlg_push(), check focus
+event_loop, dlg_pop(), return what?  - result of drive()
+
+event_loop: win_redraw(), getchar(), focus -> drive(ch)
+who does 'a' -> OP_A translation?  if we do, we need Menu.type
+=> km_dokey() - only relevant for Menus not verify_cert()?!
+could drive() do the lookup, i.e. split getch() out of km_dokey()?
+how are multikey sequence handled?  does the event loop queue them up?
+how are delegation to other windows (e.g. sidebar) handled?
+drive(OP) -> lookup table -> action function (shared data)
+
+------------------------------------------------------------
+
+Index shared data holds M, E
+observer M,E
+
+change Email => INDEX_EMAIL_SEL, Mailbox => MBOX_SEL
+flag Email => EMAIL_CHANGE relay, INDEX_EMAIL_CHANGE
+avoid children having to keep changing observers
+EV change? tag email: notify(E) observed by stared data => INDEX_EMAIL_CHANGE
+

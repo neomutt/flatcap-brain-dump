@@ -1,0 +1,61 @@
+Colours
+
+AttrColor
+simple		}	curses colours { 65535 CURSES
+regex lists	}
+quoted		}
+merged
+ansi
+
+notifications
+doxy, diagram
+config elim
+test
+tidy debug -> LL6
+sample data emails
+
+states(3) colour + attrs, colour, attrs, (none)
+state change -> (none) => uncolour
+
+--------------------------------------------------------------------------------
+
+ANSI
+	30-37		fg basic
+	40-47		bg basic
+	38;5;n		fg palette
+	48;5;n		bg palette
+	38;2;R;G;B	fg rgb
+	48;2;R;G;B	bg rgb
+
+--------------------------------------------------------------------------------
+
+Post release
+
+trivial upstream, PRs non-triv upstream
+archive last 2 PRs, test new versino ∀ issues (+1 month close)
+release *action*, neo *org* profile readme!
+
+Later
+
+upstream IPs/gettext, manual/dics w.r.t. con_fig names
+new colour code, doc actions
+
+--------------------------------------------------------------------------------
+
+LGTM issues - TOCTOU
+"Emits:" add to API docs
+drop changes section
+v few globals doc'd for doxy to recognise
+
+webdev section for each action - link in .yml to page
+action -X repos ∀, put docs here?  dupe?!
+cov doesn't need repo!
+
+--debug-all => enable --debug-*
+
+Doxygen *action* - cron weekly & doc
+auto-squash repo
+
+Build with FORTIFY options
+
+

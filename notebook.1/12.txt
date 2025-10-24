@@ -1,0 +1,20 @@
+[MENU DIAGRAMS / calculations]
+
+--------------------------------------------------------------------------------
+
+Split doxy extras - images etc into separate repo
+
+pager distinguish pager_menu from index_menu -> menu_index
+elim pview -> win_ibar
+factor out code to set up pager/index windows, restore()
+priv->menu->menu_index
+elim Menu->custom_redraw
+
+--------------------------------------------------------------------------------
+
+$sort_alias -> $alias_sort (scoped)
+config optimisation?  he_TYPE() helpers
+dlg_pager isn't a dialog -> pager, win_pager, etc
+MuttRedrawFlags -> MenuRedrawFlags
+
+

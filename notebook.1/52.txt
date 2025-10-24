@@ -1,0 +1,38 @@
+Dialog
+
+all_dlgs -> this_dlg WT_THIS
+helper_put(data) _get(data)
+
+∀ dlg: new, run, free, helpers
+
+new() -> This dlg {win, data}
+run() == Window.run()
+free == Window.free()  how?
+	x.new(); free(x)	x is ThisDlg, not Window, or is it?
+new -> Window (+wdata)		opaque window, wdata
+helper_X(win, args)
+win_free(win)			this_fn_disp()
+
+run(win) === win.run()
+loop(get_op(), disp1, disp2, etc)	act on Win.wdata
+
+external event loop is loop(run)!		| win A
+runs on focussed win! A, B, C			| win B
+rename run() -> handle_event() / _op()		V win C
+	+handle_mouse(), handle_win() rather than window_observer
+
+main: WA = A_new(), helpers(WA), run(WA)
+need sep thread for ext event loop!
+If A calls B calls C	A has run(B)
+main run(A) -> op -> run(B) -> op -> run(C)
+run(A) { get_op(), WA.handle(op) }
+who translates 'j' to <next-entry>? still global!
+run(X) gets a key -- asks *who* for matches?  visible windows ascending
+get_mapping() -> NO, YES, LONGER
+
+fcc_clear - add fake headers listing PGP keys that were used to encrypt?
+sidebar spoolfile detection doesn't canon paths imap://user@xyz!
+multiple windows need to check for NORMAL event
+color normal - doesn't repaint MsgWin!
+compose gui bug - encrypt shows blank, elide or colour header
+

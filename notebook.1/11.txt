@@ -1,0 +1,60 @@
+Docs Reorg -- End of manual?
+
+Split out lists : config, functions, commands, colour, screens, hooks, cmdline?
+one-line desc + link to more detaul
+screens => screen shots / text images + links to other screens!
+config one-liner -> translations?
+need html & nroff versions.  how?
+
+
+standalone app built using *.config.c to generate docs
+replace makedoc and preprocessing
+*need* ab vs a_b explanation
+standalone for functions / opcodes too.  need func:opcode:desc triple
+
+
+--------------------------------------------------------------------------------
+
+Index EL vs TL  (ThreadList) - separation of Data from GUI
+do all E have a T?  what if sort != thread?
+is T == EV?  Index is list of EV.  what about hidden ones?
+(limit / folded thread)  how is lookup done from Index num -> E?
+E should be unaware of T.  EL/EA(array), TL/TA
+Index = MV, holds EA, VirtA(int) smaller on (limit/folded)
+EA in user sort order.  *NO* EA?  Have EVA instead?
+what happens when 1 fold is opened?
+Thread/Email belong together
+T is MX-layer operation
+$strict_threads & <break-thread> need to signal someone to update T's
+
+Idx	VirtA	EVA	EA
+1	1	EV	E
+2	2	EV	E
+8	3	EV	E
+9	15	EV	E
+10	20	EV	E
+...
+
+
+Idx	VirtA	Back (EA)
+1	EV vis	E
+2+	EV	E
+8	EV	E
+9	EV hid	E
+10	EV	E
+
+parent <- EV -> childnre
+
+sort,limit MV(M)
+	{EV,TV}(E)
+
+thread sorting? make, break?
+	TL <-	M	-> EL
+	E		   E
+       / \		   E
+      E   E		   E
+
+N AL || A ML || M EL,TC || E
+
+Hash of msg_id for speedy insertion?
+

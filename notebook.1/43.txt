@@ -1,0 +1,54 @@
+Decoupling Menu
+
+Caller {getch(), menu_dipatcher(), X_dispatch() }
+OPs	- caller_related
+	  menu_related (movement, etc)
+	  menu_tagging
+
+Menu has state for <tag-prefix>
+
+--------------------------------------------------------------------------------
+
+can caller clear TP?
+mem_disp last?
+timeout, resize, etc?
+what ends TC?
+hide cursor during repaint!
+reshow after redundant repaint
+
+--------------------------------------------------------------------------------
+
+OP_CALLER	menu_disp()	-> NOP, IR_UNKNOWN
+OP_MENU_NEXT			-> action, IR_SUCCESS
+OP_TAG_PREFIX			-> set TP, IR_SUCCESS
+
+
+		menu disp		caller disp
+OP_X, Y, Z	✗ ✗ ✗			✓ ✓ ✓
+OP_TP, OP_X	✓ (TP) ignore?		✓ (TP)
+
+		caller			menu
+OP_X, Y, Z	✓ ✓ ✓			n/a
+OP_TP, OP_X	✗ ✓			✓ TP n/a
+
+		menu			caller		menu
+OP_X, Y, Z	✗ ✗ ✗			✓ ✓ ✓		n/a
+OP_TP, OP_X	✓ (TP) ✗ ✗		- ✓		- ?
+
+		menu (TP)		caller		menu (not TP)
+TP, A, B	✓ (TP), ✗, -TP		- ✓ ✓		- - -
+
+A,TC,B,C,TE,D	- ✓ ✓ ✓ ✓ -		A - - - - D	no top
+		- ✓ - - ✓ -		A - B C - D	tags
+
+--------------------------------------------------------------------------------
+
+TAG, TP, TC, TE, Other - tag-prefix, num-tabbed
+$resolve, $auto_tag
+
+T +/- num, m->tag(), PAINT(Menu)
+TP toggle tagpreifx +/- "tag-" PAINT(msgwin)
+TC + nothing, - clear macro queue
+TE nothing
+other -TP PAINT (Menu)
+

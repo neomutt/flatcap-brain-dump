@@ -1,0 +1,24 @@
+Searching
+
+Eliminate globals OptSearchInvalid, OptSearchReverse
+Rather than search iterate through get_virt_email(),
+	pass it an EmailArray
+Avoid search/reverse by sorting the array before calling
+Avoid $wrap_search by segmenting the array [cur-$,1-cur]
+global vars => searching aliases affects email search!
+cache searches at MV-level? or AV-level? or NV?
+searches don't look in collapsed threads!  $search_deep?
+	or make default - only limit it limited?
+Eliminate OP_SEARCH_* symbols
+split search code along domain lines: MV, M, E, Alias, ???
+
+--------------------------------------------------------------------------------
+
+Theme config file -- all colours, what else?
+all gui options
+only loaded iff gui is going to be started
+How would Account/Mailbox-specific config work?
+them, theme-256, theme-rgb.rc?
+define std colour with myvars, then source shared config
+	e.g. status bar magic
+

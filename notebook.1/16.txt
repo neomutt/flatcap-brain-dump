@@ -1,0 +1,22 @@
+Layout
+
+MessageWindow	height 0 unless populated
+DataEntryWindow	height 0 unless populated
+\
+ container height min 1 to maintain layout
+ is height-1 compatible with MINIMISE?
+
+op_disp_message(e)
+	msg_open(e) -> msg
+	render(msg) -> file	 (decode, decrypt, weed)
+	msg_close(msg)
+
+icmd_set()
+	gen text -> file
+
+pdata->fname = file
+priv->fp  = fopen(file)
+unline(file)
+fclose(fp)
+
+

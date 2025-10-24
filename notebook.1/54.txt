@@ -1,0 +1,42 @@
+Attach
+
+Index 'v' view attach	} - dlg_select_attachment()
+Pager 'v'		}   attach_fn_disp()
+			    MENU_ATTACH, OpAttach
+
+Compose A_Win		mutt_compose_menu()
+			compose_fn_disp()
+			MENU_COMPOSE, OpCompose
+
+compose_fn_disp() -> op_display_headers()	} - mutt_attach_display_loop()
+attach_fn_disp()  -> op_attachment_view()	}   mutt_view_attachment()
+
+OP_DISPLAY_HEADERS, OP_ATTACHMENT_VIEW
+
+op_attach_view_{mailcap,pager,text} -> mutt_view_attachment()
+
+mutt_view_attachment()      -> mutt_do_pager()        -> mutt_pager() -> pager_function_dispatcher() etc
+index_function_dispatcher() -> mutt_display_message() -> mutt_pager() -> pager_function_dispatcher() etc
+
+DATA
+Index -> index_function_dispatcher() -> disp_msg() -> pager() -> pager_function_dispatcher() -> op_x()
+					squash/prep/restore loop
+
+compose - op_display_index() -> attach_display_loop() -> view_attach() -> do_pager() -> pager() -> op_x()
+				loop			 prep		  create window
+
+--------------------------------------------------------------------------------
+
+<tag-pattern> uses a progress bar - it's quick - it only alters flags
+	however <delete-message>, <purge-message> don't (but should)
+
+Bug: multiline question, e.g. choice makes index scroll up, when it needs space
+	hide the last line (unless focus is on last line)
+
+DYK: pipe_decode=yes, wait_key=yes | cat => poor man's urlview!
+Implement vim's q: q/ historyes q?
+fmemopen - enable by default?
+colours - check  attrs are merged correctly, everywhere
+	need "noattrs" option!
+list all GUI data that needs freeing on exit.  who should own it?
+

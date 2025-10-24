@@ -1,0 +1,25 @@
+who owns the new_mail_command?  main()
+	fn to setup observers to run, delete notification to cleanup?
+
+Imap complications: after adding emails to new[], changed[], deleted[]
+	then could be updated/deleted again before end of fn()
+Where does the data go n/c/d[] for check_stats()?
+	spread across multiple mailboxes
+
+how does new_mail accumulate multiple mailboxes?  does it matter?
+msg_unread will be in MV
+
+1 second timeout (or 1 rep of $timeout) => notification,
+compare to $new_mail_timeout
+accumulate stats until timeout triggers us
+
+--------------------------------------------------------------------------------
+
+need n/c/d[] in each *MboxData, put in struct, with fns to manipulate
+
+check stats ∀ M => update several M - across a *single A*
+mutt_mailbox_check() does ∀M -> mailbox_check() -> mx_mbox_check()
+mx_mbox_check() queues lots of STATUS.  who sends them?  who receives?
+
+eliminate e->active
+

@@ -1,0 +1,30 @@
+Dispatcher 2
+
+compose: [compose, env, menu, global, tag]
+each needs  different window (child of dlg)
+dispatcher needs to keep looking up children
+keep loop in dlg.  dispatcher handles *all* sub dispatchers (rename to ?)
+dlg loop is { redraw(); op=get_key(); dispatchers() } + and dlg - specifics
+
+(1) -> any arbitrary fn could driver any dlg in any way
+(2) -> need way to get DOM from window, or the active position init, e.g. Email
+
+(1) drive macro style, need way to tell which window is active
+(2) full API
+
+--------------------------------------------------------------------------------
+
+Bug: Append message to LONG_MBOX_NAME, messes up screen!
+rel notes "Errata" section - link from web news latest
+	how to link rel notes into NeoMutt?
+QUIT pattern/history dlgs
+new hooks that are scoped to compose
+	set config tmp sub so global values outside compose aren't affected!
+docs = Note more clearly.  File vs Dir header cache
+test speed of *file*-based header cache (@mfiano)
+3 "send" backends?  smtp, nntp, mixmaster
+Menu.type is needed for km_dokey() etc NOT Menu operations!
+colours default is transparent - force terminal colour? "terminal"
+	why?  is this possible in vim?  no colour?
+blind options - no msgwin msgs
+
