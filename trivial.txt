@@ -377,8 +377,6 @@ e.g. same object, but increasing colour depth
 	color object #aabbcc  #112233
 increasing subtlety!
 
-rebase * / archive
-
 filter synonyms and deprecated out of get_elem_list()
 	so that the callers don't have to
 
@@ -474,9 +472,6 @@ terminal window focus in/out https://unix.stackexchange.com/a/480138
 
 :hook info command to list all hooks
 
-dyk: file picker
-	https://github.com/neomutt/neomutt/discussions/4603#discussioncomment-12778215
-
 upstream: 0e32b9774
 	map to change-folder (DlgBrowser)
 	index/pager
@@ -486,9 +481,6 @@ upstream: 0e32b9774
 irc: jxl: is there a way to list the flags currently set for the message under the cursor? something in the same vein as the what-key function?
 
 irc: rkta: I really would like mutt to warn me when I reply to an email and already have a draft which is a reply to the same message id.
-
-dyk: use :toggle on int value and bool to toggle widescreen mode
-	macro index,pager <f5> "<enter-command>toggle sidebar_visible pager_index_lines<enter>"
 
 dynamically change format strings
 	need generic format string editor
@@ -500,26 +492,6 @@ history: which constants are used in the history file?
 browser option to scan subdirs for {cur,new,tmp}
 	so that they can be highlighted as mailboxes
 
-regex_color_free() doesn't use `list` param
-
-dyk
-	set status_format = "<%b>  Msgs:%-2m  New:%-2n  Old:%-2o  Unread:%-2u  Del:%-2d  Tag:%-2t"
-	color status default default
-	color status brightblack   default   '<0>'
-	color status brightwhite   default   '<[1-9][0-9]*>'
-	color status brightblack   default   '(Msgs|New|Old|Unread|Del|Tag):0'
-	color status brightmagenta default   'Msgs:[1-9][0-9]*'
-	color status brightgreen   default   'New:[1-9][0-9]*'
-	color status brightyellow  default   'Old:[1-9][0-9]*'
-	color status brightcyan    default   'Unread:[1-9][0-9]*'
-	color status default       brightred 'Del:[1-9][0-9]*'
-	color status default       cyan      'Tag:[1-9][0-9]*'
-
-dyk
-	set help = no
-	set status_format = ""
-	color status default default
-
 idea
 	macro index,pager d "<clear-flag>n<clear-flag>o<clear-flag>f<delete-message>"
 	NOPE each <clear-flag> moves focus
@@ -529,38 +501,12 @@ idea
 
 use r.h.s of help-bar to display tabs of backgrounded compose sessions
 
-help page has too much blank space if a menu doesn't have any binding/macros
-	unbind *
-	unbind alias ?
-	unbind alias q
-	unbind attach ?
-	unbind attach q
-	unbind autocrypt ?
-	unbind autocrypt q
-	unbind browser ?
-	unbind browser q
-	unbind compose ?
-	unbind compose q
-	unbind dialog ?
-	unbind dialog q
-	unbind index ?
-	unbind index q
-	unbind pgp ?
-	unbind pgp q
-	unbind postpone ?
-	unbind postpone q
-	unbind query ?
-	unbind query q
-	unbind smime ?
-	unbind smime q
-	:bind
-
 verify-cert dialog
 	next/prev line don't seem to work
 
 drop mono command from the docs
 
-kill pager=builtin from the docs
-
-rebuild web docs
+Naming of ARRAYs?
+	ARRAY_HEAD(AppleArray,   struct Apple);      /// Array of objects
+	ARRAY_HEAD(BananaPArray, struct Banana *);   /// Array of pointers
 
