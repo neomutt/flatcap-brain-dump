@@ -32,12 +32,12 @@ ANSI
 Post release
 
 trivial upstream, PRs non-triv upstream
-archive last 2 PRs, test new versino ∀ issues (+1 month close)
+archive last 2 PRs, test new version ∀ issues (+1 month close)
 release *action*, neo *org* profile readme!
 
 Later
 
-upstream IPs/gettext, manual/dics w.r.t. con_fig names
+upstream IPs/gettext, manual/disc w.r.t. con_fig names
 new colour code, doc actions
 
 --------------------------------------------------------------------------------

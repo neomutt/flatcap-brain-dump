@@ -19,7 +19,7 @@ is it readonly?  if not need sink for incoming emails
 all M members need to be protected - functions for every action
 is only 1 mbox r/w?  no notmuch needs all r/w!
 mx_mbox_X() handles lookup?
-sync() - does it sync 1srt, all mboxes?
+sync() - does it sync 1st, all mboxes?
 which mx_() fns are Email specific?  msg_open(), _close()?
 	do they all take an M?  prob Yes
 
@@ -28,7 +28,7 @@ notmuch opens query, new mail in multiple folders, mark all read, sync
 now what?  mbox_sync(Mu) -> ∀ children sync (Mc)
 
 do we care about Mc's index for E?
-migth change on new mail, etc
+might change on new mail, etc
 header cache needs redirecting to w.r.t. M
 
 

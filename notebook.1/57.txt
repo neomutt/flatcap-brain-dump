@@ -3,7 +3,7 @@ who controls height?
 only *questions*(msgs) are multiline and ephemeral
 reflowing *parent* not enough -- need to reflow grandparent (Root)
 
-push_z() -> reflow, might differe in size, pop_z() too
+push_z() -> reflow, might differ in size, pop_z() too
 ∀ msg, yn, multi: does each need a wrapper?
 Yes, so each Window is trivial, wrapper handles z-order
      so each win can be relocated

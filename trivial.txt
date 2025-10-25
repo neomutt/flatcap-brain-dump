@@ -503,10 +503,17 @@ use r.h.s of help-bar to display tabs of backgrounded compose sessions
 
 verify-cert dialog
 	next/prev line don't seem to work
+	menu->current is stuck at -1
+	(until page-down, then next/prev work)
 
 drop mono command from the docs
+	examples, etc
 
 Naming of ARRAYs?
 	ARRAY_HEAD(AppleArray,   struct Apple);      /// Array of objects
 	ARRAY_HEAD(BananaPArray, struct Banana *);   /// Array of pointers
+
+doxy:
+	https://neomutt.org/code/pages.html		some missing/long library descriptions
+	https://neomutt.org/code/annotated.html		some missing descriptions for structs
 

@@ -13,7 +13,7 @@ mutt_mem_re*calloc*(), memset new mem to zero
 add vim syntax to /etc/neomuttrc
 update all samples to new_under_score names
 turn QuotedN to n*Quoted (simple)?
-kill Opt* global referrring to sort/score/redraw
+kill Opt* global referring to sort/score/redraw
 mime forward email (which has attach) compose just shows 1-line!
 color precedence has changed used to be last match wins, now first match wins
 neomutt -Z doesn't support "$imap_check_subscribed" (can't)

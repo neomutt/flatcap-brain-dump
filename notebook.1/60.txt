@@ -12,7 +12,7 @@ Completing: one result, multiple results (delimited)
 Word actions
 
 |      |       |       |     |  word points for motion
-apple, banana, cherry, damsom
+apple, banana, cherry, damson
 |
 <word-left>, <word-right> move to prev/next point
 <kill-word> deletes from cursor to previous point

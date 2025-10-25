@@ -1,6 +1,6 @@
 Pager
 
-mutt_view_attachmen() -> mutt_do_pager(view, e)
+mutt_view_attachment() -> mutt_do_pager(view, e)
 
 browser		<space>		<view-file>	default => mailcap/text
 recv att	<enter>		<view-attach>	default => mailcap/text

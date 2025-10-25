@@ -28,7 +28,7 @@ just selection
 data provided (all, or subset)
 
 Test Q-Append with different sort methods
-dedupe appeded results
+dedupe appended results
 
 ∀ get data -> call dlg
 

@@ -34,7 +34,7 @@ Bug: multiline question, e.g. choice makes index scroll up, when it needs space
 	hide the last line (unless focus is on last line)
 
 DYK: pipe_decode=yes, wait_key=yes | cat => poor man's urlview!
-Implement vim's q: q/ historyes q?
+Implement vim's q: q/ historys q?
 fmemopen - enable by default?
 colours - check  attrs are merged correctly, everywhere
 	need "noattrs" option!

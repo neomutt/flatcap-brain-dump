@@ -12,7 +12,7 @@ Function: state, window, keys, etc
 Caller - create/destroy state
 	add to history (if req)
 	repaint/restart (if nec)
-	complete - shoul dit clear the msgwin?
+	complete - should it clear the msgwin?
 		do all completions use a dialog?
 		do some completion in-place? (and use/update state)
 

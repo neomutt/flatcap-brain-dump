@@ -1,7 +1,7 @@
 Docs Reorg -- End of manual?
 
 Split out lists : config, functions, commands, colour, screens, hooks, cmdline?
-one-line desc + link to more detaul
+one-line desc + link to more detail
 screens => screen shots / text images + links to other screens!
 config one-liner -> translations?
 need html & nroff versions.  how?
@@ -43,7 +43,7 @@ Idx	VirtA	Back (EA)
 9	EV hid	E
 10	EV	E
 
-parent <- EV -> childnre
+parent <- EV -> children
 
 sort,limit MV(M)
 	{EV,TV}(E)

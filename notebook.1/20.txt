@@ -20,7 +20,7 @@ hide quoted
 
 :devel -> page describing extra features or "no devel feature enabled"
 	OR always enable devel, $enable_devel_features = no (default)
-	neo -v	debug -> deve + (ENABLED) - log it too
+	neo -v	debug -> devel + (ENABLED) - log it too
 	#define COLOR(x,y,"desc") discard desc #ifndef DEBUG!
 
 squash rgb check for simple and greyscales first else map RGB to palette
@@ -39,5 +39,5 @@ color mime-text-plain x y z
 or color mime TYPE PATTERH -- easier to parse
 
 toggle_quoted_show_levels doesn't honour 2nd *quoting style*
-toggle_quoted_show_levels doesn't work if quote aretn' coloured!
+toggle_quoted_show_levels doesn't work if quote aren't coloured!
 

@@ -15,7 +15,7 @@ use=N	sort=thread
 	sort=date	aux=addr	2
 
 (sort=threads deprecated use => more control
-sort field doesn't ened to be visible
+sort field doesn't need to be visible
 default	s:date, aux, date, e.g. Jan/Feb 123, Mar)
 s:from, aux:date	e.g. (AAABBCCD) + aux dates
 use=Y s:date, aux:date, e.g. std look
