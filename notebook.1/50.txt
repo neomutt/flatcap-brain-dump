@@ -29,8 +29,6 @@ mutt_do_pager
 
 --------------------------------------------------------------------------------
 
-`:set<space>` does nothing!
-
 dev web pages for cfg opts -- debug window, etc + example debug code
 	asciinema casts of logs
 

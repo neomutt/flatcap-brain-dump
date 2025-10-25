@@ -7,7 +7,6 @@ update dlg_select_postponed_email() to use resolve?
 Editor if <f1> (etc) isn't recognised expand to '<', 'f', '1', '>'
 update issue templates to libera's irc client
 	add issue(Tech), add Discussions link
-rel notes - mention old ncurses doesn't build
 mutt_mem_re*calloc*(), memset new mem to zero
 `:theme` would have to `uncolor *` safely (no args => list select!)
 add vim syntax to /etc/neomuttrc

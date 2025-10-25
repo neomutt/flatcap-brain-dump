@@ -40,9 +40,6 @@ Enter: work with a *copy*, only committed on success
 neo-bot - login
 idea: spell check subject - how?  add editor fn?
 
-DYK: command :dyk -> reads random from docs/dyk001.md?
-	or fn with mapping, pager would need mapping for "show-me-another"
-
 way to preserve X-headers when replying to email?
 Bug :exec what-key doesn't clear existing messages
 Enter: ctrl-v<enter> -> "\n" or "<enter>" same for fn keys

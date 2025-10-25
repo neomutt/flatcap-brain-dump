@@ -34,7 +34,6 @@ Pager flag to allow ansi - use for logs, convert index_colors to use ansi
 
 $folder_format (IMAP) do we *know* which mboxes are *subscribed* '%S'?
 save to /new/new/nonexistent mailbox doesn't create *path* only *mbox*
-dyk - find mtime > 30 on msg cache! and folder-hook equiv
 add debug rtl config option & doc egypt
 
 trigger events on *release*?  doxy, coveralls, coverity?

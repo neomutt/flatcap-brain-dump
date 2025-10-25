@@ -31,8 +31,6 @@ rev_date ditto reversed
 last_date each level sorted by most recent (grand)childn
 rev_date ditto reversed
 
-n -F /dev/null => alias_file = /dev/null - prevent  HOW?
-
 ask translators about one-liner help
 add -O to :set to get one-liner help too
 

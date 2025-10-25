@@ -8,7 +8,6 @@ Discussions: write up: external event loop + diagrams, tree search, strategy
 <change-folder> make case insensitive?  how? where?
 
 history full dedupe, not just iff matches prev entry
-doc: what I know about keys for luci
 
 config that *isn't* inheritable?
 	$abort_key, DT_STARTUP

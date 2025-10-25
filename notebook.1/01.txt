@@ -21,7 +21,6 @@ Do we need to notify on set_visible()?  vis=false => no more notify
 \ set vis=true  notify?  NO?  who care?  notified after win_reflow()
 easy:  my command to show all my_vars (or does :set cover it?)
 medium: integrate my_vars into config system
-DYK: toggle string macro $real_name example, with echo
 easy: dsn_* config to enum/slist (comma)?
 can mutt_yesno() lookup op in generic map to catch Ctrl-L (OP_REDRAW)
 who does repaint for msg window?  if _my_ dlg is visible?

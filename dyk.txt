@@ -202,3 +202,15 @@ hide help/status
 
 expando  [-|+] before closed/open thread
 
+toggle string macro $real_name example, with echo
+
+find mtime > 30 on msg cache! and folder-hook equiv
+
+test your command expansion, prefix with :echo
+	AND/OR LOG RAW command before execution -- security prob?
+
+pipe_decode=yes, wait_key=yes | cat => poor man's urlview!
+
+command :dyk -> reads random from docs/dyk001.md?
+	or fn with mapping, pager would need mapping for "show-me-another"
+

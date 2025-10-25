@@ -57,6 +57,3 @@ new_message_hook to apply headers, tags, move it?  how?
 after `named-mailbox X +X' what will it take to accept 'X' as
 	a mailbox name in all functions/commands?  prob quite a lot
 
-DYK: test your command expansion, prefix with :echo
-	AND/OR LOG RAW command before execution -- security prob?
-

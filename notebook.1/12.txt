@@ -12,9 +12,7 @@ elim Menu->custom_redraw
 
 --------------------------------------------------------------------------------
 
-$sort_alias -> $alias_sort (scoped)
 config optimisation?  he_TYPE() helpers
 dlg_pager isn't a dialog -> pager, win_pager, etc
-MuttRedrawFlags -> MenuRedrawFlags
 
 
