@@ -37,3 +37,7 @@ Display: split modifier and key right-justify mod, left-justify key
 	  Alt-A
 	Shift-A
 
+a vs A vs Shift-A
+
+sort vs collate on key
+

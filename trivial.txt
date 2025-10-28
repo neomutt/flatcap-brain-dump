@@ -508,6 +508,7 @@ verify-cert dialog
 
 drop mono command from the docs
 	examples, etc
+	sample themes are tricky
 
 Naming of ARRAYs?
 	ARRAY_HEAD(AppleArray,   struct Apple);      /// Array of objects
@@ -516,4 +517,21 @@ Naming of ARRAYs?
 doxy:
 	https://neomutt.org/code/pages.html		some missing/long library descriptions
 	https://neomutt.org/code/annotated.html		some missing descriptions for structs
+
+deprecated functions show up in '?' (<help>) when the *real* function is unbound
+	:unalias *
+	<help>
+		Unbound functions
+		<buffy-list>
+		<refresh>
+		<error-history>
+
+Document options in a table
+(include deprecated?)
+	$alias_sort   AliasSortMethods
+	$browser_sort BrowserSortMethods
+	$pgp_key_sort KeySortMethods
+	$sidebar_sort SidebarSortMethods
+	$sort         SortAuxMethods
+	$sort_aux     SortMethods
 

@@ -32,6 +32,7 @@ editor rename/syn all fns to *readline* names
 upgrade mark-message:
 	~[a-z] (mailbox-specific)
 	~[A-Z] macro -> global
+		need vim-style $autowrite if changing folders
 
 libenter doc arch/workings
 "readline" readme, when done
