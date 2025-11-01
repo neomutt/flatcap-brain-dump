@@ -252,6 +252,11 @@ close other repo discussions
 closed, locked, pinned issue:
 enhancement/idea link / template -> discussions
 	"🛟 I Need Help", "💡 I Have Ideas" "♥️ I Want to Help"
+pinned issues
+	I need help - how to ask for help, how to write a good issue
+	I want to help - how to join us
+	I want to thank you - star, donate, help, "thanks" -> irc
+	link to Discussions
 
 certificates
 	add relatives to timestamps (X ago, for Y)
@@ -475,7 +480,7 @@ terminal window focus in/out https://unix.stackexchange.com/a/480138
 upstream: 0e32b9774
 	map to change-folder (DlgBrowser)
 	index/pager
-	{ "browse-mailboxes",	OP_MAIN_BROWSE_MAILBOXES,	"y" },
+	{ "browse-mailboxes",          OP_MAIN_BROWSE_MAILBOXES,          "y" },
 	{ "browse-mailboxes-readonly", OP_MAIN_BROWSE_MAILBOXES_READONLY, NULL },
 
 irc: jxl: is there a way to list the flags currently set for the message under the cursor? something in the same vein as the what-key function?
@@ -515,23 +520,17 @@ Naming of ARRAYs?
 	ARRAY_HEAD(BananaPArray, struct Banana *);   /// Array of pointers
 
 doxy:
-	https://neomutt.org/code/pages.html		some missing/long library descriptions
 	https://neomutt.org/code/annotated.html		some missing descriptions for structs
 
-deprecated functions show up in '?' (<help>) when the *real* function is unbound
-	:unalias *
-	<help>
-		Unbound functions
-		<buffy-list>
-		<refresh>
-		<error-history>
+Change all parse_*() function warning messages to include prototype, e.g.
+	"color: too few arguments"
+	"color [attrs] fg bg [regex [num]"
 
-Document options in a table
-(include deprecated?)
-	$alias_sort   AliasSortMethods
-	$browser_sort BrowserSortMethods
-	$pgp_key_sort KeySortMethods
-	$sidebar_sort SidebarSortMethods
-	$sort         SortAuxMethods
-	$sort_aux     SortMethods
+madduck, irc 2025-10-30
+	space actually works. I can enter it, but once I entered it, there is no more tab completion at all. this is what confused me.
+	Take /srv/with space/foo
+	if I hit /srv/w<tab>, I am left at "/srv/with". If I enter "/srv/with <tab>", nothing happens, I am not offered the interactive browser either.
+	if I hit /srv/w<tab><tab>, I am shown the browser and I can now navigate to "/srv/with space/foo" just fine, … but then what?
+	The browser is now in the right directory, but the prompt down below still shows "/srv/with" and if I exit the browser with 'q', that is where I am left.
+	There seems to be no way to "transfer" the browser location to the command prompt, which is sort of what I would expect. Why else the browser?
 
