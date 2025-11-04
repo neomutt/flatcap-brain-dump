@@ -111,7 +111,7 @@ Currently, Compose only colours the:
 
 The whole of Compose is also affected by some other colours:
 
-- `normal` - Default colour for all of Neomutt
+- `normal` - Default colour for all of NeoMutt
 - `status` - Default colour for Status Bars
 
 This means that the Preview Window needs a colour observer.

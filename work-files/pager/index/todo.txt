@@ -11,7 +11,7 @@ Functionally, this PR makes no changes.
 
 The 151 `case` statements have been refactored into 89 new functions in `index/functions.c`
 
-Each Neomutt `<function>` is now listed in `IndexFunctions[]`.
+Each NeoMutt `<function>` is now listed in `IndexFunctions[]`.
 It maps the opcode to a C function and lists any pre-requisites:
 
 ```c

@@ -6,7 +6,7 @@ Received: from localhost (localhost [127.0.0.1])
 Date: Sat, 5 Jun 2021 01:59:53 +0100
 From: Richard Russon <rich@flatcap.org>
 X-Apple: apple banana one cherry damson two elderberry three fig guava hawthorn
-To: Neomutt Developers <neomutt-devel@neomutt.org>
+To: NeoMutt Developers <neomutt-devel@neomutt.org>
 MIME-Version: 1.0
 X-Banana: apple banana one cherry damson two elderberry three fig guava hawthorn
 Content-Type: multipart/signed; micalg=pgp-sha256;

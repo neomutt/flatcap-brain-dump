@@ -29,7 +29,7 @@ Window 2:
         target remote | vgdb
         cont
 
-On my machine Neomutt stops 6 times in the regex code at startup.
+On my machine NeoMutt stops 6 times in the regex code at startup.
 (I'm not sure if we can do anything about this)
 
 When stopped at a breakpoint, you can send commands to valgrind, such as:

@@ -9,7 +9,7 @@ neo.init_config() - does base init then calls:
 	Module.init_colors()
 	Module.cleanup() -- free everything
 library/module.c
-each Module has private data, held by Neomutt. NO
+each Module has private data, held by NeoMutt. NO
 	held by Module obj
 3 stages for config setup?
 	init_types()

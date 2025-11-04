@@ -548,14 +548,8 @@ ampcode.com
 	Hang: Fetching large message bodies causes the UI to freeze on "Fetching message..." until the fetch completes, effectively deadlocking the interface.
 
 AI Usage
-	Good CONTRIBUTING.md
-	https://github.com/ghostty-org/ghostty/blob/bbaee5e0a087e52d7c99e0d8be607670f889b177/CONTRIBUTING.md#ai-assistance-notice
-	declare usage
 	Create Label for PRs
 	How to Credit AI?
-
-s/Neomutt/NeoMutt/g
-	EVERY repo
 
 notmuch
 	FIX DOCS NOW
@@ -563,4 +557,11 @@ notmuch
 		virtual-mailboxes NAME PATH
 	in favour of
 		mailboxes -label NAME PATH
+
+code.neomutt.org
+	check DNS on github
+
+archive/delete lots of repos
+
+code: liblua
 

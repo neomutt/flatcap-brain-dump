@@ -49,9 +49,9 @@ Received: from laptop.flatcap.org (unknown [10.9.0.2])
  for <neomutt-devel@neomutt.org>; Wed, 10 Feb 2021 10:58:14 +0000 (GMT)
 Date: Wed, 10 Feb 2021 10:58:14 +0000
 From: Richard Russon <rich@flatcap.org>
-To: Neomutt Developers <neomutt-devel@neomutt.org>
+To: NeoMutt Developers <neomutt-devel@neomutt.org>
 Message-Id: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
-Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+Mail-Followup-To: NeoMutt Developers <neomutt-devel@neomutt.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
  protocol="application/pgp-signature"; boundary="b47cwmns4jfn3wfq"
@@ -153,10 +153,10 @@ fzq5/+Nj0jQZS4ExLYeAG2sVrrTC17oGDdrHDXUgOKqiAt6hLymuUQMSrrBWe4zL
 From rich@flatcap.org Thu Feb 11 12:41:14 2021
 Date: Thu, 11 Feb 2021 12:41:14 +0000
 From: Richard Russon <rich@flatcap.org>
-To: Neomutt Developers <neomutt-devel@neomutt.org>
+To: NeoMutt Developers <neomutt-devel@neomutt.org>
 Subject: Re: Renaming Config [Help Wanted]
 Message-ID: <20210211124032.plu3fonqxhiwm7dy@laptop.flatcap.org>
-Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+Mail-Followup-To: NeoMutt Developers <neomutt-devel@neomutt.org>
 References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -235,9 +235,9 @@ Received: from laptop.flatcap.org (unknown [10.9.0.2])
  for <neomutt-devel@neomutt.org>; Thu, 11 Feb 2021 12:41:14 +0000 (GMT)
 Date: Thu, 11 Feb 2021 12:41:13 +0000
 From: Richard Russon <rich@flatcap.org>
-To: Neomutt Developers <neomutt-devel@neomutt.org>
+To: NeoMutt Developers <neomutt-devel@neomutt.org>
 Message-Id: <20210211124032.plu3fonqxhiwm7dy@flatcap.org>
-Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+Mail-Followup-To: NeoMutt Developers <neomutt-devel@neomutt.org>
 References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
@@ -311,10 +311,10 @@ x4ROnJdbCNnxy8MltVKM4AOngccSphF/baDXIO8IiHl5Jbxqjn0=
 From rich@flatcap.org Thu Feb 11 13:32:36 2021
 Date: Thu, 11 Feb 2021 13:32:36 +0000
 From: Richard Russon <rich@flatcap.org>
-To: Neomutt Developers <neomutt-devel@neomutt.org>
+To: NeoMutt Developers <neomutt-devel@neomutt.org>
 Subject: Re: Renaming Config [Help Wanted]
 Message-ID: <20210211133235.sxhky6lxnn7fe3vn@laptop.flatcap.org>
-Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+Mail-Followup-To: NeoMutt Developers <neomutt-devel@neomutt.org>
 References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
  <20210211124032.plu3fonqxhiwm7dy@flatcap.org>
 MIME-Version: 1.0
@@ -383,9 +383,9 @@ Received: from laptop.flatcap.org (unknown [10.9.0.2])
  for <neomutt-devel@neomutt.org>; Thu, 11 Feb 2021 13:32:35 +0000 (GMT)
 Date: Thu, 11 Feb 2021 13:32:35 +0000
 From: Richard Russon <rich@flatcap.org>
-To: Neomutt Developers <neomutt-devel@neomutt.org>
+To: NeoMutt Developers <neomutt-devel@neomutt.org>
 Message-Id: <20210211133235.sxhky6lxnn7fe3vn@flatcap.org>
-Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+Mail-Followup-To: NeoMutt Developers <neomutt-devel@neomutt.org>
 References: <20210210105814.sxdeqz5id3xwxyjs@flatcap.org>
  <20210211124032.plu3fonqxhiwm7dy@flatcap.org>
 MIME-Version: 1.0
@@ -689,7 +689,7 @@ Received: from laptop.flatcap.org (unknown [10.9.0.2])
 Resent-From: Richard Russon <rich@flatcap.org>
 Resent-Date: Wed, 10 Feb 2021 13:52:38 +0000
 Resent-Message-ID: <20210210135238.rjvqmiywmuu4qto4@laptop.flatcap.org>
-Resent-To: Neomutt Developers <neomutt-devel@neomutt.org>
+Resent-To: NeoMutt Developers <neomutt-devel@neomutt.org>
 Date: Wed, 10 Feb 2021 13:51:45 +0000
 From: Richard Russon <rich@flatcap.org>
 To: Sven Guckes <neomutt-lists@guckes.net>
@@ -2061,10 +2061,10 @@ buEaI9iNjuQspPARBvQy3iZBGWp3cK6DbuJuOIQ8v7HVQxlb6zE=
 From rich@flatcap.org Sat Jun  5 01:59:53 2021
 Date: Sat, 5 Jun 2021 01:59:53 +0100
 From: Richard Russon <rich@flatcap.org>
-To: Neomutt Developers <neomutt-devel@neomutt.org>
+To: NeoMutt Developers <neomutt-devel@neomutt.org>
 Subject: Meaningless Milestone
 Message-ID: <20210605005953.bhlc5icp2pb6ezhv@laptop.flatcap.org>
-Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+Mail-Followup-To: NeoMutt Developers <neomutt-devel@neomutt.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
@@ -2088,10 +2088,10 @@ Rich / FlatCap
 From rich@flatcap.org Sat Feb 27 14:42:10 2021
 Date: Sat, 27 Feb 2021 14:42:10 +0000
 From: Richard Russon <rich@flatcap.org>
-To: Neomutt Developers <neomutt-devel@neomutt.org>
+To: NeoMutt Developers <neomutt-devel@neomutt.org>
 Subject: Tagging Emails
 Message-ID: <20210227144209.guk2m6dy7staiayq@laptop.flatcap.org>
-Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+Mail-Followup-To: NeoMutt Developers <neomutt-devel@neomutt.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
@@ -2130,10 +2130,10 @@ Cheers,
 From rich@flatcap.org Fri Sep 25 13:21:48 2020
 Date: Fri, 25 Sep 2020 13:21:48 +0100
 From: Richard Russon <rich@flatcap.org>
-To: Neomutt Developers <neomutt-devel@neomutt.org>
+To: NeoMutt Developers <neomutt-devel@neomutt.org>
 Subject: NeoMutt 2020-09-25
 Message-ID: <20200925122147.ivrmvme7qml3s7yq@laptop.flatcap.org>
-Mail-Followup-To: Neomutt Developers <neomutt-devel@neomutt.org>
+Mail-Followup-To: NeoMutt Developers <neomutt-devel@neomutt.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline

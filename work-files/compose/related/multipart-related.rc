@@ -5,7 +5,7 @@
 unset record
 unset signature
 
-set editor = "echo '![Neomutt Logo](cid:neomutt-256.png)' >> %s"
+set editor = "echo '![NeoMutt Logo](cid:neomutt-256.png)' >> %s"
 set from = "john.doe@example.com"
 set help = no
 set postpone = no

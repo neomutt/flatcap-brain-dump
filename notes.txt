@@ -2104,7 +2104,7 @@ update & publish docs/config/design*.md
 --------------------------------------------------------------------------------
 
 delegate Config object to NeoMutt (don't free it separately)
-NV NeomuttView => ndata & free_ndata - wrap gui globals
+NV NeoMuttView => ndata & free_ndata - wrap gui globals
 
 ∀ types
 ∀ levels N|A|M
@@ -2568,7 +2568,7 @@ devel/noconfig (or globals)
 const ∀ graphviz functions
 
 sb/preview insertion: observe AllDialogs
-	rather than Neomutt, for reduced noise
+	rather than NeoMutt, for reduced noise
 
 progress bar to status bar expando?
 	how to disable normal display?
