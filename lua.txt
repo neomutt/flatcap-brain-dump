@@ -107,7 +107,7 @@ lua -> masterclass
 	add function
 	add autoconf
 
-generic stack poppoer
+generic stack popper
 	n entries
 	check type
 	get value
@@ -121,10 +121,6 @@ commits
 	recv data from lua
 
 example lua code in commit messages
-
-get lua working on travis
-
-get darnir to check lua autoconf
 
 call out to lua:
 	send it lots of NeoMutt version info
@@ -245,8 +241,6 @@ lua-highlighting
 script to delete duplicate emails on the mailing list
 	save outgoing email in mailing list
 	when "public" copy arrives, delete the "sent" copy
-
-make "lua" a medium task
 
 lua styling/colour callback
 	c functions: hprintf(), push_attr(), pop_attr()

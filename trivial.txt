@@ -533,4 +533,34 @@ madduck, irc 2025-10-30
 	if I hit /srv/w<tab><tab>, I am shown the browser and I can now navigate to "/srv/with space/foo" just fine, … but then what?
 	The browser is now in the right directory, but the prompt down below still shows "/srv/with" and if I exit the browser with 'q', that is where I am left.
 	There seems to be no way to "transfer" the browser location to the command prompt, which is sort of what I would expect. Why else the browser?
+In Mutt "abc def/<tab><tab>" opens the browser
+
+ampcode.com
+	The codepath that triggers the deadlock/hang in NeoMutt is as follows:
+	Periodic Mail Check: Every timeout seconds (10 in the issue), mx_mbox_check() is called from dlg_index() to check for new mail.
+	IMAP Check: For IMAP mailboxes, this calls imap_check_mailbox(), which sends a NOOP command to poll for changes. If new mail is detected, it sets the
+	status to MX_STATUS_NEW_MAIL.
+	Index Update: Upon detecting new mail, update_index() is called, which updates the mailbox's email list and calls menu_queue_redraw() to redraw the index.
+	Index Redraw: During redraw, index_color() is called for each visible email to determine its color.
+	Color Evaluation: index_color() calls email_set_color(), which evaluates regex color patterns like color index brightred default '~h "^(To|Cc):.*,"'.
+	Pattern Matching: mutt_pattern_exec() checks if the pattern matches. For header patterns with regex on IMAP, pattern_needs_msg() returns true.
+	Message Fetch: mx_msg_open() is called to open the message. For IMAP with imap_peek=no, this fetches the full message body via BODY[], not just headers.
+	Hang: Fetching large message bodies causes the UI to freeze on "Fetching message..." until the fetch completes, effectively deadlocking the interface.
+
+AI Usage
+	Good CONTRIBUTING.md
+	https://github.com/ghostty-org/ghostty/blob/bbaee5e0a087e52d7c99e0d8be607670f889b177/CONTRIBUTING.md#ai-assistance-notice
+	declare usage
+	Create Label for PRs
+	How to Credit AI?
+
+s/Neomutt/NeoMutt/g
+	EVERY repo
+
+notmuch
+	FIX DOCS NOW
+	deprecate
+		virtual-mailboxes NAME PATH
+	in favour of
+		mailboxes -label NAME PATH
 
