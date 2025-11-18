@@ -603,3 +603,18 @@ if theme config file is present, ignore /etc/neomuttrc colours? HOW
 	=> good clean slate
 	don't set default colours either?
 
+keybindings for Editor (OpEditor)
+	OP_EDITOR_MAILBOX_CYCLE needs splitting out
+	only used when we're in the index
+	OP_EDITOR_COMPLETE/OP_EDITOR_COMPLETE_QUERY
+	OP_EDITOR_HISTORY_*?  is history *always* available?
+	OP_HELP/OP_REDRAW? always available?
+
+$my_unset_var resolves to literal "$my_unset_var"
+	unset my_vars should expand to an empty string
+
+for :commands given with zero args
+	if not valid, show usage
+	:lua-source	->	lua-source [show|hide|toggle|reset]
+	or, if command can be used with zero args, allow :xyz? ('?' suffix)
+
