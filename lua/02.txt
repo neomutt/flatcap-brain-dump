@@ -1,0 +1,35 @@
+Lua 2
+
+Logging - where? which direction? of what?
+
+NeoMutt: hard vs soft fail
+
+hard => lua_error() -> abort + log to file
+	non-existent config/function (knowable in advance)
+	config validation failure?
+	function failure
+soft => log to file
+	function failure
+debug -> neo log, lua log file
+	lua_log (LL_*)
+	neo_log (conditional on level)
+	lua file (always)
+
+:lua-console
+	expando: date, time, msg?
+
+doc which functions/actions might log/file/abort (killing script)
+
+Lua: output to: user, neolog, lua log
+	message, warning, error -> user, neo, lua
+	print, log -> neo(conf), lua(always)
+
+NeoMutt creates tempfile lua log, persistent between lua calls
+can be viewed in :lua-console, can  be cleared/reset
+can be saved to a custom file, or config: lua_log_file
+if $llf is set log there, adding only
+if $llf, does log-reset do anything?  YES
+	keep a marker of log file's size
+	console displays everything after this marker
+	reset sets new highwater mark
+

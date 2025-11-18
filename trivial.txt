@@ -17,9 +17,6 @@ quick guides to
 doc tags in alias, mail to user ml
 	add to dyk
 
-lua / lua-source aren't documented ANYWHERE
-	need feature page with examples
-
 good first issue?
 	add tag-pattern to the browser -- useful for compose-attach
 		if multi-selection is allowed
@@ -605,6 +602,7 @@ if theme config file is present, ignore /etc/neomuttrc colours? HOW
 
 keybindings for Editor (OpEditor)
 	OP_EDITOR_MAILBOX_CYCLE needs splitting out
+		how does that work with bindings?
 	only used when we're in the index
 	OP_EDITOR_COMPLETE/OP_EDITOR_COMPLETE_QUERY
 	OP_EDITOR_HISTORY_*?  is history *always* available?
@@ -617,4 +615,5 @@ for :commands given with zero args
 	if not valid, show usage
 	:lua-source	->	lua-source [show|hide|toggle|reset]
 	or, if command can be used with zero args, allow :xyz? ('?' suffix)
+	check all commands for compatibility
 

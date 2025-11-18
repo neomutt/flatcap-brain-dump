@@ -1,0 +1,97 @@
+get_current_{account,mailbox,email}()
+navigation: up/down, iterate through siblings
+
+NeoMutt	- struct NeoMutt
+	Account[]		struct Account
+	Aliases[]		struct Alias
+	Colours[]		struct AttrColor
+	Config[]
+	constants
+		quad values
+		version
+			Features[], e.g. +lua (struct CompileOption)
+	commands (63) (inc deprecated)
+		all the hyphenated commands are missing (29)
+	super commands
+		call
+		enter
+		error
+		get
+		message
+		print
+		set
+	keybindings
+		binds
+		macros
+
+Account - struct Account
+	Mailboxes[]		struct Mailbox
+
+Mailboxes - struct Mailbox
+	Email[]			struct Email
+	Thread			struct MuttThread
+
+Aliases - struct Alias
+	Alias[]
+	groups
+	tags
+
+Email - struct Email
+	Attachments[]		struct Attach
+
+Envelope
+Body
+Parameter
+Tag
+History
+Hooks
+Menu
+
+Windows?
+
+Dialog
+	dlg-complex
+		dlg_compose
+		dlg_index
+		dlg_pager
+		mw_get_field
+	dlg-simple
+		dlg_alias
+		dlg_attachment
+		dlg_autocrypt
+		dlg_browser
+		dlg_certificate
+		dlg_gpgme
+		dlg_history
+		dlg_pattern
+		dlg_pgp
+		dlg_postponed
+		dlg_query
+		dlg_smime
+	pager-simple
+		color_dump
+		dump_bind_macro
+		mutt_help
+		mutt_invoke_sendmail
+		mutt_view_attachment
+		op_show_log_messages
+		parse_setenv
+		parse_version
+		set_dump
+		verify_key
+	ops
+		OpAlias (9)
+		OpAttachment (29)
+		OpAutocrypt (5)
+		OpBrowser (25)
+		OpCompose (59)
+		OpDialog (2)
+		OpEditor (26)
+		OpGeneric (44)
+		OpIndex (128)
+		OpPager (142)
+		OpPgp (3)
+		OpPostponed (3)
+		OpQuery (10)
+		OpSmime (3)
+

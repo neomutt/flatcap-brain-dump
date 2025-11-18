@@ -1,0 +1,60 @@
+lua includes deprecated commands
+	sidebar_whitelist
+	unsidebar_whitelist
+
+sleep command (allow fractions of seconds)
+
+alter package path in NeoMutt to include /usr/share/neomutt/lua
+	for shared scripts
+
+need helper code for each dialog
+	index_helper knows about Mailbox/Emails etc
+
+state persists between scriptsQUAD_ASKYES
+(config lua_persist=yes?)
+`:lua-reset` to clear state
+
+index_helper - perform actions on:
+	Mailbox(View), Thread, Email(View)
+	Menu/navigation
+
+can't change dialogs, because it's single-threaded
+*could* change Mailboxes as long as we remain in the Index
+
+*could* queue up changes
+Index
+	<enter-command>lua-source apple.lua<enter>
+apple.lua
+	find email
+	alter email headers
+	push <display-message>
+	push banana.lua
+	[end]
+NeoMutt
+	queue: open Pager
+	queue: run banana.lua
+	[queue empty]
+banana.lua
+	<skip-headers>
+	[end]
+
+use inheritance from Mailbox to
+	ImapMailbox
+	MaildirMailbox
+	etc
+Same for all Object + ObjectData
+
+cycler script - cycle between a set of values
+	cycler("sidebar_width", 30, 60, 90)
+	if value is in list, pick next value (cycling round)
+	if value is not in list, pick first value
+
+config: does the script need to be able to get config metadata?
+	e.g. the config item's type?
+	or should it just work in strings/integers?
+
+have an Index object representing the IndexDialog, etc
+	it can perform <function>s
+		which return enum FunctionRetval
+	it can give out state info
+

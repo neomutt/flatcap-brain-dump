@@ -1,0 +1,32 @@
+Lua4
+
+Config (table)
+
+Config: get(), set(), toggle(), reset()
+
+get() -> ConfigOption
+__index -> get() -> ConfigOption
+__newindex -> set()
+
+set, toggle, reset -> retval, error msg
+
+Config Option
+-------------
+(backed by HashElem for config option)
+__tostring -> string value, raw (equiv get())
+set(), toggle(), reset() fns act on Config Option
+config.sidebar_width.set(10)
+__newindex needs to be on Config
+=> config.sidebar_width = 10
+or config["sidebar_width"] = 10
+
+Derived Types for diff config types
+AddressConfigOption, MbTable, Regex, Path?, Enum
+
+Testing: all types, get, set, toggle, reset, validator
+	all methods, check code tests
+
+needs fns to navigate console - who processes them?
+	global?!
+	dedicated lua_function_dispatcher() - prob
+

@@ -1,0 +1,50 @@
+lua_State       - An opaque structure that points to the whole state of a Lua interpreter
+luaL_Reg        - Type for arrays of functions to be registered by luaL_setfuncs
+
+luaL_dofile     - Loads and runs the given file
+luaL_dostring   - Loads and runs the given string
+luaL_error      - Raises an error
+luaL_newlib     - Creates a new table and registers there the functions in the list
+luaL_newstate   - Creates a new Lua state
+luaL_openlibs   - Opens all standard Lua libraries into the given state
+luaL_requiref   - Loads the given module
+
+lua_atpanic     - Sets a new panic function
+lua_gettop      - Returns the index of the top element in the stack
+lua_pop         - Pops n elements from the stack
+lua_pushboolean - Pushes a boolean value with value b onto the stack
+lua_pushinteger - Pushes an integer with value n onto the stack
+lua_pushstring  - Pushes the zero-terminated string pointed to by s onto the stack
+lua_rawlen      - Returns the raw "length" of the value at the given index
+lua_settable    - Sets a value in a table
+lua_toboolean   - Converts the Lua value at the given index to a C boolean
+lua_tointeger   - Converts the Lua value at the given index to the signed integral type lua_Integer
+lua_tostring    - Converts the Lua value at the given index to a C string
+
+--------------------------------------------------------------------------------
+
+LuaCommands           - List of NeoMutt commands to register
+LuaMuttCommands       - List of Lua commands to register
+LuaState              - Global Lua State
+
+lua_handle_error      - Handle an error in the Lua interpreter
+lua_handle_panic      - Handle a panic in the Lua interpreter
+
+lua_expose_mutt       - Expose a 'Mutt' object to the Lua interpreter
+lua_expose_commands   - Declare some NeoMutt types to the Lua interpreter
+lua_expose_command    - Expose a NeoMutt command to the Lua interpreter
+
+parse_lua             - Parse the 'lua' command
+parse_lua_source      - Parse the 'lua-source' command
+
+lua_init              - Setup feature commands
+lua_cleanup           - Clean up Lua
+lua_init_state        - Initialise a Lua State
+
+lua_cb_global_call    - Call a NeoMutt command by name
+lua_cb_global_enter   - Execute NeoMutt config from Lua
+lua_cb_global_error   - Display an error in NeoMutt
+lua_cb_global_get     - Get a NeoMutt variable
+lua_cb_global_message - Display a message in NeoMutt
+lua_cb_global_set     - Set a NeoMutt variable
+

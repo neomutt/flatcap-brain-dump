@@ -258,3 +258,6 @@ lua styling/colour callback
 new-mail-hook + lua to filter
 	=> need filter manager
 
+lua / lua-source aren't documented ANYWHERE
+	need feature page with examples
+

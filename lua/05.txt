@@ -1,0 +1,29 @@
+Lua5
+
+∀ object: get_functions() -> table of approved fns
+if user does <change-folder> from script,
+use lua_error() as a cutout - it kills the script,
+we log the termination
+
+lua-source: predefined path
+or $lua_source_path (or $lua_path?)
+at lua startup / reset prepend path to [package.path]
+default to ".:~/.config/neomutt/lua:/usr/share/neomutt/lua"
+	cf mailcap_path
+DT_STARTUP_ONLY
+
+symlink both dirs to ~/lua for convenience
+startup only *unless* we preserve orig [package.path]
+
+lua-mode: run lua cmds without "lua" prefix
+until "exit" or Ctrl-D.  needs dedicated history!
+put :lua X into HIST_LUA *too*
+lua-mode show lua console
+
+console - expand tabs
+userdata_get_type -> "Index" or define consts
+
+dedupe config.c
+
+index.function() no params needed, BUT
+could take (NUM) as a repeat count

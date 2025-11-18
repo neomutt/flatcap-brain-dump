@@ -1,0 +1,64 @@
+mute conversations in neomutt
+
+In Neomutt:
+	<limit-add-email>	or	<hide-email>
+	<limit-add-thread>		<hide-thread>
+	hide email(s)
+emails disappear from display
+	<limit>.	restores	<unhide-all>?
+
+new mail arrives (hide-email vs hide-thread)
+	if email is hidden,  new reply is visible?
+	if thread is hidden, new reply isn't visible?
+
+need more options:
+	hide this email only
+	hide this email and all its replies in the future
+on reply arriving
+	hide it too
+	show only new arrival
+	reshow entire thread
+
+hiding an email/thread is temporary
+calling a script to do it can persist the info (file/db)
+
+are muted emails separate from limited emails?
+yes, should be.  this allows independently using limit
+
+script on mailbox-hook
+Mailbox is populated, but not yet displayed (pre-refresh())
+script can inspect all emails
+
+script: mute-conversation can use external sources
+	e.g. flat file, rules in config, database
+to determine which emails to hide
+
+bind key to lua-script + focused object. how?
+	*functions* can't take params, so how?
+how would this be different to just <enter-command>lua-source file.lua<enter> ?
+any script should be given: current object pointer (and type)
+script needs locale info: Index Dialog, Alias Dialog, Compose Dialog
+script: assert(IndexDialog)
+
+flat text file might be simpler for the user to maintain
+	{email,thread}  message-id      {new-hide,new-show-only,new-show-thread}
+	{date}          0000-00-00      {new-hide,new-show-only,new-show-thread}
+	pattern         neomutt-pattern {new-hide,new-show-only,new-show-thread}
+
+hiding rules:
+	hide by msg-id
+	hide by date
+
+allow adding custom rules
+	=> custom keywords in file/db
+
+does mute hide? or just quieten?
+	option?
+hide => {new-hide,new-show-only,new-show-thread}
+quieten => no options
+
+script needs to be able to mark emails as read
+	=> <exit> wouldn't commit changes
+
+when new mail arrives, need to apply rules to it
+
