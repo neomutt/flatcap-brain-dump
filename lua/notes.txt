@@ -58,3 +58,14 @@ have an Index object representing the IndexDialog, etc
 		which return enum FunctionRetval
 	it can give out state info
 
+config
+	get_last_error() - number, message
+	enumerate_config(bool all) => table (type, name, help?, value?)
+	These act on a particular config ITEM -- need ConfigItem class?
+	// (and subclasses for TYPES of ConfigItem?)
+	helper toggle()       config.NAME.toggle()
+	helper default()  x = config.NAME.default()
+	helper reset()        config.NAME.reset()
+	helper get_enums(name) => table (for bool, enum, quad, sort)
+	helper escape_string() -- might be better on Global
+

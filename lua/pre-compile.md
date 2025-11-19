@@ -119,7 +119,7 @@ done.
 
 ## CMakeLists.txt
 
-```make
+```cmake
 cmake_minimum_required (VERSION 3.0)
 project (lua_embed C)
 
@@ -229,8 +229,8 @@ static lua_State *create_lua_counter(char *err, size_t errlen)
   }
 
   /* Remove the empty filler nil from the top of the stack. The
-     * lua_pcall stated 2 return values but on success we only
-     * get one so we have nil filler after. */
+   * lua_pcall stated 2 return values but on success we only
+   * get one so we have nil filler after. */
   lua_pop(L, 1);
 
   if (lua_type(L, -1) != LUA_TTABLE)
@@ -241,7 +241,7 @@ static lua_State *create_lua_counter(char *err, size_t errlen)
   }
 
   /* We're sure we have a table returned by new.
-     * This is the only item on the stack right now. */
+   * This is the only item on the stack right now. */
   return L;
 }
 
@@ -254,11 +254,11 @@ static void counter_example(lua_State *L)
      * Pull out the add function so we can run it. */
   lua_getfield(L, -1, "add");
   /* Copy (don't move) the counter object so it's the
-     * first argument. Meaning we're doing M:add.
-     * We want to copy because we want to leave the counter
-     * object at the bottom of the stack so we can keep using
-     * it. We'll use this pattern for all functions we
-     * want to call. */
+   * first argument. Meaning we're doing M:add.
+   * We want to copy because we want to leave the counter
+   * object at the bottom of the stack so we can keep using
+   * it. We'll use this pattern for all functions we
+   * want to call. */
   lua_pushvalue(L, -2);
   /* Add the argument. */
   lua_pushnumber(L, 4);
@@ -327,8 +327,8 @@ static void counter_example(lua_State *L)
   /* print(c) (Alternative) */
   printf("%s\n", luaL_tolstring(L, -1, NULL));
   /* luaL_tolstring returns the string and puts it on the
-     * stack. This is what the function return is pointing
-     * to. We need to remove it from the stack. */
+   * stack. This is what the function return is pointing
+   * to. We need to remove it from the stack. */
   lua_remove(L, -1);
 
   /* Right now the only thing on the stack is the counter object. */
@@ -647,7 +647,7 @@ static lua_State *create_lua_counter(char *err, size_t errlen)
   /* Load the standard Lua libraries. */
   luaL_openlibs(L);
   /* lcounter = require("lcounter")
-     * Put the counter module onto the stack. */
+   * Put the counter module onto the stack. */
   if (luaL_loadbuffer(L, (const char *) counter_lua, counter_lua_len, "counter.lua") ||
       lua_pcall(L, 0, LUA_MULTRET, 0))
   {
@@ -693,8 +693,8 @@ static lua_State *create_lua_counter(char *err, size_t errlen)
   }
 
   /* Remove the empty filler nil from the top of the stack. The
-     * lua_pcall stated 2 return values but on success we only
-     * get one so we have nil filler after. */
+   * lua_pcall stated 2 return values but on success we only
+   * get one so we have nil filler after. */
   lua_pop(L, 1);
 
   if (lua_type(L, -1) != LUA_TTABLE)
@@ -705,7 +705,7 @@ static lua_State *create_lua_counter(char *err, size_t errlen)
   }
 
   /* We're sure we have a table returned by new.
-     * This is the only item on the stack right now. */
+   * This is the only item on the stack right now. */
   return L;
 }
 
@@ -718,11 +718,11 @@ static void counter_example(lua_State *L)
      * Pull out the add function so we can run it. */
   lua_getfield(L, -1, "add");
   /* Copy (don't move) the counter object so it's the
-     * first argument. Meaning we're doing M:add.
-     * We want to copy because we want to leave the counter
-     * object at the bottom of the stack so we can keep using
-     * it. We'll use this pattern for all functions we
-     * want to call. */
+   * first argument. Meaning we're doing M:add.
+   * We want to copy because we want to leave the counter
+   * object at the bottom of the stack so we can keep using
+   * it. We'll use this pattern for all functions we
+   * want to call. */
   lua_pushvalue(L, -2);
   /* Add the argument. */
   lua_pushnumber(L, 4);
@@ -791,8 +791,8 @@ static void counter_example(lua_State *L)
   /* print(c) (Alternative) */
   printf("%s\n", luaL_tolstring(L, -1, NULL));
   /* luaL_tolstring returns the string and puts it on the
-     * stack. This is what the function return is pointing
-     * to. We need to remove it from the stack. */
+   * stack. This is what the function return is pointing
+   * to. We need to remove it from the stack. */
   lua_remove(L, -1);
 
   /* Right now the only thing on the stack is the counter object. */
