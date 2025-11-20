@@ -22,3 +22,31 @@ results go to main window
 focus my need to stay on Index Dialog so that NeoMutt doesn't notice
 that might mean Index needs a new function dispatcher that redirects to Lua Dialog
 
+:lua-console
+	expando: date, time, msg?
+
+Console
+-------
+
+single Window in IndexDlg
+wdata -> Menu, mdata->lua log (info)
+$lua_log_level, $lua_log_file
+:lua-console [show|hide|reset|toggle]
+$lua_console_format: date, time, level, msg
+$lua_console_var_format?
+
+console - expand tabs
+
+needs fns to navigate console - who processes them?
+	global?!
+	dedicated lua_function_dispatcher() - prob
+
+Lua console :lua-console or bool $lua_console
+
+modal: Menu or Pager, <quit>
+
+non-modal: new Window, below or to right of Index/Pager
+	follows output as lua calls refresh
+	need way to focus it: <enter-lua-console> / <quit>
+	doesn't affect visibility, but allows user to navigate
+

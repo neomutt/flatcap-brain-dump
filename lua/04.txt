@@ -26,7 +26,3 @@ AddressConfigOption, MbTable, Regex, Path?, Enum
 Testing: all types, get, set, toggle, reset, validator
 	all methods, check code tests
 
-needs fns to navigate console - who processes them?
-	global?!
-	dedicated lua_function_dispatcher() - prob
-

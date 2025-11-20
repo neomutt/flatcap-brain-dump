@@ -1,16 +1,5 @@
 Lua3
 
-Lua console :lua-console or bool $lua_console
-
-modal: Menu or Pager, <quit>
-
-non-modal: new Window, below or to right of Index/Pager
-	follows output as lua calls refresh
-	need way to focus it: <enter-lua-console> / <quit>
-	doesn't affect visibility, but allows user to navigate
-
-log raw lua command entered
-
 Error handling
 --------------
 
@@ -20,17 +9,6 @@ could generate msg as source and return (error code, msg)
 or return just error code ahd ahve perror() fn to generate msg
 
 
-Alter MenuFuncOp, change `bool deprecated` to a flag field
-	OP_LUA_ALLOWED => save to run *live*
+Alter MenuFuncOp, OP_LUA_ALLOWED => save to run *live*
 	anything else would need to be queued and lua return first
-
-Console
--------
-
-single Window in IndexDlg
-wdata -> Menu, mdata->lua log (info)
-$lua_log_level, $lua_log_file
-:lua-console [show|hide|reset|toggle]
-$lua_console_format: date, time, level, msg
-$lua_console_var_format?
 

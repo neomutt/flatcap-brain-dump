@@ -20,7 +20,6 @@ until "exit" or Ctrl-D.  needs dedicated history!
 put :lua X into HIST_LUA *too*
 lua-mode show lua console
 
-console - expand tabs
 userdata_get_type -> "Index" or define consts
 
 index.function() no params needed, BUT

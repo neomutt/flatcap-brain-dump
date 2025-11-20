@@ -69,3 +69,11 @@ config
 	helper get_enums(name) => table (for bool, enum, quad, sort)
 	helper escape_string() -- might be better on Global
 
+global
+	add sleep() function (float val)
+	add enter_string()
+	add multi_choice()
+	add yes_or_no()
+
+lua-reset -- reset entire state
+

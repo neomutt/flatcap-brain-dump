@@ -1,6 +1,8 @@
-Lua 2
+Logging
 
-Logging - where? which direction? of what?
+log raw lua command entered
+
+where? which direction? of what?
 
 NeoMutt: hard vs soft fail
 
@@ -14,9 +16,6 @@ debug -> neo log, lua log file
 	lua_log (LL_*)
 	neo_log (conditional on level)
 	lua file (always)
-
-:lua-console
-	expando: date, time, msg?
 
 doc which functions/actions might log/file/abort (killing script)
 
