@@ -50,3 +50,106 @@ global
 
 lua-reset -- reset entire state
 
+Top-level objects: neomutt, config, index (1 per dlg)
+Do we need an umbrella object?  neo.x, .y, .z?
+Does it matter?  scripts are "captive" to NeoMutt
+
+contrib scripts need:
+	name, author(s), license, homepage, description
+
+should dlgs offer fns by OpX?
+OpMenu obj? or just one big set of fns?
+
+Info page - show loaded scripts. :lua?
+"window-hook index lua-source..." HOW?
+
+NEOMUTT
+-------
+(root of DOM)
+account
+mailbox
+email
+address
+navigation between
+some directions not possible
+
+DLGS/WINDOWS?
+-------------
+(wrapper to Windows)
+get_current() -> IndexDlg *object*
+each obj has base class
+name, focused/active
+(might not be active if stacked)
+enumerate? -> breadcrumbs
+bindings[], functions[]
+name(), enum *fns*, fn groups
+many dlgs are -> SimplePagerWin
+
+COLOURS
+-------
+(wrapper to theming)
+get/set/+=/-=/(color or attrs)
+enumerate objs/lists
+uncolor, unattr (mono?)
+
+ALIASES
+-------
+(wrapper to aliases)
+enumerate, search
+alias obj[]
+
+SIDEBAR (window)
+-------
+wrapper to sidebar (mailbox)
+enum Mailboxes
+get/set format
+custom colours
+custom sorting
+custom display string
+width => wrapper to cfg, etc
+
+----------------------------------------
+
+lua interaction with neo prompts: HOW?
+text entry, multi-choice, y/n, etc
+pass response table to Neo?
+Neo prompts need unique ids
+
+∀ objects properties()
+	=> table of class members that can be accessed
+	with get_X() -> read only
+
+Error handling
+--------------
+
+retval 0 success, n error
+errors will differ depending on operation
+could generate msg as source and return (error code, msg)
+or return just error code ahd ahve perror() fn to generate msg
+
+
+Alter MenuFuncOp, OP_LUA_ALLOWED => save to run *live*
+	anything else would need to be queued and lua return first
+
+∀ object: get_functions() -> table of approved fns
+if user does <change-folder> from script,
+use lua_error() as a cutout - it kills the script,
+we log the termination
+
+lua-source: predefined path
+or $lua_source_path (or $lua_path?)
+at lua startup / reset prepend path to [package.path]
+default to ".:~/.config/neomutt/lua:/usr/share/neomutt/lua"
+	cf mailcap_path
+DT_STARTUP_ONLY
+
+symlink both dirs to ~/lua for convenience
+startup only *unless* we preserve orig [package.path]
+
+lua-mode: run lua cmds without "lua" prefix
+until "exit" or Ctrl-D.  needs dedicated history!
+put :lua X into HIST_LUA *too*
+lua-mode show lua console
+
+userdata_get_type -> "Index" or define consts
+

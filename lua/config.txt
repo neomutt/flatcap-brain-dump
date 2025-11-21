@@ -47,3 +47,8 @@ AddressConfigOption, MbTable, Regex, Path?, Enum
 Testing: all types, get, set, toggle, reset, validator
 	all methods, check code tests
 
+define globals
+	yes = 1
+	no = 0
+otherwise they're both nil
+

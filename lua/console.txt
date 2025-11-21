@@ -1,15 +1,15 @@
 lua console
-	redirect print
-	output is redirected to a file
-	file is used to populate a Menu
-	Menu tracks last entry `tail -f`
-	lua script can enable/disable console with a command
-	or reset it!
-	console output file is temp (auto-deleted)
-	unless user saves it
-	timestamped log
 
-redirect print()
+redirect print
+output is redirected to a file
+file is used to populate a Menu
+Menu tracks last entry `tail -f`
+lua script can enable/disable console with a command
+or reset it!
+console output file is temp (auto-deleted)
+unless user saves it
+timestamped log
+
 pager live update
 focus follows additions
 
@@ -24,9 +24,6 @@ that might mean Index needs a new function dispatcher that redirects to Lua Dial
 
 :lua-console
 	expando: date, time, msg?
-
-Console
--------
 
 single Window in IndexDlg
 wdata -> Menu, mdata->lua log (info)
