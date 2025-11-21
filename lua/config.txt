@@ -1,0 +1,49 @@
+CONFIG
+------
+(wrapper to cfg system)
+
+Config (table)
+
+Config: get(), set(), toggle(), reset()
+
+get/set/toggle/+=/-=/has been set
+enumerate (set [all])
+subclasses for type spec fns
+enum subconfigs (create/del)
+
+does the script need to be able to get config metadata?
+	e.g. the config item's type?
+	or should it just work in strings/integers?
+
+get_last_error() - number, message
+enumerate_config(bool all) => table (type, name, help?, value?)
+These act on a particular config ITEM -- need ConfigItem class?
+// (and subclasses for TYPES of ConfigItem?)
+helper toggle()       config.NAME.toggle()
+helper default()  x = config.NAME.default()
+helper reset()        config.NAME.reset()
+helper get_enums(name) => table (for bool, enum, quad, sort)
+helper escape_string() -- might be better on Global
+
+get() -> ConfigOption
+__index -> get() -> ConfigOption
+__newindex -> set()
+
+set, toggle, reset -> retval, error msg
+
+Config Option
+-------------
+(backed by HashElem for config option)
+__tostring -> string value, raw (equiv get())
+set(), toggle(), reset() fns act on Config Option
+config.sidebar_width.set(10)
+__newindex needs to be on Config
+=> config.sidebar_width = 10
+or config["sidebar_width"] = 10
+
+Derived Types for diff config types
+AddressConfigOption, MbTable, Regex, Path?, Enum
+
+Testing: all types, get, set, toggle, reset, validator
+	all methods, check code tests
+

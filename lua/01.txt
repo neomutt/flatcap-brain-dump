@@ -25,14 +25,6 @@ address
 navigation between
 some directions not possible
 
-CONFIG
-------
-(wrapper to cfg system)
-get/set/toggle/+=/-=/has been set
-enumerate (set [all])
-subclasses for type spec fns
-enum subconfigs (create/del)
-
 INDEX DLG
 ---------
 (wrapper to IndexDlg)
