@@ -10,8 +10,6 @@ contrib scripts need:
 should dlgs offer fns by OpX?
 OpMenu obj? or just one big set of fns?
 
-Index.*nav*.page_down()
-
 Info page - show loaded scripts. :lua?
 "window-hook index lua-source..." HOW?
 
@@ -24,13 +22,6 @@ email
 address
 navigation between
 some directions not possible
-
-INDEX DLG
----------
-(wrapper to IndexDlg)
-separate object for each dispatcher)
-OpIndex, OpGeneric, OpMenu, OpGlobal
-sidebar separate object
 
 DLGS/WINDOWS?
 -------------

@@ -31,35 +31,6 @@ Allow script to be embedded in normal Mutt config files, e.g. like PHP:
 
 Lua's print() function could be overridden to call mutt_message()
 
-## Index
-
-A one-pass processing of the mailbox.
-Call the script once for each email.
-
-Add new expandos, %L1, %L2, etc to be filled by the script.
-
-**Pass in:**
-- Copy of all the fields
-- Current account
-- Current mailbox
-- Current email
-
-**Define functions to:**
-- Colour:
-  * All of the line
-  * One field
-  * Regex on field, or line
-- Modify a field (‡)
-- Hide / Delete an email (‡)
-- Set the fold level of thread
-- Set score of email
-- Lookup address -- is_alias()
-- Add/remove icon for email
-  * Flag GitHub notifications
-  * Add coloured stars
-
-Can optionally disable Mutt's colouring
-
 ## Pager
 
 A one-pass processing of an email.

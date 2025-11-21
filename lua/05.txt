@@ -22,5 +22,3 @@ lua-mode show lua console
 
 userdata_get_type -> "Index" or define consts
 
-index.function() no params needed, BUT
-could take (NUM) as a repeat count
