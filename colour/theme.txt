@@ -6,7 +6,7 @@ colours
 
 parse deep colours, then *cull* on gui_init()
 
-color object *link* object2  
+color object *link* object2
 use same linkage mechnism for multiple colour domains
 
 arrange: object -> rgb -> palette -> simple
@@ -19,6 +19,13 @@ flag unusable colours instead
 
 ~/.neomutt-theme
 ~/.config/neomutt/theme.rc
+
+theme-light.rc
+theme-dark.rc
+	or some config way to select the right file
+$background = [unknown|light|dark]
+	source theme-$background.rc
+if $background is manually set, don't query the terminal
 
 source! -- no fail
 and/or

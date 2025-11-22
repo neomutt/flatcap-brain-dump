@@ -119,20 +119,6 @@ histignore M and other uppers
 script for "build-all-git-tags"
 	publish
 
-fosdem
-keysign
-	clipboard
-	upstairs
-	loudhailer
-	108 people -> 100mins -> ~50 sigs in return
-new people
-	get together
-travel
-	from midi -> town -> tourist info
-	where to get maps
-	how to navigate
-	pay for metro/buses/trams
-
 quickhl command to display highlights (in use)
 
 push all git repos to gitlab, bitbucket
@@ -178,8 +164,6 @@ hikes -> docker
 craggy -> docker
 dotfiles -> gh
 vimrc -> gh
-
-quickhl spurious 9th colour
 
 web linode manager
 

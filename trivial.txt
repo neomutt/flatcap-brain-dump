@@ -255,13 +255,8 @@ pinned issues
 	I want to thank you - star, donate, help, "thanks" -> irc
 	link to Discussions
 
-certificates
-	add relatives to timestamps (X ago, for Y)
-	This certificate is valid
-	   from Thu, 26 Dec 2024 09:01:01 UTC (x weeks ago)
-	     to Wed, 26 Mar 2025 09:01:00 UTC (for y months)
-	means lots more translations!
-	also key selection
+certificates add relatives to timestamps (X ago, for Y)
+	see agent.txt
 
 README.md
 	warning/note/information/tip blocks!
@@ -304,6 +299,8 @@ elsewhere
 	'x' <exit> => exit without saving
 
 get neomutt on every available "awesome" list
+	https://www.linuxlinks.com/best-free-open-source-console-email-clients/
+	after, list the lists on neomutt.org
 
 ~/.config/neomutt/theme.rc
 	file or symlink
@@ -328,6 +325,7 @@ Config system
 expando long-text -- review
 	esp, "flags2" !
 	need docs -- how?
+docs for %{name} expandos
 
 colour - what happens if you set both (simple/palette) and truecolor?
 	we want to share both; if $color_directcolor is set then use
@@ -355,8 +353,6 @@ find clean/dirty strwidth() / wcwidth() uses
 
 release: commit count
 
-docs for %{name} expandos
-
 fold lines that don't match the search pattern
 	:set foldenable foldmethod=expr foldminlines=0 foldexpr=getline(v:lnum)!~@/
 
@@ -381,8 +377,6 @@ increasing subtlety!
 
 filter synonyms and deprecated out of get_elem_list()
 	so that the callers don't have to
-
-https://www.linuxlinks.com/best-free-open-source-console-email-clients/
 
 test CLI params of "" (which mutt_strdup() will turn into NULL)
 
@@ -416,8 +410,6 @@ sort out
 
 extract data from
 	site repo branches
-
-drop rfcs from website -- unused, unmaintained
 
 jindraj: gmail login, app passwords
 	The option to generate app passwords is hidden until 2FA is enabled.
@@ -503,11 +495,6 @@ idea
 
 use r.h.s of help-bar to display tabs of backgrounded compose sessions
 
-verify-cert dialog
-	next/prev line don't seem to work
-	menu->current is stuck at -1
-	(until page-down, then next/prev work)
-
 drop mono command from the docs
 	examples, etc
 	sample themes are tricky
@@ -572,28 +559,7 @@ modernise all the sample configs
 	# vim: syn=neomuttrc
 
 Find more Linked List Nodes, to replace with ARRAY, e.g.
-Nodes
-	address/group.h:53:2:    STAILQ_HEAD(GroupList,       GroupNode);
-	mutt/list.h:41:2:        STAILQ_HEAD(ListHead,        ListNode);
-	mutt/observer.h:74:2:    STAILQ_HEAD(ObserverList,    ObserverNode);
-	mutt/regex3.h:100:2:     STAILQ_HEAD(RegexList,       RegexNode);
-Others
-	address/address.h:43:1:   TAILQ_HEAD(AddressList,     Address);
-	alias/alias.h:42:1:       TAILQ_HEAD(AliasList,       Alias);
-	attach/cid.h:41:2:       STAILQ_HEAD(CidMapList,      CidMap);
-	color/attr.h:74:1:        TAILQ_HEAD(AttrColorList,   AttrColor);
-	color/curses2.h:48:1:     TAILQ_HEAD(CursesColorList, CursesColor);
-	color/regex4.h:47:2:     STAILQ_HEAD(RegexColorList,  RegexColor);
-	email/parameter.h:38:1:   TAILQ_HEAD(ParameterList,   Parameter);
-	email/tags.h:48:2:       STAILQ_HEAD(TagList,         Tag);
-	email/url.h:63:2:        STAILQ_HEAD(UrlQueryList,    UrlQuery);
-	gui/mutt_window.h:105:1:  TAILQ_HEAD(MuttWindowList,  MuttWindow);
-	hook.c:76:1:              TAILQ_HEAD(HookList,        Hook);
-	key/lib.h:76:2:          STAILQ_HEAD(KeymapList,      Keymap);
-	mutt/charset.c:80:1:      TAILQ_HEAD(LookupList,      Lookup);
-	mutt/logging2.h:88:2:    STAILQ_HEAD(LogLineList,     LogLine);
-	mutt/regex3.h:112:2:     STAILQ_HEAD(ReplaceList,     Replace);
-	ncrypt/crypt_mod.c:45:2: STAILQ_HEAD(CryptModuleList, CryptModule);
+	see agent.txt
 
 if "theme" (GUI) is separate config file, "keys"/"bindings" should be too
 if theme config file is present, ignore /etc/neomuttrc colours? HOW
@@ -604,6 +570,7 @@ if theme config file is present, ignore /etc/neomuttrc colours? HOW
 keybindings for Editor (OpEditor)
 	OP_EDITOR_MAILBOX_CYCLE needs splitting out
 		how does that work with bindings?
+		or can it return FR_UNKNOWN if there's no Mailbox
 	only used when we're in the index
 	OP_EDITOR_COMPLETE/OP_EDITOR_COMPLETE_QUERY
 	OP_EDITOR_HISTORY_*?  is history *always* available?
@@ -621,7 +588,7 @@ for :commands given with zero args
 add comment to: const struct PatternFlags Flags
 	with list of flags in use / free
 	w.r.t.  ~  =  %
-	need space for lua-custom fields => multi-char patterns?
+	need space for lua-custom fields => multi-char patterns? HOW?
 
 reorg /neo/github /github mail folders
 

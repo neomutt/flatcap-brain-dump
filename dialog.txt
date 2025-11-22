@@ -41,7 +41,7 @@ Finally recurse through all non-Min children
 
 --------------------------------------------------------------------------------
 
-sidebar could be an overlay - oscure index temporarily
+sidebar could be an overlay - obscure index temporarily
 	<sb-hide> for completeness
 	if the timeout is short, then magic sidebar
 	visible timeout after any action or <sb-show>

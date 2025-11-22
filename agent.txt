@@ -1,0 +1,80 @@
+Agent Changes / Reviews
+
+code/code.md:50:5:     Trailing whitespace
+code/code.txt:7:8:     delete trailing whitespace
+code/code.txt:58:2:    trailing
+code/code.txt:100:2:   trailing whitespace
+code/code.txt:173:32:  tidy - check files for leading/trailing whitespace at ends of file
+code/style2.txt:9:2:   trailing
+code/style2.txt:39:34: // comments for single line, or trailing
+code/style2.txt:67:2:  trailing punctuation
+translate.txt:147:7:   have trailing whitespace -- nuisance for the translator
+travis.txt:10:8:       tabs, trailing whitespace
+
+ARRAYs?
+attach/attach.h:          FILE **fp_idx;
+attach/attach.h:          struct AttachPtr **idx;
+attach/attach.h:          struct Body **body_idx;
+browser/private_data.h:   char ***files;
+complete/data.h:          const char **match_list;
+config/mbtable.h:         char **chars;
+core/mailbox.h:           struct Email **emails;
+core/neomutt.h:           char **env;
+email/email.h:            struct Email **emails;
+gui/curs_lib.h:           char ***files;
+mutt/charset.h:           const char **inrepls;
+mutt/hash.h:              struct HashElem **table;
+nntp/adata.h:             struct NntpMboxData **groups_list;
+
+certificates
+	add relatives to timestamps (X ago, for Y)
+	This certificate is valid
+	   from Thu, 26 Dec 2024 09:01:01 UTC (x weeks ago)
+	     to Wed, 26 Mar 2025 09:01:00 UTC (for y months)
+	means lots more translations!
+	also key selection
+
+:hook info command to list all hooks
+
+Find more Linked List Nodes, to replace with ARRAY, e.g.
+Nodes
+	address/group.h:53:2:    STAILQ_HEAD(GroupList,       GroupNode);
+	mutt/list.h:41:2:        STAILQ_HEAD(ListHead,        ListNode);
+	mutt/observer.h:74:2:    STAILQ_HEAD(ObserverList,    ObserverNode);
+	mutt/regex3.h:100:2:     STAILQ_HEAD(RegexList,       RegexNode);
+Others
+	address/address.h:43:1:   TAILQ_HEAD(AddressList,     Address);
+	alias/alias.h:42:1:       TAILQ_HEAD(AliasList,       Alias);
+	attach/cid.h:41:2:       STAILQ_HEAD(CidMapList,      CidMap);
+	color/attr.h:74:1:        TAILQ_HEAD(AttrColorList,   AttrColor);
+	color/curses2.h:48:1:     TAILQ_HEAD(CursesColorList, CursesColor);
+	color/regex4.h:47:2:     STAILQ_HEAD(RegexColorList,  RegexColor);
+	email/parameter.h:38:1:   TAILQ_HEAD(ParameterList,   Parameter);
+	email/tags.h:48:2:       STAILQ_HEAD(TagList,         Tag);
+	email/url.h:63:2:        STAILQ_HEAD(UrlQueryList,    UrlQuery);
+	gui/mutt_window.h:105:1:  TAILQ_HEAD(MuttWindowList,  MuttWindow);
+	hook.c:76:1:              TAILQ_HEAD(HookList,        Hook);
+	key/lib.h:76:2:          STAILQ_HEAD(KeymapList,      Keymap);
+	mutt/charset.c:80:1:      TAILQ_HEAD(LookupList,      Lookup);
+	mutt/logging2.h:88:2:    STAILQ_HEAD(LogLineList,     LogLine);
+	mutt/regex3.h:112:2:     STAILQ_HEAD(ReplaceList,     Replace);
+	ncrypt/crypt_mod.c:45:2: STAILQ_HEAD(CryptModuleList, CryptModule);
+
+.github README
+	welcome
+
+char[] -> Buffer conversions
+	which?
+
+upstream patches
+
+split up send() to accommodate bg_edit
+
+compose: move Body wrapping into compose
+
+update translations as fuzzy
+
+split up mutt_parse_hook() #4012
+
+compose: small fns #3222
+

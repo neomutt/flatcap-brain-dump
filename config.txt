@@ -113,10 +113,10 @@ new assignment operator?
 	set x = \$y
 
 function/known data
-	source_rc		FILE, LINE, !SYMBOL
+	source_rc		 FILE,  LINE, !SYMBOL
 	mutt_parse_rc_line	!FILE, !LINE, !SYMBOL
-	parse_set		!FILE, !LINE, SYMBOL
-	mutt_option_index	!FILE, !LINE, SYMBOL
+	parse_set		!FILE, !LINE,  SYMBOL
+	mutt_option_index	!FILE, !LINE,  SYMBOL
 how do we pass out a meaningful error message?
 
 non-null flags (may not be unset)

@@ -25,6 +25,12 @@ fixed expandos, e.g. %+L3, or let lua do it?
 	fixed => coordination needed between config and lua
 need patterns to search/limit for/by them
 sorting by L-field?
+	can't easily alter mutt_select_sort()
+	but can add `enum EmailSortType` and `SortMethods[]`
+	@sa resort_index(), mutt_sort_headers(), mutt_compare_emails(), get_sort_func(), email_sort_shim()
+	    email_sort_{date,date_received,from,label,score,size,spam,subject,to,unsorted}()
+	create DOT file showing email sorting functions
+	optimise so we only call get_sort_func() once
 
 how to colour the output?
 how to format the fields?

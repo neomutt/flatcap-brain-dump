@@ -1674,7 +1674,7 @@ bug
 
 visual glitch at time of sending mail?
 	sidebar always gets updated and refreshed ahead of other windows!
-	
+
 make mail_check_stats default to YES?
 	most people will want it
 
@@ -1725,7 +1725,7 @@ struct Email: adding notify changed the struct
 
 docs: add page describing all config types
 	including all flags (subtypes)
-	
+
 nntp: allow sub/unsub in index/pager
 
 coverage: check dev analysis docs for new 'coverage' dir
@@ -1951,7 +1951,7 @@ pager:
 	then have functions to scroll left/right?
 
 expandos
-	option / mechanism to show which fields have been truncated `…` 
+	option / mechanism to show which fields have been truncated `…`
 	HOW?
 	alter formatting syntax %-min.maxS ?
 	or add extra expandos for selected big fields
@@ -2413,7 +2413,7 @@ fold_level
 	fold at any nested Mailbox
 exceptions for New, Flagged emails, current Mailbox
 Highlight on Account expands all M
-	move down to A, highlight on 
+	move down to A, highlight on
 	move up from next A, highlight on A's last M!
 
 Sorting
