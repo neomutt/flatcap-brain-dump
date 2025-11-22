@@ -49,6 +49,10 @@ Can't get label info / reactions from email
 
 add/del label from thread (index)
 
+markup subject with magic ANSI URL link
+	#123 -> http://github.com/neomutt/neomutt/issue/123
+	requires painting magic in the Menu
+
 get repo/issue metadata -> db (external)
 	=> done by cron (daily?/hourly?)
 	=> or done by neomutt manually
@@ -100,3 +104,10 @@ manage github recipient hints
 Mention <mention@noreply.github.com>
 Your activity <your_activity@noreply.github.com>
 Author <author@noreply.github.com>
+
+icon (%L1) for PR vs Issue vs Discussion
+move #123 number into %L2 (strip from subject)
+	only display these in *thread-root*
+	or if it's the first email visible in the thread
+		=> observing Menu navigation changes!
+

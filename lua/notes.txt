@@ -153,3 +153,10 @@ lua-mode show lua console
 
 userdata_get_type -> "Index" or define consts
 
+Email: is_message_cached() -> quick access
+
+email need thread navigation info:
+	has children
+	has parent
+	has siblings / next/prev
+

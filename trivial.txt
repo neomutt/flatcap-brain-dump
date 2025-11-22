@@ -599,6 +599,7 @@ if "theme" (GUI) is separate config file, "keys"/"bindings" should be too
 if theme config file is present, ignore /etc/neomuttrc colours? HOW
 	=> good clean slate
 	don't set default colours either?
+	means checking for existence of *user* config before reading *system* config
 
 keybindings for Editor (OpEditor)
 	OP_EDITOR_MAILBOX_CYCLE needs splitting out
@@ -613,7 +614,14 @@ $my_unset_var resolves to literal "$my_unset_var"
 
 for :commands given with zero args
 	if not valid, show usage
-	:lua-source	->	lua-source [show|hide|toggle|reset]
+	:lua-console -> lua-console [show|hide|toggle|reset]
 	or, if command can be used with zero args, allow :xyz? ('?' suffix)
 	check all commands for compatibility
+
+add comment to: const struct PatternFlags Flags
+	with list of flags in use / free
+	w.r.t.  ~  =  %
+	need space for lua-custom fields => multi-char patterns?
+
+reorg /neo/github /github mail folders
 
