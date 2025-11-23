@@ -118,6 +118,9 @@ bash completion for ./configure
 bash completion for neomutt, based on: /usr/share/bash-completion/completions/mutt
 	∀ cli options
 	for aliases too?
+update bash complete for configure
+	push to management
+	dev ml
 
 gnutls + ssl -- auto.def, no warning
 configure allows --gnutls AND --ssl
@@ -129,4 +132,17 @@ change Score list to use STAILQ
 
 relative time option for the index_format
 	3h (ago), 2d, etc
+
+where is punycode encoded/decoded?
+	extract to lib and test
+
+turn some config vars into (string) lists
+	hidden_tags (separator = ',')
+	mailcap_path (separator = ':')
+	send_charset (separator = ':')
+	split at config level, then call the validator on each list item
+		no, call validator on parsed list
+
+need neomutt glossary (search first)
+	add to guide
 

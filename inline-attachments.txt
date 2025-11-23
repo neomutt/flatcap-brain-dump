@@ -25,7 +25,7 @@ mini-attachment window
 	normal attachment functions
 	viewing an attachment will have to go full-screen
 
-If this is possible, why no message preview?
+If this is possible, why not message preview?
 
 syn match attach "^ \+\zsI.*"
 hi attach guibg=#404040

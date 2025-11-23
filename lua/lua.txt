@@ -228,3 +228,9 @@ new-mail-hook + lua to filter
 lua / lua-source aren't documented ANYWHERE
 	need feature page with examples
 
+expando test script
+	turn into a function that takes 3 params
+	they define which %Ln expandos get used
+expando
+	increase number of custom expandos to 9?
+

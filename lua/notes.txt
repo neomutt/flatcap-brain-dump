@@ -192,3 +192,8 @@ need space for lua-custom fields => multi-char patterns? HOW?
 install contrib script
 	add package path
 
+look for neomutt.lua or neomutt/init.lua
+	*before* neomuttrc
+
+call lua_gc(l, LUA_GCCOLLECT);
+	after :lua :lua-source ?
