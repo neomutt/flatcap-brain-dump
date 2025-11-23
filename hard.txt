@@ -13,7 +13,6 @@ Account-specific config
 new help system, $help_format_string
 sidebar A-aware
 hcache/bcache -> maildir!
-lua objects for Account, Mailbox, Email, etc
 inline hcache, offline
 change M->path from [] to *
 	mailbox->[real]path -> ptr !array

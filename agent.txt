@@ -63,6 +63,7 @@ Others
 .github README
 	welcome
 
+rename *_buffer_*() functions to buf, or strip buffer entirely
 char[] -> Buffer conversions
 	which?
 
@@ -77,4 +78,55 @@ update translations as fuzzy
 split up mutt_parse_hook() #4012
 
 compose: small fns #3222
+
+kill the num_accounts and return the value
+int mutt_autocrypt_db_account_get_all(struct AutocryptAccount ***accounts, int *num_accounts)
+
+add X_new()/X_free() wrappers for non-trivial objects
+	AttachPtr, QClass, Regex, ListNode
+	SmimeKey, PgpUid, MuttThread, Message, Hook
+
+objects must have X_new()/X_free() pair, or neither
+	check existing
+	51 X_new()
+	55 X_free()
+	148 struct
+	292 [cm]alloc
+	find/distinguish between
+		struct - simple, data
+		object - complex, actions
+	data still needs free for ptrs
+	too simplistic?
+
+github action
+	check for @file header, etc
+	*.c need config.h
+	*.h need include guard
+	check for empty line at eof
+	*.c @page
+	"calc" undoc'd functions
+	shellcheck
+
+eliminate fallthroughs - use functions
+
+why are the 6 charset config not using DT_SLIST?
+
+change reset_tilde to just search all config
+	to save keeping list up-to-date
+
+bash completion for ./configure
+bash completion for neomutt, based on: /usr/share/bash-completion/completions/mutt
+	∀ cli options
+	for aliases too?
+
+gnutls + ssl -- auto.def, no warning
+configure allows --gnutls AND --ssl
+	need to warn/fail
+
+fuzzy matcher
+
+change Score list to use STAILQ
+
+relative time option for the index_format
+	3h (ago), 2d, etc
 

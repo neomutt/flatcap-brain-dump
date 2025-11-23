@@ -111,3 +111,16 @@ move #123 number into %L2 (strip from subject)
 	or if it's the first email visible in the thread
 		=> observing Menu navigation changes!
 
+14063 Subscribed <subscribed@noreply.github.com>
+10739 Your activity <your_activity@noreply.github.com>
+ 3916 Push <push@noreply.github.com>
+ 3548 Mention <mention@noreply.github.com>
+ 3026 Review requested <review_requested@noreply.github.com>
+ 2814 Comment <comment@noreply.github.com>
+ 1078 Assign <assign@noreply.github.com>
+ 1053 Ci activity <ci_activity@noreply.github.com>
+  777 Author <author@noreply.github.com>
+  665 State change <state_change@noreply.github.com>
+  404 Team mention <team_mention@noreply.github.com>
+  302 Manual <manual@noreply.github.com>
+

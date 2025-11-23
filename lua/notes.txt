@@ -160,3 +160,35 @@ email need thread navigation info:
 	has parent
 	has siblings / next/prev
 
+∀ object define __tostring(), inc memaddr ifdef DEBUG
+fake <limit> string "[lua]" for hiding
+
+Mailbox methods to get sets of Emails:
+	get_pattern("~s xyz")
+	get_range(a|NULL, b|NULL)
+		NULL -> end of range
+		NULL,NULL => all
+	get_thread(email|NULL)
+
+some overlap with Email get_fns
+∀ objs get_type()s enum/string
+move console to right, out of all-dialogs, full height
+add fns up/down, search?
+
+:source supports relative paths, but :lua-source doesn't!
+	when called from hooks
+
+lua callback ∀ notifications
+
+add lua test to release
+	neomutt -B -F contrib/lua/test_lua-api_runner.neomuttrc
+
+alt-e resend_message - which hooks are called?
+	add lua hook
+
+struct PatternFlags Flags
+need space for lua-custom fields => multi-char patterns? HOW?
+
+install contrib script
+	add package path
+

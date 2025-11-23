@@ -88,7 +88,6 @@ Bundle notifications
 	end()
 Each notify target needs list of children?
 	or a function to enumerate them
-lua callback ∀ notifications
 
 ------------------------------------------------------------
 

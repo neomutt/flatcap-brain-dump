@@ -226,3 +226,12 @@ server
 		everything else on /home
 	service for git pull/sync
 
+vim-tabitha
+	skip windows if
+		b:tabitha_skip = 1
+		window is zero width
+		quickfix window (option?)
+
+improve score
+	https://www.mail-tester.com/
+

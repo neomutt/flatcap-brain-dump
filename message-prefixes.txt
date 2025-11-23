@@ -41,3 +41,34 @@ Icons could be used elsewhere
 
 Add: Good ✔️ ✅, Bad ❌❎ plus colours
 
+discussion - message strings
+	define meaning of 'error' and 'warning'
+	demote error -> warning where possible
+	demote error/warning to message where possible
+counts: (868)
+	601 mutt_error()   395 uniq
+	 27 mutt_warning()  25 uniq
+	240 mutt_message() 154 uniq
+possible easy task
+	31 * "warning:"
+	98 * "error:"
+make sure they
+	mutt_warning()
+	mutt_error()
+drop prefix from message and translations
+create standard, translated, prefix for all warnings/errors
+	prefix isn't displayed if `color error` / `color warning` is set
+reword where necessary
+	"Error opening 'memory stream'"
+	"Error: " + "Can't open 'memory stream'"
+
+demote to warnings
+mutt_error(_("Warning: XXX"));
+
+new form for error messages?  two-lines
+	first line has error message: "Can't open folder"
+	second line has the place: folder, path, url, etc
+	simplifies translation strings
+	can highlight path
+	path less likely to be truncated/wrapped
+

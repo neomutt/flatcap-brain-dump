@@ -46,4 +46,4 @@ non-modal: new Window, below or to right of Index/Pager
 	follows output as lua calls refresh
 	need way to focus it: <enter-lua-console> / <quit>
 	doesn't affect visibility, but allows user to navigate
-
+would also work for a live *normal* log

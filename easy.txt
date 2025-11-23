@@ -268,3 +268,6 @@ third has a macro, could be trickier
 	mutt_file_mkstemp_full()
 		$tmpdir
 
+Easy: postpone question to three-way
+	(S)ave, (D)elete, (C)ancel
+

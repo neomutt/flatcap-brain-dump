@@ -123,12 +123,6 @@ message_bar() doesn't need mutt_simple_format()
 replace
 	get_sort_str() with cs_subset_str_string_get()
 
-vim-tabitha
-	skip windows if
-		b:tabitha_skip = 1
-		window is zero width
-		quickfix window (option?)
-
 test: create code to display every dialog
 	how?  some require files!
 
@@ -561,27 +555,6 @@ where?
 	compose
 	address book?
 
-discussion - message strings
-	define meaning of 'error' and 'warning'
-	demote error -> warning where possible
-	demote error/warning to message where possible
-counts: (868)
-	601 mutt_error()   395 uniq
-	 27 mutt_warning()  25 uniq
-	240 mutt_message() 154 uniq
-possible easy task
-	31 * "warning:"
-	98 * "error:"
-make sure they
-	mutt_warning()
-	mutt_error()
-drop prefix from message and translations
-create standard, translated, prefix for all warnings/errors
-	prefix isn't displayed if `color error` / `color warning` is set
-reword where necessary
-	"Error opening 'memory stream'"
-	"Error: " + "Can't open 'memory stream'"
-
 like `color options`, have a colour for default/alternate answers? [yes]/no
 	make default brighter
 	make alternate dimmer
@@ -701,11 +674,6 @@ nf - no fail versions of functions
 no space before \$
 	ag -u '[^ \t]\\$'
 
-help
-	use expandos to generate the help page
-		ideally needs dynamic widths to use space as needed
-	but dump the output to a file, then pager as normal
-
 https://github.com/MaJerle/c-code-style
 https://github.com/mcinglis/c-style
 
@@ -740,9 +708,6 @@ menu globals, not freed on exit?
 
 not closed on exit
         static FILE *fp_random;
-
-kill the num_accounts and return the value
-int mutt_autocrypt_db_account_get_all(struct AutocryptAccount ***accounts, int *num_accounts)
 
 add logging info to ubsan page
 	https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#logging
@@ -1073,9 +1038,6 @@ web/dev document oss-fuzz steps for a local build/test
 speed test a huge mbox mailbox vs 2022-04-29
 	compare against mutt
 
-:source supports relative paths, but :lua-source doesn't!
-	when called from hooks
-
 for --devel-feature, add a section in the ./configure summary
 that explains: this feature may change or be removed without warning
 please give feedback
@@ -1128,10 +1090,6 @@ make lmdb, rocksdb, tdb default stores (modern)
 	lmdb, rocksdb, tdb, tokyocabinet, kyotocabinet, bdb, gdbm, qdbm
 	encourage packagers to choose at least one of the first three
 
-check doxygen version in ubuntu-latest
-	1.9.1
-check if the debian-sid container is still needed
-
 acutest implement ASSERT_EQ(left,right), ASSERT_NEQ(left,right)
 	this would allow acutest to print both values when they differ
 	(saving the user from doing so)
@@ -1146,14 +1104,10 @@ italics
 find all functions returning 0=success,-1=failure
 	check they are tested with `if (x() == 0)` not `if (!x())`
 
-anything in wiki worth saving?
-
 from python/black:
 	Authors
 	The author list is quite long nowadays, so it lives in its own file.
 	See AUTHORS.md
-
-functionise `git d1`
 
 contrib:
 	update rpm spec & bugzilla
@@ -1223,9 +1177,6 @@ post freeze:
 	update {windows,data,overview}.txt
 		dev web section
 	compose multipart video
-
-improve score
-	https://www.mail-tester.com/
 
 add sample patterns to test/leak.c
 	enable pattern coverage
@@ -1302,10 +1253,6 @@ sync github to all my private gitlab repos (or delete them)
 update test library
 
 NDEBUG warnings around asserts
-
-add X_new()/X_free() wrappers for non-trivial objects
-	AttachPtr, QClass, Regex, ListNode
-	SmimeKey, PgpUid, MuttThread, Message, Hook
 
 rename index vars to idx to avoid index(3)
 
@@ -1515,9 +1462,6 @@ if (!(a && b))
 if (!(a || b))
 ag 'if \(!\(.*(&&|\|\|).*\)\)'
 
-demote to warnings
-mutt_error(_("Warning: XXX"));
-
 test int against 0
 	what about ALL int members?
 
@@ -1569,8 +1513,6 @@ sidebar plugins!
 	sidebar_bottom '`cal`'
 	interpret ansi colours
 	integrate to calcurse
-
-#define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
 
 User wanted to set a bunch of config based on a language setting
 	Is there some kind of syntax like in `.desktop` files to achieve this?
@@ -1755,15 +1697,6 @@ add stats page:
 	email stats across all mailboxes?
 	try to limit info to that in header cache for speed
 
-github action
-	check for @file header, etc
-	*.c need config.h
-	*.h need include guard
-	check for empty line at eof
-	*.c @page
-	"calc" undoc'd functions
-	shellcheck
-
 Live log message window (for devs?)
 	magic height
 	shown when several messages arrive in 1s => show all
@@ -1814,8 +1747,6 @@ config errors
 	or relative to '.'
 
 merge gfx repo into website /gfx ?
-
-eliminate fallthroughs - use functions
 
 banned.h
 	sprintf -> snprintf
@@ -1870,9 +1801,6 @@ pattern for matching mime/types?
 
 reference CONTRIBUTING.md in newbie-tutorial
 
-(un)focus-hook
-	change check_stats timings!
-
 hcache metadata - be specific about Mailbox maildir:/path
 
 Email.path -> edata (mbox, maildir only? compressed?) notmuch?
@@ -1912,6 +1840,9 @@ focus in/out. useful?
 	To disable:
 		echo -ne '\e[?1004l'
 	On each focus event, you receive either \e[I (in) or \e[O (out) from the input stream.
+
+(un)focus-hook
+	change check_stats timings!
 
 allow <limit> in the pager, so the user can
 	<limit><enter> to refresh the index
@@ -2078,15 +2009,6 @@ fake mailboxes (dividers) get sorted by Accounts
 	how do we insert "mailboxes -label" into the right place?
 	what about sorting?
 
-non-easy task "mailboxes -label"?
-
-review SORT_*
-	UNSORTED = 0
-	deprecate "order" naming
-
-travis shellcheck scripts
-	[release]?
-
 devel feature - docs/web link to "may change" page
 
 docs config: list flags?
@@ -2197,7 +2119,6 @@ timeouts on variables (for passwords)?
 	require all accesses to be through cs/sub
 libsend around smtp.c send.c sendlib.c
 sort_re docs wrong
-why are the 6 charset config not using DT_SLIST?
 
 help backend
 	if neomutt started with zero mailboxes, load help
@@ -2240,8 +2161,6 @@ create index/pager macros that save/restore
 
 M.verbose for messages -> notification?
 	let UI decide if quiet or not
-
-main reuses Buffer *folder confusingly?
 
 main - folder-hook is called before startup-hook
 	should it?
@@ -2325,9 +2244,6 @@ who does the tidying?  when?
 	or observer?  NO
 		observer -> user set, notify, fixer set, notify!
 
-change reset_tilde to just search all config
-	to save keeping list up-to-date
-
 split buffer_expand/resolve into PATH functions and MAILBOX functions!
 
 config: change sort to work like enum -- use Data field
@@ -2383,7 +2299,6 @@ rename mbox - what happens to hcache?
 	NOTHING
 
 issue template -> folding section + ``` ?
-setenv doesn't accept "X?" to query only "?X"
 mutt_date_localtime_l (with C locale?)
 bug: HOME=/ neomutt -d6 crashes on startup - fopen failed
 define LL_CONFIG even if it's only 5
@@ -2485,8 +2400,7 @@ screenshots
 
 Window observer WIN_DELETE as d'tor!
 
-cli text mode opti
-on - sets $ascii_chars
+cli text mode option - sets $ascii_chars
 	how can we do this automatically?
 
 docs: two types of dialog: pager, index
@@ -2528,12 +2442,6 @@ ConfigDef
 	help section=href
 	varname = #offset!
 
-mutt_assert()
-	endwin, backtrace, assert
-	or #ifndef DEBUG, just assert?
-
-Kushal: ideas for motivating devel community?
-
 have *Window* cache text/attrs?
 	repaint itself?
 	unless (calc?)
@@ -2550,8 +2458,6 @@ validator contract?
 	what's expected for each config type?
 
 validator need to pass *var* especially if inherited
-
-bash completion for ./configure
 
 attach list expando for boundary param, how?
 
@@ -2583,7 +2489,7 @@ index "preview" panel
 	sort of "opposite" of index_pager_lines (focus on pager)
 	option to *not* read email (or default)
 
-add space into API headers, code style too - blank link
+add space into API headers, code style too - blank line
 
 review upstream sed scripts
 
@@ -2598,17 +2504,11 @@ error message
 	printf("%s", decorate(param))
 		not possible without static buffer
 
-travis
-	libpcre2-dev + pcre2 missng
-	idn2 too?
-
 array of components to X_init(), X_shutdown()
 
 cumulative expandos for threads, etc
 	%x, %Cx
 	%b, %Cb
-
-gnutls + ssl -- auto.def, no warning
 
 config
 	cdef: name, &var, initial
@@ -2644,10 +2544,6 @@ command/function to display current ssl cert info
 
 expose *read-only* config variables for
 	cwd, current A/M/E . name/path/etc?
-
-bash completion for neomutt, based on: /usr/share/bash-completion/completions/mutt
-	∀ cli options
-	for aliases too?
 
 imap mailbox comments/descriptions
 	https://tools.ietf.org/html/rfc5464
@@ -2721,7 +2617,6 @@ debug refresh idea: use greyscale background
 add 'sleep' command
 	useful for macros
 	allow fractional seconds
-	can lua do this instead?
 
 easy: mxapi: mbox_create/delete()
 then add to browser, need exists fn too
@@ -2751,13 +2646,6 @@ project "next release"
 
 split up management repo?
 
-new form for error messages?  two-lines
-	first line has error message: "Can't open folder"
-	second line has the place: folder, path, url, etc
-	simplifies translation strings
-	can highlight path
-	path less likely to be truncated/wrapped
-
 pager <change-folder>?<enter>q goes back to pager
 
 log macro actions carefully
@@ -2781,8 +2669,6 @@ M must exist
 help: macros with descriptions are truncated
 	can't see full-text
 	need wrapping
-
-account-hook is #ifdef SOCKET!
 
 cli(debug) mailbox dump, print index to screen width formatted
 	coloured, batch mode, retval like -z, -Z
@@ -2812,16 +2698,12 @@ Narrow sidebar idea, when width = 1 (or 2)
 
 rename var tmpfile (it's a libc fn)
 
-drop all email addrs from docs (except mine?)
-
 which commands *might* have observers?
 	sidebar fns don't know about/if there's a sidebar!
 
 command events, pass Commands[] index, no other data needed
 
 ACS_VLINE(sb) -> create primitives draw_line(), draw_box()!
-
-eliminate all strtoX(), use mutt_str_strtoX()
 
 Config (accept-disabled-config)
 	enable by default
@@ -2846,8 +2728,6 @@ Drag (horizontal) -> SIGWINCH -> reflow root -> *some* windows notify size
 (sb no action), (index need recalc), repaint root, skip sb, repaint index DONE
 Drag (vertical) (helpbar no change), others repaint
 
-separate re*calc* from re*paint* stages for cleaner refresh?
-	functions in Window: recalc, repaint, handle function()
 Index->find(ID_SIDEBAR) in dlg, call sb(win, x, y, z)
 sb->find(ID_INDEX) in dlg
 
@@ -2872,7 +2752,7 @@ how many ways are there to reply?
 	flowchart?  too complicated?
 
 allow "uncolor obj" for normal objects -> default default (no attrs)
-	+ attach_headers, staus, uncolor needs retval
+	+ attach_headers, status, uncolor needs retval
 
 libgui - new logging level?
 
@@ -2944,9 +2824,6 @@ tag emails, then save|copy -- no progress
 shrink 'code' repo, or replace empty and restart
 	exclude from mirroring
 
-configure allows --gnutls AND --ssl
-	need to warn/fail
-
 :toggle abc<tab>
 	should it only complete to booleans/quads? etc
 
@@ -2996,8 +2873,6 @@ create sample code for inline and out-of-line STAILQ use and others
 	https://gist.github.com/flatcap/105cd65e37d89fc434b2b632e85c3702
 	add diagrams
 	list users (or helper classes)
-
-save option for summary page info
 
 change "hidden_tags" to be a regex? (#1744)
 	backwards-compatible how?
@@ -3242,9 +3117,6 @@ library: eliminate void functions
 merge email generator scripts
 	move to sample-data/bin
 
-reorg struct Email
-	move View (UI) elements last
-
 source dir.d (.d significant) -> find all children or just '*.rc'
 
 librarify all the readdir() code
@@ -3381,8 +3253,6 @@ add issue templates for
 	'easy' task
 	'questions to dev'
 
-change Score list to use STAILQ
-
 add screenshot to test-render repo
 
 pin github 'help-wanted' issues
@@ -3504,18 +3374,6 @@ context
 	parameterise (x) (e.g. Sort)
 	i.e. find functions using global/config variables
 
-objects must have X_new()/X_free() pair, or neither
-	check existing
-	51 X_new()
-	55 X_free()
-	148 struct
-	292 [cm]alloc
-	find/distinguish between
-		struct - simple, data
-		object - complex, actions
-	data still needs free for ptrs
-	too simplistic?
-
 reduce contributors to 6 months?
 split authors at 6 months? and 'others'
 	split at 3 months?
@@ -3558,8 +3416,6 @@ users won't want M under INBOX
 
 sileht/imap LONGSTRING -> PATH_MAX * 7
 	comments for MData
-
-use travis on [master] to update/deploy to gitlab?
 
 rule for BE only new M if A and MData AND AData full set
 
@@ -3722,9 +3578,6 @@ status/pager format
 
 option to mailcap-view objects from the browser (on attach)
 
-Easy: postpone question to three-way
-	(S)ave, (D)elete, (C)ancel
-
 Disable some default keybindings?
 	e.g. <print>, mailing list functions
 	or have sample config rc snippets
@@ -3845,8 +3698,6 @@ bug?
 	<get-attach> but mailcap doesn't have matching entry for (text/plain)
 	atatchment doesn't get deleted after the email is sent
 
-how do you send encrypted/signed email from the command line?
-
 create a reply flowchart
 	who from
 	who to
@@ -3856,12 +3707,6 @@ calc libmutt test coverage as %age
 	use coveralls?
 
 expand reviewers to all frequent committers?
-
-put docs for [travis], [release], [translate] into original commit message
-	add README.md to [management] for each
-
-add lua test to release
-	neomutt -B -F contrib/lua/test_lua-api_runner.neomuttrc
 
 create specific README.md in each top-level neomutt branch
 
@@ -3953,9 +3798,6 @@ New/updated primitives:
 		pass
 		list of params
 		function to serialise
-
-relative time option for the index_format
-	3h (ago), 2d, etc
 
 are any config strings required to be MixedCase?
 	Maildir?
@@ -5482,9 +5324,6 @@ separate packages for neomutt
 	neomutt-distro   - copr, debian, macports
 split repos to match
 branch by version / language
-
-alt-e resend_message - which hooks are called?
-	add lua hook
 
 filter manager
 	time limit option -- on holiday!
