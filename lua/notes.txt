@@ -197,3 +197,6 @@ look for neomutt.lua or neomutt/init.lua
 
 call lua_gc(l, LUA_GCCOLLECT);
 	after :lua :lua-source ?
+
+allow scripts to show/hide the console?
+

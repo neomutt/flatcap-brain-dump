@@ -78,6 +78,10 @@ update translations as fuzzy
 split up mutt_parse_hook() #4012
 
 compose: small fns #3222
+	<move-to-top>
+	<move-to-bottom>
+	<move-out-of-group>
+	<move-into-group>
 
 kill the num_accounts and return the value
 int mutt_autocrypt_db_account_get_all(struct AutocryptAccount ***accounts, int *num_accounts)
@@ -109,15 +113,19 @@ github action
 
 eliminate fallthroughs - use functions
 
-why are the 6 charset config not using DT_SLIST?
+why are these 3 charset config not using DT_SLIST?
+	they're only allowed *ONE* charset
+	mutt_config.c:431:6:  { "charset",            DT_STRING|D_NOT_EMPTY|D_CHARSET_SINGLE, 0,          0, charset_validator,
+	mutt_config.c:443:13: { "config_charset",     DT_STRING,                              0,          0, charset_validator,
+	nntp/config.c:67:17:  { "newsgroups_charset", DT_STRING,                              IP "utf-8", 0, charset_validator,
 
 change reset_tilde to just search all config
 	to save keeping list up-to-date
 
-bash completion for ./configure
 bash completion for neomutt, based on: /usr/share/bash-completion/completions/mutt
 	∀ cli options
 	for aliases too?
+
 update bash complete for configure
 	push to management
 	dev ml
@@ -135,13 +143,6 @@ relative time option for the index_format
 
 where is punycode encoded/decoded?
 	extract to lib and test
-
-turn some config vars into (string) lists
-	hidden_tags (separator = ',')
-	mailcap_path (separator = ':')
-	send_charset (separator = ':')
-	split at config level, then call the validator on each list item
-		no, call validator on parsed list
 
 need neomutt glossary (search first)
 	add to guide
