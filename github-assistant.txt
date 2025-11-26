@@ -1,6 +1,5 @@
 GitHub Assistant
 
-
 Better integrate NeoMutt with GitHub Issues
 
 Decode coded "cc:" addresses, etc
@@ -101,10 +100,6 @@ manage github recipient hints
 	"you were mentioned" -> flag 'M' or '@' !
 	"you subscribed to" -> flag 'S' or '✓' !
 
-Mention <mention@noreply.github.com>
-Your activity <your_activity@noreply.github.com>
-Author <author@noreply.github.com>
-
 icon (%L1) for PR vs Issue vs Discussion
 move #123 number into %L2 (strip from subject)
 	only display these in *thread-root*
@@ -123,4 +118,52 @@ move #123 number into %L2 (strip from subject)
   665 State change <state_change@noreply.github.com>
   404 Team mention <team_mention@noreply.github.com>
   302 Manual <manual@noreply.github.com>
+
+14093 X-GitHub-Reason: subscribed
+10739 X-GitHub-Reason: your_activity
+ 3916 X-GitHub-Reason: push
+ 3567 X-GitHub-Reason: mention
+ 3026 X-GitHub-Reason: review_requested
+ 2819 X-GitHub-Reason: comment
+ 1097 X-GitHub-Reason: assign
+  395 X-GitHub-Reason: ci_activity
+  783 X-GitHub-Reason: author
+  668 X-GitHub-Reason: state_change
+  404 X-GitHub-Reason: team_mention
+  303 X-GitHub-Reason: manual
+
+  121 X-GitHub-Assignees:
+   31 X-GitHub-Assignees: flatcap; Copilot
+   17 X-GitHub-Assignees: gahr
+   15 X-GitHub-Assignees: roccoblues
+   14 X-GitHub-Assignees: flatcap
+    8 X-GitHub-Assignees: roccoblues; Copilot
+    4 X-GitHub-Assignees: Copilot
+
+From: Real Name and username
+      From: Scott Kostyshak <notifications@github.com>
+      X-GitHub-Sender: scottkosty
+
+Labels: When?
+      X-GitHub-Labels: topic:build-process; topic:testing; type:bug
+
+Status:
+      X-GitHub-IssueState: closed
+      X-GitHub-IssueState: open
+      X-GitHub-PullRequestStatus: closed
+      X-GitHub-PullRequestStatus: merged
+      X-GitHub-PullRequestStatus: open
+
+List-*: / Reply-To
+      List-Archive: https://github.com/ORG/REPO
+      List-ID: ORG/REPO <REPO.ORG.github.com>
+
+Different RANDOM ID in the <https://...>
+      List-Post: <mailto:reply+RANDOM@reply.github.com>
+      List-Unsubscribe: <mailto:unsub+RANDOM@reply.github.com>, <https://github.com/notifications/unsubscribe/RANDOM>
+
+Same random field (84 bytes), in:
+      Reply-To:         neomutt/neomutt <reply+000000000000000000000000000000000000000000000000000000000000000000000000000000000000@reply.github.com>
+      List-Post:        <mailto:reply+000000000000000000000000000000000000000000000000000000000000000000000000000000000000@reply.github.com>
+      List-Unsubscribe: <mailto:unsub+000000000000000000000000000000000000000000000000000000000000000000000000000000000000@reply.github.com>
 

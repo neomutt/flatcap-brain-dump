@@ -589,3 +589,10 @@ reorg /neo/github /github mail folders
 
 github action to keep gitlab/etc in sync
 
+<tag-toggle> or <tag-invert> -- invert selection
+
+auto-completion
+	find every point of text entry
+	determine what completion might be possible
+	implement it
+

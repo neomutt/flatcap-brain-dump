@@ -113,6 +113,8 @@ colour-code authors by rule:
 	in "aliases" (_might_ be possible)
 	custom colour from alias @tags
 		HOW: they're simple keys, not key=values
+		need tag-transform "family" -> "♥️"
+		or coding:  tags:family:♥️,work:⚙️
 	from alias comments?
 
 replace address fields with "tidy" version from Aliases

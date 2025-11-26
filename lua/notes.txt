@@ -200,3 +200,13 @@ call lua_gc(l, LUA_GCCOLLECT);
 
 allow scripts to show/hide the console?
 
+Add fake headers to Email in Pager
+	cf NotMuch
+	e.g. GitHub metadata
+
+as scripts develop we might need a lua-if-def for feature support
+	or check that VERSION > YYYY-MM-DD
+	can check if OBJECT.FUNCTION exists
+
+process security headers, e.g. DKIM, Virus scanning, etc into icons
+
