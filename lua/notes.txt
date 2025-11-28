@@ -199,6 +199,9 @@ call lua_gc(l, LUA_GCCOLLECT);
 	after :lua :lua-source ?
 
 allow scripts to show/hide the console?
+	auto-display on logging?  NO
+allow scripts to clear the console?
+	sounds nefarious
 
 Add fake headers to Email in Pager
 	cf NotMuch
@@ -209,4 +212,24 @@ as scripts develop we might need a lua-if-def for feature support
 	can check if OBJECT.FUNCTION exists
 
 process security headers, e.g. DKIM, Virus scanning, etc into icons
+
+create new discussion for just lua
+
+post [linear] does lua need the gui at all?
+	neomutt --lua script
+	open/navigate mailboxes
+	perform tasks
+	log results
+
+create lua feature page
+	temp until lua.neomutt.org
+
+expando: have demo script insert the %L1 it needs before %s
+	if %s is formatted it might be hard to find
+	if config.index_format returns a ConfigExpando,
+	it could be navigated/manipulated
+	allowing all sorts of dynamic Menu redesign
+		e.g. auto-fit columns
+
+expando: create %{lua-custom-1}, etc or just %{lua-1}?
 

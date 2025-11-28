@@ -596,3 +596,9 @@ auto-completion
 	determine what completion might be possible
 	implement it
 
+! <shell-escape>  allow Ctrl-D to cancel the prompt?
+	Ctrl-G already works
+
+Expando doesn't have an Expando Definition!
+  { "inews", DT_EXPANDO|D_STRING_COMMAND, 0, 0, NULL,
+
