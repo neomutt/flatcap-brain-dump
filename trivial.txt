@@ -265,6 +265,7 @@ README.md
 	> [!TIP]
 	> [!IMPORTANT]
 	> [!WARNING]
+	[!note] [!warning] [!tip] [!caution] [!important]
 installation
 	## Installation
 	[![Packaging status](https://repology.org/badge/vertical-allrepos/bat-cat.svg?columns=3&exclude_unsupported=1)](https://repology.org/project/bat-cat/versions)
@@ -601,4 +602,14 @@ auto-completion
 
 Expando doesn't have an Expando Definition!
   { "inews", DT_EXPANDO|D_STRING_COMMAND, 0, 0, NULL,
+
+deprecate
+	{ "ssl_use_tlsv1", DT_BOOL, false },
+	{ "ssl_use_tlsv1_1", DT_BOOL, false },
+not recommended for >10 years
+likewise
+	ssl_use_sslv2, ssl_use_sslv3
+
+commands have both `-` (hyphen) and `_` (underscore)
+	migrate to `-` (hyphen) and accept either (or none)
 

@@ -233,3 +233,25 @@ expando: have demo script insert the %L1 it needs before %s
 
 expando: create %{lua-custom-1}, etc or just %{lua-1}?
 
+define an Error object
+	[ msg, errcode ]
+	__tostring()
+
+EmailArray override __len for # operator
+	drop num_X()
+
+naming
+	EmailArray: email_array
+	MailboxView: mailbox_view
+
+script to mark all emails that don't match address book
+%L3 = (!)   <limit>~L3 = (!)   & review or delete
+would need a fn to clear a custom field (and/or set)
+avail patterns ~[ajoqJKWZ]
+or patterns [1-9,0] ~3  custom 1-10
+<set-custom>3<enter>value<enter>
+macro wouldn't work with <tag-prefix>!  might do
+how does <tag-prefix><modify-labels> work/
+	ask use for info, then ∀ emails
+<set-custom> just needs to as for both pieces of info first
+
