@@ -79,9 +79,15 @@ split up mutt_parse_hook() #4012
 
 compose: small fns #3222
 	<move-to-top>
+		simple within a group
+		what does it do at the top level?
+		altering the first attachment might have consequences
 	<move-to-bottom>
+		acting on the first attachment might have consequences
 	<move-out-of-group>
+		moves attached file *after* the group it was in
 	<move-into-group>
+		moves attached file into the group *above* it
 
 kill the num_accounts and return the value
 int mutt_autocrypt_db_account_get_all(struct AutocryptAccount ***accounts, int *num_accounts)

@@ -38,6 +38,8 @@ Folded issue thread, fields:
 	reactions (count)
 	labels (coloured)
 		or dots (coloured)
+		use tag-transforms
+		turn gh labels into real labels?
 	assignees
 	=> ~5/6 %L expandos
 
@@ -88,6 +90,7 @@ create fake headers
 	link to post
 	link for muting
 	mock up using message_filter?
+	labels, assignees, etc
 
 fake header links for mute, mark-as-read
 

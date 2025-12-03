@@ -255,3 +255,12 @@ how does <tag-prefix><modify-labels> work/
 	ask use for info, then ∀ emails
 <set-custom> just needs to as for both pieces of info first
 
+Dynamic NeoMutt functions.  HOW?
+	<lua-functionX> -> :lua functionX()
+	or
+	<lua-function-X> -> :lua X()
+how to add args?
+	<arg>apple<arg>banana<arg-end>
+what advantage has this over :lua function(apple,banana)
+context -- working on an Email / set of Emails
+

@@ -591,6 +591,7 @@ reorg /neo/github /github mail folders
 github action to keep gitlab/etc in sync
 
 <tag-toggle> or <tag-invert> -- invert selection
+	trivial to implement in lua!
 
 auto-completion
 	find every point of text entry
@@ -612,4 +613,10 @@ likewise
 
 commands have both `-` (hyphen) and `_` (underscore)
 	migrate to `-` (hyphen) and accept either (or none)
+
+help.c kill #include "protos.h"
+
+irc/mgedmin
+	(after doing a <tag-prefix><save-message>)
+	it would make sense to move to the next undeleted if the current line is on one of the tagged emails that just got saved and deleted
 
