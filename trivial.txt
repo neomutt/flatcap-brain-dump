@@ -620,3 +620,29 @@ irc/mgedmin
 	(after doing a <tag-prefix><save-message>)
 	it would make sense to move to the next undeleted if the current line is on one of the tagged emails that just got saved and deleted
 
+irc/madduck/mgedmin
+	browser dir selection doesn't work
+	<generic-select-entry> and <descend-directory> are messed up
+
+browser: default folder_format="%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %i"
+	is laggy when navigating
+	my folder_format="%2C %t %?N?%3N&   ? %f"
+	isn't laggy
+
+folder_format expandos for numeric uid,gid
+
+browser, cache uid->string, gid->string in a HashTable
+
+alias completion on ','
+	<mail>name,
+	when ',' is typed (unless quoted/escaped)
+	check the previous clause for '@'
+	No '@' => alias.  Expand the alias if possible
+	if not, highlight it, e.g. red undercurl!
+	`bind editor , complete` maybe
+	which text does auto-complete get?
+	how much text is it allowed to edit?
+
+dyk: ? :bind browser \' descend-directory
+	leaving <enter> as *select*
+

@@ -264,3 +264,9 @@ how to add args?
 what advantage has this over :lua function(apple,banana)
 context -- working on an Email / set of Emails
 
+Allow Window manipulation?  within reason
+	switch between set modes: normal, widescreen
+	split Pager -> side-by-side view of multiple Emails => FOCUS
+	like tabbed windows, except <quit> only closes that Window
+	(and rest are reflowed) - last Pager closed => Index
+

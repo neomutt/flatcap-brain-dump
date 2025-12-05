@@ -153,3 +153,5 @@ where is punycode encoded/decoded?
 need neomutt glossary (search first)
 	add to guide
 
+add more auto-completion
+
