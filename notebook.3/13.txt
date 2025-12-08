@@ -1,0 +1,25 @@
+Split Opcodes
+
+OP_ALIAS_XYZ -> OP_ALIAS, OP_ALI_XYZ
+central domain id in libcore?
+all OPs in specific library
+dispayers(op- -> (did, opid)	(add "int count" for later)
+one dispatcher per domain
+domain id needn't be global -- used in few places
+	menu/keybindings, dispatcher
+dispatchers need changing, but not function callbacks
+	they're specific to dispatcher
+change will break docs generation
+
+OpAlias: "delete-entry", OP_DELETE
+AliasDefaultBindings: OP_DELETE, "d"
+gui/opcodes.h _fmt(OP_DELETE, "delete the current entry")
+
+This works until a Menu has non-local Ops
+	(OPs from some other domain)
+	how would the code include them?
+		as long as "alias" includes entire *SUB*Menus, e.g. OpGeneric
+		then only 'OpGeneric' needs to be exposed
+	how would the docs resolve them?
+		doc look for `_fmt` * `OP_...`
+

@@ -1,0 +1,27 @@
+Keybindings 6
+
+Key bindings
+
+bind generic OpSet[MENU_GENERIC]
+bind sidebar OpSet[MENU_SIDEBAR]
+bind index OpSet[MENU_INDEX]
+	All possible bindings ∀ Menu
+
+Opsets are fixed at startup so bindings *can* refer to them
+
+KeymapList {macro, desc,op,eq,len,keys,fn,helpstr}
+MenuFuncOp {"create_alias", OP_CREATE_ALIAS}
+
+Help: OpSet = get_bindings(MENU_INDEX) -- flat list
+get_menu_name(MENU_INDEX), SIDEBAR, GENERIC?
+sort by menu id & display
+how do we tell which fns are unbound?
+	get_all_fns(MENU_INDEX)
+
+How do we define OpCodes and associate help text?
+	Split up gui/opcodes.[ch] => domain, id
+
+384 default bindings
+Mappings: KeymapList -> ARRAY?
+"unbind *" only generic, index, editor need to observe
+

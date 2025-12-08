@@ -1,0 +1,37 @@
+mutt_display_message() [0,-1]
+	<0 => no sort
+
+mutt_display_message()		QUIT = -6
+	rc = dlg_pager()	[0,-1]
+
+dlg_pager()
+	pager_function_dispatcher()	- only paging stuff
+					  SUCCESS = -1
+
+pager_function_dispatcher
+<enter> => -1 (SUCCESS)
+
+------------------------------------------------------------
+
+Delayed startup for keys, colours -> ncurses
+Keys: parse config, check syntax, create bindings
+	after curses startup / gui, init extended keys
+	verify bindings against keys
+
+colour: parse config, check syntax, colour objects
+	after curses startup  gui, verify colours against COLORS
+
+if errors exist, but GUI not required, stay silent, proceed
+if GUI, 3 options
+	1) dump queue
+	2) log pager
+	3) quiet warning
+
+1) old style, dump warnings to terminal, "press any key" or "q"
+2) dump the warnings to a file and open the pager / log-messages on startup
+3) one-liner warning on startup - no interruption to user
+
+(config option: stop(1), display(2), warn(3)?)
+warning msg could be 2 liner and mention <show-log-messages> for more info
+
+

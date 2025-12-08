@@ -1,0 +1,28 @@
+Keybindings 5
+
+define *Index*
+	add_functions (MENU_INDEX, OpIndex) -- 117
+	add_functions (MENU_INDEX, OpSidebar) -- 11
+	add_menu (MENU_INDEX, MENU_GENERIC) -- 44
+
+define *Generic*
+	add_functions(MENU_GENERIC, Basic)	Nav, Tag, etc
+	OpSet { MENU_GENERIC, MenuFuncOp[]) -- 44
+
+OpSet = opset_new (MENU_GENERIC, "generic")
+opset_add_fns(OpSet, OpBasic)	etc
+OpSet = {menu, menu_funcop}[]
+
+OpSet_Index = [ {MENU_INDEX, "limit", OP_LIMIT},
+		{MENU_SIDEBAR, "sb_next", OP_SB_NEXT},
+		{MENU_GENERIC, "enter-command", OP_ENTER_COMMAND}]
+	
+=> help page
+	Index bindings, Sidebar bindings, Generic bindings?
+
+Opsets[MENU_MAX]
+LOTS of OpX, but finite num of *menus*
+
+MenuFunctionArray { "help", OP_HELP } * MENU_MAX
+MenuKeyMapArray   { OP_HELP, "?" }    * MENU_MAX
+

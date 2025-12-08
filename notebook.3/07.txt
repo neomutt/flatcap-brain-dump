@@ -1,0 +1,33 @@
+Keybindings 4
+
+OpsDefn { OP_GENERIC, "generic", [OpBasic, MenuNav, etc}	(A)
+	  OP_ALIAS,   "alias",   [OpAlias]			(B)
+
+MenuDefn { MENU_ALIAS, "alias", [OP_ALIAS, OP_GENERIC]}
+Bindings
+	bind generic	x	"help"				(A)
+	bind alias	y	"help"				(B)
+
+km_dokey(MENU_ALIAS)
+
+bind [menu] -> bind [object]?
+	"sidebar", "menu"
+
+menu/object refers to a specfic Window (Type)
+Fake menu/objects?  "search", "nav", "tag"
+
+help pager for Pager, pager bindings, index b, sidebar b, generic b?
+
+OP_PAGER = [Pager, Paging, Search, Jump, Basic, Global, IndexP, Sidebar]
+
+bind index	Index	Sidebar	Generic
+bind sidebar		Sidebar
+bind generic			Generic
+
+define
+	Index (OpIndex(117), OpSidebar(11), OpGeneric(44))
+	Generic (Basic, Nav, Tag, Paging, Search, Jump, Global)
+	Sidebar (OpSidebar)
+
+get_key(Index, Sidebar, Generic)
+

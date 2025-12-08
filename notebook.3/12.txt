@@ -1,0 +1,82 @@
+Keybindings 9
+
+MenuDef "alias" -> SubMenu "alias -> *keymap* Alias/Generic, *functions* A
+		-> SubMenu "generic" -> *keymap* Generic, *functions* G
+
+
+"abc" -> OP_ABC
+
+Key
+	(S) Start
+	(N) No match
+	(M) Match
+	(L) Longer
+	(1) This menu
+	(2) 2nd Menu
+	(3) 3rd Menu
+
+----- 0
+STN
+SKM
+SKN
+----- 1
+SKKM
+SKTM
+SKKN
+----- 2
+SKKKM
+SKKKN
+SKKTN
+----- 3
+SKKKKM
+SKKKKN
+SKKKTN
+-----
+
+
+Timeout
+1N
+(M, MM)
+(L, LL)
+
+(ML, LM)
+
+(MML, MLM, MLL, MMM)
+(LMM, LML, LLM, LLL)
+
+multiple menus don't matter
+first match wins
+
+matches ordered by menu
+
+
+OP_ALIAS	12
+OP_ALI_XYZ	1+
+	"do-xyz"
+	"Perform XYZ"
+
+
+Self-Contained Module
+	/alias Dlg Window/GUI
+	colours
+	commands
+	<functions>
+	OP_ALI_*
+	structs/fns() (export)
+	init(), cleanup()
+	config
+	expandos
+	sorting
+	completion
+	patterns
+
+Deps
+	libmutt
+	gui
+	core
+	config
+	expando
+	------
+	email, address
+	+, +, +
+

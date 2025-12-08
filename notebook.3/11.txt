@@ -1,0 +1,50 @@
+More NeoMutt config files
+
+theme, keys, aliases -- specially named config files
+look in default places
+in dirs, look for X.rc: theme.rc, etc
+in home look for .neomutt-X, ~/.neomuttrc-theme
+
+on startup only load "theme", "keys" if GUI
+is "aliasees" needed for CLI usage?, can you email @flatcap?
+
+defainted files => could allow NeoMutt to write to them / maintain them
+"aliases" => auto-set $alias_file (if unset)
+=> "theme" => auto-set "$color_file" / "$theme_file"
+
+------------------------------------------------------------
+
+Keybindings 8
+
+MenuDef
+
+MENU_ALIAS, "alias", [FnA, FnS, FnG]
+MENU_GENERIC, "generic", [FnG]
+
+FnA	OpAlias
+		x->OP
+FnS	OpSidebar
+		y->OP
+FnG	OpGeneric
+		z->OP
+[bindings too]
+
+
+bind => search Fn array for allowed functions
+store binding in Fn[0]
+
+km_dokey(MenuDef)
+Search ∀ fn array
+find first match
+=> alias   bind or
+   sidebar bind or
+   generic bind
+
+FnA -> OpAlias
+	Bindings: Alias, Generic
+FnG -> OpGeneric
+	KeymapList bindings
+	Bindings: Generic
+
+docs s/quoted/&0/  ?
+

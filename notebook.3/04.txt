@@ -1,0 +1,26 @@
+Keybindings 1
+
+AliasDlg
+	MenuTag		OP_TAG, OP_TAG_PREFIX
+	Alias		OP_CREATE_ALIAS, OP_DELETE
+	Menu		OP_TOP_PAGE, OP_HALF_DOWN
+	Global		OP_REDRAW, OP_ENTER_COMMAND
+
+Register
+	OpAlias, (OP_DELETE, "delete-entry")
+	OpQuery, (OP_CREATE_ALIAS, "create-alias")
+	OpGeneric, (OP_CHECK_STATS, "check-stats")
+
+Split OpGeneric: MenuNav, MenuTag, Search, Global, Jump?
+Associate "generic" menu with all these exposed to use
+Pager, Editor menus don't use Generic
+
+Deps: XDefaultBindings[], OpX[]
+	create_bindings(), km_get_table()
+
+GlobalVars: AbortKey, MacroEvents, UngetKeyEvents
+
+
+New Notify object for Keybindings
+	(parent NeoMutt)
+

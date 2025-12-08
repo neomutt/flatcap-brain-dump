@@ -1,0 +1,32 @@
+Keybindings 2
+
+Global Map
+	grouped by menu => register_menu(MENU_ALIAS, OpAlias)
+		(Domain, Mappings)
+
+Queue
+	UngetKeyEvents	- KeyEventArray  {ch, op}
+	MacroEvents
+
+KeymapList {macro, desc, op, eq, len, keys}
+	Keymaps [MENU_MAX]
+	AliasDefaultBindings {OP_DELETE, "d"}
+
+New Mapping {MENU_ALIAS, "alias", Ops[], MappingList defaults! }
+If mapping saves defaults, then "bind reset {menu|all}" !
+Probably not *that* useful
+
+"unbind *" - should clear & notify.
+Observers can set safe defaults
+"unbind *" leaves "?" (help) and 'q' exit in *every* Menu (parse_unbind)
+should only be in Generic, except for Pager
+
+Min bindings:
+	editor <backspace>, ^?
+	generic ":", <enter>, <return?, ?, q
+	index <enter>, <return>		really?
+	pager ":", ?, q
+
+Min bindings => v little to do on "unbind *"
+
+

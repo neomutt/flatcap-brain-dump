@@ -1,0 +1,18 @@
+Keybindings 7
+
+km_dokey(MENU_INDEX, SIDEBAR, GENERIC)?
+nec to look in *all 3* mappings in order
+
+getch(), then ∀ menu search => nomatch, longer, match
+results:
+	empty: no match -- fail
+	match only, success
+	longer only, retry + (timeout -> fail)
+	match, longer: retry (timeout => success), (input => continue)
+
+Prefix number => counter 12j
+count => lengthen timeout to 2s?
+general timeout 0.5s?  longer timeout 1.0s?
+counter digits => screen refresh ∀ => msg win
+counter => *every* fn dispatcher relaying number to *every* function
+

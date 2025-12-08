@@ -1,0 +1,7 @@
+RegexColorList - Index colours, MergedColors (used everywhere)
+RegexColorArray (25) good for MergedColors, a bit big for Index Colors?
+RegexColorArray 1200 bytes, only if set
+RegexColorList 64 bytes each
+11 Index colours (13KiB) or RegexColorArray => 25*8(200B)*11 => 2KiB
+RegexColorArray[0] = default Index color, [1-n] -> Index + regex
+

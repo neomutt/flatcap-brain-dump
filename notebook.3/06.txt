@@ -1,0 +1,32 @@
+Keybindings 3
+
+KeymapList {macro, desc, op, eq, len, keys[]}
+Keymaps[MENU_MAX]
+
+New Mapping {MENU_ALIAS, "alias", Ops[], KeymapList}
+
+MenuDefs {MENU_GENERIC, "generic", [OpBasic, MenuNav, MenuTag, Search, Jump, Global] }
+
+Basic		OP_HELP		"help"
+MenuNav		OP_NEXT_PAGE	"next-page"
+MenuTag		OP_TAG		"tag"
+etc
+
+{MENU_ALIAS, "alias", [OpAlias, Basic, MenuNav, etc]}
+Alias		OP_DELETE	"delete"
+Basic		OP_HELP		"help"
+etc
+
+PagerEmail: 	km_dokey(OpPager, Index, Sidebar, Global)
+PagerOther:	km_dokey(OpPager,                 Global)
+
+bind pager               "P"      "I"    "S"      "G"
+
+bind pager   x sidebar_X
+bind sidebar y sidebar_X
+
+sidebar functions ignored if sidebar is not visible
+	(what about toggle-sidebar)
+index functions honoured ever if index is not visible
+deledate either way, THEY decide
+

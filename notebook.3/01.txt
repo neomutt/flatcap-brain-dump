@@ -1,0 +1,25 @@
+DlgSpager	SimplePagerDialogData
+WindowSpager	SimplePagerWindowDta
+SimpleBar	SimplePagerSbarData
+
+DlgSpager	NT_WINDOW	EventWindow
+*WinSpager	NT_WINDOW	EventWindow
+Spager		NT_SPAGER	EventSimplePager
+PagedFile	NT_PFILE	EventPagedFile
+
+* [move,search,text,color]
+
+
+:help, set, macro, bind, logs, version, color
+[email] [neomutt -D -Q -v]
+
+
+PFile
+ViewRow
+Row
+Markup
+Filter
+Source
+Url
+Layer
+

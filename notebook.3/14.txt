@@ -1,0 +1,39 @@
+Tabbed Windows
+
+Are the children independent?
+
+Help: Yes: separate Pagers, but <quit> kills all
+Browser: Yes, separate Menus, <quit> kills all
+Pager: (no tab bar, side-by-side), YES
+
+Where are the Event Loops?
+How does a parent Window get events?  child: FR_UNKNOWN?
+
+
++-------+--------+--------+
+| Apple | Banana | Cherry |
++-----------------------------------------------+
+|                                               |
+|                                               |
+|                                               |
+|                                               |
+|                                               |
++-----------------------------------------------+
+
++-----------------------------------------------+
+|  +----------+   +----------+   +----------+   |
+|  | A        |   | B        |   | C        |   |
+|  |          |   |          |   |          |   |
+|  |          |   |          |   |          |   |
+|  |          |   |          |   |          |   |
+|  +----------+   +----------+   +----------+   |
++-----------------------------------------------+
+
+are ABC simple: Menu, Pager or complex IndexDlg?
+
+------------------------------------------------------------
+
+Browser
+	smart cursor <descend>, <parent> returns to same selection
+	slow repaint -- Menu repainting every item on <next-entry>
+
