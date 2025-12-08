@@ -96,6 +96,8 @@ add X_new()/X_free() wrappers for non-trivial objects
 	AttachPtr, QClass, Regex, ListNode
 	SmimeKey, PgpUid, MuttThread, Message, Hook
 
+free: see neo/[triv/free]
+
 objects must have X_new()/X_free() pair, or neither
 	check existing
 	51 X_new()
@@ -154,4 +156,21 @@ need neomutt glossary (search first)
 	add to guide
 
 add more auto-completion
+
+security warnings
+	27 For loop variable changed in body
+	26 Poorly documented large function
+	21 Local variable address stored in non-local memory
+	 9 Year field changed using an arithmetic operation without checking for leap year
+	 8 Long switch case
+	 8 Inconsistent nullness check
+	 5 Uncontrolled data used in path expression
+	 3 Nested loops with same variable
+	 3 Futile conditional
+	 2 Time-of-check time-of-use filesystem race condition
+	 2 File created without restricting permissions
+	 2 Cleartext transmission of sensitive information
+	 1 Uncontrolled process operation
+
+turn MoreArgs, MoreArgsF into ONE function and write tests for it
 

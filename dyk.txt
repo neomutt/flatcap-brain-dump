@@ -214,3 +214,6 @@ pipe_decode=yes, wait_key=yes | cat => poor man's urlview!
 command :dyk -> reads random from docs/dyk001.md?
 	or fn with mapping, pager would need mapping for "show-me-another"
 
+:bind browser \' descend-directory
+	leaving <enter> as *select*
+

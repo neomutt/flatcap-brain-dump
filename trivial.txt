@@ -306,11 +306,6 @@ get neomutt on every available "awesome" list
 ~/.config/neomutt/theme.rc
 	file or symlink
 
-problem with address completion
-	using <complete>
-		single match opens alias dialog
-		when it shouldn't
-
 how to end-to-end test the autocrypt functions?
 	discussion
 
@@ -507,10 +502,6 @@ Naming of ARRAYs?
 doxy:
 	https://neomutt.org/code/annotated.html		some missing descriptions for structs
 
-Change all parse_*() function warning messages to include prototype, e.g.
-	"color: too few arguments"
-	"color [attrs] fg bg [regex [num]"
-
 madduck, irc 2025-10-30
 	space actually works. I can enter it, but once I entered it, there is no more tab completion at all. this is what confused me.
 	Take /srv/with space/foo
@@ -536,13 +527,6 @@ AI Usage
 	Create Label for PRs
 	How to Credit AI?
 	Fedora suggests using a commit trailer such as “Assisted-by: <AI tool name>” to make that clear in project history
-
-notmuch
-	FIX DOCS NOW
-	deprecate
-		virtual-mailboxes NAME PATH
-	in favour of
-		mailboxes -label NAME PATH
 
 archive/delete lots of repos
 	neomutt-old organization?
@@ -580,11 +564,18 @@ keybindings for Editor (OpEditor)
 $my_unset_var resolves to literal "$my_unset_var"
 	unset my_vars should expand to an empty string
 
+Change all parse_*() function warning messages to include prototype, e.g.
+	"color: too few arguments"
+	"color [attrs] fg bg [regex [num]"
 for :commands given with zero args
 	if not valid, show usage
 	:lua-console -> lua-console [show|hide|toggle|reset]
 	or, if command can be used with zero args, allow :xyz? ('?' suffix)
 	check all commands for compatibility
+	show one-line help!
+	need prototype text for each command
+	trap ":command?<enter>" at parse phase, so each handler doesn't have to
+	handlers will need to deal with ":command<enter>"
 
 reorg /neo/github /github mail folders
 
@@ -603,13 +594,6 @@ auto-completion
 
 Expando doesn't have an Expando Definition!
   { "inews", DT_EXPANDO|D_STRING_COMMAND, 0, 0, NULL,
-
-deprecate
-	{ "ssl_use_tlsv1", DT_BOOL, false },
-	{ "ssl_use_tlsv1_1", DT_BOOL, false },
-not recommended for >10 years
-likewise
-	ssl_use_sslv2, ssl_use_sslv3
 
 commands have both `-` (hyphen) and `_` (underscore)
 	migrate to `-` (hyphen) and accept either (or none)
@@ -630,6 +614,8 @@ browser: default folder_format="%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %i"
 	isn't laggy
 
 folder_format expandos for numeric uid,gid
+	{long-name} only
+	need docs
 
 browser, cache uid->string, gid->string in a HashTable
 
@@ -643,6 +629,53 @@ alias completion on ','
 	which text does auto-complete get?
 	how much text is it allowed to edit?
 
-dyk: ? :bind browser \' descend-directory
-	leaving <enter> as *select*
+add a 'commands' page to `?` <help> with a one-liner description of each
+
+group info commands into tabs.  HOW?
+	if user does `:set` then `:color` then `:hooks`
+	rather than have three overlaid Pagers
+	add a tab to the current display and focus it
+
+rename commands: hdr -> header (synonyms)
+	hdr_order
+	unhdr_order
+	my_hdr
+	unmy_hdr
+plus adjust docs for unignore
+need COMMAND_DEPRECATED flag
+need COMMAND_SYNONYM flag
+subjectrx -> subject-regex?
+
+docs:
+	patterns
+	Patterns in use:
+	- `~` `.bcdefghi.klmn.p.rstuvwxyz`
+	- `~` `ABCDEFGHI..LMNOPQRSTUV.XY.`
+	- `~#` `~$` `~()` `~<()` `~=` `~>()`
+
+	Misc in use:
+	- Group matches - `%C` `%L` `%c` `%e` `%f`
+	- IMAP matches  - `=/` `=B` `=b` `=h`
+
+	hooks (split by 9)
+
+update buf_at() to take negative offsets
+	-1 == end of string
+	find uses, look for buf_len() or buf->dsize
+
+browser auto-tag behaviour -- need list of every Menu
+	categorise how menu is used w.r.t. selection / tagging
+	/home/mutt/work/keymaps-notes/m1
+
+notmuch
+	FIX DOCS NOW
+	deprecate
+		virtual-mailboxes NAME PATH
+	in favour of
+		mailboxes -label NAME PATH
+
+`neomutt -v` is repetitive
+	NeoMutt comes with ABSOLUTELY NO WARRANTY; for details type 'neomutt -vv'.
+	NeoMutt is free software, and you are welcome to redistribute it
+	under certain conditions; type 'neomutt -vv' for details.
 
