@@ -667,15 +667,22 @@ browser auto-tag behaviour -- need list of every Menu
 	categorise how menu is used w.r.t. selection / tagging
 	/home/mutt/work/keymaps-notes/m1
 
-notmuch
-	FIX DOCS NOW
-	deprecate
-		virtual-mailboxes NAME PATH
-	in favour of
-		mailboxes -label NAME PATH
-
 `neomutt -v` is repetitive
 	NeoMutt comes with ABSOLUTELY NO WARRANTY; for details type 'neomutt -vv'.
 	NeoMutt is free software, and you are welcome to redistribute it
 	under certain conditions; type 'neomutt -vv' for details.
+
+optimised code-scanning jq to just the fields we want
+	create a .vim to process the results
+
+deprecate
+	virtual-mailboxes
+	unvirtual-mailboxes
+	virtual_spoolfile
+	OP_SIDEBAR_TOGGLE_VIRTUAL
+
+Change to use the pager?
+	`:attachments ?`
+
+message_id_format docs table is missing a header
 

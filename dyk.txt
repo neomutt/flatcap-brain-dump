@@ -217,3 +217,10 @@ command :dyk -> reads random from docs/dyk001.md?
 :bind browser \' descend-directory
 	leaving <enter> as *select*
 
+Is there a way to open neomutt in the pager view to see a given email? I would like to pass the specific mail file in my disk to neomutt
+yeah, with a little creativeness...
+neomutt can't open a *maildir* file, but we can cheat
+neomutt -f FOLDER -e "push '<search>~i MSG'<enter><display-message>"
+if you fill in FOLDER and MSG (Message-Id)
+you could finesse it, by adding  -e "set sidebar_visible = no"  -e "set pager_index_lines = 0"   -e "macro pager q '<exit><exit>'"  (quick exit!)
+
