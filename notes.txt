@@ -903,26 +903,13 @@ BUILD
 		rename to 'index'?
 		struct HdrFormatInfo
 
-CLI
-	neomutt -v output:
-		add $LANG?
-		multi-column output to reduce lines?
+neomutt -v output:
+	add $LANG?
+	multi-column output to reduce lines?
 
-DOCS
-	docs: "delimited" lists -> "separated"
+docs: "delimited" lists -> "separated"
 
 FUNCTIONS
-	split browser cases by function
-		and other dialogs
-		so all <functions> are independent functions()
-		check against OpPager lists, etc
-		dlg_select_attachment / mutt_attach_display_loop
-			attach/recvattach.c:946:       9  mutt_attach_display_loop
-
-	browser seems ok
-
-	are ANY <functions> handled in the switch/case?
-
 	rename OPs to match functions
 		e.g. drop MAIN_
 		{ "set-flag", OP_MAIN_SET_FLAG },
@@ -2175,8 +2162,6 @@ lots of sidebar settings apply to the browser
 	should be account display settings!
 
 folder format needs 'subscribed' flag/field
-
-format format use %l (hard links) to distinguish local/net browser formats (conditional)
 
 :changelog ?
 	read from /usr/share/doc/neomutt
@@ -5309,9 +5294,6 @@ $source_dir like folder
 browser - add flagged
 	expando
 	sort option
-
-INBOX vs inbox
-	not updating values for browser
 
 copying a large mailbox / number of files doesn't trigger the progress bar
 	mbox-100000
