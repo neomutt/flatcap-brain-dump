@@ -481,6 +481,8 @@ history: which constants are used in the history file?
 
 browser option to scan subdirs for {cur,new,tmp}
 	so that they can be highlighted as mailboxes
+	already done, just no feedback to user
+	icon command
 
 idea
 	macro index,pager d "<clear-flag>n<clear-flag>o<clear-flag>f<delete-message>"
@@ -567,6 +569,7 @@ $my_unset_var resolves to literal "$my_unset_var"
 Change all parse_*() function warning messages to include prototype, e.g.
 	"color: too few arguments"
 	"color [attrs] fg bg [regex [num]"
+	link to web help page?
 for :commands given with zero args
 	if not valid, show usage
 	:lua-console -> lua-console [show|hide|toggle|reset]
@@ -591,9 +594,6 @@ auto-completion
 
 ! <shell-escape>  allow Ctrl-D to cancel the prompt?
 	Ctrl-G already works
-
-Expando doesn't have an Expando Definition!
-  { "inews", DT_EXPANDO|D_STRING_COMMAND, 0, 0, NULL,
 
 commands have both `-` (hyphen) and `_` (underscore)
 	migrate to `-` (hyphen) and accept either (or none)
@@ -672,9 +672,6 @@ browser auto-tag behaviour -- need list of every Menu
 	NeoMutt is free software, and you are welcome to redistribute it
 	under certain conditions; type 'neomutt -vv' for details.
 
-optimised code-scanning jq to just the fields we want
-	create a .vim to process the results
-
 deprecate
 	virtual-mailboxes
 	unvirtual-mailboxes
@@ -684,5 +681,20 @@ deprecate
 Change to use the pager?
 	`:attachments ?`
 
-message_id_format docs table is missing a header
+clang-tidy everything
+
+fix numbering!
+	enum CommandResult
+	{
+	MUTT_CMD_ERROR   = -1, ///< Error: Can't help the user
+	MUTT_CMD_WARNING = -2, ///< Warning: Help given to the user
+	MUTT_CMD_SUCCESS =  0, ///< Success: Command worked
+
+nntp triv inews fix
+
+squash 'for' branches
+
+compose
+	mutt_make_multipart()
+	mutt_remove_multipart()
 

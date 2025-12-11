@@ -138,10 +138,6 @@ update bash complete for configure
 	push to management
 	dev ml
 
-gnutls + ssl -- auto.def, no warning
-configure allows --gnutls AND --ssl
-	need to warn/fail
-
 fuzzy matcher
 
 change Score list to use STAILQ
@@ -163,7 +159,6 @@ security warnings
 	21 Local variable address stored in non-local memory
 	 9 Year field changed using an arithmetic operation without checking for leap year
 	 8 Long switch case
-	 8 Inconsistent nullness check
 	 5 Uncontrolled data used in path expression
 	 3 Nested loops with same variable
 	 3 Futile conditional
@@ -173,4 +168,7 @@ security warnings
 	 1 Uncontrolled process operation
 
 turn MoreArgs, MoreArgsF into ONE function and write tests for it
+
+merge string/Buffer variants of functions
+	(find them all first)
 
