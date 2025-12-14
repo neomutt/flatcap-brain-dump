@@ -93,8 +93,8 @@ kill the num_accounts and return the value
 int mutt_autocrypt_db_account_get_all(struct AutocryptAccount ***accounts, int *num_accounts)
 
 add X_new()/X_free() wrappers for non-trivial objects
-	AttachPtr, QClass, Regex, ListNode
-	SmimeKey, PgpUid, MuttThread, Message, Hook
+	QClass, ListNode
+	SmimeKey, PgpUid, MuttThread
 
 free: see neo/[triv/free]
 

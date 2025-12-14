@@ -109,3 +109,16 @@ split up Index %F into "To: " part and address part
 drop ExpandoParserFlags
 drop ExpandoConditionStart
 
+------------------------------------------------------------
+
+no conditionals
+
+move $index_format to index/config.c
+	or wait 'til expando split
+
+folder_format: split %f / %{filename}
+	into filename and suffix
+	or magic like %{subject}
+
+no error message for %{bad-name}
+

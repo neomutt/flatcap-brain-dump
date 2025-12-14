@@ -636,15 +636,28 @@ group info commands into tabs.  HOW?
 	rather than have three overlaid Pagers
 	add a tab to the current display and focus it
 
-rename commands: hdr -> header (synonyms)
-	hdr_order
-	unhdr_order
-	my_hdr
-	unmy_hdr
+rename commands:
+hdr -> header
+	hdr_order	header-order
+	unhdr_order	unheader-order
+	my_hdr		my-header
+	unmy_hdr	unmy-header
+expand rx -> regex
+	subjectrx	subject-regex?
+replace underscore with hyphen
+	alternative_order   alternative-order
+	auto_view           auto-view
+	mailto_allow        mailto-allow
+	mime_lookup         mime-lookup
+	sidebar_pin         sidebar-pin
+	sidebar_unpin       sidebar-unpin
+	unalternative_order unalternative-order
+	unauto_view         unauto-view
+	unmailto_allow      unmailto-allow
+	unmime_lookup       unmime-lookup
 plus adjust docs for unignore
 need COMMAND_DEPRECATED flag
 need COMMAND_SYNONYM flag
-subjectrx -> subject-regex?
 
 docs:
 	patterns
@@ -681,16 +694,12 @@ deprecate
 Change to use the pager?
 	`:attachments ?`
 
-clang-tidy everything
-
 fix numbering!
 	enum CommandResult
 	{
 	MUTT_CMD_ERROR   = -1, ///< Error: Can't help the user
 	MUTT_CMD_WARNING = -2, ///< Warning: Help given to the user
 	MUTT_CMD_SUCCESS =  0, ///< Success: Command worked
-
-nntp triv inews fix
 
 squash 'for' branches
 
@@ -700,6 +709,9 @@ compose
 
 action/build test for make (un)install
 	check for zero files afterwards
+(un)install dir
+	make DESTDIR=$HOME/work/neo-install install
+	make DESTDIR=$HOME/work/neo-install uninstall
 
 Editor
 	<space> test FR_UNKNOWN for literal space
@@ -725,4 +737,20 @@ file perms, use, rather than 0600, etc
 	S_IROTH  00004 others have read permission
 	S_IWOTH  00002 others have write permission
 	S_IXOTH  00001 others have execute permission
+
+VIM: update syntax.rc
+
+clang-tidy everything
+	pick useful rules
+
+copr update patches/.spec
+
+sidebar is a Menu except that Menu doesn't have a grey pre-selection
+Menu: rows, format string, selection, paging, limit/filter
+Sidebar doesn't have %C(num) row numbers, no  12<enter> for navigation
+
+rename $inews to $inews_command for consistency
+nntp triv inews fix (expando)
+
+docs: reference -> ref?
 
