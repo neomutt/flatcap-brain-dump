@@ -1,0 +1,36 @@
+Object Introspection: ∀ obj API
+
+get_object_name()	-> "Email"
+get_object_type()	-> ED_EMAIL (did - DomainId)
+get_members() -> Array[name, uid, type]
+get_raw(e, uid) -> intptr_t
+get_number(e, uid) -> long
+get_string(e, uid) -> string (will coerce other types)
+get_is_set(e, uid)?  for conditional expandos?  NO
+	only meaningful to *expando*
+get_parent(e)? - not always possible (meaningful?)
+	*make* is possible
+	in the exposed hierarch there will always be a parent
+		(until NeoMutt)
+
+need way to kickstart it -- explore tree without objects
+get_children(obj) -> Array [name, did]
+	obj == NULL -> get root (NeoMutt)
+not *obj*, did.  start with ED_NEOMUTT
+get_children(did) -> Array[name, did] recurse
+∀ did
+	get_name(did)
+	get_members(did)
+	get_functions(did)
+
+get_functions() -> Array[name, OP_XYZ]
+
+need helpers for types, e.g. DateTime to format,
+	a full object for this too?
+How do View objects fit in?  ED_NEOMUTT_VIEW?
+How to get from View object to real object?
+	Not possible, could be multiple views
+Combine View+Obj - user might want to alter GUI attributes
+Which objs are needed to fulfil the Expandos' needs?
+Which View objs are needed for Expandos?
+

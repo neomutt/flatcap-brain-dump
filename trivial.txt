@@ -739,6 +739,7 @@ file perms, use, rather than 0600, etc
 	S_IXOTH  00001 others have execute permission
 
 VIM: update syntax.rc
+	after command renaming / synonym-ing
 
 clang-tidy everything
 	pick useful rules
@@ -749,8 +750,23 @@ sidebar is a Menu except that Menu doesn't have a grey pre-selection
 Menu: rows, format string, selection, paging, limit/filter
 Sidebar doesn't have %C(num) row numbers, no  12<enter> for navigation
 
-rename $inews to $inews_command for consistency
-nntp triv inews fix (expando)
-
 docs: reference -> ref?
+	or permanent redirect from
+		(for permanent short urls)
+	how	-> howto
+	h	-> howto
+	tut	-> tutorial
+	t	-> tutorial
+	exp	-> explanation
+	x	-> explanation
+	ref	-> reference
+	r	-> reference
+	ref/cfg	-> reference/config
+	ref/cmd	-> reference/command
+		etc
+
+FIX the deprecated.diff -- some are in the wrong places
+	"Note Before 2018-01-11, this was called $pgp_self_encrypt_as"
+	is in 
+	"3.318. pgp_decode_command"
 

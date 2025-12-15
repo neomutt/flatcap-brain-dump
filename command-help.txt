@@ -1,0 +1,28 @@
+command? => semi-permanent window about msgwin?
+should survive window resize? but Ctrl-L should clear. HOW?
+any command should clear too
+Separate window allows user to read head *and* enter command
+Ctrl-L -> notify of *manual* refresh
+command? link to docs local file:/// or https:// ?
+check if local exists?!
+
+$neomutt_docs - file:/// or https:// base to doc tree
+
+CLI apply to config too!
+
+:help command/config/function
+:help -> <help> ?  global -> local!
+
+how do we auto-complete with multiple domains?
+	just lump them together
+
+add some special keywords  [patterns|formats|colors]
+			 + [config|commands|functions]
+
+config or config*s* for consistency?  allow both
+:help <enter> show options
+
+$neomutt_docs default to web.  NO local; check; fallback to web
+for multiple docs, check doc root is a readable dir, not each file
+start with web help only -- until $neomutt_docs
+
