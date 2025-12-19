@@ -60,10 +60,6 @@ for the Menu,
 	color index fg bg "~T" !
 	create colour "links" first
 
-docs: improve transform-links.vim
-	update deprecated.patch
-	put in repo with README
-
 coverage core (simple)
 	command
 	config_cache
@@ -460,8 +456,6 @@ browser tabs?
 
 terminal window focus in/out https://unix.stackexchange.com/a/480138
 
-:hook info command to list all hooks
-
 upstream: 0e32b9774
 	map to change-folder (DlgBrowser)
 	index/pager
@@ -566,20 +560,6 @@ keybindings for Editor (OpEditor)
 $my_unset_var resolves to literal "$my_unset_var"
 	unset my_vars should expand to an empty string
 
-Change all parse_*() function warning messages to include prototype, e.g.
-	"color: too few arguments"
-	"color [attrs] fg bg [regex [num]"
-	link to web help page?
-for :commands given with zero args
-	if not valid, show usage
-	:lua-console -> lua-console [show|hide|toggle|reset]
-	or, if command can be used with zero args, allow :xyz? ('?' suffix)
-	check all commands for compatibility
-	show one-line help!
-	need prototype text for each command
-	trap ":command?<enter>" at parse phase, so each handler doesn't have to
-	handlers will need to deal with ":command<enter>"
-
 reorg /neo/github /github mail folders
 
 github action to keep gitlab/etc in sync
@@ -594,9 +574,6 @@ auto-completion
 
 ! <shell-escape>  allow Ctrl-D to cancel the prompt?
 	Ctrl-G already works
-
-commands have both `-` (hyphen) and `_` (underscore)
-	migrate to `-` (hyphen) and accept either (or none)
 
 help.c kill #include "protos.h"
 
@@ -629,35 +606,10 @@ alias completion on ','
 	which text does auto-complete get?
 	how much text is it allowed to edit?
 
-add a 'commands' page to `?` <help> with a one-liner description of each
-
 group info commands into tabs.  HOW?
 	if user does `:set` then `:color` then `:hooks`
 	rather than have three overlaid Pagers
 	add a tab to the current display and focus it
-
-rename commands:
-hdr -> header
-	hdr_order	header-order
-	unhdr_order	unheader-order
-	my_hdr		my-header
-	unmy_hdr	unmy-header
-expand rx -> regex
-	subjectrx	subject-regex?
-replace underscore with hyphen
-	alternative_order   alternative-order
-	auto_view           auto-view
-	mailto_allow        mailto-allow
-	mime_lookup         mime-lookup
-	sidebar_pin         sidebar-pin
-	sidebar_unpin       sidebar-unpin
-	unalternative_order unalternative-order
-	unauto_view         unauto-view
-	unmailto_allow      unmailto-allow
-	unmime_lookup       unmime-lookup
-plus adjust docs for unignore
-need COMMAND_DEPRECATED flag
-need COMMAND_SYNONYM flag
 
 docs:
 	patterns
@@ -693,13 +645,6 @@ deprecate
 
 Change to use the pager?
 	`:attachments ?`
-
-fix numbering!
-	enum CommandResult
-	{
-	MUTT_CMD_ERROR   = -1, ///< Error: Can't help the user
-	MUTT_CMD_WARNING = -2, ///< Warning: Help given to the user
-	MUTT_CMD_SUCCESS =  0, ///< Success: Command worked
 
 squash 'for' branches
 
@@ -744,8 +689,6 @@ VIM: update syntax.rc
 clang-tidy everything
 	pick useful rules
 
-copr update patches/.spec
-
 sidebar is a Menu except that Menu doesn't have a grey pre-selection
 Menu: rows, format string, selection, paging, limit/filter
 Sidebar doesn't have %C(num) row numbers, no  12<enter> for navigation
@@ -765,8 +708,129 @@ docs: reference -> ref?
 	ref/cmd	-> reference/command
 		etc
 
-FIX the deprecated.diff -- some are in the wrong places
-	"Note Before 2018-01-11, this was called $pgp_self_encrypt_as"
-	is in 
-	"3.318. pgp_decode_command"
+is $devel_security still referenced?
+	still needed?
+
+unmacro docs
+	s/map/menu/g
+
+tweak Quickhl colours
+
+upgrade to Buffer: mutt_addr_cat()
+
+:alias (no params) -> <alias-dialog>
+	currently the function is index-only
+	can it be run globally
+	<alias-dialog> -> actions -> send message -> original place
+
+:cd (no params) -> `cd $HOME`
+need matching :pwd
+	what does cd actually do / affect?
+
+translation action
+	∀ push to [translate], run `msgcat --no-wrap`
+	if there are any differences create a fixup commit
+	does the action have the privs to commit?
+
+move translation discussions into docs
+	https://github.com/orgs/neomutt/discussions/categories/translators
+	pin one entry linking everything
+
+------------------------------------------------------------
+
+:hook info command to list all hooks
+
+Change all parse_*() function warning messages to include prototype, e.g.
+	"color: too few arguments"
+	"color [attrs] fg bg [regex [num]"
+	link to web help page?
+for :commands given with zero args
+	if not valid, show usage
+	:lua-console -> lua-console [show|hide|toggle|reset]
+	or, if command can be used with zero args, allow :xyz? ('?' suffix)
+	check all commands for compatibility
+	show one-line help!
+	need prototype text for each command
+	trap ":command?<enter>" at parse phase, so each handler doesn't have to
+	handlers will need to deal with ":command<enter>"
+
+commands have both `-` (hyphen) and `_` (underscore)
+	migrate to `-` (hyphen) and accept either (or none)
+
+add a 'commands' page to `?` <help> with a one-liner description of each
+	or :help <command>
+
+rename commands:
+hdr -> header
+	hdr_order	header-order
+	unhdr_order	unheader-order
+	my_hdr		my-header
+	unmy_hdr	unmy-header
+expand rx -> regex
+	subjectrx	subject-regex?
+replace underscore with hyphen
+	alternative_order   alternative-order
+	auto_view           auto-view
+	mailto_allow        mailto-allow
+	mime_lookup         mime-lookup
+	sidebar_pin         sidebar-pin
+	sidebar_unpin       sidebar-unpin
+	unalternative_order unalternative-order
+	unauto_view         unauto-view
+	unmailto_allow      unmailto-allow
+	unmime_lookup       unmime-lookup
+plus adjust docs for unignore
+need COMMAND_DEPRECATED flag
+need COMMAND_SYNONYM flag
+
+fix numbering!
+	enum CommandResult
+	{
+	MUTT_CMD_ERROR   = -1, ///< Error: Can't help the user
+	MUTT_CMD_WARNING = -2, ///< Warning: Help given to the user
+	MUTT_CMD_SUCCESS =  0, ///< Success: Command worked
+
+prelude to [linear]
+	∀ commands and their global data
+address/group.c
+	make more testable
+	Move global Groups into NeoMutt
+	pass to:
+		mutt_grouplist_cleanup()
+		mutt_grouplist_clear()
+		mutt_grouplist_init()
+		mutt_grouplist_remove_addrlist()
+		mutt_grouplist_remove_regex()
+		mutt_pattern_group()
+	parse functions can use `NeoMutt->GLOBAL`
+
+∀ command - where do they store their data?
+
+turn all "too (few|many) arguments" into command help with prototype
+
+create constants for 0/1
+	{ "ifdef",               parse_ifdef,            0 },
+	{ "ifndef",              parse_ifdef,            1 },
+
+∀ commands (that take min of 1 param)
+	if (!MoreArgs(line))
+	  return too_few_args(cmd); // MUTT_CMD_WARNING
+	can be expanded to print the cmd help/prototype/etc
+	NO.  ∀ "too few" or "too many" code paths
+
+∀ command parse functions
+	add command prototype to function's doxy header
+
+command parse api:
+	guarantee all args
+::parser_callback_t too
+
+command parsing:
+	consume_line() for if (OptGui), etc
+	use up the line up to eol or `;`
+	using parse_extract_token()
+
+command parsing:
+	∀ "too (many|few) arguments"
+	check they return MUTT_CMD_WARNING
 
