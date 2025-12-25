@@ -750,7 +750,6 @@ for :commands given with zero args
 	or, if command can be used with zero args, allow :xyz? ('?' suffix)
 	check all commands for compatibility
 	show one-line help!
-	need prototype text for each command
 	trap ":command?<enter>" at parse phase, so each handler doesn't have to
 	handlers will need to deal with ":command<enter>"
 
@@ -809,21 +808,14 @@ address/group.c
 turn all "too (few|many) arguments" into command help with prototype
 
 create constants for 0/1
-	{ "ifdef",               parse_ifdef,            0 },
-	{ "ifndef",              parse_ifdef,            1 },
+	{ "ifdef",  parse_ifdef, 0 },
+	{ "ifndef", parse_ifdef, 1 },
 
 ∀ commands (that take min of 1 param)
 	if (!MoreArgs(line))
 	  return too_few_args(cmd); // MUTT_CMD_WARNING
 	can be expanded to print the cmd help/prototype/etc
 	NO.  ∀ "too few" or "too many" code paths
-
-∀ command parse functions
-	add command prototype to function's doxy header
-
-command parse api:
-	guarantee all args
-::parser_callback_t too
 
 command parsing:
 	consume_line() for if (OptGui), etc
@@ -833,4 +825,12 @@ command parsing:
 command parsing:
 	∀ "too (many|few) arguments"
 	check they return MUTT_CMD_WARNING
+
+need lua *feature* page, even if its empty
+	"coming soon..."
+
+need links in "Configuration Commands" for
+	lua, lua-source, echo, version, tag-formats, tag-transforms
+
+drop gettext for command help url
 
