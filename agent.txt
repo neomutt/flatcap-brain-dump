@@ -34,8 +34,6 @@ certificates
 	means lots more translations!
 	also key selection
 
-:hook info command to list all hooks
-
 Find more Linked List Nodes, to replace with ARRAY, e.g.
 Nodes
 	address/group.h:53:2:    STAILQ_HEAD(GroupList,       GroupNode);
@@ -74,8 +72,6 @@ split up send() to accommodate bg_edit
 compose: move Body wrapping into compose
 
 update translations as fuzzy
-
-split up mutt_parse_hook() #4012
 
 compose: small fns #3222
 	<move-to-top>

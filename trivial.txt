@@ -736,9 +736,9 @@ move translation discussions into docs
 	https://github.com/orgs/neomutt/discussions/categories/translators
 	pin one entry linking everything
 
-------------------------------------------------------------
+copyright 2025 ∀
 
-:hook info command to list all hooks
+------------------------------------------------------------
 
 Change all parse_*() function warning messages to include prototype, e.g.
 	"color: too few arguments"
@@ -807,10 +807,6 @@ address/group.c
 
 turn all "too (few|many) arguments" into command help with prototype
 
-create constants for 0/1
-	{ "ifdef",  parse_ifdef, 0 },
-	{ "ifndef", parse_ifdef, 1 },
-
 ∀ commands (that take min of 1 param)
 	if (!MoreArgs(line))
 	  return too_few_args(cmd); // MUTT_CMD_WARNING
@@ -822,15 +818,37 @@ command parsing:
 	use up the line up to eol or `;`
 	using parse_extract_token()
 
-command parsing:
-	∀ "too (many|few) arguments"
-	check they return MUTT_CMD_WARNING
-
-need lua *feature* page, even if its empty
-	"coming soon..."
-
 need links in "Configuration Commands" for
 	lua, lua-source, echo, version, tag-formats, tag-transforms
 
-drop gettext for command help url
+refactor command parsing again...
+	pure *parse* routine -- just doing arg splitting, etc
+	returns a struct ParsedXCommand
+	this can be thoroughly tested
+	a small 'doing' part that saves the result, sends notifications, etc
+	can the parsing part be broken up and parts reused?
+	parse_get_regex(line)
+	hook code is highly repetitive
+
+add folder-hook-late (once mailbox is open and index populated)
+
+prefix for help pages could be an slist
+	"file:///usr/share/doc/neomutt,http://neomutt.org/docs"
+
+enum WarnArgCount
+{
+  WAC_TOO_FEW,         ///< Too few  arguments
+  WAC_TOO_MANY,        ///< Too many arguments
+};
+
+enum CommandResult warn_arg_count(const struct Command *cmd, enum WarnArgCount count)
+{
+}
+
+rc = warn_arg_count(cmd, WAC_TOO_FEW, err);
+
+trans:
+	regen .po
+	make protos fuzzy
+	notify translators
 
