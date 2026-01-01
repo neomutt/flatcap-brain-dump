@@ -164,7 +164,36 @@ security warnings
 	 1 Uncontrolled process operation
 
 turn MoreArgs, MoreArgsF into ONE function and write tests for it
+	generate tests first
+	then convert to functions
+	then merge functions
+find users of all the flags
+doc common uses of each flag, e.g. a regex, a file, a colour, a comment, a keybinding, a pattern
+suggest better methods for parsing these
 
 merge string/Buffer variants of functions
 	(find them all first)
+
+source! (no error if not exist)
+	or `source -q`?
+		sort of implies that it'll quieten all errors from the source'd file
+source -d dir (all of dir/*.rc or *.conf)?
+	alphabetical / collate
+
+action/build test for make (un)install
+	check for zero files afterwards
+(un)install dir
+	make DESTDIR=$HOME/work/neo-install install
+	make DESTDIR=$HOME/work/neo-install uninstall
+
+update buf_at() to take negative offsets
+	-1 == end of string
+	find uses, look for buf_len() or buf->dsize
+
+create buf_tell() cf buf_seek()
+	to show dptr position relative to data
+
+upgrade buf_seek() to match fseek()
+	using SEEK_SET, SEEK_CUR, or SEEK_END (<stdio.h>)
+	or our own BUF_ enums
 

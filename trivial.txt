@@ -317,7 +317,6 @@ Config system
 expando long-text -- review
 	esp, "flags2" !
 	need docs -- how?
-docs for %{name} expandos
 
 colour - what happens if you set both (simple/palette) and truecolor?
 	we want to share both; if $color_directcolor is set then use
@@ -622,12 +621,6 @@ docs:
 	- Group matches - `%C` `%L` `%c` `%e` `%f`
 	- IMAP matches  - `=/` `=B` `=b` `=h`
 
-	hooks (split by 9)
-
-update buf_at() to take negative offsets
-	-1 == end of string
-	find uses, look for buf_len() or buf->dsize
-
 browser auto-tag behaviour -- need list of every Menu
 	categorise how menu is used w.r.t. selection / tagging
 	/home/mutt/work/keymaps-notes/m1
@@ -636,6 +629,21 @@ browser auto-tag behaviour -- need list of every Menu
 	NeoMutt comes with ABSOLUTELY NO WARRANTY; for details type 'neomutt -vv'.
 	NeoMutt is free software, and you are welcome to redistribute it
 	under certain conditions; type 'neomutt -vv' for details.
+	----------------------------
+	You can collapse this into a single, legally correct notice without losing meaning or tone. For example:
+
+	> NeoMutt is free software, provided **without any warranty**.
+	> You may redistribute it under certain conditions; run `neomutt -vv` for details.
+
+	If you want it even tighter and more “version-banner” appropriate:
+
+	> NeoMutt is free software, provided without warranty; see `neomutt -vv` for details.
+
+	Or, keeping the emphatic GNU wording but avoiding repetition:
+
+	> NeoMutt is free software, provided **ABSOLUTELY WITHOUT WARRANTY**; see `neomutt -vv` for redistribution details.
+
+	All three remove the duplicated `-vv` reference and merge the warranty and redistribution statements while remaining consistent with standard GPL-style notices.
 
 deprecate
 	virtual-mailboxes
@@ -651,12 +659,6 @@ squash 'for' branches
 compose
 	mutt_make_multipart()
 	mutt_remove_multipart()
-
-action/build test for make (un)install
-	check for zero files afterwards
-(un)install dir
-	make DESTDIR=$HOME/work/neo-install install
-	make DESTDIR=$HOME/work/neo-install uninstall
 
 Editor
 	<space> test FR_UNKNOWN for literal space
@@ -847,8 +849,21 @@ enum CommandResult warn_arg_count(const struct Command *cmd, enum WarnArgCount c
 
 rc = warn_arg_count(cmd, WAC_TOO_FEW, err);
 
-trans:
-	regen .po
-	make protos fuzzy
-	notify translators
+BufferPool
+	memset() in buf_pool_get()
+	rather than buf_pool_release()
+	to avoid "Uncontrolled data used in path expression" false positives
+
+command help missing <>s
+	tag-transforms <tag> <transformed-string> { tag transformed-string ... }
+
+command help, fix?
+	mailboxes [[ -label <label> ] | -nolabel ] [[ -notify | -nonotify ] [ -poll | -nopoll ] <mailbox> ] [ ... ]
+	mailboxes [[ -label <label> ] | -nolabel ] [ -notify | -nonotify ] [ -poll | -nopoll ] <mailbox> [ ... ]
+
+config parsing
+	deglobalise file stack (x includes y includes z)
+	pass as a param to parsers
+	use stack to show "backtrace" to error
+	struct ListHead MuttrcStack
 
