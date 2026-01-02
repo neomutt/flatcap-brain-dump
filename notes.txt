@@ -2552,11 +2552,6 @@ sidebar announce behavioural changes (user-ml, website news) link to twitter, ir
 ":seta" == ":account set" ?
 ":setm" == ":mailbox set" ?
 
-add compress to 'P' build, travis, scripts
-	check P settings
-	fmemopen?
-	inotify?
-
 after release check acutest, autosetup for new releases
 
 analysis-compiler - list all my gcc flags
@@ -2911,15 +2906,6 @@ embedded editor
 	how?  pty's cf screen/tmux
 	can screen/tmux nest?
 
-split travis targets using github checks api
-	skip if not relevant
-	state: queued, in progress, complete
-	outcome: action required, failed, neutral, success
-	test: build, out-of-tree, whitespace, install/uninstall, test, coverage, translate, doxy, config
-
-lgtm shield for dev page
-https://img.shields.io/lgtm/alerts/github/neomutt/neomutt.svg?logo=lgtm
-
 merge/collate email generator scripts
 
 reduce all branches
@@ -3012,8 +2998,6 @@ fuzz
 fuzz
 	sub-header parts
 	dates, addresses, list subscription URI
-
-coveralls - travis cron, or master?
 
 change acutest macro to hide 'test' prefix?
 
@@ -4665,9 +4649,6 @@ mutt marks -- are they mailbox-local?
 		is it safe to change mailboxes without warning?
 		I suppose macros do this
 
-convert the bug-fixes section of the travis build.sh to work on the upstream branch
-	(test all commits, with a small spread of configs)
-
 2017-03-06 #mutt
 	17:40 <parosen> "set -o vi" functionality in mutt?
 
@@ -5456,9 +5437,6 @@ update man page for mutt
 tip - status_format + status-color
 	ctx->readonly => red padlock
 
-unstable: .gitignore upstream of feature branches, what else?
-	common docs, travis
-
 sidebar -- imap all folders vs subscribed
 dovecot public mailboxes for tips?  one public user?
 nntp tips? ":tips" command to toggle nntp vars and mailboxes
@@ -5722,12 +5700,6 @@ Do drafts *need* to be stored in a separate folder?
 
 screenshots on website
 neomutt version on website home page
-
-doc travis and coverity options
-split source?
-	tools/ - standalone exes
-	library/ - replacement library functions
-	readme/ - obvious
 
 save email doesn't respect the umask
 
