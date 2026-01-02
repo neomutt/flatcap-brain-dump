@@ -211,14 +211,6 @@ colour notifications
 code-scanning: examine
 	27 Poorly documented large function
 
-update copyright dates, versions, etc
-	for all of 2024
-	for my changes of 2025
-	summary to ml + twitter
-		x commits
-		y users
-		z releases
-
 change the discussion issue template to redirect users to the discussions area
 
 `neomutt -vv` recalc top ten contributors
@@ -274,7 +266,7 @@ add a new syntax to the `~i` pattern...
 	`~i TEXT`   -- text is regex
 	`~i <TEXT>` -- text is literal
 
-Commits as of 2025-10-03
+Commits as of 2026-01-01
 	Year	Mutt	NeoMutt
 	2016	 316	    788
 	2017	 272	   1615
@@ -283,9 +275,9 @@ Commits as of 2025-10-03
 	2020	 406	   1070
 	2021	 261	   1114
 	2022	 130	    714
-	2023	  20	   1123
-	2024	  10	    600
-	2025	  15	    214
+	2023	  20	   1124
+	2024	  10	    603
+	2025	  21	    360
 
 drop 'i' (index?) binding for <quit>/<exit> for pager
 	non-intuitive
@@ -343,6 +335,7 @@ air (on irc)
 find clean/dirty strwidth() / wcwidth() uses
 
 release: commit count
+	in folded section?
 
 fold lines that don't match the search pattern
 	:set foldenable foldmethod=expr foldminlines=0 foldexpr=getline(v:lnum)!~@/
@@ -738,8 +731,6 @@ move translation discussions into docs
 	https://github.com/orgs/neomutt/discussions/categories/translators
 	pin one entry linking everything
 
-copyright 2025 ∀
-
 ------------------------------------------------------------
 
 Change all parse_*() function warning messages to include prototype, e.g.
@@ -825,7 +816,7 @@ need links in "Configuration Commands" for
 
 refactor command parsing again...
 	pure *parse* routine -- just doing arg splitting, etc
-	returns a struct ParsedXCommand
+	returns a struct ParsedXCommand (might be trivial)
 	this can be thoroughly tested
 	a small 'doing' part that saves the result, sends notifications, etc
 	can the parsing part be broken up and parts reused?
@@ -866,4 +857,12 @@ config parsing
 	pass as a param to parsers
 	use stack to show "backtrace" to error
 	struct ListHead MuttrcStack
+
+have ALL commands have data pointing to their *Module*
+	handler function
+		calls parser function -> struct CommandXData[]
+		validates it
+		saves it to the *Module* data
+	no global variables
+	all parses are testable
 

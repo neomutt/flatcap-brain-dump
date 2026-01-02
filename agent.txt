@@ -180,12 +180,6 @@ source! (no error if not exist)
 source -d dir (all of dir/*.rc or *.conf)?
 	alphabetical / collate
 
-action/build test for make (un)install
-	check for zero files afterwards
-(un)install dir
-	make DESTDIR=$HOME/work/neo-install install
-	make DESTDIR=$HOME/work/neo-install uninstall
-
 update buf_at() to take negative offsets
 	-1 == end of string
 	find uses, look for buf_len() or buf->dsize
@@ -196,4 +190,8 @@ create buf_tell() cf buf_seek()
 upgrade buf_seek() to match fseek()
 	using SEEK_SET, SEEK_CUR, or SEEK_END (<stdio.h>)
 	or our own BUF_ enums
+
+doxy:
+	https://neomutt.org/code/annotated.html		some missing descriptions for structs
+	find all un-doc'd objects in code and AI them!
 
