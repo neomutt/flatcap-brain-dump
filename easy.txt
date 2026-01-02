@@ -271,3 +271,6 @@ third has a macro, could be trickier
 Easy: postpone question to three-way
 	(S)ave, (D)elete, (C)ancel
 
+while -> FOREACH_SAFE
+	mutt_pattern_free()
+

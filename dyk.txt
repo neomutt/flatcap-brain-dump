@@ -224,3 +224,10 @@ neomutt -f FOLDER -e "push '<search>~i MSG'<enter><display-message>"
 if you fill in FOLDER and MSG (Message-Id)
 you could finesse it, by adding  -e "set sidebar_visible = no"  -e "set pager_index_lines = 0"   -e "macro pager q '<exit><exit>'"  (quick exit!)
 
+users: vim 'formatlistpat'
+	set flp=^\\(Cc\\\|To\\\|From\\\|Bcc\\\|Subject\\\|Reply-To\\):
+	extend to all common headers
+	include vim's default settings
+	need to set 'ai'
+	formatoptions needs 'n'
+

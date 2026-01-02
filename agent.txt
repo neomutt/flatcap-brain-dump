@@ -164,6 +164,7 @@ security warnings
 	 1 Uncontrolled process operation
 
 turn MoreArgs, MoreArgsF into ONE function and write tests for it
+	SKIPWS too
 	generate tests first
 	then convert to functions
 	then merge functions
@@ -179,6 +180,19 @@ source! (no error if not exist)
 		sort of implies that it'll quieten all errors from the source'd file
 source -d dir (all of dir/*.rc or *.conf)?
 	alphabetical / collate
+	or `source dir.d` (.d significant) -> find all children or just '*.rc'
+muttrc ifdef
+	/file absolute
+	./file relative source
+"source" command relative to $cwd or previous file
+source DIR
+	=> all children
+source command -- allow wildcards
+	fits in nicely with ifndef
+	or 'source_dir' command to read all contents
+	or "source dir" to read all contents
+	recursive option?
+	recursive by default?
 
 update buf_at() to take negative offsets
 	-1 == end of string
@@ -194,4 +208,76 @@ upgrade buf_seek() to match fseek()
 doxy:
 	https://neomutt.org/code/annotated.html		some missing descriptions for structs
 	find all un-doc'd objects in code and AI them!
+
+rename *_buffer_*() functions to buf, or strip buffer entirely
+	mutt_b64_buffer_decode (3)
+		mutt_b64_decode (5)
+	mutt_b64_buffer_encode (4)
+		mutt_b64_encode (8)
+	test_mutt_b64_buffer_decode
+	test_mutt_b64_buffer_encode
+	mutt_socket_buffer_readln (2)
+		mutt_socket_readln (19)
+	mutt_socket_buffer_readln_d (1)
+		mutt_socket_readln_d (12)
+find all functions with a Buffer parameter
+
+refactor "not reached"
+	8	ag "not reached"
+
+find potential places for struct Buffer
+	691	ag "([a-z_]+(->[a-z_]+)*), sizeof\(\1\)"
+	37	ag "([a-z_]+(->[a-z_]+)*)-\>data, \1-\>dsize"
+
+EBNF for all 87 commands?
+*read* folder_format issue https://github.com/neomutt/neomutt/issues/4170
+
+doxy: next big area for coverage?
+	members 76%
+	defines 40%
+	check stats
+	100% structs.svg (247)
+		247 struct
+		40 ARRAY_HEAD SLIST_HEAD STAILQ_HEAD TAILQ_HEAD
+	100% pages.svg
+	100% globals.svg
+	100% functions.svg
+	100% enums.svg
+	76%  members.svg
+	40%  defines.svg
+
+:changelog ?
+	read from /usr/share/doc/neomutt
+
+prep dyk
+	need doc repo for saving emails
+
+devel guide: "how to bisect"
+	target audience: developer with basic git understanding
+	and ability to build neomutt
+
+add "Add profile picture" to welcome letter
+add build and analysis pages to welcome email
+	revamp newbie page
+collate all my welcome emails
+	generate single webpage
+
+repo/org .github README
+	web/readme bigger deal about starring/donation
+	IPA NeoMutt /ˌniːoʊ/ /mʌt/
+
+Misc
+	where are the "source" relative docs?
+	alias_file, certificate_file, etc aren't relative
+		alias_file
+		certificate_file
+		debug_file
+		history_file
+		ssl_ca_certificates_file
+	relative to what?
+	all *_files relative to:
+	1) the source file they're read from
+	2) current working directory
+	3) User's muttrc? NO
+	4) $XDG_CACHE_HOME? NO
 

@@ -986,6 +986,7 @@ how to extract libmenu, so that it can be independently tested
 split up multiple assignments
         grep " = [^,;]* = "
         grep " = [^,;]* [!=]= "
+use clang-tidy to find them
 
 test our more toolbox distros
 	https://github.com/toolbx-images/images
@@ -2055,22 +2056,6 @@ need to categorise all Config
 	447 config variables
 :set -h (help) other options for dump flags, including inheritance
 
-my copyright
-	sort/wrap Makefiles/auto.def
-
-after dlg-local data, move src into dlg dirs
-	(index, pager, sidebar)
-	browser
-	addrbook
-	history
-	compose
-	remailer
-	query
-	recvattach
-	+ncrypt * 3
-	+conn * 2
-	+autocrypt
-
 mutt_config.c, config def
 	convert comment to markdown *string*
 	support: bold, italic, paragraphs, lists, tables
@@ -2632,9 +2617,6 @@ log macro actions carefully
 
 log all hooks
 
-$folder = /dev/null
-	leads to crash (not repeated)
-
 config: can't un*set* enum!
 
 postponed docs don't contain the work "draft"!
@@ -2645,10 +2627,6 @@ M must exist
 	what about "sent" or "trash" folders?  which might not
 	option to create (silently) missing Mailboxes?
 	could be messy
-
-help: macros with descriptions are truncated
-	can't see full-text
-	need wrapping
 
 cli(debug) mailbox dump, print index to screen width formatted
 	coloured, batch mode, retval like -z, -Z
@@ -3023,9 +3001,6 @@ after completion API
 	X-Labels define separator
 	fix completion
 
-easy? while -> FOREACH_SAFE
-	mutt_pattern_free()
-
 syntax highlighting
 	group is highlighted in 'lists' but not 'subscribe'
 	lists     -group mutt    mutt-users@mutt.org
@@ -3074,8 +3049,6 @@ coverage -> web
 	easy tasks for test -> 100% fn/code cov
 	NO coveralls instead
 	shield for each lib: mutt, config, email, addr
-
-MoreArgs() 74 uses -> function?
 
 README
 	dev section
@@ -3465,8 +3438,6 @@ no pattern to search by label (or regex)
 when checking for new mail, distinguish local from remote (cheap from costly)?
 attach style sheet to email - mutt color commands - email-specific
 
-announce <named-mailboxes> on dev ml
-
 imap A has Config:
 	"user" inherited from "imap_user"
 	"imap_user" synonym for "A:user"
@@ -3529,15 +3500,8 @@ maildir:
 
 twitter "Re:" -> default config?
 
-users
-	set flp=^\\(Cc\\\|To\\\|From\\\|Bcc\\\|Subject\\\|Reply-To\\):
-	extend to all common headers
-	include vim's default settings
-	need to set 'ai'
-	formatoptions needs 'n'
-
 create a coding 'charter'
-	what's expectedzh_CN.utf-8zh_CN.utf-8zh_CN.utf-8
+	what's expected
 		from you
 		from us
 
@@ -3616,7 +3580,6 @@ bug
 
 packagers
 	gpgme dep?  enable by default
-	deprecate old ssl/tls versions
 
 struct Message
 	where does this fit into the email?
@@ -3685,10 +3648,6 @@ mailing lists
 	a general command for lists
 	"Current list: (s)ubscribe, (u)nsubscribe, (p)ost"
 
-release notes
-	add commit count?
-	to show our busyness
-
 option for insertable horizontal divider line in the index
 	(simply underline (or overline) one line of text)
 	configurable positions, e.g
@@ -3707,9 +3666,6 @@ use neomutt as a viewer/pager for emails
 
 remove umask code from mh.c
 	redundant due to `umask(077)` in main.c
-
-State object -> library
-	excluding AttachmentMarker
 
 use packagers' team to announce build changes
 
@@ -3820,7 +3776,6 @@ analysis
 	add uncrustify
 	add lcov / coveralls
 	codespell
-	lgtm.com - https://lgtm.com/projects/g/neomutt/neomutt/
 	-O2 -D_FORTIFY_SOURCE=2
 
 X-Labels lost if "unignore X-Label" isn't used!
@@ -3832,9 +3787,7 @@ move mkstemp, fmemopen, O_TMPFILE to mutt/temp.c?
 
 file locking - could log the caller
 
-upstream synonyms
 upstream implement message Q size
-upstream add synonym sort method
 
 mutt_warning => instructions to avoid in future
 
@@ -4083,10 +4036,6 @@ do we need a config URI object?
 	store raw after relevant encoding
 	split into fields for code
 
-connecting to gmail with options:
-	-gnutls and -ssl causes a crash in mutt_conn_find()
-	check
-
 restart POP after connection is broken/lost (like IMAP)
 
 option to make buffer auto-NUL-terminate
@@ -4166,10 +4115,6 @@ buffer_swap()?
 who frees the charset hook regex lists?
 hook.c?
 
-make the shutdown cleanup (freeing memory, etc)
-	#ifdef DEBUG
-	nice to check, but not required for general users
-
 configure devel options (for beta features)
 	./configure --devel-FEATURE
 	after time they become --FEATURE or built-in
@@ -4187,8 +4132,6 @@ if config (mutt_config.c) is de-centralised and docs are sectioned
 teams
 	distro/X  X=debian,homebrew,etc
 	code/X    X=notmuch,reviewers,etc
-
-deprecate AUR repo & notify
 
 drop mailmap, use management one
 
@@ -4249,7 +4192,7 @@ audit/testing/coverage
 	vars defined ∀ inputs, doc'd coverage
 	test code
 
-"set ?imap_pass" show sensitive data
+"set imap_pass?" shows sensitive data
 	what could we do about it?
 
 neomutt user maintenance
@@ -4297,7 +4240,7 @@ run gpg signature testing asynchronously (when opening email)
 	would need placeholder in the email
 	would need to redraw/render the email after
 	thread safety
-
+test/test_common.h:33:
 libfile
 	rc = read_into_buffer(filename, buf, len, *fp)
 	if fp is not given the file will be opened, read, closed
@@ -4319,20 +4262,6 @@ all global variables should be set using the config mechanism
 	this means we need fake "config" items
 	(tagged to be invisible to the user)
 	like all the "pseudo" bool values
-
-lib/address.c and rfc822.c
-	NOBODY is using error codes:
-		ERR_BAD_ADDR_SPEC
-		ERR_BAD_ROUTE
-		ERR_BAD_ROUTE_ADDR
-		ERR_MEMORY
-		ERR_MISMATCH_PAREN
-		ERR_MISMATCH_QUOTE
-	or globals:
-		RFC822Error
-		rfc822_error()
-	functions aren't resetting error code on success
-drop them?
 
 research all RFCs relating to email, etc
 	graph of dependencies / obsoletes
@@ -4490,11 +4419,6 @@ Decide
 		the ones we really want
 	new variable type MAILBOX
 		could be a "/path" or "+mailbox"
-
-Searches
-	list all GH matches
-	10m - classify
-		old, config, new, different
 
 add release count to changes doc on web
 
@@ -4926,14 +4850,9 @@ collect useful tools in neomutt org:
 	khal
 	calcurse - curses calendar app
 
-web: features list page
-	add upstream column
-
 How to Use Mutt doc
 	step 1 - select your source
 		POP, IMAP, local, offlineimap/alternative
-
-web: changes page -- since/relative to mutt
 
 web: misc page for extra options that aren't in features
 
@@ -5071,9 +4990,6 @@ admins need to make a release in 1 week's time -- practice
 	run tests
 	etc
 
-can we workaround the case of gpgme + self sign / smime?
-	but use it otherwise?
-
 imap/pop ∀ devs
 	no outgoing
 	incoming to user@dev.neomutt.org
@@ -5192,12 +5108,6 @@ forgotten-attachments: German example:
 
 turn mutt into a random email generator
 
-startup-hook
-	immediately before displaying the index for the first time
-	useful for testing
-shutdown-hook
-	before closing mailbox connections
-
 Need strategy for unrepeatable/too-little-info bugs/crashes
 
 what are our killer features?
@@ -5311,10 +5221,6 @@ NeoMutt signing key on
 	github? where?
 
 web update about.html : done so far
-
-change sort option
-	thread becomes a prefix
-	e.g. "thread-date"
 
 fmemopen -- when fixed, default to off
 
@@ -5518,12 +5424,6 @@ mutt tips on startup
 macro instruction <no-history> like vim's <silent>
 	some macros end up in the log
 
-'ifdef' improvement
-	ability to check mutt version number
-	ifdef VERSION == X
-	ifdef VERSION > Y
-	like vim
-
 new-mail => dbus as a goal, see dgc
 
 doc changes/todo list for limit-current-thread
@@ -5661,8 +5561,6 @@ which panels *accept* focus?
 	pager window
 	<tab> to switch?
 	or <left>, <right>?
-
-website: some bug-fixes have gone away -> success page?
 
 test email reply to issues, etc
 	markdown? NO
@@ -5815,8 +5713,6 @@ cache for formatted strings?
 	too much can change
 		index: flags, folded-ness
 		sidebar: all numbers => cache invalid
-
-which config items require frequent and costly interpretation?
 
 data source LDAP
 	address book? -- different grouping/hierarchy?
