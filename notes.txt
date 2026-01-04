@@ -1,3 +1,18 @@
+change reset_tilde to just search all config
+	"reset_tilde - Temporary measure" -- is it still required?
+	to save keeping list up-to-date
+	will get confused by patterns, e.g. $default_hook
+do we need to add: (also have defaults of ~/...)
+	alias_file
+	autocrypt_dir
+	certificate_file
+	debug_file
+	history_file
+	mailcap_path
+	newsrc
+	news_cache_dir
+	signature
+
 run doxy action on PRs, but not on drafts
 
 *specify*

@@ -71,8 +71,6 @@ split up send() to accommodate bg_edit
 
 compose: move Body wrapping into compose
 
-update translations as fuzzy
-
 compose: small fns #3222
 	<move-to-top>
 		simple within a group
@@ -123,9 +121,6 @@ why are these 3 charset config not using DT_SLIST?
 	mutt_config.c:443:13: { "config_charset",     DT_STRING,                              0,          0, charset_validator,
 	nntp/config.c:67:17:  { "newsgroups_charset", DT_STRING,                              IP "utf-8", 0, charset_validator,
 
-change reset_tilde to just search all config
-	to save keeping list up-to-date
-
 bash completion for neomutt, based on: /usr/share/bash-completion/completions/mutt
 	∀ cli options
 	for aliases too?
@@ -164,7 +159,7 @@ security warnings
 	 1 Uncontrolled process operation
 
 turn MoreArgs, MoreArgsF into ONE function and write tests for it
-	SKIPWS too
+	SKIPWS too?
 	generate tests first
 	then convert to functions
 	then merge functions
@@ -205,22 +200,20 @@ upgrade buf_seek() to match fseek()
 	using SEEK_SET, SEEK_CUR, or SEEK_END (<stdio.h>)
 	or our own BUF_ enums
 
-doxy:
-	https://neomutt.org/code/annotated.html		some missing descriptions for structs
-	find all un-doc'd objects in code and AI them!
-
 rename *_buffer_*() functions to buf, or strip buffer entirely
-	mutt_b64_buffer_decode (3)
-		mutt_b64_decode (5)
-	mutt_b64_buffer_encode (4)
-		mutt_b64_encode (8)
-	test_mutt_b64_buffer_decode
-	test_mutt_b64_buffer_encode
-	mutt_socket_buffer_readln (2)
-		mutt_socket_readln (19)
-	mutt_socket_buffer_readln_d (1)
-		mutt_socket_readln_d (12)
+rename *_buffer_*() functions to buf, or strip buffer entirely
+3	mutt_b64_buffer_decode
+5		mutt_b64_decode
+4	mutt_b64_buffer_encode
+8		mutt_b64_encode
+2	mutt_socket_buffer_readln
+19		mutt_socket_readln
+1	mutt_socket_buffer_readln_d
+12		mutt_socket_readln_d
+test_mutt_b64_buffer_decode
+test_mutt_b64_buffer_encode
 find all functions with a Buffer parameter
+	some functions might **append** to the dest buffer
 
 refactor "not reached"
 	8	ag "not reached"
@@ -229,22 +222,11 @@ find potential places for struct Buffer
 	691	ag "([a-z_]+(->[a-z_]+)*), sizeof\(\1\)"
 	37	ag "([a-z_]+(->[a-z_]+)*)-\>data, \1-\>dsize"
 
-EBNF for all 87 commands?
+EBNF for all 88 commands?
 *read* folder_format issue https://github.com/neomutt/neomutt/issues/4170
 
 doxy: next big area for coverage?
-	members 76%
 	defines 40%
-	check stats
-	100% structs.svg (247)
-		247 struct
-		40 ARRAY_HEAD SLIST_HEAD STAILQ_HEAD TAILQ_HEAD
-	100% pages.svg
-	100% globals.svg
-	100% functions.svg
-	100% enums.svg
-	76%  members.svg
-	40%  defines.svg
 
 :changelog ?
 	read from /usr/share/doc/neomutt
