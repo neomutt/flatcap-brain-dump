@@ -863,3 +863,23 @@ deep tree
 	color index #8080ff default "~>(~>(~>(~>(~>(~m .)))))"
 	color index #80ff80 default "~>(~>(~>(~>(~>(~>(~m .))))))"
 
+ChangeLog.md is markdown so style it as much
+	add category emojis
+	collapse old releases?
+
+find all (neo)mutt guides on the web
+	get AI to summarise them / improve them
+
+after [linear] create variant of -Z / -z that dumps to stdout
+	no curses, just check the mailboxes; use $index_format
+	width of $COLUMNS or 80
+	print mailbox name (bold)
+	abbreviate with $folder
+	print account name (if multiple)
+after [linear] add cli Lua scripting query option
+	allows users to construct complex queries
+	start up neomutt, sans GUI
+	run lua script
+	allow lua to navigate, calculate and output to stdout
+	then exit
+
