@@ -223,7 +223,6 @@ find potential places for struct Buffer
 	37	ag "([a-z_]+(->[a-z_]+)*)-\>data, \1-\>dsize"
 
 EBNF for all 88 commands?
-*read* folder_format issue https://github.com/neomutt/neomutt/issues/4170
 
 doxy: next big area for coverage?
 	defines 40%
@@ -262,4 +261,27 @@ Misc
 	2) current working directory
 	3) User's muttrc? NO
 	4) $XDG_CACHE_HOME? NO
+
+how to build neomutt
+	w.r.t. neomutt -v
+	dependencies
+
+summarise the last year's commits
+	then weekly
+
+take my original config docs, plus the diagrams and improve them
+
+∀ command, list:
+	where its data is ultimately stored
+	who owns the data
+	1	Alias Commands (2): alias, unalias
+	2	Hook Commands (18): Various hooks like account-hook, folder-hook, send-hook, etc.
+	3	Key Binding Commands (6): bind, unbind, macro, unmacro, exec, push
+	4	Configuration Commands (10): set, unset, reset, toggle, setenv, unsetenv, etc.
+	5	List Management Commands (12): Various list commands and their "un" counterparts
+	6	Hook/Pattern Commands (15): Score, spam, color, ignore commands
+	7	Mailbox Commands (3): mailboxes, named-mailboxes, unmailboxes
+	8	Utility Commands (7): source, echo, cd, version, etc.
+	9	Conditional Commands (4): ifdef, ifndef, finish
+	10	Other Commands (12): Remaining specialized commands
 
