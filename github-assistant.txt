@@ -109,6 +109,8 @@ move #123 number into %L2 (strip from subject)
 	or if it's the first email visible in the thread
 		=> observing Menu navigation changes!
 
+mark local email as *read* if item has been read on GitHub.  HOW?
+
 14063 Subscribed <subscribed@noreply.github.com>
 10739 Your activity <your_activity@noreply.github.com>
  3916 Push <push@noreply.github.com>

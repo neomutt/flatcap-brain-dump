@@ -640,8 +640,6 @@ browser auto-tag behaviour -- need list of every Menu
 	All three remove the duplicated `-vv` reference and merge the warranty and redistribution statements while remaining consistent with standard GPL-style notices.
 
 deprecate
-	virtual-mailboxes
-	unvirtual-mailboxes
 	virtual_spoolfile
 	OP_SIDEBAR_TOGGLE_VIRTUAL
 
@@ -862,6 +860,10 @@ deep tree
 	color index #80ffff default "~>(~>(~>(~>(~m .))))"
 	color index #8080ff default "~>(~>(~>(~>(~>(~m .)))))"
 	color index #80ff80 default "~>(~>(~>(~>(~>(~>(~m .))))))"
+	difficult to evaluate -- needs to know current selection
+	could define these objects, as they're useful
+		index_current_thread
+		index_parent{1,2,3,4,5,6,7,8,9}
 
 ChangeLog.md is markdown so style it as much
 	add category emojis
@@ -882,4 +884,28 @@ after [linear] add cli Lua scripting query option
 	run lua script
 	allow lua to navigate, calculate and output to stdout
 	then exit
+
+expando/serial.c:56:3:           1262 Commented-out code
+expando/serial.c:209:3:          1261 Commented-out code
+	plus lots more 'this shouldn't happen's
+
+ubuntu 24.04 missing `libxml2-utils` from min install
+	needed for docs
+	configure doesn't distinguish between missing binary
+	and missing docs
+
+change default keybindings to include a flag
+	DEFAULT -- this should be restored after "unbind *"
+	does this work?
+	we set default bindings at startup,
+	but the menus don't keep a handle to the data
+probably won't work
+	a Menu could add multiple "default bindings"
+	the user could unbind them all
+	the Menu would have to keep an array of Bindings lists
+
+pattern completion -> pattern help page not documented
+	need to extend to support other pattern leaders
+	~<tab> works, =<tab>, %<tab> don't
+	see complete_pattern()
 
