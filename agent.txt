@@ -285,3 +285,22 @@ take my original config docs, plus the diagrams and improve them
 	9	Conditional Commands (4): ifdef, ifndef, finish
 	10	Other Commands (12): Remaining specialized commands
 
+using `unbind` as a template
+	split up all commands
+	COMMAND-NAME ->
+		parse_command_name()		main handler
+		parse_command_name_args()	split line into tokens
+			-> struct ParseCommandNameArgs
+		parse_command_name_execute()	do the work
+	write tests for all _args() functions
+		100% coverage
+	add _args() to fuzzer?
+	might affect parsing
+	`mailboxes good1 bad good2; other command`
+	current parser fails at 'bad' and stops parsing
+	new parser would try to parse until EOL or `;`
+		this would allow the option of executing subsequent commands
+		probably best to stop on failed command
+	arg parser should record where in the statement the arg came from
+	error at line X, column Y
+

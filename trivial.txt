@@ -279,8 +279,6 @@ Commits as of 2026-01-01
 Total		2203	  11013
 		 181	   2801		Post Kevin
 
-drop 'i' (index?) binding for <quit>/<exit> for pager
-	non-intuitive
 in help use 'q' <quit> where data is read-only, e.g. info pages
 	accept 'x' <exit> also
 elsewhere
@@ -305,10 +303,6 @@ Config system
 	there're a finite number of ways the config system can fail
 	possible for the 'generic' failures, "Option %s may not be negative"
 	but setting a regex or expando can return custom errors
-
-expando long-text -- review
-	esp, "flags2" !
-	need docs -- how?
 
 colour - what happens if you set both (simple/palette) and truecolor?
 	we want to share both; if $color_directcolor is set then use
@@ -361,8 +355,6 @@ increasing subtlety!
 
 filter synonyms and deprecated out of get_elem_list()
 	so that the callers don't have to
-
-test CLI params of "" (which mutt_strdup() will turn into NULL)
 
 pass Keymaps to km_init() and all children?
 	where else is it used?
@@ -746,9 +738,6 @@ for :commands given with zero args
 	trap ":command?<enter>" at parse phase, so each handler doesn't have to
 	handlers will need to deal with ":command<enter>"
 
-commands have both `-` (hyphen) and `_` (underscore)
-	migrate to `-` (hyphen) and accept either (or none)
-
 add a 'commands' page to `?` <help> with a one-liner description of each
 	or :help <command>
 
@@ -811,9 +800,6 @@ BufferPool
 	rather than buf_pool_release()
 	to avoid "Uncontrolled data used in path expression" false positives
 
-command help missing <>s
-	tag-transforms <tag> <transformed-string> { tag transformed-string ... }
-
 command help, fix?
 	mailboxes [[ -label <label> ] | -nolabel ] [[ -notify | -nonotify ] [ -poll | -nopoll ] <mailbox> ] [ ... ]
 	mailboxes [[ -label <label> ] | -nolabel ] [ -notify | -nonotify ] [ -poll | -nopoll ] <mailbox> [ ... ]
@@ -835,9 +821,6 @@ have ALL commands have data pointing to their *Module*
 add AI dev docs to docs.neomutt.org
 
 pygmentize create custom lexer for neomuttrc for website
-
-revert browser fix in main
-apply autosetup fix
 
 create a way to have colour patterns applied dynamically
 	~(X) => the THREAD of pattern X
@@ -865,10 +848,6 @@ deep tree
 		index_current_thread
 		index_parent{1,2,3,4,5,6,7,8,9}
 
-ChangeLog.md is markdown so style it as much
-	add category emojis
-	collapse old releases?
-
 find all (neo)mutt guides on the web
 	get AI to summarise them / improve them
 
@@ -885,15 +864,6 @@ after [linear] add cli Lua scripting query option
 	allow lua to navigate, calculate and output to stdout
 	then exit
 
-expando/serial.c:56:3:           1262 Commented-out code
-expando/serial.c:209:3:          1261 Commented-out code
-	plus lots more 'this shouldn't happen's
-
-ubuntu 24.04 missing `libxml2-utils` from min install
-	needed for docs
-	configure doesn't distinguish between missing binary
-	and missing docs
-
 change default keybindings to include a flag
 	DEFAULT -- this should be restored after "unbind *"
 	does this work?
@@ -908,4 +878,40 @@ pattern completion -> pattern help page not documented
 	need to extend to support other pattern leaders
 	~<tab> works, =<tab>, %<tab> don't
 	see complete_pattern()
+general auto-completion docs?
+	CompleteOps::complete()
+	alias/complete.c:39:61:    complete_alias_complete - Complete an Alias
+	alias/complete.c:68:64:    complete_alias_query    - Complete an Alias Query
+	alias/complete.c:93:59:    complete_alias          - Alias completion wrapper
+	notmuch/complete.c:211:62: complete_nm_query       - Complete a Notmuch Query
+	notmuch/complete.c:228:58: complete_nm_tag         - Complete a Notmuch Tag
+	pattern/complete.c:39:63:  complete_pattern        - Complete a NeoMutt Pattern
+	browser/complete.c:43:57:  complete_file_mbox      - Complete a Mailbox
+	browser/complete.c:110:60: complete_file_simple    - Complete a filename
+	complete/helpers.c:439:63: complete_command        - Complete a NeoMutt Command
+	complete/helpers.c:464:51: complete_label          - Complete a label
+doc capabilities/limitations of each handler
+
+merge alias/window refactorings and push to coverity
+
+fix setenv to use shell format XYZ=VALUE
+should be easy enough to separate the two syntaxes when parsing
+
+test CLI params of "" (which mutt_strdup() will turn into NULL)
+fuzz cli parsing, now it's a lib
+copilot create test cases
+
+post [linear] need to revisit Makefile link order
+
+liblog(ging)?
+	/mutt_logging.[ch]
+	mutt/mutt_logging.[ch]
+hmm... libmutt relies on logging and logging on libmutt
+
+publish test-lua-scripts repo
+	vet contents first
+	publish to flatcap, then move (ownership!)
+	readme
+	gpl v3.0+
+	post link to discussion
 
