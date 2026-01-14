@@ -1,0 +1,22 @@
+Upgrade parsing to eliminate global MuttrcStack
+
+It keeps track of the current file being processed
+and prevents infinite loops of config files.
+
+Create a MuttrcStack dynamically, where and when its needed.
+Then pass it through all the parsing functions.
+
+This gives the functions global-free knowledge about which file is being processed.
+Stack needs to keep track of line numbers too.
+The function can use buf_tell() to give the line location.
+	not yet implemented
+
+parse_ifdef() should pass the *entire* string to parse_rc_line(),
+	but leave Buffer:dptr after the `ifdef`
+	to allow correct line offsets
+
+some internal commands don't have a filename
+need some standard way to relay this
+
+an internal command could `source` other files which require full path tracking
+
