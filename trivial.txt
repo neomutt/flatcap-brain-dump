@@ -5,9 +5,6 @@ comment to avoid warning
 https://github.com/autozimu/LanguageClient-neovim
 https://people.freebsd.org/~gahr/lc.vim
 
-parse_tags_transformed - Parse a custom expando of the form, "%G?" where '?' is an alphabetic character.
-  	test '?' is [A-Za-z]?
-
 quick guides to
 	format strings
 	tagging
@@ -20,6 +17,7 @@ doc tags in alias, mail to user ml
 good first issue?
 	add tag-pattern to the browser -- useful for compose-attach
 		if multi-selection is allowed
+	fix auto-tag PR first
 
 attach refactor
 	libattach
@@ -111,8 +109,6 @@ group commands
 	subscribe    [ -group name ...]       regex [ regex ...]
 	unsubscribe  [ -group name ...] { * | regex ... }
 add syntax: <mail>@group to send to entire group?
-
-tests: check which dummy() {} functions are still needed
 
 docs/config
 	urls aren't linkified https://...
@@ -896,6 +892,7 @@ merge alias/window refactorings and push to coverity
 
 fix setenv to use shell format XYZ=VALUE
 should be easy enough to separate the two syntaxes when parsing
+	name: [a-zA-Z_][a-zA-Z0-9_]*
 
 test CLI params of "" (which mutt_strdup() will turn into NULL)
 fuzz cli parsing, now it's a lib
@@ -914,4 +911,38 @@ publish test-lua-scripts repo
 	readme
 	gpl v3.0+
 	post link to discussion
+
+different tmp files
+	Different tmpdir settings for drafts and attachments
+	https://gitlab.com/muttmua/mutt/-/issues/65
+- drafts should probably go to `$XDG_CACHE_HOME` (**not** `/var/tmp`);
+- truly temporary files should probably go to `$XDG_RUNTIME_DIR` (**not** `/tmp`).
+
+merge
+	buf_expand_path_regex buf_expand_path
+	mutt_pretty_mailbox buf_pretty_mailbox
+	mutt_save_path buf_save_path
+
+check doxy comments for
+	mutt_save_path - Turn an email address into a filename (for saving)
+	buf_save_path - Make a safe filename from an email address
+	mutt_safe_path - Make a safe filename from an email address
+
+check muttlib for functions with zero deps
+	and find a library for them
+
+recheck dependencies of libmutt
+
+analyse ∀ config options in /mutt_config.c
+	who uses them?
+	do they have a dedicated library/config
+
+move mview.c to libgui?
+
+pattern docs don't match pattern auto-completion help
+
+WKD
+	When sending encrypted mail, if keys are missing, fetch them from the network (WKD, DANE, etc)
+	https://gitlab.com/muttmua/mutt/-/issues/55
+	https://github.com/wiktor-k/mutt/commits/master
 

@@ -144,19 +144,20 @@ need neomutt glossary (search first)
 
 add more auto-completion
 
-security warnings
-	27 For loop variable changed in body
+security warnings (117)
+	30 For loop variable changed in body
 	26 Poorly documented large function
 	21 Local variable address stored in non-local memory
 	 9 Year field changed using an arithmetic operation without checking for leap year
+	 9 Uncontrolled data used in path expression
 	 8 Long switch case
-	 5 Uncontrolled data used in path expression
 	 3 Nested loops with same variable
 	 3 Futile conditional
 	 2 Time-of-check time-of-use filesystem race condition
 	 2 File created without restricting permissions
 	 2 Cleartext transmission of sensitive information
 	 1 Uncontrolled process operation
+	 1 Unbounded write
 
 turn MoreArgs, MoreArgsF into ONE function and write tests for it
 	SKIPWS too?
@@ -303,4 +304,15 @@ using `unbind` as a template
 		probably best to stop on failed command
 	arg parser should record where in the statement the arg came from
 	error at line X, column Y
+
+patterns: autocomplete for ~ = and %
+	need to extend the help descriptions to match
+	sufficent to say, 
+		~B EXPR          messages whose body or headers match EXPR
+		=B STRING        like `~B` but searches on the server
+	Misc in use:
+	- Group matches - `%C` `%L` `%c` `%e` `%f`
+	- IMAP matches  - `=/` `=B` `=b` `=h`
+
+setenv refactor with new syntax: `X=Y`
 
