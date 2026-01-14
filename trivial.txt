@@ -507,6 +507,7 @@ AI Usage
 archive/delete lots of repos
 	neomutt-old organization?
 	all repos are hidden to prevent google indexing them
+	gh repo archive SLUG
 
 themes
 	https://sphinx-themes.org/
@@ -905,11 +906,7 @@ liblog(ging)?
 	mutt/mutt_logging.[ch]
 hmm... libmutt relies on logging and logging on libmutt
 
-publish test-lua-scripts repo
-	vet contents first
-	publish to flatcap, then move (ownership!)
-	readme
-	gpl v3.0+
+test-lua-scripts repo
 	post link to discussion
 
 different tmp files
@@ -928,16 +925,11 @@ check doxy comments for
 	buf_save_path - Make a safe filename from an email address
 	mutt_safe_path - Make a safe filename from an email address
 
-check muttlib for functions with zero deps
-	and find a library for them
-
 recheck dependencies of libmutt
 
 analyse ∀ config options in /mutt_config.c
 	who uses them?
 	do they have a dedicated library/config
-
-move mview.c to libgui?
 
 pattern docs don't match pattern auto-completion help
 
