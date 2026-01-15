@@ -35,6 +35,8 @@ digraph callgraph {
 	mutt_startup_shutdown_hook [ label="mutt_startup_shutdown_hook()" ]
 	mutt_timeout_hook          [ label="mutt_timeout_hook()"          ]
 
+	{ rank=same mutt_account_hook mutt_folder_hook mutt_message_hook mutt_startup_shutdown_hook mutt_timeout_hook mutt_init_sys mutt_init_user }
+
 	// Parts of Parse System
 	node [ fillcolor="#ffffc0" ]
 	parse_ifdef           [ label="parse_ifdef()"           ]
@@ -44,26 +46,27 @@ digraph callgraph {
 	parse_XYZ             [ label="parse_XYZ()"             ]
 	source_rc             [ label="source_rc()"             ]
 
-	parse_source   -> source_rc
+	{ rank=same lua_cb_global_enter main_execute_commands mutt_enter_command parse_rc_line_cwd source_rc }
+
 	mutt_init_sys  -> source_rc
 	mutt_init_user -> source_rc
+	parse_source   -> source_rc [ color="#c00000" ]
 
 	lua_cb_global_enter   -> parse_rc_line
 	main_execute_commands -> parse_rc_line
 	mutt_enter_command    -> parse_rc_line
-	parse_ifdef           -> parse_rc_line
+	parse_ifdef           -> parse_rc_line [ color="#c00000" ]
 	parse_rc_line_cwd     -> parse_rc_line
 	source_rc             -> parse_rc_line
 
 	parse_rc_line -> parse_ifdef [ label="Command:parse()" ]
-	parse_rc_line -> parse_XYZ // [ label="Command:parse()" ]
-	parse_rc_line -> parse_source // [ label="Command:parse()" ]
+	parse_rc_line -> parse_XYZ
+	parse_rc_line -> parse_source
 
-	mutt_folder_hook -> parse_rc_line_cwd
-	mutt_message_hook -> parse_rc_line_cwd
-	mutt_account_hook -> parse_rc_line_cwd
-	mutt_timeout_hook -> parse_rc_line_cwd
+	mutt_account_hook          -> parse_rc_line_cwd
+	mutt_folder_hook           -> parse_rc_line_cwd
+	mutt_message_hook          -> parse_rc_line_cwd
 	mutt_startup_shutdown_hook -> parse_rc_line_cwd
-
+	mutt_timeout_hook          -> parse_rc_line_cwd
 
 }

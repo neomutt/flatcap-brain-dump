@@ -20,3 +20,82 @@ need some standard way to relay this
 
 an internal command could `source` other files which require full path tracking
 
+need to consider relative vs absolute paths
+
+have hooks store their config location
+	on a failed hook run, use config location in error message
+	already store file, for "relative" commands, just need line number
+
+what does the call stack look like for a `folder-hook`?
+	Internal	<change-folder> Internal
+	src1:line1	folder-hook 'source "../file.rc"'
+	src2:line2	good command; bad command; good command
+
+when parsing, keep a pointer to the command
+	for some errors, e.g. "too few arguments", point to the start of the command
+	for "too many arguments", point to extra arg
+	for "bad XYZ", point to "XYZ"
+
+Sample error:
+	file-name:num: Bad widget
+	Command good BADNESS good
+	             ^
+
+filename abbreviated using $cwd or $HOME
+
+do we have enough info to highlight *extent* of error?
+e.g.
+	file-name:num: Bad widget
+	Command good BADNESS good
+	             ^~~~~~~
+
+perhaps just higlight the whole token
+	simpler, more visible than just `^`
+
+could use Buffer.dptr to indicate error (for free)
+or create dedicated Error object
+	error message
+	source file
+	line number
+	column number (start)
+	column number (end)
+	error code
+
+Even if all this isn't displayed, it should be logged
+
+where/when does logging happen?
+	immediately
+		at parse time
+		at exec time
+where/when does error message get displayed?
+	at *external* command
+	caller may not be graphical
+	caller may not be interactive
+
+All Command / Config changes should cause notifications
+	parse_XYZ_exec() calls XYZ_update(data)
+		logging
+		notification
+		pure data update
+		no awareness of GUI
+
+probably need new update functions ∀ Commands that are data only
+
+Need list of ALL Command data
+Need notification types / hierarchy for ALL Command data
+
+where is data coming from?
+	external caller passes NeoMutt
+	parse_XYZ() extracts NeoMutt->data_XYZ -> struct XYZData
+	passes XYZData to parse_XYZ_exec()
+	struct XYZData has a `struct Notify` (parent NeoMutt.notify)
+
+unless Command encapsulates data. NO
+	=> one Command always has fixed data
+	no encapsulation
+
+Which Commands generate *data*?
+Which Commands generate only *effects*?
+	any?
+	`mailboxes`?
+

@@ -316,3 +316,6 @@ patterns: autocomplete for ~ = and %
 
 setenv refactor with new syntax: `X=Y`
 
+tell copilot about ARRAY_FOREACH() when removing items
+	and using FREE() which can trample on data
+

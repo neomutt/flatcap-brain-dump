@@ -326,6 +326,7 @@ find clean/dirty strwidth() / wcwidth() uses
 
 release: commit count
 	in folded section?
+	<summary>Release stats</summary>
 
 fold lines that don't match the search pattern
 	:set foldenable foldmethod=expr foldminlines=0 foldexpr=getline(v:lnum)!~@/
@@ -555,8 +556,6 @@ auto-completion
 
 ! <shell-escape>  allow Ctrl-D to cancel the prompt?
 	Ctrl-G already works
-
-help.c kill #include "protos.h"
 
 irc/mgedmin
 	(after doing a <tag-prefix><save-message>)
@@ -916,9 +915,19 @@ different tmp files
 - truly temporary files should probably go to `$XDG_RUNTIME_DIR` (**not** `/tmp`).
 
 merge
-	buf_expand_path_regex buf_expand_path
-	mutt_pretty_mailbox buf_pretty_mailbox
-	mutt_save_path buf_save_path
+	buf_expand_path -> buf_expand_path_regex
+		void buf_expand_path(struct Buffer *buf)
+		void buf_expand_path_regex(struct Buffer *buf, bool regex)
+
+	buf_pretty_mailbox -> mutt_pretty_mailbox
+		void buf_pretty_mailbox(struct Buffer *buf)
+		void mutt_pretty_mailbox(char *buf, size_t buflen)
+
+	mutt_safe_path -> buf_save_path
+		void mutt_safe_path(struct Buffer *dest, const struct Address *a)
+		void buf_save_path(struct Buffer *dest, const struct Address *a)
+	mutt_save_path
+		void mutt_save_path(char *buf, size_t buflen, const struct Address *addr)
 
 check doxy comments for
 	mutt_save_path - Turn an email address into a filename (for saving)
