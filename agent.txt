@@ -238,6 +238,8 @@ devel guide: "how to bisect"
 	target audience: developer with basic git understanding
 	and ability to build neomutt
 
+user guide: "how to bisect config"
+
 add "Add profile picture" to welcome letter
 add build and analysis pages to welcome email
 	revamp newbie page
@@ -318,4 +320,61 @@ setenv refactor with new syntax: `X=Y`
 
 tell copilot about ARRAY_FOREACH() when removing items
 	and using FREE() which can trample on data
+
+merge
+	buf_expand_path -> buf_expand_path_regex
+		void buf_expand_path(struct Buffer *buf)
+		void buf_expand_path_regex(struct Buffer *buf, bool regex)
+
+	buf_pretty_mailbox -> mutt_pretty_mailbox
+		void buf_pretty_mailbox(struct Buffer *buf)
+		void mutt_pretty_mailbox(char *buf, size_t buflen)
+
+	mutt_safe_path -> buf_save_path
+		void mutt_safe_path(struct Buffer *dest, const struct Address *a)
+		void buf_save_path(struct Buffer *dest, const struct Address *a)
+	mutt_save_path
+		void mutt_save_path(char *buf, size_t buflen, const struct Address *addr)
+
+apply it to flatcap-brain-dump
+	rules: group similar ideas together
+	never delete notes
+	mark duplicates
+	mark similar
+	mark obsolete
+	leave unknown/ambiguous notes
+	apply to `notebook.*` first?
+	or tidy existing notes first?
+	exclude work-files/ dir
+	sort by age
+	try to eliminate small files (few lines)
+	turn into a mind map!
+		Minder (better for beginners)
+		Freeplane (better for experts)
+	create a word cloud
+
+explain the docs build process to copilot
+and get it to suggest something better
+
+apply it to IRC logs
+	most asked questions?
+	common problems
+	common solutions
+	suggest help pages
+
+teach copilot about dialogs / functions
+	analyse and suggest missing functionality
+	differences in behaviour
+
+teach copilot how to run build/run the fuzzer
+	build uses clang
+	only fuzzing "common" areas, so min build, no docs
+	(with time limit)
+	-max_total_time=60
+
+teach copilot about cli usage and its tests
+	generate a library of valid, rational, cli inputs
+	create cli fuzzer
+
+create a corpus for each fuzzer
 

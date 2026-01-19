@@ -914,21 +914,6 @@ different tmp files
 - drafts should probably go to `$XDG_CACHE_HOME` (**not** `/var/tmp`);
 - truly temporary files should probably go to `$XDG_RUNTIME_DIR` (**not** `/tmp`).
 
-merge
-	buf_expand_path -> buf_expand_path_regex
-		void buf_expand_path(struct Buffer *buf)
-		void buf_expand_path_regex(struct Buffer *buf, bool regex)
-
-	buf_pretty_mailbox -> mutt_pretty_mailbox
-		void buf_pretty_mailbox(struct Buffer *buf)
-		void mutt_pretty_mailbox(char *buf, size_t buflen)
-
-	mutt_safe_path -> buf_save_path
-		void mutt_safe_path(struct Buffer *dest, const struct Address *a)
-		void buf_save_path(struct Buffer *dest, const struct Address *a)
-	mutt_save_path
-		void mutt_save_path(char *buf, size_t buflen, const struct Address *addr)
-
 check doxy comments for
 	mutt_save_path - Turn an email address into a filename (for saving)
 	buf_save_path - Make a safe filename from an email address
@@ -939,11 +924,50 @@ recheck dependencies of libmutt
 analyse ∀ config options in /mutt_config.c
 	who uses them?
 	do they have a dedicated library/config
+	suggest helper functions
+	suggest encapsulation
 
 pattern docs don't match pattern auto-completion help
+	cf mutt
 
 WKD
 	When sending encrypted mail, if keys are missing, fetch them from the network (WKD, DANE, etc)
 	https://gitlab.com/muttmua/mutt/-/issues/55
 	https://github.com/wiktor-k/mutt/commits/master
+
+POST copilot feature discoverability ideas in discussion
+	ping __monty__
+
+:help
+	need modules to register themselves
+	existing info: bind, color, hooks, macro, set, setenv, version
+
+Create a ParseContext, easily extendable later
+	Stack of
+		current file
+		current line number
+		(or internal command from user)
+		(or hook triggered by user)
+	Error
+		Message
+		file
+		line number
+		column start
+		column end (opt)
+		error code
+No, separate objects
+
+history could do with a <limit> option
+	or live search/filter
+
+website repo
+	delete branches on github
+
+regen web man pages
+
+fuzzer: try fuzzing with ASAN
+	define-append CFLAGS -fsanitize=fuzzer,asan
+	define-append LDFLAGS -fsanitize=fuzzer,asan
+	-max_total_time=60
+	https://llvm.org/docs/LibFuzzer.html
 

@@ -96,6 +96,6 @@ unless Command encapsulates data. NO
 
 Which Commands generate *data*?
 Which Commands generate only *effects*?
-	any?
-	`mailboxes`?
+	mailboxes, cd, hooks, version
+	others?
 
