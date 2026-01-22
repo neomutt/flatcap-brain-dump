@@ -378,3 +378,8 @@ teach copilot about cli usage and its tests
 
 create a corpus for each fuzzer
 
+create fuzzer for config type parsing
+
+suggest/create dictionary file for fuzzers
+	lists of expected keywords
+

@@ -99,3 +99,18 @@ Which Commands generate only *effects*?
 	mailboxes, cd, hooks, version
 	others?
 
+Create a ParseContext, easily extendable later
+	Stack of
+		current file
+		current line number
+		(or internal command from user)
+		(or hook triggered by user)
+	Error
+		Message
+		file
+		line number
+		column start
+		column end (opt)
+		error code
+No, separate objects
+

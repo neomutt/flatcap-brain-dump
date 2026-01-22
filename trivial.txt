@@ -845,6 +845,9 @@ deep tree
 		index_parent{1,2,3,4,5,6,7,8,9}
 
 find all (neo)mutt guides on the web
+	put them all in a temp private repo
+	along with all our docs
+		guide, man pages, dyk tips
 	get AI to summarise them / improve them
 
 after [linear] create variant of -Z / -z that dumps to stdout
@@ -887,16 +890,10 @@ general auto-completion docs?
 	complete/helpers.c:439:63: complete_command        - Complete a NeoMutt Command
 	complete/helpers.c:464:51: complete_label          - Complete a label
 doc capabilities/limitations of each handler
+pattern docs don't match pattern auto-completion help
+	cf mutt
 
 merge alias/window refactorings and push to coverity
-
-fix setenv to use shell format XYZ=VALUE
-should be easy enough to separate the two syntaxes when parsing
-	name: [a-zA-Z_][a-zA-Z0-9_]*
-
-test CLI params of "" (which mutt_strdup() will turn into NULL)
-fuzz cli parsing, now it's a lib
-copilot create test cases
 
 post [linear] need to revisit Makefile link order
 
@@ -907,6 +904,7 @@ hmm... libmutt relies on logging and logging on libmutt
 
 test-lua-scripts repo
 	post link to discussion
+	rebase [lua] first
 
 different tmp files
 	Different tmpdir settings for drafts and attachments
@@ -927,9 +925,6 @@ analyse ∀ config options in /mutt_config.c
 	suggest helper functions
 	suggest encapsulation
 
-pattern docs don't match pattern auto-completion help
-	cf mutt
-
 WKD
 	When sending encrypted mail, if keys are missing, fetch them from the network (WKD, DANE, etc)
 	https://gitlab.com/muttmua/mutt/-/issues/55
@@ -941,33 +936,31 @@ POST copilot feature discoverability ideas in discussion
 :help
 	need modules to register themselves
 	existing info: bind, color, hooks, macro, set, setenv, version
-
-Create a ParseContext, easily extendable later
-	Stack of
-		current file
-		current line number
-		(or internal command from user)
-		(or hook triggered by user)
-	Error
-		Message
-		file
-		line number
-		column start
-		column end (opt)
-		error code
-No, separate objects
+	add: about, changelog, tips, dyk
+	<help> / `?` equivalent to `help keys`?
+		how is this dialog-specific?
 
 history could do with a <limit> option
 	or live search/filter
-
-website repo
-	delete branches on github
-
-regen web man pages
+	need way to extract code to apply it elsewhere
+	need way to generically mark objects (in)visible
+need API to marshall data - libfilter or liblimit
+	get_text() -- cache it
+	mark_visible(bool)
 
 fuzzer: try fuzzing with ASAN
-	define-append CFLAGS -fsanitize=fuzzer,asan
-	define-append LDFLAGS -fsanitize=fuzzer,asan
-	-max_total_time=60
+	define-append CFLAGS -fsanitize=fuzzer,address
+	define-append LDFLAGS -fsanitize=fuzzer,address
 	https://llvm.org/docs/LibFuzzer.html
+	asan doesn't show up in `ldd` output
+	nm -D fuzz/cli-fuzz 2>/dev/null | grep -E '(__asan_|LLVMFuzzerTestOneInput|__ubsan_)'
+
+update cifuzz target with cli fuzzer
+	-max_total_time=60
+
+change mutt_make_version() to just return the *version* not "NeoMutt "
+	Some callers can choose to display "NeoMutt " if they wish
+	change $status_format to be either:
+		"NeoMutt %v ..."
+		"%v ..."
 
