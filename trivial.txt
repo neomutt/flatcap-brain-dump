@@ -923,3 +923,31 @@ poor error message for
 	neomutt -F ""
 check other string args
 
+mv log_disp_null() into library?
+	which?
+	needed by tests and fuzzers
+
+bug: HOME=/ neomutt -d6 crashes on startup - fopen failed
+
+man validate: mandoc -Tlint file.1
+	github action?
+	need to reformat docs/config.c a bit
+
+const ∀ graphviz functions
+
+easy: mxapi: mbox_create/delete()
+then add to browser, need exists fn too
+
+buffer pool dump high-tide mark on exit
+
+browser
+	changing sort doesn't force redraw
+
+remove umask code from mh.c
+	redundant due to `umask(077)` in main.c
+
+relative 'source'ing of files doesn't work if the base is a symlink
+
+2016-10-25 11:04 <mgedmin>
+	pet peeve: when I try to open a gigabyte-sized mbox file with 10,000 messages, I cannot abort that
+
