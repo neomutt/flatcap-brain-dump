@@ -174,6 +174,7 @@ merge string/Buffer variants of functions
 source! (no error if not exist)
 	or `source -q`?
 		sort of implies that it'll quieten all errors from the source'd file
+	or `source -m` missing-allowed
 source -d dir (all of dir/*.rc or *.conf)?
 	alphabetical / collate
 	or `source dir.d` (.d significant) -> find all children or just '*.rc'
@@ -193,9 +194,6 @@ source command -- allow wildcards
 update buf_at() to take negative offsets
 	-1 == end of string
 	find uses, look for buf_len() or buf->dsize
-
-create buf_tell() cf buf_seek()
-	to show dptr position relative to data
 
 upgrade buf_seek() to match fseek()
 	using SEEK_SET, SEEK_CUR, or SEEK_END (<stdio.h>)
@@ -316,16 +314,10 @@ patterns: autocomplete for ~ = and %
 	- Group matches - `%C` `%L` `%c` `%e` `%f`
 	- IMAP matches  - `=/` `=B` `=b` `=h`
 
-setenv refactor with new syntax: `X=Y`
-
 tell copilot about ARRAY_FOREACH() when removing items
 	and using FREE() which can trample on data
 
 merge
-	buf_expand_path -> buf_expand_path_regex
-		void buf_expand_path(struct Buffer *buf)
-		void buf_expand_path_regex(struct Buffer *buf, bool regex)
-
 	buf_pretty_mailbox -> mutt_pretty_mailbox
 		void buf_pretty_mailbox(struct Buffer *buf)
 		void mutt_pretty_mailbox(char *buf, size_t buflen)
@@ -366,20 +358,52 @@ teach copilot about dialogs / functions
 	analyse and suggest missing functionality
 	differences in behaviour
 
-teach copilot how to run build/run the fuzzer
-	build uses clang
-	only fuzzing "common" areas, so min build, no docs
-	(with time limit)
-	-max_total_time=60
-
-teach copilot about cli usage and its tests
-	generate a library of valid, rational, cli inputs
-	create cli fuzzer
-
 create a corpus for each fuzzer
 
 create fuzzer for config type parsing
 
 suggest/create dictionary file for fuzzers
 	lists of expected keywords
+
+cleanup-by-date .service
+	config file or fixed date?
+
+teach copilot about lcov build
+	get 100% coverage cases
+	lcov --list coverage.info
+	Summary
+		gcov mutt/file.c
+	Details
+		gcov -t mutt/file.c (stdout)
+		(rather than saving to file.c.gcov)
+		-o save-filename
+	Functions
+		gcov -f mutt/file.c
+
+teach copilot about asan
+	env vars
+	leak/crash files
+	running tests
+
+"error" prefix in error messages
+	need refactor + better messages
+
+propagate ConfigSubset through libraries
+	∀ library, find all Config lookups
+	find all library entry points
+	make sure ConfigSubset is passed in and propagated
+
+file perms, use, rather than 0600, etc
+	S_IRWXU  00700 user (file owner) has read, write, and execute permission
+	S_IRUSR  00400 user has read permission
+	S_IWUSR  00200 user has write permission
+	S_IXUSR  00100 user has execute permission
+	S_IRWXG  00070 group has read, write, and execute permission
+	S_IRGRP  00040 group has read permission
+	S_IWGRP  00020 group has write permission
+	S_IXGRP  00010 group has execute permission
+	S_IRWXO  00007 others have read, write, and execute permission
+	S_IROTH  00004 others have read permission
+	S_IWOTH  00002 others have write permission
+	S_IXOTH  00001 others have execute permission
 
