@@ -1,0 +1,69 @@
+digraph callgraph {
+	graph [
+		rankdir="LR"
+		nodesep="0.2"
+		ranksep="0.5"
+		compound="true"
+	]
+
+	node [
+		shape="Mrecord"
+		fontsize="16"
+		fillcolor="#ffffff"
+		style="filled"
+		height="0.2"
+		penwidth="1.5"
+		color="black"
+	]
+
+	edge [
+		penwidth="1.5"
+		arrowsize="0.75"
+		color="#404040"
+	]
+
+	// Parts of Parse System
+	node [ fillcolor="#ffffc0" ]
+	source_rc             [ label=<P source_rc()>             ]
+	parse_rc_line         [ label=<R parse_rc_line()>         ]
+
+	parse_XYZ             [ label=<A parse_XYZ()>             ]
+	parse_ifdef           [ label=<B parse_ifdef()>           ]
+	parse_source          [ label=<C parse_source()>          ]
+
+	// External functions
+	node [ fillcolor="#c0ffff" ]
+	mutt_init_sys              [ label=<0 mutt_init(sys)>               ]
+	mutt_init_user             [ label=<1 mutt_init(user)>              ]
+	main_execute_commands      [ label=<2 main:execute_commands()>      ]
+	mutt_startup_shutdown_hook [ label=<3 mutt_startup_shutdown_hook()> ]
+	mutt_timeout_hook          [ label=<4 mutt_timeout_hook()>          ]
+	mutt_account_hook          [ label=<5 mutt_account_hook()>          ]
+	mutt_folder_hook           [ label=<6 mutt_folder_hook()>           ]
+	mutt_message_hook          [ label=<7 mutt_message_hook()>          ]
+	mutt_enter_command         [ label=<8 mutt_enter_command()>         ]
+	lua_cb_global_enter        [ label=<9 lua_cb_global_enter()>        ]
+
+	{ rank=min mutt_init_sys mutt_init_user }
+	{ rank=same source_rc lua_cb_global_enter main_execute_commands mutt_account_hook mutt_enter_command mutt_folder_hook mutt_message_hook mutt_startup_shutdown_hook mutt_timeout_hook }
+
+	main_execute_commands      -> parse_rc_line:nw
+	mutt_startup_shutdown_hook -> parse_rc_line:nw
+	lua_cb_global_enter        -> parse_rc_line:w
+	mutt_timeout_hook          -> parse_rc_line:w
+	mutt_account_hook          -> parse_rc_line:w
+	mutt_folder_hook           -> parse_rc_line:w
+	mutt_message_hook          -> parse_rc_line:w
+	mutt_enter_command         -> parse_rc_line:sw
+	source_rc                  -> parse_rc_line:sw
+
+	mutt_init_sys  -> source_rc
+	mutt_init_user -> source_rc
+	parse_source   -> source_rc     [ color="#c00000" ]
+	parse_ifdef    -> parse_rc_line [ color="#c00000" ]
+
+	parse_rc_line -> parse_ifdef  [ color="#0000ff" label="Command:parse()" fontcolor="#0000ff" ]
+	parse_rc_line -> parse_XYZ    [ color="#0000ff" ]
+	parse_rc_line -> parse_source [ color="#0000ff" ]
+
+}
