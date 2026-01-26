@@ -401,7 +401,10 @@ create a reply flowchart
 	who to
 	etc
 w.r.t. config, headers, function used
-e.g. <reply> <group-reply> etc
+	<group-chat-reply> OP_GROUP_CHAT_REPLY
+	<group-reply>      OP_GROUP_REPLY
+	<list-reply>       OP_LIST_REPLY
+	<reply>            OP_REPLY
 list hooks too
 
 teach copilot about release notes
@@ -409,4 +412,10 @@ teach copilot about release notes
 	reference closed PRs
 	collate names
 		new / old? how?
+how to make a complete release
+	today's date
+	release notes
+	update dates in files
+	commit, tag, sign everything
+	commit count
 

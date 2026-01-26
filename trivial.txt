@@ -110,9 +110,6 @@ group commands
 	unsubscribe  [ -group name ...] { * | regex ... }
 add syntax: <mail>@group to send to entire group?
 
-docs/config
-	urls aren't linkified https://...
-
 translations
 	need printf format ordering doc
 	msgid "Option %s has an invalid type %d"
@@ -391,6 +388,10 @@ or the beginning of the list risking other useful stuff getting lost?
 unbind would clear the flag
 	this would allow user to clear all the help and create their own
 	unbind help; rebind help (no flag)
+add a $help_bar_format option
+	defaults to "%b" keybindings.  what else?
+	allows use to display what they want
+	but help bar is global, the text needs to be per-dialog
 
 mutt_debug(LL_DEBUG1, "FILE:%d, offset %ld, bytes_read %ld\n", fileno(fp), offset, *bytes_read);
 
@@ -498,11 +499,6 @@ AI Usage
 	How to Credit AI?
 	Fedora suggests using a commit trailer such as "Assisted-by: <AI tool name>" to make that clear in project history
 
-archive/delete lots of repos
-	neomutt-old organization?
-	all repos are hidden to prevent google indexing them
-	gh repo archive SLUG
-
 themes
 	https://sphinx-themes.org/
 	https://jothepro.github.io/doxygen-awesome-css/
@@ -534,6 +530,7 @@ keybindings for Editor (OpEditor)
 
 $my_unset_var resolves to literal "$my_unset_var"
 	unset my_vars should expand to an empty string
+	need example prompt where this occurs
 
 reorg /neo/github /github mail folders
 
@@ -652,8 +649,6 @@ is $devel_security still referenced?
 	still needed?
 
 tweak Quickhl colours
-
-upgrade to Buffer: mutt_addr_cat()
 
 :alias (no params) -> <alias-dialog>
 	currently the function is index-only
@@ -918,36 +913,37 @@ CLI flag to warn on synonyms/deprecated config/commands/etc
 	preserve ∀ parsing done later
 		NeoMutt->warnings = true;
 	LL_WARNING (unless -Werror CLI flag)
+all commands go through parse_rc_line()
+	so add flag to the ParseContext
+	or config option: enum: [ignore,log,warn,error]
+		ignore: do nothing (do we need this option?)
+		log: logs only
+		warn: warning messages, but continue
+		error: error message, stop processing
 
 poor error message for
 	neomutt -F ""
 check other string args
 
-mv log_disp_null() into library?
-	which?
-	needed by tests and fuzzers
-
 bug: HOME=/ neomutt -d6 crashes on startup - fopen failed
-
-man validate: mandoc -Tlint file.1
-	github action?
-	need to reformat docs/config.c a bit
-
-const ∀ graphviz functions
 
 easy: mxapi: mbox_create/delete()
 then add to browser, need exists fn too
-
-buffer pool dump high-tide mark on exit
-
-browser
-	changing sort doesn't force redraw
-
-remove umask code from mh.c
-	redundant due to `umask(077)` in main.c
 
 relative 'source'ing of files doesn't work if the base is a symlink
 
 2016-10-25 11:04 <mgedmin>
 	pet peeve: when I try to open a gigabyte-sized mbox file with 10,000 messages, I cannot abort that
+
+use skills or agents to break up copilot instructions
+https://docs.github.com/en/copilot/concepts/agents/about-agent-skills
+https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents
+	docs
+	tester
+	coverage
+	builder
+	debugger
+	asan
+	refactoring
+	release engineer
 
