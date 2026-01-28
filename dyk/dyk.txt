@@ -249,3 +249,6 @@ multiple profiles
 	and possibly colour it `color status ...`
 	if you want to share settings, you can use more config files, or my_vars
 
+doc tags in alias, mail to user ml
+	add to dyk
+
