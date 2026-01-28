@@ -240,3 +240,12 @@ hide
 	:syntax match hide_header "^\v(cc|bcc|reply-to): *$" containedin=mailHeaderKey
 	:highlight hide_header guifg=#606060
 
+multiple profiles
+	I'd start by putting each separate "alias" in a separate config file
+	tip: to avoid problems later, make sure if you set a variable in one, you set (or reset) it in all of them
+	then you can macro <f1> "<enter-command> source alias1.rc<enter>" etc
+	(note the space before the 'source' to avoid contaminating the history)
+	finally, I'd put the "alias" name in "$status_format"
+	and possibly colour it `color status ...`
+	if you want to share settings, you can use more config files, or my_vars
+

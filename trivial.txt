@@ -655,11 +655,6 @@ tweak Quickhl colours
 	can it be run globally
 	<alias-dialog> -> actions -> send message -> original place
 
-:cd (no params) -> `cd $HOME`
-need matching :pwd
-	what does cd actually do / affect?
-	status expando for $pwd
-
 translation action
 	∀ push to [translate], run `msgcat --no-wrap`
 	if there are any differences create a fixup commit
@@ -683,9 +678,6 @@ for :commands given with zero args
 	show one-line help!
 	trap ":command?<enter>" at parse phase, so each handler doesn't have to
 	handlers will need to deal with ":command<enter>"
-
-add a 'commands' page to `?` <help> with a one-liner description of each
-	or :help <command>
 
 fix numbering!
 	enum CommandResult
@@ -879,12 +871,27 @@ WKD
 POST copilot feature discoverability ideas in discussion
 	ping __monty__
 
+add a 'commands' page to `?` <help> with a one-liner description of each
+	or :help <topic>
+	if `:help TEXT` and `TEXT` isn't a help topic try to guess
+	if `TEXT` is a command -> `help command TEXT`
+	same for functions, config options
+	also redirect `:hooks` -> `help hooks`
+	`color` -> `help colors`
+	`set` -> `help config`
+	`setenv` -> `help env`
+	`bind`/`macro` -> `help keys`
+	`version` -> `help about`
+:help-grep
+	`help UNKNOWN` shows a menu of possible help topics
+
 :help
 	need modules to register themselves
 	existing info: bind, color, hooks, macro, set, setenv, version
 	add: about, changelog, tips, dyk
 	<help> / `?` equivalent to `help keys`?
 		how is this dialog-specific?
+	need auto-completion for all help topics
 
 history could do with a <limit> option
 	or live search/filter
@@ -939,6 +946,7 @@ use skills or agents to break up copilot instructions
 https://docs.github.com/en/copilot/concepts/agents/about-agent-skills
 https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents
 	docs
+		dyk
 	tester
 	coverage
 	builder
@@ -946,4 +954,42 @@ https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/creat
 	asan
 	refactoring
 	release engineer
+
+:cd (no params) -> `cd $HOME`
+need matching :pwd
+	what does cd actually do / affect?
+	status expando for cwd
+	%{cwd}
+
+debug action uses:
+	extras:  CC=clang-14 CXX=clang-14 fuzz
+	check what `runs-on: ubuntu-latest` has available
+
+parallel script:
+	build/end start time
+
+copy from [error] to [release]
+	b7438bc2e6 hooks: protect against unhook
+
+Hooks: protect against unhook
+    Several hooks take a NeoMutt command as a payload.
+    When executing this command, it's important NOT to `unhook` the `Hook`
+    we're executing.
+	- `account-hook`
+	- `folder-hook`
+	- `index-format-hook`
+	- `message-hook`
+	- `reply-hook`
+	- `send-hook`
+	- `send2-hook`
+	- `shutdown-hook`
+	- `startup-hook`
+	- `timeout-hook`
+This can be worked around.
+The payload is just a string.
+Cache the (multiple) string(s) and then execute them.
+Then it'll be safe to alter `Hooks`
+We need both:
+	hook->command
+	hook->source_file (for errors)
 

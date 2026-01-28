@@ -395,6 +395,7 @@ propagate ConfigSubset through libraries
 
 test cases, delete contents of /tmp afterwards
 	need list of tests that gen files
+	only creates files/dirs in $NEOMUTT_TEST_DIR/tmp/
 
 create a reply flowchart
 	who from
@@ -418,4 +419,10 @@ how to make a complete release
 	update dates in files
 	commit, tag, sign everything
 	commit count
+
+hooks: unify logging?
+	LL1 `folder-hook PATTERN`
+	LL2 command details
+
+analyse & suggest logging strategy
 
