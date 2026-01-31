@@ -222,9 +222,12 @@ find potential places for struct Buffer
 	37	ag "([a-z_]+(->[a-z_]+)*)-\>data, \1-\>dsize"
 
 EBNF for all 88 commands?
+	categorise the types of all the command parameters
+	create a plan for auto-completing them
 
 doxy: next big area for coverage?
 	defines 40%
+	and drop %age icons?
 
 :changelog ?
 	read from /usr/share/doc/neomutt

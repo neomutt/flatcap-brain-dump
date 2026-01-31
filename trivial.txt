@@ -543,6 +543,33 @@ auto-completion
 	find every point of text entry
 	determine what completion might be possible
 	implement it
+need generic way to complete command string (on <enter-command>)
+is it possible to *highlight* when auto-completion is *available*!
+e.g. user types `:help` and a light goes on (optionally)
+could show possibilities in a one-liner window above the prompt
+(poor man's popup window / step towards a popup window)
+	| color config patterns (+3 more) |
+	|:help
+or
+	| peck pepper peter picked pickled (+2 more) |
+	|Enter filename: p
+need a few simple completion classes:
+	predictable: bool/quad/enum, colour, config option, function, command, menu names,
+	unpredictable: file-only, file-or-dir, dir-only, dir-or-mailbox, mailbox
+	misc: tags/labels (in-use, recently-used), addresses?
+even if we can't auto-complete, can we add value with a description?
+	| Number of foos to use |
+	|:set option =
+or
+	| Number between 10 and 50 |
+	|:set option =
+enum completion-type: [off|demand|pre-emptive]
+	off: none
+	demand: when they hit <tab>
+	pre-emptive: even without <tab>
+		(need friendlier names)
+	[off,tab,magic]?
+	[off,tab,auto]?
 
 ! <shell-escape>  allow Ctrl-D to cancel the prompt?
 	Ctrl-G already works
@@ -576,10 +603,22 @@ alias completion on ','
 	which text does auto-complete get?
 	how much text is it allowed to edit?
 
+editor
+	auto-completion needs to change the editor's keybindings
+	default is <tab> -> <complete>
+	extra is <Ctrl-T> -> <complete-query>
+	need `,` -> <complete-alias>
+they should *all* be added by the caller
+editor calls km_dokey() with *its* keymap AND the PROVIDED keymap
+	NO.  how does that work with config keybindings?
+
 group info commands into tabs.  HOW?
 	if user does `:set` then `:color` then `:hooks`
 	rather than have three overlaid Pagers
 	add a tab to the current display and focus it
+multi-tab info pages: distinguish <quit> vs <exit>?
+	<quit> close this page (equiv Ctrl-W)
+	<exit> close all pages (equiv Ctrl-Q)
 
 docs:
 	patterns
@@ -594,7 +633,15 @@ docs:
 
 browser auto-tag behaviour -- need list of every Menu
 	categorise how menu is used w.r.t. selection / tagging
+		single vs multi-selection
 	/home/mutt/work/keymaps-notes/m1
+only dialogs implement Menu->tag()
+	alias/dlg_alias.c:139:     int alias_tag         (struct Menu *menu, int sel, int act)
+	alias/dlg_query.c:166:     int query_tag         (struct Menu *menu, int sel, int act)
+	attach/dlg_attach.c:153:   int attach_tag        (struct Menu *menu, int sel, int act)
+	browser/dlg_browser.c:687: int file_tag          (struct Menu *menu, int sel, int act)
+	compose/attach.c:202:      int compose_attach_tag(struct Menu *menu, int sel, int act)
+	index/functions.c:2352:    int op_tag            (struct IndexSharedData *shared, struct IndexPrivateData *priv,
 
 deprecate
 	virtual_spoolfile
@@ -949,11 +996,12 @@ https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/creat
 		dyk
 	tester
 	coverage
-	builder
+	builder -- need deps to build ALL possible configurations
 	debugger
 	asan
 	refactoring
 	release engineer
+	translation -- don't --disable-nls
 
 :cd (no params) -> `cd $HOME`
 need matching :pwd
@@ -961,35 +1009,27 @@ need matching :pwd
 	status expando for cwd
 	%{cwd}
 
-debug action uses:
-	extras:  CC=clang-14 CXX=clang-14 fuzz
-	check what `runs-on: ubuntu-latest` has available
+create tunnel example config
+	neomutt -f imaps://servername/ setup (with an account-hook that sets tunnel='ssh -q servername /usr/lib/dovecot/imap')
 
-parallel script:
-	build/end start time
+folder-hooks: doc that
+	`folder-hook`s work also both with mailbox labels _and_ notmuch:// definitions
 
-copy from [error] to [release]
-	b7438bc2e6 hooks: protect against unhook
+account-hook recursion check
+	void exec_account_hook(const char *url)
+	add logging to `if (inhook) return`
 
-Hooks: protect against unhook
-    Several hooks take a NeoMutt command as a payload.
-    When executing this command, it's important NOT to `unhook` the `Hook`
-    we're executing.
-	- `account-hook`
-	- `folder-hook`
-	- `index-format-hook`
-	- `message-hook`
-	- `reply-hook`
-	- `send-hook`
-	- `send2-hook`
-	- `shutdown-hook`
-	- `startup-hook`
-	- `timeout-hook`
-This can be worked around.
-The payload is just a string.
-Cache the (multiple) string(s) and then execute them.
-Then it'll be safe to alter `Hooks`
-We need both:
-	hook->command
-	hook->source_file (for errors)
+extend ParseContext/ParseError to pattern parsing
+
+compose attachments don't honour <tag-prefix> / $auto_tag
+	tested with `d` (`<delete-entry>`)
+	(check upstream behaviour)
+	list affected compose functions
+	just detach?
+combos
+	auto_tag	Y,N
+	tagged		0,1,3
+	action		E,T
+
+howto Menus - selection, tagging, auto_tag
 
