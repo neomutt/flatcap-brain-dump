@@ -124,6 +124,14 @@ why are these 3 charset config not using DT_SLIST?
 bash completion for neomutt, based on: /usr/share/bash-completion/completions/mutt
 	∀ cli options
 	for aliases too?
+	using long opts too
+	/home/github/flatcap/source/dot-config/complete/autosetup
+	~/bash-complete/
+	use `neomutt --help all`
+	https://github.com/brechtm/bash-completion
+	https://github.com/diego-treitos/MuttAliasesAutoCompletion
+	https://bbs.archlinux.org/viewtopic.php?id=136264
+	/home/github/flatcap/source/dot-config/complete
 
 update bash complete for configure
 	push to management
@@ -390,6 +398,7 @@ teach copilot about asan
 
 "error" prefix in error messages
 	need refactor + better messages
+	post command-parsing refactor
 
 propagate ConfigSubset through libraries
 	∀ library, find all Config lookups
@@ -426,6 +435,28 @@ how to make a complete release
 hooks: unify logging?
 	LL1 `folder-hook PATTERN`
 	LL2 command details
+	LL1 - broad strokes, user actions
+	LL2 - some details
 
 analyse & suggest logging strategy
+
+skill for "refactor parse"
+	template code
+	naming
+	tests
+	coverage
+	list tokens for fuzzing
+
+skill for tables
+	human legibility
+	alignment
+	clang-format
+
+refactor verbose tests
+	pick out input parameters
+	pick out output parameters / return code
+	turn into a table
+
+upstream skill (local)
+	pull in upstream branches
 

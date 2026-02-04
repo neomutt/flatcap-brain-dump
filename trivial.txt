@@ -1033,3 +1033,14 @@ combos
 
 howto Menus - selection, tagging, auto_tag
 
+move usage.c to cli/ ?
+	usage.c needs version.h needs gui, etc
+
+post libparse refactor into XYZ, XYZ_args, XYZ_exec
+	pass --deprecated flag to parsers
+	create standalong config reader
+	recursively parse ALL config
+		syntax, command names, config names
+	post-process command-bearing hooks for validity
+	log verbosely to terminal in quickfix format
+
