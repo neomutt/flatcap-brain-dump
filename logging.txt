@@ -467,3 +467,7 @@ log before regex ops & other risky functions
 promote logging to default -- too useful
 	set max level?
 
+- 242 `mutt_message()` - Informational messages
+- 38  `mutt_warning()` - Warning messages - Something went wrong, but we can explain to the user what went wrong and why.
+- 595 `mutt_error()` - Error messages - Something went wrong, but it's not clear what the user could have done differently.
+

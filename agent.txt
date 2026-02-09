@@ -316,15 +316,6 @@ using `unbind` as a template
 	arg parser should record where in the statement the arg came from
 	error at line X, column Y
 
-patterns: autocomplete for ~ = and %
-	need to extend the help descriptions to match
-	sufficent to say,
-		~B EXPR          messages whose body or headers match EXPR
-		=B STRING        like `~B` but searches on the server
-	Misc in use:
-	- Group matches - `%C` `%L` `%c` `%e` `%f`
-	- IMAP matches  - `=/` `=B` `=b` `=h`
-
 tell copilot about ARRAY_FOREACH() when removing items
 	and using FREE() which can trample on data
 
@@ -457,6 +448,5 @@ refactor verbose tests
 	pick out output parameters / return code
 	turn into a table
 
-upstream skill (local)
-	pull in upstream branches
+vim syntax updating / refatoring
 

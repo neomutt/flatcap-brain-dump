@@ -482,18 +482,6 @@ madduck, irc 2025-10-30
 	There seems to be no way to "transfer" the browser location to the command prompt, which is sort of what I would expect. Why else the browser?
 In Mutt "abc def/<tab><tab>" opens the browser
 
-ampcode.com
-	The codepath that triggers the deadlock/hang in NeoMutt is as follows:
-	Periodic Mail Check: Every timeout seconds (10 in the issue), mx_mbox_check() is called from dlg_index() to check for new mail.
-	IMAP Check: For IMAP mailboxes, this calls imap_check_mailbox(), which sends a NOOP command to poll for changes. If new mail is detected, it sets the
-	status to MX_STATUS_NEW_MAIL.
-	Index Update: Upon detecting new mail, update_index() is called, which updates the mailbox's email list and calls menu_queue_redraw() to redraw the index.
-	Index Redraw: During redraw, index_color() is called for each visible email to determine its color.
-	Color Evaluation: index_color() calls email_set_color(), which evaluates regex color patterns like color index brightred default '~h "^(To|Cc):.*,"'.
-	Pattern Matching: mutt_pattern_exec() checks if the pattern matches. For header patterns with regex on IMAP, pattern_needs_msg() returns true.
-	Message Fetch: mx_msg_open() is called to open the message. For IMAP with imap_peek=no, this fetches the full message body via BODY[], not just headers.
-	Hang: Fetching large message bodies causes the UI to freeze on "Fetching message..." until the fetch completes, effectively deadlocking the interface.
-
 AI Usage
 	Create Label for PRs
 	How to Credit AI?
@@ -619,17 +607,6 @@ group info commands into tabs.  HOW?
 multi-tab info pages: distinguish <quit> vs <exit>?
 	<quit> close this page (equiv Ctrl-W)
 	<exit> close all pages (equiv Ctrl-Q)
-
-docs:
-	patterns
-	Patterns in use:
-	- `~` `.bcdefghi.klmn.p.rstuvwxyz`
-	- `~` `ABCDEFGHI..LMNOPQRSTUV.XY.`
-	- `~#` `~$` `~()` `~<()` `~=` `~>()`
-
-	Misc in use:
-	- Group matches - `%C` `%L` `%c` `%e` `%f`
-	- IMAP matches  - `=/` `=B` `=b` `=h`
 
 browser auto-tag behaviour -- need list of every Menu
 	categorise how menu is used w.r.t. selection / tagging
@@ -909,6 +886,8 @@ analyse ∀ config options in /mutt_config.c
 	do they have a dedicated library/config
 	suggest helper functions
 	suggest encapsulation
+	refs: cs_*(), query_quadoption(), bool, multichoice?
+	give explicit list
 
 WKD
 	When sending encrypted mail, if keys are missing, fetch them from the network (WKD, DANE, etc)
@@ -975,12 +954,6 @@ all commands go through parse_rc_line()
 		warn: warning messages, but continue
 		error: error message, stop processing
 
-poor error message for
-	neomutt -F ""
-check other string args
-
-bug: HOME=/ neomutt -d6 crashes on startup - fopen failed
-
 easy: mxapi: mbox_create/delete()
 then add to browser, need exists fn too
 
@@ -1020,6 +993,7 @@ account-hook recursion check
 	add logging to `if (inhook) return`
 
 extend ParseContext/ParseError to pattern parsing
+	and config parsing
 
 compose attachments don't honour <tag-prefix> / $auto_tag
 	tested with `d` (`<delete-entry>`)
@@ -1038,9 +1012,104 @@ move usage.c to cli/ ?
 
 post libparse refactor into XYZ, XYZ_args, XYZ_exec
 	pass --deprecated flag to parsers
+		removes "max warnings limit"
 	create standalong config reader
 	recursively parse ALL config
 		syntax, command names, config names
 	post-process command-bearing hooks for validity
 	log verbosely to terminal in quickfix format
+	log old %?VAR?TRUE&FALSE? style conditionals
+		and their replacement
+	if deprecated need to explain why / suggest alternative
+extra hints?
+	enums/numbers don't need to be quoted
+	suggest %{long-name} expandos
+	suggest %<X?TRUE&FALSE> conditionals
+	suggest bool use yes/no (rather than true/false/1/0 etc)
+
+update vim syntax ∀
+	update compose colours to include underscored versions
+	automate this?
+		need list of all updatable sections
+		need list of data sources
+		need list of exceptions
+		synonyms, deprecated
+
+status_format %{uptime}
+	for debugging / prowess
+	add %{uptime-short}
+	or a :uptime command
+
+https://github.com/termstandard/colors
+	move neomutt into "supported"
+
+`make; make distclean` seems to leave `docs/.keepme` behind
+
+PGP keys: %[strftime] displays `timestamp`
+	`timestamp` is creation time
+	`expires` is expiry time -- probably useful
+	need more expandos
+	could use %{strtime}
+Then add %{long-name}s for abbreviated time
+	%{creation-time}
+	%{creation-time-short}
+	%{expiry-time}
+	%{expiry-time-short}
+
+add (X days ago) to signatures
+	look for sig->timestamp
+	subkey->timestamp
+	anywhere else we display full ISO date?
+	"%Y-%m-%d" ?
+	print_time()
+	mutt_date_make_imap()
+	mutt_date_make_tls()
+	browser? relative date field
+		lua config-cycler!
+	pgp_gpgme_extract_keys()
+
+relative dates config to customise
+	relative_timestamps="90m,72h,21d,8w,24M"
+	=> minutes count up to 90, then hours
+	=> hours count up to 72, then days
+	=> days count up to 21, then weeks
+	=> weeks count up to 8, then months
+	=> months count up to 24, then years
+a zero value would mean skip that section, e.g 0w (days -> months)
+
+relative dates in the Index =>
+	every 1min we should repaint the current page
+		and recalc colours?
+	should cache $relative_timestamps
+	this is needed if `%<>` conditionals or `%@NAME@` is used
+do the same for sizes
+	for bytes, KiB, MiB, GiB
+
+bash-completion
+	push upstream to https://github.com/scop/bash-completion/
+
+These functions are users of config options:
+	query_quadoption()
+	query_yesorno_help()
+	cs_subset_bool()
+	cs_subset_enum()
+	cs_subset_long()
+	cs_subset_mbtable()
+	cs_subset_number()
+	cs_subset_path()
+	cs_subset_quad()
+	cs_subset_regex()
+	cs_subset_slist()
+	cs_subset_sort()
+	cs_subset_string()
+	cs_subset_expando()
+examine all the config options, in `mutt_config.c` and `*/config.c`.
+for each option, find all the places it's used.
+list all the options that would be better suited in a different file.
+
+pending.txt alias pend
+
+github - examine, remove
+	github/devel/docs
+	github/devel/docs-1
 
