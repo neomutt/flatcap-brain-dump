@@ -425,6 +425,7 @@ i.e. `>` and `> >` but not `|` and `| |`
 	| | | 197 199 66 126 83 7
 
 upstream check/merge
+	update repo
 
 browser tabs?
 	implement tabbed-help-page first
@@ -1109,7 +1110,28 @@ list all the options that would be better suited in a different file.
 
 pending.txt alias pend
 
-github - examine, remove
-	github/devel/docs
-	github/devel/docs-1
+lua leaks
+	luaL_error(), lua_error() use longjmp
+	currently three callbacks use them
+		lua_global_cb_enter()
+		lua_global_cb_call()
+		lua_global_cb_refresh()
+	Need to free everything first
+	either use char[] buffer or lua_pushstring(), then lua_error()
+
+review vim plugin anaysis
+
+gen "authors" mailboxes -> sample-data / test-?
+
+post [modular]
+	do ANY Commands need data
+	only the stailq/unstailq
+
+index/generic `]` half-down doesn't seem to reach the bottom of the Menu
+	need to bisect
+
+module
+	init() -> void *init() -> private data
+		implies modules MUST have data. hmm...
+	cleanup() -> cleanup(void*)
 
