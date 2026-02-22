@@ -11,6 +11,12 @@ SINWINCH hook
 		width > 80
 		width = 80
 		height < 10
+	use patterns and pattern machinery (post refactor)
+		~w > 80
+		~w = 80
+		h < 10
+	that allows reuse of < = > parsing
+	could use `~a` all as a default case
 	needs to be run on startup, too
 	idea from labelette in #mutt
 	combine with ability to rearrange windows, e.g.

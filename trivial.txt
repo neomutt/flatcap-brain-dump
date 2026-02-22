@@ -819,6 +819,7 @@ after [linear] create variant of -Z / -z that dumps to stdout
 	print mailbox name (bold)
 	abbreviate with $folder
 	print account name (if multiple)
+	create json Expando renderer, then dump info to stdout
 after [linear] add cli Lua scripting query option
 	allows users to construct complex queries
 	start up neomutt, sans GUI
@@ -1123,15 +1124,110 @@ review vim plugin anaysis
 
 gen "authors" mailboxes -> sample-data / test-?
 
-post [modular]
-	do ANY Commands need data
-	only the stailq/unstailq
-
 index/generic `]` half-down doesn't seem to reach the bottom of the Menu
 	need to bisect
+	don't see it on `mutt`, only `flatcap` -- check/diff config
+	caused by "set menu_context = 3"?
+	or "set menu_scroll = yes"?
 
 module
 	init() -> void *init() -> private data
 		implies modules MUST have data. hmm...
 	cleanup() -> cleanup(void*)
+
+[keybinding]
+	need list of all functions (281)
+	need list of countable functions
+		same behaviour on all dialogs? Prob
+	need to define over-counting behaviour
+	new ways to use counter + op?
+		In compose, instead of
+			OP_TAG, OP_TAG, OP_TAG, OP_TAG, OP_TAG_PREFIX, OP_ATTACHMENT_GROUP_RELATED
+		use
+			4, OP_ATTACHMENT_GROUP_RELATED
+		anything that uses a tagged set of objects
+		need feedback on HOW MANY objects are being worked on
+		setting labels
+			OP_MAIN_MODIFY_TAGS
+			OP_TAG, OP_TAG, OP_TAG, OP_TAG, OP_TAG_PREFIX, OP_MAIN_MODIFY_TAGS
+			4, OP_MAIN_MODIFY_TAGS
+		all give prompt:
+			Tags:
+		need either:
+			[4] Tags:
+		or
+			Tags			[4] (RHS)
+
+keybindings:
+	currently the dialog MUST define the functions first
+	this shows errors at config time
+	relaxing this makes the startup code simpler
+		bind index x some-function
+	as long as <some-function> exists _somewhere_
+	Then at runtime, `x` emits OP_SOME_FUNCTION
+	and the Index either handles it, delegates or fails
+	Index has multiple OpMenu's defined and multiple dispatchers
+	This fits in well with automatically delegating events to Windows
+	Index holds some mappings and some Window might be able to service them
+
+keybindings:
+	set max limit on keybinding timeout settings?
+	probably want a 1s timeout regardless of config settings
+		so that the GUI doesn't block
+
+<get-message> docs don't mention that it's NNTP only
+	check others
+	warn if used?
+
+add Carlos to credits (Debian work)
+	Carlos Henrique Lima Melara (@charles2910)
+
+run amp on vim folding code
+
+alias completion could complete ~Y (tags)
+	need to collate tags on demand -- fairly quick
+	or need HashTable of tags -- need to maintain on (un)alias
+
+∀ "Features" in docs, remove "Dependencies"
+	every dep is LONG since part of NeoMutt
+	refresh webpages
+
+driver tags are used by Emails
+	Aliases store their tags in `struct Tag` too
+	they _could_ use `tag-formats` / `tag-transforms`
+	we'd need a way to distinguish the list from the Email set
+		:tf -alias X Y
+		:tt -alias X Y
+	no `-alias` flag, implies `-email`
+
+alias
+	~f REGEX  aliases whose name matches REGEX
+	~t REGEX  aliases whose address matches REGEX
+	~c REGEX  aliases whose comment matches REGEX
+	~Y REGEX  aliases whose tags match REGEX
+change letters to:
+	~a	alias
+	~n	name
+	~e	email
+	~c	comment
+	~t	tags
+
+use alias tag-transforms to change, ∀ langs
+	tag:french into 🇫🇷 (French flag)
+
+in address book, if you cause an error it gets lost
+	because the `To:` prompt obscures the message window
+	need a temporary overwindow, or to hide the `To:` prompt
+	whilst in the dialog.  how?
+
+update config to use long expandos
+	set alias_format= "%3{number} %{flags}%{tagged} %-15{alias} %-56{address} │ %{comment}%{padding-hard: }%{tags}"
+	set alias_format= "%3{number} %{flags}%{tagged} %-15.15{alias} %-26.26{name}%-30.30{email} │ %{comment}%{padding-hard: }%{tags}"
+
+alias:
+	add %{email-bare} expando -- email address without <>s
+
+expando: auto-fit columns -- HOW?
+	%0X      or %-0X	(right/left justification)
+	%0{name} or %-0{name}
 
