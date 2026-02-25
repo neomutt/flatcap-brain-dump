@@ -1188,10 +1188,6 @@ alias completion could complete ~Y (tags)
 	need to collate tags on demand -- fairly quick
 	or need HashTable of tags -- need to maintain on (un)alias
 
-∀ "Features" in docs, remove "Dependencies"
-	every dep is LONG since part of NeoMutt
-	refresh webpages
-
 driver tags are used by Emails
 	Aliases store their tags in `struct Tag` too
 	they _could_ use `tag-formats` / `tag-transforms`
@@ -1206,11 +1202,12 @@ alias
 	~c REGEX  aliases whose comment matches REGEX
 	~Y REGEX  aliases whose tags match REGEX
 change letters to:
-	~a	alias
-	~n	name
-	~e	email
-	~c	comment
-	~t	tags
+	~a	alias		short name
+	~f	full address	name + email
+	~n	name		real name
+	~e	email		email address
+	~c	comment		comment (minus tags)
+	~t	tags		tags (individually)
 
 use alias tag-transforms to change, ∀ langs
 	tag:french into 🇫🇷 (French flag)
@@ -1230,4 +1227,43 @@ alias:
 expando: auto-fit columns -- HOW?
 	%0X      or %-0X	(right/left justification)
 	%0{name} or %-0{name}
+
+incremental colours?
+	color object SIMPLE  SIMPLE	succeeds
+	color object PALETTE PALETTE	fails, but object is coloured, so no error message
+or
+	color object SIMPLE  SIMPLE	succeeds
+	color object PALETTE PALETTE	succeeds
+	color object RGB     RGB	fails, but object is coloured, so no error message
+or
+	color object SIMPLE  SIMPLE	succeeds
+	color object PALETTE PALETTE	succeeds
+	color object RGB     RGB	succeeds
+do we care _who_ set the original colour?
+if /etc/neomuttrc set the colour, but the theme file failed we could get ugly mismatches
+would need some way to artificially limit colours so all "level" of colour could be tested
+
+split ops.GV into individual SVG
+	push to gfx
+
+scripts to split/combine a git branch into one branch per commit
+test:
+	git rebase -i --rebase-merges --exec 'clang-format -i $(git ls-files "*.[ch]") && git add -u && git commit --amend --no-edit'
+
+amp - general rules
+	test build / tests
+	vim vint pass
+	commit changes separately
+
+unify menu names
+	MENU_ATTACHMENT vs MdAttach
+	MENU_POSTPONED vs MdPostpone
+	etc
+
+<help> list of bindings
+	mysterious blank line at top
+	not in 2016-01-05
+
+move MenuDefs and SubMenus to libgui Module
+move individual MenuDef and SubMenu to individual Modules
 
