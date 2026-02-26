@@ -1243,9 +1243,6 @@ do we care _who_ set the original colour?
 if /etc/neomuttrc set the colour, but the theme file failed we could get ugly mismatches
 would need some way to artificially limit colours so all "level" of colour could be tested
 
-split ops.GV into individual SVG
-	push to gfx
-
 scripts to split/combine a git branch into one branch per commit
 test:
 	git rebase -i --rebase-merges --exec 'clang-format -i $(git ls-files "*.[ch]") && git add -u && git commit --amend --no-edit'
@@ -1266,4 +1263,6 @@ unify menu names
 
 move MenuDefs and SubMenus to libgui Module
 move individual MenuDef and SubMenu to individual Modules
+
+:bind output needs sorting by menu name - HOW?
 

@@ -252,3 +252,12 @@ multiple profiles
 doc tags in alias, mail to user ml
 	add to dyk
 
+useful bindings:
+	bind editor \Cp history-up
+	bind editor \Cn history-down
+	bind editor <C-Left>  backward-word
+	bind editor <C-Right> forward-word
+	other editor?
+sidebar defaults
+.inputrc - RSI avoidance macros
+

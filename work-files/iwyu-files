@@ -1,5 +1,6 @@
 address/address.c
 address/address.h
+address/config.c
 address/config_type.c
 address/config_type.h
 address/group.c
@@ -12,6 +13,8 @@ address/maillist.h
 address/module.c
 alias/alias.c
 alias/alias.h
+alias/alternates.c
+alias/alternates.h
 alias/array.c
 alias/commands.c
 alias/complete.c
@@ -26,6 +29,7 @@ alias/gui.c
 alias/gui.h
 alias/lib.h
 alias/module.c
+alias/module_data.h
 alias/reverse.c
 alias/reverse.h
 alias/sort.c
@@ -36,6 +40,7 @@ attach/cid.c
 attach/cid.h
 attach/commands.c
 attach/commands.h
+attach/config.c
 attach/dlg_attach.c
 attach/expando.c
 attach/expando.h
@@ -44,6 +49,7 @@ attach/functions.h
 attach/lib.c
 attach/lib.h
 attach/module.c
+attach/module_data.h
 attach/mutt_attach.c
 attach/mutt_attach.h
 attach/private_data.c
@@ -267,6 +273,7 @@ core/mailbox.h
 core/message.c
 core/message.h
 core/module.c
+core/module_api.h
 core/mxapi.h
 core/neomutt.c
 core/neomutt.h
@@ -285,6 +292,8 @@ editor/wdata.h
 editor/window.c
 email/body.c
 email/body.h
+email/commands.c
+email/commands.h
 email/config.c
 email/content.h
 email/copy_body.c
@@ -299,18 +308,21 @@ email/envelope.c
 email/envelope.h
 email/from.c
 email/from.h
-email/globals.c
-email/globals2.h
+email/group.c
+email/group.h
 email/handler.c
 email/handler.h
 email/header.c
 email/header.h
+email/ignore.c
+email/ignore.h
 email/lib.h
 email/mailcap.c
 email/mailcap.h
 email/mime.c
 email/mime.h
 email/module.c
+email/module_data.h
 email/parameter.c
 email/parameter.h
 email/parse.c
@@ -325,6 +337,8 @@ email/score.c
 email/score.h
 email/sort.c
 email/sort.h
+email/spam.c
+email/spam.h
 email/tags.c
 email/tags.h
 email/thread.c
@@ -383,6 +397,7 @@ fuzz/cli.c
 fuzz/date.c
 globals.c
 globals.h
+gui/config.c
 gui/curs_lib.c
 gui/curs_lib.h
 gui/dialog.c
@@ -442,8 +457,11 @@ history/lib.h
 history/module.c
 hooks/commands.c
 hooks/commands.h
+hooks/config.c
 hooks/dump.c
 hooks/dump.h
+hooks/exec.c
+hooks/exec.h
 hooks/hook.c
 hooks/hook.h
 hooks/lib.h
@@ -483,6 +501,7 @@ imap/private.h
 imap/search.c
 imap/utf7.c
 imap/util.c
+index/commands.c
 index/config.c
 index/dlg_index.c
 index/expando_index.c
@@ -497,6 +516,7 @@ index/index.c
 index/ipanel.c
 index/lib.h
 index/module.c
+index/module_data.h
 index/private.h
 index/private_data.c
 index/private_data.h
@@ -504,6 +524,8 @@ index/shared_data.c
 index/shared_data.h
 index/status.c
 index/status.h
+index/subjectrx.c
+index/subjectrx.h
 key/commands.c
 key/commands.h
 key/dump.c
@@ -788,6 +810,10 @@ parse/extract.c
 parse/extract.h
 parse/lib.h
 parse/module.c
+parse/pcontext.c
+parse/pcontext.h
+parse/perror.c
+parse/perror.h
 parse/rc.c
 parse/rc.h
 parse/set.c
@@ -849,6 +875,7 @@ question/module.c
 question/question.c
 send/body.c
 send/body.h
+send/commands.c
 send/config.c
 send/expando_greeting.c
 send/expando_greeting.h
@@ -858,8 +885,11 @@ send/header.c
 send/header.h
 send/lib.h
 send/module.c
+send/module_data.h
 send/multipart.c
 send/multipart.h
+send/my_header.c
+send/my_header.h
 send/send.c
 send/send.h
 send/sendlib.c
