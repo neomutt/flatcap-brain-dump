@@ -121,19 +121,7 @@ why are these 3 charset config not using DT_SLIST?
 	mutt_config.c:443:13: { "config_charset",     DT_STRING,                              0,          0, charset_validator,
 	nntp/config.c:67:17:  { "newsgroups_charset", DT_STRING,                              IP "utf-8", 0, charset_validator,
 
-bash completion for neomutt, based on: /usr/share/bash-completion/completions/mutt
-	∀ cli options
-	for aliases too?
-	using long opts too
-	/home/github/flatcap/source/dot-config/complete/autosetup
-	~/bash-complete/
-	use `neomutt --help all`
-	https://github.com/brechtm/bash-completion
-	https://github.com/diego-treitos/MuttAliasesAutoCompletion
-	https://bbs.archlinux.org/viewtopic.php?id=136264
-	/home/github/flatcap/source/dot-config/complete
-
-update bash complete for configure
+bash complete for configure
 	push to management
 	dev ml
 

@@ -673,8 +673,6 @@ docs: reference -> ref?
 is $devel_security still referenced?
 	still needed?
 
-tweak Quickhl colours
-
 :alias (no params) -> <alias-dialog>
 	currently the function is index-only
 	can it be run globally
@@ -925,6 +923,8 @@ history could do with a <limit> option
 	or live search/filter
 	need way to extract code to apply it elsewhere
 	need way to generically mark objects (in)visible
+	function inside dlg_history
+		macro editor Ctrl-R "<history-search><fuzzy-search>"
 need API to marshall data - libfilter or liblimit
 	get_text() -- cache it
 	mark_visible(bool)
@@ -1044,8 +1044,6 @@ status_format %{uptime}
 
 https://github.com/termstandard/colors
 	move neomutt into "supported"
-
-`make; make distclean` seems to leave `docs/.keepme` behind
 
 PGP keys: %[strftime] displays `timestamp`
 	`timestamp` is creation time
@@ -1183,6 +1181,8 @@ add Carlos to credits (Debian work)
 	Carlos Henrique Lima Melara (@charles2910)
 
 run amp on vim folding code
+	need example code for each fold type
+	and example fold text
 
 alias completion could complete ~Y (tags)
 	need to collate tags on demand -- fairly quick
@@ -1217,7 +1217,7 @@ in address book, if you cause an error it gets lost
 	need a temporary overwindow, or to hide the `To:` prompt
 	whilst in the dialog.  how?
 
-update config to use long expandos
+update my config to use long expandos
 	set alias_format= "%3{number} %{flags}%{tagged} %-15{alias} %-56{address} │ %{comment}%{padding-hard: }%{tags}"
 	set alias_format= "%3{number} %{flags}%{tagged} %-15.15{alias} %-26.26{name}%-30.30{email} │ %{comment}%{padding-hard: }%{tags}"
 
@@ -1252,17 +1252,10 @@ amp - general rules
 	vim vint pass
 	commit changes separately
 
-unify menu names
-	MENU_ATTACHMENT vs MdAttach
-	MENU_POSTPONED vs MdPostpone
-	etc
-
 <help> list of bindings
 	mysterious blank line at top
 	not in 2016-01-05
 
-move MenuDefs and SubMenus to libgui Module
-move individual MenuDef and SubMenu to individual Modules
-
-:bind output needs sorting by menu name - HOW?
+move MenuDefs and SubMenus to libgui Module?
+move individual MenuDef and SubMenu to individual Modules?
 
