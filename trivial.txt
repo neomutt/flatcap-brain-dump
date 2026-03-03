@@ -1259,3 +1259,5 @@ amp - general rules
 move MenuDefs and SubMenus to libgui Module?
 move individual MenuDef and SubMenu to individual Modules?
 
+fix new leaks in autocrypt
+

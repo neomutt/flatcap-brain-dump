@@ -45,18 +45,18 @@ uncolor SIMPLE-SIDEBAR
 
 # color compose SIMPLE-COMPOSE [ attribute ...] foreground background
 # ColorDefs[object] = COLOUR
-color compose header           red default # MT_COLOR_COMPOSE_HEADER                       Header labels, e.g. From:
-color compose security_encrypt red default # MT_COLOR_COMPOSE_SECURITY_ENCRYPT             Mail will be encrypted
-color compose security_sign    red default # MT_COLOR_COMPOSE_SECURITY_SIGN                Mail will be signed
-color compose security_both    red default # MT_COLOR_COMPOSE_SECURITY_BOTH                Mail will be encrypted and signed
-color compose security_none    red default # MT_COLOR_COMPOSE_SECURITY_NONE                Mail will not be encrypted or signed
+color compose_header           red default # MT_COLOR_COMPOSE_HEADER                       Header labels, e.g. From:
+color compose_security_encrypt red default # MT_COLOR_COMPOSE_SECURITY_ENCRYPT             Mail will be encrypted
+color compose_security_sign    red default # MT_COLOR_COMPOSE_SECURITY_SIGN                Mail will be signed
+color compose_security_both    red default # MT_COLOR_COMPOSE_SECURITY_BOTH                Mail will be encrypted and signed
+color compose_security_none    red default # MT_COLOR_COMPOSE_SECURITY_NONE                Mail will not be encrypted or signed
 
 uncolor compose SIMPLE-COMPOSE
 
 # color QUOTED-OBJECT [ attribute ...] foreground background
 # ColorDefs[object] = COLOUR
 # ColorQuote[NUM] = COLOUR
-color quoted  red default                  # MT_COLOR_QUOTED         ColorQuote            Text matching $quote_regex in the body of a message
+color quoted0 red default                  # MT_COLOR_QUOTED         ColorQuote            Text matching $quote_regex in the body of a message
 color quoted1 red default
 color quoted2 red default
 color quotedN red default

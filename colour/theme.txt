@@ -47,3 +47,18 @@ does DT_STARTUP allow stacking of colours?
 then runtime if colour domain is allowed, overwrite all
 what if the user sources a theme again?
 
+hundreds of themes that can be easily converted
+vim theme looks easy
+	https://github.com/mbadolato/iTerm2-Color-Schemes
+
+turn all neomutt themes into SVG
+	https://github.com/wader/ansisvg
+
+limit `theme` command to `color` commands only
+	flag `theme`-compatible commands
+		might need some config options => `set`, etc
+		`set my_var` would be very useful
+	default to quiet, but log everything
+		except syntax errors
+		except forbidden commands
+
