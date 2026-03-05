@@ -46,4 +46,4 @@ set my_bg3    = "cyan"
 
 source status.rc
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

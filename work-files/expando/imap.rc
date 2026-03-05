@@ -9,4 +9,4 @@ set spoolfile = "+INBOX"
 
 set imap_check_subscribed = yes
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

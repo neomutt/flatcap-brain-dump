@@ -17,4 +17,4 @@
 
 set index_format = "%<X?%ab%*.c%d&W%X%*.%YZ>"
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

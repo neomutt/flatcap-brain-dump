@@ -34,4 +34,4 @@ set index_format = "%<M?aaa"
 # "Conditional expando is missing '%c'"
 set index_format = "%<M?aaa&bbb"
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

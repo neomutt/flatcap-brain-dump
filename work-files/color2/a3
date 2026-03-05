@@ -5,4 +5,4 @@ color attach_headers cyan   magenta "information.*"
 set help    = no
 set markers = no
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

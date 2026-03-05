@@ -32,4 +32,4 @@ macro index <f5> "<enter-command>color<enter>"
 set color_directcolor = yes
 set allow_ansi = yes
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

@@ -9,4 +9,4 @@ color quoted7 $my_attrs $my_fg $my_bg
 color quoted8 $my_attrs $my_fg $my_bg
 color quoted9 $my_attrs $my_fg $my_bg
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

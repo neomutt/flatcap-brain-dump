@@ -6,4 +6,4 @@ bind sidebar \CK up
 bind sidebar \CP up
 bind sidebar \CN down
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

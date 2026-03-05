@@ -1,4 +1,4 @@
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc
 set sidebar_visible=no
 set help=no
 set pager_index_lines=0

@@ -43,4 +43,4 @@ set query_format          = "%3{number} %{tagged} %-25{name} %-25{email} | %{com
 #   sidebar_format        = "%D%*  %n"
 set sidebar_format        = "%{description}%{padding-soft}  %{new-mail}"
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

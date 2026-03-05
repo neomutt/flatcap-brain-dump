@@ -39,4 +39,4 @@ mailboxes                         "/home/mutt/mail/linode/system.dnssec"
 mailboxes                         "/home/mutt/mail/linode/system.linode"
 mailboxes                         "/home/mutt/mail/linode/trash"
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

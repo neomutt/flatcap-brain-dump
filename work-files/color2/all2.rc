@@ -113,4 +113,4 @@ color sidebar_ordinary          italic    #177365 #e52fbd
 color sidebar_spool_file        underline #980f7c #89c969
 color sidebar_unread            italic    #5538fd #953dbf
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

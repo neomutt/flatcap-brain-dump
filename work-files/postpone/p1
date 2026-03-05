@@ -6,4 +6,4 @@ set debug_file = "~/.neomuttdebug"
 set debug_level = 2
 set editor = false
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

@@ -12,4 +12,4 @@ mailboxes b.mbox
 mailboxes c.mbox
 mailboxes d.mbox
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

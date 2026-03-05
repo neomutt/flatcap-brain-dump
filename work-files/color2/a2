@@ -15,4 +15,4 @@ color status     #ffffff  #8080ff
 ignore *
 unignore from: subject to cc date x-mailer x-url user-agent
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

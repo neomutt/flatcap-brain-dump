@@ -2,4 +2,4 @@ color normal #ffc0c0 #ff0000
 uncolor tilde
 set tilde = no
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

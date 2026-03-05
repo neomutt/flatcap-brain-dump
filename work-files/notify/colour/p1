@@ -1,4 +1,4 @@
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc
 
 set allow_ansi = yes
 reset index_format

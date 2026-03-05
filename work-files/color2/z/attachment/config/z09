@@ -8,4 +8,4 @@ uncolor attach_headers begin
 uncolor attach_headers end
 uncolor attach_headers information
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

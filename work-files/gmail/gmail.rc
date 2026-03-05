@@ -37,4 +37,4 @@ set confirmcreate = no
 
 set help=no
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

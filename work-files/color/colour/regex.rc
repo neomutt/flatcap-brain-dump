@@ -68,4 +68,4 @@ color index_tags      $my_attrs2 $my_fg2 $my_bg2 "b(an)*a"
 color index_tags      $my_attrs3 $my_fg3 $my_bg3 "cher*y"
 color index_tags      $my_attrs4 $my_fg4 $my_bg4 "dam\"son"
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

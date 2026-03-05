@@ -9,4 +9,4 @@ macro index,pager <F1> "mrich@flatcap.org<enter>test<enter>"
 macro compose     <F2> "abrowser.c<enter>abrowser.h<enter>acommands.c<enter>acommands.h<enter>aenriched.c<enter>aenriched.h<enter>"
 macro compose     <F3> "HjTjTjT"
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

@@ -9,4 +9,4 @@ color status brightcyan    default   'Unread:[1-9][0-9]*'
 color status default       brightred 'Del:[1-9][0-9]*'
 color status default       cyan      'Tag:[1-9][0-9]*'
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

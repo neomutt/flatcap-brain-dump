@@ -12,4 +12,4 @@ set sidebar_visible = yes                                  # bool
 set sleep_time = 99                                        # number
 set sort_aux = "label"                                     # sort
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

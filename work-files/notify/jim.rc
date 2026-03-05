@@ -1,4 +1,4 @@
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc
 
 set weed       = yes
 set allow_ansi = yes

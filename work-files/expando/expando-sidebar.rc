@@ -23,4 +23,4 @@ color status default default
 
 set spool_file = "empty.mbox"
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

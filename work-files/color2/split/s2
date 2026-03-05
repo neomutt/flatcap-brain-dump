@@ -15,4 +15,4 @@ color body   color207 color165 "th(r)ee"
 
 macro index <f5> "<enter-command>color<enter>"
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

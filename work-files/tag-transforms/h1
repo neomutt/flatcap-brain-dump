@@ -83,4 +83,4 @@ set index_format+="%<Ge?%Ge&%<GS?%GS&%1Ga>>"
 # Show email subject
 set index_format+="  %s"
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

@@ -20,4 +20,4 @@ uncolor header three
 set header_color_partial = no
 set header_color_partial = yes
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

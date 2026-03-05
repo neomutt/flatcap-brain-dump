@@ -20,4 +20,4 @@ macro compose <F3> "<attach-file>html-part.html<enter>"
 macro compose <F4> "<toggle-disposition><tag-entry>1<enter><tag-entry><group-alternatives>"
 macro compose <F5> "<tag-entry>4<enter><tag-entry><group-related>"
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

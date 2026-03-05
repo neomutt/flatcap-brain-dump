@@ -201,7 +201,7 @@ index-format-hook size "~z <6835741"  "███▉▏"
 index-format-hook size "~z <9775110"  "████▏"
 index-format-hook size "~A"           "⸱⸱⸱⸱⸱"
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc
 
 ▏   ▏
 ▎   ▏

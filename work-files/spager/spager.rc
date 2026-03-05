@@ -102,4 +102,4 @@ macro pager q '<exit><exit>'
 macro index,pager <f5> "<enter-command>source .git/files/spager/colour1.rc<enter>"
 macro index,pager <f6> "<enter-command>source .git/files/spager/colour2.rc<enter>"
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

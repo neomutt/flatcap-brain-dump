@@ -34,4 +34,4 @@ color compose security_sign    $my_attrs $my_fg $my_bg
 color compose security_both    $my_attrs $my_fg $my_bg
 color compose security_none    $my_attrs $my_fg $my_bg
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

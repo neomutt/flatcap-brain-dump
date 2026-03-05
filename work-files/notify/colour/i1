@@ -1,4 +1,4 @@
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc
 
 set allow_ansi = yes
 # set index_format="%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) [%GR] %s"

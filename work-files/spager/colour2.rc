@@ -10,4 +10,4 @@ color operator   bold      #80ffff #808080
 color string               #ffff00 #808000
 color url        underline default default
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc
