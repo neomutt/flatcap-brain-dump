@@ -2,4 +2,4 @@ set crypt_chars = '🐾☘𢡊👀♨🌏'
 set flag_chars  = '✌⌛⚓💢ﯝ🐲☣⌚⚠☮⚒☠'
 set to_chars    = '⚛💋☯ﲶﮄ﭅🐝🔥☢✇'
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc

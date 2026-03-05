@@ -4,6 +4,7 @@ digraph callgraph {
 		nodesep="0.2"
 		ranksep="0.5"
 		compound="true"
+		bgcolor="#c0c0c0"
 	]
 
 	node [
@@ -23,7 +24,7 @@ digraph callgraph {
 	]
 
 	// External functions
-	node [ fillcolor="#c0ffff" ]
+	node [ fillcolor="#a0dddd" ]
 	exec_hook_command          [ label=<Q exec_hook_command()>          ]
 	mutt_init_sys              [ label=<0 mutt_init(sys)>               ]
 	mutt_init_user             [ label=<1 mutt_init(user)>              ]
@@ -37,7 +38,7 @@ digraph callgraph {
 	lua_cb_global_enter        [ label=<9 lua_cb_global_enter()>        ]
 
 	// Parts of Parse System
-	node [ fillcolor="#ffffc0" ]
+	node [ fillcolor="#dddda0" ]
 	source_rc             [ label=<P source_rc()>             ]
 	parse_rc_line         [ label=<R parse_rc_line()>         ]
 
@@ -49,18 +50,18 @@ digraph callgraph {
 
 	mutt_init_sys  -> source_rc
 	mutt_init_user -> source_rc
-	parse_source   -> source_rc [ color="#c00000" ]
+	parse_source   -> source_rc [ color="#a00000" ]
 
 	lua_cb_global_enter   -> parse_rc_line
 	main_execute_commands -> parse_rc_line
 	mutt_enter_command    -> parse_rc_line
-	parse_ifdef           -> parse_rc_line [ color="#c00000" ]
+	parse_ifdef           -> parse_rc_line [ color="#a00000" ]
 	exec_hook_command     -> parse_rc_line
 	source_rc             -> parse_rc_line
 
-	parse_rc_line -> parse_ifdef     [ color="#0000ff" label="Command:parse()" fontcolor="#0000ff" ]
-	parse_rc_line -> parse_XYZ       [ color="#0000ff" ]
-	parse_rc_line -> parse_source    [ color="#0000ff" ]
+	parse_rc_line -> parse_ifdef     [ color="#0000dd" label="Command:parse()" fontcolor="#0000dd" ]
+	parse_rc_line -> parse_XYZ       [ color="#0000dd" ]
+	parse_rc_line -> parse_source    [ color="#0000dd" ]
 
 	exec_account_hook          -> exec_hook_command
 	exec_folder_hook           -> exec_hook_command

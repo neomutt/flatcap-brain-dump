@@ -62,3 +62,26 @@ limit `theme` command to `color` commands only
 		except syntax errors
 		except forbidden commands
 
+:theme [flags] {name}
+	-n	next theme     (wrap around?)
+	-p      previous theme (wrap around?)
+	-d	default theme
+no params => show theme name (and file location)
+:theme NAME
+	load named theme from a "standard" location
+		message "Theme: NAME"
+	$theme_dir
+	/usr/share/neomutt/themes
+	~/.config/neomutt/themes
+
+need text "screenshots" covering all *colours*
+	they need colour {placeholders}
+	script to turn them into ANSI colours
+	then covert them into svg
+	push to dedicated theme-display repo/website
+
+theme: check which colors aren't used -- fit them in
+	(every color should be used)
+	trawl config/ for colour pattern ideas
+	search for mutt themes
+

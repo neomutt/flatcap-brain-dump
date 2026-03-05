@@ -497,7 +497,7 @@ themes
 
 modernise all the sample configs
 	underscore config names, etc
-	# vim: syn=neomuttrc
+	# vim: ft=neomuttrc
 
 Find more Linked List Nodes, to replace with ARRAY, e.g.
 	see agent.txt
@@ -1259,5 +1259,8 @@ amp - general rules
 move MenuDefs and SubMenus to libgui Module?
 move individual MenuDef and SubMenu to individual Modules?
 
-fix new leaks in autocrypt
+vim #RGB triple colour highlighting for neomuttrc
+
+all syn=neomuttrc -> ft=neomuttrc
+	same for logs
 

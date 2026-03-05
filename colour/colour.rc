@@ -93,4 +93,4 @@ uncolor INDEX-LIST *
 # Everything
 uncolor *
 
-# vim: syn=neomuttrc
+# vim: ft=neomuttrc
