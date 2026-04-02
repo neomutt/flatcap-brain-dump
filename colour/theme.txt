@@ -81,7 +81,75 @@ need text "screenshots" covering all *colours*
 	push to dedicated theme-display repo/website
 
 theme: check which colors aren't used -- fit them in
+	which colors are diff from mutt?
 	(every color should be used)
 	trawl config/ for colour pattern ideas
+		diff
+		markdown
+		urls
 	search for mutt themes
+
+https://github.com/catppuccin/neomutt
+https://github.com/altercation/mutt-colors-solarized
+
+themes repo
+	need dns
+	light
+		palette/
+		rgb/
+	dark
+		palette/
+		rgb/
+	scripts/
+	website/	(RTD)
+	screenshots
+	README.md
+
+need some light/dark elements that are shared
+
+theme list need colour swatch for each
+
+<screenshot> global function would be hard
+	by the time the text is actually painted
+	the colours have become merged.
+	The caller does the merging, so paint gets a merged colour.
+	there's no way to work out which MT_COLOR_* parts it's made from.
+	To fix this, we'd have to keep a ColorArray
+	Index line = [ NORMAL, INDEX_COLUMN, INDEX_ROW, INDEX, INDICATOR]
+	then window_write(text, colour array)
+	THEN, the low-level writer knows which bits of which colours remain
+	can generate: <span class="indicator, index_row"> (bg,fg)
+	helper functions for the ColorArray:
+	push(NORMAL); push(INDEX_COLUMN); push(INDEX_ROW); STUFF; pop(2); pop(1);
+	lots of work, but separates the index,etc, from the colour details
+	ColorArray should cache the merged colours
+	Merged Colours are cached lazily as their used.
+	Important: this preserves the colours, even if they're not set!
+	how do ANSI colours fit in?
+		push(MT_COLOR_CUSTOM, AttrColor)
+		caller _does_ need some awareness of colours, here
+	what about RegexColors with multiple matches?
+		for (RegexColors): if RegexMatch: push(Color)
+		caller deals with matching
+		library deals with colours
+	ColorArray:
+		enum ColorId id;		// Id, e.g. MT_COLOR_NORMAL
+		struct AttrColor *ac;		// Looked up colour
+	<screenshot> can list colours used
+		can even list some colours that exist but weren't visible. NO
+		the non-visible colours could be visible in *certain* themes
+
+
+theme list, zip them (truecolor,palette) and make them available to download
+	or make a release and add them to the release artifacts
+
+themes: list and credit source
+	explanation of how the site works
+
+theme viewer?
+	keep track of themes applied
+	allow <prev> <next>
+	<random> just adds to the list
+	temp theme-name sidebar, with swatches
+	fuzzy search, <up>, <down> live updates to rest of screen
 

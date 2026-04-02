@@ -121,7 +121,7 @@ why are these 3 charset config not using DT_SLIST?
 	mutt_config.c:443:13: { "config_charset",     DT_STRING,                              0,          0, charset_validator,
 	nntp/config.c:67:17:  { "newsgroups_charset", DT_STRING,                              IP "utf-8", 0, charset_validator,
 
-bash complete for configure
+update bash complete for configure
 	push to management
 	dev ml
 

@@ -261,3 +261,6 @@ useful bindings:
 sidebar defaults
 .inputrc - RSI avoidance macros
 
+$signature
+	If the filename ends with a pipe ("|"), it is assumed that filename is a shell command...
+
