@@ -1265,10 +1265,45 @@ vim #RGB triple colour highlighting for neomuttrc
 
 change help "this screen" to "help screen"
 
-conditional expandos don't recognise the %{long-name}s
-e.g.
-	%<n?     TRUE : FALSE>	is ok
-	%<{new}? TRUE : FALSE>	doesn't
-
 devel: CLI `--geometry WxH` -- fix size, e.g. for auto-screenshotting
+
+make L10N: "abort_noattach_regex", "\\<(attach|attached|attachments?)\\>"
+
+make enum: "nm_query_window_timebase", "week"
+
+split flag chars so they can be styled individually
+	e.g. deleted -> ❌
+	set alias_format="%3i %<f?❌&  >%t %-15a %-56A │ %C"
+	set flag_chars="*!❌drONon- "
+	don't insert the icon, replace the flags wholesale!
+		normal %Z	-> `r +`
+		deleted icon	-> `❌ `
+	%{flag-deleted}	-> ❌
+	%{flag-tagged}  -> ✔️ or ✅
+	%{flag-flagged} -> ❗ or ‼️
+probably overkill.  $*_chars do enough
+	"S"  "flag-chars"     ED_EMAIL ED_EMA_FLAG_CHARS     email_flag_chars     $flag_chars
+	"T"  "to-chars"       ED_EMAIL ED_EMA_TO_CHARS       email_to_chars       $to_chars
+	"Z"  "combined-flags" ED_EMAIL ED_EMA_COMBINED_FLAGS email_combined_flags $crypt_chars $flag_chars $to_chars
+	"zc" "crypto-flags"   ED_EMAIL ED_EMA_CRYPTO_FLAGS   email_crypto_flags   $crypt_chars
+	"zs" "status-flags"   ED_EMAIL ED_EMA_STATUS_FLAGS   email_status_flags   $flag_chars
+	"zt" "message-flags"  ED_EMAIL ED_EMA_MESSAGE_FLAGS  email_message_flags  $flag_chars  $to_chars
+
+	Used: $crypt_chars, $flag_chars, $to_chars
+	Misc: $from_char, $status_chars
+
+permalink:
+	https://neomutt.org/guide/reference#status-format	hyphen
+	https://docs.neomutt.org/cfg/status_format		underscore
+	https://docs.neomutt.org/config/status_format		underscore
+
+create a PREP-release skill
+	update the dates in all the bits-and-pieces files, etc
+	need list of files
+
+update index_format docs
+	link to $*_chars config
+	%zc %{crypto-flags}  Message crypto flags $crypt_chars 
+	%zs %{status-flags}  Message status flags $flag_chars  
+	%zt %{message-flags} Message tag    flags $flag_chars  $to_chars
 
