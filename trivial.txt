@@ -1267,10 +1267,6 @@ change help "this screen" to "help screen"
 
 devel: CLI `--geometry WxH` -- fix size, e.g. for auto-screenshotting
 
-make L10N: "abort_noattach_regex", "\\<(attach|attached|attachments?)\\>"
-
-make enum: "nm_query_window_timebase", "week"
-
 split flag chars so they can be styled individually
 	e.g. deleted -> ❌
 	set alias_format="%3i %<f?❌&  >%t %-15a %-56A │ %C"

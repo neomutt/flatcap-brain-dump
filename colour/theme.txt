@@ -153,3 +153,36 @@ theme viewer?
 	temp theme-name sidebar, with swatches
 	fuzzy search, <up>, <down> live updates to rest of screen
 
+theme viewer:
+	Menu of: | Name | Swatch |
+	sorted by name?
+		favourites first?
+		with separator
+	add Favourites column
+	or rating, or star count -- HOW?
+		=> sorting
+	split screen?
+		menu at top
+		sample panel below?
+	live view?
+		first line is current theme (or user's custom settings)
+		menu of themes below
+		changing the selection changes the theme *live*
+		<top> -> back to user's settings
+		<enter> -> select theme, quit
+		<quit> -> restore user's theme, quit
+		need way to save/restore user's entire colour setup
+	probably better than <theme-next/prev> when there are lots of themes
+	<random> function!
+
+theme-hook?
+	Setting a theme probably clears all settings first
+	(only way to guarantee behaviour)
+	When a theme is set, let the user customise it
+	theme-hook NAME (specfic)
+	theme-hook .    (for all)
+	folder-hook +work "<enter-command>theme xyz<enter>"
+		auto-triggers theme-hook
+	overkill?
+		why not just source a file with "theme X; color *"?
+
