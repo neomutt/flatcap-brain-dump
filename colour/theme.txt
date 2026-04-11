@@ -7,10 +7,10 @@ colours
 parse deep colours, then *cull* on gui_init()
 
 color object *link* object2
-use same linkage mechnism for multiple colour domains
+use same linkage mechanism for multiple colour domains
 
 arrange: object -> rgb -> palette -> simple
-where are teh attrs stored? *separately*
+where are the attrs stored? *separately*
 if rgb isn't valid, nor are its attrs -- culled
 
 if we *cull* them, then :color isn't useful
@@ -29,7 +29,7 @@ if $background is manually set, don't query the terminal
 
 source! -- no fail
 and/or
-source *dir*  ∀ *.rc withing (alpha sorted)
+source *dir*  ∀ *.rc within (alpha sorted)
 
 
 if theme contains
@@ -179,7 +179,7 @@ theme-hook?
 	Setting a theme probably clears all settings first
 	(only way to guarantee behaviour)
 	When a theme is set, let the user customise it
-	theme-hook NAME (specfic)
+	theme-hook NAME (specific)
 	theme-hook .    (for all)
 	folder-hook +work "<enter-command>theme xyz<enter>"
 		auto-triggers theme-hook
