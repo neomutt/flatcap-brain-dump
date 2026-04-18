@@ -1041,6 +1041,7 @@ status_format %{uptime}
 	for debugging / prowess
 	add %{uptime-short}
 	or a :uptime command
+add uptime to :version output
 
 https://github.com/termstandard/colors
 	move neomutt into "supported"
@@ -1302,4 +1303,12 @@ update index_format docs
 	%zc %{crypto-flags}  Message crypto flags $crypt_chars 
 	%zs %{status-flags}  Message status flags $flag_chars  
 	%zt %{message-flags} Message tag    flags $flag_chars  $to_chars
+
+> storage: lmdb
+> compression: lz4, zlib, zstd 
+	Maybe it's helpful when “storage” above would be “Header Cache(s)” and   
+	“compression” would be “Header Compression(s)” (taken from the configure output).
+
+delay mailbox opening, from `mailboxes +X`
+	HOW?
 

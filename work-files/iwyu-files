@@ -11,6 +11,7 @@ address/lib.h
 address/maillist.c
 address/maillist.h
 address/module.c
+address/module_data.h
 alias/alias.c
 alias/alias.h
 alias/alternates.c
@@ -25,6 +26,8 @@ alias/expando.c
 alias/expando.h
 alias/functions.c
 alias/functions.h
+alias/group.c
+alias/group.h
 alias/gui.c
 alias/gui.h
 alias/lib.h
@@ -71,11 +74,13 @@ autocrypt/functions.h
 autocrypt/gpgme.c
 autocrypt/lib.h
 autocrypt/module.c
+autocrypt/module_data.h
 autocrypt/private.h
 autocrypt/schema.c
 bcache/bcache.c
 bcache/lib.h
 bcache/module.c
+bcache/module_data.h
 browser/complete.c
 browser/config.c
 browser/dlg_browser.c
@@ -85,6 +90,7 @@ browser/functions.c
 browser/functions.h
 browser/lib.h
 browser/module.c
+browser/module_data.h
 browser/private_data.c
 browser/private_data.h
 browser/sort.c
@@ -109,6 +115,7 @@ color/lib.h
 color/merged.c
 color/merged.h
 color/module.c
+color/module_data.h
 color/notify.c
 color/notify2.h
 color/parse_ansi.c
@@ -139,6 +146,7 @@ commands/lib.h
 commands/mailboxes.c
 commands/mailboxes.h
 commands/module.c
+commands/module_data.h
 commands/my_header.c
 commands/my_header.h
 commands/parse.c
@@ -164,11 +172,13 @@ complete/data.h
 complete/helpers.c
 complete/lib.h
 complete/module.c
+complete/module_data.h
 compmbox/compress.c
 compmbox/expando.c
 compmbox/expando.h
 compmbox/lib.h
 compmbox/module.c
+compmbox/module_data.h
 compose/attach.c
 compose/attach_data.c
 compose/attach_data.h
@@ -184,6 +194,7 @@ compose/functions.c
 compose/functions.h
 compose/lib.h
 compose/module.c
+compose/module_data.h
 compose/preview.c
 compose/private.h
 compose/shared_data.c
@@ -192,6 +203,7 @@ compress/compress.c
 compress/lib.h
 compress/lz4.c
 compress/module.c
+compress/module_data.h
 compress/private.h
 compress/zlib.c
 compress/zstd.c
@@ -211,6 +223,7 @@ config/long.c
 config/mbtable.c
 config/mbtable.h
 config/module.c
+config/module_data.h
 config/myvar.c
 config/number.c
 config/number.h
@@ -241,6 +254,7 @@ conn/gsasl.c
 conn/gsasl2.h
 conn/lib.h
 conn/module.c
+conn/module_data.h
 conn/mutt_account.c
 conn/mutt_account.h
 conn/private.h
@@ -259,6 +273,7 @@ convert/content_info.c
 convert/convert.c
 convert/lib.h
 convert/module.c
+convert/module_data.h
 core/account.c
 core/account.h
 core/command.c
@@ -274,6 +289,7 @@ core/message.c
 core/message.h
 core/module.c
 core/module_api.h
+core/module_data.h
 core/mxapi.h
 core/neomutt.c
 core/neomutt.h
@@ -286,6 +302,7 @@ editor/functions.c
 editor/functions.h
 editor/lib.h
 editor/module.c
+editor/module_data.h
 editor/state.c
 editor/state.h
 editor/wdata.h
@@ -349,6 +366,7 @@ envelope/functions.c
 envelope/functions.h
 envelope/lib.h
 envelope/module.c
+envelope/module_data.h
 envelope/private.h
 envelope/wdata.c
 envelope/wdata.h
@@ -366,6 +384,7 @@ expando/helpers.c
 expando/helpers.h
 expando/lib.h
 expando/module.c
+expando/module_data.h
 expando/node.c
 expando/node.h
 expando/node_condbool.c
@@ -395,6 +414,11 @@ flags.c
 fuzz/address.c
 fuzz/cli.c
 fuzz/date.c
+fuzzy/benchmark.c
+fuzzy/fuzzy.c
+fuzzy/fuzzy.h
+fuzzy/lib.h
+fuzzy/subseq.c
 globals.c
 globals.h
 gui/config.c
@@ -408,6 +432,7 @@ gui/global.c
 gui/global.h
 gui/lib.h
 gui/module.c
+gui/module_data.h
 gui/msgcont.c
 gui/msgcont.h
 gui/msgwin.c
@@ -437,6 +462,7 @@ hcache/config.c
 hcache/hcache.c
 hcache/lib.h
 hcache/module.c
+hcache/module_data.h
 hcache/serialize.c
 hcache/serialize.h
 help.c
@@ -444,6 +470,7 @@ helpbar/config.c
 helpbar/helpbar.c
 helpbar/lib.h
 helpbar/module.c
+helpbar/module_data.h
 helpbar/private.h
 helpbar/wdata.c
 history/config.c
@@ -455,6 +482,7 @@ history/functions.h
 history/history.c
 history/lib.h
 history/module.c
+history/module_data.h
 hooks/commands.c
 hooks/commands.h
 hooks/config.c
@@ -466,6 +494,7 @@ hooks/hook.c
 hooks/hook.h
 hooks/lib.h
 hooks/module.c
+hooks/module_data.h
 hooks/parse.c
 hooks/parse.h
 hooks/run.c
@@ -493,6 +522,7 @@ imap/mdata.h
 imap/message.c
 imap/message.h
 imap/module.c
+imap/module_data.h
 imap/msg_set.c
 imap/msg_set.h
 imap/msn.c
@@ -542,6 +572,7 @@ key/lib.h
 key/menu.c
 key/menu.h
 key/module.c
+key/module_data.h
 key/notify.h
 lua/account.c
 lua/account.h
@@ -565,6 +596,7 @@ lua/lua.c
 lua/mailbox.c
 lua/mailbox.h
 lua/module.c
+lua/module_data.h
 lua/neomutt.c
 lua/neomutt.h
 lua/object.h
@@ -586,6 +618,7 @@ maildir/mdemail.h
 maildir/message.c
 maildir/message.h
 maildir/module.c
+maildir/module_data.h
 maildir/path.c
 maildir/path.h
 maildir/shared.c
@@ -595,6 +628,7 @@ mbox/config.c
 mbox/lib.h
 mbox/mbox.c
 mbox/module.c
+mbox/module_data.h
 menu/config.c
 menu/draw.c
 menu/functions.c
@@ -602,6 +636,7 @@ menu/functions.h
 menu/lib.h
 menu/menu.c
 menu/module.c
+menu/module_data.h
 menu/move.c
 menu/observer.c
 menu/private.h
@@ -616,6 +651,7 @@ mh/mh.c
 mh/mhemail.c
 mh/mhemail.h
 mh/module.c
+mh/module_data.h
 mh/sequence.c
 mh/sequence.h
 mh/shared.c
@@ -663,6 +699,7 @@ mutt/memory.c
 mutt/memory.h
 mutt/message.h
 mutt/module.c
+mutt/module_data.h
 mutt/notify.c
 mutt/notify.h
 mutt/notify_type.h
@@ -732,6 +769,7 @@ ncrypt/gpgme_functions.c
 ncrypt/gpgme_functions.h
 ncrypt/lib.h
 ncrypt/module.c
+ncrypt/module_data.h
 ncrypt/pgp.c
 ncrypt/pgp.h
 ncrypt/pgpinvoke.c
@@ -768,6 +806,7 @@ nntp/lib.h
 nntp/mdata.c
 nntp/mdata.h
 nntp/module.c
+nntp/module_data.h
 nntp/newsrc.c
 nntp/nntp.c
 nntp/private.h
@@ -782,6 +821,7 @@ notmuch/lib.h
 notmuch/mdata.c
 notmuch/mdata.h
 notmuch/module.c
+notmuch/module_data.h
 notmuch/notmuch.c
 notmuch/private.h
 notmuch/query.c
@@ -798,6 +838,7 @@ pager/functions.h
 pager/lib.h
 pager/message.c
 pager/module.c
+pager/module_data.h
 pager/pager.c
 pager/pbar.c
 pager/pbar.h
@@ -810,6 +851,7 @@ parse/extract.c
 parse/extract.h
 parse/lib.h
 parse/module.c
+parse/module_data.h
 parse/pcontext.c
 parse/pcontext.h
 parse/perror.c
@@ -831,6 +873,7 @@ pattern/functions.h
 pattern/lib.h
 pattern/message.c
 pattern/module.c
+pattern/module_data.h
 pattern/pattern.c
 pattern/pattern_data.c
 pattern/pattern_data.h
@@ -854,6 +897,7 @@ pop/edata.h
 pop/lib.c
 pop/lib.h
 pop/module.c
+pop/module_data.h
 pop/pop.c
 pop/private.h
 postpone/dlg_postpone.c
@@ -861,10 +905,12 @@ postpone/functions.c
 postpone/functions.h
 postpone/lib.h
 postpone/module.c
+postpone/module_data.h
 postpone/postpone.c
 progress/config.c
 progress/lib.h
 progress/module.c
+progress/module_data.h
 progress/progress.c
 progress/wdata.c
 progress/wdata.h
@@ -872,6 +918,7 @@ progress/window.c
 progress/window.h
 question/lib.h
 question/module.c
+question/module_data.h
 question/question.c
 send/body.c
 send/body.h
@@ -906,6 +953,7 @@ sidebar/functions.c
 sidebar/functions.h
 sidebar/lib.h
 sidebar/module.c
+sidebar/module_data.h
 sidebar/observer.c
 sidebar/private.h
 sidebar/sidebar.c
@@ -938,6 +986,7 @@ store/kc.c
 store/lib.h
 store/lmdb.c
 store/module.c
+store/module_data.h
 store/qdbm.c
 store/rocksdb.c
 store/store.c
