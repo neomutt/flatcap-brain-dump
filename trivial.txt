@@ -1312,3 +1312,5 @@ update index_format docs
 delay mailbox opening, from `mailboxes +X`
 	HOW?
 
+with repeat-count, adding $relative_number to the Menu might be useful
+

@@ -141,6 +141,10 @@ RSI prevention, NeoMutt style:
 	macro editor \ej =
 post to users ml
 
+similarly, abbreviate useful strings
+	use an unlikely prefix, e.g.
+	macro editor ,,m "/home/mail/"
+
 alberand | Hey all! Does anyone know if there is an easy way to change received emails? What I want to do is - I get a lot Jira emails and they contains
          | a bunch of useless info, I want to add bash script on those emails to cut this off
  flatcap | yes, you could use $display_filter
@@ -263,4 +267,6 @@ sidebar defaults
 
 $signature
 	If the filename ends with a pipe ("|"), it is assumed that filename is a shell command...
+
+bind browser .. goto-parent
 
