@@ -263,6 +263,7 @@ how to add args?
 	<arg>apple<arg>banana<arg-end>
 what advantage has this over :lua function(apple,banana)
 context -- working on an Email / set of Emails
+need to add the function to a specific menu
 
 Allow Window manipulation?  within reason
 	switch between set modes: normal, widescreen

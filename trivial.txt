@@ -1313,4 +1313,42 @@ delay mailbox opening, from `mailboxes +X`
 	HOW?
 
 with repeat-count, adding $relative_number to the Menu might be useful
+	slightly tricky because each expando callback has different data
+	most of which don't include the Menu
+
+`|` pipe-message can be used with tagging
+	update the message to tell the user how many messages are being piped
+	how many other commands follow this pattern?
+
+why is $attach_format in mutt_config.c not in attach/config.c?
+
+postpone.c
+	should deleted draft messages be saved in the trash folder?
+	NO: compose, cancel
+	YES: postponed mailbox, delete
+
+should neomutt_get_module_data() ASSERT on the mod_data it gets?
+	will the callers really be asking for data if it mightn't be there?
+
+Index: <toggle-new>
+	∀ <toggle-X> ensure <set-X> and <clear-X> exists
+
+op_print() doesn't resolve to next email
+
+Index: these function need improvements for tagging/repeat-count
+	op_compose_to_sender
+		uses strnage code path to generate email
+		could it reuse some op_mail() paths?
+	op_create_alias
+		doesn't support either tag/repeat-count
+
+attach functions need their own ea_add_selection()
+	attach_add_selection() -- in new commits
+	attach_bounce_message()
+	mutt_attach_forward()
+	mutt_attach_mail_sender()
+	mutt_attach_reply()
+	mutt_attach_resend()
+	mutt_print_attachment_list()
+	mutt_save_attachment_list()
 
