@@ -1182,6 +1182,8 @@ add Carlos to credits (Debian work)
 	Carlos Henrique Lima Melara (@charles2910)
 add shane.xb.qian to credits (build fix)
 	Shane Qian (@Shane-XB-Qian)
+add jo-so (Jörg Sommer) to credits
+	bug reporting
 
 run amp on vim folding code
 	need example code for each fold type
@@ -1337,7 +1339,7 @@ op_print() doesn't resolve to next email
 
 Index: these function need improvements for tagging/repeat-count
 	op_compose_to_sender
-		uses strnage code path to generate email
+		uses strange code path to generate email
 		could it reuse some op_mail() paths?
 	op_create_alias
 		doesn't support either tag/repeat-count
@@ -1351,4 +1353,15 @@ attach functions need their own ea_add_selection()
 	mutt_attach_resend()
 	mutt_print_attachment_list()
 	mutt_save_attachment_list()
+
+Rename BrowserEntryArray to FolderFileArray for consistency
+	ARRAY_HEAD(BrowserEntryArray, struct FolderFile);
+	ARRAY_HEAD(FolderFilePtrArray, struct FolderFile *);
+
+Update:
+	uses: SimenB/github-actions-cpu-cores@v3
+
+changelog
+	add [release] notes to [main]
+	fold old ones
 
