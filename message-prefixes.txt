@@ -36,6 +36,9 @@ if color error|warning|message is defined
 	don't use prefix
 if $message_chars is defined, use *it* as a prefix
 	"❗"/"🚨", "⚠️ ", "ℹ️ " -- or nerdfonts, in colour
+config to (not) use prefixes (if colour is set)
+	enum?
+config to *define* the prefixes
 
 Icons could be used elsewhere
 

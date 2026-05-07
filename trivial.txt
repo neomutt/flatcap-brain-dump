@@ -743,6 +743,7 @@ add folder-hook-late (once mailbox is open and index populated)
 
 prefix for help pages could be an slist
 	"file:///usr/share/doc/neomutt,http://neomutt.org/docs"
+	check local dir once, when config is set
 
 enum WarnArgCount
 {
@@ -1169,21 +1170,9 @@ keybindings:
 	This fits in well with automatically delegating events to Windows
 	Index holds some mappings and some Window might be able to service them
 
-keybindings:
-	set max limit on keybinding timeout settings?
-	probably want a 1s timeout regardless of config settings
-		so that the GUI doesn't block
-
 <get-message> docs don't mention that it's NNTP only
 	check others
 	warn if used?
-
-add Carlos to credits (Debian work)
-	Carlos Henrique Lima Melara (@charles2910)
-add shane.xb.qian to credits (build fix)
-	Shane Qian (@Shane-XB-Qian)
-add jo-so (Jörg Sommer) to credits
-	bug reporting
 
 run amp on vim folding code
 	need example code for each fold type
@@ -1257,10 +1246,6 @@ amp - general rules
 	vim vint pass
 	commit changes separately
 
-<help> list of bindings
-	mysterious blank line at top
-	not in 2016-01-05
-
 move MenuDefs and SubMenus to libgui Module?
 move individual MenuDef and SubMenu to individual Modules?
 
@@ -1299,6 +1284,8 @@ permalink:
 create a PREP-release skill
 	update the dates in all the bits-and-pieces files, etc
 	need list of files
+	signed commit
+	signed tag
 
 update index_format docs
 	link to $*_chars config
@@ -1323,6 +1310,7 @@ with repeat-count, adding $relative_number to the Menu might be useful
 	how many other commands follow this pattern?
 
 why is $attach_format in mutt_config.c not in attach/config.c?
+	$index_format not in index/config.c (heavy re-use)
 
 postpone.c
 	should deleted draft messages be saved in the trash folder?
@@ -1331,11 +1319,27 @@ postpone.c
 
 should neomutt_get_module_data() ASSERT on the mod_data it gets?
 	will the callers really be asking for data if it mightn't be there?
+	don't assert in the function?
+		having the assert outside it more informative
 
 Index: <toggle-new>
 	∀ <toggle-X> ensure <set-X> and <clear-X> exists
-
-op_print() doesn't resolve to next email
+	unless covered by <set-flag>/<clear-flag>
+		display-toggle-weed
+		search-toggle
+		sidebar-toggle-virtual
+		sidebar-toggle-visible
+		toggle-active
+		toggle-disposition
+		toggle-mailboxes
+		toggle-new
+		toggle-prefer-encrypt
+		toggle-quoted
+		toggle-read
+		toggle-recode
+		toggle-subscribed
+		toggle-unlink
+		toggle-write
 
 Index: these function need improvements for tagging/repeat-count
 	op_compose_to_sender
@@ -1344,24 +1348,7 @@ Index: these function need improvements for tagging/repeat-count
 	op_create_alias
 		doesn't support either tag/repeat-count
 
-attach functions need their own ea_add_selection()
-	attach_add_selection() -- in new commits
-	attach_bounce_message()
-	mutt_attach_forward()
-	mutt_attach_mail_sender()
-	mutt_attach_reply()
-	mutt_attach_resend()
-	mutt_print_attachment_list()
-	mutt_save_attachment_list()
-
 Rename BrowserEntryArray to FolderFileArray for consistency
 	ARRAY_HEAD(BrowserEntryArray, struct FolderFile);
 	ARRAY_HEAD(FolderFilePtrArray, struct FolderFile *);
-
-Update:
-	uses: SimenB/github-actions-cpu-cores@v3
-
-changelog
-	add [release] notes to [main]
-	fold old ones
 

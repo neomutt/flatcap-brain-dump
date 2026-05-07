@@ -198,6 +198,8 @@ color status brightyellow  default   'Old:[1-9][0-9]*'
 color status brightcyan    default   'Unread:[1-9][0-9]*'
 color status default       brightred 'Del:[1-9][0-9]*'
 color status default       cyan      'Tag:[1-9][0-9]*'
+	ask for translations
+	status_format is already translated, copy those text snippets
 
 hide help/status
 	set help = no
