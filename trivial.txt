@@ -19,12 +19,6 @@ good first issue?
 		if multi-selection is allowed
 	fix auto-tag PR first
 
-attach refactor
-	libattach
-	dlg(view)attach
-	pass attach list to functions
-		(c.f. tagged emails)
-
 "Out of memory" translation still used?!
 
 note alx: ptr vs pptr
@@ -1093,7 +1087,7 @@ bash-completion
 These functions are users of config options:
 	query_quadoption()
 	query_yesorno_help()
-	cs_subset_bool()
+	cs_subset_bminkool()
 	cs_subset_enum()
 	cs_subset_long()
 	cs_subset_mbtable()
@@ -1289,13 +1283,13 @@ create a PREP-release skill
 
 update index_format docs
 	link to $*_chars config
-	%zc %{crypto-flags}  Message crypto flags $crypt_chars 
-	%zs %{status-flags}  Message status flags $flag_chars  
+	%zc %{crypto-flags}  Message crypto flags $crypt_chars
+	%zs %{status-flags}  Message status flags $flag_chars
 	%zt %{message-flags} Message tag    flags $flag_chars  $to_chars
 
 > storage: lmdb
-> compression: lz4, zlib, zstd 
-	Maybe it's helpful when “storage” above would be “Header Cache(s)” and   
+> compression: lz4, zlib, zstd
+	Maybe it's helpful when “storage” above would be “Header Cache(s)” and
 	“compression” would be “Header Compression(s)” (taken from the configure output).
 
 delay mailbox opening, from `mailboxes +X`
@@ -1351,4 +1345,7 @@ Index: these function need improvements for tagging/repeat-count
 Rename BrowserEntryArray to FolderFileArray for consistency
 	ARRAY_HEAD(BrowserEntryArray, struct FolderFile);
 	ARRAY_HEAD(FolderFilePtrArray, struct FolderFile *);
+
+upgrade flags to enum
+	see enum-flags/
 
