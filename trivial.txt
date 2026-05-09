@@ -1345,7 +1345,3 @@ Index: these function need improvements for tagging/repeat-count
 Rename BrowserEntryArray to FolderFileArray for consistency
 	ARRAY_HEAD(BrowserEntryArray, struct FolderFile);
 	ARRAY_HEAD(FolderFilePtrArray, struct FolderFile *);
-
-upgrade flags to enum
-	see enum-flags/
-
