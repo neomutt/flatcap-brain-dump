@@ -144,3 +144,52 @@ Issue by @wgmayer0 "Save all attachments with a keybinding": https://github.com/
 👀 👍 💀 💡 💣 💥 💬 💭 📁 📂 📃 📄 📑
 📖 📗 📘 📙 📜 📝 🔐 🔑 🔒 🔓 🔔 🔥 🔧
 🚧 🚨 🚫 🛑 🎨
+
+--------------------------------------------------------------------------------
+
+# Suggestions
+
+1. TLS + SASL + multiple channels. Make channels a list and per-channel configure default user/repo
+   (e.g., --channel '#neomutt:neomutt/neomutt').
+
+2. Config file (TOML/YAML) instead of CLI flags only; CLI overrides file. Use tomllib (3.11+).
+
+3. Commit/SHA expansion: detect [a-f0-9]{7,40} and link to the commit, with subject + author.
+
+4. User mention expansion: @octocat → link to GH profile.
+
+5. !subscribe/!unsubscribe to push notifications about new issues/PRs to the channel via GitHub
+   webhooks (run a small aiohttp server alongside).
+
+6. Status command: !neo-bot status prints uptime, GH rate-limit remaining (X-RateLimit-Remaining),
+   last error.
+
+7. Smart in-channel help: !help, !repo neomutt/neomutt-doc to set per-channel default for the
+   session.
+
+8. Caching with cachetools.TTLCache keyed by (owner, repo, num); this also subsumes the cooldown
+   set.
+
+9. Async rewrite with pydle or irc.client_aio + httpx.AsyncClient. Removes the blocking-sleep
+   problem entirely.
+
+10. Structured logging + Prometheus metrics (prometheus_client): counters for messages processed,
+    lookups, errors, rate-limit blocks; expose /metrics on localhost.
+
+13. Markdown rendering of titles — strip backticks, collapse whitespace; optionally show issue state
+    (open/closed/merged/draft) and labels (e.g. [bug]).
+
+14. Per-PR review status — show CI state (statusCheckRollup) and review decision; very useful in dev
+    channels.
+
+15. Anti-spam: ignore users in an opt-out list; only respond when at least one channel op is
+    present; or operate "mention-only" mode in busy channels.
+
+16. Container image + GitHub Actions to build on tag push; deploy via systemd-podman.
+
+17. Health endpoint / watchdog: add WatchdogSec= to the systemd unit and sd_notify "WATCHDOG=1"
+    pings, so systemd restarts a hung bot.
+
+18. Localization of the cooldown/too-old reasons so they can be sent back to the requester
+    (currently only printed locally).  
+

@@ -1345,3 +1345,20 @@ Index: these function need improvements for tagging/repeat-count
 Rename BrowserEntryArray to FolderFileArray for consistency
 	ARRAY_HEAD(BrowserEntryArray, struct FolderFile);
 	ARRAY_HEAD(FolderFilePtrArray, struct FolderFile *);
+
+get Amp to improve neo-bot
+
+config expansion
+	${config-name} with {}s isn't documented
+
+review upstream commits
+	neo [attach]
+
+status_format %{last-log}?
+	last error/warning/info message
+
+should :cd support +/= $folder?
+	what about `-` (previous directory)
+		need to store old dir
+	test relative, absolute, ~/ $HOME relative
+

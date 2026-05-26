@@ -9,10 +9,20 @@ Functions (all possible)
 Config - all relevant to current dialog - bold changed config
 Misc - e.g. Index flag config
 
-:bind [all|dialog]
+:bind  [all|dialog]
 :macro [all|dialog]
 :color [all|dialog]
-:set [all|dialog]
+:set   [all|dialog]
+
+if these become:
+	:help bind  [all|dialog]
+	:help macro [all|dialog]
+	:help color [all|dialog]
+	:help set   [all|dialog]
+then the central help function needs to auto-complete on the registered topics
+and after `:help topic` we need topic-specific auto-completion. HOW?
+	central auto-complete needs data about topics and their auto-completions
+	after topic it needs to delegate
 
 Some cfg/colours are global
 Could associate themselves with a Window
@@ -26,6 +36,7 @@ Pager Filters would have to register their config / colours somehow
 :help -> <help>
 
 <help> add "about" tab, with sponsorship info, get involved
+	sponsors -> regular only, >x months?
 
 add :help global command to do <help>
 	how would it get the context for the functions?
