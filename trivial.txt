@@ -1362,3 +1362,50 @@ should :cd support +/= $folder?
 		need to store old dir
 	test relative, absolute, ~/ $HOME relative
 
+mbox-hook docs don't mention that the "mailbox" can contain $index_format expandos
+	give examples
+
+add to credits
+	Dennis Eriksen (@dennisse)
+	Rayford Shireman (@rayfordshire)
+
+unify `:unX` commands that take `string` or `*`?
+	sidebar-unpin       {* | mailbox ...}
+	unalias             {* | key ...}
+	unalternative-order {* | mime-type[/subtype] ...}
+	unauto-view         {* | mime-type[/subtype] ...}
+	unheader-order      {* | header ...}
+	unhook              {* | hook-type}
+	unignore            {* | string ...}
+	unmailboxes         {* | mailbox ...}
+	unmailto-allow      {* | header-field ...}
+	unmime-lookup       {* | mime-type[/subtype] ...}
+	unmy-header         {* | field ...}
+	unscore             {* | pattern ...}
+single or multiple fields OR '*'
+	nospam              {* | regex}
+	unalternates        {* | regex ...}
+	unlists             {* | regex ...}
+	unsubject-regex     {* | regex}
+	unsubscribe         {* | regex ...}
+single or multiple regexes OR '*'
+
+parse_unhook_args with a '*' arg broken?
+
+buf_inline_replace doxy comment missing /**
+
+neo-bot: emojiHTML gives "??" at the beginning of each posted line
+
+browser: add functions
+	goto-root
+	goto-next-sibling?
+	goto-previous-sibling?
+	goto-home?
+
+https://django.the-box.sh/sponsors/neomutt/neomutt.svg
+
+github notification URLs don't work
+
+unused! nm_get_all_tags()
+	check why not
+
