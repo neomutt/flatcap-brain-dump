@@ -61,6 +61,7 @@ attach/recvattach.c
 attach/recvattach.h
 attach/recvcmd.c
 attach/recvcmd.h
+attach/selection.c
 autocrypt/autocrypt.c
 autocrypt/autocrypt_data.c
 autocrypt/autocrypt_data.h
@@ -107,6 +108,7 @@ color/color.c
 color/color.h
 color/commands.c
 color/commands.h
+color/config.c
 color/curses.c
 color/curses2.h
 color/dump.c
@@ -421,6 +423,8 @@ fuzzy/lib.h
 fuzzy/subseq.c
 globals.c
 globals.h
+gui/bottombar.c
+gui/bottombar.h
 gui/config.c
 gui/curs_lib.c
 gui/curs_lib.h
@@ -453,11 +457,14 @@ gui/rootwin.c
 gui/rootwin.h
 gui/sbar.c
 gui/sbar.h
+gui/selection.c
 gui/simple.c
 gui/simple.h
 gui/terminal.h
 gui/thread.c
 gui/thread.h
+gui/utilwin.c
+gui/utilwin.h
 hcache/config.c
 hcache/hcache.c
 hcache/lib.h
@@ -656,6 +663,12 @@ mh/sequence.c
 mh/sequence.h
 mh/shared.c
 mh/shared.h
+mlist/dlg_mlist.c
+mlist/functions.c
+mlist/functions.h
+mlist/lib.h
+mlist/module.c
+mlist/module_data.h
 module.c
 monitor.c
 monitor.h

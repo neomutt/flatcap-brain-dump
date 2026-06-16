@@ -272,3 +272,5 @@ $signature
 
 bind browser .. goto-parent
 
+`color options` prettiness
+

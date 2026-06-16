@@ -1392,8 +1392,6 @@ single or multiple regexes OR '*'
 
 parse_unhook_args with a '*' arg broken?
 
-buf_inline_replace doxy comment missing /**
-
 neo-bot: emojiHTML gives "??" at the beginning of each posted line
 
 browser: add functions
@@ -1408,4 +1406,16 @@ github notification URLs don't work
 
 unused! nm_get_all_tags()
 	check why not
+
+init (irc)
+	"I just want to know the 10% of neomutt that I will use 100% of the time"
+
+In the Pager, in upstream Mutt, `Q` completely quits Mutt (checks $quit)
+	Broken in NeoMutt (probably for ages)
+
+sponsor 2026-06-11
+
+backport main commits
+
+update fuzzy docs for new function names
 
