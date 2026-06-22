@@ -1365,10 +1365,6 @@ should :cd support +/= $folder?
 mbox-hook docs don't mention that the "mailbox" can contain $index_format expandos
 	give examples
 
-add to credits
-	Dennis Eriksen (@dennisse)
-	Rayford Shireman (@rayfordshire)
-
 unify `:unX` commands that take `string` or `*`?
 	sidebar-unpin       {* | mailbox ...}
 	unalias             {* | key ...}
@@ -1404,18 +1400,52 @@ https://django.the-box.sh/sponsors/neomutt/neomutt.svg
 
 github notification URLs don't work
 
-unused! nm_get_all_tags()
-	check why not
-
 init (irc)
 	"I just want to know the 10% of neomutt that I will use 100% of the time"
 
-In the Pager, in upstream Mutt, `Q` completely quits Mutt (checks $quit)
-	Broken in NeoMutt (probably for ages)
-
-sponsor 2026-06-11
-
-backport main commits
-
 update fuzzy docs for new function names
+
+actions checkout@v7
+
+dyk: sidebar-scoping for functions?
+
+distinguish between MFF_DEPRECATED and MFF_SYNONYM?
+
+compose functions leave selection invisible (ctrl-l fixes)
+	toggle-recode
+	toggle-disposition
+
+compose
+	attach file
+	<get-attachment> (make private copy)
+	abort compose
+	file left behind
+check when
+check send/postpone/cancel
+check mutt
+check *release*
+
+Add OpList to Index functions?
+	Attach functions too
+
+compose <get-attachment> `G` doesn't $resolve
+	(neither does mutt)
+	3G doesn't advance either
+
+fix $resolve desc -- applies to many menus
+
+sidebar scrolling, etc
+	Ignore for now
+	set menu_context  = 0   # Number of lines of overlap when changing pages in the index
+	set menu_move_off = yes # Allow the last menu item to move off the bottom of the screen
+	set menu_scroll   = no  # Scroll the menu/index by one line, rather than a page
+
+sidebar:
+	Add a %{number} expando
+	add a <jump> / <select-entry-by-number> function
+	(then it's practically a Menu)
+	(Menu needs a highlight index)
+
+used in attach, compose, index: make global
+	{ "forget-passphrase", OP_FORGET_PASSPHRASE },
 
