@@ -1118,12 +1118,6 @@ review vim plugin anaysis
 
 gen "authors" mailboxes -> sample-data / test-?
 
-index/generic `]` half-down doesn't seem to reach the bottom of the Menu
-	need to bisect
-	don't see it on `mutt`, only `flatcap` -- check/diff config
-	caused by "set menu_context = 3"?
-	or "set menu_scroll = yes"?
-
 module
 	init() -> void *init() -> private data
 		implies modules MUST have data. hmm...
@@ -1242,6 +1236,8 @@ amp - general rules
 
 move MenuDefs and SubMenus to libgui Module?
 move individual MenuDef and SubMenu to individual Modules?
+	hmm... MenuDefinition/SubMenu are in libkey
+		which is already entirely gui
 
 vim #RGB triple colour highlighting for neomuttrc
 
@@ -1404,35 +1400,14 @@ init (irc)
 	"I just want to know the 10% of neomutt that I will use 100% of the time"
 
 update fuzzy docs for new function names
-
-actions checkout@v7
+	sidebar-search feature
 
 dyk: sidebar-scoping for functions?
 
 distinguish between MFF_DEPRECATED and MFF_SYNONYM?
 
-compose functions leave selection invisible (ctrl-l fixes)
-	toggle-recode
-	toggle-disposition
-
-compose
-	attach file
-	<get-attachment> (make private copy)
-	abort compose
-	file left behind
-check when
-check send/postpone/cancel
-check mutt
-check *release*
-
 Add OpList to Index functions?
 	Attach functions too
-
-compose <get-attachment> `G` doesn't $resolve
-	(neither does mutt)
-	3G doesn't advance either
-
-fix $resolve desc -- applies to many menus
 
 sidebar scrolling, etc
 	Ignore for now
@@ -1440,12 +1415,25 @@ sidebar scrolling, etc
 	set menu_move_off = yes # Allow the last menu item to move off the bottom of the screen
 	set menu_scroll   = no  # Scroll the menu/index by one line, rather than a page
 
-sidebar:
-	Add a %{number} expando
-	add a <jump> / <select-entry-by-number> function
-	(then it's practically a Menu)
-	(Menu needs a highlight index)
+OP_BROWSER_TELL
+	need to display full path
+	need to strip imap password, if present, see upstream
 
-used in attach, compose, index: make global
-	{ "forget-passphrase", OP_FORGET_PASSPHRASE },
+generic <activate-entry> has a default of <enter>
+	ensure all dialogs that inherit this function have a specific *named* function for this action
+	this allows users to bind/macro with confidence
+	for some dialogs, e.g. alias, history, <activate-entry> is _reasonable_
+
+check all docs for renamed functions
+
+coverity defects
+
+functions
+	many dialogs use OpGeneric, where <enter> -> OP_ACTIVATE_ENTRY
+	some dialogs override <enter> to give a specific name, e.g. <display-message>
+	it'd be nice to have a redirect to save the duplicate keybindings. HOW?
+	the duplicated entries, means they show up in the child's keybindings (in help)
+	adding a duplicate entry in OpIndex improves things
+		it puts "display-message" into the generic bindings help
+		but the help still uses the *generic* help text -- activate entry
 
